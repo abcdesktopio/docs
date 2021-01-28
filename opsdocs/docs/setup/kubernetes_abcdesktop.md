@@ -171,15 +171,15 @@ docker pull abcdesktopio/oc.pulseaudio.18.04
 You should read on the standard output
 
 ```
-oc.user.18.04: Pulling from abcdesktop/io
+oc.user.18.04: Pulling from abcdesktopio
 ...[cut here]...
 docker.io/abcdesktopio/oc.user.18.04
 
-oc.cupsd.18.04: Pulling from abcdesktop/io
+oc.cupsd.18.04: Pulling from abcdesktopio
 ...[cut here]...
 docker.io/abcdesktopio/oc.cupsd.18.04
 
-oc.pulseaudio.18.04: Pulling from abcdesktop/io
+oc.pulseaudio.18.04: Pulling from abcdesktopio
 ...[cut here]...
 docker.io/abcdesktopio/oc.pulseaudio.18.04
 ```
@@ -226,14 +226,12 @@ Once the pods are created, all pods should be running.
 For the first time, status maybe long to become running as some container images may be downloaded
 
 ```
-watch kubectl get pods -n abcdesktop
+kubectl get pods -n abcdesktop
 ```
 
 You should read on the standard output
 
 ```
-Every 2,0s: kubectl get pods -n abcdesktop                                                         hostname: Fri Oct 30 13:36:34 2020
-
 NAME                                   READY   STATUS    RESTARTS   AGE
 daemonset-nginx-nfsbm                  1/1     Running   0          29s
 daemonset-pyos-8kvfp                   1/1     Running   0          29s
@@ -260,7 +258,8 @@ Few seconds later, processes are ready to run. You should see the abcdesktop mai
 ![abcdesktop main screen ready](img/kubernetes-setup-login-anonymous.done.png)
 
 Great you have installed abcdesktop.io in Kubernetes mode.
-You just need a web browser to reach your web workspace.
+You just need a web browser to reach your web workspace. It' now time to add some container applications.
+Read the chapter add kubernetes contain
 
 
 

@@ -1,5 +1,5 @@
 
-# Add new applications to your desktop
+# Setup applications for abcdesktop
 
 Each application is a docker container, to install new docker container run the docker pull command :
 
@@ -49,5 +49,14 @@ http://localhost:30443/API/manager/buildapplist
 This http request returns a json object, with all docker images details. This json file contains all this docker image installed on the host.
 
 ![buildapplist json format](img/json-image-list.png)
+
+Now reconnect to your abcdesktop. 
+Open your navigator to http://[your-ip-hostname]:30443/
+
+```	
+http://localhost:30443/
+```
+
+The new application are installed, and ready to run.
  
 
