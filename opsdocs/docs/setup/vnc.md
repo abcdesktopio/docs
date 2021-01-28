@@ -94,8 +94,7 @@ Here I am using VNC Viewer on Mac OS/X and I did set the hostname to localhost.
 
 This is a getting started guide to understand how abcdesktop works, so we did not set a password to protect the VNC access.
 This is not the best practices guide for production installations. 
-As we did not set a password to protect the VNC access, you have to confirm the uncrypted connection warning dialog box. 
-Press the Continue button.
+As we did not set a password to protect the VNC access, you have to confirm the uncrypted connection warning dialog box and then press the `Continue` button.
 
 This is just an example to understand how abcdesktop works, so we did not set a password to protect the VNC access. 
 
