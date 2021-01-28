@@ -26,7 +26,7 @@ docker volume create myshared
 
 ## Start the first container myx11server
 
-Start the first graphical container named **myx11server**, forward the tcp port 5900 to the container tcp port 5900.
+Start the first graphical container named **myx11server**, forward the tcp port 5900 to the container.
 
 * The tcp port 5900 will be use later by the vnc server.
 * The volume myshared is mounted to /tmp
