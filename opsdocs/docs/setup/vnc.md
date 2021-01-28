@@ -2,7 +2,7 @@
 
 
 The goal of this chapter is to learn how abcdesktop.io works. 
-You should not repeat the process in production, but prefere use a Dockerfile and the docker build command.     
+You should not repeat the process in production, but prefer use a Dockerfile and the docker build command.     
 
 
 ## Requirements
