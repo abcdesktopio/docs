@@ -84,7 +84,9 @@ We will use the host tcp port **5900** to connect VNC Client.
 From your host or from another host, install a VNC client. You can use your prefered VNC Client for your operating system or the RealVNC's VNC Viewer. You can download the RealVNC's VNC Client, by following the link [https://www.realvnc.com/fr/connect/download/viewer/](https://www.realvnc.com/fr/connect/download/viewer/)
 
 Run the VNC Viewer, and set the hostname where the container myx11server is running. 
-In the following example, i use VNC Viewer running on Mac OS/X and set the hostname to localhost.
+In the following example.
+
+Here I am using VNC Viewer on Mac OS/X and I did set the hostname to localhost.
 
 
 ![vncviewer-connect](img/vncviewer-connect.png)
