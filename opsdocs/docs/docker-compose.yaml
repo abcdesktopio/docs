@@ -1,0 +1,39 @@
+version: '3'
+services:
+  pyos:
+    depends_on:
+      - memcached
+      - mongodb
+    image: 'abcdesktopio/oc.pyos'
+    networks:
+      - netback
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  speedtest:
+    image: 'abcdesktopio/oc.speedtest'
+    networks:
+      - netuser
+  nginx:
+    depends_on:
+      - memcached
+      - pyos
+    image: 'abcdesktopio/oc.nginx'
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - netuser
+      - netback
+  memcached:
+    image: memcached
+    networks:
+      - netback
+  mongodb:
+    image: mongo
+    networks:
+      - netback
+networks:
+  netuser:
+    driver: bridge
+  netback:
+    internal: true

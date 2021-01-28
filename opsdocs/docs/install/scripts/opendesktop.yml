@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+  pyos:
+    depends_on:
+      - memcached
+      - mongodb
+    image: 'abcdesktopio:oc.pyos'
+    networks:
+      - netback
+    environment:
+      - 'constraint:node.role==manager'
+    volumes:
+      - /etc/docker/ssl:/etc/docker/ssl:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/pyos/od.config:/var/pyos/od.config
+      - /mnt/abcdesktop:/mnt/abcdesktop
+      - /mnt/ldiff.cache:/mnt/ldiff.cache
+  speedtest:
+    image: 'abcdesktopio:oc.speedtest'
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - netuser
+  nginx:
+    depends_on:
+      - memcached
+      - pyos
+      - speedtest
+    image: 'abcdesktopio:oc.nginx'
+    volumes:
+      - /home/kevin/CONTROLE/webModules:/var/webModules
+        #- /var/webModules.cc:/var/webModules
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - netuser
+      - netback
+    environment:
+      - 'constraint:node.role==manager'
+  memcached:
+    image: memcached:1
+    networks:
+      - netback
+    environment:
+      - 'constraint:node.role==manager'
+  mongodb:
+    image: mongo
+    networks:
+      - netback
+    environment:
+      - 'constraint:node.role==manager'
+networks:
+  netuser:
+    external: true
+  netback:
+    external: true

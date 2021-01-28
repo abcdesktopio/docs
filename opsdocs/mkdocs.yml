@@ -1,0 +1,79 @@
+theme: 
+  name: 'material'
+  highlightjs: true
+  logo: /img/logo.svg
+  favicon: /img/favicon-128.png
+  hljs_languages:
+    - yaml
+    - javascript
+navigation_depth: 1
+site_name: abcdesktopio.github.io
+repo_url: https://github.com/abcdesktopio/docs
+nav:
+- About:
+    - How to read this documentation: 'about/howreadthisdoc.md'
+    - How to do labs and exercices: 'about/howtodolabsexercices.md'
+    - Version: 'about/version.md'
+    - Open source: 'about/opensource.md'
+    - Authors : about/authors.md
+    - Related projects : about/related_projets.md
+- Home: 'index.md'
+- Requirements : 'requirements.md'
+- Overview: overview.md
+- GUI apps on Docker:
+   - 'Run GUI apps on Docker': guiappsoddocker.md
+   - 'Hands-on with VNC client': 'setup/vnc.md'
+   - 'Hands-on with no-VNC HTML5': 'setup/novnc.md'
+- Architecture: 
+   - Overview: 'architecture.md'
+   - Core :
+     - Nginx: 'core/nginx.md'
+     - Pyos: 'core/pyos.md'
+     - Mongodb: 'core/mongodb.md'
+     - Memcached: 'core/memcached.md'
+     - Speedtest: 'core/speedtest.md'
+     - User: 'core/ocuser.md'
+   - Services :
+     - Spawner-service: 'services/spawner-service.md'
+     - File-service: 'services/file-service.md'
+- Setup guide: 
+   - Docker (Non-cluster): 
+        - Setup abcdesktop for Docker : 'setup/dockermode.md'
+   - Kubernetes : 
+        - Requirements : 
+            - Kubernetes on GNU/Linux : setup/k8slinuxinstallation.md
+            - Kubernetes on MacOS/X : setup/k8smacosinstallation.md
+            - Kubernetes on Windows 10 :  setup/k8swindows10installation.md
+        - Setup Kubernetes for GNU/Linux only: 'setup/kubernetesmode.md'
+        - Setup abcdesktop for Kubernetes : 'setup/kubernetes_abcdesktop.md'
+   - Kubernetes add-ons :
+        - Setup Network policy : 'setup/kubernetes_networkpolicies.md'
+        - Setup CIFS Volume : 'setup/kubernetes_flexvolume.md'
+        - Secure Dockerd : 'setup/secure_dockerd.md'
+        - Secure Etcd : 'setup/kubernetes_secure_etcd.md' 
+- Applications Containers:
+    - Application image format : 'applications.md'
+    - Build your own abcdesktop GNU/Linux Image: 'buildapplicationsgnulinux.md'
+- Configuration Guide:
+   - Edit your configuration file: 'config/editconfig.md'
+   - Stack mode: 'config/stack.md'
+   - Authentification: 
+        - config: 'config/authentification.md' 
+        - explicit:
+            - Directory services: 'config/authexplicit.md'
+            - LDAP: 'config/authexplicit-ldap.md'
+            - Active Directory: 'config/authexplicit-activedirectory.md'
+        - implicit: 'config/authimplicit.md'
+        - external: 'config/authexternal.md'
+   - Desktop: 'config/desktop.md'
+   - Front: 'config/frontjs.md'
+   - Languages: 'config/language.md'
+   - Logging: 
+        - Logging: 'config/logging.md'
+        - Syslog: 'config/syslog.md'
+   - Controllers:
+        - Overview : config/controllers.md
+        - Manager: config/controllers/manager.md
+- Technical articles:
+   - Non-cluster hosts:
+        - Routing local subnet using macvlan network : 'common/docker_macvlan.md'
