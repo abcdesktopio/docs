@@ -38,7 +38,7 @@ To guarantee isolation, abcdesktop/io.io run X11 server and X11 client in separa
  
 * The unix file socket garantes no latency troubleshooting. X11 uses a chatty protocol so that the network latency has a large impact when using X11
 
-**Local is best**, but server and application need to run on the same node.
+**Local is best**, thus server and application need to run on the same node.
 
 
 

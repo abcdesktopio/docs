@@ -2,7 +2,7 @@
 
 
 The goal of this chapter is to learn how abcdesktop.io works. 
-You should not repeat the process in production, but prefere use a Dockerfile and the docker build command.     
+You should not repeat the process in production, but prefer use a Dockerfile and the docker build command.     
 
 
 ## Requirements
@@ -26,7 +26,7 @@ docker volume create myshared
 
 ## Start the first container myx11server
 
-Start the first graphical container named **myx11server**, forward the tcp port 5900 to the container tcp port 5900.
+Start the first graphical container named **myx11server**, forward the tcp port 5900 to the container.
 
 * The tcp port 5900 will be use later by the vnc server.
 * The volume myshared is mounted to /tmp
@@ -84,7 +84,9 @@ We will use the host tcp port **5900** to connect VNC Client.
 From your host or from another host, install a VNC client. You can use your prefered VNC Client for your operating system or the RealVNC's VNC Viewer. You can download the RealVNC's VNC Client, by following the link [https://www.realvnc.com/fr/connect/download/viewer/](https://www.realvnc.com/fr/connect/download/viewer/)
 
 Run the VNC Viewer, and set the hostname where the container myx11server is running. 
-In the following example, i use VNC Viewer running on Mac OS/X and set the hostname to localhost.
+In the following example.
+
+Here I am using VNC Viewer on Mac OS/X and I did set the hostname to localhost.
 
 
 ![vncviewer-connect](img/vncviewer-connect.png)
@@ -92,8 +94,7 @@ In the following example, i use VNC Viewer running on Mac OS/X and set the hostn
 
 This is a getting started guide to understand how abcdesktop works, so we did not set a password to protect the VNC access.
 This is not the best practices guide for production installations. 
-As we did not set a password to protect the VNC access, you have to confirm the uncrypted connection warning dialog box. 
-Press the Continue button.
+As we did not set a password to protect the VNC access, you have to confirm the uncrypted connection warning dialog box and then press the `Continue` button.
 
 This is just an example to understand how abcdesktop works, so we did not set a password to protect the VNC access. 
 
@@ -108,7 +109,7 @@ A black screen should appear :
 
 ![vncviewer-blackscreen](img/vncviewer-blackscreen.png)
 
-Keep this VNC Client running, we will use this display show application.
+Keep this VNC Client running, we will use this display to show our applications later.
 
 
 ## Install an x11 application as a docker application
@@ -125,7 +126,9 @@ You should see a prompt like :
 ```
 root@96df62a73e4f:/# 
 ```
-To install standart application like xedit, xman or xeyes. Install the package x11-apps command in your myx11server container.
+To install standart application like xedit, xman or xeyes. Install the package x11-apps.
+
+Run those commands in your myx11server container.
 
 ```
 apt-get update
@@ -197,8 +200,7 @@ docker rm myapp
 
 ## Install another x11 application as a docker application
 
-On your host, where your container myx11server is running.
-Open a new shell window and start a new docker container named myapp.
+On your host, where your container myx11server is running, open a new shell window and start a new docker container named myapp.
 
 ```
 docker run -it -v myshared:/tmp --name myfirefox ubuntu:latest
@@ -240,10 +242,10 @@ Check that firefox works and go to your favorite web site.
 
 ## Clean your setup
 
-To clean your work space, stop the running contianer myapp myfirefox myx11server, and remove then.
+To clean your work space, stop the running contianer myapp myfirefox myx11server, then remove it.
 We also need to remove the shared volume myshared
 
-Run the command :
+Run the commands :
 
 
 ```
