@@ -200,8 +200,7 @@ docker rm myapp
 
 ## Install another x11 application as a docker application
 
-On your host, where your container myx11server is running.
-Open a new shell window and start a new docker container named myapp.
+On your host, where your container myx11server is running, open a new shell window and start a new docker container named myapp.
 
 ```
 docker run -it -v myshared:/tmp --name myfirefox ubuntu:latest
