@@ -109,7 +109,7 @@ A black screen should appear :
 
 ![vncviewer-blackscreen](img/vncviewer-blackscreen.png)
 
-Keep this VNC Client running, we will use this display show application.
+Keep this VNC Client running, we will use this display to show our applications later.
 
 
 ## Install an x11 application as a docker application
