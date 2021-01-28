@@ -245,7 +245,7 @@ Check that firefox works and go to your favorite web site.
 To clean your work space, stop the running contianer myapp myfirefox myx11server, then remove it.
 We also need to remove the shared volume myshared
 
-Run the command :
+Run the commands :
 
 
 ```
