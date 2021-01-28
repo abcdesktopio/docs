@@ -100,20 +100,9 @@ To install dockerd on Microsoft windows, use Docker for Desktop. Get Docker for 
 [docker-for-windows](https://docs.docker.com/docker-for-windows/)
 
 You need to configure your Docker Desktop on Windows to use Linux containers. 
-abcdesktop.io does NOT support Windows conainer. 
+abcdesktop.io does NOT support Windows container. 
 
 You can switch the Docker Desktop on Windows to use Linux containers, using  the docker window tray icon. [Switch to Linux containers](/img/switchtolinuxcontainer.png)
 
-## Internet access
-To do the hands-on you need an internet access. Prefered a direct Internet access without proxy server. 
 
-### Internet access with proxy 
-If you need a proxy to get an Internet access, you have to set specific environment variables to your dockerd. Read the docker documentation [Configure Docker to use a proxy server](https://docs.docker.com/network/proxy/)
-
-You also need to change the curl and wget command, and set the ```http_proxy``` and ```https_proxy``` variables with your proxy values.
-
-
-## Docker cheatsheets commands
-
-Read the cheatsheets command 
 

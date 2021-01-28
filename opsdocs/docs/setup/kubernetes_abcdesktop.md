@@ -24,7 +24,7 @@ You need to have a Kubernetes cluster, and the ```kubectl``` command-line tool m
 Download and extract the latest release automatically (Linux or macOS):
 
 ```
-curl -sL http://docs.abcdesktop.io/install.sh | bash
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install.sh | bash
 ```
 
 The command above downloads the latest release (numerically) of abcdesktop.io. 
@@ -36,7 +36,7 @@ The quick installation process runs the all commands step by step:
 * download user's core images: oc.user, oc.cupsd, oc.pulseaudio
 * download some applications images sample: the LibreOffice suite (calc, writer, impress), Firefox, Gimp, and gnome-terminal.
 
-You can also download the [install.sh](http://docs.abcdesktop.io/install.sh) bash script, and read it and then run it.
+You can also download the [install.sh](https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install.sh) bash script, and read it and then run it.
  
 
 
@@ -186,16 +186,13 @@ docker.io/abcdesktopio/oc.pulseaudio.18.04
 
 Create the abcdesktop pods and services
 
-```
-kubectl create -f http://docs.abcdesktop.io/setup/abcdesktop.yaml
-```
+abcdesktop.yaml file contains declarations for all roles, service account, pods, and services required for abcdesktop.
 
-abcdesktop.yaml file contains declarations for all pods, services and networks required for abcdesktop.
-
-You can download the abcdesktop yaml file  [abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/abcdesktop.yaml)
+Run the command line
 
 ```
-kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/abcdesktop.yaml```
+kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop.yaml
+```
 
 You should read on the standard output
 
@@ -254,7 +251,7 @@ abcdesktop homepage should be available :
 
 ![abcdesktop Anonymous login](img/kubernetes-setup-login-anonymous.png)
 
-Click on the **Connect with Anonymous** access button. Pyos is creating a new desktop using the user container docker image oc.user.18.04.
+Click on the **Connect with Anonymous** access button. abcdesktop service pyos is creating a new desktop using the user container docker image oc.user.18.04.
 
 ![abcdesktop main screen login pending](img/kubernetes-setup-login-anonymous.pending.png)
 
@@ -264,6 +261,7 @@ Few seconds later, processes are ready to run. You should see the abcdesktop mai
 
 Great you have installed abcdesktop.io in Kubernetes mode.
 You just need a web browser to reach your web workspace.
+
 
 
 ### Troubleshoot
