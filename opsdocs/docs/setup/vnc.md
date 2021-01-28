@@ -126,7 +126,9 @@ You should see a prompt like :
 ```
 root@96df62a73e4f:/# 
 ```
-To install standart application like xedit, xman or xeyes. Install the package x11-apps command in your myx11server container.
+To install standart application like xedit, xman or xeyes. Install the package x11-apps.
+
+Run those commands in your myx11server container.
 
 ```
 apt-get update
