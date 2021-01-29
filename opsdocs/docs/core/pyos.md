@@ -1,8 +1,8 @@
 # pyos
 
 oc.pyos is the application server for abcdesktop.io. 
-os.py is python script based an cherrypy framework and listen tcp port 8000.
-os.py dameon waits for json request from the javascript web client scripts, and implements methods : 
+os.py is python script based on cherrypy framework and listen tcp port 8000.
+os.py daemon waits for json request from the javascript web client scripts, and implements methods : 
 
 - 'login' : Request a login session, create a new user container if it does not exist.         
 - 'getkeyinfo' : Return the public key from a provider        
