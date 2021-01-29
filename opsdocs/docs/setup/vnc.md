@@ -126,7 +126,7 @@ You should see a prompt like :
 ```
 root@96df62a73e4f:/# 
 ```
-To install standart application like xedit, xman or xeyes. Install the package x11-apps.
+To install standart application like xedit, xman or xeyes, install the package x11-apps.
 
 Run those commands in your myx11server container.
 
@@ -242,7 +242,7 @@ Check that firefox works and go to your favorite web site.
 
 ## Clean your setup
 
-To clean your work space, stop the running contianer myapp myfirefox myx11server, then remove it.
+To clean your work space, stop the running containers myapp myfirefox myx11server, then remove them.
 We also need to remove the shared volume myshared
 
 Run the commands :
@@ -255,7 +255,7 @@ docker volume rm myshared
 
 ```
 
-Keep the docker images ubuntu, we will use it in next chapter
+Keep the docker images ubuntu, we will use it in the next chapter
 
 
 ## Next Chapter
