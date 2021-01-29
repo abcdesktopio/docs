@@ -33,7 +33,7 @@ Webuser +---->|   nginx   |-----+--->| od.py (port 8000)  |---------->|    mongo
 
 ### Web site
 
-The web site datas are stored in the /var/webModules directory.
+The web site source code is stored in the /var/webModules directory.
 
 ### main reverse proxy 
 
@@ -47,7 +47,7 @@ The web site datas are stored in the /var/webModules directory.
 
 ## LUA scripts
 
-The /etc/nginx/get.targetmap.lua read the ```jwt_token``` and return the ip address or the pod fqdn, using the ```jwt_desktop_signing_public_key``` and the ```jwt_desktop_payload_private_key```
+The /etc/nginx/get.targetmap.lua read the ```jwt_token``` and return the ip address or the pod's fqdn, using the ```jwt_desktop_signing_public_key``` and the ```jwt_desktop_payload_private_key```
 
 It uses a targetmap (dict) as first cache level.
 
