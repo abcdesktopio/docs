@@ -10,7 +10,7 @@
 - An access to the bintray.com website to download a file
 
 
-OpenDeskop.io use the amazing projet noVNC. noVNC is a VNC client JavaScript library. Before you start using noVNC get some information about it:
+AbcDeskopio use the amazing projet noVNC. noVNC is a VNC client JavaScript library. Before you start using noVNC get some information about it:
 
 ## noVNC description
 
