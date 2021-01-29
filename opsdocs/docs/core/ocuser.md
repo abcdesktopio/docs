@@ -11,13 +11,15 @@ This pod starts at least a container with the graphical image.
 The pod user runs by default a container with the graphical image : the oc.user.18.04.
 
 A pod can also runs sound container image, and a printer container.
-There options are defined in the [od.config](/config/desktop/) configuration file [ section ```desktop.soundimage``` and ```desktop.printerimage```].
+These options are defined in the [od.config](/config/desktop/) configuration file [ section ```desktop.soundimage``` and ```desktop.printerimage```].
 
 
 
-## Process running inside the user container
+## Processes running inside the user container
 
-All process are running as the user named ```balloon```. The userid and the guid are ```4096```. No process need to run as ```root``` and no process have to run as ```root``` user.
+All processes are running as the user named ```balloon```, because none of theme need to run as ```root```.
+
+The userid and the guid are ```4096```. 
 
 ### Supervisord
 
