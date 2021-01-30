@@ -19,7 +19,18 @@ In kubernetes mode, the abcdesktop.io infrastructure use seven containers (oc.cu
 
 You need to have a Kubernetes cluster, and the ```kubectl``` command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by reading [Kubernetes Setup](kubernetesmode.md). The command line ```openssl``` must be installed too.
 
+
+You can run the **Quick installation process** or choose the **Manually installation step by step**
+
+
 ## Quick installation
+
+You can watch the [youtube video sample](https://www.youtube.com/watch?v=KpjG4ksoGNI&feature=youtu.be
+). This video describes the Quick installation process.
+
+<iframe width="640" height="480" src="http://www.youtube.com/embed/KpjG4ksoGNI" allowfullscreen>
+</iframe>
+
 
 Download and extract the latest release automatically (Linux or macOS):
 
