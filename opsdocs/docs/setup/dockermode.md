@@ -27,8 +27,37 @@ The command docker-compose is used in this hands-on, to run each containers toge
 * On Linux systems, first install the Docker for your OS as described on the [Get Docker page](https://docs.docker.com/compose/install/), then come back here for instructions on installing Compose on Linux systems.
 
 
+## Quick installation
 
-## Pull user container image
+You can watch the [youtube video sample](https://www.youtube.com/watch?v=_A80Sy9g28I&feature=youtu.be
+). This video describes the Quick installation process.
+
+<iframe width="640" height="480" src="http://www.youtube.com/embed/_A80Sy9g28I" allowfullscreen>
+</iframe>
+
+
+Download and extract the latest release automatically (Linux or macOS):
+
+```
+curl -L https://raw.githubusercontent.com/abcdesktopio/conf/main/docker/install.sh | sh -
+```
+
+The command above downloads the latest release (numerically) of abcdesktop.io. 
+The quick installation process runs the all commands step by step:
+
+* download user's core images: oc.user
+* download some applications images sample: the LibreOffice suite (calc, writer, impress), Firefox, Gimp, and gnome-terminal.
+* download the [docker-compose.yml](https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/docker-compose.yml) YAML file
+* run ```docker-compose -p abcdesktop up```
+
+ 
+
+## Manually installation step by step
+
+The following commands will let you prepare and build abcdesktop plateform on the master node. All applications run on a single server.  
+
+
+### Pull user container image
 
 The user container is named ```abcdesktopio/oc.user.18.04```. The size of the ```abcdesktopio/oc.user.18.04``` image is up to 2 GB. Download the user container image, using the docker pull commmand : 
 
@@ -39,7 +68,7 @@ docker pull abcdesktopio/oc.user.18.04
 
 
 
-## docker-compose
+### docker-compose
 
 Create a docker-compose.yml file, and copy & paste this YAML file into.
 
@@ -276,6 +305,9 @@ pyos_1       | 2020-10-02 12:54:17 od [INFO   ] __main__.run_server:anonymous Wa
 
 Check that the last pyos line is Waiting for requests...
 
+
+### Start your web browser
+
 Start a web browser and go to your host where the docker-compose is running, in this example i run abcdesktopio on my laptop, ```http://localhost``` 
 
 abcdesktopio use websockets, by default websocket connection establishment is permit to localhost. 
@@ -298,7 +330,7 @@ Few seconds later, processes are ready to run. You should see the abcdesktop mai
 Great you have installed abcdesktop.io in Docker mode.
 You just need a web browser to reach your web workspace.
 
-## Networks ```abcdesktop_netuser``` and ```abcdestkop_netback```
+#### Networks ```abcdesktop_netuser``` and ```abcdestkop_netback```
 
 abcdesktop.io in docker mode use two docker networks ```abcdesktop_netuser``` and ```abcdesktop_netback```. 
  
@@ -316,7 +348,7 @@ By design, and for security reasons, the user containers can not (and never) rea
 ```
 
 
-## List all docker container
+### List all docker containers
 
 Start a new shell and run the docker ps -a command to list all the containers
 
@@ -344,7 +376,7 @@ The new abcdesktop user container has been created
 ```
 
 
-## Add new applications to your desktop
+### Add new applications to your desktop
 
 There is only one application on your desktop the File Manager. It's now time to add new application. Each application is a docker container, to install new docker container run the docker pull command :
 
@@ -380,7 +412,7 @@ docker pull abcdesktopio/terminal.d
 ```
 
 
-## Update the cache application list 
+### Update the cache application list 
 
 The API server does not know that new docker images has been downloaded.  
 You have to send a message to the API server, to update the API Server images cache list.
@@ -396,7 +428,7 @@ This http request returns a json object, with all docker images details. This js
 ![buildapplist json format](img/json-image-list.png)
  
 
-## Use the new applications
+### Use the new applications
 
 Reload your web browser page or start a new session. It's time to run the LibreOffice applications. 
 
