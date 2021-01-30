@@ -2,6 +2,9 @@
 ## How to get a root access inside a container running kubernetes abcdesktop ?
 
 
+> run the sudo command inside the user kubernetes pods
+
+
 ![effective uid is not 0](img/sudo-kubernetes.png)
 
 
@@ -87,6 +90,8 @@ uid=0(root) gid=0(root) groups=0(root),105(lpadmin)
 root@c182dc39-6a00-4869-8b01-2039f37c1eab:~#  
 ```
 
-After the sudo command, you get a root level of the pod
+After the sudo command, you get a root level inside the shell of the users's pod
 
 ![sudo id root](img/sudo-kubernetes-root.png)
+
+> In production this value should be set to False
