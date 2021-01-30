@@ -31,7 +31,7 @@ The user creates a pod [user](/core/user)
 
 Pyos is the core abcdesktop service. Pyos is a stateless services, Pyos's roles are :
 
-- Authenticate user on authenticate providers like
+- Authenticate user on authenticate providers
  - OAuth 2.0 Provider : Google, Facebook, Orange
  - LDAP and LDAPS
  - Active Directory
@@ -45,8 +45,8 @@ When the user starts an application (like LibreOffice for example) a dedicated a
 The nginx container act as web server and websocket reverse proxy. 
 
 ### mongo
-Mongo is used by pyos to store user profil information. 
-The profil information are :
+Mongo is used by pyos to store user profil informations. 
+The profil informations are :
 
 - Login history
 - Dock configuration

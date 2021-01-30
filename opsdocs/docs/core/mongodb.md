@@ -1,7 +1,8 @@
 # Mongodb
 
 
-[Mongodb](https://www.mongodb.org) is an open-source document database that provides high performance, high availability, and automatic scaling
+[Mongodb](https://www.mongodb.org) is an open-source document database that provides high performance, high availability, and automatic scaling.
+
 The [mongodb container](https://hub.docker.com/_/mongo/) comes from the public docker registry. This service is attend to the netback network.
 
 ## Collections
@@ -14,7 +15,9 @@ abcdesktop.io uses the colections mongodb to store
 
 ### dock state
 
-The dock state is stored as an array of application name. The dock state is stored when the user changes it (for exemplate add or remove an application inside the dock zone ). The collection's name is the userid. The key's name is 'dock'
+* The dock state is stored as an array of application name.
+* The dock state is stored when the user changes it (for exemple add or remove an application inside the dock zone ).
+* The collection's name is the userid. The key's name is 'dock'
 
 
 ```
@@ -32,8 +35,10 @@ The dock state is stored as an array of application name. The dock state is stor
 
 ### loginHistory
 
-login History is an object collection. One collection is created for each user. 
-The collection's name is the userid. The javascript code can only read and NEVER write data to the loginHistory collection.
+* Login History is an object collection.
+* One collection is created for each user. 
+* The collection's name is the userid.
+* The javascript code can only read and NEVER write data to the loginHistory collection.
 
 The object's format is :
 
@@ -59,9 +64,9 @@ The object's format is :
 
 #### method 
 
-To getCollection data, javascript code ask the os.py service using a XMLHTTPRequest
+The method getCollection, is a ligth way to get a collection on the fron-end side. 
  
-getCollection 'loginHistory' is called by whoami.js 
+For exemple this method is use by whoami.js to obtain the login's history using the key 'loginHistory'.
 
 ```
  getCollection('loginHistory', function(msg) {

@@ -10,7 +10,7 @@
 - An access to the bintray.com website to download a file
 
 
-OpenDeskop.io use the amazing projet noVNC. noVNC is a VNC client JavaScript library. Before you start using noVNC, get some information about it:
+AbcDeskopio use the amazing projet noVNC. noVNC is a VNC client JavaScript library. Before you start using noVNC get some information about it:
 
 ## noVNC description
 
@@ -78,13 +78,11 @@ root@6de36e574877:/#
 Install the package wget 
 Install the library files for tigervnc. 
 
-The packages list:
+Package list:
 
 * libx11-6 xkb-data x11-xkb-utils xauth libfile-readbackwards-perl netbase libaudit1 libbsd0 libgcrypt20 libgl1 libgnutls30 libjpeg8 libpam0g libpixman-1-0 libselinux1 libstdc++6 libsystemd0 libunwind8 libxau6 libxdmcp6 libxfont2 zlib1g libgl1-mesa-dri xfonts-base x11-xserver-utils xfonts-100dpi xfonts-scalable 
 
-are used by tigervnc. We need to install them.
-
-
+Those packages are used by tigervnc. We need to install them.
 
 ```
 apt-get update
