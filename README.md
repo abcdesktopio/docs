@@ -5,7 +5,7 @@ abcdesktop use mkdocs tools
 
 
 ```
-git clone git://github.com/abcdesktop/docs
+git clone git://github.com/abcdesktopio/docs
 cd docs
 ```
 
