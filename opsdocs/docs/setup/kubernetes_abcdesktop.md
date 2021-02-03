@@ -28,7 +28,7 @@ You can run the **Quick installation process** or choose the **Manually installa
 You can watch the [youtube video sample](https://www.youtube.com/watch?v=KpjG4ksoGNI&feature=youtu.be
 ). This video describes the Quick installation process.
 
-<iframe width="640" height="480" src="http://www.youtube.com/embed/KpjG4ksoGNI" allowfullscreen>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/KpjG4ksoGNI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 
 
