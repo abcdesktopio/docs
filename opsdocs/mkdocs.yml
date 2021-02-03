@@ -53,6 +53,7 @@ nav:
         - Secure Dockerd : 'setup/secure_dockerd.md'
         - Secure Etcd : 'setup/kubernetes_secure_etcd.md' 
 - Applications Containers:
+    - List of all applications ready to use : 'applications/list.md'
     - Application image format : 'applications.md'
     - Build your own abcdesktop GNU/Linux Image: 'buildapplicationsgnulinux.md'
 - Configuration Guide:
@@ -70,11 +71,14 @@ nav:
    - Front: 'config/frontjs.md'
    - Languages: 'config/language.md'
    - Logging: 
-        - Logging: 'config/logging.md'
-        - Syslog: 'config/syslog.md'
+        - Logging: config/logging.md
+        - Syslog: config/syslog.md
    - Controllers:
         - Overview : config/controllers.md
         - Manager: config/controllers/manager.md
+   - WebRTC:
+        - Pulseaudio : config/webrtc.md
 - How-to:
    - Get a root access inside a container : 'config/sudo-kubernetes.md' 
-   - Routing local subnet using macvlan network : 'common/docker_macvlan.md'
+   - Routing local subnet using macvlan or ipvlan network : 'common/docker_macvlan.md'
+   - Get all docker application image for abcdesktop : 'setup/retrieve_all_images.md'
