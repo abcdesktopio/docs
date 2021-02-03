@@ -21,6 +21,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Clone sources
+        run: |
+          rm -rf ..?* .[!.]* *
+          git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/docs.git" .
+          git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" submodule update --init --recursive --remote
+          
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
