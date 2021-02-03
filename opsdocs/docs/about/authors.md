@@ -4,7 +4,7 @@ title: Authors
 
 ## Primary Authors
 
-* Alexandre DEVELY :
+* [Alexandre DEVELY](https://github.com/koumoula) :
 Project owner, architect, developer, containers and security architecture, all components, maintainer of the code and has written much of the current code base
 
 * Cedric HAUWEL : Pyos and authentification, included a complete refactor of the core pyos
@@ -12,17 +12,16 @@ Project owner, architect, developer, containers and security architecture, all c
 * Jeremy PETIT :
 HTML, CSS, Javascript, nodejs: Full Stack Javascript Developer
 
-* Kevin VOYER : 
+* [Kevin VOYER](https://github.com/kecsou) : 
 HTML, CSS, Javascript, nodejs : Full Stack Javascript Developer
 
 * Vincent PENVERN :
 Python, Ansible, Pyos and embeded applications 
 
-* Jean-Philippe XAVIER :
+* [Jean-Philippe XAVIER](https://github.com/jpxavier-oio):
 Architect, design and network policies with calico
 
 ## Other Contributors
-
 
 The incomplete list of individuals below have provided patches or otherwise
 contributed to the project prior to the project being hosted on GitHub. See the
