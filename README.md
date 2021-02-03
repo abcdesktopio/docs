@@ -1,12 +1,10 @@
 # docs
 abcdesktopio documentation files markup language
 
-abcdesktop use mkdocs tools
+abcdesktop use mkdocs
 
 ```
-git clone git://github.com/abcdesktopio/docs.git
-cd docs
-git submodule update --init --recursive --remote
+git clone --recurse-submodules https://github.com/abcdesktopio/docs
 ```
 
 To run the documentation website
