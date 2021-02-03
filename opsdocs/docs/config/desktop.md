@@ -20,13 +20,13 @@ The od.config contains options to describe how the oc.user and applications cont
 | ```desktop.allowPrivilegeEscalation```| boolean        | False | 
 | ```desktop.securityopt```             | list | [ 'no-new-privileges', 'seccomp=unconfined' ]  |
 | ```desktop.imagePullSecret```         | string         | None |
-| ```desktop.image```     				    | string        | 'abcdesktopio:oc.user.18.04:latest' |
-| ```desktop.imageprinter```            | string        | 'abcdesktopio:oc.cupsd.18.04:latest' |
+| ```desktop.image```     				    | string        | 'abcdesktopio/oc.user.18.04:latest' |
+| ```desktop.imageprinter```            | string        | 'abcdesktopio/oc.cupsd.18.04:latest' |
 | ```desktop.useprintercontainer```     | boolean        | False |
-| ```desktop.soundimage```              | string        | 'abcdesktopio:oc.pulseaudio.18.04' |
+| ```desktop.soundimage```              | string        | 'abcdesktopio/oc.pulseaudio.18.04' |
 | ```desktop.usesoundcontainer```       | boolean        | False |
 | ```desktop.usecontainerimage```       | boolean        | False |
-| ```desktop.initcontainerimage```      | string         | 'abcdesktopio:oc.busybox' |
+| ```desktop.initcontainerimage```      | string         | 'abcdesktopio/oc.busybox' |
 | ```desktop.envlocal```     			    | dictionary     | ```{ 'DISPLAY': ':0.0', 'USER': 'balloon', 'LIBOVERLAY_SCROLLBAR': '0','WINEARCH': 'win32','UBUNTU_MENUPROXY': '0','HOME': '/home/balloon','LOGNAME': 'balloon','PULSE_SERVER: 'localhost:4713', 'CUPS_SERVER': 'localhost:631' }``` |
 | ```desktop.nodeselector```            | dictionary     | ```{}``` | 
 | ```desktop.username```            		| string        | 'balloon' |
@@ -381,26 +381,32 @@ This value is only available in kubernetes mode. The default value is ```False``
 
 ## desktop.useinitcontainer
 
-The ```desktop.useinitcontainer``` is boolean, to use init container.
-The code call change mode for the user's home directory. The default value is ```False```.
+The ```desktop.useinitcontainer``` is boolean, to use init container. The default value is ```False```.
+The code call the ```desktop.initcontainercommand``` list .
 
-```
-chown balloon_uid:balloon_gid homedirectory
-```
 
-The initcontainerimage is a busybox shell, run to make sure that the home directory belongs to user [balloon](balloon.md). Pulseaudio check that [balloon](balloon.md) is the owner of his home directory.
-Set this value to ```True``` if you read the error message :
-```
-pulseaudio not working : Home directory not accessible: Permission denied
-```
+The initcontainerimage is a busybox shell, for example to make sure that the home directory belongs to user [balloon](balloon.md). 
 
 > ```/home/balloon``` must belong to ```balloon``` default user and ```balloon``` default group.
 
+## desktop.initcontainercommand
+The ```desktop.initcontainercommand``` runs the command at init container. The default value is ```None```, the default type is ```list```.
+
+desktop.initcontainercommand example :
+
+```
+desktop.initcontainercommand : [ 'sh', '-c', 'chown 4096:4096 /home/balloon' ]
+```
+
+This option is used when presistent volume data mount a nfs storage. The uid and gid of /home/balloon must be set to the default value of balloon:balloon (4096:4096). 
+
+
+ 
 
 ## desktop.initcontainerimage
 
 The ```desktop.initcontainerimage``` is the name of the init container image.
-The default value is ```abcdesktopio:oc.busybox```
+The default value is ```abcdesktopio/oc.busybox```
 
 
 ## desktop.envlocal
@@ -420,12 +426,12 @@ The default value is :
 		'HOME': '/home/balloon',
 		'LOGNAME': 'balloon',
 		'PULSE_SERVER: '/tmp/.pulse.sock', 
-		'CUPS_SERVER': 'localhost:631' 
+		'CUPS_SERVER': '/tmp/.cups.sock' 
 }
 ``` 
 
-> Add ```'CUPS_SERVER: 'localhost:631'```  only if ```desktop.useprintercontainer``` is True.
-> Add ```'PULSE_SERVER: 'localhost:631'``` only if ```desktop.usesoundcontainer``` is True.
+> Add ```'CUPS_SERVER: '/tmp/.cups.sock'```  only if ```desktop.useprintercontainer``` is True.
+> Add ```'PULSE_SERVER: '/tmp/.pulse.sock'``` only if ```desktop.usesoundcontainer``` is True.
 
 ## desktop.nodeselector
 ```desktop.nodeselector``` is a dictionary. This option permits to assign user pods to nodes.
