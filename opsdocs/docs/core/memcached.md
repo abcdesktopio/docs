@@ -2,17 +2,25 @@
 
 The [memcached](https://hub.docker.com/_/memcached/) container comes from the public docker registry. This service is attend to the netback network. 
 
-## Association table beetween session_id and ip address 
 
-[Memcached](https://memcached.org) is used to share datas between nginx and os.py. When os.py creates a new container, it gets the container ip address on the netuser overlay network and set a key value to memcache. The key is the session_id, the value is the container ip address.
-When a new request is recieve by nginx, nginx try to find the associated ip adress in his own cache data using the session_id, if the session_id is not found, nginx ask memcached to get the ip address associated.
+memcached store pods and containers message during the create process.
 
 
-TODO: change the expiration time
+## create desktop 
 
-The key value data expired by default in (30 days). The number of seconds may not exceed 2592000 (30 days) in memcache. So the maximum expiration time is 30 days.
+### create desktop message 
 
+Messages stored into memcache 
 
-TODO: change access permissions to memcached
-
+|status| user message				|
+|------|----------------------------|
+| OK   |'Looking for your desktop'  |
+| OK   |'Looking for your desktop done' |
+| OK   |'Building desktop'|
+| OK   |'Starting network services, it will take a while...'|
+| OK   |'Network services started.'|
+| OK   |'Starting desktop graphical service %ds / %d' % (nCount,nCountMax) |
+| OK   |'Starting desktop spawner service %ds / %d' % (nCount,nCountMax) |
+| OK   |'Desktop services are ready after %d s'|
+| Error| 'createDesktop error - myOrchestrator.createDesktop %s'  |
 
