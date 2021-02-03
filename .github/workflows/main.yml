@@ -26,7 +26,17 @@ jobs:
           rm -rf ..?* .[!.]* *
           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/docs.git" .
           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" submodule update --init --recursive --remote
-          
+      
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      
+      - name : install material
+        run: pip install mkdocs-material
+      
+      - name: Run Makefile
+        run: make docs
+      
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
