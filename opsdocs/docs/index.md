@@ -15,6 +15,28 @@ abcdesktop.io provides a way to run grapicals applications securely isolated in 
 ![screenshot-applications](img/screenshot-applications.png)
 
 
+## Quick installation for kubernetes
+You can watch the youtube video sample. This video describes the Quick installation process.
+
+<iframe width="640" height="480" src="https://www.youtube.com/embed/KpjG4ksoGNI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+
+Download and extract the latest release automatically (Linux or macOS) or read the step by step installation process [abcdesktop for kubernetes](/setup/kubernetes_abcdesktop.md)
+
+```
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install.sh | sh -
+```
+
+## Quick installation for docker (personal use, Non-cluster mode)
+You can watch the youtube video sample. This video describes the Quick installation process.
+
+<iframe width="640" height="480" src="https://www.youtube.com/embed/_A80Sy9g28I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+
+Download and extract the latest release automatically (Linux or macOS) or read the step by step installation process [abcdesktop for docker](/setup/dockermode.md)
+
+```
+curl -L https://raw.githubusercontent.com/abcdesktopio/conf/main/docker/install.sh | sh -
+```
+
 ## Features
 
 - Access to the user home directory (homeDirectory support in Active Directory)
