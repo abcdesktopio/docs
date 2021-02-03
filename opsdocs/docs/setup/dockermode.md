@@ -32,7 +32,7 @@ The command docker-compose is used in this hands-on, to run each containers toge
 You can watch the [youtube video sample](https://www.youtube.com/watch?v=_A80Sy9g28I&feature=youtu.be
 ). This video describes the Quick installation process.
 
-<iframe width="640" height="480" src="http://www.youtube.com/embed/_A80Sy9g28I" allowfullscreen>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/_A80Sy9g28I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 
 
