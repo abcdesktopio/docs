@@ -3,10 +3,10 @@ abcdesktopio documentation files markup language
 
 abcdesktop use mkdocs tools
 
-
 ```
-git clone git://github.com/abcdesktopio/docs
+git clone git://github.com/abcdesktopio/docs.git
 cd docs
+git submodule update --init --recursive --remote
 ```
 
 To run the documentation website
@@ -20,7 +20,8 @@ make serve
 or
 
 ```
-pip3 install -r /docs/requirements.txt
+cd docs
+pip3 install -r requirements.txt
 mkdocs serve -f opsdocs/mkdocs.yml
 ```
 
