@@ -3,6 +3,7 @@
 
 ## authmanagers ```explicit```:
 
+
 ```explicit``` authentification use a directory service. The bind operation is used to authenticate clients to the directory server, to establish an authorization identity that will be used for subsequent operations processed on that connection.
 
 The ```explicit``` authentification configuration is defined as a dictionnary object and contains an ```explicit``` provider. 
