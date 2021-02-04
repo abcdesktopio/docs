@@ -1,0 +1,10 @@
+# xeyes
+![xeyes.svg](/applications/icons/xeyes.svg){: style="height:64px;width:64px"}
+## inherite from
+[abcdesktopio/oc.template.gtk](abcdesktopio/oc.template.gtk.md)
+## use ubuntu package
+x11-apps
+## Display name
+"xeyes"
+## path
+"/usr/bin/xeyes"
