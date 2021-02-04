@@ -6,7 +6,14 @@
 The menu can be changed using the dictionnary object ```menuconfig```
 
 ```
-menuconfig              : { 'settings': True, 'appstore': True, 'screenshot':True, 'download': True, 'logout': True, 'disconnect': True }
+menuconfig : {
+				 	'settings'	: True, 
+					'appstore'	: True, 
+					'screenshot'	: True, 
+					'download'	: True, 
+					'logout'		: True, 
+					'disconnect'	: True 
+}
 ```
 
 
