@@ -5,12 +5,12 @@ abcdesktop.io support Non-cluster hosts and kubernetes cluster hosts. In this se
 In all configuration, the abcdesktop.io infrastructure uses six containers, each container has a specific role : 
 
 
-| Container  | Role             | Image         | From         |
+| Container  | Role             | Image         | Repository         |
 |------------|------------------|---------------|--------------|
-| oc.user    | User container  |	 abcdesktopio/oc.user.18.04 | abcdesktop.io |
-| oc.pyos    | API Server | abcdesktopio/oc.pyos | abcdesktop.io |
-| oc.nginx | Web Service (http proxy and http server)  |  abcdesktopio/oc.nginx  | [nginx](https://www.nginx.com/)  abcdesktop.io |
-| oc.speedtest | http benchmarch | abcdesktopio/oc.speedtest  | [LibreSpeed](https://librespeed.org/) |
+| oc.user    | User container  |	 abcdesktopio/oc.user.18.04 | abcdesktopio |
+| oc.pyos    | API Server | abcdesktopio/oc.pyos | abcdesktopio |
+| oc.nginx | Web Service (http proxy and http server)  |  abcdesktopio/oc.nginx  | abcdesktopio |
+| oc.speedtest | http benchmarch | abcdesktopio/oc.speedtest  | from [LibreSpeed](https://librespeed.org/) updated abcdesktopio |
 | mongodb     | json database server | mongodb |  [MongoDB](https://www.mongodb.com/) |
 | memcached     | cache server | memcached | [Memcached](https://memcached.org/) |
 
@@ -27,7 +27,12 @@ The command docker-compose is used in this hands-on, to run each containers toge
 * On Linux systems, first install the Docker for your OS as described on the [Get Docker page](https://docs.docker.com/compose/install/), then come back here for instructions on installing Compose on Linux systems.
 
 
-## Quick installation
+## Quick installation (Linux or macOS)
+
+
+> Quick installation can be run on Linux or macOS operation system. 
+> For Microsoft Windows, please read the following chapter 'Manually installation step by step'
+> 
 
 You can watch the [youtube video sample](https://www.youtube.com/watch?v=_A80Sy9g28I&feature=youtu.be
 ). This video describes the Quick installation process.
@@ -52,7 +57,7 @@ The quick installation process runs the all commands step by step:
 
  
 
-## Manually installation step by step
+## Manually installation step by step (Linux, macOS or Windows)
 
 The following commands will let you prepare and build abcdesktop plateform on the master node. All applications run on a single server.  
 
@@ -61,7 +66,7 @@ The following commands will let you prepare and build abcdesktop plateform on th
 
 The user container is named ```abcdesktopio/oc.user.18.04```. The size of the ```abcdesktopio/oc.user.18.04``` image is up to 2 GB. Download the user container image, using the docker pull commmand : 
 
-```
+```bash
 docker pull abcdesktopio/oc.user.18.04
 ```
 
@@ -72,7 +77,7 @@ docker pull abcdesktopio/oc.user.18.04
 
 Create a docker-compose.yml file, and copy & paste this YAML file into.
 
-```
+```yaml
 version: '3'
 services:
   pyos:
@@ -119,14 +124,12 @@ networks:
 > The projet name ```abcdesktop``` is use by pyos to reference the network set by default to ```abcdesktop_netuser```  
 > 
 
-```
+```bash
 docker-compose -p abcdesktop up 
 ```
 
 
-
-
-docker downloads all container images, it could take a while
+dockerd downloads all container images, it could take a while
 
 ```
 Pulling speedtest (abcdesktopio/oc.speedtest:)...
@@ -352,7 +355,7 @@ By design, and for security reasons, the user containers can not (and never) rea
 
 Start a new shell and run the docker ps -a command to list all the containers
 
-```
+```bash
 docker ps -a
 ```
 
@@ -382,7 +385,7 @@ There is only one application on your desktop the File Manager. It's now time to
 
 Install LibreOffice Suite 
 
-```
+```bash
 docker pull abcdesktopio/base.d
 docker pull abcdesktopio/calc.d
 docker pull abcdesktopio/impress.d
@@ -392,21 +395,21 @@ docker pull abcdesktopio/writer.d
 
 Install Mozilla Suite 
 
-```
+```bash
 docker pull abcdesktopio/firefox.d
 docker pull abcdesktopio/thunderbird.d
 ```
 
 Install Gnome games 
 
-```
+```bash
 docker pull abcdesktopio/mines.d
 docker pull abcdesktopio/tetravex.d
 ```
 
 Install Gnome tools 
 
-```
+```bash
 docker pull abcdesktopio/calculator.d
 docker pull abcdesktopio/terminal.d
 ```

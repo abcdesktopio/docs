@@ -23,7 +23,11 @@ You need to have a Kubernetes cluster, and the ```kubectl``` command-line tool m
 You can run the **Quick installation process** or choose the **Manually installation step by step**
 
 
-## Quick installation
+## Quick installation (Linux or macOS)
+
+> Quick installation can be run on Linux or macOS operation system. 
+> For Microsoft Windows, please read the following chapter 'Manually installation step by step'
+
 
 You can watch the [youtube video sample](https://www.youtube.com/watch?v=KpjG4ksoGNI&feature=youtu.be
 ). This video describes the Quick installation process.
@@ -51,7 +55,7 @@ You can also download the [install.sh](https://raw.githubusercontent.com/abcdesk
  
 
 
-## Manually installation step by step
+## Manually installation step by step (Linux, macOS or Windows)
 
 The following commands will let you prepare and build abcdesktop plateform on the master node. All applications run on a single server.  
 

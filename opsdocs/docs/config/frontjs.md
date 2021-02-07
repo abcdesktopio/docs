@@ -5,7 +5,7 @@
 
 The menu can be changed using the dictionnary object ```menuconfig```
 
-```
+```json
 menuconfig : {
 				 	'settings'	: True, 
 					'appstore'	: True, 
@@ -35,7 +35,7 @@ The ```dock``` option is a dictionnary read by the front web as a json object.
 
   
 
-```
+```json
 dock : {        'filemanager':  {       'args': None,
                                         'showinview': u'dock',
                                         'name': u'FileManager',
@@ -75,7 +75,7 @@ This feature is deprecated.
 
 To run embeded application inside the oc.user image container, with specific attribut ```{ 'execmode': 'builtin' }``` add 
 
-```
+```json
 'webshortcut':  {	'name': u'xlogo',
                     'showinview': u'dock',
                     'keyword': u'xlogo',

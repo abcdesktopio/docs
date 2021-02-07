@@ -18,14 +18,14 @@ The following commands will let you prepare kubernetes on one node. In this case
 #### Step 1: Disable swap memory (if running)
 You need to disable swap memory on nodes as Kubernetes does not perform properly on a system that is using swap memory. Run the following command in order to disable swap memory.  
 
-```
+```bash
 swapoff -a
 ```
 
 #### Step 2: Initialize Kubernetes
 Run the following command as sudo on the master node:
 
-```
+```bash
 kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 
@@ -33,7 +33,7 @@ The process might take a minute or more depending on your internet connection.
 
 To be able to manage your kubernetes server, you need to run the following commands as a regular user:
 
-```
+```bash
 mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
@@ -44,7 +44,7 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 
 Taints are Kubernetes flags to prevent Pod Scheduling. Remove the taints on the master so that you can schedule pods on it.
 
-```
+```bash
 kubectl taint node `hostname` node-role.kubernetes.io/master-
 ```
 
@@ -58,7 +58,7 @@ Taints are Kubernetes flags to prevent Pod Scheduling.
 
 Confirm that you now have a node in your cluster with the following command.
 
-```
+```bash
 kubectl get nodes -o wide
 ```
 
@@ -73,7 +73,7 @@ NAME              STATUS      ROLES    AGE   VERSION   INTERNAL-IP   EXTERNAL-IP
 
 A pod network is a medium of communication between the nodes of a network. We are deploying a Flannel pod network on our cluster through the following command:
 
-```
+```bash
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 
@@ -92,7 +92,7 @@ daemonset.apps/kube-flannel-ds created
 
 Now when you see the status of the nodes, you will see that the master-node is ready :
 
-```
+```bash
 kubectl get nodes -o wide
 ```
 
