@@ -258,7 +258,7 @@ However, if the user needed to be seen as a ```Domain Admin for POSIX```, the ``
 
 
 ```json 
-'rule-domainuser': { 	'conditions':  [ { 'primarygroupid': '519', 'expected' : True } ],
+'rule-posixdomainadmin': { 	'conditions':  [ { 'primarygroupid': '519', 'expected' : True } ],
  							'expected' : True,
  							'label': 'posixdomainadmin'
 }
@@ -267,7 +267,7 @@ However, if the user needed to be seen as a ```Domain Admin for POSIX```, the ``
 The ```Enterprise Admins group```, ```519```, is also used to grant this level in POSIX.
 
 ```json 
-'rule-domainuser': { 	'conditions':  [ { 'primarygroupid': '519', 'expected' : True } ],
+'rule-enterpriseadmin': { 	'conditions':  [ { 'primarygroupid': '519', 'expected' : True } ],
  							'expected' : True,
  							'label': 'enterpriseadmin'
 }
