@@ -1,5 +1,7 @@
 # Nginx oc.nginx 
 
+![Update oc.nginx](https://github.com/abcdesktopio/oc.nginx/workflows/Update%20oc.nginx/badge.svg)
+
 Nginx is used as a reverse proxy server for HTTP, HTTPS protocols, as well as a load balancer, HTTP cache, and a web server (origin server). 
 
 ## Nginx routing
