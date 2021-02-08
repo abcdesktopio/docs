@@ -10,7 +10,7 @@
 
 ## WineHQ embedded in oc.template.gtk.wine.50
 
-To run Windows applications abcdesktop use WineHQ. A dedicated image template source is ready to use as source of others Windows applications. This template is named ```abcdesktopio:oc.template.gtk.wine.50```
+To run Windows applications abcdesktop use WineHQ. A dedicated image template source is ready to use as source of others Windows applications. This template is named ```abcdesktopio/oc.template.gtk.wine.50```
 
 Start pulling this template image, if you don't have already done in the previous exercice : 
 
@@ -43,10 +43,10 @@ docker-compose restart
 > In this exercice we are going to install and run putty.exe for Windows inside a docker container for abcdesktop.
 
 
-PuTTY is an SSH and telnet client, developed originally by Simon Tatham for the Windows platform. 
+PuTTY is an SSH and telnet client, developed originally by Simon Tatham for the Microsoft Windows platform. 
 
 
-Start an OpenDekstop session. You can use an authenticated session using an authentication provider ```external``` or ```explicit```, or you can do this exercice using Anonymous Authentification also know as the authentication provider ```implicit```.
+Start an abcdesktop session. You can use an authenticated session using an authentication provider ```external``` or ```explicit```, or you can do this exercice using Anonymous Authentification also know as the authentication provider ```implicit```.
 
 >In this exercice we choose an Anonymous authentification, **DO NOT CLOSE YOUR WEB BROWSER**, you should not be able de reconnect with the same user context, and have to restart this exercice again.
 
@@ -61,22 +61,22 @@ Login using the ```Anonymous``` authentification provider.
 Open a terminal window and run the command 
 
 ```
-docker ps --filter ancestor=abcdesktopio:oc.user.18.04
+docker ps --filter ancestor=abcdesktopio/oc.user.18.04
 ```
 
-The option ```--filter ancestor=abcdesktopio:oc.user.18.04``` ask to filter only container with the image ```ancestor``` set to value ```abcdesktopio:oc.user.18.04```.
+The option ```--filter ancestor=abcdesktopio/oc.user.18.04``` ask to filter only container with the image ```ancestor``` set to value ```abcdesktopio/oc.user.18.04```.
 
-You should read the container with the image named abcdesktop/oio:oc.user.18.04 
+You should read the container with the image named abcdesktopio/oc.user.18.04 
 
 ```
-docker ps --filter ancestor=abcdesktop/oio:oc.user.18.04
+docker ps --filter ancestor=abcdesktopio/oc.user.18.04
 CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS                                                                              NAMES
-5719b77d3f2a        abcdesktop/oio:oc.user.18.04   "/composer/docker-en…"   27 seconds ago      Up 25 seconds       4714/tcp, 6081/tcp, 29780-29781/tcp, 29783-29784/tcp, 29786/tcp, 55556-55557/tcp   57be1e5b-0b14-4c05-ae79-75e9a03c77be
+5719b77d3f2a        abcdesktopio/oc.user.18.04   "/composer/docker-en…"   27 seconds ago      Up 25 seconds       4714/tcp, 6081/tcp, 29780-29781/tcp, 29783-29784/tcp, 29786/tcp, 55556-55557/tcp   57be1e5b-0b14-4c05-ae79-75e9a03c77be
 ```
 
 Read the values ```CONTAINER ID``` and ```NAMES```
 
-> Note: If you read more than one entry, stop and remove all the oc.user containers, running the command ```docker stop``` and ```docker rm```. Then restart an OpenDekstop session.
+> Note: If you read more than one entry, stop and remove all the oc.user containers, running the command ```docker stop``` and ```docker rm```. Then restart an abcdesktop session.
 
 
 Run a ```docker inspect -f "{{ .HostConfig.Binds }}" ``` and add your ```CONTAINER ID``` as parameter.
@@ -156,7 +156,7 @@ drwxr-xr-x 1 root    root    4096 Mar 23 22:42 ..
 drwxr-xr-x 2 root    root    4096 Mar 23 22:42 wine
 ```
 
-This data of the ```/home/balloon/.cache``` is local to the container's image ```abcdesktopio:oc.template.gtk.wine.50``` and does not exist in the oc.user image. This data of the ```/home/balloon/.cache``` only exists in your container instance.
+This data of the ```/home/balloon/.cache``` is local to the container's image ```abcdesktopio/oc.template.gtk.wine.50``` and does not exist in the oc.user image. This data of the ```/home/balloon/.cache``` only exists in your container instance.
 
 
 Set the ```DISPLAY``` environment variable to ```:0.0```
@@ -221,7 +221,7 @@ wine: configuration in L"/home/balloon/.wine" has been updated.
 ```
 
 
-On the abcdesktop display, Wine shows a windows message ```wine: created the configuration directory '/home/balloon/.wine'```
+On abcdesktop display, Wine shows a windows message ```wine: created the configuration directory '/home/balloon/.wine'```
 
 ![wine is starting](img/wine-putty-install.png)
 
@@ -257,9 +257,9 @@ Create two directory putty on desktop directory, for example in your home direct
 
 ```bash
 cd
-mkdir opendekstop
-mkdir opendekstop/putty
-mkdir opendekstop/putty/icons
+mkdir abcdesktop
+mkdir abcdesktop/putty
+mkdir abcdesktop/putty/icons
 ```
 
 
@@ -268,7 +268,7 @@ You are going to create your first abcdesktop image template file. This file's c
 Create a file ```oc.template.gtk.wine.putty```, and add the content 
 
 ```Dockerfile
-FROM abcdesktopio:oc.template.gtk.wine.50
+FROM abcdesktopio/oc.template.gtk.wine.50
 RUN mkdir -p /composer/wineprefix/putty 
 RUN mkdir -p /composer/bin
 RUN chown $BUSER:$BUSER /composer/wineprefix/putty

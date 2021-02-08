@@ -297,7 +297,7 @@ REPOSITORY                   TAG       IMAGE ID       CREATED             SIZE
 oc.nginx                     acme      4de1755b60d7   About an hour ago   746MB
 ```
 
-#### Update the dockercompose or the abcdesktop.yaml file 
+### Update the dockercompose or the abcdesktop.yaml file 
 
 Update the dockercompose or the abcdesktop.yaml file to replace the default ```abcdesktopio/oc.nginx``` by the new image ```oc.nginx:acme``` name.
 

@@ -39,7 +39,7 @@ The result must be equal to the ```expected``` value.
 
 ####Examples:
 
-####Example A:
+####Example (TRUE and TRUE) expected TRUE:
 To test if the user source IP address is in the subnet to ```80.0.0.0/8``` ```AND``` is ```memberOf``` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
 
 
@@ -53,7 +53,7 @@ To test if the user source IP address is in the subnet to ```80.0.0.0/8``` ```AN
 ```
 Add the labels 'shipcrewandnet80', if the 'expected' value is ```True```
 
-####Example B:
+####Example (TRUE and TRUE) expected FALSE:
 To test if the user source IP address is ```NOT``` in the subnet to ```80.0.0.0/8``` ```AND``` is  ```NOT``` a ```memberOf``` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
 
 
@@ -70,7 +70,7 @@ Add the labels 'noshipcrewandnonet80', if the 'expected' value is ```False```
 
 
 
-####Example C:
+####Example (TRUE and FALSE) expected TRUE:
 To test if the user source IP address is in the subnet to ```80.0.0.0/8``` ```AND``` is  ```NOT``` a ```memberOf``` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
 
 
@@ -87,7 +87,7 @@ Add the labels 'noshipcrewandnet80', if the 'expected' value is ```True```
 
 
 
-####Example D:
+####Example (FALSE and TRUE) expected TRUE:
 To test if the user source IP address is ```NOT``` in the subnet to ```80.0.0.0/8``` ```AND``` is   a ```memberOf``` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
 
 
