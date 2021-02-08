@@ -1,5 +1,7 @@
 # pyos
 
+![Update oc.pyos](https://github.com/abcdesktopio/oc.pyos/workflows/Update%20oc.pyos/badge.svg)
+
 oc.pyos is the application server for abcdesktop.io. 
 os.py is python script based on cherrypy framework and listen tcp port 8000.
 os.py daemon waits for json request from the javascript web client scripts, and implements methods : 
