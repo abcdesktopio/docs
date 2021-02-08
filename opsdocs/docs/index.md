@@ -1,12 +1,15 @@
-# Welcome to abcdesktop.io
+# Welcome to abcdesktop.io 
 
-abcdesktop.io is a native cloud desktop, and a complete work environment accessible from a simple HTML 5 web browser, without any installation.
+abcdesktop.io is a native cloud desktop, and a complete work environment accessible from a simple HTML 5 web browser, without any installation. 
+abcdesktop is an opensource source projet, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
+
 This flexible working environment simplify usage like :
 
 - Telecommuting
 - Remote virtual desktop 
 - IT temporary acess for subcontractors
 - Training  
+
 
 ## abcdesktop.io: a docker VDI service
 

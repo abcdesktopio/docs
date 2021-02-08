@@ -1,7 +1,9 @@
 # Open Source 
 
-## abcdesktop.io is open source
-abcdesktop.io is open source and is a volunteer effort. This means that it depends on people to give some of their free time to improve it and make it even better.
+## abcdesktop.io is an open source project
+abcdesktop.io is an open source project and is a volunteer effort. This means that it depends on people to give some of their free time to improve it and make it even better.
+
+Follow the [Fork me on github](https://github.com/abcdesktopio) links, to get access to each repository.
 
 If you are reading this, then you are probably curious or want to contribute in some way. Read on to see how you can do so.
 
