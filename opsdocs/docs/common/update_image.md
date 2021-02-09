@@ -254,7 +254,7 @@ Example
 ```
 
 
-#### Write you Dockerfile
+#### Write your Dockerfile
 
 ```docker
 FROM abcdesktopio/oc.nginx
@@ -293,6 +293,7 @@ Run the docker images command to read the new ```oc.nginx``` image
 
 ```bash
 docker images 
+
 REPOSITORY                   TAG       IMAGE ID       CREATED             SIZE
 oc.nginx                     acme      4de1755b60d7   About an hour ago   746MB
 ```
@@ -348,12 +349,12 @@ The run the docker-compose up, and start you web browser. You can read the new p
 ![abcdesktop acmedesktop](img/acmedesktop.png)
 
 
-The new tertiary color is now ```#00FCD4```
 
-```
-  "name": "@tertiary" 
-  "value": "#00FCD4"
-```
+We define the new tertiary color as ```#00FCD4``` in dict ``` { "name": "@tertiary",   "value": "#00FCD4" } ```
+
+![color 00fcd4]( img/00fcd4.png )
+
+Old tertiary color has been replace by ```#00FCD4```.
 
 
 ![abcdesktop acmedesktop new ui.json](img/build_image_newui.png) 
