@@ -71,8 +71,6 @@ docker pull abcdesktopio/oc.user.18.04
 ```
 
 
-
-
 ### docker-compose
 
 Create a docker-compose.yml file, and copy & paste this YAML file into.
@@ -128,6 +126,7 @@ networks:
 docker-compose -p abcdesktop up 
 ```
 
+> Since the abcdesktop pyos code needs to interact with the Docker API in order to CRUD containers, pyos need to mount /var/run/docker.sock into the container
 
 dockerd downloads all container images, it could take a while
 

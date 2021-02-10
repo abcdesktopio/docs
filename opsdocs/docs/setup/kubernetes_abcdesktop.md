@@ -386,8 +386,15 @@ Subjects:
 ```
 
 
-### View Pyos logs
-    kubectl logs daemonset-pyos-tklg8 --follow -n abcdesktop
+### View pyos logs
+
+
+> Since the abcdesktop pyos code needs to interact with the Docker API in order to CRUD containers, pyos need to mount /var/run/docker.sock into the container
+
+```
+kubectl logs daemonset-pyos-tklg8 --follow -n abcdesktop
+```
+
 
 Note that you also can view logs using docker command
 
