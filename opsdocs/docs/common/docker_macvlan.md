@@ -33,14 +33,32 @@ You have to choose a nework driver for example
 
 Only the name of the network is used by abcdesktop.
 
+Create a network with ```macvlan``` or ```ipvlan``` driver 
 
-### Example :
+In these two examples :
+
+* Subnet is ```192.168.8.0/24``` 
+* Gateway is ```192.168.8.254``` 
+* Ip Range is ```192.168.8.0/27```
+
+#### Example with ```macvlan``` :
 
 Create a network abcnetfirefox with the driver macvlan and bridge the network interface eno1 with the vlan 123 
 
 ```bash
-docker network create -d macvlan --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.64/27 -o parent=eno1.123 abcnetfirefox
+docker network create -d macvlan --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.0/27 -o parent=eno1.123 abcnetfirefox
 ```
+
+#### Example with ```ipvlan``` ipvlan_mode=l2 :
+
+Create a network abcnetfirefox with the driver ipvlan with ipvlan_mode=l2 option and bridge the network interface eno1 with the vlan 123.
+
+
+```bash
+docker network create -d ipvlan  -o ipvlan_mode=l2 --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.0/27 -o parent=eno1.123 abcnetfirefox
+```
+
+#### Test your new network (```macvlan``` or ```ipvlan```):
 
 Make sure that's you can reach the default gateway and the dns server for container.
 In this example, just start a busybox to :
