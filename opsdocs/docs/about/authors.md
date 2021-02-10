@@ -4,7 +4,7 @@ title: Authors
 
 ## Primary Authors
 
-* [Alexandre DEVELY](https://github.com/koumoula) :
+* [Alexandre DEVELY](https://github.com/alexandredevely) :
 Project owner, architect, developer, containers and security architecture, all components, maintainer of the code and has written much of the current code base
 
 * Cedric HAUWEL : Pyos and authentification, included a complete refactor of the core pyos
