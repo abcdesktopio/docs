@@ -1,19 +1,20 @@
 # Welcome to abcdesktop.io 
 
 abcdesktop.io is a native cloud desktop, and a complete work environment accessible from a simple HTML 5 web browser, without any installation. 
-abcdesktop is an opensource source projet, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
+abcdesktop is an opensource source project, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
 
 This flexible working environment simplify usage like :
 
 - Telecommuting
 - Remote virtual desktop 
-- IT temporary acess for subcontractors
+- IT temporary access for subcontractors
 - Training  
+- On demand Desktop
 
 
 ## abcdesktop.io: a docker VDI service
 
-abcdesktop.io provides a way to run grapicals applications securely isolated in a docker container, and use a web browser HTML5 as display device. Because dockers containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or on a kubernetes cluster.
+abcdesktop.io provides a way to run grapicals applications securely isolated in a docker container, and use a web browser HTML5 as display device. Because docker containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.
 
 ![screenshot-applications](img/screenshot-applications.png)
 
