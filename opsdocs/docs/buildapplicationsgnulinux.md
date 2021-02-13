@@ -8,7 +8,7 @@ abcdesktop use docker image format with some labels to describe the application.
 - An access to the docker public registry
 - An access to the ubuntu repository
 - Nodejs installed on your host.  
-- The root password of your the oc.user.18.04 docker image. This value may have been changed.
+- The root password of your the oc.user.18.04 docker image. The default password is `lmdpocpetit`, but this value may have been changed.
 
 
 ## Build your own application image 
@@ -17,7 +17,7 @@ abcdesktop use docker image format with some labels to describe the application.
 
 The new image is the game 2048. 
 
-Create a directory named ```build```, and create a directory ```icons``` inside build
+Create a directory named `build`, and create a directory `icons` inside build
 
 ```
 mkdir build
@@ -27,7 +27,7 @@ cd build
 
 To build your own image create first a json file.
 
-Create a json file named ```applist.json```, inside build directory, and add the content to the json file.
+Create a json file named `applist.json`, inside build directory, and add the content to the json file.
 
 ```
 [
@@ -60,15 +60,15 @@ To fill the data inside the json file :
 
 You can read the following help lines, or fill the json missing value by yourself.
 
-* ```cat``` is the category, choose the most appropriate value in the list :
+* `cat` is the category, choose the most appropriate value in the list :
 			[ 'office', 'games', 'graphics', 'development', 'utilities', 'education' ]
-* ```debpackage``` is the name of the 2048 ubuntu package. To find the package name, look at the link [2048 Ubuntu Package](https://packages.ubuntu.com/source/bionic/2048-qt).
-* ```icon``` is the name of the icon. abcdesktop support only ```svg``` icon file format. To get the icon file, look at the link [https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg](https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg)
-* ```keyword``` is a list of the keywords to find the application. Set the value to 2048.
-* ```launch```  is the X11 Class name of the window. To get this value, we need to run the application on GNU/Linux (read the dedicated chapter below). 
-* ```name``` is the name of the application. Set the value to 2048.
-* ```path``` is the binary path to run the application.   
-* ```template``` is the name of the parent image. The default image parent is ```abcdesktopio/oc.template.gtk```. You will learn how to customize your own template image, in next chapter. 
+* `debpackage` is the name of the 2048 ubuntu package. To find the package name, look at the link [2048 Ubuntu Package](https://packages.ubuntu.com/source/bionic/2048-qt).
+* `icon` is the name of the icon. abcdesktop support only `svg` icon file format. To get the icon file, look at the link [https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg](https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg)
+* `keyword` is a list of the keywords to find the application. Set the value to 2048.
+* `launch`  is the X11 Class name of the window. To get this value, we need to run the application on GNU/Linux (read the dedicated chapter below). 
+* `name` is the name of the application. Set the value to 2048.
+* `path` is the binary path to run the application.   
+* `template` is the name of the parent image. The default image parent is `abcdesktopio/oc.template.gtk`. You will learn how to customize your own template image, in next chapter. 
 
 
 Save the 2048 icon file on SVG format to the icons directory. 
@@ -80,10 +80,10 @@ You should have this file in the icons directory as the output of the ```ls icon
 
 ### Build your new image 2048
 
-To build your new image, download the [make.js](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/make.js) script file. ```make.js``` is located in the ```oc.apps``` repository. Look at [https://github.com/abcdesktopio/oc.apps](https://github.com/abcdesktopio/oc.apps) if you can not download this file.
+To build your new image, download the [make.js](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/make.js) script file. `make.js` is located in the `oc.apps` repository. Look at [https://github.com/abcdesktopio/oc.apps](https://github.com/abcdesktopio/oc.apps) if you can not download this file.
 
-Save ```make.js``` it to you build directory.
-```make.js``` is a nodejs JavaScript file. Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript.
+Save `make.js` it to you build directory.
+`make.js` is a nodejs JavaScript file. Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript.
 
 > If you don't have already nodejs installed on your system, go to the website [nodejs download website](https://nodejs.org/en/download/) and follow the instructions to install nodejs.
 
@@ -109,7 +109,7 @@ Run the command make.js
 node make.js
 ```
 
-```make.js``` build a new DockerFile for the 2048 application. Remember, all application images use container images. 
+`make.js` build a new DockerFile for the 2048 application. Remember, all application images use container images. 
 
 You should get the output 
 
@@ -141,16 +141,16 @@ Building documentation 2048-qt.2048-qt
         - '2048'   : '2048.md'
 ```
 
-The new files ```2048.d``` and ```2048.md``` have been generated :
+The new files `2048.d` and `2048.md` have been generated :
 
-* 2048.d the Dockerfile for your 2048 abcdesktop application
-* 2048.md the documentation file for your 2048 abcdesktop application
+* `2048.d` is the Dockerfile for your 2048 abcdesktop application
+* `2048.md` is the documentation file for your 2048 abcdesktop application
 
 Read the content of the Dockerfile ```2048.d```.
 List all labels, and confirm that the icon file is uuencoded format. Uuencoding is a form of binary-to-text encoding.
 
 
-Now it's time to build your 2048 app. Run the command ```docker build ``` command.
+Now it's time to build your 2048 app. Run the command `docker build` command.
 
 ```
 docker build  --build-arg TAG=latest -f 2048.d -t 2048.d .
@@ -197,7 +197,7 @@ REPOSITORY                           TAG                                        
 
 The total image size of 2048.d is 1.17GB.
 
-The 2048.d does not use 1.17GB, but only the difference between the 2048 image and the source image abcdesktopio/oc.template.gtk.
+The 2048.d does not use 1.17GB, but only the difference between the 2048 image and the source image `abcdesktopio/oc.template.gtk`.
 
 
 
@@ -248,13 +248,13 @@ This object is a json array of json image object. Your 2048 object is like this 
 
 ## Run your new application
 
-Return to your abcdesktop website ```http://localhost``` and log in as Anonymous.
+Return to your abcdesktop website `http://localhost` and log in as Anonymous.
 
-At the right corner, write in the search bar the keyword ```2048```
+At the right corner, write in the search bar the keyword `2048`
 
 ![abcdesktop.io look for 2048 applications](img/2048-lookfor.png)
 
-Click on the ```2048``` icon, and start your first abcdesktop application :
+Click on the `2048` icon, and start your first abcdesktop application :
 
 ![abcdesktop.io 2048 is running](img/2048-run.png)
 
@@ -266,13 +266,13 @@ Now you can spent a lot of time to reach the 2048 score. Have fun !
 
 
 
-### Get ```launch``` and ```path``` values
+### Get `launch` and `path` values
 
 To get the X11 class name of the 2048 game, we need to install it on a Linux host. You can use abcdesktop as a Linux host or choose your own.
 
 If you want to use abcdesktop as a GNU/Linux host 
 
-Open the url http://localhost, in your web browser, to start a simple abcdesktop/io.io container. You will use this container to install the 2048 application and fill the missing values ```launch``` and ```path```.
+Open the url http://localhost, in your web browser, to start a simple abcdesktop container. You will use this container to install the 2048 application and fill the missing values `launch` and `path`.
 
 ```
 http://localhost
@@ -282,15 +282,15 @@ You should see the abcdesktop.io home page.
 
 ![abcdesktop.io Anonymous login](img/2048-localhost.png)
 
-Press the ```Connect with Anonymous access, have look```
+Press the `Connect with Anonymous access, have look`
 
 ![abcdesktop.io Anonymous account](img/2048-home.png)
 
-At the right corner, write in the search bar the keyword ```shell```
+At the right corner, write in the search bar the keyword `shell`
 
 ![abcdesktop.io look for terminal web shell icon](img/2048-lookforshell.png)
 
-Click on the ```Web Shell``` icon, a new Terminal WebShell is now opened :
+Click on the `Web Shell` icon, a new Terminal WebShell is now opened :
 
 ![abcdesktop.io terminal web shell icon](img/2048-shell.png)
 
@@ -302,7 +302,7 @@ sudo apt-get update
 
 ![abcdesktop.io terminal web shell apt-get update](img/2048-sudoaptgetupdate.png)
 
-The default password is ```lmdpocpetit```
+The default password is `lmdpocpetit`
 ( if your admin did not change it, otherwise ask to the administrator )
 
 ![abcdesktop.io terminal web shell apt-get update done](img/2048-sudoaptgetupdatedone.png)
@@ -322,7 +322,7 @@ You should read the output, during the installation process
 
 ![abcdesktop.io terminal web shell apt-get install 2048-qt running](img/2048-sudoaptgetinstalldone.png)
 
-On Ubuntu, the games are installed in a dedicated directory ```/usr/games```.
+On Ubuntu, the games are installed in a dedicated directory `/usr/games`.
 
 Read the file list of the [2048-qt Ubuntu package](https://packages.ubuntu.com/xenial/amd64/2048-qt/filelist)
 
@@ -337,7 +337,7 @@ Read the file list of the [2048-qt Ubuntu package](https://packages.ubuntu.com/x
 ```
 
 
-Start the 2048 game binary ```2048-qt``` in background.
+Start the 2048 game binary `2048-qt` in background.
 
 ```
 /usr/games/2048-qt & 
@@ -353,18 +353,18 @@ Run the command to list each X11 windows and get the WMClass name.
 wmctrl -lx 
 ```
 
-```wmctrl``` is a command that can be used to interact with an X Window manager, and can query the window manager for information, and it can request that certain window management actions be taken. 
+`wmctrl` is a command that can be used to interact with an X Window manager, and can query the window manager for information, and it can request that certain window management actions be taken. 
 
-* ```-l``` list the windows being managed by the window manager. 
-* ```-x``` include WM_CLASS in the window list
+* `-l` list the windows being managed by the window manager. 
+* `-x` include WM_CLASS in the window list
 
 
 ![abcdesktop.io terminal web shell wmctrl -lx](img/2048-wmctrl.png)
 
 Great, look at the third value, this is what we are looking for :
 
-* The ```launch``` is ```2048-qt.2048-qt```
-* The ```path``` is ```/usr/games/2048-qt```
+* The `launch` is `2048-qt.2048-qt`
+* The `path` is `/usr/games/2048-qt`
 
 You can now close your web browser and fill your json file, by yourself
 
@@ -410,8 +410,8 @@ New applist.json data, and build your own Gimp abcdesktop.io application.
 You should get data entries like:
 
 * The GIMP icon SVG file is avalaible on wikipedia website [The_GIMP_icon_-_gnome.svg](https://upload.wikimedia.org/wikipedia/commons/4/45/The_GIMP_icon_-_gnome.svg)
-* The wmctrl show the WM_CLASS ```gimp.Gimp```
-* The path is ```/usr/bin/gimp```
+* The wmctrl show the WM_CLASS `gimp.Gimp`
+* The path is `/usr/bin/gimp`
 
 ```
 [
@@ -453,11 +453,11 @@ abcdesktop support MimeType, File Extensions and [Desktop Entry Specification](h
 ```
 
 
-These entries allow user to use the file manager choice ```Open with``` and ```Open with Other Application```
+These entries allow user to use the file manager choice `Open with` and `Open with Other Application`
 
 ![Open with Gimp](img/gimp-openwithgimp.png)
 
-and list ```Recommended Applications```
+and list `Recommended Applications`
 
 ![Open with Gimp](img/gimp-openwithotherapplication.png)
 
