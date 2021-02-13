@@ -2,11 +2,11 @@
 title: abcdesktop.io cloud native desktop
 summary: cloud container desktop
 description: cloud native desktop complete workspace environment accessible from a web browser
-keywords: docker kubernetes desktop container cloud native telecommuting remove virtual ondemand vdi vnc digital workspace
+keywords: docker kubernetes desktop container cloud native telecommuting remove virtual ondemand vdi vnc digital workspace reduce attack surface
 ---
 # Welcome to abcdesktop.io 
 
-abcdesktop.io is a native cloud desktop, and a complete work environment accessible from a simple HTML 5 web browser, without any installation.  Each user’s application runs as a docker container.
+abcdesktop.io is a native cloud desktop, and a complete work environment accessible from a simple HTML 5 web browser, without any installation.  Each user’s application runs as a docker container to reduce attack surface.
 abcedeskop.io is an opensource free solution that offer secure desktops and applications on any device, network or digital workspace, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
 
 
