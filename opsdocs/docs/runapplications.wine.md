@@ -14,18 +14,17 @@ To run Windows applications abcdesktop.io use WineHQ. A dedicated image template
 Start pulling this template image :
 
 ```bash
-docker pull abcdesktopio/oc.template.gtk.wine.50
+docker pull abcdesktopio/oc.template.gtk.wine
 ```
 
-Look at the Dockerfile writed to build the ```abcdesktopio/oc.template.gtk.wine.50``` on the ```https://hub.docker.com/``` web site.
+Look at the Dockerfile to build the `abcdesktopio/oc.template.gtk.wine` on the [https://hub.docker.com/](https://hub.docker.com/) web site.
 
-For a better support, we are using the 32 bits library, as i386 libs on GNU/Linux.  Your can read in the Dockerfile, how the ```abcdesktopio/oc.template.gtk.wine.50``` is created.
+For a better support, we are using the 32 bits library, as i386 libs on GNU/Linux.  Your can read in the Dockerfile, how the `abcdesktopio/oc.template.gtk.wine` is created.
 
 > Dockerfile information :
 > 
-> ```dpkg --add-architecture i386```
-> ```apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'```
-> ```aptitude install -y winehq-stable fonts-wine```
+> `dpkg --add-architecture i386`
+> `aptitude install -y wine`
 
 
 ### Run notepad.exe for Windows in a Docker container
@@ -68,7 +67,7 @@ We are using the ```/tmp``` volume of this ```CONTAINER ID``` 86df3ff126ac
 Using an anonymous authnetification, the name of your container id is an [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier), for example ```57be1e5b-0b14-4c05-ae79-75e9a03c77be```. The name of the ```tmp``` volume is  ```tmp-57be1e5b-0b14-4c05-ae79-75e9a03c77be```
 
 
-Run a ```docker inspect -f "{{ .HostConfig.Binds }}" ``` and add your ```CONTAINER ID``` as parameter.
+Run a `docker inspect -f "{{ .HostConfig.Binds }}" ` and add your ```CONTAINER ID``` as parameter.
 
 ```
 docker inspect -f "{{ .HostConfig.Binds }}" CONTAINER_ID
@@ -92,13 +91,13 @@ You should read the volume name starting by ```tmp-``` with your uuid concatened
 Now, start a new docker container with the same HostConfig.Bings as your oc.user container. The ```-v``` parameter is the first entry of the result in the previous command ```docker inspect -f "{{ .HostConfig.Binds }}" ```
 
 ```
-docker run -it -v TMP_VOLUMENAME:/tmp  --user balloon abcdesktopio/oc.template.gtk.wine.50 bash
+docker run -it -v TMP_VOLUMENAME:/tmp  --user balloon abcdesktopio/oc.template.gtk.wine bash
 ```
 
 For example with an ```Anonymous``` user:
 
 ```
-docker run -it -v  tmp-5f4300d2-7c8e-43c6-89ab-f85bd8b68138:/tmp --user balloon abcdesktopio/oc.template.gtk.wine.50 bash 
+docker run -it -v  tmp-5f4300d2-7c8e-43c6-89ab-f85bd8b68138:/tmp --user balloon abcdesktopio/oc.template.gtk.wine bash 
 ```
 
 Great, you have started a new docker container. The oc.user containter and your new container are sharing the same volume mounted as ```/tmp```. You get a prompt inside the new docker container.
@@ -108,12 +107,6 @@ To run a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 
 balloon@8684ae888f74:~$
-```
-
-Set the ```DISPLAY``` environment variable to ```:0.0```
-
-```
-balloon@8684ae888f74:/$ export DISPLAY=:0.0
 ```
 
 And now start the ```notepad.exe``` with wine
@@ -126,30 +119,22 @@ After few seconds you should read on the standard error
 
 ```
 balloon@8684ae888f74:/$  wine notepad
-wine: created the configuration directory '/home/balloon/.wine'
-0024:err:environ:run_wineboot boot event wait timed out
-002c:err:winediag:nodrv_CreateWindow Application tried to create a window, but no driver could be loaded.
-002c:err:winediag:nodrv_CreateWindow The explorer process failed to start.
-0048:err:winediag:nodrv_CreateWindow Application tried to create a window, but no driver could be loaded.
-0048:err:winediag:nodrv_CreateWindow The explorer process failed to start.
-0024:err:winediag:nodrv_CreateWindow Application tried to create a window, but no driver could be loaded.
-0024:err:winediag:nodrv_CreateWindow The explorer process failed to start.
-balloon@8684ae888f74:/$ 0058:err:winediag:nodrv_CreateWindow Application tried to create a window, but no driver could be loaded.
-
+0015:err:clipboard:convert_selection Timed out waiting for SelectionNotify event
+0014:err:ole:marshal_object couldn't get IPSFactory buffer for interface {00000131-0000-0000-c000-000000000046}
+0014:err:ole:marshal_object couldn't get IPSFactory buffer for interface {6d5140c1-7436-11ce-8034-00aa006009fa}
+0014:err:ole:StdMarshalImpl_MarshalInterface Failed to create ifstub, hres=0x80004002
+0014:err:ole:CoMarshalInterface Failed to marshal the interface {6d5140c1-7436-11ce-8034-00aa006009fa}, 80004002
+0014:err:ole:get_local_server_stream Failed: 80004002
+0012:err:ole:marshal_object couldn't get IPSFactory buffer for interface {00000131-0000-0000-c000-000000000046}
+0012:err:ole:marshal_object couldn't get IPSFactory buffer for interface {6d5140c1-7436-11ce-8034-00aa006009fa}
+0012:err:ole:StdMarshalImpl_MarshalInterface Failed to create ifstub, hres=0x80004002
+0012:err:ole:CoMarshalInterface Failed to marshal the interface {6d5140c1-7436-11ce-8034-00aa006009fa}, 80004002
+0012:err:ole:get_local_server_stream Failed: 80004002
+Could not find Wine Gecko. HTML rendering will be disabled.
+wine: configuration in L"/composer/.wine" has been updated.
 ```
 
-Go back to you web browser with the abcdesktop window, ```Wine``` has opened a new window, and ask you to install ```wine-mono package``` which is need for .NET applications. 
-
-Do not install the ```wine-mono package```, because we are only use ```notepad.exe``` and ```notepad.exe``` doesn't need .Net package (it should only use Win32 libs, i hope so).
-
-Press ```Cancel``` button
-![cancel-install-wine-mono](img/cancel-install-wine-mono.png)
-
-Do not install the ```wine-gecko package```, we are only use ```notepad.exe``` and ```notepad.exe``` doesn't need HTML package. Press ```Cancel``` button.
-
-![cancel-install-wine-mono](img/cancel-install-wine-gecko.png)
-
-And the notepad.exe should appears inside your Web browser
+And the notepad window should be open inside your Web browser
 
 ![notepadrunning](img/notepadrunning.png)
 
