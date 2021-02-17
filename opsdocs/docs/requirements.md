@@ -10,17 +10,17 @@ To install your specific Docker Engine. Read the [Get started guide](https://doc
 abcdesktop.io need Docker Engine version 18 and above.
 
 
-| Operating System   | Recommended version                 |
-|--------------------|-------------------------------------|
-|  ```GNU/Linux```   | Ubuntu 18.04.4 LTS (Bionic Beaver)  |
-|  ```macOS/X```     | Catalina version 10.15.3 (and above)| 
-|  ```Windows 10```  | Version 1703 (and above)            |
+| Operating System | Recommended version                 |
+|------------------|-------------------------------------|
+|  `GNU/Linux`     | Ubuntu 18.04.4 LTS (Bionic Beaver)  |
+|  `macOS/X`       | Catalina version 10.15.3 (and above)| 
+|  `Windows 10`    | Version 1703 (and above)            |
 
 
 
 ### GNU/Linux
 
-The recommended distrubution is [Ubuntu 18.04.4 LTS (Bionic Beaver)](http://releases.ubuntu.com/18.04.4/), for production use the ```Server image```, to do the exercice choose ```Desktop image```.
+The recommended distrubution is [Ubuntu 18.04.4 LTS (Bionic Beaver)](http://releases.ubuntu.com/18.04.4/), for production use the `Server image`, to do the exercice choose `Desktop image`.
 
 #### CentOS
 To install dockerd on CentOS. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
@@ -54,34 +54,15 @@ At installation time, it creates symlinks in /usr/local/bin for docker and docke
 To install dockerd on MacOS/X, use Docker for Desktop. Get Docker for MacOS on the docker website 
 [docker-for-mac](https://docs.docker.com/docker-for-mac/)
 
-To get a shell to the ```LinuxKit docker-desktop```, run screen command to the tty ```~/Library/Containers/com.docker.docker/Data/vms/0/tty```
+To get a shell to the `LinuxKit docker-desktop`, run the docker command 
 
 ```
-screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
 ```
 
-```
-Welcome to LinuxKit
 
-                        ##         .
-                  ## ## ##        ==
-               ## ## ## ## ##    ===
-           /"""""""""""""""""__/ ===
-          {                       /  ===-
-           _____ O           __/
-                        __/
-              _________/
+> more info: [https://github.com/justincormack/nsenter1](https://github.com/justincormack/nsenter1)
 
-docker-desktop login: root (automatic login)
-
-Welcome to LinuxKit!
-
-NOTE: This system is namespaced.
-The namespace you are currently in may not be the root.
-System services are namespaced; to access, use `ctr -n services.linuxkit ...`
-login[45565]: root login on 'ttyS0'
-docker-desktop:~#
-```
 
 
 ### Microsoft Windows
