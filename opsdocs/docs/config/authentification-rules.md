@@ -34,13 +34,13 @@ To test if the user source IP address is equal to ```8.8.8.1/32```
                                     
 ### The conditions object
 
-```conditions``` is a list of condition. All condition are always tested, as a logical ```AND```.
-The result must be equal to the ```expected``` value.
+`conditions` is a list of condition. All condition are always tested, as a logical `AND`.
+The result must be equal to the `expected` value.
 
 ####Examples:
 
 ####Example (TRUE and TRUE) expected TRUE:
-To test if the user source IP address is in the subnet to ```80.0.0.0/8``` ```AND``` is ```memberOf``` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
+To test if the user source IP address is in the subnet to `80.0.0.0/8` `AND` is `memberOf` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
 
 
 ```json 
@@ -51,10 +51,10 @@ To test if the user source IP address is in the subnet to ```80.0.0.0/8``` ```AN
 	'label': 'shipcrewandnet80'
 }
 ```
-Add the labels 'shipcrewandnet80', if the 'expected' value is ```True```
+Add the labels 'shipcrewandnet80', if the 'expected' value is `True`
 
 ####Example (TRUE and TRUE) expected FALSE:
-To test if the user source IP address is ```NOT``` in the subnet to ```80.0.0.0/8``` ```AND``` is  ```NOT``` a ```memberOf``` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
+To test if the user source IP address is `NOT` in the subnet to `80.0.0.0/8` `AND` is  `NOT` a `memberOf` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
 
 
 ```json 
@@ -66,12 +66,12 @@ To test if the user source IP address is ```NOT``` in the subnet to ```80.0.0.0/
 }
 ```
 
-Add the labels 'noshipcrewandnonet80', if the 'expected' value is ```False```
+Add the labels 'noshipcrewandnonet80', if the 'expected' value is `False`
 
 
 
 ####Example (TRUE and FALSE) expected TRUE:
-To test if the user source IP address is in the subnet to ```80.0.0.0/8``` ```AND``` is  ```NOT``` a ```memberOf``` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
+To test if the user source IP address is in the subnet to `80.0.0.0/8` `AND` is  `NOT` a `memberOf` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
 
 
 ```json 
@@ -83,12 +83,12 @@ To test if the user source IP address is in the subnet to ```80.0.0.0/8``` ```AN
 }
 ```
 
-Add the labels 'noshipcrewandnet80', if the 'expected' value is ```True```
+Add the labels 'noshipcrewandnet80', if the 'expected' value is `True`
 
 
 
 ####Example (FALSE and TRUE) expected TRUE:
-To test if the user source IP address is ```NOT``` in the subnet to ```80.0.0.0/8``` ```AND``` is   a ```memberOf``` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
+To test if the user source IP address is `NOT` in the subnet to `80.0.0.0/8` `AND` is   a `memberOf` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
 
 
 ```json 
@@ -100,7 +100,7 @@ To test if the user source IP address is ```NOT``` in the subnet to ```80.0.0.0/
 }
 ```
 
-Add the labels 'shipcrewandnonet80', if the 'expected' value is ```True```
+Add the labels 'shipcrewandnonet80', if the 'expected' value is `True`
 
 
 
@@ -154,7 +154,7 @@ This condition is test if a HTTP Header value is equal to a string.
 'httpheader': dict
 ```
 
-example : if the 'User-Agent' is equal to 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36' then add the label 'chromemaxosx112'
+example : if the 'User-Agent' is equal to `'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36' then add the label 'chromemaxosx112'`
 
 ```json 
 
@@ -179,7 +179,7 @@ This condition is test if the client source ip address is in a subnet. IPv4 and 
 
 example
 
-To test if the user source IP address is equal to ```8.8.8.1/32```
+To test if the user source IP address is equal to `8.8.8.1/32`
 
 ```json 
 'rule-home': { 
@@ -188,7 +188,7 @@ To test if the user source IP address is equal to ```8.8.8.1/32```
                          'label': 'homeipsource' }
 ```
 
-To test if the user source IP address is in the subnet ```10.0.0.0/8```
+To test if the user source IP address is in the subnet `10.0.0.0/8`
 
 ```json 
 'rule-localnet': { 
@@ -198,7 +198,7 @@ To test if the user source IP address is in the subnet ```10.0.0.0/8```
 ```
 
 
-To test if the user source IP address is NOT in the subnet ```192.168.0.0/24```
+To test if the user source IP address is NOT in the subnet `192.168.0.0/24`
 
 ```json 
 'rule-localnet': { 
@@ -216,12 +216,28 @@ same as
                          'label': 'no192168net' }
 ```
 
+##### IPv4 and IPv6 subnets support
 
+This rule example add a tag `ipvrfc1918` if the user IP address belongs to the [rfc 1918](https://tools.ietf.org/html/rfc1918) and 
+[rfc 3927](https://tools.ietf.org/html/rfc3927).
+Both IPv6 and IPv4 addresses are supported. 
+
+```json
+  'rule-privatenetwork': { 'conditions' : [ 
+	  { 'network': '10.0.0.0/8',     'expected' : True },
+	  { 'network': '172.16.0.0/12',  'expected' : True },
+	  { 'network': '192.168.0.0/16', 'expected' : True },
+	  { 'network': '169.254.0.0/16', 'expected' : True },
+	  { 'network': 'fe80::/10',      'expected' : True } ],
+	'expected' : True,
+ 	'label': 'privatenetwork' }
+``` 	
+ 	
 #### condition memberof
 
 This condition test if the user is a member of a LDAP Distinguished Name. 
 
-```
+```json
 'memberOf': string
 ```
 
@@ -241,7 +257,7 @@ This condition test if the user is a member of a LDAP Distinguished Name.
 This test is only used with Microsoft Active Directory.
 primarygroupid test if the user attibute primaryGroupID is equal to a string.
 
-```
+```json
 'primarygroupid': string
 ```
 
