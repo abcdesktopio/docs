@@ -2,7 +2,8 @@
 
 ![Update oc.pyos](https://github.com/abcdesktopio/oc.pyos/workflows/Update%20oc.pyos/badge.svg)
 
-oc.pyos is the application server for abcdesktop.io. 
+oc.pyos is the application server for abcdesktop.io. oc.pyos is the abcdesktop control plane that configures and shuts down user desktops.
+This repository oc.pyos is the container of pyos.
 os.py is python script based on cherrypy framework and listen tcp port 8000.
 os.py daemon waits for json request from the javascript web client scripts, and implements methods : 
 

@@ -29,7 +29,7 @@ The user creates a pod [user](/core/user)
 
 ### pyos
 
-Pyos is the core abcdesktop service. Pyos is a stateless services, Pyos's roles are :
+Pyos is the core abcdesktop service act as a control plane. Pyos is a stateless services, Pyos's roles are :
 
 - Authenticate user on authenticate providers
  - OAuth 2.0 Provider : Google, Facebook, Orange
