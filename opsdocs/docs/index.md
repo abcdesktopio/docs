@@ -78,5 +78,5 @@ abcdesktop.io uses many modern web technologies. However these are the minimum v
 * Microsoft Edge (based on Chromium)
 
 ## Github repositories
-Follow the link  [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code
+abcdesktop has 22 repositories available. Follow their code on GitHub [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code
 
