@@ -11,7 +11,7 @@ abcdesktop.io is a native cloud desktop, and a complete work environment accessi
 abcedeskop.io is an opensource free solution that offer secure desktops and applications on any device, network or digital workspace, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
 
 
-This flexible working environment simplify usage like :
+This flexible working environment simplifies usage like
 
 - Telecommuting
 - Remote virtual desktop 
