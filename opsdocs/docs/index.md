@@ -8,8 +8,7 @@ keywords: docker kubernetes desktop container cloud native telecommuting remove 
 # Welcome to abcdesktop.io 
 
 abcdesktop.io is a native cloud desktop, and a complete work environment accessible from a simple HTML 5 web browser, without any installation.  Each user’s application runs as a docker container to reduce attack surface.
-abcedeskop.io is an opensource free solution that offer secure desktops and applications on any device, network or digital workspace, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
-
+abcedeskop.io is an opensource free solution that offer secure desktops and applications on any device, network or digital workspace.
 
 This flexible working environment simplifies usage like
 
@@ -26,7 +25,6 @@ This flexible working environment simplifies usage like
 abcdesktop.io provides a way to run grapicals applications securely isolated in a docker container, and use a web browser HTML5 as display device. Because docker containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.
 
 ![screenshot-applications](img/screenshot-applications.png)
-
 
 ## Quick installation for kubernetes
 You can watch the youtube video sample. This video describes the Quick installation process.
@@ -78,3 +76,7 @@ abcdesktop.io uses many modern web technologies. However these are the minimum v
 * Safari 11, 
 * Opera 36,  
 * Microsoft Edge (based on Chromium)
+
+## Github repositories
+Follow the link  [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code
+
