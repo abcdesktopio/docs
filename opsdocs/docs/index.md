@@ -2,7 +2,7 @@
 title: abcdesktop.io cloud native desktop
 summary: cloud container desktop
 description: cloud native desktop complete workspace environment accessible from a web browser
-keywords: docker kubernetes desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface
+keywords: docker kubernetes secure desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface byod bring your own device reduce attack surface novnc 
 ---
 
 # Welcome to abcdesktop.io 
