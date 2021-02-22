@@ -17,7 +17,8 @@ This flexible working environment simplify usage like :
 - Remote virtual desktop 
 - IT temporary access for subcontractors
 - Training  
-- On demand Desktop
+- BYOD, bring your own device
+- Desktop on demand, Desktop as a service
 
 
 ## abcdesktop.io: a docker VDI service
