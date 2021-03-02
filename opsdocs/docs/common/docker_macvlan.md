@@ -47,7 +47,7 @@ In these two examples :
 Create a network abcnetfirefox with the driver macvlan and bridge the network interface eno1 with the vlan 123 
 
 ```bash
-docker network create --label abcdesktop=true -d macvlan --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.0/27 -o parent=eno1.123 abcnetfirefox
+docker network create --label type=oc.app -d macvlan --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.0/27 -o parent=eno1.123 abcnetfirefox
 ```
 
 #### Example with ```ipvlan``` ipvlan_mode=l2 :
@@ -56,7 +56,7 @@ Create a network abcnetfirefox with the driver ipvlan with ipvlan_mode=l2 option
 
 
 ```bash
-docker network create --label abcdesktop=true -d ipvlan  -o ipvlan_mode=l2 --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.0/27 -o parent=eno1.123 abcnetfirefox
+docker network create --label type=oc.app -d ipvlan  -o ipvlan_mode=l2 --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.0/27 -o parent=eno1.123 abcnetfirefox
 ```
 
 #### Test your new network (```macvlan``` or ```ipvlan```):
@@ -276,7 +276,7 @@ abcdesktop start a new container ```"Name": "philip-j--fry-firefox-d2c22d9912fc4
             "parent": "eno1.106"
         },
         "Labels": {
-            "abcdesktop": "true"
+            "type": "oc.app"
         }
     }
 ]
@@ -340,7 +340,7 @@ docker network inspect abcnetfirefox
             "parent": "eno1.106"
         },
         "Labels": {
-            "abcdesktop": "true"
+            "type": "oc.app"
         }
     }
 ]
