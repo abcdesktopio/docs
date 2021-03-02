@@ -2,7 +2,7 @@
 title: abcdesktop.io cloud native desktop
 summary: cloud container desktop
 description: cloud native desktop complete workspace environment accessible from a web browser
-keywords: docker kubernetes desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface
+keywords: docker kubernetes secure desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface byod bring your own device reduce attack surface novnc rdp citrix 
 ---
 
 # Welcome to abcdesktop.io 
@@ -10,14 +10,14 @@ keywords: docker kubernetes desktop container cloud native telecommuting remove 
 abcdesktop.io is a native cloud desktop, and a complete work environment accessible from a simple HTML 5 web browser, without any installation.  Each user’s application runs as a docker container to reduce attack surface.
 abcdeskop.io is an opensource free solution that offer secure desktops and applications on any device, network or digital workspace, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
 
-
-This flexible working environment simplify usage like :
+This flexible working environment simplifies usage like
 
 - Telecommuting
 - Remote virtual desktop 
 - IT temporary access for subcontractors
 - Training  
-- On demand Desktop
+- BYOD, bring your own device
+- Desktop on demand, Desktop as a service
 
 
 ## abcdesktop.io: a docker VDI service
@@ -25,7 +25,6 @@ This flexible working environment simplify usage like :
 abcdesktop.io provides a way to run grapicals applications securely isolated in a docker container, and use a web browser HTML5 as display device. Because docker containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.
 
 ![screenshot-applications](img/screenshot-applications.png)
-
 
 ## Quick installation for kubernetes
 You can watch the youtube video sample. This video describes the Quick installation process.
@@ -77,3 +76,7 @@ abcdesktop.io uses many modern web technologies. However these are the minimum v
 * Safari 11, 
 * Opera 36,  
 * Microsoft Edge (based on Chromium)
+
+## Github repositories
+abcdesktop has 22 repositories available. Follow their code on GitHub [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code
+
