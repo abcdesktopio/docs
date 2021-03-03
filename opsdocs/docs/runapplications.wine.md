@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Read the previous chapter [Build abcdesktop docker image](applications.md)
+- Read the previous chapter [Build abcdesktop docker image](/buildapplicationsgnulinux/)
 - Read the [Chapter Authentification explicit for LDAP Directory Services](/config/authexplicit-ldap/) is recommended but not mandatory.
 
 ## WineHQ
