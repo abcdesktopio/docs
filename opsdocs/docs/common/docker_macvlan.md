@@ -389,10 +389,10 @@ The network access is disable for this application
                         			"dns": [ "8.8.8.8" ] } } }
 ```           
 
-In this case, only users with the label tag ```internet```, can bind the network name ```abcnetfirefox```.
+In this case, only users with the label tag `internet`, can bind the network name `abcnetfirefox`.
 
 
-### Enable network for ````Hubert J. Farnsworth```
+### Enable network for `Hubert J. Farnsworth`
 
 Update the application firefox rules
  
@@ -491,3 +491,55 @@ You do not need to logoff the ```Hubert J. Farnsworth```, just close Firefox app
 
 Now default user has a network access, and member of ```cn=ship_crew,ou=people,dc=planetexpress,dc=com``` use the ```abcnetfirefox``` network.
 
+
+## Webhook events `create` and `destroy` application
+
+Rules support a specific webhook url to notify external security equipment like firewalls.
+
+```
+  "rules": { 	"homedir": { "default": false, "ship": true }, 
+  				"network": { "default": false, 
+  						"ship": { "name": "abcnetfirefox", "dns": [ "8.8.8.8" ], 
+  									"webhook": { 
+  										"create": "http://firewall.domain.local/update?action=create&name={{ name }}&ip={{ container_ip }}", 
+  										"destroy": "http://firewall.domain.local/update?action=destroy&name={{ name }}&ip={{ container_ip }}" } 
+  									} 
+ }
+```
+
+* When a new docker container is created, the control plane `pyos` call the url  `http://firewall.domain.local/update?action=create&name={{ name }}&ip={{ container_ip }}`
+* When a new docker container is destoyed, the control plane `pyos` call the url  `http://firewall.domain.local/update?action=destroy&name={{ name }}&ip={{ container_ip }}`
+
+Each `{{ $label }}` is a mustached value.
+
+| Label name                | description        | example     |
+|---------------------------|--------------------|-------------|
+|container_ip               | container ip addr  | 192.168.8.130 |
+|provider                   | authentification provider name | planet |
+|providertype               | authentification provider type | ldap |
+|userid                     | authentification provider user id |fry |
+|name       					 | username  |`Philip J. Fry`|
+|sha_id						 | sha of the container image | sha256%3A5c754563b357bfde4a3762728c686fe0001d10e43835b9468d5218e663b844e8 |
+|id 			               | name of the application image | `abcdesktopio/firefox-esr.d:dev`|
+|launch     | WM_CLASS of the X11 application | Navigator.Firefox |
+|icon       | icon file name | firefox.svg |
+|keyword | docker image label keywords | firefox mozilla web internet |
+|cat        | docker image label category | office |
+|displayname| docker image label displayname | Firefox-esr|
+|path | binary path of the application | /usr/bin/firefox-esr |
+|desktopfile | desktop filename  of the application |firefox.desktop|
+|executablefilename | binary file name of the application | firefox-esr |
+|locale | user current locale settings | en_US |
+
+
+### Events :
+
+#### create event: 
+The control plane `pyos` replace the mustached  url  `http://firewall.domain.local/update?action=create&name={{ name }}&ip={{ container_ip }}` as `http://firewall.domain.local/update?action=create&name=Philip%20J.%20Fry&ip=192.168.8.130`
+
+#### destroy event: 
+The control plane `pyos` replace the url  `http://firewall.domain.local/update?action=destroy&name={{ name }}&ip={{ container_ip }}` as `http://firewall.domain.local/update?action=destroy&name=Philip%20J.%20Fry&ip=192.168.8.130`
+
+
+
+ 
