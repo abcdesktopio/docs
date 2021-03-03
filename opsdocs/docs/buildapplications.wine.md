@@ -3,8 +3,8 @@
 
 ## Requirements
 
-- Read the chapter [Edit your configuration file in docker mode](config/editconfig/) is mandatory
-- Read the chapter [Build abcdesktop docker image](applications.md) is mandatory.
+- Read the chapter [Edit your configuration file in docker mode](/config/editconfig/) is mandatory
+- Read the chapter [Build abcdesktop docker image](/buildapplicationsgnulinux/) is mandatory.
 - A running dockerd last version 
 - An access to the docker public registry
 - An access to the ubuntu repository
