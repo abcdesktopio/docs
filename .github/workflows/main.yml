@@ -47,6 +47,7 @@ jobs:
            cp LICENSE crashtest
            cd crashtest
            ls -la
+           git add *
            git commit -m 'pushed from abcdesktopio/docs' -a
            git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" push
            
