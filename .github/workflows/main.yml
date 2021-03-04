@@ -37,15 +37,15 @@ jobs:
       - name: Run Makefile
         run: make docs
         
-      - name: push data to pages
-        run: |
-           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/abcdesktopio.github.io.git"
-           cp -r opsdocs/site/* abcdesktopio.github.io
-           cp CNAME abcdesktopio.github.io
-           cp LICENSE abcdesktopio.github.io
-           cd abcdesktopio.github.io 
-           git commit -m 'pushed from abcdesktopio/docs' -a
-           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" push
+      # - name: push data to pages
+      #  run: |
+      #     git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/abcdesktopio.github.io.git"
+      #     cp -r opsdocs/site/* abcdesktopio.github.io
+      #     cp CNAME abcdesktopio.github.io
+      #     cp LICENSE abcdesktopio.github.io
+      #     cd abcdesktopio.github.io 
+      #     # git commit -m 'pushed from abcdesktopio/docs' -a
+      #     # git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" push
            
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
