@@ -37,13 +37,15 @@ jobs:
       - name: Run Makefile
         run: make docs
         
-      # - name: push data to pages
-      #  run: |
-      #     git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/abcdesktopio.github.io.git"
-      #     cp -r opsdocs/site/* abcdesktopio.github.io
-      #     cp CNAME abcdesktopio.github.io
-      #     cp LICENSE abcdesktopio.github.io
-      #     cd abcdesktopio.github.io 
+      - name: push data to pages
+        run: |
+           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/abcdesktopio.github.io.git"
+           ls -la opsdocs/site
+           cp -r opsdocs/site/* abcdesktopio.github.io
+           cp CNAME abcdesktopio.github.io
+           cp LICENSE abcdesktopio.github.io
+           cd abcdesktopio.github.io
+           ls -la
       #     # git commit -m 'pushed from abcdesktopio/docs' -a
       #     # git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" push
            
