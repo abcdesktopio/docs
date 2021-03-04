@@ -39,15 +39,16 @@ jobs:
         
       - name: push data to pages
         run: |
-           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/abcdesktopio.github.io.git"
+           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/crashtest.git"
+           echo 'ls -la opsdocs/site'
            ls -la opsdocs/site
-           cp -r opsdocs/site/* abcdesktopio.github.io
-           cp CNAME abcdesktopio.github.io
-           cp LICENSE abcdesktopio.github.io
-           cd abcdesktopio.github.io
+           cp -r opsdocs/site/* crashtest
+           cp CNAME crashtest
+           cp LICENSE crashtest
+           cd crashtest
            ls -la
-      #     # git commit -m 'pushed from abcdesktopio/docs' -a
-      #     # git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" push
+           git commit -m 'pushed from abcdesktopio/docs' -a
+           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" push
            
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
