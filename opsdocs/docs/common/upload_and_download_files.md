@@ -3,22 +3,22 @@
 
 
 ## Goals
-* Upload file in your desktop
-* Download file from your desktop
+* Upload file from your local storage to your abcdesktop
+* Download file from your abcdesktop to your local storage
 
 
 ## Upload file in your desktop
 
-To upload file into your desktop, just use a drag & drop, from your local desktop to you adcdesktop
+To upload file into your local storage, just use a drag & drop, from your device to you adcdesktop
 ![drag and drop sample ](img/draganddrop.png)
 
-Start the filemanager, your new file is located in your home directory
+Then, start the filemanager, your new file is located in your home directory
 
 ![file in home directory](img/uploadedfromyourlocaldesktop.png)
 
 ## Download file from your desktop
 
-To download file from your abcdesktop, just start the file manager.
+To download file from your abcdesktop to you local storage, just start the file manager.
 
 ![filemanager for your desktop](img/filemanageryourdesktop.png)
 
@@ -27,11 +27,11 @@ Choose your file and using the right mouse button, choose the menu option
 
 ![download from your desktop](img/downloadfromyourdesktop.png)
 
-The file is downloaded by your webrowser
+The file is downloaded by your web browser
 
 ![download file](img/downloadedfromyourdesktop.png)
 
-The file is located in your local download directory
+The file is located in your `Downloads` directory
 
 ![download file](img/downloadedfileispresent.png)
 
