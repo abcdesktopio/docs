@@ -77,6 +77,13 @@ abcdesktop.io uses many modern web technologies. However these are the minimum v
 * Opera 36,  
 * Microsoft Edge (based on Chromium)
 
+> To fully use `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, Chromium or  Microsoft Edge Chromium. The `copy and paste` feature is also supported on Firefox with a dedicated extension.
+
+### Not supported web browser
+
+abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 11.x. If you need a Microsoft web browser use Microsoft Edge. Edge is based on the Chromium open-source project. Chromium forms the basis of Google Chrome, so the new Edge feels very similar to Google Chrome.
+
+
 ## Github repositories
 abcdesktop has 22 repositories available. Follow their code on GitHub [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code
 
