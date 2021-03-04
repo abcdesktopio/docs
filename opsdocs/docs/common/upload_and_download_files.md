@@ -35,3 +35,6 @@ The file is located in your `Downloads` directory
 
 ![download file](img/downloadedfileispresent.png)
 
+Great, you have uploaded and downloaded files with your abcdesktop, you can now use abcdesktop.io applications to edit all your files.
+
+
