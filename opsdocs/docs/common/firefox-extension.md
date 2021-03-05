@@ -35,9 +35,8 @@ Download the firefox clipboard extension [https://www.abcdesktop.io/abcdesktop_c
 
 ## Run  Firefox clipboard extension for abcdesktop
 
-Firefox clipboard extension syncs only text data, binary data like images are not yet supported. 
+> Firefox clipboard extension syncs **only text data**, binary data like images are not yet supported. 
 
-Firefox clipboard extension syncs your clipboard data selected from your abcdesktop desktop. 
+* Firefox clipboard extension syncs your clipboard data selected from your abcdesktop desktop to your local desktop environment. 
 
-Firefox clipboard extension syncs your clipboard data selected to your abcdesktop desktop.
-
+* Firefox clipboard extension syncs your local desktop environment clipboard to your abcdesktop desktop clipboard.
