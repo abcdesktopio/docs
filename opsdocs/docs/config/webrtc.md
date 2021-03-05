@@ -177,18 +177,18 @@ webrtc.server : {   'janus.domain.local' : { 'schema' : 'http',
 ```webrtc.server``` is a dict. The default value is ```None```. 
 Set all dictionnary values to enable webrtc access for ```pulseaudio``` and for the web browser client.
 
-The ```hostip``` value, is used by pluse audio to configure the rtp stream. This value must be an ip address (do not set the fqdn). This can be an internal ip address.
+The ```hostip``` value, is used by pluse audio to configure the rtp stream. This value **must be** an ip address (do not set the fqdn). This can be an internal ip address, and is only to configure pulseaudio module and describe how to send stream data to reach the webrtc gateway.
 
 ```
 'hostip': '1.2.3.4'
 ```
 
-The ```host``` value, is used by the browser to reach the rtp stream. This value must(should) be a fqdn. This fqdn is used by the web browser.
+The ```host``` value, is used by the browser to reach the webrtc gateway and get the rtp stream. This value must(should) be a `fqdn`. This `fqdn` is used by the web browser.
 
 ```
 webrtc.server : {   'janus.domain.local' : { 'schema' : 'http',
                                           'host': 'janus.domain.local',
-                                          'hostip': '123.123.123.123',
+                                          'hostip': '1.2.3.4',
                                           'port': 8088,
                                           'audiopt': 8,
                                           'audiortpmap': 'PCMA/8000',
