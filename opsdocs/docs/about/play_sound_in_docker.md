@@ -5,8 +5,15 @@
 
 As VNC does not support sound, we have to forward a ```Pulseaudio null-sink``` output to the user browser, with no latency. 
 
+* Release 1.0 : use the pulseaudio http stream and play wave data (poor sound quality but works in https only)
 
-### Release 1.0: Pulseaudio with a simple module-http-protocol-tcp and a javascript no latency wav stream player
+![pulseaudio http stream](../config/img/soundmodulehttp.png)
+
+* Release 2.0 : use janus webrtc gateway, send pulseaudio rtp stream to janus, and play sound using the web browser webrtc stack (good sound quality)
+
+![pulseaudio rtp stream](../config/img/soundmodulertp.png)
+
+## Release 1.0: Pulseaudio with a simple module-http-protocol-tcp and a javascript no latency wav stream player
 
 * [webaudio-wav-stream-player](https://github.com/revolunet/webaudio-wav-stream-player) No latency wav stream player using browser fetch streaming API and WebAudio
 
@@ -162,7 +169,12 @@ Then use the ```WavPlayer.js``` from Julien Bouquillon [https://github.com/revol
 
 This Release is getting glitchy audio. In Chrome, the stream plays with a slight crackle. Read the issue [https://github.com/revolunet/webaudio-wav-stream-player/issues/10](https://github.com/revolunet/webaudio-wav-stream-player/issues/10)
 
-### Release 2.0: Pulseaudio with a WebRTC gateway
+## Release 2.0: Pulseaudio with a WebRTC gateway
+
+### Architecture
+
+![](../config/img/soundmodulertp.png)
+
 
 * [Janus WebRTC Gateway](https://janus.conf.meetecho.com/) with ICE server. Janus act as WebRTC gateway, listen for udp RTP stream from Pulseaudio and forward it to user web browser.
 
@@ -187,3 +199,5 @@ audioport = 5000
 audiopt = 8
 audiortpmap = PCMA/8000
 ```
+
+Read the dedicated [webrtc chapter](/config/webrtc/) to configure and get more informations about the janus WebRTC
