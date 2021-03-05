@@ -5,7 +5,11 @@
 By default abcdesktop use the ```module-http-protocol-tcp``` from pulseaudio sound server to send wav data to the web browser
 
 
-## webrtc gateway disable (default)
+## pulseaudio http stream (by default)
+
+By default, abcdesktop uses the pulseaudio http stream and play wave data (poor sound quality but works in https only)
+
+![pulseaudio http stream](../config/img/soundmodulehttp.png)
 
 In terminal webshell run the command : 
 
@@ -28,7 +32,11 @@ balloon@bac345323f37:/var/log/desktop$ pactl -s /tmp/.pulse.sock list short modu
 
 ## webrtc gateway enable
 
-To get a better sound quality, you can use a webrtc gateway and send a rtp stream to the webrtc gateway. abcdesktop update the pulseaudio configuration, and add ```module-rtp-send```. The ```module-rtp-send``` pusleaudio send to the destination_ip (in this example 1.2.3.4) 
+To get a better sound quality, you can use a webrtc gateway and send a rtp stream to the webrtc gateway. abcdesktop plays sound using the web browser webrtc stack (good sound quality)
+
+![pulseaudio rtp stream](../config/img/soundmodulertp.png)
+
+abcdesktop update the pulseaudio configuration, and add ```module-rtp-send```. The ```module-rtp-send``` pusleaudio send to the destination_ip (in this example 1.2.3.4) 
 
 
 ```bash
