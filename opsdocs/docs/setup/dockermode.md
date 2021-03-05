@@ -1,6 +1,6 @@
-# abcdesktop.io for Non-cluster hosts
+# Install abcdesktop.io for non-cluster hosts
 
-abcdesktop.io support Non-cluster hosts and kubernetes cluster hosts. In this section we will study how abcdesktop.io works in Non-cluster hosts with only one dockerd installed. The abcdesktop.io for Non-cluster hosts is recommended for personal use, all applications container are created on the same host.
+abcdesktop.io support non-cluster hosts and kubernetes cluster hosts. In this section we will study how abcdesktop.io works in non-cluster hosts with only one dockerd installed. The abcdesktop.io for non-cluster hosts is recommended for personal use, all containers are hosted on the same host.
 
 In all configuration, the abcdesktop.io infrastructure uses six containers, each container has a specific role : 
 
