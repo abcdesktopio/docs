@@ -2,6 +2,8 @@
 
 ## Related Projets on VDI with docker
 
+abcdesktop, or Yet Another VDI docker projet...
+
 A lot of different projets already exist using docker containers as a VDI. abcdesktop is just another one. I just write list of projets, you can explore them :
 
 
