@@ -2,7 +2,7 @@ Uninstall abcdesktop.io for kuberntes
 
 ## Commands to uninstall abcdesktop.io 
 
-Go to the abcdesktop directory (where the `abcdesktop.yml` is located), and run the bash commands  : 
+Run the bash commands : 
 
 ```bash
 echo "starting abcdesktop uninstall commands"
@@ -14,7 +14,7 @@ echo "remove all secrets"
 kubectl delete secrets --all -n abcdesktop
 echo "remove namespace"
 kubectl delete namespace abcdesktop
-echo "delete docker images"
+echo "delete all abcdesktop docker images"
 docker images --filter=reference='abcdesktopio/*:*' --format "{{.Repository}}"  | xargs docker rmi
 echo "abcdesktop is uninstalled"
 ```
