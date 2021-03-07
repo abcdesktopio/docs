@@ -1,7 +1,6 @@
-# Uninstall abcdesktop for non-cluster hosts
+# Uninstall abcdesktop.io for non-cluster hosts
 
-
-## uninstall abcdesktop for non-cluster hosts
+## Commands to uninstall abcdesktop.io 
 
 Go to the abcdesktop directory (where the `docker-compose.yml` is located), and run the bash commands  : 
 
@@ -18,7 +17,6 @@ echo "remove all user volumes"
 docker volume ls -f label=type=x11server -q | xargs docker volume rm
 echo "abcdesktop is uninstalled"
 ```
-
 
 Great, you have uninstalled abcdesktop in non-cluster hosts.
 
