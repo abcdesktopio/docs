@@ -6,34 +6,31 @@
 
 ### Download the Mozilla Firefox clipboard extension for abcdesktop
 
-Download the firefox clipboard extension [https://www.abcdesktop.io/abcdesktop_clipboard_helper-1.0.3-fx.xpi](https://www.abcdesktop.io/abcdesktop_clipboard_helper-1.0.3-fx.xpi) and save it to your local directory
+1. Download the firefox clipboard extension [abcdesktop_clipboard_helper.xpi](https://www.abcdesktop.io/abcdesktop_clipboard_helper-1.0.3-fx.xpi) and press `Continue to Installation` button.
+![Download and continue](img/allow-install-add-on.png)
 
-### Configure Mozilla Firefox
-
-* Start the Mozilla Firefox application
-* In the `about` menu, choose `Add-ons` 
-
-![From file install add ons](img/firefox-about-add-ons.png)
-
-
-* In the `Manage your Extensions` menu, choose `Install Add-ons From File...` , add `open` the `abcdesktop_clipboard_helper-1.0.0-fx.xpi` file.
-![From file install add ons](img/install-firefox-about-add-ons.png)
-
-
-* Choose `Add` as a response to the question `Add abcdesktop Clipboad Helper ?` 
+2. Choose `Add` as a response to the question `Add abcdesktop Clipboad Helper ?` 
 ![confirm to add ons](img/add-install-firefox-about-add-ons.png)
 
-
-* Press `OKay, Got it` to confirm the `abcdesktop Clipboad helper` insallation
+3. Press `OKay, Got it` to confirm the `abcdesktop Clipboad helper` insallation
 ![OKay confirm install add ons](img/ok-add-install-firefox-about-add-ons.png)
 
 
-* Confirm `abcdesktop Clipboad helper` status is enabled
-
-![enabled install add ons](img/done-install-firefox-about-add-ons.png)
 
 
-## Run  Firefox clipboard extension for abcdesktop
+## Use fully qualified domain name filter
+
+Firefox clipboard extension runs **ONLY if the hostname contains `desktop` string**.
+
+The URL must matches `*://*desktop*/*"` to run the clipboard extension.
+
+* `https://demo.abcdesktop.io` matches, the firefox clipboard extension is running.
+* `https://desktop.domain.io` matches, the firefox clipboard extension is running.
+* `https://abcdesktop.mydomain.local` matches, the firefox clipboard extension is running.
+* `https://demo.domain.com` does not match, the firefox clipboard extension is not running.
+
+
+## Run firefox clipboard extension for abcdesktop
 
 > Firefox clipboard extension syncs **only text data**, binary data like images are not yet supported. 
 
