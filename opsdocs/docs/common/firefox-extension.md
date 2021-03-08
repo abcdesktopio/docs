@@ -6,7 +6,7 @@
 
 ### Download the Mozilla Firefox clipboard extension for abcdesktop
 
-Download the firefox clipboard extension [https://www.abcdesktop.io/abcdesktop_clipboard_helper-1.0.0-fx.xpi](https://www.abcdesktop.io/abcdesktop_clipboard_helper-1.0.0-fx.xpi) and save it to your local directory
+Download the firefox clipboard extension [https://www.abcdesktop.io/abcdesktop_clipboard_helper-1.0.1-fx.xpi](https://www.abcdesktop.io/abcdesktop_clipboard_helper-1.0.1-fx.xpi) and save it to your local directory
 
 ### Configure Mozilla Firefox
 
