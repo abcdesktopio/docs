@@ -83,6 +83,10 @@ abcdesktop.io uses many modern web technologies. However these are the minimum v
 
 abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 11.x. If you need a Microsoft web browser use Microsoft Edge. Edge is based on the Chromium open-source project. Chromium forms the basis of Google Chrome, so the new Edge feels very similar to Google Chrome.
 
+## Group discussion 
+
+A dedicated group is hosted on the google groups plateform. You can reach the [abcdesktop group](https://groups.google.com/g/abcdesktop)
+
 
 ## Github repositories
 abcdesktop has 24 repositories available. Follow the code on GitHub [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code.
