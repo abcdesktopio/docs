@@ -1,5 +1,13 @@
 # Requirements
 
+## Prerequisites for setup abcdesktop
+
+* Architecture `x86-64`
+* A docker instance (version 18 and above). You can run docker commands
+* 15 GB of free space to store sample applications ( gimp, libreoffice writer, libreoffice calc, libreoffice math, libreoffice impress, firefox ) and core image services
+
+
+
 ## Supported Architectures
 
 Our images support only architectures `x86-64`. The architectures supported by this image is:
@@ -25,7 +33,7 @@ abcdesktop.io need Docker Engine version 18 and above.
 
 ### GNU/Linux
 
-The recommended distrubution is [Ubuntu 18.04.4 LTS (Bionic Beaver)](http://releases.ubuntu.com/18.04.4/).
+The recommended distrubution is [Ubuntu 20.04 LTS (Focal Fossa)](https://releases.ubuntu.com/20.04/)
 
 #### CentOS
 To install dockerd on CentOS. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
