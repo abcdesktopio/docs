@@ -620,10 +620,10 @@ As abcdesktop images are quite heavy, this would result in various errors when t
 
 abcdesktop deployment will be done with the following command :
 ```
-kubectl create -f http://docs.abcdesktop.io/setup/abcdesktop.yaml
+kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop.yaml
 ```
 ```
-abcdesktop@k8s-master:~$ kubectl create -f http://docs.abcdesktop.io/setup/abcdesktop.yaml
+abcdesktop@k8s-master:~$ kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop.yaml
 clusterrole.rbac.authorization.k8s.io/pyos-role created
 clusterrolebinding.rbac.authorization.k8s.io/pyos-rbac created
 serviceaccount/pyos-serviceaccount created
@@ -644,9 +644,7 @@ service/nginx created
 service/pyos created
 ```
 abcdesktop.yaml can be downloaded manually here :
-<a href="/setup/abcdesktop.yaml" download>abcdesktop.yaml</a>
-
-
+[https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop.yaml)
 
 abcdesktop deployment can be verified with the following command :
 ```

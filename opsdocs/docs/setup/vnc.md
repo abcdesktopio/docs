@@ -258,14 +258,8 @@ docker volume rm myshared
 Keep the docker images ubuntu, we will use it in the next chapter
 
 
-## Next Chapter
+## Next chapter
 
 In the next chapter, we will replace the VNC Client by a web browser.
-
-
-
-
-Licence
-abcdesktop is released under the terms of MIT License. For more details take a look at the [README](https://github.com/OpenDestkop/README.md).
 
 

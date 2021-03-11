@@ -26,6 +26,7 @@ jobs:
           rm -rf ..?* .[!.]* *
           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/docs.git" .
           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" submodule update --init --recursive --remote
+          ls -la oc.apps
       
       - uses: actions/setup-python@v2
         with:
@@ -36,7 +37,20 @@ jobs:
       
       - name: Run Makefile
         run: make docs
-      
+        
+      - name: push data to pages
+        run: |
+           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/abcdesktopio.github.io.git"
+           echo 'ls -la opsdocs/site'
+           ls -la opsdocs/site
+           cp -r opsdocs/site/* abcdesktopio.github.io
+           cp CNAME abcdesktopio.github.io
+           cp LICENSE abcdesktopio.github.io
+           cd abcdesktopio.github.io
+           git add *
+           git commit -m 'pushed from abcdesktopio/docs' -a
+           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" push
+           
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:

@@ -5,7 +5,11 @@
 By default abcdesktop use the ```module-http-protocol-tcp``` from pulseaudio sound server to send wav data to the web browser
 
 
-## webrtc gateway disable (default)
+## pulseaudio http stream (by default)
+
+By default, abcdesktop uses the pulseaudio http stream and play wave data (poor sound quality but works in https only)
+
+![pulseaudio http stream](../config/img/soundmodulehttp.png)
 
 In terminal webshell run the command : 
 
@@ -28,7 +32,11 @@ balloon@bac345323f37:/var/log/desktop$ pactl -s /tmp/.pulse.sock list short modu
 
 ## webrtc gateway enable
 
-To get a better sound quality, you can use a webrtc gateway and send a rtp stream to the webrtc gateway. abcdesktop update the pulseaudio configuration, and add ```module-rtp-send```. The ```module-rtp-send``` pusleaudio send to the destination_ip (in this example 1.2.3.4) 
+To get a better sound quality, you can use a webrtc gateway and send a rtp stream to the webrtc gateway. abcdesktop plays sound using the web browser webrtc stack (good sound quality)
+
+![pulseaudio rtp stream](../config/img/soundmodulertp.png)
+
+abcdesktop update the pulseaudio configuration, and add ```module-rtp-send```. The ```module-rtp-send``` pusleaudio send to the destination_ip (in this example 1.2.3.4) 
 
 
 ```bash
@@ -177,18 +185,18 @@ webrtc.server : {   'janus.domain.local' : { 'schema' : 'http',
 ```webrtc.server``` is a dict. The default value is ```None```. 
 Set all dictionnary values to enable webrtc access for ```pulseaudio``` and for the web browser client.
 
-The ```hostip``` value, is used by pluse audio to configure the rtp stream. This value must be an ip address (do not set the fqdn). This can be an internal ip address.
+The ```hostip``` value, is used by pluse audio to configure the rtp stream. This value **must be** an ip address (do not set the fqdn). This can be an internal ip address, and is only to configure pulseaudio module and describe how to send stream data to reach the webrtc gateway.
 
 ```
 'hostip': '1.2.3.4'
 ```
 
-The ```host``` value, is used by the browser to reach the rtp stream. This value must(should) be a fqdn. This fqdn is used by the web browser.
+The ```host``` value, is used by the browser to reach the webrtc gateway and get the rtp stream. This value must(should) be a `fqdn`. This `fqdn` is used by the web browser.
 
 ```
 webrtc.server : {   'janus.domain.local' : { 'schema' : 'http',
                                           'host': 'janus.domain.local',
-                                          'hostip': '123.123.123.123',
+                                          'hostip': '1.2.3.4',
                                           'port': 8088,
                                           'audiopt': 8,
                                           'audiortpmap': 'PCMA/8000',

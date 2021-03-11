@@ -6,22 +6,7 @@ Nginx is used as a reverse proxy server for HTTP, HTTPS protocols, as well as a 
 
 ## Nginx routing
 
-```
-                                     +--------------------+
-                                +--->|       oc.user      |
-                                |    +----------+---------+
-                                |               
-              +-----------+     |               
-              |           |     |    +----------+---------+           +---------------+
-Webuser +---->|   nginx   |-----+--->| od.py (port 8000)  |---------->|    mongodb    |
-              |           |     |    +--------------------+           +---------------+
-              +-----------+     |
-                                |
-                                |    +--------------------+
-                                +--->|   static web site  |
-                                     +--------------------+
-
-```
+![nginx routing](../img/architecture-overview.png)
 
 
 ## Nginx Configuration
@@ -33,9 +18,9 @@ Webuser +---->|   nginx   |-----+--->| od.py (port 8000)  |---------->|    mongo
 
 
 
-### Web site
+### web site
 
-The web site source code is stored in the /var/webModules directory.
+The static files (html, css, js) are stored in the local /var/webModules directory.
 
 ### main reverse proxy 
 

@@ -21,15 +21,15 @@ nav:
     - How to do labs and exercices: 'about/howtodolabsexercices.md'
     - Open source: 'about/opensource.md'
     - Authors : about/authors.md
-    - Related projects : about/related_projets.md
     - Licence : about/gnu-gpl-v2.0.md
 - Home: 'index.md'
 - Requirements : 'requirements.md'
 - Overview: overview.md
 - GUI apps on Docker:
-   - 'Run GUI apps on Docker': guiappsoddocker.md
+   - 'VDI on Docker, related projets': guiappsoddocker.md
    - 'Hands-on with VNC client': 'setup/vnc.md'
    - 'Hands-on with no-VNC HTML5': 'setup/novnc.md'
+   - 'Play sound in docker to a webprojet': 'about/play_sound_in_docker.md' 
 - Architecture: 
    - Overview: 'architecture.md'
    - Core :
@@ -43,8 +43,9 @@ nav:
      - Spawner-service: 'services/spawner-service.md'
      - File-service: 'services/file-service.md'
 - Setup guide: 
-   - Docker (Non-cluster): 
-        - Setup abcdesktop for Docker : 'setup/dockermode.md'
+   - Docker (non-cluster): 
+        - Install abcdesktop for docker : setup/dockermode.md
+        - Uninstall abcdesktop for docker : setup/uninstalldockermode.md
    - Kubernetes : 
         - Requirements : 
             - Kubernetes on GNU/Linux : setup/k8slinuxinstallation.md
@@ -52,7 +53,8 @@ nav:
             - Kubernetes on Windows 10 :  setup/k8swindows10installation.md
         - Setup Kubernetes for GNU/Linux only: 'setup/kubernetesmode.md'
         - Setup abcdesktop for Kubernetes : 'setup/kubernetes_abcdesktop.md'
-        - Setup applications for abcdesktop : 'setup/kubernetes_abcdesktop_applications.md'
+        - Setup applications for abcdesktop : setup/kubernetes_abcdesktop_applications.md
+        - Uninstall abcdesktop : setup/uninstall_kubernetes.md
    - Kubernetes add-ons :
         - Setup Network policy : 'setup/kubernetes_networkpolicies.md'
         - Setup CIFS Volume : 'setup/kubernetes_flexvolume.md'
@@ -63,6 +65,7 @@ nav:
     - Application image format : 'applicationsformat.md'
     - Build your own abcdesktop GNU/Linux Image: 'buildapplicationsgnulinux.md'
     - Build your own abcdesktop MsWindows Image: 'buildapplications.wine.md'
+    - Build non free applications : 'common/non-free-applications.md'
 - Configuration Guide:
    - Edit your configuration file: 'config/editconfig.md'
    - Stack mode: 'config/stack.md'
@@ -88,10 +91,11 @@ nav:
         - Pulseaudio : config/webrtc.md
    - Issue tracking:
         - Jira : config/jira.md
+- Group discussion : 'https://groups.google.com/g/abcdesktop'
 - How-to:
    - Get a root access inside a container : 'config/sudo-kubernetes.md' 
    - Get all docker application image for abcdesktop : 'setup/retrieve_all_images.md'
    - Bind a specific docker network for an application : common/docker_macvlan.md
    - Update and custom frontend image : 'common/update_image.md'
    - Upload and from files with your desktop : 'common/upload_and_download_files.md'
-
+   - Sync clipboard with Mozilla Firefox : 'common/firefox-extension.md' 

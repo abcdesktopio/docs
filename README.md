@@ -4,7 +4,7 @@
 
 Please, read the public documentation web site:
 * [https://abcdesktopio.github.io/](https://abcdesktopio.github.io/)
-
+* [https://www.abcdesktop.io/](https://www.abcdesktop.io/)
 
 ## abcdesktopio documentation files markup language
 
@@ -19,7 +19,14 @@ To run the documentation website
 ```
 make install
 make docs
-make serve
+```
+
+To test your local changes
+
+```
+make install
+mkdocs serve
+# open your browser: http://127.0.0.1:8000
 ```
 
 or

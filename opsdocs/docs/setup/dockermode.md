@@ -1,6 +1,6 @@
-# abcdesktop.io for Non-cluster hosts
+# Install abcdesktop.io for non-cluster hosts
 
-abcdesktop.io support Non-cluster hosts and kubernetes cluster hosts. In this section we will study how abcdesktop.io works in Non-cluster hosts with only one dockerd installed. The abcdesktop.io for Non-cluster hosts is recommended for personal use, all applications container are created on the same host.
+abcdesktop.io support non-cluster hosts and kubernetes cluster hosts. In this section we will study how abcdesktop.io works in non-cluster hosts with only one dockerd installed. The abcdesktop.io for non-cluster hosts is recommended for personal use, all containers are hosted on the same host.
 
 In all configuration, the abcdesktop.io infrastructure uses six containers, each container has a specific role : 
 
@@ -436,7 +436,7 @@ Reload your web browser page or start a new session. It's time to run the LibreO
 
 ![new applications installed](img/setup-login-anonymous-apps.png)
 
-New applications appears in the dock, start the application ```Firefox``` for example.
+New applications appear in the dock, start the application ```Firefox``` for example.
 
 ![new applications installed](img/setup-login-anonymous-app-firefox.png)
 
@@ -444,7 +444,5 @@ Firefox application is running inside a container.
 
 ## Ready to use for a personal usage
 
-Great, you have installed abcdesktop.io in Non-cluster hosts, and pull images for your workspace. You can build and add your application. 
-
-
+Great, you have installed abcdesktop.io in non-cluster hosts, and pull images for your workspace. You can build and add your application. 
 

@@ -1,11 +1,25 @@
 # Requirements
 
+## Prerequisites for setup abcdesktop
+
+* Architecture `x86-64`
+* A docker instance (version 18 and above). You can run docker commands
+* 15 GB of free space to store sample applications ( gimp, libreoffice writer, libreoffice calc, libreoffice math, libreoffice impress, firefox ) and core image services
+
+
+
+## Supported Architectures
+
+Our images support only architectures `x86-64`. The architectures supported by this image is:
+
+| Architecture | Tag |
+| :----: | --- |
+| x86-64 | amd64-latest |
+
 
 ## Docker engine
 
-abcdesktop.io use docker. Docker can run on your desktop, or on a remote server. We recommend to use docker on GNU/Linux for production.
-
-To install your specific Docker Engine. Read the [Get started guide](https://docs.docker.com/get-started/) guide from docker.
+abcdesktop.io uses docker. Docker can run on your desktop, or on a remote server. We recommend to use docker on GNU/Linux for production. To install your specific Docker Engine. Read the [Get started guide](https://docs.docker.com/get-started/) guide from docker.
 
 abcdesktop.io need Docker Engine version 18 and above.
 
@@ -17,10 +31,9 @@ abcdesktop.io need Docker Engine version 18 and above.
 |  `Windows 10`    | Version 1703 (and above)            |
 
 
-
 ### GNU/Linux
 
-The recommended distrubution is [Ubuntu 18.04.4 LTS (Bionic Beaver)](http://releases.ubuntu.com/18.04.4/), for production use the `Server image`, to do the exercice choose `Desktop image`.
+The recommended distrubution is [Ubuntu 20.04 LTS (Focal Fossa)](https://releases.ubuntu.com/20.04/)
 
 #### CentOS
 To install dockerd on CentOS. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
@@ -80,8 +93,8 @@ When you install Docker Desktop on Windows, it requires and automatically enable
 To install dockerd on Microsoft windows, use Docker for Desktop. Get Docker for Windows on the docker website 
 [docker-for-windows](https://docs.docker.com/docker-for-windows/)
 
-You need to configure your Docker Desktop on Windows to use Linux containers. 
-abcdesktop.io does NOT support Windows container. 
+You need to configure your Docker Desktop on Windows to use **Linux containers**. 
+abcdesktop.io **does NOT support Windows container**. 
 
 You can switch the Docker Desktop on Windows to use Linux containers, using  the docker window tray icon. [Switch to Linux containers](/img/switchtolinuxcontainer.png)
 
