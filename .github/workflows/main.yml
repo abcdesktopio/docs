@@ -26,6 +26,7 @@ jobs:
           rm -rf ..?* .[!.]* *
           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/docs.git" .
           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" submodule update --init --recursive --remote
+          ls -la
       
       - uses: actions/setup-python@v2
         with:
