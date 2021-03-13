@@ -6,10 +6,6 @@
 * A **docker** instance (version 18 and above). You can run docker commands
 * 15 GB of free space to store sample applications ( gimp, libreoffice writer, libreoffice calc, libreoffice math, libreoffice impress, firefox ) and core image services
 
-## Container runtime 
-
-abcdesktop supports only `docker` runtime, [cri-o](https://cri-o.io/) and [containerd](https://containerd.io/) are not supported yet. We plan to add cri-o and containerd in next release.
-
 
 ## Supported Architectures
 
