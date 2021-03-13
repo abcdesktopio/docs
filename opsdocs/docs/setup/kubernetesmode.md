@@ -22,6 +22,17 @@ You need to disable swap memory on nodes as Kubernetes does not perform properly
 swapoff -a
 ```
 
+If you have some swaps in /etc/fstab, just comment them out.
+`swapoff -a` will disable all swaps temporarily.
+
+* disable by masking it with sysctl:
+
+```bash
+systemctl mask dev-zram1.swap
+
+Created symlink /etc/systemd/system/dev-zram1.swap → /dev/null.
+```
+
 #### Step 2: Initialize Kubernetes
 Run the following command as sudo on the master node:
 
