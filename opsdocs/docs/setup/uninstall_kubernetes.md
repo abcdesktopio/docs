@@ -19,5 +19,13 @@ docker images --filter=reference='abcdesktopio/*:*' --format "{{.Repository}}"  
 echo "abcdesktop is uninstalled"
 ```
 
+`kubectl delete namespace` command and `docker rmi` commands can take few minutes.
+
+Please wait for the output message: 
+
+```
+abcdesktop is uninstalled
+```
+
 Great, you have uninstalled abcdesktop for kubernetes.
 
