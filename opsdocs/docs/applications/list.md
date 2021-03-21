@@ -1,5 +1,22 @@
 # Application list
-This array describe the application list ready to use with abcdesktop.
+
+## Install all applications
+
+To install all applications ready to use, run `docker pull` command for each image in file [image-list.txt](https://raw.githubusercontent.com/abcdesktopio/conf/main/images-list.txt) :
+
+```bash
+wget -O images-list.txt https://raw.githubusercontent.com/abcdesktopio/conf/main/images-list.txt
+while read i; do
+        docker pull abcdesktopio/$i
+done < images-list.txt
+```
+
+You will find the application's list in next chapter.
+ 
+
+## List of container's applications ready to use
+
+This array describes the application list built for abcdesktop.
 
 |icon|displayname|description|file md|
 |----|-----------|-----------|-------|
