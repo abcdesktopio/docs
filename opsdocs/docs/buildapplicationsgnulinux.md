@@ -203,48 +203,8 @@ The 2048.d does not use 1.17GB, but only the difference between the 2048 image a
 
 ## Update the cache application list
 
-The API server does not know that you have built your new 2048 application.
-You have to send a message to the API server, to update the API Server images cache list.
+The API server receives a new image event from docker. To run the new applications just refresh you web browser page.
 
-Using your web browser or a curl command, call a http request to notify the API Server
-
-```
-http://localhost/API/manager/buildapplist
-```
-
-This http request return a json object, with all docker images details :
-
-![2048 buildapplist json object](img/2048-app-imagelist.png)
-
-This object is a json array of json image object. Your 2048 object is like this dictionary json object: 
-
-```
-{	"2048.d:latest": {	"id": "2048.d:latest", 
-							"rules": null, 
-							"acl": null, 
-							"launch": "2048-qt.2048-qt", 
-							"name": "2048", 
-							"icon": "2048_logo.svg", 
-							"keyword": "2048", 
-							"uniquerunkey": null, 
-							"cat": "games", 
-							"args": null, 
-							"execmode": null, 
-							"memory": null, 
-							"shm_size": null, 
-							"oomkilldisable": null, 
-							"showinview": null, 
-							"displayname": "2048", 
-							"mimetype": [], 
-							"path": "/usr/games/2048-qt", 
-							"desktopfile": null, 
-							"executablefilename": "2048-qt", 
-							"usedefaultapplication": null, 
-							"fileextensions": [], 
-							"legacyfileextensions": []
-						}
-}
-```
 
 ## Run your new application
 
@@ -261,8 +221,6 @@ Click on the `2048` icon, and start your first abcdesktop application :
 Great it's a good job, you have build your own abcdesktop 2048 application. 
 
 Now you can spent a lot of time to reach the 2048 score. Have fun !
-
-
 
 
 
