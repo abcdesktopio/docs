@@ -41,6 +41,7 @@ jobs:
         
       - name: push data to pages
         run: |
+           git config --global user.name "abcdesktop.workflow"
            git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/abcdesktopio.github.io.git"
            echo 'ls -la opsdocs/site'
            ls -la opsdocs/site
