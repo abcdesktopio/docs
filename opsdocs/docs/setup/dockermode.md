@@ -412,31 +412,18 @@ Install Gnome tools
 docker pull abcdesktopio/calculator.d
 docker pull abcdesktopio/terminal.d
 ```
-
-
+ 
 ### Update the cache application list 
 
-The API server does not know that new docker images has been downloaded.  
-You have to send a message to the API server, to update the API Server images cache list.
+The API server receives a new image event from dockerd. To run the new applications just refresh you web browser page.
 
-Using your browser or a curl command, call a http request to notify the API Server
-
-```	
-http://localhost/API/manager/buildapplist
-```
-
-This http request returns a json object, with all docker images details. This json file contains all this docker image installed on the host.
-
-![buildapplist json format](img/json-image-list.png)
- 
-
-### Use the new applications
+Now reconnect to your abcdesktop. 
 
 Reload your web browser page or start a new session. It's time to run the LibreOffice applications. 
 
 ![new applications installed](img/setup-login-anonymous-apps.png)
 
-New applications appear in the dock, start the application ```Firefox``` for example.
+New applications appear in the dock, start the application `Firefox` for example.
 
 ![new applications installed](img/setup-login-anonymous-app-firefox.png)
 
