@@ -75,7 +75,7 @@ For example you can set low cpu and memory values to an application like the gre
 }
 ```
 
-Read the dedicated chapter for resource description, to get more informations on [host_config](config/host_config)
+Read the dedicated chapter for resource description, to get more informations on [host_config](/config/host_config/)
  
 
 ## Inspect an abcdesktop docker images

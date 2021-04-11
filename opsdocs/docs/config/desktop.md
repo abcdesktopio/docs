@@ -1,7 +1,7 @@
 # desktop options in od.config
 
 
-The od.config contains options to describe how the oc.user and applications containers have to be created. Options differ if abcdesktop.io is running in ```docker mode``` or in ```kubernetes mode```.
+The od.config contains options to describe how the oc.user and applications containers have to be created. Options differ if abcdesktop.io is running in `docker mode` or in `kubernetes mode`.
 
 ## desktop.options
 
@@ -42,14 +42,14 @@ Desktop options start with the prefix `desktop.`, then add the name of the optio
 
 
 ## desktop.usex11unixsocket
-The ```desktop.usex11unixsocket``` force the X11 server to use local unix socket.
-The name of the X11 unix socket is ```/tmp/.X11-unix/X0```
+The `desktop.usex11unixsocket` force the X11 server to use local unix socket.
+The name of the X11 unix socket is `/tmp/.X11-unix/X0`
 
 * **If this feature is enable**:
-A container application need a the DISPLAY. The DISPLAY is in this case ```:0.0```. The container application and the oc.user container share the same volume ```/tmp```, and share the X11 unix socket is ```/tmp/.X11-unix/X0```.
+A container application need a the DISPLAY. The DISPLAY is in this case `:0.0`. The container application and the oc.user container share the same volume `/tmp`, and share the X11 unix socket is `/tmp/.X11-unix/X0`.
 
 * **If this feature is disable**:
-A container application need a DISPLAY. The DISPLAY is ```:0.0``` (don't think at ```IPADDRESS_OF_X11_SERVER:0.0``` to protect X11 access control). The two containers share the same network stack by default. The X11 server NEED to listen to a TCP or UDP port.
+A container application need a DISPLAY. The DISPLAY is `:0.0` (don't think at ```IPADDRESS_OF_X11_SERVER:0.0``` to protect X11 access control). The two containers share the same network stack by default. The X11 server NEED to listen to a TCP or UDP port.
 
 
 
@@ -57,7 +57,7 @@ You can disable this features, but you have to replace the default  TigerVNC by 
 
 TigerVNC does not support to listen on TCP Port. TigerVNC is a X11 and a VNC Server.
 
-Set the ```desktop.usex11unixsocket``` value to ```True``` in most case, and this should not be changed.
+Set the `desktop.usex11unixsocket` value to ```True``` in most case, and this should not be changed.
 
 
 ## desktop.shareipcnamespace
@@ -331,7 +331,7 @@ The `desktop.policies` is a dictionary.
 Default application host_config dictionary, maps the dictionary as arguments from docker API 
 [create_host_config](https://docker-py.readthedocs.io/en/stable/api.html#docker.api.container.ContainerApiMixin.create_host_config)
 
-Define how the application can be run, read [host_config](config/host_config)  description page to get more informations
+Define how the application can be run, read [host_config](/config/host_config)  description page to get more informations
 
 ## desktop.host_config
 Default desktop oc.user host_config dictionary, maps the dictionary as arguments from docker API 
