@@ -1,6 +1,7 @@
 # Application image format
 
 abcdesktop.io use docker image format, and add some labels to describe the application.
+Labels add new information to a docker container.
 
 ## Requirements
 
@@ -9,11 +10,13 @@ abcdesktop.io use docker image format, and add some labels to describe the appli
 
 ## Labels
 
-Docker images applications for abcdesktop use docker LABELS as metadata. To select only abcdesktop applications from standart docker images, all abcdesktop's applications must have a label 'oc.type' set to the value 'app'.
+Docker images applications for abcdesktop use docker's LABELS as metadata. To select only abcdesktop applications from standard docker images, all abcdesktop's applications must have a label 'oc.type' set to the value 'app'.
 
 ```Dockerfile
 LABEL oc.type=app
 ```
+
+### Label descriptions
 
 | Label name                       | Type     | Description                                                                                | Sample |
 |----------------------------------|--------- |--------------------------------------------------------------------------------------------|--------|
@@ -33,10 +36,7 @@ LABEL oc.type=app
 |  ```oc.showinview```             | string   | Set to the dock to add this app in dock              | dock | 
 |  ```oc.fileextensions```         | string   | Supported extensions file, separated by semicolon(;) | htm;html;xml;gif  | 
 |  ```oc.legacyfileextensions```   | string   | Legacy file extensions, separated by semicolon(;)    | htm;html;xml      | 
-|  ```oc.shm_size ```              | string   | Set the size of /dev/shm to VALUE. The format of VALUE is ```<number><unit>```, where number must be greater than 0 and unit can be b (bytes), k (kilobytes), m (megabytes), or g (gigabytes). | For example ```'2gb'```. Specific application like web browser may need large memory to avoid crashes, it is recommended to set this value to ```2g```.      | 
-|  ```oc.memory```                 | string   | The maximum amount of memory the container can use. The format of VALUE is ```<number><unit>```, where number must be greater than 0 and unit can be b (bytes), k (kilobytes), m (megabytes), or g (gigabytes). If you set this option, the minimum allowed value is 4m (4 megabyte).     | ```'1g'```, ```'2g'```      | 
-|  ```oc.oomkilldisable```         | bool   | By default, if an out-of-memory (OOM) error occurs, the kernel kills processes in a container. To change this behavior, set the oom-kill-disable option to True.     | Default value is ```False```     | 
-
+|  ```oc.host_config```            | dict   | dictionary of resources (see resources details)     |  { 'shm_size': '1g' }   | 
 
 
 
@@ -58,7 +58,26 @@ LABEL oc.fileextensions="html;xml;gif"
 LABEL oc.legacyfileextensions="html;xml"
 ```
  
+## host_config resource description
+
+`host_config` resource description allows to change the running context for docker application.
+`host_config` is a dictionary and uses the same format in `applist.json` file and `od.config` file.
+
+For example you can set low cpu and memory values to an application like the great X11 xeyes.
+
+```json
+{ 	
+	"mem_limit":  "32M", 
+	"cpu_period":  50000, 
+	"cpu_quota":   50000, 
+	"pid_mode":   false, 
+	"network_mode": "none" 
+}
+```
+
+Read the dedicated chapter for resource description, to get more informations on [host_config](config/host_config)
  
+
 ## Inspect an abcdesktop docker images
 
 To download an abcdesktop docker image, run the command
@@ -90,7 +109,6 @@ Read the labels section :
                 "oc.mimetype": "text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;",
                 "oc.name": "Firefox",
                 "oc.path": "/usr/bin/firefox",
-                "oc.sharememory": "/dev/shm",
                 "oc.showinview": "dock",
                 "oc.template": "oc.template.gtk.firefox",
                 "oc.type": "app",
