@@ -34,15 +34,15 @@ You have to choose a nework driver for example
 
 Only the name of the network is used by abcdesktop.
 
-Create a network with ```macvlan``` or ```ipvlan``` driver 
+Create a network with `macvlan` or `ipvlan` driver 
 
 In these two examples :
 
-* Subnet is ```192.168.8.0/24``` 
-* Gateway is ```192.168.8.254``` 
-* Ip Range is ```192.168.8.0/27```
+* Subnet is `192.168.8.0/24` 
+* Gateway is `192.168.8.254` 
+* Ip Range is `192.168.8.0/27`
 
-#### Example with ```macvlan``` :
+#### Example with `macvlan` :
 
 Create a network abcnetfirefox with the driver macvlan and bridge the network interface eno1 with the vlan 123 
 
@@ -50,7 +50,7 @@ Create a network abcnetfirefox with the driver macvlan and bridge the network in
 docker network create --label type=oc.app -d macvlan --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.0/27 -o parent=eno1.123 abcnetfirefox
 ```
 
-#### Example with ```ipvlan``` ipvlan_mode=l2 :
+#### Example with `ipvlan` ipvlan_mode=l2 :
 
 Create a network abcnetfirefox with the driver ipvlan with ipvlan_mode=l2 option and bridge the network interface eno1 with the vlan 123.
 
@@ -59,13 +59,13 @@ Create a network abcnetfirefox with the driver ipvlan with ipvlan_mode=l2 option
 docker network create --label type=oc.app -d ipvlan  -o ipvlan_mode=l2 --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.0/27 -o parent=eno1.123 abcnetfirefox
 ```
 
-#### Test your new network (```macvlan``` or ```ipvlan```):
+#### Test your new network (`macvlan` or `ipvlan`):
 
 Make sure that's you can reach the default gateway and the dns server for container.
 In this example, just start a busybox to :
 
-* ```ping``` the default gateway
-* ```nslookup``` to query www.google.com ip address
+* `ping` the default gateway
+* `nslookup` to query www.google.com ip address
 
 ```bash
 export GATEWAY=192.168.8.254
@@ -76,7 +76,7 @@ docker run --rm --network abcnetfirefox --dns 8.8.8.8 busybox ping www.google.co
 
 ## Applications rules
 
-Update your ```applist.json``` file and add a specific rule into the firefox application description 
+Update your `applist.json` file and add a specific rule into the firefox application description 
 
 ```bash
 git clone https://github.com/abcdesktopio/oc.apps.git
@@ -94,10 +94,10 @@ Specific rules entry example
 ```
 
 
-In this example, if the current user token contains the tag label ```internet``` when the firefox application use ```abcnetfirefox``` and the dns ```8.8.8.8```
+In this example, if the current user token contains the tag label `internet` when the firefox application use `abcnetfirefox` and the dns `8.8.8.8`
 
-### Edit the ```applist.json``` file
-Edit the ```applist.json``` file, and add rules to the application ```firefox``` for example
+### Edit the `applist.json` file
+Edit the `applist.json` file, and add rules to the application `firefox` for example
 
 The new firefox dictionary with rules :
 
@@ -140,7 +140,7 @@ The new firefox dictionary with rules :
 }
 ```
 
-Save your changes, and run ```make dockerfile```, next ```docker build```
+Save your changes, and run `make dockerfile`, next `docker build`
 
 Build and update your new firefox application
 
@@ -152,7 +152,7 @@ make dockerfile
 docker build -f firefox.d -t firefox.d .
 ```
 
-Check that the ```oc.rules``` label in new firefox.d image 
+Check that the `oc.rules` label in new firefox.d image 
 
 ```bash
 docker inspect firefox.d 
@@ -167,11 +167,11 @@ The ```oc.rules``` label is a string json formated
 
 ## Add tag the user auth 
 
-Add a tag ```internet``` to the user auth provider
+Add a tag `internet` to the user auth provider
 
-### Update authprovider in ```od.config``` file
+### Update authprovider in `od.config` file
 
-Update the ```ldapconfig``` for planet with the new ```policies``` dict
+Update the `ldapconfig` for planet with the new `policies` dict
 
 ```json
   'policies': { 'acls': None, 
@@ -181,7 +181,7 @@ Update the ```ldapconfig``` for planet with the new ```policies``` dict
 ```
 
 
-The complete ```ldapconfig``` for planet is 
+The complete `ldapconfig` for planet is 
 
 ```json
 ldapconfig : { 'planet': {    'default'       : True,
@@ -199,9 +199,9 @@ ldapconfig : { 'planet': {    'default'       : True,
       } } } }
 ```
 
-Restart your kubernetes pyos pod, to reload new the ```od.config``` configuration file.
+Restart your kubernetes pyos pod, to reload new the `od.config` configuration file.
 
-### Use the ```Philip J. Fry``` user context. 
+### Use the `Philip J. Fry` user context. 
 
 Open a web browser, go to the abcdesktop login page.
 
@@ -213,18 +213,18 @@ Open a web browser, go to the abcdesktop login page.
 > | Philip J. Fry.       |	fry    |
 > | Hubert J. Farnsworth	| professor|
 
-> Note: the user ```Philip J. Fry``` is **member of** ```cn=ship_crew,ou=people,dc=planetexpress,dc=com```
+> Note: the user `Philip J. Fry` is **member of** `cn=ship_crew,ou=people,dc=planetexpress,dc=com`
 
-> Note: the user ```Hubert J. Farnsworth``` is **NOT member of** ```cn=ship_crew,ou=people,dc=planetexpress,dc=com```
+> Note: the user `Hubert J. Farnsworth` is **NOT member of** `cn=ship_crew,ou=people,dc=planetexpress,dc=com`
 
 
-Login as the  ```Philip J. Fry``` user account. 
+Login as the  `Philip J. Fry` user account. 
 
 ![login as Philip J. Fry](img/login-fry-macvlan.png)
 
-During the user  login process, pyos tag the user authentification with the ```'label': 'internet'```
+During the user  login process, pyos tag the user authentification with the `'label': 'internet'`
 
-Start the new application ```firefox```, the docker network for this application use the ```abcnetfirefox``` 
+Start the new application `firefox`, the docker network for this application use the `abcnetfirefox` 
 
 ![firefox use macvlan](img/firefox-macvlan.png)
 
@@ -234,7 +234,7 @@ Run the command
 docker network inspect abcnetfirefox
 ```
 
-abcdesktop start a new container ```"Name": "philip-j--fry-firefox-d2c22d9912fc4a489a1224237af9a3e0"``` and bind the ```abcnetfirefox``` to user container.
+abcdesktop start a new container `"Name": "philip-j--fry-firefox-d2c22d9912fc4a489a1224237af9a3e0"` and bind the `abcnetfirefox` to user container.
 
 
 ```json
@@ -285,20 +285,20 @@ abcdesktop start a new container ```"Name": "philip-j--fry-firefox-d2c22d9912fc4
 
 Close the firefox application.
 
-Logoff, to remove the user pod ```Philip J. Fry```. 
+Logoff, to remove the user pod `Philip J. Fry`. 
 
 ![logoff as Philip J. Fry](img/logoff-fry-macvlan.png)
 
 
-### Use the ````Hubert J. Farnsworth``` user context. 
+### Use the ``Hubert J. Farnsworth` user context. 
 
-Login as the  ```Hubert J. Farnsworth``` user account. 
+Login as the  `Hubert J. Farnsworth` user account. 
 
-> Note: the user ```Hubert J. Farnsworth``` is **NOT member of** ```cn=ship_crew,ou=people,dc=planetexpress,dc=com``
+> Note: the user `Hubert J. Farnsworth` is **NOT member of** `cn=ship_crew,ou=people,dc=planetexpress,dc=com`
 
 ![login as Hubert J. Farnsworth](img/login-professor-macvlan.png)
 
-Start the new application ```firefox```, the docker network for this application do **NOT use** the ```abcnetfirefox``` 
+Start the new application `firefox`, the docker network for this application do **NOT use** the `abcnetfirefox` 
 
 Run the command
 
@@ -306,7 +306,7 @@ Run the command
 docker network inspect abcnetfirefox
 ```
 
-```abcnetfirefox``` description :
+`abcnetfirefox` description :
 
 ```json
 docker network inspect abcnetfirefox
@@ -347,14 +347,14 @@ docker network inspect abcnetfirefox
 ```
 
 
-The new firefox container doesn't use the docker network ```abcnetfirefox```, because the ```Hubert J. Farnsworth``` user account is **NOT member of** ```cn=ship_crew,ou=people,dc=planetexpress,dc=com```
+The new firefox container doesn't use the docker network `abcnetfirefox`, because the `Hubert J. Farnsworth` user account is **NOT member of** `cn=ship_crew,ou=people,dc=planetexpress,dc=com`
 
 The network is disabled by default.
 
 ![disabled network for Hubert J. Farnsworth](img/firefox-no-network.png)
 
 
-Inspect the ```Hubert J. Farnsworth``` firefox container
+Inspect the `Hubert J. Farnsworth` firefox container
 
 ```json
         "NetworkSettings": {
@@ -463,13 +463,13 @@ make dockerfile
 docker build -f firefox.d -t firefox.d .
 ```
 
-Check that the ```oc.rules``` label in new firefox.d image 
+Check that the `oc.rules` label in new firefox.d image 
 
 ```bash
 docker inspect firefox.d 
 ```
 
-The ```oc.rules``` label is a string json formated
+The `oc.rules` label is a string json formated
 
 ```
  "oc.rules": "{\"homedir\":{\"default\":true,\"ship\":true},\"network\":{\"default\":true,\"internet\":{\"name\":\"abcnetfirefox\",\"dns\":[\"8.8.8.8\"]}}}",
@@ -485,30 +485,43 @@ curl http://$MY_FQDN/API/manager/buildapplist
 ```
 
 
-You do not need to logoff the ```Hubert J. Farnsworth```, just close Firefox application and start it again. The new firefox container use the default network.
+You do not need to logoff the `Hubert J. Farnsworth`, just close Firefox application and start it again. The new firefox container use the default network.
 
 ![enable network by default](img/firefox-withdefault-network.png)
 
-Now default user has a network access, and member of ```cn=ship_crew,ou=people,dc=planetexpress,dc=com``` use the ```abcnetfirefox``` network.
+Now default user has a network access, and member of `cn=ship_crew,ou=people,dc=planetexpress,dc=com` use the `abcnetfirefox` network.
 
 
 ## Webhook events `create` and `destroy` application
 
-Rules support a specific webhook url to notify external security equipment like firewalls.
+A rule support a specific bash command to notify external security equipment like firewalls, by sending `create` and `destroy` events. 
 
 ```
-  "rules": { 	"homedir": { "default": false, "ship": true }, 
+"rules": { 	"homedir": { "default": false, "ship": true }, 
   				"network": { "default": false, 
-  						"ship": { "name": "abcnetfirefox", "dns": [ "8.8.8.8" ], 
-  									"webhook": { 
-  										"create": "http://firewall.domain.local/update?action=create&name={{ name }}&ip={{ container_ip }}", 
-  										"destroy": "http://firewall.domain.local/update?action=destroy&name={{ name }}&ip={{ container_ip }}" } 
-  									} 
- }
+  					"ship": { "name": "abcnetfirefox", 
+  								"dns": [ "8.8.8.8" ], 
+  								"webhook": { 
+  									"create": "/usr/bin/curl 'http://firewall.domain.local/update?action=create&key={{ key }}&name={{ name }}&ip={{ container_ip }}'", 
+  									"destroy": "/usr/bin/curl 'http://firewall.domain.local/update?action=destroy&key={{ key }}&name={{ name }}&ip={{ container_ip }}'" 
+  								} 
+  					}
+				}
+}
 ```
 
-* When a new docker container is created, the control plane `pyos` call the url  `http://firewall.domain.local/update?action=create&name={{ name }}&ip={{ container_ip }}`
-* When a new docker container is destoyed, the control plane `pyos` call the url  `http://firewall.domain.local/update?action=destroy&name={{ name }}&ip={{ container_ip }}`
+* When a new docker container is created, the control plane `pyos` execute the command  
+
+```
+/usr/bin/curl 'http://firewall.domain.local/update?action=create&key={{ key }}&name={{ name }}&ip={{ container_ip }}
+```
+
+* When a new docker container is destoyed, the control plane `pyos` call the url  
+
+```
+/usr/bin/curl 'http://firewall.domain.local/update?action=destroy&key={{ key }}&name={{ name }}&ip={{ container_ip }}'
+```
+
 
 Each `{{ $label }}` is a mustached value.
 
@@ -532,14 +545,47 @@ Each `{{ $label }}` is a mustached value.
 |locale | user current locale settings | en_US |
 
 
+
 ### Events :
 
 #### create event: 
-The control plane `pyos` replace the mustached  url  `http://firewall.domain.local/update?action=create&name={{ name }}&ip={{ container_ip }}` as `http://firewall.domain.local/update?action=create&name=Philip%20J.%20Fry&ip=192.168.8.130`
+The control plane `pyos` replace the mustached url string `/usr/bin/curl 'http://firewall.domain.local/update?action=create&name={{ name }}&ip={{ container_ip }}'` as `/usr/bin/curl 'http://firewall.domain.local/update?action=create&name=Philip%20J.%20Fry&ip=192.168.8.130'`
 
 #### destroy event: 
-The control plane `pyos` replace the url  `http://firewall.domain.local/update?action=destroy&name={{ name }}&ip={{ container_ip }}` as `http://firewall.domain.local/update?action=destroy&name=Philip%20J.%20Fry&ip=192.168.8.130`
+The control plane `pyos` replace the mustached url string  `/usr/bin/curl 'http://firewall.domain.local/update?action=destroy&name={{ name }}&ip={{ container_ip }}'` as `/usr/bin/curl 'http://firewall.domain.local/update?action=destroy&name=Philip%20J.%20Fry&ip=192.168.8.130'`
 
 
+
+### desktop.webhook options in od.config file
+
+#### url encoding parameters
+
+To encode url parameters use the option `desktop.webhookencodeparams`. 
+Set `desktop.webhookencodeparams` to `True` to encode label name. The default value is `False`
+
+
+#### additional dict datas 
+
+Additional datas can be set using the `desktop.webhookdict` option in od.config file
+
+```json
+desktop.webhookdict: { 
+		'api_key': 'supersecret', 
+		'firewall_manage_ip': '161.105.208.129'  
+}
+```
+
+The command line 
+
+```bash 
+/usr/bin/curl 'http://{{ firewall_manage_ip }}/update?action=destroy&key={{ api_key }}&name={{ name }}&ip={{ container_ip }}'
+```
+
+becomes
+
+```bash 
+/usr/bin/curl 'http://161.105.208.129/update?action=destroy&key=supersecret&name={{ name }}&ip={{ container_ip }}'
+```
+ 
 
  
