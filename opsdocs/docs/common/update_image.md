@@ -44,36 +44,28 @@ docker run -it abcdesktopio/oc.nginx bash
 
 ### Update ui.json file
 
-Update your ```ui.json``` file 
+Update your `ui.json` file.  `ui.json` is located in `/var/webModules/transpile/config` directory.
+
 
 ```bash
-root@b2069ae9a62a:/# cd /var/webModules/transpile
-root@b2069ae9a62a:/var/webModules/transpile# ls -la
+root@b2069ae9a62a:/# cd /var/webModules/transpile/config
+root@b2069ae9a62a:/var/webModules/transpile/config# ls -la
 total 204
 drwxrwxr-x   1 root root   4096 Feb  1 15:14 .
 drwxr-xr-x   1 root root   4096 Feb  1 15:14 ..
 -rw-rw-r--   1 root root     34 Feb  1 15:14 .cache.json
--rw-rw-r--   1 root root   7146 Feb  1 15:11 index.js
 -rw-rw-r--   1 root root   2215 Feb  1 15:11 modules.json
-drwxr-xr-x 273 root root  12288 Feb  1 15:14 node_modules
--rw-rw-r--   1 root root 145456 Feb  1 15:11 package-lock.json
--rw-rw-r--   1 root root   1175 Feb  1 15:14 package.json
 -rw-rw-r--   1 root root   1044 Feb  1 15:11 ui.json
--rwxrwxr-x   1 root root  10809 Feb  1 15:11 use_require.js
--rwxrwxr-x   1 root root   1709 Feb  1 15:11 use_require_helpers.js
 ```
 
+`ui.json` is a json dictionary file
 
-```ui.json``` is a json dictionary file
-
-The main entry is :
-
-
-| entry           | default value       | example          |
-|----------------|----------------------|------------------|
-| name           | abcdesktop.io        | acmedesktop.io   |
+The main entry is `name`, name is the project name:
 
 
+| entry          | default value       | example          |
+|----------------|---------------------|------------------|
+| name           | abcdesktop.io       | acmedesktop.io   |
 
 
 ```json
@@ -147,7 +139,6 @@ The main entry is :
 
 #### Colors dictionary entries
 
-
 | entry          | default value  | example   |
 |----------------|----------------|-----------|
 | @primary       | #474B55        | #474B55   |
@@ -156,16 +147,15 @@ The main entry is :
 
 
 
-
-### Create a new ```Dockerfile``` to build changes
+### Create a new `Dockerfile` to build changes
 
 #### Download the ui.json
 
-Download the ui.json from the source repository [ui.json](https://raw.githubusercontent.com/abcdesktopio/webModules/main/transpile/ui.json) and update data value.
+Download the ui.json from the source repository [ui.json](https://raw.githubusercontent.com/abcdesktopio/webModules/main/transpile/config/ui.json) and update data value.
 
 
 ```bash
-wget -O ui.json https://raw.githubusercontent.com/abcdesktopio/webModules/main/transpile/ui.json
+wget -O ui.json https://raw.githubusercontent.com/abcdesktopio/webModules/main/transpile/config/ui.json
 ```
 
 #### Update the ui.json with your own values
@@ -258,13 +248,13 @@ Example
 
 ```docker
 FROM abcdesktopio/oc.nginx
-COPY ui.json /var/webModules/transpile
+COPY ui.json /var/webModules/transpile/config
 RUN cd /var/webModules/ && make -B prod
 ```
 
 #### Docker build
 
-Run the docker build command to build the new ```oc.nginx:acme``` image
+Run the docker build command to build the new `oc.nginx:acme` image
 
 ```bash
 docker build -t oc.nginx:acme .
@@ -280,7 +270,7 @@ docker build -t oc.nginx:acme .
  => [1/3] FROM docker.io/abcdesktopio/oc.nginx                                                                                                                                                         0.0s
  => [internal] load build context                                                                                                                                                                      0.0s
  => => transferring context: 29B                                                                                                                                                                       0.0s
- => CACHED [2/3] COPY ui.json /var/webModules/transpile                                                                                                                                                0.0s
+ => CACHED [2/3] COPY ui.json /var/webModules/transpile/config                                                                                                                                                0.0s
  => CACHED [3/3] RUN cd  /var/webModules/ && make -B prod                                                                                                                                              0.0s
  => exporting to image                                                                                                                                                                                 0.0s
  => => exporting layers                                                                                                                                                                                0.0s
@@ -289,7 +279,7 @@ docker build -t oc.nginx:acme .
 ```
 
 
-Run the docker images command to read the new ```oc.nginx``` image
+Run the docker images command to read the new `oc.nginx` image
 
 ```bash
 docker images 
@@ -300,7 +290,7 @@ oc.nginx                     acme      4de1755b60d7   About an hour ago   746MB
 
 ### Update the dockercompose or the abcdesktop.yaml file 
 
-Update the dockercompose or the abcdesktop.yaml file to replace the default ```abcdesktopio/oc.nginx``` by the new image ```oc.nginx:acme``` name.
+Update the dockercompose or the abcdesktop.yaml file to replace the default `abcdesktopio/oc.nginx` by the new image `oc.nginx:acme` name.
 
 ```YAML
 version: '3'
@@ -350,11 +340,11 @@ The run the docker-compose up, and start you web browser. You can read the new p
 
 
 
-We define the new tertiary color as ```#00FCD4``` in dict ``` { "name": "@tertiary",   "value": "#00FCD4" } ```
+We define the new tertiary color as `#00FCD4` in dict ` { "name": "@tertiary",   "value": "#00FCD4" } `
 
 ![color 00fcd4]( img/00fcd4.png )
 
-Old tertiary color has been replace by ```#00FCD4```.
+Old tertiary color has been replace by `#00FCD4`.
 
 
 ![abcdesktop acmedesktop new ui.json](img/build_image_newui.png) 
