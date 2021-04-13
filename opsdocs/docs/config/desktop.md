@@ -26,7 +26,7 @@ Desktop options start with the prefix `desktop.`, then add the name of the optio
 | `desktop.usesoundcontainer`       | boolean        | False |
 | `desktop.usecontainerimage`       | boolean        | False |
 | `desktop.initcontainerimage`      | string         | 'abcdesktopio/oc.busybox' |
-| `desktop.envlocal`     			    | dictionary     | `{ 'DISPLAY': ':0.0', 'USER': 'balloon', 'LIBOVERLAY_SCROLLBAR': '0','WINEARCH': 'win32','UBUNTU_MENUPROXY': '0','HOME': '/home/balloon','LOGNAME': 'balloon','PULSE_SERVER: 'localhost:4713', 'CUPS_SERVER': 'localhost:631' }` |
+| `desktop.envlocal`     			    | dictionary     | `{ 'DISPLAY': ':0.0', 'USER': 'balloon', 'LIBOVERLAY_SCROLLBAR': '0', 'UBUNTU_MENUPROXY': '0', 'HOME': '/home/balloon', 'LOGNAME': 'balloon' }` |
 | `desktop.nodeselector`            		| dictionary     | `{}` | 
 | `desktop.username`           			| string        | 'balloon' |
 | `desktop.userid` 							| integer       | 4096 |
@@ -36,8 +36,9 @@ Desktop options start with the prefix `desktop.`, then add the name of the optio
 | `desktop.uselocaltime`                | boolean       | False |
 | `desktop.host_config`     			       | dictionary    | `{  'auto_remove'   : True, 'ipc_mode'      : 'shareable', 'network_mode'  : 'container', 'shm_size'      : '128M', 'mem_limit'     : '512M', 'cpu_period'    : 100000, 'cpu_quota'     : 150000, 'security_opt'  : [ 'seccomp=unconfined' ] }`  |
 | `desktop.application_config`     			       | dictionary    | `{  'auto_remove'   : True, 'ipc_mode'      : 'shareable', 'pid_mode'      : True, 'network_mode'  : 'container', 'shm_size'      : '512M', 'mem_limit'     : '2G', 'cpu_period'    : 200000, 'cpu_quota'     : 150000, 'security_opt'  : [ 'seccomp=unconfined' ] }`  |
+| `desktop.policies`    | dictionary    | `{ 'rules':{}, 'max_app_counter':5 }`  |
+| `desktop.webhookdict` | dictionary    | `{ 'firewall': '192.168.7.1' }` |
 
-| `desktop.policies`     			       | dictionary    | `{ 'rules':{}, 'max_app_counter':5 }`  |
 
 
 
@@ -338,6 +339,11 @@ Default desktop oc.user host_config dictionary, maps the dictionary as arguments
 [create_host_config](https://docker-py.readthedocs.io/en/stable/api.html#docker.api.container.ContainerApiMixin.create_host_config)
 
 Define how the oc.user container can be run, read [host_config](config/host_config) description page to get more informations
+
+## desktop.webhookdict
+
+desktop.webhookdict is a dictionary to add key/value to the command `create` and `destroy` in rules objects.
+
 
 # Experimental features
 
