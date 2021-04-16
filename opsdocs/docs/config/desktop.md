@@ -328,7 +328,7 @@ If `desktop.uselocaltime` is True, this add a volume mapping from host file  `/e
 The `desktop.policies` is a dictionary.
 
 
-## desktop.application_configy
+## desktop.application_config
 Default application host_config dictionary, maps the dictionary as arguments from docker API 
 [create_host_config](https://docker-py.readthedocs.io/en/stable/api.html#docker.api.container.ContainerApiMixin.create_host_config)
 
