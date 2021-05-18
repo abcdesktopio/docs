@@ -8,7 +8,7 @@ abcdesktop use docker image format with some labels to describe the application.
 - An access to the docker public registry
 - An access to the ubuntu repository
 - Nodejs installed on your host.  
-- The root password of your the oc.user.18.04 docker image. The default password is `lmdpocpetit`, but this value may have been changed.
+- The root password of the oc.user docker image. The default password is `lmdpocpetit`, but this value may have been changed.
 
 
 ## Build your own application image 
