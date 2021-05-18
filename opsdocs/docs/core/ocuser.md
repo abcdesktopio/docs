@@ -207,7 +207,11 @@ command=/usr/bin/xsettingsd -c /home/balloon/.xsettings
 
 ## Build the user container image
 
-The image oc.user.18.04 is based from the oc.software.18.04 witch came from oc.ubuntu.18.04.
+The image oc.user.XX.YY is based from the oc.software.XX.YY  witch came from oc.ubuntu.XX.YY.
+For example :
+* The image oc.user.18.04 is based from the oc.software.18.04 witch came from oc.ubuntu.18.04.
+* The image oc.user.20.04 is based from the oc.software.20.04 witch came from oc.ubuntu.20.04.
+* The image oc.user.21.04 is based from the oc.software.21.04 witch came from oc.ubuntu.21.04.
 
 ```
 +-------------------+
@@ -223,7 +227,7 @@ The image oc.user.18.04 is based from the oc.software.18.04 witch came from oc.u
 +-------------------+
           |
 +---------+---------+
-|   ubuntu:18.04    | 		(official ubuntu images from dockerhub)
+|   ubuntu:18.04    | 	(official ubuntu images from dockerhub)
 +-------------------+
 ```
 
@@ -239,12 +243,12 @@ docker build -t oc.user.18.04	-f oc.user.18.04 .
 To do it automaticly, clone composer/dockerbuild and run the Makefile
 
 ```
-git clone https://github.com/abcdesktopio/oc.user.18.04.git 
+git clone https://github.com/abcdesktopio/oc.user.git 
 make
 ```
 
-### Dockerfile oc.ubuntu.18.04
-oc.ubuntu.18.04 is a Dockerfile, it starts 'FROM ubuntu:18.04' and  installs core services and libs:
+### Dockerfile oc.ubuntu.XX.YY.
+oc.ubuntu.XX.YY is a Dockerfile, it starts 'FROM ubuntu:XX.YY' and  installs core services and libs:
 
 - nodejs: use by services
 - tiger VNC: X11 server	
@@ -254,25 +258,26 @@ oc.ubuntu.18.04 is a Dockerfile, it starts 'FROM ubuntu:18.04' and  installs cor
 - openbox: the windows manager
 - cups and cups-pdf: for printing support
 
-### Dockerfile oc.software.18.04
-oc.software.18.04 is a Dockerfile, it starts 'FROM oc.ubuntu.18.04' and installs software components:
+### Dockerfile oc.software.XX.YY
+oc.software.XX.YY is a Dockerfile, it starts 'FROM oc.ubuntu.XX.YY' and installs software components:
 
 - gnome-terminal
 - xclip
 
-### Dockerfile oc.user.18.04
-oc.user.18.04 is a Dockerfile, it starts 'FROM oc.software.18.04' and installs user software components:
+### Dockerfile oc.user.XX.YY
+oc.user.XX.YY is a Dockerfile, it starts 'FROM oc.software.XX.YY' and installs user software components:
 
 #### Install nodejs dev
+
 ```
 # Add nodejs service
-RUN cd /composer/node/broadcast-service         && npm install  \
-	&& cd /composer/node/file-service              && npm install  \
-	&& cd /composer/node/printer-service           && npm install  \
-	&& cd /composer/node/spawner-service           && npm install  \
-	&& cd /composer/node/spawner-service/node_modules/geoip-lite && npm run-script updatedb \
-	&& cd /composer/node/angular-filemanager-nodejs-bridge && npm install 
-RUN cd /composer/node/livesound-service 		&& npm install
+RUN cd /composer/node/broadcast-service && npm install  
+RUN cd /composer/node/file-service      && npm install
+RUN cd /composer/node/printer-service   && npm install
+RUN cd /composer/node/spawner-service   && npm install  \
+RUN cd /composer/node/spawner-service/node_modules/geoip-lite && npm run-script updatedb
+RUN cd /composer/node/angular-filemanager-nodejs-bridge && npm install 
+RUN cd /composer/node/livesound-service && npm install
 ```
 
 #### Create the balloon user
@@ -287,12 +292,12 @@ RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups lpadmi
 # change acces right for printer support
 RUN addgroup $BUSER lpadmin
 RUN mkdir /var/run/cups 
-RUN 	chown -R $BUSER:$BUSER /var/spool/cups 		&& \
-    	chown -R $BUSER:$BUSER /var/spool/cups-pdf 	&& \
-	chown -R $BUSER:$BUSER /var/log/cups		&& \
-	chown -R $BUSER:$BUSER /var/cache/cups          && \
-	chown -R $BUSER:$BUSER /etc/cups/printers.conf  && \
-	chown -R $BUSER:$BUSER /var/run/cups/
+RUN 	chown -R $BUSER:$BUSER /var/spool/cups 		      && \
+    	chown -R $BUSER:$BUSER /var/spool/cups-pdf 	    && \
+	    chown -R $BUSER:$BUSER /var/log/cups		        && \
+	    chown -R $BUSER:$BUSER /var/cache/cups          && \
+	    chown -R $BUSER:$BUSER /etc/cups/printers.conf  && \
+	    chown -R $BUSER:$BUSER /var/run/cups/
 ```
 
 #### Set the exposed tcp port
