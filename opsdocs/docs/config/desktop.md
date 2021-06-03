@@ -327,6 +327,26 @@ If `desktop.uselocaltime` is True, this add a volume mapping from host file  `/e
 ## desktop.policies
 The `desktop.policies` is a dictionary.
 
+ 
+| Entry       | Description | 
+|-------------|------------------------------|
+| `max_app_counter`          | limit applications counter, without checking the docker container status |
+| `rules`      |	rules dictionary `'rules': { 'volumes': { 'domainuser':  { 'type': 'cifs', 'name': 'homedirectory', 'volumename': 'homedir' } }` |
+| `acl`	 | allow or denied desktop creation |
+
+Example
+
+```
+desktop.policies: { 'rules':
+	{ 'volumes': 
+		{ 'domainuser':  
+			{ 'type': 'cifs', 'name': 'homedirectory', 'volumename': 'homedir' },
+			'Mygroupteam':  { 'type': 'cifs', 'name': 'toto', 'unc': '//192.168.7.101/team', 'volumename': 'team' } 
+			} 
+		},
+      'acls' : {},
+      'max_app_counter' : 4  }
+```
 
 ## desktop.application_config
 Default application host_config dictionary, maps the dictionary as arguments from docker API 
