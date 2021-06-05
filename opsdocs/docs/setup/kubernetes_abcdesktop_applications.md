@@ -35,17 +35,18 @@ docker pull abcdesktopio/terminal.d
 ```
 
 
-## Update the cache application list 
+## Connect to your abcdesktop
 
-The API server receives a new image event from dockerd. To run the new applications just refresh you web browser page.
+The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.
 
 Now reconnect to your abcdesktop. 
+
 Open your navigator to http://[your-ip-hostname]:30443/
 
 ```	
 http://localhost:30443/
 ```
 
-The new application are installed, and ready to run.
+The new applications are installed, and ready to run.
  
 
