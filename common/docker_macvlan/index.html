@@ -1,0 +1,2552 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://www.abcdesktop.io/common/docker_macvlan/">
+      
+      <link rel="icon" href="/img/abcdesktop128x128.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.6">
+    
+    
+      
+        <title>Bind a specific docker network for an application - www.abcdesktop.io</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.875de78c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-189502871-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-docker-network-for-an-application" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+      
+  <img src="/img/abcdesktop.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            www.abcdesktop.io
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bind a specific docker network for an application
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/abcdesktopio/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+      
+  <img src="/img/abcdesktop.svg" alt="logo">
+
+    </a>
+    www.abcdesktop.io
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/abcdesktopio/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        About
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/howtodolabsexercices/" class="md-nav__link">
+        How to do labs and exercices
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/opensource/" class="md-nav__link">
+        Open source
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/authors/" class="md-nav__link">
+        Authors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/gnu-gpl-v2.0/" class="md-nav__link">
+        Licence
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/" class="md-nav__link">
+        Requirements
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        GUI apps on Docker
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="GUI apps on Docker" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          GUI apps on Docker
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guiappsoddocker/" class="md-nav__link">
+        VDI on Docker, related projets
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/vnc/" class="md-nav__link">
+        Hands-on with VNC client
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/novnc/" class="md-nav__link">
+        Hands-on with no-VNC HTML5
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/play_sound_in_docker/" class="md-nav__link">
+        Play sound in docker to a webprojet
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Architecture
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Architecture" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Architecture
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+      
+      <label class="md-nav__link" for="__nav_6_2">
+        Core
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Core" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Core
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/pyos/" class="md-nav__link">
+        Pyos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/mongodb/" class="md-nav__link">
+        Mongodb
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/memcached/" class="md-nav__link">
+        Memcached
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/speedtest/" class="md-nav__link">
+        Speedtest
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/ocuser/" class="md-nav__link">
+        User
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
+      
+      <label class="md-nav__link" for="__nav_6_3">
+        Services
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Services" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Services
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/spawner-service/" class="md-nav__link">
+        Spawner-service
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/file-service/" class="md-nav__link">
+        File-service
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Setup guide
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Setup guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Setup guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      <label class="md-nav__link" for="__nav_7_1">
+        Docker (non-cluster)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Docker (non-cluster)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Docker (non-cluster)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/dockermode/" class="md-nav__link">
+        Install abcdesktop for docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/uninstalldockermode/" class="md-nav__link">
+        Uninstall abcdesktop for docker
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" >
+      
+      <label class="md-nav__link" for="__nav_7_2">
+        Kubernetes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Kubernetes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          Kubernetes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2_1" type="checkbox" id="__nav_7_2_1" >
+      
+      <label class="md-nav__link" for="__nav_7_2_1">
+        Requirements
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Requirements" data-md-level="3">
+        <label class="md-nav__title" for="__nav_7_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Requirements
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/k8slinuxinstallation/" class="md-nav__link">
+        Kubernetes on GNU/Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/k8smacosinstallation/" class="md-nav__link">
+        Kubernetes on MacOS/X
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/k8swindows10installation/" class="md-nav__link">
+        Kubernetes on Windows 10
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kubernetesmode/" class="md-nav__link">
+        Setup Kubernetes for GNU/Linux only
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kubernetes_abcdesktop/" class="md-nav__link">
+        Setup abcdesktop for Kubernetes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kubernetes_abcdesktop_applications/" class="md-nav__link">
+        Setup applications for abcdesktop
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/uninstall_kubernetes/" class="md-nav__link">
+        Uninstall abcdesktop
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3" type="checkbox" id="__nav_7_3" >
+      
+      <label class="md-nav__link" for="__nav_7_3">
+        Kubernetes add-ons
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Kubernetes add-ons" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          Kubernetes add-ons
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kubernetes_networkpolicies/" class="md-nav__link">
+        Setup Network policy
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kubernetes_flexvolume/" class="md-nav__link">
+        Setup CIFS Volume
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/secure_dockerd/" class="md-nav__link">
+        Secure Dockerd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kubernetes_secure_etcd/" class="md-nav__link">
+        Secure Etcd
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Applications Containers
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Applications Containers" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Applications Containers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../applications/list/" class="md-nav__link">
+        List of all applications ready to use
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../applicationsformat/" class="md-nav__link">
+        Application image format
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../buildapplicationsgnulinux/" class="md-nav__link">
+        Build your own abcdesktop GNU/Linux Image
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../buildapplications.wine/" class="md-nav__link">
+        Build your own abcdesktop MsWindows Image
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../non-free-applications/" class="md-nav__link">
+        Build non free applications
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        Configuration Guide
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Configuration Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Configuration Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/editconfig/" class="md-nav__link">
+        Edit your configuration file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/stack/" class="md-nav__link">
+        Stack mode
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_3" type="checkbox" id="__nav_9_3" >
+      
+      <label class="md-nav__link" for="__nav_9_3">
+        Authentification
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Authentification" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_3">
+          <span class="md-nav__icon md-icon"></span>
+          Authentification
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authentification/" class="md-nav__link">
+        config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_3_2" type="checkbox" id="__nav_9_3_2" >
+      
+      <label class="md-nav__link" for="__nav_9_3_2">
+        explicit
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="explicit" data-md-level="3">
+        <label class="md-nav__title" for="__nav_9_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          explicit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authexplicit/" class="md-nav__link">
+        Directory services
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authexplicit-ldap/" class="md-nav__link">
+        LDAP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authexplicit-activedirectory/" class="md-nav__link">
+        Active Directory
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authimplicit/" class="md-nav__link">
+        implicit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authexternal/" class="md-nav__link">
+        external
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authentification-rules/" class="md-nav__link">
+        rules
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/desktop/" class="md-nav__link">
+        Desktop
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/frontjs/" class="md-nav__link">
+        Front
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/language/" class="md-nav__link">
+        Languages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_7" type="checkbox" id="__nav_9_7" >
+      
+      <label class="md-nav__link" for="__nav_9_7">
+        Logging
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Logging" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_7">
+          <span class="md-nav__icon md-icon"></span>
+          Logging
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/logging/" class="md-nav__link">
+        Logging
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/syslog/" class="md-nav__link">
+        Syslog
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_8" type="checkbox" id="__nav_9_8" >
+      
+      <label class="md-nav__link" for="__nav_9_8">
+        Controllers
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Controllers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_8">
+          <span class="md-nav__icon md-icon"></span>
+          Controllers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/controllers/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/controllers/manager/" class="md-nav__link">
+        Manager
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_9" type="checkbox" id="__nav_9_9" >
+      
+      <label class="md-nav__link" for="__nav_9_9">
+        WebRTC
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="WebRTC" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_9">
+          <span class="md-nav__icon md-icon"></span>
+          WebRTC
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/webrtc/" class="md-nav__link">
+        Pulseaudio
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_10" type="checkbox" id="__nav_9_10" >
+      
+      <label class="md-nav__link" for="__nav_9_10">
+        Issue tracking
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Issue tracking" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_10">
+          <span class="md-nav__icon md-icon"></span>
+          Issue tracking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/jira/" class="md-nav__link">
+        Jira
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://groups.google.com/g/abcdesktop" class="md-nav__link">
+        Group discussion
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" checked>
+      
+      <label class="md-nav__link" for="__nav_11">
+        How-to
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="How-to" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          How-to
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/sudo-kubernetes/" class="md-nav__link">
+        Get a root access inside a container
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/retrieve_all_images/" class="md-nav__link">
+        Get all docker application image for abcdesktop
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Bind a specific docker network for an application
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Bind a specific docker network for an application
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    Goals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    Architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-dedicated-network-for-your-application" class="md-nav__link">
+    Create a dedicated network for your application
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a dedicated network for your application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-with-macvlan" class="md-nav__link">
+    Example with macvlan :
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-with-ipvlan-ipvlan_model2" class="md-nav__link">
+    Example with ipvlan ipvlan_mode=l2 :
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-your-new-network-macvlan-or-ipvlan" class="md-nav__link">
+    Test your new network (macvlan or ipvlan):
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applications-rules" class="md-nav__link">
+    Applications rules
+  </a>
+  
+    <nav class="md-nav" aria-label="Applications rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edit-the-applistjson-file" class="md-nav__link">
+    Edit the applist.json file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-tag-the-user-auth" class="md-nav__link">
+    Add tag the user auth
+  </a>
+  
+    <nav class="md-nav" aria-label="Add tag the user auth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-authprovider-in-odconfig-file" class="md-nav__link">
+    Update authprovider in od.config file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-philip-j-fry-user-context" class="md-nav__link">
+    Use the Philip J. Fry user context.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-hubert-j-farnsworth-user-context" class="md-nav__link">
+    Use the `Hubert J. Farnsworth user context.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-network-for-hubert-j-farnsworth" class="md-nav__link">
+    Enable network for Hubert J. Farnsworth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhook-events-create-and-destroy-application" class="md-nav__link">
+    Webhook events create and destroy application
+  </a>
+  
+    <nav class="md-nav" aria-label="Webhook events create and destroy application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    Events :
+  </a>
+  
+    <nav class="md-nav" aria-label="Events :">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-event" class="md-nav__link">
+    create event:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#destroy-event" class="md-nav__link">
+    destroy event:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desktopwebhook-options-in-odconfig-file" class="md-nav__link">
+    desktop.webhook options in od.config file
+  </a>
+  
+    <nav class="md-nav" aria-label="desktop.webhook options in od.config file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url-encoding-parameters" class="md-nav__link">
+    url encoding parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-dict-datas" class="md-nav__link">
+    additional dict datas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        Define access control for an application
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../update_image/" class="md-nav__link">
+        Update and custom frontend image
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upload_and_download_files/" class="md-nav__link">
+        Upload and from files with your desktop
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firefox-extension/" class="md-nav__link">
+        Sync clipboard with Mozilla Firefox
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    Goals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    Architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-dedicated-network-for-your-application" class="md-nav__link">
+    Create a dedicated network for your application
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a dedicated network for your application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-with-macvlan" class="md-nav__link">
+    Example with macvlan :
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-with-ipvlan-ipvlan_model2" class="md-nav__link">
+    Example with ipvlan ipvlan_mode=l2 :
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-your-new-network-macvlan-or-ipvlan" class="md-nav__link">
+    Test your new network (macvlan or ipvlan):
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applications-rules" class="md-nav__link">
+    Applications rules
+  </a>
+  
+    <nav class="md-nav" aria-label="Applications rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edit-the-applistjson-file" class="md-nav__link">
+    Edit the applist.json file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-tag-the-user-auth" class="md-nav__link">
+    Add tag the user auth
+  </a>
+  
+    <nav class="md-nav" aria-label="Add tag the user auth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-authprovider-in-odconfig-file" class="md-nav__link">
+    Update authprovider in od.config file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-philip-j-fry-user-context" class="md-nav__link">
+    Use the Philip J. Fry user context.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-hubert-j-farnsworth-user-context" class="md-nav__link">
+    Use the `Hubert J. Farnsworth user context.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-network-for-hubert-j-farnsworth" class="md-nav__link">
+    Enable network for Hubert J. Farnsworth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhook-events-create-and-destroy-application" class="md-nav__link">
+    Webhook events create and destroy application
+  </a>
+  
+    <nav class="md-nav" aria-label="Webhook events create and destroy application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    Events :
+  </a>
+  
+    <nav class="md-nav" aria-label="Events :">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-event" class="md-nav__link">
+    create event:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#destroy-event" class="md-nav__link">
+    destroy event:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desktopwebhook-options-in-odconfig-file" class="md-nav__link">
+    desktop.webhook options in od.config file
+  </a>
+  
+    <nav class="md-nav" aria-label="desktop.webhook options in od.config file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url-encoding-parameters" class="md-nav__link">
+    url encoding parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-dict-datas" class="md-nav__link">
+    additional dict datas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/abcdesktopio/edit/master/docs/common/docker_macvlan.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="using-docker-network-for-an-application">Using docker network for an application</h1>
+<h2 id="requirements">Requirements</h2>
+<h2 id="goals">Goals</h2>
+<ul>
+<li>Use a dedicated network for an application. For example bind the application Firefox to a dedicated docker network. 
+This dedicated network can use macvlan, ipvlan or an SRIOV network driver.</li>
+</ul>
+<h2 id="architecture">Architecture</h2>
+<p>When abcdesktop create a docker container, abcdesktop can set a dedicated network for this container.
+<img alt="macvlan driver for applications" src="../img/docker_macvlan.png" /></p>
+<h2 id="create-a-dedicated-network-for-your-application">Create a dedicated network for your application</h2>
+<p>On your worker nodes :</p>
+<ul>
+<li>create a dedicated network interface to bridge the new network interface</li>
+<li>add the label <code>abcdesktop=true</code> to the network object</li>
+</ul>
+<p>You have to choose a nework driver for example </p>
+<table>
+<thead>
+<tr>
+<th>network driver</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.docker.com/network/macvlan/">macvlan</a></td>
+</tr>
+<tr>
+<td><a href="https://docs.docker.com/network">ipvlan</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/Mellanox/docker-sriov-plugin">docker-sriov-plugin</a></td>
+</tr>
+</tbody>
+</table>
+<p>Only the name of the network is used by abcdesktop.</p>
+<p>Create a network with <code>macvlan</code> or <code>ipvlan</code> driver </p>
+<p>In these two examples :</p>
+<ul>
+<li>Subnet is <code>192.168.8.0/24</code> </li>
+<li>Gateway is <code>192.168.8.254</code> </li>
+<li>Ip Range is <code>192.168.8.0/27</code></li>
+</ul>
+<h4 id="example-with-macvlan">Example with <code>macvlan</code> :</h4>
+<p>Create a network abcnetfirefox with the driver macvlan and bridge the network interface eno1 with the vlan 123 </p>
+<pre><code class="language-bash">docker network create --label type=oc.app -d macvlan --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.0/27 -o parent=eno1.123 abcnetfirefox
+</code></pre>
+<h4 id="example-with-ipvlan-ipvlan_model2">Example with <code>ipvlan</code> ipvlan_mode=l2 :</h4>
+<p>Create a network abcnetfirefox with the driver ipvlan with ipvlan_mode=l2 option and bridge the network interface eno1 with the vlan 123.</p>
+<pre><code class="language-bash">docker network create --label type=oc.app -d ipvlan  -o ipvlan_mode=l2 --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.0/27 -o parent=eno1.123 abcnetfirefox
+</code></pre>
+<h4 id="test-your-new-network-macvlan-or-ipvlan">Test your new network (<code>macvlan</code> or <code>ipvlan</code>):</h4>
+<p>Make sure that's you can reach the default gateway and the dns server for container.
+In this example, just start a busybox to :</p>
+<ul>
+<li><code>ping</code> the default gateway</li>
+<li><code>nslookup</code> to query www.google.com ip address</li>
+</ul>
+<pre><code class="language-bash">export GATEWAY=192.168.8.254
+docker run --rm --network abcnetfirefox busybox ping $GATEWAY
+# Google’s public DNS server 8.8.8.8 is added
+docker run --rm --network abcnetfirefox --dns 8.8.8.8 busybox ping www.google.com
+</code></pre>
+<h2 id="applications-rules">Applications rules</h2>
+<p>Update your <code>applist.json</code> file and add a specific rule into the firefox application description </p>
+<pre><code class="language-bash">git clone https://github.com/abcdesktopio/oc.apps.git
+cd oc.apps
+</code></pre>
+<p>Specific rules entry example</p>
+<pre><code class="language-json">&quot;rules&quot;: { &quot;homedir&quot;: { &quot;default&quot;: true, &quot;ship&quot;: true }, 
+           &quot;network&quot;: { &quot;default&quot;: false, 
+                        &quot;internet&quot;: { 
+                                    &quot;name&quot;: &quot;abcnetfirefox&quot;, 
+                                    &quot;dns&quot;: [ &quot;8.8.8.8&quot; ] } } },
+</code></pre>
+<p>In this example, if the current user token contains the tag label <code>internet</code> when the firefox application use <code>abcnetfirefox</code> and the dns <code>8.8.8.8</code></p>
+<h3 id="edit-the-applistjson-file">Edit the <code>applist.json</code> file</h3>
+<p>Edit the <code>applist.json</code> file, and add rules to the application <code>firefox</code> for example</p>
+<p>The new firefox dictionary with rules :</p>
+<pre><code class="language-json">{
+    &quot;cat&quot;: &quot;office&quot;,
+    &quot;preruncommands&quot;: [ &quot;RUN DEBIAN_FRONTEND=noninteractive echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections&quot;,
+                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes ttf-mscorefonts-installer ttf-bitstream-vera ttf-dejavu ttf-xfree86-nonfree &amp;&amp; apt-get clean&quot;,
+                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes winbind firefox $(apt-cache search firefox-locale | awk '{print $1 }') &amp;&amp; apt-get clean&quot;,
+                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes flashplugin-installer ubuntu-restricted-extras libavc1394-0 &amp;&amp; apt-get clean&quot;,
+                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes libasound2-plugins libgail-common libgtk2.0-bin chromium-codecs-ffmpeg-extra gstreamer1.0-libav gstreamer1.0-plugins-ugly gstreamer1.0-vaapi libavcodec-extra &amp;&amp; apt-get clean&quot;,
+                        &quot;COPY composer/init.d/init.firefox /composer/init.d/init.firefox&quot;,
+                        &quot;COPY policies.json /usr/lib/firefox/distribution&quot;,
+                        &quot;COPY /ntlm_auth /usr/bin/ntlm_auth.abcdesktop&quot;,
+                        &quot;RUN chown root:root /usr/bin/ntlm_auth.desktop &amp;&amp; chmod 111 /usr/bin/ntlm_auth.abcdesktop&quot;,
+                        &quot;ENV NSS_SDB_USE_CACHE=yes&quot; ],
+    &quot;debpackage&quot;: &quot;&quot;,
+    &quot;icon&quot;: &quot;firefox.svg&quot;,
+    &quot;keyword&quot;: &quot;firefox,mozilla,web,internet&quot;,
+    &quot;launch&quot;: &quot;Navigator.Firefox&quot;,
+    &quot;name&quot;: &quot;Firefox&quot;,
+    &quot;displayname&quot;: &quot;Firefox&quot;,
+    &quot;showinview&quot;: &quot;dock&quot;,
+    &quot;splash&quot;: &quot;enable&quot;,
+    &quot;mem_limit&quot;: &quot;16gb&quot;,
+    &quot;oomkilldisable&quot;: true,
+    &quot;path&quot;: &quot;/usr/bin/firefox&quot;,
+    &quot;template&quot;: &quot;abcdesktopio/oc.template.gtk&quot;,
+    &quot;mimetype&quot;: &quot;text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;&quot;,
+    &quot;legacyfileextensions&quot;: &quot;htm;html;xml&quot;,
+    &quot;fileextensions&quot;: &quot;htm;html;xml;gif&quot;,
+    &quot;desktopfile&quot;:&quot;/usr/share/applications/firefox.desktop&quot;,
+    &quot;shm_size&quot;: &quot;2gb&quot;,
+    &quot;usedefaultapplication&quot;: true,
+    &quot;rules&quot;: { &quot;homedir&quot;: { &quot;default&quot;: true, &quot;ship&quot;: true }, 
+           &quot;network&quot;: { &quot;default&quot;: false, 
+                        &quot;internet&quot;: { 
+                                    &quot;name&quot;: &quot;abcnetfirefox&quot;, 
+                                    &quot;dns&quot;: [ &quot;8.8.8.8&quot; ] } } }
+}
+</code></pre>
+<p>Save your changes, and run <code>make dockerfile</code>, next <code>docker build</code></p>
+<p>Build and update your new firefox application</p>
+<pre><code class="language-bash"># create the Dockerfile firefox.d 
+make dockerfile
+
+# build the new image
+docker build -f firefox.d -t firefox.d .
+</code></pre>
+<p>Check that the <code>oc.rules</code> label in new firefox.d image </p>
+<pre><code class="language-bash">docker inspect firefox.d 
+</code></pre>
+<p>The <code>oc.rules</code> label is a string json formated</p>
+<pre><code>&quot;oc.rules&quot;: &quot;{\&quot;homedir\&quot;:{\&quot;default\&quot;:true,\&quot;ship\&quot;:true},\&quot;network\&quot;:{\&quot;default\&quot;:false,\&quot;internet\&quot;:{\&quot;name\&quot;:\&quot;abcnetfirefox\&quot;,\&quot;dns\&quot;:[\&quot;8.8.8.8\&quot;]}}}&quot;
+</code></pre>
+<h2 id="add-tag-the-user-auth">Add tag the user auth</h2>
+<p>Add a tag <code>internet</code> to the user auth provider</p>
+<h3 id="update-authprovider-in-odconfig-file">Update authprovider in <code>od.config</code> file</h3>
+<p>Update the <code>ldapconfig</code> for planet with the new <code>policies</code> dict</p>
+<pre><code class="language-json">  'policies': { 'acls': None, 
+              'rules'   : { 'rule-ship': { 'conditions' : [ { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com', 'expected' : True  } ],
+              'expected' : True, 
+              'label': 'internet' },
+</code></pre>
+<p>The complete <code>ldapconfig</code> for planet is </p>
+<pre><code class="language-json">ldapconfig : { 'planet': {    'default'       : True,
+                        'ldap_timeout'  : 15,
+                        'ldap_protocol' : 'ldap',
+                        'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
+                        'servers'       : [ '192.168.7.69' ],
+                        'secure'        : False,
+                        'auth_protocol' : { 'ntlm': True, 'cntlm': False, 'kerberos': False, 'citrix': False},
+                        'citrix_all_regions' : 'Hello, {{ domain }}\\{{ user }}:{{ password }}',  
+                        'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' },
+
+                        'policies': { 'acls': None, 
+             'rules'    : { 'rule-ship': { 'conditions' : [ { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com', 'expected' : True  } ], 'expected' : True, 'label': 'internet' } 
+      } } } }
+</code></pre>
+<p>Restart your kubernetes pyos pod, to reload new the <code>od.config</code> configuration file.</p>
+<h3 id="use-the-philip-j-fry-user-context">Use the <code>Philip J. Fry</code> user context.</h3>
+<p>Open a web browser, go to the abcdesktop login page.</p>
+<blockquote>
+<p>Login Accounts</p>
+<table>
+<thead>
+<tr>
+<th>Login</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Philip J. Fry.</td>
+<td>fry</td>
+</tr>
+<tr>
+<td>Hubert J. Farnsworth</td>
+<td>professor</td>
+</tr>
+</tbody>
+</table>
+<p>Note: the user <code>Philip J. Fry</code> is <strong>member of</strong> <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code></p>
+<p>Note: the user <code>Hubert J. Farnsworth</code> is <strong>NOT member of</strong> <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code></p>
+</blockquote>
+<p>Login as the  <code>Philip J. Fry</code> user account. </p>
+<p><img alt="login as Philip J. Fry" src="../img/login-fry-macvlan.png" /></p>
+<p>During the user  login process, pyos tag the user authentification with the <code>'label': 'internet'</code></p>
+<p>Start the new application <code>firefox</code>, the docker network for this application use the <code>abcnetfirefox</code> </p>
+<p><img alt="firefox use macvlan" src="../img/firefox-macvlan.png" /></p>
+<p>Run the command</p>
+<pre><code class="language-bash">docker network inspect abcnetfirefox
+</code></pre>
+<p>abcdesktop start a new container <code>"Name": "philip-j--fry-firefox-d2c22d9912fc4a489a1224237af9a3e0"</code> and bind the <code>abcnetfirefox</code> to user container.</p>
+<pre><code class="language-json">[
+    {
+        &quot;Name&quot;: &quot;abcnetfirefox&quot;,
+        &quot;Id&quot;: &quot;69c5ac0996226654635377458c044675114d5feb742a8a56d8a228180829d9cd&quot;,
+        &quot;Created&quot;: &quot;2021-02-05T16:24:41.781733948+01:00&quot;,
+        &quot;Scope&quot;: &quot;local&quot;,
+        &quot;Driver&quot;: &quot;macvlan&quot;,
+        &quot;EnableIPv6&quot;: false,
+        &quot;IPAM&quot;: {
+            &quot;Driver&quot;: &quot;default&quot;,
+            &quot;Options&quot;: {},
+            &quot;Config&quot;: [
+                {
+                    &quot;Subnet&quot;: &quot;192.168.8.0/24&quot;,
+                    &quot;Gateway&quot;: &quot;192.168.8.254&quot;
+                }
+            ]
+        },
+        &quot;Internal&quot;: false,
+        &quot;Attachable&quot;: false,
+        &quot;Ingress&quot;: false,
+        &quot;ConfigFrom&quot;: {
+            &quot;Network&quot;: &quot;&quot;
+        },
+        &quot;ConfigOnly&quot;: false,
+        &quot;Containers&quot;: {
+            &quot;05f88ee41055b209e7599a455705088cf633f6458313508ce867d13b8d39014a&quot;: {
+                &quot;Name&quot;: &quot;philip-j--fry-firefox-d2c22d9912fc4a489a1224237af9a3e0&quot;,
+                &quot;EndpointID&quot;: &quot;ae0271ed73aa5478ac364444b29342278b82bc710bd4e4eeb64a51d7eeec4d9c&quot;,
+                &quot;MacAddress&quot;: &quot;02:42:a1:69:d0:82&quot;,
+                &quot;IPv4Address&quot;: &quot;192.168.8.1/24&quot;,
+                &quot;IPv6Address&quot;: &quot;&quot;
+            }
+        },
+        &quot;Options&quot;: {
+            &quot;parent&quot;: &quot;eno1.106&quot;
+        },
+        &quot;Labels&quot;: {
+            &quot;type&quot;: &quot;oc.app&quot;
+        }
+    }
+]
+</code></pre>
+<p>Close the firefox application.</p>
+<p>Logoff, to remove the user pod <code>Philip J. Fry</code>. </p>
+<p><img alt="logoff as Philip J. Fry" src="../img/logoff-fry-macvlan.png" /></p>
+<h3 id="use-the-hubert-j-farnsworth-user-context">Use the <code>`Hubert J. Farnsworth</code> user context.</h3>
+<p>Login as the  <code>Hubert J. Farnsworth</code> user account. </p>
+<blockquote>
+<p>Note: the user <code>Hubert J. Farnsworth</code> is <strong>NOT member of</strong> <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code></p>
+</blockquote>
+<p><img alt="login as Hubert J. Farnsworth" src="../img/login-professor-macvlan.png" /></p>
+<p>Start the new application <code>firefox</code>, the docker network for this application do <strong>NOT use</strong> the <code>abcnetfirefox</code> </p>
+<p>Run the command</p>
+<pre><code class="language-bash">docker network inspect abcnetfirefox
+</code></pre>
+<p><code>abcnetfirefox</code> description :</p>
+<pre><code class="language-json">docker network inspect abcnetfirefox
+[
+    {
+        &quot;Name&quot;: &quot;abcnetfirefox&quot;,
+        &quot;Id&quot;: &quot;69c5ac0996226654635377458c044675114d5feb742a8a56d8a228180829d9cd&quot;,
+        &quot;Created&quot;: &quot;2021-02-05T16:24:41.781733948+01:00&quot;,
+        &quot;Scope&quot;: &quot;local&quot;,
+        &quot;Driver&quot;: &quot;macvlan&quot;,
+        &quot;EnableIPv6&quot;: false,
+        &quot;IPAM&quot;: {
+            &quot;Driver&quot;: &quot;default&quot;,
+            &quot;Options&quot;: {},
+            &quot;Config&quot;: [
+                {
+                    &quot;Subnet&quot;: &quot;192.168.8.0/24&quot;,
+                    &quot;Gateway&quot;: &quot;192.168.8.254&quot;
+                }
+            ]
+        },
+        &quot;Internal&quot;: false,
+        &quot;Attachable&quot;: false,
+        &quot;Ingress&quot;: false,
+        &quot;ConfigFrom&quot;: {
+            &quot;Network&quot;: &quot;&quot;
+        },
+        &quot;ConfigOnly&quot;: false,
+        &quot;Containers&quot;: {},
+        &quot;Options&quot;: {
+            &quot;parent&quot;: &quot;eno1.106&quot;
+        },
+        &quot;Labels&quot;: {
+            &quot;type&quot;: &quot;oc.app&quot;
+        }
+    }
+]
+</code></pre>
+<p>The new firefox container doesn't use the docker network <code>abcnetfirefox</code>, because the <code>Hubert J. Farnsworth</code> user account is <strong>NOT member of</strong> <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code></p>
+<p>The network is disabled by default.</p>
+<p><img alt="disabled network for Hubert J. Farnsworth" src="../img/firefox-no-network.png" /></p>
+<p>Inspect the <code>Hubert J. Farnsworth</code> firefox container</p>
+<pre><code class="language-json">        &quot;NetworkSettings&quot;: {
+            &quot;Bridge&quot;: &quot;&quot;,
+            &quot;SandboxID&quot;: &quot;&quot;,
+            &quot;HairpinMode&quot;: false,
+            &quot;LinkLocalIPv6Address&quot;: &quot;&quot;,
+            &quot;LinkLocalIPv6PrefixLen&quot;: 0,
+            &quot;Ports&quot;: {},
+            &quot;SandboxKey&quot;: &quot;&quot;,
+            &quot;SecondaryIPAddresses&quot;: null,
+            &quot;SecondaryIPv6Addresses&quot;: null,
+            &quot;EndpointID&quot;: &quot;&quot;,
+            &quot;Gateway&quot;: &quot;&quot;,
+            &quot;GlobalIPv6Address&quot;: &quot;&quot;,
+            &quot;GlobalIPv6PrefixLen&quot;: 0,
+            &quot;IPAddress&quot;: &quot;&quot;,
+            &quot;IPPrefixLen&quot;: 0,
+            &quot;IPv6Gateway&quot;: &quot;&quot;,
+            &quot;MacAddress&quot;: &quot;&quot;,
+            &quot;Networks&quot;: {}
+        }
+</code></pre>
+<p>The network access is disable for this application</p>
+<pre><code class="language-json">&quot;rules&quot;: { &quot;homedir&quot;: { &quot;default&quot;: true, &quot;ship&quot;: true }, 
+           &quot;network&quot;: { &quot;default&quot;: false, 
+                        &quot;internet&quot;: { 
+                                    &quot;name&quot;: &quot;abcnetfirefox&quot;, 
+                                    &quot;dns&quot;: [ &quot;8.8.8.8&quot; ] } } }
+</code></pre>
+<p>In this case, only users with the label tag <code>internet</code>, can bind the network name <code>abcnetfirefox</code>.</p>
+<h3 id="enable-network-for-hubert-j-farnsworth">Enable network for <code>Hubert J. Farnsworth</code></h3>
+<p>Update the application firefox rules</p>
+<p>Now it's time to permit network access to </p>
+<p>Update the applist.json file :</p>
+<p>Specific rules entry example</p>
+<pre><code class="language-json">&quot;rules&quot;: { &quot;homedir&quot;: { &quot;default&quot;: true, &quot;ship&quot;: true }, 
+           &quot;network&quot;: { &quot;default&quot;: true, 
+                        &quot;internet&quot;: { 
+                                    &quot;name&quot;: &quot;abcnetfirefox&quot;, 
+                                    &quot;dns&quot;: [ &quot;8.8.8.8&quot; ] } } },
+</code></pre>
+<p>The new firefox dictionary with network rules set with "default": true :</p>
+<pre><code class="language-json">{
+    &quot;cat&quot;: &quot;office&quot;,
+    &quot;preruncommands&quot;: [ &quot;RUN DEBIAN_FRONTEND=noninteractive echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections&quot;,
+                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes ttf-mscorefonts-installer ttf-bitstream-vera ttf-dejavu ttf-xfree86-nonfree &amp;&amp; apt-get clean&quot;,
+                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes winbind firefox $(apt-cache search firefox-locale | awk '{print $1 }') &amp;&amp; apt-get clean&quot;,
+                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes flashplugin-installer ubuntu-restricted-extras libavc1394-0 &amp;&amp; apt-get clean&quot;,
+                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes libasound2-plugins libgail-common libgtk2.0-bin chromium-codecs-ffmpeg-extra gstreamer1.0-libav gstreamer1.0-plugins-ugly gstreamer1.0-vaapi libavcodec-extra &amp;&amp; apt-get clean&quot;,
+                        &quot;COPY composer/init.d/init.firefox /composer/init.d/init.firefox&quot;,
+                        &quot;COPY policies.json /usr/lib/firefox/distribution&quot;,
+                        &quot;COPY /ntlm_auth /usr/bin/ntlm_auth.abcdesktop&quot;,
+                        &quot;RUN chown root:root /usr/bin/ntlm_auth.desktop &amp;&amp; chmod 111 /usr/bin/ntlm_auth.abcdesktop&quot;,
+                        &quot;ENV NSS_SDB_USE_CACHE=yes&quot; ],
+    &quot;debpackage&quot;: &quot;&quot;,
+    &quot;icon&quot;: &quot;firefox.svg&quot;,
+    &quot;keyword&quot;: &quot;firefox,mozilla,web,internet&quot;,
+    &quot;launch&quot;: &quot;Navigator.Firefox&quot;,
+    &quot;name&quot;: &quot;Firefox&quot;,
+    &quot;displayname&quot;: &quot;Firefox&quot;,
+    &quot;showinview&quot;: &quot;dock&quot;,
+    &quot;splash&quot;: &quot;enable&quot;,
+    &quot;mem_limit&quot;: &quot;16gb&quot;,
+    &quot;oomkilldisable&quot;: true,
+    &quot;path&quot;: &quot;/usr/bin/firefox&quot;,
+    &quot;template&quot;: &quot;abcdesktopio/oc.template.gtk&quot;,
+    &quot;mimetype&quot;: &quot;text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;&quot;,
+    &quot;legacyfileextensions&quot;: &quot;htm;html;xml&quot;,
+    &quot;fileextensions&quot;: &quot;htm;html;xml;gif&quot;,
+    &quot;desktopfile&quot;:&quot;/usr/share/applications/firefox.desktop&quot;,
+    &quot;shm_size&quot;: &quot;2gb&quot;,
+    &quot;usedefaultapplication&quot;: true,
+    &quot;rules&quot;: { &quot;homedir&quot;: { &quot;default&quot;: true, &quot;ship&quot;: true }, 
+           &quot;network&quot;: { &quot;default&quot;: true, 
+                        &quot;internet&quot;: { 
+                                    &quot;name&quot;: &quot;abcnetfirefox&quot;, 
+                                    &quot;dns&quot;: [ &quot;8.8.8.8&quot; ] } } }
+}
+</code></pre>
+<p>Save your changes, and run <code>make dockerfile</code>, next <code>docker build</code></p>
+<p>Build and update your new firefox application</p>
+<pre><code class="language-bash"># create the Dockerfile firefox.d 
+make dockerfile
+
+# build the new image
+docker build -f firefox.d -t firefox.d .
+</code></pre>
+<p>Check that the <code>oc.rules</code> label in new firefox.d image </p>
+<pre><code class="language-bash">docker inspect firefox.d 
+</code></pre>
+<p>The <code>oc.rules</code> label is a string json formated</p>
+<pre><code> &quot;oc.rules&quot;: &quot;{\&quot;homedir\&quot;:{\&quot;default\&quot;:true,\&quot;ship\&quot;:true},\&quot;network\&quot;:{\&quot;default\&quot;:true,\&quot;internet\&quot;:{\&quot;name\&quot;:\&quot;abcnetfirefox\&quot;,\&quot;dns\&quot;:[\&quot;8.8.8.8\&quot;]}}}&quot;,
+</code></pre>
+<p>Request the abcdesktop core service to update the application cache data</p>
+<blockquote>
+<p>Replace MY_FQDN by your own hostname </p>
+</blockquote>
+<pre><code class="language-bash">export MY_FQDN=localhost
+curl http://$MY_FQDN/API/manager/buildapplist 
+</code></pre>
+<p>You do not need to logoff the <code>Hubert J. Farnsworth</code>, just close Firefox application and start it again. The new firefox container use the default network.</p>
+<p><img alt="enable network by default" src="../img/firefox-withdefault-network.png" /></p>
+<p>Now default user has a network access, and member of <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code> use the <code>abcnetfirefox</code> network.</p>
+<h2 id="webhook-events-create-and-destroy-application">Webhook events <code>create</code> and <code>destroy</code> application</h2>
+<p>A rule support a specific bash command to notify external security equipment like firewalls, by sending <code>create</code> and <code>destroy</code> events. </p>
+<pre><code>&quot;rules&quot;: {  &quot;homedir&quot;: { &quot;default&quot;: false, &quot;ship&quot;: true }, 
+                &quot;network&quot;: { &quot;default&quot;: false, 
+                    &quot;ship&quot;: { &quot;name&quot;: &quot;abcnetfirefox&quot;, 
+                                &quot;dns&quot;: [ &quot;8.8.8.8&quot; ], 
+                                &quot;webhook&quot;: { 
+                                    &quot;create&quot;: &quot;/usr/bin/curl 'http://firewall.domain.local/update?action=create&amp;key={{ key }}&amp;name={{ name }}&amp;ip={{ container_ip }}'&quot;, 
+                                    &quot;destroy&quot;: &quot;/usr/bin/curl 'http://firewall.domain.local/update?action=destroy&amp;key={{ key }}&amp;name={{ name }}&amp;ip={{ container_ip }}'&quot; 
+                                } 
+                    }
+                }
+}
+</code></pre>
+<ul>
+<li>When a new docker container is created, the control plane <code>pyos</code> execute the command  </li>
+</ul>
+<pre><code>/usr/bin/curl 'http://firewall.domain.local/update?action=create&amp;key={{ key }}&amp;name={{ name }}&amp;ip={{ container_ip }}
+</code></pre>
+<ul>
+<li>When a new docker container is destoyed, the control plane <code>pyos</code> call the url  </li>
+</ul>
+<pre><code>/usr/bin/curl 'http://firewall.domain.local/update?action=destroy&amp;key={{ key }}&amp;name={{ name }}&amp;ip={{ container_ip }}'
+</code></pre>
+<p>Each <code>{{ $label }}</code> is a mustached value.</p>
+<table>
+<thead>
+<tr>
+<th>Label name</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>container_ip</td>
+<td>container ip addr</td>
+<td>192.168.8.130</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>authentification provider name</td>
+<td>planet</td>
+</tr>
+<tr>
+<td>providertype</td>
+<td>authentification provider type</td>
+<td>ldap</td>
+</tr>
+<tr>
+<td>userid</td>
+<td>authentification provider user id</td>
+<td>fry</td>
+</tr>
+<tr>
+<td>name</td>
+<td>username</td>
+<td><code>Philip J. Fry</code></td>
+</tr>
+<tr>
+<td>sha_id</td>
+<td>sha of the container image</td>
+<td>sha256%3A5c754563b357bfde4a3762728c686fe0001d10e43835b9468d5218e663b844e8</td>
+</tr>
+<tr>
+<td>id</td>
+<td>name of the application image</td>
+<td><code>abcdesktopio/firefox-esr.d:dev</code></td>
+</tr>
+<tr>
+<td>launch</td>
+<td>WM_CLASS of the X11 application</td>
+<td>Navigator.Firefox</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>icon file name</td>
+<td>firefox.svg</td>
+</tr>
+<tr>
+<td>keyword</td>
+<td>docker image label keywords</td>
+<td>firefox mozilla web internet</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>docker image label category</td>
+<td>office</td>
+</tr>
+<tr>
+<td>displayname</td>
+<td>docker image label displayname</td>
+<td>Firefox-esr</td>
+</tr>
+<tr>
+<td>path</td>
+<td>binary path of the application</td>
+<td>/usr/bin/firefox-esr</td>
+</tr>
+<tr>
+<td>desktopfile</td>
+<td>desktop filename  of the application</td>
+<td>firefox.desktop</td>
+</tr>
+<tr>
+<td>executablefilename</td>
+<td>binary file name of the application</td>
+<td> firefox-esr</td>
+</tr>
+<tr>
+<td>locale</td>
+<td>user current locale settings</td>
+<td>en_US</td>
+</tr>
+</tbody>
+</table>
+<h3 id="events">Events :</h3>
+<h4 id="create-event">create event:</h4>
+<p>The control plane <code>pyos</code> replace the mustached url string <code>/usr/bin/curl 'http://firewall.domain.local/update?action=create&amp;name={{ name }}&amp;ip={{ container_ip }}'</code> as <code>/usr/bin/curl 'http://firewall.domain.local/update?action=create&amp;name=Philip%20J.%20Fry&amp;ip=192.168.8.130'</code></p>
+<h4 id="destroy-event">destroy event:</h4>
+<p>The control plane <code>pyos</code> replace the mustached url string  <code>/usr/bin/curl 'http://firewall.domain.local/update?action=destroy&amp;name={{ name }}&amp;ip={{ container_ip }}'</code> as <code>/usr/bin/curl 'http://firewall.domain.local/update?action=destroy&amp;name=Philip%20J.%20Fry&amp;ip=192.168.8.130'</code></p>
+<h3 id="desktopwebhook-options-in-odconfig-file">desktop.webhook options in od.config file</h3>
+<h4 id="url-encoding-parameters">url encoding parameters</h4>
+<p>To encode url parameters use the option <code>desktop.webhookencodeparams</code>. 
+Set <code>desktop.webhookencodeparams</code> to <code>True</code> to encode label name. The default value is <code>False</code></p>
+<h4 id="additional-dict-datas">additional dict datas</h4>
+<p>Additional datas can be set using the <code>desktop.webhookdict</code> option in od.config file</p>
+<pre><code class="language-json">desktop.webhookdict: { 
+        'api_key': 'supersecret', 
+        'firewall_manage_ip': '161.105.208.129'  
+}
+</code></pre>
+<p>The command line </p>
+<pre><code class="language-bash">/usr/bin/curl 'http://{{ firewall_manage_ip }}/update?action=destroy&amp;key={{ api_key }}&amp;name={{ name }}&amp;ip={{ container_ip }}'
+</code></pre>
+<p>becomes</p>
+<pre><code class="language-bash">/usr/bin/curl 'http://161.105.208.129/update?action=destroy&amp;key=supersecret&amp;name={{ name }}&amp;ip={{ container_ip }}'
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../../setup/retrieve_all_images/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Get all docker application image for abcdesktop
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../acl/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Define access control for an application
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.34eae1b6.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2852 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="keywords" content="['Variables', 'Functions', 'Interpolation', 'Brace expansions', 'Loops', 'Conditional execution', 'Command substitution']">
+      
+      
+      
+        <link rel="canonical" href="https://www.abcdesktop.io/cheatsheets/bash/">
+      
+      <link rel="icon" href="/img/abcdesktop128x128.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.6">
+    
+    
+      
+        <title>Bash scripting - www.abcdesktop.io</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.875de78c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-189502871-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+      
+  <img src="/img/abcdesktop.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            www.abcdesktop.io
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bash scripting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/abcdesktopio/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+      
+  <img src="/img/abcdesktop.svg" alt="logo">
+
+    </a>
+    www.abcdesktop.io
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/abcdesktopio/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        About
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/howtodolabsexercices/" class="md-nav__link">
+        How to do labs and exercices
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/opensource/" class="md-nav__link">
+        Open source
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/authors/" class="md-nav__link">
+        Authors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/gnu-gpl-v2.0/" class="md-nav__link">
+        Licence
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/" class="md-nav__link">
+        Requirements
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        GUI apps on Docker
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="GUI apps on Docker" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          GUI apps on Docker
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guiappsoddocker/" class="md-nav__link">
+        VDI on Docker, related projets
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/vnc/" class="md-nav__link">
+        Hands-on with VNC client
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/novnc/" class="md-nav__link">
+        Hands-on with no-VNC HTML5
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/play_sound_in_docker/" class="md-nav__link">
+        Play sound in docker to a webprojet
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Architecture
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Architecture" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Architecture
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+      
+      <label class="md-nav__link" for="__nav_6_2">
+        Core
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Core" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Core
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/pyos/" class="md-nav__link">
+        Pyos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/mongodb/" class="md-nav__link">
+        Mongodb
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/memcached/" class="md-nav__link">
+        Memcached
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/speedtest/" class="md-nav__link">
+        Speedtest
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/ocuser/" class="md-nav__link">
+        User
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
+      
+      <label class="md-nav__link" for="__nav_6_3">
+        Services
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Services" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Services
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/spawner-service/" class="md-nav__link">
+        Spawner-service
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/file-service/" class="md-nav__link">
+        File-service
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Setup guide
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Setup guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Setup guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      <label class="md-nav__link" for="__nav_7_1">
+        Docker (non-cluster)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Docker (non-cluster)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Docker (non-cluster)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/dockermode/" class="md-nav__link">
+        Install abcdesktop for docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/uninstalldockermode/" class="md-nav__link">
+        Uninstall abcdesktop for docker
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" >
+      
+      <label class="md-nav__link" for="__nav_7_2">
+        Kubernetes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Kubernetes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          Kubernetes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2_1" type="checkbox" id="__nav_7_2_1" >
+      
+      <label class="md-nav__link" for="__nav_7_2_1">
+        Requirements
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Requirements" data-md-level="3">
+        <label class="md-nav__title" for="__nav_7_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Requirements
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/k8slinuxinstallation/" class="md-nav__link">
+        Kubernetes on GNU/Linux
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/k8smacosinstallation/" class="md-nav__link">
+        Kubernetes on MacOS/X
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/k8swindows10installation/" class="md-nav__link">
+        Kubernetes on Windows 10
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kubernetesmode/" class="md-nav__link">
+        Setup Kubernetes for GNU/Linux only
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kubernetes_abcdesktop/" class="md-nav__link">
+        Setup abcdesktop for Kubernetes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kubernetes_abcdesktop_applications/" class="md-nav__link">
+        Setup applications for abcdesktop
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/uninstall_kubernetes/" class="md-nav__link">
+        Uninstall abcdesktop
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3" type="checkbox" id="__nav_7_3" >
+      
+      <label class="md-nav__link" for="__nav_7_3">
+        Kubernetes add-ons
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Kubernetes add-ons" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          Kubernetes add-ons
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kubernetes_networkpolicies/" class="md-nav__link">
+        Setup Network policy
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kubernetes_flexvolume/" class="md-nav__link">
+        Setup CIFS Volume
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/secure_dockerd/" class="md-nav__link">
+        Secure Dockerd
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kubernetes_secure_etcd/" class="md-nav__link">
+        Secure Etcd
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Applications Containers
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Applications Containers" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Applications Containers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../applications/list/" class="md-nav__link">
+        List of all applications ready to use
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../applicationsformat/" class="md-nav__link">
+        Application image format
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../buildapplicationsgnulinux/" class="md-nav__link">
+        Build your own abcdesktop GNU/Linux Image
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../buildapplications.wine/" class="md-nav__link">
+        Build your own abcdesktop MsWindows Image
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common/non-free-applications/" class="md-nav__link">
+        Build non free applications
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        Configuration Guide
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Configuration Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Configuration Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/editconfig/" class="md-nav__link">
+        Edit your configuration file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/stack/" class="md-nav__link">
+        Stack mode
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_3" type="checkbox" id="__nav_9_3" >
+      
+      <label class="md-nav__link" for="__nav_9_3">
+        Authentification
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Authentification" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_3">
+          <span class="md-nav__icon md-icon"></span>
+          Authentification
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authentification/" class="md-nav__link">
+        config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_3_2" type="checkbox" id="__nav_9_3_2" >
+      
+      <label class="md-nav__link" for="__nav_9_3_2">
+        explicit
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="explicit" data-md-level="3">
+        <label class="md-nav__title" for="__nav_9_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          explicit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authexplicit/" class="md-nav__link">
+        Directory services
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authexplicit-ldap/" class="md-nav__link">
+        LDAP
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authexplicit-activedirectory/" class="md-nav__link">
+        Active Directory
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authimplicit/" class="md-nav__link">
+        implicit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authexternal/" class="md-nav__link">
+        external
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/authentification-rules/" class="md-nav__link">
+        rules
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/desktop/" class="md-nav__link">
+        Desktop
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/frontjs/" class="md-nav__link">
+        Front
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/language/" class="md-nav__link">
+        Languages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_7" type="checkbox" id="__nav_9_7" >
+      
+      <label class="md-nav__link" for="__nav_9_7">
+        Logging
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Logging" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_7">
+          <span class="md-nav__icon md-icon"></span>
+          Logging
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/logging/" class="md-nav__link">
+        Logging
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/syslog/" class="md-nav__link">
+        Syslog
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_8" type="checkbox" id="__nav_9_8" >
+      
+      <label class="md-nav__link" for="__nav_9_8">
+        Controllers
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Controllers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_8">
+          <span class="md-nav__icon md-icon"></span>
+          Controllers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/controllers/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/controllers/manager/" class="md-nav__link">
+        Manager
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_9" type="checkbox" id="__nav_9_9" >
+      
+      <label class="md-nav__link" for="__nav_9_9">
+        WebRTC
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="WebRTC" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_9">
+          <span class="md-nav__icon md-icon"></span>
+          WebRTC
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/webrtc/" class="md-nav__link">
+        Pulseaudio
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_10" type="checkbox" id="__nav_9_10" >
+      
+      <label class="md-nav__link" for="__nav_9_10">
+        Issue tracking
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Issue tracking" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_10">
+          <span class="md-nav__icon md-icon"></span>
+          Issue tracking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/jira/" class="md-nav__link">
+        Jira
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://groups.google.com/g/abcdesktop" class="md-nav__link">
+        Group discussion
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      <label class="md-nav__link" for="__nav_11">
+        How-to
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="How-to" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          How-to
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/sudo-kubernetes/" class="md-nav__link">
+        Get a root access inside a container
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/retrieve_all_images/" class="md-nav__link">
+        Get all docker application image for abcdesktop
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common/docker_macvlan/" class="md-nav__link">
+        Bind a specific docker network for an application
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common/acl/" class="md-nav__link">
+        Define access control for an application
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common/update_image/" class="md-nav__link">
+        Update and custom frontend image
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common/upload_and_download_files/" class="md-nav__link">
+        Upload and from files with your desktop
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common/firefox-extension/" class="md-nav__link">
+        Sync clipboard with Mozilla Firefox
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting started
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-quotes" class="md-nav__link">
+    String quotes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell-execution" class="md-nav__link">
+    Shell execution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-execution" class="md-nav__link">
+    Conditional execution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditionals" class="md-nav__link">
+    Conditionals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict-mode" class="md-nav__link">
+    Strict mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#brace-expansion" class="md-nav__link">
+    Brace expansion
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-expansions" class="md-nav__link">
+    Parameter expansions
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameter expansions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basics" class="md-nav__link">
+    Basics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#substitution" class="md-nav__link">
+    Substitution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    Comments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#substrings" class="md-nav__link">
+    Substrings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#length" class="md-nav__link">
+    Length
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulation" class="md-nav__link">
+    Manipulation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-values" class="md-nav__link">
+    Default values
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loops" class="md-nav__link">
+    Loops
+  </a>
+  
+    <nav class="md-nav" aria-label="Loops">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-for-loop" class="md-nav__link">
+    Basic for loop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-like-for-loop" class="md-nav__link">
+    C-like for loop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ranges" class="md-nav__link">
+    Ranges
+  </a>
+  
+    <nav class="md-nav" aria-label="Ranges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#with-step-size" class="md-nav__link">
+    With step size
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reading-lines" class="md-nav__link">
+    Reading lines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forever" class="md-nav__link">
+    Forever
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions_1" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-functions" class="md-nav__link">
+    Defining functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returning-values" class="md-nav__link">
+    Returning values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raising-errors" class="md-nav__link">
+    Raising errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arguments" class="md-nav__link">
+    Arguments
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditionals_1" class="md-nav__link">
+    Conditionals
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditionals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conditions" class="md-nav__link">
+    Conditions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-conditions" class="md-nav__link">
+    File conditions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arrays" class="md-nav__link">
+    Arrays
+  </a>
+  
+    <nav class="md-nav" aria-label="Arrays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-arrays" class="md-nav__link">
+    Defining arrays
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-with-arrays" class="md-nav__link">
+    Working with arrays
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    Operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iteration" class="md-nav__link">
+    Iteration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dictionaries" class="md-nav__link">
+    Dictionaries
+  </a>
+  
+    <nav class="md-nav" aria-label="Dictionaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining" class="md-nav__link">
+    Defining
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-with-dictionaries" class="md-nav__link">
+    Working with dictionaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iteration_1" class="md-nav__link">
+    Iteration
+  </a>
+  
+    <nav class="md-nav" aria-label="Iteration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iterate-over-values" class="md-nav__link">
+    Iterate over values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iterate-over-keys" class="md-nav__link">
+    Iterate over keys
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options_1" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glob-options" class="md-nav__link">
+    Glob options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    History
+  </a>
+  
+    <nav class="md-nav" aria-label="History">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    Commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expansions" class="md-nav__link">
+    Expansions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations_1" class="md-nav__link">
+    Operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slices" class="md-nav__link">
+    Slices
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#miscellaneous" class="md-nav__link">
+    Miscellaneous
+  </a>
+  
+    <nav class="md-nav" aria-label="Miscellaneous">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numeric-calculations" class="md-nav__link">
+    Numeric calculations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subshells" class="md-nav__link">
+    Subshells
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redirection" class="md-nav__link">
+    Redirection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspecting-commands" class="md-nav__link">
+    Inspecting commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trap-errors" class="md-nav__link">
+    Trap errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caseswitch" class="md-nav__link">
+    Case/switch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-relative" class="md-nav__link">
+    Source relative
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#printf" class="md-nav__link">
+    printf
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directory-of-script" class="md-nav__link">
+    Directory of script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-options" class="md-nav__link">
+    Getting options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heredoc" class="md-nav__link">
+    Heredoc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reading-input" class="md-nav__link">
+    Reading input
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-variables" class="md-nav__link">
+    Special variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#go-to-previous-directory" class="md-nav__link">
+    Go to previous directory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-for-commands-result" class="md-nav__link">
+    Check for command's result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grep-check" class="md-nav__link">
+    Grep check
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#also-see" class="md-nav__link">
+    Also see
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/abcdesktopio/edit/master/docs/cheatsheets/bash.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Bash scripting</h1>
+                
+                <h2 id="getting-started">Getting started</h2>
+<p>{: .-three-column}</p>
+<h3 id="example">Example</h3>
+<pre><code class="language-bash">#!/usr/bin/env bash
+
+NAME=&quot;John&quot;
+echo &quot;Hello $NAME!&quot;
+</code></pre>
+<h3 id="variables">Variables</h3>
+<pre><code class="language-bash">NAME=&quot;John&quot;
+echo $NAME
+echo &quot;$NAME&quot;
+echo &quot;${NAME}!&quot;
+</code></pre>
+<h3 id="string-quotes">String quotes</h3>
+<pre><code class="language-bash">NAME=&quot;John&quot;
+echo &quot;Hi $NAME&quot;  #=&gt; Hi John
+echo 'Hi $NAME'  #=&gt; Hi $NAME
+</code></pre>
+<h3 id="shell-execution">Shell execution</h3>
+<pre><code class="language-bash">echo &quot;I'm in $(pwd)&quot;
+echo &quot;I'm in `pwd`&quot;
+# Same
+</code></pre>
+<p>See <a href="http://wiki.bash-hackers.org/syntax/expansion/cmdsubst">Command substitution</a></p>
+<h3 id="conditional-execution">Conditional execution</h3>
+<pre><code class="language-bash">git commit &amp;&amp; git push
+git commit || echo &quot;Commit failed&quot;
+</code></pre>
+<h3 id="functions">Functions</h3>
+<p>{: id='functions-example'}</p>
+<pre><code class="language-bash">get_name() {
+  echo &quot;John&quot;
+}
+
+echo &quot;You are $(get_name)&quot;
+</code></pre>
+<p>See: <a href="#functions">Functions</a></p>
+<h3 id="conditionals">Conditionals</h3>
+<p>{: id='conditionals-example'}</p>
+<pre><code class="language-bash">if [[ -z &quot;$string&quot; ]]; then
+  echo &quot;String is empty&quot;
+elif [[ -n &quot;$string&quot; ]]; then
+  echo &quot;String is not empty&quot;
+fi
+</code></pre>
+<p>See: <a href="#conditionals">Conditionals</a></p>
+<h3 id="strict-mode">Strict mode</h3>
+<pre><code class="language-bash">set -euo pipefail
+IFS=$'\n\t'
+</code></pre>
+<p>See: <a href="http://redsymbol.net/articles/unofficial-bash-strict-mode/">Unofficial bash strict mode</a></p>
+<h3 id="brace-expansion">Brace expansion</h3>
+<pre><code class="language-bash">echo {A,B}.js
+</code></pre>
+<p>| <code>{A,B}</code> | Same as <code>A B</code> |
+| <code>{A,B}.js</code> | Same as <code>A.js B.js</code> |
+| <code>{1..5}</code> | Same as <code>1 2 3 4 5</code> |</p>
+<p>See: <a href="http://wiki.bash-hackers.org/syntax/expansion/brace">Brace expansion</a></p>
+<h2 id="parameter-expansions">Parameter expansions</h2>
+<p>{: .-three-column}</p>
+<h3 id="basics">Basics</h3>
+<pre><code class="language-bash">name=&quot;John&quot;
+echo ${name}
+echo ${name/J/j}    #=&gt; &quot;john&quot; (substitution)
+echo ${name:0:2}    #=&gt; &quot;Jo&quot; (slicing)
+echo ${name::2}     #=&gt; &quot;Jo&quot; (slicing)
+echo ${name::-1}    #=&gt; &quot;Joh&quot; (slicing)
+echo ${name:(-1)}   #=&gt; &quot;n&quot; (slicing from right)
+echo ${name:(-2):1} #=&gt; &quot;h&quot; (slicing from right)
+echo ${food:-Cake}  #=&gt; $food or &quot;Cake&quot;
+</code></pre>
+<pre><code class="language-bash">length=2
+echo ${name:0:length}  #=&gt; &quot;Jo&quot;
+</code></pre>
+<p>See: <a href="http://wiki.bash-hackers.org/syntax/pe">Parameter expansion</a></p>
+<pre><code class="language-bash">STR=&quot;/path/to/foo.cpp&quot;
+echo ${STR%.cpp}    # /path/to/foo
+echo ${STR%.cpp}.o  # /path/to/foo.o
+
+echo ${STR##*.}     # cpp (extension)
+echo ${STR##*/}     # foo.cpp (basepath)
+
+echo ${STR#*/}      # path/to/foo.cpp
+echo ${STR##*/}     # foo.cpp
+
+echo ${STR/foo/bar} # /path/to/bar.cpp
+</code></pre>
+<pre><code class="language-bash">STR=&quot;Hello world&quot;
+echo ${STR:6:5}   # &quot;world&quot;
+echo ${STR:-5:5}  # &quot;world&quot;
+</code></pre>
+<pre><code class="language-bash">SRC=&quot;/path/to/foo.cpp&quot;
+BASE=${SRC##*/}   #=&gt; &quot;foo.cpp&quot; (basepath)
+DIR=${SRC%$BASE}  #=&gt; &quot;/path/to/&quot; (dirpath)
+</code></pre>
+<h3 id="substitution">Substitution</h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${FOO%suffix}</code></td>
+<td>Remove suffix</td>
+</tr>
+<tr>
+<td><code>${FOO#prefix}</code></td>
+<td>Remove prefix</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>${FOO%%suffix}</code></td>
+<td>Remove long suffix</td>
+</tr>
+<tr>
+<td><code>${FOO##prefix}</code></td>
+<td>Remove long prefix</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>${FOO/from/to}</code></td>
+<td>Replace first match</td>
+</tr>
+<tr>
+<td><code>${FOO//from/to}</code></td>
+<td>Replace all</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>${FOO/%from/to}</code></td>
+<td>Replace suffix</td>
+</tr>
+<tr>
+<td><code>${FOO/#from/to}</code></td>
+<td>Replace prefix</td>
+</tr>
+</tbody>
+</table>
+<h3 id="comments">Comments</h3>
+<pre><code class="language-bash"># Single line comment
+</code></pre>
+<pre><code class="language-bash">: '
+This is a
+multi line
+comment
+'
+</code></pre>
+<h3 id="substrings">Substrings</h3>
+<p>| <code>${FOO:0:3}</code>  | Substring <em>(position, length)</em> |
+| <code>${FOO:-3:3}</code> | Substring from the right |</p>
+<h3 id="length">Length</h3>
+<p>| <code>${#FOO}</code> | Length of <code>$FOO</code> |</p>
+<h3 id="manipulation">Manipulation</h3>
+<pre><code class="language-bash">STR=&quot;HELLO WORLD!&quot;
+echo ${STR,}   #=&gt; &quot;hELLO WORLD!&quot; (lowercase 1st letter)
+echo ${STR,,}  #=&gt; &quot;hello world!&quot; (all lowercase)
+
+STR=&quot;hello world!&quot;
+echo ${STR^}   #=&gt; &quot;Hello world!&quot; (uppercase 1st letter)
+echo ${STR^^}  #=&gt; &quot;HELLO WORLD!&quot; (all uppercase)
+</code></pre>
+<h3 id="default-values">Default values</h3>
+<p>| <code>${FOO:-val}</code>        | <code>$FOO</code>, or <code>val</code> if not set |
+| <code>${FOO:=val}</code>        | Set <code>$FOO</code> to <code>val</code> if not set |
+| <code>${FOO:+val}</code>        | <code>val</code> if <code>$FOO</code> is set |
+| <code>${FOO:?message}</code>    | Show error message and exit if <code>$FOO</code> is not set |</p>
+<p>The <code>:</code> is optional (eg, <code>${FOO=word}</code> works)</p>
+<h2 id="loops">Loops</h2>
+<p>{: .-three-column}</p>
+<h3 id="basic-for-loop">Basic for loop</h3>
+<pre><code class="language-bash">for i in /etc/rc.*; do
+  echo $i
+done
+</code></pre>
+<h3 id="c-like-for-loop">C-like for loop</h3>
+<pre><code class="language-bash">for ((i = 0 ; i &lt; 100 ; i++)); do
+  echo $i
+done
+</code></pre>
+<h3 id="ranges">Ranges</h3>
+<pre><code class="language-bash">for i in {1..5}; do
+    echo &quot;Welcome $i&quot;
+done
+</code></pre>
+<h4 id="with-step-size">With step size</h4>
+<pre><code class="language-bash">for i in {5..50..5}; do
+    echo &quot;Welcome $i&quot;
+done
+</code></pre>
+<h3 id="reading-lines">Reading lines</h3>
+<pre><code class="language-bash">cat file.txt | while read line; do
+  echo $line
+done
+</code></pre>
+<h3 id="forever">Forever</h3>
+<pre><code class="language-bash">while true; do
+  ···
+done
+</code></pre>
+<h2 id="functions_1">Functions</h2>
+<p>{: .-three-column}</p>
+<h3 id="defining-functions">Defining functions</h3>
+<pre><code class="language-bash">myfunc() {
+    echo &quot;hello $1&quot;
+}
+</code></pre>
+<pre><code class="language-bash"># Same as above (alternate syntax)
+function myfunc() {
+    echo &quot;hello $1&quot;
+}
+</code></pre>
+<pre><code class="language-bash">myfunc &quot;John&quot;
+</code></pre>
+<h3 id="returning-values">Returning values</h3>
+<pre><code class="language-bash">myfunc() {
+    local myresult='some value'
+    echo $myresult
+}
+</code></pre>
+<pre><code class="language-bash">result=&quot;$(myfunc)&quot;
+</code></pre>
+<h3 id="raising-errors">Raising errors</h3>
+<pre><code class="language-bash">myfunc() {
+  return 1
+}
+</code></pre>
+<pre><code class="language-bash">if myfunc; then
+  echo &quot;success&quot;
+else
+  echo &quot;failure&quot;
+fi
+</code></pre>
+<h3 id="arguments">Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$#</code></td>
+<td>Number of arguments</td>
+</tr>
+<tr>
+<td><code>$*</code></td>
+<td>All arguments</td>
+</tr>
+<tr>
+<td><code>$@</code></td>
+<td>All arguments, starting from first</td>
+</tr>
+<tr>
+<td><code>$1</code></td>
+<td>First argument</td>
+</tr>
+<tr>
+<td><code>$_</code></td>
+<td>Last argument of the previous command</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="http://wiki.bash-hackers.org/syntax/shellvars#special_parameters_and_shell_variables">Special parameters</a>.</p>
+<h2 id="conditionals_1">Conditionals</h2>
+<p>{: .-three-column}</p>
+<h3 id="conditions">Conditions</h3>
+<p>Note that <code>[[</code> is actually a command/program that returns either <code>0</code> (true) or <code>1</code> (false). Any program that obeys the same logic (like all base utils, such as <code>grep(1)</code> or <code>ping(1)</code>) can be used as condition, see examples.</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[[ -z STRING ]]</code></td>
+<td>Empty string</td>
+</tr>
+<tr>
+<td><code>[[ -n STRING ]]</code></td>
+<td>Not empty string</td>
+</tr>
+<tr>
+<td><code>[[ STRING == STRING ]]</code></td>
+<td>Equal</td>
+</tr>
+<tr>
+<td><code>[[ STRING != STRING ]]</code></td>
+<td>Not Equal</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>[[ NUM -eq NUM ]]</code></td>
+<td>Equal</td>
+</tr>
+<tr>
+<td><code>[[ NUM -ne NUM ]]</code></td>
+<td>Not equal</td>
+</tr>
+<tr>
+<td><code>[[ NUM -lt NUM ]]</code></td>
+<td>Less than</td>
+</tr>
+<tr>
+<td><code>[[ NUM -le NUM ]]</code></td>
+<td>Less than or equal</td>
+</tr>
+<tr>
+<td><code>[[ NUM -gt NUM ]]</code></td>
+<td>Greater than</td>
+</tr>
+<tr>
+<td><code>[[ NUM -ge NUM ]]</code></td>
+<td>Greater than or equal</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>[[ STRING =~ STRING ]]</code></td>
+<td>Regexp</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>(( NUM &lt; NUM ))</code></td>
+<td>Numeric conditions</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[[ -o noclobber ]]</code></td>
+<td>If OPTIONNAME is enabled</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>[[ ! EXPR ]]</code></td>
+<td>Not</td>
+</tr>
+<tr>
+<td><code>[[ X ]] &amp;&amp; [[ Y ]]</code></td>
+<td>And</td>
+</tr>
+<tr>
+<td><code>[[ X ]] || [[ Y ]]</code></td>
+<td>Or</td>
+</tr>
+</tbody>
+</table>
+<h3 id="file-conditions">File conditions</h3>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[[ -e FILE ]]</code></td>
+<td>Exists</td>
+</tr>
+<tr>
+<td><code>[[ -r FILE ]]</code></td>
+<td>Readable</td>
+</tr>
+<tr>
+<td><code>[[ -h FILE ]]</code></td>
+<td>Symlink</td>
+</tr>
+<tr>
+<td><code>[[ -d FILE ]]</code></td>
+<td>Directory</td>
+</tr>
+<tr>
+<td><code>[[ -w FILE ]]</code></td>
+<td>Writable</td>
+</tr>
+<tr>
+<td><code>[[ -s FILE ]]</code></td>
+<td>Size is &gt; 0 bytes</td>
+</tr>
+<tr>
+<td><code>[[ -f FILE ]]</code></td>
+<td>File</td>
+</tr>
+<tr>
+<td><code>[[ -x FILE ]]</code></td>
+<td>Executable</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>[[ FILE1 -nt FILE2 ]]</code></td>
+<td>1 is more recent than 2</td>
+</tr>
+<tr>
+<td><code>[[ FILE1 -ot FILE2 ]]</code></td>
+<td>2 is more recent than 1</td>
+</tr>
+<tr>
+<td><code>[[ FILE1 -ef FILE2 ]]</code></td>
+<td>Same files</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example_1">Example</h3>
+<pre><code class="language-bash"># String
+if [[ -z &quot;$string&quot; ]]; then
+  echo &quot;String is empty&quot;
+elif [[ -n &quot;$string&quot; ]]; then
+  echo &quot;String is not empty&quot;
+fi
+</code></pre>
+<pre><code class="language-bash"># Combinations
+if [[ X ]] &amp;&amp; [[ Y ]]; then
+  ...
+fi
+</code></pre>
+<pre><code class="language-bash"># Equal
+if [[ &quot;$A&quot; == &quot;$B&quot; ]]
+</code></pre>
+<pre><code class="language-bash"># Regex
+if [[ &quot;A&quot; =~ . ]]
+</code></pre>
+<pre><code class="language-bash">if (( $a &lt; $b )); then
+   echo &quot;$a is smaller than $b&quot;
+fi
+</code></pre>
+<pre><code class="language-bash">if [[ -e &quot;file.txt&quot; ]]; then
+  echo &quot;file exists&quot;
+fi
+</code></pre>
+<h2 id="arrays">Arrays</h2>
+<h3 id="defining-arrays">Defining arrays</h3>
+<pre><code class="language-bash">Fruits=('Apple' 'Banana' 'Orange')
+</code></pre>
+<pre><code class="language-bash">Fruits[0]=&quot;Apple&quot;
+Fruits[1]=&quot;Banana&quot;
+Fruits[2]=&quot;Orange&quot;
+</code></pre>
+<h3 id="working-with-arrays">Working with arrays</h3>
+<pre><code class="language-bash">echo ${Fruits[0]}           # Element #0
+echo ${Fruits[@]}           # All elements, space-separated
+echo ${#Fruits[@]}          # Number of elements
+echo ${#Fruits}             # String length of the 1st element
+echo ${#Fruits[3]}          # String length of the Nth element
+echo ${Fruits[@]:3:2}       # Range (from position 3, length 2)
+</code></pre>
+<h3 id="operations">Operations</h3>
+<pre><code class="language-bash">Fruits=(&quot;${Fruits[@]}&quot; &quot;Watermelon&quot;)    # Push
+Fruits+=('Watermelon')                  # Also Push
+Fruits=( ${Fruits[@]/Ap*/} )            # Remove by regex match
+unset Fruits[2]                         # Remove one item
+Fruits=(&quot;${Fruits[@]}&quot;)                 # Duplicate
+Fruits=(&quot;${Fruits[@]}&quot; &quot;${Veggies[@]}&quot;) # Concatenate
+lines=(`cat &quot;logfile&quot;`)                 # Read from file
+</code></pre>
+<h3 id="iteration">Iteration</h3>
+<pre><code class="language-bash">for i in &quot;${arrayName[@]}&quot;; do
+  echo $i
+done
+</code></pre>
+<h2 id="dictionaries">Dictionaries</h2>
+<p>{: .-three-column}</p>
+<h3 id="defining">Defining</h3>
+<pre><code class="language-bash">declare -A sounds
+</code></pre>
+<pre><code class="language-bash">sounds[dog]=&quot;bark&quot;
+sounds[cow]=&quot;moo&quot;
+sounds[bird]=&quot;tweet&quot;
+sounds[wolf]=&quot;howl&quot;
+</code></pre>
+<p>Declares <code>sound</code> as a Dictionary object (aka associative array).</p>
+<h3 id="working-with-dictionaries">Working with dictionaries</h3>
+<pre><code class="language-bash">echo ${sounds[dog]} # Dog's sound
+echo ${sounds[@]}   # All values
+echo ${!sounds[@]}  # All keys
+echo ${#sounds[@]}  # Number of elements
+unset sounds[dog]   # Delete dog
+</code></pre>
+<h3 id="iteration_1">Iteration</h3>
+<h4 id="iterate-over-values">Iterate over values</h4>
+<pre><code class="language-bash">for val in &quot;${sounds[@]}&quot;; do
+  echo $val
+done
+</code></pre>
+<h4 id="iterate-over-keys">Iterate over keys</h4>
+<pre><code class="language-bash">for key in &quot;${!sounds[@]}&quot;; do
+  echo $key
+done
+</code></pre>
+<h2 id="options">Options</h2>
+<h3 id="options_1">Options</h3>
+<pre><code class="language-bash">set -o noclobber  # Avoid overlay files (echo &quot;hi&quot; &gt; foo)
+set -o errexit    # Used to exit upon error, avoiding cascading errors
+set -o pipefail   # Unveils hidden failures
+set -o nounset    # Exposes unset variables
+</code></pre>
+<h3 id="glob-options">Glob options</h3>
+<pre><code class="language-bash">shopt -s nullglob    # Non-matching globs are removed  ('*.foo' =&gt; '')
+shopt -s failglob    # Non-matching globs throw errors
+shopt -s nocaseglob  # Case insensitive globs
+shopt -s dotglob     # Wildcards match dotfiles (&quot;*.sh&quot; =&gt; &quot;.foo.sh&quot;)
+shopt -s globstar    # Allow ** for recursive matches ('lib/**/*.rb' =&gt; 'lib/a/b/c.rb')
+</code></pre>
+<p>Set <code>GLOBIGNORE</code> as a colon-separated list of patterns to be removed from glob
+matches.</p>
+<h2 id="history">History</h2>
+<h3 id="commands">Commands</h3>
+<p>| <code>history</code> | Show history |
+| <code>shopt -s histverify</code> | Don't execute expanded result immediately |</p>
+<h3 id="expansions">Expansions</h3>
+<p>| <code>!$</code> | Expand last parameter of most recent command |
+| <code>!*</code> | Expand all parameters of most recent command |
+| <code>!-n</code> | Expand <code>n</code>th most recent command |
+| <code>!n</code> | Expand <code>n</code>th command in history |
+| <code>!&lt;command&gt;</code> | Expand most recent invocation of command <code>&lt;command&gt;</code> |</p>
+<h3 id="operations_1">Operations</h3>
+<p>| <code>!!</code> | Execute last command again |       <br />
+| <code>!!:s/&lt;FROM&gt;/&lt;TO&gt;/</code> | Replace first occurrence of <code>&lt;FROM&gt;</code> to <code>&lt;TO&gt;</code> in most recent command |
+| <code>!!:gs/&lt;FROM&gt;/&lt;TO&gt;/</code> | Replace all occurrences of <code>&lt;FROM&gt;</code> to <code>&lt;TO&gt;</code> in most recent command |
+| <code>!$:t</code> | Expand only basename from last parameter of most recent command |
+| <code>!$:h</code> | Expand only directory from last parameter of most recent command |</p>
+<p><code>!!</code> and <code>!$</code> can be replaced with any valid expansion.</p>
+<h3 id="slices">Slices</h3>
+<p>| <code>!!:n</code> | Expand only <code>n</code>th token from most recent command (command is <code>0</code>; first argument is <code>1</code>) |
+| <code>!^</code> | Expand first argument from most recent command |
+| <code>!$</code> | Expand last token from most recent command |
+| <code>!!:n-m</code> | Expand range of tokens from most recent command |
+| <code>!!:n-$</code> | Expand <code>n</code>th token to last from most recent command |</p>
+<p><code>!!</code> can be replaced with any valid expansion i.e. <code>!cat</code>, <code>!-2</code>, <code>!42</code>, etc.</p>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<h3 id="numeric-calculations">Numeric calculations</h3>
+<pre><code class="language-bash">$((a + 200))      # Add 200 to $a
+</code></pre>
+<pre><code class="language-bash">$((RANDOM%=200))  # Random number 0..200
+</code></pre>
+<h3 id="subshells">Subshells</h3>
+<pre><code class="language-bash">(cd somedir; echo &quot;I'm now in $PWD&quot;)
+pwd # still in first directory
+</code></pre>
+<h3 id="redirection">Redirection</h3>
+<pre><code class="language-bash">python hello.py &gt; output.txt   # stdout to (file)
+python hello.py &gt;&gt; output.txt  # stdout to (file), append
+python hello.py 2&gt; error.log   # stderr to (file)
+python hello.py 2&gt;&amp;1           # stderr to stdout
+python hello.py 2&gt;/dev/null    # stderr to (null)
+python hello.py &amp;&gt;/dev/null    # stdout and stderr to (null)
+</code></pre>
+<pre><code class="language-bash">python hello.py &lt; foo.txt      # feed foo.txt to stdin for python
+</code></pre>
+<h3 id="inspecting-commands">Inspecting commands</h3>
+<pre><code class="language-bash">command -V cd
+#=&gt; &quot;cd is a function/alias/whatever&quot;
+</code></pre>
+<h3 id="trap-errors">Trap errors</h3>
+<pre><code class="language-bash">trap 'echo Error at about $LINENO' ERR
+</code></pre>
+<p>or</p>
+<pre><code class="language-bash">traperr() {
+  echo &quot;ERROR: ${BASH_SOURCE[1]} at about ${BASH_LINENO[0]}&quot;
+}
+
+set -o errtrace
+trap traperr ERR
+</code></pre>
+<h3 id="caseswitch">Case/switch</h3>
+<pre><code class="language-bash">case &quot;$1&quot; in
+  start | up)
+    vagrant up
+    ;;
+
+  *)
+    echo &quot;Usage: $0 {start|stop|ssh}&quot;
+    ;;
+esac
+</code></pre>
+<h3 id="source-relative">Source relative</h3>
+<pre><code class="language-bash">source &quot;${0%/*}/../share/foo.sh&quot;
+</code></pre>
+<h3 id="printf">printf</h3>
+<pre><code class="language-bash">printf &quot;Hello %s, I'm %s&quot; Sven Olga
+#=&gt; &quot;Hello Sven, I'm Olga
+
+printf &quot;1 + 1 = %d&quot; 2
+#=&gt; &quot;1 + 1 = 2&quot;
+
+printf &quot;This is how you print a float: %f&quot; 2
+#=&gt; &quot;This is how you print a float: 2.000000&quot;
+</code></pre>
+<h3 id="directory-of-script">Directory of script</h3>
+<pre><code class="language-bash">DIR=&quot;${0%/*}&quot;
+</code></pre>
+<h3 id="getting-options">Getting options</h3>
+<pre><code class="language-bash">while [[ &quot;$1&quot; =~ ^- &amp;&amp; ! &quot;$1&quot; == &quot;--&quot; ]]; do case $1 in
+  -V | --version )
+    echo $version
+    exit
+    ;;
+  -s | --string )
+    shift; string=$1
+    ;;
+  -f | --flag )
+    flag=1
+    ;;
+esac; shift; done
+if [[ &quot;$1&quot; == '--' ]]; then shift; fi
+</code></pre>
+<h3 id="heredoc">Heredoc</h3>
+<pre><code class="language-sh">cat &lt;&lt;END
+hello world
+END
+</code></pre>
+<h3 id="reading-input">Reading input</h3>
+<pre><code class="language-bash">echo -n &quot;Proceed? [y/n]: &quot;
+read ans
+echo $ans
+</code></pre>
+<pre><code class="language-bash">read -n 1 ans    # Just one character
+</code></pre>
+<h3 id="special-variables">Special variables</h3>
+<p>| <code>$?</code> | Exit status of last task |
+| <code>$!</code> | PID of last background task |
+| <code>$$</code> | PID of shell |
+| <code>$0</code> | Filename of the shell script |</p>
+<p>See <a href="http://wiki.bash-hackers.org/syntax/shellvars#special_parameters_and_shell_variables">Special parameters</a>.</p>
+<h3 id="go-to-previous-directory">Go to previous directory</h3>
+<pre><code class="language-bash">pwd # /home/user/foo
+cd bar/
+pwd # /home/user/foo/bar
+cd -
+pwd # /home/user/foo
+</code></pre>
+<h3 id="check-for-commands-result">Check for command's result</h3>
+<pre><code class="language-bash">if ping -c 1 google.com; then
+  echo &quot;It appears you have a working internet connection&quot;
+fi
+</code></pre>
+<h3 id="grep-check">Grep check</h3>
+<pre><code class="language-bash">if grep -q 'foo' ~/.bash_history; then
+  echo &quot;You appear to have typed 'foo' in the past&quot;
+fi
+</code></pre>
+<h2 id="also-see">Also see</h2>
+<p>{: .-one-column}</p>
+<ul>
+<li><a href="http://wiki.bash-hackers.org/">Bash-hackers wiki</a> <em>(bash-hackers.org)</em></li>
+<li><a href="http://wiki.bash-hackers.org/syntax/shellvars">Shell vars</a> <em>(bash-hackers.org)</em></li>
+<li><a href="https://learnxinyminutes.com/docs/bash/">Learn bash in y minutes</a> <em>(learnxinyminutes.com)</em></li>
+<li><a href="http://mywiki.wooledge.org/BashGuide">Bash Guide</a> <em>(mywiki.wooledge.org)</em></li>
+<li><a href="https://www.shellcheck.net/">ShellCheck</a> <em>(shellcheck.net)</em></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.34eae1b6.min.js"></script>
+      
+    
+  </body>
+</html>
