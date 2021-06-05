@@ -2,10 +2,11 @@
 
 ## Related Projets on VDI with docker
 
-abcdesktop, or Yet Another VDI docker projet...
+abcdesktop, or YAVDI (Yet Another VDI docker projet)
 
-A lot of different projets already exist using docker containers as a VDI. abcdesktop is just another one. I just write list of projets, you can explore them :
+A lot of different projets already exists using docker containers as a VDI. abcdesktop is just another one. I just write list of projets, you can explore them :
 
+* [https://github.com/mviereck/x11docker](https://github.com/mviereck/x11docker) x11docker allows to run graphical desktop applications (and entire desktops) in Docker Linux containers.
 
 * [https://www.digitalocean.com/community/tutorials/how-to-remotely-access-gui-applications-using-docker-and-caddy-on-ubuntu-18-04](https://www.digitalocean.com/community/tutorials/how-to-remotely-access-gui-applications-using-docker-and-caddy-on-ubuntu-18-04) By using noVNC and TigerVNC, you can run native applications inside a Docker container and access them remotely using a web browser. 
 
