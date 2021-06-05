@@ -396,6 +396,34 @@ Subjects:
 kubectl logs daemonset-pyos-tklg8 --follow -n abcdesktop
 ```
 
-
 Note that you also can view logs using docker command
+
+
+### Rollout daemonset
+
+To rollout restart the abcdesktop daemonset
+
+```
+kubectl rollout restart daemonset -n abcdesktop
+```
+
+You should read on the standard output 
+
+```
+daemonset.apps/daemonset-nginx restarted
+daemonset.apps/daemonset-pyos restarted
+```
+
+Check the pods status  
+
+```
+kubectl get pods  -n abcdesktop
+NAME                            READY   STATUS    RESTARTS   AGE
+daemonset-nginx-dh2xd           1/1     Running   0          4m22s
+daemonset-pyos-9xn26            1/1     Running   0          3m52s
+memcached-od-5bf65bf745-xpvvr   1/1     Running   3          45h
+mongodb-od-656d85c49f-242jh     1/1     Running   4          45h
+openldap-od-5945946767-qf2hn    1/1     Running   0          45m
+speedtest-od-d94b8cb5c-52wf5    1/1     Running   0          45m
+```
 
