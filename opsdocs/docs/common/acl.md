@@ -42,10 +42,8 @@ For example using the application `xedit`
 }
 ```
 
-### To restrict access to applications using authentication label :
+To restrict access to applications using authentication label, you have to define label using rules during authentification step, and define label to the application.
 
-1. Define label using rules
-2. Define label to the application
 
 
 ## Define authenticated label using rules
@@ -149,7 +147,7 @@ Create `icons` directory
 
 ```
 mkdir -p icons
-curl https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/icons/xedit.svg --output icons/xedit.svg 
+curl --output icons/xedit.svg https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/icons/xedit.svg 
 ```
 
 Run the make command 
@@ -218,6 +216,9 @@ Then look at the acl label
 
 ``` 
 docker inspect xedit.d | grep oc.acl
+``` 
+
+``` 
                 "oc.acl": "{\"permit\":[\"localhost\",\"localnet\"]}",
                 "oc.acl": "{\"permit\":[\"localhost\",\"localnet\"]}",
 ``` 
@@ -229,7 +230,7 @@ The acl is stringified json object.
 
 The xedit application is listed only if your are connected from a local network matching the previous rules.
 
-Look for the applications, using the quick launch search text area on the bottom right corner. Insert the first character of xedit :
+Look for the application `xedit`, using the quick launch search text area on the bottom right corner. Insert the first character of xedit :
 
 ![xedit is running](img/login-anomymous-acl-show-xedit.png)
 
