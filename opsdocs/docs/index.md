@@ -7,18 +7,19 @@ keywords: docker kubernetes secure desktop container cloud native telecommuting 
 
 # Welcome to abcdesktop.io 
 
-abcdesktop.io = Docker + X11
+abcdesktop.io = NoVNC + X11 + Docker
 
-![abcdesktop.io](img/logo.svg){: style="height:128px;width:128px"}
-![equal](img/equals.svg){: style="height:128px;width:128px"}
-![docker](img/docker-logo.svg){: style="height:128px;width:128px"}
-![plus](img/plus.svg){: style="height:128px;width:128px"}
-![x11](img/x11logo.svg){: style="height:128px;width:128px"}
-![plus](img/plus.svg){: style="height:128px;width:128px"}
-![novnc](img/novnc-icon.svg){: style="height:128px;width:128px"}
+![abcdesktop.io](img/logo.svg){: style="height:64px;width:64px"}
+![equal](img/equals.svg){: style="height:64px;width:64px"}
+![novnc](img/novnc-icon.svg){: style="height:64px;width:64px"}
+![plus](img/plus.svg){: style="height:64px;width:64px"}
+![x11](img/x11logo.svg){: style="height:64px;width:64px"}
+![plus](img/plus.svg){: style="height:64px;width:64px"}
+![docker](img/docker-logo.svg){: style="height:64px;width:64px"}
 
 
-abcdesktop.io is a native cloud desktop, and a complete work environment accessible from a simple HTML 5 web browser, without any installation.  Each user’s application runs as a docker container to reduce attack surface.
+
+abcdesktop.io is a native cloud desktop, and a complete work environment accessible from a simple HTML 5 web browser, without any installation.  **Each user’s application runs as a docker container** to reduce attack surface.
 abcdeskop.io is an opensource and free solution that offer seamless access to secure desktops and applications on any device, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
 
 This flexible working environment simplifies usage like
