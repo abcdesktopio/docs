@@ -14,6 +14,8 @@ abcdesktop.io = Docker + X11
 ![docker](img/docker-logo.svg){: style="height:128px;width:128px"}
 ![plus](img/plus.svg){: style="height:128px;width:128px"}
 ![x11](img/x11logo.svg){: style="height:128px;width:128px"}
+![plus](img/plus.svg){: style="height:128px;width:128px"}
+![novnc](img/novnc-icon.svg){: style="height:128px;width:128px"}
 
 
 abcdesktop.io is a native cloud desktop, and a complete work environment accessible from a simple HTML 5 web browser, without any installation.  Each user’s application runs as a docker container to reduce attack surface.
