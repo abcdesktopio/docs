@@ -25,8 +25,8 @@ jobs:
       - name: Clone sources
         run: |
           rm -rf ..?* .[!.]* *
-          git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/docs.git" .
-          git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" submodule update --init --recursive --remote
+          git clone "https://github.com/abcdesktopio/docs.git" .
+          git submodule update --init --recursive --remote
           ls -la oc.apps
       
       - uses: actions/setup-python@v2
@@ -42,7 +42,7 @@ jobs:
       - name: push data to pages
         run: |
            git config --global user.name "abcdesktop.workflow"
-           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/abcdesktopio.github.io.git"
+           git clone "https://github.com/abcdesktopio/abcdesktopio.github.io.git"
            echo 'ls -la opsdocs/site'
            ls -la opsdocs/site
            cp -r opsdocs/site/* abcdesktopio.github.io
