@@ -1509,19 +1509,6 @@
     Update applist.json file
   </a>
   
-    <nav class="md-nav" aria-label="Update applist.json file">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#to-restrict-access-to-applications-using-authentication-label" class="md-nav__link">
-    To restrict access to applications using authentication label :
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1672,19 +1659,6 @@
     Update applist.json file
   </a>
   
-    <nav class="md-nav" aria-label="Update applist.json file">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#to-restrict-access-to-applications-using-authentication-label" class="md-nav__link">
-    To restrict access to applications using authentication label :
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1791,11 +1765,7 @@
     &quot;fileextensions&quot;:&quot;txt;log;md&quot;
 }
 </code></pre>
-<h3 id="to-restrict-access-to-applications-using-authentication-label">To restrict access to applications using authentication label :</h3>
-<ol>
-<li>Define label using rules</li>
-<li>Define label to the application</li>
-</ol>
+<p>To restrict access to applications using authentication label, you have to define label using rules during authentification step, and define label to the application.</p>
 <h2 id="define-authenticated-label-using-rules">Define authenticated label using rules</h2>
 <p>You can read the chapter <a href="/config/authentification-rules">authentification-rules</a> to define some autenticated labels.</p>
 <p>Update the od.config file, to add a label <code>mylocal</code> if the source ip address is in local network <code>192.168.0.0/16</code></p>
@@ -1866,7 +1836,7 @@
 </code></pre>
 <p>Create <code>icons</code> directory</p>
 <pre><code>mkdir -p icons
-curl https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/icons/xedit.svg --output icons/xedit.svg 
+curl --output icons/xedit.svg https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/icons/xedit.svg 
 </code></pre>
 <p>Run the make command </p>
 <pre><code>node make.js -f xedit.json Dockerfile
@@ -1920,13 +1890,14 @@ Building xedit.Xedit
 </code></pre>
 <p>Then look at the acl label</p>
 <pre><code>docker inspect xedit.d | grep oc.acl
-                &quot;oc.acl&quot;: &quot;{\&quot;permit\&quot;:[\&quot;localhost\&quot;,\&quot;localnet\&quot;]}&quot;,
+</code></pre>
+<pre><code>                &quot;oc.acl&quot;: &quot;{\&quot;permit\&quot;:[\&quot;localhost\&quot;,\&quot;localnet\&quot;]}&quot;,
                 &quot;oc.acl&quot;: &quot;{\&quot;permit\&quot;:[\&quot;localhost\&quot;,\&quot;localnet\&quot;]}&quot;,
 </code></pre>
 <p>The acl is stringified json object.</p>
 <h2 id="run-the-xedit-application-from-your-local-network">Run the xedit application from your local network</h2>
 <p>The xedit application is listed only if your are connected from a local network matching the previous rules.</p>
-<p>Look for the applications, using the quick launch search text area on the bottom right corner. Insert the first character of xedit :</p>
+<p>Look for the application <code>xedit</code>, using the quick launch search text area on the bottom right corner. Insert the first character of xedit :</p>
 <p><img alt="xedit is running" src="../img/login-anomymous-acl-show-xedit.png" /></p>
 <p>Launch the <code>xedit</code> application</p>
 <p><img alt="xedit is running" src="../img/login-anomymous-acl-run-xedit.png" /></p>
