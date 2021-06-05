@@ -9,11 +9,11 @@ keywords: docker kubernetes secure desktop container cloud native telecommuting 
 
 abcdesktop.io = Docker + X11
 
-![abcdesktop.io](/img/logo.svg){: style="height:128px;width:128px"}
-![equal](/img/equals.svg){: style="height:128px;width:128px"}
-![docker](/img/docker-logo.svg){: style="height:128px;width:128px"}
-![plus](/img/plus.svg){: style="height:128px;width:128px"}
-![x11](/img/x11logo.svg){: style="height:128px;width:128px"}
+![abcdesktop.io](img/logo.svg){: style="height:128px;width:128px"}
+![equal](img/equals.svg){: style="height:128px;width:128px"}
+![docker](img/docker-logo.svg){: style="height:128px;width:128px"}
+![plus](img/plus.svg){: style="height:128px;width:128px"}
+![x11](img/x11logo.svg){: style="height:128px;width:128px"}
 
 
 abcdesktop.io is a native cloud desktop, and a complete work environment accessible from a simple HTML 5 web browser, without any installation.  Each user’s application runs as a docker container to reduce attack surface.
