@@ -64,6 +64,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#how-to-build-and-run-abcdesktop-firefox-esr-image-to-run-flash-application" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1507,10 +1512,96 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Run Adobe Flash player with Mozilla Firefox-esr
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Run Adobe Flash player with Mozilla Firefox-esr
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    Goals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone-the-application-repo" class="md-nav__link">
+    Clone the application repo
+  </a>
+  
+    <nav class="md-nav" aria-label="Clone the application repo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edit-the-mmscfg-file" class="md-nav__link">
+    Edit the mms.cfg file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-the-new-firefox-esr-abcdesktop-image" class="md-nav__link">
+    Build the new firefox-esr abcdesktop image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-firefox-esr-application" class="md-nav__link">
+    Run the firefox-esr application
+  </a>
+  
+    <nav class="md-nav" aria-label="Run the firefox-esr application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#login-to-your-abcdesktop-service" class="md-nav__link">
+    Login to your abcdesktop service
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1529,6 +1620,92 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    Goals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone-the-application-repo" class="md-nav__link">
+    Clone the application repo
+  </a>
+  
+    <nav class="md-nav" aria-label="Clone the application repo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edit-the-mmscfg-file" class="md-nav__link">
+    Edit the mms.cfg file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-the-new-firefox-esr-abcdesktop-image" class="md-nav__link">
+    Build the new firefox-esr abcdesktop image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-firefox-esr-application" class="md-nav__link">
+    Run the firefox-esr application
+  </a>
+  
+    <nav class="md-nav" aria-label="Run the firefox-esr application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#login-to-your-abcdesktop-service" class="md-nav__link">
+    Login to your abcdesktop service
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
@@ -1539,9 +1716,55 @@
                   </a>
                 
                 
-                  <h1>Run Adobe Flash player with Mozilla Firefox-esr</h1>
-                
-                
+                <h1 id="how-to-build-and-run-abcdesktop-firefox-esr-image-to-run-flash-application">How to build and run abcdesktop firefox-esr image to run flash application</h1>
+<p>Adobe no longer supports Flash Player after December 31, 2020 and blocked Flash content from running in Flash Player beginning January 12, 2021.</p>
+<p>Lot of applications need to be rewrite, this can take time to rewrite application using HTML5. </p>
+<p>Abcdesktop can be use to run Abode Flash application, using Firefox ESR web browser. </p>
+<p>Firefox Extended Support Release (ESR) is an official version of Firefox developed for large organizations like universities and businesses that need to set up and maintain Firefox on a large scale. Firefox ESR does not come with the latest features but it has the latest security and stability fixes.</p>
+<h2 id="goals">Goals</h2>
+<ul>
+<li>use Flash Player for own web site</li>
+</ul>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>A running dockerd last version </li>
+<li>An access to the docker public registry</li>
+<li>Nodejs installed on your host.  </li>
+</ul>
+<h2 id="clone-the-application-repo">Clone the application repo</h2>
+<p>To build a new firefox-esr with adobe flash player, clone the <code>oc.apps</code> repo</p>
+<pre><code>    git clone https://github.com/abcdesktopio/oc.apps.git
+</code></pre>
+<h3 id="edit-the-mmscfg-file">Edit the mms.cfg file</h3>
+<p>Edit the mms.cfg file, and add your own website url</p>
+<pre><code>EOLUninstallDisable=1
+SilentAutoUpdateEnable=0
+AutoUpdateDisable=1
+EnableAllowList=1
+AllowListURLPattern=*://*.adobe.com
+AllowListURLPattern=https://*.abcdesktop.io
+</code></pre>
+<p>Add the a new line and replace <code>https://www.domain.com</code>by your own web site</p>
+<pre><code>AllowListURLPattern=https://www.domain.com
+</code></pre>
+<h2 id="build-the-new-firefox-esr-abcdesktop-image">Build the new firefox-esr abcdesktop image</h2>
+<p>Run the docker build command </p>
+<pre><code>docker build -t firefox-esr.d -f firefox-esr.d .
+</code></pre>
+<h2 id="run-the-firefox-esr-application">Run the firefox-esr application</h2>
+<h3 id="login-to-your-abcdesktop-service">Login to your abcdesktop service</h3>
+<p>Using you web browser, log in to your abcdesktop service</p>
+<p><img alt="login abcdesktop" src="../img/flash-firefox-esr.login.png" /></p>
+<p>Look at the twice firefox icon for <code>Firefox</code> and <code>Firefox-esr</code> application.</p>
+<p>Start the application <code>Firefox-esr</code></p>
+<p><img alt="twice firefox icon" src="../img/flash-firefox-esr.twice-firefox.png" /></p>
+<p>Open you own flash website, or your can got to <a href="https://www.abcdesktop.io/flash">https://www.abcdesktop.io/flash</a> sample web site</p>
+<p><img alt="" src="../img/flash-firefox-esr.abcdesktop-flash-1.png" /></p>
+<p>Click to the <code>Run Adobe Flash</code> plugins </p>
+<p><img alt="" src="../img/flash-firefox-esr.abcdesktop-flash-2.png" /></p>
+<p>And Allow the <code>Adobe Flash to run</code> </p>
+<p><img alt="" src="../img/flash-firefox-esr.abcdesktop-flash-run.png" /></p>
+<p>You can use run the Adobe Flash plugins.</p>
                 
               
               
