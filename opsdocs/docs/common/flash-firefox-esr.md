@@ -22,7 +22,7 @@ Firefox Extended Support Release (ESR) is an official version of Firefox develop
 ## Clone the application repo 
 
  
-To build a new firefox-esr with adobe flash player, clone the `oc.apps` repo
+To build a new `firefox-esr` with `adobe flash player` embeded, clone the `oc.apps` repo
 
 ```
     git clone https://github.com/abcdesktopio/oc.apps.git
@@ -71,16 +71,16 @@ Start the application `Firefox-esr`
 
 ![twice firefox icon](img/flash-firefox-esr.twice-firefox.png)
 
-Open you own flash website, or your can got to [https://www.abcdesktop.io/flash](https://www.abcdesktop.io/flash) sample web site
+Open you own flash website, or go to [https://www.abcdesktop.io/flash](https://www.abcdesktop.io/flash) sample web site
 
-![](img/flash-firefox-esr.abcdesktop-flash-1.png)
+![Run Adobe Flash](img/flash-firefox-esr.abcdesktop-flash-1.png)
 
 Click to the `Run Adobe Flash` plugins 
 
-![](img/flash-firefox-esr.abcdesktop-flash-2.png)
+![Allow Adobe Flash to run](img/flash-firefox-esr.abcdesktop-flash-2.png)
 
 And Allow the `Adobe Flash to run` 
 
-![](img/flash-firefox-esr.abcdesktop-flash-run.png)
+![Adobe Flash is running](img/flash-firefox-esr.abcdesktop-flash-run.png)
 
 You can use run the Adobe Flash plugins.
