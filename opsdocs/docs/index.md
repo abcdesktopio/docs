@@ -5,7 +5,7 @@ description: cloud native desktop complete workspace environment accessible from
 keywords: desktopless kubernetes secure desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface byod bring your own device reduce attack surface novnc rdp citrix
 ---
 
-# Welcome to abcdesktop.io 
+# Welcome to abcdesktop.io, a desktopless system
 
 abcdesktop.io = NoVNC + X11 + Docker
 
@@ -19,7 +19,7 @@ abcdesktop.io = NoVNC + X11 + Docker
 
 
 
-abcdesktop.io is a cloud native desktopless, and a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, deskopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface.
+abcdesktop.io is a cloud native desktopless system, and a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, deskopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface.
 abcdeskop.io is an opensource and free solution that offer seamless access to secure desktops and applications on any device, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
 
 This flexible working environment simplifies usage like
