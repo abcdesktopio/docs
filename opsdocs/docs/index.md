@@ -31,6 +31,12 @@ This flexible working environment simplifies usage like
 - BYOD, bring your own device
 - Desktop on demand, Desktop as a service
 
+## [https://demo.abcdesktop.io](demo.abcdesktop.io) online service
+You can dicover abcdesktop.io desktopless services on the demo website. [https://demo.abcdesktop.io](demo) instance is a quick example to illustrate how the abcdesktop.io project works. Your desktopless is ready to run for 10 minutes, and will be terminated by the garbage collector after 10 minutes. It requires an an OpenID Connect provider to sign-in like (Google, Facebook, Github). The security policy for Internet network prevents requests from your abcdesktop being allowed.
+Printer service (using cups) and sound service (using pulseaudio) inside the kubernetes pods are enabled.
+
+To reach the demo website, follow the link [https://demo.abcdesktop.io](https://demo.abcdesktop.io)
+
 
 ## abcdesktop.io: a docker VDI service
 
