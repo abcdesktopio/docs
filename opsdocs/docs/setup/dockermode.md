@@ -119,11 +119,13 @@ networks:
 
 >
 > Run the docker-compose up command with projet name option set to ```abcdesktop``` value.
-> The projet name ```abcdesktop``` is use by pyos to reference the network set by default to ```abcdesktop_netuser```  
+> The projet name `abcdesktop` is used by pyos to reference the network set by default to ```abcdesktop_netuser```
+> 
+> **You must set the projet name to `abcdesktop`, else the websocket connection will failed**
 > 
 
 ```bash
-docker-compose -p abcdesktop up 
+docker-compose -p abcdesktop up
 ```
 
 > Since the abcdesktop pyos code needs to interact with the Docker API in order to CRUD containers, pyos need to mount /var/run/docker.sock into the container
