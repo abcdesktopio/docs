@@ -59,7 +59,7 @@ The quick installation process runs the all commands step by step:
 
 ## Manually installation step by step (Linux, macOS or Windows)
 
-The following commands will let you prepare and build abcdesktop plateform on the master node. All applications run on a single server.  
+The following commands will let you install an abcdesktop plateform on your single server. All applications run on the single server.  
 
 
 ### Pull user container image
@@ -107,7 +107,7 @@ services:
     networks:
       - netback
   mongodb:
-    image: mongo
+    image: mongo:4.4.9
     networks:
       - netback
 networks:
@@ -141,8 +141,8 @@ Pulling memcached (memcached:)...
 latest: Pulling from library/memcached
 ....
 Status: Downloaded newer image for memcached:latest
-Pulling mongodb (mongo:)...
-latest: Pulling from library/mongo
+Pulling mongodb (mongo:4.4)...
+latest: Pulling from library/mongo:4.4
 ....
 Status: Downloaded newer image for mongo:latest
 Pulling pyos (abcdesktopio/oc.pyos:)...
