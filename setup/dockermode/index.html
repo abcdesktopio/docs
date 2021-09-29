@@ -2127,7 +2127,7 @@ The quick installation process runs the all commands step by step:</p>
 <li>run <code>docker-compose -p abcdesktop up</code></li>
 </ul>
 <h2 id="manually-installation-step-by-step-linux-macos-or-windows">Manually installation step by step (Linux, macOS or Windows)</h2>
-<p>The following commands will let you prepare and build abcdesktop plateform on the master node. All applications run on a single server.  </p>
+<p>The following commands will let you install an abcdesktop plateform on your single server. All applications run on the single server.  </p>
 <h3 id="pull-user-container-image">Pull user container image</h3>
 <p>The user container is named <code>abcdesktopio/oc.user.18.04</code>. The size of the <code>abcdesktopio/oc.user.18.04</code> image is up to 2 GB. Download the user container image, using the docker pull commmand : </p>
 <pre><code class="language-bash">docker pull abcdesktopio/oc.user.18.04
@@ -2165,7 +2165,7 @@ services:
     networks:
       - netback
   mongodb:
-    image: mongo
+    image: mongo:4.4.9
     networks:
       - netback
 networks:
@@ -2194,8 +2194,8 @@ Pulling memcached (memcached:)...
 latest: Pulling from library/memcached
 ....
 Status: Downloaded newer image for memcached:latest
-Pulling mongodb (mongo:)...
-latest: Pulling from library/mongo
+Pulling mongodb (mongo:4.4)...
+latest: Pulling from library/mongo:4.4
 ....
 Status: Downloaded newer image for mongo:latest
 Pulling pyos (abcdesktopio/oc.pyos:)...
