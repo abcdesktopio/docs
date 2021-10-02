@@ -29,27 +29,23 @@ Goal :
 Only the name of the network is used by abcdesktop.
 
 
-### Download default oc.nginx images 
+### Clone default webmodules  
 
 ```bash
-docker pull abcdesktopio/oc.nginx
+git clone https://github.com/abcdesktopio/webModules.git
 ```
 
 
-### Locate project and ui files 
-
-```bash
-docker run -it abcdesktopio/oc.nginx bash
-```
+## Locate project and ui files 
 
 ### Update ui.json file
 
-Update your `ui.json` file.  `ui.json` is located in `/var/webModules/transpile/config` directory.
+Update your `ui.json` file.  `ui.json` is located in `var/webModules/transpile/config` directory.
 
 
 ```bash
-root@b2069ae9a62a:/# cd /var/webModules/transpile/config
-root@b2069ae9a62a:/var/webModules/transpile/config# ls -la
+# cd var/webModules/transpile/config
+var/webModules/transpile/config# ls -la
 total 204
 drwxrwxr-x   1 root root   4096 Feb  1 15:14 .
 drwxr-xr-x   1 root root   4096 Feb  1 15:14 ..
@@ -149,14 +145,6 @@ The main entry is `name`, name is the project name:
 
 ### Create a new `Dockerfile` to build changes
 
-#### Download the ui.json
-
-Download the ui.json from the source repository [ui.json](https://raw.githubusercontent.com/abcdesktopio/webModules/main/transpile/config/ui.json) and update data value.
-
-
-```bash
-wget -O ui.json https://raw.githubusercontent.com/abcdesktopio/webModules/main/transpile/config/ui.json
-```
 
 #### Update the ui.json with your own values
 
@@ -247,9 +235,21 @@ Example
 #### Write your Dockerfile
 
 ```docker
-FROM abcdesktopio/oc.nginx
-COPY ui.json /var/webModules/transpile/config
-RUN cd /var/webModules/ && make -B prod
+FROM abcdesktopio/oc.nginx:builder as builder
+
+# copy data files
+COPY --from=abcdesktopio/oc.nginx:dev var/webModules /var/webModules
+# copy updated file ui.json 
+COPY ui.json /var/webModules/transpile/config/ui.json
+# run makefile 
+RUN cd /var/webModules && make css
+
+
+# --- START Build image ---
+FROM abcdesktopio/oc.nginx:dev
+
+# COPY generated web site from builder container
+COPY --from=builder var/webModules /var/webModules
 ```
 
 #### Docker build
@@ -261,25 +261,32 @@ docker build -t oc.nginx:acme .
 ```
 
 ```
-[+] Building 0.1s (8/8) FINISHED                                                                                                                                                                            
- => [internal] load build definition from Dockerfile                                                                                                                                                   0.0s
- => => transferring dockerfile: 36B                                                                                                                                                                    0.0s
- => [internal] load .dockerignore                                                                                                                                                                      0.0s
- => => transferring context: 2B                                                                                                                                                                        0.0s
- => [internal] load metadata for docker.io/abcdesktopio/oc.nginx:latest                                                                                                                                0.0s
- => [1/3] FROM docker.io/abcdesktopio/oc.nginx                                                                                                                                                         0.0s
- => [internal] load build context                                                                                                                                                                      0.0s
- => => transferring context: 29B                                                                                                                                                                       0.0s
- => CACHED [2/3] COPY ui.json /var/webModules/transpile/config                                                                                                                                                0.0s
- => CACHED [3/3] RUN cd  /var/webModules/ && make -B prod                                                                                                                                              0.0s
- => exporting to image                                                                                                                                                                                 0.0s
- => => exporting layers                                                                                                                                                                                0.0s
- => => writing image sha256:4de1755b60d7adea56460814302fdd7b943e8e40f5f4d093011dea5b08fa30c8                                                                                                           0.0s
- => => naming to docker.io/library/oc.nginx:acme
+Sending build context to Docker daemon  258.3MB
+Step 1/6 : FROM abcdesktopio/oc.nginx:builder as builder
+ ---> b04ba79c6b97
+Step 2/6 : COPY --from=abcdesktopio/oc.nginx:dev var/webModules /var/webModules
+ ---> Using cache
+ ---> 3c16ce97b6b5
+Step 3/6 : COPY ui.json /var/webModules/transpile/config/ui.json
+ ---> Using cache
+ ---> 3c8e48730bb0
+Step 4/6 : RUN cd /var/webModules && make css
+ ---> Running in b9660fb676b2
+Build css: 1.005s
+Total duration: 1.007s
+Removing intermediate container b9660fb676b2
+ ---> febdb98ad1aa
+Step 5/6 : FROM abcdesktopio/oc.nginx:dev
+ ---> 2b311b600a4e
+Step 6/6 : COPY --from=builder var/webModules /var/webModules
+ ---> Using cache
+ ---> c9545d07f825
+Successfully built c9545d07f825
+Successfully tagged oc.nginx:acme
 ```
 
 
-Run the docker images command to read the new `oc.nginx` image
+Run the `docker images` command to read the new `oc.nginx` image
 
 ```bash
 docker images 
