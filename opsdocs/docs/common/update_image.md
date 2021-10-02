@@ -246,7 +246,7 @@ RUN cd /var/webModules && make css
 
 
 # --- START Build image ---
-FROM abcdesktopio/oc.nginx:dev
+FROM abcdesktopio/oc.nginx
 
 # COPY generated web site from builder container
 COPY --from=builder var/webModules /var/webModules
@@ -264,7 +264,7 @@ docker build -t oc.nginx:acme .
 Sending build context to Docker daemon  258.3MB
 Step 1/6 : FROM abcdesktopio/oc.nginx:builder as builder
  ---> b04ba79c6b97
-Step 2/6 : COPY --from=abcdesktopio/oc.nginx:dev var/webModules /var/webModules
+Step 2/6 : COPY --from=abcdesktopio/oc.nginx var/webModules /var/webModules
  ---> Using cache
  ---> 3c16ce97b6b5
 Step 3/6 : COPY ui.json /var/webModules/transpile/config/ui.json
@@ -276,7 +276,7 @@ Build css: 1.005s
 Total duration: 1.007s
 Removing intermediate container b9660fb676b2
  ---> febdb98ad1aa
-Step 5/6 : FROM abcdesktopio/oc.nginx:dev
+Step 5/6 : FROM abcdesktopio/oc.nginx
  ---> 2b311b600a4e
 Step 6/6 : COPY --from=builder var/webModules /var/webModules
  ---> Using cache
