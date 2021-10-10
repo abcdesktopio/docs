@@ -11,7 +11,7 @@ In all configuration, the abcdesktop.io infrastructure uses six containers, each
 | oc.pyos    | API Server | abcdesktopio/oc.pyos | abcdesktopio |
 | oc.nginx | Web Service (http proxy and http server)  |  abcdesktopio/oc.nginx  | abcdesktopio |
 | oc.speedtest | http benchmarch | abcdesktopio/oc.speedtest  | from [LibreSpeed](https://librespeed.org/) updated abcdesktopio |
-| mongodb     | json database server | mongodb |  [MongoDB](https://www.mongodb.com/) |
+| oc.mongo     | json database server | mongodb |  [MongoDB](https://www.mongodb.com/) |
 | memcached     | cache server | memcached | [Memcached](https://memcached.org/) |
 
  	
@@ -107,7 +107,7 @@ services:
     networks:
       - netback
   mongodb:
-    image: mongo:4.4.9
+    image: abcdesktopio/oc.mongo
     networks:
       - netback
 networks:
