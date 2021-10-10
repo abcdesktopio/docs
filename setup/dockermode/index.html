@@ -2146,14 +2146,14 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   speedtest:
-    image: 'abcdesktopio/oc.speedtest'
+    image: abcdesktopio/oc.speedtest
     networks:
       - netuser
   nginx:
     depends_on:
       - memcached
       - pyos
-    image: 'abcdesktopio/oc.nginx'
+    image: abcdesktopio/oc.nginx
     ports:
       - '80:80'
       - '443:443'
