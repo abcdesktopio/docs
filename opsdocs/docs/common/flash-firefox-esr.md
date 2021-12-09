@@ -86,4 +86,4 @@ And Allow the `Adobe Flash to run`
 
 ![Adobe Flash is running](img/flash-firefox-esr.abcdesktop-flash-run.png)
 
-You can use run the Adobe Flash plugins.
+Great, you can run the Adobe Flash plugins.
