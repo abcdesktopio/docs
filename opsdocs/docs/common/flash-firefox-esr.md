@@ -19,15 +19,6 @@ Firefox Extended Support Release (ESR) is an official version of Firefox develop
 - Nodejs installed on your host.  
 
 
-## Clone the application repo 
-
- 
-To build a new `firefox-esr` with `adobe flash player` embeded, clone the `oc.apps` repo
-
-```
-    git clone https://github.com/abcdesktopio/oc.apps.git
-```
-
 ### Edit the mms.cfg file 
 
 Edit the mms.cfg file, and add your own website url
@@ -47,6 +38,18 @@ Add the a new line and replace `https://www.domain.com `by your own web site
 AllowListURLPattern=https://www.domain.com
 ```
 
+## Create file firefox-esr.d 
+
+Create a Dockerfile ```firefox-esr.d```
+
+* to copy your new ```mms.cfg``` into the directory ```/etc/adobe``` of your container image
+
+```
+FROM abcdesktopio/firefox-esr.d
+USER 0
+COPY mms.cfg /etc/adobe/mms.cfg
+USER balloon
+```
 
 ## Build the new firefox-esr abcdesktop image
 
