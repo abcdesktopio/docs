@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://www.abcdesktop.io/guiappsoddocker/">
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.5">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.1">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.a617204b.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.23b6d78a.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.9204c3b2.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
         
       
     
@@ -405,8 +405,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#x-window-system-architecture" class="md-nav__link">
-    X window system architecture
+  <a href="#x11-window-system-architecture" class="md-nav__link">
+    X11 window system architecture
   </a>
   
 </li>
@@ -1907,8 +1907,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#x-window-system-architecture" class="md-nav__link">
-    X window system architecture
+  <a href="#x11-window-system-architecture" class="md-nav__link">
+    X11 window system architecture
   </a>
   
 </li>
@@ -2019,8 +2019,9 @@
 <p><a href="https://blog.nediiii.com/dockerize-gui-app/">Dockerize GUI app</a> This project dockerize typical GUI app so that you can visit it in browser. Really good technical solutions.</p>
 </li>
 <li><a href="https://hub.docker.com/r/scottyhardy/docker-wine/">Docker and Wine</a> Docker image that includes Wine and Winetricks for running Windows applications on Linux and macOS </li>
+<li><a href="https://github.com/m1k1o/neko">n.eko</a> This app uses Web RTC to stream a desktop inside of a docker container (doesn't use VNC) </li>
 </ul>
-<h2 id="x-window-system-architecture">X window system architecture</h2>
+<h2 id="x11-window-system-architecture">X11 window system architecture</h2>
 <p>In a *nix system a GUI application has the role of “X client”. Each time it redraws its content a sequence of graphics commands is encoded into the X protocol using a library (usually Xlib) and transmitted into the X11 socket.
 At the other end an X server reads such commands from the socket and renders them onto a display. [ source <a href="https://medium.com/@pigiuz/hw-accelerated-gui-apps-on-docker-7fd424fe813e">HW accelerated GUI apps on Docker</a>]
 <img alt="X window system architecture" src="../img/x11windowsystemarchitecture.png" /></p>
@@ -2139,10 +2140,10 @@ This can be done using :</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.cefbb252.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.c7dec7e7.min.js"}</script>
     
     
-      <script src="../assets/javascripts/bundle.a5f8ea78.min.js"></script>
+      <script src="../assets/javascripts/bundle.da79ceb7.min.js"></script>
       
     
   </body>
