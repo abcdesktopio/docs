@@ -16,8 +16,9 @@ A lot of different projets already exists using docker containers as a VDI. abcd
 
 * [Dockerize GUI app](https://blog.nediiii.com/dockerize-gui-app/) This project dockerize typical GUI app so that you can visit it in browser. Really good technical solutions.
 * [Docker and Wine](https://hub.docker.com/r/scottyhardy/docker-wine/) Docker image that includes Wine and Winetricks for running Windows applications on Linux and macOS 
+* [n.eko](https://github.com/m1k1o/neko) This app uses Web RTC to stream a desktop inside of a docker container (doesn't use VNC) 
 
-## X window system architecture
+## X11 window system architecture
 In a *nix system a GUI application has the role of “X client”. Each time it redraws its content a sequence of graphics commands is encoded into the X protocol using a library (usually Xlib) and transmitted into the X11 socket.
 At the other end an X server reads such commands from the socket and renders them onto a display. [ source [HW accelerated GUI apps on Docker](https://medium.com/@pigiuz/hw-accelerated-gui-apps-on-docker-7fd424fe813e)]
 ![X window system architecture](img/x11windowsystemarchitecture.png)
