@@ -21,11 +21,11 @@ To get the installation script and the vagrant file, run the command
 git clone https://github.com/abcdesktopio/vagrant.git
 ```
 
-- The vagrant file name is `Vagrantfile.kubernetes.bastion`
+- The vagrant file name is [`Vagrantfile.kubernetes.bastion`](https://raw.githubusercontent.com/abcdesktopio/vagrant/main/Vagrantfile.kubernetes.bastion)
 - The installation script is [`abcdesktop_kubernetes_bastion.sh`](https://raw.githubusercontent.com/abcdesktopio/vagrant/main/abcdesktop_kubernetes_bastion.sh)
 
 
-#### vagrant file start the kmaster vm
+#### start vagrant file to run the `kmaster` vm
 
 Run the command to run the vagrant file 
 
