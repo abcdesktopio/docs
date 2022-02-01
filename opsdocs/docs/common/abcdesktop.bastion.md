@@ -60,7 +60,7 @@ All networks are defined as `private_network` to make it simplest as possible.
 
 #### `abcdesktop_kubernetes_bastion.sh` description
 
-`abcdesktop_kubernetes_bastion.sh` takes more than ten minutes to install all services, from an ubuntu bionic 64  `hashicorp/bionic64` : 
+`abcdesktop_kubernetes_bastion.sh` takes more than eight minutes to install all services, from an ubuntu bionic 64  `hashicorp/bionic64` : 
 
 - kubernetes 
 - abcdesktop
@@ -69,6 +69,8 @@ All networks are defined as `private_network` to make it simplest as possible.
 
 Read step by step the [`abcdesktop_kubernetes_bastion.sh`](https://raw.githubusercontent.com/abcdesktopio/vagrant/main/abcdesktop_kubernetes_bastion.sh) content to get more details.
 
+You can read the vagrant stdout file as example
+[abcdesktop kubernetes bastion install log file](https://raw.githubusercontent.com/abcdesktopio/vagrant/main/abcdesktop_kubernetes_bastion.install.log) 
 
 
 
