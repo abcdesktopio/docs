@@ -2345,7 +2345,7 @@ kmaster.vm.provision &quot;shell&quot;, path: &quot;abcdesktop_kubernetes_bastio
 <p>It forward the host tcp port 30443 to guest port 30443 ( mapped as a host port in kubernetes )</p>
 <p>All networks are defined as <code>private_network</code> to make it simplest as possible.</p>
 <h4 id="abcdesktop_kubernetes_bastionsh-description"><code>abcdesktop_kubernetes_bastion.sh</code> description</h4>
-<p><code>abcdesktop_kubernetes_bastion.sh</code> takes more than ten minutes to install all services, from an ubuntu bionic 64  <code>hashicorp/bionic64</code> : </p>
+<p><code>abcdesktop_kubernetes_bastion.sh</code> takes more than eight minutes to install all services, from an ubuntu bionic 64  <code>hashicorp/bionic64</code> : </p>
 <ul>
 <li>kubernetes </li>
 <li>abcdesktop</li>
@@ -2353,6 +2353,8 @@ kmaster.vm.provision &quot;shell&quot;, path: &quot;abcdesktop_kubernetes_bastio
 <li>multi-networkpolicy </li>
 </ul>
 <p>Read step by step the <a href="https://raw.githubusercontent.com/abcdesktopio/vagrant/main/abcdesktop_kubernetes_bastion.sh"><code>abcdesktop_kubernetes_bastion.sh</code></a> content to get more details.</p>
+<p>You can read the vagrant stdout file as example
+<a href="https://raw.githubusercontent.com/abcdesktopio/vagrant/main/abcdesktop_kubernetes_bastion.install.log">abcdesktop kubernetes bastion install log file</a> </p>
 <h3 id="login-to-get-a-ssh-into-the-kmaster-vm">login to get a ssh into the <code>kmaster</code> vm</h3>
 <pre><code>VAGRANT_VAGRANTFILE=Vagrantfile.kubernetes.bastion vagrant ssh
 </code></pre>
