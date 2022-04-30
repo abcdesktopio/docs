@@ -3,9 +3,8 @@
 ## Prerequisites for setup abcdesktop
 
 * Architecture `x86-64`
-* A docker instance (version 18 and above). You can run docker commands
+* A **docker** instance (version 18 and above). You can run docker commands
 * 15 GB of free space to store sample applications ( gimp, libreoffice writer, libreoffice calc, libreoffice math, libreoffice impress, firefox ) and core image services
-
 
 
 ## Supported Architectures

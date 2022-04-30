@@ -3,13 +3,11 @@
 The language option is a list of string. Each string is formatted as a locale variable.
 The locale is simply the language/country combination ```en + US = en_US```
 
+## Language in abcdesktop.io oc.user
 
-## Language in abcdesktop.io oc.user.18.04
-
-The language list must match with the oc.user.18.04 local packages all ready installed.
+The language list must match with the oc.user local packages all ready installed.
 
 If the language is not found, the default value is set to ```en_US```
-
 
 The oc.user.18.04 is built-in with the default language package :
 

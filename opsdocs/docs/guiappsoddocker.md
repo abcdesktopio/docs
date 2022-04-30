@@ -2,10 +2,11 @@
 
 ## Related Projets on VDI with docker
 
-abcdesktop, or Yet Another VDI docker projet...
+abcdesktop, or YAVDI (Yet Another VDI docker projet)
 
-A lot of different projets already exist using docker containers as a VDI. abcdesktop is just another one. I just write list of projets, you can explore them :
+A lot of different projets already exists using docker containers as a VDI. abcdesktop is just another one. I just write list of projets, you can explore them :
 
+* [https://github.com/mviereck/x11docker](https://github.com/mviereck/x11docker) x11docker allows to run graphical desktop applications (and entire desktops) in Docker Linux containers.
 
 * [https://www.digitalocean.com/community/tutorials/how-to-remotely-access-gui-applications-using-docker-and-caddy-on-ubuntu-18-04](https://www.digitalocean.com/community/tutorials/how-to-remotely-access-gui-applications-using-docker-and-caddy-on-ubuntu-18-04) By using noVNC and TigerVNC, you can run native applications inside a Docker container and access them remotely using a web browser. 
 
@@ -15,8 +16,9 @@ A lot of different projets already exist using docker containers as a VDI. abcde
 
 * [Dockerize GUI app](https://blog.nediiii.com/dockerize-gui-app/) This project dockerize typical GUI app so that you can visit it in browser. Really good technical solutions.
 * [Docker and Wine](https://hub.docker.com/r/scottyhardy/docker-wine/) Docker image that includes Wine and Winetricks for running Windows applications on Linux and macOS 
+* [n.eko](https://github.com/m1k1o/neko) This app uses Web RTC to stream a desktop inside of a docker container (doesn't use VNC) 
 
-## X window system architecture
+## X11 window system architecture
 In a *nix system a GUI application has the role of “X client”. Each time it redraws its content a sequence of graphics commands is encoded into the X protocol using a library (usually Xlib) and transmitted into the X11 socket.
 At the other end an X server reads such commands from the socket and renders them onto a display. [ source [HW accelerated GUI apps on Docker](https://medium.com/@pigiuz/hw-accelerated-gui-apps-on-docker-7fd424fe813e)]
 ![X window system architecture](img/x11windowsystemarchitecture.png)

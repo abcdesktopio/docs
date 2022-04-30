@@ -35,28 +35,18 @@ docker pull abcdesktopio/terminal.d
 ```
 
 
-## Update the cache application list 
+## Connect to your abcdesktop
 
-The API server does not know that new docker images has been downloaded.  
-You have to send a message to the API server, to update the API Server images cache list.
-
-Using your browser or a curl command, call a http request to notify the API Server
-
-```	
-http://localhost:30443/API/manager/buildapplist
-```
-
-This http request returns a json object, with all docker images details. This json file contains all this docker image installed on the host.
-
-![buildapplist json format](img/json-image-list.png)
+The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.
 
 Now reconnect to your abcdesktop. 
+
 Open your navigator to http://[your-ip-hostname]:30443/
 
 ```	
 http://localhost:30443/
 ```
 
-The new application are installed, and ready to run.
+The new applications are installed, and ready to run.
  
 

@@ -11,7 +11,7 @@ In all configuration, the abcdesktop.io infrastructure uses six containers, each
 | oc.pyos    | API Server | abcdesktopio/oc.pyos | abcdesktopio |
 | oc.nginx | Web Service (http proxy and http server)  |  abcdesktopio/oc.nginx  | abcdesktopio |
 | oc.speedtest | http benchmarch | abcdesktopio/oc.speedtest  | from [LibreSpeed](https://librespeed.org/) updated abcdesktopio |
-| mongodb     | json database server | mongodb |  [MongoDB](https://www.mongodb.com/) |
+| oc.mongo     | json database server | mongodb |  [MongoDB](https://www.mongodb.com/) |
 | memcached     | cache server | memcached | [Memcached](https://memcached.org/) |
 
  	
@@ -59,7 +59,7 @@ The quick installation process runs the all commands step by step:
 
 ## Manually installation step by step (Linux, macOS or Windows)
 
-The following commands will let you prepare and build abcdesktop plateform on the master node. All applications run on a single server.  
+The following commands will let you install an abcdesktop plateform on your single server. All applications run on the single server.  
 
 
 ### Pull user container image
@@ -88,14 +88,14 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   speedtest:
-    image: 'abcdesktopio/oc.speedtest'
+    image: abcdesktopio/oc.speedtest
     networks:
       - netuser
   nginx:
     depends_on:
       - memcached
       - pyos
-    image: 'abcdesktopio/oc.nginx'
+    image: abcdesktopio/oc.nginx
     ports:
       - '80:80'
       - '443:443'
@@ -107,7 +107,7 @@ services:
     networks:
       - netback
   mongodb:
-    image: mongo
+    image: abcdesktopio/oc.mongo
     networks:
       - netback
 networks:
@@ -119,11 +119,13 @@ networks:
 
 >
 > Run the docker-compose up command with projet name option set to ```abcdesktop``` value.
-> The projet name ```abcdesktop``` is use by pyos to reference the network set by default to ```abcdesktop_netuser```  
+> The projet name `abcdesktop` is used by pyos to reference the network set by default to ```abcdesktop_netuser```
+> 
+> **You must set the projet name to `abcdesktop`, else the websocket connection will failed**
 > 
 
 ```bash
-docker-compose -p abcdesktop up 
+docker-compose -p abcdesktop up
 ```
 
 > Since the abcdesktop pyos code needs to interact with the Docker API in order to CRUD containers, pyos need to mount /var/run/docker.sock into the container
@@ -139,8 +141,8 @@ Pulling memcached (memcached:)...
 latest: Pulling from library/memcached
 ....
 Status: Downloaded newer image for memcached:latest
-Pulling mongodb (mongo:)...
-latest: Pulling from library/mongo
+Pulling mongodb (mongo:4.4)...
+latest: Pulling from library/mongo:4.4
 ....
 Status: Downloaded newer image for mongo:latest
 Pulling pyos (abcdesktopio/oc.pyos:)...
@@ -412,31 +414,18 @@ Install Gnome tools
 docker pull abcdesktopio/calculator.d
 docker pull abcdesktopio/terminal.d
 ```
-
-
+ 
 ### Update the cache application list 
 
-The API server does not know that new docker images has been downloaded.  
-You have to send a message to the API server, to update the API Server images cache list.
+The API server receives a new image event from dockerd. To run the new applications just refresh you web browser page.
 
-Using your browser or a curl command, call a http request to notify the API Server
-
-```	
-http://localhost/API/manager/buildapplist
-```
-
-This http request returns a json object, with all docker images details. This json file contains all this docker image installed on the host.
-
-![buildapplist json format](img/json-image-list.png)
- 
-
-### Use the new applications
+Now reconnect to your abcdesktop. 
 
 Reload your web browser page or start a new session. It's time to run the LibreOffice applications. 
 
 ![new applications installed](img/setup-login-anonymous-apps.png)
 
-New applications appear in the dock, start the application ```Firefox``` for example.
+New applications appear in the dock, start the application `Firefox` for example.
 
 ![new applications installed](img/setup-login-anonymous-app-firefox.png)
 

@@ -17,15 +17,16 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: self-hosted
-
+    # runs-on: self-hosted
+    runs-on: ubuntu-latest
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Clone sources
         run: |
           rm -rf ..?* .[!.]* *
-          git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/docs.git" .
-          git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" submodule update --init --recursive --remote
+          git clone "https://github.com/abcdesktopio/docs.git" .
+          git submodule update --init --recursive --remote
           ls -la oc.apps
       
       - uses: actions/setup-python@v2
@@ -37,23 +38,30 @@ jobs:
       
       - name: Run Makefile
         run: make docs
-        
-      - name: push data to pages
-        run: |
-           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" clone "https://github.com/abcdesktopio/abcdesktopio.github.io.git"
-           echo 'ls -la opsdocs/site'
-           ls -la opsdocs/site
-           cp -r opsdocs/site/* abcdesktopio.github.io
-           cp CNAME abcdesktopio.github.io
-           cp LICENSE abcdesktopio.github.io
-           cd abcdesktopio.github.io
-           git add *
-           git commit -m 'pushed from abcdesktopio/docs' -a
-           git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" push
-           
+      
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: opsdocs/site # The folder the action should deploy.
+      
+      # - name: push data to pages
+      #  run: |
+      #     git config --global user.name "abcdesktop.workflow"
+      #     git clone "https://github.com/abcdesktopio/abcdesktopio.github.io.git"
+      #     echo 'ls -la opsdocs/site'
+      #     ls -la opsdocs/site
+      #     cp -r opsdocs/site/* abcdesktopio.github.io
+      #     cp CNAME abcdesktopio.github.io
+      #     cp LICENSE abcdesktopio.github.io
+      #     cd abcdesktopio.github.io
+      #     git add *
+      #     git commit -m 'pushed from abcdesktopio/docs' -a
+      #     git -c http.extraheader="Authorization: basic ${{ secrets.TOKEN }}" push
+      #     
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.TOKEN_DISPATCH }}
-          repository: abcdesktopio/oc.docs
+          repository: abcdesktopio/abcdesktopio.github.io
           event-type: dispatch-from-docs

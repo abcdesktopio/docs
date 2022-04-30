@@ -2,13 +2,25 @@
 title: abcdesktop.io cloud native desktop
 summary: cloud container desktop
 description: cloud native desktop complete workspace environment accessible from a web browser
-keywords: docker kubernetes secure desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface byod bring your own device reduce attack surface novnc rdp citrix 
+keywords: desktopless kubernetes secure desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface byod bring your own device reduce attack surface novnc rdp citrix
 ---
 
-# Welcome to abcdesktop.io 
+# Welcome to abcdesktop.io, a desktopless system
 
-abcdesktop.io is a native cloud desktop, and a complete work environment accessible from a simple HTML 5 web browser, without any installation.  Each user’s application runs as a docker container to reduce attack surface.
-abcdeskop.io is an opensource free solution that offer secure desktops and applications on any device, network or digital workspace, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
+abcdesktop.io = NoVNC + X11 + Docker
+
+![abcdesktop.io](img/logo.svg){: style="height:64px;width:64px"}
+![equal](img/equals.svg){: style="height:64px;width:64px"}
+![novnc](img/novnc-icon.svg){: style="height:64px;width:64px"}
+![plus](img/plus.svg){: style="height:64px;width:64px"}
+![x11](img/x11logo.svg){: style="height:64px;width:64px"}
+![plus](img/plus.svg){: style="height:64px;width:64px"}
+![docker](img/docker-logo.svg){: style="height:64px;width:64px"}
+
+
+
+abcdesktop.io is a cloud native desktopless system, and a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, desktopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface.
+abcdeskop.io is an opensource and free solution that offer seamless access to secure desktops and applications on any device, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
 
 This flexible working environment simplifies usage like
 
@@ -18,6 +30,12 @@ This flexible working environment simplifies usage like
 - Training  
 - BYOD, bring your own device
 - Desktop on demand, Desktop as a service
+
+## Quick online preview
+You can discover abcdesktop.io desktopless services on the demo website. [https://demo.abcdesktop.io](https://demo.abcdesktop.io) instance is a quick example to illustrate how the abcdesktop.io project works. Your desktopless is ready to run for 10 minutes, and will be terminated by the garbage collector after 10 minutes. It requires an OpenID Connect provider to sign-in like (Google, Facebook, Github). The security policy for Internet network prevents requests from your abcdesktop being allowed.
+External network access is denied. Printer service (using cups) and sound service (using pulseaudio) inside the kubernetes pods are enabled.
+
+To reach the demo website, follow the link [https://demo.abcdesktop.io](https://demo.abcdesktop.io)
 
 
 ## abcdesktop.io: a docker VDI service
@@ -60,6 +78,7 @@ curl -L https://raw.githubusercontent.com/abcdesktopio/conf/main/docker/install.
 - No need to install applications any more
 - Application update, run latest docker image
 - Accounting and reporting 
+- Clipboard syncing
 
 ### Applications
 
@@ -77,17 +96,22 @@ abcdesktop.io uses many modern web technologies. However these are the minimum v
 * Opera 36,  
 * Microsoft Edge (based on Chromium)
 
-> To fully use `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, Chromium or  Microsoft Edge Chromium. The `copy and paste` feature is also supported on Firefox with a [dedicated abcdesktop extension](/common/firefox-extension).
+#### copy and paste features
+To fully use `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, Chromium or  Microsoft Edge Chromium. The `copy and paste` feature is also supported on Firefox with a [dedicated abcdesktop extension](/common/firefox-extension).
+
+| Web browser      | Clipboard sync                 |
+|------------------|-------------------------------------|
+|  Chrome     | Yes, built in support |
+|  Chromium     | Yes, built in support  |
+|  Microsoft Edge Chromium     | Yes, built in support  |
+|  Firefox       | Yes, install the [dedicated abcdesktop extension](/common/firefox-extension)| 
+|  Safari       | No, the clipboard access is not allowed by the user agent or the platform in the current context, possibly because the user denied permission| 
 
 ### Not supported web browser
 
 abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 11.x. If you need a Microsoft web browser use Microsoft Edge. Edge is based on the Chromium open-source project. Chromium forms the basis of Google Chrome, so the new Edge feels very similar to Google Chrome.
 
-## Group discussion 
+## Github repositories ![Github stars](https://img.shields.io/github/stars/abcdesktopio?style=social)
 
-A dedicated group is hosted on the google groups plateform. You can reach the [abcdesktop group](https://groups.google.com/g/abcdesktop)
-
-
-## Github repositories
-abcdesktop has 24 repositories available. Follow the code on GitHub [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code.
+abcdesktop has 36 repositories available. Follow the code on GitHub [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code.
 

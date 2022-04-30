@@ -3,7 +3,7 @@
 
 Driver for [CIFS](https://en.wikipedia.org/wiki/Server_Message_Block) (SMB, Samba, Windows Share) network filesystems as [Kubernetes volumes](https://kubernetes.io/docs/concepts/storage/volumes/).
 
-abcdesktop team is not the authors of the CIFS Flexvolume Plugin for kubernetes. This file is an update from the original source file [https://raw.githubusercontent.com/fstab/cifs/](https://raw.githubusercontent.com/fstab/cifs/master/README.md). The original source code is [https://github.com/fstab/cifs](https://raw.githubusercontent.com/fstab/cifs/master/README.md)
+abcdesktop team is not the authors of the CIFS Flexvolume Plugin for kubernetes. This file is an update from the original source file [https://raw.githubusercontent.com/fstab/cifs/](https://raw.githubusercontent.com/fstab/cifs/master/README.md). The original source code is [https://github.com/fstab/cifs](https://github.com/fstab/cifs)
 The author is [Fabian Stäber](https://github.com/fstab).
 The update is part for abcdesktop.io
 

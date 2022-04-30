@@ -6,18 +6,18 @@ In kubernetes mode, the abcdesktop.io infrastructure use seven containers (oc.cu
 
 | Container  | Role             | Image         | From         |
 |------------|------------------|---------------|--------------|
-| oc.user    | User container  |	 abcdesktopio/oc.user.18.04 | abcdesktop.io |
-| oc.cups    | Printing container  |	 abcdesktopio/oc.cupsd.18.04 | [cups](https://www.cups.org/) abcdesktop.io |
-| oc.pyos    | API Server | abcdesktopio/oc.pyos | abcdesktop.io |
-| oc.nginx | Web Service (http proxy and http server)  |  abcdesktopio/oc.nginx  | [nginx](https://www.nginx.com/)  abcdesktop.io |
+| oc.user    | user container  |	 abcdesktopio/oc.user.18.04 | abcdesktopio |
+| oc.cups    | printing container  |	 abcdesktopio/oc.cupsd.18.04 | abcdesktopio |
+| oc.pyos    | API Server | abcdesktopio/oc.pyos | abcdesktopio |
+| oc.nginx | web server proxy  |  abcdesktopio/oc.nginx  | abcdesktopio |
 | oc.speedtest | http benchmarch | abcdesktopio/oc.speedtest  | [LibreSpeed](https://librespeed.org/) |
-| oc.mongo     | json database server | abcdesktopio/oc.mongo |  [MongoDB](https://www.mongodb.com/) |
+| oc.mongo     | json database server | mongo |  [MongoDB](https://www.mongodb.com/) |
 | memcached     | cache server | memcached | [Memcached](https://memcached.org/) |
 
 
 ## Requirements
 
-You need to have a Kubernetes cluster, and the ```kubectl``` command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by reading [Kubernetes Setup](kubernetesmode.md). The command line ```openssl``` must be installed too.
+You need to have a Kubernetes cluster, and the `kubectl` command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by reading [Kubernetes Setup](kubernetesmode.md). The command line `openssl` must be installed too.
 
 
 You can run the **Quick installation process** or choose the **Manually installation step by step**
@@ -29,8 +29,9 @@ You can run the **Quick installation process** or choose the **Manually installa
 > For Microsoft Windows, please read the following chapter 'Manually installation step by step'
 
 
-You can watch the [youtube video sample](https://www.youtube.com/watch?v=KpjG4ksoGNI&feature=youtu.be
-). This video describes the Quick installation process.
+You can watch the [youtube video sample](https://www.youtube.com/watch?v=KpjG4ksoGNI&feature=youtu.be). 
+
+This video describes the Quick installation process.
 
 <iframe width="640" height="480" src="https://www.youtube.com/embed/KpjG4ksoGNI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -100,9 +101,9 @@ All communications between nginx, pyos and user navigator are encrypted by JSON 
 
 * The JSON Web Tokens user is signed with the abcdesktop jwt user signing private keys by pyos.
 * The JSON Web Tokens user is verified with the abcdesktop jwt user signing public keys by pyos
-> As multiple pods of pyos can run simultaneously, the same private and public keys value are stored into kurbenetes secret.
+> As multiple pods of pyos can run simultaneously, the same private and public keys value are stored into kubernetes secret.
 
-The abcdesktop jwt desktop payload public key is read by nginx lua script and by pyos, export the public key using the ```RSAPublicKey_out``` option, to use the ```RSAPublicKey``` format. The ```RSAPublicKey``` format make key file format compatible between python and lua.
+The abcdesktop jwt desktop payload public key is read by nginx lua script and by pyos, export the public key using the `RSAPublicKey_out` option, to use the `RSAPublicKey` format. The `RSAPublicKey` format make key file format compatible between python and lua.
 
 
 The following commands will let you create all necessary keys :
@@ -149,7 +150,7 @@ secret/abcdesktopjwtusersigning created
 >If you don't have this values, you will have to build abcdesktop images by yourself.
 >
 >change docker.json path if need /root/.docker/config.json 
->```kubectl create secret generic abcdesktopregistrysecret --from-file=.dockerconfigjson=/root/.docker/config.json --type=kubernetes.io/dockerconfigjson -n abcdesktop```
+>`kubectl create secret generic abcdesktopregistrysecret --from-file=.dockerconfigjson=/root/.docker/config.json --type=kubernetes.io/dockerconfigjson -n abcdesktop`
 >
 >
 
@@ -395,6 +396,34 @@ Subjects:
 kubectl logs daemonset-pyos-tklg8 --follow -n abcdesktop
 ```
 
-
 Note that you also can view logs using docker command
+
+
+### Rollout daemonset
+
+To rollout restart the abcdesktop daemonset
+
+```
+kubectl rollout restart daemonset -n abcdesktop
+```
+
+You should read on the standard output 
+
+```
+daemonset.apps/daemonset-nginx restarted
+daemonset.apps/daemonset-pyos restarted
+```
+
+Check the pods status  
+
+```
+kubectl get pods  -n abcdesktop
+NAME                            READY   STATUS    RESTARTS   AGE
+daemonset-nginx-dh2xd           1/1     Running   0          4m22s
+daemonset-pyos-9xn26            1/1     Running   0          3m52s
+memcached-od-5bf65bf745-xpvvr   1/1     Running   3          45h
+mongodb-od-656d85c49f-242jh     1/1     Running   4          45h
+openldap-od-5945946767-qf2hn    1/1     Running   0          45m
+speedtest-od-d94b8cb5c-52wf5    1/1     Running   0          45m
+```
 

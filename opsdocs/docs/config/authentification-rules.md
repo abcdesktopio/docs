@@ -218,19 +218,30 @@ same as
 
 ##### IPv4 and IPv6 subnets support
 
-This rule example add a tag `ipvrfc1918` if the user IP address belongs to the [rfc 1918](https://tools.ietf.org/html/rfc1918) and 
-[rfc 3927](https://tools.ietf.org/html/rfc3927).
-Both IPv6 and IPv4 addresses are supported. 
+To support private ip addresses subnet in the [rfc 1918](https://tools.ietf.org/html/rfc1918) and [rfc 3927](https://tools.ietf.org/html/rfc3927), write separated rules. Both IPv6 and IPv4 addresses are supported. 
+You can share the same label `privatenetwork` a separated rule. 
 
 ```json
-  'rule-privatenetwork': { 'conditions' : [ 
-	  { 'network': '10.0.0.0/8',     'expected' : True },
-	  { 'network': '172.16.0.0/12',  'expected' : True },
-	  { 'network': '192.168.0.0/16', 'expected' : True },
-	  { 'network': '169.254.0.0/16', 'expected' : True },
-	  { 'network': 'fe80::/10',      'expected' : True } ],
-	'expected' : True,
- 	'label': 'privatenetwork' }
+'policies': {
+	'acl' : {},
+	'rules'	: { 
+		  'rule-privatenetwork-10': {	'conditions' : [ { 'network': '10.0.0.0/8', 'expected' : True } ], 
+		  								   	'expected'   : True, 
+		  									'label': 'privatenetwork' },
+		  'rule-privatenetwork-172': {'conditions' : [ { 'network': '172.16.0.0/12', 'expected' : True } ], 
+		  									'expected'   : True, 
+		  									'label': 'privatenetwork' },
+		  'Rule-privatenetwork-192': {'conditions' : [ { 'network': '192.168.0.0/16',     'expected' : True } ], 
+		  									'expected'   : True, 
+		  									'label': 'privatenetwork' },
+		  'Rule-privatenetwork-169': {'conditions' : [ { 'network': '169.254.0.0/16',     'expected' : True } ], 
+		  									'expected'   : True, 
+		  									'label': 'privatenetwork' },
+		  'rule-privatenetwork-fe80':{	'conditions' : [ { 'network': 'fe80::/10',     'expected' : True } ], 
+		  										'expected'   : True, 
+		  										'label': 'privatenetwork' }
+	}
+}						
 ``` 	
  	
 #### condition memberof
