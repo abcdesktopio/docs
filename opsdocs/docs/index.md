@@ -10,12 +10,12 @@ keywords: desktopless kubernetes secure desktop container cloud native telecommu
 abcdesktop.io = NoVNC + TigerVNC X11 + Kubernetes
 
 ![abcdesktop.io](img/logo.svg){: style="height:64px;width:64px"}
-![equal](img/equals.svg){: style="height:64px;width:64px"}
+![equal](img/equals.svg){: style="height:64px;width:60px"}
 ![novnc](img/novnc-icon.svg){: style="height:64px;width:64px"}
-![plus](img/plus.svg){: style="height:64px;width:64px"}
+![plus](img/plus.svg){: style="height:64px;width:60px"}
 ![tigervnc](img/tigervnc.svg){: style="height:64px;width:64px"}
 ![x11](img/x11logo.svg){: style="height:64px;width:64px"}
-![plus](img/plus.svg){: style="height:64px;width:64px"}
+![plus](img/plus.svg){: style="height:64px;width:60px"}
 ![kubernetes](img/kubernetes.svg){: style="height:64px;width:64px"}
 
 
