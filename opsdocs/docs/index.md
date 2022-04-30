@@ -7,15 +7,15 @@ keywords: desktopless kubernetes secure desktop container cloud native telecommu
 
 # Welcome to abcdesktop.io, a desktopless system
 
-abcdesktop.io = NoVNC + X11 + Docker
+abcdesktop.io = NoVNC + TigerVNC X11 + Kubernetes
 
 ![abcdesktop.io](img/logo.svg){: style="height:64px;width:64px"}
 ![equal](img/equals.svg){: style="height:64px;width:64px"}
 ![novnc](img/novnc-icon.svg){: style="height:64px;width:64px"}
 ![plus](img/plus.svg){: style="height:64px;width:64px"}
-![x11](img/x11logo.svg){: style="height:64px;width:64px"}
+![x11](img/tigervnc.svg){: style="height:64px;width:64px"}
 ![plus](img/plus.svg){: style="height:64px;width:64px"}
-![docker](img/docker-logo.svg){: style="height:64px;width:64px"}
+![kubernetes](img/kubernetes.svg){: style="height:64px;width:64px"}
 
 
 
