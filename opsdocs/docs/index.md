@@ -7,19 +7,6 @@ keywords: desktopless kubernetes secure desktop container cloud native telecommu
 
 # abcdesktop.io is a desktopless system
 
-abcdesktop.io = NoVNC + TigerVNC x11 + Kubernetes
-
-![abcdesktop.io](img/logo.svg){: style="height:64px;width:64px"}
-![equal](img/equals.svg){: style="height:64px;width:60px"}
-![novnc](img/novnc-icon.svg){: style="height:64px;width:64px"}
-![plus](img/plus.svg){: style="height:64px;width:60px"}
-![tigervnc](img/tigervnc.svg){: style="height:64px;width:64px"}
-![x11](img/x11logo.svg){: style="height:64px;width:64px"}
-![plus](img/plus.svg){: style="height:64px;width:60px"}
-![kubernetes](img/kubernetes.svg){: style="height:64px;width:64px"}
-
-
-
 abcdesktop.io is a cloud native desktopless system, and a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, desktopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface.
 
 ![thisisabcdesktop](img/thisisabcdesktop.png)
@@ -69,7 +56,8 @@ Download and extract the latest release automatically (Linux or macOS) or read t
 curl -L https://raw.githubusercontent.com/abcdesktopio/conf/main/docker/install.sh | sh -
 ```
 
-## abcdesktop.io features
+
+## Features
 
 - Complete native cloud desktop, workspace environment
 - Authentification OAuth 2.0, LDAP, LDAPS, Active Directory, Kerberos
