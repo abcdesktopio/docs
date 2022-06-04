@@ -44,7 +44,7 @@ Read the http stream data, using fetch call :
 http://$target:$pulseaudio_http_port/listen/source/u8_1_11025.monitor;
 ```
 
-Pulseaudio module-http-protocol-tcp does not send wav formated header. We need to build a new wav header for each receved fragment. This is done in ```wavify.js``` file :
+Pulseaudio module-http-protocol-tcp *does not send wav formated header*. We need to build a new wav header for each receved fragment. This is done in ```wavify.js``` file :
 
 ```
 //
@@ -169,6 +169,9 @@ function wavify_law(data, numberOfChannels, sampleRate, bitsPerSample, format ) 
 Then use the ```WavPlayer.js``` from Julien Bouquillon [https://github.com/revolunet/webaudio-wav-stream-player](https://github.com/revolunet/webaudio-wav-stream-player]) to read data and send to javascript ```AudioContext()```
 
 This Release is getting glitchy audio. In Chrome, the stream plays with a slight crackle. Read the issue [https://github.com/revolunet/webaudio-wav-stream-player/issues/10](https://github.com/revolunet/webaudio-wav-stream-player/issues/10)
+
+It works, uses only HTTP protocol but i can't fix the glitchy audio. We find another way to stream sound to web browser device, using the WebRTC stack and RTP pulseaudio.
+
 
 ## Release 2.0: Pulseaudio with a WebRTC gateway
 
