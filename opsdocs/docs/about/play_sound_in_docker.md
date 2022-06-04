@@ -6,12 +6,13 @@
 As VNC does not support sound, we have to forward a ```Pulseaudio null-sink``` output to the user browser, with no latency. 
 
 * Release 1.0 : use the pulseaudio http stream and play wave data (poor sound quality but works in https only)
-
 ![pulseaudio http stream](../config/img/soundmodulehttp.png)
 
 * Release 2.0 : use janus webrtc gateway, send pulseaudio rtp stream to janus, and play sound using the web browser webrtc stack (good sound quality)
-
 ![pulseaudio rtp stream](../config/img/soundmodulertp.png)
+
+* Release 3.0 : use virtual microphone using gstreamer and pulseaudio 
+[use virtual microphone using gstreamer and pulseaudio](https://aweirdimagination.net/2020/07/19/virtual-microphone-using-gstreamer-and-pulseaudio/)
 
 ## Release 1.0: Pulseaudio with a simple module-http-protocol-tcp and a javascript no latency wav stream player
 
