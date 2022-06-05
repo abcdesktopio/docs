@@ -59,13 +59,13 @@ sudo apt-get update
 #### Step 5: Install Kubernetes utilities
 
 ```
-sudo apt-get install -y kubectl kubelet kubeadm
+sudo apt-get install -y kubectl=1.23.7-00 kubeadm=1.23.7-00  kubelet=1.23.7-00
 ```
 
 
 You will be prompted with a Y/n option in order to proceed with the installation. Please enter Y and then hit enter to continue. K8s utilities will then be installed on your system.
 
-* Your kubernetes version must be greater than or equal to 1.15.0-00 
+* Your kubernetes version must be greater than or equal to 1.15.0-00 and less than 1.24.XX
 
 You can check the version number of Kubeadm and also verify the installation through the following command:
 
