@@ -4,6 +4,7 @@
 
 * Architecture `x86-64`
 * A **docker** instance (version 18 and above). You can run docker commands
+* A Kubernetes release **less or equal** than 1.23.7-00 ( Release 1.24.XX and more are not yet supported )
 * 15 GB of free space to store sample applications ( gimp, libreoffice writer, libreoffice calc, libreoffice math, libreoffice impress, firefox ) and core image services
 
 
