@@ -12,7 +12,11 @@ As VNC does not support sound, we have to forward a ```Pulseaudio null-sink``` o
 ![pulseaudio rtp stream](../config/img/soundmodulertp.png)
 
 * Release 3.0 : use virtual microphone using gstreamer and pulseaudio 
-[use virtual microphone using gstreamer and pulseaudio](https://aweirdimagination.net/2020/07/19/virtual-microphone-using-gstreamer-and-pulseaudio/)
+
+Realy fun projets: [use virtual microphone using gstreamer and pulseaudio](https://aweirdimagination.net/2020/07/19/virtual-microphone-using-gstreamer-and-pulseaudio/) and [Get Pulseaduio sink from webrtc](https://github.com/gavv/webrtc-cli)
+
+But Kubernetes currently supports port forwarding only for TCP ports. However, Pod/service might expose UDP port too.
+[https://github.com/kubernetes/kubernetes/issues/47862](https://github.com/kubernetes/kubernetes/issues/47862), so we need a turn/ice service
 
 ## Release 1.0: Pulseaudio with a simple module-http-protocol-tcp and a javascript no latency wav stream player
 
