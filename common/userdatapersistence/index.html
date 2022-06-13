@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://www.abcdesktop.io/applications/kigo/">
+        <link rel="canonical" href="https://www.abcdesktop.io/common/userdatapersistence/">
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.4">
     
     
       
-        <title>kigo - www.abcdesktop.io</title>
+        <title>User data persistence in `all-in-one` configuration - www.abcdesktop.io</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kigo" class="md-skip">
+        <a href="#user-data-persistence-in-all-in-one-configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              kigo
+              User data persistence in `all-in-one` configuration
             
           </span>
         </div>
@@ -1038,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../list/" class="md-nav__link">
+      <a href="../../applications/list/" class="md-nav__link">
         List of all applications ready to use
       </a>
     </li>
@@ -1094,7 +1094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/non-free-applications/" class="md-nav__link">
+      <a href="../non-free-applications/" class="md-nav__link">
         Build non free applications
       </a>
     </li>
@@ -1641,7 +1641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/abcdesktop.bastion/" class="md-nav__link">
+      <a href="../abcdesktop.bastion/" class="md-nav__link">
         Use abcdesktop as a bastion
       </a>
     </li>
@@ -1683,7 +1683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/docker_macvlan/" class="md-nav__link">
+      <a href="../docker_macvlan/" class="md-nav__link">
         Bind a specific docker network for an application
       </a>
     </li>
@@ -1697,7 +1697,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/acl/" class="md-nav__link">
+      <a href="../acl/" class="md-nav__link">
         Define access control for an application
       </a>
     </li>
@@ -1711,7 +1711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/update_image/" class="md-nav__link">
+      <a href="../update_image/" class="md-nav__link">
         Update and custom frontend image
       </a>
     </li>
@@ -1725,7 +1725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/upload_and_download_files/" class="md-nav__link">
+      <a href="../upload_and_download_files/" class="md-nav__link">
         Upload and from files with your desktop
       </a>
     </li>
@@ -1739,7 +1739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/firefox-extension/" class="md-nav__link">
+      <a href="../firefox-extension/" class="md-nav__link">
         Sync clipboard with Mozilla Firefox
       </a>
     </li>
@@ -1753,7 +1753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/custom-wallpaper/" class="md-nav__link">
+      <a href="../custom-wallpaper/" class="md-nav__link">
         Custom default desktop wallpaper
       </a>
     </li>
@@ -1767,7 +1767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../common/flash-firefox-esr/" class="md-nav__link">
+      <a href="../flash-firefox-esr/" class="md-nav__link">
         Run Adobe Flash player with Mozilla Firefox-esr
       </a>
     </li>
@@ -1808,44 +1808,98 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#inherite-from" class="md-nav__link">
-    inherite from
+  <a href="#requirements" class="md-nav__link">
+    Requirements
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-ubuntu-package" class="md-nav__link">
-    use ubuntu package
+  <a href="#goals" class="md-nav__link">
+    Goals
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#display-name" class="md-nav__link">
-    Display name
+  <a href="#create-mntabcdesktop-directory" class="md-nav__link">
+    Create /mnt/abcdesktop directory
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#path" class="md-nav__link">
-    path
+  <a href="#remove-previous-persistentvolume-and-persistentvolumeclaim" class="md-nav__link">
+    Remove previous PersistentVolume and PersistentVolumeClaim
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mime-type" class="md-nav__link">
-    Mime Type
+  <a href="#create-the-persistentvolume-pv-volume-home-directory" class="md-nav__link">
+    Create the PersistentVolume pv-volume-home-directory
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pre-run-command" class="md-nav__link">
-    Pre run command
+  <a href="#create-the-persistentvolumeclaim-persistentvolumeclaim-home-directory" class="md-nav__link">
+    Create the PersistentVolumeClaim persistentvolumeclaim-home-directory
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-abcdesktopyaml-file" class="md-nav__link">
+    Update abcdesktop.yaml file
+  </a>
+  
+    <nav class="md-nav" aria-label="Update abcdesktop.yaml file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#change-odconfig-file" class="md-nav__link">
+    Change od.config file
+  </a>
+  
+    <nav class="md-nav" aria-label="Change od.config file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-desktophomedirectorytype" class="md-nav__link">
+    Update desktop.homedirectorytype
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-desktoppersistentvolumeclaim" class="md-nav__link">
+    Update desktop.persistentvolumeclaim
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-desktoppod" class="md-nav__link">
+    Update desktop.pod
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restart-your-pyos-daemon" class="md-nav__link">
+    Restart your pyos daemon
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1861,28 +1915,140 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/applications/kigo.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/common/userdatapersistence.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="kigo">kigo</h1>
-<p><img alt="kigo.svg" src="/applications/icons/kigo.svg" style="height:64px;width:64px" /></p>
-<h2 id="inherite-from">inherite from</h2>
-<p><a href="../abcdesktopio/oc.template.gtk/">abcdesktopio/oc.template.gtk</a></p>
-<h2 id="use-ubuntu-package">use ubuntu package</h2>
-<p>dbus-x11 dbus-user-session gnugo kigo</p>
-<h2 id="display-name">Display name</h2>
-<p>"kigo"</p>
-<h2 id="path">path</h2>
-<p>"/usr/games/kigo"</p>
-<h2 id="mime-type">Mime Type</h2>
-<p>"application/x-go-sgf;"</p>
-<h2 id="pre-run-command">Pre run command</h2>
-<pre><code>
-COPY composer/init.d/init.kigo /composer/init.d/init.kigo
+<h1 id="user-data-persistence-in-all-in-one-configuration">User data persistence in <code>all-in-one</code> configuration</h1>
+<h2 id="requirements">Requirements</h2>
+<p>Use a Kubernetes <code>abcdesktop</code> instance </p>
+<h2 id="goals">Goals</h2>
+<ul>
+<li>keep user's data after a logoff </li>
+</ul>
+<h2 id="create-mntabcdesktop-directory">Create <code>/mnt/abcdesktop</code> directory</h2>
+<p>Create a directory <code>/mnt/abcdesktop</code></p>
+<pre><code class="language-bash">mkdir -p /mnt/abcdesktop  
 </code></pre>
+<p>abcdesktop uses a <code>PersistentVolume</code> to store user data.</p>
+<h2 id="remove-previous-persistentvolume-and-persistentvolumeclaim">Remove previous PersistentVolume and PersistentVolumeClaim</h2>
+<pre><code class="language-bash">kubectl delete pvc persistentvolumeclaim-home-directory  -n abcdesktop
+kubectl delete pv  pv-volume-home-directory -n abcdesktop
+</code></pre>
+<p>You have to delete user's pod too. Make sure that all user's pod have been removed.</p>
+<h2 id="create-the-persistentvolume-pv-volume-home-directory">Create the PersistentVolume <code>pv-volume-home-directory</code></h2>
+<pre><code class="language-bash">kubectl create -f - &lt;&lt;EOF
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-volume-home-directory
+  namespace: abcdesktop
+  labels:
+     type: local
+spec:
+  storageClassName: storage-local-abcdesktop
+  capacity:
+     storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteMany
+  hostPath:
+    path: '/mnt/abcdesktop'
+EOF
+</code></pre>
+<p>You should read on stdout : </p>
+<pre><code>persistentvolume/pv-volume-home-directory created
+</code></pre>
+<h2 id="create-the-persistentvolumeclaim-persistentvolumeclaim-home-directory">Create the PersistentVolumeClaim <code>persistentvolumeclaim-home-directory</code></h2>
+<pre><code class="language-bash">kubectl create -f - &lt;&lt;EOF
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: persistentvolumeclaim-home-directory
+  namespace: abcdesktop
+spec:
+  storageClassName: storage-local-abcdesktop
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 3Gi
+EOF
+</code></pre>
+<p>You should read on stdout : </p>
+<pre><code>persistentvolumeclaim/persistentvolumeclaim-home-directory created
+</code></pre>
+<h2 id="update-abcdesktopyaml-file">Update <code>abcdesktop.yaml</code> file</h2>
+<h3 id="change-odconfig-file">Change od.config file</h3>
+<p>Two options define the user homedirectory :  <code>desktop.homedirectorytype</code> and <code>desktop.persistentvolumeclaim</code></p>
+<h4 id="update-desktophomedirectorytype">Update <code>desktop.homedirectorytype</code></h4>
+<p>Set the desktop.homedirectorytype to value 'persistentVolumeClaim'</p>
+<pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
+</code></pre>
+<h4 id="update-desktoppersistentvolumeclaim">Update <code>desktop.persistentvolumeclaim</code></h4>
+<p>Set the desktop.persistentvolumeclaim to the name of the <code>persistentVolumeClaim</code> to use. In this example the name of the <code>persistentvolumeclaim</code> is <code>persistentvolumeclaim-home-directory</code></p>
+<pre><code>desktop.persistentvolumeclaim: 'persistentvolumeclaim-home-directory'
+</code></pre>
+<h4 id="update-desktoppod">Update <code>desktop.pod</code></h4>
+<p>Add the <code>init</code> entry in <code>desktop.pod</code></p>
+<pre><code>'init':       {     'image': 'busybox',
+                    'enable': True,
+                    'acl':  { 'permit': [ 'all' ] },
+                    'pullpolicy':  'IfNotPresent',
+                    'command':  [ 'sh', '-c',  'chown 4096:4096 /home/balloon /home/balloon/*' ] 
+    }
+</code></pre>
+<p>The init entry defines the init container for the user's pod. The command runs by the init container, fixes the owner of the home directory to <code>userid</code> to <code>4096</code> and the <code>groupid</code> to <code>4096</code>.   The init command is <code>chown 4096:4096 /home/balloon /home/balloon/*</code></p>
+<p>Pulseaudio audio service does not start if the home directory not accessible or not own by the current user.</p>
+<pre><code>desktop.pod : { 
+    'graphical' : { 'image': 'abcdesktopio/oc.user.20.04:dev',
+                    'pullpolicy':  'IfNotPresent',
+                    'enable': True,
+                    'acl':  { 'permit': [ 'all' ] },
+                    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
+                    'resources': { 'requests': { 'memory': &quot;320Mi&quot;,   'cpu': &quot;250m&quot; },  'limits'  : { 'memory': &quot;1Gi&quot;,    'cpu': &quot;1000m&quot; } },
+                    'securityContext': { 'allowPrivilegeEscalation': True, 'runAsUser': 4096 },
+                    'shareProcessNamespace': True,
+                    'secrets_requirement' : [ 'abcdesktop/vnc', 'abcdesktop/kerberos']
+    },
+    'printer' :   { 'image': 'abcdesktopio/oc.cupsd.18.04:dev',
+                    'pullpolicy': 'IfNotPresent',
+                    'enable': True,
+                    'securityContext': { 'runAsUser': 0 },
+                    'resources': { 'requests': { 'memory': &quot;64Mi&quot;,    'cpu': &quot;125m&quot; },  'limits'  : { 'memory': &quot;512Mi&quot;,  'cpu': &quot;500m&quot;  } },
+                    'acl':  { 'permit': [ 'all' ] } 
+    },
+    'filer' :     { 'image': 'abcdesktopio/oc.filer:dev',
+                    'pullpolicy':  'IfNotPresent',
+                    'enable': True,
+                    'securityContext': { 'runAsUser': 4096 },
+                    'acl':  { 'permit': [ 'all' ] } 
+    },
+    'storage' :   { 'image': 'k8s.gcr.io/pause:3.2',
+                    'pullpolicy':  'IfNotPresent',
+                    'enable': True,
+                    'securityContext': {  'runAsUser': 4096 },
+                    'acl':   { 'permit': [ 'all' ] },
+                    'resources': { 'requests': { 'memory': &quot;32Mi&quot;,    'cpu': &quot;100m&quot; },  'limits'  : { 'memory': &quot;128Mi&quot;,  'cpu': &quot;250m&quot;  } }
+    },
+    'sound':      { 'image': 'abcdesktopio/oc.pulseaudio.22.04:dev',
+                    'pullpolicy': 'IfNotPresent',
+                    'enable': True,
+                    'securityContext': {  'runAsUser': 4096 },
+                    'acl':  { 'permit': [ 'all' ] },
+                    'resources': { 'requests': { 'memory': &quot;8Mi&quot;,     'cpu': &quot;50m&quot;  },  'limits'  : { 'memory': &quot;64Mi&quot;,   'cpu': &quot;250m&quot;  } } 
+    },
+    'init':       { 'image': 'busybox',
+                    'enable': True,
+                    'acl':  { 'permit': [ 'all' ] },
+                    'pullpolicy':  'IfNotPresent',
+                    'command':  [ 'sh', '-c',  'chown 4096:4096 /home/balloon /home/balloon/*' ] 
+    }}
+</code></pre>
+<h3 id="restart-your-pyos-daemon">Restart your pyos daemon</h3>
+<p>Restart your pyos daemon, to make sure that the new parameters will be use to start the user container.</p>
 
               
             </article>
