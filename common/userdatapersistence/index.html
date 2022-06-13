@@ -2143,7 +2143,7 @@ EOF
                     'enable': True,
                     'acl':  { 'permit': [ 'all' ] },
                     'pullpolicy':  'IfNotPresent',
-                    'command':  [ 'sh', '-c',  'chown 4096:4096 /home/balloon /home/balloon/*' ] 
+                    'command':  [ 'sh', '-c',  'chown 4096:4096 /home/balloon' ] 
     }
 </code></pre>
 <p>The init entry defines the init container for the user's pod. The command runs by the init container, fixes the owner of the home directory to <code>userid</code> to <code>4096</code> and the <code>groupid</code> to <code>4096</code>.   The init command is <code>chown 4096:4096 /home/balloon /home/balloon/*</code></p>
@@ -2190,7 +2190,7 @@ EOF
                     'enable': True,
                     'acl':  { 'permit': [ 'all' ] },
                     'pullpolicy':  'IfNotPresent',
-                    'command':  [ 'sh', '-c',  'chown 4096:4096 /home/balloon /home/balloon/*' ] 
+                    'command':  [ 'sh', '-c',  'chown 4096:4096 /home/balloon' ] 
     }}
 </code></pre>
 <h3 id="restart-your-pyos-daemon">Restart your pyos daemon</h3>
