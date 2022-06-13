@@ -120,7 +120,7 @@ Add the `init` entry in `desktop.pod`
                     'enable': True,
                     'acl':  { 'permit': [ 'all' ] },
                     'pullpolicy':  'IfNotPresent',
-                    'command':  [ 'sh', '-c',  'chown 4096:4096 /home/balloon /home/balloon/*' ] 
+                    'command':  [ 'sh', '-c',  'chown 4096:4096 /home/balloon' ] 
     }
 ```
 
@@ -172,7 +172,7 @@ desktop.pod : {
                     'enable': True,
                     'acl':  { 'permit': [ 'all' ] },
                     'pullpolicy':  'IfNotPresent',
-                    'command':  [ 'sh', '-c',  'chown 4096:4096 /home/balloon /home/balloon/*' ] 
+                    'command':  [ 'sh', '-c',  'chown 4096:4096 /home/balloon' ] 
     }}
 ```
 
