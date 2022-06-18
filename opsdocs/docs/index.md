@@ -7,20 +7,20 @@ keywords: desktopless kubernetes secure desktop container cloud native telecommu
 
 # abcdesktop.io is a desktopless system
 
-abcdesktop.io is a cloud native desktopless system, and a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, desktopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface.
+abcdesktop.io is a cloud native desktopless system and a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, desktopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface.
 
 ![thisisabcdesktop](img/thisisabcdesktop.png)
 
-abcdeskop.io is an opensource and free solution that offer seamless access to secure desktops and applications on any device, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
+abcdeskop.io is an open source and free solution that offer seamless access to secure desktops and applications on any device, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
 
 This flexible working environment simplifies usage like
 
 - Telecommuting
 - Remote virtual desktop 
-- IT temporary access for subcontractors
+- Give temporary access to other contractors or guests
 - Training  
-- BYOD, bring your own device
-- Desktop on demand, Desktop as a service
+- BYOD, Bring Your Own Device
+- Desktop On Demand, Desktop as a service
 
 ## Quick online preview
 You can discover abcdesktop.io desktopless services on the demo website. [https://demo.abcdesktop.io](https://demo.abcdesktop.io) instance is a quick example to illustrate how the abcdesktop.io project works. Your desktopless is ready to run for 10 minutes, and will be terminated by the garbage collector after 10 minutes. It requires an OpenID Connect provider to sign-in like (Google, Facebook, Github). The security policy for Internet network prevents requests from your abcdesktop being allowed. Printer service (using cups) and sound service (using pulseaudio) inside the kubernetes pods are enabled.
@@ -30,7 +30,7 @@ To reach the demo website, follow the link [https://demo.abcdesktop.io](https://
 
 ## abcdesktop.io: a docker VDI service
 
-abcdesktop.io provides a way to run grapicals applications securely isolated in a docker container, and use a web browser HTML5 as display device. Because docker containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.
+abcdesktop.io provides a way to run graphics software securely isolated in a docker container, and use a web browser HTML5 as display device. Because docker containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.
 
 ![screenshot-applications](img/screenshot-applications.png)
 
@@ -62,7 +62,7 @@ curl -L https://raw.githubusercontent.com/abcdesktopio/conf/main/docker/install.
 - Complete native cloud desktop, workspace environment
 - Authentification OAuth 2.0, LDAP, LDAPS, Active Directory, Kerberos
 - Access to the user home directory (homeDirectory support in Active Directory)
-- Legacy CIFS Flexvolume using kubernetes driver 
+- Legacy CIFS FlexVolume using kubernetes driver 
 - All applications run inside an isolated docker container
 - Local and remote printing support 
 - Off-line sessions are maintained
