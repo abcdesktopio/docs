@@ -2195,34 +2195,39 @@ services:
     depends_on:
       - memcached
       - mongodb
-    image: 'abcdesktopio/oc.pyos'
+    image: abcdesktopio/oc.pyos:${TAG:-1.0}
     networks:
       - netback
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
   speedtest:
-    image: abcdesktopio/oc.speedtest
+    image: abcdesktopio/oc.speedtest:${TAG:-1.0}
     networks:
       - netuser
+
   nginx:
     depends_on:
       - memcached
       - pyos
-    image: abcdesktopio/oc.nginx
+    image: abcdesktopio/oc.nginx:${TAG:-1.0}
     ports:
-      - '80:80'
-      - '443:443'
+      - 80:80
+      - 443:443
     networks:
       - netuser
       - netback
+
   memcached:
     image: memcached
     networks:
       - netback
+
   mongodb:
-    image: abcdesktopio/oc.mongo
+    image: abcdesktopio/oc.mongo:4.4.14
     networks:
       - netback
+
 networks:
   netuser:
     driver: bridge
