@@ -6,11 +6,11 @@
 * 15 GB of free space to store sample applications ( gimp, libreoffice writer, libreoffice calc, libreoffice math, libreoffice impress, firefox ) and core image services
 
 ### Release 1.0 
-* **docker** instance (version 18 and above).
+* **docker** instance (version 18 and above). abcdesktop.io 1.0 need a dockerd socket access.
 * Kubernetes release **less or equal** than 1.23.7-00 ( if you use kubernetes release 1.24 or above, you must use abcdesktop.io release 3.0  )
 
 ### Release 2.0 
-* **docker** instance (version 18 and above).
+* **docker** instance (version 18 and above). abcdesktop.io 2.0 need a dockerd socket access.  
 * Kubernetes release **less or equal** than 1.23.7-00 ( if you use kubernetes release 1.24 or above, you must use abcdesktop.io release 3.0  )
 * an application runs as docker container or as kubernetes pod
 
@@ -30,28 +30,6 @@ Our images support only architectures `x86-64`. The architectures supported by t
 ### GNU/Linux
 
 The recommended distrubution is [Ubuntu 20.04 LTS (Focal Fossa)](https://releases.ubuntu.com/20.04/)
-
-#### CentOS
-To install dockerd on CentOS. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
-[Get Docker Engine - Community for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
-
-#### Fedora
-To install dockerd on Fedora. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
-[Get Docker Engine - Community for Fedora](https://docs.docker.com/install/linux/docker-ce/fedora/)
-
-#### Debian
-To install dockerd on Debian. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
-[Get Docker Engine - Community for Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
-
-#### Ubuntu
-To install dockerd on Ubuntu. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
-[Get Docker Engine - Community for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-
-#### Binaries
-If you want to try Docker or use it in a testing environment, but you’re not on a supported platform, you can try installing from static binaries. If possible, you should use packages built for your operating system, and use your operating system’s package management system to manage Docker installation and upgrades. Be aware that 32-bit static binary archives do not include the Docker daemon.
-
-To install dockerd as binary. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
-[Install Docker Engine - Community from binaries](https://docs.docker.com/install/linux/docker-ce/binaries/)
 
 
 ### MacOS/X
