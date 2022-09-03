@@ -2,11 +2,21 @@
 
 ## Prerequisites for setup abcdesktop
 
-* Architecture `x86-64`
-* A **docker** instance (version 18 and above). You can run docker commands
-* A Kubernetes release **less or equal** than 1.23.7-00 ( Release 1.24.XX and more are not yet supported )
+* Architecture `x86-64` ( `arm-64` is not yet available)
 * 15 GB of free space to store sample applications ( gimp, libreoffice writer, libreoffice calc, libreoffice math, libreoffice impress, firefox ) and core image services
 
+### Release 1.0 
+* **docker** instance (version 18 and above).
+* Kubernetes release **less or equal** than 1.23.7-00 ( if you use kubernetes release 1.24 or above, you must use abcdesktop.io release 3.0  )
+
+### Release 2.0 
+* **docker** instance (version 18 and above).
+* Kubernetes release **less or equal** than 1.23.7-00 ( if you use kubernetes release 1.24 or above, you must use abcdesktop.io release 3.0  )
+* an application runs as docker container or as kubernetes pod
+
+### Release 3.0 
+* Kubernetes release **greater or equal** to 1.24
+* No depend to docker, an application runs as pod or as an [ephermeral container](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
 
 ## Supported Architectures
 
@@ -15,20 +25,6 @@ Our images support only architectures `x86-64`. The architectures supported by t
 | Architecture | Tag |
 | :----: | --- |
 | x86-64 | amd64-latest |
-
-
-## Docker engine
-
-abcdesktop.io uses docker. Docker can run on your desktop, or on a remote server. We recommend to use docker on GNU/Linux for production. To install your specific Docker Engine. Read the [Get started guide](https://docs.docker.com/get-started/) guide from docker.
-
-abcdesktop.io need Docker Engine version 18 and above.
-
-
-| Operating System | Recommended version                 |
-|------------------|-------------------------------------|
-|  `GNU/Linux`     | Ubuntu 18.04.4 LTS (Bionic Beaver)  |
-|  `macOS/X`       | Catalina version 10.15.3 (and above)| 
-|  `Windows 10`    | Version 1703 (and above)            |
 
 
 ### GNU/Linux
@@ -72,7 +68,6 @@ To get a shell to the `LinuxKit docker-desktop`, run the docker command
 ```
 docker run -it --rm --privileged --pid=host justincormack/nsenter1
 ```
-
 
 > more info: [https://github.com/justincormack/nsenter1](https://github.com/justincormack/nsenter1)
 
