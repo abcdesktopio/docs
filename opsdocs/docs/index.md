@@ -106,11 +106,11 @@ abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 1
 
 ## Release history
 
-| Release  | Status |  Date  | Requirements               |
-|----------|--------|--------|----------------------------|
-|  1.1     | stable |  09/15/2021   | dockerd for personnal use and kubernetes |
-|  2.9     | Release candidate 9 | 29/08/2022      | require kubernetes < 1.24 and dockerd as container engine  |
-|  3.0     | Beta  | 09/03/2022 | kubernetes >= 1.24, all container engine  |
+| Release  | Status |  Date  | Requirements               | Applicaions
+|----------|--------|--------|----------------------------|----|
+|  1.1     | stable |  09/15/2021   | dockerd for personnal use and kubernetes | An application is a docker container |
+|  2.9     | Release candidate 9 | 29/08/2022      | require kubernetes < 1.24 and dockerd as container engine  | An application is a pod or a docker container |
+|  3.0     | Beta  | 09/03/2022 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral containers |
 
 ## Github repositories ![Github stars](https://img.shields.io/github/stars/abcdesktopio?style=social)
 
