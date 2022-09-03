@@ -103,6 +103,15 @@ To fully use `copy and paste` features, from your local device to your abcdeskto
 
 abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 11.x. If you need a Microsoft web browser use Microsoft Edge. Edge is based on the Chromium open-source project. Chromium forms the basis of Google Chrome, so the new Edge feels very similar to Google Chrome.
 
+
+## Release history
+
+| Release  | Status |  Date  | Requirements               |
+|----------|--------|--------|----------------------------|
+|  1.1     | stable |  09/15/2021   | dockerd for personnal use and kubernetes |
+|  2.9     | Release candidate 9 | 29/08/2022      | require kubernetes < 1.24 and dockerd as container engine  |
+|  3.0     | Beta  | 09/03/2022 | kubernetes >= 1.24, all container engine  |
+
 ## Github repositories ![Github stars](https://img.shields.io/github/stars/abcdesktopio?style=social)
 
 abcdesktop has 36 repositories available. Follow the code on GitHub [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code.
