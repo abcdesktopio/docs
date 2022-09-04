@@ -2,11 +2,21 @@
 
 ## Prerequisites for setup abcdesktop
 
-* Architecture `x86-64`
-* A **docker** instance (version 18 and above). You can run docker commands
-* A Kubernetes release **less or equal** than 1.23.7-00 ( Release 1.24.XX and more are not yet supported )
+* Architecture `x86-64` ( `arm-64` is not yet available)
 * 15 GB of free space to store sample applications ( gimp, libreoffice writer, libreoffice calc, libreoffice math, libreoffice impress, firefox ) and core image services
 
+### Release 1.0 
+* **docker** instance (version 18 and above). abcdesktop.io 1.0 need a dockerd socket access.
+* Kubernetes release **less or equal** than 1.23.7-00 ( if you use kubernetes release 1.24 or above, you must use abcdesktop.io release 3.0  )
+
+### Release 2.0 
+* **docker** instance (version 18 and above). abcdesktop.io 2.0 need a dockerd socket access.  
+* Kubernetes release **less or equal** than 1.23.7-00 ( if you use kubernetes release 1.24 or above, you must use abcdesktop.io release 3.0  )
+* an application runs as docker container or as kubernetes pod
+
+### Release 3.0 
+* Kubernetes release **greater or equal** to 1.24
+* No depend to docker, an application runs as pod or as an [ephermeral container](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
 
 ## Supported Architectures
 
@@ -17,45 +27,9 @@ Our images support only architectures `x86-64`. The architectures supported by t
 | x86-64 | amd64-latest |
 
 
-## Docker engine
-
-abcdesktop.io uses docker. Docker can run on your desktop, or on a remote server. We recommend to use docker on GNU/Linux for production. To install your specific Docker Engine. Read the [Get started guide](https://docs.docker.com/get-started/) guide from docker.
-
-abcdesktop.io need Docker Engine version 18 and above.
-
-
-| Operating System | Recommended version                 |
-|------------------|-------------------------------------|
-|  `GNU/Linux`     | Ubuntu 18.04.4 LTS (Bionic Beaver)  |
-|  `macOS/X`       | Catalina version 10.15.3 (and above)| 
-|  `Windows 10`    | Version 1703 (and above)            |
-
-
 ### GNU/Linux
 
 The recommended distrubution is [Ubuntu 20.04 LTS (Focal Fossa)](https://releases.ubuntu.com/20.04/)
-
-#### CentOS
-To install dockerd on CentOS. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
-[Get Docker Engine - Community for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
-
-#### Fedora
-To install dockerd on Fedora. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
-[Get Docker Engine - Community for Fedora](https://docs.docker.com/install/linux/docker-ce/fedora/)
-
-#### Debian
-To install dockerd on Debian. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
-[Get Docker Engine - Community for Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
-
-#### Ubuntu
-To install dockerd on Ubuntu. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
-[Get Docker Engine - Community for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-
-#### Binaries
-If you want to try Docker or use it in a testing environment, but you’re not on a supported platform, you can try installing from static binaries. If possible, you should use packages built for your operating system, and use your operating system’s package management system to manage Docker installation and upgrades. Be aware that 32-bit static binary archives do not include the Docker daemon.
-
-To install dockerd as binary. Read the docker 'Get Docker Engine' documentation for this Linux distribution.
-[Install Docker Engine - Community from binaries](https://docs.docker.com/install/linux/docker-ce/binaries/)
 
 
 ### MacOS/X
@@ -72,7 +46,6 @@ To get a shell to the `LinuxKit docker-desktop`, run the docker command
 ```
 docker run -it --rm --privileged --pid=host justincormack/nsenter1
 ```
-
 
 > more info: [https://github.com/justincormack/nsenter1](https://github.com/justincormack/nsenter1)
 

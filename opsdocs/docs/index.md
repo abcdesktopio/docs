@@ -7,20 +7,20 @@ keywords: desktopless kubernetes secure desktop container cloud native telecommu
 
 # abcdesktop.io is a desktopless system
 
-abcdesktop.io is a cloud native desktopless system, and a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, desktopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface.
+abcdesktop.io is a cloud native desktopless system and a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, desktopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface.
 
 ![thisisabcdesktop](img/thisisabcdesktop.png)
 
-abcdeskop.io is an opensource and free solution that offer seamless access to secure desktops and applications on any device, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
+abcdeskop.io is an open source and free solution that offer seamless access to secure desktops and applications on any device, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
 
 This flexible working environment simplifies usage like
 
 - Telecommuting
 - Remote virtual desktop 
-- IT temporary access for subcontractors
+- Give temporary access to other contractors or guests
 - Training  
-- BYOD, bring your own device
-- Desktop on demand, Desktop as a service
+- BYOD, Bring Your Own Device
+- Desktop On Demand, Desktop as a service
 
 ## Quick online preview
 You can discover abcdesktop.io desktopless services on the demo website. [https://demo.abcdesktop.io](https://demo.abcdesktop.io) instance is a quick example to illustrate how the abcdesktop.io project works. Your desktopless is ready to run for 10 minutes, and will be terminated by the garbage collector after 10 minutes. It requires an OpenID Connect provider to sign-in like (Google, Facebook, Github). The security policy for Internet network prevents requests from your abcdesktop being allowed. Printer service (using cups) and sound service (using pulseaudio) inside the kubernetes pods are enabled.
@@ -30,7 +30,7 @@ To reach the demo website, follow the link [https://demo.abcdesktop.io](https://
 
 ## abcdesktop.io: a docker VDI service
 
-abcdesktop.io provides a way to run grapicals applications securely isolated in a docker container, and use a web browser HTML5 as display device. Because docker containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.
+abcdesktop.io provides a way to run graphics software securely isolated in a docker container, and use a web browser HTML5 as display device. Because docker containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.
 
 ![screenshot-applications](img/screenshot-applications.png)
 
@@ -62,7 +62,7 @@ curl -L https://raw.githubusercontent.com/abcdesktopio/conf/main/docker/install.
 - Complete native cloud desktop, workspace environment
 - Authentification OAuth 2.0, LDAP, LDAPS, Active Directory, Kerberos
 - Access to the user home directory (homeDirectory support in Active Directory)
-- Legacy CIFS Flexvolume using kubernetes driver 
+- Legacy CIFS FlexVolume using kubernetes driver 
 - All applications run inside an isolated docker container
 - Local and remote printing support 
 - Off-line sessions are maintained
@@ -102,6 +102,15 @@ To fully use `copy and paste` features, from your local device to your abcdeskto
 ### Not supported web browser
 
 abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 11.x. If you need a Microsoft web browser use Microsoft Edge. Edge is based on the Chromium open-source project. Chromium forms the basis of Google Chrome, so the new Edge feels very similar to Google Chrome.
+
+
+## Release history
+
+| Release  | Status |  Date  | Requirements               | Applications | Documentation
+|----------|--------|--------|----------------------------|----|--|
+|  1.1     | stable |  09/15/2021   | dockerd for personnal use and kubernetes | An application is a docker container | Ready |
+|  2.9     | Release candidate 9 | 29/08/2022      | require kubernetes < 1.24 and dockerd as container engine  | An application is a pod or a docker container | Started | 
+|  3.0     | Beta  | 09/03/2022 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container |  Started | 
 
 ## Github repositories ![Github stars](https://img.shields.io/github/stars/abcdesktopio?style=social)
 

@@ -1,110 +1,185 @@
-# Customize default wallpaper
+# User data persistence in `all-in-one` configuration 
 
 
 ## Requirements 
 
+Use a Kubernetes `abcdesktop` instance 
 
 ## Goals
 
-* Change the default wallpaper and use your own
+* keep user's data after a logoff 
 
 
-## Change od.config file
+## Create `/mnt/abcdesktop` directory
 
-To update the default wallpaper file, add a ```ENV``` variable in the ```desktop.envlocal``` dictionary.
+Create a directory `/mnt/abcdesktop`
 
-* Add the new entry ```SET_DEFAULT_WALLPAPER``` to the value like ```welcometoabcdesktop.png```. The file ```welcometoabcdesktop.png``` already exists in the ```/composer/wallpapers``` directory of your abcdesktopio/oc.user.XX.YY container image.
-
-```
-desktop.envlocal :  {   'DISPLAY'               : ':0.0',
-                        'USER'                  : 'balloon',
-                        'LOGNAME'               : 'balloon',
-                        'LIBOVERLAY_SCROLLBAR'  : '0',
-                        'UBUNTU_MENUPROXY'      : '0',
-                        'HOME'                  : '/home/balloon',
-			              'SET_DEFAULT_WALLPAPER' : 'welcometoabcdesktop.png'
-                    } 
+```bash
+mkdir -p /mnt/abcdesktop  
 ```
 
-* Restart your pyos daemon, to make sure that the ```ENV``` dictionary will be use to start a new user container.
-* Login on your abcdesktop service, your should see the wallpaper file:
-
-![welcome to abcdesktop](img/welcometoabcdesktop.png)
+abcdesktop uses a `PersistentVolume` to store user data.
 
 
-## Update oc.user image to add your own wallpaper
+## Remove previous PersistentVolume and PersistentVolumeClaim
 
-### Find a new wallpaper image
-
-* Download a new wallpaper image, for example I choose the file on [unsplash.com](https://unsplash.com) web site [wallpaper unsplash from Silas Baisch](https://unsplash.com/photos/ceITO2rlDgc)
-* Rename the downloaded file as silas-baisch-unsplash.jpg
-
-### Create a new oc.user image
-
-
-* Create a Dockerfile to copy the new wallpaper file in `/composer/wallpapers` directory
-
-Not For a development environment, add the TAG dev
-
-```
-FROM abcdesktopio/oc.user.18.04:dev 
-USER root
-COPY silas-baisch-unsplash.jpg /composer/wallpapers
-USER balloon
+```bash
+kubectl delete pvc persistentvolumeclaim-home-directory  -n abcdesktop
+kubectl delete pv  pv-volume-home-directory -n abcdesktop
 ```
 
+You have to delete user's pod too. Make sure that all user's pod have been removed.
 
 
-* Build the new docker image
+## Create the PersistentVolume `pv-volume-home-directory`
 
+```bash
+kubectl create -f - <<EOF
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-volume-home-directory
+  namespace: abcdesktop
+  labels:
+     type: local
+spec:
+  storageClassName: storage-local-abcdesktop
+  capacity:
+     storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteMany
+  hostPath:
+    path: '/mnt/abcdesktop'
+EOF
+```
 
-To build the new docker image, run the command line
+You should read on stdout : 
 
 ```
-docker build -t abcdesktopio/oc.user.18.04 .
-```
-
-You should read on the standard output :
-
-```
-Sending build context to Docker daemon  3.184MB
-Step 1/4 : FROM abcdesktopio/oc.user.18.04:dev
- ---> 61bfdb4e71d4
-Step 2/4 : USER root
- ---> Using cache
- ---> c1aa17b9999c
-Step 3/4 : COPY silas-baisch-unsplash.jpg /composer/wallpapers
- ---> 73c786ecca04
-Step 4/4 : USER balloon
- ---> Running in 1e0ad794c0cb
-Removing intermediate container 1e0ad794c0cb
- ---> a0b12a183b47
-Successfully built a0b12a183b47
-Successfully tagged abcdesktopio/oc.user.18.04:dev
+persistentvolume/pv-volume-home-directory created
 ```
 
 
-## Change od.config file
+## Create the PersistentVolumeClaim `persistentvolumeclaim-home-directory`
 
-To update the default wallpaper file, add a `ENV` variable in the `desktop.envlocal` dictionary.
+```bash
+kubectl create -f - <<EOF
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: persistentvolumeclaim-home-directory
+  namespace: abcdesktop
+spec:
+  storageClassName: storage-local-abcdesktop
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 3Gi
+EOF
+```
 
-* Add the new entry `SET_DEFAULT_WALLPAPER` to the value like `silas-baisch-unsplash.jpg`. The file `silas-baisch-unsplash.jpg` exists in the `/composer/wallpapers` directory of your **new** `abcdesktopio/oc.user.18.04` container image.
+You should read on stdout : 
 
 ```
-desktop.envlocal :  {   'DISPLAY'               : ':0.0',
-                        'USER'                  : 'balloon',
-                        'LOGNAME'               : 'balloon',
-                        'LIBOVERLAY_SCROLLBAR'  : '0',
-                        'UBUNTU_MENUPROXY'      : '0',
-                        'HOME'                  : '/home/balloon',
-			              'SET_DEFAULT_WALLPAPER' : 'silas-baisch-unsplash.jpg'
-                    } 
+persistentvolumeclaim/persistentvolumeclaim-home-directory created
 ```
 
-* Restart your pyos daemon, to make sure that the `ENV` dictionary will be use to start a new user container.
-* Login on your abcdesktop service, your should see the wallpaper :
 
-![welcome to abcdesktop](img/custom-wallpaper.png)
+## Update `abcdesktop.yaml` file 
 
 
+### Change od.config file
+
+Two options define the user homedirectory :  `desktop.homedirectorytype` and `desktop.persistentvolumeclaim`
+
+#### Update `desktop.homedirectorytype`
+
+Set the desktop.homedirectorytype to value 'persistentVolumeClaim'
+
+```
+desktop.homedirectorytype: 'persistentVolumeClaim'
+```
+
+#### Update `desktop.persistentvolumeclaim`
+
+Set the desktop.persistentvolumeclaim to the name of the `persistentVolumeClaim` to use. In this example the name of the `persistentvolumeclaim` is `persistentvolumeclaim-home-directory`
+
+```
+desktop.persistentvolumeclaim: 'persistentvolumeclaim-home-directory'
+```
+
+#### Update `desktop.pod`
+
+
+Add the `init` entry in `desktop.pod`
+
+```
+'init':       {     'image': 'busybox',
+                    'enable': True,
+                    'acl':  { 'permit': [ 'all' ] },
+                    'pullpolicy':  'IfNotPresent',
+                    'command':  [ 'sh', '-c',  'chown 4096:4096 /home/balloon' ] 
+    }
+```
+
+The init entry defines the init container for the user's pod. The command runs by the init container, fixes the owner of the home directory to `userid` to `4096` and the `groupid` to `4096`.   The init command is `chown 4096:4096 /home/balloon /home/balloon/*`
+
+Pulseaudio audio service does not start if the home directory not accessible or not own by the current user.
+ 
+
+```
+desktop.pod : { 
+    'graphical' : { 'image': 'abcdesktopio/oc.user.20.04:dev',
+                    'pullpolicy':  'IfNotPresent',
+                    'enable': True,
+                    'acl':  { 'permit': [ 'all' ] },
+                    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
+                    'resources': { 'requests': { 'memory': "320Mi",   'cpu': "250m" },  'limits'  : { 'memory': "1Gi",    'cpu': "1000m" } },
+                    'securityContext': { 'allowPrivilegeEscalation': True, 'runAsUser': 4096 },
+                    'shareProcessNamespace': True,
+                    'secrets_requirement' : [ 'abcdesktop/vnc', 'abcdesktop/kerberos']
+    },
+    'printer' :   { 'image': 'abcdesktopio/oc.cupsd.18.04:dev',
+                    'pullpolicy': 'IfNotPresent',
+                    'enable': True,
+                    'securityContext': { 'runAsUser': 0 },
+                    'resources': { 'requests': { 'memory': "64Mi",    'cpu': "125m" },  'limits'  : { 'memory': "512Mi",  'cpu': "500m"  } },
+                    'acl':  { 'permit': [ 'all' ] } 
+    },
+    'filer' :     { 'image': 'abcdesktopio/oc.filer:dev',
+                    'pullpolicy':  'IfNotPresent',
+                    'enable': True,
+                    'securityContext': { 'runAsUser': 4096 },
+                    'acl':  { 'permit': [ 'all' ] } 
+    },
+    'storage' :   { 'image': 'k8s.gcr.io/pause:3.2',
+                    'pullpolicy':  'IfNotPresent',
+                    'enable': True,
+                    'securityContext': {  'runAsUser': 4096 },
+                    'acl':   { 'permit': [ 'all' ] },
+                    'resources': { 'requests': { 'memory': "32Mi",    'cpu': "100m" },  'limits'  : { 'memory': "128Mi",  'cpu': "250m"  } }
+    },
+    'sound':      { 'image': 'abcdesktopio/oc.pulseaudio.22.04:dev',
+                    'pullpolicy': 'IfNotPresent',
+                    'enable': True,
+                    'securityContext': {  'runAsUser': 4096 },
+                    'acl':  { 'permit': [ 'all' ] },
+                    'resources': { 'requests': { 'memory': "8Mi",     'cpu': "50m"  },  'limits'  : { 'memory': "64Mi",   'cpu': "250m"  } } 
+    },
+    'init':       { 'image': 'busybox',
+                    'enable': True,
+                    'acl':  { 'permit': [ 'all' ] },
+                    'pullpolicy':  'IfNotPresent',
+                    'command':  [ 'sh', '-c',  'chown 4096:4096 /home/balloon' ] 
+    }}
+```
+
+
+
+
+### Restart your pyos daemon
+
+Restart your pyos daemon, to make sure that the new parameters will be use to start the user container.
 
