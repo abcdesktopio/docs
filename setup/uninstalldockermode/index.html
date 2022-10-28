@@ -1915,6 +1915,7 @@
 <h2 id="commands-to-uninstall-abcdesktopio">Commands to uninstall abcdesktop.io</h2>
 <p>Go to the abcdesktop directory (where the <code>docker-compose.yml</code> is located), and run the bash commands  : </p>
 <pre><code class="language-bash">echo &quot;starting abcdesktop uninstall commands&quot;
+docker-compose -p abcdesktop down
 echo &quot;stop and remove abcdesktop services&quot;
 docker-compose rm -s -v -f
 echo &quot;remove all abcdesktop user container&quot;
