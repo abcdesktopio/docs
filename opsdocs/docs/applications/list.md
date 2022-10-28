@@ -7,7 +7,7 @@ To install all applications ready to use, run `docker pull` command for each ima
 ```bash
 wget -O images-list.txt https://raw.githubusercontent.com/abcdesktopio/conf/main/images-list.txt
 while read i; do
-        docker pull abcdesktopio/$i
+        docker pull abcdesktopio/$i:1.0
 done < images-list.txt
 ```
 
