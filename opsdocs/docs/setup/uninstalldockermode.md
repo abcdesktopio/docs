@@ -6,6 +6,7 @@ Go to the abcdesktop directory (where the `docker-compose.yml` is located), and 
 
 ```bash
 echo "starting abcdesktop uninstall commands"
+docker-compose -p abcdesktop down
 echo "stop and remove abcdesktop services"
 docker-compose rm -s -v -f
 echo "remove all abcdesktop user container"
