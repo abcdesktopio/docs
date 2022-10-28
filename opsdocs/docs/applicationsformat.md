@@ -1,6 +1,6 @@
 # Application image format
 
-abcdesktop.io uses docker image format, and add some labels to describe the application.
+abcdesktop.io uses OCI container image format and add some labels to describe the application.
 Labels add metadata to the container image.
 
 ## Requirements

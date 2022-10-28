@@ -11,7 +11,7 @@ As VNC does not support sound, we have to forward a ```Pulseaudio null-sink``` o
 * Release 2.0 : use janus webrtc gateway, send pulseaudio rtp stream to janus, and play sound using the web browser webrtc stack (good sound quality)
 ![pulseaudio rtp stream](../config/img/soundmodulertp.png)
 
-* Release 3.0 : use virtual microphone using gstreamer and pulseaudio 
+* Release 3.0 : use virtual microphone using gstreamer and pulseaudio
 
 Realy fun projets: [use virtual microphone using gstreamer and pulseaudio](https://aweirdimagination.net/2020/07/19/virtual-microphone-using-gstreamer-and-pulseaudio/) and [Get Pulseaduio sink from webrtc](https://github.com/gavv/webrtc-cli)
 To be implemented
@@ -39,16 +39,16 @@ load-module module-http-protocol-tcp
 
 Read the http stream data, using fetch call :
 
-* ```$target``` is the container Ip Address
-* ```$pulseaudio_http_port``` is the pulseaudio http port ( by default, the http port vallue is 
+* `$target` is the container Ip Address
+* `$pulseaudio_http_port` is the pulseaudio http port ( by default, the http port vallue is
 
 ```
 http://$target:$pulseaudio_http_port/listen/source/u8_1_11025.monitor;
 ```
 
-Pulseaudio module-http-protocol-tcp *does not send wav formated header*. We need to build a new wav header for each receved fragment. This is done in ```wavify.js``` file :
+Pulseaudio module-http-protocol-tcp *does not send wav formated header*. We need to build a new wav header for each receved fragment. This is done in `wavify.js` file :
 
-```
+``` JS
 //
 // Write a proper WAVE header for the given buffer.
 // format ULAW or ALAW 
@@ -77,7 +77,7 @@ function wavify_law(data, numberOfChannels, sampleRate, bitsPerSample, format ) 
     // 4: for sizeof( 'WAVE' ) + n 
     // n: Wave chunks containing format information and sampled data
     //var data_length = d.setUint32(4, data.byteLength / 2 + 44, true);
-//bitsPerSample data.byteLength + 8+16+12
+    //bitsPerSample data.byteLength + 8+16+12
     d.setUint32(4, total_length, true); 
 
     // write 4 bytes
@@ -206,4 +206,4 @@ audiopt = 8
 audiortpmap = PCMA/8000
 ```
 
-Read the dedicated [webrtc chapter](/config/webrtc/) to configure and get more informations about the janus WebRTC
+Read the dedicated [webrtc chapter](/2.0/config/webrtc/) to configure and get more informations about the janus WebRTC
