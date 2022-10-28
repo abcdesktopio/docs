@@ -1922,7 +1922,7 @@ echo &quot;remove all abcdesktop user container&quot;
 docker ps --filter &quot;label=type=x11server&quot; -q | xargs docker stop
 docker ps --filter &quot;label=type=x11server&quot; -q | xargs docker rm
 echo &quot;remove all abcdesktop images&quot;
-docker images --filter=reference='abcdesktopio/*:*' --format &quot;{{.Repository}}&quot;  | xargs docker rmi
+docker images --filter=reference='abcdesktopio/*:*' --format &quot;{{.Repository}}:{{.Tag}}&quot;  | xargs docker rmi
 echo &quot;remove all user volumes&quot;
 docker volume ls -f label=type=x11server -q | xargs docker volume rm
 echo &quot;abcdesktop is uninstalled&quot;
