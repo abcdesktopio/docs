@@ -4,7 +4,7 @@
 
 You need to set the abcdesktop release as a TAG, formated like [APPLICATION.d[:TAG]]
 
-Example to get the famous application `2048`, using abcdesktop release `2.0`
+Example to get the famous application `2048`, using abcdesktop release `1.0` or `2.0`
 
 ### install the application 2048 release 1.0
 
