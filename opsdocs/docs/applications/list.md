@@ -1,13 +1,42 @@
 # Application list
 
+## Install an application
+
+You need to set the abcdesktop release as a TAG, formated like [APPLICATION.d[:TAG]]
+
+Example to get the famous application `2048`, using abcdesktop release `2.0`
+
+### install the application 2048 release 1.0
+
+```bash
+docker pull abcdesktopio/2048.d:1.0
+```
+
+### install the application 2048 release 2.0
+
+```bash
+docker pull abcdesktopio/2048.d:2.0
+```
+
 ## Install all applications
 
-To install all applications ready to use, run `docker pull` command for each image in file [image-list.txt](https://raw.githubusercontent.com/abcdesktopio/conf/main/images-list.txt) :
+To install all applications ready to use, run `docker pull` command for each image in file [image-list.txt](https://raw.githubusercontent.com/abcdesktopio/conf/main/images-list.txt)
+
+### For abcdesktop release 1.x
 
 ```bash
 wget -O images-list.txt https://raw.githubusercontent.com/abcdesktopio/conf/main/images-list.txt
 while read i; do
         docker pull abcdesktopio/$i:1.0
+done < images-list.txt
+```
+
+### For abcdesktop release 2.x
+
+```bash
+wget -O images-list.txt https://raw.githubusercontent.com/abcdesktopio/conf/main/images-list.txt
+while read i; do
+        docker pull abcdesktopio/$i:2.0
 done < images-list.txt
 ```
 
