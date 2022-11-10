@@ -3839,16 +3839,13 @@ abcdesktopjwtusersigning      Opaque                                2      67s
 <p>You should read on stdout</p>
 <pre><code>pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 created
 </code></pre>
-<p>You can check that your user pod is <code>Ready</code></p>
-<pre><code>kubectl wait --for=condition=Ready pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5  -n abcdesktop
-pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
+<p>You can wait for user pod is <code>Ready</code>, this while take a while, for 
+container images are downloading.</p>
+<pre><code>kubectl wait --for=condition=Ready pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5  -n abcdesktop --timeout=-1s
 </code></pre>
-<p>or </p>
-<pre><code>kubectl get pods -n abcdesktop
-NAME                                             READY   STATUS    RESTARTS   AGE
-anonymous-74bea267-8197-4b1d-acff-019b24e778c5   4/4     Running   0          6m12s
+<pre><code>pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
 </code></pre>
-<p>You can delete the user pod <code>anonymous-74bea267-8197-4b1d-acff-019b24e778c5</code></p>
+<p>You can delete the user pod <code>anonymous-74bea267-8197-4b1d-acff-019b24e778c5</code>. This container images are downloaded.</p>
 <pre><code>kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser.yaml
 </code></pre>
 <p>Create the abcdesktop pods and services</p>
