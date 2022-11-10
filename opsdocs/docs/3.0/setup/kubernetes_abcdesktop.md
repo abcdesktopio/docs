@@ -172,17 +172,42 @@ abcdesktopjwtusersigning      Opaque                                2      67s
 ```
 
 
-#### Step 3: Download core images, create Pods, and services 
+#### Step 3: Download user pod images
 
-On a worker node, fetch the three user default images, to make sure that Kubernetes will find the docker images at startup time. 
+Create a pod user to make sure that Kubernetes will find the docker images at startup time. 
  
 ```
-ctr -n k8s.io images pull docker.io/abcdesktopio/oc.user.kubernetes.18.04:3.0
-ctr -n k8s.io images pull docker.io/abcdesktopio/oc.pulseaudio.18.04:3.0
-ctr -n k8s.io images pull docker.io/abcdesktopiooc.cupsd.18.04:3.0
-ctr -n k8s.io images pull docker.io/library/busybox:latest
-ctr -n k8s.io images pull k8s.gcr.io/pause:3.8
+kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser.yaml
 ```
+
+You should read on stdout
+
+```
+pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 created
+```
+
+You can check that your user pod is `Ready`
+
+```
+kubectl wait --for=condition=Ready pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5  -n abcdesktop
+pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
+```
+
+or 
+
+
+```
+kubectl get pods -n abcdesktop
+NAME                                             READY   STATUS    RESTARTS   AGE
+anonymous-74bea267-8197-4b1d-acff-019b24e778c5   4/4     Running   0          6m12s
+```
+
+You can delete the user pod `anonymous-74bea267-8197-4b1d-acff-019b24e778c5`
+
+```
+kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser.yaml
+```
+
 
 Create the abcdesktop pods and services
 
