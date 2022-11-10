@@ -2,12 +2,10 @@
 
 abcdesktop release 3.x support only kubernetes mode. All applications containers can be distributed on different hosts.
 
-In kubernetes mode, the abcdesktop infrastructure use seven containers (oc.cups is optional), each container has a specific role : 
+The abcdesktop infrastructure is using the contianers : 
 
 | Container    | Role                     | Image                           | From         |
 |--------------|--------------------------|---------------------------------|--------------|
-| oc.user      | user container           | abcdesktopio/oc.user.kubernetes.18.04:3.0  | abcdesktopio |
-| oc.cups      | printing container       | abcdesktopio/oc.cupsd.18.04:3.0 | abcdesktopio |
 | oc.pyos      | API Server               | abcdesktopio/oc.pyos:3.0        | abcdesktopio |
 | oc.nginx     | web server proxy         | abcdesktopio/oc.nginx:3.0       | abcdesktopio |
 | oc.speedtest | http benchmarch          | abcdesktopio/oc.speedtest       | [LibreSpeed](https://librespeed.org/) |
