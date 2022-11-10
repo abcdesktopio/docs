@@ -80,6 +80,10 @@ Add new application, require to send an application json document to the control
 ### Download a json application document format
 
 
+In this example, we install the application `2048` game as sample, but you can choose another one from [https://github.com/abcdesktopio/conf/tree/main/apps](https://github.com/abcdesktopio/conf/tree/main/apps)
+
+
+
 ```
 curl https://raw.githubusercontent.com/abcdesktopio/conf/main/apps/2048.d.3.0.json --output 2048.json
 ```
