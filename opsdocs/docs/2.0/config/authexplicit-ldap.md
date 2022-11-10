@@ -1,18 +1,17 @@
 
-# Authentification ```explicit``` for LDAP Directory Services
+# Authentification `explicit` for LDAP Directory Services
 
-## authmanagers ```explicit``` object
+## authmanagers `explicit` object
 
-```explicit``` authentification use a directory service. The bind operation is used to authenticate clients to the directory server, to establish an authorization identity that will be used for subsequent operations processed on that connection.
+`explicit` authentification use a directory service. A bind operation is used to authenticate clients to the directory server, to establish an authorisation identity that will be used for subsequent operations processed on that connection. 
 
-The ```explicit``` authentification configuration is defined as a dictionnary object and contains an ```explicit``` provider. 
+The `explicit` authentification configuration is defined as a dictionary object and contains an `explicit` provider. 
 
 
 For example :
 
 ```
 'explicit': {
-    'show_domains': True,
     'providers': {
       'LDAP': { 
         'config_ref': 'ldapconfig', 
@@ -21,164 +20,102 @@ For example :
 }
 ```
 
-In this example, ```ldapconfig``` dict must have a key ```LDAP```
+In this example, `ldapconfig` dict must have a key `LDAP`
 
 
 | Variable name      | Type   | Description   |
 |--------------------|--------- |-------------|
-|  ```show_domains```   | boolean   | Permit the domain name to be listed in API getclientdata, the default value is False |
-|  ```default_domain``` | string | not used by ldap, only used by Active Directory  | 
-|  ```providers```      | dictionnary | ```{ 'LDAP': {  'config_ref': 'ldapconfig',  'enabled': True  }}```
+|  `default_domain` | string | set the default domain name, if user does not prefix the login by domain\s. `default_domain` is  only used by Active Directory provider | 
+|  `providers`      | dictionary | `{ 'LDAP': {  'config_ref': 'ldapconfig',  'enabled': True  }}`
 |
 
 
 
 ### providers configuration
 
-The ```provider``` authentification configuration is defined as a dictionnary object and must contain a key name.
-The key name must be set with the same value in providers configuration and ```config_ref```.
+The `provider` authentification configuration is defined as a dictionary object and must contain a key name.
+The key name must be set with the same value in provider configuration and `config_ref`.
 
+The provider is formatted as a dictionary. Example for a `provider` defined as `planet`
 
-
-Providers :
-
-The provider is formated as a dictionnary 
-
- ```
+```
  { 'planet': {  
  			'config_ref': 'ldapconfig',  
  			'enabled': True  
  		}
  }
- ```
+```
  
 
 | Variable name      | Type   | Description   |
 |--------------------|--------- |-------------|
-| config_ref         | string   |  For increased legibility, the ```USERDOMAIN``` configuration is defined in a dedicated dictionnary used the key:value ```'config_ref': 'adconfig'```, where ```key``` is ```config_ref``` and ```value``` is the dictionnay variable name.           |
-| enable             | boolean  | enable or disable the domain entry            |
+| config_ref         | string   |  For  increased readability , the configuration is defined in a dedicated and separated dictionary as (key,value) `'config_ref': 'planet'`, where `key` is `config_ref` and `value` is the dictionary variable name.           |
+| enable             | boolean  | `True` to enable or `False` to disable the provider configuration |
 
 
-The ldapconfig is a dictionnary. 
+The `ldapconfig` is a dictionary. 
 
 For example :
 
-```
-ldapconfig : { 'planet': {    'default'       : True, 
-                        'ldap_timeout'  : 15,
-                        'ldap_protocol' : 'ldap',
-                        'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ '192.168.8.195' ],
-                        'secure'        : False,
-                        'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }
-           }}
-
+``` json
+ldapconfig : { 
+  'planet': {    
+    'default'       : True, 
+    'ldap_timeout'  : 15,
+    'ldap_protocol' : 'ldap',
+    'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
+    'servers'       : [ 'ldap://192.168.8.195' ],
+    'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' } 
+  } 
+ } 
 }
 ```
 
 ## ldap configuration reference 
 
-
-
 | Variable name        | Type		       | Description                        | Example  |
 |----------------------|----------------|------------------------------------|----------|
-|  ```default```       | boolean        | Use this domain as default domain  | True     |
-|  ```ldap_protocol```      | string         | protocol type. ```ldap``` or ```ldaps``` for LDAP directory services  | ```ldap```     |
-|  ```tls_require_cert```       | boolean        | The default value is False. ```tls_require_cert```  apply only if ```ldap_protocol``` is set to ```ldaps```. Allow LDAPS connection if the ldaps server hostname does not match CommonName peer certificate. **In production, set this value to ```True```** This will disable the ldap option call : `ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)` | False     |
-|  ```basedn```   | string         | LDAP Base Distinguished Names    | ```ou=people,dc=planetexpress,dc=com``` |
-|  ```servers```       | list of string | list of LDAP servers (IP Adress or FQDN), if entry does not respond, the next one is used.       | ```[ '192.168.1.12', '192.168.1.13' ]``` IP  Address or FQDN values |
-|  ```scope```			| LDAP           | Perform an LDAP search operation, with base as the DN of the entry at which to start the search, ```scope``` being one of ```SCOPE_BASE``` (to search the object itself), ```SCOPE_ONELEVEL``` (to search the object’s immediate children), or ```SCOPE_SUBTREE``` (to search the object and all its descendants). | ```ldap.SCOPE_SUBTREE``` |
-|  ```timeout```			| integer           | ldap time out in second  | 10 |
-|  ```exec_timeout```  | integer         | execute time out in seconds, to obtain ntlm_auth credentials, or cntlm auth credentials, or kerberos auth credentials. the exec timeout is used to run external command line.  | 10 |
-|  ```users_ou```			| string           | Users Organisation Unit | ```ou=people,dc=planetexpress,dc=com``` |
-|  ```attrs ```			| list            | list of default attributs to read in user object. read the [Definition of the inetOrgPerson LDAP Object Class ](https://tools.ietf.org/html/rfc2798)|  |
-|  ```filter```        | string         | LDAP filter to find user object | ```(&(objectClass=inetOrgPerson)(cn=%s))``` |
-|  ```group_filter```  | string         | LDAP filter to find group object | ```(&(objectClass=Group)(cn=%s))``` |
-|  ```group_attrs```  | string         | LDAP filter to find group object | ```(&(objectClass=Group)(cn=%s))``` |
+|  `default`           | boolean        | Use this ldap configuration as default (if more than one ldap auth provider is defined)  | True     |
+|  `auth_only`		   | boolean        | Do not run ldap queries, only use to run authentication | False     |
+|  `auth_type`		   | string         | authentification protocol to bind the ldap server. Values can be 'KERBEROS', 'NTLM' or 'SIMPLE'  | The default value is 'SIMPLE'     |
+|  `basedn`            | string         | LDAP base Distinguished Name    | `ou=people,dc=planetexpress,dc=com` |
+|  `servers`           | list of string | list of LDAP servers (IP Adress or FQDN), if entry does not respond, the next one is used. This entry must be prefixed by the protocol `ldap` or `ldaps` for each server | `[ 'ldap://192.168.1.12', 'ldaps://192.168.1.13' ]` LDAP server address IP Address or FQDN value  |
+|  `scope`		    	| LDAP           | Perform an LDAP search operation, with base as the DN of the entry at which to start the search, `scope` being one of `SCOPE_BASE` (to search the object itself), `SCOPE_ONELEVEL` (to search the object’s immediate children), or `SCOPE_SUBTREE` (to search the object and all its descendants). | `ldap.SCOPE_SUBTREE` |
+|  `timeout`			   | integer        | ldap time out in second  | 10 |
+|  `exec_timeout`      | integer        | execute time out in seconds, to obtain ntlm_auth credentials, or cntlm auth credentials, or kerberos keytab file the exec timeout is used to run external command line.  | 10 |
+|  `users_ou`		    	| string         | Users Organisation Unit | `ou=people,dc=planetexpress,dc=com` |
+|  `attrs `			   | list           | list of default attributs to read in user object. read the [Definition of the inetOrgPerson LDAP Object Class ](https://tools.ietf.org/html/rfc2798)|  |
+|  `filter`           | string          | LDAP filter to find user object  | `(&(objectClass=inetOrgPerson)(cn=%s))` |
+|  `group_filter`     | string          | LDAP filter to find group object | `(&(objectClass=Group)(cn=%s))` |
+|  `group_attrs`      | string          | LDAP filter to find group object | `(&(objectClass=Group)(cn=%s))` |
+|  `serviceaccount`   | dictionary      | entries to defined service account credentials | formatted like `{ 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }` or `{ 'login': 'file://config/serviceaccount/login', 'password': 'file://config/serviceaccount/passwd' }` |
 
 
+### ldap service account
+
+Ldap service account permits service account binding. A service account can be defined using clear text `login` and `password` data, or as file reference `login` and `password` starting by `file://`. 
+
+- If `login` starts by `file://`, then pyos open the defined file to read login data.
+- If `password` starts by `file://`, then pyos open the defined file to read password data.
+
+The file reference `file://` for `login` and `password` is used to read kubernetes secret file data.
+
+## Configure Auth using the OpenLDAP container
 
 
+### OpenLDAP container for testing 
+
+To configure abcdesktop to use an explicit authentification, we need a directory service.
+We use an OpenLDAP container for testing with provisioned values. [docker-test-openldap](https://github.com/rroemhild/docker-test-openldap) from [rroemhild](https://github.com/rroemhild/) works fine ans id very useful.
+
+Read the OpenLDAP container for testing documentation on the url [abcdesktop OpenLDAP Docker Image for testing](https://github.com/abcdesktopio/oc.openldap)
 
 
+## Update the `od.config` configuration file 
 
-## Hands-on : Configure Auth using  an OpenLDAP for Docker
+Update the `od.config` configuration file.
 
-
-### Requirements
-
-You should have all read and done the hands-on :
-
-* [Setup abcdesktop.io in docker mode](/config/editconfig/)
-* [Edit your configuration file in docker mode](/config/editconfig/)
-
-
-### OpenLDAP Docker Image for testing 
-
-To configure abcdesktop.io to use an explicit authentification, we need a directory service.
-We use an OpenLDAP Docker Image for testing with provioned values.
-
-Read the OpenLDAP Docker Image for testing documentation on the url [abcdesktop OpenLDAP Docker Image for testing](https://github.com/abcdesktopio/oc.openldap)
-
-### Update the docker-compose.yml file 
-
-Update the ```docker-compose.yml``` file to add an ldap as directory server 
-
-The specific ```openldap``` section is describe as a service. The new complete ```docker-compose.yml``` file is now :
-
-```YAML
-version: '3'
-services:
-  pyos:
-    depends_on:
-      - memcached
-      - mongodb
-    image: 'abcdesktopio/oc.pyos'
-    networks:
-      - netback
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /Users/alexandredevely/src/abcdesktop/od.config:/var/pyos/od.config
-  speedtest:
-    image: 'abcdesktopio/oc.speedtest'
-    networks:
-      - netuser
-  nginx:
-    depends_on:
-      - memcached
-      - pyos
-    image: 'abcdesktopio/oc.nginx'
-    ports:
-      - '80:80'
-      - '443:443'
-    networks:
-      - netuser
-      - netback
-  memcached:
-    image: memcached
-    networks:
-      - netback
-  mongodb:
-    image: mongo
-    networks:
-      - netback
-  openldap:
-    image: abcdesktopio/oc.openldap
-    networks:
-      - netback
-networks:
-  netuser:
-    driver: bridge
-  netback:
-    internal: true
-```
-
-
-## Update the ```od.config``` configuration file 
-
-Update the ```od.config``` configuration file.
-
-Add the ```explicit``` entry to the dictionary ```authmanagers ```.
+Add the `explicit` entry to the dictionary `authmanagers `.
 
 ```
 authmanagers: {
@@ -194,51 +131,36 @@ authmanagers: {
     }
   },
   'implicit': {
-  }}
-  
-         
+  }}      
 ```
 
-> Note: the  ```config_ref``` is ```ldapconfig```. 
+> Note: the `config_ref` is `ldapconfig`. 
 
-Add a new dictionnary object named ```ldapconfig``` to the configuration file.
+Add a new dictionary object named `ldapconfig` to the configuration file.
 These values come from the LDAP structure of OpenLDAP Docker Image for testing
 
 
 ```
-ldapconfig : { 'planet': {    'default'       : True, 
-                        'ldap_timeout'  : 15,
-                        'ldap_protocol' : 'ldap',
+ldapconfig : { 'planet': {    
+                        'default'       : True, 
                         'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ 'openldap' ],
-                        'secure'        : False,
-                        'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }
-           }}
+                        'servers'       : [ 'ldap://openldap' ] }}
 ```
 
 
-
-> Note: the server name is the name of the service entry
-
 Save your new od.config file.
 
-> The config file ```od.config``` has changed and od.py running inside the container should restart. 
-> If it doesn't, restart your docker-compose to make sure that the od.py the your new od.config file.
->
->```docker-compose restart```
->
-
-Open the URL:```http://localhost```
+Open the URL:`http://localhost:30443`
   
-The authmanagers ```explicit``` is enabled. The Web home page insert the new input values ```Login``` and ```Password``` to authenticate this user.
+The authmanagers `explicit` is enabled. The Web home page insert the new input values `Login` and `Password` to authenticate this user.
 
 ![auth-provider-explicit](img/auth-provider-explicit-ldap.png)
 
 
-## The LDAP structure of OpenLDAP Docker Image for testing 
+## The LDAP structure of OpenLDAP container for testing 
 
 ### BaseDN
-The ```basedn``` is ```dc=planetexpress,dc=com```
+The `basedn` is `dc=planetexpress,dc=com`
 
 ### admin account
 The admin account is described as
@@ -248,7 +170,7 @@ The admin account is described as
 | cn=admin,dc=planetexpress,dc=com | GoodNewsEveryone |
 
 ### OU Users
-* The User Orgnanistation Unit is ```ou=people,dc=planetexpress,dc=com```
+* The User Orgnanistation Unit is `ou=people,dc=planetexpress,dc=com`
 
 ### Users
 
@@ -366,9 +288,9 @@ The admin account is described as
 
 ## Insert the user credentials
 
-Start your web browser and open the URL ```http://localhost```
+Start your web browser and open the URL `http://localhost`
 
-The Web home page contains the new input values ```Login``` and ```Password``` to authenticate this user.
+The Web home page contains the new input values `Login` and `Password` to authenticate this user.
 
 You can use for example on user of the list above.
 
@@ -381,11 +303,11 @@ You can use for example on user of the list above.
 
 Insert the login credentials :
 
-```Turanga Leela``` as login and ```leela``` as password, then click on the ```Sign in``` button.
+`Turanga Leela` as login and `leela` as password, then click on the `Sign in` button.
 
 ![auth-provider-explicit-ldap-login-user-done](img/auth-provider-explicit-ldap-login-user-done.png)
 
-Look at the top of the sreen. The user name is ```Turanga Leela```: 
+Look at the top of the sreen. The user name is `Turanga Leela`: 
 ![auth-provider-explicit-ldap-login-user-turanga](img/auth-provider-explicit-ldap-login-user-turanga.png)
 
 
@@ -403,9 +325,9 @@ I like this amazing project abcdesktop.io
 Do not save your file and just close your web browser.
 
 
-Start your web browser again, and open the same URL ```http://localhost```, and log in with the same account: ```Turanga Leela``` as login and ```leela``` as password, then click on the ```Sign in``` button.
+Start your web browser again, and open the same URL `http://localhost`, and log in with the same account: `Turanga Leela` as login and `leela` as password, then click on the `Sign in` button.
 
-The application LibreOffice Writer is still running and the greeting message ```I like this amazing project abcdesktop.io```
+The application LibreOffice Writer is still running and the greeting message `I like this amazing project abcdesktop.io`
 
 ![](img/auth_provider_ldap_session_remained.png)
 

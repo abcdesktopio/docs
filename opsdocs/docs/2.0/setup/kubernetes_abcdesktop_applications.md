@@ -6,32 +6,32 @@ Each application is a docker container, to install new docker container run the 
 Install LibreOffice Suite 
 
 ```
-docker pull abcdesktopio/base.d
-docker pull abcdesktopio/calc.d
-docker pull abcdesktopio/impress.d
-docker pull abcdesktopio/math.d
-docker pull abcdesktopio/writer.d 
+docker pull abcdesktopio/base.d:2.0
+docker pull abcdesktopio/calc.d:2.0
+docker pull abcdesktopio/impress.d:2.0
+docker pull abcdesktopio/math.d:2.0
+docker pull abcdesktopio/writer.d:2.0
 ```
 
 Install Mozilla Suite 
 
 ```
-docker pull abcdesktopio/firefox.d
-docker pull abcdesktopio/thunderbird.d
+docker pull abcdesktopio/firefox.d:2.0
+docker pull abcdesktopio/thunderbird.d:2.0
 ```
 
 Install Gnome games 
 
 ```
-docker pull abcdesktopio/mines.d
-docker pull abcdesktopio/tetravex.d
+docker pull abcdesktopio/mines.d:2.0
+docker pull abcdesktopio/tetravex.d:2.0
 ```
 
 Install Gnome tools 
 
 ```
-docker pull abcdesktopio/calculator.d
-docker pull abcdesktopio/terminal.d
+docker pull abcdesktopio/calculator.d:2.0
+docker pull abcdesktopio/terminal.d:2.0
 ```
 
 

@@ -1,15 +1,15 @@
-# abcdesktop.io in kubernetes mode
+# abcdesktop in kubernetes mode
 
-abcdesktop.io release 2.x support only kubernetes mode. All applications containers can be distributed on different hosts.
+abcdesktop release 3.x support only kubernetes mode. All applications containers can be distributed on different hosts.
 
-In kubernetes mode, the abcdesktop.io infrastructure use seven containers (oc.cups is optional), each container has a specific role : 
+In kubernetes mode, the abcdesktop infrastructure use seven containers (oc.cups is optional), each container has a specific role : 
 
 | Container    | Role                     | Image                           | From         |
 |--------------|--------------------------|---------------------------------|--------------|
-| oc.user      | user container           | abcdesktopio/oc.user.18.04:2.9  | abcdesktopio |
-| oc.cups      | printing container       | abcdesktopio/oc.cupsd.18.04:2.9 | abcdesktopio |
-| oc.pyos      | API Server               | abcdesktopio/oc.pyos:2.9        | abcdesktopio |
-| oc.nginx     | web server proxy         | abcdesktopio/oc.nginx:2.9       | abcdesktopio |
+| oc.user      | user container           | abcdesktopio/oc.user.18.04:3.0  | abcdesktopio |
+| oc.cups      | printing container       | abcdesktopio/oc.cupsd.18.04:3.0 | abcdesktopio |
+| oc.pyos      | API Server               | abcdesktopio/oc.pyos:3.0        | abcdesktopio |
+| oc.nginx     | web server proxy         | abcdesktopio/oc.nginx:3.0       | abcdesktopio |
 | oc.speedtest | http benchmarch          | abcdesktopio/oc.speedtest       | [LibreSpeed](https://librespeed.org/) |
 | oc.mongo     | json database server     | mongo                           | [MongoDB](https://www.mongodb.com/)   |
 | memcached    | cache server             | memcached                       | [Memcached](https://memcached.org/)   |
@@ -17,7 +17,12 @@ In kubernetes mode, the abcdesktop.io infrastructure use seven containers (oc.cu
 
 ## Requirements
 
-You need to have a Kubernetes cluster, and the `kubectl` command-line tool must be configured to communicate with your cluster. The command line `openssl` must be installed too.
+You need to have a 
+
+- kubernetes cluster ready to run
+- `kubectl` or `microk8s` command-line tool must be configured to communicate with your cluster. 
+- `openssl` and `curl` command line must be installed too.
+- `ctr` should be install to download abcdesktopio images from `docker.io/abcdesktopio`
 
 
 You can run the **Quick installation process** or choose the **Manually installation step by step**
@@ -26,23 +31,23 @@ You can run the **Quick installation process** or choose the **Manually installa
 ## Quick installation (Linux or macOS)
 
 > Quick installation can be run on Linux or macOS operation system. 
-> For Microsoft Windows, please read the following chapter 'Manually installation step by step'
 
 
 Download and extract the latest release automatically (Linux or macOS):
 
 ```
-curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install.2.x.sh | bash
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.0.sh | bash
 ```
 
 The command above downloads the latest release (numerically) of abcdesktop.io. 
 The quick installation process runs the all commands step by step:
 
-* create the abcdesktop namespace
-* build all rsa keys pairs for jwt signing and payload encryption
-* create all services, pods, secrets and configmaps
-* download user's core images: oc.user, oc.cupsd, oc.pulseaudio
-* download some applications images sample: the LibreOffice suite (calc, writer, impress), Firefox, Gimp, and gnome-terminal.
+* create the `abcdesktop` namespace
+* build all `rsa keys` pairs for jwt signing and payload encryption
+* download the default configuration file `od.config`
+* create all `services`, `pods`, `secrets` and `configmaps`
+* download user's core images: `oc.user`, `oc.cupsd`, `oc.pulseaudio` ( if ctr command line exists )
+* download some applications images sample: the LibreOffice suite (`calc`, `writer`, `impress`), `firefox`, `Gimp`, and `gnome-terminal` (if ctr command line exists).
 
 You can also download the [install.2.x.sh](https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install.2.x.sh) bash script, and read it and then run it.
  
@@ -80,11 +85,15 @@ namespace/abcdesktop created
 >
 
 
-####  Step 2: Securized abcdesktop
-All communications between nginx, pyos and user navigator are encrypted by JSON Web Tokens.
+####  Step 2: Secure abcdesktop JWT exchange
 
-* The JSON Web Tokens payload is encrypted with the abcdesktop jwt desktop payload private by pyos
-* The JSON Web Tokens payload is decrypted with the abcdesktop jwt desktop payload public keys by nginx.
+
+User JWT is signed. So we need to define a (private, public) RSA keys for signing.
+ Desktop JWT is encrypted AND signed. So we need to define a (private, public) RSA keys for signing, and a (private, public) RSA keys to encrypt data.
+
+* The JWT payload is encrypted with the abcdesktop jwt desktop payload private by pyos
+* The JWT payload is decrypted with the abcdesktop jwt desktop payload public keys by nginx.
+
 > Please use the payload private as private key, and the payload public as private key. 
 > Do not publish the public key. This public key must stay private, this is a special case, this is not stupid, it's only a more secure option.
 
@@ -95,7 +104,7 @@ All communications between nginx, pyos and user navigator are encrypted by JSON 
 * The JSON Web Tokens user is verified with the abcdesktop jwt user signing public keys by pyos
 > As multiple pods of pyos can run simultaneously, the same private and public keys value are stored into kubernetes secret.
 
-The abcdesktop jwt desktop payload public key is read by nginx lua script and by pyos, export the public key using the `RSAPublicKey_out` option, to use the `RSAPublicKey` format. The `RSAPublicKey` format make key file format compatible between python and lua.
+The abcdesktop jwt desktop payload public key is read by `nginx lua script`. The exported the public key need the `RSAPublicKey_out` option, to use the `RSAPublicKey` format. The `RSAPublicKey` format make key file format compatible between `python 3.x jwt module` and `lua jwt lib`.
 
 
 The following commands will let you create all necessary keys :

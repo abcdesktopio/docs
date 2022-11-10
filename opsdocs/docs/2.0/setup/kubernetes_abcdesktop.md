@@ -6,10 +6,10 @@ In kubernetes mode, the abcdesktop.io infrastructure use seven containers (oc.cu
 
 | Container    | Role                     | Image                           | From         |
 |--------------|--------------------------|---------------------------------|--------------|
-| oc.user      | user container           | abcdesktopio/oc.user.18.04:2.9  | abcdesktopio |
-| oc.cups      | printing container       | abcdesktopio/oc.cupsd.18.04:2.9 | abcdesktopio |
-| oc.pyos      | API Server               | abcdesktopio/oc.pyos:2.9        | abcdesktopio |
-| oc.nginx     | web server proxy         | abcdesktopio/oc.nginx:2.9       | abcdesktopio |
+| oc.user      | user container           | abcdesktopio/oc.user.18.04:2.0  | abcdesktopio |
+| oc.cups      | printing container       | abcdesktopio/oc.cupsd.18.04:2.0 | abcdesktopio |
+| oc.pyos      | API Server               | abcdesktopio/oc.pyos:2.0        | abcdesktopio |
+| oc.nginx     | web server proxy         | abcdesktopio/oc.nginx:2.0       | abcdesktopio |
 | oc.speedtest | http benchmarch          | abcdesktopio/oc.speedtest       | [LibreSpeed](https://librespeed.org/) |
 | oc.mongo     | json database server     | mongo                           | [MongoDB](https://www.mongodb.com/)   |
 | memcached    | cache server             | memcached                       | [Memcached](https://memcached.org/)   |
@@ -170,9 +170,9 @@ abcdesktopjwtusersigning      Opaque                                2      67s
 On a worker node, fetch the three user default images, to make sure that Kubernetes will find the docker images at startup time. 
  
 ```
-docker pull abcdesktopio/oc.user.kubernete.18.04:2.9
-docker pull abcdesktopio/oc.cupsd.18.04:2.9
-docker pull abcdesktopio/oc.pulseaudio.18.04:2.9
+docker pull abcdesktopio/oc.user.kubernete.18.04:2.0
+docker pull abcdesktopio/oc.cupsd.18.04:2.0
+docker pull abcdesktopio/oc.pulseaudio.18.04:2.0
 ```
 
 You should read on the standard output
@@ -180,7 +180,7 @@ You should read on the standard output
 ```
 oc.user.18.04: Pulling from abcdesktopio
 ...[cut here]...
-docker.io/abcdesktopio/oc.user.18.04:2.9
+docker.io/abcdesktopio/oc.user.18.04:2.0
 
 oc.cupsd.18.04: Pulling from abcdesktopio
 ...[cut here]...
@@ -198,7 +198,7 @@ abcdesktop.yaml file contains declarations for all roles, service account, pods,
 Run the command line
 
 ``` bash
-kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop.2.9.yaml
+kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop.2.0.yaml
 ```
 
 You should read on the standard output
@@ -260,16 +260,16 @@ Click on the **Connect with Anonymous** access button. abcdesktop service pyos i
 
 ![abcdesktop main screen login pending](../../setup/img/kubernetes-setup-login-anonymous.pending.png)
 
-Few seconds later, processes are ready to run. You should see the abcdesktop main screen, with only one application **File Manager**.
+Few seconds later, processes are ready to run. You should see the abcdesktop main screen.
 
 ![abcdesktop main screen ready](../../setup/img/kubernetes-setup-login-anonymous.done.png)
 
 Great you have installed abcdesktop.io in Kubernetes mode.
-You just need a web browser to reach your web workspace. It' now time to add some container applications.
-Read the chapter add kubernetes contain
+You just need a web browser to reach your web workspace. It' now time to add some applications.
+Read the chapter add kubernetes container
 
 ### Troubleshoot
-All kubernetes resources can be inspected to get more informations.
+All resources can be inspected to get more informations.
 
 First list elements you want to verify, in the following case, we will inspect pods :
 
