@@ -186,23 +186,18 @@ You should read on stdout
 pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 created
 ```
 
-You can check that your user pod is `Ready`
+You can wait for user pod is `Ready`, this while take a while, for 
+container images are downloading.
 
 ```
-kubectl wait --for=condition=Ready pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5  -n abcdesktop
+kubectl wait --for=condition=Ready pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5  -n abcdesktop --timeout=-1s
+```
+
+```
 pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
 ```
 
-or 
-
-
-```
-kubectl get pods -n abcdesktop
-NAME                                             READY   STATUS    RESTARTS   AGE
-anonymous-74bea267-8197-4b1d-acff-019b24e778c5   4/4     Running   0          6m12s
-```
-
-You can delete the user pod `anonymous-74bea267-8197-4b1d-acff-019b24e778c5`
+You can delete the user pod `anonymous-74bea267-8197-4b1d-acff-019b24e778c5`. This container images are downloaded.
 
 ```
 kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser.yaml
