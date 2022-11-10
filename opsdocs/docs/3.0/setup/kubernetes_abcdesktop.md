@@ -6,7 +6,7 @@ In kubernetes mode, the abcdesktop infrastructure use seven containers (oc.cups 
 
 | Container    | Role                     | Image                           | From         |
 |--------------|--------------------------|---------------------------------|--------------|
-| oc.user      | user container           | abcdesktopio/oc.user.18.04:3.0  | abcdesktopio |
+| oc.user      | user container           | abcdesktopio/oc.user.kubernetes.18.04:3.0  | abcdesktopio |
 | oc.cups      | printing container       | abcdesktopio/oc.cupsd.18.04:3.0 | abcdesktopio |
 | oc.pyos      | API Server               | abcdesktopio/oc.pyos:3.0        | abcdesktopio |
 | oc.nginx     | web server proxy         | abcdesktopio/oc.nginx:3.0       | abcdesktopio |
@@ -179,25 +179,11 @@ abcdesktopjwtusersigning      Opaque                                2      67s
 On a worker node, fetch the three user default images, to make sure that Kubernetes will find the docker images at startup time. 
  
 ```
-docker pull abcdesktopio/oc.user.kubernete.18.04:2.9
-docker pull abcdesktopio/oc.cupsd.18.04:2.9
-docker pull abcdesktopio/oc.pulseaudio.18.04:2.9
-```
-
-You should read on the standard output
-
-```
-oc.user.18.04: Pulling from abcdesktopio
-...[cut here]...
-docker.io/abcdesktopio/oc.user.18.04:2.9
-
-oc.cupsd.18.04: Pulling from abcdesktopio
-...[cut here]...
-docker.io/abcdesktopio/oc.cupsd.18.04
-
-oc.pulseaudio.18.04: Pulling from abcdesktopio
-...[cut here]...
-docker.io/abcdesktopio/oc.pulseaudio.18.04
+ctr -n k8s.io images pull docker.io/abcdesktopio/oc.user.kubernetes.18.04:3.0
+ctr -n k8s.io images pull docker.io/abcdesktopio/oc.pulseaudio.18.04:3.0
+ctr -n k8s.io images pull docker.io/abcdesktopiooc.cupsd.18.04:3.0
+ctr -n k8s.io images pull docker.io/library/busybox:latest
+ctr -n k8s.io images pull k8s.gcr.io/pause:3.8
 ```
 
 Create the abcdesktop pods and services
@@ -207,7 +193,7 @@ abcdesktop.yaml file contains declarations for all roles, service account, pods,
 Run the command line
 
 ``` bash
-kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop.2.9.yaml
+kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.0.yaml
 ```
 
 You should read on the standard output
@@ -265,7 +251,7 @@ abcdesktop homepage should be available :
 
 ![abcdesktop Anonymous login](../../setup/img/kubernetes-setup-login-anonymous.png)
 
-Click on the **Connect with Anonymous** access button. abcdesktop service pyos is creating a new desktop using the user container docker image oc.user.18.04.
+Click on the **Connect with Anonymous** access button. abcdesktop service pyos is creating a new desktop using the user container image `abcdesktopio/oc.user.kubernetes.18.04:3.0`.
 
 ![abcdesktop main screen login pending](../../setup/img/kubernetes-setup-login-anonymous.pending.png)
 
@@ -322,8 +308,8 @@ You should read on the standard output
 
 ``` bash
 NAME              DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-daemonset-nginx   1         1         1       1            1           <none>          16m
-daemonset-pyos    1         1         1       1            1           <none>          16m
+daemonset-nginx   1         1         1       1            1           <none>          166m
+daemonset-pyos    1         1         1       1            1           <none>          166m
 ```
 
 
@@ -335,14 +321,14 @@ kubectl get services -n abcdesktop
 You should read on the standard output
 
 ```
-NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
-desktop     ClusterIP   None             <none>        <none>         17m
-memcached   ClusterIP   10.110.16.25     <none>        11211/TCP      17m
-mongodb     ClusterIP   10.110.49.161    <none>        27017/TCP      17m
-nginx       NodePort    10.102.13.5      <none>        80:30443/TCP   17m
-openldap    ClusterIP   10.108.52.65     <none>        389/TCP        17m
-pyos        ClusterIP   10.111.123.108   <none>        8000/TCP       17m
-speedtest   ClusterIP   10.101.137.100   <none>        80/TCP         17m
+NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)           AGE
+desktop     ClusterIP   None             <none>        <none>            166m
+memcached   ClusterIP   10.97.84.163     <none>        11211/TCP         166m
+mongodb     ClusterIP   10.97.119.76     <none>        27017/TCP         166m
+nginx       NodePort    10.108.80.216    <none>        80:30443/TCP      166m
+openldap    ClusterIP   10.104.244.6     <none>        389/TCP,636/TCP   166m
+pyos        ClusterIP   10.111.15.51     <none>        8000/TCP          166m
+speedtest   ClusterIP   10.106.254.126   <none>        80/TCP            166m
 ```
 
 ##### Verify cluster roles
@@ -358,13 +344,17 @@ Name:         pyos-role
 Labels:       <none>
 Annotations:  <none>
 PolicyRule:
-  Resources  Non-Resource URLs  Resource Names  Verbs
-  ---------  -----------------  --------------  -----
-  pods/exec  []                 []              [create get list watch update patch delete]
-  pods       []                 []              [get list watch create update patch delete]
-  secrets    []                 []              [get list watch create update patch delete]
-  pods/log   []                 []              [get list watch]
-  nodes      []                 []              [get watch list]
+  Resources                 Non-Resource URLs  Resource Names  Verbs
+  ---------                 -----------------  --------------  -----
+  pods/ephemeralcontainers  []                 []              [create get list watch update patch delete]
+  pods/exec                 []                 []              [create get list watch update patch delete]
+  configmaps                []                 []              [get list watch create update patch delete]
+  pods                      []                 []              [get list watch create update patch delete]
+  secrets                   []                 []              [get list watch create update patch delete]
+  events                    []                 []              [get list watch]
+  pods/log                  []                 []              [get list watch]
+  endpoints                 []                 []              [get list]
+  nodes                     []                 []              [get watch list]
 ```  
 
 ##### Verify Cluster Role Bindind
@@ -376,7 +366,6 @@ kubectl describe ClusterRoleBinding pyos-rbac -n abcdesktop
 You should read on the standard output
 
 ``` bash
-Name:         pyos-rbac
 Labels:       <none>
 Annotations:  <none>
 Role:
@@ -391,14 +380,10 @@ Subjects:
 
 ### View pyos logs
 
-
-> Since the abcdesktop pyos code needs to interact with the Docker API in order to CRUD containers, pyos need to mount /var/run/docker.sock into the container
-
 ```
 kubectl logs daemonset-pyos-tklg8 --follow -n abcdesktop
 ```
 
-Note that you also can view logs using docker command
 
 
 ### Rollout daemonset
