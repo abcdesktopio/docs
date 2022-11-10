@@ -1457,11 +1457,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-3-download-core-images-create-pods-and-services" class="md-nav__link">
-    Step 3: Download core images, create Pods, and services
+  <a href="#step-3-download-user-pod-images" class="md-nav__link">
+    Step 3: Download user pod images
   </a>
   
-    <nav class="md-nav" aria-label="Step 3: Download core images, create Pods, and services">
+    <nav class="md-nav" aria-label="Step 3: Download user pod images">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3559,11 +3559,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-3-download-core-images-create-pods-and-services" class="md-nav__link">
-    Step 3: Download core images, create Pods, and services
+  <a href="#step-3-download-user-pod-images" class="md-nav__link">
+    Step 3: Download user pod images
   </a>
   
-    <nav class="md-nav" aria-label="Step 3: Download core images, create Pods, and services">
+    <nav class="md-nav" aria-label="Step 3: Download user pod images">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3832,13 +3832,24 @@ abcdesktopjwtdesktoppayload   Opaque                                2      68s
 abcdesktopjwtdesktopsigning   Opaque                                2      68s
 abcdesktopjwtusersigning      Opaque                                2      67s
 </code></pre>
-<h4 id="step-3-download-core-images-create-pods-and-services">Step 3: Download core images, create Pods, and services</h4>
-<p>On a worker node, fetch the three user default images, to make sure that Kubernetes will find the docker images at startup time. </p>
-<pre><code>ctr -n k8s.io images pull docker.io/abcdesktopio/oc.user.kubernetes.18.04:3.0
-ctr -n k8s.io images pull docker.io/abcdesktopio/oc.pulseaudio.18.04:3.0
-ctr -n k8s.io images pull docker.io/abcdesktopiooc.cupsd.18.04:3.0
-ctr -n k8s.io images pull docker.io/library/busybox:latest
-ctr -n k8s.io images pull k8s.gcr.io/pause:3.8
+<h4 id="step-3-download-user-pod-images">Step 3: Download user pod images</h4>
+<p>Create a pod user to make sure that Kubernetes will find the docker images at startup time. </p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser.yaml
+</code></pre>
+<p>You should read on stdout</p>
+<pre><code>pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 created
+</code></pre>
+<p>You can check that your user pod is <code>Ready</code></p>
+<pre><code>kubectl wait --for=condition=Ready pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5  -n abcdesktop
+pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
+</code></pre>
+<p>or </p>
+<pre><code>kubectl get pods -n abcdesktop
+NAME                                             READY   STATUS    RESTARTS   AGE
+anonymous-74bea267-8197-4b1d-acff-019b24e778c5   4/4     Running   0          6m12s
+</code></pre>
+<p>You can delete the user pod <code>anonymous-74bea267-8197-4b1d-acff-019b24e778c5</code></p>
+<pre><code>kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser.yaml
 </code></pre>
 <p>Create the abcdesktop pods and services</p>
 <p>abcdesktop.yaml file contains declarations for all roles, service account, pods, and services required for abcdesktop.</p>
