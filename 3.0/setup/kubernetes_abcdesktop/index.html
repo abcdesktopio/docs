@@ -3739,9 +3739,7 @@ The quick installation process runs the all commands step by step:</p>
 <li>download the default configuration file <code>od.config</code></li>
 <li>create all <code>services</code>, <code>pods</code>, <code>secrets</code> and <code>configmaps</code></li>
 <li>download user's core images: <code>oc.user</code>, <code>oc.cupsd</code>, <code>oc.pulseaudio</code> ( if ctr command line exists )</li>
-<li>download some applications images sample: the LibreOffice suite (<code>calc</code>, <code>writer</code>, <code>impress</code>), <code>firefox</code>, <code>Gimp</code>, and <code>gnome-terminal</code> (if ctr command line exists).</li>
 </ul>
-<p>You can also download the <a href="https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install.2.x.sh">install.2.x.sh</a> bash script, and read it and then run it.</p>
 <h2 id="manually-installation-step-by-step-linux-macos-or-windows">Manually installation step by step (Linux, macOS or Windows)</h2>
 <p>The following commands will let you prepare and build abcdesktop plateform on the master node. All applications run on a single server.  </p>
 <h3 id="install-abcdesktop">Install abcdesktop</h3>
@@ -3877,8 +3875,8 @@ service/nginx created
 service/pyos created
 </code></pre>
 <h5 id="verify-pods">Verify Pods</h5>
-<p>Once the pods are created, all pods should be running.<br />
-For the first time, status maybe long to become running as some container images may be downloaded</p>
+<p>Once the pods are created, all pods should be <code>Running</code>.<br />
+For the first time, please wait for downloading container images</p>
 <pre><code class="language-bash">kubectl get pods -n abcdesktop
 </code></pre>
 <p>You should read on the standard output</p>
