@@ -3686,7 +3686,7 @@
 <tr>
 <td>oc.user</td>
 <td>user container</td>
-<td>abcdesktopio/oc.user.18.04:3.0</td>
+<td>abcdesktopio/oc.user.kubernetes.18.04:3.0</td>
 <td>abcdesktopio</td>
 </tr>
 <tr>
@@ -3846,27 +3846,16 @@ abcdesktopjwtusersigning      Opaque                                2      67s
 </code></pre>
 <h4 id="step-3-download-core-images-create-pods-and-services">Step 3: Download core images, create Pods, and services</h4>
 <p>On a worker node, fetch the three user default images, to make sure that Kubernetes will find the docker images at startup time. </p>
-<pre><code>docker pull abcdesktopio/oc.user.kubernete.18.04:2.9
-docker pull abcdesktopio/oc.cupsd.18.04:2.9
-docker pull abcdesktopio/oc.pulseaudio.18.04:2.9
-</code></pre>
-<p>You should read on the standard output</p>
-<pre><code>oc.user.18.04: Pulling from abcdesktopio
-...[cut here]...
-docker.io/abcdesktopio/oc.user.18.04:2.9
-
-oc.cupsd.18.04: Pulling from abcdesktopio
-...[cut here]...
-docker.io/abcdesktopio/oc.cupsd.18.04
-
-oc.pulseaudio.18.04: Pulling from abcdesktopio
-...[cut here]...
-docker.io/abcdesktopio/oc.pulseaudio.18.04
+<pre><code>ctr -n k8s.io images pull docker.io/abcdesktopio/oc.user.kubernetes.18.04:3.0
+ctr -n k8s.io images pull docker.io/abcdesktopio/oc.pulseaudio.18.04:3.0
+ctr -n k8s.io images pull docker.io/abcdesktopiooc.cupsd.18.04:3.0
+ctr -n k8s.io images pull docker.io/library/busybox:latest
+ctr -n k8s.io images pull k8s.gcr.io/pause:3.8
 </code></pre>
 <p>Create the abcdesktop pods and services</p>
 <p>abcdesktop.yaml file contains declarations for all roles, service account, pods, and services required for abcdesktop.</p>
 <p>Run the command line</p>
-<pre><code class="language-bash">kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop.2.9.yaml
+<pre><code class="language-bash">kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.0.yaml
 </code></pre>
 <p>You should read on the standard output</p>
 <pre><code class="language-bash">clusterrole.rbac.authorization.k8s.io/pyos-role created
@@ -3909,7 +3898,7 @@ speedtest-od-7cb7dd44f5-p947s          1/1     Running   0          29s
 <p>Open your navigator to http://[your-ip-hostname]:30443/</p>
 <p>abcdesktop homepage should be available :</p>
 <p><img alt="abcdesktop Anonymous login" src="../../../setup/img/kubernetes-setup-login-anonymous.png" /></p>
-<p>Click on the <strong>Connect with Anonymous</strong> access button. abcdesktop service pyos is creating a new desktop using the user container docker image oc.user.18.04.</p>
+<p>Click on the <strong>Connect with Anonymous</strong> access button. abcdesktop service pyos is creating a new desktop using the user container image <code>abcdesktopio/oc.user.kubernetes.18.04:3.0</code>.</p>
 <p><img alt="abcdesktop main screen login pending" src="../../../setup/img/kubernetes-setup-login-anonymous.pending.png" /></p>
 <p>Few seconds later, processes are ready to run. You should see the abcdesktop main screen, with only one application <strong>File Manager</strong>.</p>
 <p><img alt="abcdesktop main screen ready" src="../../../setup/img/kubernetes-setup-login-anonymous.done.png" /></p>
@@ -3944,21 +3933,21 @@ We will then ask kubernetes to describe the pod with the following command :</p>
 </code></pre>
 <p>You should read on the standard output</p>
 <pre><code class="language-bash">NAME              DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-daemonset-nginx   1         1         1       1            1           &lt;none&gt;          16m
-daemonset-pyos    1         1         1       1            1           &lt;none&gt;          16m
+daemonset-nginx   1         1         1       1            1           &lt;none&gt;          166m
+daemonset-pyos    1         1         1       1            1           &lt;none&gt;          166m
 </code></pre>
 <h5 id="verify-service-ports">Verify service ports</h5>
 <pre><code>kubectl get services -n abcdesktop
 </code></pre>
 <p>You should read on the standard output</p>
-<pre><code>NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
-desktop     ClusterIP   None             &lt;none&gt;        &lt;none&gt;         17m
-memcached   ClusterIP   10.110.16.25     &lt;none&gt;        11211/TCP      17m
-mongodb     ClusterIP   10.110.49.161    &lt;none&gt;        27017/TCP      17m
-nginx       NodePort    10.102.13.5      &lt;none&gt;        80:30443/TCP   17m
-openldap    ClusterIP   10.108.52.65     &lt;none&gt;        389/TCP        17m
-pyos        ClusterIP   10.111.123.108   &lt;none&gt;        8000/TCP       17m
-speedtest   ClusterIP   10.101.137.100   &lt;none&gt;        80/TCP         17m
+<pre><code>NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)           AGE
+desktop     ClusterIP   None             &lt;none&gt;        &lt;none&gt;            166m
+memcached   ClusterIP   10.97.84.163     &lt;none&gt;        11211/TCP         166m
+mongodb     ClusterIP   10.97.119.76     &lt;none&gt;        27017/TCP         166m
+nginx       NodePort    10.108.80.216    &lt;none&gt;        80:30443/TCP      166m
+openldap    ClusterIP   10.104.244.6     &lt;none&gt;        389/TCP,636/TCP   166m
+pyos        ClusterIP   10.111.15.51     &lt;none&gt;        8000/TCP          166m
+speedtest   ClusterIP   10.106.254.126   &lt;none&gt;        80/TCP            166m
 </code></pre>
 <h5 id="verify-cluster-roles">Verify cluster roles</h5>
 <pre><code class="language-bash">kubectl describe ClusterRole pyos-role -n abcdesktop
@@ -3968,20 +3957,23 @@ speedtest   ClusterIP   10.101.137.100   &lt;none&gt;        80/TCP         17m
 Labels:       &lt;none&gt;
 Annotations:  &lt;none&gt;
 PolicyRule:
-  Resources  Non-Resource URLs  Resource Names  Verbs
-  ---------  -----------------  --------------  -----
-  pods/exec  []                 []              [create get list watch update patch delete]
-  pods       []                 []              [get list watch create update patch delete]
-  secrets    []                 []              [get list watch create update patch delete]
-  pods/log   []                 []              [get list watch]
-  nodes      []                 []              [get watch list]
+  Resources                 Non-Resource URLs  Resource Names  Verbs
+  ---------                 -----------------  --------------  -----
+  pods/ephemeralcontainers  []                 []              [create get list watch update patch delete]
+  pods/exec                 []                 []              [create get list watch update patch delete]
+  configmaps                []                 []              [get list watch create update patch delete]
+  pods                      []                 []              [get list watch create update patch delete]
+  secrets                   []                 []              [get list watch create update patch delete]
+  events                    []                 []              [get list watch]
+  pods/log                  []                 []              [get list watch]
+  endpoints                 []                 []              [get list]
+  nodes                     []                 []              [get watch list]
 </code></pre>
 <h5 id="verify-cluster-role-bindind">Verify Cluster Role Bindind</h5>
 <pre><code class="language-bash">kubectl describe ClusterRoleBinding pyos-rbac -n abcdesktop
 </code></pre>
 <p>You should read on the standard output</p>
-<pre><code class="language-bash">Name:         pyos-rbac
-Labels:       &lt;none&gt;
+<pre><code class="language-bash">Labels:       &lt;none&gt;
 Annotations:  &lt;none&gt;
 Role:
   Kind:  ClusterRole
@@ -3992,12 +3984,8 @@ Subjects:
   ServiceAccount  pyos-serviceaccount  abcdesktop
 </code></pre>
 <h3 id="view-pyos-logs">View pyos logs</h3>
-<blockquote>
-<p>Since the abcdesktop pyos code needs to interact with the Docker API in order to CRUD containers, pyos need to mount /var/run/docker.sock into the container</p>
-</blockquote>
 <pre><code>kubectl logs daemonset-pyos-tklg8 --follow -n abcdesktop
 </code></pre>
-<p>Note that you also can view logs using docker command</p>
 <h3 id="rollout-daemonset">Rollout daemonset</h3>
 <p>To rollout restart the abcdesktop daemonset</p>
 <pre><code>kubectl rollout restart daemonset -n abcdesktop
