@@ -3672,7 +3672,7 @@
 
 <h1 id="abcdesktop-in-kubernetes-mode">abcdesktop in kubernetes mode</h1>
 <p>abcdesktop release 3.x support only kubernetes mode. All applications containers can be distributed on different hosts.</p>
-<p>In kubernetes mode, the abcdesktop infrastructure use seven containers (oc.cups is optional), each container has a specific role : </p>
+<p>The abcdesktop infrastructure is using the contianers : </p>
 <table>
 <thead>
 <tr>
@@ -3683,18 +3683,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>oc.user</td>
-<td>user container</td>
-<td>abcdesktopio/oc.user.kubernetes.18.04:3.0</td>
-<td>abcdesktopio</td>
-</tr>
-<tr>
-<td>oc.cups</td>
-<td>printing container</td>
-<td>abcdesktopio/oc.cupsd.18.04:3.0</td>
-<td>abcdesktopio</td>
-</tr>
 <tr>
 <td>oc.pyos</td>
 <td>API Server</td>
