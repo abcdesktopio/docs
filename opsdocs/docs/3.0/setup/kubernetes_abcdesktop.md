@@ -45,10 +45,6 @@ The quick installation process runs the all commands step by step:
 * download the default configuration file `od.config`
 * create all `services`, `pods`, `secrets` and `configmaps`
 * download user's core images: `oc.user`, `oc.cupsd`, `oc.pulseaudio` ( if ctr command line exists )
-* download some applications images sample: the LibreOffice suite (`calc`, `writer`, `impress`), `firefox`, `Gimp`, and `gnome-terminal` (if ctr command line exists).
-
-You can also download the [install.2.x.sh](https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install.2.x.sh) bash script, and read it and then run it.
- 
 
 
 ## Manually installation step by step (Linux, macOS or Windows)
@@ -242,8 +238,8 @@ service/pyos created
 
 ##### Verify Pods
 
-Once the pods are created, all pods should be running.  
-For the first time, status maybe long to become running as some container images may be downloaded
+Once the pods are created, all pods should be `Running`.  
+For the first time, please wait for downloading container images
 
 ``` bash
 kubectl get pods -n abcdesktop
