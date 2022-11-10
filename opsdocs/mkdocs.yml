@@ -77,7 +77,9 @@ nav:
    - Release 3.0 :
      - Notes and Features :  3.0/features.md
      - Requirements : 3.0/setup/requirements.md
-     - Kubernetes :
+     - Kubernetes : 
+       - Install Kubernetes on GNU/Linux : 3.0/setup/k8slinuxinstallation.md
+       - Setup Kubernetes for GNU/Linux : 3.0/setup/kubernetesmode.md
        - Setup abcdesktop for Kubernetes : 3.0/setup/kubernetes_abcdesktop.md
        - Setup applications for abcdesktop : 3.0/setup/kubernetes_abcdesktop_applications.md
        - Kubernetes add-ons :
@@ -91,79 +93,81 @@ nav:
     - Build non free applications : common/non-free-applications.md
 - Configuration Guide :
   - Release 1.0 :
-      - Edit your configuration file: 1.0/config/editconfig.md
-      - Stack mode: 1.0/config/stack.md
-      - Authentification: 
-        - config: 1.0/config/authentification.md
-        - explicit:
-           - Directory services: 1.0/config/authexplicit.md
-           - LDAP: 1.0/config/authexplicit-ldap.md
-           - Active Directory: 1.0/config/authexplicit-activedirectory.md
-        - implicit: 1.0/config/authimplicit.md
-        - external: 1.0/config/authexternal.md
-        - rules: 1.0/config/authentification-rules.md
-      - Desktop: 1.0/config/desktop.md
-      - Front: 1.0/config/frontjs.md
-      - Languages: 1.0/config/language.md
-      - Logging: 
-        - Logging: 1.0/config/logging.md
-        - Syslog: 1.0/config/syslog.md
-      - Controllers:
-         - Overview : 1.0/config/controllers.md
-         - Manager: 1.0/config/controllers/manager.md
-      - WebRTC:
-        - Pulseaudio : 1.0/config/webrtc.md
-      - Issue tracking:
-        - Jira : 1.0/config/jira.md
+    - Edit your configuration file: 1.0/config/editconfig.md
+    - Stack mode: 1.0/config/stack.md
+    - Authentification: 
+      - config: 1.0/config/authentification.md
+      - explicit:
+        - Directory services: 1.0/config/authexplicit.md
+        - LDAP: 1.0/config/authexplicit-ldap.md
+        - Active Directory: 1.0/config/authexplicit-activedirectory.md
+      - implicit: 1.0/config/authimplicit.md
+      - external: 1.0/config/authexternal.md
+      - rules: 1.0/config/authentification-rules.md
+    - Desktop: 1.0/config/desktop.md
+    - Front: 1.0/config/frontjs.md
+    - Languages: 1.0/config/language.md
+    - Logging: 
+      - Logging: 1.0/config/logging.md
+      - Syslog: 1.0/config/syslog.md
+    - Controllers:
+      - Overview : 1.0/config/controllers.md
+      - Manager: 1.0/config/controllers/manager.md
+    - WebRTC:
+      - Pulseaudio : 1.0/config/webrtc.md
+    - Issue tracking:
+      - Jira : 1.0/config/jira.md
   - Release 2.0 :
-          - Edit your configuration file: 2.0/config/editconfig.md
-          - Stack mode: 2.0/config/stack.md
-          - Authentification: 
-               - config: 2.0/config/authentification.md
-               - explicit:
-                    - Directory services: 2.0/config/authexplicit.md
-                    - LDAP: 2.0/config/authexplicit-ldap.md
-                    - Active Directory: 2.0/config/authexplicit-activedirectory.md
-               - implicit: 2.0/config/authimplicit.md
-               - external: 2.0/config/authexternal.md
-               - rules: 2.0/config/authentification-rules.md
-          - Desktop: 2.0/config/desktop.md
-          - Front: 2.0/config/frontjs.md
-          - Languages: 2.0/config/language.md
-          - Logging: 
-               - Logging: 2.0/config/logging.md
-               - Syslog: 2.0/config/syslog.md
-          - Controllers:
-               - Overview : 2.0/config/controllers.md
-               - Manager: 2.0/config/controllers/manager.md
-          - WebRTC:
-               - Pulseaudio : 2.0/config/webrtc.md
-          - Issue tracking:
-               - Jira : 2.0/config/jira.md
+    - Edit your configuration file: 2.0/config/editconfig.md
+    - Authentification: 
+      - config:   2.0/config/authentification.md
+      - implicit: 2.0/config/authimplicit.md
+      - external: 2.0/config/authexternal.md
+      - explicit:
+          - Directory services: 2.0/config/authexplicit.md
+          - LDAP: 2.0/config/authexplicit-ldap.md
+          - Active Directory: 2.0/config/authexplicit-activedirectory.md
+      - metaexplicit:
+          - metadirectory: 2.0/config/authmetaexplicit.md
+      - rules: 2.0/config/authentification-rules.md
+    - Desktop: 2.0/config/desktop.md
+    - Front: 2.0/config/frontjs.md
+    - Languages: 2.0/config/language.md
+    - Logging: 
+      - Logging: 2.0/config/logging.md
+      - Syslog: 2.0/config/syslog.md
+    - Controllers:
+      - Overview : 2.0/config/controllers.md
+      - Manager: 2.0/config/controllers/manager.md
+    - WebRTC:
+      - Pulseaudio : 2.0/config/webrtc.md
+    - Issue tracking:
+      - Jira : 2.0/config/jira.md
   - Release 3.0 :
-          - Edit your configuration file: 3.0/config/editconfig.md
-          - Authentification: 
-               - config: 3.0/config/authentification.md
-               - explicit:
-                    - Directory services: 3.0/config/authexplicit.md
-                    - LDAP: 3.0/config/authexplicit-ldap.md
-                    - Active Directory: 3.0/config/authexplicit-activedirectory.md
-               - implicit: 3.0/config/authimplicit.md
-               - external: 3.0/config/authexternal.md
-               - rules: 3.0/config/authentification-rules.md
-          - Desktop: 3.0/config/desktop.md
-          - Front: 3.0/config/frontjs.md
-          - Languages: 3.0/config/language.md
-          - Logging: 
-               - Logging: 3.0/config/logging.md
-               - Syslog: 3.0/config/syslog.md
-          - Controllers:
-               - Overview : 3.0/config/controllers.md
-               - Manager: 3.0/config/controllers/manager.md
-          - WebRTC:
-               - Pulseaudio : 3.0/config/webrtc.md
-          - Issue tracking:
-               - Jira : 3.0/config/jira.md
+    - Edit your configuration file: 3.0/config/editconfig.md
+    - Authentification: 
+        - config: 3.0/config/authentification.md
+        - explicit:
+          - Directory services: 3.0/config/authexplicit.md
+          - LDAP: 3.0/config/authexplicit-ldap.md
+          - Active Directory: 3.0/config/authexplicit-activedirectory.md
+        - implicit: 3.0/config/authimplicit.md
+        - external: 3.0/config/authexternal.md
+        - rules: 3.0/config/authentification-rules.md
+    - Pod User: 3.0/config/desktop.pod.md
+    - Desktop: 3.0/config/desktop.md
+    - Front: 3.0/config/frontjs.md
+    - Languages: 3.0/config/language.md
+    - Logging: 
+      - Logging: 3.0/config/logging.md
+      - Syslog: 3.0/config/syslog.md
+    - Controllers:
+      - Overview : 3.0/config/controllers.md
+      - Manager: 3.0/config/controllers/manager.md
+    - WebRTC:
+      - Pulseaudio : 3.0/config/webrtc.md
+    - Issue tracking:
+      - Jira : 3.0/config/jira.md
 - Issue : 'https://github.com/abcdesktopio/conf/issues'
 - How-to:
    - User data persistence : 'common/userdatapersistence.md'
