@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://www.abcdesktop.io/3.0/setup/kubernetes_abcdesktop/">
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.9">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.472b142f.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.08040f6c.min.css">
@@ -66,7 +66,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="None" data-md-color-accent="None">
   
     
     
@@ -1461,18 +1461,32 @@
     Step 3: Download user pod images
   </a>
   
-    <nav class="md-nav" aria-label="Step 3: Download user pod images">
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-download-and-create-the-abcdesktop-config-file" class="md-nav__link">
+    Step 4: Download and create the abcdesktop config file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-create-the-abcdesktop-pods-and-services" class="md-nav__link">
+    Step 5: Create the abcdesktop pods and services
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Create the abcdesktop pods and services">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#verify-pods" class="md-nav__link">
     Verify Pods
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1530,8 +1544,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#view-pyos-logs" class="md-nav__link">
-    View pyos logs
+  <a href="#read-pyos-logs" class="md-nav__link">
+    Read pyos logs
   </a>
   
 </li>
@@ -3563,18 +3577,32 @@
     Step 3: Download user pod images
   </a>
   
-    <nav class="md-nav" aria-label="Step 3: Download user pod images">
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-download-and-create-the-abcdesktop-config-file" class="md-nav__link">
+    Step 4: Download and create the abcdesktop config file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-create-the-abcdesktop-pods-and-services" class="md-nav__link">
+    Step 5: Create the abcdesktop pods and services
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Create the abcdesktop pods and services">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#verify-pods" class="md-nav__link">
     Verify Pods
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -3632,8 +3660,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#view-pyos-logs" class="md-nav__link">
-    View pyos logs
+  <a href="#read-pyos-logs" class="md-nav__link">
+    Read pyos logs
   </a>
   
 </li>
@@ -3846,7 +3874,17 @@ container images are downloading.</p>
 <p>You can delete the user pod <code>anonymous-74bea267-8197-4b1d-acff-019b24e778c5</code>. This container images are downloaded.</p>
 <pre><code>kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser.yaml
 </code></pre>
-<p>Create the abcdesktop pods and services</p>
+<h3 id="step-4-download-and-create-the-abcdesktop-config-file">Step 4: Download and create the abcdesktop config file</h3>
+<p>Download the od.config file. This is the main file for <code>pyos</code> control plane.</p>
+<pre><code>curl https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.0 --output od.config
+</code></pre>
+<p>Create the config map <code>abcdesktop-config</code> in the <code>abcdesktop</code> namespace</p>
+<pre><code class="language-bash">kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
+</code></pre>
+<p>You should read on sdtout</p>
+<pre><code>configmap/abcdesktop-config created
+</code></pre>
+<h3 id="step-5-create-the-abcdesktop-pods-and-services">Step 5: Create the abcdesktop pods and services</h3>
 <p>abcdesktop.yaml file contains declarations for all roles, service account, pods, and services required for abcdesktop.</p>
 <p>Run the command line</p>
 <pre><code class="language-bash">kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.0.yaml
@@ -3856,9 +3894,6 @@ container images are downloading.</p>
 clusterrolebinding.rbac.authorization.k8s.io/pyos-rbac created
 serviceaccount/pyos-serviceaccount created
 storageclass.storage.k8s.io/storage-local-abcdesktop created
-persistentvolume/pv-volume-home-directory created
-persistentvolumeclaim/persistentvolumeclaim-home-directory created
-configmap/abcdesktop-config created
 configmap/nginx-config created
 deployment.apps/memcached-od created
 secret/mongodb-secret created
@@ -3875,8 +3910,9 @@ service/nginx created
 service/pyos created
 </code></pre>
 <h5 id="verify-pods">Verify Pods</h5>
-<p>Once the pods are created, all pods should be <code>Running</code>.<br />
-For the first time, please wait for downloading container images</p>
+<p>Once the pods are created, all pods should be in <code>Running</code> status.<br />
+For the first time, please wait for downloading all container images. 
+It can take a while.</p>
 <pre><code class="language-bash">kubectl get pods -n abcdesktop
 </code></pre>
 <p>You should read on the standard output</p>
@@ -3977,7 +4013,7 @@ Subjects:
   ----            ----                 ---------
   ServiceAccount  pyos-serviceaccount  abcdesktop
 </code></pre>
-<h3 id="view-pyos-logs">View pyos logs</h3>
+<h3 id="read-pyos-logs">Read pyos logs</h3>
 <pre><code>kubectl logs daemonset-pyos-tklg8 --follow -n abcdesktop
 </code></pre>
 <h3 id="rollout-daemonset">Rollout daemonset</h3>
