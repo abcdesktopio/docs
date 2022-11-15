@@ -200,7 +200,27 @@ kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kuber
 ```
 
 
-Create the abcdesktop pods and services
+### Step 4: Download and create the abcdesktop config file 
+
+Download the od.config file. This is the main file for `pyos` control plane.
+
+```
+curl https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.0 --output od.config
+```
+
+Create the config map `abcdesktop-config` in the `abcdesktop` namespace
+
+``` bash
+kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
+```
+
+You should read on sdtout
+
+```
+configmap/abcdesktop-config created
+```
+
+### Step 5: Create the abcdesktop pods and services
 
 abcdesktop.yaml file contains declarations for all roles, service account, pods, and services required for abcdesktop.
 
@@ -217,9 +237,6 @@ clusterrole.rbac.authorization.k8s.io/pyos-role created
 clusterrolebinding.rbac.authorization.k8s.io/pyos-rbac created
 serviceaccount/pyos-serviceaccount created
 storageclass.storage.k8s.io/storage-local-abcdesktop created
-persistentvolume/pv-volume-home-directory created
-persistentvolumeclaim/persistentvolumeclaim-home-directory created
-configmap/abcdesktop-config created
 configmap/nginx-config created
 deployment.apps/memcached-od created
 secret/mongodb-secret created
@@ -238,8 +255,9 @@ service/pyos created
 
 ##### Verify Pods
 
-Once the pods are created, all pods should be `Running`.  
-For the first time, please wait for downloading container images
+Once the pods are created, all pods should be in `Running` status.  
+For the first time, please wait for downloading all container images. 
+It can take a while.
 
 ``` bash
 kubectl get pods -n abcdesktop
@@ -392,12 +410,11 @@ Subjects:
 ```
 
 
-### View pyos logs
+### Read pyos logs
 
 ```
 kubectl logs daemonset-pyos-tklg8 --follow -n abcdesktop
 ```
-
 
 
 ### Rollout daemonset
