@@ -1,4 +1,4 @@
-# User data persistence in `all-in-one` configuration 
+# User data persistence in release 1.x configuration 
 
 
 ## Requirements 
