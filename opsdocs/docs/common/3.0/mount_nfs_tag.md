@@ -147,3 +147,9 @@ http://localhost:30443
 ![ls /mnt/iso](img/mount-shell-hermes.png)
 
 You can define many rules from LDAP groups. To get more informations about rules, read the [authentification rules section](/1.0/config/authentification-rules/)
+
+
+
+
+
+
