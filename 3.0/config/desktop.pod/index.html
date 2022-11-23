@@ -2926,6 +2926,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#spec-entry" class="md-nav__link">
+    spec entry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#init-container" class="md-nav__link">
     init container
   </a>
@@ -3403,6 +3410,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RFC 2307 multiple groups and user securityContext on pod:common/3.0/multiplegroupsfeature.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -3611,6 +3632,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#spec-entry" class="md-nav__link">
+    spec entry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#init-container" class="md-nav__link">
     init container
   </a>
@@ -3663,127 +3691,114 @@ Each container offers a user service.</p>
 <li>can be enable or disable <code>'enable': True</code></li>
 <li>can set dedicated <code>'resources'</code> limits resources for a container</li>
 <li>can set dedicated <code>'acl'</code> to start or not using rules </li>
-<li>can set dedicated <code>'securityContext'</code></li>
+<li>can set dedicated <code>'securityContext'</code> or use the default 'spec'</li>
 <li>can set dedicated <code>'secrets_requirement</code>, a list of secrets to run example  <code>['abcdesktop/vnc', 'abcdesktop/kerberos']</code></li>
 </ul>
 <h2 id="default-desktoppod">default desktop.pod</h2>
-<pre><code class="language-json">desktop.pod: { 
-    'graphical' : { 'image': { 'default': 'abcdesktopio/oc.user.kubernetes.18.04:3.0' },
-                    'pullpolicy':  'IfNotPresent',
-                    'enable': True,
-                    'acl':  { 'permit': [ 'all' ] },
-                    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
-                    'resources': {
-                        'requests': { 'memory': &quot;320Mi&quot;, 'cpu': &quot;250m&quot;  },
-                        'limits'  : { 'memory': &quot;768Mi&quot;, 'cpu': &quot;1000m&quot; }
-                    },
-                    'securityContext': {
-                      'readOnlyRootFilesystem': False,
-                      'allowPrivilegeEscalation': True,
-                      'runAsUser':  '{{ uidNumber }}',
-                      'runAsGroup': '{{ gidNumber }}'
-                    },
-                    'imagePullSecret' : None,
-                    'shareProcessNamespace': True,
-                    'tcpport': 6081,
-                    'secrets_requirement' : ['abcdesktop/vnc']
-    },
-    'spawner' :    { 'enable': True,
-                     'tcpport': 29786,
-                     'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
-                     'acl':  { 'permit': [ 'all' ] }
-    },
-    'broadcast' :  { 'enable': True,
-                     'tcpport': 29784,
-                     'acl':  { 'permit': [ 'all' ] }
-    },
-    'webshell' :   { 'enable': True,
-                     'tcpport': 29781,
-                     'acl':  { 'permit': [ 'all' ] }
-    },
-    'printer' :   { 'enable': True,
-                    'image': 'abcdesktopio/oc.cupsd.18.04:3.0',
-                    'imagePullSecret' : None,
-                    'pullpolicy': 'IfNotPresent',
-                    'tcpport': 681,
-                    # cupds run as root user
-                    'securityContext': { 'runAsUser': 0 },
-                    'resources': {
-                        'requests': { 'memory': &quot;64Mi&quot;,   'cpu': &quot;125m&quot; },  
-                        'limits'  : { 'memory': &quot;512Mi&quot;,  'cpu': &quot;500m&quot; } 
-                    },
-                    'acl':  { 'permit': [ 'all' ] }
-    },
-    'printerfile' :{ 'enable': True,
-                     'tcpport': 29782,
-                     'acl':  { 'permit': [ 'all' ] }
-    },
-    'filer' :     { 'image': 'abcdesktopio/oc.filer:3.0',
-                    'imagePullSecret' : None,
-                    'pullpolicy':  'IfNotPresent',
-                    'enable': True,
-                    'tcpport': 29783,
-                    'securityContext': {
-                        'runAsUser':   '{{ uidNumber }}',
-                        'runAsGroup':  '{{ gidNumber }}'
-                    },
-                    'acl':  { 'permit': [ 'all' ] }
-    },
-    'storage' :   { 'image': 'k8s.gcr.io/pause:3.2',
-                    'pullpolicy':  'IfNotPresent',
-                    'imagePullSecret' : None,
-                    'enable': True,
-                    'securityContext': {
-                        'runAsUser':   '{{ uidNumber }}',
-                        'runAsGroup':  '{{ gidNumber }}'
-                    },
-                    'acl':   { 'permit': [ 'all' ] },
-                    'resources': {
-                        'requests': { 'memory': &quot;32Mi&quot;,  'cpu': &quot;100m&quot; },
-                        'limits'  : { 'memory': &quot;128Mi&quot;, 'cpu': &quot;250m&quot; }
-                    }
-    },
-    'sound':      { 'image': 'abcdesktopio/oc.pulseaudio.22.04:dev',
-                    'pullpolicy': 'IfNotPresent',
-                    'enable': True,
-                    'tcpport': 4714,
-                    'securityContext': {
-                        'runAsUser':   '{{ uidNumber }}',
-                        'runAsGroup':  '{{ gidNumber }}'
-                    },
-                    'acl':  { 'permit': [ 'all' ] },
-                    'resources': {
-                        'requests': { 'memory': &quot;8Mi&quot;,  'cpu': &quot;50m&quot;  },  
-                        'limits'  : { 'memory': &quot;64Mi&quot;, 'cpu': &quot;250m&quot; }
-                    }
-    },
-    'init':       { 'image': 'busybox',
-                    'enable': True,
-                    'pullpolicy':  'IfNotPresent',
-                    'securityContext': {
-                        'runAsUser':   0,
-                        'runAsGroup':  0 
-                    },
-                    'acl':  { 'permit': [ 'all' ] },
-                    # make sure that inside the container user has access to ~
-                    'command':  [ 'sh', '-c',  'chown {{ uidNumber }}:{{ gidNumber }} ~' ]
-    },
-    'ephemeral_container': {  
-                    'securityContext': {
-                        'runAsUser':  '{{ uidNumber }}',
-                        'runAsGroup': '{{ gidNumber }}'
-                    },
-                    'acl':  { 'permit': [ 'all' ] }
-    },
-    'pod_application': {  
-                    'imagePullSecret' : None,
-                    'securityContext': {
-                        'runAsUser':  '{{ uidNumber }}',
-                        'runAsGroup': '{{ gidNumber }}'
-                    },
-                    'acl':  { 'permit': [ 'all' ] }
+<pre><code class="language-json">desktop.pod : { 
+  'spec' : {
+    'securityContext': { 
+      'supplementalGroups': '{{ supplementalGroups }}',
+      'runAsUser': '{{ uidNumber }}',
+      'runAsGroup': '{{ gidNumber }}',
+      'readOnlyRootFilesystem': False, 
+      'allowPrivilegeEscalation': True
     }
-}
+  },  
+  'graphical' : { 
+    'image': { 'default': 'abcdesktopio/oc.user.kubernetes.18.04:3.0' },
+    'imagePullPolicy':  'IfNotPresent',
+    'enable': True,
+    'acl':  { 'permit': [ 'all' ] },
+    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
+    'resources': { 
+            'requests': { 'memory': &quot;320Mi&quot;, 'cpu': &quot;250m&quot;  }, 
+            'limits'  : { 'memory': &quot;1Gi&quot;,   'cpu': &quot;1000m&quot; } 
+    },
+    'shareProcessNamespace': True,
+    'tcpport': 6081,
+    'secrets_requirement' : [ 'abcdesktop/vnc', 'abcdesktop/kerberos']
+  },
+  'spawner' : { 
+    'enable': True,
+    'tcpport': 29786,
+    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
+    'acl':  { 'permit': [ 'all' ] } 
+  },
+  'broadcast' : { 
+    'enable': True,
+    'tcpport': 29784,
+    'acl':  { 'permit': [ 'all' ] } 
+  },
+  'webshell' : { 
+    'enable': True,
+    'tcpport': 29781,
+    'acl':  { 'permit': [ 'all' ] } 
+  },
+  'printer' : { 
+    'image': 'abcdesktopio/oc.cupsd.18.04:3.0',
+    'imagePullPolicy': 'IfNotPresent',
+    'enable': True,
+    'tcpport': 681,
+    # cupsd need to start as root
+    'securityContext': { 'runAsUser': 0 },
+    'resources': { 
+      'requests': { 'memory': &quot;64Mi&quot;, 'cpu': &quot;125m&quot; },  
+      'limits'  : { 'memory': &quot;512Mi&quot;,  'cpu': &quot;500m&quot; } 
+    },
+    'acl':  { 'permit': [ 'all' ] } 
+  },
+  'printerfile' : { 
+    'enable': True,
+    'tcpport': 29782,
+    'acl':  { 'permit': [ 'all' ] } 
+  },
+  'filer' : { 
+    'image': 'abcdesktopio/oc.filer:3.0',
+    'imagePullPolicy':  'IfNotPresent',
+    'enable': True,
+    'tcpport': 29783,
+    'acl':  { 'permit': [ 'all' ] } 
+    },
+  'storage' : { 
+    'image': 'k8s.gcr.io/pause:3.8',
+    'imagePullPolicy':  'IfNotPresent',
+    'enable': True,
+    'acl': { 'permit': [ 'all' ] },
+    'resources': { 
+      'requests': { 'memory': &quot;32Mi&quot;,  'cpu': &quot;100m&quot; },  
+      'limits'  : { 'memory': &quot;128Mi&quot;, 'cpu': &quot;250m&quot; } 
+    }
+  },
+  'sound': { 
+    'image': 'abcdesktopio/oc.pulseaudio.22.04:3.0',
+    'imagePullPolicy': 'IfNotPresent',
+    'enable': False,
+    'tcpport': 4714,
+    'acl':  { 'permit': [ 'all' ] },
+    'resources': { 
+      'requests': { 'memory': &quot;8Mi&quot;,  'cpu': &quot;50m&quot;  },  
+      'limits'  : { 'memory': &quot;64Mi&quot;, 'cpu': &quot;250m&quot; } 
+    } 
+  },
+  'init': { 
+    'image': 'busybox',
+    'enable': True,
+    # 'imagePullSecrets': [ { 'name': name_of_secret } ]
+    'imagePullPolicy': 'IfNotPresent',
+    'securityContext': { 'runAsUser': 0 },
+    'acl':  { 'permit': [ 'all' ] },
+    'command':  [ 'sh', '-c',  'chown {{ uidNumber }}:{{ gidNumber }} /home/balloon' ] 
+  },
+  'ephemeral_container': {
+    'enable': True,
+    'acl':  { 'permit': [ 'all' ] }
+  },
+  'pod_application' : {
+    'enable': True,
+    # 'imagePullSecrets': [ { 'name': name_of_secret } ]
+    'acl':  { 'permit': [ 'all' ] } } }
+
 </code></pre>
 <h3 id="common-options">common options</h3>
 <h4 id="enable">enable</h4>
@@ -3828,6 +3843,26 @@ The type of <code>imagePullSecret</code> is a list. This option is used if you n
 </code></pre>
 <h4 id="resources">resources</h4>
 <p>resources come from the kubernetes resources containers management. Read the <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">resources</a> kubernetes documentation to get more details.</p>
+<h3 id="spec-entry">spec entry</h3>
+<p><code>spec</code> entry defines the spec entry for a pod.</p>
+<ul>
+<li>
+<p><code>{{ uidNumber }}</code> is replace by the user's <code>uidNumber</code> on ldap if the objectClass is posixAccount or if not set by the default user id set in option <code>desktop.userid</code> </p>
+</li>
+<li>
+<p><code>{{ gidNumber }}</code> is replace by the user's <code>gidNumber</code> on ldap if the objectClass is posixAccount  is replaced by the ldap gidNumber or if not set by the default group id set in option <code>desktop.groupid</code> </p>
+</li>
+<li><code>{{ supplementalGroups }}</code> is replace by the list of groups <code>gidNumber</code> is posixGroup</li>
+</ul>
+<pre><code>'spec' : {
+    'securityContext': { 
+      'supplementalGroups': '{{ supplementalGroups }}',
+      'runAsUser': '{{ uidNumber }}',
+      'runAsGroup': '{{ gidNumber }}',
+      'readOnlyRootFilesystem': False, 
+      'allowPrivilegeEscalation': True
+    }
+</code></pre>
 <h3 id="init-container">init container</h3>
 <p>init container run the init command. It changes access right to the user home directory. The init command runs as root by default with a securityContext <code>'securityContext': {'runAsUser':0, 'runAsGroup':0 }</code>.</p>
 <p>The command support <code>{{ }}</code> values. Values can be </p>
