@@ -2,22 +2,22 @@ Uninstall abcdesktop for kubernetes
 
 # Commands to uninstall abcdesktop release 3.0 
 
-
+To uninstall abcdesktop. Choose run run the `uninstall-3.0.sh` bash script using a curl or run step by step uninstall commands manually.
 
 ## Quick uninstallation abcdesktop (Linux or macOS)
 
-> Quick installation can be run on Linux or macOS operation system. 
+> Quick uninstallation can be run on Linux or macOS operation system. 
 
 
-Download and extract the latest release automatically (Linux or macOS):
+Download and extract the uninstall bash script (Linux or macOS):
 
 ```
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.0.sh | bash
 ```
 
-## Run manually  
+## Run step by step uninstall commands  
 
-Run the bash commands : 
+Run the bash commands from the `uninstall-3.0.sh` content : 
 
 ```bash
 echo "starting abcdesktop uninstall commands"
