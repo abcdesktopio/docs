@@ -1,8 +1,13 @@
 
 # desktop.pod
 
-abcdesktop defines a user desktop as a group of user's container. This is a main features of abcdesktop.
-Each container offers a user service.
+abcdesktop defines a user desktop as a group of user's containers. This is a main features of abcdesktop.
+Each container offers a service. 
+
+For example 
+
+- `printer` is a service. `printer` service runs inside the user pod. 
+- `graphical` is a service. `graphical` service runs inside the user pod and is the default service.
 
 ## containers in the user pod
 
@@ -22,7 +27,7 @@ Each service :
 - can be enable or disable `'enable': True`
 - can set dedicated `'resources'` limits resources for a container
 - can set dedicated `'acl'` to start or not using rules 
-- can set dedicated `'securityContext'` or use the default 'spec'
+- can set dedicated `'securityContext'` or use the spec `securityContext` 
 - can set dedicated `'secrets_requirement`, a list of secrets to run example  `['abcdesktop/vnc', 'abcdesktop/kerberos']`
 
 
@@ -31,8 +36,11 @@ Each service :
 ``` json
 desktop.pod : { 
   'spec' : {
+    'shareProcessNamespace': True,
+    'shareProcessMemory': True,
+    'shareProcessMemorySize': '256Mi',
     'securityContext': { 
-      'supplementalGroups': '{{ supplementalGroups }}',
+      'supplementalGroups':  [ '{{ supplementalGroups }}' ],
       'runAsUser': '{{ uidNumber }}',
       'runAsGroup': '{{ gidNumber }}',
       'readOnlyRootFilesystem': False, 
@@ -41,13 +49,13 @@ desktop.pod : {
   },  
   'graphical' : { 
     'image': { 'default': 'abcdesktopio/oc.user.kubernetes.18.04:3.0' },
-    'imagePullPolicy':  'IfNotPresent',
+    'imagePullPolicy': 'IfNotPresent',
     'enable': True,
-    'acl':  { 'permit': [ 'all' ] },
-    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
+    'acl': { 'permit': [ 'all' ] },
+    'waitportbin': '/composer/node/wait-port/node_modules/.bin/wait-port',
     'resources': { 
 			'requests': { 'memory': "320Mi", 'cpu': "250m"  }, 
-			'limits'  : { 'memory': "1Gi",   'cpu': "1000m" } 
+			'limits':   { 'memory': "1Gi",   'cpu': "1000m" } 
     },
     'shareProcessNamespace': True,
     'tcpport': 6081,
@@ -122,7 +130,7 @@ desktop.pod : {
     'imagePullPolicy': 'IfNotPresent',
     'securityContext': { 'runAsUser': 0 },
     'acl':  { 'permit': [ 'all' ] },
-    'command':  [ 'sh', '-c',  'chown {{ uidNumber }}:{{ gidNumber }} /home/balloon' ] 
+    'command':  [ 'sh', '-c',  'chmod 750 ~ && chown {{ uidNumber }}:{{ gidNumber }} ~' ] 
   },
   'ephemeral_container': {
     'enable': True,
@@ -134,6 +142,8 @@ desktop.pod : {
     'acl':  { 'permit': [ 'all' ] } } }
 
 ```
+
+
 
 ### common options
 
@@ -164,7 +174,7 @@ Read the [pullpolicy](https://kubernetes.io/docs/concepts/containers/images/) ku
 
 The command is run with parameters :
 
-```
+```bash
 /composer/node/wait-port/node_modules/.bin/wait-port -t {waitportbintimeout}*1000 {container_ipaddr}:{container_tcpport}
 ```
  
@@ -181,25 +191,25 @@ Image describe the container image name ( by example `'image': 'abcdesktopio/oc.
 The `imagePullSecret` entry is the list of the secret name used by kubernetes to access to the private registry.
 The type of `imagePullSecret` is a list. This option is used if you need to store the abcdesktop docker image on your a private registry.
 
-```
+```json
  imagePullSecret : [ { 'name': name_of_secret } ]
 ```
 
 - Example to build a registry Kubernetes secret named abcdesktopregistrysecret with the docker hub.
 
-``` bash
+```bash
 kubectl create secret docker-registry abcdesktopregistrysecret --docker-server=https://index.docker.io/v1/ --docker-username=XXXXXXX --docker-password=YYYYYYYU
 ```
 
 - Example to build a registry Kubernetes secret named abcdesktopregistrysecret with your own privateregistry
 
-``` bash
+```bash
 kubectl create secret docker-registry abcdesktopregistrysecret --docker-server=registry.mydomain.local:443 --docker-username=XXXXXXX --docker-password=YYYYYYYU
 ```
 
 The `imagePullSecret` become in this sample
 
-```
+```json
  imagePullSecret : [ { 'name': 'abcdesktopregistrysecret' } ]
 ```
 
@@ -211,18 +221,24 @@ resources come from the kubernetes resources containers management. Read the [re
 ### spec entry
 
 
-`spec` entry defines the spec entry for a pod.
+`spec` entry defines the spec entry for a pod. All kubernetes entries are supported. Some of them are overwrited by abcdesktop.
 
-- `{{ uidNumber }}` is replace by the user's `uidNumber` on ldap if the objectClass is posixAccount or if not set by the default user id set in option `desktop.userid` 
+- `{{ uidNumber }}` is replaced by the user's `uidNumber` on ldap if the objectClass is posixAccount or if not set by the default user id set in option `desktop.userid` 
 
-- `{{ gidNumber }}` is replace by the user's `gidNumber` on ldap if the objectClass is posixAccount  is replaced by the ldap gidNumber or if not set by the default group id set in option `desktop.groupid` 
-- `{{ supplementalGroups }}` is replace by the list of groups `gidNumber` is posixGroup
+- `{{ gidNumber }}` is replaced by the user's `gidNumber` on ldap if the objectClass is posixAccount  is replaced by the ldap gidNumber or if not set by the default group id set in option `desktop.groupid` 
+- `{{ supplementalGroups }}` is replaced by the list of groups `gidNumber` is posixGroup
+- `shareProcessNamespace` When process namespace sharing is enabled, processes in a container are visible to all other containers in the same pod. Read the kubernetes [shareProcessNamespace](https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/) details, to get more details.
+- `shareProcessMemory` POSIX shared memory requires that a tmpfs be mounted at /dev/shm. The containers in a pod do not share their mount namespaces so we use volumes to provide the same /dev/shm into each container in a pod. To get more details, read [shared_memory](https://docs.openshift.com/container-platform/3.11/dev_guide/shared_memory.html). It is defined as an emptyDir volume `{ 'name': 'shm',  { 'medium': 'Memory', 'sizeLimit': shareProcessMemorySize } }`
+- `shareProcessMemorySize` is the size of `shareProcessMemory`. The size is set to the `shm` volume  `'sizeLimit': shareProcessMemorySize`
 
 
-```
+```json
 'spec' : {
+    'shareProcessNamespace': True,
+    'shareProcessMemory': True,
+    'shareProcessMemorySize': '256Mi',
     'securityContext': { 
-      'supplementalGroups': '{{ supplementalGroups }}',
+      'supplementalGroups': [ '{{ supplementalGroups }}' ],
       'runAsUser': '{{ uidNumber }}',
       'runAsGroup': '{{ gidNumber }}',
       'readOnlyRootFilesystem': False, 
@@ -249,7 +265,7 @@ Values are read from the previous ldap authentification.
 Example
 
 ``` json
- 'command':  [ 'sh', '-c',  'chown {{ uidNumber }}:{{ gidNumber }} ~' ]
+ 'command':  [ 'sh', '-c',  'chmod 755 ~ && chown {{ uidNumber }}:{{ gidNumber }} ~' ]
 ```
 
 
