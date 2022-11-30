@@ -1435,8 +1435,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run-manually" class="md-nav__link">
-    Run manually
+  <a href="#run-step-by-step-uninstall-commands" class="md-nav__link">
+    Run step by step uninstall commands
   </a>
   
 </li>
@@ -3482,8 +3482,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run-manually" class="md-nav__link">
-    Run manually
+  <a href="#run-step-by-step-uninstall-commands" class="md-nav__link">
+    Run step by step uninstall commands
   </a>
   
 </li>
@@ -3510,15 +3510,16 @@
 
 <p>Uninstall abcdesktop for kubernetes</p>
 <h1 id="commands-to-uninstall-abcdesktop-release-30">Commands to uninstall abcdesktop release 3.0</h1>
+<p>To uninstall abcdesktop. Choose run run the <code>uninstall-3.0.sh</code> bash script using a curl or run step by step uninstall commands manually.</p>
 <h2 id="quick-uninstallation-abcdesktop-linux-or-macos">Quick uninstallation abcdesktop (Linux or macOS)</h2>
 <blockquote>
-<p>Quick installation can be run on Linux or macOS operation system. </p>
+<p>Quick uninstallation can be run on Linux or macOS operation system. </p>
 </blockquote>
-<p>Download and extract the latest release automatically (Linux or macOS):</p>
+<p>Download and extract the uninstall bash script (Linux or macOS):</p>
 <pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.0.sh | bash
 </code></pre>
-<h2 id="run-manually">Run manually</h2>
-<p>Run the bash commands : </p>
+<h2 id="run-step-by-step-uninstall-commands">Run step by step uninstall commands</h2>
+<p>Run the bash commands from the <code>uninstall-3.0.sh</code> content : </p>
 <pre><code class="language-bash">echo &quot;starting abcdesktop uninstall commands&quot;
 echo &quot;stop and remove abcdesktop user pods&quot;
 kubectl delete pods --selector=&quot;type=x11server&quot; -n abcdesktop
