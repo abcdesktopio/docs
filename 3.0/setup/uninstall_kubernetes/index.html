@@ -3516,12 +3516,51 @@
 <p>Quick uninstallation can be run on Linux or macOS operation system. </p>
 </blockquote>
 <p>Download and extract the uninstall bash script (Linux or macOS):</p>
-<pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.0.sh | bash
+<pre><code class="language-bash">curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.0.sh | bash
+</code></pre>
+<p>You should read on stdout </p>
+<pre><code class="language-bash">starting abcdesktop uninstall commands start at 1669824908 epoch seconds
+stop and remove abcdesktop user pods
+pod &quot;anonymous-33c30478-5cc0-4e18-b128-735694c98f3c&quot; deleted
+remove all services, pods
+clusterrole.rbac.authorization.k8s.io &quot;pyos-role&quot; deleted
+clusterrolebinding.rbac.authorization.k8s.io &quot;pyos-rbac&quot; deleted
+serviceaccount &quot;pyos-serviceaccount&quot; deleted
+storageclass.storage.k8s.io &quot;storage-local-abcdesktop&quot; deleted
+configmap &quot;nginx-config&quot; deleted
+deployment.apps &quot;memcached-od&quot; deleted
+secret &quot;mongodb-secret&quot; deleted
+deployment.apps &quot;mongodb-od&quot; deleted
+daemonset.apps &quot;daemonset-nginx&quot; deleted
+deployment.apps &quot;speedtest-od&quot; deleted
+daemonset.apps &quot;daemonset-pyos&quot; deleted
+endpoints &quot;desktop&quot; deleted
+service &quot;desktop&quot; deleted
+service &quot;memcached&quot; deleted
+service &quot;mongodb&quot; deleted
+service &quot;speedtest&quot; deleted
+service &quot;nginx&quot; deleted
+service &quot;pyos&quot; deleted
+deployment.apps &quot;openldap-od&quot; deleted
+service &quot;openldap&quot; deleted
+remove all secrets
+secret &quot;abcdesktopjwtdesktoppayload&quot; deleted
+secret &quot;abcdesktopjwtdesktopsigning&quot; deleted
+secret &quot;abcdesktopjwtusersigning&quot; deleted
+remove all configmaps
+configmap &quot;abcdesktop-config&quot; deleted
+configmap &quot;kube-root-ca.crt&quot; deleted
+remove all pvc
+No resources found
+remove all pv
+No resources found
+remove namespace
+namespace &quot;abcdesktop&quot; deleted
+abcdesktop is uninstalled, in 48 seconds
 </code></pre>
 <h2 id="run-step-by-step-uninstall-commands">Run step by step uninstall commands</h2>
-<p>Run the bash commands from the <code>uninstall-3.0.sh</code> content : </p>
-<pre><code class="language-bash">echo &quot;starting abcdesktop uninstall commands&quot;
-echo &quot;stop and remove abcdesktop user pods&quot;
+<p>Run the bash commands from the <code>uninstall-3.0.sh</code> main content : </p>
+<pre><code class="language-bash">echo &quot;stop and remove abcdesktop user pods&quot;
 kubectl delete pods --selector=&quot;type=x11server&quot; -n abcdesktop
 echo &quot;remove all services, pods&quot;
 kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.0.yaml 
