@@ -11,16 +11,58 @@ To uninstall abcdesktop. Choose run run the `uninstall-3.0.sh` bash script using
 
 Download and extract the uninstall bash script (Linux or macOS):
 
-```
+```bash
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.0.sh | bash
+```
+
+You should read on stdout 
+
+```bash
+starting abcdesktop uninstall commands start at 1669824908 epoch seconds
+stop and remove abcdesktop user pods
+pod "anonymous-33c30478-5cc0-4e18-b128-735694c98f3c" deleted
+remove all services, pods
+clusterrole.rbac.authorization.k8s.io "pyos-role" deleted
+clusterrolebinding.rbac.authorization.k8s.io "pyos-rbac" deleted
+serviceaccount "pyos-serviceaccount" deleted
+storageclass.storage.k8s.io "storage-local-abcdesktop" deleted
+configmap "nginx-config" deleted
+deployment.apps "memcached-od" deleted
+secret "mongodb-secret" deleted
+deployment.apps "mongodb-od" deleted
+daemonset.apps "daemonset-nginx" deleted
+deployment.apps "speedtest-od" deleted
+daemonset.apps "daemonset-pyos" deleted
+endpoints "desktop" deleted
+service "desktop" deleted
+service "memcached" deleted
+service "mongodb" deleted
+service "speedtest" deleted
+service "nginx" deleted
+service "pyos" deleted
+deployment.apps "openldap-od" deleted
+service "openldap" deleted
+remove all secrets
+secret "abcdesktopjwtdesktoppayload" deleted
+secret "abcdesktopjwtdesktopsigning" deleted
+secret "abcdesktopjwtusersigning" deleted
+remove all configmaps
+configmap "abcdesktop-config" deleted
+configmap "kube-root-ca.crt" deleted
+remove all pvc
+No resources found
+remove all pv
+No resources found
+remove namespace
+namespace "abcdesktop" deleted
+abcdesktop is uninstalled, in 48 seconds
 ```
 
 ## Run step by step uninstall commands  
 
-Run the bash commands from the `uninstall-3.0.sh` content : 
+Run the bash commands from the `uninstall-3.0.sh` main content : 
 
 ```bash
-echo "starting abcdesktop uninstall commands"
 echo "stop and remove abcdesktop user pods"
 kubectl delete pods --selector="type=x11server" -n abcdesktop
 echo "remove all services, pods"
