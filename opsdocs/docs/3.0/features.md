@@ -9,10 +9,11 @@ The abcdesktop release 3.0 has started in May 2022
 
 ## Architecture abcdesktop 3.0
 
-In release 3.0, the abcdesktop control plane use only `Kubernetes`. It doesn't depend to docker. 
+In release 3.0, the abcdesktop control plane uses only `Kubernetes` API. It doesn't depend to `dockerd`. 
 
 ![abcdesktop design](config/img/kubernetes.abcdesktop.3.0.svg)
 
+## User pod
 
 ## Applications
 
