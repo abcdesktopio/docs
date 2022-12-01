@@ -7,10 +7,17 @@ The abcdesktop release 3.0 has started in May 2022
 * All container-runtimes are supported. `containerd` is recommended by default
 * abcdesktop release 3.x is unstable, API endpoints can change.
 
+## Architecture abcdesktop 3.0
+
+In release 3.0, the abcdesktop control plane use only `Kubernetes`. It doesn't depend to docker. 
+
+![abcdesktop design](config/img/kubernetes.abcdesktop.3.0.svg)
+
 
 ## Applications
 
-application can run as : 
+
+Application can run as : 
 
   - `kubernetes pod`
   - `kubernetes ephemeral container`
