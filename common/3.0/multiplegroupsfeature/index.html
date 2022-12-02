@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rfc-2307-the-multiple-groups-features" class="md-skip">
+        <a href="#the-multiple-groups-features-for-rfc-2307-support" class="md-skip">
           Skip to content
         </a>
       
@@ -3335,15 +3335,63 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#accounts-description" class="md-nav__link">
-    accounts description
+  <a href="#goal" class="md-nav__link">
+    Goal
   </a>
   
 </li>
         
           <li class="md-nav__item">
+  <a href="#check-the-kubernetes-supplementalgroups-support" class="md-nav__link">
+    Check the kubernetes supplementalGroups support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-specsecuritycontext-from-a-pod" class="md-nav__link">
+    Read .spec.securityContext from a pod
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accounts-description" class="md-nav__link">
+    Accounts description
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#login-to-abcdesktop" class="md-nav__link">
+    Login to abcdesktop
+  </a>
+  
+    <nav class="md-nav" aria-label="Login to abcdesktop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#create-new-file-on-host" class="md-nav__link">
     Create new file on host
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-new-file-on-host_1" class="md-nav__link">
+    Create new file on host
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ldap-ldif-dump" class="md-nav__link">
+    LDAP ldif dump
   </a>
   
 </li>
@@ -3515,15 +3563,63 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#accounts-description" class="md-nav__link">
-    accounts description
+  <a href="#goal" class="md-nav__link">
+    Goal
   </a>
   
 </li>
         
           <li class="md-nav__item">
+  <a href="#check-the-kubernetes-supplementalgroups-support" class="md-nav__link">
+    Check the kubernetes supplementalGroups support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-specsecuritycontext-from-a-pod" class="md-nav__link">
+    Read .spec.securityContext from a pod
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accounts-description" class="md-nav__link">
+    Accounts description
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#login-to-abcdesktop" class="md-nav__link">
+    Login to abcdesktop
+  </a>
+  
+    <nav class="md-nav" aria-label="Login to abcdesktop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#create-new-file-on-host" class="md-nav__link">
     Create new file on host
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-new-file-on-host_1" class="md-nav__link">
+    Create new file on host
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ldap-ldif-dump" class="md-nav__link">
+    LDAP ldif dump
   </a>
   
 </li>
@@ -3560,7 +3656,7 @@
   </a>
 
 
-<h1 id="rfc-2307-the-multiple-groups-features">RFC 2307: the multiple groups features</h1>
+<h1 id="the-multiple-groups-features-for-rfc-2307-support">The multiple groups features for RFC 2307 support</h1>
 <p>Let talk about a common features with multiple groups and user <code>securityContext</code> on pods</p>
 <h2 id="context">context</h2>
 <ul>
@@ -3568,21 +3664,89 @@
 <li>Use groups <code>gidNumber</code> and <code>uidNumber</code></li>
 <li>Use filesystem access right</li>
 </ul>
-<h3 id="accounts-description">accounts description</h3>
+<h3 id="goal">Goal</h3>
+<ul>
+<li>Use the kubernetes supplemental groups support</li>
+<li>Define accounts in ldap directory service to get <code>supplementalGroups</code> support</li>
+</ul>
+<h3 id="check-the-kubernetes-supplementalgroups-support">Check the <code>kubernetes</code> <code>supplementalGroups</code> support</h3>
+<p>Let's create a yaml file to define pod with <code>securityContext</code> and <code>supplementalGroups</code></p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: security-context-supplementalgroups-demo
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 3000
+    supplementalGroups: [2000,4000,5000,6000]
+  volumes:
+  - name: sec-ctx-vol
+    emptyDir: {}
+  containers:
+  - name: sec-ctx-demo
+    image: busybox:1.28
+    command: [ &quot;sh&quot;, &quot;-c&quot;, &quot;sleep 1h&quot; ]
+    volumeMounts:
+    - name: sec-ctx-vol
+      mountPath: /data/demo
+    securityContext:
+      allowPrivilegeEscalation: false
+</code></pre>
+<p>Create the pod <a href="https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/security-context-supplementalgroups-demo.yaml"><code>security-context-supplementalgroups-demo</code></a></p>
+<pre><code class="language-bash">$ kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/security-context-supplementalgroups-demo.yaml
+</code></pre>
+<p>The pod is created</p>
+<pre><code>pod/security-context-supplementalgroups-demo created
+</code></pre>
+<p>Test the <code>id</code> command, you get the list <code>uid=1000</code> <code>gid=3000</code> <code>groups=2000,4000,5000,6000</code></p>
+<pre><code class="language-bash">$ kubectl exec -it pod/security-context-supplementalgroups-demo -- id
+uid=1000 gid=3000 groups=2000,4000,5000,6000
+</code></pre>
+<p>Run the group command inside the pod </p>
+<pre><code class="language-bash">$ kubectl exec -it pod/security-context-supplementalgroups-demo -- groups
+</code></pre>
+<p>The result <code>exit</code> with <code>code 1</code>. The groups do not exist in <code>/etc/group</code></p>
+<pre><code> 3000groups: unknown ID 3000
+ 2000groups: unknown ID 2000
+ 4000groups: unknown ID 4000
+ 5000groups: unknown ID 5000
+ 6000groups: unknown ID 6000
+ command terminated with exit code 1
+</code></pre>
+<p>This is what you want to do with abcdesktop, the id numbers are replaced by strings. The <code>uid</code>, <code>gid</code> and <code>supplementalgroups</code> are read from <code>posixAccount</code> and <code>posixGroup</code> in the directory service. </p>
+<h3 id="read-specsecuritycontext-from-a-pod">Read <code>.spec.securityContext</code> from a pod</h3>
+<p>kubectl command  to read <code>.spec.securityContext</code></p>
+<pre><code class="language-bash">kubectl get pod/security-context-supplementalgroups-demo -o json | jq '.spec.securityContext' 
+</code></pre>
+<p>You read as output</p>
+<pre><code class="language-json">{
+  &quot;runAsGroup&quot;: 3000,
+  &quot;runAsUser&quot;: 1000,
+  &quot;supplementalGroups&quot;: [
+    2000,
+    4000,
+    5000,
+    6000
+  ]
+}
+</code></pre>
+<h3 id="accounts-description">Accounts description</h3>
 <ul>
 <li>defined a user in the LDAP series</li>
 </ul>
+<blockquote>
+<p>The complete ldif file can be downloaded at the end of this page.</p>
+</blockquote>
 <p>The ldif set :</p>
 <ul>
 <li>organizationalUnit <code>people</code>: <code>ou=people,dc=planetexpress,dc=com</code></li>
 <li>organizationalUnit <code>groups</code>: <code>ou=groups,dc=planetexpress,dc=com</code></li>
 </ul>
-<p>Create a posixAccount : <code>cn=hermes,ou=people,dc=planetexpress,dc=com</code></p>
-<ul>
-<li>gidNumber: <code>1036</code></li>
-<li>uid: <code>hermes</code></li>
-<li>uidNumber: <code>1035</code></li>
-</ul>
+<p>Create a posixAccount : <code>cn=hermes,ou=people,dc=planetexpress,dc=com</code>
+- gidNumber: <code>1036</code>
+- uid: <code>hermes</code>
+- uidNumber: <code>1035</code></p>
 <p>Create a posixGroup for <code>hermes</code> : <code>cn=hermes,ou=groups,dc=planetexpress,dc=com</code></p>
 <ul>
 <li>objectClass: <code>posixGroup</code></li>
@@ -3602,8 +3766,76 @@
 <li>memberUid: <code>fry</code></li>
 <li>memberUid: <code>hermes</code></li>
 </ul>
+<h2 id="login-to-abcdesktop">Login to abcdesktop</h2>
+<p>Login to abcdesktop as <code>Hermes Conrad</code> account</p>
 <p>Inside the user pod, the unix group file contains : </p>
 <pre><code class="language-bash">cat /etc/group
+</code></pre>
+<pre><code class="language-group">hermes:x:1036:
+humans:x:20467:hermes,fry
+accountant:x:18430:hermes
+</code></pre>
+<blockquote>
+<p>This is correct.</p>
+</blockquote>
+<p>The user's pod is defined with a <code>securityContext</code></p>
+<p>In this example you can replace <code>hermes-d1411d93-8922-4c33-81d7-3c085f381a27</code> by your own pod's name</p>
+<pre><code class="language-bash">kubectl get pods hermes-d1411d93-8922-4c33-81d7-3c085f381a27 -n abcdesktop -o json| jq '.spec.securityContext'  
+</code></pre>
+<p>You can read on stdout</p>
+<pre><code class="language-json">{
+  &quot;runAsGroup&quot;: 1036,
+  &quot;runAsUser&quot;: 1035,
+  &quot;supplementalGroups&quot;: [
+    20467,
+    18430
+  ]
+}
+</code></pre>
+<blockquote>
+<p>This is correct.
+<code>supplementalGroups</code> defines the others groups from LDAP for DN:<code>cn=hermes,ou=groups,dc=planetexpress,dc=com</code></p>
+</blockquote>
+<p>Inside the user pod run the <code>id</code> command</p>
+<p><img alt="id group command fro hermes" src="../img/idgroup-hermes.png" /></p>
+<pre><code class="language-bash">hermes:~$ id
+uid=1035(hermes) gid=1036(hermes) groups=1036(hermes),18430(accountant),20467(humans)
+hermes:~$ groups
+hermes accountant humans
+hermes:~$
+</code></pre>
+<blockquote>
+<p>This is correct.</p>
+</blockquote>
+<h3 id="create-new-file-on-host">Create new file on host</h3>
+<p>The default home directory in <code>od.config</code> is a volume <code>hostPath</code> set to <code>/tmp</code></p>
+<pre><code class="language-od.config">desktop.homedirectorytype: 'hostPath' 
+desktop.hostPathRoot: '/tmp'
+</code></pre>
+<p>On your host server, get a shell with as root account, create a file <code>humansfile</code>  with restricted access to member of <code>humans</code> group.</p>
+<p><img alt="createhumans file as root" src="../img/createhumansfileasroot.png" /></p>
+<pre><code class="language-bash">cd /mnt/hermes-conrad
+echo 'hello' &gt; humansfile
+chown 0:20467 humansfile
+chmod 070 humansfile 
+</code></pre>
+<p>Check the owner and group of the new file <code>humansfile</code></p>
+<pre><code>ls -la humansfile
+----rwx--- 1 root 20467 6 nov.  23 17:16 humansfile
+</code></pre>
+<p>Check inside the user pod check that <code>hermes</code> account <strong>can write data</strong> in the new file <code>humansfile</code>.</p>
+<blockquote>
+<p>This is correct <code>hermes</code> is member of <code>humans</code> group.</p>
+</blockquote>
+<p><img alt="humansfile-hermes" src="../img/humansfile-hermes.png" /></p>
+<pre><code>hermes:~$ ls -la humansfile 
+=======
+- memberUid: `hermes`
+
+Inside the user pod, the unix group file contains : 
+
+```bash
+cat /etc/group
 </code></pre>
 <pre><code>hermes:x:1036:
 humans:x:20467:hermes,fry
@@ -3634,7 +3866,7 @@ hermes:~$
 <blockquote>
 <p>This is correct.</p>
 </blockquote>
-<h3 id="create-new-file-on-host">Create new file on host</h3>
+<h3 id="create-new-file-on-host_1">Create new file on host</h3>
 <p>The default home directory in <code>od.config</code> is a volume <code>hostPath</code> set to <code>/tmp</code></p>
 <pre><code class="language-od.config">desktop.homedirectorytype: 'hostPath' 
 desktop.hostPathRoot: '/tmp'
@@ -3653,11 +3885,23 @@ chmod 070 humansfile
 <p>Check inside the user pod check that <code>hermes</code> account <strong>can to write data</strong> in file <code>humansfile</code>, because <code>hermes</code> is member of <code>humans</code> group.</p>
 <p><img alt="humansfile-hermes" src="../img/humansfile-hermes.png" /></p>
 <pre><code>hermes:~$ ls -la humansfile 
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 612b52bcffb502a9d934c0cbba40a43d553fc731
 ----rwx--- 1 root humans 6 Nov 23 16:16 humansfile
 hermes:~$ echo 'hello from hermes' &gt;&gt; humansfile 
 hermes:~$ more humansfile 
 hello
 hello from hermes
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+hermes:~$ 
+</code></pre>
+<blockquote>
+<p>This is correct.</p>
+</blockquote>
+<p>We describe a common features with multiple groups and user <code>securityContext</code> on pods and abcdesktop support multiple groups with posixGroup define in RFC2307. </p>
+<h3 id="ldap-ldif-dump">LDAP ldif dump</h3>
+<p>To get more details about the ldif and ldap datas, you can download the <a href="../planetexpressRFC2307.ldif">ldif file planetexpress</a>.</p>
+<pre><code class="language-ldif">version: 1
+=======
 hermes:~$ 
 </code></pre>
 <blockquote>
@@ -3667,6 +3911,7 @@ hermes:~$
 <h3 id="ldif-dump">ldif dump</h3>
 <p>To get more details about the ldif and ldap datas, you can download the <a href="../planetexpressRFC2307.ldif">ldif file planetexpress</a>.</p>
 <pre><code class="language-ldif">version: 1
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 612b52bcffb502a9d934c0cbba40a43d553fc731
 
 dn: dc=planetexpress,dc=com
 objectClass: dcObject
