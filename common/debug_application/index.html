@@ -3389,8 +3389,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#for-release-30-only-start-web-shell-client" class="md-nav__link">
-    (For release 3.0 only) Start web shell client
+  <a href="#for-release-30-start-webshell-client-instance" class="md-nav__link">
+    for release 3.0 Start webshell client instance
   </a>
   
 </li>
@@ -3418,7 +3418,7 @@
         
           <li class="md-nav__item">
   <a href="#for-release-30-set-the-mit-magic-cookie-1" class="md-nav__link">
-    For release 3.0 set the MIT-MAGIC-COOKIE-1
+    for release 3.0 set the MIT-MAGIC-COOKIE-1
   </a>
   
 </li>
@@ -3611,8 +3611,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#for-release-30-only-start-web-shell-client" class="md-nav__link">
-    (For release 3.0 only) Start web shell client
+  <a href="#for-release-30-start-webshell-client-instance" class="md-nav__link">
+    for release 3.0 Start webshell client instance
   </a>
   
 </li>
@@ -3640,7 +3640,7 @@
         
           <li class="md-nav__item">
   <a href="#for-release-30-set-the-mit-magic-cookie-1" class="md-nav__link">
-    For release 3.0 set the MIT-MAGIC-COOKIE-1
+    for release 3.0 set the MIT-MAGIC-COOKIE-1
   </a>
   
 </li>
@@ -3832,10 +3832,10 @@ LC_NUMERIC=en_US.UTF-8
 <p>Login in as hermes </p>
 <p><img alt="Login as hermes" src="../img/debug-application-login-hermes.png" /></p>
 <p><img alt="Login as hermes" src="../img/debug-application-logged-hermes.png" /></p>
-<h3 id="for-release-30-only-start-web-shell-client">(For release 3.0 only) Start web shell client</h3>
-<p>Write <code>terminal</code> in the application search bar</p>
+<h3 id="for-release-30-start-webshell-client-instance">for release 3.0 Start <code>webshell</code> client instance</h3>
+<p>Write <code>webshell</code> or <code>terminal</code> in the application search bar</p>
 <p><img alt="start a webshell" src="../img/debug-application-terminal.png" /></p>
-<p>The new <code>web shell</code> client is opened</p>
+<p>The new <code>webshell</code> window is opened</p>
 <p><img alt="start a webshell" src="../img/debug-application-terminal-exec.png" /></p>
 <p>Run the command <code>echo $XAUTH_KEY</code> to read the <code>$XAUTH_KEY</code> value, and copy the value for a next usage.</p>
 <p><img alt="start a webshell" src="../img/debug-application-terminal-xauth.png" /></p>
@@ -3847,6 +3847,7 @@ LC_NUMERIC=en_US.UTF-8
 </code></pre>
 <p>Copy the value <code>73e6fd484fbe823bcfc8ed1bf7696a</code> for a next usage.</p>
 <h3 id="run-docker-inspect-command-to-look-for-binding">Run docker inspect command to look for <code>Binding</code></h3>
+<p>Get a shell on your host, and run the docker command </p>
 <pre><code class="language-bash">$ docker ps -a |grep k8s_x
 952aeedc815d   0c7301c0630d                     &quot;/composer/docker-en…&quot;   10 minutes ago      Up 10 minutes                                                                        k8s_x-hermes-eff4a4cf-729e-453f-b948-d03d7cfa2b02_hermes-eff4a4cf-729e-453f-b948-d03d7cfa2b02_abcdesktop_32754d0c-bd43-49c0-a12a-e51d15ee7691_0
 
@@ -3874,9 +3875,14 @@ docker inspect -f '{{ json .HostConfig.Binds }}' $mycontainer | jq
  &quot;/mnt/hermes-conrad:/home/balloon&quot;
 </code></pre>
 <h3 id="start-a-new-container-from-ubuntu2204">Start a new container from <code>ubuntu:22.04</code></h3>
-<pre><code class="language-bash">docker run -it -v /var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/x11socket:/tmp/.X11-unix -v /mnt/hermes-conrad:/home/balloon ubuntu:22.04 bash
+<pre><code class="language-bash">docker run -it \ 
+-v /var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/x11socket:/tmp/.X11-unix \
+-v /mnt/hermes-conrad:/home/balloon \
+ubuntu:22.04 \
+bash
 </code></pre>
-<h3 id="for-release-30-set-the-mit-magic-cookie-1">For release 3.0 set the MIT-MAGIC-COOKIE-1</h3>
+<p>You get a shell inside the container.</p>
+<h3 id="for-release-30-set-the-mit-magic-cookie-1">for release 3.0 set the MIT-MAGIC-COOKIE-1</h3>
 <pre><code class="language-bash">apt-get update &amp;&amp; apt-get install -y xauth
 </code></pre>
 <p>Replace <code>73e6fd484fbe823bcfc8ed1bf7696a</code> by your own <code>XAUTH_KEY</code> read previously.</p>
@@ -3897,6 +3903,8 @@ xauth add $DISPLAY MIT-MAGIC-COOKIE-1 $XAUTH_KEY
 <p>But remember you a running a container as <code>root</code></p>
 <pre><code class="language-bash">xedit
 </code></pre>
+<p>Go back to your web browser and a new x11 window <code>xedit</code> should be present :x</p>
+<p><img alt="xedit" src="img/debug-application-xedit.png" /></p>
 
 
   
