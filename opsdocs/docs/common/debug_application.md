@@ -70,7 +70,7 @@ qml: Started a new game
 
 
 
-## Debug an application using `stderr` and `stdout`
+## Read log file from an application using the redirected `stderr` and `stdout`
 
 
 The main log files are `lastcmd.log` `lastcmdenv.log` and `$APPBIN.log`:
@@ -202,7 +202,7 @@ LC_NUMERIC=en_US.UTF-8
 ```
 
 
-## Debug an application using a new container
+## Create an application using a new container to troubleshoot 
 
 We are starting a new containerised application from a fresh `ubuntu:22.04` image and bind the X11 socket to use the pod DISPLAY.
 
@@ -344,7 +344,12 @@ Go back to your web browser and a new x11 window `xedit` should be present :x
 
 ![xedit](img/debug-application-xedit.png )
 
- 
+
+`xedit` doesn't write error message in the container 
+
+```bash
+xedit
+```
 
 
 
