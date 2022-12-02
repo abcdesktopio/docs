@@ -3664,7 +3664,7 @@
           'rule-nfsuser':  { 
               'conditions' : [ { 'memberOf': 'cn=admin_staff,ou=people,dc=planetexpress,dc=com',   'expected' : True  } ],
               'expected' : True, 
-              'label': 'nfsuser'  } } } } }
+              'label': 'nfsuser' } } } } }
 </code></pre>
 <h3 id="add-a-rule-in-the-desktoppolicies">Add a <code>rule</code> in the <code>desktop.policies</code></h3>
 <p>In this example, we define entries :</p>
@@ -3684,17 +3684,16 @@ In the new <code>rules</code> define a new entry <code>nfsuser</code>. </p>
 <p>In this example the label is defined as <code>nfsuser</code>, but you can set differents values. 
 Then set nfs descriptions as you can read in <a href="https://kubernetes.io/docs/concepts/storage/volumes/">kubernetes nfs volume</a>  </p>
 <pre><code>desktop.policies: {  
+'acls' : {},
 'rules': { 
-  'nfsuser': {
-    'type': 'nfs', 
-    'name': 'isostore', 
-    'server': '192.168.7.101',
-    'path': '/volume1/isostore',
-    'mountPath': '/mnt/iso',
-    'readOnly': True
-  },
- 'acls' : {}
-}
+  'volumes': { 
+    'nfsuser': {
+      'type': 'nfs', 
+      'name': 'isostore', 
+      'server': '192.168.7.101',
+      'path': '/volume1/isostore',
+      'mountPath': '/mnt/iso',
+      'readOnly': True } } } } 
 </code></pre>
 <h3 id="apply-the-new-odconfig-file">Apply the new <code>od.config</code> file</h3>
 <p>Save your local changes in <code>od.config</code>, and update the new configmap <code>abcdesktop-config</code></p>
