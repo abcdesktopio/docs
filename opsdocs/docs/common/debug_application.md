@@ -257,12 +257,15 @@ The docker container id is `952aeedc815d`
 
 ### Read the binding mounts
 
+Replace `952aeedc815d` with your own container id, read previously.
+
 ```bash
 export mycontainer=952aeedc815d
 docker inspect -f '{{ json .HostConfig.Binds }}' $mycontainer | jq
 ```
 
-Replace `952aeedc815d` with your own container id, read previously.
+You should read on stdout
+
 
 ```json
 [
