@@ -3854,10 +3854,11 @@ LC_NUMERIC=en_US.UTF-8
 </code></pre>
 <p>The docker container id is <code>952aeedc815d</code></p>
 <h3 id="read-the-binding-mounts">Read the binding mounts</h3>
+<p>Replace <code>952aeedc815d</code> with your own container id, read previously.</p>
 <pre><code class="language-bash">export mycontainer=952aeedc815d
 docker inspect -f '{{ json .HostConfig.Binds }}' $mycontainer | jq
 </code></pre>
-<p>Replace <code>952aeedc815d</code> with your own container id, read previously.</p>
+<p>You should read on stdout</p>
 <pre><code class="language-json">[
   &quot;/var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/tmp:/tmp&quot;,
   &quot;/var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/x11socket:/tmp/.X11-unix&quot;,
