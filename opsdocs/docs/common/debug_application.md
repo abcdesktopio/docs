@@ -215,13 +215,13 @@ Login in as hermes
 
 ![Login as hermes](img/debug-application-logged-hermes.png)
 
-### (For release 3.0 only) Start web shell client
+### for release 3.0 Start `webshell` client instance
 
-Write `terminal` in the application search bar
+Write `webshell` or `terminal` in the application search bar
 
 ![start a webshell](img/debug-application-terminal.png)
 
-The new `web shell` client is opened
+The new `webshell` window is opened
 
 ![start a webshell](img/debug-application-terminal-exec.png)
 
@@ -244,6 +244,8 @@ Copy the value `73e6fd484fbe823bcfc8ed1bf7696a` for a next usage.
 
 
 ### Run docker inspect command to look for `Binding`
+
+Get a shell on your host, and run the docker command 
 
 ```bash
 $ docker ps -a |grep k8s_x
@@ -286,11 +288,17 @@ Copy the lines with the `/tmp/.X11-unix` and `/home/balloon` mapping
 ### Start a new container from `ubuntu:22.04`
 
 ```bash
-docker run -it -v /var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/x11socket:/tmp/.X11-unix -v /mnt/hermes-conrad:/home/balloon ubuntu:22.04 bash
+docker run -it \ 
+-v /var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/x11socket:/tmp/.X11-unix \
+-v /mnt/hermes-conrad:/home/balloon \
+ubuntu:22.04 \
+bash
 ```
 
+You get a shell inside the container.
 
-### For release 3.0 set the MIT-MAGIC-COOKIE-1
+
+### for release 3.0 set the MIT-MAGIC-COOKIE-1
 
 ```bash
 apt-get update && apt-get install -y xauth
@@ -309,6 +317,7 @@ You can read on stdout
 ```
 xauth:  file /root/.Xauthority does not exist
 ```
+
 The new file `/root/.Xauthority` has been created.
 
 
@@ -330,6 +339,10 @@ But remember you a running a container as `root`
 ```bash
 xedit
 ```
+
+Go back to your web browser and a new x11 window `xedit` should be present :x
+
+![xedit](img/debug-application-xedit.png )
 
  
 
