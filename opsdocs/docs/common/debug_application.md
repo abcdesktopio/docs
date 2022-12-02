@@ -204,7 +204,7 @@ LC_NUMERIC=en_US.UTF-8
 
 ## Create an application using a new container to troubleshoot 
 
-We are starting a new containerised application from a fresh `ubuntu:22.04` image and bind the X11 socket to use the pod DISPLAY.
+We are starting a new containerised application from a fresh `ubuntu:20.04` image and bind the X11 socket to use the pod DISPLAY.
 
 
 ### Start a new abcdesktop session
@@ -288,14 +288,10 @@ Copy the lines with the `/tmp/.X11-unix` and `/home/balloon` mapping
  "/mnt/hermes-conrad:/home/balloon"
 ```
 
-### Start a new container from `ubuntu:22.04`
+### Start a new container from `ubuntu:20.04`
 
 ```bash
-docker run -it \ 
--v /var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/x11socket:/tmp/.X11-unix \
--v /mnt/hermes-conrad:/home/balloon \
-ubuntu:22.04 \
-bash
+docker run -it -v /var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/x11socket:/tmp/.X11-unix -v /mnt/hermes-conrad:/home/balloon ubuntu:20.04 bash
 ```
 
 You get a shell inside the container.
@@ -326,7 +322,7 @@ The new file `/root/.Xauthority` has been created.
 
 ### Install your X11 applications
 
-for examplen I choose to install the `x11-apps` package
+For example, I choose to install the `x11-apps` package
 
 Replace `x11-apps` by your own application
 
@@ -345,17 +341,19 @@ But remember you a running a container as `root`
 xedit
 ```
 
-Go back to your web browser and a new x11 window `xedit` should be present :x
+Go back to your web browser and a new x11 window `xedit` should be present on your display
 
 ![xedit](img/debug-application-xedit.png )
 
 
-`xedit` doesn't write error message in the container 
+`xedit` doesn't write error message in the container. 
 
 ```bash
 xedit
 ```
 
+You've get a shell inside a container to run and start any application. 
+You can install wine, java  
 
 
 
