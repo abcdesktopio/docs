@@ -63,7 +63,7 @@ ldapconfig : {
           'rule-nfsuser':  { 
               'conditions' : [ { 'memberOf': 'cn=admin_staff,ou=people,dc=planetexpress,dc=com',   'expected' : True  } ],
               'expected' : True, 
-              'label': 'nfsuser'  } } } } }
+              'label': 'nfsuser' } } } } }
 ```
 
 ### Add a `rule` in the `desktop.policies` 
@@ -86,23 +86,21 @@ In the new `rules` define a new entry `nfsuser`.
 
 > The name of the entry MUST **match** a user label tag, else the mount point is not created. 
 
-
 In this example the label is defined as `nfsuser`, but you can set differents values. 
 Then set nfs descriptions as you can read in [kubernetes nfs volume](https://kubernetes.io/docs/concepts/storage/volumes/)  
 	
 ```
 desktop.policies: {  
+'acls' : {},
 'rules': { 
-  'nfsuser': {
-    'type': 'nfs', 
-    'name': 'isostore', 
-    'server': '192.168.7.101',
-    'path': '/volume1/isostore',
-    'mountPath': '/mnt/iso',
-    'readOnly': True
-  },
- 'acls' : {}
-}
+  'volumes': { 
+    'nfsuser': {
+      'type': 'nfs', 
+      'name': 'isostore', 
+      'server': '192.168.7.101',
+      'path': '/volume1/isostore',
+      'mountPath': '/mnt/iso',
+      'readOnly': True } } } } 
 ```
 
 ### Apply the new `od.config` file
@@ -147,9 +145,5 @@ http://localhost:30443
 ![ls /mnt/iso](img/mount-shell-hermes.png)
 
 You can define many rules from LDAP groups. To get more informations about rules, read the [authentification rules section](/1.0/config/authentification-rules/)
-
-
-
-
 
 
