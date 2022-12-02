@@ -1,4 +1,5 @@
-# The multiple groups features
+
+# The multiple groups features for RFC 2307 support
 
 
 Let talk about a common features with multiple groups and user `securityContext` on pods
@@ -57,15 +58,15 @@ pod/security-context-supplementalgroups-demo created
 
 Test the `id` command, you get the list `uid=1000` `gid=3000` `groups=2000,4000,5000,6000`
 
-```
+```bash
 $ kubectl exec -it pod/security-context-supplementalgroups-demo -- id
 uid=1000 gid=3000 groups=2000,4000,5000,6000
 ```
 
 Run the group command inside the pod 
 
-```
-$kubectl exec -it pod/security-context-supplementalgroups-demo -- groups
+```bash
+$ kubectl exec -it pod/security-context-supplementalgroups-demo -- groups
 ```
 
 The result `exit` with `code 1`. The groups do not exist in `/etc/group`
@@ -121,7 +122,6 @@ The ldif set :
 - organizationalUnit `groups`: `ou=groups,dc=planetexpress,dc=com`
 
 Create a posixAccount : `cn=hermes,ou=people,dc=planetexpress,dc=com`
-
 - gidNumber: `1036`
 - uid: `hermes`
 - uidNumber: `1035`
@@ -245,11 +245,100 @@ Check inside the user pod check that `hermes` account **can write data** in the 
 
 ```
 hermes:~$ ls -la humansfile 
+=======
+- memberUid: `hermes`
+
+Inside the user pod, the unix group file contains : 
+
+```bash
+cat /etc/group
+```
+
+```
+hermes:x:1036:
+humans:x:20467:hermes,fry
+accountant:x:18430:hermes
+```
+
+> This is correct.
+
+
+The user's pod is defined with a `securityContext`
+
+```json
+'securityContext': {
+  'runAsUser': 1035,
+  'runAsGroup': 1036,
+  'supplementalGroups': [20467, 18430] 
+}
+```
+
+> This is correct.
+> `supplementalGroups` defines the others groups from LDAP
+
+Inside the user pod run the `id` command
+
+![id group command fro hermes](img/idgroup-hermes.png)
+
+```bash
+hermes:~$ id
+uid=1035(hermes) gid=1036(hermes) groups=1036(hermes),18430(accountant),20467(humans)
+hermes:~$ groups
+hermes accountant humans
+hermes:~$
+```
+
+> This is correct.
+
+
+### Create new file on host
+ 
+The default home directory in `od.config` is a volume `hostPath` set to `/tmp`
+
+```od.config
+desktop.homedirectorytype: 'hostPath' 
+desktop.hostPathRoot: '/tmp'
+```
+
+On your host server, using a root account, create a file `humansfile`  with restricted access to member of `humans` group.
+
+
+![createhumans file as root](img/createhumansfileasroot.png)
+
+
+```bash
+cd /mnt/hermes-conrad
+echo 'hello' > humansfile
+chown 0:20467 humansfile
+chmod 070 humansfile 
+```
+
+Check the owner and group
+
+```
+ls -la humansfile
+----rwx--- 1 root 20467 6 nov.  23 17:16 humansfile
+```
+
+
+
+
+Check inside the user pod check that `hermes` account **can to write data** in file `humansfile`, because `hermes` is member of `humans` group.
+
+
+![humansfile-hermes](img/humansfile-hermes.png)
+
+
+
+```
+hermes:~$ ls -la humansfile 
+>>>>>>> 612b52bcffb502a9d934c0cbba40a43d553fc731
 ----rwx--- 1 root humans 6 Nov 23 16:16 humansfile
 hermes:~$ echo 'hello from hermes' >> humansfile 
 hermes:~$ more humansfile 
 hello
 hello from hermes
+<<<<<<< HEAD
 hermes:~$ 
 ```
 
@@ -266,6 +355,25 @@ To get more details about the ldif and ldap datas, you can download the [ldif fi
 
 ``` ldif
 version: 1
+=======
+hermes:~$ 
+```
+
+> This is correct.
+
+
+We describe a common features with multiple groups and user `securityContext` on pods and abcdesktop support multiple groups with posixGroup define in RFC2307. 
+
+
+### ldif dump
+
+To get more details about the ldif and ldap datas, you can download the [ldif file planetexpress](planetexpressRFC2307.ldif).
+
+
+
+``` ldif
+version: 1
+>>>>>>> 612b52bcffb502a9d934c0cbba40a43d553fc731
 
 dn: dc=planetexpress,dc=com
 objectClass: dcObject
