@@ -3367,18 +3367,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#debug-an-application-using-stderr-and-stdout" class="md-nav__link">
-    Debug an application using stderr and stdout
+  <a href="#read-log-file-from-an-application-using-the-redirected-stderr-and-stdout" class="md-nav__link">
+    Read log file from an application using the redirected stderr and stdout
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#debug-an-application-using-a-new-container" class="md-nav__link">
-    Debug an application using a new container
+  <a href="#create-an-application-using-a-new-container-to-troubleshoot" class="md-nav__link">
+    Create an application using a new container to troubleshoot
   </a>
   
-    <nav class="md-nav" aria-label="Debug an application using a new container">
+    <nav class="md-nav" aria-label="Create an application using a new container to troubleshoot">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3589,18 +3589,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#debug-an-application-using-stderr-and-stdout" class="md-nav__link">
-    Debug an application using stderr and stdout
+  <a href="#read-log-file-from-an-application-using-the-redirected-stderr-and-stdout" class="md-nav__link">
+    Read log file from an application using the redirected stderr and stdout
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#debug-an-application-using-a-new-container" class="md-nav__link">
-    Debug an application using a new container
+  <a href="#create-an-application-using-a-new-container-to-troubleshoot" class="md-nav__link">
+    Create an application using a new container to troubleshoot
   </a>
   
-    <nav class="md-nav" aria-label="Debug an application using a new container">
+    <nav class="md-nav" aria-label="Create an application using a new container to troubleshoot">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3728,7 +3728,7 @@ qml: Started a new game
 QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-balloon'
 qml: Started a new game
 </code></pre>
-<h2 id="debug-an-application-using-stderr-and-stdout">Debug an application using <code>stderr</code> and <code>stdout</code></h2>
+<h2 id="read-log-file-from-an-application-using-the-redirected-stderr-and-stdout">Read log file from an application using the redirected <code>stderr</code> and <code>stdout</code></h2>
 <p>The main log files are <code>lastcmd.log</code> <code>lastcmdenv.log</code> and <code>$APPBIN.log</code>:</p>
 <ul>
 <li><code>/tmp/lastcmd.log</code> : contains the stdout file of the init script command <code>/composer/appli-docker-entrypoint.sh</code> for latest running application</li>
@@ -3826,7 +3826,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 PULSE_SERVER=/tmp/.pulse.sock
 LC_NUMERIC=en_US.UTF-8
 </code></pre>
-<h2 id="debug-an-application-using-a-new-container">Debug an application using a new container</h2>
+<h2 id="create-an-application-using-a-new-container-to-troubleshoot">Create an application using a new container to troubleshoot</h2>
 <p>We are starting a new containerised application from a fresh <code>ubuntu:22.04</code> image and bind the X11 socket to use the pod DISPLAY.</p>
 <h3 id="start-a-new-abcdesktop-session">Start a new abcdesktop session</h3>
 <p>Login in as hermes </p>
@@ -3905,6 +3905,9 @@ xauth add $DISPLAY MIT-MAGIC-COOKIE-1 $XAUTH_KEY
 </code></pre>
 <p>Go back to your web browser and a new x11 window <code>xedit</code> should be present :x</p>
 <p><img alt="xedit" src="../img/debug-application-xedit.png" /></p>
+<p><code>xedit</code> doesn't write error message in the container </p>
+<pre><code class="language-bash">xedit
+</code></pre>
 
 
   
