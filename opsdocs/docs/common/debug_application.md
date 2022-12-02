@@ -324,9 +324,11 @@ xauth:  file /root/.Xauthority does not exist
 The new file `/root/.Xauthority` has been created.
 
 
-### Install your X11 applications, for example I choose the `x11-apps` package
+### Install your X11 applications
 
-Replace `x11-apps` by you own application
+for examplen I choose to install the `x11-apps` package
+
+Replace `x11-apps` by your own application
 
 ```bash
 apt-get update && apt-get install -y x11-apps
