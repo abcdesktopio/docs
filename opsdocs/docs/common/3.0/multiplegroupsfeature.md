@@ -6,16 +6,114 @@ Let talk about a common features with multiple groups and user `securityContext`
 
 ## context
 
-
 - Use ldap auth like in sample config `ou=people,dc=planetexpress,dc=com`
 - Use groups `gidNumber` and `uidNumber`
 - Use filesystem access right
 
+### Goal
 
-### accounts description
+- Use the kubernetes supplemental groups support
+- Define accounts in ldap directory service to get `supplementalGroups` support
+
+### Check the `kubernetes` `supplementalGroups` support
+
+Let's create a yaml file to define pod with `securityContext` and `supplementalGroups`
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: security-context-supplementalgroups-demo
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 3000
+    supplementalGroups: [2000,4000,5000,6000]
+  volumes:
+  - name: sec-ctx-vol
+    emptyDir: {}
+  containers:
+  - name: sec-ctx-demo
+    image: busybox:1.28
+    command: [ "sh", "-c", "sleep 1h" ]
+    volumeMounts:
+    - name: sec-ctx-vol
+      mountPath: /data/demo
+    securityContext:
+      allowPrivilegeEscalation: false
+```      
+       
+Create the pod [`security-context-supplementalgroups-demo`](https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/security-context-supplementalgroups-demo.yaml)
+
+```bash
+$ kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/security-context-supplementalgroups-demo.yaml
+```
+
+The pod is created
+
+```
+pod/security-context-supplementalgroups-demo created
+```
+
+Test the `id` command, you get the list `uid=1000` `gid=3000` `groups=2000,4000,5000,6000`
+
+```
+$ kubectl exec -it pod/security-context-supplementalgroups-demo -- id
+uid=1000 gid=3000 groups=2000,4000,5000,6000
+```
+
+Run the group command inside the pod 
+
+```
+$kubectl exec -it pod/security-context-supplementalgroups-demo -- groups
+```
+
+The result `exit` with `code 1`. The groups do not exist in `/etc/group`
+
+```
+ 3000groups: unknown ID 3000
+ 2000groups: unknown ID 2000
+ 4000groups: unknown ID 4000
+ 5000groups: unknown ID 5000
+ 6000groups: unknown ID 6000
+ command terminated with exit code 1
+```
+
+This is what you want to do with abcdesktop, the id numbers are replaced by strings. The `uid`, `gid` and `supplementalgroups` are read from `posixAccount` and `posixGroup` in the directory service. 
+
+
+### Read `.spec.securityContext` from a pod
+
+
+kubectl command  to read `.spec.securityContext`
+
+```bash
+kubectl get pod/security-context-supplementalgroups-demo -o json | jq '.spec.securityContext' 
+```
+
+You read as output
+
+```json
+{
+  "runAsGroup": 3000,
+  "runAsUser": 1000,
+  "supplementalGroups": [
+    2000,
+    4000,
+    5000,
+    6000
+  ]
+}
+```
+
+
+
+### Accounts description
 
 
 - defined a user in the LDAP series
+
+> The complete ldif file can be downloaded at the end of this page.
 
 The ldif set :
 
@@ -48,6 +146,11 @@ Create a posixGroup `cn=humans,ou=groups,dc=planetexpress,dc=com`
 - memberUid: `fry`
 - memberUid: `hermes`
 
+
+## Login to abcdesktop 
+
+Login to abcdesktop as `Hermes Conrad` account
+
 Inside the user pod, the unix group file contains : 
 
 ```bash
@@ -65,16 +168,28 @@ accountant:x:18430:hermes
 
 The user's pod is defined with a `securityContext`
 
+In this example you can replace `hermes-d1411d93-8922-4c33-81d7-3c085f381a27` by your own pod's name
+
+```bash
+kubectl get pods hermes-d1411d93-8922-4c33-81d7-3c085f381a27 -n abcdesktop -o json| jq '.spec.securityContext'  
+```
+
+You can read on stdout
+
+
 ```json 
-'securityContext': {
-  'runAsUser': 1035,
-  'runAsGroup': 1036,
-  'supplementalGroups': [20467, 18430] 
+{
+  "runAsGroup": 1036,
+  "runAsUser": 1035,
+  "supplementalGroups": [
+    20467,
+    18430
+  ]
 }
 ```
 
 > This is correct.
-> `supplementalGroups` defines the others groups from LDAP
+> `supplementalGroups` defines the others groups from LDAP for DN:`cn=hermes,ou=groups,dc=planetexpress,dc=com`
 
 Inside the user pod run the `id` command
 
@@ -100,7 +215,7 @@ desktop.homedirectorytype: 'hostPath'
 desktop.hostPathRoot: '/tmp'
 ```
 
-On your host server, using a root account, create a file `humansfile`  with restricted access to member of `humans` group.
+On your host server, get a shell with as root account, create a file `humansfile`  with restricted access to member of `humans` group.
 
 
 ![createhumans file as root](img/createhumansfileasroot.png)
@@ -113,21 +228,19 @@ chown 0:20467 humansfile
 chmod 070 humansfile 
 ```
 
-Check the owner and group
+Check the owner and group of the new file `humansfile`
 
 ```
 ls -la humansfile
 ----rwx--- 1 root 20467 6 nov.  23 17:16 humansfile
 ```
 
+Check inside the user pod check that `hermes` account **can write data** in the new file `humansfile`.
 
-
-
-Check inside the user pod check that `hermes` account **can to write data** in file `humansfile`, because `hermes` is member of `humans` group.
+> This is correct `hermes` is member of `humans` group.
 
 
 ![humansfile-hermes](img/humansfile-hermes.png)
-
 
 
 ```
@@ -146,10 +259,9 @@ hermes:~$
 We describe a common features with multiple groups and user `securityContext` on pods and abcdesktop support multiple groups with posixGroup define in RFC2307. 
 
 
-### ldif dump
+### LDAP ldif dump
 
 To get more details about the ldif and ldap datas, you can download the [ldif file planetexpress](planetexpressRFC2307.ldif).
-
 
 
 ``` ldif
