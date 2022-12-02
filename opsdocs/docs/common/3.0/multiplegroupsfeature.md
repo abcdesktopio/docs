@@ -54,7 +54,7 @@ Inside the user pod, the unix group file contains :
 cat /etc/group
 ```
 
-```group
+```
 hermes:x:1036:
 humans:x:20467:hermes,fry
 accountant:x:18430:hermes
@@ -65,7 +65,7 @@ accountant:x:18430:hermes
 
 The user's pod is defined with a `securityContext`
 
-```json 
+```json
 'securityContext': {
   'runAsUser': 1035,
   'runAsGroup': 1036,
