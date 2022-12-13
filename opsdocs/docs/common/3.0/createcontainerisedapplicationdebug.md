@@ -169,7 +169,7 @@ We use `envsubst` to replace variable content in a [template yaml](https://skofg
 >
 >```brew install gettext```
 
-The variables `PODUID` and `PODHOME` are exported.
+The variables `${PODUID}`, `${PODHOME}` and `${XAUTH_KEY}` are exported.
 
 > Make sure to use export, otherwise your variables are considered shell variables and might not be accessible to `envsubst`
 
@@ -498,7 +498,7 @@ groups: cannot find name for group ID 2051
 root@hermespodapp:/# 
 ```
 
-This is correct `group ID 2051` does not exit. Let's patch your file system with hermes credentials 
+This is correct `group ID 2051` does not exit. Let's patch your file system with `hermes` credentials 
 
 - /etc/passwd
 - /etc/group
@@ -527,10 +527,10 @@ root@hermespodapp:/#
 The error message does not appear anymore.
 
 
-Install xauth and your X11 applications as root
+Install your X11 applications as root
 
 ```bash
-apt-get update && apt-get install -y xauth x11-apps
+apt-get update && apt-get install -y x11-apps
 ```
 
 Quit the root session
@@ -547,27 +547,42 @@ Start a new session to the pod `hermespodapp`
 kubectl -n abcdesktop exec -it hermespodapp -- bash 
 ```
 
-You get a shell prompt as as `hermes`
+You get a shell prompt as as `hermes`. Check the `hermes` homedirectory and id number
 
 ```bash
 hermes@hermespodapp:/$
+hermes@hermespodapp:/$ cd
+hermes@hermespodapp:~$ pwd
+/home/hermes
+hermes@hermespodapp:~$ id 
+uid=1051(hermes) gid=2051(hermes) groups=2051(hermes)
 ```
 
 Export the var `DISPLAY` and start the edit application. You don't need to create the `.Xauthority` file.
-`/home/hermes` is already mounted as a shared volume.
+`/home/hermes` is already mounted as a volume.
 
 
 ```bash
-hermes@hermespodapp:$ export DISPLAY=:0.0
-hermes@hermespodapp:/$ xedit 
+hermes@hermespodapp:~$ export DISPLAY=:0.0
+hermes@hermespodapp:~$ xedit &
+[1] 699
 ```
 
-This process is running as `hermes`
+This process is running as `hermes` :
+
+```bash
+hermes@hermespodapp:~$ ps -ef
+UID          PID    PPID  C STIME TTY          TIME CMD
+hermes         1       0  0 15:57 ?        00:00:00 /bin/sleep 1d
+hermes       690       0  0 16:47 pts/0    00:00:00 bash
+hermes       699     690  0 16:48 pts/0    00:00:00 xedit
+hermes       700     690  0 16:49 pts/0    00:00:00 ps -ef
+```
 
 
 Go back to your web browser. 
 
-A new x11 window `xedit` should be present on your display
+A new x11 window `xedit` should be present on your display 
 
 ![xedit](img/debug-xedit-hermespodapp.png )
 
@@ -578,6 +593,10 @@ To clean the running pod hermespodapp
 ```bash
 kubectl delete -f hermespodapp.yaml 
 ```
+
+You have created a pod to run an X11 application as a user in LDAP Directory. 
+You get a root shell inside the pod, to patch, update or install other applications.
+ 
 
 
 
