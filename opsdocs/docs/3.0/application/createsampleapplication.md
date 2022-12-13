@@ -11,16 +11,20 @@
 * Create a sample application `xterm`. [xterm](https://invisible-island.net/xterm/) program is a terminal emulator for the X Window System. 
 
 
-## Clone application repository
+## git clone application repository
 
-```
+The abcdesktop application repository is [https://github.com/abcdesktopio/oc.apps
+](https://github.com/abcdesktopio/oc.apps)
+
+
+```sh
 git clone https://github.com/abcdesktopio/oc.apps.git
 cd oc.apps
 ```
 
-And install packages
+And install `nodejs` packages for `oc.apps`
 
-```
+```sh
 npm install
 ```
 
@@ -69,7 +73,7 @@ found 0 vulnerabilities
 
 
 
-```
+```bash
 node make.js -r 3.0 -d True  -f sample.json
 ```
 
@@ -98,7 +102,7 @@ Building xterm.XTerm
 
 Read the `Dockerfile`
 
-```
+```sh
 cat Dockerfile
 ```
 
@@ -140,7 +144,7 @@ WORKDIR /home/balloon
 
 ## build the ``abcsample:3.0`` from Dockerfile 
 
-```
+```sh
 docker build -t abcsample:3.0 .
 ```
 
@@ -269,13 +273,13 @@ In this case, we suppose we don't have a registry, and we use the same host to b
 
 Export the image to OCI image format
  
-```
+```sh
 docker save abcsample:3.0 -o abcsample.tar
 ```
 
 Import  abcsample into the namespace `k8s.io` using `ctr` 
 
-```
+```sh
 ctr -n k8s.io images import abcsample.tar
 ```
 
@@ -289,19 +293,19 @@ unpacking docker.io/library/abcsample:3.0 (sha256:5ea681ec0e79928c15d9972f0ae3ad
 
 Export the abcsample:3.0 image to OCI format
 
-```
+```sh
 docker image inspect abcsample:3.0 > abcsample.json
 ```
 
 Import the `abcsample.json` into abcdesktop endpoint `/API/manager/image`
 
-```
+```sh
 curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @abcsample.json 
 ```
 
 Return a json document
 
-```
+```json
 [
   {
     "home": null,
@@ -375,15 +379,15 @@ You have created your own abcdesktop application, import the image, and start it
 
 ## Rebuild all images
 
-To rebuild all application in `applist.json`, run 
+To rebuild all application in `applist.json`, run `node make.js -r 3.0`
 
-```
+```bash
 node make.js -r 3.0
 ```
 
 This command has create new '.d' files. 
 
-```
+```bash
 $ ls *.d
 ls *.d
 alpine-2048.d            calculator.d    drawio.d               flare.d          hyper.d       kturtle.d       octave.d        remotedesktopmanager.d  terminal.d     winefile-wine.d  youtube.d
@@ -399,11 +403,15 @@ brackets.d               doom.d          firefox-esr.d          golly.d         
 calc.d                   draw.d          firefox.d              gretl.d          ksquares.d    notepadqq.d     remmina.d       teams.d                 vscode.d       xterm.d
 ```
 
+Each `.d` file is a `Dockerfile` 
+
+
 Run `make` to build all applications (it can take more than 2 hours) 
 
 ```
 make
 ```
+
 
 
 
