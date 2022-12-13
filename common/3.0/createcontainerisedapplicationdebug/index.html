@@ -15,7 +15,7 @@
     
     
       
-        <title>Create an application from scratch to troubleshooting - www.abcdesktop.io</title>
+        <title>Create an application from scratch for troubleshooting - www.abcdesktop.io</title>
       
     
     
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Create an application from scratch to troubleshooting
+              Create an application from scratch for troubleshooting
             
           </span>
         </div>
@@ -1524,6 +1524,32 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_2">
+          Release 1.0
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Release 1.0" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          Release 1.0
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../applicationsformat/" class="md-nav__link">
         Application image format
@@ -1570,6 +1596,120 @@
       <a href="../../non-free-applications/" class="md-nav__link">
         Build non free applications
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_3" type="checkbox" id="__nav_8_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_3">
+          Release 3.0
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Release 3.0" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          Release 3.0
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../3.0/application/createsampleapplication/" class="md-nav__link">
+        Create a sample application
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Create an application from scratch for troubleshooting
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Create an application from scratch for troubleshooting
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    Goals
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -3303,12 +3443,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Create an application from scratch to troubleshooting
+          Create an application from scratch for troubleshooting
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Create an application from scratch to troubleshooting
+        Create an application from scratch for troubleshooting
       </a>
       
         
@@ -3645,7 +3785,7 @@ srwxrwxrwx 1 1051 2051    0 Dec  8 19:43 X0
 <p>Some systems have gettext with envsubst preinstalled. However, if it is missing, you can install it using a package manager. For macOS you can use homebrew:</p>
 <p><code>brew install gettext</code></p>
 </blockquote>
-<p>The variables <code>PODUID</code> and <code>PODHOME</code> are exported.</p>
+<p>The variables <code>${PODUID}</code>, <code>${PODHOME}</code> and <code>${XAUTH_KEY}</code> are exported.</p>
 <blockquote>
 <p>Make sure to use export, otherwise your variables are considered shell variables and might not be accessible to <code>envsubst</code></p>
 </blockquote>
@@ -3885,7 +4025,7 @@ pod/hermespodapp created
 groups: cannot find name for group ID 2051
 root@hermespodapp:/# 
 </code></pre>
-<p>This is correct <code>group ID 2051</code> does not exit. Let's patch your file system with hermes credentials </p>
+<p>This is correct <code>group ID 2051</code> does not exit. Let's patch your file system with <code>hermes</code> credentials </p>
 <ul>
 <li>/etc/passwd</li>
 <li>/etc/group</li>
@@ -3905,8 +4045,8 @@ You can exit, and reopen a bash to your container </p>
 root@hermespodapp:/# 
 </code></pre>
 <p>The error message does not appear anymore.</p>
-<p>Install xauth and your X11 applications as root</p>
-<pre><code class="language-bash">apt-get update &amp;&amp; apt-get install -y xauth x11-apps
+<p>Install your X11 applications as root</p>
+<pre><code class="language-bash">apt-get update &amp;&amp; apt-get install -y x11-apps
 </code></pre>
 <p>Quit the root session</p>
 <pre><code class="language-bash">exit
@@ -3915,17 +4055,30 @@ root@hermespodapp:/#
 <p>Start a new session to the pod <code>hermespodapp</code></p>
 <pre><code class="language-bash">kubectl -n abcdesktop exec -it hermespodapp -- bash 
 </code></pre>
-<p>You get a shell prompt as as <code>hermes</code></p>
+<p>You get a shell prompt as as <code>hermes</code>. Check the <code>hermes</code> homedirectory and id number</p>
 <pre><code class="language-bash">hermes@hermespodapp:/$
+hermes@hermespodapp:/$ cd
+hermes@hermespodapp:~$ pwd
+/home/hermes
+hermes@hermespodapp:~$ id 
+uid=1051(hermes) gid=2051(hermes) groups=2051(hermes)
 </code></pre>
 <p>Export the var <code>DISPLAY</code> and start the edit application. You don't need to create the <code>.Xauthority</code> file.
-<code>/home/hermes</code> is already mounted as a shared volume.</p>
-<pre><code class="language-bash">hermes@hermespodapp:$ export DISPLAY=:0.0
-hermes@hermespodapp:/$ xedit 
+<code>/home/hermes</code> is already mounted as a volume.</p>
+<pre><code class="language-bash">hermes@hermespodapp:~$ export DISPLAY=:0.0
+hermes@hermespodapp:~$ xedit &amp;
+[1] 699
 </code></pre>
-<p>This process is running as <code>hermes</code></p>
+<p>This process is running as <code>hermes</code> :</p>
+<pre><code class="language-bash">hermes@hermespodapp:~$ ps -ef
+UID          PID    PPID  C STIME TTY          TIME CMD
+hermes         1       0  0 15:57 ?        00:00:00 /bin/sleep 1d
+hermes       690       0  0 16:47 pts/0    00:00:00 bash
+hermes       699     690  0 16:48 pts/0    00:00:00 xedit
+hermes       700     690  0 16:49 pts/0    00:00:00 ps -ef
+</code></pre>
 <p>Go back to your web browser. </p>
-<p>A new x11 window <code>xedit</code> should be present on your display</p>
+<p>A new x11 window <code>xedit</code> should be present on your display </p>
 <p><img alt="xedit" src="../img/debug-xedit-hermespodapp.png" /></p>
 <blockquote>
 <p>The name of the edit window is the name of your pod <code>(hermespodapp)</code>.</p>
@@ -3933,6 +4086,8 @@ hermes@hermespodapp:/$ xedit
 <p>To clean the running pod hermespodapp</p>
 <pre><code class="language-bash">kubectl delete -f hermespodapp.yaml 
 </code></pre>
+<p>You have created a pod to run an X11 application as a user in LDAP Directory. 
+You get a root shell inside the pod, to patch, update or install other applications.</p>
 
 
   
