@@ -134,10 +134,24 @@ desktop.pod : {
   },
   'ephemeral_container': {
     'enable': True,
+    'securityContext': { 
+        'supplementalGroups': [ '{{ supplementalGroups }}' ] ,
+        'readOnlyRootFilesystem': False, 
+        'allowPrivilegeEscalation': True, 
+        'runAsUser':                '{{ uidNumber }}',
+        'runAsGroup':               '{{ gidNumber }}'
+     },
     'acl':  { 'permit': [ 'all' ] }
   },
   'pod_application' : {
     'enable': True,
+    'securityContext': { 
+        'supplementalGroups': [ '{{ supplementalGroups }}' ] ,
+        'readOnlyRootFilesystem': False, 
+        'allowPrivilegeEscalation': True, 
+        'runAsUser':                '{{ uidNumber }}',
+        'runAsGroup':               '{{ gidNumber }}'
+    },
     # 'imagePullSecrets': [ { 'name': name_of_secret } ]
     'acl':  { 'permit': [ 'all' ] } } }
 
