@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gui-application-in-docker" class="md-skip">
+        <a href="#gui-application-with-containers" class="md-skip">
           Skip to content
         </a>
       
@@ -414,8 +414,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#others-related-projets-vdi-with-docker" class="md-nav__link">
-    Others related projets VDI with docker
+  <a href="#other-related-projets-about-vdi-and-containers" class="md-nav__link">
+    Other related projets about VDI and containers
   </a>
   
 </li>
@@ -450,8 +450,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#abcdesktop-choice" class="md-nav__link">
-    abcdesktop choice
+  <a href="#abcdesktop-choices" class="md-nav__link">
+    abcdesktop choices
   </a>
   
 </li>
@@ -3675,8 +3675,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#others-related-projets-vdi-with-docker" class="md-nav__link">
-    Others related projets VDI with docker
+  <a href="#other-related-projets-about-vdi-and-containers" class="md-nav__link">
+    Other related projets about VDI and containers
   </a>
   
 </li>
@@ -3711,8 +3711,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#abcdesktop-choice" class="md-nav__link">
-    abcdesktop choice
+  <a href="#abcdesktop-choices" class="md-nav__link">
+    abcdesktop choices
   </a>
   
 </li>
@@ -3776,10 +3776,9 @@
   </a>
 
 
-<h1 id="gui-application-in-docker">GUI Application in docker</h1>
-<h2 id="others-related-projets-vdi-with-docker">Others related projets VDI with docker</h2>
-<p>abcdesktop</p>
-<p>A lot of different projets already exists using docker containers as a VDI. I just write list of projets, you can explore them :</p>
+<h1 id="gui-application-with-containers">GUI application with containers</h1>
+<h2 id="other-related-projets-about-vdi-and-containers">Other related projets about VDI and containers</h2>
+<p>A lot of different projets already exists using containers as a VDI. I just write list of projets, you can explore them :</p>
 <ul>
 <li>
 <p><a href="https://github.com/mviereck/x11docker">https://github.com/mviereck/x11docker</a> x11docker allows to run graphical desktop applications (and entire desktops) in Docker Linux containers.</p>
@@ -3825,7 +3824,7 @@ At the other end an X server reads such commands from the socket and renders the
 <p>we can share the X11 server socket with the container using TCP. X11 uses TCP as its transport protocol. Applications and X11 server run in dedicated containers.</p>
 </li>
 </ul>
-<h3 id="abcdesktop-choice">abcdesktop choice</h3>
+<h3 id="abcdesktop-choices">abcdesktop choices</h3>
 <p><img alt="X11 share unix socket" src="../img/x11shareunixsocket.png" /></p>
 <p>To guarantee isolation, abcdesktop/io.io run X11 server and X11 client in separated container. X11 server and X11 client share the socket as unix file socket on a dedicated external shared volume.</p>
 <ul>
@@ -3836,7 +3835,7 @@ At the other end an X server reads such commands from the socket and renders the
 <p>The unix file socket garantes no latency troubleshooting. X11 uses a chatty protocol so that the network latency has a large impact when using X11</p>
 </li>
 </ul>
-<p><strong>Local is best</strong>, thus server and application need to run on the same node.</p>
+<p><strong>Local is best</strong>, thus server and application need to run on the same node, if it can.</p>
 <h2 id="html5-web-browser-as-remote-display">HTML5 Web Browser as remote <code>DISPLAY</code></h2>
 <p><img alt="X11 HTML5 Web Browser as Display" src="../img/x11html5webbrowserasdisplay.png" /></p>
 <p>The Web Browser does not support X11 protocol. We need a graphical desktop system to paint the virtual <code>DISPLAY</code> in a <code>&lt;canvas&gt;</code> HTML element.</p>
