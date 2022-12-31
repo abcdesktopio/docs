@@ -15,6 +15,9 @@ A lot of different projets already exists using docker containers as a VDI. abcd
 * [https://github.com/fcwu/docker-ubuntu-vnc-desktop](https://github.com/fcwu/docker-ubuntu-vnc-desktop) docker-ubuntu-vnc-desktop is a Docker image to provide web VNC interface to access Ubuntu LXDE/LxQT desktop environment.
 
 * [Dockerize GUI app](https://blog.nediiii.com/dockerize-gui-app/) This project dockerize typical GUI app so that you can visit it in browser. Really good technical solutions.
+
+* [https://www.kasmweb.com](https://www.kasmweb.com) Streaming containerized apps and desktops.
+
 * [Docker and Wine](https://hub.docker.com/r/scottyhardy/docker-wine/) Docker image that includes Wine and Winetricks for running Windows applications on Linux and macOS 
 * [n.eko](https://github.com/m1k1o/neko) This app uses Web RTC to stream a desktop inside of a docker container (doesn't use VNC) 
 
@@ -35,7 +38,6 @@ We can approach this problem from three angles:
 * we can bundle X11 server with our container image. All process run inside the same container.
 
 ### Separated container
-
 
 * we can share the X11 server socket with the X11 client container as unix file socket on an external shared volume. Applications and X11 server run in dedicated containers.
 
