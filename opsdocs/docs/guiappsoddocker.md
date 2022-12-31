@@ -1,10 +1,10 @@
 # GUI Application in docker 
 
-## Related Projets on VDI with docker
+## Others related projets VDI with docker
 
-abcdesktop, or YAVDI (Yet Another VDI docker projet)
+abcdesktop
 
-A lot of different projets already exists using docker containers as a VDI. abcdesktop is just another one. I just write list of projets, you can explore them :
+A lot of different projets already exists using docker containers as a VDI. I just write list of projets, you can explore them :
 
 * [https://github.com/mviereck/x11docker](https://github.com/mviereck/x11docker) x11docker allows to run graphical desktop applications (and entire desktops) in Docker Linux containers.
 
