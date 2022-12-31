@@ -19,7 +19,7 @@ At the login page, the user chooses a login provider and authenticates himself, 
 * user: pod user, one pod per connected user
 * applications : each graphical application runs inside a dedicated container. You need to create an container image for each application
 
-## Applications
+## applications
 
 * An application can run as ephemeral container or as pod, it MUST be a container.
 * An application can ask to start another container, like application helper for a web browser. By example, Firefox container can ask to start videolan application. Then Firefox is running inside a container, Videolan is running inside another separated container. abcdesktop manages a mimetype database for each user. The mimetype database is updated on the fly then new application is added.
