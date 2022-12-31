@@ -371,15 +371,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#abcdesktop-design" class="md-nav__link">
+    abcdesktop design
+  </a>
+  
+    <nav class="md-nav" aria-label="abcdesktop design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#abcdesktop-services" class="md-nav__link">
     abcdesktop services
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#abcdesktop-pod-user" class="md-nav__link">
+    abcdesktop pod user
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#abcdesktop-user" class="md-nav__link">
-    abcdesktop User
+  <a href="#applications" class="md-nav__link">
+    Applications
   </a>
   
 </li>
@@ -3605,15 +3625,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#abcdesktop-design" class="md-nav__link">
+    abcdesktop design
+  </a>
+  
+    <nav class="md-nav" aria-label="abcdesktop design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#abcdesktop-services" class="md-nav__link">
     abcdesktop services
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#abcdesktop-pod-user" class="md-nav__link">
+    abcdesktop pod user
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#abcdesktop-user" class="md-nav__link">
-    abcdesktop User
+  <a href="#applications" class="md-nav__link">
+    Applications
   </a>
   
 </li>
@@ -3639,20 +3679,32 @@
 
 
 <h1 id="abcdesktop-overview">abcdesktop overview</h1>
-<p>abcdesktop is based on docker, from the service infrastructure to the user applications.
-At the login page, the user chooses a login provider and authenticates himself, then abcdesktop engine creates a graphical user container. </p>
+<p>abcdesktop is based on kubernets, from the abcdesktop infrastructure to the user applications.
+At the login page, the user chooses a login provider and authenticates himself, then abcdesktop engine creates a user pod.</p>
+<h2 id="abcdesktop-design">abcdesktop design</h2>
 <p><img alt="abcdesktop Architecture overview" src="../img/architecture-overview.png" /></p>
 <h3 id="abcdesktop-services">abcdesktop services</h3>
 <ul>
-<li><strong>nginx</strong>     : container act as static web server and reverse proxy router</li>
-<li><strong>pyos</strong>      : container abcdesktop core engine</li>
+<li>nginx : container act as static web server and reverse proxy router</li>
+<li>pyos  : container abcdesktop core control plane</li>
 <li>memcached : container cache service</li>
 <li>mongo     : container database service to store user profil information</li>
 </ul>
-<h3 id="abcdesktop-user">abcdesktop User</h3>
+<h3 id="abcdesktop-pod-user">abcdesktop pod user</h3>
 <ul>
-<li><strong>user</strong>   : user container, one container per connected user</li>
-<li><strong>applications</strong> : each graphical application runs inside a dedicated container. You need to create an docker image for each application</li>
+<li>user: pod user, one pod per connected user</li>
+<li>applications : each graphical application runs inside a dedicated container. You need to create an container image for each application</li>
+</ul>
+<h2 id="applications">Applications</h2>
+<ul>
+<li>An application can run as ephemeral container or as pod, it MUST be a container.</li>
+<li>An application can ask to start another container, like application helper for a web browser. By example, Firefox container can ask to start videolan application. Then Firefox is running inside a container, Videolan is running inside another separated container. abcdesktop manages a mimetype database for each user. The mimetype database is updated on the fly then new application is added.</li>
+<li>Application resource limit is supported (CPU, memory).</li>
+<li>The share memory (shm) between X.org and application is supported with the ephemral container.</li>
+<li>An application can use GPU if need.</li>
+<li>Application support ACL (Access Control List). Access to an application can be allowed for a user and denied for another one, using group membership for example.</li>
+<li>Volumes can be mounted for an application or not for security reason.</li>
+<li>Application can bind a dedicated network such as VLAN.</li>
 </ul>
 
 
