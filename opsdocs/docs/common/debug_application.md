@@ -1,18 +1,16 @@
-# How to debug containerised application in abcdesktop
-
+# How to debug containerised application
 
 ## Requirements 
 
-* `jq` package should be install on your Linux
-* `docker` or `ctr` package should be install on your Linux
+* abcdesktop ready to run
+* `docker` or `ctr` package should be install on your Linux (optional)
 
-In this example, I use `docker` command but you can easily convert it as `ctr` (containerd CLI) command
 
 ## Goals
 
 * Read log from web interface
+* Read log from daemon interface (optionnal)
 * Read stdout and stderr, dump all environment variables, and entrypoint log, to troubleshoot application error and get quick informations
-* Create a new containerised application from scratch using pod volume mapping
 
 
 ## Read log from web interface
@@ -42,15 +40,15 @@ QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-balloon'
 qml: Started a new game
 ```
 
+## Read log from daemon interface (optionnal)
 
-> You will read the sample stdout line, using a `docker logs` command
+You will read the sample stdout line, using a `docker logs` command, open a shell on you host.
 
-
-Look for the `container id` of the `2048` containerised application
+In a shell on your host, look for the `container id` of the `2048` containerised application
 
 ```bash
 $ docker ps -a|grep 2048
-01579054a1f6   abcdesktopio/ubuntu-2048.d:3.0   "/composer/appli-doc…"   21 minutes ago      Up 21 minutes                                                                   anonymous-ubuntu-2048-37830ad00d9f473aa4d0c7872089c6b8
+01579054a1f6   abcdesktopio/ubuntu-2048.d:3.0   "/composer/appli-doc…"   21 minutes ago     Up 21 minutes                                                                   anonymous-ubuntu-2048-37830ad00d9f473aa4d0c7872089c6b8
 ```
 
 Read the log file form the `docker logs` command
@@ -59,7 +57,7 @@ Read the log file form the `docker logs` command
 $ docker logs 01579054a1f6
 ```
 
-You should read on output the same lines writed on the web interface
+You should read on output the same lines written on the web interface
 
 ```
 Error setting cipher RC4
@@ -70,7 +68,7 @@ qml: Started a new game
 
 
 
-## Read log file from an application using the redirected `stderr` and `stdout`
+## Read log files from an application using the redirected `stderr` and `stdout`
 
 
 The main log files are `lastcmd.log` `lastcmdenv.log` and `$APPBIN.log`:
@@ -127,10 +125,16 @@ srw------- 1 balloon balloon    0 Dec  1 09:55 .x11vnc
 balloon:~$
 ```
 
-The main files are `/tmp/lastcmd.log`, `/tmp/lastcmdenv.log` and `/tmp/2048-qt.log`.
+The files are `/tmp/lastcmd.log`, `/tmp/lastcmdenv.log` and  `/tmp/2048-qt.log`.
+
+- `/tmp/lastcmd.log` the init command log file created by  `/composer/appli-docker-entrypoint.sh`
+- `/tmp/lastcmdenv.log` the last environment variables file
+- `/tmp/2048-qt.log` the command log file for the application
 
 
 Dump the `/tmp/2048-qt.log`, with a cat command `cat /tmp/2048-qt.log`. Replace `/tmp/2048-qt.log` by your own application (binary) if you choose another application.
+
+You can run all bash commands inside the `webshell`.
 
 
 ```
@@ -201,159 +205,6 @@ PULSE_SERVER=/tmp/.pulse.sock
 LC_NUMERIC=en_US.UTF-8
 ```
 
+We describe how to read the environment variables, the stdout file and the stderr file, to get some information and error for a containerised application.
 
-## Create an application using a new container to troubleshoot 
-
-We are starting a new containerised application from a fresh `ubuntu:20.04` image and bind the X11 socket to use the pod DISPLAY.
-
-
-### Start a new abcdesktop session
-
-Login in as hermes 
-
-![Login as hermes](img/debug-application-login-hermes.png)
-
-![Login as hermes](img/debug-application-logged-hermes.png)
-
-### for release 3.0 Start `webshell` client instance
-
-Write `webshell` or `terminal` in the application search bar
-
-![start a webshell](img/debug-application-terminal.png)
-
-The new `webshell` window is opened
-
-![start a webshell](img/debug-application-terminal-exec.png)
-
-Run the command `echo $XAUTH_KEY` to read the `$XAUTH_KEY` value, and copy the value for a next usage.
-
-![start a webshell](img/debug-application-terminal-xauth.png)
-
-```bash
-$ echo $XAUTH_KEY
-```
-
-For example
-
-``` bash
-$ echo $XAUTH_KEY
-73e6fd484fbe823bcfc8ed1bf7696a
-```
-
-Copy the value `73e6fd484fbe823bcfc8ed1bf7696a` for a next usage.
-
-
-### Run docker inspect command to look for `Binding`
-
-Get a shell on your host, and run the docker command 
-
-```bash
-$ docker ps -a |grep k8s_x
-952aeedc815d   0c7301c0630d                     "/composer/docker-en…"   10 minutes ago      Up 10 minutes                                                                        k8s_x-hermes-eff4a4cf-729e-453f-b948-d03d7cfa2b02_hermes-eff4a4cf-729e-453f-b948-d03d7cfa2b02_abcdesktop_32754d0c-bd43-49c0-a12a-e51d15ee7691_0
-
-```
-
-The docker container id is `952aeedc815d`
-
-### Read the binding mounts
-
-Replace `952aeedc815d` with your own container id, read previously.
-
-```bash
-export mycontainer=952aeedc815d
-docker inspect -f '{{ json .HostConfig.Binds }}' $mycontainer | jq
-```
-
-You should read on stdout
-
-
-```json
-[
-  "/var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/tmp:/tmp",
-  "/var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/x11socket:/tmp/.X11-unix",
-  "/var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/run:/var/run/desktop",
-  "/var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/log:/var/log/desktop",
-  "/var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~secret/auth-localaccount-hermes:/var/secrets/abcdesktop/localaccount:ro",
-  "/var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~secret/auth-vnc-hermes:/var/secrets/abcdesktop/vnc:ro",
-  "/mnt/hermes-conrad:/home/balloon",
-  "/var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/etc-hosts:/etc/hosts",
-  "/var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/containers/x-hermes-eff4a4cf-729e-453f-b948-d03d7cfa2b02/d881dda3:/dev/termination-log"
-]
-```
-
-Copy the lines with the `/tmp/.X11-unix` and `/home/balloon` mapping
-
-```json
- "/var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/x11socket:/tmp/.X11-unix"
- "/mnt/hermes-conrad:/home/balloon"
-```
-
-### Start a new container from `ubuntu:20.04`
-
-```bash
-docker run -it -v /var/lib/kubelet/pods/32754d0c-bd43-49c0-a12a-e51d15ee7691/volumes/kubernetes.io~empty-dir/x11socket:/tmp/.X11-unix -v /mnt/hermes-conrad:/home/balloon ubuntu:20.04 bash
-```
-
-You get a shell inside the container.
-
-
-### for release 3.0 set the MIT-MAGIC-COOKIE-1
-
-```bash
-apt-get update && apt-get install -y xauth
-```
-
-Replace `73e6fd484fbe823bcfc8ed1bf7696a` by your own `XAUTH_KEY` read previously.
-
-```bash
-export DISPLAY=:0.0
-export XAUTH_KEY=73e6fd484fbe823bcfc8ed1bf7696a
-xauth add $DISPLAY MIT-MAGIC-COOKIE-1 $XAUTH_KEY
-```
-
-You can read on stdout
-
-```
-xauth:  file /root/.Xauthority does not exist
-```
-
-The new file `/root/.Xauthority` has been created.
-
-
-### Install your X11 applications
-
-For example, I choose to install the `x11-apps` package
-
-Replace `x11-apps` by your own application
-
-```bash
-apt-get update && apt-get install -y x11-apps
-```
-
-
-### Start your X11 applications
-
-To start the application, just run it.
-
-But remember you a running a container as `root`
-
-```bash
-xedit
-```
-
-Go back to your web browser and a new x11 window `xedit` should be present on your display
-
-![xedit](img/debug-application-xedit.png )
-
-
-`xedit` doesn't write error message in the container. 
-
-```bash
-xedit
-```
-
-You've get a shell inside a container to run and start any application. 
-You can install wine, java  
-
-
-
+In [next chapter](debug_application_create) we will start an application from a fresh ubuntu image, to get more details.
