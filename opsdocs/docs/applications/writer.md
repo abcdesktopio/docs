@@ -1,11 +1,11 @@
-# Writer
-![libreoffice-writer.svg](/applications/icons/libreoffice-writer.svg){: style="height:64px;width:64px"}
+# writer
+![circle_libreoffice_writer.svg](/applications/icons/circle_libreoffice_writer.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.libreoffice](abcdesktopio/oc.template.gtk.libreoffice.md)
+[abcdesktopio/oc.template.alpine.libreoffice](abcdesktopio/oc.template.alpine.libreoffice.md)
 ## Arguments
 "--writer"
 ## Display name
-"Writer"
+"Writer alpine"
 ## path
 "/usr/lib/libreoffice/program/soffice"
 ## uniquerunkey

@@ -1,9 +1,9 @@
 # VSCode
-![vscode.svg](/applications/icons/vscode.svg){: style="height:64px;width:64px"}
+![circle_visual-studio-code.svg](/applications/icons/circle_visual-studio-code.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.fulldev.vscode](abcdesktopio/oc.template.gtk.fulldev.vscode.md)
+[abcdesktopio/oc.template.ubuntu.minimal.22.04](abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Arguments
-"--extensions-dir /usr/share/code/extensions --disable-gpu --verbose"
+"--extensions-dir /usr/share/code/extensions --verbose"
 ## Display name
 "VSCode"
 ## path
@@ -14,5 +14,9 @@
 "c;cpp;py;json;js;java;jav;md;xml;txt;svg;html;htm;sh;csh;css;jsx;tsx;vue;yml;yaml;"
 ## Legacy file extensions
 "c;cpp;py;json;java;md;yml;yaml;"
-## Share size
-"2gb"
+## Pre run command
+
+```
+
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg,RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/teams.list,RUN apt update && apt install -y --no-install-recommends code && apt-get clean && rm -rf /var/lib/apt/lists/*
+```

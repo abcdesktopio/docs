@@ -1,9 +1,7 @@
 # eog
-![eog.svg](/applications/icons/eog.svg){: style="height:64px;width:64px"}
+![circle_eog.svg](/applications/icons/circle_eog.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk](abcdesktopio/oc.template.gtk.md)
-## use ubuntu package
-eog
+[abcdesktopio/oc.template.alpine.gtk](abcdesktopio/oc.template.alpine.gtk.md)
 ## Display name
 "eog"
 ## path

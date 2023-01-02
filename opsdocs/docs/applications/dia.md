@@ -1,7 +1,7 @@
 # Dia
-![dia.svg](/applications/icons/dia.svg){: style="height:64px;width:64px"}
+![circle_dia.svg](/applications/icons/circle_dia.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.language-pack-all](abcdesktopio/oc.template.gtk.language-pack-all.md)
+[abcdesktopio/oc.template.ubuntu.minimal.22.04](abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## use ubuntu package
 dia dia-shapes
 ## Display name

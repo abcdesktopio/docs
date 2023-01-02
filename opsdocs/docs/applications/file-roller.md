@@ -1,7 +1,7 @@
 # file-roller
-![file-roller.svg](/applications/icons/file-roller.svg){: style="height:64px;width:64px"}
+![circle_file-roller.svg](/applications/icons/circle_file-roller.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.language-pack-all](abcdesktopio/oc.template.gtk.language-pack-all.md)
+[abcdesktopio/oc.template.ubuntu.gtk.language-pack-all](abcdesktopio/oc.template.ubuntu.gtk.language-pack-all.md)
 ## use ubuntu package
 file-roller
 ## Display name

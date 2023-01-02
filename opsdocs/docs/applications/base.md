@@ -1,7 +1,7 @@
-# Base
-![libreoffice-base.svg](/applications/icons/libreoffice-base.svg){: style="height:64px;width:64px"}
+# base
+![circle_libreoffice_base.svg](/applications/icons/circle_libreoffice_base.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.libreoffice](abcdesktopio/oc.template.gtk.libreoffice.md)
+[abcdesktopio/oc.template.alpine.libreoffice](abcdesktopio/oc.template.alpine.libreoffice.md)
 ## Arguments
 "--base"
 ## Display name

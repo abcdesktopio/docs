@@ -1,11 +1,11 @@
 # chrome
-![google-chrome.svg](/applications/icons/google-chrome.svg){: style="height:64px;width:64px"}
+![circle_google-chrome.svg](/applications/icons/circle_google-chrome.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk](abcdesktopio/oc.template.gtk.md)
+[abcdesktopio/oc.template.ubuntu.minimal.22.04](abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## use ubuntu package
-google-chrome-stable
+krb5-user fonts-noto fonts-roboto xfonts-100dpi fonts-ubuntu fonts-freefont-ttf dbus-x11 fonts-wine fonts-recommended google-chrome-stable
 ## Arguments
-"-no-sandbox --disable-gpu"
+"--no-sandbox --disable-gpu --disable-dev-shm-usage"
 ## Display name
 "Chrome"
 ## path
@@ -16,11 +16,9 @@ google-chrome-stable
 "html;xml;gif"
 ## Legacy file extensions
 "html;xml"
-## Share size
-"2gb"
 ## Pre run command
 
 ```
 
-RUN apt-get update && apt-get install  --no-install-recommends --yes  wget  && apt-get clean,RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -,RUN echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
+RUN curl -Ls https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -,RUN echo "deb [arch=$(dpkg --print-architecture)] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
 ```

@@ -1,7 +1,7 @@
-# Calc
-![libreoffice-calc.svg](/applications/icons/libreoffice-calc.svg){: style="height:64px;width:64px"}
+# calc
+![circle_libreoffice_calc.svg](/applications/icons/circle_libreoffice_calc.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.libreoffice](abcdesktopio/oc.template.gtk.libreoffice.md)
+[abcdesktopio/oc.template.alpine.libreoffice](abcdesktopio/oc.template.alpine.libreoffice.md)
 ## Arguments
 "--calc"
 ## Display name

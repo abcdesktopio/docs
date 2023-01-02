@@ -1,7 +1,7 @@
-# Impress
-![libreoffice-impress.svg](/applications/icons/libreoffice-impress.svg){: style="height:64px;width:64px"}
+# impress
+![circle_libreoffice_impress.svg](/applications/icons/circle_libreoffice_impress.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.libreoffice](abcdesktopio/oc.template.gtk.libreoffice.md)
+[abcdesktopio/oc.template.alpine.libreoffice](abcdesktopio/oc.template.alpine.libreoffice.md)
 ## Arguments
 "--impress"
 ## Display name

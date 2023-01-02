@@ -1,7 +1,7 @@
 # Evince
-![evince.svg](/applications/icons/evince.svg){: style="height:64px;width:64px"}
+![circle_acroread.svg](/applications/icons/circle_acroread.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.language-pack-all](abcdesktopio/oc.template.gtk.language-pack-all.md)
+[abcdesktopio/oc.template.ubuntu.gtk.language-pack-all](abcdesktopio/oc.template.ubuntu.gtk.language-pack-all.md)
 ## use ubuntu package
 evince
 ## Display name

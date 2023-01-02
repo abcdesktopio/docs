@@ -1,13 +1,11 @@
 # notepad-wine
 ![notepad.svg](/applications/icons/notepad.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.mswindows.default](abcdesktopio/oc.template.gtk.mswindows.default.md)
-## Arguments
-"notepad"
+[abcdesktopio/oc.template.alpine.wine](abcdesktopio/oc.template.alpine.wine.md)
 ## Display name
-"Notepad Wine"
+"Notepad Wine (alpine)"
 ## path
-"/usr/bin/wine"
+"/usr/bin/notepad"
 ## Mime Type
 "application/text;"
 ## File extensions

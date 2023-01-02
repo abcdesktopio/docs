@@ -1,7 +1,7 @@
 # gimagereader
 ![gimagereader.svg](/applications/icons/gimagereader.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.gimagereader](abcdesktopio/oc.template.gtk.gimagereader.md)
+[abcdesktopio/oc.template.ubuntu.gtk.gimagereader](abcdesktopio/oc.template.ubuntu.gtk.gimagereader.md)
 ## Display name
 "OCR-gimagereader"
 ## path

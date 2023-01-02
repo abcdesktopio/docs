@@ -1,7 +1,7 @@
 # vlc
-![vlc.svg](/applications/icons/vlc.svg){: style="height:64px;width:64px"}
+![circle_vlc.svg](/applications/icons/circle_vlc.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk](abcdesktopio/oc.template.gtk.md)
+[abcdesktopio/oc.template.ubuntu.minimal.22.04](abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## use ubuntu package
 ffmpeg vlc
 ## Display name

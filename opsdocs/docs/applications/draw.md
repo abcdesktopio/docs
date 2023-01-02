@@ -1,7 +1,7 @@
-# Draw
-![libreoffice-draw.svg](/applications/icons/libreoffice-draw.svg){: style="height:64px;width:64px"}
+# draw
+![circle_libreoffice_draw.svg](/applications/icons/circle_libreoffice_draw.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.libreoffice](abcdesktopio/oc.template.gtk.libreoffice.md)
+[abcdesktopio/oc.template.alpine.libreoffice](abcdesktopio/oc.template.alpine.libreoffice.md)
 ## Arguments
 "--draw"
 ## Display name

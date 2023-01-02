@@ -1,10 +1,8 @@
 # winemine-wine
 ![winemine.svg](/applications/icons/winemine.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.mswindows.default](abcdesktopio/oc.template.gtk.mswindows.default.md)
-## Arguments
-"winemine"
+[abcdesktopio/oc.template.alpine.minimal](abcdesktopio/oc.template.alpine.minimal.md)
 ## Display name
-"WineMine Wine"
+"WineMine Wine (alpine)"
 ## path
-"/usr/bin/wine"
+"/usr/bin/winemine"

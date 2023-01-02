@@ -1,12 +1,18 @@
 # Calculator
-![pantheon-calculator-icons.svg](/applications/icons/pantheon-calculator-icons.svg){: style="height:64px;width:64px"}
+![circle_calculator.svg](/applications/icons/circle_calculator.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.elementary](abcdesktopio/oc.template.gtk.elementary.md)
+[abcdesktopio/oc.template.ubuntu.gtk.18.04](abcdesktopio/oc.template.ubuntu.gtk.18.04.md)
 ## use ubuntu package
-pantheon-calculator
+pantheon-calculator dbus-x11
 ## Display name
 "Calculator"
 ## path
 "/usr/bin/io.elementary.calculator"
 ## Mount Home volume
 "False"
+## Pre run command
+
+```
+
+RUN add-apt-repository ppa:elementary-os/stable
+```

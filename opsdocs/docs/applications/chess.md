@@ -1,12 +1,10 @@
-# Chess
-![gnome-chess.svg](/applications/icons/gnome-chess.svg){: style="height:64px;width:64px"}
+# chess
+![circle_chess.svg](/applications/icons/circle_chess.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.language-pack-all](abcdesktopio/oc.template.gtk.language-pack-all.md)
-## use ubuntu package
-dbus-x11 stockfish gnuchess sjeng crafty gnome-chess
+[abcdesktopio/oc.template.alpine.gtk](abcdesktopio/oc.template.alpine.gtk.md)
 ## Display name
-"Chess"
+"chess"
 ## path
-"/usr/games/gnome-chess"
+"/usr/bin/gnome-chess"
 ## Mime Type
 "application/x-chess-pgn"

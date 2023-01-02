@@ -1,7 +1,7 @@
 # swell-foop
-![swell-foop.svg](/applications/icons/swell-foop.svg){: style="height:64px;width:64px"}
+![circle_swell-foop.svg](/applications/icons/circle_swell-foop.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk](abcdesktopio/oc.template.gtk.md)
+[abcdesktopio/oc.template.ubuntu.minimal.22.04](abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## use ubuntu package
 swell-foop
 ## Display name

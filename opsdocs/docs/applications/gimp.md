@@ -1,9 +1,7 @@
 # Gimp
-![gimp.svg](/applications/icons/gimp.svg){: style="height:64px;width:64px"}
+![circle_gimp.svg](/applications/icons/circle_gimp.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk](abcdesktopio/oc.template.gtk.md)
-## use ubuntu package
-gimp
+[abcdesktopio/oc.template.alpine.gtk](abcdesktopio/oc.template.alpine.gtk.md)
 ## Display name
 "Gimp"
 ## path

@@ -1,7 +1,7 @@
 # onlyoffice
 ![onlyoffice-desktopeditors.svg](/applications/icons/onlyoffice-desktopeditors.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk](abcdesktopio/oc.template.gtk.md)
+[abcdesktopio/oc.template.ubuntu.gtk](abcdesktopio/oc.template.ubuntu.gtk.md)
 ## use ubuntu package
 onlyoffice-desktopeditors
 ## Display name
@@ -16,5 +16,5 @@ onlyoffice-desktopeditors
 
 ```
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5,RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections,RUN echo "deb [arch=amd64] https://download.onlyoffice.com/repo/debian squeeze main" > /etc/apt/sources.list.d/onlyoffice.list,RUN apt-get update && apt-get install  --yes libgl1 libnss3 qt5dxcb-plugin && apt-get clean
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5,RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections,RUN echo "deb [arch=$(dpkg --print-architecture)] https://download.onlyoffice.com/repo/debian squeeze main" > /etc/apt/sources.list.d/onlyoffice.list,RUN apt-get update && apt-get install --yes libgl1 libnss3 qt5dxcb-plugin && apt-get clean && rm -rf /var/lib/apt/lists/*
 ```

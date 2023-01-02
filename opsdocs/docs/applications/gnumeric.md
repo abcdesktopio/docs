@@ -1,11 +1,9 @@
 # Gnumeric
 ![gnumeric.svg](/applications/icons/gnumeric.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk.language-pack-all](abcdesktopio/oc.template.gtk.language-pack-all.md)
-## use ubuntu package
-gnumeric
+[abcdesktopio/oc.template.alpine](abcdesktopio/oc.template.alpine.md)
 ## Display name
-"Gnumeric"
+"Gnumerix (alpine)"
 ## path
 "/usr/bin/gnumeric"
 ## Mime Type

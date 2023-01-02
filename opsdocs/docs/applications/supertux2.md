@@ -1,7 +1,7 @@
 # supertux2
-![supertux2.svg](/applications/icons/supertux2.svg){: style="height:64px;width:64px"}
+![circle_supertux.svg](/applications/icons/circle_supertux.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk](abcdesktopio/oc.template.gtk.md)
+[abcdesktopio/oc.template.ubuntu.minimal.22.04](abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## use ubuntu package
 supertux
 ## Display name

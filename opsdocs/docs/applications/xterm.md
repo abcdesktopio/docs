@@ -1,9 +1,7 @@
 # Xterm
-![mini.xterm.svg](/applications/icons/mini.xterm.svg){: style="height:64px;width:64px"}
+![circle_xterm.svg](/applications/icons/circle_xterm.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk](abcdesktopio/oc.template.gtk.md)
-## use ubuntu package
-xterm
+[abcdesktopio/oc.template.alpine.minimal](abcdesktopio/oc.template.alpine.minimal.md)
 ## Display name
 "Xterm"
 ## path

@@ -1,7 +1,7 @@
 # kigo
 ![kigo.svg](/applications/icons/kigo.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk](abcdesktopio/oc.template.gtk.md)
+[abcdesktopio/oc.template.ubuntu.gtk](abcdesktopio/oc.template.ubuntu.gtk.md)
 ## use ubuntu package
 dbus-x11 dbus-user-session gnugo kigo
 ## Display name

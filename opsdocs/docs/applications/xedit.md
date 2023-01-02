@@ -1,9 +1,7 @@
 # xedit
-![xedit.svg](/applications/icons/xedit.svg){: style="height:64px;width:64px"}
+![circle_xedit.svg](/applications/icons/circle_xedit.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.gtk](abcdesktopio/oc.template.gtk.md)
-## use ubuntu package
-x11-apps
+[abcdesktopio/oc.template.alpine.minimal](abcdesktopio/oc.template.alpine.minimal.md)
 ## Display name
 "Xedit"
 ## path
