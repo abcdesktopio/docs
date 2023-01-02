@@ -1,0 +1,164 @@
+[
+    {
+        "Id": "sha256:6c1a345379532ca89072ca3fb0286beaedf1a148b02be20e56dfa39bb7c5a25a",
+        "RepoTags": [
+            "abcdesktopio/onlyoffice.d:3.0"
+        ],
+        "RepoDigests": [],
+        "Parent": "sha256:49d59f84280a7258d4ace875003fb99a2a9c3e99d51afe30859c8ffa5a1be70c",
+        "Comment": "",
+        "Created": "2022-12-15T12:31:25.739041331Z",
+        "Container": "321121f951694a5fe152bca574312d71b7ae901d35b5044a0435e13455fe5912",
+        "ContainerConfig": {
+            "Hostname": "321121f95169",
+            "Domainname": "",
+            "User": "balloon",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "DEBCONF_FRONTEND=noninteractive",
+                "TERM=linux",
+                "LANG=en_US.utf8",
+                "BUSER=balloon",
+                "APPNAME=onlyoffice",
+                "APPBIN=/usr/bin/desktopeditors",
+                "APP=/usr/bin/desktopeditors"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "#(nop) ",
+                "CMD [\"/composer/appli-docker-entrypoint.sh\"]"
+            ],
+            "Image": "sha256:49d59f84280a7258d4ace875003fb99a2a9c3e99d51afe30859c8ffa5a1be70c",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "oc.acl": "{\"permit\":[\"all\"]}",
+                "oc.cat": "office",
+                "oc.desktopfile": "onlyoffice-desktopeditors.desktop",
+                "oc.displayname": "OnlyOffice",
+                "oc.fileextensions": "doc;docx;odt;rtf;txt;xls;xlsx;ods;csv;ppt;pptx;odp",
+                "oc.icon": "onlyoffice-desktopeditors.svg",
+                "oc.icondata": "PHN2ZyB3aWR0aD0iNzIiIGhlaWdodD0iNjciIHZpZXdCb3g9IjAgMCA3MiA2NyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zMS41MDMzIDY1Ljc3NDJMMS44OTE4NCA1Mi4xODA1Qy0wLjYzMDYxNSA1MC45OTM3IC0wLjYzMDYxNSA0OS4xNTk2IDEuODkxODQgNDguMDgwOEwxMi4yMDEgNDMuMzMzN0wzMS4zOTM2IDUyLjE4MDVDMzMuOTE2MSA1My4zNjcyIDM3Ljk3NCA1My4zNjcyIDQwLjM4NjggNTIuMTgwNUw1OS41Nzk0IDQzLjMzMzdMNjkuODg4NiA0OC4wODA4QzcyLjQxMSA0OS4yNjc1IDcyLjQxMSA1MS4xMDE2IDY5Ljg4ODYgNTIuMTgwNUw0MC4yNzcxIDY1Ljc3NDJDMzcuOTc0IDY2Ljg1MyAzMy45MTYxIDY2Ljg1MyAzMS41MDMzIDY1Ljc3NDJaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXIpIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMzEuNTAzMyA0OS4wNTE2TDEuODkxODQgMzUuNDU3OEMtMC42MzA2MTUgMzQuMjcxMSAtMC42MzA2MTUgMzIuNDM3IDEuODkxODQgMzEuMzU4MUwxMS45ODE3IDI2LjcxOUwzMS41MDMzIDM1LjY3MzZDMzQuMDI1OCAzNi44NjAzIDM4LjA4MzYgMzYuODYwMyA0MC40OTY0IDM1LjY3MzZMNjAuMDE4MSAyNi43MTlMNzAuMTA3OSAzMS4zNTgxQzcyLjYzMDQgMzIuNTQ0OSA3Mi42MzA0IDM0LjM3OSA3MC4xMDc5IDM1LjQ1NzhMNDAuNDk2NCA0OS4wNTE2QzM3Ljk3NCA1MC4yMzgzIDMzLjkxNjEgNTAuMjM4MyAzMS41MDMzIDQ5LjA1MTZaIiBmaWxsPSJ1cmwoI3BhaW50MV9saW5lYXIpIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMzEuNTAzMyAzMi43NjA2TDEuODkxODQgMTkuMTY2OUMtMC42MzA2MTUgMTcuOTgwMSAtMC42MzA2MTUgMTYuMTQ2IDEuODkxODQgMTUuMDY3MkwzMS41MDMzIDEuNDczNDRDMzQuMDI1OCAwLjI4NjY4NSAzOC4wODM2IDAuMjg2Njg1IDQwLjQ5NjQgMS40NzM0NEw3MC4xMDc5IDE1LjA2NzJDNzIuNjMwNCAxNi4yNTM5IDcyLjYzMDQgMTguMDg4IDcwLjEwNzkgMTkuMTY2OUw0MC40OTY0IDMyLjc2MDZDMzcuOTc0IDMzLjgzOTUgMzMuOTE2MSAzMy44Mzk1IDMxLjUwMzMgMzIuNzYwNloiIGZpbGw9InVybCgjcGFpbnQyX2xpbmVhcikiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhciIgeDE9IjM1Ljk3NDMiIHkxPSI3OC42NTk0IiB4Mj0iMzUuOTc0MyIgeTI9IjI5LjAzMDIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iI0ZDQzJCMSIvPgo8c3RvcCBvZmZzZXQ9IjAuODg0OCIgc3RvcC1jb2xvcj0iI0Q5NDIwQiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MV9saW5lYXIiIHgxPSIzNS45NzQzIiB5MT0iNTcuMTcxMyIgeDI9IjM1Ljk3NDMiIHkyPSIyNC41MzE2IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNERUVEQzkiLz4KPHN0b3Agb2Zmc2V0PSIwLjY2MDYiIHN0b3AtY29sb3I9IiM4QkJBMjUiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDJfbGluZWFyIiB4MT0iMzUuOTc0MyIgeTE9IjQzLjk1NDciIHgyPSIzNS45NzQzIiB5Mj0iLTAuNDYwODYyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNDMkVCRkEiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMjZBOERFIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+Cg==",
+                "oc.keyword": "onlyoffice,office,onlyoffice,desktop,editor",
+                "oc.launch": "DesktopEditors.DesktopEditors",
+                "oc.licence": "non-free",
+                "oc.mimetype": "application/vnd.oasis.opendocument.text;application/vnd.oasis.opendocument.text-template;application/vnd.oasis.opendocument.text-web;application/vnd.oasis.opendocument.text-master;application/vnd.sun.xml.writer;application/vnd.sun.xml.writer.template;application/vnd.sun.xml.writer.global;application/msword;application/vnd.ms-word;application/x-doc;application/rtf;text/rtf;application/vnd.wordperfect;application/wordperfect;application/vnd.openxmlformats-officedocument.wordprocessingml.document;application/vnd.ms-word.document.macroenabled.12;application/vnd.openxmlformats-officedocument.wordprocessingml.template;application/vnd.ms-word.template.macroenabled.12;application/vnd.oasis.opendocument.spreadsheet;application/vnd.oasis.opendocument.spreadsheet-template;application/vnd.sun.xml.calc;application/vnd.sun.xml.calc.template;application/msexcel;application/vnd.ms-excel;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;application/vnd.ms-excel.sheet.macroenabled.12;application/vnd.openxmlformats-officedocument.spreadsheetml.template;application/vnd.ms-excel.template.macroenabled.12;application/vnd.ms-excel.sheet.binary.macroenabled.12;text/csv;text/spreadsheet;application/csv;application/excel;application/x-excel;application/x-msexcel;application/x-ms-excel;text/comma-separated-values;text/tab-separated-values;text/x-comma-separated-values;text/x-csv;application/vnd.oasis.opendocument.presentation;application/vnd.oasis.opendocument.presentation-template;application/vnd.sun.xml.impress;application/vnd.sun.xml.impress.template;application/mspowerpoint;application/vnd.ms-powerpoint;application/vnd.openxmlformats-officedocument.presentationml.presentation;application/vnd.ms-powerpoint.presentation.macroenabled.12;application/vnd.openxmlformats-officedocument.presentationml.template;application/vnd.ms-powerpoint.template.macroenabled.12;application/vnd.openxmlformats-officedocument.presentationml.slide;application/vnd.openxmlformats-officedocument.presentationml.slideshow;application/vnd.ms-powerpoint.slideshow.macroEnabled.12;",
+                "oc.name": "onlyoffice",
+                "oc.path": "/usr/bin/desktopeditors",
+                "oc.rules": "{\"homedir\":{\"default\":true}}",
+                "oc.template": "abcdesktopio/oc.template.ubuntu.gtk",
+                "oc.type": "app"
+            }
+        },
+        "DockerVersion": "20.10.16",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "balloon",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "DEBCONF_FRONTEND=noninteractive",
+                "TERM=linux",
+                "LANG=en_US.utf8",
+                "BUSER=balloon",
+                "APPNAME=onlyoffice",
+                "APPBIN=/usr/bin/desktopeditors",
+                "APP=/usr/bin/desktopeditors"
+            ],
+            "Cmd": [
+                "/composer/appli-docker-entrypoint.sh"
+            ],
+            "Image": "sha256:49d59f84280a7258d4ace875003fb99a2a9c3e99d51afe30859c8ffa5a1be70c",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "oc.acl": "{\"permit\":[\"all\"]}",
+                "oc.cat": "office",
+                "oc.desktopfile": "onlyoffice-desktopeditors.desktop",
+                "oc.displayname": "OnlyOffice",
+                "oc.fileextensions": "doc;docx;odt;rtf;txt;xls;xlsx;ods;csv;ppt;pptx;odp",
+                "oc.icon": "onlyoffice-desktopeditors.svg",
+                "oc.icondata": "PHN2ZyB3aWR0aD0iNzIiIGhlaWdodD0iNjciIHZpZXdCb3g9IjAgMCA3MiA2NyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zMS41MDMzIDY1Ljc3NDJMMS44OTE4NCA1Mi4xODA1Qy0wLjYzMDYxNSA1MC45OTM3IC0wLjYzMDYxNSA0OS4xNTk2IDEuODkxODQgNDguMDgwOEwxMi4yMDEgNDMuMzMzN0wzMS4zOTM2IDUyLjE4MDVDMzMuOTE2MSA1My4zNjcyIDM3Ljk3NCA1My4zNjcyIDQwLjM4NjggNTIuMTgwNUw1OS41Nzk0IDQzLjMzMzdMNjkuODg4NiA0OC4wODA4QzcyLjQxMSA0OS4yNjc1IDcyLjQxMSA1MS4xMDE2IDY5Ljg4ODYgNTIuMTgwNUw0MC4yNzcxIDY1Ljc3NDJDMzcuOTc0IDY2Ljg1MyAzMy45MTYxIDY2Ljg1MyAzMS41MDMzIDY1Ljc3NDJaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXIpIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMzEuNTAzMyA0OS4wNTE2TDEuODkxODQgMzUuNDU3OEMtMC42MzA2MTUgMzQuMjcxMSAtMC42MzA2MTUgMzIuNDM3IDEuODkxODQgMzEuMzU4MUwxMS45ODE3IDI2LjcxOUwzMS41MDMzIDM1LjY3MzZDMzQuMDI1OCAzNi44NjAzIDM4LjA4MzYgMzYuODYwMyA0MC40OTY0IDM1LjY3MzZMNjAuMDE4MSAyNi43MTlMNzAuMTA3OSAzMS4zNTgxQzcyLjYzMDQgMzIuNTQ0OSA3Mi42MzA0IDM0LjM3OSA3MC4xMDc5IDM1LjQ1NzhMNDAuNDk2NCA0OS4wNTE2QzM3Ljk3NCA1MC4yMzgzIDMzLjkxNjEgNTAuMjM4MyAzMS41MDMzIDQ5LjA1MTZaIiBmaWxsPSJ1cmwoI3BhaW50MV9saW5lYXIpIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMzEuNTAzMyAzMi43NjA2TDEuODkxODQgMTkuMTY2OUMtMC42MzA2MTUgMTcuOTgwMSAtMC42MzA2MTUgMTYuMTQ2IDEuODkxODQgMTUuMDY3MkwzMS41MDMzIDEuNDczNDRDMzQuMDI1OCAwLjI4NjY4NSAzOC4wODM2IDAuMjg2Njg1IDQwLjQ5NjQgMS40NzM0NEw3MC4xMDc5IDE1LjA2NzJDNzIuNjMwNCAxNi4yNTM5IDcyLjYzMDQgMTguMDg4IDcwLjEwNzkgMTkuMTY2OUw0MC40OTY0IDMyLjc2MDZDMzcuOTc0IDMzLjgzOTUgMzMuOTE2MSAzMy44Mzk1IDMxLjUwMzMgMzIuNzYwNloiIGZpbGw9InVybCgjcGFpbnQyX2xpbmVhcikiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhciIgeDE9IjM1Ljk3NDMiIHkxPSI3OC42NTk0IiB4Mj0iMzUuOTc0MyIgeTI9IjI5LjAzMDIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iI0ZDQzJCMSIvPgo8c3RvcCBvZmZzZXQ9IjAuODg0OCIgc3RvcC1jb2xvcj0iI0Q5NDIwQiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MV9saW5lYXIiIHgxPSIzNS45NzQzIiB5MT0iNTcuMTcxMyIgeDI9IjM1Ljk3NDMiIHkyPSIyNC41MzE2IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNERUVEQzkiLz4KPHN0b3Agb2Zmc2V0PSIwLjY2MDYiIHN0b3AtY29sb3I9IiM4QkJBMjUiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDJfbGluZWFyIiB4MT0iMzUuOTc0MyIgeTE9IjQzLjk1NDciIHgyPSIzNS45NzQzIiB5Mj0iLTAuNDYwODYyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNDMkVCRkEiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMjZBOERFIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+Cg==",
+                "oc.keyword": "onlyoffice,office,onlyoffice,desktop,editor",
+                "oc.launch": "DesktopEditors.DesktopEditors",
+                "oc.licence": "non-free",
+                "oc.mimetype": "application/vnd.oasis.opendocument.text;application/vnd.oasis.opendocument.text-template;application/vnd.oasis.opendocument.text-web;application/vnd.oasis.opendocument.text-master;application/vnd.sun.xml.writer;application/vnd.sun.xml.writer.template;application/vnd.sun.xml.writer.global;application/msword;application/vnd.ms-word;application/x-doc;application/rtf;text/rtf;application/vnd.wordperfect;application/wordperfect;application/vnd.openxmlformats-officedocument.wordprocessingml.document;application/vnd.ms-word.document.macroenabled.12;application/vnd.openxmlformats-officedocument.wordprocessingml.template;application/vnd.ms-word.template.macroenabled.12;application/vnd.oasis.opendocument.spreadsheet;application/vnd.oasis.opendocument.spreadsheet-template;application/vnd.sun.xml.calc;application/vnd.sun.xml.calc.template;application/msexcel;application/vnd.ms-excel;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;application/vnd.ms-excel.sheet.macroenabled.12;application/vnd.openxmlformats-officedocument.spreadsheetml.template;application/vnd.ms-excel.template.macroenabled.12;application/vnd.ms-excel.sheet.binary.macroenabled.12;text/csv;text/spreadsheet;application/csv;application/excel;application/x-excel;application/x-msexcel;application/x-ms-excel;text/comma-separated-values;text/tab-separated-values;text/x-comma-separated-values;text/x-csv;application/vnd.oasis.opendocument.presentation;application/vnd.oasis.opendocument.presentation-template;application/vnd.sun.xml.impress;application/vnd.sun.xml.impress.template;application/mspowerpoint;application/vnd.ms-powerpoint;application/vnd.openxmlformats-officedocument.presentationml.presentation;application/vnd.ms-powerpoint.presentation.macroenabled.12;application/vnd.openxmlformats-officedocument.presentationml.template;application/vnd.ms-powerpoint.template.macroenabled.12;application/vnd.openxmlformats-officedocument.presentationml.slide;application/vnd.openxmlformats-officedocument.presentationml.slideshow;application/vnd.ms-powerpoint.slideshow.macroEnabled.12;",
+                "oc.name": "onlyoffice",
+                "oc.path": "/usr/bin/desktopeditors",
+                "oc.rules": "{\"homedir\":{\"default\":true}}",
+                "oc.template": "abcdesktopio/oc.template.ubuntu.gtk",
+                "oc.type": "app"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 2153386807,
+        "VirtualSize": 2153386807,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/mnt/nvme0n1/var/lib/docker/overlay2/206d42c30b66e69029e96ad916aab1ce0b7e0f3819f0201f67e091193d4b3fb2/diff:/mnt/nvme0n1/var/lib/docker/overlay2/a5365e7532bc8d1ce11242e709302cef7917f4717138342f14687d9de205d3b4/diff:/mnt/nvme0n1/var/lib/docker/overlay2/04bdaa7101ff970c9129695c3256c31e30af25dc8ee54763dc98583c92109154/diff:/mnt/nvme0n1/var/lib/docker/overlay2/ab7049e82b61680ea3df7d65263c4faaabbf137861c6ab886854468f3f0b1ca0/diff:/mnt/nvme0n1/var/lib/docker/overlay2/b2b0cd9ff6d0b1a7e68e6f8b33931cd68d86eed06a1c4d34ed36b27d89873bf5/diff:/mnt/nvme0n1/var/lib/docker/overlay2/74c7cf3b03f030bc7e4053a2f4ba1ee27f8c564414d22a3c60d7f0a3d0a7c081/diff:/mnt/nvme0n1/var/lib/docker/overlay2/170140a4bdc0db8bbf60066beb700ec5c8d3769eedd89ce8c3554efa0c2d4bf3/diff:/mnt/nvme0n1/var/lib/docker/overlay2/d7b617751c7a6dbc8d14a555ba9c9951161e7170e9f40dce16dfafb5d954a089/diff:/mnt/nvme0n1/var/lib/docker/overlay2/e57ba61c90ada14ee03da49768ae61d3e8fd7262b66e6dbc148187810a6af9d3/diff:/mnt/nvme0n1/var/lib/docker/overlay2/292db2e94f754257a2042e73a3ec8ae467dbc372803a06e797a943ccd77f6444/diff:/mnt/nvme0n1/var/lib/docker/overlay2/f16a4d2d4d23978d2debf1009dfef5d65270eada1ec3187dfe90c9e84bc6b9ce/diff:/mnt/nvme0n1/var/lib/docker/overlay2/d20198e55fe073e51a2d4c3f4a8e9b05193f693718eef7928596a95fe36f25b9/diff:/mnt/nvme0n1/var/lib/docker/overlay2/2150f75b95d10cc2aec914c22073be118b7612fd92102f5afd9c782ae7745519/diff:/mnt/nvme0n1/var/lib/docker/overlay2/52a066798836b2339e46f0ef6f8d7090a5de2d3406370f516ef037ac9474cfbd/diff:/mnt/nvme0n1/var/lib/docker/overlay2/050ef924e941a428accc7ca4df3b083399f065554fc3b9c17def3aa176551044/diff:/mnt/nvme0n1/var/lib/docker/overlay2/c3c2e2744dbe90f8b488759106d0d64c81e80f270fdc4b6af1e8839a3e31253c/diff:/mnt/nvme0n1/var/lib/docker/overlay2/d1ece1bea8caaf6f19ab0469e2ce5994f8115ca786c8997671344f5a59accbb5/diff:/mnt/nvme0n1/var/lib/docker/overlay2/06768d8fd2f219cba0c70f216ebcbeb5fb370ea252ef0537d9d657f7e0e54c5a/diff:/mnt/nvme0n1/var/lib/docker/overlay2/6330e2af4b384c03b8c266524df2ed22d82efa3c4243aae7427f8e1af89c7919/diff:/mnt/nvme0n1/var/lib/docker/overlay2/387a8e72b2e6929420e3c740bfaa648bc11d15a6acffd65e160cd00315edd15f/diff:/mnt/nvme0n1/var/lib/docker/overlay2/3b555e5266163ae5f379ab03e33be3b55c28f9c649500bffc281c5a466874528/diff:/mnt/nvme0n1/var/lib/docker/overlay2/dd5d44127e58cb5009fe11ec1adc6a6d54df124100943abcb058381c66139258/diff:/mnt/nvme0n1/var/lib/docker/overlay2/00700148dc9c8a0cfcf7625b49d69118d59bf0bc1604f6f375fa764427c8a0f3/diff:/mnt/nvme0n1/var/lib/docker/overlay2/374b71fcf13209e1547de33b97ae49cd90eb76741b5ddede1015aa3980d5e974/diff:/mnt/nvme0n1/var/lib/docker/overlay2/6d9f3e6b5b2bf99921007a56c2592b9ff66db190bf250337ca02442646d30f0e/diff:/mnt/nvme0n1/var/lib/docker/overlay2/b3009142953300c7d3f336f8fcbb9047d07552226eac5472a5e692d69a8f6cf9/diff:/mnt/nvme0n1/var/lib/docker/overlay2/963cd5ca601e7bd2c55e96b4391d10e2a1f34131b8c31e4375eb81961077494a/diff:/mnt/nvme0n1/var/lib/docker/overlay2/a9704faa550763923c92092807812a7731997c1addace48a798ddbc5b12f8419/diff:/mnt/nvme0n1/var/lib/docker/overlay2/9bb28c07582e42b975352f1ee17342276da8dd660932bbb3fca0bcc28eeb1d6e/diff:/mnt/nvme0n1/var/lib/docker/overlay2/fc5cf3bc8ef63ef3d0b1904274ca99aab860f13a0da5ce492103271befcc8224/diff",
+                "MergedDir": "/mnt/nvme0n1/var/lib/docker/overlay2/959e207d9256f14fd40df717c5c31942b202aa52ae6739d7991b2bba65996ee8/merged",
+                "UpperDir": "/mnt/nvme0n1/var/lib/docker/overlay2/959e207d9256f14fd40df717c5c31942b202aa52ae6739d7991b2bba65996ee8/diff",
+                "WorkDir": "/mnt/nvme0n1/var/lib/docker/overlay2/959e207d9256f14fd40df717c5c31942b202aa52ae6739d7991b2bba65996ee8/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:0002c93bdb3704dd9e36ce5153ef637f84de253015f3ee330468dccdeacad60b",
+                "sha256:fa2c3b1ab5da20931089969f153509651b54f69acc22a0368ac4bcce3ad9e5c9",
+                "sha256:bd1fc91f5663fc906b2ce86a85fa4f5d949dae0ca49169831be30a106ffaf54b",
+                "sha256:5ca1c58af39ed07123426a995d7e8f5522f400c155a5557607734f3ad23cf58e",
+                "sha256:4efecc672f79df98bee6966a2cb56d516199f4ca1c52d95078cc1875a147fa10",
+                "sha256:f26802f3151bfd38fea6b5b274a3326dee0eb5976795ab9da759a9a4a11e1327",
+                "sha256:e44b32b6fa7bbf1692510be44602bd1e852bbae21f7ddef41ad5a8239dff01ea",
+                "sha256:14e7cacf71680650067177abf40a307d78dfc5c4a664860ead533b847aacf341",
+                "sha256:c67311a85cec15fd9898597ac5e83b17bd9878dd21b2682b547b081067a3b295",
+                "sha256:dc4e7cbfecc8e8cdc36299dea00b19328230e914e7c835ac9bbd8693014bbbae",
+                "sha256:a277ba57b56d00451cb1961d1f1e5a87f7cdd1a5ecb2757b13c87b6ae524844c",
+                "sha256:e5db50ef6070974a6788cd4191ae84756c9d0ff7e42874ee55425201cd95e978",
+                "sha256:e6033b8ee4d9b7686c814439528328c2f4fa6232b4d25f8cc28af1ba5f441d4a",
+                "sha256:ba2fdfde0889ba4acbf2027dbde8bdaad96e00d3a0ebd0fd075ce4e7cc00b875",
+                "sha256:452cbf8029bc7da7c36ae964a88cec6a36482e67f2e99f98514a6201f668d8a4",
+                "sha256:3a03771f94359d909a4fa78a3d8f2364fda5b51b0bfd712305c7e8472c8c51bf",
+                "sha256:d61868b49566e5ebe8cbdd6b8ee03c7d496b80c62973a2612813fffab05b0b99",
+                "sha256:8be99f517e0402fcc6bd2f4f37b518a9c469adc3e9aa9bc4a48f0d0e7f703924",
+                "sha256:ebbd741dcd81f30b0482ae6fcd31210ce695001d645b357bb066084b6e1e0a96",
+                "sha256:890b76f447a7c7ecd798d136a6420cc4ab207cdc80c9fc2e3c6a14f8c6b6c2db",
+                "sha256:c22bd8bffd97c9faf7fe11864edfd33a0fea6a614133f6925d209b129c187116",
+                "sha256:7d45ea3aee4407fb38c87581eb367b6c3aba4fd2a96e9c65d40e671a7682ecd2",
+                "sha256:4aa12f8aa195862ff35bfdc8cb1261f5e5cf365f8351e8f04b378f824793ee9d",
+                "sha256:fea95f452d1e6f2e867d2c85ad4e378d041d54bcd888518a8b729e2ddadd403a",
+                "sha256:e7e58e5150e984f9923ac3e4c1ea904a4817eeb1113d6bf3c3a0bf2a109110a4",
+                "sha256:f5c99459cf039ee04856abd2dcf724a381103ab4bc11499b7693721d2f0eb52a",
+                "sha256:6087789928bfe5e65d7127c96af3947bc40bcbd82a92193b8410e966711991fc",
+                "sha256:4e99a8d2b20e4c982e75e14372450bbfc7ee7f3bd2e851b198d6a5672a4c38c4",
+                "sha256:61469c2fe16650bcfaf390050dc58c0e9116931e4de59995c91c522ae5db148e",
+                "sha256:f6dce91de8f85493652c4c0f6c59fc5c2558bb5dd101e009d5abe80d800fd682",
+                "sha256:3ed1aeca8ef4f26d155c75f9def602bcf96740e21f21aacfba32d81eae957d4b"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2022-12-27T13:11:33.058460846+01:00"
+        }
+    }
+]
