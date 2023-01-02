@@ -1,5 +1,9 @@
 # Application list
-This array describe the application list ready to use with abcdesktop.
+
+
+## List of container's applications ready to use
+
+This array describes the application list built for abcdesktop.
 
 |icon|displayname|description|file md|
 |----|-----------|-----------|-------|

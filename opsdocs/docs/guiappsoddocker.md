@@ -1,10 +1,8 @@
-# GUI Application in docker 
+# GUI application with containers 
 
-## Related Projets on VDI with docker
+## Other related projets about VDI and containers
 
-abcdesktop, or YAVDI (Yet Another VDI docker projet)
-
-A lot of different projets already exists using docker containers as a VDI. abcdesktop is just another one. I just write list of projets, you can explore them :
+A lot of different projets already exists using containers as a VDI. I just write list of projets, you can explore them :
 
 * [https://github.com/mviereck/x11docker](https://github.com/mviereck/x11docker) x11docker allows to run graphical desktop applications (and entire desktops) in Docker Linux containers.
 
@@ -15,6 +13,9 @@ A lot of different projets already exists using docker containers as a VDI. abcd
 * [https://github.com/fcwu/docker-ubuntu-vnc-desktop](https://github.com/fcwu/docker-ubuntu-vnc-desktop) docker-ubuntu-vnc-desktop is a Docker image to provide web VNC interface to access Ubuntu LXDE/LxQT desktop environment.
 
 * [Dockerize GUI app](https://blog.nediiii.com/dockerize-gui-app/) This project dockerize typical GUI app so that you can visit it in browser. Really good technical solutions.
+
+* [https://www.kasmweb.com](https://www.kasmweb.com) Streaming containerized apps and desktops.
+
 * [Docker and Wine](https://hub.docker.com/r/scottyhardy/docker-wine/) Docker image that includes Wine and Winetricks for running Windows applications on Linux and macOS 
 * [n.eko](https://github.com/m1k1o/neko) This app uses Web RTC to stream a desktop inside of a docker container (doesn't use VNC) 
 
@@ -36,13 +37,11 @@ We can approach this problem from three angles:
 
 ### Separated container
 
-
 * we can share the X11 server socket with the X11 client container as unix file socket on an external shared volume. Applications and X11 server run in dedicated containers.
 
 * we can share the X11 server socket with the container using TCP. X11 uses TCP as its transport protocol. Applications and X11 server run in dedicated containers.
 
-### abcdesktop choice
-
+### abcdesktop choices
 
 ![X11 share unix socket](img/x11shareunixsocket.png)
 
@@ -52,9 +51,7 @@ To guarantee isolation, abcdesktop/io.io run X11 server and X11 client in separa
  
 * The unix file socket garantes no latency troubleshooting. X11 uses a chatty protocol so that the network latency has a large impact when using X11
 
-**Local is best**, thus server and application need to run on the same node.
-
-
+**Local is best**, thus server and application need to run on the same node, if it can.
 
 ## HTML5 Web Browser as remote ```DISPLAY```
 
@@ -81,3 +78,4 @@ This can be done using :
 The web browser receives the RFB protocol in the WebSocket and then paints the data into a canvas.
 
 * [noVNC](https://novnc.com/) is VNC client JavaScript library. noVNC follows the standard VNC protocol, but unlike other VNC clients it requires WebSockets support.
+
