@@ -20,4 +20,4 @@ docs:
 	mkdocs build -f opsdocs/mkdocs.yml
 
 serve: 
-	mkdocs serve -f opsdocs/mkdocs.yml
+	mkdocs serve -a 0.0.0.0:8080 -f opsdocs/mkdocs.yml
