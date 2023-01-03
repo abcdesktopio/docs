@@ -14,23 +14,37 @@ libsecret-1-0 libpcsclite1 x11-utils libjpeg-turbo8
 "citrix-client"
 ## Path
 "/opt/Citrix/ICAClient/wfica"
-## Mime Type
-"application/x-ica;"
+## Mimetype
+```
+application/x-ica;
+```
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 Wfica.Wfica
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## Desktopfile
 /usr/share/applications/wfica.desktop
+> A .desktop file is a simple text file that holds information about a program. It is usually placed in “~/.local/share/applications” or “/usr/share/applications/,” depending on whether you want the launcher to be accessible for your local account onlly or for everyone.
 ## POST run command
 
+> POST run command are run **after** the package install comman
 ```
+
 COPY icaclientWeb_13.10.0.20_amd64.deb /tmp/icaclient_amd64.deb
 RUN apt-get update && apt-get install  --no-install-recommends --yes /tmp/icaclient_amd64.deb && apt-get clean && rm /tmp/icaclient_amd64.deb && rm -rf /var/lib/apt/lists/*
 ```
 
 ## JSON dump
 
+json source file
 ```json
 {
     "comment": "download icaclientWeb from https://www.citrix.com/fr-fr/downloads/citrix-receiver/linux/receiver-for-linux-latest.html",

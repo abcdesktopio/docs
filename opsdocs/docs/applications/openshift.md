@@ -15,10 +15,20 @@ rhc gnome-terminal
 ## Path
 "/usr/bin/gnome-terminal"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 gnome-terminal-server.openshift.cli
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## PRE run command
+
+> PRE run command are run **before** the package install command
 
 ```
 RUN cd /tmp && wget "https://cli.run.pivotal.io/stable?release=linux64-binary" -O pivotal.tgz && tar -xvf pivotal.tgz && mv cf /usr/local/bin
@@ -26,6 +36,7 @@ RUN cd /tmp && wget "https://cli.run.pivotal.io/stable?release=linux64-binary" -
 
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

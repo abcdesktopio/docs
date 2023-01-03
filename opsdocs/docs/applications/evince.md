@@ -12,20 +12,32 @@ evince
 "Evince"
 ## Path
 "/usr/bin/evince"
-## Mime Type
-"application/pdf;application/x-bzpdf;application/x-gzpdf;application/x-xzpdf;application/x-ext-pdf;application/postscript;application/x-bzpostscript;application/x-gzpostscript;image/x-eps;image/x-bzeps;image/x-gzeps;application/x-ext-ps;application/x-ext-eps;application/x-dvi;application/x-bzdvi;application/x-gzdvi;application/x-ext-dvi;image/vnd.djvu;application/x-ext-djv;application/x-ext-djvu;image/tiff;application/x-cbr;application/x-cbz;application/x-cb7;application/x-cbt;application/x-ext-cbr;application/x-ext-cbz;application/x-ext-cb7;application/x-ext-cbt;application/oxps;application/vnd.ms-xpsdocument;"
+## Mimetype
+```
+application/pdf;application/x-bzpdf;application/x-gzpdf;application/x-xzpdf;application/x-ext-pdf;application/postscript;application/x-bzpostscript;application/x-gzpostscript;image/x-eps;image/x-bzeps;image/x-gzeps;application/x-ext-ps;application/x-ext-eps;application/x-dvi;application/x-bzdvi;application/x-gzdvi;application/x-ext-dvi;image/vnd.djvu;application/x-ext-djv;application/x-ext-djvu;image/tiff;application/x-cbr;application/x-cbz;application/x-cb7;application/x-cbt;application/x-ext-cbr;application/x-ext-cbz;application/x-ext-cb7;application/x-ext-cbt;application/oxps;application/vnd.ms-xpsdocument;
+```
 ## File extensions
 "pdf;ps;dvi;eps;cbt;cbr;cb7;xps"
 ## Legacy file extensions
 "pdf;ps;dvi"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 evince.Evince
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## Desktopfile
 /usr/share/applications/org.gnome.Evince.desktop
+> A .desktop file is a simple text file that holds information about a program. It is usually placed in “~/.local/share/applications” or “/usr/share/applications/,” depending on whether you want the launcher to be accessible for your local account onlly or for everyone.
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

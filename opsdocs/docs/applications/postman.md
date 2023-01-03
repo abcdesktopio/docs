@@ -7,10 +7,20 @@
 ## Path
 "/usr/local/bin/Postman/app/Postman"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 postman.Postman
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## PRE run command
+
+> PRE run command are run **before** the package install command
 
 ```
 RUN apt-get update && apt-get install --no-install-recommends --yes libgtk-3-0 libatk-bridge2.0-0 libx11-6 libxi6 libxxf86vm1 libxfixes3 libxrender1 libgl1 libnss3 qt5dxcb-plugin  libxss1 libasound2 libx11-xcb1 libxcb-dri3-0 libdrm2  libdrm-common libgbm1 libasound2-plugins libgail-common libgtk2.0-bin && apt-get clean
@@ -19,6 +29,7 @@ RUN curl -Ls -o /tmp/postman.tar.gz https://dl.pstmn.io/download/latest/linux64 
 
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

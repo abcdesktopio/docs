@@ -12,19 +12,32 @@ wireshark
 "wireshark (alpine)"
 ## Path
 "/usr/bin/wireshark"
-## Mime Type
-"application/vnd.tcpdump.pcap;application/x-pcapng;application/x-snoop;application/x-iptrace;application/x-lanalyzer;application/x-nettl;application/x-radcom;application/x-etherpeek;application/x-visualnetworks;application/x-netinstobserver;application/x-5view;application/x-tektronix-rf5;"
+## Mimetype
+```
+application/vnd.tcpdump.pcap;application/x-pcapng;application/x-snoop;application/x-iptrace;application/x-lanalyzer;application/x-nettl;application/x-radcom;application/x-etherpeek;application/x-visualnetworks;application/x-netinstobserver;application/x-5view;application/x-tektronix-rf5;
+```
 ## File extensions
 "cap,pcap"
 ## Legacy file extensions
 "cap"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 wireshark.Wireshark
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## Desktopfile
 /usr/share/applications/org.wireshark.Wireshark.desktop
+> A .desktop file is a simple text file that holds information about a program. It is usually placed in “~/.local/share/applications” or “/usr/share/applications/,” depending on whether you want the launcher to be accessible for your local account onlly or for everyone.
 ## PRE run command
+
+> PRE run command are run **before** the package install command
 
 ```
 ENV QT_XCB_NO_MITSHM=1
@@ -32,6 +45,7 @@ ENV QT_XCB_NO_MITSHM=1
 
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

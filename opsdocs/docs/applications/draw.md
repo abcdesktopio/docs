@@ -18,20 +18,32 @@ libreoffice-gnome
 "libreoffice"
 ## Showinview
 "dock"
-## Mime Type
-"application/vnd.oasis.opendocument.graphics;application/vnd.oasis.opendocument.graphics-flat-xml;application/vnd.oasis.opendocument.graphics-template;application/vnd.sun.xml.draw;application/vnd.sun.xml.draw.template;application/vnd.visio;application/x-wpg;application/vnd.ms-publisher;image/x-freehand;application/x-pagemaker;"
+## Mimetype
+```
+application/vnd.oasis.opendocument.graphics;application/vnd.oasis.opendocument.graphics-flat-xml;application/vnd.oasis.opendocument.graphics-template;application/vnd.sun.xml.draw;application/vnd.sun.xml.draw.template;application/vnd.visio;application/x-wpg;application/vnd.ms-publisher;image/x-freehand;application/x-pagemaker;
+```
 ## File extensions
 "odp;otg"
 ## Legacy file extensions
 "odp;otg"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 libreoffice.libreoffice-draw
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## Desktopfile
 /usr/share/applications/libreoffice-draw.desktop
+> A .desktop file is a simple text file that holds information about a program. It is usually placed in “~/.local/share/applications” or “/usr/share/applications/,” depending on whether you want the launcher to be accessible for your local account onlly or for everyone.
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

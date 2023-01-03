@@ -8,15 +8,27 @@
 "Winhelp Wine"
 ## Path
 "/usr/bin/wine"
-## Mime Type
-"application/hlp;"
+## Mimetype
+```
+application/hlp;
+```
 ## File extensions
 "hlp;"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 winhlp32.exe.Wine
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## PRE run command
+
+> PRE run command are run **before** the package install command
 
 ```
 ENV WINEARCH=win64
@@ -29,6 +41,7 @@ COPY --chown=$BUSER:$BUSER user.reg system.reg /composer/.wine/
 
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

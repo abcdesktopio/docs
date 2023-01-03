@@ -12,20 +12,32 @@ numix-gtk-theme gtk2-engines gtk2-engines-pixbuf libgtk2.0-0 inkscape
 "inkscape"
 ## Path
 "/usr/bin/inkscape"
-## Mime Type
-"image/svg+xml;image/svg+xml-compressed;application/vnd.corel-draw;application/illustrator;"
+## Mimetype
+```
+image/svg+xml;image/svg+xml-compressed;application/vnd.corel-draw;application/illustrator;
+```
 ## File extensions
 "ai;cdr"
 ## Legacy file extensions
 "ai;cdr"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 inkscape.Inkscape
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## Desktopfile
 /usr/share/applications/inkscape.desktop
+> A .desktop file is a simple text file that holds information about a program. It is usually placed in “~/.local/share/applications” or “/usr/share/applications/,” depending on whether you want the launcher to be accessible for your local account onlly or for everyone.
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

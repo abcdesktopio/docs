@@ -15,12 +15,23 @@ dbus gnome-icon-theme gnome-icon-theme-symbolic numix-gtk-theme numix-icon-theme
 ## Showinview
 "dock"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 org.gnome.Nautilus.Org.gnome.Nautilus
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## Desktopfile
 /usr/share/applications/org.gnome.Nautilus.desktop
+> A .desktop file is a simple text file that holds information about a program. It is usually placed in “~/.local/share/applications” or “/usr/share/applications/,” depending on whether you want the launcher to be accessible for your local account onlly or for everyone.
 ## PRE run command
+
+> PRE run command are run **before** the package install command
 
 ```
 RUN mkdir -p /run/user/4096 /var/run/dbus/ chown balloon:balloon /run/user/4096 /var/run/dbus
@@ -33,6 +44,7 @@ ENV NAUTILUS_PYTHON_DEBUG=misc
 
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

@@ -14,19 +14,32 @@ krb5-user fonts-noto fonts-roboto xfonts-100dpi fonts-ubuntu fonts-freefont-ttf 
 "Chrome"
 ## Path
 "/usr/bin/google-chrome-stable"
-## Mime Type
-"text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;video/webm;"
+## Mimetype
+```
+text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;video/webm;
+```
 ## File extensions
 "html;xml;gif"
 ## Legacy file extensions
 "html;xml"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 google-chrome.Google-chrome
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## Desktopfile
 /usr/share/applications/google-chrome.desktop
+> A .desktop file is a simple text file that holds information about a program. It is usually placed in “~/.local/share/applications” or “/usr/share/applications/,” depending on whether you want the launcher to be accessible for your local account onlly or for everyone.
 ## PRE run command
+
+> PRE run command are run **before** the package install command
 
 ```
 RUN curl -Ls https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -35,6 +48,7 @@ RUN echo "deb [arch=$(dpkg --print-architecture)] http://dl.google.com/linux/chr
 
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

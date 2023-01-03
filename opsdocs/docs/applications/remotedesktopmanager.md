@@ -13,12 +13,23 @@ gir1.2-gdkpixbuf-2.0 gtk2-engines-pixbuf libssl3 libgdk-pixbuf2.0-0 adwaita-icon
 ## Path
 "/bin/remotedesktopmanager.free"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 RemoteDesktopManager.Free.RemoteDesktopManager.Free
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## Desktopfile
 /usr/share/applications/remotedesktopmanager.free.desktop
+> A .desktop file is a simple text file that holds information about a program. It is usually placed in “~/.local/share/applications” or “/usr/share/applications/,” depending on whether you want the launcher to be accessible for your local account onlly or for everyone.
 ## PRE run command
+
+> PRE run command are run **before** the package install command
 
 ```
 RUN curl -Ls -o /tmp/RemoteDesktopManager.Free_amd64.deb https://cdn.devolutions.net/download/Linux/RDM/2022.1.2.5/RemoteDesktopManager.Free_2022.1.2.5_amd64.deb
@@ -28,6 +39,7 @@ COPY composer/init.d/init.RemoteDesktopManager.Free /composer/init.d/init.Remote
 
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

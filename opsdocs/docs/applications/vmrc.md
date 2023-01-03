@@ -6,15 +6,28 @@
 "VMRC"
 ## Path
 "/usr/bin/vmrc"
-## Mime Type
-"x-scheme-handler/vmrc;"
+## Mimetype
+```
+x-scheme-handler/vmrc;
+```
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 vmrc.Vmrc
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## Desktopfile
 /usr/share/applications/vmware-vmrc.desktop
+> A .desktop file is a simple text file that holds information about a program. It is usually placed in “~/.local/share/applications” or “/usr/share/applications/,” depending on whether you want the launcher to be accessible for your local account onlly or for everyone.
 ## PRE run command
+
+> PRE run command are run **before** the package install command
 
 ```
 RUN apt-get update && apt-get install  --no-install-recommends --yes libaio1 && apt-get clean
@@ -25,6 +38,7 @@ RUN /tmp/VMware-Remote-Console-12.0.1-18113358.x86_64.bundle --eulas-agreed --co
 
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

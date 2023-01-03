@@ -12,16 +12,27 @@ wine
 "Notepad Wine (alpine)"
 ## Path
 "/usr/bin/notepad"
-## Mime Type
-"application/text;"
+## Mimetype
+```
+application/text;
+```
 ## File extensions
 "txt;log;"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 notepad.exe.notepad.exe
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

@@ -15,10 +15,20 @@ ruby-mustache gnome-terminal dbus-x11 cntlm net-tools vim curl wget
 ## Path
 "/usr/bin/gnome-terminal"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 gnome-terminal-server.cntlm
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## PRE run command
+
+> PRE run command are run **before** the package install command
 
 ```
 COPY cntlm/cntlm.mustache  cntlm/init.cntlm.sh /composer/
@@ -27,13 +37,16 @@ COPY composer/init.d/init.gnome-terminal /composer/init.d/
 
 ## POST run command
 
+> POST run command are run **after** the package install comman
 ```
+
 RUN chown balloon:root /etc/cntlm.conf
 RUN chmod 755 /composer/cntlm.mustache
 ```
 
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

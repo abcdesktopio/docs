@@ -15,10 +15,20 @@ openjdk-11-jre libswt-gtk-4-jni libswt-webkit-gtk-4-jni libswt-cairo-gtk-4-jni l
 ## Path
 "/usr/local/ApacheDirectoryStudio/ApacheDirectoryStudio"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 Apache Directory Studio.Apache Directory Studio
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## PRE run command
+
+> PRE run command are run **before** the package install command
 
 ```
 RUN curl -sL --output /tmp/ApacheDirectoryStudio.tar.gz https://dlcdn.apache.org/directory/studio/2.0.0.v20210717-M17/ApacheDirectoryStudio-2.0.0.v20210717-M17-linux.gtk.x86_64.tar.gz && cd /usr/local && tar -xvf /tmp/ApacheDirectoryStudio.tar.gz && rm -rf /tmp/ApacheDirectoryStudio.tar.gz
@@ -28,6 +38,7 @@ COPY composer/init.d/init.ApacheDirectoryStudio /composer/init.d/
 
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

@@ -8,19 +8,32 @@
 "/usr/bin/firefox"
 ## Showinview
 "dock"
-## Mime Type
-"text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;"
+## Mimetype
+```
+text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;
+```
 ## File extensions
 "htm;html;xml;gif"
 ## Legacy file extensions
 "htm;html;xml"
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 Navigator.Firefox-esr
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## Desktopfile
 /usr/share/applications/firefox.desktop
+> A .desktop file is a simple text file that holds information about a program. It is usually placed in “~/.local/share/applications” or “/usr/share/applications/,” depending on whether you want the launcher to be accessible for your local account onlly or for everyone.
 ## PRE run command
+
+> PRE run command are run **before** the package install command
 
 ```
 RUN apt-get update && apt-get install --yes krb5-user winbind firefox $(apt-cache search firefox-locale | awk '{print $1 }') && apt-get clean
@@ -32,6 +45,7 @@ RUN chown root:root /usr/bin/ntlm_auth.desktop && chmod 111 /usr/bin/ntlm_auth.d
 
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {

@@ -12,15 +12,28 @@ dbus-x11 dbus-user-session gnugo kigo
 "kigo"
 ## Path
 "/usr/games/kigo"
-## Mime Type
-"application/x-go-sgf;"
+## Mimetype
+```
+application/x-go-sgf;
+```
 ## ACL
-{"permit":["all"]}
+```
+{
+    "permit": [
+        "all"
+    ]
+}
+```
 ## WM_CLASS
 kigo.kigo
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
 ## Desktopfile
 /usr/share/applications/org.kde.kigo.desktop
+> A .desktop file is a simple text file that holds information about a program. It is usually placed in “~/.local/share/applications” or “/usr/share/applications/,” depending on whether you want the launcher to be accessible for your local account onlly or for everyone.
 ## PRE run command
+
+> PRE run command are run **before** the package install command
 
 ```
 COPY composer/init.d/init.kigo /composer/init.d/init.kigo
@@ -28,6 +41,7 @@ COPY composer/init.d/init.kigo /composer/init.d/init.kigo
 
 ## JSON dump
 
+json source file
 ```json
 {
     "acl": {
