@@ -29,8 +29,6 @@ jobs:
         run: |
           rm -rf ..?* .[!.]* *
           git clone "https://github.com/abcdesktopio/docs.git" .
-          git submodule update --init --recursive --remote
-          ls -la oc.apps
       
       - uses: actions/setup-python@v2
         with:
