@@ -3565,22 +3565,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-ubuntu-package" class="md-nav__link">
-    use ubuntu package
+  <a href="#distribution" class="md-nav__link">
+    Distribution
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#display-name" class="md-nav__link">
-    Display name
+  <a href="#ubuntu-packages" class="md-nav__link">
+    Ubuntu packages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#displayname" class="md-nav__link">
+    Displayname
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#path" class="md-nav__link">
-    path
+    Path
   </a>
   
 </li>
@@ -3593,8 +3600,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#acl" class="md-nav__link">
+    ACL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wm_class" class="md-nav__link">
+    WM_CLASS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desktopfile" class="md-nav__link">
+    Desktopfile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pre-run-command" class="md-nav__link">
     PRE run command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-dump" class="md-nav__link">
+    JSON dump
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile-generated" class="md-nav__link">
+    Dockerfile generated
   </a>
   
 </li>
@@ -3619,20 +3661,99 @@
 
 
 <h1 id="whatsdesk">whatsdesk</h1>
-<p><img alt="whatsapp.svg" src="/applications/icons/whatsapp.svg" style="height:64px;width:64px" /></p>
+<p><img alt="whatsapp.svg" src="../icons/whatsapp.svg" style="height:64px;width:64px" /></p>
 <h2 id="inherite-from">inherite from</h2>
-<p><a href="abcdesktopio/oc.template.ubuntu.gtk.20.04.md">abcdesktopio/oc.template.ubuntu.gtk.20.04</a></p>
-<h2 id="use-ubuntu-package">use ubuntu package</h2>
-<p>dbus-x11</p>
-<h2 id="display-name">Display name</h2>
+<p><a href="../abcdesktopio/oc.template.ubuntu.gtk.20.04.md">abcdesktopio/oc.template.ubuntu.gtk.20.04</a></p>
+<h2 id="distribution">Distribution</h2>
+<p>ubuntu <img alt="ubuntu" src="../icons/ubuntu.svg" style="height:32px;width:32px" /></p>
+<h2 id="ubuntu-packages">Ubuntu packages</h2>
+<pre><code>dbus-x11
+</code></pre>
+<h2 id="displayname">Displayname</h2>
 <p>"whatsdesk"</p>
-<h2 id="path">path</h2>
+<h2 id="path">Path</h2>
 <p>"/opt/whatsdesk/whatsdesk"</p>
 <h2 id="mime-type">Mime Type</h2>
 <p>"x-scheme-handler/whatsapp;"</p>
+<h2 id="acl">ACL</h2>
+<p>{"permit":["all"]}</p>
+<h2 id="wm_class">WM_CLASS</h2>
+<p>whatsdesk.whatsdesk</p>
+<h2 id="desktopfile">Desktopfile</h2>
+<p>/usr/share/applications/whatsdesk.desktop</p>
 <h2 id="pre-run-command">PRE run command</h2>
-<pre><code>
-RUN curl -Ls -o /tmp/whatsdesk.deb https://zerkc.gitlab.io/whatsdesk/whatsdesk_0.3.9_amd64.deb,RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes desktop-file-utils libasound2 &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*,RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes /tmp/whatsdesk.deb &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
+<pre><code>RUN curl -Ls -o /tmp/whatsdesk.deb https://zerkc.gitlab.io/whatsdesk/whatsdesk_0.3.9_amd64.deb
+RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes desktop-file-utils libasound2 &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
+RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes /tmp/whatsdesk.deb &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
+</code></pre>
+<h2 id="json-dump">JSON dump</h2>
+<pre><code class="language-json">{
+    &quot;acl&quot;: {
+        &quot;permit&quot;: [
+            &quot;all&quot;
+        ]
+    },
+    &quot;cat&quot;: &quot;utilities,office&quot;,
+    &quot;debpackage&quot;: &quot;dbus-x11&quot;,
+    &quot;icon&quot;: &quot;whatsapp.svg&quot;,
+    &quot;keyword&quot;: &quot;whatsapp,whatsdesk&quot;,
+    &quot;launch&quot;: &quot;whatsdesk.whatsdesk&quot;,
+    &quot;name&quot;: &quot;whatsdesk&quot;,
+    &quot;path&quot;: &quot;/opt/whatsdesk/whatsdesk&quot;,
+    &quot;rules&quot;: {
+        &quot;homedir&quot;: {
+            &quot;default&quot;: true
+        }
+    },
+    &quot;template&quot;: &quot;abcdesktopio/oc.template.ubuntu.gtk.20.04&quot;,
+    &quot;mimetype&quot;: &quot;x-scheme-handler/whatsapp;&quot;,
+    &quot;desktopfile&quot;: &quot;/usr/share/applications/whatsdesk.desktop&quot;,
+    &quot;preruncommands&quot;: [
+        &quot;RUN curl -Ls -o /tmp/whatsdesk.deb https://zerkc.gitlab.io/whatsdesk/whatsdesk_0.3.9_amd64.deb&quot;,
+        &quot;RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes desktop-file-utils libasound2 &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*&quot;,
+        &quot;RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes /tmp/whatsdesk.deb &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*&quot;
+    ]
+}
+</code></pre>
+<h2 id="dockerfile-generated">Dockerfile generated</h2>
+<pre><code class="language-dockerfile"># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+# DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
+ARG TAG=dev
+FROM abcdesktopio/oc.template.ubuntu.gtk.20.04:$TAG
+USER root
+RUN curl -Ls -o /tmp/whatsdesk.deb https://zerkc.gitlab.io/whatsdesk/whatsdesk_0.3.9_amd64.deb
+RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes desktop-file-utils libasound2 &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
+RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes /tmp/whatsdesk.deb &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
+RUN DEBIAN_FRONTEND=noninteractive apt-get update &amp;&amp; apt-get install -y  --no-install-recommends dbus-x11 &amp;&amp; apt-get clean
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+LABEL oc.icon=&quot;whatsapp.svg&quot;
+LABEL oc.icondata=&quot;PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzUuMjE2IDE3NS41NTIiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDE9Ijg1LjkxNSIgeDI9Ijg2LjUzNSIgeTE9IjMyLjU2NyIgeTI9IjEzNy4wOTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1N2QxNjMiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyM2IzM2EiLz48L2xpbmVhckdyYWRpZW50PjxmaWx0ZXIgaWQ9ImEiIHdpZHRoPSIxLjExNSIgaGVpZ2h0PSIxLjExNCIgeD0iLS4wNTciIHk9Ii0uMDU3IiBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9InNSR0IiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjMuNTMxIi8+PC9maWx0ZXI+PC9kZWZzPjxwYXRoIGZpbGw9IiNiM2IzYjMiIGQ9Im01NC41MzIgMTM4LjQ1IDIuMjM1IDEuMzI0YzkuMzg3IDUuNTcxIDIwLjE1IDguNTE4IDMxLjEyNiA4LjUyM2guMDIzYzMzLjcwNyAwIDYxLjEzOS0yNy40MjYgNjEuMTUzLTYxLjEzNS4wMDYtMTYuMzM1LTYuMzQ5LTMxLjY5Ni0xNy44OTUtNDMuMjUxQTYwLjc1IDYwLjc1IDAgMCAwIDg3Ljk0IDI1Ljk4M2MtMzMuNzMzIDAtNjEuMTY2IDI3LjQyMy02MS4xNzggNjEuMTNhNjAuOTggNjAuOTggMCAwIDAgOS4zNDkgMzIuNTM1bDEuNDU1IDIuMzEyLTYuMTc5IDIyLjU1OHptLTQwLjgxMSAyMy41NDRMMjQuMTYgMTIzLjg4Yy02LjQzOC0xMS4xNTQtOS44MjUtMjMuODA4LTkuODIxLTM2Ljc3Mi4wMTctNDAuNTU2IDMzLjAyMS03My41NSA3My41NzgtNzMuNTUgMTkuNjgxLjAxIDM4LjE1NCA3LjY2OSA1Mi4wNDcgMjEuNTcyczIxLjUzNyAzMi4zODMgMjEuNTMgNTIuMDM3Yy0uMDE4IDQwLjU1My0zMy4wMjcgNzMuNTUzLTczLjU3OCA3My41NTNoLS4wMzJjLTEyLjMxMy0uMDA1LTI0LjQxMi0zLjA5NC0zNS4xNTktOC45NTR6bTAgMCIgZmlsdGVyPSJ1cmwoI2EpIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTEyLjk2NiAxNjEuMjM4IDEwLjQzOS0zOC4xMTRhNzMuNDIgNzMuNDIgMCAwIDEtOS44MjEtMzYuNzcyYy4wMTctNDAuNTU2IDMzLjAyMS03My41NSA3My41NzgtNzMuNTUgMTkuNjgxLjAxIDM4LjE1NCA3LjY2OSA1Mi4wNDcgMjEuNTcyczIxLjUzNyAzMi4zODMgMjEuNTMgNTIuMDM3Yy0uMDE4IDQwLjU1My0zMy4wMjcgNzMuNTUzLTczLjU3OCA3My41NTNoLS4wMzJjLTEyLjMxMy0uMDA1LTI0LjQxMi0zLjA5NC0zNS4xNTktOC45NTR6Ii8+PHBhdGggZmlsbD0idXJsKCNsaW5lYXJHcmFkaWVudDE3ODApIiBkPSJNODcuMTg0IDI1LjIyN2MtMzMuNzMzIDAtNjEuMTY2IDI3LjQyMy02MS4xNzggNjEuMTNhNjAuOTggNjAuOTggMCAwIDAgOS4zNDkgMzIuNTM1bDEuNDU1IDIuMzEyLTYuMTc5IDIyLjU1OSAyMy4xNDYtNi4wNjkgMi4yMzUgMS4zMjRjOS4zODcgNS41NzEgMjAuMTUgOC41MTggMzEuMTI2IDguNTI0aC4wMjNjMzMuNzA3IDAgNjEuMTQtMjcuNDI2IDYxLjE1My02MS4xMzVhNjAuNzUgNjAuNzUgMCAwIDAtMTcuODk1LTQzLjI1MSA2MC43NSA2MC43NSAwIDAgMC00My4yMzUtMTcuOTI5eiIvPjxwYXRoIGZpbGw9InVybCgjYikiIGQ9Ik04Ny4xODQgMjUuMjI3Yy0zMy43MzMgMC02MS4xNjYgMjcuNDIzLTYxLjE3OCA2MS4xM2E2MC45OCA2MC45OCAwIDAgMCA5LjM0OSAzMi41MzVsMS40NTUgMi4zMTMtNi4xNzkgMjIuNTU4IDIzLjE0Ni02LjA2OSAyLjIzNSAxLjMyNGM5LjM4NyA1LjU3MSAyMC4xNSA4LjUxNyAzMS4xMjYgOC41MjNoLjAyM2MzMy43MDcgMCA2MS4xNC0yNy40MjYgNjEuMTUzLTYxLjEzNWE2MC43NSA2MC43NSAwIDAgMC0xNy44OTUtNDMuMjUxIDYwLjc1IDYwLjc1IDAgMCAwLTQzLjIzNS0xNy45Mjh6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNjguNzcyIDU1LjYwM2MtMS4zNzgtMy4wNjEtMi44MjgtMy4xMjMtNC4xMzctMy4xNzZsLTMuNTI0LS4wNDNjLTEuMjI2IDAtMy4yMTguNDYtNC45MDIgMi4zcy02LjQzNSA2LjI4Ny02LjQzNSAxNS4zMzIgNi41ODggMTcuNzg1IDcuNTA2IDE5LjAxMyAxMi43MTggMjAuMzgxIDMxLjQwNSAyNy43NWMxNS41MjkgNi4xMjQgMTguNjg5IDQuOTA2IDIyLjA2MSA0LjZzMTAuODc3LTQuNDQ3IDEyLjQwOC04Ljc0IDEuNTMyLTcuOTcxIDEuMDczLTguNzQtMS42ODUtMS4yMjYtMy41MjUtMi4xNDYtMTAuODc3LTUuMzY3LTEyLjU2Mi01Ljk4MS0yLjkxLS45MTktNC4xMzcuOTIxLTQuNzQ2IDUuOTc5LTUuODE5IDcuMjA2LTIuMTQ0IDEuMzgxLTMuOTg0LjQ2Mi03Ljc2LTIuODYxLTE0Ljc4NC05LjEyNGMtNS40NjUtNC44NzMtOS4xNTQtMTAuODkxLTEwLjIyOC0xMi43M3MtLjExNC0yLjgzNS44MDgtMy43NTFjLjgyNS0uODI0IDEuODM4LTIuMTQ3IDIuNzU5LTMuMjJzMS4yMjQtMS44NCAxLjgzNi0zLjA2NS4zMDctMi4zMDEtLjE1My0zLjIyLTQuMDMyLTEwLjAxMS01LjY2Ni0xMy42NDciLz48L3N2Zz4=&quot;
+LABEL oc.keyword=&quot;whatsdesk,whatsapp,whatsdesk&quot;
+LABEL oc.cat=&quot;utilities,office&quot;
+LABEL oc.desktopfile=&quot;whatsdesk.desktop&quot;
+LABEL oc.launch=&quot;whatsdesk.whatsdesk&quot;
+LABEL oc.template=&quot;abcdesktopio/oc.template.ubuntu.gtk.20.04&quot;
+LABEL oc.name=&quot;whatsdesk&quot;
+LABEL oc.displayname=&quot;whatsdesk&quot;
+LABEL oc.path=&quot;/opt/whatsdesk/whatsdesk&quot;
+LABEL oc.type=app
+LABEL oc.mimetype=&quot;x-scheme-handler/whatsapp;&quot;
+LABEL oc.rules=&quot;{\&quot;homedir\&quot;:{\&quot;default\&quot;:true}}&quot;
+LABEL oc.acl=&quot;{\&quot;permit\&quot;:[\&quot;all\&quot;]}&quot;
+RUN  if [ -d /usr/share/icons ]   &amp;&amp; [ -x /composer/safelinks.sh ] &amp;&amp; [ -d /usr/share/icons   ];  then cd /usr/share/icons;    /composer/safelinks.sh; fi 
+RUN  if [ -d /usr/share/pixmaps ] &amp;&amp; [ -x /composer/safelinks.sh ] &amp;&amp; [ -d /usr/share/pixmaps ];  then cd /usr/share/pixmaps;  /composer/safelinks.sh; fi 
+ENV APPNAME &quot;whatsdesk&quot;
+ENV APPBIN &quot;/opt/whatsdesk/whatsdesk&quot;
+ENV APP &quot;/opt/whatsdesk/whatsdesk&quot;
+USER root
+RUN mkdir -p /var/secrets/abcdesktop/localaccount &amp;&amp; cp /etc/passwd /etc/group /etc/shadow /var/secrets/abcdesktop/localaccount
+RUN rm -f /etc/passwd &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/passwd /etc/passwd
+RUN rm -f /etc/group &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/group  /etc/group
+RUN rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shadow /etc/shadow
+RUN rm -f /etc/gshadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
+USER balloon
+CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
+
 </code></pre>
 
 

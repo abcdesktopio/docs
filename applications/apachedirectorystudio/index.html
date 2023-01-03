@@ -3565,8 +3565,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-ubuntu-package" class="md-nav__link">
-    use ubuntu package
+  <a href="#distribution" class="md-nav__link">
+    Distribution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubuntu-packages" class="md-nav__link">
+    Ubuntu packages
   </a>
   
 </li>
@@ -3579,15 +3586,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#display-name" class="md-nav__link">
-    Display name
+  <a href="#displayname" class="md-nav__link">
+    Displayname
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#path" class="md-nav__link">
-    path
+    Path
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acl" class="md-nav__link">
+    ACL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wm_class" class="md-nav__link">
+    WM_CLASS
   </a>
   
 </li>
@@ -3595,6 +3616,20 @@
         <li class="md-nav__item">
   <a href="#pre-run-command" class="md-nav__link">
     PRE run command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-dump" class="md-nav__link">
+    JSON dump
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile-generated" class="md-nav__link">
+    Dockerfile generated
   </a>
   
 </li>
@@ -3619,20 +3654,98 @@
 
 
 <h1 id="apachedirectorystudio">apachedirectorystudio</h1>
-<p><img alt="account.svg" src="/applications/icons/account.svg" style="height:64px;width:64px" /></p>
+<p><img alt="account.svg" src="../icons/account.svg" style="height:64px;width:64px" /></p>
 <h2 id="inherite-from">inherite from</h2>
-<p><a href="abcdesktopio/oc.template.ubuntu.22.04.md">abcdesktopio/oc.template.ubuntu.22.04</a></p>
-<h2 id="use-ubuntu-package">use ubuntu package</h2>
-<p>openjdk-11-jre libswt-gtk-4-jni libswt-webkit-gtk-4-jni libswt-cairo-gtk-4-jni libswt-gtk-4-java</p>
+<p><a href="../abcdesktopio/oc.template.ubuntu.22.04.md">abcdesktopio/oc.template.ubuntu.22.04</a></p>
+<h2 id="distribution">Distribution</h2>
+<p>ubuntu <img alt="ubuntu" src="../icons/ubuntu.svg" style="height:32px;width:32px" /></p>
+<h2 id="ubuntu-packages">Ubuntu packages</h2>
+<pre><code>openjdk-11-jre libswt-gtk-4-jni libswt-webkit-gtk-4-jni libswt-cairo-gtk-4-jni libswt-gtk-4-java
+</code></pre>
 <h2 id="arguments">Arguments</h2>
 <p>"-configuration .eclipse/1988419495_linux_gtk_x86_64"</p>
-<h2 id="display-name">Display name</h2>
+<h2 id="displayname">Displayname</h2>
 <p>"Apache Directory Studio"</p>
-<h2 id="path">path</h2>
+<h2 id="path">Path</h2>
 <p>"/usr/local/ApacheDirectoryStudio/ApacheDirectoryStudio"</p>
+<h2 id="acl">ACL</h2>
+<p>{"permit":["all"]}</p>
+<h2 id="wm_class">WM_CLASS</h2>
+<p>Apache Directory Studio.Apache Directory Studio</p>
 <h2 id="pre-run-command">PRE run command</h2>
-<pre><code>
-RUN curl -sL --output /tmp/ApacheDirectoryStudio.tar.gz https://dlcdn.apache.org/directory/studio/2.0.0.v20210717-M17/ApacheDirectoryStudio-2.0.0.v20210717-M17-linux.gtk.x86_64.tar.gz &amp;&amp; cd /usr/local &amp;&amp; tar -xvf /tmp/ApacheDirectoryStudio.tar.gz &amp;&amp; rm -rf /tmp/ApacheDirectoryStudio.tar.gz,RUN mkdir /.ApacheDirectoryStudio &amp;&amp; chmod 777 /.ApacheDirectoryStudio,COPY composer/init.d/init.ApacheDirectoryStudio /composer/init.d/
+<pre><code>RUN curl -sL --output /tmp/ApacheDirectoryStudio.tar.gz https://dlcdn.apache.org/directory/studio/2.0.0.v20210717-M17/ApacheDirectoryStudio-2.0.0.v20210717-M17-linux.gtk.x86_64.tar.gz &amp;&amp; cd /usr/local &amp;&amp; tar -xvf /tmp/ApacheDirectoryStudio.tar.gz &amp;&amp; rm -rf /tmp/ApacheDirectoryStudio.tar.gz
+RUN mkdir /.ApacheDirectoryStudio &amp;&amp; chmod 777 /.ApacheDirectoryStudio
+COPY composer/init.d/init.ApacheDirectoryStudio /composer/init.d/
+</code></pre>
+<h2 id="json-dump">JSON dump</h2>
+<pre><code class="language-json">{
+    &quot;acl&quot;: {
+        &quot;permit&quot;: [
+            &quot;all&quot;
+        ]
+    },
+    &quot;cat&quot;: &quot;development&quot;,
+    &quot;preruncommands&quot;: [
+        &quot;RUN curl -sL --output /tmp/ApacheDirectoryStudio.tar.gz https://dlcdn.apache.org/directory/studio/2.0.0.v20210717-M17/ApacheDirectoryStudio-2.0.0.v20210717-M17-linux.gtk.x86_64.tar.gz &amp;&amp; cd /usr/local &amp;&amp; tar -xvf /tmp/ApacheDirectoryStudio.tar.gz &amp;&amp; rm -rf /tmp/ApacheDirectoryStudio.tar.gz&quot;,
+        &quot;RUN mkdir /.ApacheDirectoryStudio &amp;&amp; chmod 777 /.ApacheDirectoryStudio&quot;,
+        &quot;COPY composer/init.d/init.ApacheDirectoryStudio /composer/init.d/&quot;
+    ],
+    &quot;debpackage&quot;: &quot;openjdk-11-jre libswt-gtk-4-jni libswt-webkit-gtk-4-jni libswt-cairo-gtk-4-jni libswt-gtk-4-java&quot;,
+    &quot;icon&quot;: &quot;account.svg&quot;,
+    &quot;args&quot;: &quot;-configuration .eclipse/1988419495_linux_gtk_x86_64&quot;,
+    &quot;installrecommends&quot;: true,
+    &quot;keyword&quot;: &quot;ldap&quot;,
+    &quot;launch&quot;: &quot;Apache Directory Studio.Apache Directory Studio&quot;,
+    &quot;name&quot;: &quot;apachedirectorystudio&quot;,
+    &quot;displayname&quot;: &quot;Apache Directory Studio&quot;,
+    &quot;rules&quot;: {
+        &quot;homedir&quot;: {
+            &quot;default&quot;: true
+        }
+    },
+    &quot;path&quot;: &quot;/usr/local/ApacheDirectoryStudio/ApacheDirectoryStudio&quot;,
+    &quot;template&quot;: &quot;abcdesktopio/oc.template.ubuntu.22.04&quot;
+}
+</code></pre>
+<h2 id="dockerfile-generated">Dockerfile generated</h2>
+<pre><code class="language-dockerfile"># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+# DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
+ARG TAG=dev
+FROM abcdesktopio/oc.template.ubuntu.22.04:$TAG
+USER root
+RUN curl -sL --output /tmp/ApacheDirectoryStudio.tar.gz https://dlcdn.apache.org/directory/studio/2.0.0.v20210717-M17/ApacheDirectoryStudio-2.0.0.v20210717-M17-linux.gtk.x86_64.tar.gz &amp;&amp; cd /usr/local &amp;&amp; tar -xvf /tmp/ApacheDirectoryStudio.tar.gz &amp;&amp; rm -rf /tmp/ApacheDirectoryStudio.tar.gz
+RUN mkdir /.ApacheDirectoryStudio &amp;&amp; chmod 777 /.ApacheDirectoryStudio
+COPY composer/init.d/init.ApacheDirectoryStudio /composer/init.d/
+RUN DEBIAN_FRONTEND=noninteractive apt-get update &amp;&amp; apt-get install -y openjdk-11-jre libswt-gtk-4-jni libswt-webkit-gtk-4-jni libswt-cairo-gtk-4-jni libswt-gtk-4-java &amp;&amp; apt-get clean
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+LABEL oc.icon=&quot;account.svg&quot;
+LABEL oc.icondata=&quot;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9Ii00NjIgNDYzIDM1IDM1IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IC00NjIgNDYzIDM1IDM1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojMDA3OEQ2O30NCjwvc3R5bGU+DQo8dGl0bGU+XzwvdGl0bGU+DQo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNLTQ0MS4yLDQ4NGMwLjksMC4zLDEuOCwwLjgsMi42LDEuNGMwLjgsMC42LDEuNCwxLjMsMiwyLjFjMC41LDAuOCwxLDEuNywxLjMsMi42YzAuMywxLDAuNCwxLjksMC40LDIuOWgtMS4zDQoJYzAtMS4xLTAuMi0yLjItMC42LTMuMmMtMC44LTItMi40LTMuNS00LjMtNC4zYy0xLjctMC43LTMuNi0wLjgtNS40LTAuM2MtMC43LDAuMi0xLjQsMC41LTIsMC44Yy0xLjIsMC43LTIuMiwxLjctMi45LDIuOQ0KCWMtMC43LDEuMy0xLjEsMi43LTEuMSw0LjJoLTEuM2MwLTIsMC42LTMuOSwxLjctNS41YzAuNi0wLjgsMS4yLTEuNSwyLTIuMWMwLjgtMC42LDEuNy0xLjEsMi42LTEuNGMtMS4xLTAuNi0yLTEuNC0yLjYtMi41DQoJYy0wLjMtMC41LTAuNS0xLjEtMC43LTEuN2MtMC40LTEuNS0wLjMtMy4xLDAuMy00LjVjMC43LTEuNiwyLTIuOSwzLjYtMy42YzEuNy0wLjcsMy42LTAuNyw1LjMsMGMxLjYsMC43LDIuOSwyLDMuNiwzLjYNCgljMC42LDEuNCwwLjcsMywwLjMsNC41Yy0wLjIsMC42LTAuNCwxLjEtMC43LDEuN2MtMC4zLDAuNS0wLjcsMS0xLjEsMS40Qy00NDAuMiw0ODMuMy00NDAuNyw0ODMuNy00NDEuMiw0ODR6IE0tNDUwLDQ3OA0KCWMwLDAuNywwLjEsMS41LDAuNCwyLjFjMC42LDEuMywxLjYsMi4zLDIuOSwyLjljMS40LDAuNiwyLjksMC42LDQuMiwwYzEuMy0wLjYsMi4zLTEuNiwyLjktMi45YzAuNi0xLjQsMC42LTIuOSwwLTQuMg0KCWMtMC42LTEuMy0xLjYtMi4zLTIuOS0yLjljLTEuNC0wLjYtMi45LTAuNi00LjIsMGMtMS4zLDAuNi0yLjMsMS42LTIuOSwyLjlDLTQ0OS45LDQ3Ni41LTQ1MCw0NzcuMy00NTAsNDc4eiIvPg0KPHBhdGggY2xhc3M9InN0MCIgZD0iTS00MzQuNSw0OTMuNWgtMi4zVjQ5M2MwLTEtMC4yLTIuMS0wLjYtMy4xYy0wLjctMS44LTIuMi0zLjMtNC4xLTQuMWMtMS42LTAuNy0zLjQtMC44LTUuMS0wLjMNCgljLTAuNiwwLjItMS4zLDAuNC0xLjksMC44Yy0xLjEsMC43LTIuMSwxLjYtMi44LDIuOGMtMC43LDEuMi0xLDIuNi0xLDMuOXYwLjVoLTIuM1Y0OTNjMC0yLjEsMC42LTQuMSwxLjgtNS44DQoJYzAuNi0wLjgsMS4zLTEuNiwyLjEtMi4yYzAuNi0wLjQsMS4yLTAuOCwxLjktMS4xYy0wLjMtMC4yLTAuNi0wLjQtMC44LTAuN2MtMC41LTAuNS0wLjktMS0xLjItMS41Yy0wLjMtMC41LTAuNi0xLjEtMC44LTEuNw0KCWMtMC40LTEuNi0wLjMtMy4zLDAuMy00LjhjMS42LTMuNyw1LjgtNS40LDkuNi0zLjljMS43LDAuNywzLjEsMi4xLDMuOSwzLjljMC42LDEuNSwwLjcsMy4yLDAuMyw0LjhjLTAuMiwwLjYtMC40LDEuMi0wLjgsMS44DQoJYy0wLjMsMC42LTAuNywxLjEtMS4yLDEuNWMtMC4yLDAuMi0wLjUsMC41LTAuOCwwLjdjMC43LDAuMywxLjMsMC42LDEuOSwxLjFjMC44LDAuNiwxLjUsMS40LDIuMSwyLjJjMC42LDAuOCwxLDEuOCwxLjMsMi43DQoJYzAuMywxLDAuNSwyLDAuNSwzLjFWNDkzLjV6IE0tNDM1LjksNDkyLjVoMC40YzAtMC44LTAuMi0xLjYtMC40LTIuM2MtMC4zLTAuOS0wLjctMS43LTEuMi0yLjVjLTAuNS0wLjgtMS4yLTEuNC0xLjktMg0KCWMtMC43LTAuNi0xLjYtMS0yLjUtMS4zbC0xLTAuNGwwLjktMC41YzAuNS0wLjMsMS0wLjYsMS40LTFjMC40LTAuNCwwLjctMC44LDEtMS4zYzAuMy0wLjUsMC41LTEsMC43LTEuNWMwLjQtMS40LDAuMy0yLjgtMC4zLTQuMg0KCWMtMS40LTMuMi01LjEtNC43LTguMy0zLjRjLTEuNSwwLjYtMi43LDEuOS0zLjQsMy40Yy0wLjMsMC44LTAuNSwxLjYtMC41LDIuNWMwLDAuNiwwLjEsMS4xLDAuMiwxLjdjMC4xLDAuNSwwLjMsMS4xLDAuNiwxLjYNCgljMC42LDEsMS40LDEuOCwyLjQsMi4zbDAuOSwwLjVsLTEsMC40Yy0wLjksMC4zLTEuNywwLjgtMi41LDEuNGMtMC43LDAuNi0xLjQsMS4yLTEuOSwyYy0xLDEuNC0xLjUsMy4xLTEuNiw0LjhoMC40DQoJYzAuMS0xLjQsMC41LTIuOCwxLjItNGMwLjctMS4zLDEuOC0yLjMsMy4xLTMuMWMwLjctMC40LDEuNC0wLjcsMi4xLTAuOWMxLjktMC41LDMuOS0wLjQsNS43LDAuNGMyLjEsMC44LDMuNywyLjUsNC42LDQuNg0KCUMtNDM2LjEsNDkwLjUtNDM1LjksNDkxLjUtNDM1LjksNDkyLjV6IE0tNDQ0LjUsNDgzLjljLTAuOCwwLTEuNi0wLjItMi4zLTAuNWMtMS40LTAuNi0yLjYtMS43LTMuMi0zLjFjLTAuNi0xLjUtMC42LTMuMSwwLTQuNg0KCWMwLjYtMS40LDEuNy0yLjUsMy4xLTMuMmMxLjUtMC42LDMuMS0wLjYsNC42LDBjMS40LDAuNiwyLjYsMS43LDMuMiwzLjJjMC42LDEuNSwwLjYsMy4xLDAsNC42Yy0wLjYsMS40LTEuNywyLjUtMy4xLDMuMQ0KCUMtNDQyLjksNDgzLjgtNDQzLjcsNDgzLjktNDQ0LjUsNDgzLjl6IE0tNDQ0LjUsNDczYy0wLjcsMC0xLjMsMC4xLTEuOSwwLjRjLTEuMiwwLjUtMi4xLDEuNS0yLjcsMi43Yy0wLjUsMS4yLTAuNSwyLjYsMCwzLjkNCgljMC41LDEuMiwxLjUsMi4xLDIuNywyLjdjMS4yLDAuNSwyLjYsMC41LDMuOSwwYzEuMi0wLjUsMi4xLTEuNSwyLjctMi43YzAuNS0xLjIsMC41LTIuNiwwLTMuOWMtMC41LTEuMi0xLjUtMi4xLTIuNy0yLjcNCglDLTQ0My4yLDQ3My4xLTQ0My44LDQ3My00NDQuNSw0NzN6Ii8+DQo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNLTQ0NC41LDQ5N2MtOS4xLDAtMTYuNS03LjQtMTYuNi0xNi41YzAtOS4xLDcuNC0xNi41LDE2LjUtMTYuNmM5LjEsMCwxNi41LDcuNCwxNi42LDE2LjUNCglDLTQyOCw0ODkuNi00MzUuNCw0OTctNDQ0LjUsNDk3eiBNLTQ0NC41LDQ2NS44Yy04LjEsMC0xNC43LDYuNi0xNC43LDE0LjdzNi42LDE0LjcsMTQuNywxNC43czE0LjctNi42LDE0LjctMTQuN2MwLDAsMCwwLDAsMA0KCUMtNDI5LjksNDcyLjMtNDM2LjQsNDY1LjgtNDQ0LjUsNDY1LjhMLTQ0NC41LDQ2NS44eiIvPg0KPC9zdmc+DQo=&quot;
+LABEL oc.keyword=&quot;apachedirectorystudio,ldap&quot;
+LABEL oc.cat=&quot;development&quot;
+LABEL oc.launch=&quot;Apache Directory Studio.Apache Directory Studio&quot;
+LABEL oc.template=&quot;abcdesktopio/oc.template.ubuntu.22.04&quot;
+ENV ARGS=&quot;-configuration .eclipse/1988419495_linux_gtk_x86_64&quot;
+LABEL oc.name=&quot;apachedirectorystudio&quot;
+LABEL oc.displayname=&quot;Apache Directory Studio&quot;
+LABEL oc.path=&quot;/usr/local/ApacheDirectoryStudio/ApacheDirectoryStudio&quot;
+LABEL oc.type=app
+LABEL oc.rules=&quot;{\&quot;homedir\&quot;:{\&quot;default\&quot;:true}}&quot;
+LABEL oc.acl=&quot;{\&quot;permit\&quot;:[\&quot;all\&quot;]}&quot;
+RUN  if [ -d /usr/share/icons ]   &amp;&amp; [ -x /composer/safelinks.sh ] &amp;&amp; [ -d /usr/share/icons   ];  then cd /usr/share/icons;    /composer/safelinks.sh; fi 
+RUN  if [ -d /usr/share/pixmaps ] &amp;&amp; [ -x /composer/safelinks.sh ] &amp;&amp; [ -d /usr/share/pixmaps ];  then cd /usr/share/pixmaps;  /composer/safelinks.sh; fi 
+ENV APPNAME &quot;apachedirectorystudio&quot;
+ENV APPBIN &quot;/usr/local/ApacheDirectoryStudio/ApacheDirectoryStudio&quot;
+LABEL oc.args=&quot;-configuration .eclipse/1988419495_linux_gtk_x86_64&quot;
+ENV APP &quot;/usr/local/ApacheDirectoryStudio/ApacheDirectoryStudio&quot;
+USER root
+RUN mkdir -p /var/secrets/abcdesktop/localaccount &amp;&amp; cp /etc/passwd /etc/group /etc/shadow /var/secrets/abcdesktop/localaccount
+RUN rm -f /etc/passwd &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/passwd /etc/passwd
+RUN rm -f /etc/group &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/group  /etc/group
+RUN rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shadow /etc/shadow
+RUN rm -f /etc/gshadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
+USER balloon
+CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
+
 </code></pre>
 
 

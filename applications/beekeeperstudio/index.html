@@ -3572,15 +3572,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#display-name" class="md-nav__link">
-    Display name
+  <a href="#displayname" class="md-nav__link">
+    Displayname
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#path" class="md-nav__link">
-    path
+    Path
   </a>
   
 </li>
@@ -3600,8 +3600,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#acl" class="md-nav__link">
+    ACL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wm_class" class="md-nav__link">
+    WM_CLASS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desktopfile" class="md-nav__link">
+    Desktopfile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pre-run-command" class="md-nav__link">
     PRE run command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-dump" class="md-nav__link">
+    JSON dump
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile-generated" class="md-nav__link">
+    Dockerfile generated
   </a>
   
 </li>
@@ -3626,22 +3661,122 @@
 
 
 <h1 id="beekeeperstudio">beekeeperstudio</h1>
-<p><img alt="beekeeper-studio.svg" src="/applications/icons/beekeeper-studio.svg" style="height:64px;width:64px" /></p>
+<p><img alt="beekeeper-studio.svg" src="../icons/beekeeper-studio.svg" style="height:64px;width:64px" /></p>
 <h2 id="inherite-from">inherite from</h2>
-<p><a href="abcdesktopio/oc.template.ubuntu.gtk.md">abcdesktopio/oc.template.ubuntu.gtk</a></p>
+<p><a href="../abcdesktopio/oc.template.ubuntu.gtk.md">abcdesktopio/oc.template.ubuntu.gtk</a></p>
 <h2 id="arguments">Arguments</h2>
 <p>"--no-sandbox"</p>
-<h2 id="display-name">Display name</h2>
+<h2 id="displayname">Displayname</h2>
 <p>"Beekeeper-studio"</p>
-<h2 id="path">path</h2>
+<h2 id="path">Path</h2>
 <p>"/opt/Beekeeper-Studio/beekeeper-studio"</p>
 <h2 id="file-extensions">File extensions</h2>
 <p>"sql"</p>
 <h2 id="legacy-file-extensions">Legacy file extensions</h2>
 <p>"sql"</p>
+<h2 id="acl">ACL</h2>
+<p>{"permit":["all"]}</p>
+<h2 id="wm_class">WM_CLASS</h2>
+<p>beekeeper-studio.beekeeper-studio</p>
+<h2 id="desktopfile">Desktopfile</h2>
+<p>/usr/share/applications/beekeeper-studio.desktop</p>
 <h2 id="pre-run-command">PRE run command</h2>
-<pre><code>
-RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes libxss1 libasound2 libx11-xcb1 libxcb-dri3-0 libdrm2  libdrm-common libgbm1 &amp;&amp; apt-get clean,RUN curl -Ls https://deb.beekeeperstudio.io/beekeeper.key | apt-key add -,RUN echo &quot;deb https://deb.beekeeperstudio.io stable main&quot; | tee /etc/apt/sources.list.d/beekeeper-studio-app.list,RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes beekeeper-studio libxshmfence1 &amp;&amp; apt-get clean,RUN mv &quot;/opt/Beekeeper Studio/&quot; /opt/Beekeeper-Studio,ENV ELECTRON_ENABLE_LOGGING=true,ENV QT_X11_NO_MITSHM=1
+<pre><code>RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes libxss1 libasound2 libx11-xcb1 libxcb-dri3-0 libdrm2  libdrm-common libgbm1 &amp;&amp; apt-get clean
+RUN curl -Ls https://deb.beekeeperstudio.io/beekeeper.key | apt-key add -
+RUN echo &quot;deb https://deb.beekeeperstudio.io stable main&quot; | tee /etc/apt/sources.list.d/beekeeper-studio-app.list
+RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes beekeeper-studio libxshmfence1 &amp;&amp; apt-get clean
+RUN mv &quot;/opt/Beekeeper Studio/&quot; /opt/Beekeeper-Studio
+ENV ELECTRON_ENABLE_LOGGING=true
+ENV QT_X11_NO_MITSHM=1
+</code></pre>
+<h2 id="json-dump">JSON dump</h2>
+<pre><code class="language-json">{
+    &quot;acl&quot;: {
+        &quot;permit&quot;: [
+            &quot;all&quot;
+        ]
+    },
+    &quot;cat&quot;: &quot;office&quot;,
+    &quot;preruncommands&quot;: [
+        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes libxss1 libasound2 libx11-xcb1 libxcb-dri3-0 libdrm2  libdrm-common libgbm1 &amp;&amp; apt-get clean&quot;,
+        &quot;RUN curl -Ls https://deb.beekeeperstudio.io/beekeeper.key | apt-key add -&quot;,
+        &quot;RUN echo \&quot;deb https://deb.beekeeperstudio.io stable main\&quot; | tee /etc/apt/sources.list.d/beekeeper-studio-app.list&quot;,
+        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes beekeeper-studio libxshmfence1 &amp;&amp; apt-get clean&quot;,
+        &quot;RUN mv \&quot;/opt/Beekeeper Studio/\&quot; /opt/Beekeeper-Studio&quot;,
+        &quot;ENV ELECTRON_ENABLE_LOGGING=true&quot;,
+        &quot;ENV QT_X11_NO_MITSHM=1&quot;
+    ],
+    &quot;debpackage&quot;: &quot;&quot;,
+    &quot;icon&quot;: &quot;beekeeper-studio.svg&quot;,
+    &quot;keyword&quot;: &quot;database,sql,mysql,postgres,sqllite,db,sqlserver,query,editor&quot;,
+    &quot;launch&quot;: &quot;beekeeper-studio.beekeeper-studio&quot;,
+    &quot;name&quot;: &quot;beekeeperstudio&quot;,
+    &quot;displayname&quot;: &quot;Beekeeper-studio&quot;,
+    &quot;installrecommends&quot;: false,
+    &quot;forceconfold&quot;: true,
+    &quot;host_config&quot;: {
+        &quot;shm_size&quot;: &quot;2G&quot;,
+        &quot;ipc_mode&quot;: &quot;shareable&quot;
+    },
+    &quot;args&quot;: &quot;--no-sandbox&quot;,
+    &quot;rules&quot;: {
+        &quot;homedir&quot;: {
+            &quot;default&quot;: true
+        }
+    },
+    &quot;path&quot;: &quot;/opt/Beekeeper-Studio/beekeeper-studio&quot;,
+    &quot;template&quot;: &quot;abcdesktopio/oc.template.ubuntu.gtk&quot;,
+    &quot;legacyfileextensions&quot;: &quot;sql&quot;,
+    &quot;fileextensions&quot;: &quot;sql&quot;,
+    &quot;desktopfile&quot;: &quot;/usr/share/applications/beekeeper-studio.desktop&quot;,
+    &quot;usedefaultapplication&quot;: false
+}
+</code></pre>
+<h2 id="dockerfile-generated">Dockerfile generated</h2>
+<pre><code class="language-dockerfile"># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+# DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
+ARG TAG=dev
+FROM abcdesktopio/oc.template.ubuntu.gtk:$TAG
+USER root
+RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes libxss1 libasound2 libx11-xcb1 libxcb-dri3-0 libdrm2  libdrm-common libgbm1 &amp;&amp; apt-get clean
+RUN curl -Ls https://deb.beekeeperstudio.io/beekeeper.key | apt-key add -
+RUN echo &quot;deb https://deb.beekeeperstudio.io stable main&quot; | tee /etc/apt/sources.list.d/beekeeper-studio-app.list
+RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes beekeeper-studio libxshmfence1 &amp;&amp; apt-get clean
+RUN mv &quot;/opt/Beekeeper Studio/&quot; /opt/Beekeeper-Studio
+ENV ELECTRON_ENABLE_LOGGING=true
+ENV QT_X11_NO_MITSHM=1
+LABEL oc.icon=&quot;beekeeper-studio.svg&quot;
+LABEL oc.icondata=&quot;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDEzMi44IDE0Ni4yIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMzIuOCAxNDYuMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiNGQUQ4M0I7fQo8L3N0eWxlPgo8Zz4KCTxnPgoJCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMjEuMywyOC4yTDc3LjcsMy4xQzcwLjYtMSw2MS45LTEsNTQuOSwzLjFMNDMuNSw5LjdWMzl2Ni43djI3LjVjMCw4LjEsNC4zLDE1LjcsMTEuNCwxOS44CgkJCWMzLjUsMiw3LjUsMy4xLDExLjQsMy4xczcuOS0xLDExLjQtMy4xbDAsMGM3LjEtNC4xLDExLjQtMTEuNiwxMS40LTE5LjhjMC04LjEtNC4zLTE1LjctMTEuNC0xOS44bDAsMGMtMy41LTItNy41LTMuMS0xMS40LTMuMQoJCQlWMzZjMy45LDAsNy45LDEsMTEuNCwzLjFsMTIuNCw3LjJjNy4xLDQuMSwxMS40LDExLjYsMTEuNCwxOS44djE0LjNjMCw4LjEtNC4zLDE1LjctMTEuNCwxOS44bC0xMi40LDcuMmMtMy41LDItNy41LDMuMS0xMS40LDMuMQoJCQlzLTcuOS0xLTExLjQtMy4xbC0xMi40LTcuMmMtNy4xLTQuMS0xMS40LTExLjYtMTEuNC0xOS44di03LjJWNjZWNDcuNVYxNi44TDExLjQsMjguMkM0LjMsMzIuMywwLDM5LjgsMCw0OHY1MC4zCgkJCWMwLDguMSw0LjMsMTUuNywxMS40LDE5LjhMNTUsMTQzLjJjNy4xLDQuMSwxNS44LDQuMSwyMi44LDBsNDMuNi0yNS4xYzcuMS00LjEsMTEuNC0xMS42LDExLjQtMTkuOFY0OAoJCQlDMTMyLjcsMzkuOCwxMjguMywzMi4zLDEyMS4zLDI4LjJ6IE01Mi4zLDU1LjJjLTEuMywxLTIuNCwyLjEtMy40LDMuM3YtMTZsMy40LTJWNTUuMnogTTYxLDUxYy0xLjIsMC4zLTIuMywwLjYtMy40LDEuMVYzNy43CgkJCWMxLjEtMC41LDIuMy0wLjgsMy40LTEuMVY1MXoiLz4KCTwvZz4KPC9nPgo8L3N2Zz4K&quot;
+LABEL oc.keyword=&quot;beekeeperstudio,database,sql,mysql,postgres,sqllite,db,sqlserver,query,editor&quot;
+LABEL oc.cat=&quot;office&quot;
+LABEL oc.desktopfile=&quot;beekeeper-studio.desktop&quot;
+LABEL oc.launch=&quot;beekeeper-studio.beekeeper-studio&quot;
+LABEL oc.template=&quot;abcdesktopio/oc.template.ubuntu.gtk&quot;
+ENV ARGS=&quot;--no-sandbox&quot;
+LABEL oc.name=&quot;beekeeperstudio&quot;
+LABEL oc.displayname=&quot;Beekeeper-studio&quot;
+LABEL oc.path=&quot;/opt/Beekeeper-Studio/beekeeper-studio&quot;
+LABEL oc.type=app
+LABEL oc.fileextensions=&quot;sql&quot;
+LABEL oc.legacyfileextensions=&quot;sql&quot;
+LABEL oc.rules=&quot;{\&quot;homedir\&quot;:{\&quot;default\&quot;:true}}&quot;
+LABEL oc.acl=&quot;{\&quot;permit\&quot;:[\&quot;all\&quot;]}&quot;
+LABEL oc.host_config=&quot;{\&quot;shm_size\&quot;:\&quot;2G\&quot;,\&quot;ipc_mode\&quot;:\&quot;shareable\&quot;}&quot;
+RUN  if [ -d /usr/share/icons ]   &amp;&amp; [ -x /composer/safelinks.sh ] &amp;&amp; [ -d /usr/share/icons   ];  then cd /usr/share/icons;    /composer/safelinks.sh; fi 
+RUN  if [ -d /usr/share/pixmaps ] &amp;&amp; [ -x /composer/safelinks.sh ] &amp;&amp; [ -d /usr/share/pixmaps ];  then cd /usr/share/pixmaps;  /composer/safelinks.sh; fi 
+ENV APPNAME &quot;beekeeperstudio&quot;
+ENV APPBIN &quot;/opt/Beekeeper-Studio/beekeeper-studio&quot;
+LABEL oc.args=&quot;--no-sandbox&quot;
+ENV APP &quot;/opt/Beekeeper-Studio/beekeeper-studio&quot;
+USER root
+RUN mkdir -p /var/secrets/abcdesktop/localaccount &amp;&amp; cp /etc/passwd /etc/group /etc/shadow /var/secrets/abcdesktop/localaccount
+RUN rm -f /etc/passwd &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/passwd /etc/passwd
+RUN rm -f /etc/group &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/group  /etc/group
+RUN rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shadow /etc/shadow
+RUN rm -f /etc/gshadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
+USER balloon
+CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
+
 </code></pre>
 
 

@@ -3565,15 +3565,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#display-name" class="md-nav__link">
-    Display name
+  <a href="#displayname" class="md-nav__link">
+    Displayname
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#path" class="md-nav__link">
-    path
+    Path
   </a>
   
 </li>
@@ -3586,8 +3586,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#acl" class="md-nav__link">
+    ACL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wm_class" class="md-nav__link">
+    WM_CLASS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desktopfile" class="md-nav__link">
+    Desktopfile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pre-run-command" class="md-nav__link">
     PRE run command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-dump" class="md-nav__link">
+    JSON dump
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile-generated" class="md-nav__link">
+    Dockerfile generated
   </a>
   
 </li>
@@ -3612,18 +3647,110 @@
 
 
 <h1 id="vice">vice</h1>
-<p><img alt="c64.svg" src="/applications/icons/c64.svg" style="height:64px;width:64px" /></p>
+<p><img alt="c64.svg" src="../icons/c64.svg" style="height:64px;width:64px" /></p>
 <h2 id="inherite-from">inherite from</h2>
-<p><a href="abcdesktopio/oc.template.ubuntu.gtk.18.04.md">abcdesktopio/oc.template.ubuntu.gtk.18.04</a></p>
-<h2 id="display-name">Display name</h2>
+<p><a href="../abcdesktopio/oc.template.ubuntu.gtk.18.04.md">abcdesktopio/oc.template.ubuntu.gtk.18.04</a></p>
+<h2 id="displayname">Displayname</h2>
 <p>"Commodore64"</p>
-<h2 id="path">path</h2>
+<h2 id="path">Path</h2>
 <p>"/usr/bin/x64"</p>
 <h2 id="file-extensions">File extensions</h2>
 <p>"crt;bin"</p>
+<h2 id="acl">ACL</h2>
+<p>{"permit":["all"]}</p>
+<h2 id="wm_class">WM_CLASS</h2>
+<p>x64.X64</p>
+<h2 id="desktopfile">Desktopfile</h2>
+<p>/usr/share/applications/x64.desktop</p>
 <h2 id="pre-run-command">PRE run command</h2>
-<pre><code>
-RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes vice libmp3lame0 git wget &amp;&amp; apt-get clean,RUN git clone https://github.com/stuartcarnie/vice-emu/ &amp;&amp; mv vice-emu/vice/data/DRIVES/* /usr/lib/vice/C64 &amp;&amp; cd /vice-emu/vice/data/C64 &amp;&amp; mv chargen kernal basic /usr/lib/vice/C64,RUN mkdir /usr/lib/vice/C64/cartridge,RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_1-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_1-8000.bin,RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_2-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_2-8000.bin,RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_3-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_3-8000.bin,RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_4-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_4-8000.bin,RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/C64638_Jack_Attack-8000.bin -O /usr/lib/vice/C64/cartridge/C64638_Jack_Attack-8000.bin,RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315102-01.bin -O /usr/lib/vice/C64/cartridge/315102-01.bin,RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315103-01.bin -O /usr/lib/vice/C64/cartridge/315103-01.bin
+<pre><code>RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes vice libmp3lame0 git wget &amp;&amp; apt-get clean
+RUN git clone https://github.com/stuartcarnie/vice-emu/ &amp;&amp; mv vice-emu/vice/data/DRIVES/* /usr/lib/vice/C64 &amp;&amp; cd /vice-emu/vice/data/C64 &amp;&amp; mv chargen kernal basic /usr/lib/vice/C64
+RUN mkdir /usr/lib/vice/C64/cartridge
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_1-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_1-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_2-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_2-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_3-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_3-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_4-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_4-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/C64638_Jack_Attack-8000.bin -O /usr/lib/vice/C64/cartridge/C64638_Jack_Attack-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315102-01.bin -O /usr/lib/vice/C64/cartridge/315102-01.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315103-01.bin -O /usr/lib/vice/C64/cartridge/315103-01.bin
+</code></pre>
+<h2 id="json-dump">JSON dump</h2>
+<pre><code class="language-json">{
+    &quot;acl&quot;: {
+        &quot;permit&quot;: [
+            &quot;all&quot;
+        ]
+    },
+    &quot;cat&quot;: &quot;games&quot;,
+    &quot;preruncommands&quot;: [
+        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes vice libmp3lame0 git wget &amp;&amp; apt-get clean&quot;,
+        &quot;RUN git clone https://github.com/stuartcarnie/vice-emu/ &amp;&amp; mv vice-emu/vice/data/DRIVES/* /usr/lib/vice/C64 &amp;&amp; cd /vice-emu/vice/data/C64 &amp;&amp; mv chargen kernal basic /usr/lib/vice/C64&quot;,
+        &quot;RUN mkdir /usr/lib/vice/C64/cartridge&quot;,
+        &quot;RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_1-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_1-8000.bin&quot;,
+        &quot;RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_2-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_2-8000.bin&quot;,
+        &quot;RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_3-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_3-8000.bin&quot;,
+        &quot;RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_4-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_4-8000.bin&quot;,
+        &quot;RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/C64638_Jack_Attack-8000.bin -O /usr/lib/vice/C64/cartridge/C64638_Jack_Attack-8000.bin&quot;,
+        &quot;RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315102-01.bin -O /usr/lib/vice/C64/cartridge/315102-01.bin&quot;,
+        &quot;RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315103-01.bin -O /usr/lib/vice/C64/cartridge/315103-01.bin&quot;
+    ],
+    &quot;debpackage&quot;: &quot;&quot;,
+    &quot;icon&quot;: &quot;c64.svg&quot;,
+    &quot;keyword&quot;: &quot;x64,vice,commodore,c64&quot;,
+    &quot;launch&quot;: &quot;x64.X64&quot;,
+    &quot;name&quot;: &quot;vice&quot;,
+    &quot;displayname&quot;: &quot;Commodore64&quot;,
+    &quot;installrecommends&quot;: true,
+    &quot;path&quot;: &quot;/usr/bin/x64&quot;,
+    &quot;template&quot;: &quot;abcdesktopio/oc.template.ubuntu.gtk.18.04&quot;,
+    &quot;fileextensions&quot;: &quot;crt;bin&quot;,
+    &quot;desktopfile&quot;: &quot;/usr/share/applications/x64.desktop&quot;,
+    &quot;usedefaultapplication&quot;: false
+}
+</code></pre>
+<h2 id="dockerfile-generated">Dockerfile generated</h2>
+<pre><code class="language-dockerfile"># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+# DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
+ARG TAG=dev
+FROM abcdesktopio/oc.template.ubuntu.gtk.18.04:$TAG
+USER root
+RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes vice libmp3lame0 git wget &amp;&amp; apt-get clean
+RUN git clone https://github.com/stuartcarnie/vice-emu/ &amp;&amp; mv vice-emu/vice/data/DRIVES/* /usr/lib/vice/C64 &amp;&amp; cd /vice-emu/vice/data/C64 &amp;&amp; mv chargen kernal basic /usr/lib/vice/C64
+RUN mkdir /usr/lib/vice/C64/cartridge
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_1-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_1-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_2-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_2-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_3-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_3-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_4-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_4-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/C64638_Jack_Attack-8000.bin -O /usr/lib/vice/C64/cartridge/C64638_Jack_Attack-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315102-01.bin -O /usr/lib/vice/C64/cartridge/315102-01.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315103-01.bin -O /usr/lib/vice/C64/cartridge/315103-01.bin
+LABEL oc.icon=&quot;c64.svg&quot;
+LABEL oc.icondata=&quot;PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjE0MCIgaGVpZ2h0PSIxNDAiPg0KICA8cGF0aCBkPSJNODMsOTcuMTEwOSBMODMsMTI4LjU4MzMgQTYxLDYxIDAgMSwxIDgzLDExLjQxNjcgTDgzLDQyLjg4OTEgQTMyLDMyIDAgMSwwIDgzLDk3LjExMDkiIHN0cm9rZT0ibm9uZSIgZmlsbD0iIzAwMjI1NSIgLz4NCiAgPHBvbHlnb24gcG9pbnRzPSI4Myw0MyA4Myw2NyAxMTEsNjcgMTM1LDQzIiBzdHJva2U9Im5vbmUiIGZpbGw9IiMwMDIyNTUiIC8+DQogIDxwb2x5Z29uIHBvaW50cz0iODMsOTcgODMsNzMgMTExLDczIDEzNSw5NyIgc3Ryb2tlPSJub25lIiBmaWxsPSIjZmYwMDAwIiAvPg0KPC9zdmc+&quot;
+LABEL oc.keyword=&quot;vice,x64,vice,commodore,c64&quot;
+LABEL oc.cat=&quot;games&quot;
+LABEL oc.desktopfile=&quot;x64.desktop&quot;
+LABEL oc.launch=&quot;x64.X64&quot;
+LABEL oc.template=&quot;abcdesktopio/oc.template.ubuntu.gtk.18.04&quot;
+LABEL oc.name=&quot;vice&quot;
+LABEL oc.displayname=&quot;Commodore64&quot;
+LABEL oc.path=&quot;/usr/bin/x64&quot;
+LABEL oc.type=app
+LABEL oc.fileextensions=&quot;crt;bin&quot;
+LABEL oc.acl=&quot;{\&quot;permit\&quot;:[\&quot;all\&quot;]}&quot;
+RUN  if [ -d /usr/share/icons ]   &amp;&amp; [ -x /composer/safelinks.sh ] &amp;&amp; [ -d /usr/share/icons   ];  then cd /usr/share/icons;    /composer/safelinks.sh; fi 
+RUN  if [ -d /usr/share/pixmaps ] &amp;&amp; [ -x /composer/safelinks.sh ] &amp;&amp; [ -d /usr/share/pixmaps ];  then cd /usr/share/pixmaps;  /composer/safelinks.sh; fi 
+ENV APPNAME &quot;vice&quot;
+ENV APPBIN &quot;/usr/bin/x64&quot;
+ENV APP &quot;/usr/bin/x64&quot;
+USER root
+RUN mkdir -p /var/secrets/abcdesktop/localaccount &amp;&amp; cp /etc/passwd /etc/group /etc/shadow /var/secrets/abcdesktop/localaccount
+RUN rm -f /etc/passwd &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/passwd /etc/passwd
+RUN rm -f /etc/group &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/group  /etc/group
+RUN rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shadow /etc/shadow
+RUN rm -f /etc/gshadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
+USER balloon
+CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
+
 </code></pre>
 
 

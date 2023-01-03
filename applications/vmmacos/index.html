@@ -3565,15 +3565,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#display-name" class="md-nav__link">
-    Display name
+  <a href="#displayname" class="md-nav__link">
+    Displayname
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#path" class="md-nav__link">
-    path
+    Path
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acl" class="md-nav__link">
+    ACL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wm_class" class="md-nav__link">
+    WM_CLASS
   </a>
   
 </li>
@@ -3581,6 +3595,20 @@
         <li class="md-nav__item">
   <a href="#pre-run-command" class="md-nav__link">
     PRE run command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-dump" class="md-nav__link">
+    JSON dump
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile-generated" class="md-nav__link">
+    Dockerfile generated
   </a>
   
 </li>
@@ -3605,16 +3633,89 @@
 
 
 <h1 id="vmmacos">vmmacos</h1>
-<p><img alt="MacOS_logo.svg" src="/applications/icons/MacOS_logo.svg" style="height:64px;width:64px" /></p>
+<p><img alt="MacOS_logo.svg" src="../icons/MacOS_logo.svg" style="height:64px;width:64px" /></p>
 <h2 id="inherite-from">inherite from</h2>
-<p><a href="abcdesktop/docker-osx.md">abcdesktop/docker-osx</a></p>
-<h2 id="display-name">Display name</h2>
+<p><a href="../abcdesktop/docker-osx.md">abcdesktop/docker-osx</a></p>
+<h2 id="displayname">Displayname</h2>
 <p>"vmmacos"</p>
-<h2 id="path">path</h2>
+<h2 id="path">Path</h2>
 <p>undefined</p>
+<h2 id="acl">ACL</h2>
+<p>{"permit":["all"]}</p>
+<h2 id="wm_class">WM_CLASS</h2>
+<p>qemu.Qemu-system-x86_64</p>
 <h2 id="pre-run-command">PRE run command</h2>
-<pre><code>
+<pre><code>RUN yes | sudo pacman -S xorg-xauth
+</code></pre>
+<h2 id="json-dump">JSON dump</h2>
+<pre><code class="language-json">{
+    &quot;acl&quot;: {
+        &quot;permit&quot;: [
+            &quot;all&quot;
+        ]
+    },
+    &quot;cat&quot;: &quot;utilities&quot;,
+    &quot;preruncommands&quot;: [
+        &quot;RUN yes | sudo pacman -S xorg-xauth&quot;
+    ],
+    &quot;icon&quot;: &quot;MacOS_logo.svg&quot;,
+    &quot;keyword&quot;: &quot;macos,apple&quot;,
+    &quot;launch&quot;: &quot;qemu.Qemu-system-x86_64&quot;,
+    &quot;name&quot;: &quot;vmmacos&quot;,
+    &quot;rules&quot;: {
+        &quot;homedir&quot;: {
+            &quot;default&quot;: true
+        }
+    },
+    &quot;host_config&quot;: {
+        &quot;devices&quot;: [
+            &quot;/dev/kvm&quot;
+        ],
+        &quot;mem_limit&quot;: &quot;16G&quot;
+    },
+    &quot;template&quot;: &quot;abcdesktop/docker-osx&quot;,
+    &quot;workdir&quot;: &quot;/home/arch/OSX-KVM&quot;,
+    &quot;user&quot;: &quot;arch&quot;,
+    &quot;home&quot;: &quot;/home/arch&quot;,
+    &quot;cmd&quot;: [
+        &quot;/bin/bash&quot;,
+        &quot;-c&quot;,
+        &quot;sudo touch /dev/kvm /dev/snd \&quot;${IMAGE_PATH}\&quot; \&quot;${BOOTDISK}\&quot; \&quot;${ENV}\&quot; 2&gt;/dev/null || true; sudo chown -R $(id -u):$(id -g) /dev/kvm /dev/snd \&quot;${IMAGE_PATH}\&quot; \&quot;${BOOTDISK}\&quot; \&quot;${ENV}\&quot; 2&gt;/dev/null || true     ; [[ \&quot;${NOPICKER}\&quot; == true ]] &amp;&amp; {         sed -i '/^.*InstallMedia.*/d' Launch.sh         &amp;&amp; export BOOTDISK=\&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore-nopicker.qcow2}\&quot;     ; }     || export BOOTDISK=\&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}\&quot;     ; [[ \&quot;${GENERATE_UNIQUE}\&quot; == true ]] &amp;&amp; {         ./Docker-OSX/osx-serial-generator/generate-unique-machine-values.sh             --master-plist-url=\&quot;${MASTER_PLIST_URL}\&quot;             --count 1             --tsv ./serial.tsv             --bootdisks             --width \&quot;${WIDTH:-1920}\&quot; -height \&quot;${HEIGHT:-1080}\&quot;   --output-bootdisk \&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}\&quot;             --output-env \&quot;${ENV:=/env}\&quot; || exit 1 ; }     ; [[ \&quot;${GENERATE_SPECIFIC}\&quot; == true ]] &amp;&amp; {             source \&quot;${ENV:=/env}\&quot; 2&gt;/dev/null             ; ./Docker-OSX/osx-serial-generator/generate-specific-bootdisk.sh --master-plist-url=\&quot;${MASTER_PLIST_URL}\&quot; --model \&quot;${DEVICE_MODEL}\&quot;             --serial \&quot;${SERIAL}\&quot;             --board-serial \&quot;${BOARD_SERIAL}\&quot;             --uuid \&quot;${UUID}\&quot;             --mac-address \&quot;${MAC_ADDRESS}\&quot; --width \&quot;${WIDTH:-1920}\&quot;             --height \&quot;${HEIGHT:-1080}\&quot;             --output-bootdisk \&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}\&quot; || exit 1 ; } ; ./abcdesktop_config.sh ;  ./Launch.sh&quot;
+    ]
+}
+</code></pre>
+<h2 id="dockerfile-generated">Dockerfile generated</h2>
+<pre><code class="language-dockerfile"># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+# DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
+ARG TAG=dev
+FROM abcdesktop/docker-osx:$TAG
+USER root
 RUN yes | sudo pacman -S xorg-xauth
+LABEL oc.icon=&quot;MacOS_logo.svg&quot;
+LABEL oc.icondata=&quot;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDQyIDQyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im0yMy4wOTEgMTQuMDE4di0wLjM0MmwtMS4wNjMgMC4wNzNjLTAuMzAxIDAuMDE5LTAuNTI3IDAuMDgzLTAuNjc5IDAuMTkxLTAuMTUyIDAuMTA5LTAuMjI4IDAuMjYtMC4yMjggMC40NTMgMCAwLjE4OCAwLjA3NSAwLjMzOCAwLjIyNiAwLjQ0OSAwLjE1IDAuMTEyIDAuMzUyIDAuMTY3IDAuNjA0IDAuMTY3IDAuMTYxIDAgMC4zMTItMC4wMjUgMC40NTEtMC4wNzRzMC4yNjEtMC4xMTggMC4zNjMtMC4yMDZjMC4xMDItMC4wODcgMC4xODItMC4xOTEgMC4yMzktMC4zMTIgMC4wNTgtMC4xMjEgMC4wODctMC4yNTQgMC4wODctMC4zOTl6bS0yLjA5MS0xMy43NjhjLTExLjU3OSAwLTIwLjc1IDkuMTcxLTIwLjc1IDIwLjc1IDAgMTEuNTggOS4xNzEgMjAuNzUgMjAuNzUgMjAuNzVzMjAuNzUtOS4xNyAyMC43NS0yMC43NWMwLTExLjU3OS05LjE3LTIwLjc1LTIwLjc1LTIwLjc1em00LjAyOCAxMi4yOTljMC4wOTgtMC4yNzUgMC4yMzYtMC41MTEgMC40MTUtMC43MDdzMC4zOTQtMC4zNDcgMC42NDYtMC40NTMgMC41MzMtMC4xNTkgMC44NDItMC4xNTljMC4yNzkgMCAwLjUzMSAwLjA0MiAwLjc1NSAwLjEyNSAwLjIyNSAwLjA4MyAwLjQxNyAwLjE5NSAwLjU3OCAwLjMzNnMwLjI4OSAwLjMwNSAwLjM4MyAwLjQ5MyAwLjE1IDAuMzg3IDAuMTY5IDAuNTk2aC0wLjgzM2MtMC4wMjEtMC4xMTUtMC4wNTktMC4yMjMtMC4xMTMtMC4zMjJzLTAuMTI1LTAuMTg1LTAuMjEzLTAuMjU4Yy0wLjA4OS0wLjA3My0wLjE5My0wLjEzLTAuMzEyLTAuMTcxLTAuMTItMC4wNDItMC4yNTQtMC4wNjItMC40MDUtMC4wNjItMC4xNzcgMC0wLjMzOCAwLjAzNi0wLjQ4MSAwLjEwNy0wLjE0NCAwLjA3MS0wLjI2NyAwLjE3Mi0wLjM2OSAwLjMwMnMtMC4xODEgMC4yODktMC4yMzcgMC40NzVjLTAuMDU3IDAuMTg3LTAuMDg1IDAuMzk0LTAuMDg1IDAuNjIyIDAgMC4yMzYgMC4wMjggMC40NDggMC4wODUgMC42MzQgMC4wNTYgMC4xODcgMC4xMzYgMC4zNDQgMC4yNCAwLjQ3MyAwLjEwMyAwLjEyOSAwLjIyOCAwLjIyOCAwLjM3MyAwLjI5NnMwLjMwNSAwLjEwMyAwLjQ3OSAwLjEwM2MwLjI4NSAwIDAuNTE3LTAuMDY3IDAuNjk3LTAuMjAxczAuMjk2LTAuMzMgMC4zNS0wLjU4OGgwLjgzNGMtMC4wMjQgMC4yMjgtMC4wODcgMC40MzYtMC4xODkgMC42MjRzLTAuMjM0IDAuMzQ4LTAuMzk2IDAuNDgxYy0wLjE2MyAwLjEzMy0wLjM1NCAwLjIzNi0wLjU3NCAwLjMwOHMtMC40NjIgMC4xMDktMC43MjUgMC4xMDljLTAuMzEyIDAtMC41OTMtMC4wNTItMC44NDYtMC4xNTUtMC4yNTItMC4xMDMtMC40NjktMC4yNTItMC42NDktMC40NDVzLTAuMzE5LTAuNDI4LTAuNDE3LTAuNzA1LTAuMTQ3LTAuNTg4LTAuMTQ3LTAuOTM1Yy0yZS0zIC0wLjMzOSAwLjA0Ny0wLjY0NyAwLjE0NS0wLjkyM3ptLTExLjg1My0xLjI2MmgwLjgzNHYwLjc0MWgwLjAxNmMwLjA1MS0wLjEyMyAwLjExOC0wLjIzNCAwLjItMC4zMyAwLjA4Mi0wLjA5NyAwLjE3Ni0wLjE3OSAwLjI4NC0wLjI0OCAwLjEwNy0wLjA2OSAwLjIyNi0wLjEyMSAwLjM1NC0wLjE1NyAwLjEyOS0wLjAzNiAwLjI2NS0wLjA1NCAwLjQwNy0wLjA1NCAwLjMwNiAwIDAuNTY1IDAuMDczIDAuNzc1IDAuMjE5IDAuMjExIDAuMTQ2IDAuMzYxIDAuMzU2IDAuNDQ5IDAuNjNoMC4wMjFjMC4wNTYtMC4xMzIgMC4xMy0wLjI1IDAuMjIxLTAuMzU0czAuMTk2LTAuMTk0IDAuMzE0LTAuMjY4IDAuMjQ4LTAuMTMgMC4zODktMC4xNjkgMC4yODktMC4wNTggMC40NDUtMC4wNThjMC4yMTUgMCAwLjQxIDAuMDM0IDAuNTg2IDAuMTAzczAuMzI2IDAuMTY1IDAuNDUxIDAuMjkgMC4yMjEgMC4yNzcgMC4yODggMC40NTUgMC4xMDEgMC4zNzYgMC4xMDEgMC41OTR2Mi45ODFoLTAuODd2LTIuNzcyYzAtMC4yODctMC4wNzQtMC41MS0wLjIyMi0wLjY2Ny0wLjE0Ny0wLjE1Ny0wLjM1OC0wLjIzNi0wLjYzMi0wLjIzNi0wLjEzNCAwLTAuMjU3IDAuMDI0LTAuMzY5IDAuMDcxLTAuMTExIDAuMDQ3LTAuMjA4IDAuMTEzLTAuMjg4IDAuMTk4LTAuMDgxIDAuMDg0LTAuMTQ0IDAuMTg2LTAuMTg5IDAuMzA0LTAuMDQ2IDAuMTE4LTAuMDY5IDAuMjQ3LTAuMDY5IDAuMzg3djIuNzE1aC0wLjg1OHYtMi44NDRjMC0wLjEyNi0wLjAyLTAuMjQtMC4wNTktMC4zNDJzLTAuMDk0LTAuMTg5LTAuMTY3LTAuMjYyYy0wLjA3Mi0wLjA3My0wLjE2MS0wLjEyOC0wLjI2NC0wLjE2Ny0wLjEwNC0wLjAzOS0wLjIyLTAuMDU5LTAuMzQ5LTAuMDU5LTAuMTM0IDAtMC4yNTggMC4wMjUtMC4zNzMgMC4wNzUtMC4xMTQgMC4wNS0wLjIxMiAwLjExOS0wLjI5NCAwLjIwNy0wLjA4MiAwLjA4OS0wLjE0NiAwLjE5My0wLjE5MSAwLjMxNC0wLjA0NCAwLjEyLTAuMTE2IDAuMjUyLTAuMTE2IDAuMzk0djIuNjgzaC0wLjgyNXYtNC4zNzR6bTEuODkzIDIwLjkzOWMtMy44MjUgMC02LjIyNC0yLjY1OC02LjIyNC02LjlzMi4zOTktNi45MDkgNi4yMjQtNi45MDkgNi4yMTUgMi42NjcgNi4yMTUgNi45MDljMCA0LjI0MS0yLjM5IDYuOS02LjIxNSA2Ljl6bTcuMDgyLTE2LjU3NWMtMC4xNDEgMC4wMzYtMC4yODUgMC4wNTQtMC40MzMgMC4wNTQtMC4yMTggMC0wLjQxNy0wLjAzMS0wLjU5OC0wLjA5My0wLjE4Mi0wLjA2Mi0wLjMzNy0wLjE0OS0wLjQ2Ny0wLjI2MnMtMC4yMzItMC4yNDktMC4zMDQtMC40MDljLTAuMDczLTAuMTYtMC4xMDktMC4zMzgtMC4xMDktMC41MzQgMC0wLjM4NCAwLjE0My0wLjY4NCAwLjQyOS0wLjlzMC43LTAuMzQyIDEuMjQzLTAuMzc3bDEuMTgtMC4wNjh2LTAuMzM4YzAtMC4yNTItMC4wOC0wLjQ0NS0wLjI0LTAuNTc2cy0wLjM4Ni0wLjE5Ny0wLjY3OS0wLjE5N2MtMC4xMTggMC0wLjIyOSAwLjAxNS0wLjMzMSAwLjA0NC0wLjEwMiAwLjAzLTAuMTkyIDAuMDcyLTAuMjcgMC4xMjdzLTAuMTQzIDAuMTIxLTAuMTkzIDAuMTk4Yy0wLjA1MSAwLjA3Ni0wLjA4NiAwLjE2Mi0wLjEwNSAwLjI1NmgtMC44MThjNWUtMyAtMC4xOTMgMC4wNTMtMC4zNzIgMC4xNDMtMC41MzZzMC4yMTItMC4zMDYgMC4zNjctMC40MjcgMC4zMzYtMC4yMTUgMC41NDYtMC4yODIgMC40MzgtMC4xMDEgMC42ODUtMC4xMDFjMC4yNjYgMCAwLjUwNyAwLjAzMyAwLjcyMyAwLjEwMXMwLjQwMSAwLjE2MyAwLjU1NCAwLjI4OCAwLjI3MSAwLjI3NSAwLjM1NCAwLjQ1MSAwLjEyNSAwLjM3MyAwLjEyNSAwLjU5djMuMDAxaC0wLjgzM3YtMC43MjloLTAuMDIxYy0wLjA2MiAwLjExOC0wLjE0IDAuMjI1LTAuMjM1IDAuMzItMC4wOTYgMC4wOTUtMC4yMDMgMC4xNzctMC4zMjIgMC4yNDQtMC4xMiAwLjA2Ny0wLjI1IDAuMTE5LTAuMzkxIDAuMTU1em01LjUwMyAxNi41NzVjLTIuOTE3IDAtNC45LTEuNTI4LTUuMDM4LTMuOTI3aDEuODk5YzAuMTQ4IDEuMzcxIDEuNDczIDIuMjc5IDMuMjg4IDIuMjc5IDEuNzQxIDAgMi45OTItMC45MDggMi45OTItMi4xNDkgMC0xLjA3NC0wLjc2LTEuNzIzLTIuNTE5LTIuMTY3bC0xLjcxNC0wLjQyNmMtMi40NjQtMC42MTEtMy41ODQtMS43MzItMy41ODQtMy41NzUgMC0yLjI2OSAxLjk4Mi0zLjg0NCA0LjgwNy0zLjg0NCAyLjc2IDAgNC42ODYgMS41ODQgNC43NiAzLjg2MmgtMS44OGMtMC4xMy0xLjM3MS0xLjI1LTIuMjE0LTIuOTE4LTIuMjE0LTEuNjU4IDAtMi44MDYgMC44NTItMi44MDYgMi4wODQgMCAwLjk3MiAwLjcyMiAxLjU0NyAyLjQ4MiAxLjk5MWwxLjQ0NSAwLjM2MWMyLjc1MSAwLjY2NyAzLjg4MSAxLjc1MSAzLjg4MSAzLjY5Ni0xZS0zIDIuNDgyLTEuOTY0IDQuMDI5LTUuMDk1IDQuMDI5em0tMTIuNTg1LTEyLjEwNmMtMi42MjEgMC00LjI2IDIuMDEtNC4yNiA1LjIwNSAwIDMuMTg2IDEuNjM5IDUuMTk2IDQuMjYgNS4xOTYgMi42MTIgMCA0LjI2LTIuMDEgNC4yNi01LjE5NiAxZS0zIC0zLjE5NS0xLjY0OC01LjIwNS00LjI2LTUuMjA1eiIvPjwvc3ZnPg==&quot;
+LABEL oc.keyword=&quot;vmmacos,macos,apple&quot;
+LABEL oc.cat=&quot;utilities&quot;
+LABEL oc.launch=&quot;qemu.Qemu-system-x86_64&quot;
+LABEL oc.template=&quot;abcdesktop/docker-osx&quot;
+LABEL oc.name=&quot;vmmacos&quot;
+LABEL oc.displayname=&quot;vmmacos&quot;
+LABEL oc.type=app
+LABEL oc.rules=&quot;{\&quot;homedir\&quot;:{\&quot;default\&quot;:true}}&quot;
+LABEL oc.acl=&quot;{\&quot;permit\&quot;:[\&quot;all\&quot;]}&quot;
+LABEL oc.host_config=&quot;{\&quot;devices\&quot;:[\&quot;/dev/kvm\&quot;],\&quot;mem_limit\&quot;:\&quot;16G\&quot;}&quot;
+RUN  if [ -d /usr/share/icons ]   &amp;&amp; [ -x /composer/safelinks.sh ] &amp;&amp; [ -d /usr/share/icons   ];  then cd /usr/share/icons;    /composer/safelinks.sh; fi 
+RUN  if [ -d /usr/share/pixmaps ] &amp;&amp; [ -x /composer/safelinks.sh ] &amp;&amp; [ -d /usr/share/pixmaps ];  then cd /usr/share/pixmaps;  /composer/safelinks.sh; fi 
+ENV APPNAME &quot;vmmacos&quot;
+LABEL oc.home=&quot;/home/arch&quot;
+USER root
+RUN mkdir -p /var/secrets/abcdesktop/localaccount &amp;&amp; cp /etc/passwd /etc/group /etc/shadow /var/secrets/abcdesktop/localaccount
+RUN rm -f /etc/passwd &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/passwd /etc/passwd
+RUN rm -f /etc/group &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/group  /etc/group
+RUN rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shadow /etc/shadow
+RUN rm -f /etc/gshadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
+USER arch
+CMD [ &quot;/bin/bash,-c,sudo touch /dev/kvm /dev/snd &quot;${IMAGE_PATH}&quot; &quot;${BOOTDISK}&quot; &quot;${ENV}&quot; 2&gt;/dev/null || true; sudo chown -R $(id -u):$(id -g) /dev/kvm /dev/snd &quot;${IMAGE_PATH}&quot; &quot;${BOOTDISK}&quot; &quot;${ENV}&quot; 2&gt;/dev/null || true     ; [[ &quot;${NOPICKER}&quot; == true ]] &amp;&amp; {         sed -i '/^.*InstallMedia.*/d' Launch.sh         &amp;&amp; export BOOTDISK=&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore-nopicker.qcow2}&quot;     ; }     || export BOOTDISK=&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}&quot;     ; [[ &quot;${GENERATE_UNIQUE}&quot; == true ]] &amp;&amp; {         ./Docker-OSX/osx-serial-generator/generate-unique-machine-values.sh             --master-plist-url=&quot;${MASTER_PLIST_URL}&quot;             --count 1             --tsv ./serial.tsv             --bootdisks             --width &quot;${WIDTH:-1920}&quot; -height &quot;${HEIGHT:-1080}&quot;   --output-bootdisk &quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}&quot;             --output-env &quot;${ENV:=/env}&quot; || exit 1 ; }     ; [[ &quot;${GENERATE_SPECIFIC}&quot; == true ]] &amp;&amp; {             source &quot;${ENV:=/env}&quot; 2&gt;/dev/null             ; ./Docker-OSX/osx-serial-generator/generate-specific-bootdisk.sh --master-plist-url=&quot;${MASTER_PLIST_URL}&quot; --model &quot;${DEVICE_MODEL}&quot;             --serial &quot;${SERIAL}&quot;             --board-serial &quot;${BOARD_SERIAL}&quot;             --uuid &quot;${UUID}&quot;             --mac-address &quot;${MAC_ADDRESS}&quot; --width &quot;${WIDTH:-1920}&quot;             --height &quot;${HEIGHT:-1080}&quot;             --output-bootdisk &quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}&quot; || exit 1 ; } ; ./abcdesktop_config.sh ;  ./Launch.sh&quot; ]
+
 </code></pre>
 
 
