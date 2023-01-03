@@ -3,7 +3,6 @@ This array describe the application list ready to use with abcdesktop.
 
 |icon|displayname|description|markdown|json|
 |----|-----------|-----------|--------|----|
-|![circle_2048.svg](icons/circle_2048.svg){: style="height:32px;width:32px"}|2048 (alpine gtk) with error|Obtain the 2048 tile|[2048-alpine-error.md](../2048-alpine-error)|[2048-alpine-error.d.3.0.json](../2048-alpine-error.d.3.0.json)|
 |![circle_2048.svg](icons/circle_2048.svg){: style="height:32px;width:32px"}|2048 (alpine gtk)|Obtain the 2048 tile|[2048-alpine.md](../2048-alpine)|[2048-alpine.d.3.0.json](../2048-alpine.d.3.0.json)|
 |![circle_2048.svg](icons/circle_2048.svg){: style="height:32px;width:32px"}|2048 (ubuntu qt)|The 2048 number game implemented in Qt|[2048-ubuntu.md](../2048-ubuntu)|[2048-ubuntu.d.3.0.json](../2048-ubuntu.d.3.0.json)|
 |![account.svg](icons/account.svg){: style="height:32px;width:32px"}|Apache Directory Studio|no description found|[apachedirectorystudio.md](../apachedirectorystudio)|[apachedirectorystudio.d.3.0.json](../apachedirectorystudio.d.3.0.json)|
