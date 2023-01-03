@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 planner
@@ -69,10 +69,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Planner](Planner.d)
+[Dockerfile for application Planner](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Planner.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Planner.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Planner -t Planner .
+docker build --build-arg TAG=3.0 -f Planner.d -t Planner .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

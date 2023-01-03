@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk](../abcdesktopio/oc.template.ubuntu.gtk.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 dbus gnome-icon-theme gnome-icon-theme-symbolic numix-gtk-theme numix-icon-theme gnome-font-viewer dbus-x11 python3-nautilus python3-shellescape nautilus desktop-file-utils shared-mime-info xdg-user-dirs
@@ -97,10 +97,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application nautilus](nautilus.d)
+[Dockerfile for application nautilus](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/nautilus.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/nautilus.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f nautilus -t nautilus .
+docker build --build-arg TAG=3.0 -f nautilus.d -t nautilus .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

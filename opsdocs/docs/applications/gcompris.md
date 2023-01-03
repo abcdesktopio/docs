@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 qt5-default qml-module-qtquick-controls libqt5svg5 libqt5xmlpatterns5 libqt5sensors5 qml-module-qtquick-particles2 qml-module-qtmultimedia libqt5multimedia5-plugins gcompris-qt
@@ -55,10 +55,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application GCompris](GCompris.d)
+[Dockerfile for application GCompris](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/GCompris.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/GCompris.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f GCompris -t GCompris .
+docker build --build-arg TAG=3.0 -f GCompris.d -t GCompris .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

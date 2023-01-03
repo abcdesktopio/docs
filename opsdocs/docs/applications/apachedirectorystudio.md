@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.22.04](../abcdesktopio/oc.template.ubuntu.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 openjdk-11-jre libswt-gtk-4-jni libswt-webkit-gtk-4-jni libswt-cairo-gtk-4-jni libswt-gtk-4-java
@@ -84,10 +84,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application apachedirectorystudio](apachedirectorystudio.d)
+[Dockerfile for application apachedirectorystudio](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/apachedirectorystudio.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/apachedirectorystudio.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f apachedirectorystudio -t apachedirectorystudio .
+docker build --build-arg TAG=3.0 -f apachedirectorystudio.d -t apachedirectorystudio .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

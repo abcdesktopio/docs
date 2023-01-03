@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 gelemental
@@ -55,10 +55,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application gElemental](gElemental.d)
+[Dockerfile for application gElemental](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/gElemental.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/gElemental.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f gElemental -t gElemental .
+docker build --build-arg TAG=3.0 -f gElemental.d -t gElemental .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

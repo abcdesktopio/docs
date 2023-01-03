@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 gretl
@@ -54,10 +54,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Gretl](Gretl.d)
+[Dockerfile for application Gretl](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Gretl.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Gretl.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Gretl -t Gretl .
+docker build --build-arg TAG=3.0 -f Gretl.d -t Gretl .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

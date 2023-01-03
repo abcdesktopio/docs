@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine.wine](../abcdesktopio/oc.template.alpine.wine.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ## Alpine packages
 ```
 wine
@@ -65,10 +65,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application winefile-wine](winefile-wine.d)
+[Dockerfile for application winefile-wine](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/winefile-wine.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/winefile-wine.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f winefile-wine -t winefile-wine .
+docker build --build-arg TAG=3.0 -f winefile-wine.d -t winefile-wine .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

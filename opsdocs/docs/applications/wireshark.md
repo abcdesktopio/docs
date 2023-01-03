@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine.gtk](../abcdesktopio/oc.template.alpine.gtk.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ## Alpine packages
 ```
 wireshark
@@ -93,10 +93,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application wireshark](wireshark.d)
+[Dockerfile for application wireshark](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/wireshark.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/wireshark.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f wireshark -t wireshark .
+docker build --build-arg TAG=3.0 -f wireshark.d -t wireshark .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

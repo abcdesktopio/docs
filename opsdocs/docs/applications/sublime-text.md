@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk](../abcdesktopio/oc.template.ubuntu.gtk.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 sublime-text
@@ -81,10 +81,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application sublime-Text](sublime-Text.d)
+[Dockerfile for application sublime-Text](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/sublime-Text.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/sublime-Text.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f sublime-Text -t sublime-Text .
+docker build --build-arg TAG=3.0 -f sublime-Text.d -t sublime-Text .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

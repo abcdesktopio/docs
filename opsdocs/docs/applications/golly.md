@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk.language-pack-all](../abcdesktopio/oc.template.ubuntu.gtk.language-pack-all.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 golly
@@ -54,10 +54,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Golly](Golly.d)
+[Dockerfile for application Golly](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Golly.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Golly.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Golly -t Golly .
+docker build --build-arg TAG=3.0 -f Golly.d -t Golly .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

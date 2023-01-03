@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 kturtle
@@ -54,10 +54,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application kTurtle](kTurtle.d)
+[Dockerfile for application kTurtle](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/kTurtle.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/kTurtle.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f kTurtle -t kTurtle .
+docker build --build-arg TAG=3.0 -f kTurtle.d -t kTurtle .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

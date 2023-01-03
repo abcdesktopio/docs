@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk](../abcdesktopio/oc.template.ubuntu.gtk.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 rhc gnome-terminal
@@ -80,10 +80,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application openshift](openshift.d)
+[Dockerfile for application openshift](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/openshift.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/openshift.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f openshift -t openshift .
+docker build --build-arg TAG=3.0 -f openshift.d -t openshift .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

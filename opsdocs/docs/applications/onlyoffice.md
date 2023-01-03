@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk](../abcdesktopio/oc.template.ubuntu.gtk.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 onlyoffice-desktopeditors
@@ -99,10 +99,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application onlyoffice](onlyoffice.d)
+[Dockerfile for application onlyoffice](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/onlyoffice.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/onlyoffice.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f onlyoffice -t onlyoffice .
+docker build --build-arg TAG=3.0 -f onlyoffice.d -t onlyoffice .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine.wine](../abcdesktopio/oc.template.alpine.wine.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ## Alpine packages
 ```
 wine
@@ -73,10 +73,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application notepad-wine](notepad-wine.d)
+[Dockerfile for application notepad-wine](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/notepad-wine.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/notepad-wine.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f notepad-wine -t notepad-wine .
+docker build --build-arg TAG=3.0 -f notepad-wine.d -t notepad-wine .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

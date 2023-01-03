@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk.18.04](../abcdesktopio/oc.template.ubuntu.gtk.18.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 pantheon-calculator dbus-x11
@@ -78,10 +78,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Calculator](Calculator.d)
+[Dockerfile for application Calculator](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Calculator.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Calculator.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Calculator -t Calculator .
+docker build --build-arg TAG=3.0 -f Calculator.d -t Calculator .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

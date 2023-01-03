@@ -73,10 +73,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application postman](postman.d)
+[Dockerfile for application postman](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/postman.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/postman.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f postman -t postman .
+docker build --build-arg TAG=3.0 -f postman.d -t postman .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

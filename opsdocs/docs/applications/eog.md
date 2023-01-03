@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine.gtk](../abcdesktopio/oc.template.alpine.gtk.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ## Alpine packages
 ```
 eog
@@ -83,10 +83,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application eog](eog.d)
+[Dockerfile for application eog](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/eog.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/eog.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f eog -t eog .
+docker build --build-arg TAG=3.0 -f eog.d -t eog .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

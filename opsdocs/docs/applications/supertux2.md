@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 supertux
@@ -66,10 +66,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application supertux2](supertux2.d)
+[Dockerfile for application supertux2](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/supertux2.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/supertux2.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f supertux2 -t supertux2 .
+docker build --build-arg TAG=3.0 -f supertux2.d -t supertux2 .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

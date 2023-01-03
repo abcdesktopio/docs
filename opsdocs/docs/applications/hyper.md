@@ -78,10 +78,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application hyper](hyper.d)
+[Dockerfile for application hyper](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/hyper.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/hyper.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f hyper -t hyper .
+docker build --build-arg TAG=3.0 -f hyper.d -t hyper .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

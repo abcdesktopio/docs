@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine.gtk](../abcdesktopio/oc.template.alpine.gtk.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 shotcut
@@ -77,10 +77,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Shotcut](Shotcut.d)
+[Dockerfile for application Shotcut](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Shotcut.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Shotcut.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Shotcut -t Shotcut .
+docker build --build-arg TAG=3.0 -f Shotcut.d -t Shotcut .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

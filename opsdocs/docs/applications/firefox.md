@@ -103,10 +103,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Firefox](Firefox.d)
+[Dockerfile for application Firefox](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Firefox.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Firefox.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Firefox -t Firefox .
+docker build --build-arg TAG=3.0 -f Firefox.d -t Firefox .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

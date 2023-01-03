@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk.18.04](../abcdesktopio/oc.template.ubuntu.gtk.18.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 libsecret-1-0 libpcsclite1 x11-utils libjpeg-turbo8
@@ -102,10 +102,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application citrix](citrix.d)
+[Dockerfile for application citrix](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f citrix -t citrix .
+docker build --build-arg TAG=3.0 -f citrix.d -t citrix .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

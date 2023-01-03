@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 frozen-bubble
@@ -60,10 +60,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application frozen-bubble](frozen-bubble.d)
+[Dockerfile for application frozen-bubble](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/frozen-bubble.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/frozen-bubble.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f frozen-bubble -t frozen-bubble .
+docker build --build-arg TAG=3.0 -f frozen-bubble.d -t frozen-bubble .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

@@ -99,10 +99,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application VSCode](VSCode.d)
+[Dockerfile for application VSCode](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/VSCode.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/VSCode.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f VSCode -t VSCode .
+docker build --build-arg TAG=3.0 -f VSCode.d -t VSCode .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

@@ -91,10 +91,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application winhelp-wine](winhelp-wine.d)
+[Dockerfile for application winhelp-wine](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/winhelp-wine.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/winhelp-wine.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f winhelp-wine -t winhelp-wine .
+docker build --build-arg TAG=3.0 -f winhelp-wine.d -t winhelp-wine .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

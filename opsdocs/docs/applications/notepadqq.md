@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk.language-pack-all](../abcdesktopio/oc.template.ubuntu.gtk.language-pack-all.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 notepadqq
@@ -75,10 +75,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application notepadqq](notepadqq.d)
+[Dockerfile for application notepadqq](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/notepadqq.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/notepadqq.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f notepadqq -t notepadqq .
+docker build --build-arg TAG=3.0 -f notepadqq.d -t notepadqq .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

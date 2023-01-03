@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk](../abcdesktopio/oc.template.ubuntu.gtk.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 bless
@@ -65,10 +65,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Bless](Bless.d)
+[Dockerfile for application Bless](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Bless.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Bless.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Bless -t Bless .
+docker build --build-arg TAG=3.0 -f Bless.d -t Bless .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

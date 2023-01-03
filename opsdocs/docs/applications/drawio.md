@@ -81,10 +81,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application drawio](drawio.d)
+[Dockerfile for application drawio](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/drawio.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/drawio.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f drawio -t drawio .
+docker build --build-arg TAG=3.0 -f drawio.d -t drawio .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

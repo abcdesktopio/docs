@@ -86,10 +86,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application impress](impress.d)
+[Dockerfile for application impress](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/impress.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/impress.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f impress -t impress .
+docker build --build-arg TAG=3.0 -f impress.d -t impress .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

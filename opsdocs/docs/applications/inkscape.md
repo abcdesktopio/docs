@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk](../abcdesktopio/oc.template.ubuntu.gtk.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 numix-gtk-theme gtk2-engines gtk2-engines-pixbuf libgtk2.0-0 inkscape
@@ -77,10 +77,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application inkscape](inkscape.d)
+[Dockerfile for application inkscape](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/inkscape.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/inkscape.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f inkscape -t inkscape .
+docker build --build-arg TAG=3.0 -f inkscape.d -t inkscape .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

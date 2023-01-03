@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 tk thunderbird gnome-keyring
@@ -76,10 +76,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application thunderbird](thunderbird.d)
+[Dockerfile for application thunderbird](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/thunderbird.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/thunderbird.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f thunderbird -t thunderbird .
+docker build --build-arg TAG=3.0 -f thunderbird.d -t thunderbird .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

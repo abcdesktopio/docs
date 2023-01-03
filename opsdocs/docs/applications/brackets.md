@@ -80,10 +80,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Brackets](Brackets.d)
+[Dockerfile for application Brackets](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Brackets.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Brackets.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Brackets -t Brackets .
+docker build --build-arg TAG=3.0 -f Brackets.d -t Brackets .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

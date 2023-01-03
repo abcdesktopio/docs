@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.nvidia.22.04](../abcdesktopio/oc.template.ubuntu.nvidia.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 gnome-terminal dbus-x11 git
@@ -90,10 +90,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application cuda](cuda.d)
+[Dockerfile for application cuda](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cuda.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cuda.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f cuda -t cuda .
+docker build --build-arg TAG=3.0 -f cuda.d -t cuda .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

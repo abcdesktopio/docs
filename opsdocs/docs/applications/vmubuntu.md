@@ -54,10 +54,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application vmubuntu](vmubuntu.d)
+[Dockerfile for application vmubuntu](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmubuntu.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmubuntu.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f vmubuntu -t vmubuntu .
+docker build --build-arg TAG=3.0 -f vmubuntu.d -t vmubuntu .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

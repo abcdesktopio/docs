@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 krb5-user fonts-noto fonts-roboto xfonts-100dpi fonts-ubuntu fonts-freefont-ttf dbus-x11 fonts-wine chromium-browser
@@ -87,10 +87,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application chromium](chromium.d)
+[Dockerfile for application chromium](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/chromium.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/chromium.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f chromium -t chromium .
+docker build --build-arg TAG=3.0 -f chromium.d -t chromium .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 mathwar
@@ -54,10 +54,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Mathwar](Mathwar.d)
+[Dockerfile for application Mathwar](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Mathwar.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Mathwar.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Mathwar -t Mathwar .
+docker build --build-arg TAG=3.0 -f Mathwar.d -t Mathwar .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

@@ -119,10 +119,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application firefox-esr](firefox-esr.d)
+[Dockerfile for application firefox-esr](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/firefox-esr.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/firefox-esr.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f firefox-esr -t firefox-esr .
+docker build --build-arg TAG=3.0 -f firefox-esr.d -t firefox-esr .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.20.04](../abcdesktopio/oc.template.ubuntu.minimal.20.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 gnome-terminal openssh-client telnet netcat sshcommand sshfs ftp-ssl wput curl wget tftp ncftp git git-ftp ftp dbus-x11
@@ -114,10 +114,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application jupyter](jupyter.d)
+[Dockerfile for application jupyter](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/jupyter.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/jupyter.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f jupyter -t jupyter .
+docker build --build-arg TAG=3.0 -f jupyter.d -t jupyter .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine.libreoffice](../abcdesktopio/oc.template.alpine.libreoffice.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ## Alpine packages
 ```
 libreoffice-gnome
@@ -90,10 +90,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application math](math.d)
+[Dockerfile for application math](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/math.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/math.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f math -t math .
+docker build --build-arg TAG=3.0 -f math.d -t math .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

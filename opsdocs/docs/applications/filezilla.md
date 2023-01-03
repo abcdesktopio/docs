@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine.gtk](../abcdesktopio/oc.template.alpine.gtk.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ## Alpine packages
 ```
 filezilla
@@ -71,10 +71,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application filezilla](filezilla.d)
+[Dockerfile for application filezilla](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/filezilla.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/filezilla.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f filezilla -t filezilla .
+docker build --build-arg TAG=3.0 -f filezilla.d -t filezilla .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

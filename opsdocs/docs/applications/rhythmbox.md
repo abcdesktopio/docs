@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 rhythmbox
@@ -65,10 +65,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application rhythmbox](rhythmbox.d)
+[Dockerfile for application rhythmbox](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/rhythmbox.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/rhythmbox.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f rhythmbox -t rhythmbox .
+docker build --build-arg TAG=3.0 -f rhythmbox.d -t rhythmbox .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

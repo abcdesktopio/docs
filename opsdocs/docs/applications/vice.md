@@ -94,10 +94,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application vice](vice.d)
+[Dockerfile for application vice](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vice.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vice.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f vice -t vice .
+docker build --build-arg TAG=3.0 -f vice.d -t vice .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

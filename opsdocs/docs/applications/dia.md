@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 dia dia-shapes
@@ -71,10 +71,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Dia](Dia.d)
+[Dockerfile for application Dia](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Dia.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Dia.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Dia -t Dia .
+docker build --build-arg TAG=3.0 -f Dia.d -t Dia .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

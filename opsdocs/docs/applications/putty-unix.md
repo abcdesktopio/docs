@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 putty dbus-x11
@@ -66,10 +66,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application putty-unix](putty-unix.d)
+[Dockerfile for application putty-unix](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/putty-unix.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/putty-unix.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f putty-unix -t putty-unix .
+docker build --build-arg TAG=3.0 -f putty-unix.d -t putty-unix .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

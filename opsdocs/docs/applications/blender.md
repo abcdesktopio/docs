@@ -90,10 +90,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application blender](blender.d)
+[Dockerfile for application blender](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/blender.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/blender.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f blender -t blender .
+docker build --build-arg TAG=3.0 -f blender.d -t blender .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 evolution dbus-x11
@@ -76,10 +76,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application evolution](evolution.d)
+[Dockerfile for application evolution](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/evolution.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/evolution.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f evolution -t evolution .
+docker build --build-arg TAG=3.0 -f evolution.d -t evolution .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

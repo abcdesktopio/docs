@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk](../abcdesktopio/oc.template.ubuntu.gtk.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 remmina libsecret-1-0 remmina-plugin-rdp remmina-plugin-secret remmina-plugin-vnc remmina-plugin-exec remmina-plugin-nx remmina-plugin-spice
@@ -78,10 +78,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application remmina](remmina.d)
+[Dockerfile for application remmina](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/remmina.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/remmina.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f remmina -t remmina .
+docker build --build-arg TAG=3.0 -f remmina.d -t remmina .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

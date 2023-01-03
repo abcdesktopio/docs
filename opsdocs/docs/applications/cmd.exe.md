@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine.minimal](../abcdesktopio/oc.template.alpine.minimal.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ## Alpine packages
 ```
 wine
@@ -65,10 +65,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application cmd.exe](cmd.exe.d)
+[Dockerfile for application cmd.exe](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cmd.exe.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cmd.exe.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f cmd.exe -t cmd.exe .
+docker build --build-arg TAG=3.0 -f cmd.exe.d -t cmd.exe .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

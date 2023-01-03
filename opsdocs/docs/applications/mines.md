@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine](../abcdesktopio/oc.template.alpine.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ## Alpine packages
 ```
 gnome-mines
@@ -61,10 +61,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Mines](Mines.d)
+[Dockerfile for application Mines](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Mines.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Mines.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Mines -t Mines .
+docker build --build-arg TAG=3.0 -f Mines.d -t Mines .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

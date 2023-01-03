@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 firefox
@@ -103,10 +103,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application youtube](youtube.d)
+[Dockerfile for application youtube](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/youtube.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/youtube.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f youtube -t youtube .
+docker build --build-arg TAG=3.0 -f youtube.d -t youtube .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

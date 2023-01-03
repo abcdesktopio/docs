@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine](../abcdesktopio/oc.template.alpine.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ## Alpine packages
 ```
 konsole
@@ -71,10 +71,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application konsole](konsole.d)
+[Dockerfile for application konsole](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/konsole.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/konsole.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f konsole -t konsole .
+docker build --build-arg TAG=3.0 -f konsole.d -t konsole .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

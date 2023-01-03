@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine.minimal](../abcdesktopio/oc.template.alpine.minimal.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ## Alpine packages
 ```
 pinta adwaita-icon-theme libadwaita font-noto font-xfree86-type1
@@ -76,10 +76,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Pinta](Pinta.d)
+[Dockerfile for application Pinta](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Pinta.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Pinta.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Pinta -t Pinta .
+docker build --build-arg TAG=3.0 -f Pinta.d -t Pinta .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

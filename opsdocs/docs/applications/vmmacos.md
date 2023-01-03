@@ -71,10 +71,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application vmmacos](vmmacos.d)
+[Dockerfile for application vmmacos](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmmacos.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmmacos.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f vmmacos -t vmmacos .
+docker build --build-arg TAG=3.0 -f vmmacos.d -t vmmacos .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

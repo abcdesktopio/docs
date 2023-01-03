@@ -83,10 +83,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application vmrc](vmrc.d)
+[Dockerfile for application vmrc](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmrc.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmrc.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f vmrc -t vmrc .
+docker build --build-arg TAG=3.0 -f vmrc.d -t vmrc .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

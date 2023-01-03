@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk.elementary](../abcdesktopio/oc.template.ubuntu.gtk.elementary.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 io.elementary.terminal io.elementary.stylesheet
@@ -67,10 +67,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application elementary.terminal](elementary.terminal.d)
+[Dockerfile for application elementary.terminal](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/elementary.terminal.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/elementary.terminal.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f elementary.terminal -t elementary.terminal .
+docker build --build-arg TAG=3.0 -f elementary.terminal.d -t elementary.terminal .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

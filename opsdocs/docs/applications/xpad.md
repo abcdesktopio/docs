@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk](../abcdesktopio/oc.template.ubuntu.gtk.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 xpad
@@ -84,10 +84,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application xpad](xpad.d)
+[Dockerfile for application xpad](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/xpad.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/xpad.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f xpad -t xpad .
+docker build --build-arg TAG=3.0 -f xpad.d -t xpad .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk](../abcdesktopio/oc.template.ubuntu.gtk.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 gir1.2-gdkpixbuf-2.0 gtk2-engines-pixbuf libssl3 libgdk-pixbuf2.0-0 adwaita-icon-theme libgdk-pixbuf2.0-bin librsvg2-2 librsvg2-common
@@ -83,10 +83,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application remotedesktopmanager](remotedesktopmanager.d)
+[Dockerfile for application remotedesktopmanager](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/remotedesktopmanager.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/remotedesktopmanager.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f remotedesktopmanager -t remotedesktopmanager .
+docker build --build-arg TAG=3.0 -f remotedesktopmanager.d -t remotedesktopmanager .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

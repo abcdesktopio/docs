@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 swell-foop
@@ -66,10 +66,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application swell-foop](swell-foop.d)
+[Dockerfile for application swell-foop](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/swell-foop.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/swell-foop.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f swell-foop -t swell-foop .
+docker build --build-arg TAG=3.0 -f swell-foop.d -t swell-foop .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

@@ -90,10 +90,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application teams](teams.d)
+[Dockerfile for application teams](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/teams.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/teams.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f teams -t teams .
+docker build --build-arg TAG=3.0 -f teams.d -t teams .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

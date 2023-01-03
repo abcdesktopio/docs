@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 leocad
@@ -73,10 +73,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Leocad](Leocad.d)
+[Dockerfile for application Leocad](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Leocad.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Leocad.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Leocad -t Leocad .
+docker build --build-arg TAG=3.0 -f Leocad.d -t Leocad .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

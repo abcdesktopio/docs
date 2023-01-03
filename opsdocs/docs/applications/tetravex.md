@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk.language-pack-all](../abcdesktopio/oc.template.ubuntu.gtk.language-pack-all.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 gnome-tetravex
@@ -60,10 +60,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application Tetravex](Tetravex.d)
+[Dockerfile for application Tetravex](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Tetravex.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/Tetravex.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f Tetravex -t Tetravex .
+docker build --build-arg TAG=3.0 -f Tetravex.d -t Tetravex .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

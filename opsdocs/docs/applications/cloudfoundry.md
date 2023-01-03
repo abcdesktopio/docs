@@ -63,10 +63,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application cloudFoundry](cloudFoundry.d)
+[Dockerfile for application cloudFoundry](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cloudFoundry.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cloudFoundry.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f cloudFoundry -t cloudFoundry .
+docker build --build-arg TAG=3.0 -f cloudFoundry.d -t cloudFoundry .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

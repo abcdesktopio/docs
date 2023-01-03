@@ -90,10 +90,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application remarkable](remarkable.d)
+[Dockerfile for application remarkable](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/remarkable.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/remarkable.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f remarkable -t remarkable .
+docker build --build-arg TAG=3.0 -f remarkable.d -t remarkable .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

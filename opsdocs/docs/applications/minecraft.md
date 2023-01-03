@@ -80,10 +80,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application minecraft](minecraft.d)
+[Dockerfile for application minecraft](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/minecraft.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/minecraft.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f minecraft -t minecraft .
+docker build --build-arg TAG=3.0 -f minecraft.d -t minecraft .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

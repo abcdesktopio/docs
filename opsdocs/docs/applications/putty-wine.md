@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine.minimal](../abcdesktopio/oc.template.alpine.minimal.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ## Alpine packages
 ```
 wine
@@ -83,10 +83,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application putty-wine](putty-wine.d)
+[Dockerfile for application putty-wine](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/putty-wine.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/putty-wine.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f putty-wine -t putty-wine .
+docker build --build-arg TAG=3.0 -f putty-wine.d -t putty-wine .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

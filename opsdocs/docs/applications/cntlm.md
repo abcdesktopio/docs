@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 ruby-mustache gnome-terminal dbus-x11 cntlm net-tools vim curl wget
@@ -92,10 +92,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application cntlm](cntlm.d)
+[Dockerfile for application cntlm](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cntlm.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cntlm.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f cntlm -t cntlm .
+docker build --build-arg TAG=3.0 -f cntlm.d -t cntlm .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

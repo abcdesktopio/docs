@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine.gtk](../abcdesktopio/oc.template.alpine.gtk.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ## Alpine packages
 ```
 gnome-2048
@@ -72,10 +72,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application 2048-alpine-error](2048-alpine-error.d)
+[Dockerfile for application 2048-alpine-error](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine-error.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine-error.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f 2048-alpine-error -t 2048-alpine-error .
+docker build --build-arg TAG=3.0 -f 2048-alpine-error.d -t 2048-alpine-error .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

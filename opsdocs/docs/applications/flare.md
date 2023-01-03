@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.gtk.language-pack-all](../abcdesktopio/oc.template.ubuntu.gtk.language-pack-all.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 flare-game
@@ -68,10 +68,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application flare](flare.d)
+[Dockerfile for application flare](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/flare.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/flare.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f flare -t flare .
+docker build --build-arg TAG=3.0 -f flare.d -t flare .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address

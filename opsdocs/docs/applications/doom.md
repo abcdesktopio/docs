@@ -3,7 +3,7 @@
 ## inherite from
 [abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
 ## Distribution
-ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;width:32px"}
+ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 ## Ubuntu packages
 ```
 chocolate-doom doom-wad-shareware prboom-plus freedoom prboom-plus
@@ -60,10 +60,13 @@ json source file
 ## Rebuild the image
 
 ### Download the Dockerfile
-[Dockerfile for application doom](doom.d)
+[Dockerfile for application doom](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/doom.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/doom.d
+```
 ### build this `Dockerfile` to create a container image
 ``` sh
-docker build --build-arg TAG=3.0 -f doom -t doom .
+docker build --build-arg TAG=3.0 -f doom.d -t doom .
 ```
 ### Install the new image
 >Replace localhost by your own server ip address
