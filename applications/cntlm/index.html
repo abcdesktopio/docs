@@ -3594,7 +3594,14 @@
       
         <li class="md-nav__item">
   <a href="#pre-run-command" class="md-nav__link">
-    Pre run command
+    PRE run command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-run-command" class="md-nav__link">
+    POST run command
   </a>
   
 </li>
@@ -3630,9 +3637,13 @@
 <p>"cntlm"</p>
 <h2 id="path">path</h2>
 <p>"/usr/bin/gnome-terminal"</p>
-<h2 id="pre-run-command">Pre run command</h2>
+<h2 id="pre-run-command">PRE run command</h2>
 <pre><code>
 COPY cntlm/cntlm.mustache  cntlm/init.cntlm.sh /composer/,COPY composer/init.d/init.gnome-terminal /composer/init.d/
+</code></pre>
+<h2 id="post-run-command">POST run command</h2>
+<pre><code>
+undefined
 </code></pre>
 
 

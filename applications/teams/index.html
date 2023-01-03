@@ -3594,7 +3594,7 @@
       
         <li class="md-nav__item">
   <a href="#pre-run-command" class="md-nav__link">
-    Pre run command
+    PRE run command
   </a>
   
 </li>
@@ -3630,7 +3630,7 @@
 <p>"/usr/bin/teams"</p>
 <h2 id="mime-type">Mime Type</h2>
 <p>"x-scheme-handler/msteams;"</p>
-<h2 id="pre-run-command">Pre run command</h2>
+<h2 id="pre-run-command">PRE run command</h2>
 <pre><code>
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg,RUN echo &quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/ms-teams stable main&quot; &gt; /etc/apt/sources.list.d/teams.list,RUN apt update &amp;&amp; apt install -y teams &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
 </code></pre>

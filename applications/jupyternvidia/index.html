@@ -3601,7 +3601,14 @@
       
         <li class="md-nav__item">
   <a href="#pre-run-command" class="md-nav__link">
-    Pre run command
+    PRE run command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-run-command" class="md-nav__link">
+    POST run command
   </a>
   
 </li>
@@ -3639,9 +3646,13 @@
 <p>"/usr/bin/gnome-terminal"</p>
 <h2 id="showinview">showinview</h2>
 <p>"dock"</p>
-<h2 id="pre-run-command">Pre run command</h2>
+<h2 id="pre-run-command">PRE run command</h2>
 <pre><code>
 RUN add-apt-repository ppa:mozillateam/ppa,COPY etc/apt/preferences.d/mozilla-firefox /etc/apt/preferences.d/mozilla-firefox,RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes firefox wget sudo &amp;&amp; apt-get clean,COPY cudnn-local-repo-ubuntu2204-8.7.0.84_1.0-1_amd64.deb /tmp,RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes -f /tmp/cudnn-local-repo-ubuntu2204-8.7.0.84_1.0-1_amd64.deb &amp;&amp; apt-get clean,RUN cp /var/cudnn-local-repo-ubuntu2204-8.7.0.84/cudnn-local-BF23AD8A-keyring.gpg /usr/share/keyrings/,ENV PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin,ENV LD_LIBRARY_PATH=/usr/local/cuda-12.0/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64,RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes build-essential python3.9 python3-pip python-is-python3 libcurl4-openssl-dev libssl-dev wget &amp;&amp; apt-get clean,RUN # wget https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh -O /tmp/anaconda3.sh &amp;&amp; bash /tmp/anaconda3.sh -b -p /usr/local/anaconda,RUN pip3 install torch,RUN pip3 install tensorflow-gpu,RUN pip3 install jupyter notebook,RUN pip3 install jupyterlab,RUN pip3 install jupyterlab-nvdashboard,RUN # jupyter labextension install jupyterlab-nvdashboard
+</code></pre>
+<h2 id="post-run-command">POST run command</h2>
+<pre><code>
+undefined
 </code></pre>
 
 

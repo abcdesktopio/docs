@@ -3587,7 +3587,7 @@
       
         <li class="md-nav__item">
   <a href="#pre-run-command" class="md-nav__link">
-    Pre run command
+    PRE run command
   </a>
   
 </li>
@@ -3621,7 +3621,7 @@
 <p>"WinSCP"</p>
 <h2 id="path">path</h2>
 <p>"/usr/bin/wine"</p>
-<h2 id="pre-run-command">Pre run command</h2>
+<h2 id="pre-run-command">PRE run command</h2>
 <pre><code>
 ENV WINEARCH=win64,ENV WINEDLLOVERRIDES=&quot;mscoree,mshtml=&quot;,USER $BUSER,RUN wineboot --init,RUN curl -Ls -o /tmp/winscp553.zip http://winscp.net/download/winscp553.zip &amp;&amp; unzip /tmp/winscp553.zip -d /composer/bin/ &amp;&amp; rm /tmp/winscp553.zip,RUN echo disable &gt; $WINEPREFIX/.update-timestamp,COPY --chown=$BUSER:$BUSER user.reg system.reg /composer/.wine/
 </code></pre>
