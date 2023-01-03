@@ -10,9 +10,15 @@ gnome-terminal dbus-x11 git
 "cuda"
 ## path
 "/usr/bin/gnome-terminal"
-## Pre run command
+## PRE run command
 
 ```
 
 
+```
+## POST run command
+
+```
+
+undefined
 ```

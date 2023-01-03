@@ -10,7 +10,7 @@ pantheon-calculator dbus-x11
 "/usr/bin/io.elementary.calculator"
 ## Mount Home volume
 "False"
-## Pre run command
+## PRE run command
 
 ```
 

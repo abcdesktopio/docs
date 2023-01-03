@@ -14,7 +14,7 @@
 "c;cpp;py;json;js;java;jav;md;xml;txt;svg;html;htm;sh;csh;css;jsx;tsx;vue;yml;yaml;"
 ## Legacy file extensions
 "c;cpp;py;json;java;md;yml;yaml;"
-## Pre run command
+## PRE run command
 
 ```
 

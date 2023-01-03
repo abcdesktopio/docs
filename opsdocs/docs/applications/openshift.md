@@ -10,7 +10,7 @@ rhc gnome-terminal
 "OpenShift cli"
 ## path
 "/usr/bin/gnome-terminal"
-## Pre run command
+## PRE run command
 
 ```
 

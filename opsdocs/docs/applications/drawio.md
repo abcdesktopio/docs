@@ -12,7 +12,7 @@
 "drawio"
 ## Legacy file extensions
 "drawio"
-## Pre run command
+## PRE run command
 
 ```
 

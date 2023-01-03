@@ -12,7 +12,7 @@
 "md;markdown"
 ## Legacy file extensions
 "md;markdown"
-## Pre run command
+## PRE run command
 
 ```
 

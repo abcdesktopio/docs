@@ -10,7 +10,7 @@ dbus-x11 dbus-user-session gnugo kigo
 "/usr/games/kigo"
 ## Mime Type
 "application/x-go-sgf;"
-## Pre run command
+## PRE run command
 
 ```
 

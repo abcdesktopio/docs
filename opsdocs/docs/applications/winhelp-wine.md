@@ -12,7 +12,7 @@
 "application/hlp;"
 ## File extensions
 "hlp;"
-## Pre run command
+## PRE run command
 
 ```
 

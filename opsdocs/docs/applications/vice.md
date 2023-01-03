@@ -8,7 +8,7 @@
 "/usr/bin/x64"
 ## File extensions
 "crt;bin"
-## Pre run command
+## PRE run command
 
 ```
 

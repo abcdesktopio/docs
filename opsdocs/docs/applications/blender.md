@@ -10,7 +10,7 @@
 "application/x-blender"
 ## File extensions
 "blend,obj,fbx,3ds,ply,stl"
-## Pre run command
+## PRE run command
 
 ```
 

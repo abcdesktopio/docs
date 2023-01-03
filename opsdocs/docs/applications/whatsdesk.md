@@ -10,7 +10,7 @@ dbus-x11
 "/opt/whatsdesk/whatsdesk"
 ## Mime Type
 "x-scheme-handler/whatsapp;"
-## Pre run command
+## PRE run command
 
 ```
 

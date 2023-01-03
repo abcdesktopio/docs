@@ -10,9 +10,15 @@ gnome-terminal dbus-x11 git cuda-demo-suite-12-0 libglu1-mesa libxi6 libxinerama
 "cuda demo"
 ## path
 "/usr/bin/gnome-terminal"
-## Pre run command
+## PRE run command
 
 ```
 
 
+```
+## POST run command
+
+```
+
+undefined
 ```

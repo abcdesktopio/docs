@@ -8,7 +8,7 @@
 "Brackets"
 ## path
 "/opt/brackets/Brackets"
-## Pre run command
+## PRE run command
 
 ```
 

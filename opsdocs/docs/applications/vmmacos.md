@@ -6,7 +6,7 @@
 "vmmacos"
 ## path
 undefined
-## Pre run command
+## PRE run command
 
 ```
 

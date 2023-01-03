@@ -12,7 +12,7 @@
 "sql"
 ## Legacy file extensions
 "sql"
-## Pre run command
+## PRE run command
 
 ```
 

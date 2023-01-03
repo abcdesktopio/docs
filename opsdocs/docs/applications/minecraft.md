@@ -6,7 +6,7 @@
 "minecraft"
 ## path
 "/usr/bin/minecraft-launcher"
-## Pre run command
+## PRE run command
 
 ```
 

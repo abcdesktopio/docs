@@ -8,7 +8,7 @@ libgl1 corsix-th
 "corsix-th"
 ## path
 "/usr/games/corsix-th"
-## Pre run command
+## PRE run command
 
 ```
 

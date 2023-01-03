@@ -8,7 +8,7 @@
 "Putty Wine (alpine)"
 ## path
 "/usr/bin/wine64"
-## Pre run command
+## PRE run command
 
 ```
 

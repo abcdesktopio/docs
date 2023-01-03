@@ -12,3 +12,9 @@ gnome-terminal openssh-client telnet netcat sshcommand sshfs ftp-ssl wput curl w
 "/usr/bin/gnome-terminal"
 ## showinview
 "dock"
+## POST run command
+
+```
+
+undefined
+```

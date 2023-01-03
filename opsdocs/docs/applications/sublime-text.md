@@ -8,7 +8,7 @@ sublime-text
 "sublime-Text"
 ## path
 "/opt/sublime_text/sublime_text"
-## Pre run command
+## PRE run command
 
 ```
 

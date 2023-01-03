@@ -6,7 +6,7 @@
 "Postman"
 ## path
 "/usr/local/bin/Postman/app/Postman"
-## Pre run command
+## PRE run command
 
 ```
 

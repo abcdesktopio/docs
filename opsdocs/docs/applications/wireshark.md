@@ -12,7 +12,7 @@
 "cap,pcap"
 ## Legacy file extensions
 "cap"
-## Pre run command
+## PRE run command
 
 ```
 

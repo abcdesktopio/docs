@@ -8,7 +8,7 @@
 "WinSCP"
 ## path
 "/usr/bin/wine"
-## Pre run command
+## PRE run command
 
 ```
 

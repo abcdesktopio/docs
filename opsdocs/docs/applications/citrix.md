@@ -12,3 +12,9 @@ libsecret-1-0 libpcsclite1 x11-utils libjpeg-turbo8
 "/opt/Citrix/ICAClient/wfica"
 ## Mime Type
 "application/x-ica;"
+## POST run command
+
+```
+
+undefined
+```

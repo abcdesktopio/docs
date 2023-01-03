@@ -8,7 +8,7 @@ gir1.2-gdkpixbuf-2.0 gtk2-engines-pixbuf libssl3 libgdk-pixbuf2.0-0 adwaita-icon
 "RemoteDesktop"
 ## path
 "/bin/remotedesktopmanager.free"
-## Pre run command
+## PRE run command
 
 ```
 

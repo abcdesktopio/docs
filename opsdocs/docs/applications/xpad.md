@@ -8,7 +8,7 @@ xpad
 "Xpad"
 ## path
 "/usr/bin/xpad"
-## Pre run command
+## PRE run command
 
 ```
 

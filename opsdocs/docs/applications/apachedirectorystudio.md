@@ -10,7 +10,7 @@ openjdk-11-jre libswt-gtk-4-jni libswt-webkit-gtk-4-jni libswt-cairo-gtk-4-jni l
 "Apache Directory Studio"
 ## path
 "/usr/local/ApacheDirectoryStudio/ApacheDirectoryStudio"
-## Pre run command
+## PRE run command
 
 ```
 

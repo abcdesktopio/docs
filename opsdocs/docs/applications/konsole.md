@@ -6,3 +6,9 @@
 "konsole"
 ## path
 "/usr/bin/konsole"
+## POST run command
+
+```
+
+undefined
+```

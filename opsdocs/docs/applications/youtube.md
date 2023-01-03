@@ -16,7 +16,7 @@ firefox
 "html;xml;gif"
 ## Legacy file extensions
 "html;xml"
-## Pre run command
+## PRE run command
 
 ```
 

@@ -8,7 +8,7 @@
 "/usr/bin/vmrc"
 ## Mime Type
 "x-scheme-handler/vmrc;"
-## Pre run command
+## PRE run command
 
 ```
 

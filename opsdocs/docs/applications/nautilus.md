@@ -10,7 +10,7 @@ dbus gnome-icon-theme gnome-icon-theme-symbolic numix-gtk-theme numix-icon-theme
 "/usr/bin/nautilus"
 ## showinview
 "dock"
-## Pre run command
+## PRE run command
 
 ```
 

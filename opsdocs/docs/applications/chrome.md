@@ -16,7 +16,7 @@ krb5-user fonts-noto fonts-roboto xfonts-100dpi fonts-ubuntu fonts-freefont-ttf 
 "html;xml;gif"
 ## Legacy file extensions
 "html;xml"
-## Pre run command
+## PRE run command
 
 ```
 

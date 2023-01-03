@@ -8,7 +8,7 @@
 "/opt/Hyper/hyper"
 ## Mime Type
 "x-scheme-handler/ssh"
-## Pre run command
+## PRE run command
 
 ```
 

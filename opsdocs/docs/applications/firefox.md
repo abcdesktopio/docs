@@ -14,7 +14,7 @@
 "htm;html;xml;gif"
 ## Legacy file extensions
 "htm;html;xml"
-## Pre run command
+## PRE run command
 
 ```
 

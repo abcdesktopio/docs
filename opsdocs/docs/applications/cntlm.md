@@ -10,9 +10,15 @@ ruby-mustache gnome-terminal dbus-x11 cntlm net-tools vim curl wget
 "cntlm"
 ## path
 "/usr/bin/gnome-terminal"
-## Pre run command
+## PRE run command
 
 ```
 
 COPY cntlm/cntlm.mustache  cntlm/init.cntlm.sh /composer/,COPY composer/init.d/init.gnome-terminal /composer/init.d/
+```
+## POST run command
+
+```
+
+undefined
 ```

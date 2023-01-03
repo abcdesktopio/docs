@@ -8,3 +8,9 @@
 "2048 (ubuntu qt)"
 ## path
 "/usr/games/2048-qt"
+## POST run command
+
+```
+
+undefined
+```

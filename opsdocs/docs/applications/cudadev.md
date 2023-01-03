@@ -10,9 +10,15 @@ gnome-terminal dbus-x11 git cuda libnvidia-cfg1-525 libnvidia-common-525 libnvid
 "cuda developper"
 ## path
 "/usr/bin/gnome-terminal"
-## Pre run command
+## PRE run command
 
 ```
 
 
+```
+## POST run command
+
+```
+
+undefined
 ```

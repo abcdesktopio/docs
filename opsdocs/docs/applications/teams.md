@@ -10,7 +10,7 @@
 "/usr/bin/teams"
 ## Mime Type
 "x-scheme-handler/msteams;"
-## Pre run command
+## PRE run command
 
 ```
 
