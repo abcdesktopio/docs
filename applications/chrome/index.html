@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.1">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.3bd4f189.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
@@ -3656,23 +3656,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rebuild-the-image" class="md-nav__link">
-    Rebuild the image
+  <a href="#install-the-builded-image" class="md-nav__link">
+    Install the builded image
   </a>
   
-    <nav class="md-nav" aria-label="Rebuild the image">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generated-dockerfile-source-code" class="md-nav__link">
+    Generated DockerFile source code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-the-image-manually" class="md-nav__link">
+    Rebuild the image manually
+  </a>
+  
+    <nav class="md-nav" aria-label="Rebuild the image manually">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#download-the-dockerfile" class="md-nav__link">
-    Download the Dockerfile
+  <a href="#download-the-dockerfile-manually" class="md-nav__link">
+    Download the Dockerfile manually
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#build-this-dockerfile-to-create-a-container-image" class="md-nav__link">
-    build this Dockerfile to create a container image
+  <a href="#build-the-dockerfile-to-create-a-container-image" class="md-nav__link">
+    build the Dockerfile to create a container image
   </a>
   
 </li>
@@ -3686,13 +3700,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#generated-dockerfile-source-code" class="md-nav__link">
-    Generated DockerFile source code
-  </a>
   
 </li>
       
@@ -3721,26 +3728,32 @@
 <p><a href="../abcdesktopio/oc.template.ubuntu.minimal.22.04.md">abcdesktopio/oc.template.ubuntu.minimal.22.04</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>ubuntu <img alt="ubuntu" src="../icons/ubuntu.svg" style="height:32px;" /></p>
+<pre><code>DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=22.04
+DISTRIB_CODENAME=jammy
+DISTRIB_DESCRIPTION=&quot;Ubuntu 22.04.1 LTS&quot;
+
+</code></pre>
 <h2 id="ubuntu-packages">Ubuntu packages</h2>
 <pre><code>krb5-user fonts-noto fonts-roboto xfonts-100dpi fonts-ubuntu fonts-freefont-ttf dbus-x11 fonts-wine fonts-recommended google-chrome-stable
 </code></pre>
 <h2 id="arguments">Arguments</h2>
-<p>"--no-sandbox --disable-gpu --disable-dev-shm-usage"</p>
+<p><code>"--no-sandbox --disable-gpu --disable-dev-shm-usage"</code></p>
 <h2 id="displayname">Displayname</h2>
-<pre><code>&quot;Chrome&quot;
+<pre><code>Chrome
 </code></pre>
 <h2 id="path">Path</h2>
-<pre><code>&quot;/usr/bin/google-chrome-stable&quot;
+<pre><code>/usr/bin/google-chrome-stable
 </code></pre>
 <h2 id="mimetype">Mimetype</h2>
 <pre><code>text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;video/webm;
 </code></pre>
 <h2 id="file-extensions">File extensions</h2>
-<p>"html;xml;gif"</p>
+<p><code>"html;xml;gif"</code></p>
 <h2 id="legacy-file-extensions">Legacy file extensions</h2>
-<p>"html;xml"</p>
+<p><code>"html;xml"</code></p>
 <h2 id="acl">ACL</h2>
-<pre><code>{
+<pre><code class="language-json">{
     &quot;permit&quot;: [
         &quot;all&quot;
     ]
@@ -3801,22 +3814,16 @@ RUN echo &quot;deb [arch=$(dpkg --print-architecture)] http://dl.google.com/linu
     &quot;abcdesktop_release&quot;: 3
 }
 </code></pre>
-<h2 id="rebuild-the-image">Rebuild the image</h2>
-<h3 id="download-the-dockerfile">Download the Dockerfile</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/chrome.d">Dockerfile for application chrome</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/chrome.d
-</code></pre>
-<h3 id="build-this-dockerfile-to-create-a-container-image">build this <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f chrome.d -t chrome .
-</code></pre>
-<h3 id="install-the-new-image">Install the new image</h3>
+<h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
-<p>Replace localhost by your own server ip address</p>
+<p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">docker inspect chrome &gt; chrome.json
-curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @chrome.json
+<pre><code class="language-sh">ABCHOST=localhost
+curl --output chrome.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/chrome.d.3.0.json
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @chrome.json
+
 </code></pre>
-<h2 id="generated-dockerfile-source-code">Generated DockerFile source code</h2>
+<h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
 <pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
@@ -3830,7 +3837,7 @@ LABEL oc.icon=&quot;circle_google-chrome.svg&quot;
 LABEL oc.icondata=&quot;PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiA8ZGVmcz4KICA8bGluZWFyR3JhZGllbnQgaWQ9ImUiIHgxPSIxNy4xODciIHgyPSIxNy4xODciIHkxPSI0Ni43MzciIHkyPSIxOTkuOTgiIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoNC43MDUgMCAwIDQuNzA1IDQxIDcwLjM2MikiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgPHN0b3Agc3RvcC1jb2xvcj0iIzM1QzEzMCIgb2Zmc2V0PSIwIi8+CiAgIDxzdG9wIHN0b3AtY29sb3I9IiMzNEJEMzAiIG9mZnNldD0iLjM0ODMiLz4KICAgPHN0b3Agc3RvcC1jb2xvcj0iIzMxQjIzMSIgb2Zmc2V0PSIuNjgwOSIvPgogICA8c3RvcCBzdG9wLWNvbG9yPSIjMkM5RjMyIiBvZmZzZXQ9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxsaW5lYXJHcmFkaWVudCBpZD0iZCIgeDE9Ijk1Ljk3IiB4Mj0iOTUuOTciIHkxPSIyLjI5MjIiIHkyPSIxOTguNDQiIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoMS43MTkxIDAgMCAxLjcxOTEgMzQwLjA5IDM2OC40NSkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgPHN0b3Agc3RvcC1jb2xvcj0iIzQ3QjlGRiIgb2Zmc2V0PSIwIi8+CiAgIDxzdG9wIHN0b3AtY29sb3I9IiMzRDhBRkYiIG9mZnNldD0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJjIiB4MT0iMTE0Ljc1IiB4Mj0iMTE0Ljc1IiB5MT0iNTYuNjgxIiB5Mj0iMTg4LjkzIiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDUuMSAwIDAgNS4xIDIgMikiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgPHN0b3Agc3RvcC1jb2xvcj0iI2ZmY2UwMCIgb2Zmc2V0PSIwIi8+CiAgIDxzdG9wIHN0b3AtY29sb3I9IiNlNmJjMDAiIG9mZnNldD0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJiIiB4MT0iMTAzLjY3IiB4Mj0iMTAzLjY3IiB5MT0iLTQuNjYyMyIgeTI9IjIwNi41IiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDIuMTY5OSAwIDAgMi4xNjk5IDI5NS4wMSAzMjMuMzcpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgIDxzdG9wIHN0b3AtY29sb3I9IiNmZmYiIG9mZnNldD0iMCIvPgogICA8c3RvcCBzdG9wLWNvbG9yPSIjZDdkN2Q3IiBvZmZzZXQ9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxmaWx0ZXIgaWQ9ImciIHg9Ii0uMDM2IiB5PSItLjAzNiIgd2lkdGg9IjEuMDcyIiBoZWlnaHQ9IjEuMDcyIiBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9InNSR0IiPgogICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSI2LjUwOTc3ODkiLz4KICA8L2ZpbHRlcj4KICA8bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSI5Ny40MjUiIHgyPSI5Ny40MjUiIHkxPSItOS4wMDcxIiB5Mj0iMjA5Ljg3IiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDQuNzA1IDAgMCA0LjcwNSA0MSA0MikiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgPHN0b3Agc3RvcC1jb2xvcj0iI0Y2NTAzQiIgb2Zmc2V0PSIwIi8+CiAgIDxzdG9wIHN0b3AtY29sb3I9IiNGMjQ3MzUiIG9mZnNldD0iLjIxNzQiLz4KICAgPHN0b3Agc3RvcC1jb2xvcj0iI0U2MkYyNSIgb2Zmc2V0PSIuNTcxOSIvPgogICA8c3RvcCBzdG9wLWNvbG9yPSIjRDQwOTBEIiBvZmZzZXQ9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxmaWx0ZXIgaWQ9ImYiIHg9Ii0uMDM2IiB5PSItLjAzNiIgd2lkdGg9IjEuMDcyIiBoZWlnaHQ9IjEuMDcyIiBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9InNSR0IiPgogICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxNC4xMTUiLz4KICA8L2ZpbHRlcj4KIDwvZGVmcz4KIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTk4OC4zNikiPgogIDxnIHRyYW5zZm9ybT0ibWF0cml4KC4wNjM3NjIgMCAwIC4wNjM3NjIgLS42MTQyNCA5ODUuODgpIiBzdHJva2Utd2lkdGg9IjE1LjY4MyI+CiAgIDxjaXJjbGUgY3g9IjUxMS41IiBjeT0iNTQwLjg2IiByPSI0NzAuNSIgY29sb3I9IiMwMDAwMDAiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iLjI1Ii8+CiAgIDxjaXJjbGUgY3g9IjUxMS41IiBjeT0iNTQwLjg2IiByPSI0NzAuNSIgY29sb3I9IiMwMDAwMDAiIGZpbGw9InVybCgjZSkiLz4KICAgPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAyOC4zNjIpIiBkPSJtODEzLjQxIDE1MS43NGMtOTYuNzI2IDIzLjAzMi01NTQuMTcgMTM2LjQ1LTMwMC4xNCAxNjMuOTEgMjgzLjA1IDMwLjYgMTc1LjMxIDMxNy40NyAxNzUuMzEgMzE3LjQ3bC0yMDcuMjYgMzQ4LjM3YTQ3MC41IDQ3MC41IDAgMCAwIDMwLjE2OCAxLjUwOTggNDcwLjUgNDcwLjUgMCAwIDAgNDcwLjUtNDcwLjUgNDcwLjUgNDcwLjUgMCAwIDAtMTY4LjU5LTM2MC43NnoiIGZpbGw9InVybCgjYykiLz4KICAgPGc+CiAgICA8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDI4LjM2MikiIGQ9Im01MTEuNSA0MmE0NzAuNSA0NzAuNSAwIDAgMC0zOTQuNDUgMjE0LjgybDIxMC4zNSAzNTMuODRzLTUuNjMzOC0xNzAuNDUgOC40NTMxLTE4Ny4zNmMxNC4wODctMTYuOTA0IDgzLjExMy04MS43MDMgODMuMTEzLTgxLjcwM2w5NC4zODEtMjguMTc0LTUuMTA1NS0xOC4zMTIgNDE4LjcxLTIuNzUzOWE0NzAuNSA0NzAuNSAwIDAgMC00MTUuNDYtMjUwLjM2eiIgY29sb3I9IiMwMDAwMDAiIGZpbGw9InVybCgjYSkiLz4KICAgIDxjaXJjbGUgY3g9IjUxMiIgY3k9IjU1MC4zNiIgcj0iMjE2Ljk5IiBjb2xvcj0iIzAwMDAwMCIgZmlsbD0iIzExMSIgZmlsdGVyPSJ1cmwoI2cpIiBvcGFjaXR5PSIuMiIvPgogICAgPGNpcmNsZSBjeD0iNTEyIiBjeT0iNTQwLjM2IiByPSIyMTYuOTkiIGNvbG9yPSIjMDAwMDAwIiBmaWxsPSJ1cmwoI2IpIi8+CiAgICA8Y2lyY2xlIGN4PSI1MTIiIGN5PSI1NDAuMzYiIHI9IjE3MS45MSIgY29sb3I9IiMwMDAwMDAiIGZpbGw9InVybCgjZCkiLz4KICAgPC9nPgogIDwvZz4KIDwvZz4KPC9zdmc+Cg==&quot;
 LABEL oc.keyword=&quot;chrome,web,browser,internet&quot;
 LABEL oc.cat=&quot;office&quot;
-LABEL oc.desktopfile=&quot;chromium-browser.desktop&quot;
+LABEL oc.desktopfile=&quot;google-chrome.desktop&quot;
 LABEL oc.launch=&quot;google-chrome.Google-chrome&quot;
 LABEL oc.template=&quot;abcdesktopio/oc.template.ubuntu.minimal.22.04&quot;
 ENV ARGS=&quot;--no-sandbox --disable-gpu --disable-dev-shm-usage&quot;
@@ -3857,6 +3864,28 @@ RUN rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shad
 RUN rm -f /etc/gshadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
 USER balloon
 CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
+
+</code></pre>
+<h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
+<h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/chrome.d">Dockerfile for application chrome</a></p>
+<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/chrome.d
+</code></pre>
+<h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
+<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f chrome.d -t chrome .
+</code></pre>
+<h3 id="install-the-new-image">Install the new image</h3>
+<blockquote>
+<p>If you are using <code>containerd</code> as container runtime, use the ctr command line
+If you are not running this bash command on your abcdesktop node
+Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
+</blockquote>
+<pre><code class="language-sh">ABCHOST=localhost
+docker inspect chrome &gt; chrome.json
+docker image save chrome -o chrome.tar
+ctr -n k8s.io images import chrome.tar
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @chrome.json
+
 </code></pre>
 
 

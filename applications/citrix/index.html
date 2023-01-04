@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.1">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.3bd4f189.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
@@ -3579,6 +3579,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#licence" class="md-nav__link">
+    Licence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#arguments" class="md-nav__link">
     Arguments
   </a>
@@ -3642,23 +3649,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rebuild-the-image" class="md-nav__link">
-    Rebuild the image
+  <a href="#install-the-builded-image" class="md-nav__link">
+    Install the builded image
   </a>
   
-    <nav class="md-nav" aria-label="Rebuild the image">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generated-dockerfile-source-code" class="md-nav__link">
+    Generated DockerFile source code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-the-image-manually" class="md-nav__link">
+    Rebuild the image manually
+  </a>
+  
+    <nav class="md-nav" aria-label="Rebuild the image manually">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#download-the-dockerfile" class="md-nav__link">
-    Download the Dockerfile
+  <a href="#download-the-dockerfile-manually" class="md-nav__link">
+    Download the Dockerfile manually
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#build-this-dockerfile-to-create-a-container-image" class="md-nav__link">
-    build this Dockerfile to create a container image
+  <a href="#build-the-dockerfile-to-create-a-container-image" class="md-nav__link">
+    build the Dockerfile to create a container image
   </a>
   
 </li>
@@ -3672,13 +3693,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#generated-dockerfile-source-code" class="md-nav__link">
-    Generated DockerFile source code
-  </a>
   
 </li>
       
@@ -3707,22 +3721,30 @@
 <p><a href="../abcdesktopio/oc.template.ubuntu.gtk.18.04.md">abcdesktopio/oc.template.ubuntu.gtk.18.04</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>ubuntu <img alt="ubuntu" src="../icons/ubuntu.svg" style="height:32px;" /></p>
+<pre><code>DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=18.04
+DISTRIB_CODENAME=bionic
+DISTRIB_DESCRIPTION=&quot;Ubuntu 18.04.6 LTS&quot;
+
+</code></pre>
 <h2 id="ubuntu-packages">Ubuntu packages</h2>
 <pre><code>libsecret-1-0 libpcsclite1 x11-utils libjpeg-turbo8
 </code></pre>
+<h2 id="licence">Licence</h2>
+<p><strong> This application is NO FREE. </strong> You need to build it manually.</p>
 <h2 id="arguments">Arguments</h2>
-<p>"-icaroot /opt/Citrix/ICAClient"</p>
+<p><code>"-icaroot /opt/Citrix/ICAClient"</code></p>
 <h2 id="displayname">Displayname</h2>
-<pre><code>&quot;citrix-client&quot;
+<pre><code>citrix-client
 </code></pre>
 <h2 id="path">Path</h2>
-<pre><code>&quot;/opt/Citrix/ICAClient/wfica&quot;
+<pre><code>/opt/Citrix/ICAClient/wfica
 </code></pre>
 <h2 id="mimetype">Mimetype</h2>
 <pre><code>application/x-ica;
 </code></pre>
 <h2 id="acl">ACL</h2>
-<pre><code>{
+<pre><code class="language-json">{
     &quot;permit&quot;: [
         &quot;all&quot;
     ]
@@ -3745,8 +3767,7 @@ to get the WM_CLASS property of an application, use the command line <code>wmctr
 <blockquote>
 <p>POST run command are run <strong>after</strong> the package install comman</p>
 </blockquote>
-<pre><code>
-COPY icaclientWeb_13.10.0.20_amd64.deb /tmp/icaclient_amd64.deb
+<pre><code>COPY icaclientWeb_13.10.0.20_amd64.deb /tmp/icaclient_amd64.deb
 RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes /tmp/icaclient_amd64.deb &amp;&amp; apt-get clean &amp;&amp; rm /tmp/icaclient_amd64.deb &amp;&amp; rm -rf /var/lib/apt/lists/*
 </code></pre>
 <h2 id="json-dump">JSON dump</h2>
@@ -3790,22 +3811,16 @@ RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes /tm
     &quot;licence&quot;: &quot;non-free&quot;
 }
 </code></pre>
-<h2 id="rebuild-the-image">Rebuild the image</h2>
-<h3 id="download-the-dockerfile">Download the Dockerfile</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d">Dockerfile for application citrix</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d
-</code></pre>
-<h3 id="build-this-dockerfile-to-create-a-container-image">build this <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f citrix.d -t citrix .
-</code></pre>
-<h3 id="install-the-new-image">Install the new image</h3>
+<h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
-<p>Replace localhost by your own server ip address</p>
+<p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">docker inspect citrix &gt; citrix.json
-curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @citrix.json
+<pre><code class="language-sh">ABCHOST=localhost
+curl --output citrix.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d.3.0.json
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @citrix.json
+
 </code></pre>
-<h2 id="generated-dockerfile-source-code">Generated DockerFile source code</h2>
+<h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
 <pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
@@ -3848,6 +3863,28 @@ RUN rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shad
 RUN rm -f /etc/gshadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
 USER balloon
 CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
+
+</code></pre>
+<h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
+<h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d">Dockerfile for application citrix</a></p>
+<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d
+</code></pre>
+<h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
+<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f citrix.d -t citrix .
+</code></pre>
+<h3 id="install-the-new-image">Install the new image</h3>
+<blockquote>
+<p>If you are using <code>containerd</code> as container runtime, use the ctr command line
+If you are not running this bash command on your abcdesktop node
+Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
+</blockquote>
+<pre><code class="language-sh">ABCHOST=localhost
+docker inspect citrix &gt; citrix.json
+docker image save citrix -o citrix.tar
+ctr -n k8s.io images import citrix.tar
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @citrix.json
+
 </code></pre>
 
 

@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.1">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.3bd4f189.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
@@ -3649,23 +3649,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rebuild-the-image" class="md-nav__link">
-    Rebuild the image
+  <a href="#install-the-builded-image" class="md-nav__link">
+    Install the builded image
   </a>
   
-    <nav class="md-nav" aria-label="Rebuild the image">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generated-dockerfile-source-code" class="md-nav__link">
+    Generated DockerFile source code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-the-image-manually" class="md-nav__link">
+    Rebuild the image manually
+  </a>
+  
+    <nav class="md-nav" aria-label="Rebuild the image manually">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#download-the-dockerfile" class="md-nav__link">
-    Download the Dockerfile
+  <a href="#download-the-dockerfile-manually" class="md-nav__link">
+    Download the Dockerfile manually
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#build-this-dockerfile-to-create-a-container-image" class="md-nav__link">
-    build this Dockerfile to create a container image
+  <a href="#build-the-dockerfile-to-create-a-container-image" class="md-nav__link">
+    build the Dockerfile to create a container image
   </a>
   
 </li>
@@ -3679,13 +3693,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#generated-dockerfile-source-code" class="md-nav__link">
-    Generated DockerFile source code
-  </a>
   
 </li>
       
@@ -3714,24 +3721,27 @@
 <p><a href="../abcdesktopio/oc.template.alpine.gtk.md">abcdesktopio/oc.template.alpine.gtk</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>alpine <img alt="alpine" src="../icons/alpine.svg" style="height:32px;" /></p>
+<pre><code>3.17.0
+
+</code></pre>
 <h2 id="alpine-packages">Alpine packages</h2>
 <pre><code>wireshark
 </code></pre>
 <h2 id="displayname">Displayname</h2>
-<pre><code>&quot;wireshark (alpine)&quot;
+<pre><code>wireshark (alpine)
 </code></pre>
 <h2 id="path">Path</h2>
-<pre><code>&quot;/usr/bin/wireshark&quot;
+<pre><code>/usr/bin/wireshark
 </code></pre>
 <h2 id="mimetype">Mimetype</h2>
 <pre><code>application/vnd.tcpdump.pcap;application/x-pcapng;application/x-snoop;application/x-iptrace;application/x-lanalyzer;application/x-nettl;application/x-radcom;application/x-etherpeek;application/x-visualnetworks;application/x-netinstobserver;application/x-5view;application/x-tektronix-rf5;
 </code></pre>
 <h2 id="file-extensions">File extensions</h2>
-<p>"cap,pcap"</p>
+<p><code>"cap,pcap"</code></p>
 <h2 id="legacy-file-extensions">Legacy file extensions</h2>
-<p>"cap"</p>
+<p><code>"cap"</code></p>
 <h2 id="acl">ACL</h2>
-<pre><code>{
+<pre><code class="language-json">{
     &quot;permit&quot;: [
         &quot;all&quot;
     ]
@@ -3787,22 +3797,16 @@ to get the WM_CLASS property of an application, use the command line <code>wmctr
     &quot;legacyfileextensions&quot;: &quot;cap&quot;
 }
 </code></pre>
-<h2 id="rebuild-the-image">Rebuild the image</h2>
-<h3 id="download-the-dockerfile">Download the Dockerfile</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/wireshark.d">Dockerfile for application wireshark</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/wireshark.d
-</code></pre>
-<h3 id="build-this-dockerfile-to-create-a-container-image">build this <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f wireshark.d -t wireshark .
-</code></pre>
-<h3 id="install-the-new-image">Install the new image</h3>
+<h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
-<p>Replace localhost by your own server ip address</p>
+<p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">docker inspect wireshark &gt; wireshark.json
-curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @wireshark.json
+<pre><code class="language-sh">ABCHOST=localhost
+curl --output wireshark.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/wireshark.d.3.0.json
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @wireshark.json
+
 </code></pre>
-<h2 id="generated-dockerfile-source-code">Generated DockerFile source code</h2>
+<h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
 <pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
@@ -3814,7 +3818,7 @@ LABEL oc.icon=&quot;wireshark.svg&quot;
 LABEL oc.icondata=&quot;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgo8c3ZnCiAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgeG1sbnM6Y2M9Imh0dHA6Ly93ZWIucmVzb3VyY2Uub3JnL2NjLyIKICAgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB3aWR0aD0iOTkuOTk2MzYxIgogICBoZWlnaHQ9Ijk5Ljg0MTkyNyIKICAgaWQ9InN2ZzEzMTUiCiAgIHNvZGlwb2RpOnZlcnNpb249IjAuMzIiCiAgIGlua3NjYXBlOnZlcnNpb249IjAuNDQiCiAgIHNvZGlwb2RpOmRvY25hbWU9IndzaWNvbi5zdmciCiAgIGlua3NjYXBlOmV4cG9ydC14ZHBpPSIyMzAuNDEiCiAgIGlua3NjYXBlOmV4cG9ydC15ZHBpPSIyMzAuNDEiCiAgIHZlcnNpb249IjEuMCI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEzMTciPgogICAgPGxpbmVhckdyYWRpZW50CiAgICAgICBpZD0ibGluZWFyR3JhZGllbnQzOTUzIj4KICAgICAgPHN0b3AKICAgICAgICAgaWQ9InN0b3AzOTU1IgogICAgICAgICBvZmZzZXQ9IjAiCiAgICAgICAgIHN0eWxlPSJzdG9wLWNvbG9yOiNkOGQ4ZDg7c3RvcC1vcGFjaXR5OjAuODE5NjcyMTEiIC8+CiAgICAgIDxzdG9wCiAgICAgICAgIGlkPSJzdG9wMzk1NyIKICAgICAgICAgb2Zmc2V0PSIxLjAwMDAwMDAiCiAgICAgICAgIHN0eWxlPSJzdG9wLWNvbG9yOiNmZmZmZmY7c3RvcC1vcGFjaXR5OjAuMDEwOTI4OTYiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50CiAgICAgICBpZD0ibGluZWFyR3JhZGllbnQzNTAwIj4KICAgICAgPHN0b3AKICAgICAgICAgc3R5bGU9InN0b3AtY29sb3I6I2ZmZmZmZjtzdG9wLW9wYWNpdHk6MC43NDIyNjgwMzsiCiAgICAgICAgIG9mZnNldD0iMC4wMDAwMDAwIgogICAgICAgICBpZD0ic3RvcDM1MDIiIC8+CiAgICAgIDxzdG9wCiAgICAgICAgIHN0eWxlPSJzdG9wLWNvbG9yOiNmZmZmZmY7c3RvcC1vcGFjaXR5OjAuMjc4MzUwNTA7IgogICAgICAgICBvZmZzZXQ9IjEuMDAwMDAwMCIKICAgICAgICAgaWQ9InN0b3AzNTA0IiAvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgaWQ9ImxpbmVhckdyYWRpZW50MjAzMiI+CiAgICAgIDxzdG9wCiAgICAgICAgIHN0eWxlPSJzdG9wLWNvbG9yOiM0MGIyZTc7c3RvcC1vcGFjaXR5OjEuMDAwMDAwMDsiCiAgICAgICAgIG9mZnNldD0iMC4wMDAwMDAwIgogICAgICAgICBpZD0ic3RvcDIwMzQiIC8+CiAgICAgIDxzdG9wCiAgICAgICAgIGlkPSJzdG9wMjA0MCIKICAgICAgICAgb2Zmc2V0PSIxIgogICAgICAgICBzdHlsZT0ic3RvcC1jb2xvcjojMTY3OWE3O3N0b3Atb3BhY2l0eTowLjkzODE0NDMzOyIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8cmFkaWFsR3JhZGllbnQKICAgICAgIGlua3NjYXBlOmNvbGxlY3Q9ImFsd2F5cyIKICAgICAgIHhsaW5rOmhyZWY9IiNsaW5lYXJHcmFkaWVudDIwMzIiCiAgICAgICBpZD0icmFkaWFsR3JhZGllbnQyNzcwIgogICAgICAgY3g9IjE4Ni44Njg1IgogICAgICAgY3k9IjMxOS42MjQ2OSIKICAgICAgIGZ4PSIxODYuODY4NSIKICAgICAgIGZ5PSIzMTkuNjI0NjkiCiAgICAgICByPSI0OS45OTgxOCIKICAgICAgIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMC45OTg0NTYsMCwwLjUwMTI1NCkiCiAgICAgICBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgLz4KICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgaW5rc2NhcGU6Y29sbGVjdD0iYWx3YXlzIgogICAgICAgeGxpbms6aHJlZj0iI2xpbmVhckdyYWRpZW50MzUwMCIKICAgICAgIGlkPSJsaW5lYXJHcmFkaWVudDM1MDYiCiAgICAgICB4MT0iMTY4Ljg4NDkzIgogICAgICAgeTE9IjI4My4zNjIxOCIKICAgICAgIHgyPSIxNzMuNjM4ODQiCiAgICAgICB5Mj0iMzE3LjQzODIzIgogICAgICAgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiCiAgICAgICBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDEuMDIzNjg0LDAsMCwxLC00LjM4Njg5MiwtMSkiIC8+CiAgICA8bGluZWFyR3JhZGllbnQKICAgICAgIGlua3NjYXBlOmNvbGxlY3Q9ImFsd2F5cyIKICAgICAgIHhsaW5rOmhyZWY9IiNsaW5lYXJHcmFkaWVudDM5NTMiCiAgICAgICBpZD0ibGluZWFyR3JhZGllbnQzOTUxIgogICAgICAgeDE9IjE3MS40ODYzNiIKICAgICAgIHkxPSIyNzguNzUxMTMiCiAgICAgICB4Mj0iMTcxLjY5NjgyIgogICAgICAgeTI9IjI4Ni41Mzc3MiIKICAgICAgIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIgogICAgICAgZ3JhZGllbnRUcmFuc2Zvcm09Im1hdHJpeCgxLjAwNDcwNSwwLDAsMS4zMDc3MDksLTAuNjc4MDc5LC04NS43MzMxNSkiIC8+CiAgICA8bGluZWFyR3JhZGllbnQKICAgICAgIGlua3NjYXBlOmNvbGxlY3Q9ImFsd2F5cyIKICAgICAgIHhsaW5rOmhyZWY9IiNsaW5lYXJHcmFkaWVudDM5NTMiCiAgICAgICBpZD0ibGluZWFyR3JhZGllbnQxMzMwIgogICAgICAgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiCiAgICAgICBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDEuMDA0NzA1LDAsMCwxLjMwNzcwOSwtMC42NzgwNzksLTg1LjczMzE1KSIKICAgICAgIHgxPSIxNzEuNDg2MzYiCiAgICAgICB5MT0iMjc4Ljc1MTEzIgogICAgICAgeDI9IjE3Mi4wNjg2MiIKICAgICAgIHkyPSIyODkuODcwMjQiIC8+CiAgPC9kZWZzPgogIDxzb2RpcG9kaTpuYW1lZHZpZXcKICAgICBpZD0iYmFzZSIKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiCiAgICAgYm9yZGVyY29sb3I9IiM2NjY2NjYiCiAgICAgYm9yZGVyb3BhY2l0eT0iMS4wIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTp6b29tPSIyLjAwNzgyMjUiCiAgICAgaW5rc2NhcGU6Y3g9IjE2OS4yNzkzNCIKICAgICBpbmtzY2FwZTpjeT0iMzUuNDY0NTg0IgogICAgIGlua3NjYXBlOmRvY3VtZW50LXVuaXRzPSJweCIKICAgICBpbmtzY2FwZTpjdXJyZW50LWxheWVyPSJsYXllcjEiCiAgICAgc2hvd2dyaWQ9InRydWUiCiAgICAgc2hvd2d1aWRlcz0idHJ1ZSIKICAgICBpbmtzY2FwZTpncmlkLXBvaW50cz0idHJ1ZSIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9Ijg5MyIKICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSI3MzMiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9IjgzIgogICAgIGlua3NjYXBlOndpbmRvdy15PSItMTMiIC8+CiAgPG1ldGFkYXRhCiAgICAgaWQ9Im1ldGFkYXRhMTMyMCI+CiAgICA8cmRmOlJERj4KICAgICAgPGNjOldvcmsKICAgICAgICAgcmRmOmFib3V0PSIiPgogICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PgogICAgICAgIDxkYzp0eXBlCiAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz4KICAgICAgPC9jYzpXb3JrPgogICAgPC9yZGY6UkRGPgogIDwvbWV0YWRhdGE+CiAgPGcKICAgICBpbmtzY2FwZTpsYWJlbD0iTGF5ZXIgMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlkPSJsYXllcjEiCiAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEzMy44NzY4LC0yNzQuNjQxOCkiPgogICAgPHJlY3QKICAgICAgIHN0eWxlPSJvcGFjaXR5OjE7ZmlsbDp1cmwoI3JhZGlhbEdyYWRpZW50Mjc3MCk7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOmJsYWNrO3N0cm9rZS13aWR0aDo0LjU1Mzk5OTk7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lO3N0cm9rZS1vcGFjaXR5OjEiCiAgICAgICBpZD0icmVjdDU4MTEiCiAgICAgICB3aWR0aD0iOTUuNDQyMzYiCiAgICAgICBoZWlnaHQ9Ijk1LjI4NzkyNiIKICAgICAgIHg9IjEzNi4xNTM4MiIKICAgICAgIHk9IjI3Ni45MTg3OSIKICAgICAgIHJ4PSIxMCIKICAgICAgIHJ5PSIxMCIKICAgICAgIGlua3NjYXBlOmV4cG9ydC1maWxlbmFtZT0iL2hvbWUvZ2VyYWxkL2RldmVsL3dzd2ViL2ltYWdlL3dzaWNvbjI1Ni5wbmciCiAgICAgICBpbmtzY2FwZTpleHBvcnQteGRwaT0iMjMwLjQxIgogICAgICAgaW5rc2NhcGU6ZXhwb3J0LXlkcGk9IjIzMC40MSIgLz4KICAgIDxwYXRoCiAgICAgICBzdHlsZT0iZmlsbDpub25lO2ZpbGwtb3BhY2l0eTowLjc1O2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTpibGFjaztzdHJva2Utd2lkdGg6NC4yOTcyMzY5MjtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDo0O3N0cm9rZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIgogICAgICAgZD0iTSAxMzYuODgwNDUsMzQ3LjM2MjE4IEwgMTYwLjg4MDQ1LDM0Ny4zNjIxOCBDIDE2MC44ODA0NSwzNDcuMzYyMTggMTY0LjY2MzY1LDI5OS4xNzQ0OSAyMDYuNzMxODMsMjk4LjUxMDggQyAxOTMuMTYxNDYsMzE5Ljc0ODY4IDIwNS44ODA0NSwzNDcuMzYyMTggMjA1Ljg4MDQ1LDM0Ny4zNjIxOCBMIDIzMC44ODA0NSwzNDcuMzYyMTgiCiAgICAgICBpZD0icGF0aDEzMjgiCiAgICAgICBzb2RpcG9kaTpub2RldHlwZXM9ImNjY2NjIgogICAgICAgaW5rc2NhcGU6ZXhwb3J0LWZpbGVuYW1lPSIvaG9tZS9nZXJhbGQvZGV2ZWwvd3N3ZWIvaW1hZ2Uvd3NpY29uMjAwLnBuZyIKICAgICAgIGlua3NjYXBlOmV4cG9ydC14ZHBpPSIxODAuMDA5OTkiCiAgICAgICBpbmtzY2FwZTpleHBvcnQteWRwaT0iMTgwLjAwOTk5IiAvPgogICAgPHBhdGgKICAgICAgIHN0eWxlPSJmaWxsOnVybCgjbGluZWFyR3JhZGllbnQxMzMwKTtmaWxsLW9wYWNpdHk6MTtzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MDtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2Utb3BhY2l0eToxIgogICAgICAgZD0iTSAxNDEsMjc3LjM2MjE4IEMgMTQ4LjQzMzU4LDI3NS44NDQ2NSAyMTcuNDEwMjEsMjc1LjM2MjE4IDIyNiwyNzcuMzYyMTggQyAyMzQuMDMxMzksMjc5LjIzMjE2IDIwNCwzMDUuMzYyMTggMTg0LDMwNS4zNjIxOCBDIDE2NCwzMDUuMzYyMTggMTMzLjQ1NzYzLDI3OC45MDE5MiAxNDEsMjc3LjM2MjE4IHogIgogICAgICAgaWQ9InJlY3QzMDcwIgogICAgICAgc29kaXBvZGk6bm9kZXR5cGVzPSJjenp6IiAvPgogICAgPHJlY3QKICAgICAgIHN0eWxlPSJvcGFjaXR5OjE7ZmlsbDp3aGl0ZTtmaWxsLW9wYWNpdHk6MC4wMTA5Mjg5NDtzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MDtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmU7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgIGlkPSJyZWN0NTcwNSIKICAgICAgIHdpZHRoPSIxIgogICAgICAgaGVpZ2h0PSIwIgogICAgICAgeD0iMTU3IgogICAgICAgeT0iMjg1LjM2MjE4IgogICAgICAgcng9IjguOTQ5NjkzNyIKICAgICAgIHJ5PSIwIiAvPgogIDwvZz4KPC9zdmc+Cg==&quot;
 LABEL oc.keyword=&quot;wireshark,capture,network,analyzer&quot;
 LABEL oc.cat=&quot;utilities&quot;
-LABEL oc.desktopfile=&quot;wireshark.desktop&quot;
+LABEL oc.desktopfile=&quot;org.wireshark.Wireshark.desktop&quot;
 LABEL oc.launch=&quot;wireshark.Wireshark&quot;
 LABEL oc.template=&quot;abcdesktopio/oc.template.alpine.gtk&quot;
 LABEL oc.name=&quot;wireshark&quot;
@@ -3839,6 +3843,28 @@ RUN rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shad
 RUN rm -f /etc/gshadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
 USER balloon
 CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
+
+</code></pre>
+<h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
+<h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/wireshark.d">Dockerfile for application wireshark</a></p>
+<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/wireshark.d
+</code></pre>
+<h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
+<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f wireshark.d -t wireshark .
+</code></pre>
+<h3 id="install-the-new-image">Install the new image</h3>
+<blockquote>
+<p>If you are using <code>containerd</code> as container runtime, use the ctr command line
+If you are not running this bash command on your abcdesktop node
+Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
+</blockquote>
+<pre><code class="language-sh">ABCHOST=localhost
+docker inspect wireshark &gt; wireshark.json
+docker image save wireshark -o wireshark.tar
+ctr -n k8s.io images import wireshark.tar
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @wireshark.json
+
 </code></pre>
 
 

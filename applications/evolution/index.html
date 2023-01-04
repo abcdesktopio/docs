@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.1">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.3bd4f189.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
@@ -3628,23 +3628,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rebuild-the-image" class="md-nav__link">
-    Rebuild the image
+  <a href="#install-the-builded-image" class="md-nav__link">
+    Install the builded image
   </a>
   
-    <nav class="md-nav" aria-label="Rebuild the image">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generated-dockerfile-source-code" class="md-nav__link">
+    Generated DockerFile source code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-the-image-manually" class="md-nav__link">
+    Rebuild the image manually
+  </a>
+  
+    <nav class="md-nav" aria-label="Rebuild the image manually">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#download-the-dockerfile" class="md-nav__link">
-    Download the Dockerfile
+  <a href="#download-the-dockerfile-manually" class="md-nav__link">
+    Download the Dockerfile manually
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#build-this-dockerfile-to-create-a-container-image" class="md-nav__link">
-    build this Dockerfile to create a container image
+  <a href="#build-the-dockerfile-to-create-a-container-image" class="md-nav__link">
+    build the Dockerfile to create a container image
   </a>
   
 </li>
@@ -3658,13 +3672,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#generated-dockerfile-source-code" class="md-nav__link">
-    Generated DockerFile source code
-  </a>
   
 </li>
       
@@ -3693,20 +3700,26 @@
 <p><a href="../abcdesktopio/oc.template.ubuntu.minimal.22.04.md">abcdesktopio/oc.template.ubuntu.minimal.22.04</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>ubuntu <img alt="ubuntu" src="../icons/ubuntu.svg" style="height:32px;" /></p>
+<pre><code>DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=22.04
+DISTRIB_CODENAME=jammy
+DISTRIB_DESCRIPTION=&quot;Ubuntu 22.04.1 LTS&quot;
+
+</code></pre>
 <h2 id="ubuntu-packages">Ubuntu packages</h2>
 <pre><code>evolution dbus-x11
 </code></pre>
 <h2 id="displayname">Displayname</h2>
-<pre><code>&quot;Evolution&quot;
+<pre><code>Evolution
 </code></pre>
 <h2 id="path">Path</h2>
-<pre><code>&quot;/usr/bin/evolution&quot;
+<pre><code>/usr/bin/evolution
 </code></pre>
 <h2 id="mimetype">Mimetype</h2>
 <pre><code>text/calendar;text/x-vcard;text/directory;application/mbox;message/rfc822;x-scheme-handler/mailto;
 </code></pre>
 <h2 id="acl">ACL</h2>
-<pre><code>{
+<pre><code class="language-json">{
     &quot;permit&quot;: [
         &quot;all&quot;
     ]
@@ -3751,22 +3764,16 @@ to get the WM_CLASS property of an application, use the command line <code>wmctr
     &quot;desktopfile&quot;: &quot;/usr/share/applications/org.gnome.Evolution.desktop&quot;
 }
 </code></pre>
-<h2 id="rebuild-the-image">Rebuild the image</h2>
-<h3 id="download-the-dockerfile">Download the Dockerfile</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/evolution.d">Dockerfile for application evolution</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/evolution.d
-</code></pre>
-<h3 id="build-this-dockerfile-to-create-a-container-image">build this <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f evolution.d -t evolution .
-</code></pre>
-<h3 id="install-the-new-image">Install the new image</h3>
+<h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
-<p>Replace localhost by your own server ip address</p>
+<p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">docker inspect evolution &gt; evolution.json
-curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @evolution.json
+<pre><code class="language-sh">ABCHOST=localhost
+curl --output evolution.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/evolution.d.3.0.json
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @evolution.json
+
 </code></pre>
-<h2 id="generated-dockerfile-source-code">Generated DockerFile source code</h2>
+<h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
 <pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
@@ -3778,7 +3785,7 @@ LABEL oc.icon=&quot;evolution.svg&quot;
 LABEL oc.icondata=&quot;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4Ij4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzlhYTI5YSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNiNWJlYjUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImIiIGN4PSI2LjcwMyIgY3k9IjczLjYxNiIgcj0iNy4yMjgiIGdyYWRpZW50VHJhbnNmb3JtPSJzY2FsZSgxLjkwMjIgLjUyNTcpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iaSIgeDE9IjguNzgiIHgyPSI5Ljc2MiIgeTE9IjM3Ljc4NSIgeTI9IjMyLjIwMyIgZ3JhZGllbnRUcmFuc2Zvcm09Im1hdHJpeCgyLjM5NDkgMCAwIC43ODEwNiAyLjg4IC4zNDMpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1vcGFjaXR5PSIuMTI5Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJoIiB4MT0iMTEuMjMzIiB4Mj0iMjEuMTEyIiB5MT0iMTMuNjg2IiB5Mj0iMjQuMTMzIiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDEuMzcwOSAwIDAgMS40NDM4IDIuNDMxIC0uMTQpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlZGVkZWQiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSI4LjkxNiIgeDI9IjkuODg2IiB5MT0iMzcuMTk3IiB5Mj0iNTIuMDkxIiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDIuNDU0OCAwIDAgLjc2MiAyLjg4IC4zNDMpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeGxpbms6aHJlZj0iI2EiLz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZiIgeDE9IjEwLjE4NCIgeDI9IjE1LjMxMSIgeTE9IjE1LjE0OCIgeTI9IjI5LjU2OSIgZ3JhZGllbnRUcmFuc2Zvcm09Im1hdHJpeCgxLjgxOTMgMCAwIDEuMDI4MiAyLjg4IC4zNDMpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNkY2RjZGMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImUiIHgxPSI1LjgyNyIgeDI9IjEzLjQ2NyIgeTE9IjcuMjMxIiB5Mj0iMTcuODc3IiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDEuNTcwNiAwIDAgMS4xOTEgMi44OCAuMzQzKSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlZGVkZWQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYzhjOGM4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJjIiB4MT0iMTEuNTczIiB4Mj0iMTguNDc1IiB5MT0iNC43NDYiIHkyPSIyNi4wMjMiIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoMS4zNDM1IDAgMCAxLjQxNzkgMi44OCAuMzE1KSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZTJlMmUyIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJkIiB4MT0iMi4wNjIiIHgyPSIzMC42IiB5MT0iMTUuMjU3IiB5Mj0iMTUuMjU3IiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDEuMzQzNSAwIDAgMS40MTc5IDIuODggLjMxNSkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjOTg5NjkwIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzY1NjQ2MCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHBhdGggZmlsbD0idXJsKCNiKSIgZD0iTTI2LjUgMzguN2ExMy43NSAzLjggMCAxIDEtMjcuNSAwIDEzLjc1IDMuOCAwIDEgMSAyNy41IDB6IiBjb2xvcj0iIzAwMCIgb3BhY2l0eT0iLjQ1NiIgdHJhbnNmb3JtPSJtYXRyaXgoMS44MDA2IDAgMCAxLjk3NDggMS4wODQgLTM4LjAxMykiLz4KICA8cGF0aCBmaWxsPSJ1cmwoI2MpIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0idXJsKCNkKSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIuODU3IiBkPSJNNi4zMzMgMTYuOTcydjI0LjUxaDM2Ljk3M2wtLjA2Mi0yNC4zOTJjLS4wMDMtMS4zNzgtMTEuODQ4LTE0LjY3OC0xNC4wMzMtMTQuNjc4SDIwLjY2Yy0yLjI5NyAwLTE0LjMyNiAxMy4yNjItMTQuMzI2IDE0LjU2eiIvPgogIDxwYXRoIGZpbGw9InVybCgjZSkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTYuOTIzIDE2Ljc4N2MtLjM5OC0uNDMgMTEuODg3LTEzLjY5NCAxMy43NDQtMTMuNjk0aDguMzc2YzEuNzQ3IDAgMTQuMDM3IDEzLjEyOCAxMy40MjcgMTMuODg2TDMxLjYxIDMwLjQ3NGwtMTIuMzE1LS4zMTgtMTIuMzcyLTEzLjM3eiIvPgogIDxwYXRoIGZpbGwtb3BhY2l0eT0iLjE0NiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMTkuMDc4IDMwLjAxOGwtNy4zMzMtOC43NDYgMjQuODE4LTYuOTM2IDMuMDI5IDYuMjE2LTcuNDE2IDkuNDQiLz4KICA8cGF0aCBmaWxsLW9wYWNpdHk9Ii4xNDYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTE4LjI5MiAyOS44MzZsLTcuNDgzLTguODEgMjQuNjQ4LTYuODkzIDMuMTc0IDYuMjcxLTcuMjQxIDkuNDA3Ii8+CiAgPHBhdGggZmlsbC1vcGFjaXR5PSIuMTQ2IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xOC43NzUgMjkuOTU3bC03LjY3NS04LjY2IDI0Ljk2OC03LjA2NSAzLjI4NiA2LjU5My03LjQ4IDkuMTA3Ii8+CiAgPHBhdGggZmlsbD0idXJsKCNmKSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMTguNTk0IDMwLjQ0MWwtNy4zMzMtOC43NDYgMjQuNzEyLTYuODk0IDMuMTEgNi4zODgtNy4xMiA4Ljk4NiIvPgogIDxwYXRoIGZpbGw9InVybCgjZykiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTIwLjQ4OCAyOS4wNjRMNy4wOTIgNDAuMDM2bDEzLjkwOS05LjYwNGg5LjAxOGwxMi40MiA5LjQ4Mi0xMS44NjQtMTAuODVIMjAuNDg4eiIvPgogIDxwYXRoIGZpbGw9InVybCgjZykiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTYuOTYzIDE2Ljg4NUwxOC40OCAzMS4yMDFsMS4wNjgtLjg1NEw2Ljk2NCAxNi44ODV6IiBjb2xvcj0iIzAwMCIvPgogIDxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0idXJsKCNoKSIgc3Ryb2tlLXdpZHRoPSIuODU3IiBkPSJNNy4zMDggMTcuMTMxbC4wMyAyMy4yMTFoMzQuOTQ2bC0uMDYzLTIzLjA4NGMtLjAwMi0uNzUtMTEuMjE2LTEzLjc5OS0xMy4zODQtMTMuNzk5aC03Ljg5NWMtMi4yNTMgMC0xMy42MzUgMTIuODkyLTEzLjYzNCAxMy42NzJ6Ii8+CiAgPHBhdGggZmlsbD0iI2ZmZiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMjAuOTU3IDMwLjQ1M0w5LjAxNiAzOC43MjRsMi4yMTkuMDA2IDkuOTk4LTYuODY5IDguODIyLTEuNDIzLTkuMDk4LjAxNXptLTkuNTI5LTguNzgzbDEuMzI0IDEuNDExIDIyLjc5MS02Ljg4NCAyLjkxNSA1LjY4Mi42MTQtLjcxMi0zLjA2OS02LjM3OC0yNC41NzUgNi44ODF6Ii8+CiAgPHBhdGggZmlsbD0idXJsKCNpKSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMTMuMzA4IDIzLjYzNmw2LjAyNiA2LjQ1NCAxLjE5Ny0xLjAyNiAxMC4wODcuMDQzLjgxMi43MjcgMy45NzUtNC43NDRjLTEuMTU0LTEuNDExLTIyLjA5Ny0xLjQ1NC0yMi4wOTctMS40NTR6Ii8+CiAgPHBhdGggZmlsbD0iI2IxYjFiMSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNDEuODEzIDE3Ljg0OGwtOS45NTIgMTIuNjMxLTEuMDY4LS44NTUgMTEuMDItMTEuNzc2eiIgY29sb3I9IiMwMDAiLz4KPC9zdmc+Cg==&quot;
 LABEL oc.keyword=&quot;evolution,evolution,mail&quot;
 LABEL oc.cat=&quot;office&quot;
-LABEL oc.desktopfile=&quot;evolution.desktop&quot;
+LABEL oc.desktopfile=&quot;org.gnome.Evolution.desktop&quot;
 LABEL oc.launch=&quot;evolution.Evolution&quot;
 LABEL oc.template=&quot;abcdesktopio/oc.template.ubuntu.minimal.22.04&quot;
 LABEL oc.name=&quot;evolution&quot;
@@ -3801,6 +3808,28 @@ RUN rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shad
 RUN rm -f /etc/gshadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
 USER balloon
 CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
+
+</code></pre>
+<h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
+<h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/evolution.d">Dockerfile for application evolution</a></p>
+<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/evolution.d
+</code></pre>
+<h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
+<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f evolution.d -t evolution .
+</code></pre>
+<h3 id="install-the-new-image">Install the new image</h3>
+<blockquote>
+<p>If you are using <code>containerd</code> as container runtime, use the ctr command line
+If you are not running this bash command on your abcdesktop node
+Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
+</blockquote>
+<pre><code class="language-sh">ABCHOST=localhost
+docker inspect evolution &gt; evolution.json
+docker image save evolution -o evolution.tar
+ctr -n k8s.io images import evolution.tar
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @evolution.json
+
 </code></pre>
 
 

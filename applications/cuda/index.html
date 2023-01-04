@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.1">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.3bd4f189.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
@@ -3635,23 +3635,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rebuild-the-image" class="md-nav__link">
-    Rebuild the image
+  <a href="#install-the-builded-image" class="md-nav__link">
+    Install the builded image
   </a>
   
-    <nav class="md-nav" aria-label="Rebuild the image">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generated-dockerfile-source-code" class="md-nav__link">
+    Generated DockerFile source code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-the-image-manually" class="md-nav__link">
+    Rebuild the image manually
+  </a>
+  
+    <nav class="md-nav" aria-label="Rebuild the image manually">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#download-the-dockerfile" class="md-nav__link">
-    Download the Dockerfile
+  <a href="#download-the-dockerfile-manually" class="md-nav__link">
+    Download the Dockerfile manually
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#build-this-dockerfile-to-create-a-container-image" class="md-nav__link">
-    build this Dockerfile to create a container image
+  <a href="#build-the-dockerfile-to-create-a-container-image" class="md-nav__link">
+    build the Dockerfile to create a container image
   </a>
   
 </li>
@@ -3665,13 +3679,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#generated-dockerfile-source-code" class="md-nav__link">
-    Generated DockerFile source code
-  </a>
   
 </li>
       
@@ -3700,16 +3707,22 @@
 <p><a href="../abcdesktopio/oc.template.ubuntu.nvidia.22.04.md">abcdesktopio/oc.template.ubuntu.nvidia.22.04</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>ubuntu <img alt="ubuntu" src="../icons/ubuntu.svg" style="height:32px;" /></p>
+<pre><code>DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=22.04
+DISTRIB_CODENAME=jammy
+DISTRIB_DESCRIPTION=&quot;Ubuntu 22.04.1 LTS&quot;
+
+</code></pre>
 <h2 id="ubuntu-packages">Ubuntu packages</h2>
 <pre><code>gnome-terminal dbus-x11 git
 </code></pre>
 <h2 id="arguments">Arguments</h2>
-<p>"--disable-factory  --class=cuda"</p>
+<p><code>"--disable-factory  --class=cuda"</code></p>
 <h2 id="path">Path</h2>
-<pre><code>&quot;/usr/bin/gnome-terminal&quot;
+<pre><code>/usr/bin/gnome-terminal
 </code></pre>
 <h2 id="acl">ACL</h2>
-<pre><code>{
+<pre><code class="language-json">{
     &quot;permit&quot;: [
         &quot;all&quot;
     ]
@@ -3737,8 +3750,7 @@ to get the WM_CLASS property of an application, use the command line <code>wmctr
 <blockquote>
 <p>POST run command are run <strong>after</strong> the package install comman</p>
 </blockquote>
-<pre><code>
-RUN mkdir -p /run/user
+<pre><code>RUN mkdir -p /run/user
 RUN chmod 777 /run/user
 </code></pre>
 <h2 id="json-dump">JSON dump</h2>
@@ -3772,22 +3784,16 @@ RUN chmod 777 /run/user
     ]
 }
 </code></pre>
-<h2 id="rebuild-the-image">Rebuild the image</h2>
-<h3 id="download-the-dockerfile">Download the Dockerfile</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cuda.d">Dockerfile for application cuda</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cuda.d
-</code></pre>
-<h3 id="build-this-dockerfile-to-create-a-container-image">build this <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f cuda.d -t cuda .
-</code></pre>
-<h3 id="install-the-new-image">Install the new image</h3>
+<h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
-<p>Replace localhost by your own server ip address</p>
+<p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">docker inspect cuda &gt; cuda.json
-curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @cuda.json
+<pre><code class="language-sh">ABCHOST=localhost
+curl --output cuda.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cuda.d.3.0.json
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @cuda.json
+
 </code></pre>
-<h2 id="generated-dockerfile-source-code">Generated DockerFile source code</h2>
+<h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
 <pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
@@ -3799,7 +3805,7 @@ LABEL oc.icon=&quot;nvidia.svg&quot;
 LABEL oc.icondata=&quot;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9InN2ZzIiIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQoJIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMzUxLjQ2cHgiDQoJIGhlaWdodD0iMjU4Ljc4NXB4IiB2aWV3Qm94PSIzNS4xODggMzEuNTEyIDM1MS40NiAyNTguNzg1IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDM1LjE4OCAzMS41MTIgMzUxLjQ2IDI1OC43ODUiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHRpdGxlICBpZD0idGl0bGU0Ij5nZW5lcmF0ZWQgYnkgcHN0b2VkaXQgdmVyc2lvbjozLjQ0IGZyb20gTlZCYWRnZV8yRC5lcHM8L3RpdGxlPg0KPHBhdGggaWQ9InBhdGgxNyIgZD0iTTM4NC4xOTUsMjgyLjEwOWMwLDMuNzcxLTIuNzY5LDYuMzAyLTYuMDQ3LDYuMzAydi0wLjAyM2MtMy4zNzEsMC4wMjMtNi4wODktMi41MDgtNi4wODktNi4yNzgNCgljMC0zLjc2OSwyLjcxOC02LjI5Myw2LjA4OS02LjI5M0MzODEuNDI3LDI3NS44MTYsMzg0LjE5NSwyNzguMzQsMzg0LjE5NSwyODIuMTA5eiBNMzg2LjY0OCwyODIuMTA5YzAtNS4xNzUtNC4wMi04LjE3OS04LjUtOC4xNzkNCgljLTQuNTExLDAtOC41MzEsMy4wMDQtOC41MzEsOC4xNzljMCw1LjE3Miw0LjAyMSw4LjE4OCw4LjUzMSw4LjE4OEMzODIuNjI5LDI5MC4yOTcsMzg2LjY0OCwyODcuMjgxLDM4Ni42NDgsMjgyLjEwOQ0KCSBNMzc2LjczOCwyODIuODAxaDAuOTFsMi4xMDksMy43MDNoMi4zMTZsLTIuMzM2LTMuODU5YzEuMjA3LTAuMDg2LDIuMi0wLjY2MSwyLjItMi4yODZjMC0yLjAxOS0xLjM5Mi0yLjY2OC0zLjc1LTIuNjY4aC0zLjQxMQ0KCXY4LjgxM2gxLjk2MVYyODIuODAxIE0zNzYuNzM4LDI4MS4zMDl2LTIuMTIyaDEuMzY0YzAuNzQyLDAsMS43NTMsMC4wNiwxLjc1MywwLjk2NWMwLDAuOTg1LTAuNTIzLDEuMTU3LTEuMzk4LDEuMTU3SDM3Ni43MzgiLz4NCjxwYXRoIGlkPSJwYXRoMTkiIGQ9Ik0zMjkuNDA2LDIzNy4wMjdsMTAuNTk4LDI4Ljk5M0gzMTguNDhMMzI5LjQwNiwyMzcuMDI3eiBNMzE4LjA1NiwyMjUuNzM4bC0yNC40MjMsNjEuODhoMTcuMjQ2bDMuODYzLTEwLjkzNA0KCWgyOC45MDNsMy42NTYsMTAuOTM0aDE4LjcyMmwtMjQuNjA1LTYxLjg4OEwzMTguMDU2LDIyNS43Mzh6IE0yNjkuMDIzLDI4Ny42NDFoMTcuNDk3di02MS45MjJsLTE3LjUtMC4wMDRMMjY5LjAyMywyODcuNjQxeg0KCSBNMTQ3LjU1NiwyMjUuNzE1bC0xNC41OTgsNDkuMDc4bC0xMy45ODQtNDkuMDc0bC0xOC44NzktMC4wMDRsMTkuOTcyLDYxLjkyNmgyNS4yMDdsMjAuMTMzLTYxLjkyNkgxNDcuNTU2eiBNMjE4LjI4MSwyMzkuMTk5aDcuNTINCgljMTAuOTEsMCwxNy45NjYsNC44OTgsMTcuOTY2LDE3LjYwOWMwLDEyLjcxNC03LjA1NiwxNy42MTMtMTcuOTY2LDE3LjYxM2gtNy41MlYyMzkuMTk5eiBNMjAwLjkzMSwyMjUuNzE1djYxLjkyNmgyOC4zNjYNCgljMTUuMTEzLDAsMjAuMDQ4LTIuNTEyLDI1LjM4NC04LjE0OGMzLjc2OS0zLjk1Nyw2LjIwNy0xMi42NDEsNi4yMDctMjIuMTM0YzAtOC43MDctMi4wNjMtMTYuNDY4LTUuNjYtMjEuMzA0DQoJYy02LjQ4MS04LjY0OS0xNS44MTctMTAuMzQtMjkuNzUtMTAuMzRIMjAwLjkzMXogTTM1LjE4OCwyMjUuNjI5djYyLjAxMmgxNy42NDV2LTQ3LjA4NmwxMy42NzIsMC4wMDQNCgljNC41MjcsMCw3Ljc1NCwxLjEyOCw5LjkzNCwzLjQ1N2MyLjc2NSwyLjk0NSwzLjg5NCw3LjY5OSwzLjg5NCwxNi4zOTV2MjcuMjNoMTcuMDk4di0zNC4yNjJjMC0yNC40NTMtMTUuNTg2LTI3Ljc1LTMwLjgzNi0yNy43NQ0KCUgzNS4xODh6IE0xNzIuNzcxLDIyNS43MTVsMC4wMDcsNjEuOTI2aDE3LjQ4OXYtNjEuOTI2SDE3Mi43NzF6Ii8+DQo8cGF0aCBpZD0icGF0aDIxIiBmaWxsPSIjNzdCOTAwIiBkPSJNODIuMjExLDEwMi40MTRjMCwwLDIyLjUwNC0zMy4yMDMsNjcuNDM3LTM2LjYzOFY1My43Mw0KCWMtNDkuNzY5LDMuOTk3LTkyLjg2Nyw0Ni4xNDktOTIuODY3LDQ2LjE0OXMyNC40MSw3MC41NjUsOTIuODY3LDc3LjAyNnYtMTIuODA0Qzk5LjQxMSwxNTcuNzgxLDgyLjIxMSwxMDIuNDE0LDgyLjIxMSwxMDIuNDE0eg0KCSBNMTQ5LjY0OCwxMzguNjM3djExLjcyNmMtMzcuOTY4LTYuNzY5LTQ4LjUwNy00Ni4yMzctNDguNTA3LTQ2LjIzN3MxOC4yMy0yMC4xOTUsNDguNTA3LTIzLjQ3djEyLjg2Nw0KCWMtMC4wMjMsMC0wLjAzOS0wLjAwNy0wLjA1OC0wLjAwN2MtMTUuODkxLTEuOTA3LTI4LjMwNSwxMi45MzgtMjguMzA1LDEyLjkzOFMxMjguMjQzLDEzMS40NDUsMTQ5LjY0OCwxMzguNjM3IE0xNDkuNjQ4LDMxLjUxMg0KCVY1My43M2MxLjQ2MS0wLjExMiwyLjkyMi0wLjIwNyw0LjM5MS0wLjI1N2M1Ni41ODItMS45MDcsOTMuNDQ5LDQ2LjQwNiw5My40NDksNDYuNDA2cy00Mi4zNDMsNTEuNDg4LTg2LjQ1Nyw1MS40ODgNCgljLTQuMDQzLDAtNy44MjgtMC4zNzUtMTEuMzgzLTEuMDA1djEzLjczOWMzLjA0LDAuMzg2LDYuMTkyLDAuNjEzLDkuNDgxLDAuNjEzYzQxLjA1MSwwLDcwLjczOC0yMC45NjUsOTkuNDg0LTQ1Ljc3OA0KCWM0Ljc2NiwzLjgxNywyNC4yNzgsMTMuMTAzLDI4LjI4OSwxNy4xNjhjLTI3LjMzMiwyMi44ODMtOTEuMDMxLDQxLjMyOS0xMjcuMTQ0LDQxLjMyOWMtMy40ODEsMC02LjgyNC0wLjIxMS0xMC4xMS0wLjUyOHYxOS4zMDYNCgloMTU2LjAzMlYzMS41MTJIMTQ5LjY0OHogTTE0OS42NDgsODAuNjU2VjY1Ljc3N2MxLjQ0Ni0wLjEwMSwyLjkwMy0wLjE3OSw0LjM5MS0wLjIyNmM0MC42ODgtMS4yNzgsNjcuMzgyLDM0Ljk2NSw2Ny4zODIsMzQuOTY1DQoJcy0yOC44MzIsNDAuMDQzLTU5Ljc0Niw0MC4wNDNjLTQuNDQ5LDAtOC40MzgtMC43MTUtMTIuMDI4LTEuOTIyVjkzLjUyM2MxNS44NCwxLjkxNCwxOS4wMjgsOC45MTEsMjguNTUxLDI0Ljc4NmwyMS4xOC0xNy44NTkNCgljMCwwLTE1LjQ2MS0yMC4yNzctNDEuNTI0LTIwLjI3N0MxNTUuMDIxLDgwLjE3MiwxNTIuMzEsODAuMzcxLDE0OS42NDgsODAuNjU2Ii8+DQo8L3N2Zz4NCg==&quot;
 LABEL oc.keyword=&quot;cuda,cuda nvidia&quot;
 LABEL oc.cat=&quot;development&quot;
-LABEL oc.desktopfile=&quot;gnome-terminal.desktop&quot;
+LABEL oc.desktopfile=&quot;org.gnome.Terminal.desktop&quot;
 LABEL oc.launch=&quot;gnome-terminal-server.cuda&quot;
 LABEL oc.template=&quot;abcdesktopio/oc.template.ubuntu.nvidia.22.04&quot;
 ENV ARGS=&quot;--disable-factory  --class=cuda&quot;
@@ -3825,6 +3831,28 @@ RUN rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shad
 RUN rm -f /etc/gshadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
 USER balloon
 CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
+
+</code></pre>
+<h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
+<h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cuda.d">Dockerfile for application cuda</a></p>
+<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/cuda.d
+</code></pre>
+<h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
+<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f cuda.d -t cuda .
+</code></pre>
+<h3 id="install-the-new-image">Install the new image</h3>
+<blockquote>
+<p>If you are using <code>containerd</code> as container runtime, use the ctr command line
+If you are not running this bash command on your abcdesktop node
+Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
+</blockquote>
+<pre><code class="language-sh">ABCHOST=localhost
+docker inspect cuda &gt; cuda.json
+docker image save cuda -o cuda.tar
+ctr -n k8s.io images import cuda.tar
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @cuda.json
+
 </code></pre>
 
 
