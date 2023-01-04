@@ -3683,9 +3683,23 @@
 <h1 id="mines">Mines</h1>
 <p><img alt="circle_gnome-mines.svg" src="../icons/circle_gnome-mines.svg" style="height:64px;width:64px" /></p>
 <h2 id="inherite-from">inherite from</h2>
-<p><a href="../abcdesktopio/oc.template.alpine.md">abcdesktopio/oc.template.alpine</a></p>
+<p><a href="../abcdesktopio/oc.template.alpine">abcdesktopio/oc.template.alpine</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>alpine <img alt="alpine" src="../icons/alpine.svg" style="height:32px;" /></p>
+<pre><code>PRETTY_NAME=&quot;Ubuntu 22.04.1 LTS&quot;
+NAME=&quot;Ubuntu&quot;
+VERSION_ID=&quot;22.04&quot;
+VERSION=&quot;22.04.1 LTS (Jammy Jellyfish)&quot;
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL=&quot;https://www.ubuntu.com/&quot;
+SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
+BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
+PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
+UBUNTU_CODENAME=jammy
+
+</code></pre>
 <h2 id="alpine-packages">Alpine packages</h2>
 <pre><code>gnome-mines
 </code></pre>
@@ -3785,8 +3799,8 @@ CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
 </code></pre>
 <h3 id="install-the-new-image">Install the new image</h3>
 <blockquote>
-<p>If you are using <code>containerd</code> as container runtime, use the ctr command line
-If you are not running this bash command on your abcdesktop node
+<p>If you are using <code>containerd</code> as container runtime, use the ctr command line</p>
+<p>If you are not running this bash command on your abcdesktop node
 Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
 </blockquote>
 <pre><code class="language-sh">ABCHOST=localhost

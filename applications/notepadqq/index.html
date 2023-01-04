@@ -3690,13 +3690,21 @@
 <h1 id="notepadqq">notepadqq</h1>
 <p><img alt="notepadqq.svg" src="../icons/notepadqq.svg" style="height:64px;width:64px" /></p>
 <h2 id="inherite-from">inherite from</h2>
-<p><a href="../abcdesktopio/oc.template.ubuntu.gtk.language-pack-all.md">abcdesktopio/oc.template.ubuntu.gtk.language-pack-all</a></p>
+<p><a href="../abcdesktopio/oc.template.ubuntu.gtk.language-pack-all">abcdesktopio/oc.template.ubuntu.gtk.language-pack-all</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>ubuntu <img alt="ubuntu" src="../icons/ubuntu.svg" style="height:32px;" /></p>
-<pre><code>DISTRIB_ID=Ubuntu
-DISTRIB_RELEASE=20.04
-DISTRIB_CODENAME=focal
-DISTRIB_DESCRIPTION=&quot;Ubuntu 20.04.5 LTS&quot;
+<pre><code>NAME=&quot;Ubuntu&quot;
+VERSION=&quot;20.04.5 LTS (Focal Fossa)&quot;
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME=&quot;Ubuntu 20.04.5 LTS&quot;
+VERSION_ID=&quot;20.04&quot;
+HOME_URL=&quot;https://www.ubuntu.com/&quot;
+SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
+BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
+PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
 
 </code></pre>
 <h2 id="ubuntu-packages">Ubuntu packages</h2>
@@ -3815,8 +3823,8 @@ CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
 </code></pre>
 <h3 id="install-the-new-image">Install the new image</h3>
 <blockquote>
-<p>If you are using <code>containerd</code> as container runtime, use the ctr command line
-If you are not running this bash command on your abcdesktop node
+<p>If you are using <code>containerd</code> as container runtime, use the ctr command line</p>
+<p>If you are not running this bash command on your abcdesktop node
 Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
 </blockquote>
 <pre><code class="language-sh">ABCHOST=localhost

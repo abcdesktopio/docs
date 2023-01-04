@@ -3704,9 +3704,17 @@
 <h1 id="gedit">Gedit</h1>
 <p><img alt="gedit.svg" src="../icons/gedit.svg" style="height:64px;width:64px" /></p>
 <h2 id="inherite-from">inherite from</h2>
-<p><a href="../abcdesktopio/oc.template.alpine.md">abcdesktopio/oc.template.alpine</a></p>
+<p><a href="../abcdesktopio/oc.template.alpine">abcdesktopio/oc.template.alpine</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>alpine <img alt="alpine" src="../icons/alpine.svg" style="height:32px;" /></p>
+<pre><code>NAME=&quot;Alpine Linux&quot;
+ID=alpine
+VERSION_ID=3.17.0
+PRETTY_NAME=&quot;Alpine Linux v3.17&quot;
+HOME_URL=&quot;https://alpinelinux.org/&quot;
+BUG_REPORT_URL=&quot;https://gitlab.alpinelinux.org/alpine/aports/-/issues&quot;
+
+</code></pre>
 <h2 id="alpine-packages">Alpine packages</h2>
 <pre><code>gedit
 </code></pre>
@@ -3825,8 +3833,8 @@ CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
 </code></pre>
 <h3 id="install-the-new-image">Install the new image</h3>
 <blockquote>
-<p>If you are using <code>containerd</code> as container runtime, use the ctr command line
-If you are not running this bash command on your abcdesktop node
+<p>If you are using <code>containerd</code> as container runtime, use the ctr command line</p>
+<p>If you are not running this bash command on your abcdesktop node
 Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
 </blockquote>
 <pre><code class="language-sh">ABCHOST=localhost
