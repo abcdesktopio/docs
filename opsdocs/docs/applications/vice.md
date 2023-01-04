@@ -1,7 +1,7 @@
 # vice
 ![c64.svg](icons/c64.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.ubuntu.gtk.18.04](../abcdesktopio/oc.template.ubuntu.gtk.18.04.md)
+[abcdesktopio/oc.template.ubuntu.gtk.18.04](../abcdesktopio/oc.template.ubuntu.gtk.18.04)
 ## Displayname
 
 
@@ -175,8 +175,11 @@ docker build --build-arg TAG=3.0 -f vice.d -t vice .
 
 ### Install the new image
 >If you are using `containerd` as container runtime, use the ctr command line
+
+ 
 >If you are not running this bash command on your abcdesktop node
 >Replace the **ABCHOST** variable set to localhost by default to your own server ip address
+
 
 ``` sh
 ABCHOST=localhost

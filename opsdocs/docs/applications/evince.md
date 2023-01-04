@@ -1,9 +1,27 @@
 # Evince
 ![circle_acroread.svg](icons/circle_acroread.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.ubuntu.gtk.language-pack-all](../abcdesktopio/oc.template.ubuntu.gtk.language-pack-all.md)
+[abcdesktopio/oc.template.ubuntu.gtk.language-pack-all](../abcdesktopio/oc.template.ubuntu.gtk.language-pack-all)
 ## Distribution
 ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
+
+``` 
+NAME="Ubuntu"
+VERSION="20.04.5 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.5 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+
+```
+
+
 ## Ubuntu packages
 
 ``` 
@@ -155,8 +173,11 @@ docker build --build-arg TAG=3.0 -f Evince.d -t Evince .
 
 ### Install the new image
 >If you are using `containerd` as container runtime, use the ctr command line
+
+ 
 >If you are not running this bash command on your abcdesktop node
 >Replace the **ABCHOST** variable set to localhost by default to your own server ip address
+
 
 ``` sh
 ABCHOST=localhost

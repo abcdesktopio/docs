@@ -1,7 +1,7 @@
 # vmmacos
 ![MacOS_logo.svg](icons/MacOS_logo.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktop/docker-osx](../abcdesktop/docker-osx.md)
+[abcdesktop/docker-osx](../abcdesktop/docker-osx)
 ## ACL
 
 ``` json
@@ -134,8 +134,11 @@ docker build --build-arg TAG=3.0 -f vmmacos.d -t vmmacos .
 
 ### Install the new image
 >If you are using `containerd` as container runtime, use the ctr command line
+
+ 
 >If you are not running this bash command on your abcdesktop node
 >Replace the **ABCHOST** variable set to localhost by default to your own server ip address
+
 
 ``` sh
 ABCHOST=localhost

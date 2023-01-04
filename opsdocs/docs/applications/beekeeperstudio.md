@@ -1,7 +1,7 @@
 # beekeeperstudio
 ![beekeeper-studio.svg](icons/beekeeper-studio.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.ubuntu.gtk](../abcdesktopio/oc.template.ubuntu.gtk.md)
+[abcdesktopio/oc.template.ubuntu.gtk](../abcdesktopio/oc.template.ubuntu.gtk)
 ## Arguments
 `"--no-sandbox"`
 ## Displayname
@@ -187,8 +187,11 @@ docker build --build-arg TAG=3.0 -f beekeeperstudio.d -t beekeeperstudio .
 
 ### Install the new image
 >If you are using `containerd` as container runtime, use the ctr command line
+
+ 
 >If you are not running this bash command on your abcdesktop node
 >Replace the **ABCHOST** variable set to localhost by default to your own server ip address
+
 
 ``` sh
 ABCHOST=localhost

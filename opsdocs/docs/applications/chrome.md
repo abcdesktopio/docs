@@ -1,15 +1,23 @@
 # chrome
 ![circle_google-chrome.svg](icons/circle_google-chrome.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04.md)
+[abcdesktopio/oc.template.ubuntu.minimal.22.04](../abcdesktopio/oc.template.ubuntu.minimal.22.04)
 ## Distribution
 ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 
 ``` 
-DISTRIB_ID=Ubuntu
-DISTRIB_RELEASE=22.04
-DISTRIB_CODENAME=jammy
-DISTRIB_DESCRIPTION="Ubuntu 22.04.1 LTS"
+PRETTY_NAME="Ubuntu 22.04.1 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.1 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
 
 ```
 
@@ -194,8 +202,11 @@ docker build --build-arg TAG=3.0 -f chrome.d -t chrome .
 
 ### Install the new image
 >If you are using `containerd` as container runtime, use the ctr command line
+
+ 
 >If you are not running this bash command on your abcdesktop node
 >Replace the **ABCHOST** variable set to localhost by default to your own server ip address
+
 
 ``` sh
 ABCHOST=localhost

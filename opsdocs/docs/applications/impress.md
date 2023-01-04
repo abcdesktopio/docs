@@ -1,12 +1,17 @@
 # impress
 ![circle_libreoffice_impress.svg](icons/circle_libreoffice_impress.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.alpine.libreoffice](../abcdesktopio/oc.template.alpine.libreoffice.md)
+[abcdesktopio/oc.template.alpine.libreoffice](../abcdesktopio/oc.template.alpine.libreoffice)
 ## Distribution
 alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 
 ``` 
-3.17.0
+NAME="Alpine Linux"
+ID=alpine
+VERSION_ID=3.17.0
+PRETTY_NAME="Alpine Linux v3.17"
+HOME_URL="https://alpinelinux.org/"
+BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
 
 ```
 
@@ -183,8 +188,11 @@ docker build --build-arg TAG=3.0 -f impress.d -t impress .
 
 ### Install the new image
 >If you are using `containerd` as container runtime, use the ctr command line
+
+ 
 >If you are not running this bash command on your abcdesktop node
 >Replace the **ABCHOST** variable set to localhost by default to your own server ip address
+
 
 ``` sh
 ABCHOST=localhost

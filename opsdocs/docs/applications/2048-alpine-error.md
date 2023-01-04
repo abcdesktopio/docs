@@ -1,12 +1,17 @@
 # 2048-alpine-error
 ![circle_2048.svg](icons/circle_2048.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.template.alpine.gtk](../abcdesktopio/oc.template.alpine.gtk.md)
+[abcdesktopio/oc.template.alpine.gtk](../abcdesktopio/oc.template.alpine.gtk)
 ## Distribution
 alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 
 ``` 
-3.17.0
+NAME="Alpine Linux"
+ID=alpine
+VERSION_ID=3.17.0
+PRETTY_NAME="Alpine Linux v3.17"
+HOME_URL="https://alpinelinux.org/"
+BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
 
 ```
 
@@ -154,8 +159,11 @@ docker build --build-arg TAG=3.0 -f 2048-alpine-error.d -t 2048-alpine-error .
 
 ### Install the new image
 >If you are using `containerd` as container runtime, use the ctr command line
+
+ 
 >If you are not running this bash command on your abcdesktop node
 >Replace the **ABCHOST** variable set to localhost by default to your own server ip address
+
 
 ``` sh
 ABCHOST=localhost

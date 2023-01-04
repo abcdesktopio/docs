@@ -1,7 +1,7 @@
 # vmubuntu
 ![vm-linux-ubuntu.svg](icons/vm-linux-ubuntu.svg){: style="height:64px;width:64px"}
 ## inherite from
-[abcdesktopio/oc.vm.ubuntu:22.04](../abcdesktopio/oc.vm.ubuntu:22.04.md)
+[abcdesktopio/oc.vm.ubuntu:22.04](../abcdesktopio/oc.vm.ubuntu:22.04)
 ## ACL
 
 ``` json
@@ -116,8 +116,11 @@ docker build --build-arg TAG=3.0 -f vmubuntu.d -t vmubuntu .
 
 ### Install the new image
 >If you are using `containerd` as container runtime, use the ctr command line
+
+ 
 >If you are not running this bash command on your abcdesktop node
 >Replace the **ABCHOST** variable set to localhost by default to your own server ip address
+
 
 ``` sh
 ABCHOST=localhost
