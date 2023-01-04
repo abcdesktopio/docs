@@ -3659,9 +3659,9 @@
 <p>Save your local <code>od.config</code> file.</p>
 <p>To apply changes, you can replace the <code>abcdesktop-config</code></p>
 <pre><code>kubectl delete configmap abcdesktop-config -n abcdesktop
-kubectl create --from-file=od.config -n abcdesktop
+kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 </code></pre>
-<p>| you can also use the replace command <code>kubectl create configmap -n abcdesktop abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -</code></p>
+<p>| you can also use the replace command <code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -</code></p>
 <p>Restart pyos daemonset</p>
 <pre><code>kubectl rollout restart daemonset daemonset-pyos -n abcdesktop
 </code></pre>

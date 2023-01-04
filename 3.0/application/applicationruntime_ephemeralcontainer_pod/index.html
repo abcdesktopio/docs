@@ -1936,6 +1936,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#troubleshooting-chromium-application" class="md-nav__link">
+    Troubleshooting chromium application
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#troubleshooting-cannot-open-display-or-could-not-connect-to-display-error" class="md-nav__link">
     Troubleshooting cannot open display or could not connect to display error
   </a>
@@ -4090,6 +4097,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#troubleshooting-chromium-application" class="md-nav__link">
+    Troubleshooting chromium application
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#troubleshooting-cannot-open-display-or-could-not-connect-to-display-error" class="md-nav__link">
     Troubleshooting cannot open display or could not connect to display error
   </a>
@@ -4329,6 +4343,17 @@ backtrace from your debugger if you break on the gdk_x_error() function.)
 <blockquote>
 <p>Note your can also use <code>QT_XCB_NO_MITSHM</code> value to <code>1</code> </p>
 </blockquote>
+<h3 id="troubleshooting-chromium-application">Troubleshooting <code>chromium</code> application</h3>
+<p>For <code>chromium</code> application disabled <code>shm-usage</code> with the parameters
+<code>--disable-dev-shm-usage</code></p>
+<ul>
+<li>
+<p><code>disable-dev-shm-usage</code> get more informations about the <a href="https://rstudio.github.io/chromote/reference/default_chrome_args.html#:~:text=%22%2D%2Ddisable%2Ddev%2Dshm,Chrome%20to%20fail%20or%20crash"> dev shm usage </a> and all <a href="https://peter.sh/experiments/chromium-command-line-switches/">chromium parameters</a></p>
+</li>
+<li>
+<p><code>no-sandbox</code>: get more informations about the <a href="https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/design/sandbox.md">no-sandbox</a> parameters.</p>
+</li>
+</ul>
 <h3 id="troubleshooting-cannot-open-display-or-could-not-connect-to-display-error">Troubleshooting <code>cannot open display</code> or <code>could not connect to display</code> error</h3>
 <p>When you start an application the log file write <code>cannot open display</code> error</p>
 <pre><code>kubectl logs hermes-app-2048-ubuntu-c7360cd025d04813ad5e0af74b6df4ba  -n abcdesktop 
