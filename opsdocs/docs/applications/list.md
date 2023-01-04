@@ -13,7 +13,6 @@ This array describe the application list ready to use with abcdesktop.
 |![circle_bless.svg](icons/circle_bless.svg){: style="height:32px;width:32px"}|Bless|Edit binary files|[bless.md](../bless)|[bless.d.3.0.json](../bless.d.3.0.json)|
 |![blobby.svg](icons/blobby.svg){: style="height:32px;width:32px"}|blobby|no description found|[blobby.md](../blobby)|[blobby.d.3.0.json](../blobby.d.3.0.json)|
 |![circle_brackets.svg](icons/circle_brackets.svg){: style="height:32px;width:32px"}|Brackets|no description found|[brackets.md](../brackets)|[brackets.d.3.0.json](../brackets.d.3.0.json)|
-|![circle_libreoffice_calc.svg](icons/circle_libreoffice_calc.svg){: style="height:32px;width:32px"}|Calc|Perform calculations, analyze information and manage lists in spreadsheets by using Calc.|[calc.md](../calc)|[calc.d.3.0.json](../calc.d.3.0.json)|
 |![circle_calculator.svg](icons/circle_calculator.svg){: style="height:32px;width:32px"}|Calculator|no description found|[calculator.md](../calculator)|[calculator.d.3.0.json](../calculator.d.3.0.json)|
 |![circle_chess.svg](icons/circle_chess.svg){: style="height:32px;width:32px"}|chess|Play the classic two-player board game of chess|[chess.md](../chess)|[chess.d.3.0.json](../chess.d.3.0.json)|
 |![circle_google-chrome.svg](icons/circle_google-chrome.svg){: style="height:32px;width:32px"}|Chrome|Access the Internet|[chrome.md](../chrome)|[chrome.d.3.0.json](../chrome.d.3.0.json)|
@@ -113,6 +112,7 @@ This array describe the application list ready to use with abcdesktop.
 |![winscp.svg](icons/winscp.svg){: style="height:32px;width:32px"}|WinSCP|no description found|[winscp-wine.md](../winscp-wine)|[winscp-wine.d.3.0.json](../winscp-wine.d.3.0.json)|
 |![wireshark.svg](icons/wireshark.svg){: style="height:32px;width:32px"}|wireshark (alpine)|Network traffic analyzer|[wireshark.md](../wireshark)|[wireshark.d.3.0.json](../wireshark.d.3.0.json)|
 |![circle_libreoffice_writer.svg](icons/circle_libreoffice_writer.svg){: style="height:32px;width:32px"}|Writer alpine|Create and edit text and graphics in letters, reports, documents and Web pages by using Writer.|[writer.md](../writer)|[writer.d.3.0.json](../writer.d.3.0.json)|
+|![xclock.svg](icons/xclock.svg){: style="height:32px;width:32px"}|Xclock|no description found|[xclock.md](../xclock)|[xclock.d.3.0.json](../xclock.d.3.0.json)|
 |![circle_xedit.svg](icons/circle_xedit.svg){: style="height:32px;width:32px"}|Xedit|no description found|[xedit.md](../xedit)|[xedit.d.3.0.json](../xedit.d.3.0.json)|
 |![circle_xfce4-eyes.svg](icons/circle_xfce4-eyes.svg){: style="height:32px;width:32px"}|xeyes|no description found|[xeyes.md](../xeyes)|[xeyes.d.3.0.json](../xeyes.d.3.0.json)|
 |![circle_xorg.svg](icons/circle_xorg.svg){: style="height:32px;width:32px"}|Xman|no description found|[xman.md](../xman)|[xman.d.3.0.json](../xman.d.3.0.json)|
