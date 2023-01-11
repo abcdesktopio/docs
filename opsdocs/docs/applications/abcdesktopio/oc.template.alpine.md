@@ -7,7 +7,7 @@
 ``` 
 NAME="Alpine Linux"
 ID=alpine
-VERSION_ID=3.17.0
+VERSION_ID=3.17.1
 PRETTY_NAME="Alpine Linux v3.17"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
@@ -38,8 +38,7 @@ RUN apk add  --no-cache --update  \
 	font-xfree86-type1 \
 	ttf-freefont \
 	font-ibm-type1 \
-	font-liberation \
-	font-sony-misc
+	font-liberation 
 
 ```
 
