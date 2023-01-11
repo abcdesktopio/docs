@@ -348,7 +348,18 @@ If you are running QT application, you can disable the [X11 MIT Shared Memory Ex
 QT_X11_NO_MITSHM=1 
 ```
 
+
 > Note your can also use `QT_XCB_NO_MITSHM` value to `1` 
+
+
+### Troubleshooting `chromium` application
+
+For `chromium` application disabled `shm-usage` with the parameters
+`--disable-dev-shm-usage`
+
+* `disable-dev-shm-usage` get more informations about the [ dev shm usage ](https://rstudio.github.io/chromote/reference/default_chrome_args.html#:~:text=%22%2D%2Ddisable%2Ddev%2Dshm,Chrome%20to%20fail%20or%20crash) and all [chromium parameters](https://peter.sh/experiments/chromium-command-line-switches/)
+
+* `no-sandbox`: get more informations about the [no-sandbox](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/design/sandbox.md) parameters.
 
 
 ### Troubleshooting `cannot open display` or `could not connect to display` error

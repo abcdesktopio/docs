@@ -26,11 +26,11 @@ To apply changes, you can replace the `abcdesktop-config`
 
 ```
 kubectl delete configmap abcdesktop-config -n abcdesktop
-kubectl create --from-file=od.config -n abcdesktop
+kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 ```
 
 
-| you can also use the replace command `kubectl create configmap -n abcdesktop abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f - `
+| you can also use the replace command `kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f - `
 
 
 
