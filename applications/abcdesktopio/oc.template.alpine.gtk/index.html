@@ -3649,7 +3649,7 @@
 <h2 id="container-distribution-release">Container distribution release</h2>
 <pre><code>NAME=&quot;Alpine Linux&quot;
 ID=alpine
-VERSION_ID=3.17.0
+VERSION_ID=3.17.1
 PRETTY_NAME=&quot;Alpine Linux v3.17&quot;
 HOME_URL=&quot;https://alpinelinux.org/&quot;
 BUG_REPORT_URL=&quot;https://gitlab.alpinelinux.org/alpine/aports/-/issues&quot;
@@ -3665,7 +3665,6 @@ FROM ${BASE_IMAGE}:${TAG}
 
 # add libreoffice
 RUN apk add --no-cache --update \
-    mesa-dri-gallium    \
     adwaita-icon-theme  \
     libadwaita
 
