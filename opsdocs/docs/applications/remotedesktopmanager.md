@@ -6,18 +6,18 @@
 ubuntu ![ubuntu](icons/ubuntu.svg){: style="height:32px;"}
 
 ``` 
-PRETTY_NAME="Ubuntu 22.04.1 LTS"
 NAME="Ubuntu"
-VERSION_ID="22.04"
-VERSION="22.04.1 LTS (Jammy Jellyfish)"
-VERSION_CODENAME=jammy
+VERSION="20.04.5 LTS (Focal Fossa)"
 ID=ubuntu
 ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.5 LTS"
+VERSION_ID="20.04"
 HOME_URL="https://www.ubuntu.com/"
 SUPPORT_URL="https://help.ubuntu.com/"
 BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
 PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-UBUNTU_CODENAME=jammy
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
 
 ```
 
@@ -85,7 +85,7 @@ COPY composer/init.d/init.RemoteDesktopManager.Free /composer/init.d/init.Remote
 
 
 ## JSON dump
-json source file
+json source file remotedesktopmanager.d.3.0.json 
 
 ``` json
 {
@@ -119,8 +119,8 @@ json source file
 
 ``` sh
 ABCHOST=localhost
-curl --output remotedesktopmanager.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/remotedesktopmanager.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @remotedesktopmanager.json
+curl --output remotedesktopmanager.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/remotedesktopmanager.d.3.0.json
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @remotedesktopmanager.d.3.0.json
 
 ```
 
@@ -150,17 +150,13 @@ LABEL oc.path="/bin/remotedesktopmanager.free"
 LABEL oc.type=app
 LABEL oc.licence="non-free"
 LABEL oc.acl="{\"permit\":[\"all\"]}"
-RUN  if [ -d /usr/share/icons ]   && [ -x /composer/safelinks.sh ] && [ -d /usr/share/icons   ];  then cd /usr/share/icons;    /composer/safelinks.sh; fi 
-RUN  if [ -d /usr/share/pixmaps ] && [ -x /composer/safelinks.sh ] && [ -d /usr/share/pixmaps ];  then cd /usr/share/pixmaps;  /composer/safelinks.sh; fi 
+RUN for d in /usr/share/icons /usr/share/pixmaps ; do echo "testing link in $d"; if [ -d $d ] && [ -x /composer/safelinks.sh ] ; then echo "fixing link in $d"; cd $d ; /composer/safelinks.sh ; fi; done
 ENV APPNAME "remotedesktopmanager"
 ENV APPBIN "/bin/remotedesktopmanager.free"
 ENV APP "/bin/remotedesktopmanager.free"
 USER root
-RUN mkdir -p /var/secrets/abcdesktop/localaccount && cp /etc/passwd /etc/group /etc/shadow /var/secrets/abcdesktop/localaccount
-RUN rm -f /etc/passwd && ln -s /var/secrets/abcdesktop/localaccount/passwd /etc/passwd
-RUN rm -f /etc/group && ln -s /var/secrets/abcdesktop/localaccount/group  /etc/group
-RUN rm -f /etc/shadow && ln -s /var/secrets/abcdesktop/localaccount/shadow /etc/shadow
-RUN rm -f /etc/gshadow && ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
+RUN mkdir -p /var/secrets/abcdesktop/localaccount
+RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
 USER balloon
 CMD [ "/composer/appli-docker-entrypoint.sh" ]
 

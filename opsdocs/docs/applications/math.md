@@ -8,7 +8,7 @@ alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
 ``` 
 NAME="Alpine Linux"
 ID=alpine
-VERSION_ID=3.17.0
+VERSION_ID=3.17.1
 PRETTY_NAME="Alpine Linux v3.17"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
@@ -80,7 +80,7 @@ libreoffice.libreoffice-math
 
 
 ## JSON dump
-json source file
+json source file math.d.3.0.json 
 
 ``` json
 {
@@ -119,8 +119,8 @@ json source file
 
 ``` sh
 ABCHOST=localhost
-curl --output math.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/math.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @math.json
+curl --output math.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/math.d.3.0.json
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @math.d.3.0.json
 
 ```
 
@@ -151,19 +151,15 @@ LABEL oc.fileextensions="odf;odc"
 LABEL oc.legacyfileextensions="odf;odc"
 LABEL oc.rules="{\"homedir\":{\"default\":true}}"
 LABEL oc.acl="{\"permit\":[\"all\"]}"
-RUN  if [ -d /usr/share/icons ]   && [ -x /composer/safelinks.sh ] && [ -d /usr/share/icons   ];  then cd /usr/share/icons;    /composer/safelinks.sh; fi 
-RUN  if [ -d /usr/share/pixmaps ] && [ -x /composer/safelinks.sh ] && [ -d /usr/share/pixmaps ];  then cd /usr/share/pixmaps;  /composer/safelinks.sh; fi 
+RUN for d in /usr/share/icons /usr/share/pixmaps ; do echo "testing link in $d"; if [ -d $d ] && [ -x /composer/safelinks.sh ] ; then echo "fixing link in $d"; cd $d ; /composer/safelinks.sh ; fi; done
 ENV APPNAME "math"
 ENV APPBIN "/usr/lib/libreoffice/program/soffice"
 LABEL oc.args="--math"
 ENV APP "/usr/lib/libreoffice/program/soffice"
 LABEL oc.usedefaultapplication=true
 USER root
-RUN mkdir -p /var/secrets/abcdesktop/localaccount && cp /etc/passwd /etc/group /etc/shadow /var/secrets/abcdesktop/localaccount
-RUN rm -f /etc/passwd && ln -s /var/secrets/abcdesktop/localaccount/passwd /etc/passwd
-RUN rm -f /etc/group && ln -s /var/secrets/abcdesktop/localaccount/group  /etc/group
-RUN rm -f /etc/shadow && ln -s /var/secrets/abcdesktop/localaccount/shadow /etc/shadow
-RUN rm -f /etc/gshadow && ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
+RUN mkdir -p /var/secrets/abcdesktop/localaccount
+RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
 USER balloon
 CMD [ "/composer/appli-docker-entrypoint.sh" ]
 

@@ -65,7 +65,7 @@ blobby.blobby
 
 
 ## JSON dump
-json source file
+json source file blobby.d.3.0.json 
 
 ``` json
 {
@@ -84,6 +84,11 @@ json source file
     "path": "/usr/games/blobby",
     "template": "abcdesktopio/oc.template.ubuntu.minimal.22.04",
     "args": "",
+    "rules": {
+        "homedir": {
+            "default": true
+        }
+    },
     "desktopfile": "/usr/share/applications/blobby.desktop"
 }
 ```
@@ -93,8 +98,8 @@ json source file
 
 ``` sh
 ABCHOST=localhost
-curl --output blobby.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/blobby.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @blobby.json
+curl --output blobby.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/blobby.d.3.0.json
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @blobby.d.3.0.json
 
 ```
 
@@ -119,18 +124,15 @@ LABEL oc.name="blobby"
 LABEL oc.displayname="blobby"
 LABEL oc.path="/usr/games/blobby"
 LABEL oc.type=app
+LABEL oc.rules="{\"homedir\":{\"default\":true}}"
 LABEL oc.acl="{\"permit\":[\"all\"]}"
-RUN  if [ -d /usr/share/icons ]   && [ -x /composer/safelinks.sh ] && [ -d /usr/share/icons   ];  then cd /usr/share/icons;    /composer/safelinks.sh; fi 
-RUN  if [ -d /usr/share/pixmaps ] && [ -x /composer/safelinks.sh ] && [ -d /usr/share/pixmaps ];  then cd /usr/share/pixmaps;  /composer/safelinks.sh; fi 
+RUN for d in /usr/share/icons /usr/share/pixmaps ; do echo "testing link in $d"; if [ -d $d ] && [ -x /composer/safelinks.sh ] ; then echo "fixing link in $d"; cd $d ; /composer/safelinks.sh ; fi; done
 ENV APPNAME "blobby"
 ENV APPBIN "/usr/games/blobby"
 ENV APP "/usr/games/blobby"
 USER root
-RUN mkdir -p /var/secrets/abcdesktop/localaccount && cp /etc/passwd /etc/group /etc/shadow /var/secrets/abcdesktop/localaccount
-RUN rm -f /etc/passwd && ln -s /var/secrets/abcdesktop/localaccount/passwd /etc/passwd
-RUN rm -f /etc/group && ln -s /var/secrets/abcdesktop/localaccount/group  /etc/group
-RUN rm -f /etc/shadow && ln -s /var/secrets/abcdesktop/localaccount/shadow /etc/shadow
-RUN rm -f /etc/gshadow && ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
+RUN mkdir -p /var/secrets/abcdesktop/localaccount
+RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
 USER balloon
 CMD [ "/composer/appli-docker-entrypoint.sh" ]
 

@@ -24,7 +24,7 @@ qemu.Qemu-system-x86_64
 
 
 ## JSON dump
-json source file
+json source file vmubuntu.d.3.0.json 
 
 ``` json
 {
@@ -60,8 +60,8 @@ json source file
 
 ``` sh
 ABCHOST=localhost
-curl --output vmubuntu.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmubuntu.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @vmubuntu.json
+curl --output vmubuntu.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmubuntu.d.3.0.json
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @vmubuntu.d.3.0.json
 
 ```
 
@@ -85,16 +85,12 @@ LABEL oc.type=app
 LABEL oc.rules="{\"homedir\":{\"default\":true}}"
 LABEL oc.acl="{\"permit\":[\"all\"]}"
 LABEL oc.host_config="{\"devices\":[\"/dev/kvm\"],\"mem_limit\":\"16G\"}"
-RUN  if [ -d /usr/share/icons ]   && [ -x /composer/safelinks.sh ] && [ -d /usr/share/icons   ];  then cd /usr/share/icons;    /composer/safelinks.sh; fi 
-RUN  if [ -d /usr/share/pixmaps ] && [ -x /composer/safelinks.sh ] && [ -d /usr/share/pixmaps ];  then cd /usr/share/pixmaps;  /composer/safelinks.sh; fi 
+RUN for d in /usr/share/icons /usr/share/pixmaps ; do echo "testing link in $d"; if [ -d $d ] && [ -x /composer/safelinks.sh ] ; then echo "fixing link in $d"; cd $d ; /composer/safelinks.sh ; fi; done
 ENV APPNAME "vmubuntu"
 LABEL oc.home="/home/balloon"
 USER root
-RUN mkdir -p /var/secrets/abcdesktop/localaccount && cp /etc/passwd /etc/group /etc/shadow /var/secrets/abcdesktop/localaccount
-RUN rm -f /etc/passwd && ln -s /var/secrets/abcdesktop/localaccount/passwd /etc/passwd
-RUN rm -f /etc/group && ln -s /var/secrets/abcdesktop/localaccount/group  /etc/group
-RUN rm -f /etc/shadow && ln -s /var/secrets/abcdesktop/localaccount/shadow /etc/shadow
-RUN rm -f /etc/gshadow && ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
+RUN mkdir -p /var/secrets/abcdesktop/localaccount
+RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
 USER balloon
 CMD [ "/docker-entrypoint.sh" ]
 

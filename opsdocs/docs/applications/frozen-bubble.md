@@ -64,7 +64,7 @@ perl.perl
 
 
 ## JSON dump
-json source file
+json source file frozen-bubble.d.3.0.json 
 
 ``` json
 {
@@ -90,8 +90,8 @@ json source file
 
 ``` sh
 ABCHOST=localhost
-curl --output frozen-bubble.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/frozen-bubble.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @frozen-bubble.json
+curl --output frozen-bubble.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/frozen-bubble.d.3.0.json
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @frozen-bubble.d.3.0.json
 
 ```
 
@@ -116,17 +116,13 @@ LABEL oc.displayname="frozen-bubble"
 LABEL oc.path="/usr/games/frozen-bubble"
 LABEL oc.type=app
 LABEL oc.acl="{\"permit\":[\"all\"]}"
-RUN  if [ -d /usr/share/icons ]   && [ -x /composer/safelinks.sh ] && [ -d /usr/share/icons   ];  then cd /usr/share/icons;    /composer/safelinks.sh; fi 
-RUN  if [ -d /usr/share/pixmaps ] && [ -x /composer/safelinks.sh ] && [ -d /usr/share/pixmaps ];  then cd /usr/share/pixmaps;  /composer/safelinks.sh; fi 
+RUN for d in /usr/share/icons /usr/share/pixmaps ; do echo "testing link in $d"; if [ -d $d ] && [ -x /composer/safelinks.sh ] ; then echo "fixing link in $d"; cd $d ; /composer/safelinks.sh ; fi; done
 ENV APPNAME "frozen-bubble"
 ENV APPBIN "/usr/games/frozen-bubble"
 ENV APP "/usr/games/frozen-bubble"
 USER root
-RUN mkdir -p /var/secrets/abcdesktop/localaccount && cp /etc/passwd /etc/group /etc/shadow /var/secrets/abcdesktop/localaccount
-RUN rm -f /etc/passwd && ln -s /var/secrets/abcdesktop/localaccount/passwd /etc/passwd
-RUN rm -f /etc/group && ln -s /var/secrets/abcdesktop/localaccount/group  /etc/group
-RUN rm -f /etc/shadow && ln -s /var/secrets/abcdesktop/localaccount/shadow /etc/shadow
-RUN rm -f /etc/gshadow && ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
+RUN mkdir -p /var/secrets/abcdesktop/localaccount
+RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
 USER balloon
 CMD [ "/composer/appli-docker-entrypoint.sh" ]
 
