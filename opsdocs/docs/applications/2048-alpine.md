@@ -36,6 +36,8 @@ gnome-2048
 /usr/bin/gnome-2048
 ```
 
+## Showinview
+"dock"
 ## ACL
 
 ``` json
@@ -84,6 +86,7 @@ json source file 2048-alpine.d.3.0.json
     "name": "2048-alpine",
     "displayname": "2048 (alpine gtk)",
     "path": "/usr/bin/gnome-2048",
+    "showinview": "dock",
     "desktopfile": "/usr/share/applications/org.gnome.TwentyFortyEight.desktop",
     "template": "abcdesktopio/oc.template.alpine.gtk",
     "rules": {
@@ -130,6 +133,7 @@ LABEL oc.name="2048-alpine"
 LABEL oc.displayname="2048 (alpine gtk)"
 LABEL oc.path="/usr/bin/gnome-2048"
 LABEL oc.type=app
+LABEL oc.showinview="dock"
 LABEL oc.rules="{\"homedir\":{\"default\":true}}"
 LABEL oc.acl="{\"permit\":[\"all\"]}"
 LABEL oc.host_config="{\"mem_limit\":\"256M\",\"shm_size\":\"64M\",\"pid_mode\":false,\"network_mode\":\"none\"}"

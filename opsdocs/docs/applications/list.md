@@ -41,6 +41,7 @@ This array describe the application list ready to use with abcdesktop.
 |![flare.svg](icons/flare.svg){: style="height:32px;width:32px"}|flare|A single player, 2D-isometric, action Role-Playing Game|[flare.md](../flare)|[flare.d.3.0.json](../flare.d.3.0.json)|
 |![frozen-bubble.svg](icons/frozen-bubble.svg){: style="height:32px;width:32px"}|frozen-bubble|no comment|[frozen-bubble.md](../frozen-bubble)|[frozen-bubble.d.3.0.json](../frozen-bubble.d.3.0.json)|
 |![gcompris.svg](icons/gcompris.svg){: style="height:32px;width:32px"}|GCompris|no comment|[gcompris.md](../gcompris)|[gcompris.d.3.0.json](../gcompris.d.3.0.json)|
+|![geany.svg](icons/geany.svg){: style="height:32px;width:32px"}|Geany|A fast and lightweight IDE using GTK+|[geany.md](../geany)|[geany.d.3.0.json](../geany.d.3.0.json)|
 |![gedit.svg](icons/gedit.svg){: style="height:32px;width:32px"}|Gedit|no comment|[gedit.md](../gedit)|[gedit.d.3.0.json](../gedit.d.3.0.json)|
 |![gelemental.svg](icons/gelemental.svg){: style="height:32px;width:32px"}|gElemental|View the periodic table of elements|[gelemental.md](../gelemental)|[gelemental.d.3.0.json](../gelemental.d.3.0.json)|
 |![geogebra.svg](icons/geogebra.svg){: style="height:32px;width:32px"}|Geogebra|no comment|[geogebra.md](../geogebra)|[geogebra.d.3.0.json](../geogebra.d.3.0.json)|
