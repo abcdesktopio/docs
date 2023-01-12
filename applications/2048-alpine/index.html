@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.3">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.4">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6b71719e.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9c788c91.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
@@ -3639,6 +3639,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#showinview" class="md-nav__link">
+    Showinview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#acl" class="md-nav__link">
     ACL
   </a>
@@ -3756,6 +3763,8 @@ BUG_REPORT_URL=&quot;https://gitlab.alpinelinux.org/alpine/aports/-/issues&quot;
 <h2 id="path">Path</h2>
 <pre><code>/usr/bin/gnome-2048
 </code></pre>
+<h2 id="showinview">Showinview</h2>
+<p>"dock"</p>
 <h2 id="acl">ACL</h2>
 <pre><code class="language-json">{
     &quot;permit&quot;: [
@@ -3793,6 +3802,7 @@ to get the WM_CLASS property of an application, use the command line <code>wmctr
     &quot;name&quot;: &quot;2048-alpine&quot;,
     &quot;displayname&quot;: &quot;2048 (alpine gtk)&quot;,
     &quot;path&quot;: &quot;/usr/bin/gnome-2048&quot;,
+    &quot;showinview&quot;: &quot;dock&quot;,
     &quot;desktopfile&quot;: &quot;/usr/share/applications/org.gnome.TwentyFortyEight.desktop&quot;,
     &quot;template&quot;: &quot;abcdesktopio/oc.template.alpine.gtk&quot;,
     &quot;rules&quot;: {
@@ -3835,6 +3845,7 @@ LABEL oc.name=&quot;2048-alpine&quot;
 LABEL oc.displayname=&quot;2048 (alpine gtk)&quot;
 LABEL oc.path=&quot;/usr/bin/gnome-2048&quot;
 LABEL oc.type=app
+LABEL oc.showinview=&quot;dock&quot;
 LABEL oc.rules=&quot;{\&quot;homedir\&quot;:{\&quot;default\&quot;:true}}&quot;
 LABEL oc.acl=&quot;{\&quot;permit\&quot;:[\&quot;all\&quot;]}&quot;
 LABEL oc.host_config=&quot;{\&quot;mem_limit\&quot;:\&quot;256M\&quot;,\&quot;shm_size\&quot;:\&quot;64M\&quot;,\&quot;pid_mode\&quot;:false,\&quot;network_mode\&quot;:\&quot;none\&quot;}&quot;
