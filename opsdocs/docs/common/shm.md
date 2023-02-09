@@ -65,8 +65,8 @@ The string MemContents stored in the shared memory is : This is the way the worl
 
 To run the `System V` test
 
-```
-kubectl create -f podsysvshm.yaml 
+``` 
+kubectl create -f https://raw.githubusercontent.com/abcdesktopio/podshmtest/main/podsysvshm.yaml 
 pod/podsysvshmtest created
 ```
 
@@ -187,7 +187,7 @@ The string `MemContents` stored in the shared memory is : `This is the way the w
 To run the `POSIX` test
 
 ```
-kubectl create -f podposixshm.yaml 
+kubectl create -f https://raw.githubusercontent.com/abcdesktopio/podshmtest/main/podposixshm.yaml 
 pod/podposixshm created
 ```
 
@@ -219,22 +219,36 @@ On a pod, we can see that the default size of `/dev/shm` is 64MB, when running t
 ``` bash
 kubectl run -it --image alpine:edge shmtest -- sh
 If you don't see a command prompt, try pressing enter.
-/ # df /dev/shm
+```
+
+``` bash
+df /dev/shm
 Filesystem           1K-blocks      Used Available Use% Mounted on
 shm                      65536     65536         0 100% /dev/shm
 ``` 
 
 A `dd` command confirm this limit. it will throw an exception when it reaches 64MB: “No space left on device”.
 
+
+Run the `dd` command
+
+
 ``` bash
-/ # dd if=/dev/zero of=/dev/shm/test
+dd if=/dev/zero of=/dev/shm/test
 dd: error writing '/dev/shm/test': No space left on device
 131073+0 records in
 131072+0 records out
-/ # df /dev/shm
+```
+
+Run the `df /dev/shm` command
+
+```
+df /dev/shm
 Filesystem           1K-blocks      Used Available Use% Mounted on
 shm                      65536     65536         0 100% /dev/shm
 ```
+
+Delete the `shmtest` pod
 
 ``` bash
 kubectl delete pods shmtest
