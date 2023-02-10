@@ -3936,7 +3936,6 @@ spec:
       emptyDir: {}
   containers:
     - name: sender
-      imagePullPolicy: IfNotPresent
       image: abcdesktopio/ipctest
       command: [ &quot;/bin/sleep&quot;, &quot;1d&quot; ]
       volumeMounts:
@@ -3946,7 +3945,6 @@ spec:
       - name: FTOK_PATH
         value: &quot;/dummy&quot;
     - name: receiver
-      imagePullPolicy: IfNotPresent
       image: abcdesktopio/ipctest
       command: [ &quot;/bin/sleep&quot;, &quot;1d&quot; ]
       volumeMounts:
@@ -4081,7 +4079,7 @@ Learn how processes synchronize with each other in Linux</a>
   unlink(BackingFile);
 </code></pre>
 <p>To run the <code>POSIX</code> test</p>
-<pre><code>kubectl create -f https://raw.githubusercontent.com/abcdesktopio/podshmtest/main/podposixshm.yaml 
+<pre><code>kubectl create -f podposixshm.yaml 
 pod/podposixshm created
 </code></pre>
 <p>The <code>podposixshm</code> pod status must be <code>Completed</code></p>
