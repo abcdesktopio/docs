@@ -166,7 +166,6 @@ spec:
       emptyDir: {}
   containers:
     - name: sender
-      imagePullPolicy: IfNotPresent
       image: abcdesktopio/ipctest
       command: [ "/bin/sleep", "1d" ]
       volumeMounts:
@@ -176,7 +175,6 @@ spec:
       - name: FTOK_PATH
         value: "/dummy"
     - name: receiver
-      imagePullPolicy: IfNotPresent
       image: abcdesktopio/ipctest
       command: [ "/bin/sleep", "1d" ]
       volumeMounts:
@@ -335,7 +333,7 @@ The string `MemContents` stored in the shared memory is : `This is the way the w
 To run the `POSIX` test
 
 ```
-kubectl create -f https://raw.githubusercontent.com/abcdesktopio/podshmtest/main/podposixshm.yaml 
+kubectl create -f podposixshm.yaml 
 pod/podposixshm created
 ```
 
