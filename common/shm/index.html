@@ -15,7 +15,7 @@
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.12">
     
     
       
@@ -3622,6 +3622,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#install-the-bash-and-yaml-files" class="md-nav__link">
+    Install the bash and yaml files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#shared-memory" class="md-nav__link">
     Shared memory
   </a>
@@ -3632,6 +3639,20 @@
           <li class="md-nav__item">
   <a href="#system-v-shared-memory" class="md-nav__link">
     System V shared memory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-a-shared-memory-test-access-using-a-shared-path" class="md-nav__link">
+    Run a shared memory test access using a shared path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-a-shared-memory-test-access-without-shared-path" class="md-nav__link">
+    Run a shared memory test access without shared path
   </a>
   
 </li>
@@ -3711,6 +3732,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#install-the-bash-and-yaml-files" class="md-nav__link">
+    Install the bash and yaml files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#shared-memory" class="md-nav__link">
     Shared memory
   </a>
@@ -3721,6 +3749,20 @@
           <li class="md-nav__item">
   <a href="#system-v-shared-memory" class="md-nav__link">
     System V shared memory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-a-shared-memory-test-access-using-a-shared-path" class="md-nav__link">
+    Run a shared memory test access using a shared path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-a-shared-memory-test-access-without-shared-path" class="md-nav__link">
+    Run a shared memory test access without shared path
   </a>
   
 </li>
@@ -3771,7 +3813,10 @@
 
 
 <h1 id="ipc-and-pod">IPC and pod</h1>
-<p>Setting up the shared memory of a kubernetes Pod</p>
+<p>Does a pod can share memory between his container ?
+Does Posix shared memory work with containers ? 
+Does System V shared memory work with containers ? </p>
+<p>Let's have a look !</p>
 <p>There are two ways to use shared memory in Linux:  <code>System V</code> and  <code>POSIX</code>.</p>
 <ul>
 <li><code>shmget</code> / <code>shmat</code> / <code>shmdt</code> for the  <code>System V</code> method.</li>
@@ -3781,6 +3826,11 @@
 <ul>
 <li><code>kubectl</code> command-line tool must be configured to communicate with your cluster. </li>
 </ul>
+<h2 id="install-the-bash-and-yaml-files">Install the bash and yaml files</h2>
+<p>To install the bash and yaml files, run the command</p>
+<pre><code>git clone https://github.com/abcdesktopio/podshmtest.git
+cd podshmtest
+</code></pre>
 <h2 id="shared-memory">Shared memory</h2>
 <h3 id="system-v-shared-memory">System V shared memory</h3>
 <p>Goal: Test <code>System V shared memory</code> between two containers inside the same pod</p>
@@ -3788,11 +3838,11 @@
 <p>The test is successful if there is no system error and the strings are equals.</p>
 <p>The string MemContents stored in the shared memory is : This is the way the world ends...</p>
 <ul>
-<li>The sender container writes a string from stdin into shared memory</li>
+<li>The sender container writes a string from stdin into shared memory. The source code is <a href="https://github.com/abcdesktopio/podshmtest/tree/main/src/sysv">here</a></li>
 </ul>
 <pre><code class="language-c">    int exit_code = -1;
     // ftok to generate unique key 
-    key_t key = ftok(&quot;shmfile&quot;,65);
+    key_t key = ftok(&quot;/shared/shmfile&quot;,65);
     // shmget returns an identifier in shmid 
     int shmid = shmget(key,1024,0666|IPC_CREAT);
     // shmat to attach to shared memory 
@@ -3802,10 +3852,10 @@
     exit_code = shmdt(str);
 </code></pre>
 <ul>
-<li>The receiver container print the sender's shared memory string to stdout</li>
+<li>The receiver container print the sender's shared memory string to stdout. The source code is <a href="https://github.com/abcdesktopio/podshmtest/tree/main/src/sysv">here</a></li>
 </ul>
 <pre><code class="language-c">    // ftok to generate unique key 
-    key_t key = ftok(&quot;shmfile&quot;,65);
+    key_t key = ftok(&quot;/shared/shmfile&quot;,65);
     // shmget returns an identifier in shmid 
     int shmid = shmget(key,1024,0666|IPC_CREAT);
     // shmat to attach to shared memory 
@@ -3815,19 +3865,135 @@
     //detach from shared memory  
     exit_code = shmdt(str);
 </code></pre>
-<p>To run the <code>System V</code> test</p>
-<pre><code>kubectl create -f https://raw.githubusercontent.com/abcdesktopio/podshmtest/main/podsysvshm.yaml 
-pod/podsysvshmtest created
+<p>To run the <code>System V</code> tests</p>
+<h3 id="run-a-shared-memory-test-access-using-a-shared-path">Run a shared memory test access using a shared path</h3>
+<p>In this yaml file, sender and receiver containers share a file. This file is
+<code>/shared/me</code> and it is the first parameter to <code>ftok</code> system V call. </p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: podsysvsendershmtest
+spec:
+  shareProcessNamespace: true
+  restartPolicy : Never
+  volumes:
+    - name: shared 
+      emptyDir: {}
+  containers:
+    - name: sender
+      imagePullPolicy: IfNotPresent
+      image: abcdesktopio/ipctest
+      command: [ &quot;/bin/sleep&quot;, &quot;1d&quot; ]
+      volumeMounts:
+      - name: shared
+        mountPath: /shared
+      env:
+      - name: FTOK_PATH
+        value: &quot;/shared/me&quot;
+    - name: receiver
+      imagePullPolicy: IfNotPresent
+      image: abcdesktopio/ipctest
+      command: [ &quot;/bin/sleep&quot;, &quot;1d&quot; ]
+      volumeMounts:
+      - name: shared
+        mountPath: /shared
+      env:
+      - name: FTOK_PATH
+        value: &quot;/shared/me&quot;
 </code></pre>
-<p>The <code>podposixshm</code> pod status must be <code>Completed</code></p>
-<pre><code>kubectl get pods podposixshm  
-NAME          READY   STATUS      RESTARTS   AGE
-podposixshm   0/2     Completed   0          132m
+<blockquote>
+<p>The env var <code>FTOK_PATH</code> set the first parameter to <code>ftok</code> system V call.</p>
+</blockquote>
+<p>Run the test </p>
+<pre><code class="language-bash"># this test result is success
+./runtest.sh podsendershared_success.yaml
 </code></pre>
-<p>Delete the <code>podposixshm</code> pod </p>
-<pre><code>kubectl delete pods podposixshm 
-pod &quot;podposixshm&quot; deleted
+<p>You can read the same string from sender to receive container. </p>
+<p><strong>This test is OK.</strong></p>
+<pre><code>pod/podsysvsendershmtest created
+pod/podsysvsendershmtest condition met
+**** Start sender ****
+sender starts
+identity of the file named FTOK_PATH=/shared/me
+sending success This is the way the world ends...
+**** Read on receiver **** 
+receive starts
+identity of the file named FTOK_PATH=/shared/me
+read This is the way the world ends...
 </code></pre>
+<h3 id="run-a-shared-memory-test-access-without-shared-path">Run a shared memory test access without shared path</h3>
+<p>In this yaml file, sender and receiver do not share file.
+<code>/dummy</code> filename is the first parameter to <code>ftok</code> system V call. </p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: podsysvsendershmtest
+spec:
+  shareProcessNamespace: true
+  restartPolicy : Never
+  volumes:
+    - name: shared 
+      emptyDir: {}
+  containers:
+    - name: sender
+      imagePullPolicy: IfNotPresent
+      image: abcdesktopio/ipctest
+      command: [ &quot;/bin/sleep&quot;, &quot;1d&quot; ]
+      volumeMounts:
+      - name: shared
+        mountPath: /shared
+      env:
+      - name: FTOK_PATH
+        value: &quot;/dummy&quot;
+    - name: receiver
+      imagePullPolicy: IfNotPresent
+      image: abcdesktopio/ipctest
+      command: [ &quot;/bin/sleep&quot;, &quot;1d&quot; ]
+      volumeMounts:
+      - name: shared
+        mountPath: /shared
+      env:
+      - name: FTOK_PATH
+        value: &quot;/dummy&quot;
+</code></pre>
+<blockquote>
+<p>The env var <code>FTOK_PATH</code> set the first parameter to <code>ftok</code> system V call.</p>
+</blockquote>
+<p>Run the test </p>
+<pre><code class="language-bash"># this test result is failed
+./runtest.sh podsendershared_failed.yaml
+</code></pre>
+<p>You can read that the sender write a string.
+The receiver does not read this string. </p>
+<p><strong>This test is KO.</strong></p>
+<pre><code>pod &quot;podsysvsendershmtest&quot; deleted
+pod/podsysvsendershmtest created
+pod/podsysvsendershmtest condition met
+**** Start sender ****
+sender starts
+identity of the file named FTOK_PATH=/dummy
+sending success This is the way the world ends...
+**** Read on receiver **** 
+receive starts
+identity of the file named FTOK_PATH=/dummy
+main: ftok() for shm failed
+this is an unlimited loop, waiting 5s
+receive starts
+identity of the file named FTOK_PATH=/dummy
+main: ftok() for shm failed
+this is an unlimited loop, waiting 5s
+receive starts
+identity of the file named FTOK_PATH=/dummy
+main: ftok() for shm failed
+this is an unlimited loop, waiting 5s
+...
+^C
+command terminated with exit code 130
+</code></pre>
+<blockquote>
+<p>The <a href="https://man7.org/linux/man-pages/man3/ftok.3.html">ftok</a>() function uses the identity of the file named by the given pathname (which must refer to an existing, accessible file)
+The file named by the given pathname must be shared by using a volume between containers</p>
+</blockquote>
 <h3 id="posix-shared-memory">POSIX shared memory</h3>
 <p>Goal: Test <code>Posix shared memory</code> between two containers inside the same pod</p>
 <p>The source code is from inter-process communication in Linux:
@@ -3922,6 +4088,15 @@ pod/podposixshm created
 <pre><code>kubectl get pods podposixshm  
 NAME          READY   STATUS      RESTARTS   AGE
 podposixshm   0/2     Completed   0          27s
+</code></pre>
+<p>The podposixshm sender log file should be :</p>
+<pre><code>kubectl logs pod/podposixshm sender
+shared mem address: 0x7fc0ea582000 [0..511]
+backing file:       /dev/shm/shMemEx
+</code></pre>
+<p>The pod/podposixshm receiver log file should be :</p>
+<pre><code>kubectl logs pod/podposixshm receiver
+This is the way the world ends...
 </code></pre>
 <p>Delete the <code>podposixshm</code> pod </p>
 <pre><code>kubectl delete pods podposixshm 
@@ -4059,7 +4234,7 @@ spec:
     <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      <script src="../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
       
     
   </body>
