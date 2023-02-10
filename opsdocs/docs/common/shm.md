@@ -2,8 +2,11 @@
 # IPC and pod
 
 
-Setting up the shared memory of a kubernetes Pod
+Does a pod can share memory between his container ?
+Does Posix shared memory work with containers ? 
+Does System V shared memory work with containers ? 
 
+Let's have a look !
 
 There are two ways to use shared memory in Linux:  `System V ` and  `POSIX `.
 
@@ -12,13 +15,20 @@ There are two ways to use shared memory in Linux:  `System V ` and  `POSIX `.
 
 
 
-
-
 ## Requirements
 
 
 - `kubectl` command-line tool must be configured to communicate with your cluster. 
 
+
+## Install the bash and yaml files
+
+To install the bash and yaml files, run the command
+
+```
+git clone https://github.com/abcdesktopio/podshmtest.git
+cd podshmtest
+```
 
 ## Shared memory
 
@@ -32,12 +42,12 @@ The test is successful if there is no system error and the strings are equals.
 
 The string MemContents stored in the shared memory is : This is the way the world ends...
 
-* The sender container writes a string from stdin into shared memory
+* The sender container writes a string from stdin into shared memory. The source code is [here](https://github.com/abcdesktopio/podshmtest/tree/main/src/sysv)
 
 ``` c
     int exit_code = -1;
     // ftok to generate unique key 
-    key_t key = ftok("shmfile",65);
+    key_t key = ftok("/shared/shmfile",65);
     // shmget returns an identifier in shmid 
     int shmid = shmget(key,1024,0666|IPC_CREAT);
     // shmat to attach to shared memory 
@@ -47,12 +57,12 @@ The string MemContents stored in the shared memory is : This is the way the worl
     exit_code = shmdt(str);
 ```
 
-* The receiver container print the sender's shared memory string to stdout
+* The receiver container print the sender's shared memory string to stdout. The source code is [here](https://github.com/abcdesktopio/podshmtest/tree/main/src/sysv)
 
 
 ``` c
     // ftok to generate unique key 
-    key_t key = ftok("shmfile",65);
+    key_t key = ftok("/shared/shmfile",65);
     // shmget returns an identifier in shmid 
     int shmid = shmget(key,1024,0666|IPC_CREAT);
     // shmat to attach to shared memory 
@@ -63,29 +73,167 @@ The string MemContents stored in the shared memory is : This is the way the worl
     exit_code = shmdt(str);
 ```
 
-To run the `System V` test
+To run the `System V` tests
 
-``` 
-kubectl create -f https://raw.githubusercontent.com/abcdesktopio/podshmtest/main/podsysvshm.yaml 
-pod/podsysvshmtest created
+### Run a shared memory test access using a shared path
+
+In this yaml file, sender and receiver containers share a file. This file is
+`/shared/me` and it is the first parameter to `ftok` system V call. 
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podsysvsendershmtest
+spec:
+  shareProcessNamespace: true
+  restartPolicy : Never
+  volumes:
+    - name: shared 
+      emptyDir: {}
+  containers:
+    - name: sender
+      imagePullPolicy: IfNotPresent
+      image: abcdesktopio/ipctest
+      command: [ "/bin/sleep", "1d" ]
+      volumeMounts:
+      - name: shared
+        mountPath: /shared
+      env:
+      - name: FTOK_PATH
+        value: "/shared/me"
+    - name: receiver
+      imagePullPolicy: IfNotPresent
+      image: abcdesktopio/ipctest
+      command: [ "/bin/sleep", "1d" ]
+      volumeMounts:
+      - name: shared
+        mountPath: /shared
+      env:
+      - name: FTOK_PATH
+        value: "/shared/me"
+```
+
+> The env var `FTOK_PATH` set the first parameter to `ftok` system V call.
+
+
+Run the test 
+
+``` bash
+# this test result is success
+./runtest.sh podsendershared_success.yaml
+```
+
+You can read the same string from sender to receive container. 
+
+**This test is OK.**
+
+```
+pod/podsysvsendershmtest created
+pod/podsysvsendershmtest condition met
+**** Start sender ****
+sender starts
+identity of the file named FTOK_PATH=/shared/me
+sending success This is the way the world ends...
+**** Read on receiver **** 
+receive starts
+identity of the file named FTOK_PATH=/shared/me
+read This is the way the world ends...
 ```
 
 
-The `podposixshm` pod status must be `Completed`
-
-```
-kubectl get pods podposixshm  
-NAME          READY   STATUS      RESTARTS   AGE
-podposixshm   0/2     Completed   0          132m
-```
 
 
-Delete the `podposixshm` pod 
+
+### Run a shared memory test access without shared path
+
+
+In this yaml file, sender and receiver do not share file.
+`/dummy` filename is the first parameter to `ftok` system V call. 
+
+
+
+``` yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podsysvsendershmtest
+spec:
+  shareProcessNamespace: true
+  restartPolicy : Never
+  volumes:
+    - name: shared 
+      emptyDir: {}
+  containers:
+    - name: sender
+      imagePullPolicy: IfNotPresent
+      image: abcdesktopio/ipctest
+      command: [ "/bin/sleep", "1d" ]
+      volumeMounts:
+      - name: shared
+        mountPath: /shared
+      env:
+      - name: FTOK_PATH
+        value: "/dummy"
+    - name: receiver
+      imagePullPolicy: IfNotPresent
+      image: abcdesktopio/ipctest
+      command: [ "/bin/sleep", "1d" ]
+      volumeMounts:
+      - name: shared
+        mountPath: /shared
+      env:
+      - name: FTOK_PATH
+        value: "/dummy"
+```
+
+> The env var `FTOK_PATH` set the first parameter to `ftok` system V call.
+
+Run the test 
+
+``` bash
+# this test result is failed
+./runtest.sh podsendershared_failed.yaml
+```
+
+You can read that the sender write a string.
+The receiver does not read this string. 
+
+**This test is KO.**
 
 ```
-kubectl delete pods podposixshm 
-pod "podposixshm" deleted
+pod "podsysvsendershmtest" deleted
+pod/podsysvsendershmtest created
+pod/podsysvsendershmtest condition met
+**** Start sender ****
+sender starts
+identity of the file named FTOK_PATH=/dummy
+sending success This is the way the world ends...
+**** Read on receiver **** 
+receive starts
+identity of the file named FTOK_PATH=/dummy
+main: ftok() for shm failed
+this is an unlimited loop, waiting 5s
+receive starts
+identity of the file named FTOK_PATH=/dummy
+main: ftok() for shm failed
+this is an unlimited loop, waiting 5s
+receive starts
+identity of the file named FTOK_PATH=/dummy
+main: ftok() for shm failed
+this is an unlimited loop, waiting 5s
+...
+^C
+command terminated with exit code 130
 ```
+
+
+> The [ftok](https://man7.org/linux/man-pages/man3/ftok.3.html)() function uses the identity of the file named by the given pathname (which must refer to an existing, accessible file)
+> The file named by the given pathname must be shared by using a volume between containers
+
+
+
+
 
 
 ### POSIX shared memory
@@ -199,6 +347,23 @@ kubectl get pods podposixshm
 NAME          READY   STATUS      RESTARTS   AGE
 podposixshm   0/2     Completed   0          27s
 ```
+
+
+The podposixshm sender log file should be :
+
+```
+kubectl logs pod/podposixshm sender
+shared mem address: 0x7fc0ea582000 [0..511]
+backing file:       /dev/shm/shMemEx
+```
+
+The pod/podposixshm receiver log file should be :
+
+```
+kubectl logs pod/podposixshm receiver
+This is the way the world ends...
+```
+
 
 
 Delete the `podposixshm` pod 
