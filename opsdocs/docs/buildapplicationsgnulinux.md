@@ -442,6 +442,11 @@ The Gimp Json data shows
 Have a look to the complete [applist.json](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/applist.json) file. abcdesktop applist.json contains description to build all default abcdesktop applications. 
 
 
+### Using the Alpine Docker image
+
+### musl memory 
+[musl versus glibc](https://octopus.com/blog/using-alpine-docker-image#musl-vs-glibc)
+
 
 
 
