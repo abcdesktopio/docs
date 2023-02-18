@@ -2,6 +2,8 @@
 # Others related projets 
 
 
+## Projects
+
 Welcome to the others related projects section, where you can find some projects related to use cloud application inside a web browser. 
 
 * [http://wiki.ros.org/docker/Tutorials/GUI](http://wiki.ros.org/docker/Tutorials/GUI)
@@ -11,3 +13,9 @@ Welcome to the others related projects section, where you can find some projects
 * [https://www.kasmweb.com](https://www.kasmweb.com)
 * [https://github.com/fcwu/docker-ubuntu-vnc-desktop](https://github.com/fcwu/docker-ubuntu-vnc-desktop) docker-ubuntu-vnc-desktop is a Docker image to provide web VNC interface to access Ubuntu LXDE/LxQT desktop environment.
 * [Dockerize GUI app](https://blog.nediiii.com/dockerize-gui-app/) This project dockerize typical GUI app so that you can visit it in browser. Really good technical solutions.
+
+
+## Using the Alpine Docker image
+
+### musl memory 
+[musl versus glibc](https://octopus.com/blog/using-alpine-docker-image#musl-vs-glibc)
