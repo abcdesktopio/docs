@@ -9,13 +9,11 @@ To install Kubernetes on your GNU/Linux, you can read the [Kubernetes setup guid
 
 #### Step 0: Disable swap
 
-Execute command swapoff and sed command to disable swap.
+Execute command swapoff to disable swap.
 
 ``` bash
 swapoff -a
-sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
-
 
 Load the `overlay` and `br_netfilter` kernel modules
 
