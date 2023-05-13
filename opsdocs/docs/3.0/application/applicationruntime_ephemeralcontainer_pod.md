@@ -415,7 +415,7 @@ To apply changes, you can replace the `abcdesktop-config`
 
 ```
 kubectl delete configmap abcdesktop-config -n abcdesktop
-kubectl create --from-file=od.config -n abcdesktop
+kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 ```
 
 Then restart pyos daemonset
