@@ -20,7 +20,6 @@ You need to have a
 - kubernetes cluster ready to run
 - `kubectl` or `microk8s` command-line tool must be configured to communicate with your cluster. 
 - `openssl` and `curl` command line must be installed too.
-- `ctr` should be install to download abcdesktopio images from `docker.io/abcdesktopio`
 
 
 You can run the **Quick installation process** or choose the **Manually installation step by step**
@@ -44,7 +43,7 @@ The quick installation process runs the all commands step by step:
 * build all `rsa keys` pairs for jwt signing and payload encryption
 * download the default configuration file `od.config`
 * create all `services`, `pods`, `secrets` and `configmaps`
-* download user's core images: `oc.user`, `oc.cupsd`, `oc.pulseaudio` ( if ctr command line exists )
+* download pod user's core images: `oc.user`, `oc.cupsd`, `oc.pulseaudio`
 
 
 ## Manually installation step by step (Linux, macOS or Windows)
