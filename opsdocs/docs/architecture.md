@@ -42,6 +42,7 @@ When a new user is authenticated, a dedicated user container is created.
 When the user starts an application (like LibreOffice for example) a dedicated application container is created.
 
 ### nginx
+
 `nginx` container act as web server and websocket reverse proxy. 
 
 ### mongo
@@ -50,18 +51,17 @@ The profil informations are :
 
 - Login history
 - Dock configuration
-- Image and background colors configuration 
+- Image and background color configuration 
 
 
 ### memcached
-`memcache` is use to store progress text message information during login process. `memcache` datas are set and get only by the control plane.
+`memcache` stores progress text message information during login process. `memcache` datas are set and get only by the control plane.
 
 
 ### oc.user
-`oc.user` is the name of the user's container image. `oc.user` runs the X11 graphical service. `oc.user` is based on ubuntu distribution. 
+[`oc.user`](https://github.com/abcdesktopio/oc.user) is the name of the user's container image. `oc.user` runs the X11 graphical service. `oc.user` is based on ubuntu distribution. 
 
-* The `abcdesktopio/oc.user.18.04` is based on ubuntu distribution `18.04`
-* The `abcdesktopio/oc.user.20.04` is based on ubuntu distribution `20.04`
+* The image `abcdesktopio/oc.user.ubuntu:3.0` is based on `ubuntu` distribution `22.04`. Get more details about [oc.user](https://github.com/abcdesktopio/oc.user) image.
 
 
 ### applications
