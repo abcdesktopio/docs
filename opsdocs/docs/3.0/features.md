@@ -23,8 +23,17 @@ Application can run as :
   - `kubernetes pod`
   - `kubernetes ephemeral container`
 
+ 
+
 ### Volumes
 
-`ephemeral container` doesn't support `subpath`. It means that abcdesktop desktop application based on `ephemeral container` doesn't support subpath. abcdesktop user home directory **MUST** be mounted as `hostPath` on each worker node.
+#### User's home directories
 
-In the release `persistentVolumeClaim` is not supported for user home directory, while `ephemeral container` doesn't support `subpath`.
+Define volumes to retain user's home directory files. User's home directory can be mounted as `hostPath` on each worker node or as `persistentVolumeClaim`.
+Get more informations about the [persistentVolume and persistentVolumeClaim](config/volumes.md) to retain user datas.
+
+
+
+
+
+
