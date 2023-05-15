@@ -12,6 +12,8 @@ To make change, edit your own `od.config` file
 vim od.config 
 ```
 
+## Make changes
+
 Change the `defaultbackgroundcolors` option in the desktop options.
 
 Locate the line `desktop.defaultbackgroundcolors` and update the first entries with the values `'#FF0000', '#FFFFFF',  '#0000FF'`
@@ -36,16 +38,16 @@ Or you can also use the replace command `kubectl create -n abcdesktop configmap 
 
 
 
-Restart pyos pods
+## Restart pyos pods
 
 ```bash
 kubectl delete pods -l run=pyos-od -n abcdesktop
 pod "pyos-od-6fc597d444-qgzhc" deleted
 ```
 
-### Check that the new colours are presents in front :
+## Check your changes
 
-Open the url `http://localhost:30443`, in your web browser, to start a simple abcdesktop.io container. 
+To check that the new colours are presents in front, open the url `http://localhost:30443`, in your web browser, to start a simple abcdesktop.io container. 
 
 ```
 http://localhost:30443
