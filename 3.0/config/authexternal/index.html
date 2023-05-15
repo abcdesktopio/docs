@@ -2978,11 +2978,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#orange-oauth-20" class="md-nav__link">
-    Orange OAuth 2.0
+  <a href="#orange-oauth" class="md-nav__link">
+    Orange OAuth
   </a>
   
-    <nav class="md-nav" aria-label="Orange OAuth 2.0">
+    <nav class="md-nav" aria-label="Orange OAuth">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2998,11 +2998,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#facebook-oauth-20" class="md-nav__link">
-    Facebook OAuth 2.0
+  <a href="#facebook-oauth" class="md-nav__link">
+    Facebook OAuth
   </a>
   
-    <nav class="md-nav" aria-label="Facebook OAuth 2.0">
+    <nav class="md-nav" aria-label="Facebook OAuth">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3018,16 +3018,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#google-oauth-20" class="md-nav__link">
-    Google OAuth 2.0
+  <a href="#google-oauth" class="md-nav__link">
+    Google OAuth
   </a>
   
-    <nav class="md-nav" aria-label="Google OAuth 2.0">
+    <nav class="md-nav" aria-label="Google OAuth">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#google-application" class="md-nav__link">
     Google Application
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-oauth" class="md-nav__link">
+    Github OAuth
+  </a>
+  
+    <nav class="md-nav" aria-label="Github OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github-oauth_1" class="md-nav__link">
+    Github OAuth
   </a>
   
 </li>
@@ -3760,11 +3780,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#orange-oauth-20" class="md-nav__link">
-    Orange OAuth 2.0
+  <a href="#orange-oauth" class="md-nav__link">
+    Orange OAuth
   </a>
   
-    <nav class="md-nav" aria-label="Orange OAuth 2.0">
+    <nav class="md-nav" aria-label="Orange OAuth">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3780,11 +3800,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#facebook-oauth-20" class="md-nav__link">
-    Facebook OAuth 2.0
+  <a href="#facebook-oauth" class="md-nav__link">
+    Facebook OAuth
   </a>
   
-    <nav class="md-nav" aria-label="Facebook OAuth 2.0">
+    <nav class="md-nav" aria-label="Facebook OAuth">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3800,16 +3820,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#google-oauth-20" class="md-nav__link">
-    Google OAuth 2.0
+  <a href="#google-oauth" class="md-nav__link">
+    Google OAuth
   </a>
   
-    <nav class="md-nav" aria-label="Google OAuth 2.0">
+    <nav class="md-nav" aria-label="Google OAuth">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#google-application" class="md-nav__link">
     Google Application
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-oauth" class="md-nav__link">
+    Github OAuth
+  </a>
+  
+    <nav class="md-nav" aria-label="Github OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github-oauth_1" class="md-nav__link">
+    Github OAuth
   </a>
   
 </li>
@@ -3854,21 +3894,24 @@
 <pre><code class="language-json">'external': {
     'providers': {
     'google': { 
+    'google': { 
         'displayname': 'Google', 
         'enabled': True,
-        'client_id': 'XXX-YYY.apps.googleusercontent.com', 
-        'client_secret': 'XXX',
+        'client_id': 'xxxx', 
+        'client_secret': 'xxxx',
         'userinfo_auth': True,
         'scope': [ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ],
         'userinfo_url': 'https://www.googleapis.com/oauth2/v1/userinfo',
-        'redirect_uri_prefix' : 'https://host.domain.local/API/auth/oauth',
+        'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
         'redirect_uri_querystring': 'manager=external&amp;provider=google',
         'authorization_base_url': 'https://accounts.google.com/o/oauth2/v2/auth',
-        'token_url': 'https://oauth2.googleapis.com/token'
-    }
+        'token_url': 'https://oauth2.googleapis.com/token',
+        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
+      }   
+   }
 }
 </code></pre>
-<p>The variable values <code>client_id</code> and <code>client_secret</code> have been set to obfuscate value 'XXX'. The FQDN is refered to the public server FQDN. </p>
+<p>The variable values <code>client_id</code> and <code>client_secret</code> have been set to obfuscate value 'xxxx'. The FQDN <code>hostname.domain.local</code> is referred to your public server FQDN. </p>
 <table>
 <thead>
 <tr>
@@ -3942,26 +3985,27 @@
 </tbody>
 </table>
 <p>The complete redirect url concats the two values <code>redirect_uri_prefix</code> and <code>redirect_uri_querystring</code>.</p>
-<h2 id="orange-oauth-20">Orange OAuth 2.0</h2>
+<h2 id="orange-oauth">Orange OAuth</h2>
 <p>Orange's OAuth is supported for authentication. This API is based on OpenID Connect, which combines end-user authentication with OAuth2 authorisation. </p>
 <h3 id="orange-application">Orange Application</h3>
 <p>Create your Orange Application here <a href="https://developer.orange.com/apis">https://developer.orange.com/apis</a> and set credentials for Orange Authentification API in the section </p>
-<pre><code class="language-json">'orange': {       
+<pre><code class="language-json"> 'orange': {       
         'displayname': 'Orange', 
         'enabled': True,
         'basic_auth': True,
         'userinfo_auth': True,
         'scope' : [ 'openid', 'form_filling' ],
-        'client_id': 'XXX',
-        'client_secret': 'YYY',
+        'client_id': 'xxxx',
+        'client_secret': 'xxxx',
         'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
         'redirect_uri_querystring': 'manager=external&amp;provider=orange',
         'authorization_base_url': 'https://api.orange.com/openidconnect/fr/v1/authorize',
         'token_url': 'https://api.orange.com/openidconnect/fr/v1/token', 
         'userinfo_url': 'https://api.orange.com/formfilling/fr/v1/userinfo',
+        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
       }
 </code></pre>
-<h2 id="facebook-oauth-20">Facebook OAuth 2.0</h2>
+<h2 id="facebook-oauth">Facebook OAuth</h2>
 <p>Facebook's OAuth is supported for authentication. </p>
 <h3 id="facebook-application">Facebook Application</h3>
 <p>Create your Facebook Application credentials here : <a href="https://developers.facebook.com/apps/">https://developers.facebook.com/apps/</a> and set the credentials for Facebook Authentification API  </p>
@@ -3969,8 +4013,8 @@
         'displayname': 'Facebook', 
         'enabled': True,
         'userinfo_auth': True,
-        'client_id': 'XXX', 
-        'client_secret': 'YYY', 
+        'client_id': 'xxxx', 
+        'client_secret': 'xxxx', 
         'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
         'redirect_uri_querystring': 'manager=external&amp;provider=facebook',
         'authorization_base_url': 'https://www.facebook.com/dialog/oauth',
@@ -3979,25 +4023,48 @@
         'userinfomap': {
             '*': '*',
             'picture': 'picture.data.url'
-        }
+        },
+        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
+      }
 </code></pre>
-<h2 id="google-oauth-20">Google OAuth 2.0</h2>
+<h2 id="google-oauth">Google OAuth</h2>
 <p>Google's OAuth is supported for authentication. The client_id is the google's OAuth client ID, and the client_secret is the OAuth client secret. </p>
 <h3 id="google-application">Google Application</h3>
 <p>Create your Google credentials here : <a href="https://console.developers.google.com/apis/">https://console.developers.google.com/apis/</a> and set the correct credentials for Google Authentification API in the section [gauth]</p>
 <pre><code class="language-json">'google': { 
         'displayname': 'Google', 
         'enabled': True,
-        'client_id': 'XXX-YYY.apps.googleusercontent.com', 
-        'client_secret': 'XXX',
+        'client_id': 'xxxx', 
+        'client_secret': 'xxxx',
         'userinfo_auth': True,
         'scope': [ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ],
         'userinfo_url': 'https://www.googleapis.com/oauth2/v1/userinfo',
-        'redirect_uri_prefix' : 'https://host.domain.local/API/auth/oauth',
+        'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
         'redirect_uri_querystring': 'manager=external&amp;provider=google',
         'authorization_base_url': 'https://accounts.google.com/o/oauth2/v2/auth',
-        'token_url': 'https://oauth2.googleapis.com/token'
-    }
+        'token_url': 'https://oauth2.googleapis.com/token',
+        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
+      }
+</code></pre>
+<h2 id="github-oauth">Github OAuth</h2>
+<p>GitHub's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for apps that don't have access to a web browser.</p>
+<h3 id="github-oauth_1">Github OAuth</h3>
+<p>Enable other users to authorize your OAuth App. Create your Github credentials here : <a href="https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps">authorizing-oauth-apps</a> and set the correct credentials for Github Authentification API</p>
+<pre><code class="language-json">'github': {
+        'displayname': 'Github',
+        'enabled': True,
+        'basic_auth': True,
+        'userinfo_auth': True,
+        'scope' : [ 'read:user' ], 
+        'client_id': 'xxxx',
+        'client_secret': 'xxxx',
+        'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
+        'redirect_uri_querystring': 'manager=external&amp;provider=github',
+        'authorization_base_url': 'https://github.com/login/oauth/authorize',
+        'token_url': 'https://github.com/login/oauth/access_token',
+        'userinfo_url': 'https://api.github.com/user',
+        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
+      }
 </code></pre>
 <p>Great, you have check how the implicit Authentification configuration works.</p>
 
