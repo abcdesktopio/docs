@@ -22,22 +22,25 @@ Sample providers entry using the Google OAuth 2.0 authentification service.
 'external': {
     'providers': {
     'google': { 
+    'google': { 
         'displayname': 'Google', 
         'enabled': True,
-        'client_id': 'XXX-YYY.apps.googleusercontent.com', 
-        'client_secret': 'XXX',
+        'client_id': 'xxxx', 
+        'client_secret': 'xxxx',
         'userinfo_auth': True,
         'scope': [ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ],
         'userinfo_url': 'https://www.googleapis.com/oauth2/v1/userinfo',
-        'redirect_uri_prefix' : 'https://host.domain.local/API/auth/oauth',
+        'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
         'redirect_uri_querystring': 'manager=external&provider=google',
         'authorization_base_url': 'https://accounts.google.com/o/oauth2/v2/auth',
-        'token_url': 'https://oauth2.googleapis.com/token'
-    }
+        'token_url': 'https://oauth2.googleapis.com/token',
+        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
+      }   
+   }
 }
 ```
 
-The variable values `client_id` and `client_secret` have been set to obfuscate value 'XXX'. The FQDN is refered to the public server FQDN. 
+The variable values `client_id` and `client_secret` have been set to obfuscate value 'xxxx'. The FQDN `hostname.domain.local` is referred to your public server FQDN. 
 
 
 | Variable name        | Type		       | Description                        | Sample  |
@@ -56,7 +59,7 @@ The variable values `client_id` and `client_secret` have been set to obfuscate v
 
 The complete redirect url concats the two values `redirect_uri_prefix` and `redirect_uri_querystring`.
 
-## Orange OAuth 2.0 
+## Orange OAuth
 
 Orange's OAuth is supported for authentication. This API is based on OpenID Connect, which combines end-user authentication with OAuth2 authorisation. 
 
@@ -64,24 +67,25 @@ Orange's OAuth is supported for authentication. This API is based on OpenID Conn
 Create your Orange Application here [https://developer.orange.com/apis](https://developer.orange.com/apis) and set credentials for Orange Authentification API in the section 
 
 ```json
-'orange': {       
+ 'orange': {       
         'displayname': 'Orange', 
         'enabled': True,
         'basic_auth': True,
         'userinfo_auth': True,
         'scope' : [ 'openid', 'form_filling' ],
-        'client_id': 'XXX',
-        'client_secret': 'YYY',
+        'client_id': 'xxxx',
+        'client_secret': 'xxxx',
         'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
         'redirect_uri_querystring': 'manager=external&provider=orange',
         'authorization_base_url': 'https://api.orange.com/openidconnect/fr/v1/authorize',
         'token_url': 'https://api.orange.com/openidconnect/fr/v1/token', 
         'userinfo_url': 'https://api.orange.com/formfilling/fr/v1/userinfo',
+        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
       }
 ```
 
 
-## Facebook OAuth 2.0
+## Facebook OAuth
 Facebook's OAuth is supported for authentication. 
 
 ### Facebook Application
@@ -92,8 +96,8 @@ Create your Facebook Application credentials here : [https://developers.facebook
         'displayname': 'Facebook', 
         'enabled': True,
         'userinfo_auth': True,
-        'client_id': 'XXX', 
-        'client_secret': 'YYY', 
+        'client_id': 'xxxx', 
+        'client_secret': 'xxxx', 
         'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
         'redirect_uri_querystring': 'manager=external&provider=facebook',
         'authorization_base_url': 'https://www.facebook.com/dialog/oauth',
@@ -102,10 +106,12 @@ Create your Facebook Application credentials here : [https://developers.facebook
         'userinfomap': {
             '*': '*',
             'picture': 'picture.data.url'
-        }
+        },
+        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
+      }
 ```
 
-## Google OAuth 2.0
+## Google OAuth
 Google's OAuth is supported for authentication. The client_id is the google's OAuth client ID, and the client_secret is the OAuth client secret. 
 
 
@@ -116,16 +122,42 @@ Create your Google credentials here : [https://console.developers.google.com/api
 'google': { 
         'displayname': 'Google', 
         'enabled': True,
-        'client_id': 'XXX-YYY.apps.googleusercontent.com', 
-        'client_secret': 'XXX',
+        'client_id': 'xxxx', 
+        'client_secret': 'xxxx',
         'userinfo_auth': True,
         'scope': [ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ],
         'userinfo_url': 'https://www.googleapis.com/oauth2/v1/userinfo',
-        'redirect_uri_prefix' : 'https://host.domain.local/API/auth/oauth',
+        'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
         'redirect_uri_querystring': 'manager=external&provider=google',
         'authorization_base_url': 'https://accounts.google.com/o/oauth2/v2/auth',
-        'token_url': 'https://oauth2.googleapis.com/token'
-    }
+        'token_url': 'https://oauth2.googleapis.com/token',
+        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
+      }
+```
+
+## Github OAuth
+
+GitHub's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for apps that don't have access to a web browser.
+
+### Github OAuth
+Enable other users to authorize your OAuth App. Create your Github credentials here : [authorizing-oauth-apps](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps) and set the correct credentials for Github Authentification API
+
+```json
+'github': {
+        'displayname': 'Github',
+        'enabled': True,
+        'basic_auth': True,
+        'userinfo_auth': True,
+        'scope' : [ 'read:user' ], 
+        'client_id': 'xxxx',
+        'client_secret': 'xxxx',
+        'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
+        'redirect_uri_querystring': 'manager=external&provider=github',
+        'authorization_base_url': 'https://github.com/login/oauth/authorize',
+        'token_url': 'https://github.com/login/oauth/access_token',
+        'userinfo_url': 'https://api.github.com/user',
+        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
+      }
 ```
 
 
