@@ -3,28 +3,32 @@
 
 ### Edit your configuration file 
 
-
-Download the default od.config file and save it to your abcdesktop local directory.
+If the `od.config` file does not exist, download the default `od.config` file and save it to your abcdesktop local directory.
 
 To make change, edit your own `od.config` file
 
-```
+```bash
 vim od.config 
 ```
 
+
+
 Change the defaultbackgroundcolors option in the desktop options.
 
-Locate the line ```desktop.defaultbackgroundcolors``` and update the first entries with the values ``` '#FF0000', '#FFFFFF',  '#0000FF' ```
+Locate the line `desktop.defaultbackgroundcolors` and update the first entries with the values `'#FF0000', '#FFFFFF',  '#0000FF' `
 
-```
+```json
 desktop.defaultbackgroundcolors : [ '#FF0000', '#FFFFFF',  '#0000FF', '#CD3C14', '#4BB4E6', '#50BE87', '#A885D8', '#FFB4E6' ]
 ```
 
 Save your local `od.config` file.
 
+
+## Apply changes 
+
 To apply changes, you can replace the `abcdesktop-config`
 
-```
+```bash
 kubectl delete configmap abcdesktop-config -n abcdesktop
 kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 ```
@@ -34,10 +38,11 @@ kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 
 
 
-Restart pyos daemonset
+Restart pyos pods
 
-```
-kubectl rollout restart daemonset daemonset-pyos -n abcdesktop
+```bash
+kubectl delete pods -l run=pyos-od -n abcdesktop
+pod "pyos-od-6fc597d444-qgzhc" deleted
 ```
 
 ### Check that the new colours are presents in front :
