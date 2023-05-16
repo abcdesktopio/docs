@@ -2817,8 +2817,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-that-the-new-colours-are-presents-in-front" class="md-nav__link">
-    Check that the new colours are presents in front :
+  <a href="#make-changes" class="md-nav__link">
+    Make changes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apply-changes" class="md-nav__link">
+    Apply changes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-pyos-pods" class="md-nav__link">
+    Restart pyos pods
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-changes" class="md-nav__link">
+    Check your changes
   </a>
   
 </li>
@@ -3677,8 +3698,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-that-the-new-colours-are-presents-in-front" class="md-nav__link">
-    Check that the new colours are presents in front :
+  <a href="#make-changes" class="md-nav__link">
+    Make changes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apply-changes" class="md-nav__link">
+    Apply changes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-pyos-pods" class="md-nav__link">
+    Restart pyos pods
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-changes" class="md-nav__link">
+    Check your changes
   </a>
   
 </li>
@@ -3707,26 +3749,30 @@
 
 
 <h1 id="how-to-edit-pyos-core-service-configuration-file">How to edit <code>pyos</code> core service configuration file</h1>
-<h3 id="edit-your-configuration-file">Edit your configuration file</h3>
-<p>Download the default od.config file and save it to your abcdesktop local directory.</p>
+<p>The <code>pyos</code> core service configuration file name is <code>od.config</code> </p>
+<h2 id="edit-your-configuration-file">Edit your configuration file</h2>
+<p>If the <code>od.config</code> file does not exist, download the default <a href="https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.0">od.config</a> file and save it as <code>od.config</code> to your abcdesktop local directory.</p>
 <p>To make change, edit your own <code>od.config</code> file</p>
-<pre><code>vim od.config 
+<pre><code class="language-bash">vim od.config 
 </code></pre>
-<p>Change the defaultbackgroundcolors option in the desktop options.</p>
+<h2 id="make-changes">Make changes</h2>
+<p>Change the <code>defaultbackgroundcolors</code> option in the desktop options.</p>
 <p>Locate the line <code>desktop.defaultbackgroundcolors</code> and update the first entries with the values <code>'#FF0000', '#FFFFFF',  '#0000FF'</code></p>
-<pre><code>desktop.defaultbackgroundcolors : [ '#FF0000', '#FFFFFF',  '#0000FF', '#CD3C14', '#4BB4E6', '#50BE87', '#A885D8', '#FFB4E6' ]
+<pre><code class="language-json">desktop.defaultbackgroundcolors : [ '#FF0000', '#FFFFFF',  '#0000FF', '#CD3C14', '#4BB4E6', '#50BE87', '#A885D8', '#FFB4E6' ]
 </code></pre>
-<p>Save your local <code>od.config</code> file.</p>
+<p>Save your local file <code>od.config</code>.</p>
+<h2 id="apply-changes">Apply changes</h2>
 <p>To apply changes, you can replace the <code>abcdesktop-config</code></p>
-<pre><code>kubectl delete configmap abcdesktop-config -n abcdesktop
+<pre><code class="language-bash">kubectl delete configmap abcdesktop-config -n abcdesktop
 kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 </code></pre>
-<p>| you can also use the replace command <code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -</code></p>
-<p>Restart pyos daemonset</p>
-<pre><code>kubectl rollout restart daemonset daemonset-pyos -n abcdesktop
+<p>Or you can also use the replace command <code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -</code></p>
+<h2 id="restart-pyos-pods">Restart pyos pods</h2>
+<pre><code class="language-bash">kubectl delete pods -l run=pyos-od -n abcdesktop
+pod &quot;pyos-od-6fc597d444-qgzhc&quot; deleted
 </code></pre>
-<h3 id="check-that-the-new-colours-are-presents-in-front">Check that the new colours are presents in front :</h3>
-<p>Open the url <code>http://localhost:30443</code>, in your web browser, to start a simple abcdesktop.io container. </p>
+<h2 id="check-your-changes">Check your changes</h2>
+<p>To check that the new colours are presents in front, open the url <code>http://localhost:30443</code>, in your web browser, to start a simple abcdesktop.io container. </p>
 <pre><code>http://localhost:30443
 </code></pre>
 <p>You should see the abcdesktop.io home page.</p>

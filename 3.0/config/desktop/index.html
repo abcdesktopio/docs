@@ -3011,13 +3011,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#desktopshareipcnamespace" class="md-nav__link">
-    desktop.shareipcnamespace
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#desktophomedirectory" class="md-nav__link">
     desktop.homedirectory
   </a>
@@ -3103,20 +3096,6 @@
         <li class="md-nav__item">
   <a href="#desktoppolicies" class="md-nav__link">
     desktop.policies
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#desktopapplication_config" class="md-nav__link">
-    desktop.application_config
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#desktophost_config" class="md-nav__link">
-    desktop.host_config
   </a>
   
 </li>
@@ -3808,13 +3787,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#desktopshareipcnamespace" class="md-nav__link">
-    desktop.shareipcnamespace
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#desktophomedirectory" class="md-nav__link">
     desktop.homedirectory
   </a>
@@ -3905,20 +3877,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#desktopapplication_config" class="md-nav__link">
-    desktop.application_config
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#desktophost_config" class="md-nav__link">
-    desktop.host_config
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#desktopwebhookdict" class="md-nav__link">
     desktop.webhookdict
   </a>
@@ -3969,7 +3927,7 @@
 
 
 <h1 id="desktop-options-in-odconfig">desktop options in od.config</h1>
-<p>The od.config contains options to describe how the oc.user and applications containers have to be created. Options differ if abcdesktop.io is running in <code>docker mode</code> or in <code>kubernetes mode</code>.</p>
+<p>The od.config contains options to describe how the oc.user and applications containers have to be created. </p>
 <h2 id="desktopoptions">desktop.options</h2>
 <p>All desktop options are defined in od.config file.
 Desktop options start with the prefix <code>desktop.</code>, then add the name of the option.</p>
@@ -4005,7 +3963,7 @@ Desktop options start with the prefix <code>desktop.</code>, then add the name o
 <tr>
 <td><code>desktop.envlocal</code></td>
 <td>dictionary</td>
-<td><code>{ 'DISPLAY': ':0.0', 'USER': 'balloon', 'LIBOVERLAY_SCROLLBAR': '0', 'UBUNTU_MENUPROXY': '0', 'HOME': '/home/balloon', 'LOGNAME': 'balloon' }</code></td>
+<td><code>{ 'X11LISTEN':'tcp' }</code></td>
 </tr>
 <tr>
 <td><code>desktop.nodeselector</code></td>
@@ -4043,16 +4001,6 @@ Desktop options start with the prefix <code>desktop.</code>, then add the name o
 <td>False</td>
 </tr>
 <tr>
-<td><code>desktop.host_config</code></td>
-<td>dictionary</td>
-<td><code>{  'auto_remove'   : True, 'ipc_mode'      : 'shareable', 'network_mode'  : 'container', 'shm_size'      : '128M', 'mem_limit'     : '512M', 'cpu_period'    : 100000, 'cpu_quota'     : 150000, 'security_opt'  : [ 'seccomp=unconfined' ] }</code></td>
-</tr>
-<tr>
-<td><code>desktop.application_config</code></td>
-<td>dictionary</td>
-<td><code>{  'auto_remove'   : True, 'ipc_mode'      : 'shareable', 'pid_mode'      : True, 'network_mode'  : 'container', 'shm_size'      : '512M', 'mem_limit'     : '2G', 'cpu_period'    : 200000, 'cpu_quota'     : 150000, 'security_opt'  : [ 'seccomp=unconfined' ] }</code></td>
-</tr>
-<tr>
 <td><code>desktop.policies</code></td>
 <td>dictionary</td>
 <td><code>{ 'rules':{}, 'max_app_counter':5 }</code></td>
@@ -4060,58 +4008,18 @@ Desktop options start with the prefix <code>desktop.</code>, then add the name o
 <tr>
 <td><code>desktop.webhookdict</code></td>
 <td>dictionary</td>
-<td><code>{ 'firewall': '192.168.7.1' }</code></td>
+<td><code>{ }</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="desktopshareipcnamespace">desktop.shareipcnamespace</h2>
-<p>The type of desktop.shareipcnamespace is a string. The default value is 'shareable'
-This option permit user contain to share the ipc namespace with application</p>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>''</code></td>
-<td>Use daemon’s default.</td>
-</tr>
-<tr>
-<td><code>'none'</code></td>
-<td>Own private IPC namespace, with /dev/shm not mounted.</td>
-</tr>
-<tr>
-<td><code>'private'</code></td>
-<td>Own private IPC namespace.</td>
-</tr>
-<tr>
-<td><code>'host'</code></td>
-<td>Use the host system’s IPC namespace.</td>
-</tr>
-<tr>
-<td><code>'shareable'</code></td>
-<td>Own private IPC namespace, with a possibility to share it with other containers.</td>
-</tr>
-</tbody>
-</table>
-<p>If not specified, daemon default is used, which can either be <code>'private'</code> or <code>'shareable'</code>, depending on the daemon version and configuration. IPC (POSIX/SysV IPC) namespace provides separation of named shared memory segments, semaphores and message queues.</p>
-<p>Shared memory segments are used to accelerate inter-process communication at memory speed, rather than through pipes or through the network stack. Shared memory is commonly used by databases and custom-built (typically C/OpenMPI, C++/using boost libraries) high performance applications for scientific computing and financial services industries. </p>
-<p>If these types of applications are broken into multiple containers, you might need to share the IPC mechanisms of the containers, using "shareable" mode for the main (i.e. “donor”) container, and containers can access <code>container:&lt;donor-name-or-ID&gt;</code>.</p>
-<p>The default value is <code>desktop.shareipcnamespace : 'shareable'</code></p>
 <h2 id="desktophomedirectory">desktop.homedirectory</h2>
-<p>This option describes how the default home directory for user user ballon should be created.
-The value can be defined as :</p>
+<p>This option describes how to create the home directory for the user. The value can be defined as :</p>
 <ul>
-<li>
-<p><code>'None'</code>: no dedicated volume is created, the oc.user container use an <code>emptyDir': { 'medium': 'Memory'}</code>. All user data will be removed at logout.</p>
-</li>
-<li>
-<p><code>'hostPath'</code>: In release 3.0, ONLY <code>'hostPath'</code> is supported to set a dedicated volume, the oc.user container and applications share this volume. User home data are persistent.</p>
-</li>
+<li><code>'None'</code>: no dedicated volume is created, the oc.user container use an <code>emptyDir': { 'medium': 'Memory'}</code>. All user data will be removed at logout.</li>
+<li><code>'hostPath'</code>: set a dedicated 'hostPath' volume, the user's container and applications share this volume. User home data are persistent.</li>
+<li><code>'persistentVolumeClaim'</code>: set a dedicated 'persistentVolumeClaim' volume, the user's container and applications share this volume. User home data are persistent.</li>
 </ul>
+<p>To get more information about user's home directory volume, read the <a href="../volumes">volumes</a> chapter</p>
 <h2 id="desktopremotehomedirectorytype">desktop.remotehomedirectorytype</h2>
 <p>desktop.remotehomedirectorytype is a list of string. Each string describe if the remount access to a directory is allowed.
 example [ 'cifs', 'webdav' ]</p>
@@ -4134,10 +4042,6 @@ The user find a mount point named <code>homeDrive</code> value, and mounted to <
 <p><code>desktop.envlocal</code> is a dictionary. <code>desktop.envlocal</code> contains a (key,value) added as environment variables to oc.user.</p>
 <p>The default value is :</p>
 <pre><code class="language-json">{ 
-  'DISPLAY': ':0.0', 
-  'LIBOVERLAY_SCROLLBAR': '0',
-  'UBUNTU_MENUPROXY': '0',
-  'HOME': '/home/balloon',
   'X11LISTEN': 'tcp'
 }
 </code></pre>
@@ -4197,49 +4101,32 @@ The user find a mount point named <code>homeDrive</code> value, and mounted to <
 <p><code>desktop.nodeselector</code> is a dictionary. This option permits to assign user pods to nodes.
 It specifies a map of key-value pairs. For the pod to be eligible to run on a node, the node must have each of the indicated key-value pairs as labels (it can have additional labels as well). 
 The most common usage is one key-value pair.</p>
-<pre><code class="language-json">{ 'disktype': 'ssd' }
+<pre><code class="language-json">desktop.nodeselector:  { 'abcdesktopworker': 'true' }
+</code></pre>
+<p>To set a label <code>abcdesktopworker=true</code> to a node </p>
+<pre><code class="language-bash">kubectl label node $YOUR_NODE abcdesktopworker=true
 </code></pre>
 <h2 id="desktopusername">desktop.username</h2>
-<p><code>desktop.username</code> describes the <a href="../balloon/">balloon</a> user created inside the oc.user container.
+<p><code>desktop.username</code> is the name of the default username inside the user's pod.
+If you define a LDAP auth with Posix ObjectClass support, this value is overwrite by the LDAP entry
 The type of desktop.username is string. The default value is 'balloon'.</p>
-<p>If you change this value, you have to rebuild your own oc.user file
-The script oc.user in Dockerfile oc.user :</p>
-<pre><code class="language-Dockerfile">ENV BUSER balloon
-RUN groupadd --gid 4096 $BUSER
-RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups lpadmin,sudo $BUSER
-</code></pre>
-<p>Read the dedicated page on <a href="../balloon/">balloon</a> to gaet more information about user balloon, uid, and gid.</p>
 <h2 id="desktopuserid">desktop.userid</h2>
-<p><code>desktop.userid</code> describes the <code>uid</code> of the user created inside the oc.user container.</p>
-<p>The type of desktop.userid is integer. The default value is 4096.</p>
-<p>If you change this value, you have to rebuild your own oc.user file
-The script oc.user in Dockerfile oc.user :</p>
-<pre><code class="language-Dockerfile">ENV BUSER balloon
-RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups lpadmin,sudo $BUSER
-</code></pre>
-<p>Read the dedicated page on <a href="../balloon/">balloon</a> to gaet more information about user balloon, uid, and gid.</p>
+<p><code>desktop.userid</code> describes the <code>uid Number</code> of the default user id number inside the user's pod.
+If you define a LDAP auth with Posix ObjectClass support, this value is overwrite by the LDAP entry
+The type of desktop.userid is integer. The default value is 4096.</p>
 <h2 id="desktopgroupid">desktop.groupid</h2>
-<p><code>desktop.groupid</code> describes the <code>gid</code> of the user created inside the oc.user container. The type of desktop.userid is integer. The default value is 4096.</p>
-<p>If you change this value, you have to rebuild your own oc.user file
-The script oc.user in Dockerfile oc.user :</p>
-<pre><code class="language-Dockerfile">RUN groupadd --gid 4096 $BUSER
-</code></pre>
-<p>Read the dedicated page on <a href="../balloon/">balloon</a> to gaet more information about user balloon, uid, and gid.</p>
+<p><code>desktop.groupid</code> describes the <code>gid Number</code> of the default group id number inside the user's pod.
+If you define a LDAP auth with Posix ObjectClass support, this value is overwrite by the LDAP entry
+The type of desktop.userid is integer. The default value is 4096.</p>
 <h2 id="desktopuserhomedirectory">desktop.userhomedirectory</h2>
-<p><code>desktop.userhomedirectory</code> describes the <code>homedirectory</code> of the user created inside the oc.user container. The type of <code>desktop.userhomedirectory</code> is string. The default value is <code>/home/balloon</code>.</p>
-<p>If you change this value, you have to rebuild your own oc.user file
-The script oc.user in Dockerfile oc.user :</p>
-<pre><code class="language-Dockerfile">ENV BUSER balloon
-RUN groupadd --gid 4096 $BUSER
-RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups lpadmin,sudo $BUSER
-</code></pre>
-<p>Read the dedicated page on <a href="../balloon/">balloon</a> to gaet more information about user balloon, uid, and gid.</p>
+<p><code>desktop.userhomedirectory</code> describes the <code>homedirectory</code> of the user created inside the user's pod.
+If you define a LDAP auth with Posix ObjectClass support, this value is overwrite by the LDAP entrycontainer. The type of <code>desktop.userhomedirectory</code> is string. The default value is <code>/home/balloon</code>.</p>
 <h2 id="desktopuselocaltime">desktop.uselocaltime</h2>
 <p>The <code>desktop.uselocaltime</code> is boolean, to use host value of <code>/etc/localtime</code>.
 The default value is <code>False</code>.
 If <code>desktop.uselocaltime</code> is True, this add a volume mapping from host file  <code>/etc/localtime</code> to container file <code>/etc/localtime</code>.</p>
 <h2 id="desktoppolicies">desktop.policies</h2>
-<p>The <code>desktop.policies</code> is a dictionary.</p>
+<p><code>desktop.policies</code> has a dictionary format.</p>
 <table>
 <thead>
 <tr>
@@ -4274,14 +4161,6 @@ If <code>desktop.uselocaltime</code> is True, this add a volume mapping from hos
   'max_app_counter' : 4  
 }
 </code></pre>
-<h2 id="desktopapplication_config">desktop.application_config</h2>
-<p>Default application host_config dictionary, maps the dictionary as arguments from docker API 
-<a href="https://docker-py.readthedocs.io/en/stable/api.html#docker.api.container.ContainerApiMixin.create_host_config">create_host_config</a></p>
-<p>Define how the application can be run, read <a href="/config/host_config">host_config</a>  description page to get more informations</p>
-<h2 id="desktophost_config">desktop.host_config</h2>
-<p>Default desktop oc.user host_config dictionary, maps the dictionary as arguments from docker API 
-<a href="https://docker-py.readthedocs.io/en/stable/api.html#docker.api.container.ContainerApiMixin.create_host_config">create_host_config</a></p>
-<p>Define how the oc.user container can be run, read <a href="config/host_config">host_config</a> description page to get more informations</p>
 <h2 id="desktopwebhookdict">desktop.webhookdict</h2>
 <p>desktop.webhookdict is a dictionary to add key/value to the command <code>create</code> and <code>destroy</code> in rules objects.</p>
 <h2 id="experimental-features">Experimental features</h2>

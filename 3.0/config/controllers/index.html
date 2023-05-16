@@ -3148,6 +3148,46 @@
     Access Permission
   </a>
   
+    <nav class="md-nav" aria-label="Access Permission">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-control-filter" class="md-nav__link">
+    Access control filter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curl-http-requests-sample" class="md-nav__link">
+    Curl http requests sample
+  </a>
+  
+    <nav class="md-nav" aria-label="Curl http requests sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl-http-request-with-x-api-key" class="md-nav__link">
+    Curl http request with X-API-Key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-http-request-forbidden" class="md-nav__link">
+    Curl http request forbidden
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -3683,6 +3723,46 @@
     Access Permission
   </a>
   
+    <nav class="md-nav" aria-label="Access Permission">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-control-filter" class="md-nav__link">
+    Access control filter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curl-http-requests-sample" class="md-nav__link">
+    Curl http requests sample
+  </a>
+  
+    <nav class="md-nav" aria-label="Curl http requests sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl-http-request-with-x-api-key" class="md-nav__link">
+    Curl http request with X-API-Key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-http-request-forbidden" class="md-nav__link">
+    Curl http request forbidden
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -3710,7 +3790,8 @@
 
 <h1 id="controllers">Controllers</h1>
 <h2 id="controllers_1">Controllers</h2>
-<p>abcdesktop.io use a Model–view–controller (usually known as MVC) is a software design pattern commonly used for developing user interfaces which divides the related program logic into three interconnected elements. This is done to separate internal representations of information from the ways information is presented to and accepted from the user.</p>
+<p>abcdesktop use a Model View Controller (usually known as MVC). This MVC is used for developing user interfaces which divides the related program logic into three interconnected elements. This is done to separate internal representations of information from the ways information is presented to and accepted from the user.</p>
+<p>List of all abcdesktop's controllers and the description : </p>
 <table>
 <thead>
 <tr>
@@ -3721,7 +3802,7 @@
 <tbody>
 <tr>
 <td><code>AccountingController</code></td>
-<td>accounting data json and ebnf format</td>
+<td>accounting data json format</td>
 </tr>
 <tr>
 <td><code>AuthController</code></td>
@@ -3729,7 +3810,7 @@
 </tr>
 <tr>
 <td><code>ComposerController</code></td>
-<td>CRUD main services (like createDesktop, runApplication)</td>
+<td>CRUD main services (like createDesktop, createApplication)</td>
 </tr>
 <tr>
 <td><code>CoreController</code></td>
@@ -3737,15 +3818,7 @@
 </tr>
 <tr>
 <td><code>ManagerController</code></td>
-<td>manage pyos</td>
-</tr>
-<tr>
-<td><code>PrinterController</code></td>
-<td>CRUD printer object</td>
-</tr>
-<tr>
-<td><code>StoreController</code></td>
-<td>CRUD key value data</td>
+<td>manage service (like add an application)</td>
 </tr>
 <tr>
 <td><code>UserController</code></td>
@@ -3754,33 +3827,86 @@
 </tbody>
 </table>
 <h2 id="access-permission">Access Permission</h2>
-<p>The <code>AccountingController</code> and <code>ManagerController</code> access is protected with a source ip address filter.
-The access control filter is defined in a dictionary.
-Each dictionary entry use the <code>controller</code> name and with an entry <code>permitip</code>.
-The <code>permitip</code> is a list of subnet, for example <code>[ '10.0.0.0/8', '172.16.0.0/12' ]</code>.
-If <code>permitip</code> is not set or the <code>controller</code> name is not set, all ip source address are allowed the send a request to the controller.</p>
-<p>The <code>controllers</code> dictionnary is defined in the <code>od.config</code> file. 
-By default the configuration permit private network defined in <a href="https://tools.ietf.org/html/rfc1918">rfc1918</a> and <a href="https://tools.ietf.org/html/rfc4193">rfc4193</a>. Get more information about the <a href="https://en.wikipedia.org/wiki/Private_network">private network</a>.</p>
-<p>By default others controllers access is enabled, without ip restriction.</p>
-<pre><code>    controllers : { 
-        'AccountingController': 
-            { 
-                'permitip': [ '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', 'fd00::/8', '169.254.0.0/16', '127.0.0.0/8' ] 
-            },
-        'AuthController' :      { 'permitip': None },
-        'ComposerController' :  { 'permitip': None },
-        'CoreController' :      { 'permitip': None },
-        'ManagerController': 
-            { 
-                'permitip': [ '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', 'fd00::/8', '169.254.0.0/16', '127.0.0.0/8' ] 
-            },
-        'PrinterController' :   { 'permitip': None },
-        'StoreController' :     { 'permitip': None },
-        'UserController' :      { 'permitip': None }
-    } 
+<p>The <code>controllers</code> configuration is a dictionary, and is defined in the pyos's <code>od.config</code> file. </p>
+<pre><code class="language-json">controllers : { 
+    'AccountingController': { 
+        'apikey': [ 'fPCdPNcCafec4lXm3M' ],
+        'permitip': [ '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', 'fd00::/8', '169.254.0.0/16', '127.0.0.0/8' ] 
+    },
+    'ManagerController': { 
+        'apikey': [ 'fQDbvjCafec4l', 'KzH23EZjCZSfsd9'],
+        'permitip': [ '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', 'fd00::/8', '169.254.0.0/16', '127.0.0.0/8' ] 
+    },
+    'AuthController' :      { 'permitip': None },
+    'ComposerController' :  { 'permitip': None },
+    'CoreController' :      { 'permitip': None },
+    'UserController' :      { 'permitip': None }
+} 
 </code></pre>
-<p>If the source ip address is not allowed, the response is a HTTP status <code>code 403 Forbidden</code></p>
-<pre><code>{&quot;status&quot;: 403, &quot;status_message&quot;: &quot;403 Forbidden&quot;, &quot;message&quot;: &quot;Request forbidden -- authorization will not help&quot;} 
+<p>By default, <code>AccountingController</code> and <code>ManagerController</code> access are protected by a ip source filter.
+The configuration permits private networks defined in <a href="https://tools.ietf.org/html/rfc1918">rfc1918</a> and <a href="https://tools.ietf.org/html/rfc4193">rfc4193</a>. Get more information about the <a href="https://en.wikipedia.org/wiki/Private_network">private network</a>.</p>
+<p>By default, others controllers access is enabled, without any restriction.</p>
+<h3 id="access-control-filter">Access control filter</h3>
+<p>The access control filter configuration is defined in a json dictionary.
+Each dictionary entry use the <code>controller</code> name and with entries <code>permitip</code> and/or <code>apikey</code>.</p>
+<ul>
+<li>The <code>permitip</code> is a list of subnet, for example <code>[ '10.0.0.0/8', '172.16.0.0/12' ]</code>. If <code>permitip</code> is not set or if the <code>controller</code> is not defined, filtering features is disabled.</li>
+<li>The <code>apikey</code> is a list of string, for example <code>[ 'fPCdPSSj8gZri1Ncmg', 'Z9pXCa2y6ccDeBBeeUc4' ]</code>.
+If <code>apikey</code>  is not set or the <code>controller</code> not defined, filtering features is disabled. The http header value is <code>X-API-Key</code></li>
+</ul>
+<p>If the source ip address is denied, the response is a HTTP status is 403 <code>code 403 Forbidden</code></p>
+<pre><code class="language-json">{&quot;status&quot;: 403, &quot;status_message&quot;: &quot;403 Forbidden&quot;, &quot;message&quot;: &quot;Request forbidden -- authorization will not help&quot;} 
+</code></pre>
+<h2 id="curl-http-requests-sample">Curl http requests sample</h2>
+<h3 id="curl-http-request-with-x-api-key">Curl http request with <code>X-API-Key</code></h3>
+<p>Add the http header <code>X-API-Key: fQDbvjCafec4l</code> to the curl command to list images</p>
+<pre><code class="language-bash">curl -X GET -H 'X-API-Key: fQDbvjCafec4l' -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/images
+</code></pre>
+<p>The command returns</p>
+<pre><code class="language-json">{}
+</code></pre>
+<p>Add the http header <code>X-API-Key: fQDbvjCafec4l</code> to the curl command to add new application</p>
+<pre><code class="language-bash">curl -X POST -H 'X-API-Key: fQDbvjCafec4l'  -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d@xeyes.d.3.0.json
+</code></pre>
+<p>The command returns</p>
+<pre><code class="language-json">[
+ {  &quot;cmd&quot;: [&quot;/composer/appli-docker-entrypoint.sh&quot;], 
+    &quot;path&quot;: &quot;/usr/bin/xeyes&quot;, 
+    &quot;sha_id&quot;: &quot;sha256:4ed2e110042b80f1634d8f3ae66b793914db813f53cd88811285448602d7540e&quot;, 
+    &quot;id&quot;: &quot;abcdesktopio/xeyes.d:3.0&quot;, 
+    &quot;rules&quot;: {}, 
+    &quot;acl&quot;: {&quot;permit&quot;: [&quot;all&quot;]}, 
+    &quot;launch&quot;: &quot;xeyes.XEyes&quot;, 
+    &quot;name&quot;: &quot;xeyes&quot;, 
+    &quot;icon&quot;: &quot;circle_xfce4-eyes.svg&quot;, 
+    &quot;keyword&quot;: &quot;xeyes,eyes&quot;, 
+    &quot;uniquerunkey&quot;: null, 
+    &quot;cat&quot;: &quot;utilities&quot;, 
+    &quot;args&quot;: null, 
+    &quot;execmode&quot;: null, 
+    &quot;showinview&quot;: null, 
+    &quot;displayname&quot;: &quot;xeyes&quot;, 
+    &quot;home&quot;: null, 
+    &quot;desktopfile&quot;: null, 
+    &quot;executeclassname&quot;: null, 
+    &quot;executablefilename&quot;: &quot;xeyes&quot;, 
+    &quot;usedefaultapplication&quot;: false, 
+    &quot;mimetype&quot;: [], 
+    &quot;fileextensions&quot;: [], 
+    &quot;legacyfileextensions&quot;: [], 
+    &quot;secrets_requirement&quot;: null, 
+    &quot;image_pull_policy&quot;: &quot;IfNotPresent&quot;, 
+    &quot;image_pull_secrets&quot;: null, 
+    &quot;containerengine&quot;: &quot;ephemeral_container&quot;, 
+    &quot;securitycontext&quot;: {}
+ }
+]
+</code></pre>
+<h3 id="curl-http-request-forbidden">Curl http request forbidden</h3>
+<pre><code class="language-bash">curl -X DELETE -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/images
+</code></pre>
+<p>The command returns</p>
+<pre><code class="language-json">{&quot;status&quot;: 403, &quot;message&quot;: &quot;Request forbidden -- authorization will not help&quot;}
 </code></pre>
 
 

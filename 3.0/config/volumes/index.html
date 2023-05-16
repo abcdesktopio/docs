@@ -3642,6 +3642,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#for-a-self-hosting-kubernetes-cluster" class="md-nav__link">
+    For a self hosting kubernetes cluster
+  </a>
+  
+    <nav class="md-nav" aria-label="For a self hosting kubernetes cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#example-with-storageclassnamecsi-s3" class="md-nav__link">
     example with storageClassName:csi-s3
   </a>
@@ -3661,8 +3669,7 @@
     Update od.config
   </a>
   
-    <nav class="md-nav" aria-label="Update od.config">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#the-init-command-options-with-no-file-permissions-support" class="md-nav__link">
@@ -3724,7 +3731,7 @@ desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolumespec: {
             'storageClassName': '',
             'capacity': { 'storage': '1Gi' },
-            'accessModes': [ 'ReadWriteMany' ], 
+            'accessModes': [ 'ReadWriteOnce' ], 
             'hostPath': { 'path': '/mnt/abcdesktop_volumes/{{ provider }}/{{ userid }}' } }
 # define how to create persistentvolumeclaim
 desktop.persistentvolumeclaimspec: {
@@ -3734,7 +3741,7 @@ desktop.persistentvolumeclaimspec: {
                 'storage': '1Gi'
               } 
             },
-            'accessModes': [ 'ReadWriteMany' ] }
+            'accessModes': [ 'ReadWriteOnce' ] }
 </code></pre>
 <p>desktop.persistentvolumespec support template values. For example <code>'/mnt/abcdesktop_volumes/{{ provider }}/{{ userid }}'</code>. </p>
 <ul>
@@ -3888,12 +3895,27 @@ desktop.persistentvolumeclaimspec: {
                 'storage': '1Gi'
               } 
             },
-            'accessModes': [ 'ReadWriteOne' ] }
+            'accessModes': [ 'ReadWriteOnce' ] }
 </code></pre>
-<h3 id="example-with-storageclassnamecsi-s3">example with storageClassName:<code>csi-s3</code></h3>
+<p>Replace <code>mystorageclass</code> by storageclass of your cloud provider</p>
+<pre><code>kubectl get storageclass
+</code></pre>
+<p>The example output is as follows on the cloud provider <a href="https://aws.amazon.com/">aws</a>.</p>
+<pre><code>NAME            PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+gp2 (default)   kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   false 
+</code></pre>
+<p>The example output is as follows on the cloud provider <a href="https://www.digitalocean.com/">digitalocean</a>.</p>
+<pre><code>NAME                          PROVISIONER                    RECLAIMPOLICY          Immediate           false                  3h22m
+do-block-storage (default)    dobs.csi.digitalocean.com      Delete          Immediate           true                   2d7h
+do-block-storage-retain       dobs.csi.digitalocean.com      Retain          Immediate           true                   2d7h
+do-block-storage-xfs          dobs.csi.digitalocean.com      Delete          Immediate           true                   2d7h
+do-block-storage-xfs-retain   dobs.csi.digitalocean.com      Retain          Immediate           true                   2d7h
+</code></pre>
+<h3 id="for-a-self-hosting-kubernetes-cluster">For a self hosting kubernetes cluster</h3>
+<h4 id="example-with-storageclassnamecsi-s3">example with storageClassName:<code>csi-s3</code></h4>
 <p>Use the <code>https://github.com/yandex-cloud/k8s-csi-s3</code> as a <code>CSI for S3</code> with <a href="https://min.io/">minio</a> as backend. </p>
 <p>Follow <code>https://github.com/yandex-cloud/k8s-csi-s3</code> setup guide and test with the sample pod to make sure that fuse mounts the S3 file system.  </p>
-<h4 id="update-storageclassyaml-file">Update storageclass.yaml file</h4>
+<h5 id="update-storageclassyaml-file">Update storageclass.yaml file</h5>
 <pre><code>---
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
@@ -3919,7 +3941,7 @@ parameters:
 <pre><code class="language-bash">kubectl delete sc csi-s3
 kubectl create -f storageclass.yaml
 </code></pre>
-<h4 id="update-odconfig">Update <code>od.config</code></h4>
+<h5 id="update-odconfig">Update <code>od.config</code></h5>
 <p>In your od.config file, define the entry <code>desktop.persistentvolumeclaimspec</code></p>
 <ul>
 <li><code>desktop.homedirectorytype</code>: 'persistentVolumeClaim' to use the persistentVolumeClaim features.</li>
