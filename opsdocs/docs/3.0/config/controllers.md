@@ -2,7 +2,7 @@
 # Controllers 
 
 ## Controllers
-abcdesktop use a Model View Controller (usually known as MVC). This MVC is used for developing user interfaces which divides the related program logic into three interconnected elements. This is done to separate internal representations of information from the ways information is presented to and accepted from the user.
+abcdesktop is based on the Model View Controller (usually known as MVC). This MVC is used for developing user interfaces which divides the related program logic into three interconnected elements. This is done to separate internal representations of information from the ways information is presented to and accepted from the user.
 
 List of all abcdesktop's controllers and the description : 
 
