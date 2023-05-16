@@ -20,7 +20,7 @@ desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolumespec: {
             'storageClassName': '',
             'capacity': { 'storage': '1Gi' },
-            'accessModes': [ 'ReadWriteMany' ], 
+            'accessModes': [ 'ReadWriteOnce' ], 
             'hostPath': { 'path': '/mnt/abcdesktop_volumes/{{ provider }}/{{ userid }}' } }
 # define how to create persistentvolumeclaim
 desktop.persistentvolumeclaimspec: {
@@ -30,7 +30,7 @@ desktop.persistentvolumeclaimspec: {
                 'storage': '1Gi'
               } 
             },
-            'accessModes': [ 'ReadWriteMany' ] }
+            'accessModes': [ 'ReadWriteOnce' ] }
 ```
 
 
@@ -153,18 +153,42 @@ desktop.persistentvolumeclaimspec: {
                 'storage': '1Gi'
               } 
             },
-            'accessModes': [ 'ReadWriteOne' ] }
+            'accessModes': [ 'ReadWriteOnce' ] }
 ```
 
+Replace `mystorageclass` by storageclass of your cloud provider
 
-### example with storageClassName:`csi-s3`
+```
+kubectl get storageclass
+```
+
+The example output is as follows on the cloud provider [aws](https://aws.amazon.com/).
+
+```
+NAME            PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+gp2 (default)   kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   false 
+```
+
+The example output is as follows on the cloud provider [digitalocean](https://www.digitalocean.com/).
+
+```
+NAME                          PROVISIONER                    RECLAIMPOLICY          Immediate           false                  3h22m
+do-block-storage (default)    dobs.csi.digitalocean.com      Delete          Immediate           true                   2d7h
+do-block-storage-retain       dobs.csi.digitalocean.com      Retain          Immediate           true                   2d7h
+do-block-storage-xfs          dobs.csi.digitalocean.com      Delete          Immediate           true                   2d7h
+do-block-storage-xfs-retain   dobs.csi.digitalocean.com      Retain          Immediate           true                   2d7h
+```
+
+### For a self hosting kubernetes cluster
+
+#### example with storageClassName:`csi-s3`
 
 Use the `https://github.com/yandex-cloud/k8s-csi-s3` as a `CSI for S3` with [minio](https://min.io/) as backend. 
 
 Follow `https://github.com/yandex-cloud/k8s-csi-s3` setup guide and test with the sample pod to make sure that fuse mounts the S3 file system.  
 
 
-#### Update storageclass.yaml file
+##### Update storageclass.yaml file
 
 ```
 ---
@@ -197,7 +221,7 @@ kubectl create -f storageclass.yaml
 ```
 
 
-#### Update `od.config`
+##### Update `od.config`
 
 
 In your od.config file, define the entry `desktop.persistentvolumeclaimspec`
