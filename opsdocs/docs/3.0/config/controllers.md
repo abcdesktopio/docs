@@ -37,7 +37,7 @@ controllers : {
 } 
 ```
 
-By default, `AccountingController` and `ManagerController` access are protected by a ip source filter.
+By default, `AccountingController` and `ManagerController` access are protected by ip source filters.
 The configuration permits private networks defined in [rfc1918](https://tools.ietf.org/html/rfc1918) and [rfc4193](https://tools.ietf.org/html/rfc4193). Get more information about the [private network](https://en.wikipedia.org/wiki/Private_network).
 
 By default, others controllers access is enabled, without any restriction.
