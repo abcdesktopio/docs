@@ -15,14 +15,14 @@ For example
 - `graphical` is the user graphical service (X11 and VNC)
 - `spawner` is the command service for graphical service
 - `broadcast` is the broadcast service for graphical service
-- `webshell` is the shell (bash) service for graphical service
+- `webshell` is the web socket bash shell service for graphical service
 - `printer` is the printer service (cupsd)
 - `printerfile` is the file service to download generated PDF file (this file transfert service is dedicated for printer service)
 - `sound` is the sound service (pulseaudio) to send rtp stream from a container to the web browser via janus webrtc gateway
 - `filer` is the filer service to upload and download file into the user home directory
-- `storage` contains abcdesktop user secrets
+- `storage` contains abcdesktop user secrets, like Kerberos, NTLM hashes, VNC password.
 
-Each service :
+Each service :![](data:image/jpeg;base64,CiMgQ29udHJvbGxlcnMgCgojIyBDb250cm9sbGVycwphYmNkZXNrdG9wLmlvIHVzZSBhIE1vZGVs4oCTdmlld+KAk2NvbnRyb2xsZXIgKHVzdWFsbHkga25vd24gYXMgTVZDKSBpcyBhIHNvZnR3YXJlIGRlc2lnbiBwYXR0ZXJuIGNvbW1vbmx5IHVzZWQgZm9yIGRldmVsb3BpbmcgdXNlciBpbnRlcmZhY2VzIHdoaWNoIGRpdmlkZXMgdGhlIHJlbGF0ZWQgcHJvZ3JhbSBsb2dpYyBpbnRvIHRocmVlIGludGVyY29ubmVjdGVkIGVsZW1lbnRzLiBUaGlzIGlzIGRvbmUgdG8gc2VwYXJhdGUgaW50ZXJuYWwgcmVwcmVzZW50YXRpb25zIG9mIGluZm9ybWF0aW9uIGZyb20gdGhlIHdheXMgaW5mb3JtYXRpb24gaXMgcHJlc2VudGVkIHRvIGFuZCBhY2NlcHRlZCBmcm9tIHRoZSB1c2VyLgoKCnwgQ29udHJvbGxlciAgICAgICAgICAgICAgICAgIHwgIERlc2NyaXB0aW9uICAgfAp8LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18LS0tLS0tLS0tLS0tLS0tIHwKfGBgYEFjY291bnRpbmdDb250cm9sbGVyYGBgIAl8IGFjY291bnRpbmcgZGF0YSBqc29uIGFuZCBlYm5mIGZvcm1hdCB8CnxgYGBBdXRoQ29udHJvbGxlcmBgYAkJCXwgYXV0aGVudGljYXRlIHVzZXIgIHwKfGBgYENvbXBvc2VyQ29udHJvbGxlcmBgYCAJCXwgQ1JVRCBtYWluIHNlcnZpY2VzIChsaWtlIGNyZWF0ZURlc2t0b3AsIHJ1bkFwcGxpY2F0aW9uKXwKfGBgYENvcmVDb250cm9sbGVyYGBgCQkJfCBnZXQgY29uZmlndXJhdGlvbiBhbmQgdXNlciBtZXNzYWdlIGluZm8gfAp8YGBgTWFuYWdlckNvbnRyb2xsZXJgYGAgCQl8IG1hbmFnZSBweW9zIHwKfGBgYFByaW50ZXJDb250cm9sbGVyYGBgCQl8IENSVUQgcHJpbnRlciBvYmplY3QgfAp8YGBgU3RvcmVDb250cm9sbGVyYGBgCQkJfCBDUlVEIGtleSB2YWx1ZSBkYXRhICB8CnxgYGBVc2VyQ29udHJvbGxlcmBgYAkJCXwgcmV0cmlldmUgdXNlciBpbmZvcm1hdGlvbiB8CgoKIyMgQWNjZXNzIFBlcm1pc3Npb24KClRoZSBgYGBBY2NvdW50aW5nQ29udHJvbGxlcmBgYCBhbmQgYGBgTWFuYWdlckNvbnRyb2xsZXJgYGAgYWNjZXNzIGlzIHByb3RlY3RlZCB3aXRoIGEgc291cmNlIGlwIGFkZHJlc3MgZmlsdGVyLgpUaGUgYWNjZXNzIGNvbnRyb2wgZmlsdGVyIGlzIGRlZmluZWQgaW4gYSBkaWN0aW9uYXJ5LgpFYWNoIGRpY3Rpb25hcnkgZW50cnkgdXNlIHRoZSBgYGBjb250cm9sbGVyYGBgIG5hbWUgYW5kIHdpdGggYW4gZW50cnkgYGBgcGVybWl0aXBgYGAuClRoZSBgYGBwZXJtaXRpcGBgYCBpcyBhIGxpc3Qgb2Ygc3VibmV0LCBmb3IgZXhhbXBsZSBgYGBbICcxMC4wLjAuMC84JywgJzE3Mi4xNi4wLjAvMTInIF1gYGAuCklmIGBgYHBlcm1pdGlwYGBgIGlzIG5vdCBzZXQgb3IgdGhlIGBgYGNvbnRyb2xsZXJgYGAgbmFtZSBpcyBub3Qgc2V0LCBhbGwgaXAgc291cmNlIGFkZHJlc3MgYXJlIGFsbG93ZWQgdGhlIHNlbmQgYSByZXF1ZXN0IHRvIHRoZSBjb250cm9sbGVyLgoKVGhlIGBgYGNvbnRyb2xsZXJzYGBgIGRpY3Rpb25uYXJ5IGlzIGRlZmluZWQgaW4gdGhlIGBgYG9kLmNvbmZpZ2BgYCBmaWxlLiAKQnkgZGVmYXVsdCB0aGUgY29uZmlndXJhdGlvbiBwZXJtaXQgcHJpdmF0ZSBuZXR3b3JrIGRlZmluZWQgaW4gW3JmYzE5MThdKGh0dHBzOi8vdG9vbHMuaWV0Zi5vcmcvaHRtbC9yZmMxOTE4KSBhbmQgW3JmYzQxOTNdKGh0dHBzOi8vdG9vbHMuaWV0Zi5vcmcvaHRtbC9yZmM0MTkzKS4gR2V0IG1vcmUgaW5mb3JtYXRpb24gYWJvdXQgdGhlIFtwcml2YXRlIG5ldHdvcmtdKGh0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy93aWtpL1ByaXZhdGVfbmV0d29yaykuCgpCeSBkZWZhdWx0IG90aGVycyBjb250cm9sbGVycyBhY2Nlc3MgaXMgZW5hYmxlZCwgd2l0aG91dCBpcCByZXN0cmljdGlvbi4KCgpgYGAKCWNvbnRyb2xsZXJzIDogeyAKCQknQWNjb3VudGluZ0NvbnRyb2xsZXInOiAKCQkJeyAKCQkJCSdwZXJtaXRpcCc6IFsgJzEwLjAuMC4wLzgnLCAnMTcyLjE2LjAuMC8xMicsICcxOTIuMTY4LjAuMC8xNicsICdmZDAwOjovOCcsICcxNjkuMjU0LjAuMC8xNicsICcxMjcuMC4wLjAvOCcgXSAKCQkJfSwKCQknQXV0aENvbnRyb2xsZXInIDogCQl7ICdwZXJtaXRpcCc6IE5vbmUgfSwKCQknQ29tcG9zZXJDb250cm9sbGVyJyA6IAl7ICdwZXJtaXRpcCc6IE5vbmUgfSwKCQknQ29yZUNvbnRyb2xsZXInIDogCQl7ICdwZXJtaXRpcCc6IE5vbmUgfSwKCQknTWFuYWdlckNvbnRyb2xsZXInOiAKCQkJeyAKCQkJCSdwZXJtaXRpcCc6IFsgJzEwLjAuMC4wLzgnLCAnMTcyLjE2LjAuMC8xMicsICcxOTIuMTY4LjAuMC8xNicsICdmZDAwOjovOCcsICcxNjkuMjU0LjAuMC8xNicsICcxMjcuMC4wLjAvOCcgXSAKCQkJfSwKCQknUHJpbnRlckNvbnRyb2xsZXInIDogCXsgJ3Blcm1pdGlwJzogTm9uZSB9LAoJCSdTdG9yZUNvbnRyb2xsZXInIDogCXsgJ3Blcm1pdGlwJzogTm9uZSB9LAoJCSdVc2VyQ29udHJvbGxlcicgOiAJCXsgJ3Blcm1pdGlwJzogTm9uZSB9Cgl9IApgYGAKCgpJZiB0aGUgc291cmNlIGlwIGFkZHJlc3MgaXMgbm90IGFsbG93ZWQsIHRoZSByZXNwb25zZSBpcyBhIEhUVFAgc3RhdHVzIGBgYGNvZGUgNDAzIEZvcmJpZGRlbmBgYAoJCmBgYAp7InN0YXR1cyI6IDQwMywgInN0YXR1c19tZXNzYWdlIjogIjQwMyBGb3JiaWRkZW4iLCAibWVzc2FnZSI6ICJSZXF1ZXN0IGZvcmJpZGRlbiAtLSBhdXRob3JpemF0aW9uIHdpbGwgbm90IGhlbHAifSAKYGBgCg==)
 
 - can be enable or disable `'enable': True`
 - can set dedicated `'resources'` limits resources for a container
@@ -40,7 +40,7 @@ desktop.pod : {
     'shareProcessMemory': True,
     'shareProcessMemorySize': '256Mi',
     'securityContext': { 
-      'supplementalGroups':  [ '{{ supplementalGroups }}' ],
+      'supplementalGroups': [ '{{ supplementalGroups }}' ],
       'runAsUser': '{{ uidNumber }}',
       'runAsGroup': '{{ gidNumber }}',
       'readOnlyRootFilesystem': False, 
@@ -48,7 +48,7 @@ desktop.pod : {
     }
   },  
   'graphical' : { 
-    'image': { 'default': 'abcdesktopio/oc.user.kubernetes.18.04:3.0' },
+    'image': { 'default': 'abcdesktopio/oc.user.ubuntu:3.0' },
     'imagePullPolicy': 'IfNotPresent',
     'enable': True,
     'acl': { 'permit': [ 'all' ] },
@@ -78,7 +78,7 @@ desktop.pod : {
     'acl':  { 'permit': [ 'all' ] } 
   },
   'printer' : { 
-    'image': 'abcdesktopio/oc.cupsd.18.04:3.0',
+    'image': 'abcdesktopio/oc.cupsd:3.0',
     'imagePullPolicy': 'IfNotPresent',
     'enable': True,
     'tcpport': 681,
@@ -113,7 +113,7 @@ desktop.pod : {
     }
   },
   'sound': { 
-    'image': 'abcdesktopio/oc.pulseaudio.22.04:3.0',
+    'image': 'abcdesktopio/oc.pulseaudio:3.0',
     'imagePullPolicy': 'IfNotPresent',
     'enable': False,
     'tcpport': 4714,
@@ -130,7 +130,7 @@ desktop.pod : {
     'imagePullPolicy': 'IfNotPresent',
     'securityContext': { 'runAsUser': 0 },
     'acl':  { 'permit': [ 'all' ] },
-    'command':  [ 'sh', '-c',  'chmod 750 ~ && chown {{ uidNumber }}:{{ gidNumber }} ~' ] 
+    'command':  [ 'sh', '-c',  'chmod 750 ~ && chown {{ uidNumber }}:{{ gidNumber }} ~ || true' ] 
   },
   'ephemeral_container': {
     'enable': True,
@@ -163,7 +163,7 @@ desktop.pod : {
 
 #### enable
 
-The container is added to the user pod if `'enable': True`
+A container is added to the user pod if `'enable': True`
 
 #### acl
 
@@ -194,11 +194,11 @@ The command is run with parameters :
  
 #### waitportbintimeout
 
-`waitportbintimeout` is the timeout in seconds for the `waitportbin` command. 
+`waitportbintimeout` is the timeout in seconds to get `waitportbin` command result.  
  
 #### image
 
-Image describe the container image name ( by example `'image': 'abcdesktopio/oc.user.kubernetes.18.04:3.0'`)
+Image describe the container image name ( by default `'image': 'abcdesktopio/oc.user.ubuntu:3.0'`)
 
 #### imagePullSecrets
 
@@ -229,11 +229,10 @@ The `imagePullSecret` become in this sample
 
 #### resources
 
-resources come from the kubernetes resources containers management. Read the [resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) kubernetes documentation to get more details.
+Resources come from the kubernetes resources containers management. Read the [resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) kubernetes documentation to get more details.
 
 
 ### spec entry
-
 
 `spec` entry defines the spec entry for a pod. All kubernetes entries are supported. Some of them are overwrited by abcdesktop.
 
@@ -241,10 +240,13 @@ resources come from the kubernetes resources containers management. Read the [re
 
 - `{{ gidNumber }}` is replaced by the user's `gidNumber` on ldap if the objectClass is posixAccount  is replaced by the ldap gidNumber or if not set by the default group id set in option `desktop.groupid` 
 - `{{ supplementalGroups }}` is replaced by the list of groups `gidNumber` is posixGroup
-- `shareProcessNamespace` When process namespace sharing is enabled, processes in a container are visible to all other containers in the same pod. Read the kubernetes [shareProcessNamespace](https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/) details, to get more details.
-- `shareProcessMemory` POSIX shared memory requires that a tmpfs be mounted at /dev/shm. The containers in a pod do not share their mount namespaces so we use volumes to provide the same /dev/shm into each container in a pod. To get more details, read [shared_memory](https://docs.openshift.com/container-platform/3.11/dev_guide/shared_memory.html). It is defined as an emptyDir volume `{ 'name': 'shm',  { 'medium': 'Memory', 'sizeLimit': shareProcessMemorySize } }`
-- `shareProcessMemorySize` is the size of `shareProcessMemory`. The size is set to the `shm` volume  `'sizeLimit': shareProcessMemorySize`
 
+- `shareProcessNamespace` When process namespace sharing is enabled, processes in a container are visible to all other containers in the same pod. Read the kubernetes [shareProcessNamespace](https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/) details, to get more details. 
+
+
+- `shareProcessMemory` Shared memory segments are used to accelerate inter-process communication at memory speed, rather than through pipes or through the network stack. Shared memory is commonly used by databases and custom-built (typically C/OpenMPI, C++/using boost libraries) high performance applications for scientific computing and financial services industries. POSIX shared memory requires that a tmpfs be mounted at /dev/shm. Containers in a pod do not share their mount namespaces so we use volumes to provide the same /dev/shm into each container in a pod. Read [shared_memory](https://docs.openshift.com/container-platform/3.11/dev_guide/shared_memory.html) to get more details. Shared memory is defined as an emptyDir volume `{ 'name': 'shm', { 'medium': 'Memory', 'sizeLimit': shareProcessMemorySize } }` minted on `/dev/shm`. Only ephemeral container application can share memory with the X11 server. To get more details about POSIX and UNIX System V shared memory objects, read the [podshmtest](https://github.com/abcdesktopio/podshmtest) repository.
+
+- `shareProcessMemorySize` is the size of `shareProcessMemory`. The size is set to the `shm` volume  `'sizeLimit': shareProcessMemorySize`
 
 ```json
 'spec' : {
@@ -276,10 +278,11 @@ Values are read from the previous ldap authentification.
 - `'{{ gidNumber }}'` is replaced by the ldap gidNumber or if not set by the default group id set in option `desktop.groupid` 
 - `'{{ uid }}'` is replaced by the ldap `uid` or if not set by the default user name set in option `desktop.username`
 
+
 Example
 
 ``` json
- 'command':  [ 'sh', '-c',  'chmod 755 ~ && chown {{ uidNumber }}:{{ gidNumber }} ~' ]
+ 'command':  [ 'sh', '-c',  'chmod 755 ~ && chown {{ uidNumber }}:{{ gidNumber }} ~ || true' ]
 ```
 
 
