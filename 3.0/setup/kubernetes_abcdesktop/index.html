@@ -2470,10 +2470,11 @@
 The quick installation process runs the all commands step by step:</p>
 <ul>
 <li>create the <code>abcdesktop</code> namespace</li>
-<li>build all <code>rsa keys</code> pairs for jwt signing and payload encryption</li>
+<li>create clusterRole and service account</li>
+<li>build all <code>rsa</code> keys pairs for jwt signing and payload encryption</li>
 <li>download the default configuration file <code>od.config</code></li>
-<li>create all <code>services</code>, <code>deployment</code>, <code>pods</code>, <code>secrets</code> and <code>configmaps</code></li>
-<li>fetch pod user's core images: <code>oc.user</code>, <code>oc.cups</code>, <code>oc.pulseaudio</code></li>
+<li>create all <code>services</code>, <code>deployments</code>, <code>secrets</code> and <code>configmaps</code></li>
+<li>fetch pod user's container images</li>
 </ul>
 <h2 id="manually-installation-step-by-step-linux-macos-or-windows">Manually installation step by step (Linux, macOS or Windows)</h2>
 <p>The following commands will let you deploy an abcdesktop on the master node. All applications run on a single server.  </p>
