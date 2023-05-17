@@ -5,10 +5,10 @@ description: cloud native desktop complete workspace environment accessible from
 keywords: graphical application container desktopless kubernetes secure desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface byod bring your own device reduce attack surface novnc rdp citrix
 ---
 
-# abcdesktop.io is a graphical application container solution for kubernetes
+# abcdesktop.io is a cloud native desktop service built on and for Kubernetes.
 
 
-abcdesktop.io is a cloud native desktop service built on and for Kubernetes. abcdesktop.io is a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, desktopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface.
+abcdesktop.io is a cloud native desktop service built on and for [Kubernetes](https://kubernetes.io/). abcdesktop.io is also a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, desktopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface.
 
 ![thisisabcdesktop](img/thisisabcdesktop.png)
 
@@ -37,6 +37,7 @@ abcdesktop.io provides a way to run graphics software securely isolated in a con
 ![screenshot-applications](img/screenshot-applications.png)
 
 ## Quick installation for kubernetes
+
 You can watch the youtube video sample. This video describes the Quick installation process.
 
 <iframe width="640" height="480" src="https://www.youtube.com/embed/KpjG4ksoGNI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
@@ -107,5 +108,5 @@ abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 1
 
 ## Github repositories ![Github stars](https://img.shields.io/github/stars/abcdesktopio?style=social)
 
-abcdesktop has 37 repositories available. Follow the code on GitHub [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code.
+abcdesktop has 42 repositories available. Follow the code on GitHub [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code.
 
