@@ -30,7 +30,8 @@ FROM ${BASE_IMAGE}:${TAG}
 RUN apk add --no-cache --update  \
    faenza-icon-theme-libreoffice \
    libreoffice 			 \
-   libreoffice-gtk
+   libreoffice-qt5		 \
+   openjdk12-jre
 
 ```
 
