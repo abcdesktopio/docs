@@ -404,19 +404,6 @@
     Microsoft Windows
   </a>
   
-    <nav class="md-nav" aria-label="Microsoft Windows">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
-    System Requirements
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
       </ul>
@@ -2165,19 +2152,6 @@
     Microsoft Windows
   </a>
   
-    <nav class="md-nav" aria-label="Microsoft Windows">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
-    System Requirements
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
       </ul>
@@ -2242,31 +2216,9 @@
 <h3 id="gnulinux">GNU/Linux</h3>
 <p>The recommended distrubution is <code>Ubuntu 22.04.2 LTS</code></p>
 <h3 id="macosx">MacOS/X</h3>
-<p>Docker For Mac embeds a hypervisor (based on <a href="https://github.com/machyve/xhyve">xhyve</a>), a Linux distribution which runs on LinuxKit and filesystem &amp; network sharing that is much more Mac native. Docker For Mac is a Mac native application in /Applications. </p>
-<p>At installation time, it creates symlinks in /usr/local/bin for docker and docker-compose, to the commands in the application bundle, in /Applications/Docker.app/Contents/Resources/bin.</p>
-<p>To install dockerd on MacOS/X, use Docker for Desktop. Get Docker for MacOS on the docker website 
-<a href="https://docs.docker.com/docker-for-mac/">docker-for-mac</a></p>
-<p>To get a shell to the <code>LinuxKit docker-desktop</code>, run the docker command </p>
-<pre><code>docker run -it --rm --privileged --pid=host justincormack/nsenter1
-</code></pre>
-<blockquote>
-<p>more info: <a href="https://github.com/justincormack/nsenter1">https://github.com/justincormack/nsenter1</a></p>
-</blockquote>
+<p>Use Docker Desktop with kubernetes, https://www.docker.com/products/docker-desktop/</p>
 <h3 id="microsoft-windows">Microsoft Windows</h3>
-<p>When you install Docker Desktop on Windows, it requires and automatically enables Hyper-V, a hypervisor from Microsoft. Hyper-V replaces your Windows OS as the host on the computer, and your Windows OS becomes a virtual machine. </p>
-<h4 id="system-requirements">System Requirements</h4>
-<ul>
-<li>Windows 10 64-bit: Pro, Enterprise, or Education (Build 15063 or later).</li>
-<li>Hyper-V and Containers Windows features must be enabled.</li>
-<li>64 bit processor with Second Level Address Translation (SLAT)</li>
-<li>4GB system RAM</li>
-<li>BIOS-level hardware virtualization support must be enabled in the BIOS settings.</li>
-</ul>
-<p>To install dockerd on Microsoft windows, use Docker for Desktop. Get Docker for Windows on the docker website 
-<a href="https://docs.docker.com/docker-for-windows/">docker-for-windows</a></p>
-<p>You need to configure your Docker Desktop on Windows to use <strong>Linux containers</strong>. 
-abcdesktop.io <strong>does NOT support Windows container</strong>. </p>
-<p>You can switch the Docker Desktop on Windows to use Linux containers, using  the docker window tray icon. <a href="/img/switchtolinuxcontainer.png">Switch to Linux containers</a></p>
+<p>Use Docker Desktop with kubernetes, https://www.docker.com/products/docker-desktop/</p>
 
 
   
