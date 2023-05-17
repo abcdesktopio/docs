@@ -7,22 +7,24 @@ The od.config contains options to describe how the oc.user and applications cont
 All desktop options are defined in od.config file.
 Desktop options start with the prefix `desktop.`, then add the name of the option.
 
-| Option name                           | Type           | Sample        |
-|---------------------------------------|----------------|---------------|
-| `desktop.defaultbackgroundcolors`     | list           | [ '#6EC6F0', '#333333',  '#666666', '#CD3C14', '#4BB4E6', '#50BE87', '#A885D8', '#FFB4E6' ] |
-| `desktop.homedirectorytype`           | string         | 'hostPath'    |
-| `desktop.remotehomedirectorytype`     | list           | []            |
-| `desktop.persistentvolumeclaim`       | string         | None          |
-| `desktop.envlocal`                    | dictionary     | `{ 'X11LISTEN':'tcp' }` |
-| `desktop.nodeselector`                | dictionary     | `{}`          |
-| `desktop.username`                    | string         | 'balloon'     |
-| `desktop.userid`                      | integer        | 4096          |
-| `desktop.groupid`                     | integer        | 4096          |
-| `desktop.userhomedirectory`           | string         | `'/home/balloon'` |
-| `desktop.useinternalfqdn`             | boolean        | False |
-| `desktop.uselocaltime`                | boolean        | False |
-| `desktop.policies`                    | dictionary    | `{ 'rules':{}, 'max_app_counter':5 }`  |
-| `desktop.webhookdict`                 | dictionary    | `{ }` |
+| Option name                           | Type           | Sample                             |
+|---------------------------------------|----------------|------------------------------------|
+| `desktop.defaultbackgroundcolors`     | list           | ['#6EC6F0', '#CD3C14', '#4BB4E6' ] |
+| `desktop.homedirectorytype`           | string         | 'hostPath'                         |
+| `desktop.remotehomedirectorytype`     | list           | []                                 |
+| `desktop.persistentvolumespec`        | string         | None                               |
+| `desktop.persistentvolumeclaimspec`   | string         | None                               |
+| `desktop.homedirectorytype`           | string         | 'hostPath'                         |
+| `desktop.envlocal`                    | dictionary     | `{ 'X11LISTEN':'tcp'}`             |
+| `desktop.nodeselector`                | dictionary     | `{}`                               |
+| `desktop.username`                    | string         | 'balloon'                          |
+| `desktop.userid`                      | integer        | 4096                               |
+| `desktop.groupid`                     | integer        | 4096                               |
+| `desktop.userhomedirectory`           | string         | `'/home/balloon'`                  |
+| `desktop.useinternalfqdn`             | boolean        | False                              |
+| `desktop.uselocaltime`                | boolean        | False                              |
+| `desktop.policies`                    | dictionary     | `{ 'rules':{}, 'max_app_counter':5 }`  |
+| `desktop.webhookdict`                 | dictionary     | `{}`                               |
 
 
 ## desktop.homedirectory
@@ -102,8 +104,11 @@ The default value is :
 ## desktop.nodeselector
 
 `desktop.nodeselector` is a dictionary. This option permits to assign user pods to nodes.
+
 It specifies a map of key-value pairs. For the pod to be eligible to run on a node, the node must have each of the indicated key-value pairs as labels (it can have additional labels as well). 
-The most common usage is one key-value pair.
+The most common usage is one key-value pair. 
+
+The value must be a string, by example 'true', and matches the labels node value.  
 
 ``` json
 desktop.nodeselector:  { 'abcdesktopworker': 'true' }
@@ -114,6 +119,30 @@ To set a label `abcdesktopworker=true` to a node
 ```bash
 kubectl label node $YOUR_NODE abcdesktopworker=true
 ```
+
+The commands returns
+
+```
+node/nodesample01 labeled
+```
+
+To list all labels on all nodes 
+
+```bash
+kubectl -n abcdesktop get nodes --template '{{range .items}}{{.metadata.labels}}{{"\n"}}{{end}}'
+```
+
+The commands returns
+
+```json
+map[beta.kubernetes.io/arch:amd64 beta.kubernetes.io/os:linux kubernetes.io/arch:amd64 kubernetes.io/hostname:abc3cp01 kubernetes.io/os:linux node-role.kubernetes.io/control-plane: node.kubernetes.io/exclude-from-external-load-balancers:]
+map[abcdesktopworker:true beta.kubernetes.io/arch:amd64 beta.kubernetes.io/os:linux kubernetes.io/arch:amd64 kubernetes.io/hostname:abc3ws01 kubernetes.io/os:linux node-role.kubernetes.io/worker:worker]
+map[abcdesktopworker:true beta.kubernetes.io/arch:amd64 beta.kubernetes.io/os:linux kubernetes.io/arch:amd64 kubernetes.io/hostname:abc3ws02 kubernetes.io/os:linux node-role.kubernetes.io/worker:worker]
+map[abcdesktopworker:true beta.kubernetes.io/arch:amd64 beta.kubernetes.io/os:linux kubernetes.io/arch:amd64 kubernetes.io/hostname:abc3ws03 kubernetes.io/os:linux node-role.kubernetes.io/worker:worker]
+```
+
+`desktop.nodeselector` is used as selector by pyos to create user's pods and to pull container's images.
+
 
 ## desktop.username
 

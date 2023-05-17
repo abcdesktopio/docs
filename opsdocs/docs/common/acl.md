@@ -82,14 +82,11 @@ authmanagers: {
 ```
 
 Restart the pyos service 
-> Using kubernetes run 
-> 
-> `kubectl rollout restart daemonset daemonset-pyos -n abcdesktop`
-> 
-> Using docker only, run 
-> 
-> `docker-compose restart`  
- 
+
+```
+kubectl delete pod -l run-pyos-od -n abcdesktop
+```
+
 When your services are restarted, launch your web browser
 
 ![login anomymous acl](img/login-anomymous-acl.png)

@@ -30,9 +30,9 @@ configmap "nginx-config" deleted
 deployment.apps "memcached-od" deleted
 secret "mongodb-secret" deleted
 deployment.apps "mongodb-od" deleted
-daemonset.apps "daemonset-nginx" deleted
+deployment.apps "nginx-od" deleted
 deployment.apps "speedtest-od" deleted
-daemonset.apps "daemonset-pyos" deleted
+deployment.apps "pyos-od" deleted
 endpoints "desktop" deleted
 service "desktop" deleted
 service "memcached" deleted
@@ -73,8 +73,6 @@ echo "remove all configmaps"
 kubectl delete cm --all -n abcdesktop
 echo "remove all pvc"
 kubectl delete pvc --all -n abcdesktop 2>/dev/null
-echo "remove all pv"
-kubectl delete pv --all -n abcdesktop  2>/dev/null
 echo "remove namespace"
 kubectl delete namespace abcdesktop
 echo "abcdesktop is uninstalled"

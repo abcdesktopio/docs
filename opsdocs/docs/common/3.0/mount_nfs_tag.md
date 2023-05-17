@@ -113,19 +113,22 @@ kubectl create --from-file=od.config -n abcdesktop
 ```
 
 
-### Restart `pyos daemonset` 
+### Restart `pyos` 
 
-Restart pyos daemonset
+Restart `pyos`  pods
 
 ```
-kubectl rollout restart daemonset daemonset-pyos -n abcdesktop
+kubectl delete pod -l run=pyos-od -n abcdesktop
 ```
 
+```
+pod "pyos-od-5586b88767-64jwt" deleted
+```
 
 
 ## Create a new desktop for `Hermes Conrad` and list nfs files
 
-Open the url `http://localhost:30443`, in your web browser, to start a simple abcdesktop.io pod. 
+Open the url `http://localhost:30443`, in your web browser, to start a simple user's pod. 
 
 ```
 http://localhost:30443

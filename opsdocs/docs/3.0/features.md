@@ -13,10 +13,14 @@ In release 3.0, the abcdesktop control plane uses only `Kubernetes` API. It does
 
 ![abcdesktop design](config/img/kubernetes.abcdesktop.3.0.svg)
 
+
+## Auth service
+
+Auth service supports LDAP Posix Account
+
 ## User pod
 
 ## Applications
-
 
 Application can run as : 
 

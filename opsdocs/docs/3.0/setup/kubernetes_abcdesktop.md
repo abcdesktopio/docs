@@ -29,7 +29,6 @@ You can run the **Quick installation process** or choose the **Manually installa
 
 > Quick installation can be run on Linux or macOS operation system. 
 
-
 Download and extract the latest release automatically (Linux or macOS):
 
 ```
@@ -42,19 +41,19 @@ The quick installation process runs the all commands step by step:
 * create the `abcdesktop` namespace
 * build all `rsa keys` pairs for jwt signing and payload encryption
 * download the default configuration file `od.config`
-* create all `services`, `pods`, `secrets` and `configmaps`
-* download pod user's core images: `oc.user`, `oc.cupsd`, `oc.pulseaudio`
+* create all `services`, `deployment`, `pods`, `secrets` and `configmaps`
+* fetch pod user's core images: `oc.user`, `oc.cups`, `oc.pulseaudio`
 
 
 ## Manually installation step by step (Linux, macOS or Windows)
 
-The following commands will let you prepare and build abcdesktop plateform on the master node. All applications run on a single server.  
+The following commands will let you deploy an abcdesktop on the master node. All applications run on a single server.  
 
 
 ### Install abcdesktop
 #### Step 1: Create abcdesktop namespace
 
-We will create abcdesktop namespace and set it as default :
+We will create the abcdesktop namespace and set it as default :
 
 ```
 # First create the abcdesktop namespace
@@ -235,14 +234,14 @@ You should read on the standard output
 clusterrole.rbac.authorization.k8s.io/pyos-role created
 clusterrolebinding.rbac.authorization.k8s.io/pyos-rbac created
 serviceaccount/pyos-serviceaccount created
-storageclass.storage.k8s.io/storage-local-abcdesktop created
+configmap/configmap-mongodb-scripts created
 configmap/nginx-config created
+secret/secret-mongodb created
+deployment.apps/mongodb-od created
 deployment.apps/memcached-od created
-secret/mongodb-secret created
-statefulset.apps/mongodb-od created
-daemonset.apps/daemonset-nginx created
+deployment.apps/nginx-od created
 deployment.apps/speedtest-od created
-daemonset.apps/daemonset-pyos created
+deployment.apps/pyos-od created
 endpoints/desktop created
 service/desktop created
 service/memcached created
@@ -250,6 +249,8 @@ service/mongodb created
 service/speedtest created
 service/nginx created
 service/pyos created
+deployment.apps/openldap-od created
+service/openldap created
 ```
 
 ##### Verify Pods
@@ -265,13 +266,13 @@ kubectl get pods -n abcdesktop
 You should read on the standard output
 
 ``` bash
-NAME                                   READY   STATUS    RESTARTS   AGE
-daemonset-nginx-nfsbm                  1/1     Running   0          29s
-daemonset-pyos-8kvfp                   1/1     Running   0          29s
-memcached-od-5bf65bf745-j69lh          1/1     Running   0          29s
-mongodb-od-6cbf8d74d-2rdmd             1/1     Running   0          29s
-openldap-od-8dc9f56d8-wtlxl            1/1     Running   0          29s
-speedtest-od-7cb7dd44f5-p947s          1/1     Running   0          29s
+NAME                            READY   STATUS    RESTARTS   AGE
+memcached-od-57c57c4f9d-92fs2   1/1     Running   0          59m
+mongodb-od-f69ff6b5b-v6ztc      1/1     Running   0          59m
+nginx-od-58f86c4dc8-8n9lf       1/1     Running   0          59m
+openldap-od-d66d66bf4-84lg8     1/1     Running   0          59m
+pyos-od-5586b88767-6gdtk        1/1     Running   0          59m
+speedtest-od-6c59bdff75-n6s66   1/1     Running   0          59m
 ```
 
 ### Connect your local abcdesktop
@@ -282,7 +283,7 @@ abcdesktop homepage should be available :
 
 ![abcdesktop Anonymous login](../../setup/img/kubernetes-setup-login-anonymous.png)
 
-Click on the **Connect with Anonymous** access button. abcdesktop service pyos is creating a new desktop using the user container image `abcdesktopio/oc.user.kubernetes.18.04:3.0`.
+Click on the **Connect with Anonymous** access button. abcdesktop service pyos is creating a new pod.
 
 ![abcdesktop main screen login pending](../../setup/img/kubernetes-setup-login-anonymous.pending.png)
 
@@ -295,19 +296,22 @@ You just need a web browser to reach your web workspace. It' now time to add som
 Read the chapter add kubernetes contain
 
 ### Troubleshoot
+
 All kubernetes resources can be inspected to get more informations.
 
 First list elements you want to verify, in the following case, we will inspect pods :
 
-``` bash
-    kubectl get pods -n abcdesktop
+```bash
+kubectl get pods -n abcdesktop
+```
 
-    NAME                            READY   STATUS             RESTARTS   AGE
-    daemonset-nginx-qnd4n           1/1     Running            0          92s
-    daemonset-pyos-6mgq4            1/1     Running            0          92s
-    memcached-od-db69c45fb-mqt4n    1/1     Running            0          92s
-    mongodb-od-ff874fcb5-sm6f7      1/1     Running            0          92s
-    speedtest-od-55c58fdd69-5znpr   0/1     ImagePullBackOff   0          92s
+```
+NAME                            READY   STATUS             RESTARTS   AGE
+nginx-od-db69c45fb-qnd4n        1/1     Running            0          92s
+pyos-od-5586b88767-6gdtk        1/1     Running            0          92s
+memcached-od-db69c45fb-mqt4n    1/1     Running            0          92s
+mongodb-od-ff874fcb5-sm6f7      1/1     Running            0          92s
+speedtest-od-55c58fdd69-5znpr   0/1     ImagePullBackOff   0          92s
 ```
 
 As we can see, status is "ImagePullBackOff" for speedtest-od pod.  
@@ -329,23 +333,28 @@ In this case, the important information part is at the end (it's not always the 
 
 As we can see, in this case, Kubernetes had a problem to pull oc.speedtest image from registry.
 
-##### Verify Daemonsets
+##### Verify the deployments
 
-``` bash
-kubectl get daemonsets -n abcdesktop
+```bash
+kubectl get deployment -n abcdesktop
 ```
 
 You should read on the standard output
 
-``` bash
-NAME              DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-daemonset-nginx   1         1         1       1            1           <none>          166m
-daemonset-pyos    1         1         1       1            1           <none>          166m
+```
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+memcached-od   1/1     1            1           10m
+mongodb-od     1/1     1            1           10m
+nginx-od       1/1     1            1           4m26s
+openldap-od    1/1     1            1           10m
+pyos-od        1/1     1            1           3m2s
+speedtest-od   1/1     1            1           10m
 ```
 
 
 ##### Verify service ports
-```
+
+```bash
 kubectl get services -n abcdesktop
 ```
 
@@ -353,24 +362,24 @@ You should read on the standard output
 
 ```
 NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)           AGE
-desktop     ClusterIP   None             <none>        <none>            166m
-memcached   ClusterIP   10.97.84.163     <none>        11211/TCP         166m
-mongodb     ClusterIP   10.97.119.76     <none>        27017/TCP         166m
-nginx       NodePort    10.108.80.216    <none>        80:30443/TCP      166m
-openldap    ClusterIP   10.104.244.6     <none>        389/TCP,636/TCP   166m
-pyos        ClusterIP   10.111.15.51     <none>        8000/TCP          166m
-speedtest   ClusterIP   10.106.254.126   <none>        80/TCP            166m
+desktop     ClusterIP   None             <none>        <none>            11m
+memcached   ClusterIP   10.107.106.62    <none>        11211/TCP         11m
+mongodb     ClusterIP   10.96.113.246    <none>        27017/TCP         11m
+nginx       NodePort    10.100.253.228   <none>        80:30443/TCP      11m
+openldap    ClusterIP   10.105.69.239    <none>        389/TCP,636/TCP   11m
+pyos        ClusterIP   10.98.97.186     <none>        8000/TCP          11m
+speedtest   ClusterIP   10.109.48.166    <none>        80/TCP            11m
 ```
 
 ##### Verify cluster roles
 
-``` bash
+```bash
 kubectl describe ClusterRole pyos-role -n abcdesktop
 ```
 
 You should read on the standard output
 
-``` bash
+```
 Name:         pyos-role
 Labels:       <none>
 Annotations:  <none>
@@ -379,6 +388,8 @@ PolicyRule:
   ---------                 -----------------  --------------  -----
   pods/ephemeralcontainers  []                 []              [create get list watch update patch delete]
   pods/exec                 []                 []              [create get list watch update patch delete]
+  persistentvolumes         []                 []              [get list create delete]
+  persistentvolumeclaims    []                 []              [get list update create delete]
   configmaps                []                 []              [get list watch create update patch delete]
   pods                      []                 []              [get list watch create update patch delete]
   secrets                   []                 []              [get list watch create update patch delete]
@@ -390,13 +401,14 @@ PolicyRule:
 
 ##### Verify Cluster Role Bindind
 
-``` bash
+```bash
 kubectl describe ClusterRoleBinding pyos-rbac -n abcdesktop
 ```
 
 You should read on the standard output
 
-``` bash
+```
+Name:         pyos-rbac
 Labels:       <none>
 Annotations:  <none>
 Role:
@@ -411,36 +423,61 @@ Subjects:
 
 ### Read pyos logs
 
+```bash
+kubectl logs -l run=pyos-od -n abcdesktop --follow -n abcdesktop
 ```
-kubectl logs daemonset-pyos-tklg8 --follow -n abcdesktop
-```
 
-
-### Rollout daemonset
-
-To rollout restart the abcdesktop daemonset
+You should read on the standard output
 
 ```
-kubectl rollout restart daemonset -n abcdesktop
+2023-05-17 13:29:08 od [INFO   ] __main__.trace_request:anonymous /healthz
+2023-05-17 13:29:18 od [INFO   ] __main__.trace_request:anonymous /healthz
+2023-05-17 13:29:28 od [INFO   ] __main__.trace_request:anonymous /healthz
+2023-05-17 13:29:38 od [INFO   ] __main__.trace_request:anonymous /healthz
+2023-05-17 13:29:48 od [INFO   ] __main__.trace_request:anonymous /healthz
+2023-05-17 13:29:58 od [INFO   ] __main__.trace_request:anonymous /healthz
+2023-05-17 13:30:08 od [INFO   ] __main__.trace_request:anonymous /healthz
+2023-05-17 13:30:18 od [INFO   ] __main__.trace_request:anonymous /healthz
+2023-05-17 13:30:28 od [INFO   ] __main__.trace_request:anonymous /healthz
+2023-05-17 13:30:38 od [INFO   ] __main__.trace_request:anonymous /healthz
+2023-05-17 13:30:48 od [INFO   ] __main__.trace_request:anonymous /healthz
+```
+
+
+### Rollout deployment
+
+To rollout restart the abcdesktop deployment
+
+```bash
+kubectl rollout restart deployment -n abcdesktop
 ```
 
 You should read on the standard output 
 
 ```
-daemonset.apps/daemonset-nginx restarted
-daemonset.apps/daemonset-pyos restarted
+deployment.apps/memcached-od restarted
+deployment.apps/mongodb-od restarted
+deployment.apps/nginx-od restarted
+deployment.apps/openldap-od restarted
+deployment.apps/pyos-od restarted
+deployment.apps/speedtest-od restarted
 ```
 
 Check the pods status  
 
+```bash
+kubectl get pods -n abcdesktop
 ```
-kubectl get pods  -n abcdesktop
-NAME                            READY   STATUS    RESTARTS   AGE
-daemonset-nginx-dh2xd           1/1     Running   0          4m22s
-daemonset-pyos-9xn26            1/1     Running   0          3m52s
-memcached-od-5bf65bf745-xpvvr   1/1     Running   3          45h
-mongodb-od-656d85c49f-242jh     1/1     Running   4          45h
-openldap-od-5945946767-qf2hn    1/1     Running   0          45m
-speedtest-od-d94b8cb5c-52wf5    1/1     Running   0          45m
+
+You should read on the standard output 
+
+```
+NAME                            READY   STATUS        RESTARTS   AGE
+memcached-od-64c56f9458-jcf9x   1/1     Running       0          32s
+mongodb-od-5b5cc9946d-q7fph     1/1     Running       0          32s
+nginx-od-58bdf79df4-skjsn       1/1     Running       0          32s
+openldap-od-6dcc5d7f8b-g8gvj    1/1     Running       0          32s
+pyos-od-784bd7b5c5-tdzxx        1/1     Running       0          32s
+speedtest-od-5ff99b6579-st9jx   1/1     Running       0          32s
 ```
 

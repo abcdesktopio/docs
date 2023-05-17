@@ -4,19 +4,22 @@
 
 * Architecture `x86-64` ( `arm-64` is not yet available)
 * 15 GB of free space to store sample applications ( gimp, libreoffice writer, libreoffice calc, libreoffice math, libreoffice impress, firefox ) and core image services
+* a kubernetes cluster ready to run **greater or equal** to 1.24
 
-### Release 1.0 
-* **docker** instance (version 18 and above). abcdesktop.io 1.0 need a dockerd socket access.
+### Release 1.0 [ removed ]
+* docker instance (version 18 and above). abcdesktop.io 1.0 need a dockerd socket access.
 * Kubernetes release **less or equal** than 1.23.7-00 ( if you use kubernetes release 1.24 or above, you must use abcdesktop.io release 3.0  )
 
-### Release 2.0 
-* **docker** instance (version 18 and above). abcdesktop.io 2.0 need a dockerd socket access.  
+### Release 2.0 [ removed ]
+* docker instance (version 18 and above). abcdesktop.io 2.0 need a dockerd socket access.  
 * Kubernetes release **less or equal** than 1.23.7-00 ( if you use kubernetes release 1.24 or above, you must use abcdesktop.io release 3.0  )
 * an application runs as docker container or as kubernetes pod
 
-### Release 3.0 
+### Release 3.0 [ stable ]
 * Kubernetes release **greater or equal** to 1.24
-* No depend to docker, an application runs as pod or as an [ephermeral container](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
+* No depend to dockerd, an application runs as pod or as an [ephermeral container](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
+* Support storageClass and persistent volume claims
+* Support cloud provider 
 
 ## Supported Architectures
 
@@ -26,11 +29,12 @@ Our images support only architectures `x86-64`. The architectures supported by t
 | :----: | --- |
 | x86-64 | amd64-latest |
 
+`arm-64` is in progress.
+
 
 ### GNU/Linux
 
-The recommended distrubution is [Ubuntu 20.04 LTS (Focal Fossa)](https://releases.ubuntu.com/20.04/)
-
+The recommended distrubution is `Ubuntu 22.04.2 LTS`
 
 ### MacOS/X
 

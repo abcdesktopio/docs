@@ -9,7 +9,7 @@
 ## Goals
 
 * Update abcdesktop default frontend web page to use your own.
-* Create new image for abcdesktop oc.nginx daemonset
+* Create new image for abcdesktop oc.nginx
 
 
 ## Update oc.nginx image
@@ -19,11 +19,11 @@
 * Rename the project name
  
 
-### Clone default `webmodules`  
+### Clone default `webModules`  
 
 ```bash
-~$ mkdir build
-~$ cd build/
+mkdir build
+cd build/
 ~/build$ git clone https://github.com/abcdesktopio/webModules.git
 Cloning into 'webModules'...
 remote: Enumerating objects: 4971, done.
@@ -417,7 +417,7 @@ Apply the new `abcdesktop.yaml` file
 kubectl apply -f abcdesktop.yaml 
 ```
 
-The `daemonset.apps/daemonset-nginx` is `configured`
+The `deployment.apps/nginx-od` is `configured`
 
 ```
 clusterrole.rbac.authorization.k8s.io/pyos-role unchanged
@@ -428,9 +428,9 @@ configmap/nginx-config unchanged
 deployment.apps/memcached-od unchanged
 secret/mongodb-secret configured
 deployment.apps/mongodb-od unchanged
-daemonset.apps/daemonset-nginx configured
+deployment.apps/nginx-od configured
 deployment.apps/speedtest-od unchanged
-daemonset.apps/daemonset-pyos configured
+deployment.apps/nginx-od configured
 endpoints/desktop unchanged
 service/desktop unchanged
 service/memcached unchanged
@@ -443,7 +443,7 @@ service/openldap unchanged
 ```
 
 ```
-kubectl rollout restart daemonset/daemonset-nginx -n abcdesktop
+kubectl delete pod -l run=nginx-od -n abcdesktop
 ```
 
 Start you web browser. You can read the new project name at the home page.

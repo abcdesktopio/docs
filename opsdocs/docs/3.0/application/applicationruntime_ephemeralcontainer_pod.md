@@ -150,44 +150,48 @@ Start `2048-ubuntu` and `2048-alpine` application
 Get the running pod using `kubectl get pods -n abcdesktop`
 
 ```sh
-$ kubectl get pods -n abcdesktop
-NAME                                                      READY   STATUS    RESTARTS   AGE
-daemonset-nginx-4wdkd                                     1/1     Running   0          11m
-daemonset-pyos-5cxtw                                      1/1     Running   0          11m
-hermes-7af63f49-0d25-4de8-9d28-5fa79cc83faa               4/4     Running   0          92s
-hermes-app-2048-ubuntu-a5a8695d1a2744fd9240ad31954e64e6   1/1     Running   0          27s
-memcached-od-bdcbbcb74-kwwb5                              1/1     Running   0          11m
-mongodb-od-6484d8bc67-24w6v                               1/1     Running   0          11m
-openldap-od-795c55f6db-mnqvb                              1/1     Running   0          11m
-speedtest-od-5565dfdc67-6p67m                             1/1     Running   0          11m
+kubectl get pods -n abcdesktop
+NAME                            READY   STATUS    RESTARTS   AGE
+hermes-app-2048-ubuntu-4dd6f    1/1     Running   0          8s
+hermes-db906                    4/4     Running   0          100s
+memcached-od-57c57c4f9d-92fs2   1/1     Running   0          38m
+mongodb-od-f69ff6b5b-v6ztc      1/1     Running   0          38m
+nginx-od-58f86c4dc8-8n9lf       1/1     Running   0          25m
+openldap-od-d66d66bf4-84lg8     1/1     Running   0          38m
+pyos-od-5586b88767-gsdl8        1/1     Running   0          14m
+speedtest-od-6c59bdff75-n6s66   1/1     Running   0          38m
 ```
 
-The application `2048-ubuntu` is listed as a pod. The application `2048-ubuntu` is a pod. The prefix is the `$userid-app` for example `hermes-app-2048-ubuntu-a5a8695d1a2744fd9240ad31954e64e6`, followed by the application name `2048-ubuntu` and a uuid.
+The application `2048-ubuntu` is listed as a pod. The application `2048-ubuntu` is a pod. The prefix is the `$userid-app` for example `hermes-app-2048-ubuntu-4dd6f`, followed by the application name `2048-ubuntu` and a uuid.
 
 
 The application `2048-alpine` is not a pod.
 
-The application `2048-alpine` is listed as an ephemeral container, inside the user pod `hermes-7af63f49-0d25-4de8-9d28-5fa79cc83faa`
+The application `2048-alpine` is listed as an ephemeral container, inside the user pod `hermes-db906`
 
-```
-kubectl get pods hermes-7af63f49-0d25-4de8-9d28-5fa79cc83faa -o json -n abcdesktop | jq -r ".status.ephemeralContainerStatuses"
+```bash
+kubectl get pods hermes-db906  -o json -n abcdesktop | jq -r ".status.ephemeralContainerStatuses"
 ```
 
 The application 2048-alpine.d is listed in the .status.ephemeralContainerStatuses 
 
-```
+```json
 [
   {
-    "containerID": "containerd://3ae068cd70b251bb5da5d22d29247d0ffc3916fae742748bdf87f15d92d58e18",
+    "containerID": "containerd://eb5c1c4c19e5581dfd6a7290f46b63ce073b318bc1f9980bd3e37153cb66e44b",
     "image": "docker.io/abcdesktopio/2048-alpine.d:3.0",
-    "imageID": "docker.io/abcdesktopio/2048-alpine.d@sha256:5ba5291dbf719ad70d70c763d899aeb012048a1e7f80e03b500ad050b436273c",
+    "imageID": "docker.io/abcdesktopio/2048-alpine.d@sha256:2c3c46c22689b8f91cbd5ebd4d5f80c95bc5ba9b1e23f13aebb54121d2f6d590",
     "lastState": {},
-    "name": "hermes-conrad-2048-alpine-7b6f7fae3fe84a81b28c578d6d48147e",
+    "name": "hermes-conrad-2048-alpine-1eef4",
     "ready": false,
     "restartCount": 0,
     "state": {
-      "running": {
-        "startedAt": "2022-12-28T16:29:19Z"
+      "terminated": {
+        "containerID": "containerd://eb5c1c4c19e5581dfd6a7290f46b63ce073b318bc1f9980bd3e37153cb66e44b",
+        "exitCode": 0,
+        "finishedAt": "2023-05-17T14:38:13Z",
+        "reason": "Completed",
+        "startedAt": "2023-05-17T14:37:00Z"
       }
     }
   }
@@ -418,15 +422,15 @@ kubectl delete configmap abcdesktop-config -n abcdesktop
 kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 ```
 
-Then restart pyos daemonset
+Then restart pyos pod
 
 ```
-kubectl rollout restart daemonset.apps/daemonset-pyos -n abcdesktop
+kubectl delete pod -l run=pyos-od -n abcdesktop
 ```
 
 You should read on stdout
 
 ```
-daemonset.apps/daemonset-pyos restarted
+pod "pyos-od-5586b88767-mrf28" deleted
 ```
 
