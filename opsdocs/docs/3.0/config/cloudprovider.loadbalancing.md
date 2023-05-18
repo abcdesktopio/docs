@@ -91,7 +91,7 @@ And you should get the `fry` desktop
 Use the kubectl `port-forward` command and a local port to help troubleshooting issues.
 
 ```bash
-% kubectl get pods -l run=nginx-od -n abcdesktop
+kubectl get pods -l run=nginx-od -n abcdesktop
 NAME                        READY   STATUS    RESTARTS   AGE
 nginx-od-69fb8fd8bb-qg4z2   1/1     Running   0          11h
 ```
@@ -99,7 +99,7 @@ nginx-od-69fb8fd8bb-qg4z2   1/1     Running   0          11h
 Choose the nginx pod, to forward port local port 80 to nginx 80
 
 ```bash
-% kubectl port-forward nginx-od-69fb8fd8bb-qg4z2 --address 0.0.0.0 80:80 -n abcdesktop
+kubectl port-forward nginx-od-69fb8fd8bb-qg4z2 --address 0.0.0.0 80:80 -n abcdesktop
 Forwarding from 0.0.0.0:80 -> 80
 ```
 
@@ -115,7 +115,7 @@ Then login, and you get a pod user.
 > For the first time, you may get a time out error, if all container image can not be downloaded in less than 180 seconds on the worker node.
 
 ```bash
-% kubectl get pods -n abcdesktop                                                   
+kubectl get pods -n abcdesktop                                                   
 NAME                            READY   STATUS    RESTARTS   AGE
 memcached-od-bdcbbcb74-nhd68    1/1     Running   0          11h
 mongodb-od-d46d79476-fmbj5      1/1     Running   0          11h
