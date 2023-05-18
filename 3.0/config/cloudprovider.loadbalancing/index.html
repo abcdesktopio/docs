@@ -2231,7 +2231,7 @@ kubectl delete service nginx -n abcdektop
 # create the new  nginx service
 kubectl apply -f nginx.service.http.loadbalancer.yaml
 </code></pre>
-<p>Wait few minutes to obtain a LoadBalancer <EXTERNAL-IP> from you cloud provider service</p>
+<p>Wait few minutes to obtain an ip address LoadBalancer <EXTERNAL-IP> from your cloud provider service</p>
 <pre><code class="language-bash">kubectl get services -n abcdesktop
 NAME        TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)           AGE
 desktop     ClusterIP      None             &lt;none&gt;        &lt;none&gt;            57m
@@ -2242,7 +2242,7 @@ openldap    ClusterIP      10.245.109.131   &lt;none&gt;        389/TCP,636/TCP 
 pyos        ClusterIP      10.245.94.15     &lt;none&gt;        8000/TCP          57m
 speedtest   ClusterIP      10.245.67.168    &lt;none&gt;        80/TCP            57m
 </code></pre>
-<p>You get the ip address for your <code>LoadBalancer</code></p>
+<p>You get the <code>EXTERNAL-IP</code> for your <code>LoadBalancer</code> service</p>
 <pre><code class="language-bash">kubectl get services -n abcdesktop
 NAME        TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)           AGE
 desktop     ClusterIP      None             &lt;none&gt;         &lt;none&gt;            61m
@@ -2253,27 +2253,28 @@ openldap    ClusterIP      10.245.109.131   &lt;none&gt;         389/TCP,636/TCP
 pyos        ClusterIP      10.245.94.15     &lt;none&gt;         8000/TCP          61m
 speedtest   ClusterIP      10.245.67.168    &lt;none&gt;         80/TCP            61m
 </code></pre>
-<p>Then open your web browser to reach the abcdesktop service.
-In case, the loadbalancing service returns the ip address <em>161.35.246.4</em></p>
+<p>Open your web browser to reach the abcdesktop service.
+In this case, the loadbalancing service returns the ip address <em>161.35.246.4</em></p>
 <p><img alt="public ip access" src="../img/loadBalancer.ipaddress.png" /></p>
 <p>Login using <code>Philip J. Fry</code></p>
 <p><img alt="public ip login" src="../img/loadBalancer.login.fry.png" /></p>
 <p>And you should get the <code>fry</code> desktop </p>
 <p><img alt="public ip desktop" src="../img/loadBalancer.loged.fry.png" /></p>
 <h2 id="troubleshooting-with-port-forward">Troubleshooting with <code>port-forward</code></h2>
-<p>Use the kubectl <code>port-forward</code> command and a local port to help troubleshooting issues.</p>
+<p>Use the kubectl <code>port-forward</code> command and a forwarded local port to help troubleshooting issues.</p>
+<p>Get the pod name for nginx </p>
 <pre><code class="language-bash">kubectl get pods -l run=nginx-od -n abcdesktop
 NAME                        READY   STATUS    RESTARTS   AGE
 nginx-od-69fb8fd8bb-qg4z2   1/1     Running   0          11h
 </code></pre>
-<p>Choose the nginx pod, to forward port local port 80 to nginx 80</p>
+<p>Choose the nginx's pod, to forward local port 80 to nginx 80</p>
 <pre><code class="language-bash">kubectl port-forward nginx-od-69fb8fd8bb-qg4z2 --address 0.0.0.0 80:80 -n abcdesktop
 Forwarding from 0.0.0.0:80 -&gt; 80
 </code></pre>
 <blockquote>
-<p>Your localhost is listening on port 80 and forward to the cloud nginx port 80</p>
+<p>Your localhost is listening on 0.0.0.0:80 and forward to the nginx port 80</p>
 </blockquote>
-<p>Then open your web browser, you should get the home page, login using <code>LDAP auth</code> or <code>Anonymous auth</code>  should works.</p>
+<p>Then open your web browser <code>http://localhost</code>, you should get the home page, login using <code>LDAP auth</code> or <code>Anonymous auth</code>  should work.</p>
 <p><img alt="port forward localhost login" src="../img/troubleshooting.portforward.login.fry.png" /></p>
 <p>Then login, and you get a pod user. </p>
 <blockquote>
