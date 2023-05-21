@@ -41,7 +41,7 @@ kubectl delete service nginx -n abcdektop
 kubectl apply -f nginx.service.http.loadbalancer.yaml
 ```
 
-Wait few minutes to obtain a LoadBalancer <EXTERNAL-IP> from you cloud provider service
+Wait few minutes to obtain an ip address LoadBalancer <EXTERNAL-IP> from your cloud provider service
 
 
 ```bash
@@ -56,7 +56,7 @@ pyos        ClusterIP      10.245.94.15     <none>        8000/TCP          57m
 speedtest   ClusterIP      10.245.67.168    <none>        80/TCP            57m
 ```
 
-You get the ip address for your `LoadBalancer`
+You get the `EXTERNAL-IP` for your `LoadBalancer` service
 
 ```bash
 kubectl get services -n abcdesktop
@@ -70,8 +70,8 @@ pyos        ClusterIP      10.245.94.15     <none>         8000/TCP          61m
 speedtest   ClusterIP      10.245.67.168    <none>         80/TCP            61m
 ```
 
-Then open your web browser to reach the abcdesktop service.
-In case, the loadbalancing service returns the ip address *161.35.246.4*
+Open your web browser to reach the abcdesktop service.
+In this case, the loadbalancing service returns the ip address *161.35.246.4*
 
 ![public ip access](img/loadBalancer.ipaddress.png)
 
@@ -88,7 +88,9 @@ And you should get the `fry` desktop
 
 ## Troubleshooting with `port-forward`
 
-Use the kubectl `port-forward` command and a local port to help troubleshooting issues.
+Use the kubectl `port-forward` command and a forwarded local port to help troubleshooting issues.
+
+Get the pod name for nginx 
 
 ```bash
 kubectl get pods -l run=nginx-od -n abcdesktop
@@ -96,17 +98,16 @@ NAME                        READY   STATUS    RESTARTS   AGE
 nginx-od-69fb8fd8bb-qg4z2   1/1     Running   0          11h
 ```
 
-Choose the nginx pod, to forward port local port 80 to nginx 80
+Choose the nginx's pod, to forward local port 80 to nginx 80
 
 ```bash
 kubectl port-forward nginx-od-69fb8fd8bb-qg4z2 --address 0.0.0.0 80:80 -n abcdesktop
 Forwarding from 0.0.0.0:80 -> 80
 ```
 
-> Your localhost is listening on port 80 and forward to the cloud nginx port 80
+> Your localhost is listening on 0.0.0.0:80 and forward to the nginx port 80
 
-Then open your web browser, you should get the home page, login using `LDAP auth` or `Anonymous auth`  should works.
-
+Then open your web browser `http://localhost`, you should get the home page, login using `LDAP auth` or `Anonymous auth`  should work.
 
 ![port forward localhost login](img/troubleshooting.portforward.login.fry.png)
 
