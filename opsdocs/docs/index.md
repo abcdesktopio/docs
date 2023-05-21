@@ -48,6 +48,19 @@ Download and extract the latest release automatically (Linux or macOS) or read t
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.0.sh | sh -
 ```
 
+
+## Adopters
+
+Here are some of the organizations we know are using abcdesktop.io.
+If you’re using Abcdesktop and aren’t on this list, please submit a pull request!
+
+
+| Adopters | Name     | Description | Public applications repository |
+| -------- | -------- | ----------- | ----------------------- |
+| ![](img/EMBL_logo.svg) | [Embl](https://www.embl.org/) | The European Molecular Biology Laboratory is an intergovernmental organization dedicated to molecular biology research and is supported by 28 member states, one prospect state, and one associate member state | [https://git.embl.de/ysun/abcdesktop-apps/](https://git.embl.de/ysun/abcdesktop-apps/)|
+| ![](img/Orange_logo.svg) | [Orange](https://www.orange.com/) | Telecommunications operator and digital service provider. Orange serves 287 million customers, individuals, professionals, and large companies | Private applications |
+
+
 ## Features
 
 - Complete native cloud desktop, workspace environment
@@ -70,18 +83,6 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/ins
 - Native support GNU/Linux console native support
 - Native support GNU/Linux X11 applications native support
 - Support Microsoft Windows applications using [Wine](https://www.winehq.org/)
-
-
-### Adopters
-
-Here are some of the organizations we know are using abcdesktop.io.
-If you’re using Abcdesktop and aren’t on this list, please submit a pull request!
-
-
-| Adopters | Name | Description | 
-| -------- | -------- | ----------- |
-| ![](img/EMBL_logo.svg) | [Embl](https://www.embl.org/) | The European Molecular Biology Laboratory is an intergovernmental organization dedicated to molecular biology research and is supported by 28 member states, one prospect state, and one associate member state | 
-| ![](img/Orange_logo.svg) | [Orange](https://www.orange.com/) | Telecommunications operator and digital service provider. Orange serves 287 million customers, individuals, professionals, and large companies |
 
 
 
