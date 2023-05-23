@@ -1414,52 +1414,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hands-on-configure-auth-using-an-openldap-for-docker" class="md-nav__link">
-    Hands-on : Configure Auth using  an OpenLDAP for Docker
+  <a href="#the-ldap-structure-of-openldap-for-testing" class="md-nav__link">
+    The LDAP structure of openldap for testing
   </a>
   
-    <nav class="md-nav" aria-label="Hands-on : Configure Auth using  an OpenLDAP for Docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    Requirements
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openldap-docker-image-for-testing" class="md-nav__link">
-    OpenLDAP Docker Image for testing
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-the-docker-composeyml-file" class="md-nav__link">
-    Update the docker-compose.yml file
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-the-odconfig-configuration-file" class="md-nav__link">
-    Update the od.config configuration file
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-ldap-structure-of-openldap-docker-image-for-testing" class="md-nav__link">
-    The LDAP structure of OpenLDAP Docker Image for testing
-  </a>
-  
-    <nav class="md-nav" aria-label="The LDAP structure of OpenLDAP Docker Image for testing">
+    <nav class="md-nav" aria-label="The LDAP structure of openldap for testing">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2355,52 +2314,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hands-on-configure-auth-using-an-openldap-for-docker" class="md-nav__link">
-    Hands-on : Configure Auth using  an OpenLDAP for Docker
+  <a href="#the-ldap-structure-of-openldap-for-testing" class="md-nav__link">
+    The LDAP structure of openldap for testing
   </a>
   
-    <nav class="md-nav" aria-label="Hands-on : Configure Auth using  an OpenLDAP for Docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    Requirements
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openldap-docker-image-for-testing" class="md-nav__link">
-    OpenLDAP Docker Image for testing
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-the-docker-composeyml-file" class="md-nav__link">
-    Update the docker-compose.yml file
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-the-odconfig-configuration-file" class="md-nav__link">
-    Update the od.config configuration file
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-ldap-structure-of-openldap-docker-image-for-testing" class="md-nav__link">
-    The LDAP structure of OpenLDAP Docker Image for testing
-  </a>
-  
-    <nav class="md-nav" aria-label="The LDAP structure of OpenLDAP Docker Image for testing">
+    <nav class="md-nav" aria-label="The LDAP structure of openldap for testing">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2622,10 +2540,8 @@ The key name must be set with the same value in providers configuration and <cod
 <p>For example :</p>
 <pre><code>ldapconfig : { 'planet': {    'default'       : True, 
                         'ldap_timeout'  : 15,
-                        'ldap_protocol' : 'ldap',
                         'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ '192.168.8.195' ],
-                        'secure'        : False,
+                        'servers'       : [ 'ldap://192.168.8.195' ],
                         'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }
            }}
 
@@ -2649,15 +2565,9 @@ The key name must be set with the same value in providers configuration and <cod
 <td>True</td>
 </tr>
 <tr>
-<td><code>ldap_protocol</code></td>
-<td>string</td>
-<td>protocol type. <code>ldap</code> or <code>ldaps</code> for LDAP directory services</td>
-<td><code>ldap</code></td>
-</tr>
-<tr>
 <td><code>tls_require_cert</code></td>
 <td>boolean</td>
-<td>The default value is False. <code>tls_require_cert</code>  apply only if <code>ldap_protocol</code> is set to <code>ldaps</code>. Allow LDAPS connection if the ldaps server hostname does not match CommonName peer certificate. <strong>In production, set this value to <code>True</code></strong> This will disable the ldap option call : <code>ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)</code></td>
+<td>The default value is False. <code>tls_require_cert</code>  apply only if ldap server URI starts with <code>ldaps</code>. Allow LDAPS connection if the ldaps server hostname does not match CommonName peer certificate. <strong>In production, set this value to <code>True</code></strong> This will disable the ldap option call : <code>ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)</code></td>
 <td>False</td>
 </tr>
 <tr>
@@ -2670,7 +2580,7 @@ The key name must be set with the same value in providers configuration and <cod
 <td><code>servers</code></td>
 <td>list of string</td>
 <td>list of LDAP servers (IP Adress or FQDN), if entry does not respond, the next one is used.</td>
-<td><code>[ '192.168.1.12', '192.168.1.13' ]</code> IP  Address or FQDN values</td>
+<td><code>[ 'ldap://192.168.1.12', 'ldaps://myldap.domain.org' ]</code> IP  Address or FQDN values</td>
 </tr>
 <tr>
 <td><code>scope</code></td>
@@ -2722,113 +2632,9 @@ The key name must be set with the same value in providers configuration and <cod
 </tr>
 </tbody>
 </table>
-<h2 id="hands-on-configure-auth-using-an-openldap-for-docker">Hands-on : Configure Auth using  an OpenLDAP for Docker</h2>
-<h3 id="requirements">Requirements</h3>
-<p>You should have all read and done the hands-on :</p>
-<ul>
-<li><a href="/config/editconfig/">Setup abcdesktop.io in docker mode</a></li>
-<li><a href="/config/editconfig/">Edit your configuration file in docker mode</a></li>
-</ul>
-<h3 id="openldap-docker-image-for-testing">OpenLDAP Docker Image for testing</h3>
-<p>To configure abcdesktop.io to use an explicit authentification, we need a directory service.
-We use an OpenLDAP Docker Image for testing with provioned values.</p>
-<p>Read the OpenLDAP Docker Image for testing documentation on the url <a href="https://github.com/abcdesktopio/oc.openldap">abcdesktop OpenLDAP Docker Image for testing</a></p>
-<h3 id="update-the-docker-composeyml-file">Update the docker-compose.yml file</h3>
-<p>Update the <code>docker-compose.yml</code> file to add an ldap as directory server </p>
-<p>The specific <code>openldap</code> section is describe as a service. The new complete <code>docker-compose.yml</code> file is now :</p>
-<pre><code class="language-YAML">version: '3'
-services:
-  pyos:
-    depends_on:
-      - memcached
-      - mongodb
-    image: 'abcdesktopio/oc.pyos'
-    networks:
-      - netback
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /Users/alexandredevely/src/abcdesktop/od.config:/var/pyos/od.config
-  speedtest:
-    image: 'abcdesktopio/oc.speedtest'
-    networks:
-      - netuser
-  nginx:
-    depends_on:
-      - memcached
-      - pyos
-    image: 'abcdesktopio/oc.nginx'
-    ports:
-      - '80:80'
-      - '443:443'
-    networks:
-      - netuser
-      - netback
-  memcached:
-    image: memcached
-    networks:
-      - netback
-  mongodb:
-    image: mongo
-    networks:
-      - netback
-  openldap:
-    image: abcdesktopio/oc.openldap
-    networks:
-      - netback
-networks:
-  netuser:
-    driver: bridge
-  netback:
-    internal: true
-</code></pre>
-<h2 id="update-the-odconfig-configuration-file">Update the <code>od.config</code> configuration file</h2>
-<p>Update the <code>od.config</code> configuration file.</p>
-<p>Add the <code>explicit</code> entry to the dictionary <code>authmanagers</code>.</p>
-<pre><code>authmanagers: {
-  'external': {
-  },
-  'explicit': {
-    'show_domains': True,
-    'providers': {
-      'planet': { 
-        'config_ref': 'ldapconfig', 
-        'enabled': True
-       }
-    }
-  },
-  'implicit': {
-  }}
-
-
-</code></pre>
-<blockquote>
-<p>Note: the  <code>config_ref</code> is <code>ldapconfig</code>. </p>
-</blockquote>
-<p>Add a new dictionnary object named <code>ldapconfig</code> to the configuration file.
-These values come from the LDAP structure of OpenLDAP Docker Image for testing</p>
-<pre><code>ldapconfig : { 'planet': {    'default'       : True, 
-                        'ldap_timeout'  : 15,
-                        'ldap_protocol' : 'ldap',
-                        'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ 'openldap' ],
-                        'secure'        : False,
-                        'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }
-           }}
-</code></pre>
-<blockquote>
-<p>Note: the server name is the name of the service entry</p>
-</blockquote>
-<p>Save your new od.config file.</p>
-<blockquote>
-<p>The config file <code>od.config</code> has changed and od.py running inside the container should restart. 
-If it doesn't, restart your docker-compose to make sure that the od.py the your new od.config file.</p>
-<p><code>docker-compose restart</code>
-</p>
-</blockquote>
-<p>Open the URL:<code>http://localhost</code></p>
+<h2 id="the-ldap-structure-of-openldap-for-testing">The LDAP structure of openldap for testing</h2>
 <p>The authmanagers <code>explicit</code> is enabled. The Web home page insert the new input values <code>Login</code> and <code>Password</code> to authenticate this user.</p>
 <p><img alt="auth-provider-explicit" src="../img/auth-provider-explicit-ldap.png" /></p>
-<h2 id="the-ldap-structure-of-openldap-docker-image-for-testing">The LDAP structure of OpenLDAP Docker Image for testing</h2>
 <h3 id="basedn">BaseDN</h3>
 <p>The <code>basedn</code> is <code>dc=planetexpress,dc=com</code></p>
 <h3 id="admin-account">admin account</h3>
