@@ -67,15 +67,15 @@ If you’re using Abcdesktop and aren’t on this list, please submit a pull req
 - Authentification OAuth 2.0, LDAP bind, LDAPS bind, Active Directory, Active Directory trust, Kerberos, NTLM 
 - Access to the user home directory (homeDirectory support in Active Directory)
 - Legacy CIFS FlexVolume using kubernetes driver 
-- All applications run inside an isolated docker container
+- All graphical applications run inside containers, as pods or as ephermeral containers
 - Local and remote printing support 
 - Off-line sessions are maintained
 - No need to install applications any more
 - Application update, run latest image on your private registry 
 - Accounting and reporting (Graylog, Prometheus Grafana)
-- Clipboard syncing only with https SSL  
+- Clipboard syncing with https  
 - Sound support with [Janus WebRTC Gateway](https://janus.conf.meetecho.com/) and RTP stream
-- NVidia GPU support for applications 
+- Nvidia GPU support for applications 
 - Support RFC 2307 to use LDAP as a Network Information Service
 
 ### Applications
