@@ -42,11 +42,24 @@ You can watch the youtube video sample. This video describes the Quick installat
 
 <iframe width="640" height="480" src="https://www.youtube.com/embed/KpjG4ksoGNI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
 
-Download and extract the latest release automatically (Linux or macOS) or read the step by step installation process [abcdesktop for kubernetes](/setup/kubernetes_abcdesktop/)
+Download and extract the latest release automatically (Linux or macOS) or read the step by step installation process [abcdesktop for kubernetes](/3.0/setup/kubernetes_abcdesktop)
 
 ```
-curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install.sh | sh -
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.0.sh | sh -
 ```
+
+
+## Adopters
+
+Here are some of the organizations we know are using abcdesktop.io.
+If you’re using Abcdesktop and aren’t on this list, please submit a pull request!
+
+
+| Adopters | Name     | Description | Public applications repository |
+| -------- | -------- | ----------- | ----------------------- |
+| ![](img/EMBL_logo.svg) | [Embl](https://www.embl.org/) | The European Molecular Biology Laboratory is an intergovernmental organization dedicated to molecular biology research and is supported by 28 member states, one prospect state, and one associate member state | [https://git.embl.de/ysun/abcdesktop-apps/](https://git.embl.de/ysun/abcdesktop-apps/)|
+| ![](img/Orange_logo.svg) | [Orange](https://www.orange.com/) | Telecommunications operator and digital service provider. Orange serves 287 million customers, individuals, professionals, and large companies | Orange uses common public and private business applications |
+
 
 ## Features
 
@@ -70,6 +83,8 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/ins
 - Native support GNU/Linux console native support
 - Native support GNU/Linux X11 applications native support
 - Support Microsoft Windows applications using [Wine](https://www.winehq.org/)
+
+
 
 ### Supported web browser HTML
 
@@ -100,8 +115,8 @@ abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 1
 
 ## Release history
 
-| Release  | Status |  Date  | Requirements               | Applications | Documentation
-|----------|--------|--------|----------------------------|----|--|
+| Release  | Status |  Date  | Requirements               | Applications | Documentation  |
+|----------|--------|--------|----------------------------| -------------|----------------| 
 |  1.1     | deprecated |  09/15/2021   | dockerd for personnal use and kubernetes | An application is a docker container | removed |
 |  2.9     | deprecated | 29/08/2022      | require kubernetes < 1.24 and dockerd as container engine  | An application is a pod or a docker container | removed | 
 |  3.0     | stable  | 09/03/2022 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container |  Release | 

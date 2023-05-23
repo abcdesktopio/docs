@@ -39,10 +39,11 @@ The command above downloads the latest release (numerically) of abcdesktop.io.
 The quick installation process runs the all commands step by step:
 
 * create the `abcdesktop` namespace
-* build all `rsa keys` pairs for jwt signing and payload encryption
+* create clusterRole and service account
+* build all `rsa` keys pairs for jwt signing and payload encryption
 * download the default configuration file `od.config`
-* create all `services`, `deployment`, `pods`, `secrets` and `configmaps`
-* fetch pod user's core images: `oc.user`, `oc.cups`, `oc.pulseaudio`
+* create all `services`, `deployments`, `secrets` and `configmaps`
+* fetch pod user's container images
 
 
 ## Manually installation step by step (Linux, macOS or Windows)
