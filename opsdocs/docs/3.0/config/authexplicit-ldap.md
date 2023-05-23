@@ -66,10 +66,8 @@ For example :
 ```
 ldapconfig : { 'planet': {    'default'       : True, 
                         'ldap_timeout'  : 15,
-                        'ldap_protocol' : 'ldap',
                         'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ '192.168.8.195' ],
-                        'secure'        : False,
+                        'servers'       : [ 'ldap://192.168.8.195' ],
                         'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }
            }}
 
@@ -83,10 +81,9 @@ ldapconfig : { 'planet': {    'default'       : True,
 | Variable name        | Type		       | Description                        | Example  |
 |----------------------|----------------|------------------------------------|----------|
 |  ```default```       | boolean        | Use this domain as default domain  | True     |
-|  ```ldap_protocol```      | string         | protocol type. ```ldap``` or ```ldaps``` for LDAP directory services  | ```ldap```     |
-|  ```tls_require_cert```       | boolean        | The default value is False. ```tls_require_cert```  apply only if ```ldap_protocol``` is set to ```ldaps```. Allow LDAPS connection if the ldaps server hostname does not match CommonName peer certificate. **In production, set this value to ```True```** This will disable the ldap option call : `ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)` | False     |
+|  ```tls_require_cert```       | boolean        | The default value is False. ```tls_require_cert```  apply only if ldap server URI starts with ```ldaps```. Allow LDAPS connection if the ldaps server hostname does not match CommonName peer certificate. **In production, set this value to ```True```** This will disable the ldap option call : `ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)` | False     |
 |  ```basedn```   | string         | LDAP Base Distinguished Names    | ```ou=people,dc=planetexpress,dc=com``` |
-|  ```servers```       | list of string | list of LDAP servers (IP Adress or FQDN), if entry does not respond, the next one is used.       | ```[ '192.168.1.12', '192.168.1.13' ]``` IP  Address or FQDN values |
+|  ```servers```       | list of string | list of LDAP servers (IP Adress or FQDN), if entry does not respond, the next one is used.       | ```[ 'ldap://192.168.1.12', 'ldaps://myldap.domain.org' ]``` IP  Address or FQDN values |
 |  ```scope```			| LDAP           | Perform an LDAP search operation, with base as the DN of the entry at which to start the search, ```scope``` being one of ```SCOPE_BASE``` (to search the object itself), ```SCOPE_ONELEVEL``` (to search the object’s immediate children), or ```SCOPE_SUBTREE``` (to search the object and all its descendants). | ```ldap.SCOPE_SUBTREE``` |
 |  ```timeout```			| integer           | ldap time out in second  | 10 |
 |  ```exec_timeout```  | integer         | execute time out in seconds, to obtain ntlm_auth credentials, or cntlm auth credentials, or kerberos auth credentials. the exec timeout is used to run external command line.  | 10 |
@@ -98,144 +95,11 @@ ldapconfig : { 'planet': {    'default'       : True,
 
 
 
+## The LDAP structure of openldap for testing 
 
-
-
-
-## Hands-on : Configure Auth using  an OpenLDAP for Docker
-
-
-### Requirements
-
-You should have all read and done the hands-on :
-
-* [Setup abcdesktop.io in docker mode](/config/editconfig/)
-* [Edit your configuration file in docker mode](/config/editconfig/)
-
-
-### OpenLDAP Docker Image for testing 
-
-To configure abcdesktop.io to use an explicit authentification, we need a directory service.
-We use an OpenLDAP Docker Image for testing with provioned values.
-
-Read the OpenLDAP Docker Image for testing documentation on the url [abcdesktop OpenLDAP Docker Image for testing](https://github.com/abcdesktopio/oc.openldap)
-
-### Update the docker-compose.yml file 
-
-Update the ```docker-compose.yml``` file to add an ldap as directory server 
-
-The specific ```openldap``` section is describe as a service. The new complete ```docker-compose.yml``` file is now :
-
-```YAML
-version: '3'
-services:
-  pyos:
-    depends_on:
-      - memcached
-      - mongodb
-    image: 'abcdesktopio/oc.pyos'
-    networks:
-      - netback
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /Users/alexandredevely/src/abcdesktop/od.config:/var/pyos/od.config
-  speedtest:
-    image: 'abcdesktopio/oc.speedtest'
-    networks:
-      - netuser
-  nginx:
-    depends_on:
-      - memcached
-      - pyos
-    image: 'abcdesktopio/oc.nginx'
-    ports:
-      - '80:80'
-      - '443:443'
-    networks:
-      - netuser
-      - netback
-  memcached:
-    image: memcached
-    networks:
-      - netback
-  mongodb:
-    image: mongo
-    networks:
-      - netback
-  openldap:
-    image: abcdesktopio/oc.openldap
-    networks:
-      - netback
-networks:
-  netuser:
-    driver: bridge
-  netback:
-    internal: true
-```
-
-
-## Update the ```od.config``` configuration file 
-
-Update the ```od.config``` configuration file.
-
-Add the ```explicit``` entry to the dictionary ```authmanagers ```.
-
-```
-authmanagers: {
-  'external': {
-  },
-  'explicit': {
-    'show_domains': True,
-    'providers': {
-      'planet': { 
-        'config_ref': 'ldapconfig', 
-        'enabled': True
-       }
-    }
-  },
-  'implicit': {
-  }}
-  
-         
-```
-
-> Note: the  ```config_ref``` is ```ldapconfig```. 
-
-Add a new dictionnary object named ```ldapconfig``` to the configuration file.
-These values come from the LDAP structure of OpenLDAP Docker Image for testing
-
-
-```
-ldapconfig : { 'planet': {    'default'       : True, 
-                        'ldap_timeout'  : 15,
-                        'ldap_protocol' : 'ldap',
-                        'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ 'openldap' ],
-                        'secure'        : False,
-                        'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }
-           }}
-```
-
-
-
-> Note: the server name is the name of the service entry
-
-Save your new od.config file.
-
-> The config file ```od.config``` has changed and od.py running inside the container should restart. 
-> If it doesn't, restart your docker-compose to make sure that the od.py the your new od.config file.
->
->```docker-compose restart```
->
-
-Open the URL:```http://localhost```
-  
 The authmanagers ```explicit``` is enabled. The Web home page insert the new input values ```Login``` and ```Password``` to authenticate this user.
 
 ![auth-provider-explicit](img/auth-provider-explicit-ldap.png)
-
-
-## The LDAP structure of OpenLDAP Docker Image for testing 
 
 ### BaseDN
 The ```basedn``` is ```dc=planetexpress,dc=com```
