@@ -3,76 +3,36 @@
 ## inherite from
 [abcdesktopio/oc.template.alpine.libreoffice](../abcdesktopio/oc.template.alpine.libreoffice.md)
 ## Distribution
-alpine ![alpine](icons/alpine.svg){: style="height:32px;"}
+alpine ![alpine](icons/alpine.svg){: style="height:32px;width:32px"}
 ## Alpine packages
-
-``` 
+```
 libreoffice-gnome
 ```
-
 ## Arguments
-`"--calc"`
+"--calc"
 ## Displayname
-
-
-``` 
-Calc
-```
-
+"Calc"
 ## Path
-
-
-``` 
-/usr/lib/libreoffice/program/soffice
-```
-
+"/usr/lib/libreoffice/program/soffice"
 ## uniquerunkey
 "libreoffice"
 ## Showinview
 "dock"
-## Mimetype
-
-``` 
-application/vnd.oasis.opendocument.spreadsheet;application/vnd.oasis.opendocument.spreadsheet-template;application/vnd.sun.xml.calc;application/vnd.sun.xml.calc.template;application/msexcel;application/vnd.ms-excel;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;application/vnd.ms-excel.sheet.macroenabled.12;application/vnd.openxmlformats-officedocument.spreadsheetml.template;application/vnd.ms-excel.template.macroenabled.12;application/vnd.ms-excel.sheet.binary.macroenabled.12;text/csv;application/x-dbf;text/spreadsheet;application/csv;application/excel;application/tab-separated-values;application/vnd.lotus-1-2-3;application/vnd.oasis.opendocument.chart;application/vnd.oasis.opendocument.chart-template;application/x-dbase;application/x-dos_ms_excel;application/x-excel;application/x-msexcel;application/x-ms-excel;application/x-quattropro;application/x-123;text/comma-separated-values;text/tab-separated-values;text/x-comma-separated-values;text/x-csv;application/vnd.oasis.opendocument.spreadsheet-flat-xml;application/vnd.ms-works;application/x-iwork-numbers-sffnumbers;
-```
-
+## Mime Type
+"application/vnd.oasis.opendocument.spreadsheet;application/vnd.oasis.opendocument.spreadsheet-template;application/vnd.sun.xml.calc;application/vnd.sun.xml.calc.template;application/msexcel;application/vnd.ms-excel;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;application/vnd.ms-excel.sheet.macroenabled.12;application/vnd.openxmlformats-officedocument.spreadsheetml.template;application/vnd.ms-excel.template.macroenabled.12;application/vnd.ms-excel.sheet.binary.macroenabled.12;text/csv;application/x-dbf;text/spreadsheet;application/csv;application/excel;application/tab-separated-values;application/vnd.lotus-1-2-3;application/vnd.oasis.opendocument.chart;application/vnd.oasis.opendocument.chart-template;application/x-dbase;application/x-dos_ms_excel;application/x-excel;application/x-msexcel;application/x-ms-excel;application/x-quattropro;application/x-123;text/comma-separated-values;text/tab-separated-values;text/x-comma-separated-values;text/x-csv;application/vnd.oasis.opendocument.spreadsheet-flat-xml;application/vnd.ms-works;application/x-iwork-numbers-sffnumbers;"
 ## File extensions
-`"ods;ots;sxc;stc;fods;uos;uof;xml;xlsx;xlsm;xltm;xltx;xlsb;xls;xlm;xlc;xlw;xlk;xlt;dif;dbf;htm;html;wk1;wks;123;wb2;rtf;slk;sylk;csv;numbers;dummy;cwk;wps;wk3;wq1;wq2"`
+"ods;ots;sxc;stc;fods;uos;uof;xml;xlsx;xlsm;xltm;xltx;xlsb;xls;xlm;xlc;xlw;xlk;xlt;dif;dbf;htm;html;wk1;wks;123;wb2;rtf;slk;sylk;csv;numbers;dummy;cwk;wps;wk3;wq1;wq2"
 ## Legacy file extensions
-`"ods;ots;csv"`
+"ods;ots;csv"
 ## ACL
-
-``` json
-{
-    "permit": [
-        "all"
-    ]
-}
-```
-
+{"permit":["all"]}
 ## WM_CLASS
-
-``` 
 libreoffice.libreoffice-calc
-```
-
-> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
-> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
-
 ## Desktopfile
-
-``` 
 /usr/share/applications/libreoffice-calc.desktop
-```
-
-> A .desktop file is a simple text file that holds information about a program. It is usually placed in “/usr/share/applications/”.
-
-
-
 ## JSON dump
-json source file
 
-``` json
+```json
 {
     "acl": {
         "permit": [
@@ -105,44 +65,9 @@ json source file
 }
 ```
 
-## Install the builded image
->Replace the **ABCHOST** var set to localhost by default to your own server ip address
+## Dockerfile generated
 
-``` sh
-ABCHOST=localhost
-curl --output calc.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/calc.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @calc.json
-
-```
-
-## Rebuild the image manually
-
-### Download the Dockerfile manually
-[Dockerfile for application calc](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/calc.d)
-``` sh
-wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/calc.d
-```
-
-### build the `Dockerfile` to create a container image
-
-``` sh
-docker build --build-arg TAG=3.0 -f calc.d -t calc .
-```
-
-### Install the new image
->If you are not running this bash command on your abcdesktop node
->Replace the **ABCHOST** variable set to localhost by default to your own server ip address
-
-``` sh
-ABCHOST=localhost
-docker inspect calc > calc.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @calc.json
-
-```
-
-## Generated `DockerFile` source code
-
-``` 
+```dockerfile
 # Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
@@ -185,4 +110,3 @@ USER balloon
 CMD [ "/composer/appli-docker-entrypoint.sh" ]
 
 ```
-
