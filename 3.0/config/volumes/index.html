@@ -11,13 +11,17 @@
         <link rel="canonical" href="https://www.abcdesktop.io/3.0/config/volumes/">
       
       
+        <link rel="prev" href="../desktop.pod/">
+      
+      
+        <link rel="next" href="../desktop/">
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
-        <title>Volumes to retain user's home directory files - www.abcdesktop.io</title>
+        <title>Persistent Volumes - www.abcdesktop.io</title>
       
     
     
@@ -105,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Volumes to retain user's home directory files
+              Persistent Volumes
             
           </span>
         </div>
@@ -1127,14 +1131,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
       
       
       
@@ -1143,7 +1149,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_10">
           <span class="md-nav__icon md-icon"></span>
           Configuration Guide
@@ -1154,14 +1160,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1" checked>
       
       
       
@@ -1170,7 +1178,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_1_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_1_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_10_1">
           <span class="md-nav__icon md-icon"></span>
           Release 3.0
@@ -1226,6 +1234,20 @@
     <li class="md-nav__item">
       <a href="../cloudprovider.loadbalancing/" class="md-nav__link">
         Configure LoadBalancing service
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./" class="md-nav__link">
+        Configure Persistent Volumes
       </a>
     </li>
   
@@ -1423,6 +1445,134 @@
               
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Persistent Volumes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Persistent Volumes
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#define-persistentvolume-using-hostpath" class="md-nav__link">
+    Define persistentVolume using hostPath
+  </a>
+  
+    <nav class="md-nav" aria-label="Define persistentVolume using hostPath">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-of-all-template-values" class="md-nav__link">
+    list of all template values
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-persistentvolumeclaim-using-storageclassname" class="md-nav__link">
+    Define persistentVolumeClaim using storageClassName
+  </a>
+  
+    <nav class="md-nav" aria-label="Define persistentVolumeClaim using storageClassName">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-a-self-hosting-kubernetes-cluster" class="md-nav__link">
+    For a self hosting kubernetes cluster
+  </a>
+  
+    <nav class="md-nav" aria-label="For a self hosting kubernetes cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-with-storageclassnamecsi-s3" class="md-nav__link">
+    example with storageClassName:csi-s3
+  </a>
+  
+    <nav class="md-nav" aria-label="example with storageClassName:csi-s3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-storageclassyaml-file" class="md-nav__link">
+    Update storageclass.yaml file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-odconfig" class="md-nav__link">
+    Update od.config
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-init-command-options-with-no-file-permissions-support" class="md-nav__link">
+    The init command options with no file permissions support
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
   
     <li class="md-nav__item">
       <a href="../desktop/" class="md-nav__link">
@@ -1472,17 +1622,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1_8" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1_9" >
       
       
       
-        <label class="md-nav__link" for="__nav_10_1_8" id="__nav_10_1_8_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_10_1_9" id="__nav_10_1_9_label" tabindex="0">
           Logging
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_10_1_8_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_10_1_8">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_10_1_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10_1_9">
           <span class="md-nav__icon md-icon"></span>
           Logging
         </label>
@@ -1534,17 +1684,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1_10" >
       
       
       
-        <label class="md-nav__link" for="__nav_10_1_9" id="__nav_10_1_9_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_10_1_10" id="__nav_10_1_10_label" tabindex="0">
           Network Policy
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_10_1_9_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_10_1_9">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_10_1_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10_1_10">
           <span class="md-nav__icon md-icon"></span>
           Network Policy
         </label>
@@ -1582,17 +1732,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1_10" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1_11" >
       
       
       
-        <label class="md-nav__link" for="__nav_10_1_10" id="__nav_10_1_10_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_10_1_11" id="__nav_10_1_11_label" tabindex="0">
           Controllers
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_10_1_10_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_10_1_10">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_10_1_11_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10_1_11">
           <span class="md-nav__icon md-icon"></span>
           Controllers
         </label>
@@ -1644,17 +1794,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1_11" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1_12" >
       
       
       
-        <label class="md-nav__link" for="__nav_10_1_11" id="__nav_10_1_11_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_10_1_12" id="__nav_10_1_12_label" tabindex="0">
           WebRTC
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_10_1_11_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_10_1_11">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_10_1_12_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10_1_12">
           <span class="md-nav__icon md-icon"></span>
           WebRTC
         </label>
@@ -1692,17 +1842,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1_12" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1_13" >
       
       
       
-        <label class="md-nav__link" for="__nav_10_1_12" id="__nav_10_1_12_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_10_1_13" id="__nav_10_1_13_label" tabindex="0">
           Issue tracking
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_10_1_12_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_10_1_12">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_10_1_13_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10_1_13">
           <span class="md-nav__icon md-icon"></span>
           Issue tracking
         </label>
