@@ -8,7 +8,7 @@ At the login page, the user chooses a login provider and authenticates himself, 
 
 An application can run as ephemeral container or as pod.
 
-![abcdesktop Applications overview](img/ abcdesktopkubernetescluster.png)
+![abcdesktop Applications overview](img/abcdesktopkubernetescluster.png)
 
 ## abcdesktop design
 
