@@ -4,6 +4,12 @@
 abcdesktop is based on kubernetes, from the abcdesktop infrastructure to the user applications.
 At the login page, the user chooses a login provider and authenticates himself, then abcdesktop engine creates a pod for this user.
 
+# abcdesktop applications
+
+An application can run as ephemeral container or as pod.
+
+![abcdesktop Applications overview](img/ abcdesktopkubernetescluster.png)
+
 ## abcdesktop design
 
 ![abcdesktop Architecture overview](img/architecture-overview.png)
