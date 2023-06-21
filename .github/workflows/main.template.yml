@@ -7,10 +7,6 @@ name: CI
 on:
   repository_dispatch:
     types: dispatch-from-oc.template
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
     
 permissions:
   contents: write
