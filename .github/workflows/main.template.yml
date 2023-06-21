@@ -28,11 +28,8 @@ jobs:
           
       - name: dump-github-event-client_payload
         run: |
-          echo "client_payload.filecontentis ${{ github.event.client_payload.filecontent }}"
+          echo "client_payload.artifact ${{ github.event.client_payload.artifact }}"
           echo "client_payload.filename is ${{ github.event.client_payload.filename }}"
-          filepath=opsdocs/docs/applications/abcdesktopio/${{ github.event.client_payload.filename }}
-          echo ${{ github.event.client_payload.filecontent }} > ${{ filepath }}
-          cat ${{ filepath }}
           
           
       
