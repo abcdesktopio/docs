@@ -28,12 +28,13 @@ jobs:
           
       - name: dump-github-event-client_payload
         run: |
+          echo "client_payload.run_id ${{ github.event.client_payload.run_id }}"
           echo "client_payload.artifact ${{ github.event.client_payload.artifact }}"
           echo "client_payload.filename is ${{ github.event.client_payload.filename }}"
           
       - name: get artifact 
-        run: 
-          curl -o ${{ github.event.client_payload.filename }} -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.TOKEN }}" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/abcdesktopio/oc.template/actions/artifacts/${{ github.event.client_payload.artifact }}
-          
+        run: |
+          gh run download ${{ github.event.client_payload.run_id }}" -n ${{ github.event.client_payload.artifact }} --repo abcdesktopio/oc.template
+          ls -la 
           
       
