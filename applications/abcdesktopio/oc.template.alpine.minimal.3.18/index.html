@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://www.abcdesktop.io/applications/abcdesktopio/oc.template.ubuntu.minimal.22.04/">
+        <link rel="canonical" href="https://www.abcdesktop.io/applications/abcdesktopio/oc.template.alpine.minimal.3.18/">
       
       
       
@@ -17,7 +17,7 @@
     
     
       
-        <title>oc.template.ubuntu.minimal.22.04 - www.abcdesktop.io</title>
+        <title>oc.template.alpine.minimal.3.18 - www.abcdesktop.io</title>
       
     
     
@@ -71,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#octemplateubuntuminimal2204" class="md-skip">
+        <a href="#octemplatealpineminimal318" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              oc.template.ubuntu.minimal.22.04
+              oc.template.alpine.minimal.3.18
             
           </span>
         </div>
@@ -2188,7 +2188,7 @@
                   
 
   
-    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/applications/abcdesktopio/oc.template.ubuntu.minimal.22.04.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/applications/abcdesktopio/oc.template.alpine.minimal.3.18.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -2196,61 +2196,45 @@
   
 
 
-<h1 id="octemplateubuntuminimal2204">oc.template.ubuntu.minimal.22.04</h1>
+<h1 id="octemplatealpineminimal318">oc.template.alpine.minimal.3.18</h1>
 <h2 id="from">from</h2>
-<p>Docker official images <a href="https://hub.docker.com/_/ubuntu">ubuntu:22.04</a></p>
+<p>Docker official images <a href="https://hub.docker.com/_/alpine">alpine:3.18</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>PRETTY_NAME=&quot;Ubuntu 22.04.2 LTS&quot;
-NAME=&quot;Ubuntu&quot;
-VERSION_ID=&quot;22.04&quot;
-VERSION=&quot;22.04.2 LTS (Jammy Jellyfish)&quot;
-VERSION_CODENAME=jammy
-ID=ubuntu
-ID_LIKE=debian
-HOME_URL=&quot;https://www.ubuntu.com/&quot;
-SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
-BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
-PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
-UBUNTU_CODENAME=jammy
+<pre><code>NAME=&quot;Alpine Linux&quot;
+ID=alpine
+VERSION_ID=3.18.2
+PRETTY_NAME=&quot;Alpine Linux v3.18&quot;
+HOME_URL=&quot;https://alpinelinux.org/&quot;
+BUG_REPORT_URL=&quot;https://gitlab.alpinelinux.org/alpine/aports/-/issues&quot;
 
 </code></pre>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code>ARG BASE_IMAGE
+<pre><code>
+ARG BASE_IMAGE=alpine
 FROM ${BASE_IMAGE}
 
 MAINTAINER Alexandre DEVELY 
 RUN mkdir -p /composer/init.d
 COPY etc/ /etc
 
-# correct debconf: (TERM is not set, so the dialog frontend is not usable.)
-ENV DEBCONF_FRONTEND noninteractive
 ENV TERM linux
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends \
-     gnupg \
-     software-properties-common \
-     locales \
-     cups-client \
-     libpulse0 \
-     curl \
-     xauth \
-     &amp;&amp; apt-get clean \
-     &amp;&amp; rm -rf /var/lib/apt/lists/ \
-     &amp;&amp; localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+
+# add core lib and bin
+RUN  apk add --no-cache         \
+     gnupg                              \
+     cups-client            \
+     libpulse               \
+     curl               \
+     openssl                \
+     xauth
+
 ENV LANG en_US.utf8
 
 ############
 COPY composer /composer
 
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-        &amp;&amp; apt-get update &amp;&amp; \
-        apt-get install -y --no-install-recommends \
-                nodejs \
-    &amp;&amp; apt-get clean \
-    &amp;&amp; rm -rf /var/lib/apt/lists/*
-
-
+RUN apk add --no-cache --update bash nodejs npm
 
 # Add nodejs service
 RUN cd /composer/node/ocrun      &amp;&amp; npm install  
@@ -2260,10 +2244,14 @@ RUN cd /composer/node/ocrun      &amp;&amp; npm install
 ##########
 # Next command use $BUSER context
 ENV BUSER balloon
+ENV BGROUP balloon
+ENV BUID 4096
+ENV BGID 4096
 # RUN adduser --disabled-password --gecos '' $BUSER
 # RUN id -u $BUSER &amp;&gt;/dev/null || 
-RUN groupadd --gid 4096 $BUSER
-RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups $BUSER $BUSER
+RUN addgroup --gid $BGID $BGROUP
+RUN adduser -D -h /home/balloon -s /bin/sh -u $BUID -G balloon $BUSER
+
 # create an ubuntu user
 # PASS=`pwgen -c -n -1 10`
 # PASS=ballon
@@ -2278,7 +2266,6 @@ RUN echo &quot;balloon:lmdpocpetit&quot; | chpasswd $BUSER
 
 RUN mkdir -p /var/log/desktop &amp;&amp; \
     chown -R $BUSER:$BUSER /home/$BUSER /var/log/desktop
-
 
 </code></pre>
 

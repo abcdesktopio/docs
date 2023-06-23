@@ -2215,8 +2215,7 @@ UBUNTU_CODENAME=bionic
 
 </code></pre>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code>
-ARG BASE_IMAGE=ubuntu:20.04
+<pre><code>ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
 MAINTAINER Alexandre DEVELY 
@@ -2229,15 +2228,15 @@ ENV TERM linux
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends \
-     gnupg                              \
-     software-properties-common         \
-     locales                \
-     cups-client            \
-     libpulse0              \
-     curl               \
-     xauth              \
-     &amp;&amp; apt-get clean           \
-     &amp;&amp; rm -rf /var/lib/apt/lists/  \
+     gnupg \
+     software-properties-common \
+     locales \
+     cups-client \
+     libpulse0 \
+     curl \
+     xauth \
+     &amp;&amp; apt-get clean \
+     &amp;&amp; rm -rf /var/lib/apt/lists/ \
      &amp;&amp; localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.utf8
 
@@ -2245,9 +2244,9 @@ ENV LANG en_US.utf8
 COPY composer /composer
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-        &amp;&amp; apt-get update &amp;&amp;                            \
-        apt-get install -y --no-install-recommends      \
-                nodejs                                  \
+        &amp;&amp; apt-get update &amp;&amp; \
+        apt-get install -y --no-install-recommends \
+                nodejs \
     &amp;&amp; apt-get clean \
     &amp;&amp; rm -rf /var/lib/apt/lists/*
 

@@ -2200,10 +2200,10 @@
 <h2 id="from">from</h2>
 <p>inherite <a href="../oc.template.ubuntu.22.04">abcdesktopio/oc.template.ubuntu.22.04</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>PRETTY_NAME=&quot;Ubuntu 22.04.1 LTS&quot;
+<pre><code>PRETTY_NAME=&quot;Ubuntu 22.04.2 LTS&quot;
 NAME=&quot;Ubuntu&quot;
 VERSION_ID=&quot;22.04&quot;
-VERSION=&quot;22.04.1 LTS (Jammy Jellyfish)&quot;
+VERSION=&quot;22.04.2 LTS (Jammy Jellyfish)&quot;
 VERSION_CODENAME=jammy
 ID=ubuntu
 ID_LIKE=debian
@@ -2227,7 +2227,7 @@ RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes \
 
 
 # set arch to i386
-RUN dpkg --add-architecture i386
+RUN if [ $(dpkg --print-architecture) == 'amd64' ]; then dpkg --add-architecture i386; fi
 
 # only to use wine repo
 # RUN wget -qO - https://dl.winehq.org/wine-builds/winehq.key | apt-key add -
@@ -2249,18 +2249,44 @@ RUN dpkg --add-architecture i386
 #   for the user when downloads cannot be fully automated.
 # - xz is used by some verbs to decompress tar archives.
 # - zenity is needed by the GUI, though it can limp along somewhat with kdialog/xmessage.
-RUN apt-get update &amp;&amp; \
-    apt-get install  --no-install-recommends --yes aria2 binutils cabextract fuseiso p7zip-full policykit-1 tor unrar unzip xdg-utils xz-utils zenity &amp;&amp; \
-    apt-get clean 
+
+
+#RUN apt-get update &amp;&amp; \
+#    apt-get install --no-install-recommends --yes aria2 \
+#    apt-get clean 
+
+# RUN apt-get update &amp;&amp; \
+#    apt-get install --no-install-recommends --yes binutils \
+#    apt-get clean 
+
+# RUN apt-get update &amp;&amp; \
+#    apt-get install --no-install-recommends --yes cabextract fuseiso p7zip-full policykit-1 &amp;&amp; \
+#    apt-get clean     
+
+# RUN apt-get update &amp;&amp; \
+#    apt-get install --no-install-recommends --yes fuseiso &amp;&amp; \
+#    apt-get clean  
+
+# RUN apt-get update &amp;&amp; \
+#    apt-get install --no-install-recommends --yes  p7zip-full policykit-1 &amp;&amp; \
+#    apt-get clean  
+
+# RUN apt-get update &amp;&amp; \
+#     apt-get install --no-install-recommends --yes  policykit-1 &amp;&amp; \
+#    apt-get clean  
+
+# RUN apt-get update &amp;&amp; \
+#    apt-get install --no-install-recommends --yes tor unrar unzip xdg-utils xz-utils zenity &amp;&amp; \
+#    apt-get clean 
 
 # gir1.2-gtk-3.0:i386 gir1.2-pango-1.0:i386 used by crossover
 
 # add for 20.04
 # apt-get install --no-install-recommends --yes libgcc-s1:i386 &amp;&amp; \
 
-RUN apt-get update &amp;&amp; \
-    apt-get install --no-install-recommends --yes aptitude libnss-mdns:i386 libsdl2-2.0-0 libsdl2-2.0-0:i386 gir1.2-gtk-3.0:i386 gir1.2-pango-1.0:i386 &amp;&amp; \
-    apt-get clean 
+# RUN apt-get update &amp;&amp; \
+#    apt-get install --no-install-recommends --yes aptitude libnss-mdns:i386 libsdl2-2.0-0 libsdl2-2.0-0:i386 gir1.2-gtk-3.0:i386 gir1.2-pango-1.0:i386 &amp;&amp; \
+#    apt-get clean 
 
 # add dns support for 32 apps running on 64 bits
 #RUN apt-get update &amp;&amp; apt-get install -y   \
@@ -2269,13 +2295,13 @@ RUN apt-get update &amp;&amp; \
 #   wine-stable &amp;&amp;          \
 #   apt-get clean       
 
-RUN wget https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/amd64/libfaudio0_19.07-0~bionic_amd64.deb     &amp;&amp;  \
-    dpkg -i libfaudio0_19.07-0~bionic_amd64.deb                                             &amp;&amp;  \
-    rm libfaudio0_19.07-0~bionic_amd64.deb
+# RUN wget https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/amd64/libfaudio0_19.07-0~bionic_amd64.deb   &amp;&amp;  \
+#     dpkg -i libfaudio0_19.07-0~bionic_amd64.deb                                           &amp;&amp;  \
+#    rm libfaudio0_19.07-0~bionic_amd64.deb
 
-RUN wget https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/i386/libfaudio0_19.07-0~bionic_i386.deb   &amp;&amp;  \
-    dpkg -i libfaudio0_19.07-0~bionic_i386.deb                                              &amp;&amp;  \
-    rm libfaudio0_19.07-0~bionic_i386.deb
+#RUN wget https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/i386/libfaudio0_19.07-0~bionic_i386.deb  &amp;&amp;  \
+#    dpkg -i libfaudio0_19.07-0~bionic_i386.deb                                             &amp;&amp;  \
+#    rm libfaudio0_19.07-0~bionic_i386.deb
 
 
 ###
@@ -2307,11 +2333,11 @@ RUN apt-get update &amp;&amp; \
 COPY composer/updatereg.py              /composer
 COPY composer/init.d/init.wine      /composer/init.d/init.wine
 COPY composer/init.d/_init.wine         /composer/init.d/_init.wine
-RUN  mkdir /composer/.wine /composer/bin &amp;&amp; chown 4096:4096 /composer/.wine /composer/bin
+RUN  mkdir /composer/.wine /composer/bin &amp;&amp; chmod 777 /composer/.wine /composer/bin
 
 # Set for each app 
 ENV WINEPREFIX=/composer/.wine
-ENV WINEARCH win32
+#ENV WINEARCH win32
 
 </code></pre>
 

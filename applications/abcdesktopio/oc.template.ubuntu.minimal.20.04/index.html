@@ -2201,10 +2201,10 @@
 <p>Docker official images <a href="https://hub.docker.com/_/ubuntu">ubuntu:20.04</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
 <pre><code>NAME=&quot;Ubuntu&quot;
-VERSION=&quot;20.04.5 LTS (Focal Fossa)&quot;
+VERSION=&quot;20.04.6 LTS (Focal Fossa)&quot;
 ID=ubuntu
 ID_LIKE=debian
-PRETTY_NAME=&quot;Ubuntu 20.04.5 LTS&quot;
+PRETTY_NAME=&quot;Ubuntu 20.04.6 LTS&quot;
 VERSION_ID=&quot;20.04&quot;
 HOME_URL=&quot;https://www.ubuntu.com/&quot;
 SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
@@ -2215,8 +2215,7 @@ UBUNTU_CODENAME=focal
 
 </code></pre>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code>
-ARG BASE_IMAGE=ubuntu:20.04
+<pre><code>ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
 MAINTAINER Alexandre DEVELY 
@@ -2229,15 +2228,15 @@ ENV TERM linux
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends \
-     gnupg                              \
-     software-properties-common         \
-     locales                \
-     cups-client            \
-     libpulse0              \
-     curl               \
-     xauth              \
-     &amp;&amp; apt-get clean           \
-     &amp;&amp; rm -rf /var/lib/apt/lists/  \
+     gnupg \
+     software-properties-common \
+     locales \
+     cups-client \
+     libpulse0 \
+     curl \
+     xauth \
+     &amp;&amp; apt-get clean \
+     &amp;&amp; rm -rf /var/lib/apt/lists/ \
      &amp;&amp; localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.utf8
 
@@ -2245,9 +2244,9 @@ ENV LANG en_US.utf8
 COPY composer /composer
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-        &amp;&amp; apt-get update &amp;&amp;                            \
-        apt-get install -y --no-install-recommends      \
-                nodejs                                  \
+        &amp;&amp; apt-get update &amp;&amp; \
+        apt-get install -y --no-install-recommends \
+                nodejs \
     &amp;&amp; apt-get clean \
     &amp;&amp; rm -rf /var/lib/apt/lists/*
 

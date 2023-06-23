@@ -2200,11 +2200,11 @@
 <h2 id="from">from</h2>
 <p>Docker official images <a href="https://hub.docker.com/_/debian">debian:stable-slim</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>PRETTY_NAME=&quot;Debian GNU/Linux 11 (bullseye)&quot;
+<pre><code>PRETTY_NAME=&quot;Debian GNU/Linux 12 (bookworm)&quot;
 NAME=&quot;Debian GNU/Linux&quot;
-VERSION_ID=&quot;11&quot;
-VERSION=&quot;11 (bullseye)&quot;
-VERSION_CODENAME=bullseye
+VERSION_ID=&quot;12&quot;
+VERSION=&quot;12 (bookworm)&quot;
+VERSION_CODENAME=bookworm
 ID=debian
 HOME_URL=&quot;https://www.debian.org/&quot;
 SUPPORT_URL=&quot;https://www.debian.org/support&quot;
@@ -2242,9 +2242,10 @@ ENV LANG en_US.utf8
 COPY composer /composer
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-        &amp;&amp; apt-get update &amp;&amp;                            \
-        apt-get install -y --no-install-recommends      \
-                nodejs                                  \
+        &amp;&amp; apt-get update &amp;&amp; \
+        apt-get install -y --no-install-recommends \
+        nodejs \
+        npm \
     &amp;&amp; apt-get clean \
     &amp;&amp; rm -rf /var/lib/apt/lists/*
 
