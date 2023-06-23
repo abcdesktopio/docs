@@ -1,6 +1,6 @@
-# oc.template.alpine.minimal
+# oc.template.alpine.minimal.3.18
 ## from
- Docker official images [alpine](https://hub.docker.com/_/alpine)
+ Docker official images [alpine:3.18](https://hub.docker.com/_/alpine)
 ## Container distribution release
 
 

@@ -1,14 +1,14 @@
-# oc.template.alpine.minimal
+# oc.template.alpine.minimal.3.17
 ## from
- Docker official images [alpine](https://hub.docker.com/_/alpine)
+ Docker official images [alpine:3.17](https://hub.docker.com/_/alpine)
 ## Container distribution release
 
 
 ``` 
 NAME="Alpine Linux"
 ID=alpine
-VERSION_ID=3.18.2
-PRETTY_NAME="Alpine Linux v3.18"
+VERSION_ID=3.17.4
+PRETTY_NAME="Alpine Linux v3.17"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
 
