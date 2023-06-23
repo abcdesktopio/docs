@@ -28,6 +28,7 @@ jobs:
           
       - name: dump-github-event-client_payload
         run: |
+          echo "client_payload.repository ${{ github.event.client_payload.repository }}"
           echo "client_payload.run_id ${{ github.event.client_payload.run_id }}"
           echo "client_payload.artifact ${{ github.event.client_payload.artifact }}"
           echo "client_payload.filename is ${{ github.event.client_payload.filename }}"
