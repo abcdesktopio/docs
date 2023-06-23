@@ -42,15 +42,15 @@ jobs:
           # To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment variable.
           GH_TOKEN: ${{ github.token }}
         run: |
-          cd ${{ APPLICATION_PATH }} && gh run download ${{ github.event.client_payload.run_id }} -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }}
-          ls -la ${{ APPLICATION_PATH }}
+          cd ${{ env.APPLICATION_PATH }} && gh run download ${{ github.event.client_payload.run_id }} -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }}
+          ls -la ${{ env.APPLICATION_PATH }}
           
       - name: commit artifact
         run: |
           git config --global pull.ff only
           git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "abcdesktop@users.noreply.github.com"
-          git add ${{ APPLICATION_PATH }}/*.md
-          git commit -m "${{ env.CI_COMMIT_MESSAGE }}" ${{ APPLICATION_PATH }}/*.md
+          git add ${{ env.APPLICATION_PATH }}/*.md
+          git commit -m "${{ env.CI_COMMIT_MESSAGE }}" ${{ env.APPLICATION_PATH }}/*.md
           git pull origin ${{ github.head_ref }}
           git push origin ${{ github.head_ref }}
