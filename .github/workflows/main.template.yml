@@ -6,6 +6,7 @@ name: CI
 # events but only for the master branch
 on:
   repository_dispatch:
+    branches: main
     types: dispatch-from-oc.template
     
 permissions:
