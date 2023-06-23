@@ -37,27 +37,23 @@ jobs:
           echo "client_payload.repository ${{ github.event.client_payload.repository }}"
           echo "client_payload.run_id ${{ github.event.client_payload.run_id }}"
           echo "client_payload.artifact ${{ github.event.client_payload.artifact }}"
-          echo "client_payload.filename is ${{ github.event.client_payload.filename }}"
-               
-      - name: dummy sleep 30 s
-        run: sleep 30s
         
       - name: get artifact 
         env:
           # To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment variable.
           GH_TOKEN: ${{ github.token }}
         run: |
-          ls -la
-          gh run download -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }}
-          ls -la
-          cp ${{ github.event.client_payload.filename }} ${{ env.TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
+          mkdir artifact
+          gh run download -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }} --dir artifact
+          ls -la artifact
+          cp artifact/* ${{ env.TEMPLATE_PATH }}
           
       - name: commit artifact
         run: |
           git config --global pull.ff only
           git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "abcdesktop@users.noreply.github.com"
-          git add ${{ env.TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
-          git commit -m "${{ env.CI_COMMIT_MESSAGE }}" ${{ env.TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
+          git add ${{ env.TEMPLATE_PATH }}/*.md
+          git commit -m "${{ env.CI_COMMIT_MESSAGE }}" ${{ env.TEMPLATE_PATH }}/*.md
           git pull origin ${{ github.head_ref }}
           git push origin ${{ github.head_ref }}
