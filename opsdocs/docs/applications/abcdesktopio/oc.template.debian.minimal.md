@@ -5,11 +5,11 @@
 
 
 ``` 
-PRETTY_NAME="Debian GNU/Linux 11 (bullseye)"
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
 NAME="Debian GNU/Linux"
-VERSION_ID="11"
-VERSION="11 (bullseye)"
-VERSION_CODENAME=bullseye
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
 ID=debian
 HOME_URL="https://www.debian.org/"
 SUPPORT_URL="https://www.debian.org/support"
@@ -52,9 +52,10 @@ ENV LANG en_US.utf8
 COPY composer /composer
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-        && apt-get update &&                            \
-        apt-get install -y --no-install-recommends      \
-                nodejs                                  \
+        && apt-get update && \
+        apt-get install -y --no-install-recommends \
+        nodejs \
+        npm \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

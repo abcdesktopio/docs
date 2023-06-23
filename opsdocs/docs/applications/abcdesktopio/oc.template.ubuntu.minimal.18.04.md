@@ -25,8 +25,7 @@ UBUNTU_CODENAME=bionic
 ## `DockerFile` source code
 
 ``` 
-
-ARG BASE_IMAGE=ubuntu:20.04
+ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
 MAINTAINER Alexandre DEVELY 
@@ -39,15 +38,15 @@ ENV TERM linux
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-     gnupg                              \
-     software-properties-common         \
-     locales				\
-     cups-client			\
-     libpulse0				\
-     curl				\
-     xauth				\
-     && apt-get clean			\
-     && rm -rf /var/lib/apt/lists/	\
+     gnupg \
+     software-properties-common \
+     locales \
+     cups-client \
+     libpulse0 \
+     curl \
+     xauth \
+     && apt-get clean \
+     && rm -rf /var/lib/apt/lists/ \
      && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.utf8
 
@@ -55,9 +54,9 @@ ENV LANG en_US.utf8
 COPY composer /composer
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-        && apt-get update &&                            \
-        apt-get install -y --no-install-recommends      \
-                nodejs                                  \
+        && apt-get update && \
+        apt-get install -y --no-install-recommends \
+                nodejs \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
