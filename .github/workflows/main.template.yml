@@ -54,6 +54,7 @@ jobs:
           ls -la artifact
           ls -la ${{ env.TEMPLATE_PATH }}
           cp artifact/* ${{ env.TEMPLATE_PATH }}
+          rm -rf artifact
           ls -la ${{ env.TEMPLATE_PATH }}
           
       - name: git diff
