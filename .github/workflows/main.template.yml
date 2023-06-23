@@ -13,11 +13,16 @@ permissions:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     # runs-on: self-hosted
     runs-on: ubuntu-latest
+    env: 
+      TEMPLATE_PATH: opsdocs/docs/applications/abcdesktopio
+      CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
+      CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -26,7 +31,7 @@ jobs:
         with:
           ref: ${{ github.ref_name }}
           
-      - name: dump-github-event-client_payload
+      - name: dump github.event.client_payload
         run: |
           echo "client_payload.repository ${{ github.event.client_payload.repository }}"
           echo "client_payload.run_id ${{ github.event.client_payload.run_id }}"
@@ -38,7 +43,18 @@ jobs:
           # To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment variable.
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh run download ${{ github.event.client_payload.run_id }} -n ${{ github.event.client_payload.artifact }} --repo abcdesktopio/oc.template
-          ls -la 
+          cd ${{ TEMPLATE_PATH }} && gh run download ${{ github.event.client_payload.run_id }} -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }}
+          ls -la ${{ TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
+          
+      - name: commit artifact
+        run: |
+          git config --global pull.ff only
+          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+          git config --global user.email "abcdesktop@users.noreply.github.com"
+          git add ${{ TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
+          ggit commit -m ${{ TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
+          git pull origin ${{ github.head_ref }}
+          git push origin ${{ github.head_ref }}   
+          
           
       
