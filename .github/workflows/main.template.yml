@@ -38,24 +38,19 @@ jobs:
           echo "client_payload.run_id ${{ github.event.client_payload.run_id }}"
           echo "client_payload.artifact ${{ github.event.client_payload.artifact }}"
           echo "client_payload.filename is ${{ github.event.client_payload.filename }}"
-          
-          
-      - name: remove previous file
-        run: |
-          rm -f ${{ env.TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
-        
-      - name: dummy sleep on minute
-        run: sleep 1m
+               
+      - name: dummy sleep 30 s
+        run: sleep 30s
         
       - name: get artifact 
         env:
           # To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment variable.
           GH_TOKEN: ${{ github.token }}
         run: |
-          mkdir -p download
-          cd download && gh run download -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }}
-          ls -la download
-          cp download/${{ github.event.client_payload.filename }} ${{ env.TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
+          ls -la
+          gh run download -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }}
+          ls -la
+          cp ${{ github.event.client_payload.filename }} ${{ env.TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
           
       - name: commit artifact
         run: |
