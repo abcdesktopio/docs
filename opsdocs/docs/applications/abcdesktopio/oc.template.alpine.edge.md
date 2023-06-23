@@ -1,14 +1,14 @@
-# oc.template.alpine
+# oc.template.alpine.edge
 ## from
- inherite [abcdesktopio/oc.template.alpine.minimal](../oc.template.alpine.minimal)
+ inherite [abcdesktopio/oc.template.alpine.minimal.edge](../oc.template.alpine.minimal.edge)
 ## Container distribution release
 
 
 ``` 
 NAME="Alpine Linux"
 ID=alpine
-VERSION_ID=3.18.2
-PRETTY_NAME="Alpine Linux v3.18"
+VERSION_ID=3.18_alpha20230329
+PRETTY_NAME="Alpine Linux edge"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
 

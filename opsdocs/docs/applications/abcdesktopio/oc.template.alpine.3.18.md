@@ -1,6 +1,6 @@
-# oc.template.alpine
+# oc.template.alpine.3.18
 ## from
- inherite [abcdesktopio/oc.template.alpine.minimal](../oc.template.alpine.minimal)
+ inherite [abcdesktopio/oc.template.alpine.minimal.3.18](../oc.template.alpine.minimal.3.18)
 ## Container distribution release
 
 
