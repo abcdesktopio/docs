@@ -56,14 +56,6 @@ jobs:
           cp artifact/* ${{ env.TEMPLATE_PATH }}
           rm -rf artifact
           ls -la ${{ env.TEMPLATE_PATH }}
-          
-      - name: git diff
-        run: |
-          git diff
-          
-      - name: commit artifact
-        run: |
           git add ${{ env.TEMPLATE_PATH }}/*.md
           git commit -m "${{ env.CI_COMMIT_MESSAGE }}" ${{ env.TEMPLATE_PATH }}/*.md
-          git pull origin ${{ github.head_ref }}
-          git push origin ${{ github.head_ref }}
+          git push
