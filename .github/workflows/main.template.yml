@@ -53,7 +53,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p download
-          cd download && gh run download ${{ github.event.client_payload.run_id }} -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }}
+          cd download && gh run download -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }}
           ls -la download
           cp download/${{ github.event.client_payload.filename }} ${{ env.TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
           
