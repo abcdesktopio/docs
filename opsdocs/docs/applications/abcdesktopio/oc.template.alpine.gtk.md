@@ -7,8 +7,8 @@
 ``` 
 NAME="Alpine Linux"
 ID=alpine
-VERSION_ID=3.17.1
-PRETTY_NAME="Alpine Linux v3.17"
+VERSION_ID=3.18.2
+PRETTY_NAME="Alpine Linux v3.18"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
 
@@ -25,11 +25,12 @@ ARG TAG=dev
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}:${TAG}
 
-
-# add libreoffice
+# add mesa-dri
+# add adwaita theme
 RUN apk add --no-cache --update \
-	adwaita-icon-theme	\
-	libadwaita
+        mesa-dri-gallium \
+        adwaita-icon-theme \
+        libadwaita
 
 ```
 
