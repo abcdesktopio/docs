@@ -54,7 +54,4 @@ jobs:
           git add ${{ TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
           git commit -m ${{ TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
           git pull origin ${{ github.head_ref }}
-          git push origin ${{ github.head_ref }}   
-          
-          
-      
+          git push origin ${{ github.head_ref }}
