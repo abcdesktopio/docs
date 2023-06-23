@@ -5,10 +5,10 @@
 
 
 ``` 
-PRETTY_NAME="Ubuntu 22.04.1 LTS"
+PRETTY_NAME="Ubuntu 22.04.2 LTS"
 NAME="Ubuntu"
 VERSION_ID="22.04"
-VERSION="22.04.1 LTS (Jammy Jellyfish)"
+VERSION="22.04.2 LTS (Jammy Jellyfish)"
 VERSION_CODENAME=jammy
 ID=ubuntu
 ID_LIKE=debian
@@ -37,7 +37,7 @@ RUN apt-get update && apt-get install --no-install-recommends --yes \
 
 
 # set arch to i386
-RUN dpkg --add-architecture i386
+RUN if [ $(dpkg --print-architecture) == 'amd64' ]; then dpkg --add-architecture i386; fi
 
 # only to use wine repo
 # RUN wget -qO - https://dl.winehq.org/wine-builds/winehq.key | apt-key add -
@@ -59,18 +59,44 @@ RUN dpkg --add-architecture i386
 #   for the user when downloads cannot be fully automated.
 # - xz is used by some verbs to decompress tar archives.
 # - zenity is needed by the GUI, though it can limp along somewhat with kdialog/xmessage.
-RUN apt-get update && \
-    apt-get install  --no-install-recommends --yes aria2 binutils cabextract fuseiso p7zip-full policykit-1 tor unrar unzip xdg-utils xz-utils zenity && \
-    apt-get clean 
+
+
+#RUN apt-get update && \
+#    apt-get install --no-install-recommends --yes aria2 \
+#    apt-get clean 
+    
+# RUN apt-get update && \
+#    apt-get install --no-install-recommends --yes binutils \
+#    apt-get clean 
+    
+# RUN apt-get update && \
+#    apt-get install --no-install-recommends --yes cabextract fuseiso p7zip-full policykit-1 && \
+#    apt-get clean     
+
+# RUN apt-get update && \
+#    apt-get install --no-install-recommends --yes fuseiso && \
+#    apt-get clean  
+    
+# RUN apt-get update && \
+#    apt-get install --no-install-recommends --yes  p7zip-full policykit-1 && \
+#    apt-get clean  
+
+# RUN apt-get update && \
+#     apt-get install --no-install-recommends --yes  policykit-1 && \
+#    apt-get clean  
+
+# RUN apt-get update && \
+#    apt-get install --no-install-recommends --yes tor unrar unzip xdg-utils xz-utils zenity && \
+#    apt-get clean 
  
 # gir1.2-gtk-3.0:i386 gir1.2-pango-1.0:i386 used by crossover
 
 # add for 20.04
 # apt-get install --no-install-recommends --yes libgcc-s1:i386 && \
 
-RUN apt-get update && \
-    apt-get install --no-install-recommends --yes aptitude libnss-mdns:i386 libsdl2-2.0-0 libsdl2-2.0-0:i386 gir1.2-gtk-3.0:i386 gir1.2-pango-1.0:i386 && \
-    apt-get clean 
+# RUN apt-get update && \
+#    apt-get install --no-install-recommends --yes aptitude libnss-mdns:i386 libsdl2-2.0-0 libsdl2-2.0-0:i386 gir1.2-gtk-3.0:i386 gir1.2-pango-1.0:i386 && \
+#    apt-get clean 
 
 # add dns support for 32 apps running on 64 bits
 #RUN apt-get update && apt-get install -y 	\
@@ -79,13 +105,13 @@ RUN apt-get update && \
 #	wine-stable	&&			\
 #	apt-get clean		
 
-RUN wget https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/amd64/libfaudio0_19.07-0~bionic_amd64.deb 	&&	\
-    dpkg -i libfaudio0_19.07-0~bionic_amd64.deb 											&&	\
-    rm libfaudio0_19.07-0~bionic_amd64.deb
+# RUN wget https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/amd64/libfaudio0_19.07-0~bionic_amd64.deb 	&&	\
+#     dpkg -i libfaudio0_19.07-0~bionic_amd64.deb 											&&	\
+#    rm libfaudio0_19.07-0~bionic_amd64.deb
  
-RUN wget https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/i386/libfaudio0_19.07-0~bionic_i386.deb	&&	\
-    dpkg -i libfaudio0_19.07-0~bionic_i386.deb												&&	\
-    rm libfaudio0_19.07-0~bionic_i386.deb
+#RUN wget https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/i386/libfaudio0_19.07-0~bionic_i386.deb	&&	\
+#    dpkg -i libfaudio0_19.07-0~bionic_i386.deb												&&	\
+#    rm libfaudio0_19.07-0~bionic_i386.deb
 
 
 ###
@@ -117,11 +143,11 @@ RUN apt-get update && \
 COPY composer/updatereg.py              /composer
 COPY composer/init.d/init.wine		/composer/init.d/init.wine
 COPY composer/init.d/_init.wine         /composer/init.d/_init.wine
-RUN  mkdir /composer/.wine /composer/bin && chown 4096:4096 /composer/.wine /composer/bin
+RUN  mkdir /composer/.wine /composer/bin && chmod 777 /composer/.wine /composer/bin
 
 # Set for each app 
 ENV WINEPREFIX=/composer/.wine
-ENV WINEARCH win32
+#ENV WINEARCH win32
 
 ```
 
