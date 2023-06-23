@@ -34,6 +34,9 @@ jobs:
           echo "client_payload.filename is ${{ github.event.client_payload.filename }}"
           
       - name: get artifact 
+        env:
+          # To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment variable.
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh run download ${{ github.event.client_payload.run_id }} -n ${{ github.event.client_payload.artifact }} --repo abcdesktopio/oc.template
           ls -la 
