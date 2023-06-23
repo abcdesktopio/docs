@@ -43,6 +43,7 @@ jobs:
           # To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment variable.
           GH_TOKEN: ${{ github.token }}
         run: |
+          rm -f ${{ env.TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
           # cd ${{ env.TEMPLATE_PATH }} && gh run download ${{ github.event.client_payload.run_id }} -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }}
           cd ${{ env.TEMPLATE_PATH }} && gh run download -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }}
           ls -la ${{ env.TEMPLATE_PATH }}/${{ github.event.client_payload.filename }}
