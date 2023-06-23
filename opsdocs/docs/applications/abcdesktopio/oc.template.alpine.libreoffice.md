@@ -7,8 +7,8 @@
 ``` 
 NAME="Alpine Linux"
 ID=alpine
-VERSION_ID=3.17.1
-PRETTY_NAME="Alpine Linux v3.17"
+VERSION_ID=3.18.2
+PRETTY_NAME="Alpine Linux v3.18"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
 
@@ -30,8 +30,7 @@ FROM ${BASE_IMAGE}:${TAG}
 RUN apk add --no-cache --update  \
    faenza-icon-theme-libreoffice \
    libreoffice 			 \
-   libreoffice-qt5		 \
-   openjdk12-jre
+   libreoffice-gtk
 
 ```
 
