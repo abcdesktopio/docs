@@ -46,7 +46,9 @@ jobs:
           mkdir artifact
           gh run download -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }} --dir artifact
           ls -la artifact
+          ls -la ${{ env.TEMPLATE_PATH }}
           cp artifact/* ${{ env.TEMPLATE_PATH }}
+          ls -la ${{ env.TEMPLATE_PATH }}
           
       - name: commit artifact
         run: |
