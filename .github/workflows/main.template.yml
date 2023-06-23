@@ -34,7 +34,7 @@ jobs:
           
       - name: get artifact 
         run: |
-          gh run download ${{ github.event.client_payload.run_id }}" -n ${{ github.event.client_payload.artifact }} --repo abcdesktopio/oc.template
+          gh run download ${{ github.event.client_payload.run_id }} -n ${{ github.event.client_payload.artifact }} --repo abcdesktopio/oc.template
           ls -la 
           
       
