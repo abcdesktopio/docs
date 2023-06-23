@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://www.abcdesktop.io/applications/abcdesktopio/oc.template.debian/">
+        <link rel="canonical" href="https://www.abcdesktop.io/applications/abcdesktopio/oc.template.alpine.3.18/">
       
       
       
@@ -17,7 +17,7 @@
     
     
       
-        <title>oc.template.debian - www.abcdesktop.io</title>
+        <title>oc.template.alpine.3.18 - www.abcdesktop.io</title>
       
     
     
@@ -71,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#octemplatedebian" class="md-skip">
+        <a href="#octemplatealpine318" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              oc.template.debian
+              oc.template.alpine.3.18
             
           </span>
         </div>
@@ -2188,7 +2188,7 @@
                   
 
   
-    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/applications/abcdesktopio/oc.template.debian.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/applications/abcdesktopio/oc.template.alpine.3.18.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -2196,33 +2196,39 @@
   
 
 
-<h1 id="octemplatedebian">oc.template.debian</h1>
+<h1 id="octemplatealpine318">oc.template.alpine.3.18</h1>
 <h2 id="from">from</h2>
-<p>inherite <a href="../oc.template.debian.minimal">abcdesktopio/oc.template.debian.minimal</a></p>
+<p>inherite <a href="../oc.template.alpine.minimal.3.18">abcdesktopio/oc.template.alpine.minimal.3.18</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>PRETTY_NAME=&quot;Debian GNU/Linux 12 (bookworm)&quot;
-NAME=&quot;Debian GNU/Linux&quot;
-VERSION_ID=&quot;12&quot;
-VERSION=&quot;12 (bookworm)&quot;
-VERSION_CODENAME=bookworm
-ID=debian
-HOME_URL=&quot;https://www.debian.org/&quot;
-SUPPORT_URL=&quot;https://www.debian.org/support&quot;
-BUG_REPORT_URL=&quot;https://bugs.debian.org/&quot;
+<pre><code>NAME=&quot;Alpine Linux&quot;
+ID=alpine
+VERSION_ID=3.18.2
+PRETTY_NAME=&quot;Alpine Linux v3.18&quot;
+HOME_URL=&quot;https://alpinelinux.org/&quot;
+BUG_REPORT_URL=&quot;https://gitlab.alpinelinux.org/alpine/aports/-/issues&quot;
 
 </code></pre>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code># default TAG is dev
+<pre><code>
+# default TAG is dev
 ARG TAG=dev
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}:${TAG}
 
-RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends \
-     openssl                \
-     sudo               \
-     krb5-user              \
-     &amp;&amp; apt-get clean           \
-     &amp;&amp; rm -rf /var/lib/apt/lists/  
+
+# add some fonts
+RUN apk add  --no-cache --update  \
+    font-opensans \
+    font-adobe-100dpi \
+    font-noto   \
+    font-ubuntu-nerd \
+    font-dejavu-sans-mono-nerd \
+    font-adobe-utopia-100dpi \
+    font-xfree86-type1 \
+    ttf-freefont \
+    font-ibm-type1 \
+    font-liberation \
+    font-sony-misc
 
 </code></pre>
 
