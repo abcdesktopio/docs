@@ -34,3 +34,22 @@ RUN apk add --no-cache --update  \
 
 ```
 
+
+> file oc.template.alpine.libreoffice.md is created at Fri Jun 23 2023 16:46:45 GMT+0000 (Coordinated Universal Time) by make-docs.js
+
+``` 
+
+# default TAG is dev
+ARG TAG=dev
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}:${TAG}
+
+
+# add libreoffice
+RUN apk add --no-cache --update  \
+   faenza-icon-theme-libreoffice \
+   libreoffice 			 \
+   libreoffice-gtk
+
+```
+
