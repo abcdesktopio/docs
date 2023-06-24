@@ -1,6 +1,6 @@
 # oc.template.debian
 ## from
- inherite [abcdesktopio/oc.template.debian.minimal](../oc.template.debian.minimal)
+ inherit [abcdesktopio/oc.template.debian.minimal](../oc.template.debian.minimal)
 ## Container distribution release
 
 
@@ -37,20 +37,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ```
 
 
-> file oc.template.debian.md is created at Fri Jun 23 2023 16:33:32 GMT+0000 (Coordinated Universal Time) by make-docs.js
 
-``` 
-# default TAG is dev
-ARG TAG=dev
-ARG BASE_IMAGE
-FROM ${BASE_IMAGE}:${TAG}
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-     openssl				\
-     sudo				\
-     krb5-user 				\
-     && apt-get clean			\
-     && rm -rf /var/lib/apt/lists/	
-
-```
-
+> file oc.template.debian.md is created at Sat Jun 24 2023 08:41:33 GMT+0000 (Coordinated Universal Time) by make-docs.js

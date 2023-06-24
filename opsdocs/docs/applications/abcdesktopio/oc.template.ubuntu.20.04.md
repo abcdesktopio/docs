@@ -1,6 +1,6 @@
 # oc.template.ubuntu.20.04
 ## from
- inherite [abcdesktopio/oc.template.ubuntu.minimal.20.04](../oc.template.ubuntu.minimal.20.04)
+ inherit [abcdesktopio/oc.template.ubuntu.minimal.20.04](../oc.template.ubuntu.minimal.20.04)
 ## Container distribution release
 
 
@@ -40,20 +40,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ```
 
 
-> file oc.template.ubuntu.20.04.md is created at Fri Jun 23 2023 16:34:00 GMT+0000 (Coordinated Universal Time) by make-docs.js
 
-``` 
-# default TAG is dev
-ARG TAG=dev
-ARG BASE_IMAGE
-FROM ${BASE_IMAGE}:${TAG}
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-     openssl				\
-     sudo				\
-     krb5-user 				\
-     && apt-get clean			\
-     && rm -rf /var/lib/apt/lists/	
-
-```
-
+> file oc.template.ubuntu.20.04.md is created at Sat Jun 24 2023 08:40:56 GMT+0000 (Coordinated Universal Time) by make-docs.js
