@@ -1,6 +1,6 @@
 # oc.template.alpine.wine
 ## from
- inherite [abcdesktopio/oc.template.alpine](../oc.template.alpine)
+ inherit [abcdesktopio/oc.template.alpine](../oc.template.alpine)
 ## Container distribution release
 
 
@@ -43,3 +43,6 @@ RUN if [ $(uname -m) == 'x86_64'  ]; then apk add --no-cache --update wine; fi
 
 ```
 
+
+
+> file oc.template.alpine.wine.md is created at Sat Jun 24 2023 09:18:36 GMT+0000 (Coordinated Universal Time) by make-docs.js
