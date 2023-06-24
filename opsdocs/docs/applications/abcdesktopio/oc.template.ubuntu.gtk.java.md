@@ -1,6 +1,6 @@
 # oc.template.ubuntu.gtk.java
 ## from
- inherite [abcdesktopio/oc.template.ubuntu.gtk.20.04](../oc.template.ubuntu.gtk.20.04)
+ inherit [abcdesktopio/oc.template.ubuntu.gtk.20.04](../oc.template.ubuntu.gtk.20.04)
 ## Container distribution release
 
 
@@ -38,18 +38,5 @@ RUN apt-get update && apt-get install -y --install-recommends \
 ```
 
 
-> file oc.template.ubuntu.gtk.java.md is created at Fri Jun 23 2023 16:47:51 GMT+0000 (Coordinated Universal Time) by make-docs.js
 
-``` 
-ARG TAG=dev
-ARG BASE_IMAGE
-FROM ${BASE_IMAGE}:$TAG
-MAINTAINER Alexandre DEVELY 
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y --install-recommends \
-        default-jre	\
-        gsfonts-x11   	\
-    && rm -rf /var/lib/apt/lists/*	
-
-```
-
+> file oc.template.ubuntu.gtk.java.md is created at Sat Jun 24 2023 08:36:30 GMT+0000 (Coordinated Universal Time) by make-docs.js
