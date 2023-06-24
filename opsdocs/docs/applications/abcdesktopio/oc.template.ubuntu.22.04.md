@@ -39,3 +39,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 ```
 
+
+> file oc.template.ubuntu.22.04.md is created at Fri Jun 23 2023 16:33:28 GMT+0000 (Coordinated Universal Time) by make-docs.js
+
+``` 
+# default TAG is dev
+ARG TAG=dev
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}:${TAG}
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+     openssl				\
+     sudo				\
+     krb5-user 				\
+     && apt-get clean			\
+     && rm -rf /var/lib/apt/lists/	
+
+```
+
