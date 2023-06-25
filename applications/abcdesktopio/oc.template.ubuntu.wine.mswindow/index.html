@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
       
@@ -2198,13 +2198,13 @@
 
 <h1 id="octemplateubuntuwinemswindow">oc.template.ubuntu.wine.mswindow</h1>
 <h2 id="from">from</h2>
-<p>inherite <a href="../oc.template.ubuntu.wine.22.04">abcdesktopio/oc.template.ubuntu.wine.22.04</a></p>
+<p>inherit <a href="../oc.template.ubuntu.wine">abcdesktopio/oc.template.ubuntu.wine</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
 <pre><code>NAME=&quot;Ubuntu&quot;
-VERSION=&quot;20.04.1 LTS (Focal Fossa)&quot;
+VERSION=&quot;20.04.6 LTS (Focal Fossa)&quot;
 ID=ubuntu
 ID_LIKE=debian
-PRETTY_NAME=&quot;Ubuntu 20.04.1 LTS&quot;
+PRETTY_NAME=&quot;Ubuntu 20.04.6 LTS&quot;
 VERSION_ID=&quot;20.04&quot;
 HOME_URL=&quot;https://www.ubuntu.com/&quot;
 SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
@@ -2216,49 +2216,57 @@ UBUNTU_CODENAME=focal
 </code></pre>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
 <pre><code>ARG TAG=dev
-FROM abcdesktopio/oc.template.gtk.wine:$TAG
-ENV DEBIAN_FRONTEND noninteractive 
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}:${TAG} 
 
+ENV DEBIAN_FRONTEND noninteractive 
 RUN apt-get update &amp;&amp; \
     apt-get install --install-recommends -y \
-    xterm           \
-    wget            \
-    netcat          \
-    file            \
-    winbind         \
-    gettext         \ 
-    libgettextpo-dev    \
-    python-dbus         \
+    xterm \
+    wget \
+    netcat \
+    file \
+    winbind \
+    gettext \ 
+    libgettextpo-dev \
     &amp;&amp; rm -rf /var/lib/apt/lists/*  
 
-# add source play on linux 
-RUN wget -q &quot;http://deb.playonlinux.com/public.gpg&quot; -O- | sudo apt-key add -
-RUN wget http://deb.playonlinux.com/playonlinux_bionic.list -O /etc/apt/sources.list.d/playonlinux.list
+# set arch to i386
+RUN dpkg --add-architecture i386
+
 # install play
-RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends    \
-        playonlinux                 \
-    libosmesa6:i386                 \
-        libnss-mdns                 \
-    libnss-mdns:i386                \
-    libncurses5:i386                \
-    libodbc1:i386                   \
-    libxext6:i386                   \
-    libxi6:i386                     \
-    libfreetype6:i386               \
-    libx11-6:i386                   \
-    libz1:i386                  \
-    libcups2:i386                   \
-    liblcms2-2:i386                 \
-    libglu1-mesa:i386               \
-    libxcursor1:i386                \
-    libxrandr2:i386                 \
-    libxml2:i386                    \
-    libgl1-mesa-dri:i386                \
-    libgl1-mesa-glx:i386                \
+RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends \
+    libosmesa6:i386 \
+        libnss-mdns \
+    libnss-mdns:i386 \
+    libncurses5:i386 \
+    libodbc1:i386 \
+    libxext6:i386 \
+    libxi6:i386 \
+    libfreetype6:i386 \
+    libx11-6:i386 \
+    libz1:i386 \
+    libcups2:i386 \
+    liblcms2-2:i386 \
+    libglu1-mesa:i386 \
+    libxcursor1:i386 \
+    libxrandr2:i386 \
+    libxml2:i386 \
+    libgl1-mesa-dri:i386 \
+    libgl1-mesa-glx:i386 \
     &amp;&amp; rm -rf /var/lib/apt/lists/*
 
+# add source play on linux 
+RUN apt-get update &amp;&amp; \
+   wget https://www.playonlinux.com/script_files/PlayOnLinux/4.3.4/PlayOnLinux_4.3.4.deb &amp;&amp; \
+   apt-get install --allow-downgrades -y ./PlayOnLinux_4.3.4.deb &amp;&amp; \
+   rm PlayOnLinux_4.3.4.deb &amp;&amp; \
+   rm -rf /var/lib/apt/lists/*
 
 </code></pre>
+<blockquote>
+<p>file oc.template.ubuntu.wine.mswindow.md is created at Sat Jun 24 2023 13:08:07 GMT+0000 (Coordinated Universal Time) by make-docs.js</p>
+</blockquote>
 
 
   
@@ -2301,7 +2309,7 @@ RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends    \
     <script id="__config" type="application/json">{"base": "../../..", "features": ["content.action.edit", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.a51614de.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b425cdc4.min.js"></script>
       
     
   </body>
