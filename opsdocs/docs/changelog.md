@@ -7,6 +7,8 @@ Logs of all notable changes made to abcdesktop.io
 
 ### oc.user heartbeat
 
+- to fix issue: [https://github.com/abcdesktopio/oc.pyos/issues/2#issuecomment-1607671669](https://github.com/abcdesktopio/oc.pyos/issues/2#issuecomment-1607671669)
+use `WEBSOCKIFY_HEARTBEAT` in od.config file OR use `proxy-read-timeout` and `proxy-send-timeout` annotations to `kind: Ingress`
 - add `--heartbeat=${WEBSOCKIFY_HEARTBEAT}` to /usr/bin/websockify to keep session
 - commit [https://github.com/abcdesktopio/oc.user/commit/f498e2ab2a5f0af5525a16b5d108c8a1a1f22442](https://github.com/abcdesktopio/oc.user/commit/f498e2ab2a5f0af5525a16b5d108c8a1a1f22442)
 
