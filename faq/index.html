@@ -1928,6 +1928,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#my-own-application-doesnt-start-how-to-get-log-files" class="md-nav__link">
+    My own application doesn't start. How to get log files?
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2391,6 +2398,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#my-own-application-doesnt-start-how-to-get-log-files" class="md-nav__link">
+    My own application doesn't start. How to get log files?
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2516,7 +2530,7 @@ spec:
 <h3 id="my-desktop-is-disconnected-after-60-seconds-of-inactivity-and-the-message-your-abcdesktop-session-has-been-disconnected-please-reload-this-page-appears-how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity-with-an-ingress-controller">My desktop is disconnected after 60 seconds of inactivity, and the message <em>Your abcdesktop session has been disconnected. Please reload this page</em> appears. How to prevent the connection from closing after 60 seconds of inactivity with an Ingress Controller ?</h3>
 <p>To prevent the connection from closing after 60 seconds of inactivity through Ingress Controller, make sure the Ingress Controller isn't configured to automatically terminate long connections.
 The default value nginx's ingress controller is 60 seconds.</p>
-<p>Update the default value <code>nginx.ingress.kubernetes.io/proxy-read-timeout</code> and <code>nginx.ingress.kubernetes.io/proxy-send-timeout</code> annotations to more than 60 seconds.</p>
+<p>Update the default values for <code>nginx.ingress.kubernetes.io/proxy-read-timeout</code> and <code>nginx.ingress.kubernetes.io/proxy-send-timeout</code> annotations to more than 60 seconds.</p>
 <pre><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -2576,6 +2590,14 @@ spec:
 curl -X POST -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048-alpine.d.3.0.json
 </code></pre>
 <p>The first start will pull the 2048 image, so it can take a while.</p>
+<h3 id="my-own-application-doesnt-start-how-to-get-log-files">My own application doesn't start. How to get log files?</h3>
+<p>Open a webshell and read the logs files.</p>
+<p>The log files are /tmp/lastcmd.log, /tmp/lastcmdenv.log and /tmp/NAME OF THE APPLICATION.log.</p>
+<ul>
+<li><code>/tmp/lastcmd.log</code> the init command log file created by /composer/appli-docker-entrypoint.sh</li>
+<li><code>/tmp/lastcmdenv.log</code> the last environment variables file</li>
+<li><code>/tmp/NAME OF THE APPLICATION.log</code> the command log file for the application</li>
+</ul>
 
 
   
