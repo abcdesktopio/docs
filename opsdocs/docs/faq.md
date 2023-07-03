@@ -183,7 +183,7 @@ Add an heartbeat value to send a ping to the client every INTERVAL seconds
 Edit the `od.config` file, add to the `desktop.envlocal` option `'WEBSOCKIFY_HEARTBEAT':'30'`
 
 ```
-desktop.envlocal: { 'LIBOVERLAY_SCROLLBAR':'0', 'UBUNTU_MENUPROXY':'0', 'X11LISTEN':'tcp', 'WEBSOCKIFY_HEARTBEAT':'30' }
+desktop.envlocal: { 'WEBSOCKIFY_HEARTBEAT':'30', 'LIBOVERLAY_SCROLLBAR':'0', 'UBUNTU_MENUPROXY':'0', 'X11LISTEN':'tcp' }
 ```
 
 In this case, the command `/usr/bin/websockify` sends a ping to the client every 30 seconds. This command runs in the user's pod.
