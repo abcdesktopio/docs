@@ -248,9 +248,9 @@ curl -X POST -H 'Content-Type: text/javascript' http://localhost:30443/API/manag
 The first start will pull the 2048 image, so it can take a while.
 
 
-### How to get the json file of an application ?
+### How to get the json file of a containerized application ?
 
-To get the json file of an application, you can use `docker` command or `crictl` command
+To get the json file of a containerized application, you can use `docker` command or `crictl` command
 
 - `docker` command
 
