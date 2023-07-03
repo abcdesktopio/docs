@@ -1846,11 +1846,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#nodeport-loadbalancer" class="md-nav__link">
-    NodePort, LoadBalancer
+  <a href="#networking" class="md-nav__link">
+    Networking
   </a>
   
-    <nav class="md-nav" aria-label="NodePort, LoadBalancer">
+    <nav class="md-nav" aria-label="Networking">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1863,6 +1863,40 @@
           <li class="md-nav__item">
   <a href="#how-can-i-expose-my-new-service-with-an-external-ip-address" class="md-nav__link">
     How can I expose my new service with an external IP address ?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingress-controller" class="md-nav__link">
+    Ingress Controller
+  </a>
+  
+    <nav class="md-nav" aria-label="Ingress Controller">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-can-i-expose-my-new-service-with-ingress-controller" class="md-nav__link">
+    How can I expose my new service with Ingress Controller ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#my-desktop-is-disconnected-after-60-seconds-of-inactivity-and-the-message-your-abcdesktop-session-has-been-disconnected-please-reload-this-page-appears-how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity-with-an-ingress-controller" class="md-nav__link">
+    My desktop is disconnected after 60 seconds of inactivity, and the message Your abcdesktop session has been disconnected. Please reload this page appears. How to prevent the connection from closing after 60 seconds of inactivity with an Ingress Controller ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#my-desktop-is-disconnected-after-60-seconds-of-inactivity-and-the-message-your-abcdesktop-session-has-been-disconnected-please-reload-this-page-appears-how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity" class="md-nav__link">
+    My desktop is disconnected after 60 seconds of inactivity, and the message "Your abcdesktop session has been disconnected. Please reload this page" appears. How to prevent the connection from closing after 60 seconds of inactivity ?
   </a>
   
 </li>
@@ -2275,11 +2309,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#nodeport-loadbalancer" class="md-nav__link">
-    NodePort, LoadBalancer
+  <a href="#networking" class="md-nav__link">
+    Networking
   </a>
   
-    <nav class="md-nav" aria-label="NodePort, LoadBalancer">
+    <nav class="md-nav" aria-label="Networking">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2292,6 +2326,40 @@
           <li class="md-nav__item">
   <a href="#how-can-i-expose-my-new-service-with-an-external-ip-address" class="md-nav__link">
     How can I expose my new service with an external IP address ?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingress-controller" class="md-nav__link">
+    Ingress Controller
+  </a>
+  
+    <nav class="md-nav" aria-label="Ingress Controller">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-can-i-expose-my-new-service-with-ingress-controller" class="md-nav__link">
+    How can I expose my new service with Ingress Controller ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#my-desktop-is-disconnected-after-60-seconds-of-inactivity-and-the-message-your-abcdesktop-session-has-been-disconnected-please-reload-this-page-appears-how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity-with-an-ingress-controller" class="md-nav__link">
+    My desktop is disconnected after 60 seconds of inactivity, and the message Your abcdesktop session has been disconnected. Please reload this page appears. How to prevent the connection from closing after 60 seconds of inactivity with an Ingress Controller ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#my-desktop-is-disconnected-after-60-seconds-of-inactivity-and-the-message-your-abcdesktop-session-has-been-disconnected-please-reload-this-page-appears-how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity" class="md-nav__link">
+    My desktop is disconnected after 60 seconds of inactivity, and the message "Your abcdesktop session has been disconnected. Please reload this page" appears. How to prevent the connection from closing after 60 seconds of inactivity ?
   </a>
   
 </li>
@@ -2353,24 +2421,34 @@
 
 <h1 id="faq">FAQ</h1>
 <p>List of questions and answers relating to abcdesktop.io</p>
-<h2 id="nodeport-loadbalancer">NodePort, LoadBalancer</h2>
+<p>A Kubernetes Cloud provider can be Amazon EKS, DigitalOcean DOKS, Azur AKS, Google GKE, or any of others cloud provider with a Kubernetes service.</p>
+<h2 id="networking">Networking</h2>
+<p>This list of questions and answers is relating network, talking about </p>
+<ul>
+<li>port-forward</li>
+<li>NodePort </li>
+<li>LoadBalancer</li>
+<li>Ingress Controler</li>
+<li>WebSocket timeout </li>
+</ul>
 <h3 id="how-can-i-reach-my-new-service-on-a-kubernetes-cloud-provider">How can I reach my new service on a Kubernetes cloud provider ?</h3>
-<p>I was attempting to deploy the ABCDesktop (kubernetes-version-3.0) for testing my setup with a few of my own desktop applications. Everything worked fine when tested locally in my Ubuntu (22.04) machine. I then thought to deploy the setup in a Kubernetes cloud provider with 3 nodes cluster. How can I reach my new hosted service on a Kubernetes cloud provider ?</p>
+<p>I was attempting to deploy the ABCDesktop (kubernetes-version-3.0) for testing my setup with a few of my own desktop applications. Everything worked fine when tested locally in my Ubuntu (22.04) machine. I then thought to deploy the setup in a Kubernetes cloud provider with 3 nodes cluster. How can I reach my new hosted service on a Kubernetes cloud provider (Amazon EKS, Digital Ocean, Azur AKS, Google GKE) ?</p>
 <p>We use the <code>kubectl port-forward</code> to the nginx pod </p>
 <pre><code class="language-bash">NGINX_POD_NAME=$(kubectl get pods -l run=nginx-od -o jsonpath={.items..metadata.name} -n abcdesktop)
 kubectl port-forward $NGINX_POD_NAME --address 0.0.0.0 80:80 -n abcdesktop
 </code></pre>
 <p>Then open your web browser to reach the <code>http://localhost</code></p>
-<p>Then open your web browser, you should get the home page, login using <code>LDAP auth</code> or <code>Anonymous auth</code>  should works.</p>
+<p>Then open your web browser, you get the home page, login using <code>LDAP auth</code> or <code>Anonymous auth</code>.</p>
 <p><img width="1020" alt="Screenshot 2023-05-06 at 12 32 45" src="https://user-images.githubusercontent.com/12896316/236619023-5fdd3f7d-9256-4da6-8f49-6a673a0d83a2.png"></p>
 <p>Then login, and you get a pod user. </p>
 <blockquote>
-<p>For the first time, you may get a time out error, if all container image can not be downloaded in less than 180 seconds on the worker node.</p>
+<p>For the first time, you may get a timeout error, if container images can't be downloaded in less than 180 seconds on the worker node.</p>
 </blockquote>
 <p><img width="1421" alt="Screenshot 2023-05-06 at 12 33 55" src="https://user-images.githubusercontent.com/12896316/236619150-e6943e7c-d43e-47c5-a303-6d4b3dadf8d7.png"></p>
 <h3 id="how-can-i-expose-my-new-service-with-an-external-ip-address">How can I expose my new service with an external IP address ?</h3>
-<p>I was attempting to deploy the ABCDesktop (kubernetes-version-3.0) for testing my setup with a few of my own desktop applications. Everything worked fine when tested locally in my Ubuntu (22.04) machine. I then thought to deploy the setup in a Kubernetes cloud provider with 3 nodes cluster. How can I expose my new service with a external IP address ?</p>
-<p>Delete the previous nginx service </p>
+<p>I was attempting to deploy the abcesktop (kubernetes-version-3.0) for testing my setup with a few of my own desktop applications. Everything worked fine when tested locally in my Ubuntu (22.04) machine. I then thought to deploy the setup in a Kubernetes cloud provider with 3 nodes cluster. How can I expose my new service with an external IP address ?</p>
+<p>To expose the service with an external IP address, we need to update the nginx service type. The default type on your own desktop is <code>type: NodePort</code>, the nginx service type on a Kubernetes cloud provider becomes <code>type: LoadBalancer</code>. </p>
+<p>Delete the previous abcdesktop's nginx service </p>
 <pre><code class="language-bash">kubectl delete service nginx -n abcdesktop
 </code></pre>
 <p>Create a new nginx service yaml file named <code>nginx-lb.yaml</code>
@@ -2394,7 +2472,7 @@ spec:
 <pre><code class="language-bash">kubectl apply -f nginx-lb.yaml
 service/nginx created
 </code></pre>
-<p>Wait for an <code>EXTERNAL-IP</code></p>
+<p>Wait for an <code>EXTERNAL-IP</code> from you kubernetes cloud provider</p>
 <pre><code class="language-bash">kubectl get service nginx -n abcdesktop
 NAME    TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 nginx   LoadBalancer   10.245.105.75   &lt;pending&gt;     80:31581/TCP   64s
@@ -2405,13 +2483,84 @@ NAME        TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)           AGE
 nginx       LoadBalancer   10.245.172.53    161.35.246.4   80:30443/TCP      2m36s
 </code></pre>
 <p>In case, the <code>LoadBalancer</code> service returns the <code>EXTERNAL-IP</code> 161.35.246.4
-Then open your web browser to reach the <code>EXTERNAL-IP</code> 161.35.246.4.</p>
+Then open your web browser to reach this <code>EXTERNAL-IP</code> 161.35.246.4.</p>
 <p><img width="1421" alt="abcdesktop homepage" src="https://user-images.githubusercontent.com/12896316/236620625-33c42cab-9531-44ba-8d77-cdb843ae8bb5.png"></p>
 <p>Login using <code>Philip J. Fry</code></p>
 <p><img width="1421" alt="abcdesktop login" src="https://user-images.githubusercontent.com/12896316/236620663-781b82f4-dcbf-4b97-b763-0a3f8ed3a43d.png"></p>
 <p>And you should get the <code>fry</code> desktop </p>
 <p><img width="1421" alt="abcdesktop desktop" src="https://user-images.githubusercontent.com/12896316/236620678-caa63cbe-5e3e-436f-a607-fdb8a2399a49.png"></p>
+<h2 id="ingress-controller">Ingress Controller</h2>
+<h3 id="how-can-i-expose-my-new-service-with-ingress-controller">How can I expose my new service with Ingress Controller ?</h3>
+<p>A Kubernetes Ingress Controller acts as a reverse proxy. </p>
+<p>In the <code>Ingress</code>, define a path to the abcdesktop's nginx service.</p>
+<pre><code>apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-demo
+  namespace: abcdesktop
+spec:
+  rules:
+    - host: demo.digital.pepins.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
+  ingressClassName: nginx
+</code></pre>
+<p>The request <code>path: /</code> is proxyfied to service named nginx in abcdesktop namespace.</p>
+<h3 id="my-desktop-is-disconnected-after-60-seconds-of-inactivity-and-the-message-your-abcdesktop-session-has-been-disconnected-please-reload-this-page-appears-how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity-with-an-ingress-controller">My desktop is disconnected after 60 seconds of inactivity, and the message <em>Your abcdesktop session has been disconnected. Please reload this page</em> appears. How to prevent the connection from closing after 60 seconds of inactivity with an Ingress Controller ?</h3>
+<p>To prevent the connection from closing after 60 seconds of inactivity through Ingress Controller, make sure the Ingress Controller isn't configured to automatically terminate long connections.
+The default value nginx's ingress controller is 60 seconds.</p>
+<p>Update the default value <code>nginx.ingress.kubernetes.io/proxy-read-timeout</code> and <code>nginx.ingress.kubernetes.io/proxy-send-timeout</code> annotations to more than 60 seconds.</p>
+<pre><code>apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-demo
+  namespace: abcdesktop
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: &quot;3600&quot;
+    nginx.ingress.kubernetes.io/proxy-send-timeout: &quot;3600&quot;
+spec:
+  rules:
+    - host: demo.digital.pepins.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
+  ingressClassName: nginx
+</code></pre>
+<h3 id="my-desktop-is-disconnected-after-60-seconds-of-inactivity-and-the-message-your-abcdesktop-session-has-been-disconnected-please-reload-this-page-appears-how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity">My desktop is disconnected after 60 seconds of inactivity, and the message <em>"Your abcdesktop session has been disconnected. Please reload this page"</em> appears. How to prevent the connection from closing after 60 seconds of inactivity ?</h3>
+<p><img alt="abcdesktop session has been disconnected" src="../img/abcdesktopsessionhasbeendisconnected.png" /></p>
+<p>The message <code>Your abcdesktop session has been disconnected. Please reload this page</code> appears when the <code>websockify</code> websocket is disconnected.</p>
+<p>Add an heartbeat value to send a ping to the client every INTERVAL seconds</p>
+<p>Edit the <code>od.config</code> file, add to the <code>desktop.envlocal</code> option <code>'WEBSOCKIFY_HEARTBEAT':'30'</code></p>
+<pre><code>desktop.envlocal: { 'LIBOVERLAY_SCROLLBAR':'0', 'UBUNTU_MENUPROXY':'0', 'X11LISTEN':'tcp', 'WEBSOCKIFY_HEARTBEAT':'30' }
+</code></pre>
+<p>In this case, the command <code>/usr/bin/websockify</code> sends a ping to the client every 30 seconds. This command runs in the user's pod.</p>
+<p>Update the configmap abcdesktop-config</p>
+<pre><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+</code></pre>
+<p>Restart the pyos pod</p>
+<pre><code>kubectl delete pods -l run=pyos-od -n abcdesktop
+</code></pre>
+<p>To get more informations how to 
+<a href="https://websockets.readthedocs.io/en/stable/topics/timeouts.html">Keepalive in websockets</a></p>
+<p>Timeout is an main feature to preserve from unnecessary network bandwidth. </p>
 <h2 id="applications">Applications</h2>
+<p>This list of questions and answers is relating abcdesktop's applications, talking about </p>
+<ul>
+<li><code>/API/manager/images</code> endpoints</li>
+</ul>
 <h3 id="how-to-delete-all-applications">How to delete all applications ?</h3>
 <p>To delete all applications use the images endpoint, replace <code>localhost:30443</code> by your own datas</p>
 <pre><code class="language-bash">curl -X DELETE -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/images/
@@ -2422,11 +2571,11 @@ Then open your web browser to reach the <code>EXTERNAL-IP</code> 161.35.246.4.</
 <h3 id="how-to-add-an-application">How to add an application ?</h3>
 <p>To add an application :
 - get the json file of an application
-- push the json file to the abcdesktop images endpoint</p>
+- push the json file to the abcdesktop's images endpoint</p>
 <pre><code class="language-bash">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.3.0.json
 curl -X POST -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048-alpine.d.3.0.json
 </code></pre>
-<p>The first start will pull the 2048 image, it can take a while</p>
+<p>The first start will pull the 2048 image, so it can take a while.</p>
 
 
   
