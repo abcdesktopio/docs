@@ -3,11 +3,21 @@
 
 List of questions and answers relating to abcdesktop.io
 
-## NodePort, LoadBalancer
+A Kubernetes Cloud provider can be Amazon EKS, DigitalOcean DOKS, Azur AKS, Google GKE, or any of others cloud provider with a Kubernetes service.
+
+## Networking 
+
+This list of questions and answers is relating network, talking about 
+
+- port-forward
+- NodePort 
+- LoadBalancer
+- Ingress Controler
+- WebSocket timeout 
 
 ### How can I reach my new service on a Kubernetes cloud provider ?
 
-I was attempting to deploy the ABCDesktop (kubernetes-version-3.0) for testing my setup with a few of my own desktop applications. Everything worked fine when tested locally in my Ubuntu (22.04) machine. I then thought to deploy the setup in a Kubernetes cloud provider with 3 nodes cluster. How can I reach my new hosted service on a Kubernetes cloud provider ?
+I was attempting to deploy the ABCDesktop (kubernetes-version-3.0) for testing my setup with a few of my own desktop applications. Everything worked fine when tested locally in my Ubuntu (22.04) machine. I then thought to deploy the setup in a Kubernetes cloud provider with 3 nodes cluster. How can I reach my new hosted service on a Kubernetes cloud provider (Amazon EKS, Digital Ocean, Azur AKS, Google GKE) ?
 
 We use the `kubectl port-forward` to the nginx pod 
 
@@ -19,22 +29,23 @@ kubectl port-forward $NGINX_POD_NAME --address 0.0.0.0 80:80 -n abcdesktop
 Then open your web browser to reach the `http://localhost`
 
 
-Then open your web browser, you should get the home page, login using `LDAP auth` or `Anonymous auth`  should works.
+Then open your web browser, you get the home page, login using `LDAP auth` or `Anonymous auth`.
 
 <img width="1020" alt="Screenshot 2023-05-06 at 12 32 45" src="https://user-images.githubusercontent.com/12896316/236619023-5fdd3f7d-9256-4da6-8f49-6a673a0d83a2.png">
 
 Then login, and you get a pod user. 
-> For the first time, you may get a time out error, if all container image can not be downloaded in less than 180 seconds on the worker node.
+> For the first time, you may get a timeout error, if container images can't be downloaded in less than 180 seconds on the worker node.
 
 <img width="1421" alt="Screenshot 2023-05-06 at 12 33 55" src="https://user-images.githubusercontent.com/12896316/236619150-e6943e7c-d43e-47c5-a303-6d4b3dadf8d7.png">
 
 
 ### How can I expose my new service with an external IP address ?
 
-I was attempting to deploy the ABCDesktop (kubernetes-version-3.0) for testing my setup with a few of my own desktop applications. Everything worked fine when tested locally in my Ubuntu (22.04) machine. I then thought to deploy the setup in a Kubernetes cloud provider with 3 nodes cluster. How can I expose my new service with a external IP address ?
+I was attempting to deploy the abcesktop (kubernetes-version-3.0) for testing my setup with a few of my own desktop applications. Everything worked fine when tested locally in my Ubuntu (22.04) machine. I then thought to deploy the setup in a Kubernetes cloud provider with 3 nodes cluster. How can I expose my new service with an external IP address ?
 
+To expose the service with an external IP address, we need to update the nginx service type. The default type on your own desktop is `type: NodePort`, the nginx service type on a Kubernetes cloud provider becomes `type: LoadBalancer`. 
 
-Delete the previous nginx service 
+Delete the previous abcdesktop's nginx service 
 
 ```bash
 kubectl delete service nginx -n abcdesktop
@@ -67,7 +78,7 @@ kubectl apply -f nginx-lb.yaml
 service/nginx created
 ```
 
-Wait for an `EXTERNAL-IP`
+Wait for an `EXTERNAL-IP` from you kubernetes cloud provider
 
 ```bash
 kubectl get service nginx -n abcdesktop
@@ -84,7 +95,7 @@ nginx       LoadBalancer   10.245.172.53    161.35.246.4   80:30443/TCP      2m3
 ```
 
 In case, the `LoadBalancer` service returns the `EXTERNAL-IP` 161.35.246.4
-Then open your web browser to reach the `EXTERNAL-IP` 161.35.246.4.
+Then open your web browser to reach this `EXTERNAL-IP` 161.35.246.4.
 
 
 <img width="1421" alt="abcdesktop homepage" src="https://user-images.githubusercontent.com/12896316/236620625-33c42cab-9531-44ba-8d77-cdb843ae8bb5.png">
@@ -98,8 +109,109 @@ And you should get the `fry` desktop
 <img width="1421" alt="abcdesktop desktop" src="https://user-images.githubusercontent.com/12896316/236620678-caa63cbe-5e3e-436f-a607-fdb8a2399a49.png">
 
 
+## Ingress Controller
+
+
+### How can I expose my new service with Ingress Controller ?
+
+A Kubernetes Ingress Controller acts as a reverse proxy. 
+
+In the `Ingress`, define a path to the abcdesktop's nginx service.
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-demo
+  namespace: abcdesktop
+spec:
+  rules:
+    - host: demo.digital.pepins.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
+  ingressClassName: nginx
+```
+
+The request `path: /` is proxyfied to service named nginx in abcdesktop namespace.
+
+
+### My desktop is disconnected after 60 seconds of inactivity, and the message *Your abcdesktop session has been disconnected. Please reload this page* appears. How to prevent the connection from closing after 60 seconds of inactivity with an Ingress Controller ?
+
+To prevent the connection from closing after 60 seconds of inactivity through Ingress Controller, make sure the Ingress Controller isn't configured to automatically terminate long connections.
+The default value nginx's ingress controller is 60 seconds.
+
+Update the default value `nginx.ingress.kubernetes.io/proxy-read-timeout` and `nginx.ingress.kubernetes.io/proxy-send-timeout` annotations to more than 60 seconds.
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-demo
+  namespace: abcdesktop
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+spec:
+  rules:
+    - host: demo.digital.pepins.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
+  ingressClassName: nginx
+```
+
+### My desktop is disconnected after 60 seconds of inactivity, and the message *"Your abcdesktop session has been disconnected. Please reload this page"* appears. How to prevent the connection from closing after 60 seconds of inactivity ?
+
+![abcdesktop session has been disconnected](img/abcdesktopsessionhasbeendisconnected.png)
+
+The message `Your abcdesktop session has been disconnected. Please reload this page` appears when the `websockify` websocket is disconnected.
+
+
+Add an heartbeat value to send a ping to the client every INTERVAL seconds
+
+Edit the `od.config` file, add to the `desktop.envlocal` option `'WEBSOCKIFY_HEARTBEAT':'30'`
+
+```
+desktop.envlocal: { 'LIBOVERLAY_SCROLLBAR':'0', 'UBUNTU_MENUPROXY':'0', 'X11LISTEN':'tcp', 'WEBSOCKIFY_HEARTBEAT':'30' }
+```
+
+In this case, the command `/usr/bin/websockify` sends a ping to the client every 30 seconds. This command runs in the user's pod.
+
+Update the configmap abcdesktop-config
+
+```
+kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+```
+
+Restart the pyos pod
+
+```
+kubectl delete pods -l run=pyos-od -n abcdesktop
+```
+
+To get more informations how to 
+[Keepalive in websockets](https://websockets.readthedocs.io/en/stable/topics/timeouts.html)
+
+Timeout is an main feature to preserve from unnecessary network bandwidth. 
 
 ## Applications 
+
+This list of questions and answers is relating abcdesktop's applications, talking about 
+
+- `/API/manager/images` endpoints
 
 
 ### How to delete all applications ?
@@ -121,7 +233,7 @@ It returns a json list of all deleted applications
 
 To add an application :
 - get the json file of an application
-- push the json file to the abcdesktop images endpoint
+- push the json file to the abcdesktop's images endpoint
 
 
 ```bash
@@ -129,7 +241,7 @@ wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.3
 curl -X POST -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048-alpine.d.3.0.json
 ```
 
-The first start will pull the 2048 image, it can take a while
+The first start will pull the 2048 image, so it can take a while.
 
 
 
