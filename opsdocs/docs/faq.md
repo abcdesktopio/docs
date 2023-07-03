@@ -109,8 +109,6 @@ And you should get the `fry` desktop
 <img width="1421" alt="abcdesktop desktop" src="https://user-images.githubusercontent.com/12896316/236620678-caa63cbe-5e3e-436f-a607-fdb8a2399a49.png">
 
 
-## Ingress Controller
-
 
 ### How can I expose my new service with Ingress Controller ?
 
@@ -232,7 +230,7 @@ It returns a json list of all deleted applications
 ### How to add an application ?
 
 To add an application :
-- get the json file of an application
+- get the json file of an application 
 - push the json file to the abcdesktop's images endpoint
 
 
@@ -244,9 +242,26 @@ curl -X POST -H 'Content-Type: text/javascript' http://localhost:30443/API/manag
 The first start will pull the 2048 image, so it can take a while.
 
 
-### My own application doesn't start. How to get log files?
+### How to get the json file of an application ?
 
-Open a webshell and read the logs files.
+To get the json file of an application, you can use `docker` command or `crictl` command
+
+- `docker` command
+
+```bash
+docker inspect abcdesktopio/2048-alpine.d:3.0 > 2048-alpine.json
+```
+
+- `crictl` command
+
+```bash
+crictl inspecti abcdesktopio/2048-alpine.d:3.0 > 2048-alpine.json
+```
+
+
+### My application doesn't start. How to get log files ?
+
+Open the `webshell` and read the logs files.
 
 The log files are /tmp/lastcmd.log, /tmp/lastcmdenv.log and /tmp/NAME OF THE APPLICATION.log.
 
