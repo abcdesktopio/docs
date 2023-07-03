@@ -2377,7 +2377,7 @@
 <p>Download and execute the <code>pullapps-3.0.sh</code> script :</p>
 <pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-3.0.sh | bash
 </code></pre>
-<p>This script starts abcdesktop application on an empty desktop. Pods is created to ask Kubernetes for pulling containers image.</p>
+<p>This script starts abcdesktop application on an empty desktop. Pod is created to ask Kubernetes for pulling containers image.</p>
 <pre><code>NAME                                                             READY   STATUS              RESTARTS   AGE
 daemonset-nginx-dqxzx                                            1/1     Running             0          100m
 daemonset-pyos-rdwws                                             1/1     Running             0          100m
@@ -2419,14 +2419,14 @@ pod/pull-xterm-abcinst-0e802cfa8addb4648f843869325f3413d544bb9eae8 condition met
 <h2 id="mannualy-install-application">Mannualy install application</h2>
 <p>Add new application, require to send an application json document to the control-plane <code>pyos</code>.</p>
 <h3 id="download-a-json-application-document-format">Download a json application document format</h3>
-<p>In this example, we install the application <code>2048</code> game as sample, but you can choose another one from <a href="https://github.com/abcdesktopio/conf/tree/main/apps">https://github.com/abcdesktopio/conf/tree/main/apps</a></p>
+<p>In this example, we install the application <code>2048</code> game, but you can choose another one from <a href="https://github.com/abcdesktopio/conf/tree/main/apps">https://github.com/abcdesktopio/conf/tree/main/apps</a></p>
 <pre><code>curl https://raw.githubusercontent.com/abcdesktopio/conf/main/apps/2048.d.3.0.json --output 2048.json
 </code></pre>
-<blockquote>
-<p>To inspect image json you can also run crictl <code>inspecti</code> or <code>docker inspect</code> command.
-<code>crictl inspecti abcdesktopio/2048.d:3.0 &gt; 2048.json</code>
-<code>docker inspect abcdesktopio/2048.d:3.0 &gt; 2048.json</code></p>
-</blockquote>
+<p>To inspect image json you can also run crictl <code>inspecti</code> or <code>docker inspect</code> command.</p>
+<ul>
+<li><code>crictl inspecti abcdesktopio/2048.d:3.0 &gt; 2048.json</code></li>
+<li><code>docker inspect abcdesktopio/2048.d:3.0 &gt; 2048.json</code></li>
+</ul>
 <p>The image manager endpoint REST API is <code>http://[your-ip-hostname]:30443/API/manager/image</code></p>
 <p>Replace <code>[your-ip-hostname]</code> by your own server ip, by default with localhost, the url become <code>http://localhost:30443/API/manager/image</code></p>
 <p>Send the 2048.json file to the images REST API</p>
