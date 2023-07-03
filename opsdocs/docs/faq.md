@@ -147,7 +147,7 @@ The request `path: /` is proxyfied to service named nginx in abcdesktop namespac
 To prevent the connection from closing after 60 seconds of inactivity through Ingress Controller, make sure the Ingress Controller isn't configured to automatically terminate long connections.
 The default value nginx's ingress controller is 60 seconds.
 
-Update the default value `nginx.ingress.kubernetes.io/proxy-read-timeout` and `nginx.ingress.kubernetes.io/proxy-send-timeout` annotations to more than 60 seconds.
+Update the default values for `nginx.ingress.kubernetes.io/proxy-read-timeout` and `nginx.ingress.kubernetes.io/proxy-send-timeout` annotations to more than 60 seconds.
 
 ```
 apiVersion: networking.k8s.io/v1
@@ -242,6 +242,21 @@ curl -X POST -H 'Content-Type: text/javascript' http://localhost:30443/API/manag
 ```
 
 The first start will pull the 2048 image, so it can take a while.
+
+
+### My own application doesn't start. How to get log files?
+
+Open a webshell and read the logs files.
+
+The log files are /tmp/lastcmd.log, /tmp/lastcmdenv.log and /tmp/NAME OF THE APPLICATION.log.
+
+- `/tmp/lastcmd.log` the init command log file created by /composer/appli-docker-entrypoint.sh
+- `/tmp/lastcmdenv.log` the last environment variables file
+- `/tmp/NAME OF THE APPLICATION.log` the command log file for the application
+
+
+
+
 
 
 
