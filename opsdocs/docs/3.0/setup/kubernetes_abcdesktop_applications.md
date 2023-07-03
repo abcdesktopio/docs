@@ -1,9 +1,6 @@
 
 # Setup applications for abcdesktop
 
-
-
-
 ## Quick application install
 
 > Quick installation can be run on Linux or macOS operation system. 
@@ -14,7 +11,7 @@ Download and execute the `pullapps-3.0.sh` script :
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-3.0.sh | bash
 ```
 
-This script starts abcdesktop application on an empty desktop. Pods is created to ask Kubernetes for pulling containers image.
+This script starts abcdesktop application on an empty desktop. Pod is created to ask Kubernetes for pulling containers image.
 
 
 ```
@@ -80,16 +77,17 @@ Add new application, require to send an application json document to the control
 ### Download a json application document format
 
 
-In this example, we install the application `2048` game as sample, but you can choose another one from [https://github.com/abcdesktopio/conf/tree/main/apps](https://github.com/abcdesktopio/conf/tree/main/apps)
+In this example, we install the application `2048` game, but you can choose another one from [https://github.com/abcdesktopio/conf/tree/main/apps](https://github.com/abcdesktopio/conf/tree/main/apps)
 
 
 ```
 curl https://raw.githubusercontent.com/abcdesktopio/conf/main/apps/2048.d.3.0.json --output 2048.json
 ```
 
->To inspect image json you can also run crictl `inspecti` or `docker inspect` command.
-> ```crictl inspecti abcdesktopio/2048.d:3.0 > 2048.json```
-> ```docker inspect abcdesktopio/2048.d:3.0 > 2048.json```
+To inspect image json you can also run crictl `inspecti` or `docker inspect` command.
+
+- `crictl inspecti abcdesktopio/2048.d:3.0 > 2048.json`
+- `docker inspect abcdesktopio/2048.d:3.0 > 2048.json`
 
 The image manager endpoint REST API is `http://[your-ip-hostname]:30443/API/manager/image`
 
