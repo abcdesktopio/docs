@@ -1867,19 +1867,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ingress-controller" class="md-nav__link">
-    Ingress Controller
-  </a>
-  
-    <nav class="md-nav" aria-label="Ingress Controller">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#how-can-i-expose-my-new-service-with-ingress-controller" class="md-nav__link">
     How can I expose my new service with Ingress Controller ?
@@ -1929,8 +1916,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#my-own-application-doesnt-start-how-to-get-log-files" class="md-nav__link">
-    My own application doesn't start. How to get log files?
+  <a href="#how-to-get-the-json-file-of-an-application" class="md-nav__link">
+    How to get the json file of an application ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#my-application-doesnt-start-how-to-get-log-files" class="md-nav__link">
+    My application doesn't start. How to get log files ?
   </a>
   
 </li>
@@ -2337,19 +2331,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ingress-controller" class="md-nav__link">
-    Ingress Controller
-  </a>
-  
-    <nav class="md-nav" aria-label="Ingress Controller">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#how-can-i-expose-my-new-service-with-ingress-controller" class="md-nav__link">
     How can I expose my new service with Ingress Controller ?
@@ -2399,8 +2380,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#my-own-application-doesnt-start-how-to-get-log-files" class="md-nav__link">
-    My own application doesn't start. How to get log files?
+  <a href="#how-to-get-the-json-file-of-an-application" class="md-nav__link">
+    How to get the json file of an application ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#my-application-doesnt-start-how-to-get-log-files" class="md-nav__link">
+    My application doesn't start. How to get log files ?
   </a>
   
 </li>
@@ -2503,7 +2491,6 @@ Then open your web browser to reach this <code>EXTERNAL-IP</code> 161.35.246.4.<
 <p><img width="1421" alt="abcdesktop login" src="https://user-images.githubusercontent.com/12896316/236620663-781b82f4-dcbf-4b97-b763-0a3f8ed3a43d.png"></p>
 <p>And you should get the <code>fry</code> desktop </p>
 <p><img width="1421" alt="abcdesktop desktop" src="https://user-images.githubusercontent.com/12896316/236620678-caa63cbe-5e3e-436f-a607-fdb8a2399a49.png"></p>
-<h2 id="ingress-controller">Ingress Controller</h2>
 <h3 id="how-can-i-expose-my-new-service-with-ingress-controller">How can I expose my new service with Ingress Controller ?</h3>
 <p>A Kubernetes Ingress Controller acts as a reverse proxy. </p>
 <p>In the <code>Ingress</code>, define a path to the abcdesktop's nginx service.</p>
@@ -2584,14 +2571,26 @@ spec:
 </code></pre>
 <h3 id="how-to-add-an-application">How to add an application ?</h3>
 <p>To add an application :
-- get the json file of an application
+- get the json file of an application 
 - push the json file to the abcdesktop's images endpoint</p>
 <pre><code class="language-bash">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.3.0.json
 curl -X POST -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048-alpine.d.3.0.json
 </code></pre>
 <p>The first start will pull the 2048 image, so it can take a while.</p>
-<h3 id="my-own-application-doesnt-start-how-to-get-log-files">My own application doesn't start. How to get log files?</h3>
-<p>Open a webshell and read the logs files.</p>
+<h3 id="how-to-get-the-json-file-of-an-application">How to get the json file of an application ?</h3>
+<p>To get the json file of an application, you can use <code>docker</code> command or <code>crictl</code> command</p>
+<ul>
+<li><code>docker</code> command</li>
+</ul>
+<pre><code class="language-bash">docker inspect abcdesktopio/2048-alpine.d:3.0 &gt; 2048-alpine.json
+</code></pre>
+<ul>
+<li><code>crictl</code> command</li>
+</ul>
+<pre><code class="language-bash">crictl inspecti abcdesktopio/2048-alpine.d:3.0 &gt; 2048-alpine.json
+</code></pre>
+<h3 id="my-application-doesnt-start-how-to-get-log-files">My application doesn't start. How to get log files ?</h3>
+<p>Open the <code>webshell</code> and read the logs files.</p>
 <p>The log files are /tmp/lastcmd.log, /tmp/lastcmdenv.log and /tmp/NAME OF THE APPLICATION.log.</p>
 <ul>
 <li><code>/tmp/lastcmd.log</code> the init command log file created by /composer/appli-docker-entrypoint.sh</li>
