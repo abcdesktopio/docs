@@ -81,4 +81,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.alpine.minimal.3.18.md is created at Wed Jun 28 2023 14:56:55 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.minimal.3.18.md is created at Mon Jul 03 2023 10:38:07 GMT+0000 (Coordinated Universal Time) by make-docs.js
