@@ -203,7 +203,7 @@ kubectl delete pods -l run=pyos-od -n abcdesktop
 To get more informations how to 
 [Keepalive in websockets](https://websockets.readthedocs.io/en/stable/topics/timeouts.html)
 
-Timeout is an main feature to preserve from unnecessary network bandwidth. 
+Timeout is a main feature to preserve from unnecessary network bandwidth. 
 
 ## Applications 
 
