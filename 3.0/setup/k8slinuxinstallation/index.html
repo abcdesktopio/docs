@@ -17,7 +17,7 @@
         <link rel="next" href="../kubernetesmode/">
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.eebd395e.min.css">
       
       
 
@@ -846,11 +846,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-kubernetes-on-linux" class="md-nav__link">
-    Install Kubernetes on Linux
+  <a href="#install-kubernetes-on-ubuntu-2204-step-by-step" class="md-nav__link">
+    Install Kubernetes on Ubuntu 22.04 (Step by Step)
   </a>
   
-    <nav class="md-nav" aria-label="Install Kubernetes on Linux">
+    <nav class="md-nav" aria-label="Install Kubernetes on Ubuntu 22.04 (Step by Step)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -861,15 +861,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-1-install-containerd" class="md-nav__link">
-    Step 1: Install containerd
+  <a href="#step-1-install-containerdio-from-docker-repository" class="md-nav__link">
+    Step 1: Install containerd.io from docker repository
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-configure-containerd" class="md-nav__link">
-    Step 2: Configure containerd
+  <a href="#step-2-configure-containerdio" class="md-nav__link">
+    Step 2: Configure containerd.io
   </a>
   
 </li>
@@ -2296,11 +2296,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-kubernetes-on-linux" class="md-nav__link">
-    Install Kubernetes on Linux
+  <a href="#install-kubernetes-on-ubuntu-2204-step-by-step" class="md-nav__link">
+    Install Kubernetes on Ubuntu 22.04 (Step by Step)
   </a>
   
-    <nav class="md-nav" aria-label="Install Kubernetes on Linux">
+    <nav class="md-nav" aria-label="Install Kubernetes on Ubuntu 22.04 (Step by Step)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2311,15 +2311,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-1-install-containerd" class="md-nav__link">
-    Step 1: Install containerd
+  <a href="#step-1-install-containerdio-from-docker-repository" class="md-nav__link">
+    Step 1: Install containerd.io from docker repository
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-configure-containerd" class="md-nav__link">
-    Step 2: Configure containerd
+  <a href="#step-2-configure-containerdio" class="md-nav__link">
+    Step 2: Configure containerd.io
   </a>
   
 </li>
@@ -2376,7 +2376,8 @@
 <h1 id="linux-requirements">Linux Requirements</h1>
 <h3 id="packages-installation">Packages installation</h3>
 <p>To install Kubernetes on your GNU/Linux, you can read the <a href="https://kubernetes.io/docs/setup/">Kubernetes setup guide</a> on the kubernetes.io web site.</p>
-<h3 id="install-kubernetes-on-linux">Install Kubernetes on Linux</h3>
+<h3 id="install-kubernetes-on-ubuntu-2204-step-by-step">Install Kubernetes on Ubuntu 22.04 (Step by Step)</h3>
+<p>These commands install the latest Kubernetes on a single node Ubuntu 22.04</p>
 <h4 id="step-0-disable-swap">Step 0: Disable swap</h4>
 <p>Execute command swapoff to disable swap.</p>
 <pre><code class="language-bash">swapoff -a
@@ -2391,7 +2392,7 @@ overlay
 br_netfilter
 EOF
 </code></pre>
-<h4 id="step-1-install-containerd">Step 1: Install <code>containerd</code></h4>
+<h4 id="step-1-install-containerdio-from-docker-repository">Step 1: Install <code>containerd.io</code> from docker repository</h4>
 <p>Install the containerd utility and required packages on node by running the following command as sudo in a Terminal :</p>
 <p>Install common packages</p>
 <pre><code class="language-bash">apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
@@ -2404,8 +2405,8 @@ add-apt-repository &quot;deb [arch=$(dpkg --print-architecture)] https://downloa
 <pre><code class="language-bash">apt update
 apt install -y containerd.io
 </code></pre>
-<p><code>containerd</code> will then be installed on your system. </p>
-<h4 id="step-2-configure-containerd">Step 2: Configure containerd</h4>
+<p><code>containerd.io</code> will then be installed on your system. </p>
+<h4 id="step-2-configure-containerdio">Step 2: Configure <code>containerd.io</code></h4>
 <p>Configure <code>containerd</code> to use <code>systemd</code> as <code>cgroup</code>. </p>
 <pre><code class="language-bash">containerd config default &gt; /etc/containerd/config.toml
 sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
