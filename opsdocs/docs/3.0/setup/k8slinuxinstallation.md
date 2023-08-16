@@ -5,7 +5,9 @@
 
 To install Kubernetes on your GNU/Linux, you can read the [Kubernetes setup guide](https://kubernetes.io/docs/setup/) on the kubernetes.io web site.
 
-### Install Kubernetes on Linux
+### Install Kubernetes on Ubuntu 22.04 (Step by Step)
+
+These commands install the latest Kubernetes on a single node Ubuntu 22.04
 
 #### Step 0: Disable swap
 
@@ -31,7 +33,7 @@ br_netfilter
 EOF
 ```
 
-#### Step 1: Install `containerd`
+#### Step 1: Install `containerd.io` from docker repository
 
 Install the containerd utility and required packages on node by running the following command as sudo in a Terminal :
 
@@ -55,12 +57,11 @@ apt update
 apt install -y containerd.io
 ```
 
-`containerd` will then be installed on your system. 
+`containerd.io` will then be installed on your system. 
 
 
 
-#### Step 2: Configure containerd 
-
+#### Step 2: Configure `containerd.io`
 
 Configure `containerd` to use `systemd` as `cgroup`. 
 
