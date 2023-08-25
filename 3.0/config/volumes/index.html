@@ -3166,12 +3166,14 @@
 </ul>
 <pre><code class="language-json"># set to persistentVolumeClaim
 desktop.homedirectorytype: 'persistentVolumeClaim'
+
 # define how to create persistentvolume
 desktop.persistentvolumespec: {
             'storageClassName': '',
             'capacity': { 'storage': '1Gi' },
             'accessModes': [ 'ReadWriteOnce' ], 
             'hostPath': { 'path': '/mnt/abcdesktop_volumes/{{ provider }}/{{ userid }}' } }
+
 # define how to create persistentvolumeclaim
 desktop.persistentvolumeclaimspec: {
             'storageClassName': '',
