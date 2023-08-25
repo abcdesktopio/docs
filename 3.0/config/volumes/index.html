@@ -3554,8 +3554,8 @@ Events:
 <p>The new desktop for <code>Philip J. Fry</code> is created.</p>
 <p>Start the web shell command using the search bar </p>
 <p><img alt="desktop as fry" src="../img/storageclass-nfs-desktop.png" /></p>
-<p>Using the web shell application start the df command </p>
-<p><img alt="df as fry" src="../img/storageclass-nfs-df.png" /></p>
+<p>Using the web shell application start the dd commands </p>
+<p><img alt="df as fry" src="../img/storageclass-nfs-quota-fry-over.png" /></p>
 <p>Run a <code>dd</code> command to reach the quota value (50 MiB is this case).</p>
 <pre><code>dd if=/dev/urandom of=quota-test-file
 dd: writing to 'quota-test-file': Disk quota exceeded
@@ -3575,6 +3575,7 @@ The size of quota-test-file is over a the quota limit.</p>
 <pre><code>dd if=/dev/zero of=quota-test-file2
 dd: failed to open 'quota-test-file2': Disk quota exceeded
 </code></pre>
+<p>The nfs server has returned an error if the user tries to create more than 50 MiB. </p>
 <h2 id="define-persistentvolumeclaim-using-k8s-csi-s3">Define persistentVolumeClaim using <code>k8s-csi-s3</code></h2>
 <p>In this example, we use s3 to share user home directory with each worker node</p>
 <p>Use the <code>https://github.com/yandex-cloud/k8s-csi-s3</code> as a <code>CSI for S3</code> with <a href="https://min.io/">minio</a> as backend. </p>
