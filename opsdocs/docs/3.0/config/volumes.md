@@ -188,16 +188,14 @@ do-block-storage-xfs-retain   dobs.csi.digitalocean.com      Retain          Imm
 ```
 
 
-### For a self hosting kubernetes cluster
-
-Two are described one using `nfs` with the `csi-driver-nfs`, the second one using `s3` with `k8s-csi-s3`.
+## Define persistentVolumeClaim using `csi-driver-nfs` 
 
 
-#### example with `nfs` 
+In this example, we use nfs to share user home directory with each worker node
 
 Use the `https://github.com/kubernetes-csi/csi-driver-nfs` as a `csi-driver-nfs` with a nfs server as backend. 
 
-##### On the nfs server
+### On the nfs server
 
 On the nfs server, create an export with the `no_root_squash` option
 
@@ -207,7 +205,7 @@ For example export `/volume1/pods`
 /volume1/pods        192.168.7.0/24(rw,async,no_wdelay,crossmnt,insecure,no_root_squash,insecure_locks,anonuid=1025,anongid=100)
 ```
 
-##### Install the `csi-driver-nfs`
+### Install the `csi-driver-nfs`
 
 Run the install `install-driver.sh` command from [kubernetes-csi/csi-driver-nfs](https://github.com/kubernetes-csi/csi-driver-nfs) GitHub repository.
 
@@ -260,7 +258,7 @@ NAME                 PROVISIONER      RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWV
 nfs-csi-sc-ds01      nfs.csi.k8s.io   Delete          Immediate           false                  18m
 ```
 
-##### Update `od.config`
+### Update the `od.config` file
 
 In your od.config file, define the entry `desktop.persistentvolumeclaimspec`
 
@@ -294,7 +292,7 @@ kubectl delete pods -l run=pyos-od -n abcdesktop
 ```
 
 
-##### Login to your abcdesktop service 
+### Login to your abcdesktop service 
 
 Login as user (`Philip J. Fry`, `fry`)
 
@@ -314,8 +312,7 @@ Using the web shell application start the df command
 The fry home dir is mounted on `192.168.7.101:/volume1/pods/pvc-b8317d7b-dc35-4fc3-88e9-ad894ab11d32`
 
 
-##### On the kubernetes control plane, list the PersistentVolume and PersistentVolumeClaim
-
+### List the PersistentVolume and PersistentVolumeClaim
 
 List the new PersistentVolume
 
@@ -364,15 +361,107 @@ Events:
 ```
 
 
+### Set quota for user homedir
 
-#### example with `s3`
+Steps :
+- Define posixAccount in the ldap directory service
+- Define quota on the nfs server 
+
+
+The user `fry` has a posixAccount description in the embedded directory service `cn=Philip J. Fry,ou=people,dc=planetexpress,dc=com`
+
+| Attribute        | Value            |
+| ---------------- | ---------------- |
+| objectClass      | inetOrgPerson |
+| cn               | Philip J. Fry |
+| sn               | Fry |
+| description      | Human |
+| displayName      | Fry |
+| employeeType     | Delivery boy |
+| givenName        | Philip |
+| jpegPhoto        | JPEG-Photo (429x350 Pixel, 22132 Bytes) |
+| mail             | fry@planetexpress.com |
+| ou               | Delivering Crew |
+| uid              | fry |
+| userPassword     | fry |
+| uidNumber	   | 1049 |
+| gidNumber        | 2049 |
+| homeDirectory:   | /home/fry |
+
+
+On the nfs server, define a quota for uid `fry`. In this case, I use [truenas](https://www.truenas.com/) as nfs server.
+
+Create the `fry` user with the same attribute and value.
+
+On the `Storage | Pools | User Quotas`, define a quota for the user `fry`
+
+![storageclass-nfs-quota-fry-quota-create](img/storageclass-nfs-quota-fry-quota-create.png)
+
+Set the quota value for `fry`
+
+![storageclass-nfs-quota-fry](img/storageclass-nfs-quota-fry.png)
+
+### Login to your abcdesktop service
+
+
+Delete previous `pvc` and `pv` for the `fry` user, if need.
+
+Login as user (`Philip J. Fry`, `fry`)
+
+![Login to your abcdesktop service as fry](img/storageclass-nfs-login-fry.png)
+
+The new desktop for `Philip J. Fry` is created.
+
+Start the web shell command using the search bar 
+
+![desktop as fry](img/storageclass-nfs-desktop.png)
+
+Using the web shell application start the df command 
+
+![df as fry](img/storageclass-nfs-df.png)
+
+
+Run a `dd` command to reach the quota value (50 MiB is this case).
+
+```
+dd if=/dev/urandom of=quota-test-file
+dd: writing to 'quota-test-file': Disk quota exceeded
+1127945+0 records in
+1127944+0 records out
+577507328 bytes (578 MB, 551 MiB) copied, 14.6404 s, 39.4 MB/s
+```
+
+You should get the error `Disk quota exceeded`. 
+The size of quota-test-file is over a the quota limit.
+
+> 50 MB is 52,428,800 Bytes
+
+```
+ls -la quota-test-file 
+-rw-r----- 1 fry fry 58720256 Aug 25 15:16 quota-test-file
+```
+
+The user should not be able to create new file 
+
+```
+dd if=/dev/zero of=quota-test-file2
+dd: failed to open 'quota-test-file2': Disk quota exceeded
+```
+
+
+
+
+
+## Define persistentVolumeClaim using `k8s-csi-s3`
+
+In this example, we use s3 to share user home directory with each worker node
 
 Use the `https://github.com/yandex-cloud/k8s-csi-s3` as a `CSI for S3` with [minio](https://min.io/) as backend. 
 
 Follow `https://github.com/yandex-cloud/k8s-csi-s3` setup guide and test with the sample pod to make sure that fuse mounts the S3 file system.  
 
 
-##### Update storageclass.yaml file
+### Update storageclass.yaml file
 
 ```
 ---
@@ -405,7 +494,7 @@ kubectl create -f storageclass.yaml
 ```
 
 
-##### Update `od.config`
+### Update `od.config`
 
 
 In your od.config file, define the entry `desktop.persistentvolumeclaimspec`
@@ -431,7 +520,7 @@ desktop.persistentvolumeclaimspec: {
 ```
 
 
-##### The init command options with no file permissions support
+### init command options has no file permissions support
 
 By default the storageclass use `mounter: geesefs`. `geesefs` does not store file permissions and the init commands `chown` or `chmod` exit with no zero value, then the pod does not start.
 All files belongs to `root`, but with correct permissions `options: "--memory-limit 1000 --dir-mode 0777 --file-mode 0666 --setuid 0"`. 
