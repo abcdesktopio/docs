@@ -416,10 +416,9 @@ Start the web shell command using the search bar
 
 ![desktop as fry](img/storageclass-nfs-desktop.png)
 
-Using the web shell application start the df command 
+Using the web shell application start the dd commands 
 
-![df as fry](img/storageclass-nfs-df.png)
-
+![df as fry](img/storageclass-nfs-quota-fry-over.png)
 
 Run a `dd` command to reach the quota value (50 MiB is this case).
 
@@ -448,7 +447,7 @@ dd if=/dev/zero of=quota-test-file2
 dd: failed to open 'quota-test-file2': Disk quota exceeded
 ```
 
-
+The nfs server has returned an error if the user tries to create more than 50 MiB. 
 
 
 
