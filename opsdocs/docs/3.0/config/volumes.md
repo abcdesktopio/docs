@@ -19,15 +19,17 @@ In your od.config file, define the new entries `desktop.homedirectorytype` `desk
 - `desktop.persistentvolumeclaimspec`: create a new volume claim for the user's homeDir
 
 
-```json
+``` json
 # set to persistentVolumeClaim
 desktop.homedirectorytype: 'persistentVolumeClaim'
+
 # define how to create persistentvolume
 desktop.persistentvolumespec: {
             'storageClassName': '',
             'capacity': { 'storage': '1Gi' },
             'accessModes': [ 'ReadWriteOnce' ], 
             'hostPath': { 'path': '/mnt/abcdesktop_volumes/{{ provider }}/{{ userid }}' } }
+
 # define how to create persistentvolumeclaim
 desktop.persistentvolumeclaimspec: {
             'storageClassName': '',
@@ -402,7 +404,6 @@ Set the quota value for `fry`
 ![storageclass-nfs-quota-fry](img/storageclass-nfs-quota-fry.png)
 
 ### Login to your abcdesktop service
-
 
 Delete previous `pvc` and `pv` for the `fry` user, if need.
 
