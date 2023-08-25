@@ -18,7 +18,6 @@ In your od.config file, define the new entries `desktop.homedirectorytype` `desk
 - `desktop.persistentvolumespec`: create a new volume for the user's homeDir, for persistentVolume hostPath.
 - `desktop.persistentvolumeclaimspec`: create a new volume claim for the user's homeDir
 
-
 ``` json
 # set to persistentVolumeClaim
 desktop.homedirectorytype: 'persistentVolumeClaim'
