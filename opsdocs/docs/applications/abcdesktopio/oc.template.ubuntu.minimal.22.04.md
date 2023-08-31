@@ -5,10 +5,10 @@
 
 
 ``` 
-PRETTY_NAME="Ubuntu 22.04.2 LTS"
+PRETTY_NAME="Ubuntu 22.04.3 LTS"
 NAME="Ubuntu"
 VERSION_ID="22.04"
-VERSION="22.04.2 LTS (Jammy Jellyfish)"
+VERSION="22.04.3 LTS (Jammy Jellyfish)"
 VERSION_CODENAME=jammy
 ID=ubuntu
 ID_LIKE=debian
@@ -48,44 +48,47 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
      && apt-get clean \
      && rm -rf /var/lib/apt/lists/ \
      && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+# default LANG is en_US
 ENV LANG en_US.utf8
 
-############
+# copy compser source code
 COPY composer /composer
 
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-        && apt-get update && \
-        apt-get install -y --no-install-recommends \
-                nodejs \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-
+# install nodejs and npm
+# the default install version is 20
+#
+# read from https://github.com/nodesource/distributions
+#
+# | Distro Name          | Node 16x | Node 18x | Node 20x |
+# | :------------------- | :------: | :------: | :------: |
+# | Ubuntu Bionic ^18.04 |    OK    |    KO    |    KO    |
+# | Ubuntu Focal ^20.04  |    OK    |    OK    |    OK    |
+# | Ubuntu Jammy ^22.04  |    OK    |    OK    |    OK    |
+#
+# if VERSION_ID == 18.04 then install nodejs 16 else install nodejs 20
+RUN NODE_MAJOR=20; if [ "18.04" = "$(. /etc/os-release;echo $VERSION_ID)" ]; then NODE_MAJOR=16; fi; echo "node version install $NODE_MAJOR" && \
+    mkdir -p /etc/apt/keyrings && \
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \ 
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends nodejs && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Add nodejs service
-RUN cd /composer/node/ocrun 	 && npm install  
-# RUN cd /composer/node/ocdownload && npm install
+# ocrun can call create another container or pod
+RUN cd /composer/node/ocrun && npm install  
 
-
-##########
+#
+# create account 
 # Next command use $BUSER context
+# this is the default user if no user defined
 ENV BUSER balloon
-# RUN adduser --disabled-password --gecos '' $BUSER
-# RUN id -u $BUSER &>/dev/null || 
-RUN groupadd --gid 4096 $BUSER
-RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups $BUSER $BUSER
-# create an ubuntu user
-# PASS=`pwgen -c -n -1 10`
-# PASS=ballon
-# Change password for user balloon
-
-# if --build-arg BUILD_BALLON_PASSWORD=1, set NODE_ENV to 'development' or set to null otherwise.
-#ENV BALLOON_PASSWORD=${BUILD_BALLOON_PASSWORD:+development}
-# if BUILD_BALLOON_PASSWORD is null, set it to 'abcdesktop' (or leave as is otherwise).
-#ENV BALLOON_PASSWORD=${BUILD_BALLOON_PASSWORD:-abcdesktop}
-
-RUN echo "balloon:lmdpocpetit" | chpasswd $BUSER
-
+# create group, user, set password
+RUN groupadd --gid 4096 $BUSER && \
+    useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups $BUSER $BUSER && \
+    echo "balloon:lmdpocpetit" | chpasswd $BUSER
+# allow default user to write in /var/log/desktop  if no user defined 
 RUN mkdir -p /var/log/desktop && \
     chown -R $BUSER:$BUSER /home/$BUSER /var/log/desktop
 
@@ -94,4 +97,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.ubuntu.minimal.22.04.md is created at Mon Jul 03 2023 10:43:54 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.minimal.22.04.md is created at Thu Aug 31 2023 07:58:27 GMT+0000 (Coordinated Universal Time) by make-docs.js

@@ -5,10 +5,10 @@
 
 
 ``` 
-PRETTY_NAME="Ubuntu 22.04.2 LTS"
+PRETTY_NAME="Ubuntu 22.04.3 LTS"
 NAME="Ubuntu"
 VERSION_ID="22.04"
-VERSION="22.04.2 LTS (Jammy Jellyfish)"
+VERSION="22.04.3 LTS (Jammy Jellyfish)"
 VERSION_CODENAME=jammy
 ID=ubuntu
 ID_LIKE=debian
@@ -41,4 +41,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 
-> file oc.template.ubuntu.22.04.md is created at Mon Jul 03 2023 10:49:02 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.22.04.md is created at Thu Aug 31 2023 08:03:05 GMT+0000 (Coordinated Universal Time) by make-docs.js
