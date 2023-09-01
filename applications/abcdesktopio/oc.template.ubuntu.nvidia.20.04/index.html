@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.3">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.6">
     
     
       
@@ -2920,51 +2920,54 @@ RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends \
      &amp;&amp; apt-get clean \
      &amp;&amp; rm -rf /var/lib/apt/lists/ \
      &amp;&amp; localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+# default LANG is en_US
 ENV LANG en_US.utf8
 
-############
+# copy compser source code
 COPY composer /composer
 
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-        &amp;&amp; apt-get update &amp;&amp; \
-        apt-get install -y --no-install-recommends \
-                nodejs \
-    &amp;&amp; apt-get clean \
-    &amp;&amp; rm -rf /var/lib/apt/lists/*
-
-
+# install nodejs and npm
+# the default install version is 20
+#
+# read from https://github.com/nodesource/distributions
+#
+# | Distro Name          | Node 16x | Node 18x | Node 20x |
+# | :------------------- | :------: | :------: | :------: |
+# | Ubuntu Bionic ^18.04 |    OK    |    KO    |    KO    |
+# | Ubuntu Focal ^20.04  |    OK    |    OK    |    OK    |
+# | Ubuntu Jammy ^22.04  |    OK    |    OK    |    OK    |
+#
+# if VERSION_ID == 18.04 then install nodejs 16 else install nodejs 20
+RUN NODE_MAJOR=20; if [ &quot;18.04&quot; = &quot;$(. /etc/os-release;echo $VERSION_ID)&quot; ]; then NODE_MAJOR=16; fi; echo &quot;node version install $NODE_MAJOR&quot; &amp;&amp; \
+    mkdir -p /etc/apt/keyrings &amp;&amp; \
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg &amp;&amp; \ 
+    echo &quot;deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main&quot; | tee /etc/apt/sources.list.d/nodesource.list &amp;&amp; \
+    apt-get update &amp;&amp; \
+    apt-get install -y --no-install-recommends nodejs &amp;&amp; \
+    apt-get clean &amp;&amp; \
+    rm -rf /var/lib/apt/lists/*
 
 # Add nodejs service
-RUN cd /composer/node/ocrun      &amp;&amp; npm install  
-# RUN cd /composer/node/ocdownload &amp;&amp; npm install
+# ocrun can call create another container or pod
+RUN cd /composer/node/ocrun &amp;&amp; npm install  
 
-
-##########
+#
+# create account 
 # Next command use $BUSER context
+# this is the default user if no user defined
 ENV BUSER balloon
-# RUN adduser --disabled-password --gecos '' $BUSER
-# RUN id -u $BUSER &amp;&gt;/dev/null || 
-RUN groupadd --gid 4096 $BUSER
-RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups $BUSER $BUSER
-# create an ubuntu user
-# PASS=`pwgen -c -n -1 10`
-# PASS=ballon
-# Change password for user balloon
-
-# if --build-arg BUILD_BALLON_PASSWORD=1, set NODE_ENV to 'development' or set to null otherwise.
-#ENV BALLOON_PASSWORD=${BUILD_BALLOON_PASSWORD:+development}
-# if BUILD_BALLOON_PASSWORD is null, set it to 'abcdesktop' (or leave as is otherwise).
-#ENV BALLOON_PASSWORD=${BUILD_BALLOON_PASSWORD:-abcdesktop}
-
-RUN echo &quot;balloon:lmdpocpetit&quot; | chpasswd $BUSER
-
+# create group, user, set password
+RUN groupadd --gid 4096 $BUSER &amp;&amp; \
+    useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups $BUSER $BUSER &amp;&amp; \
+    echo &quot;balloon:lmdpocpetit&quot; | chpasswd $BUSER
+# allow default user to write in /var/log/desktop  if no user defined 
 RUN mkdir -p /var/log/desktop &amp;&amp; \
     chown -R $BUSER:$BUSER /home/$BUSER /var/log/desktop
 
 
 </code></pre>
 <blockquote>
-<p>file oc.template.ubuntu.nvidia.20.04.md is created at Mon Jul 03 2023 10:42:55 GMT+0000 (Coordinated Universal Time) by make-docs.js</p>
+<p>file oc.template.ubuntu.nvidia.20.04.md is created at Thu Aug 31 2023 07:57:50 GMT+0000 (Coordinated Universal Time) by make-docs.js</p>
 </blockquote>
 
 

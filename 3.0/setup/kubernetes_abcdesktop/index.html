@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.3">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.6">
     
     
       
@@ -3467,7 +3467,7 @@ speedtest-od-6c59bdff75-n6s66   1/1     Running   0          59m
 <p><img alt="abcdesktop Anonymous login" src="../../../setup/img/kubernetes-setup-login-anonymous.png" /></p>
 <p>Click on the <strong>Connect with Anonymous</strong> access button. abcdesktop service pyos is creating a new pod.</p>
 <p><img alt="abcdesktop main screen login pending" src="../../../setup/img/kubernetes-setup-login-anonymous.pending.png" /></p>
-<p>Few seconds later, processes are ready to run. You should see the abcdesktop main screen, with only one application <strong>File Manager</strong>.</p>
+<p>Few seconds later, processes are ready to run. You should see the abcdesktop main screen, with no application in the dock.</p>
 <p><img alt="abcdesktop main screen ready" src="../../../setup/img/kubernetes-setup-login-anonymous.done.png" /></p>
 <p>Great you have installed abcdesktop.io in Kubernetes mode.
 You just need a web browser to reach your web workspace. It' now time to add some container applications.
@@ -3521,6 +3521,9 @@ pyos        ClusterIP   10.98.97.186     &lt;none&gt;        8000/TCP          1
 speedtest   ClusterIP   10.109.48.166    &lt;none&gt;        80/TCP            11m
 </code></pre>
 <h5 id="verify-cluster-roles">Verify cluster roles</h5>
+<blockquote>
+<p>cluster roles are disable by default</p>
+</blockquote>
 <pre><code class="language-bash">kubectl describe ClusterRole pyos-role -n abcdesktop
 </code></pre>
 <p>You should read on the standard output</p>
@@ -3543,6 +3546,9 @@ PolicyRule:
   nodes                     []                 []              [get watch list]
 </code></pre>
 <h5 id="verify-cluster-role-bindind">Verify Cluster Role Bindind</h5>
+<blockquote>
+<p>cluster roles Bindind are disable by default</p>
+</blockquote>
 <pre><code class="language-bash">kubectl describe ClusterRoleBinding pyos-rbac -n abcdesktop
 </code></pre>
 <p>You should read on the standard output</p>
