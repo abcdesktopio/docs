@@ -288,7 +288,7 @@ Click on the **Connect with Anonymous** access button. abcdesktop service pyos i
 
 ![abcdesktop main screen login pending](../../setup/img/kubernetes-setup-login-anonymous.pending.png)
 
-Few seconds later, processes are ready to run. You should see the abcdesktop main screen, with only one application **File Manager**.
+Few seconds later, processes are ready to run. You should see the abcdesktop main screen, with no application in the dock.
 
 ![abcdesktop main screen ready](../../setup/img/kubernetes-setup-login-anonymous.done.png)
 
@@ -372,7 +372,10 @@ pyos        ClusterIP   10.98.97.186     <none>        8000/TCP          11m
 speedtest   ClusterIP   10.109.48.166    <none>        80/TCP            11m
 ```
 
-##### Verify cluster roles
+##### Verify cluster roles 
+
+
+> cluster roles are disable by default
 
 ```bash
 kubectl describe ClusterRole pyos-role -n abcdesktop
@@ -401,6 +404,9 @@ PolicyRule:
 ```  
 
 ##### Verify Cluster Role Bindind
+
+
+> cluster roles Bindind are disable by default
 
 ```bash
 kubectl describe ClusterRoleBinding pyos-rbac -n abcdesktop
