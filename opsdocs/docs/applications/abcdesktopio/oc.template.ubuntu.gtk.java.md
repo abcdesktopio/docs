@@ -39,4 +39,4 @@ RUN apt-get update && apt-get install -y --install-recommends \
 
 
 
-> file oc.template.ubuntu.gtk.java.md is created at Fri Sep 08 2023 12:30:31 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.gtk.java.md is created at Fri Sep 08 2023 12:31:57 GMT+0000 (Coordinated Universal Time) by make-docs.js

@@ -44,4 +44,4 @@ RUN apk add  --no-cache --update  \
 
 
 
-> file oc.template.alpine.3.18.md is created at Fri Sep 08 2023 12:16:44 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.3.18.md is created at Fri Sep 08 2023 12:16:08 GMT+0000 (Coordinated Universal Time) by make-docs.js
