@@ -77,24 +77,24 @@ Add new application, require to send an application json document to the control
 ### Download a json application document format
 
 
-In this example, we install the application `2048` game, but you can choose another one from [https://github.com/abcdesktopio/conf/tree/main/apps](https://github.com/abcdesktopio/conf/tree/main/apps)
+In this example, we install the application `2048` game, but you can choose another one from [https://github.com/abcdesktopio/images/tree/main/artifact/3.1](https://github.com/abcdesktopio/images/tree/main/artifact/3.1)
 
 
 ```
-curl https://raw.githubusercontent.com/abcdesktopio/conf/main/apps/2048.d.3.0.json --output 2048.json
+curl https://raw.githubusercontent.com/abcdesktopio/images/main/artifact/3.1/2048-alpine.d.3.1.json --output 2048.json
 ```
 
 To inspect image json you can also run crictl `inspecti` or `docker inspect` command.
 
-- `crictl inspecti abcdesktopio/2048.d:3.0 > 2048.json`
-- `docker inspect abcdesktopio/2048.d:3.0 > 2048.json`
+- `crictl inspecti abcdesktopio/2048.d:3.1 > 2048.json`
+- `docker inspect abcdesktopio/2048.d:3.1 > 2048.json`
 
 The image manager endpoint REST API is `http://[your-ip-hostname]:30443/API/manager/image`
 
 Replace `[your-ip-hostname]` by your own server ip, by default with localhost, the url become `http://localhost:30443/API/manager/image`
 
 
-Send the 2048.json file to the images REST API
+Send the `2048.json` file to the images REST endpoint
 
 ```
 curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048.json
