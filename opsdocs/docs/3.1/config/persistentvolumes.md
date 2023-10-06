@@ -226,18 +226,18 @@ desktop.persistentvolume: {
 ```
 
 
-### desktop.deletepersistentvolume
+### desktop.removepersistentvolume
 
 During the remove desktop process, delete or not the persistent volume. The persistent volume can be delete only if the `desktop.deletepersistentvolumeclaim` is True.
 
-The default value for `desktop.deletepersistentvolume` is `False`. 
+The default value for `desktop.removepersistentvolume` is `False`. 
 
 
-### desktop.deletepersistentvolumeclaim
+### desktop.removepersistentvolumeclaim
 
 During the remove desktop process, delete or not the persistent volume claim. 
 
-The default value for `desktop.deletepersistentvolume` is `False`.
+The default value for `desktop.removepersistentvolumeclaim` is `False`.
 
 
 
