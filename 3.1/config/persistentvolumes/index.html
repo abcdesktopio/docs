@@ -3949,6 +3949,27 @@ c.Waiting for desktop spawner service 1/42
 c.Waiting for desktop graphical service 2/42
 Rock and roll
 </code></pre>
+<p>Read the new pod for fry the user <code>fry</code></p>
+<pre><code>kubectl get pods  -n abcdesktop
+NAME                            READY   STATUS    RESTARTS   AGE
+fry-0d805                       4/4     Running   0          17m
+memcached-od-5ff8844d56-lcn7p   1/1     Running   0          106m
+mongodb-od-77c945467d-97g8w     1/1     Running   0          106m
+nginx-od-7445969696-lpfhh       1/1     Running   0          106m
+openldap-od-5bbdd75864-dprvl    1/1     Running   0          106m
+pyos-od-7584db6787-chtdc        1/1     Running   0          19m
+speedtest-od-7f5484966f-5pl6k   1/1     Running   0          106m
+</code></pre>
+<p>Read the pvc for fry</p>
+<pre><code>kubectl get pvc  -n abcdesktop
+NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
+planet-fry   Bound    pvc-38899590-c94a-4849-a111-31ae7de624e1   1Gi        RWO            do-block-storage   17m
+</code></pre>
+<p>Read the pv for fry</p>
+<pre><code>kubectl get pv                
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS       REASON   AGE
+pvc-38899590-c94a-4849-a111-31ae7de624e1   1Gi        RWO            Delete           Bound    abcdesktop/planet-fry   do-block-storage            17m
+</code></pre>
 <h2 id="known-issues">known issues</h2>
 <h3 id="bound-a-volume-if-desktopdeletepersistentvolumeclaimisfalse">Bound a volume if desktop.deletepersistentvolumeclaim<code>is</code>False`.</h3>
 <p>When <code>desktop.deletepersistentvolumeclaim</code> is <code>True</code> and <code>desktop.deletepersistentvolume</code> is <code>False</code>, if you create manually the persistent volumes, you may have to patch the <code>claimRef</code> of the persistent volumes to make it <code>Available</code> again.</p>
