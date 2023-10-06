@@ -7,10 +7,11 @@ To install Kubernetes on your GNU/Linux, you can read the [Kubernetes setup guid
 
 ### Install Kubernetes on Ubuntu 22.04 
 
-These commands install the latest Kubernetes on a single node Ubuntu 22.04
-`km` is a command tools from https://github.com/jfv-opensource/kube-tools repository.
-Clone `kube-tools` and run `km --apply` as root.
+These commands install the latest Kubernetes on a single node Ubuntu 22.04.
+`km` is a command tools from [https://github.com/jfv-opensource/kube-tools](https://github.com/jfv-opensource/kube-tools) repository.
 
+
+Clone [kube-tools](https://github.com/jfv-opensource/kube-tools) and run `km --apply` as root.
 
 ``` bash
 git clone https://github.com/jfv-opensource/kube-tools.git
