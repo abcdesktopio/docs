@@ -556,7 +556,7 @@ pvc-38899590-c94a-4849-a111-31ae7de624e1   1Gi        RWO            Delete     
 ## known issues
 
 
-### Bound a volume if desktop.deletepersistentvolumeclaim` is `False`.
+### Bound a volume if `desktop.deletepersistentvolumeclaim` is `False`
 
 When `desktop.deletepersistentvolumeclaim` is `True` and `desktop.deletepersistentvolume` is `False`, if you create manually the persistent volumes, you may have to patch the `claimRef` of the persistent volumes to make it `Available` again.
 
