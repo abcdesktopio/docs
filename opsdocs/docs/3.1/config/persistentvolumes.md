@@ -470,95 +470,88 @@ Source:
 Events:                <none>
 ```
 
-
-### Set quota for user homedir
-
-Steps :
-- Define posixAccount in the ldap directory service
-- Define quota on the nfs server 
+## Define persistentVolume using storage class `do-block-storage` on digitalocean
 
 
-The user `fry` has a posixAccount description in the embedded directory service `cn=Philip J. Fry,ou=people,dc=planetexpress,dc=com`
+### Update od.config file 
 
-| Attribute        | Value            |
-| ---------------- | ---------------- |
-| objectClass      | inetOrgPerson |
-| cn               | Philip J. Fry |
-| sn               | Fry |
-| description      | Human |
-| displayName      | Fry |
-| employeeType     | Delivery boy |
-| givenName        | Philip |
-| jpegPhoto        | JPEG-Photo (429x350 Pixel, 22132 Bytes) |
-| mail             | fry@planetexpress.com |
-| ou               | Delivering Crew |
-| uid              | fry |
-| userPassword     | fry |
-| uidNumber	   | 1049 |
-| gidNumber        | 2049 |
-| homeDirectory:   | /home/fry |
-
-
-On the nfs server, define a quota for uid `fry`. In this case, I use [truenas](https://www.truenas.com/) as nfs server.
-
-Create the `fry` user with the same attribute and value.
-
-On the `Storage | Pools | User Quotas`, define a quota for the user `fry`
-
-![storageclass-nfs-quota-fry-quota-create](img/storageclass-nfs-quota-fry-quota-create.png)
-
-Set the quota value for `fry`
-
-![storageclass-nfs-quota-fry](img/storageclass-nfs-quota-fry.png)
-
-### Login to your abcdesktop service
-
-Delete previous `pvc` and `pv` for the `fry` user, if need.
-
-Login as user (`Philip J. Fry`, `fry`)
-
-![Login to your abcdesktop service as fry](img/storageclass-nfs-login-fry.png)
-
-The new desktop for `Philip J. Fry` is created.
-
-Start the web shell command using the search bar 
-
-![desktop as fry](img/storageclass-nfs-desktop.png)
-
-Using the web shell application start the dd commands 
-
-![df as fry](img/storageclass-nfs-quota-fry-over.png)
-
-Run a `dd` command to reach the quota value (50 MiB is this case).
+Update od.config file with the options
 
 ```
-dd if=/dev/urandom of=quota-test-file
-dd: writing to 'quota-test-file': Disk quota exceeded
-1127945+0 records in
-1127944+0 records out
-577507328 bytes (578 MB, 551 MiB) copied, 14.6404 s, 39.4 MB/s
+desktop.homedirectorytype: 'persistentVolumeClaim'
+desktop.persistentvolume: None
+desktop.persistentvolumeclaim: {
+            'metadata': {
+                'name': '{{ provider }}-{{ userid }}',
+            },
+            'spec': {
+              'storageClassName': 'do-block-storage',
+              'resources': {
+                'requests': {
+                  'storage': '1Gi'
+                }
+            },
+            'accessModes': [ 'ReadWriteOnce' ] } }
 ```
 
-You should get the error `Disk quota exceeded`. 
-The size of quota-test-file is over a the quota limit.
-
-> 50 MB is 52,428,800 Bytes
+Update the configmap
 
 ```
-ls -la quota-test-file 
--rw-r----- 1 fry fry 58720256 Aug 25 15:16 quota-test-file
+kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+```     
+
+Restart pyos pod
+
+```   
+kubectl delete pods -l run=pyos-od -n abcdesktop
+```   
+
+Login to your abcdesktop service, you should read on the html page, the status
+
+```
+b.Reading your persistent volume claim planet-fry, status is Pending, using storage class do-block-storage ....
+b.Creating your desktop
+b.Successfully assigned abcdesktop/fry-0d805 to pool-g8u8ddr44-yhh3i.................
+b.Your pod gets event SuccessfulAttachVolume AttachVolume.Attach succeeded for volume "pvc-38899590-c94a-4849-a111-31ae7de624e1" ..
+b.Started container i-planet-fry
+b.pending: x-planet-fry is starting
+b.Created container x-planet-fry
+b.Your pod fry-0d805 is Pending..
+c.Waiting for desktop graphical service 1/42........
+c.Waiting for desktop spawner service 1/42
+c.Waiting for desktop graphical service 2/42
+Rock and roll
 ```
 
-The user should not be able to create new file 
+Read the new pod for fry the user `fry`
 
 ```
-dd if=/dev/zero of=quota-test-file2
-dd: failed to open 'quota-test-file2': Disk quota exceeded
+kubectl get pods  -n abcdesktop
+NAME                            READY   STATUS    RESTARTS   AGE
+fry-0d805                       4/4     Running   0          17m
+memcached-od-5ff8844d56-lcn7p   1/1     Running   0          106m
+mongodb-od-77c945467d-97g8w     1/1     Running   0          106m
+nginx-od-7445969696-lpfhh       1/1     Running   0          106m
+openldap-od-5bbdd75864-dprvl    1/1     Running   0          106m
+pyos-od-7584db6787-chtdc        1/1     Running   0          19m
+speedtest-od-7f5484966f-5pl6k   1/1     Running   0          106m
 ```
 
-The nfs server has returned an error if the user tries to create more than 50 MiB. 
+Read the pvc for fry
 
+```
+kubectl get pvc  -n abcdesktop
+NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
+planet-fry   Bound    pvc-38899590-c94a-4849-a111-31ae7de624e1   1Gi        RWO            do-block-storage   17m
+```
 
+Read the pv for fry
+
+```
+kubectl get pv                
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS       REASON   AGE
+pvc-38899590-c94a-4849-a111-31ae7de624e1   1Gi        RWO            Delete           Bound    abcdesktop/planet-fry   do-block-storage            17m
+```
 
 ## known issues
 
