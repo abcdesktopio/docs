@@ -2654,8 +2654,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bound-a-volume-if-desktopdeletepersistentvolumeclaimisfalse" class="md-nav__link">
-    Bound a volume if desktop.deletepersistentvolumeclaimisFalse`.
+  <a href="#bound-a-volume-if-desktopdeletepersistentvolumeclaim-is-false" class="md-nav__link">
+    Bound a volume if desktop.deletepersistentvolumeclaim is False
   </a>
   
 </li>
@@ -3363,8 +3363,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bound-a-volume-if-desktopdeletepersistentvolumeclaimisfalse" class="md-nav__link">
-    Bound a volume if desktop.deletepersistentvolumeclaimisFalse`.
+  <a href="#bound-a-volume-if-desktopdeletepersistentvolumeclaim-is-false" class="md-nav__link">
+    Bound a volume if desktop.deletepersistentvolumeclaim is False
   </a>
   
 </li>
@@ -3863,7 +3863,7 @@ NAME                                       CAPACITY   ACCESS MODES   RECLAIM POL
 pvc-38899590-c94a-4849-a111-31ae7de624e1   1Gi        RWO            Delete           Bound    abcdesktop/planet-fry   do-block-storage            17m
 </code></pre>
 <h2 id="known-issues">known issues</h2>
-<h3 id="bound-a-volume-if-desktopdeletepersistentvolumeclaimisfalse">Bound a volume if desktop.deletepersistentvolumeclaim<code>is</code>False`.</h3>
+<h3 id="bound-a-volume-if-desktopdeletepersistentvolumeclaim-is-false">Bound a volume if <code>desktop.deletepersistentvolumeclaim</code> is <code>False</code></h3>
 <p>When <code>desktop.deletepersistentvolumeclaim</code> is <code>True</code> and <code>desktop.deletepersistentvolume</code> is <code>False</code>, if you create manually the persistent volumes, you may have to patch the <code>claimRef</code> of the persistent volumes to make it <code>Available</code> again.</p>
 <pre><code>kubectl get pv 
 NAME        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS     CLAIM                   STORAGECLASS   REASON   AGE
