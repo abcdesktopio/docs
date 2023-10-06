@@ -3377,17 +3377,17 @@ pod/pull-xterm-abcinst-0e802cfa8addb4648f843869325f3413d544bb9eae8 condition met
 <h2 id="mannualy-install-application">Mannualy install application</h2>
 <p>Add new application, require to send an application json document to the control-plane <code>pyos</code>.</p>
 <h3 id="download-a-json-application-document-format">Download a json application document format</h3>
-<p>In this example, we install the application <code>2048</code> game, but you can choose another one from <a href="https://github.com/abcdesktopio/conf/tree/main/apps">https://github.com/abcdesktopio/conf/tree/main/apps</a></p>
-<pre><code>curl https://raw.githubusercontent.com/abcdesktopio/conf/main/apps/2048.d.3.0.json --output 2048.json
+<p>In this example, we install the application <code>2048</code> game, but you can choose another one from <a href="https://github.com/abcdesktopio/images/tree/main/artifact/3.1">https://github.com/abcdesktopio/images/tree/main/artifact/3.1</a></p>
+<pre><code>curl https://raw.githubusercontent.com/abcdesktopio/images/main/artifact/3.1/2048-alpine.d.3.1.json --output 2048.json
 </code></pre>
 <p>To inspect image json you can also run crictl <code>inspecti</code> or <code>docker inspect</code> command.</p>
 <ul>
-<li><code>crictl inspecti abcdesktopio/2048.d:3.0 &gt; 2048.json</code></li>
-<li><code>docker inspect abcdesktopio/2048.d:3.0 &gt; 2048.json</code></li>
+<li><code>crictl inspecti abcdesktopio/2048.d:3.1 &gt; 2048.json</code></li>
+<li><code>docker inspect abcdesktopio/2048.d:3.1 &gt; 2048.json</code></li>
 </ul>
 <p>The image manager endpoint REST API is <code>http://[your-ip-hostname]:30443/API/manager/image</code></p>
 <p>Replace <code>[your-ip-hostname]</code> by your own server ip, by default with localhost, the url become <code>http://localhost:30443/API/manager/image</code></p>
-<p>Send the 2048.json file to the images REST API</p>
+<p>Send the <code>2048.json</code> file to the images REST endpoint</p>
 <pre><code>curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048.json
 </code></pre>
 <p>The response is the json document.</p>
