@@ -2728,16 +2728,22 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#set-quota-for-user-homedir" class="md-nav__link">
-    Set quota for user homedir
-  </a>
+      </ul>
+    </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#define-persistentvolume-using-storage-class-do-block-storage-on-digitalocean" class="md-nav__link">
+    Define persistentVolume using storage class do-block-storage on digitalocean
+  </a>
+  
+    <nav class="md-nav" aria-label="Define persistentVolume using storage class do-block-storage on digitalocean">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#login-to-your-abcdesktop-service_1" class="md-nav__link">
-    Login to your abcdesktop service
+  <a href="#update-odconfig-file" class="md-nav__link">
+    Update od.config file
   </a>
   
 </li>
@@ -3431,16 +3437,22 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#set-quota-for-user-homedir" class="md-nav__link">
-    Set quota for user homedir
-  </a>
+      </ul>
+    </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#define-persistentvolume-using-storage-class-do-block-storage-on-digitalocean" class="md-nav__link">
+    Define persistentVolume using storage class do-block-storage on digitalocean
+  </a>
+  
+    <nav class="md-nav" aria-label="Define persistentVolume using storage class do-block-storage on digitalocean">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#login-to-your-abcdesktop-service_1" class="md-nav__link">
-    Login to your abcdesktop service
+  <a href="#update-odconfig-file" class="md-nav__link">
+    Update od.config file
   </a>
   
 </li>
@@ -3899,116 +3911,44 @@ Source:
                            share=/volume1/homedir/fry
 Events:                &lt;none&gt;
 </code></pre>
-<h3 id="set-quota-for-user-homedir">Set quota for user homedir</h3>
-<p>Steps :
-- Define posixAccount in the ldap directory service
-- Define quota on the nfs server </p>
-<p>The user <code>fry</code> has a posixAccount description in the embedded directory service <code>cn=Philip J. Fry,ou=people,dc=planetexpress,dc=com</code></p>
-<table>
-<thead>
-<tr>
-<th>Attribute</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>objectClass</td>
-<td>inetOrgPerson</td>
-</tr>
-<tr>
-<td>cn</td>
-<td>Philip J. Fry</td>
-</tr>
-<tr>
-<td>sn</td>
-<td>Fry</td>
-</tr>
-<tr>
-<td>description</td>
-<td>Human</td>
-</tr>
-<tr>
-<td>displayName</td>
-<td>Fry</td>
-</tr>
-<tr>
-<td>employeeType</td>
-<td>Delivery boy</td>
-</tr>
-<tr>
-<td>givenName</td>
-<td>Philip</td>
-</tr>
-<tr>
-<td>jpegPhoto</td>
-<td>JPEG-Photo (429x350 Pixel, 22132 Bytes)</td>
-</tr>
-<tr>
-<td>mail</td>
-<td>fry@planetexpress.com</td>
-</tr>
-<tr>
-<td>ou</td>
-<td>Delivering Crew</td>
-</tr>
-<tr>
-<td>uid</td>
-<td>fry</td>
-</tr>
-<tr>
-<td>userPassword</td>
-<td>fry</td>
-</tr>
-<tr>
-<td>uidNumber</td>
-<td>1049</td>
-</tr>
-<tr>
-<td>gidNumber</td>
-<td>2049</td>
-</tr>
-<tr>
-<td> homeDirectory:</td>
-<td> /home/fry</td>
-</tr>
-</tbody>
-</table>
-<p>On the nfs server, define a quota for uid <code>fry</code>. In this case, I use <a href="https://www.truenas.com/">truenas</a> as nfs server.</p>
-<p>Create the <code>fry</code> user with the same attribute and value.</p>
-<p>On the <code>Storage | Pools | User Quotas</code>, define a quota for the user <code>fry</code></p>
-<p><img alt="storageclass-nfs-quota-fry-quota-create" src="img/storageclass-nfs-quota-fry-quota-create.png" /></p>
-<p>Set the quota value for <code>fry</code></p>
-<p><img alt="storageclass-nfs-quota-fry" src="img/storageclass-nfs-quota-fry.png" /></p>
-<h3 id="login-to-your-abcdesktop-service_1">Login to your abcdesktop service</h3>
-<p>Delete previous <code>pvc</code> and <code>pv</code> for the <code>fry</code> user, if need.</p>
-<p>Login as user (<code>Philip J. Fry</code>, <code>fry</code>)</p>
-<p><img alt="Login to your abcdesktop service as fry" src="img/storageclass-nfs-login-fry.png" /></p>
-<p>The new desktop for <code>Philip J. Fry</code> is created.</p>
-<p>Start the web shell command using the search bar </p>
-<p><img alt="desktop as fry" src="img/storageclass-nfs-desktop.png" /></p>
-<p>Using the web shell application start the dd commands </p>
-<p><img alt="df as fry" src="img/storageclass-nfs-quota-fry-over.png" /></p>
-<p>Run a <code>dd</code> command to reach the quota value (50 MiB is this case).</p>
-<pre><code>dd if=/dev/urandom of=quota-test-file
-dd: writing to 'quota-test-file': Disk quota exceeded
-1127945+0 records in
-1127944+0 records out
-577507328 bytes (578 MB, 551 MiB) copied, 14.6404 s, 39.4 MB/s
+<h2 id="define-persistentvolume-using-storage-class-do-block-storage-on-digitalocean">Define persistentVolume using storage class <code>do-block-storage</code> on digitalocean</h2>
+<h3 id="update-odconfig-file">Update od.config file</h3>
+<p>Update od.config file with the options</p>
+<pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
+desktop.persistentvolume: None
+desktop.persistentvolumeclaim: {
+            'metadata': {
+                'name': '{{ provider }}-{{ userid }}',
+            },
+            'spec': {
+              'storageClassName': 'do-block-storage',
+              'resources': {
+                'requests': {
+                  'storage': '1Gi'
+                }
+            },
+            'accessModes': [ 'ReadWriteOnce' ] } }
 </code></pre>
-<p>You should get the error <code>Disk quota exceeded</code>. 
-The size of quota-test-file is over a the quota limit.</p>
-<blockquote>
-<p>50 MB is 52,428,800 Bytes</p>
-</blockquote>
-<pre><code>ls -la quota-test-file 
--rw-r----- 1 fry fry 58720256 Aug 25 15:16 quota-test-file
+<p>Update the configmap</p>
+<pre><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 </code></pre>
-<p>The user should not be able to create new file </p>
-<pre><code>dd if=/dev/zero of=quota-test-file2
-dd: failed to open 'quota-test-file2': Disk quota exceeded
+<p>Restart pyos pod</p>
+<pre><code>kubectl delete pods -l run=pyos-od -n abcdesktop
 </code></pre>
-<p>The nfs server has returned an error if the user tries to create more than 50 MiB. </p>
+<p>Login to your abcdesktop service, you should read on the html page, the status</p>
+<pre><code>b.Reading your persistent volume claim planet-fry, status is Pending, using storage class do-block-storage ....
+b.Creating your desktop
+b.Successfully assigned abcdesktop/fry-0d805 to pool-g8u8ddr44-yhh3i.................
+b.Your pod gets event SuccessfulAttachVolume AttachVolume.Attach succeeded for volume &quot;pvc-38899590-c94a-4849-a111-31ae7de624e1&quot; ..
+b.Started container i-planet-fry
+b.pending: x-planet-fry is starting
+b.Created container x-planet-fry
+b.Your pod fry-0d805 is Pending..
+c.Waiting for desktop graphical service 1/42........
+c.Waiting for desktop spawner service 1/42
+c.Waiting for desktop graphical service 2/42
+Rock and roll
+</code></pre>
 <h2 id="known-issues">known issues</h2>
 <h3 id="bound-a-volume-if-desktopdeletepersistentvolumeclaimisfalse">Bound a volume if desktop.deletepersistentvolumeclaim<code>is</code>False`.</h3>
 <p>When <code>desktop.deletepersistentvolumeclaim</code> is <code>True</code> and <code>desktop.deletepersistentvolume</code> is <code>False</code>, if you create manually the persistent volumes, you may have to patch the <code>claimRef</code> of the persistent volumes to make it <code>Available</code> again.</p>
