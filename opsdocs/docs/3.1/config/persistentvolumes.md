@@ -523,6 +523,36 @@ c.Waiting for desktop graphical service 2/42
 Rock and roll
 ```
 
+Read the new pod for fry the user `fry`
+
+```
+kubectl get pods  -n abcdesktop
+NAME                            READY   STATUS    RESTARTS   AGE
+fry-0d805                       4/4     Running   0          17m
+memcached-od-5ff8844d56-lcn7p   1/1     Running   0          106m
+mongodb-od-77c945467d-97g8w     1/1     Running   0          106m
+nginx-od-7445969696-lpfhh       1/1     Running   0          106m
+openldap-od-5bbdd75864-dprvl    1/1     Running   0          106m
+pyos-od-7584db6787-chtdc        1/1     Running   0          19m
+speedtest-od-7f5484966f-5pl6k   1/1     Running   0          106m
+```
+
+Read the pvc for fry
+
+```
+kubectl get pvc  -n abcdesktop
+NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
+planet-fry   Bound    pvc-38899590-c94a-4849-a111-31ae7de624e1   1Gi        RWO            do-block-storage   17m
+```
+
+Read the pv for fry
+
+```
+kubectl get pv                
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS       REASON   AGE
+pvc-38899590-c94a-4849-a111-31ae7de624e1   1Gi        RWO            Delete           Bound    abcdesktop/planet-fry   do-block-storage            17m
+```
+
 ## known issues
 
 
