@@ -2559,15 +2559,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#desktopdeletepersistentvolume" class="md-nav__link">
-    desktop.deletepersistentvolume
+  <a href="#desktopremovepersistentvolume" class="md-nav__link">
+    desktop.removepersistentvolume
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#desktopdeletepersistentvolumeclaim" class="md-nav__link">
-    desktop.deletepersistentvolumeclaim
+  <a href="#desktopremovepersistentvolumeclaim" class="md-nav__link">
+    desktop.removepersistentvolumeclaim
   </a>
   
 </li>
@@ -3268,15 +3268,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#desktopdeletepersistentvolume" class="md-nav__link">
-    desktop.deletepersistentvolume
+  <a href="#desktopremovepersistentvolume" class="md-nav__link">
+    desktop.removepersistentvolume
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#desktopdeletepersistentvolumeclaim" class="md-nav__link">
-    desktop.deletepersistentvolumeclaim
+  <a href="#desktopremovepersistentvolumeclaim" class="md-nav__link">
+    desktop.removepersistentvolumeclaim
   </a>
   
 </li>
@@ -3631,12 +3631,12 @@ desktop.persistentvolume: {
       }
 }
 </code></pre>
-<h3 id="desktopdeletepersistentvolume">desktop.deletepersistentvolume</h3>
+<h3 id="desktopremovepersistentvolume">desktop.removepersistentvolume</h3>
 <p>During the remove desktop process, delete or not the persistent volume. The persistent volume can be delete only if the <code>desktop.deletepersistentvolumeclaim</code> is True.</p>
-<p>The default value for <code>desktop.deletepersistentvolume</code> is <code>False</code>. </p>
-<h3 id="desktopdeletepersistentvolumeclaim">desktop.deletepersistentvolumeclaim</h3>
+<p>The default value for <code>desktop.removepersistentvolume</code> is <code>False</code>. </p>
+<h3 id="desktopremovepersistentvolumeclaim">desktop.removepersistentvolumeclaim</h3>
 <p>During the remove desktop process, delete or not the persistent volume claim. </p>
-<p>The default value for <code>desktop.deletepersistentvolume</code> is <code>False</code>.</p>
+<p>The default value for <code>desktop.removepersistentvolumeclaim</code> is <code>False</code>.</p>
 <h2 id="define-persistentvolume-using-csi-driver-nfs">Define persistentVolume using <code>csi-driver-nfs</code></h2>
 <p>In this example, we use nfs protocol to share user home directory on each worker node</p>
 <p>Use the <code>https://github.com/kubernetes-csi/csi-driver-nfs</code> as a <code>csi-driver-nfs</code> with a nfs server as backend. </p>
