@@ -63,7 +63,7 @@ kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubern
 deployment.apps/nginx-od configured
 ```
 
-Check that nginx pod is `Running`
+Check that nginx pod has been updated and that the status is `Running`
 
 ```bash
 kubectl get pods  -l run=nginx-od -n abcdesktop
