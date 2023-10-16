@@ -3324,7 +3324,7 @@ nginx: [emerg] unexpected &quot;s&quot; in /etc/nginx/sites-enabled/default:10
 <pre><code class="language-bash">kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/debug/nginx-3.0.yaml
 deployment.apps/nginx-od configured
 </code></pre>
-<p>Check that nginx pod is <code>Running</code></p>
+<p>Check that nginx pod has been updated and that the status is <code>Running</code></p>
 <pre><code class="language-bash">kubectl get pods  -l run=nginx-od -n abcdesktop
 NAME                       READY   STATUS    RESTARTS   AGE
 nginx-od-666df64f4-whtng   1/1     Running   0          2m30s
