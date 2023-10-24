@@ -102,26 +102,18 @@ The abcdesktop jwt desktop payload public key is read by `nginx lua script`. The
 The following commands will let you create all necessary keys :
 
 ```
-# build rsa kay pairs for jwt payload 
-# 1024 bits is a smallest value, change here if need but use more than 1024
-openssl genrsa  -out abcdesktop_jwt_desktop_payload_private_key.pem 1024
-openssl rsa     -in  abcdesktop_jwt_desktop_payload_private_key.pem -outform PEM -pubout -out  _abcdesktop_jwt_desktop_payload_public_key.pem
+openssl genrsa -out abcdesktop_jwt_desktop_payload_private_key.pem 1024
+openssl rsa -in abcdesktop_jwt_desktop_payload_private_key.pem -outform PEM -pubout -out  _abcdesktop_jwt_desktop_payload_public_key.pem
 openssl rsa -pubin -in _abcdesktop_jwt_desktop_payload_public_key.pem -RSAPublicKey_out -out abcdesktop_jwt_desktop_payload_public_key.pem
-
-# build rsa kay pairs for the desktop jwt signing 
 openssl genrsa -out abcdesktop_jwt_desktop_signing_private_key.pem 1024
-openssl rsa     -in abcdesktop_jwt_desktop_signing_private_key.pem -outform PEM -pubout -out abcdesktop_jwt_desktop_signing_public_key.pem
-
-# build rsa kay pairs for the user jwt signing 
+openssl rsa -in abcdesktop_jwt_desktop_signing_private_key.pem -outform PEM -pubout -out abcdesktop_jwt_desktop_signing_public_key.pem
 openssl genrsa -out abcdesktop_jwt_user_signing_private_key.pem 1024
-openssl rsa     -in abcdesktop_jwt_user_signing_private_key.pem -outform PEM -pubout -out abcdesktop_jwt_user_signing_public_key.pem
-
+openssl rsa -in abcdesktop_jwt_user_signing_private_key.pem -outform PEM -pubout -out abcdesktop_jwt_user_signing_public_key.pem
 ```
 
 Then, create the kubernetes secrets from the new key files:
 
 ```
-# create the kubernetes rsa keys secret for abcdesktop
 kubectl create secret generic abcdesktopjwtdesktoppayload --from-file=abcdesktop_jwt_desktop_payload_private_key.pem --from-file=abcdesktop_jwt_desktop_payload_public_key.pem --namespace=abcdesktop
 kubectl create secret generic abcdesktopjwtdesktopsigning --from-file=abcdesktop_jwt_desktop_signing_private_key.pem --from-file=abcdesktop_jwt_desktop_signing_public_key.pem --namespace=abcdesktop
 kubectl create secret generic abcdesktopjwtusersigning --from-file=abcdesktop_jwt_user_signing_private_key.pem --from-file=abcdesktop_jwt_user_signing_public_key.pem --namespace=abcdesktop
