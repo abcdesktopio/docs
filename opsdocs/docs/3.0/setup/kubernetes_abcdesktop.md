@@ -57,7 +57,6 @@ The following commands will let you deploy an abcdesktop on the master node. All
 We will create the abcdesktop namespace and set it as default :
 
 ```
-# First create the abcdesktop namespace
 kubectl create namespace abcdesktop
 ```
 
