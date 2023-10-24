@@ -3577,24 +3577,16 @@ Do not publish the public key. This public key must stay private, this is a spec
 </ul>
 <p>The abcdesktop jwt desktop payload public key is read by <code>nginx lua script</code>. The exported the public key need the <code>RSAPublicKey_out</code> option, to use the <code>RSAPublicKey</code> format. The <code>RSAPublicKey</code> format make key file format compatible between <code>python 3.x jwt module</code> and <code>lua jwt lib</code>.</p>
 <p>The following commands will let you create all necessary keys :</p>
-<pre><code># build rsa kay pairs for jwt payload 
-# 1024 bits is a smallest value, change here if need but use more than 1024
-openssl genrsa  -out abcdesktop_jwt_desktop_payload_private_key.pem 1024
-openssl rsa     -in  abcdesktop_jwt_desktop_payload_private_key.pem -outform PEM -pubout -out  _abcdesktop_jwt_desktop_payload_public_key.pem
+<pre><code>openssl genrsa -out abcdesktop_jwt_desktop_payload_private_key.pem 1024
+openssl rsa -in abcdesktop_jwt_desktop_payload_private_key.pem -outform PEM -pubout -out  _abcdesktop_jwt_desktop_payload_public_key.pem
 openssl rsa -pubin -in _abcdesktop_jwt_desktop_payload_public_key.pem -RSAPublicKey_out -out abcdesktop_jwt_desktop_payload_public_key.pem
-
-# build rsa kay pairs for the desktop jwt signing 
 openssl genrsa -out abcdesktop_jwt_desktop_signing_private_key.pem 1024
-openssl rsa     -in abcdesktop_jwt_desktop_signing_private_key.pem -outform PEM -pubout -out abcdesktop_jwt_desktop_signing_public_key.pem
-
-# build rsa kay pairs for the user jwt signing 
+openssl rsa -in abcdesktop_jwt_desktop_signing_private_key.pem -outform PEM -pubout -out abcdesktop_jwt_desktop_signing_public_key.pem
 openssl genrsa -out abcdesktop_jwt_user_signing_private_key.pem 1024
-openssl rsa     -in abcdesktop_jwt_user_signing_private_key.pem -outform PEM -pubout -out abcdesktop_jwt_user_signing_public_key.pem
-
+openssl rsa -in abcdesktop_jwt_user_signing_private_key.pem -outform PEM -pubout -out abcdesktop_jwt_user_signing_public_key.pem
 </code></pre>
 <p>Then, create the kubernetes secrets from the new key files:</p>
-<pre><code># create the kubernetes rsa keys secret for abcdesktop
-kubectl create secret generic abcdesktopjwtdesktoppayload --from-file=abcdesktop_jwt_desktop_payload_private_key.pem --from-file=abcdesktop_jwt_desktop_payload_public_key.pem --namespace=abcdesktop
+<pre><code>kubectl create secret generic abcdesktopjwtdesktoppayload --from-file=abcdesktop_jwt_desktop_payload_private_key.pem --from-file=abcdesktop_jwt_desktop_payload_public_key.pem --namespace=abcdesktop
 kubectl create secret generic abcdesktopjwtdesktopsigning --from-file=abcdesktop_jwt_desktop_signing_private_key.pem --from-file=abcdesktop_jwt_desktop_signing_public_key.pem --namespace=abcdesktop
 kubectl create secret generic abcdesktopjwtusersigning --from-file=abcdesktop_jwt_user_signing_private_key.pem --from-file=abcdesktop_jwt_user_signing_public_key.pem --namespace=abcdesktop
 </code></pre>
