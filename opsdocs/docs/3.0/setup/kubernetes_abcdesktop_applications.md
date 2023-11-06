@@ -84,11 +84,6 @@ In this example, we install the application `2048` game, but you can choose anot
 curl https://raw.githubusercontent.com/abcdesktopio/conf/main/apps/2048.d.3.0.json --output 2048.json
 ```
 
-To inspect image json you can also run crictl `inspecti` or `docker inspect` command.
-
-- `crictl inspecti abcdesktopio/2048.d:3.0 > 2048.json`
-- `docker inspect abcdesktopio/2048.d:3.0 > 2048.json`
-
 The image manager endpoint REST API is `http://[your-ip-hostname]:30443/API/manager/image`
 
 Replace `[your-ip-hostname]` by your own server ip, by default with localhost, the url become `http://localhost:30443/API/manager/image`
@@ -97,7 +92,7 @@ Replace `[your-ip-hostname]` by your own server ip, by default with localhost, t
 Send the 2048.json file to the images REST API
 
 ```
-curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048.json
+curl -X PUT -H 'Content-Type: text/javascript' http://[your-ip-hostname]:30443/API/manager/image -d @2048.json
 ```
 The response is the json document.
 
