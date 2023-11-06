@@ -269,6 +269,242 @@ speedtest-od-894b7c886-69vc4    1/1     Running   0          20s
 [INFO] http://localhost:30443/
 ```
 
+## Manually installation step by step (Linux, macOS or Windows)
+
+The following commands will let you deploy an abcdesktop on the master node. All applications run on a single server.  
+
+
+### Install abcdesktop
+#### Step 1: Create abcdesktop namespace
+
+We will create the abcdesktop namespace and set it as default :
+
+```
+kubectl create namespace abcdesktop
+```
+
+You should read on the standard output
+
+```
+namespace/abcdesktop created
+```
+
+
+####  Step 2: Secure abcdesktop JWT exchange
+
+
+User JWT is signed. So we need to define a (private, public) RSA keys for signing.
+ Desktop JWT is encrypted AND signed. So we need to define a (private, public) RSA keys for signing, and a (private, public) RSA keys to encrypt data.
+
+* The JWT payload is encrypted with the abcdesktop jwt desktop payload private by pyos
+* The JWT payload is decrypted with the abcdesktop jwt desktop payload public keys by nginx.
+
+> Please use the payload private as private key, and the payload public as private key. 
+> Do not publish the public key. This public key must stay private, this is a special case, this is not stupid, it's only a more secure option.
+
+* The JSON Web Tokens payload is signed with the abcdesktop jwt desktop signing private keys
+* The JSON Web Tokens payload is verified with the abcdesktop jwt desktop signing public keys.
+
+* The JSON Web Tokens user is signed with the abcdesktop jwt user signing private keys by pyos.
+* The JSON Web Tokens user is verified with the abcdesktop jwt user signing public keys by pyos
+> As multiple pods of pyos can run simultaneously, the same private and public keys value are stored into kubernetes secret.
+
+The abcdesktop jwt desktop payload public key is read by `nginx lua script`. The exported the public key need the `RSAPublicKey_out` option, to use the `RSAPublicKey` format. The `RSAPublicKey` format make key file format compatible between `python 3.x jwt module` and `lua jwt lib`.
+
+
+The following commands will let you create all necessary keys :
+
+```
+openssl genrsa -out abcdesktop_jwt_desktop_payload_private_key.pem 1024
+openssl rsa -in abcdesktop_jwt_desktop_payload_private_key.pem -outform PEM -pubout -out  _abcdesktop_jwt_desktop_payload_public_key.pem
+openssl rsa -pubin -in _abcdesktop_jwt_desktop_payload_public_key.pem -RSAPublicKey_out -out abcdesktop_jwt_desktop_payload_public_key.pem
+openssl genrsa -out abcdesktop_jwt_desktop_signing_private_key.pem 1024
+openssl rsa -in abcdesktop_jwt_desktop_signing_private_key.pem -outform PEM -pubout -out abcdesktop_jwt_desktop_signing_public_key.pem
+openssl genrsa -out abcdesktop_jwt_user_signing_private_key.pem 1024
+openssl rsa -in abcdesktop_jwt_user_signing_private_key.pem -outform PEM -pubout -out abcdesktop_jwt_user_signing_public_key.pem
+```
+
+Then, create the kubernetes secrets from the new key files:
+
+```
+kubectl create secret generic abcdesktopjwtdesktoppayload --from-file=abcdesktop_jwt_desktop_payload_private_key.pem --from-file=abcdesktop_jwt_desktop_payload_public_key.pem --namespace=abcdesktop
+kubectl create secret generic abcdesktopjwtdesktopsigning --from-file=abcdesktop_jwt_desktop_signing_private_key.pem --from-file=abcdesktop_jwt_desktop_signing_public_key.pem --namespace=abcdesktop
+kubectl create secret generic abcdesktopjwtusersigning --from-file=abcdesktop_jwt_user_signing_private_key.pem --from-file=abcdesktop_jwt_user_signing_public_key.pem --namespace=abcdesktop
+```
+
+You should read on the standard output :
+
+```
+secret/abcdesktopjwtdesktoppayload created
+secret/abcdesktopjwtdesktopsigning created
+secret/abcdesktopjwtusersigning created
+```
+
+##### Verify Secrets
+You can verify secrets creation with the following command :
+
+```
+kubectl get secrets -n abcdesktop
+```
+
+You should read on the standard output :
+
+```
+NAME                          TYPE                                  DATA   AGE
+abcdesktopjwtdesktoppayload   Opaque                                2      68s
+abcdesktopjwtdesktopsigning   Opaque                                2      68s
+abcdesktopjwtusersigning      Opaque                                2      67s
+```
+
+
+#### Step 3: Download user pod images
+
+Create a pod user to make sure that Kubernetes will find the docker images at startup time. 
+ 
+```
+kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser-3.1.yaml
+```
+
+You should read on stdout
+
+```
+pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 created
+```
+
+You can wait for user pod is `Ready`, this while take a while, for 
+container images are downloading.
+
+```
+kubectl wait --for=condition=Ready pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5  -n abcdesktop --timeout=-1s
+```
+
+```
+pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
+```
+
+You can delete the user pod `anonymous-74bea267-8197-4b1d-acff-019b24e778c5`. The container images are downloaded.
+
+```
+kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser-3.1.yaml
+```
+
+
+### Step 4: Download and create the abcdesktop config file 
+
+Download the od.config file. This is the main configuration file for `pyos` control plane.
+
+```
+curl https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.1 --output od.config
+```
+
+Create the config map `abcdesktop-config` in the `abcdesktop` namespace
+
+``` bash
+kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
+```
+
+You should read on sdtout
+
+```
+configmap/abcdesktop-config created
+```
+
+### Step 5: Create the abcdesktop pods and services
+
+abcdesktop.yaml file contains declarations for all roles, service account, pods, and services required for abcdesktop.
+
+Run the command line
+
+``` bash
+kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.1.yaml
+```
+
+You should read on the standard output
+
+``` bash
+role.rbac.authorization.k8s.io/pyos-role created
+rolebinding.rbac.authorization.k8s.io/pyos-rbac created
+serviceaccount/pyos-serviceaccount created
+configmap/configmap-mongodb-scripts created
+configmap/nginx-config created
+secret/secret-mongodb created
+deployment.apps/mongodb-od created
+deployment.apps/memcached-od created
+deployment.apps/nginx-od created
+deployment.apps/speedtest-od created
+deployment.apps/pyos-od created
+endpoints/desktop created
+service/desktop created
+service/memcached created
+service/mongodb created
+service/speedtest created
+service/nginx created
+service/pyos created
+deployment.apps/openldap-od created
+service/openldap created
+```
+
+##### Verify Pods
+
+Once the pods are created, all pods should be in `Running` status.  
+For the first time, please wait for downloading all container images. 
+It can take a while.
+
+``` bash
+kubectl get pods -n abcdesktop
+```
+
+You should read on the standard output
+
+``` bash
+NAME                            READY   STATUS    RESTARTS   AGE
+memcached-od-5ff8844d56-jv4bh   1/1     Running   0          18s
+mongodb-od-77c945467d-9xbnw     1/1     Running   0          18s
+nginx-od-7445969696-mwlc9       1/1     Running   0          18s
+openldap-od-5bbdd75864-c6th9    1/1     Running   0          18s
+pyos-od-7584db6787-tjlvk        1/1     Running   0          18s
+speedtest-od-7f5484966f-cxwpr   1/1     Running   0          18s
+```
+
+### Connect your local abcdesktop
+
+Open your navigator to http://[your-ip-hostname]:30443/
+
+abcdesktop homepage should be available :
+
+![abcdesktop Anonymous login](../../setup/img/kubernetes-setup-login-anonymous-3.1.png)
+
+Click on the **Connect with Anonymous** access button. abcdesktop service pyos is creating a new pod.
+
+![abcdesktop main screen login pending](../../setup/img/kubernetes-setup-login-anonymous.pending-3.1.png)
+
+Few seconds later, processes are ready to run. You should see the abcdesktop main screen, with no application in the dock.
+
+![abcdesktop main screen ready](../../setup/img/kubernetes-setup-login-anonymous.done-3.1.png)
+
+Also, you can run again the command 
+
+``` bash
+kubectl get pods -n abcdesktop
+```
+
+You should see that the `anonymous-XXXXX` pod have been created and is `Running`
+
+``` bash
+NAME                            READY   STATUS    RESTARTS   AGE
+anonymous-50b0f                 4/4     Running   0          5m22s
+memcached-od-5ff8844d56-jv4bh   1/1     Running   0          77m
+mongodb-od-77c945467d-9xbnw     1/1     Running   0          77m
+nginx-od-7445969696-mwlc9       1/1     Running   0          77m
+openldap-od-5bbdd75864-c6th9    1/1     Running   0          77m
+pyos-od-7584db6787-tjlvk        1/1     Running   0          77m
+speedtest-od-7f5484966f-cxwpr   1/1     Running   0          77m
+```
+
+Great you have installed abcdesktop.io.
+You just need a web browser to reach your web workspace. It' now time to add some container applications.
+Read the next chapter to add applications
+
 
 
 
