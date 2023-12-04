@@ -237,7 +237,7 @@ The template values can be one of them :
 
 The `uuid` have the same value for the persistent volume and for the persistent volume claim. `uuid` can be use for naming the PVC or the PV, or on all string values.
 
-```json
+```
 desktop.persistentvolumeclaim: {
     'metadata': {
         'name': '{{ provider }}-{{ userid }}-{{ uuid }}',
@@ -276,7 +276,7 @@ desktop.persistentvolume: {
 
 The variables persistentvolumeclaim and persistentvolume become 
 
-```json
+```
 desktop.persistentvolumeclaim: {
 	  'metadata': {'name': 'planet-fry-1841f'}, 
 	  'spec': {
@@ -406,7 +406,7 @@ In your od.config file, define the entry `desktop.persistentvolumeclaim`
 The Persistent Volume and Persistent Volume Claim are created by abcdesktop. Abcdesktop defines a binding between that specific PV and PVC
 
 
-```json
+```
 # set to persistentVolumeClaim
 desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.deletepersistentvolume: False
