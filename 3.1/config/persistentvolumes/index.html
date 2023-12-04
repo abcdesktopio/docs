@@ -3900,7 +3900,7 @@ do-block-storage-xfs-retain   dobs.csi.digitalocean.com      Retain          Imm
 </tbody>
 </table>
 <p>The <code>uuid</code> have the same value for the persistent volume and for the persistent volume claim. <code>uuid</code> can be use for naming the PVC or the PV, or on all string values.</p>
-<pre><code class="language-json">desktop.persistentvolumeclaim: {
+<pre><code>desktop.persistentvolumeclaim: {
     'metadata': {
         'name': '{{ provider }}-{{ userid }}-{{ uuid }}',
     },
@@ -3935,7 +3935,7 @@ desktop.persistentvolume: {
       } } } }
 </code></pre>
 <p>The variables persistentvolumeclaim and persistentvolume become </p>
-<pre><code class="language-json">desktop.persistentvolumeclaim: {
+<pre><code>desktop.persistentvolumeclaim: {
       'metadata': {'name': 'planet-fry-1841f'}, 
       'spec': {
         'volumeName': 'planet-fry-1841f', 
@@ -4024,7 +4024,7 @@ nfs-csi-sc-ds01      nfs.csi.k8s.io   Delete          Immediate           false 
 <li><code>desktop.persistentvolumeclaim</code> create a new persistent volume claim for the user's homeDir, the storageClassName <code>nfs-csi-sc-ds01</code></li>
 </ul>
 <p>The Persistent Volume and Persistent Volume Claim are created by abcdesktop. Abcdesktop defines a binding between that specific PV and PVC</p>
-<pre><code class="language-json"># set to persistentVolumeClaim
+<pre><code># set to persistentVolumeClaim
 desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.deletepersistentvolume: False
 desktop.deletepersistentvolumeclaim: True
