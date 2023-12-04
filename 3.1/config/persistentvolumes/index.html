@@ -2689,6 +2689,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Define desktop.persistentvolumeclaim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-desktoppersistentvolumeclaim-as-a-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define desktop.persistentvolumeclaim as a string
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-desktoppersistentvolumeclaim-as-a-dictionary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define desktop.persistentvolumeclaim as a dictionary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -3456,6 +3480,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Define desktop.persistentvolumeclaim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-desktoppersistentvolumeclaim-as-a-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define desktop.persistentvolumeclaim as a string
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-desktoppersistentvolumeclaim-as-a-dictionary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define desktop.persistentvolumeclaim as a dictionary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -3663,12 +3711,74 @@ desktop.deletepersistentvolumeclaim: True
 <p>If desktop.persistentvolume is a <code>dict</code> then abcdesktop creates the persistent volume. </p>
 <p>If you set <code>desktop.persistentvolume</code> to <code>None</code>, or if you create the persistent volume manualy, then you don't need to update the pyos role.</p>
 <h3 id="define-desktoppersistentvolumeclaim">Define <code>desktop.persistentvolumeclaim</code></h3>
-<p>The type of <code>desktop.persistentvolumeclaim</code> is dictionary. 
-If desktop.homedirectorytype is set to 'persistentVolumeClaim', then <code>desktop.persistentvolumeclaim</code> must be a <code>dict</code>.</p>
+<p>The type of <code>desktop.persistentvolumeclaim</code> is dictionary or a string.</p>
+<p>If desktop.homedirectorytype is set to 'persistentVolumeClaim', then <code>desktop.persistentvolumeclaim</code> must be defined as a <code>dict</code> or a <code>str</code>.</p>
 <p>Kubernetes persistent volume is a namespaced resource, so you can keep the default <code>rbac-role</code> for <code>pyos-role</code>.</p>
 <p>if <code>desktop.persistentvolume</code> option is defined then abcdesktop sets the persistent volume claim specification attribut <code>volumeName</code> value to the created persistent volume.</p>
 <p>Get more information about <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolume and PersistentVolumeClaim.</a></p>
-<p>For example</p>
+<h4 id="define-desktoppersistentvolumeclaim-as-a-string">Define <code>desktop.persistentvolumeclaim</code> as a string</h4>
+<p>All pods will share the same persistent volume claim, and the same persistent volume. The access mode must be <code>ReadWriteMany</code>, else only one pod will bound the pvc.</p>
+<p>Dump the persistent volume</p>
+<pre><code>kubectl get pv -n abcdesktop
+NAME     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                      STORAGECLASS   REASON   AGE
+pv-nfs   10Gi       RWX            Retain           Bound    abcdesktop/homedir         nfs-csi                 3d22h
+</code></pre>
+<pre><code>kubectl describe pv pv-nfs 
+Name:            pv-nfs
+Labels:          &lt;none&gt;
+Annotations:     pv.kubernetes.io/bound-by-controller: yes
+                 pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
+Finalizers:      [kubernetes.io/pv-protection]
+StorageClass:    nfs-csi
+Status:          Bound
+Claim:           abcdesktop/homedir
+Reclaim Policy:  Retain
+Access Modes:    RWX
+VolumeMode:      Filesystem
+Capacity:        10Gi
+Node Affinity:   &lt;none&gt;
+Message:         
+Source:
+    Type:              CSI (a Container Storage Interface (CSI) volume source)
+    Driver:            nfs.csi.k8s.io
+    FSType:            
+    VolumeHandle:      nfs-server.default.svc.cluster.local/share##
+    ReadOnly:          false
+    VolumeAttributes:      server=192.168.7.101
+                           share=/volume1/homedir
+Events:                &lt;none&gt;
+</code></pre>
+<p>Dump the persistent volume claim</p>
+<pre><code>kubectl get pvc -n abcdesktop
+NAME      STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+homedir   Bound    pv-nfs   10Gi       RWX            nfs-csi        3d22h
+</code></pre>
+<pre><code>kubectl describe pvc homedir -n abcdesktop
+Name:          homedir
+Namespace:     abcdesktop
+StorageClass:  nfs-csi
+Status:        Bound
+Volume:        pv-nfs
+Annotations:   pv.kubernetes.io/bind-completed: yes
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:      10Gi
+Access Modes:  RWX
+VolumeMode:    Filesystem
+Used By:       fry-88a6e
+               hermes-7d84b
+Events:        &lt;none&gt;
+</code></pre>
+<p>in od.config file</p>
+<pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
+desktop.persistentvolume: None
+desktop.persistentvolumeclaim: &quot;homedir&quot;
+</code></pre>
+<p>If you need to use subPath</p>
+<pre><code>desktop.persistentvolumeclaimforcesubpath: True
+</code></pre>
+<p>'subPath' is not supported for ephemeral container.</p>
+<h4 id="define-desktoppersistentvolumeclaim-as-a-dictionary">Define <code>desktop.persistentvolumeclaim</code> as a dictionary</h4>
+<p>in od.config file</p>
 <pre><code class="language-json"># set to persistentVolumeClaim
 desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolumespec: None
