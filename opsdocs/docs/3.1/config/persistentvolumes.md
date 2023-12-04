@@ -70,8 +70,9 @@ If you set `desktop.persistentvolume` to `None`, or if you create the persistent
 
 ### Define `desktop.persistentvolumeclaim`
 
-The type of `desktop.persistentvolumeclaim` is dictionary. 
-If desktop.homedirectorytype is set to 'persistentVolumeClaim', then `desktop.persistentvolumeclaim` must be a `dict`.
+The type of `desktop.persistentvolumeclaim` is dictionary or a string.
+
+If desktop.homedirectorytype is set to 'persistentVolumeClaim', then `desktop.persistentvolumeclaim` must be defined as a `dict` or a `str`.
 
 Kubernetes persistent volume is a namespaced resource, so you can keep the default `rbac-role` for `pyos-role`.
 
@@ -79,7 +80,89 @@ if `desktop.persistentvolume` option is defined then abcdesktop sets the persist
 
 Get more information about [PersistentVolume and PersistentVolumeClaim.](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 
-For example
+#### Define `desktop.persistentvolumeclaim` as a string
+
+All pods will share the same persistent volume claim, and the same persistent volume. The access mode must be `ReadWriteMany`, else only one pod will bound the pvc.
+
+Dump the persistent volume
+
+```
+kubectl get pv -n abcdesktop
+NAME     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                      STORAGECLASS   REASON   AGE
+pv-nfs   10Gi       RWX            Retain           Bound    abcdesktop/homedir         nfs-csi                 3d22h
+```
+
+```
+kubectl describe pv pv-nfs 
+Name:            pv-nfs
+Labels:          <none>
+Annotations:     pv.kubernetes.io/bound-by-controller: yes
+                 pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
+Finalizers:      [kubernetes.io/pv-protection]
+StorageClass:    nfs-csi
+Status:          Bound
+Claim:           abcdesktop/homedir
+Reclaim Policy:  Retain
+Access Modes:    RWX
+VolumeMode:      Filesystem
+Capacity:        10Gi
+Node Affinity:   <none>
+Message:         
+Source:
+    Type:              CSI (a Container Storage Interface (CSI) volume source)
+    Driver:            nfs.csi.k8s.io
+    FSType:            
+    VolumeHandle:      nfs-server.default.svc.cluster.local/share##
+    ReadOnly:          false
+    VolumeAttributes:      server=192.168.7.101
+                           share=/volume1/homedir
+Events:                <none>
+```
+
+Dump the persistent volume claim
+
+```
+kubectl get pvc -n abcdesktop
+NAME      STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+homedir   Bound    pv-nfs   10Gi       RWX            nfs-csi        3d22h
+```
+
+```
+kubectl describe pvc homedir -n abcdesktop
+Name:          homedir
+Namespace:     abcdesktop
+StorageClass:  nfs-csi
+Status:        Bound
+Volume:        pv-nfs
+Annotations:   pv.kubernetes.io/bind-completed: yes
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:      10Gi
+Access Modes:  RWX
+VolumeMode:    Filesystem
+Used By:       fry-88a6e
+               hermes-7d84b
+Events:        <none>
+```
+
+in od.config file
+
+```
+desktop.homedirectorytype: 'persistentVolumeClaim'
+desktop.persistentvolume: None
+desktop.persistentvolumeclaim: "homedir"
+```
+
+If you need to use subPath
+
+```
+desktop.persistentvolumeclaimforcesubpath: True
+```
+
+'subPath' is not supported for ephemeral container.
+
+#### Define `desktop.persistentvolumeclaim` as a dictionary
+
+in od.config file
 
 ```json
 # set to persistentVolumeClaim
