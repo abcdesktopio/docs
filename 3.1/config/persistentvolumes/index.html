@@ -3694,7 +3694,7 @@ kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubern
 </code></pre>
 <h2 id="define-persistent-volume-and-persistent-volume-claim">Define <code>persistent volume</code> and <code>persistent volume claim</code></h2>
 <p>To define <code>Persistent Volume</code> or <code>Persistent Volume Claim</code>, update the od.config file and set</p>
-<pre><code class="language-json">desktop.homedirectorytype: 'persistentVolumeClaim'
+<pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolume: { YOUR PERSISTENT VOLUME DICT CONFIGURATION TEMPLATE - THIS CAN BE NONE }
 desktop.persistentvolumeclaim: { YOUR PERSISTENT VOLUME CLAIM DICT CONFIGURATION TEMPLATE } 
 desktop.deletepersistentvolume: False
@@ -3703,7 +3703,7 @@ desktop.deletepersistentvolumeclaim: True
 <h3 id="desktophomedirectorytype">desktop.homedirectorytype</h3>
 <p>To use <code>desktop.persistentvolume</code> and <code>desktop.persistentvolumeclaim</code> values, the 
 <code>desktop.homedirectorytype</code> must be set to <code>persistentVolumeClaim</code></p>
-<pre><code class="language-json">desktop.homedirectorytype: 'persistentVolumeClaim'
+<pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
 </code></pre>
 <h3 id="define-desktoppersistentvolume-is-optional">Define <code>desktop.persistentvolume</code> is optional</h3>
 <p><code>desktop.persistentvolume</code> is optional and can be set to <code>None</code>, else the type of <code>desktop.persistentvolume</code> must be a dict (dictionary). </p>
@@ -3779,7 +3779,7 @@ desktop.persistentvolumeclaim: &quot;homedir&quot;
 <p>'subPath' is not supported for ephemeral container.</p>
 <h4 id="define-desktoppersistentvolumeclaim-as-a-dictionary">Define <code>desktop.persistentvolumeclaim</code> as a dictionary</h4>
 <p>in od.config file</p>
-<pre><code class="language-json"># set to persistentVolumeClaim
+<pre><code># set to persistentVolumeClaim
 desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolumespec: None
 desktop.persistentvolumeclaim: {
