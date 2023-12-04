@@ -38,7 +38,7 @@ kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubern
 
 To define `Persistent Volume` or `Persistent Volume Claim`, update the od.config file and set
 
-```json
+```
 desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolume: { YOUR PERSISTENT VOLUME DICT CONFIGURATION TEMPLATE - THIS CAN BE NONE }
 desktop.persistentvolumeclaim: { YOUR PERSISTENT VOLUME CLAIM DICT CONFIGURATION TEMPLATE } 
@@ -51,7 +51,7 @@ desktop.deletepersistentvolumeclaim: True
 To use `desktop.persistentvolume` and `desktop.persistentvolumeclaim` values, the 
 `desktop.homedirectorytype` must be set to `persistentVolumeClaim`
 
-```json
+```
 desktop.homedirectorytype: 'persistentVolumeClaim'
 ```
 
@@ -164,7 +164,7 @@ desktop.persistentvolumeclaimforcesubpath: True
 
 in od.config file
 
-```json
+```
 # set to persistentVolumeClaim
 desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolumespec: None
