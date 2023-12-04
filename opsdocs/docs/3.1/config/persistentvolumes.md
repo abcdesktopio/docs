@@ -41,7 +41,7 @@ To define `Persistent Volume` or `Persistent Volume Claim`, update the od.config
 ```
 desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolume: { YOUR PERSISTENT VOLUME DICT CONFIGURATION TEMPLATE - THIS CAN BE NONE }
-desktop.persistentvolumeclaim: { YOUR PERSISTENT VOLUME CLAIM DICT CONFIGURATION TEMPLATE } 
+desktop.persistentvolumeclaim: { YOUR PERSISTENT VOLUME CLAIM (NAME AS STRING) OR (DICT CONFIGURATION TEMPLATE) } 
 desktop.deletepersistentvolume: False
 desktop.deletepersistentvolumeclaim: True
 ```
@@ -149,7 +149,8 @@ in od.config file
 ```
 desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolume: None
-desktop.persistentvolumeclaim: "homedir"
+desktop.persistentvolumeclaim: 'homedir'
+desktop.deletepersistentvolumeclaim: False
 ```
 
 If you need to use subPath
