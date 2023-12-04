@@ -3675,7 +3675,7 @@
 <li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolume</a></li>
 <li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolumeClaim</a> </li>
 </ul>
-<p>In most cases with managed providers, you do not need to create a <code>Persistent Volume</code>, just a <code>Persistent Volume Claim</code>. Even in a non-managed set up, the <code>Persistent Volume</code> is generally created by the cluster administrator while the  <code>Persistent Volume Claim</code> is used by the end-user. The <code>Persistent Volume Claim</code> is  namespaced ressource.</p>
+<p>In most cases with managed providers, you do not need to create a <code>Persistent Volume</code>, just a <code>Persistent Volume Claim</code>. Even in a non-managed set up, the <code>Persistent Volume</code> is generally created by the cluster administrator while <code>Persistent Volume Claim</code> is used by the end-user. The <code>Persistent Volume Claim</code> is namespaced ressource.</p>
 <ul>
 <li>abcdestkop has a <code>Persistent Volume Claim</code> support.</li>
 </ul>
@@ -3696,17 +3696,16 @@ kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubern
 <p>To define <code>Persistent Volume</code> or <code>Persistent Volume Claim</code>, update the od.config file and set</p>
 <pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolume: { YOUR PERSISTENT VOLUME DICT CONFIGURATION TEMPLATE - THIS CAN BE NONE }
-desktop.persistentvolumeclaim: { YOUR PERSISTENT VOLUME CLAIM (NAME AS STRING) OR (DICT CONFIGURATION TEMPLATE) } 
+desktop.persistentvolumeclaim: 'NAME OF AN EXISTING PVC' OR { YOUR PERSISTENT VOLUME CLAIM DICT CONFIGURATION TEMPLATE } 
 desktop.removepersistentvolume: False
 desktop.removepersistentvolumeclaim: True
 </code></pre>
 <h3 id="desktophomedirectorytype">desktop.homedirectorytype</h3>
-<p>To use <code>desktop.persistentvolume</code> and <code>desktop.persistentvolumeclaim</code> values, the 
-<code>desktop.homedirectorytype</code> must be set to <code>persistentVolumeClaim</code></p>
+<p>To use <code>desktop.persistentvolume</code> and <code>desktop.persistentvolumeclaim</code> values, the <code>desktop.homedirectorytype</code> must be set to <code>persistentVolumeClaim</code></p>
 <pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
 </code></pre>
 <h3 id="define-desktoppersistentvolume-is-optional">Define <code>desktop.persistentvolume</code> is optional</h3>
-<p><code>desktop.persistentvolume</code> is optional and can be set to <code>None</code>, else the type of <code>desktop.persistentvolume</code> must be a dict (dictionary). </p>
+<p><code>desktop.persistentvolume</code> is optional and can be set to <code>None</code>, else the type of <code>desktop.persistentvolume</code> parameter must be a dict (dictionary). </p>
 <p>If desktop.persistentvolume is <code>None</code> then abcdesktop does not create a persistent volume. The persistent volumes should already exist or created by another provisioning engine.</p>
 <p>If desktop.persistentvolume is a <code>dict</code> then abcdesktop creates the persistent volume. </p>
 <p>If you set <code>desktop.persistentvolume</code> to <code>None</code>, or if you create the persistent volume manualy, then you don't need to update the pyos role.</p>
@@ -3717,8 +3716,8 @@ desktop.removepersistentvolumeclaim: True
 <p>if <code>desktop.persistentvolume</code> option is defined then abcdesktop sets the persistent volume claim specification attribut <code>volumeName</code> value to the created persistent volume.</p>
 <p>Get more information about <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolume and PersistentVolumeClaim.</a></p>
 <h4 id="define-desktoppersistentvolumeclaim-as-a-string">Define <code>desktop.persistentvolumeclaim</code> as a string</h4>
-<p>All pods will share the same persistent volume claim, and the same persistent volume. The access mode must be <code>ReadWriteMany</code>, else only one pod will bound the pvc.</p>
-<p>Dump the persistent volume</p>
+<p>All pods will share the same persistent volume claim, and the same persistent volume. The access mode must be <code>ReadWriteMany</code>, else only one pod (the first one) will bound the pvc.</p>
+<p>Create a persistent volume</p>
 <pre><code>kubectl get pv -n abcdesktop
 NAME     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                      STORAGECLASS   REASON   AGE
 pv-nfs   10Gi       RWX            Retain           Bound    abcdesktop/homedir         nfs-csi                 3d22h
@@ -3748,7 +3747,7 @@ Source:
                            share=/volume1/homedir
 Events:                &lt;none&gt;
 </code></pre>
-<p>Dump the persistent volume claim</p>
+<p>Create a persistent volume claim</p>
 <pre><code>kubectl get pvc -n abcdesktop
 NAME      STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 homedir   Bound    pv-nfs   10Gi       RWX            nfs-csi        3d22h
@@ -3768,7 +3767,7 @@ Used By:       fry-88a6e
                hermes-7d84b
 Events:        &lt;none&gt;
 </code></pre>
-<p>in od.config file</p>
+<p>In the od.config file, set the values</p>
 <pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolume: None
 desktop.persistentvolumeclaim: 'homedir'
