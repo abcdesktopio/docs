@@ -3697,8 +3697,8 @@ kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubern
 <pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolume: { YOUR PERSISTENT VOLUME DICT CONFIGURATION TEMPLATE - THIS CAN BE NONE }
 desktop.persistentvolumeclaim: { YOUR PERSISTENT VOLUME CLAIM (NAME AS STRING) OR (DICT CONFIGURATION TEMPLATE) } 
-desktop.deletepersistentvolume: False
-desktop.deletepersistentvolumeclaim: True
+desktop.removepersistentvolume: False
+desktop.removepersistentvolumeclaim: True
 </code></pre>
 <h3 id="desktophomedirectorytype">desktop.homedirectorytype</h3>
 <p>To use <code>desktop.persistentvolume</code> and <code>desktop.persistentvolumeclaim</code> values, the 
@@ -3772,7 +3772,7 @@ Events:        &lt;none&gt;
 <pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
 desktop.persistentvolume: None
 desktop.persistentvolumeclaim: 'homedir'
-desktop.deletepersistentvolumeclaim: False
+desktop.removepersistentvolumeclaim: False
 </code></pre>
 <p>If you need to use subPath</p>
 <pre><code>desktop.persistentvolumeclaimforcesubpath: True
