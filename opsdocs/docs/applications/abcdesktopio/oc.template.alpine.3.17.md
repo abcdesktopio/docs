@@ -7,7 +7,7 @@
 ``` 
 NAME="Alpine Linux"
 ID=alpine
-VERSION_ID=3.17.5
+VERSION_ID=3.17.6
 PRETTY_NAME="Alpine Linux v3.17"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
@@ -44,4 +44,4 @@ RUN apk add  --no-cache --update  \
 
 
 
-> file oc.template.alpine.3.17.md is created at Fri Oct 13 2023 16:18:36 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.3.17.md is created at Thu Dec 28 2023 14:17:42 GMT+0000 (Coordinated Universal Time) by make-docs.js

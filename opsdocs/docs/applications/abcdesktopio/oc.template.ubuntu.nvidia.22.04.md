@@ -5,10 +5,10 @@
 
 
 ``` 
-PRETTY_NAME="Ubuntu 22.04.2 LTS"
+PRETTY_NAME="Ubuntu 22.04.3 LTS"
 NAME="Ubuntu"
 VERSION_ID="22.04"
-VERSION="22.04.2 LTS (Jammy Jellyfish)"
+VERSION="22.04.3 LTS (Jammy Jellyfish)"
 VERSION_CODENAME=jammy
 ID=ubuntu
 ID_LIKE=debian
@@ -97,4 +97,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.ubuntu.nvidia.22.04.md is created at Fri Oct 13 2023 16:09:56 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.nvidia.22.04.md is created at Thu Dec 28 2023 14:13:14 GMT+0000 (Coordinated Universal Time) by make-docs.js
