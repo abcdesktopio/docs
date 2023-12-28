@@ -93,4 +93,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.debian.minimal.md is created at Thu Dec 28 2023 14:16:50 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.debian.minimal.md is created at Thu Dec 28 2023 14:17:43 GMT+0000 (Coordinated Universal Time) by make-docs.js

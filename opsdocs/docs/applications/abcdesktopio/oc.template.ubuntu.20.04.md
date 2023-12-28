@@ -41,4 +41,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 
-> file oc.template.ubuntu.20.04.md is created at Thu Dec 28 2023 14:18:27 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.20.04.md is created at Thu Dec 28 2023 14:18:50 GMT+0000 (Coordinated Universal Time) by make-docs.js
