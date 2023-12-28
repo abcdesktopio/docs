@@ -45,4 +45,4 @@ RUN if [ $(uname -m) == 'x86_64'  ]; then apk add --no-cache --update wine; fi
 
 
 
-> file oc.template.alpine.wine.md is created at Thu Dec 28 2023 14:35:07 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.wine.md is created at Thu Dec 28 2023 16:17:25 GMT+0000 (Coordinated Universal Time) by make-docs.js
