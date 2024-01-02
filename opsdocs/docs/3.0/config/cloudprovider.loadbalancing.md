@@ -182,10 +182,18 @@ You can read
 service/nginx configured
 ```
 
+Check the nginx/services 
+
+```
+kubectl get service/nginx -n abcdesktop
+```
+
+```
+NAME    TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)         AGE
+nginx   LoadBalancer   10.245.188.146   161.35.246.4    443:32086/TCP   28m
+```
+
 Now you can replace `http` by the secure protocol `https`
-
-
-
 
 
 
