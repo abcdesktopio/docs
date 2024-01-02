@@ -3601,6 +3601,12 @@ spec:
 <p>You can read </p>
 <pre><code>service/nginx configured
 </code></pre>
+<p>Check the nginx/services </p>
+<pre><code>kubectl get service/nginx -n abcdesktop
+</code></pre>
+<pre><code>NAME    TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)         AGE
+nginx   LoadBalancer   10.245.188.146   161.35.246.4    443:32086/TCP   28m
+</code></pre>
 <p>Now you can replace <code>http</code> by the secure protocol <code>https</code></p>
 
 
