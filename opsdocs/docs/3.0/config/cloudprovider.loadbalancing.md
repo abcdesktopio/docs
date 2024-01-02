@@ -133,12 +133,56 @@ The user `fry` gets the abcdesktop pod `fry-2cf3a`
 
 
 
+## Update nginx service to use LoadBalancer service with https
 
+This example works on digitalocean cloud provider.
+You need first to create a `loadbalancer-certificate-id`, then define `annotations` on the abcdesktop nginx service like
 
+```
+  service.beta.kubernetes.io/do-loadbalancer-certificate-id: "3619b45a-714b-455c-a01a-e92fc8a29cbb"
+  service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
+  service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
+```
 
+Create a `loadbalancing.yaml` file 
 
+```
+---         
+kind: Service 
+apiVersion: v1
+metadata:   
+  name: nginx 
+  namespace: abcdesktop
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "3619b45a-714b-455c-a01a-e92fc8a29cbb"
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
+    service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
+  labels:
+    abcdesktop/role: nginx
+spec: 
+  type: LoadBalancer
+  selector:
+    run: nginx-od
+  ports:
+  - protocol: TCP
+    port: 443
+    targetPort: 80
+    name: https
+---
+```
 
+Apply the new  `loadbalancing.yaml` file 
 
+```bash
+kubectl apply -f loadbalancing.yaml
+```
+You can read 
+
+```
+service/nginx configured
+```
+
+Now you can replace `http` by the secure protocol `https`
 
 
 
