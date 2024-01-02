@@ -2003,6 +2003,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#update-nginx-service-to-use-loadbalancer-service-with-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update nginx service to use LoadBalancer service with https
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3429,6 +3438,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#update-nginx-service-to-use-loadbalancer-service-with-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update nginx service to use LoadBalancer service with https
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3546,6 +3564,44 @@ fry-2cf3a                       4/4     Running   0          4m15s
 </code></pre>
 <p>The user <code>fry</code> gets the abcdesktop pod <code>fry-2cf3a</code></p>
 <p><img alt="port forward localhost desktop" src="../img/troubleshooting.portforward.loged.fry.png" /></p>
+<h2 id="update-nginx-service-to-use-loadbalancer-service-with-https">Update nginx service to use LoadBalancer service with https</h2>
+<p>This example works on digitalocean cloud provider.
+You need first to create a <code>loadbalancer-certificate-id</code>, then define <code>annotations</code> on the abcdesktop nginx service like</p>
+<pre><code>  service.beta.kubernetes.io/do-loadbalancer-certificate-id: &quot;3619b45a-714b-455c-a01a-e92fc8a29cbb&quot;
+  service.beta.kubernetes.io/do-loadbalancer-protocol: &quot;https&quot;
+  service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: &quot;false&quot;
+</code></pre>
+<p>Create a <code>loadbalancing.yaml</code> file </p>
+<pre><code>---         
+kind: Service 
+apiVersion: v1
+metadata:   
+  name: nginx 
+  namespace: abcdesktop
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-certificate-id: &quot;3619b45a-714b-455c-a01a-e92fc8a29cbb&quot;
+    service.beta.kubernetes.io/do-loadbalancer-protocol: &quot;https&quot;
+    service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: &quot;false&quot;
+  labels:
+    abcdesktop/role: nginx
+spec: 
+  type: LoadBalancer
+  selector:
+    run: nginx-od
+  ports:
+  - protocol: TCP
+    port: 443
+    targetPort: 80
+    name: https
+---
+</code></pre>
+<p>Apply the new  <code>loadbalancing.yaml</code> file </p>
+<pre><code class="language-bash">kubectl apply -f loadbalancing.yaml
+</code></pre>
+<p>You can read </p>
+<pre><code>service/nginx configured
+</code></pre>
+<p>Now you can replace <code>http</code> by the secure protocol <code>https</code></p>
 
 
 
