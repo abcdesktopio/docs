@@ -144,7 +144,7 @@ You need first to create a `loadbalancer-certificate-id`, then define `annotatio
   service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
 ```
 
-Create a `loadbalancing.yaml` file 
+Create a `loadbalancing.yaml` file, to update the default abcdestkop `service/nginx`
 
 ```
 ---         
