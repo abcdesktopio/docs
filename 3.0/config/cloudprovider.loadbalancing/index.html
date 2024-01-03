@@ -3568,7 +3568,7 @@ fry-2cf3a                       4/4     Running   0          4m15s
 <p>This example works on digitalocean cloud provider.</p>
 <p>First of all, you need to get your <code>loadbalancer-certificate-id</code></p>
 <p>To list available certificates and their IDs, install doctl and run the command</p>
-<pre><code>doctl compute certificate list.
+<pre><code>doctl compute certificate list
 </code></pre>
 <p>Then define <code>annotations</code> on the abcdesktop nginx service like</p>
 <pre><code>  service.beta.kubernetes.io/do-loadbalancer-certificate-id: &quot;3619b45a-714b-455c-a01a-e92fc8a29cbb&quot;
