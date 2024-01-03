@@ -144,9 +144,8 @@ First of all, you need to get your `loadbalancer-certificate-id`
 To list available certificates and their IDs, install doctl and run the command
 
 ```
-doctl compute certificate list.
+doctl compute certificate list
 ```
-
 
 Then define `annotations` on the abcdesktop nginx service like
 
