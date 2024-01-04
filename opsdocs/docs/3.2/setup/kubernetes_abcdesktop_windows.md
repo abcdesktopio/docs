@@ -4,31 +4,32 @@
 
 ### Prerequisites
 
-#### - Docker Desktop
+#### Install and configure Docker Desktop
 
-Open your browser and search for docker desktop windows.  
+To run abcdesktop on Microsoft Windows plateform you need to use [docker desktop](https://www.docker.com/products/docker-desktop/)
 
-![search docker desktop](./img/search-docker-desktop.PNG)
-
-Then click on the "Docker Desktop for Windows" button in order to download the setup file.  
-
-![dl docker desktop](./img/dl-docker-desktop.PNG)
-
-Now follow the setup process. Once done open Docker Desktop and wait for the docker engine to start.
+Start `Docker Desktop` and wait for the docker engine to start.
 
 ![starting docker desktop](./img/starting-docker-desktop.PNG)
 
-Once started go to the Settings -> Kubernetes and click on Enable Kubernetes, starting a cluster may take some time.
+Once started go to the `Settings | Kubernetes` and click on `Enable Kubernetes`, starting your cluster may take a while.
 
 ![enable kubernetes](./img/enable-kubernetes.PNG)
 
 Now your cluster should be correctly initialized, you can check it by opening a new PowerShell and run the command `kubectl version`
 
+```
+kubectl version
+client version: V1.40.4
+Kustomise Version: V9-0-4-0.202506011699445602001590025
+Server Version: v1.28.2
+```
+
 ![check kubectl](./img/checking-kubernetes-start.PNG)
 
-#### - OpenSSL
+#### Install OpenSSL
 
-Open your browser and search for openssl windows.  
+Using your browser, look for `openssl` for Microsoft Windows.  
 
 ![search openssl](./img/search-openssl.PNG)
 
@@ -52,7 +53,7 @@ Go to the system variables section and search for "Path"
 
 ![system variables](./img/system-variables.PNG)
 
-Click on Edit and add a new Path, you have to paste the absolute path to the bin folder of OpenSSL.
+Click on `Edit` and add a new `Path`, you have to paste the absolute path to the bin folder of OpenSSL.
 
 ![add env variable](./img/add-env-variable.PNG)
 
@@ -60,11 +61,12 @@ Now OpenSSL should be correctly installed, you can check it by opening a new Pow
 
 ![check openssl](./img/checking-openssl-correctly-installed.PNG)
 
-### Run the script
+### Run the install script
 
 Download and extract the latest release automatically (Windows):
+
 ```PowerShell
-$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.2.ps1 
+$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.2.ps1
 
 Invoke-Expression $($script.Content)
 ```
@@ -151,9 +153,11 @@ speedtest-od-7f5484966f-6t4b2   1/1     Running   0          11s
 [INFO] http://localhost:30443/
 ```
 
+You can open a web browser and go to the http://localhost:30443/ 
+
 ## Change the default namespace
 
-You may need to replace the default namespace `abcdesktop` by your own. The `install-3.2.ps1` PowerShell script allow you to set the new namespace as an option.
+You may need to replace the default namespace `abcdesktop` by your own. The `install-3.2.ps1` PowerShell script allows you to set the new namespace as an option.
 
 ```PowerShell
 curl https://raw.githubusercontent.com/Matt307082/powershell-scripts/master/install-3.2.ps1 -OutFile install-3.2.ps1
