@@ -3326,18 +3326,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-docker-desktop" class="md-nav__link">
+  <a href="#install-and-configure-docker-desktop" class="md-nav__link">
     <span class="md-ellipsis">
-      - Docker Desktop
+      Install and configure Docker Desktop
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-openssl" class="md-nav__link">
+  <a href="#install-openssl" class="md-nav__link">
     <span class="md-ellipsis">
-      - OpenSSL
+      Install OpenSSL
     </span>
   </a>
   
@@ -3349,9 +3349,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-the-script" class="md-nav__link">
+  <a href="#run-the-install-script" class="md-nav__link">
     <span class="md-ellipsis">
-      Run the script
+      Run the install script
     </span>
   </a>
   
@@ -3401,19 +3401,21 @@
 <p>Quick installation can be run on Windows operation system.</p>
 </blockquote>
 <h3 id="prerequisites">Prerequisites</h3>
-<h4 id="-docker-desktop">- Docker Desktop</h4>
-<p>Open your browser and search for docker desktop windows.  </p>
-<p><img alt="search docker desktop" src="../img/search-docker-desktop.PNG" /></p>
-<p>Then click on the "Docker Desktop for Windows" button in order to download the setup file.  </p>
-<p><img alt="dl docker desktop" src="../img/dl-docker-desktop.PNG" /></p>
-<p>Now follow the setup process. Once done open Docker Desktop and wait for the docker engine to start.</p>
+<h4 id="install-and-configure-docker-desktop">Install and configure Docker Desktop</h4>
+<p>To run abcdesktop on Microsoft Windows plateform you need to use <a href="https://www.docker.com/products/docker-desktop/">docker desktop</a></p>
+<p>Start <code>Docker Desktop</code> and wait for the docker engine to start.</p>
 <p><img alt="starting docker desktop" src="../img/starting-docker-desktop.PNG" /></p>
-<p>Once started go to the Settings -&gt; Kubernetes and click on Enable Kubernetes, starting a cluster may take some time.</p>
+<p>Once started go to the <code>Settings | Kubernetes</code> and click on <code>Enable Kubernetes</code>, starting your cluster may take a while.</p>
 <p><img alt="enable kubernetes" src="../img/enable-kubernetes.PNG" /></p>
 <p>Now your cluster should be correctly initialized, you can check it by opening a new PowerShell and run the command <code>kubectl version</code></p>
+<pre><code>kubectl version
+client version: V1.40.4
+Kustomise Version: V9-0-4-0.202506011699445602001590025
+Server Version: v1.28.2
+</code></pre>
 <p><img alt="check kubectl" src="../img/checking-kubernetes-start.PNG" /></p>
-<h4 id="-openssl">- OpenSSL</h4>
-<p>Open your browser and search for openssl windows.  </p>
+<h4 id="install-openssl">Install OpenSSL</h4>
+<p>Using your browser, look for <code>openssl</code> for Microsoft Windows.  </p>
 <p><img alt="search openssl" src="../img/search-openssl.PNG" /></p>
 <p>Download the "Win64 OpenSSL v3.2.0 Light" executable file.</p>
 <p><img alt="dl openssl" src="../img/dl-openssl.PNG" /></p>
@@ -3425,13 +3427,13 @@
 <p><img alt="go to edit env variables" src="../img/goto-edit-env-variable.PNG" /></p>
 <p>Go to the system variables section and search for "Path" </p>
 <p><img alt="system variables" src="../img/system-variables.PNG" /></p>
-<p>Click on Edit and add a new Path, you have to paste the absolute path to the bin folder of OpenSSL.</p>
+<p>Click on <code>Edit</code> and add a new <code>Path</code>, you have to paste the absolute path to the bin folder of OpenSSL.</p>
 <p><img alt="add env variable" src="../img/add-env-variable.PNG" /></p>
 <p>Now OpenSSL should be correctly installed, you can check it by opening a new PowerShell and run <code>openssl version</code></p>
 <p><img alt="check openssl" src="../img/checking-openssl-correctly-installed.PNG" /></p>
-<h3 id="run-the-script">Run the script</h3>
+<h3 id="run-the-install-script">Run the install script</h3>
 <p>Download and extract the latest release automatically (Windows):</p>
-<pre><code class="language-PowerShell">$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.2.ps1 
+<pre><code class="language-PowerShell">$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.2.ps1
 
 Invoke-Expression $($script.Content)
 </code></pre>
@@ -3514,8 +3516,9 @@ speedtest-od-7f5484966f-6t4b2   1/1     Running   0          11s
 
 [INFO] http://localhost:30443/
 </code></pre>
+<p>You can open a web browser and go to the http://localhost:30443/ </p>
 <h2 id="change-the-default-namespace">Change the default namespace</h2>
-<p>You may need to replace the default namespace <code>abcdesktop</code> by your own. The <code>install-3.2.ps1</code> PowerShell script allow you to set the new namespace as an option.</p>
+<p>You may need to replace the default namespace <code>abcdesktop</code> by your own. The <code>install-3.2.ps1</code> PowerShell script allows you to set the new namespace as an option.</p>
 <pre><code class="language-PowerShell">curl https://raw.githubusercontent.com/Matt307082/powershell-scripts/master/install-3.2.ps1 -OutFile install-3.2.ps1
 </code></pre>
 <p>Run <code>install-3.2.ps1</code></p>
