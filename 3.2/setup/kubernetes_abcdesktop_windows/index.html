@@ -3424,11 +3424,13 @@ Server Version: v1.28.2
 <p><img alt="follow install step2" src="../img/follow-install-step2.PNG" /></p>
 <p>Once installed, go to "Edit the system environement variables", and click on "Environement variables".</p>
 <p><img alt="go to edit env variables" src="../img/goto-edit-env-variable.PNG" /></p>
-<p>Go to the system variables section and search for "Path" </p>
+<p>Go to the system variables section and search for <code>Path</code> </p>
 <p><img alt="system variables" src="../img/system-variables.PNG" /></p>
 <p>Click on <code>Edit</code> and add a new <code>Path</code>, you have to paste the absolute path to the bin folder of OpenSSL.</p>
 <p><img alt="add env variable" src="../img/add-env-variable.PNG" /></p>
-<p>Now <code>OpenSSL</code> should be correctly installed, you can check it by opening a new PowerShell and run <code>openssl version</code></p>
+<p>Now <code>OpenSSL</code> should be correctly installed, you can check it by opening a new PowerShell and run the command </p>
+<pre><code>openssl version
+</code></pre>
 <p><img alt="check openssl" src="../img/checking-openssl-correctly-installed.PNG" /></p>
 <h3 id="run-the-install-script">Run the install script</h3>
 <p>Download and extract the latest release automatically (Windows):</p>
