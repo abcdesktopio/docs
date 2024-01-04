@@ -49,6 +49,18 @@ pod/pull-writer-abcinst-cfe1a4f74d19fbe49d86d211f99d005532b6cf7c87 condition met
 pod/pull-xterm-abcinst-0e802cfa8addb4648f843869325f3413d544bb9eae8 condition met
 ```
 
+## Quick application install (Windows)
+
+> Quick installation can be run on Windows operation system. 
+
+Download and execute the `pullapps-3.2.ps1` script :
+
+```PowerShell
+$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-3.2.ps1 
+
+Invoke-Expression $($script.Content)
+```
+
 ### Connect to your abcdesktop
 
 The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.
