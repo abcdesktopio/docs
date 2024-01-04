@@ -3415,9 +3415,8 @@ Server Version: v1.28.2
 </code></pre>
 <p><img alt="check kubectl" src="../img/checking-kubernetes-start.PNG" /></p>
 <h4 id="install-openssl">Install OpenSSL</h4>
-<p>Using your browser, look for <code>openssl</code> for Microsoft Windows.  </p>
-<p><img alt="search openssl" src="../img/search-openssl.PNG" /></p>
-<p>Download the "Win64 OpenSSL v3.2.0 Light" executable file.</p>
+<p>abcdesktop install process creates RSA keys using openssl, you need to install <code>openssl</code> command line.</p>
+<p>Download the <a href="https://www.openssl.org/source/">OpenSSL v3.2.0 Light</a> executable file.</p>
 <p><img alt="dl openssl" src="../img/dl-openssl.PNG" /></p>
 <p>Then follow the install process.</p>
 <p><img alt="follow install step1" src="../img/follow-install-step1.PNG" /></p>
@@ -3429,7 +3428,7 @@ Server Version: v1.28.2
 <p><img alt="system variables" src="../img/system-variables.PNG" /></p>
 <p>Click on <code>Edit</code> and add a new <code>Path</code>, you have to paste the absolute path to the bin folder of OpenSSL.</p>
 <p><img alt="add env variable" src="../img/add-env-variable.PNG" /></p>
-<p>Now OpenSSL should be correctly installed, you can check it by opening a new PowerShell and run <code>openssl version</code></p>
+<p>Now <code>OpenSSL</code> should be correctly installed, you can check it by opening a new PowerShell and run <code>openssl version</code></p>
 <p><img alt="check openssl" src="../img/checking-openssl-correctly-installed.PNG" /></p>
 <h3 id="run-the-install-script">Run the install script</h3>
 <p>Download and extract the latest release automatically (Windows):</p>
@@ -3461,7 +3460,11 @@ writing RSA key
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
 [INFO] kubectl create -f poduser.yaml
-[OK] kubectl create -f poduser.yaml                                                                                     [INFO] waiting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready                                             [OK] pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met                                                   [INFO] deleting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready                                            [OK] pod &quot;anonymous-74bea267-8197-4b1d-acff-019b24e778c5&quot; deleted
+[OK] kubectl create -f poduser.yaml
+[INFO] waiting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready
+[OK] pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
+[INFO] deleting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready
+[OK] pod &quot;anonymous-74bea267-8197-4b1d-acff-019b24e778c5&quot; deleted
 role.rbac.authorization.k8s.io/pyos-role created
 rolebinding.rbac.authorization.k8s.io/pyos-rbac created
 serviceaccount/pyos-serviceaccount created
@@ -3553,7 +3556,11 @@ writing RSA key
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n superdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
 [INFO] kubectl create -f poduser.yaml
-[OK] kubectl create -f poduser.yaml                                                                                     [INFO] waiting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready                                             [OK] pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met                                                   [INFO] deleting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready                                            [OK] pod &quot;anonymous-74bea267-8197-4b1d-acff-019b24e778c5&quot; deleted
+[OK] kubectl create -f poduser.yaml
+[INFO] waiting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready
+[OK] pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
+[INFO] deleting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready
+[OK] pod &quot;anonymous-74bea267-8197-4b1d-acff-019b24e778c5&quot; deleted
 role.rbac.authorization.k8s.io/pyos-role created
 rolebinding.rbac.authorization.k8s.io/pyos-rbac created
 serviceaccount/pyos-serviceaccount created
@@ -3608,6 +3615,7 @@ speedtest-od-894b7c886-fgt6v    1/1     Running   0          23s
 
 [INFO] http://localhost:30443/
 </code></pre>
+<p>You can open a web browser and go to the http://localhost:30443/</p>
 
 
 
