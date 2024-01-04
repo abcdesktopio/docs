@@ -29,11 +29,9 @@ Server Version: v1.28.2
 
 #### Install OpenSSL
 
-Using your browser, look for `openssl` for Microsoft Windows.  
+abcdesktop install process creates RSA keys using openssl, you need to install `openssl` command line.
 
-![search openssl](./img/search-openssl.PNG)
-
-Download the "Win64 OpenSSL v3.2.0 Light" executable file.
+Download the [OpenSSL v3.2.0 Light](https://www.openssl.org/source/) executable file.
 
 ![dl openssl](./img/dl-openssl.PNG)
 
@@ -57,7 +55,7 @@ Click on `Edit` and add a new `Path`, you have to paste the absolute path to the
 
 ![add env variable](./img/add-env-variable.PNG)
 
-Now OpenSSL should be correctly installed, you can check it by opening a new PowerShell and run `openssl version`
+Now `OpenSSL` should be correctly installed, you can check it by opening a new PowerShell and run `openssl version`
 
 ![check openssl](./img/checking-openssl-correctly-installed.PNG)
 
@@ -97,7 +95,11 @@ writing RSA key
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
 [INFO] kubectl create -f poduser.yaml
-[OK] kubectl create -f poduser.yaml                                                                                     [INFO] waiting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready                                             [OK] pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met                                                   [INFO] deleting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready                                            [OK] pod "anonymous-74bea267-8197-4b1d-acff-019b24e778c5" deleted
+[OK] kubectl create -f poduser.yaml
+[INFO] waiting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready
+[OK] pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
+[INFO] deleting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready
+[OK] pod "anonymous-74bea267-8197-4b1d-acff-019b24e778c5" deleted
 role.rbac.authorization.k8s.io/pyos-role created
 rolebinding.rbac.authorization.k8s.io/pyos-rbac created
 serviceaccount/pyos-serviceaccount created
@@ -200,7 +202,11 @@ writing RSA key
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n superdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
 [INFO] kubectl create -f poduser.yaml
-[OK] kubectl create -f poduser.yaml                                                                                     [INFO] waiting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready                                             [OK] pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met                                                   [INFO] deleting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready                                            [OK] pod "anonymous-74bea267-8197-4b1d-acff-019b24e778c5" deleted
+[OK] kubectl create -f poduser.yaml
+[INFO] waiting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready
+[OK] pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
+[INFO] deleting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready
+[OK] pod "anonymous-74bea267-8197-4b1d-acff-019b24e778c5" deleted
 role.rbac.authorization.k8s.io/pyos-role created
 rolebinding.rbac.authorization.k8s.io/pyos-rbac created
 serviceaccount/pyos-serviceaccount created
@@ -255,3 +261,5 @@ speedtest-od-894b7c886-fgt6v    1/1     Running   0          23s
 
 [INFO] http://localhost:30443/
 ```
+
+You can open a web browser and go to the http://localhost:30443/
