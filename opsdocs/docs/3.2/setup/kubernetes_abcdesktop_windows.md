@@ -64,7 +64,7 @@ Now OpenSSL should be correctly installed, you can check it by opening a new Pow
 
 Download and extract the latest release automatically (Windows):
 ```PowerShell
-$script = curl https://raw.githubusercontent.com/Matt307082/powershell-scripts/master/install-3.2.ps1 
+$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.2.ps1 
 
 Invoke-Expression $($script.Content)
 ```
