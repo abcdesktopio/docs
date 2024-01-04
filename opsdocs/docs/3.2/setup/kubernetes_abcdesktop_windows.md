@@ -47,7 +47,7 @@ Once installed, go to "Edit the system environement variables", and click on "En
 
 ![go to edit env variables](./img/goto-edit-env-variable.PNG)
 
-Go to the system variables section and search for "Path" 
+Go to the system variables section and search for `Path` 
 
 ![system variables](./img/system-variables.PNG)
 
@@ -55,7 +55,11 @@ Click on `Edit` and add a new `Path`, you have to paste the absolute path to the
 
 ![add env variable](./img/add-env-variable.PNG)
 
-Now `OpenSSL` should be correctly installed, you can check it by opening a new PowerShell and run `openssl version`
+Now `OpenSSL` should be correctly installed, you can check it by opening a new PowerShell and run the command 
+
+```
+openssl version
+```
 
 ![check openssl](./img/checking-openssl-correctly-installed.PNG)
 
