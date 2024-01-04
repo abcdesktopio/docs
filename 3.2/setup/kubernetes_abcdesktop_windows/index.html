@@ -3403,32 +3403,32 @@
 <h3 id="prerequisites">Prerequisites</h3>
 <h4 id="-docker-desktop">- Docker Desktop</h4>
 <p>Open your browser and search for docker desktop windows.  </p>
-<p><img alt="search docker desktop" src="./img/search-docker-desktop.PNG" /></p>
+<p><img alt="search docker desktop" src="../img/search-docker-desktop.PNG" /></p>
 <p>Then click on the "Docker Desktop for Windows" button in order to download the setup file.  </p>
-<p><img alt="dl docker desktop" src="./img/dl-docker-desktop.PNG" /></p>
+<p><img alt="dl docker desktop" src="../img/dl-docker-desktop.PNG" /></p>
 <p>Now follow the setup process. Once done open Docker Desktop and wait for the docker engine to start.</p>
-<p><img alt="starting docker desktop" src="./img/starting-docker-desktop.PNG" /></p>
+<p><img alt="starting docker desktop" src="../img/starting-docker-desktop.PNG" /></p>
 <p>Once started go to the Settings -&gt; Kubernetes and click on Enable Kubernetes, starting a cluster may take some time.</p>
-<p><img alt="enable kubernetes" src="./img/enable-kubernetes.PNG" /></p>
+<p><img alt="enable kubernetes" src="../img/enable-kubernetes.PNG" /></p>
 <p>Now your cluster should be correctly initialized, you can check it by opening a new PowerShell and run the command <code>kubectl version</code></p>
-<p><img alt="check kubectl" src="./img/checking-kubernetes-start.PNG" /></p>
+<p><img alt="check kubectl" src="../img/checking-kubernetes-start.PNG" /></p>
 <h4 id="-openssl">- OpenSSL</h4>
 <p>Open your browser and search for openssl windows.  </p>
-<p><img alt="search openssl" src="./img/search-openssl.PNG" /></p>
+<p><img alt="search openssl" src="../img/search-openssl.PNG" /></p>
 <p>Download the "Win64 OpenSSL v3.2.0 Light" executable file.</p>
-<p><img alt="dl openssl" src="./img/dl-openssl.PNG" /></p>
+<p><img alt="dl openssl" src="../img/dl-openssl.PNG" /></p>
 <p>Then follow the install process.</p>
-<p><img alt="follow install step1" src="./img/follow-install-step1.PNG" /></p>
+<p><img alt="follow install step1" src="../img/follow-install-step1.PNG" /></p>
 <p>Make sure to keep in mind the path where OpenSSL will be installed.</p>
-<p><img alt="follow install step2" src="./img/follow-install-step2.PNG" /></p>
+<p><img alt="follow install step2" src="../img/follow-install-step2.PNG" /></p>
 <p>Once installed, go to "Edit the system environement variables", and click on "Environement variables".</p>
-<p><img alt="go to edit env variables" src="./img/goto-edit-env-variable.PNG" /></p>
+<p><img alt="go to edit env variables" src="../img/goto-edit-env-variable.PNG" /></p>
 <p>Go to the system variables section and search for "Path" </p>
-<p><img alt="system variables" src="./img/system-variables.PNG" /></p>
+<p><img alt="system variables" src="../img/system-variables.PNG" /></p>
 <p>Click on Edit and add a new Path, you have to paste the absolute path to the bin folder of OpenSSL.</p>
-<p><img alt="add env variable" src="./img/add-env-variable.PNG" /></p>
+<p><img alt="add env variable" src="../img/add-env-variable.PNG" /></p>
 <p>Now OpenSSL should be correctly installed, you can check it by opening a new PowerShell and run <code>openssl version</code></p>
-<p><img alt="check openssl" src="./img/checking-openssl-correctly-installed.PNG" /></p>
+<p><img alt="check openssl" src="../img/checking-openssl-correctly-installed.PNG" /></p>
 <h3 id="run-the-script">Run the script</h3>
 <p>Download and extract the latest release automatically (Windows):</p>
 <pre><code class="language-PowerShell">$script = curl https://raw.githubusercontent.com/Matt307082/powershell-scripts/master/install-3.2.ps1 
