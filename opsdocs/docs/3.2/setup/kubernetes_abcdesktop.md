@@ -24,6 +24,10 @@ You need to have a
 
 You can run the **Quick installation process** or choose the **Manually installation step by step**
 
+## Quick installation (Windows)
+
+If you are using a Windows operating system please click on the link below  
+[Quick install for windows](./kubernetes_abcdesktop_windows.md)
 
 ## Quick installation (Linux or macOS)
 
