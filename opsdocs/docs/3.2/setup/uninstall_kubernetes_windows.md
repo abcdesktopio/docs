@@ -6,7 +6,7 @@
 Download and extract the uninstall PowerShell script (Windows):
 
 ```PowerShell
-$script = curl https://raw.githubusercontent.com/Matt307082/powershell-scripts/master/uninstall-3.2.ps1 
+$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.2.ps1 
 
 Invoke-Expression $($script.Content)
 ```
