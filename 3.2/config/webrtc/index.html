@@ -3552,9 +3552,11 @@ webrtc.coturn: {
 <p><img alt="webrtc no sound" src="../img/webrtc_login_fry_no_sound.png" /></p>
 <p>The sound is not yet available</p>
 <h3 id="step-2-sound-becomes-available">Step 2, sound becomes available</h3>
-<p>Few seconds later, sound become available.</p>
+<p>Few seconds later, sound becomes available.</p>
 <p><img alt="webrtc sound" src="../img/webrtc_login_fry_sound.png" /></p>
-<p>The sound is available. The web browser has an access to the microphone.</p>
+<p>The sound is available. The web browser has an access to local sound devices.
+The web browser has an access to local speaker.
+The web browser can get an access to local microphone only if the user allows the access.</p>
 <h4 id="play-sound-with-paplay">Play sound with paplay</h4>
 <p>Open a <code>Terminal Web Shell</code> application and run the command inside the web shell</p>
 <pre><code>paplay /usr/share/sounds/alsa/Rear_Center.wav 
@@ -3565,7 +3567,7 @@ webrtc.coturn: {
 <p>Open a <code>Terminal Web Shell</code> application and run the command inside the web shell</p>
 <pre><code>pavumeter --record
 </code></pre>
-<p>You should see cursor changes if you talk with your abcdesktop</p>
+<p>You should see cursor changes if you talk to your abcdesktop</p>
 <p><img alt="webrtc microphone" src="../img/webrtc_microphone.png" /></p>
 <h3 id="step-3-look-at-the-web-browsers-console-log">Step 3, look at the web browser's console log</h3>
 <p>Open the web browser's console log to read the WebRTC messages</p>
