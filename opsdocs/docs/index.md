@@ -42,10 +42,10 @@ You can watch the youtube video sample. This video describes the Quick installat
 
 <iframe width="640" height="480" src="https://www.youtube.com/embed/KpjG4ksoGNI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
 
-Download and extract the latest release automatically (Linux or macOS) or read the step by step installation process [abcdesktop for kubernetes](/3.0/setup/kubernetes_abcdesktop)
+Download and extract the latest release automatically (Linux or macOS) or read the step by step installation process [abcdesktop for kubernetes](/3.2/setup/kubernetes_abcdesktop)
 
 ```
-curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.0.sh | sh -
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.2.sh | sh -
 ```
 
 
@@ -74,7 +74,7 @@ If you’re using Abcdesktop and aren’t on this list, please submit a pull req
 - Application update, run latest image on your private registry 
 - Accounting and reporting (Graylog, Prometheus Grafana)
 - Clipboard syncing with https  
-- Sound support with [Janus WebRTC Gateway](https://janus.conf.meetecho.com/) and RTP stream
+- Sound support with WebRTC signalling and gstreamer webrtcbin
 - Nvidia GPU support for applications 
 - Support RFC 2307 to use LDAP as a Network Information Service
 
@@ -115,11 +115,13 @@ abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 1
 
 ## Release history
 
-| Release  | Status |  Date  | Requirements               | Applications | Documentation  |
-|----------|--------|--------|----------------------------| -------------|----------------| 
-|  1.1     | deprecated |  09/15/2021   | dockerd for personnal use and kubernetes | An application is a docker container | removed |
-|  2.9     | deprecated | 29/08/2022      | require kubernetes < 1.24 and dockerd as container engine  | An application is a pod or a docker container | removed | 
-|  3.0     | stable  | 09/03/2022 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container |  Release | 
+| Release  | Status     | Date       | Requirements               | Applications | Documentation  |
+|----------|------------|------------|----------------------------|--------------|----------------| 
+|  1.1     | deprecated | 09/15/2021 | dockerd for personnal use and kubernetes | An application is a docker container | removed |
+|  2.9     | deprecated | 29/08/2022 | require kubernetes < 1.24 and dockerd as container engine  | An application is a pod or a docker container | removed | 
+|  3.0     | deprecated | 09/03/2022 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container |  Release | 
+|  3.1     | stable     | 10/03/2023 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, change PVC and PV support | Release | 
+|  3.2     | stable     | 01/02/2024 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, WebRTC sound support |  Release | 
 
 ## Github repositories ![Github stars](https://img.shields.io/github/stars/abcdesktopio?style=social)
 
