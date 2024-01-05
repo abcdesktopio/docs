@@ -21,12 +21,14 @@ You need to have a
 - `kubectl` or `microk8s` command-line tool must be configured to communicate with your cluster. 
 - `openssl` and `curl` command line must be installed too.
 
-
 You can run the **Quick installation process** or choose the **Manually installation step by step**
 
-## Quick installation (Windows)
+> Linux operating system is recommanded to run abcdesktop.io.
 
-If you are using a Windows operating system please click on the link below  
+
+## Quick installation (Microsoft Windows)
+
+If you are using a Microsoft Windows operating system please follow the dedicated link below  
 [Quick install for windows](./kubernetes_abcdesktop_windows.md)
 
 ## Quick installation (Linux or macOS)
@@ -40,7 +42,6 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/ins
 ```
 
 You can read on stdout 
-
 
 ```
 [INFO] abcdesktop install script namespace=abcdesktop
@@ -153,7 +154,6 @@ speedtest-od-7f5484966f-jsb2m   1/1     Running   0          39s
 ```
 
 
-
 The command above downloads the latest release (numerically) of abcdesktop.io. 
 The quick installation process runs the all commands step by step:
 
@@ -167,7 +167,7 @@ The quick installation process runs the all commands step by step:
 
 ## Change the default namespace
 
-You may need to replace the default namespace `abcdesktop` by your own. The `install-3.2.sh` bash script allow you to set the new namespace as an option.
+You may need to replace the default namespace `abcdesktop` by your own during the install process. The `install-3.2.sh` bash script allow you to set the new namespace as an option.
 
 ```bash
 wget https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.2.sh
