@@ -48,23 +48,11 @@ You can read on stdout
 [OK] kubectl version
 [OK] openssl version
 [OK] kubectl create namespace abcdesktop
-Generating RSA private key, 1024 bit long modulus
-..........+++++
-...+++++
-e is 65537 (0x10001)
 writing RSA key
 writing RSA key
 [OK] abcdesktop_jwt_desktop_payload keys create
-Generating RSA private key, 1024 bit long modulus
-...+++++
-..................................+++++
-e is 65537 (0x10001)
 writing RSA key
 [OK] abcdesktop_jwt_desktop_signing keys create
-Generating RSA private key, 1024 bit long modulus
-.....+++++
-...............................................+++++
-e is 65537 (0x10001)
 writing RSA key
 [OK] abcdesktop_jwt_user_signing keys create
 [OK] create secret generic abcdesktopjwtdesktoppayload
