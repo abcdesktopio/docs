@@ -6,7 +6,7 @@
 * 15 GB of free space to store sample applications ( gimp, libreoffice writer, libreoffice calc, libreoffice math, libreoffice impress, firefox ) and core image services
 * a kubernetes cluster ready to run **greater or equal** to 1.24
 
-### Release 3.0 [ stable ]
+### Release 3.X [ stable ]
 * Kubernetes release **greater or equal** to 1.24
 * No depend to dockerd, an application runs as pod or as an [ephermeral container](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
 * Support storageClass and persistent volume claims
