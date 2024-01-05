@@ -3621,8 +3621,8 @@
 <p>You can watch the youtube video sample. This video describes the Quick installation process.</p>
 <iframe width="640" height="480" src="https://www.youtube.com/embed/KpjG4ksoGNI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
 
-<p>Download and extract the latest release automatically (Linux or macOS) or read the step by step installation process <a href="/3.0/setup/kubernetes_abcdesktop">abcdesktop for kubernetes</a></p>
-<pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.0.sh | sh -
+<p>Download and extract the latest release automatically (Linux or macOS) or read the step by step installation process <a href="/3.2/setup/kubernetes_abcdesktop">abcdesktop for kubernetes</a></p>
+<pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.2.sh | sh -
 </code></pre>
 <h2 id="adopters">Adopters</h2>
 <p>Here are some of the organizations we know are using abcdesktop.io.
@@ -3664,7 +3664,7 @@ If you’re using Abcdesktop and aren’t on this list, please submit a pull req
 <li>Application update, run latest image on your private registry </li>
 <li>Accounting and reporting (Graylog, Prometheus Grafana)</li>
 <li>Clipboard syncing with https  </li>
-<li>Sound support with <a href="https://janus.conf.meetecho.com/">Janus WebRTC Gateway</a> and RTP stream</li>
+<li>Sound support with WebRTC signalling and gstreamer webrtcbin</li>
 <li>Nvidia GPU support for applications </li>
 <li>Support RFC 2307 to use LDAP as a Network Information Service</li>
 </ul>
@@ -3748,10 +3748,26 @@ If you’re using Abcdesktop and aren’t on this list, please submit a pull req
 </tr>
 <tr>
 <td>3.0</td>
-<td>stable</td>
+<td>deprecated</td>
 <td>09/03/2022</td>
 <td>kubernetes &gt;= 1.24, all container engine</td>
 <td>An application is a pod or an ephemeral container</td>
+<td>Release</td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>stable</td>
+<td>10/03/2023</td>
+<td>kubernetes &gt;= 1.24, all container engine</td>
+<td>An application is a pod or an ephemeral container, change PVC and PV support</td>
+<td>Release</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>stable</td>
+<td>01/02/2024</td>
+<td>kubernetes &gt;= 1.24, all container engine</td>
+<td>An application is a pod or an ephemeral container, WebRTC sound support</td>
 <td>Release</td>
 </tr>
 </tbody>
