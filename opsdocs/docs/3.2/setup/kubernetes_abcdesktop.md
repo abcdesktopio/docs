@@ -61,11 +61,8 @@ writing RSA key
 [OK] label secret abcdesktopjwtdesktoppayload
 [OK] label secret abcdesktopjwtdesktopsigning
 [OK] label secret abcdesktopjwtusersigning
-##################################################################################################################################################################################################### 100.0%
 [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.2.yaml
-##################################################################################################################################################################################################### 100.0%
 [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.2
-##################################################################################################################################################################################################### 100.0%
 [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser-3.2.yaml
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
