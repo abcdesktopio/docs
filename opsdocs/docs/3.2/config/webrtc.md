@@ -205,13 +205,13 @@ The sound is not yet available
 
 ### Step 2, sound becomes available
 
-Few seconds later, sound become available.
+Few seconds later, sound becomes available.
 
 ![webrtc sound](img/webrtc_login_fry_sound.png)
 
-The sound is available. The web browser has an access to the microphone.
-
-
+The sound is available. The web browser has an access to local sound devices.
+The web browser has an access to local speaker.
+The web browser can get an access to local microphone only if the user allows the access.
 
 #### Play sound with paplay
 
@@ -229,15 +229,13 @@ You should heard `Rear Center` on your local sound device
 
 Open a `Terminal Web Shell` application and run the command inside the web shell
 
-
 ```
 pavumeter --record
 ```
 
-You should see cursor changes if you talk with your abcdesktop
+You should see cursor changes if you talk to your abcdesktop
 
 ![webrtc microphone](img/webrtc_microphone.png)
-
 
 
  
