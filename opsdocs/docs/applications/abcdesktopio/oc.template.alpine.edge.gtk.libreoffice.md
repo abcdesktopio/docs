@@ -28,6 +28,8 @@ FROM ${BASE_IMAGE}:${TAG}
 
 # add libreoffice
 RUN apk add --no-cache --update  \
+   openjdk21 \
+   mesa-vulkan-swrast \  
    faenza-icon-theme-libreoffice \
    libreoffice 			 \
    libreoffice-gtk
@@ -36,4 +38,4 @@ RUN apk add --no-cache --update  \
 
 
 
-> file oc.template.alpine.edge.gtk.libreoffice.md is created at Thu Dec 28 2023 16:11:13 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.edge.gtk.libreoffice.md is created at Wed Jan 31 2024 13:49:16 GMT+0000 (Coordinated Universal Time) by make-docs.js

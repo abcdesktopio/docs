@@ -180,4 +180,4 @@ COPY --from=abcdesktopio/oc.themes /usr/share/themes /usr/share/themes
 
 
 
-> file oc.template.ubuntu.gtk.20.04.md is created at Thu Dec 28 2023 16:01:44 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.gtk.20.04.md is created at Wed Jan 31 2024 13:44:33 GMT+0000 (Coordinated Universal Time) by make-docs.js
