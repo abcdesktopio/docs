@@ -44,7 +44,7 @@ Update your `ui.json` file.  `ui.json` is located in `webModules/transpile/confi
 
 
 ```bash
-# cd webModules/transpile/config
+cd webModules/transpile/config
 total 24
 drwxr-xr-x   5 deva  wheel   160 Dec  7 15:17 .
 drwxr-xr-x  11 deva  wheel   352 Dec  7 15:17 ..
