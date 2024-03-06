@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.9">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.f2e4d321.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e359304.min.css">
       
       
 
@@ -3729,7 +3729,7 @@
 <h3 id="clone-default-webmodules">Clone default <code>webModules</code></h3>
 <pre><code class="language-bash">mkdir build
 cd build/
-~/build$ git clone https://github.com/abcdesktopio/webModules.git
+~/build$ git clone -b 3.2  https://github.com/abcdesktopio/webModules.git
 Cloning into 'webModules'...
 remote: Enumerating objects: 4971, done.
 remote: Counting objects: 100% (1443/1443), done.
@@ -3939,27 +3939,34 @@ drwxr-xr-x  11 deva  wheel   352 Dec  7 15:17 ..
 </code></pre>
 <h4 id="write-your-dockerfile-to-build-the-new-image">Write your <code>Dockerfile</code> to build the new image</h4>
 <p>Dockerfile </p>
-<pre><code class="language-Dockerfile">FROM abcdesktopio/oc.nginx:builder as builder
+<pre><code class="language-Dockerfile">#
+# --- update oc.nginx:builder image start here ---
+# use the abcdesktopio/oc.nginx:builder
+# oc.nginx:builder contains Makefile and tools like nodejs, lessc need to update the ui.json file
+# oc.nginx:builder source https://raw.githubusercontent.com/abcdesktopio/oc.nginx/main/Dockerfile.builder          
 
-# copy data files
-COPY --from=abcdesktopio/oc.nginx:3.0 var/webModules /var/webModules
-# copy updated file ui.json 
+#######
+FROM abcdesktopio/oc.nginx:builder as builder
+# copy data files /var/webModules
+COPY --from=abcdesktopio/oc.nginx:main var/webModules /var/webModules
+# copy updated file ui.json with your own custom values
 COPY ui.json /var/webModules/transpile/config/
-# run makefile 
-RUN cd /var/webModules &amp;&amp; make prod
 
-# --- START Build image ---
-FROM abcdesktopio/oc.nginx:3.0
+# run makefile
+# make dev (for dev)
+# make prod (for prod)
+RUN cd /var/webModules &amp;&amp; make dev
+# make version to update the version number from .git commit
+RUN cd /var/webModules &amp;&amp; ./mkversion.sh
 
-# COPY generated web site from builder container
+#######
+#
+# --- oc.nginx image start here ---
+#
+FROM abcdesktopio/oc.nginx:3.2
+# COPY updated files from builder container to oc.nginx
 COPY --from=builder var/webModules /var/webModules
 RUN cat /var/webModules/index.html
-
-LABEL name=&quot;frontend acmedesktop base image&quot; \
-      maintainer=&quot;acmedesktop&quot; \
-      version=&quot;3.0&quot;
-
-# end of nginx update
 </code></pre>
 <h4 id="docker-build">Docker build</h4>
 <p>Run the docker build command to build the new <code>oc.nginx:acme</code> image</p>
@@ -4060,12 +4067,12 @@ docker.io/library/oc.nginx:acme                                                 
 <pre><code> containers:
       - name: nginx
         imagePullPolicy: Always
-        image: abcdesktopio/oc.nginx:3.0
+        image: abcdesktopio/oc.nginx:3.2
 </code></pre>
 <p>Replace :</p>
 <ul>
 <li><code>imagePullPolicy: Always</code> by <code>imagePullPolicy: Never</code></li>
-<li><code>image: abcdesktopio/oc.nginx:3.0</code> by <code>image: oc.nginx:acme</code></li>
+<li><code>image: abcdesktopio/oc.nginx:3.2</code> by <code>image: oc.nginx:acme</code></li>
 </ul>
 <pre><code> containers:
       - name: nginx
@@ -4155,7 +4162,7 @@ service/openldap unchanged
     <script id="__config" type="application/json">{"base": "../../..", "features": ["content.action.edit", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
       
     
   </body>
