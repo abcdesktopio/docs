@@ -258,7 +258,7 @@ Dockerfile
 #######
 FROM abcdesktopio/oc.nginx:builder as builder
 # copy data files /var/webModules
-COPY --from=abcdesktopio/oc.nginx:main var/webModules /var/webModules
+COPY --from=abcdesktopio/oc.nginx:3.2 var/webModules /var/webModules
 # copy updated file ui.json with your own custom values
 COPY ui.json /var/webModules/transpile/config/
 
