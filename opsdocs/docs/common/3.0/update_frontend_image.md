@@ -24,7 +24,7 @@
 ```bash
 mkdir build
 cd build/
-~/build$ git clone https://github.com/abcdesktopio/webModules.git
+~/build$ git clone -b 3.2  https://github.com/abcdesktopio/webModules.git
 Cloning into 'webModules'...
 remote: Enumerating objects: 4971, done.
 remote: Counting objects: 100% (1443/1443), done.
@@ -249,27 +249,34 @@ $ cp ui.json ~/build
 Dockerfile 
 
 ```Dockerfile
+#
+# --- update oc.nginx:builder image start here ---
+# use the abcdesktopio/oc.nginx:builder
+# oc.nginx:builder contains Makefile and tools like nodejs, lessc need to update the ui.json file
+# oc.nginx:builder source https://raw.githubusercontent.com/abcdesktopio/oc.nginx/main/Dockerfile.builder          
+
+#######
 FROM abcdesktopio/oc.nginx:builder as builder
-
-# copy data files
-COPY --from=abcdesktopio/oc.nginx:3.0 var/webModules /var/webModules
-# copy updated file ui.json 
+# copy data files /var/webModules
+COPY --from=abcdesktopio/oc.nginx:main var/webModules /var/webModules
+# copy updated file ui.json with your own custom values
 COPY ui.json /var/webModules/transpile/config/
-# run makefile 
-RUN cd /var/webModules && make prod
 
-# --- START Build image ---
-FROM abcdesktopio/oc.nginx:3.0
+# run makefile
+# make dev (for dev)
+# make prod (for prod)
+RUN cd /var/webModules && make dev
+# make version to update the version number from .git commit
+RUN cd /var/webModules && ./mkversion.sh
 
-# COPY generated web site from builder container
+#######
+#
+# --- oc.nginx image start here ---
+#
+FROM abcdesktopio/oc.nginx:3.2
+# COPY updated files from builder container to oc.nginx
 COPY --from=builder var/webModules /var/webModules
 RUN cat /var/webModules/index.html
-
-LABEL name="frontend acmedesktop base image" \
-      maintainer="acmedesktop" \
-      version="3.0"
-      
-# end of nginx update
 ```
 
 
@@ -396,13 +403,13 @@ Update your own `abcdesktop.yaml` file to replace the default image `abcdesktopi
  containers:
       - name: nginx
         imagePullPolicy: Always
-        image: abcdesktopio/oc.nginx:3.0
+        image: abcdesktopio/oc.nginx:3.2
 ```
 
 Replace :
 
 - `imagePullPolicy: Always` by `imagePullPolicy: Never`
-- `image: abcdesktopio/oc.nginx:3.0` by `image: oc.nginx:acme`
+- `image: abcdesktopio/oc.nginx:3.2` by `image: oc.nginx:acme`
 
 ```
  containers:
