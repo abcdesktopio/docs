@@ -14,30 +14,6 @@
 
 ## Update oc.nginx image
 
-
-* Change logo and website name
-* Rename the project name
- 
-
-### Clone default `webModules`  
-
-```bash
-mkdir build
-cd build/
-~/build$ git clone -b 3.2  https://github.com/abcdesktopio/webModules.git
-Cloning into 'webModules'...
-remote: Enumerating objects: 4971, done.
-remote: Counting objects: 100% (1443/1443), done.
-remote: Compressing objects: 100% (638/638), done.
-remote: Total 4971 (delta 900), reused 1324 (delta 794), pack-reused 3528
-Receiving objects: 100% (4971/4971), 5.87 MiB | 7.64 MiB/s, done.
-Resolving deltas: 100% (2701/2701), done.
-~/build$
-```
-
-
-## Locate project and ui files 
-
 ### Download ui.json file
 
 Download the `ui.json` file.  `ui.json` is located in `webModules/transpile/config` directory of `webModules` abcdesktop's repository.
