@@ -38,19 +38,15 @@ Resolving deltas: 100% (2701/2701), done.
 
 ## Locate project and ui files 
 
-### Update ui.json file
+### Download ui.json file
 
-Update your `ui.json` file.  `ui.json` is located in `webModules/transpile/config` directory.
+Download the `ui.json` file.  `ui.json` is located in `webModules/transpile/config` directory of `webModules` abcdesktop's repository.
 
 
 ```bash
-cd webModules/transpile/config
-total 24
-drwxr-xr-x   5 deva  wheel   160 Dec  7 15:17 .
-drwxr-xr-x  11 deva  wheel   352 Dec  7 15:17 ..
--rw-r--r--   1 deva  wheel    34 Dec  7 15:17 .cache.json
--rw-r--r--   1 deva  wheel  1532 Dec  7 15:17 modules.json
--rw-r--r--   1 deva  wheel  1480 Dec  7 15:17 ui.json
+mkdir build
+cd build
+wget https://raw.githubusercontent.com/abcdesktopio/webModules/3.2/transpile/config/ui.json
 ```
 
 `ui.json` is a json dictionary file
@@ -236,13 +232,6 @@ Example
 
 
 ### Create a new `Dockerfile` to build changes
-
-
-#### Copy ui.json file to your build directory
-
-```bash
-$ cp ui.json ~/build
-```
 
 #### Write your `Dockerfile` to build the new image 
 
