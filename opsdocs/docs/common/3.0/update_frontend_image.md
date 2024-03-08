@@ -3,7 +3,7 @@
 
 ## Requirements 
 
-* `ctr` and `docker` package installed 
+* `docker` package installed 
 
 
 ## Goals
