@@ -3168,13 +3168,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-ocnginx-image" class="md-nav__link">
+  <a href="#configure-odconfig-to-use-the-new-color" class="md-nav__link">
     <span class="md-ellipsis">
-      Update oc.nginx image
+      Configure od.config to use the new color
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Update oc.nginx image">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-new-image-for-abcdesktop-ocnginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create new image for abcdesktop oc.nginx
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create new image for abcdesktop oc.nginx">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3524,13 +3533,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-ocnginx-image" class="md-nav__link">
+  <a href="#configure-odconfig-to-use-the-new-color" class="md-nav__link">
     <span class="md-ellipsis">
-      Update oc.nginx image
+      Configure od.config to use the new color
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Update oc.nginx image">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-new-image-for-abcdesktop-ocnginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create new image for abcdesktop oc.nginx
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create new image for abcdesktop oc.nginx">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3646,6 +3664,7 @@
 
 
 <h1 id="update-and-custom-frontend-web-page">Update and custom frontend web page</h1>
+<p>abcdesktop uses a front HTML web site and X11 Linux application. So, to get a new graphic design, you have to define it twice in HTML (CSS) files and in X11 config.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li><code>docker</code> package installed </li>
@@ -3655,7 +3674,22 @@
 <li>Update abcdesktop default frontend web page to use your own.</li>
 <li>Create new image for abcdesktop oc.nginx</li>
 </ul>
-<h2 id="update-ocnginx-image">Update oc.nginx image</h2>
+<h2 id="configure-odconfig-to-use-the-new-color">Configure od.config to use the new color</h2>
+<p>In the od.config, add the env var <code>ABCDESKTOP_BG_COLOR</code></p>
+<p>desktop.envlocal :  {
+  'X11LISTEN':'tcp', 
+  'WEBSOCKIFY_HEARTBEAT':'30',
+  'TURN_PROTOCOL': 'tcp',
+  'ABCDESKTOP_BG_COLOR': ‘#18974c’ }</p>
+<p>Then update the config map <code>abcdesktop-config</code> and restart deployment <code>pyos-od</code> </p>
+<pre><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+kubectl rollout restart deployment pyos-od -n abcdesktop
+</code></pre>
+<p>You should read on stdout</p>
+<pre><code>configmap/abcdesktop-config replaced
+deployment.apps/pyos-od restarted
+</code></pre>
+<h2 id="create-new-image-for-abcdesktop-ocnginx">Create new image for abcdesktop oc.nginx</h2>
 <h3 id="download-uijson-file">Download ui.json file</h3>
 <p>Download the <code>ui.json</code> file.  <code>ui.json</code> is located in <code>webModules/transpile/config</code> directory of <code>webModules</code> abcdesktop's repository.</p>
 <pre><code class="language-bash">mkdir build
@@ -3980,12 +4014,10 @@ docker.io/library/oc.nginx:acme                                                 
 </code></pre>
 <p>Replace :</p>
 <ul>
-<li><code>imagePullPolicy: Always</code> by <code>imagePullPolicy: Never</code></li>
 <li><code>image: abcdesktopio/oc.nginx:3.2</code> by <code>image: oc.nginx:acme</code></li>
 </ul>
 <pre><code> containers:
       - name: nginx
-        imagePullPolicy: Never
         image: oc.nginx:acme
 </code></pre>
 <p>Apply the new <code>abcdesktop.yaml</code> file</p>
