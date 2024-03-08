@@ -414,18 +414,9 @@ deployment.apps/openldap-od unchanged
 service/openldap unchanged
 ```
 
-```
-kubectl delete pod -l run=nginx-od -n abcdesktop
-```
+Start you web browser. You can read the new project name at the home page. After login you get the new color.
 
-Start you web browser. You can read the new project name at the home page.
+![abcdesktop acmedesktop](img/abcdesktop-look-cbadesktop.png)
 
-![abcdesktop acmedesktop](img/acmedesktop.png)
-
-
-The new login animation paints `acme`desktop
-
-![abcdesktop animation acmedesktop](img/acmeanimationdesktop.png)
-
-You have updated the html web page for abcdesktop release 3.0
+You have updated the html web page for abcdesktop release 3.X
 
