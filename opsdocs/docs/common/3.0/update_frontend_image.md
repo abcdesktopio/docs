@@ -1,6 +1,8 @@
 # Update and custom frontend web page
 
 
+abcdesktop uses a front HTML web site and X11 Linux application. So, to get a new graphic design, you have to define it twice in HTML (CSS) files and in X11 config.
+
 ## Requirements 
 
 * `docker` package installed 
@@ -11,8 +13,32 @@
 * Update abcdesktop default frontend web page to use your own.
 * Create new image for abcdesktop oc.nginx
 
+## Configure od.config to use the new color
 
-## Update oc.nginx image
+
+In the od.config, add the env var `ABCDESKTOP_BG_COLOR`
+
+desktop.envlocal :  {
+  'X11LISTEN':'tcp', 
+  'WEBSOCKIFY_HEARTBEAT':'30',
+  'TURN_PROTOCOL': 'tcp',
+  'ABCDESKTOP_BG_COLOR': ‘#18974c’ }
+
+Then update the config map `abcdesktop-config` and restart deployment `pyos-od` 
+
+```
+kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+kubectl rollout restart deployment pyos-od -n abcdesktop
+```
+
+You should read on stdout
+
+```
+configmap/abcdesktop-config replaced
+deployment.apps/pyos-od restarted
+```
+
+## Create new image for abcdesktop oc.nginx
 
 ### Download ui.json file
 
@@ -373,13 +399,11 @@ Update your own `abcdesktop.yaml` file to replace the default image `abcdesktopi
 
 Replace :
 
-- `imagePullPolicy: Always` by `imagePullPolicy: Never`
 - `image: abcdesktopio/oc.nginx:3.2` by `image: oc.nginx:acme`
 
 ```
  containers:
       - name: nginx
-        imagePullPolicy: Never
         image: oc.nginx:acme
 ```
 
