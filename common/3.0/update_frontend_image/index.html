@@ -3676,11 +3676,12 @@
 </ul>
 <h2 id="configure-odconfig-to-use-the-new-color">Configure od.config to use the new color</h2>
 <p>In the od.config, add the env var <code>ABCDESKTOP_BG_COLOR</code></p>
-<p>desktop.envlocal :  {
+<pre><code>desktop.envlocal :  {
   'X11LISTEN':'tcp', 
   'WEBSOCKIFY_HEARTBEAT':'30',
   'TURN_PROTOCOL': 'tcp',
-  'ABCDESKTOP_BG_COLOR': ‘#18974c’ }</p>
+  'ABCDESKTOP_BG_COLOR': ‘#18974c’ }
+</code></pre>
 <p>Then update the config map <code>abcdesktop-config</code> and restart deployment <code>pyos-od</code> </p>
 <pre><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deployment pyos-od -n abcdesktop
