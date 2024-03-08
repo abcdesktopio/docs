@@ -144,7 +144,7 @@ Example
     },
     {
       "name": "@tertiary",
-      "value": "#6EC6F0"
+      "value": "#18974C"
     },
     {
       "name": "@quaternary",
