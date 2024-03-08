@@ -154,6 +154,13 @@ Change for example the `name` of the project, and `projectNameSplitedHTML` to
   "projectNameSplitedHTML": "<span id='projectNameSplitedStagea'>A</span><span id='projectNameSplitedStageb'>c</span><span id='projectNameSplitedStagec'>me</span><span id='projectNameSplitedStaged'>desktop</span>",
 ```
 
+An change the colors `info` `tertiary` 
+
+| entry name     | new color value     | 
+|----------------|---------------------|
+| @quaternary    | #18974c             |
+| @info          | #18974c             |
+
 
 Example
 
@@ -176,7 +183,7 @@ Example
     },
     {
       "name": "@quaternary",
-      "value": "#1E1E1E"
+      "value": "#18974c"
     },
     {
       "name": "@svgColor",
@@ -192,7 +199,7 @@ Example
     },
     {
       "name": "@info",
-      "value": "#527EDB"
+      "value": "#18974c"
     },
     {
       "name": "@warning",
