@@ -18,11 +18,13 @@ abcdesktop uses a front HTML web site and X11 Linux application. So, to get a ne
 
 In the od.config, add the env var `ABCDESKTOP_BG_COLOR`
 
+```
 desktop.envlocal :  {
   'X11LISTEN':'tcp', 
   'WEBSOCKIFY_HEARTBEAT':'30',
   'TURN_PROTOCOL': 'tcp',
   'ABCDESKTOP_BG_COLOR': ‘#18974c’ }
+```
 
 Then update the config map `abcdesktop-config` and restart deployment `pyos-od` 
 
