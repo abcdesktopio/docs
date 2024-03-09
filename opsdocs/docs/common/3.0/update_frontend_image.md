@@ -158,7 +158,7 @@ Change for example the `name` of the project, and `projectNameSplitedHTML` to
   "projectNameSplitedHTML": "<span id='projectNameSplitedStagea'>A</span><span id='projectNameSplitedStageb'>c</span><span id='projectNameSplitedStagec'>me</span><span id='projectNameSplitedStaged'>desktop</span>",
 ```
 
-An change the color `x11bgcolor`
+Change the color `@x11bgcolor ` with your own.
 
 | entry name     | new color value     | 
 |----------------|---------------------|
