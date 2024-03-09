@@ -73,6 +73,10 @@ The main entres are :
   "projectNameSplitedHTML": "<span id='projectNameSplitedStagea'>a</span><span id='projectNameSplitedStageb'>b</span><span id='projectNameSplitedStagec'>c</span><span id='projectNameSplitedStaged'>desktop</span>",
   "colors": [
     {
+      "name": "@x11bgcolor",
+      "value": "#6EC6F0"
+    },
+    {
       "name": "@primary",
       "value": "#474B55"
     },
@@ -154,13 +158,14 @@ Change for example the `name` of the project, and `projectNameSplitedHTML` to
   "projectNameSplitedHTML": "<span id='projectNameSplitedStagea'>A</span><span id='projectNameSplitedStageb'>c</span><span id='projectNameSplitedStagec'>me</span><span id='projectNameSplitedStaged'>desktop</span>",
 ```
 
-An change the colors `info` `tertiary` 
+An change the color `x11bgcolor`
 
 | entry name     | new color value     | 
 |----------------|---------------------|
-| @quaternary    | #18974c             |
-| @info          | #18974c             |
+| @x11bgcolor    | #18974c             |
 
+
+> You should use the same value for `ABCDESKTOP_BG_COLOR` and for `@x11bgcolor`. 
 
 Example
 
@@ -169,6 +174,10 @@ Example
   "name": "acmedesktop.io",
   "projectNameSplitedHTML": "<span id='projectNameSplitedStagea'>A</span><span id='projectNameSplitedStageb'>c</span><span id='projectNameSplitedStagec'>me</span><span id='projectNameSplitedStaged'>desktop</span>",
    "colors": [
+    {
+      "name": "@x11bgcolor",
+      "value": "#18974c"
+    },
     {
       "name": "@primary",
       "value": "#474B55"
@@ -320,9 +329,6 @@ Step 3/8 : COPY ui.json /var/webModules/transpile/config/
  ---> cbb23fb8634e
 Step 4/8 : RUN cd /var/webModules && make prod
  ---> Running in 976ee31ac5db
-fatal: not a git repository: /var/webModules/../../.git/modules/var/webModules
-fatal: not a git repository: /var/webModules/../../.git/modules/var/webModules
-fatal: not a git repository: /var/webModules/../../.git/modules/var/webModules
 create html page /var/webModules/demo.html
 create html page /var/webModules/index.session.mustache.html
 create html page /var/webModules/app.html
@@ -344,7 +350,7 @@ remove out dir base /var/webModules/build: 9.129ms
 Total duration: 12.752s
 Removing intermediate container 976ee31ac5db
  ---> 784902ce50c1
-Step 5/8 : FROM abcdesktopio/oc.nginx:3.0
+Step 5/8 : FROM abcdesktopio/oc.nginx:3.2
  ---> c77f6c5ca8a1
 Step 6/8 : COPY --from=builder var/webModules /var/webModules
  ---> 68474a5ee2d5
