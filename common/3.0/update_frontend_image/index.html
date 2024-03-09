@@ -3729,6 +3729,10 @@ wget https://raw.githubusercontent.com/abcdesktopio/webModules/3.2/transpile/con
   &quot;projectNameSplitedHTML&quot;: &quot;&lt;span id='projectNameSplitedStagea'&gt;a&lt;/span&gt;&lt;span id='projectNameSplitedStageb'&gt;b&lt;/span&gt;&lt;span id='projectNameSplitedStagec'&gt;c&lt;/span&gt;&lt;span id='projectNameSplitedStaged'&gt;desktop&lt;/span&gt;&quot;,
   &quot;colors&quot;: [
     {
+      &quot;name&quot;: &quot;@x11bgcolor&quot;,
+      &quot;value&quot;: &quot;#6EC6F0&quot;
+    },
+    {
       &quot;name&quot;: &quot;@primary&quot;,
       &quot;value&quot;: &quot;#474B55&quot;
     },
@@ -3804,7 +3808,7 @@ wget https://raw.githubusercontent.com/abcdesktopio/webModules/3.2/transpile/con
 <pre><code class="language-json">  &quot;name&quot;: &quot;acmedesktop.io&quot;,
   &quot;projectNameSplitedHTML&quot;: &quot;&lt;span id='projectNameSplitedStagea'&gt;A&lt;/span&gt;&lt;span id='projectNameSplitedStageb'&gt;c&lt;/span&gt;&lt;span id='projectNameSplitedStagec'&gt;me&lt;/span&gt;&lt;span id='projectNameSplitedStaged'&gt;desktop&lt;/span&gt;&quot;,
 </code></pre>
-<p>An change the colors <code>info</code> <code>tertiary</code> </p>
+<p>An change the color <code>x11bgcolor</code></p>
 <table>
 <thead>
 <tr>
@@ -3814,20 +3818,23 @@ wget https://raw.githubusercontent.com/abcdesktopio/webModules/3.2/transpile/con
 </thead>
 <tbody>
 <tr>
-<td>@quaternary</td>
-<td>#18974c</td>
-</tr>
-<tr>
-<td>@info</td>
+<td>@x11bgcolor</td>
 <td>#18974c</td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>You should use the same value for <code>ABCDESKTOP_BG_COLOR</code> and for <code>@x11bgcolor</code>. </p>
+</blockquote>
 <p>Example</p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;acmedesktop.io&quot;,
   &quot;projectNameSplitedHTML&quot;: &quot;&lt;span id='projectNameSplitedStagea'&gt;A&lt;/span&gt;&lt;span id='projectNameSplitedStageb'&gt;c&lt;/span&gt;&lt;span id='projectNameSplitedStagec'&gt;me&lt;/span&gt;&lt;span id='projectNameSplitedStaged'&gt;desktop&lt;/span&gt;&quot;,
    &quot;colors&quot;: [
+    {
+      &quot;name&quot;: &quot;@x11bgcolor&quot;,
+      &quot;value&quot;: &quot;#18974c&quot;
+    },
     {
       &quot;name&quot;: &quot;@primary&quot;,
       &quot;value&quot;: &quot;#474B55&quot;
@@ -3966,9 +3973,6 @@ Step 3/8 : COPY ui.json /var/webModules/transpile/config/
  ---&gt; cbb23fb8634e
 Step 4/8 : RUN cd /var/webModules &amp;&amp; make prod
  ---&gt; Running in 976ee31ac5db
-fatal: not a git repository: /var/webModules/../../.git/modules/var/webModules
-fatal: not a git repository: /var/webModules/../../.git/modules/var/webModules
-fatal: not a git repository: /var/webModules/../../.git/modules/var/webModules
 create html page /var/webModules/demo.html
 create html page /var/webModules/index.session.mustache.html
 create html page /var/webModules/app.html
@@ -3990,7 +3994,7 @@ remove out dir base /var/webModules/build: 9.129ms
 Total duration: 12.752s
 Removing intermediate container 976ee31ac5db
  ---&gt; 784902ce50c1
-Step 5/8 : FROM abcdesktopio/oc.nginx:3.0
+Step 5/8 : FROM abcdesktopio/oc.nginx:3.2
  ---&gt; c77f6c5ca8a1
 Step 6/8 : COPY --from=builder var/webModules /var/webModules
  ---&gt; 68474a5ee2d5
