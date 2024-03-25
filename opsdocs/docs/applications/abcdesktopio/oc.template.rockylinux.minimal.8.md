@@ -1,0 +1,94 @@
+# oc.template.rockylinux.minimal.8
+## from
+ inherit [rockylinux:8](../rockylinux)
+## Container distribution release
+
+
+``` 
+NAME="Rocky Linux"
+VERSION="8.9 (Green Obsidian)"
+ID="rocky"
+ID_LIKE="rhel centos fedora"
+VERSION_ID="8.9"
+PLATFORM_ID="platform:el8"
+PRETTY_NAME="Rocky Linux 8.9 (Green Obsidian)"
+ANSI_COLOR="0;32"
+LOGO="fedora-logo-icon"
+CPE_NAME="cpe:/o:rocky:rocky:8:GA"
+HOME_URL="https://rockylinux.org/"
+BUG_REPORT_URL="https://bugs.rockylinux.org/"
+SUPPORT_END="2029-05-31"
+ROCKY_SUPPORT_PRODUCT="Rocky-Linux-8"
+ROCKY_SUPPORT_PRODUCT_VERSION="8.9"
+REDHAT_SUPPORT_PRODUCT="Rocky Linux"
+REDHAT_SUPPORT_PRODUCT_VERSION="8.9"
+
+```
+
+
+
+## `DockerFile` source code
+
+``` 
+ARG BASE_IMAGE=rockylinux:9
+FROM ${BASE_IMAGE}
+
+MAINTAINER Alexandre DEVELY
+
+RUN mkdir -p /composer/init.d
+COPY etc/ /etc
+
+
+RUN  yum update -y && \
+     yum install -y --allowerasing \
+     glibc-langpack-en \
+     cups-client \
+     pulseaudio-libs \
+     curl \
+     xauth \
+     && yum -y clean all \
+     && rm -rf /var/cache 
+
+ENV LANG en_US.utf8
+
+COPY composer /composer
+
+RUN    yum update -y \
+    && yum module -y enable nodejs:18 \
+    && yum install -y nodejs \ 
+    && yum clean -y all \
+    && rm -rf /var/cache
+
+# Add nodejs service
+RUN cd /composer/node/ocrun 	 && npm install  
+# RUN cd /composer/node/ocdownload && npm install
+
+
+##########
+# Next command use $BUSER context
+ENV BUSER balloon
+# RUN adduser --disabled-password --gecos '' $BUSER
+# RUN id -u $BUSER &>/dev/null || 
+RUN groupadd --gid 4096 $BUSER
+RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups $BUSER $BUSER
+# create an ubuntu user
+# PASS=`pwgen -c -n -1 10`
+# PASS=ballon
+# Change password for user balloon
+
+# if --build-arg BUILD_BALLON_PASSWORD=1, set NODE_ENV to 'development' or set to null otherwise.
+#ENV BALLOON_PASSWORD=${BUILD_BALLOON_PASSWORD:+development}
+# if BUILD_BALLOON_PASSWORD is null, set it to 'abcdesktop' (or leave as is otherwise).
+#ENV BALLOON_PASSWORD=${BUILD_BALLOON_PASSWORD:-abcdesktop}
+
+RUN echo "balloon:lmdpocpetit" | chpasswd $BUSER
+
+RUN mkdir -p /var/log/desktop && \
+    chown -R $BUSER:$BUSER /home/$BUSER /var/log/desktop
+
+
+```
+
+
+
+> file oc.template.rockylinux.minimal.8.md is created at Mon Mar 25 2024 21:17:36 GMT+0000 (Coordinated Universal Time) by make-docs.js

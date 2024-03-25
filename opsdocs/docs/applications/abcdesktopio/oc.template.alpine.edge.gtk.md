@@ -7,7 +7,7 @@
 ``` 
 NAME="Alpine Linux"
 ID=alpine
-VERSION_ID=3.20.0_alpha20231219
+VERSION_ID=3.20.0_alpha20240315
 PRETTY_NAME="Alpine Linux edge"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
@@ -36,4 +36,4 @@ RUN apk add --no-cache --update \
 
 
 
-> file oc.template.alpine.edge.gtk.md is created at Wed Jan 31 2024 13:53:07 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.edge.gtk.md is created at Mon Mar 25 2024 21:21:30 GMT+0000 (Coordinated Universal Time) by make-docs.js

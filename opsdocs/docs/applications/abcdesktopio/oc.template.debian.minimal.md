@@ -51,11 +51,10 @@ ENV LANG en_US.utf8
 ############
 COPY composer /composer
 
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - \
         && apt-get update && \
         apt-get install -y --no-install-recommends \
         nodejs \
-        npm \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -93,4 +92,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.debian.minimal.md is created at Wed Jan 31 2024 13:50:28 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.debian.minimal.md is created at Mon Mar 25 2024 21:18:39 GMT+0000 (Coordinated Universal Time) by make-docs.js

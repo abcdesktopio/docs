@@ -5,10 +5,10 @@
 
 
 ``` 
-PRETTY_NAME="Ubuntu 22.04.3 LTS"
+PRETTY_NAME="Ubuntu 22.04.4 LTS"
 NAME="Ubuntu"
 VERSION_ID="22.04"
-VERSION="22.04.3 LTS (Jammy Jellyfish)"
+VERSION="22.04.4 LTS (Jammy Jellyfish)"
 VERSION_CODENAME=jammy
 ID=ubuntu
 ID_LIKE=debian
@@ -180,4 +180,4 @@ COPY --from=abcdesktopio/oc.themes /usr/share/themes /usr/share/themes
 
 
 
-> file oc.template.ubuntu.gtk.22.04.md is created at Wed Jan 31 2024 13:57:23 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.gtk.22.04.md is created at Mon Mar 25 2024 21:25:42 GMT+0000 (Coordinated Universal Time) by make-docs.js
