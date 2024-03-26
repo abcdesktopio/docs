@@ -1,6 +1,6 @@
-# oc.template.rockylinux.9
+# oc.template.rockylinux.gtk.9
 ## from
- inherit [abcdesktopio/oc.template.rockylinux.minimal.9](../oc.template.rockylinux.minimal.9)
+ inherit [abcdesktopio/oc.template.rockylinux.9](../oc.template.rockylinux.9)
 ## Container distribution release
 
 
@@ -30,25 +30,23 @@ REDHAT_SUPPORT_PRODUCT_VERSION="9.3"
 ## `DockerFile` source code
 
 ``` 
-
 # default TAG is dev
 ARG TAG=dev
 ARG BASE_IMAGE
-FROM ${BASE_IMAGE}:${TAG}
+FROM ${BASE_IMAGE}:${TAG} 
 
-# add some fonts
-RUN yum update -y && \
-    yum install -y \
-        google-noto-fonts-common \
-        xorg-x11-fonts-100dpi \
-        xorg-x11-fonts-75dpi \
-	texlive-utopia \
-	liberation-fonts-common \
+# install gtk lib
+RUN yum update && \
+     yum install -y \
+        gtk3 \
      && yum -y clean all \
      && rm -rf /var/cache
+
+COPY --from=abcdesktopio/oc.themes /usr/share/icons  /usr/share/icons
+COPY --from=abcdesktopio/oc.themes /usr/share/themes /usr/share/themes
 
 ```
 
 
 
-> file oc.template.rockylinux.9.md is created at Tue Mar 26 2024 09:33:25 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.gtk.9.md is created at Tue Mar 26 2024 09:37:34 GMT+0000 (Coordinated Universal Time) by make-docs.js

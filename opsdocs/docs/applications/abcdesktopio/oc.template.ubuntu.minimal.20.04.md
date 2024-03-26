@@ -97,4 +97,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.ubuntu.minimal.20.04.md is created at Tue Mar 26 2024 08:50:54 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.minimal.20.04.md is created at Tue Mar 26 2024 09:30:48 GMT+0000 (Coordinated Universal Time) by make-docs.js

@@ -41,4 +41,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 
-> file oc.template.ubuntu.18.04.md is created at Tue Mar 26 2024 08:52:51 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.18.04.md is created at Tue Mar 26 2024 09:32:26 GMT+0000 (Coordinated Universal Time) by make-docs.js
