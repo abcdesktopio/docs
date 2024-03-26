@@ -1,6 +1,6 @@
-# oc.template.rockylinux.gtk.9
+# oc.template.rockylinux.gtk.libreoffice.9
 ## from
- inherit [abcdesktopio/oc.template.rockylinux.9](../oc.template.rockylinux.9)
+ inherit [abcdesktopio/oc.template.rockylinux.gtk.9](../oc.template.rockylinux.gtk.9)
 ## Container distribution release
 
 
@@ -30,23 +30,18 @@ REDHAT_SUPPORT_PRODUCT_VERSION="9.3"
 ## `DockerFile` source code
 
 ``` 
-# default TAG is dev
-ARG TAG=dev
+ARG TAG
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}:${TAG} 
 
 # install gtk lib
 RUN yum update && \
-     yum install -y \
-        gtk3 \
+     yum install -y --skip-broken libreoffice \
      && yum -y clean all \
      && rm -rf /var/cache
-
-COPY --from=abcdesktopio/oc.themes /usr/share/icons  /usr/share/icons
-COPY --from=abcdesktopio/oc.themes /usr/share/themes /usr/share/themes
 
 ```
 
 
 
-> file oc.template.rockylinux.gtk.9.md is created at Tue Mar 26 2024 20:32:57 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.gtk.libreoffice.9.md is created at Tue Mar 26 2024 20:39:21 GMT+0000 (Coordinated Universal Time) by make-docs.js

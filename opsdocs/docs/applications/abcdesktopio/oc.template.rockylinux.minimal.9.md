@@ -1,6 +1,6 @@
 # oc.template.rockylinux.minimal.9
 ## from
- inherit [rockylinux:9](../rockylinux)
+ Docker official images [rockylinux:9](https://hub.docker.com/_/rockylinux)
 ## Container distribution release
 
 
@@ -30,7 +30,7 @@ REDHAT_SUPPORT_PRODUCT_VERSION="9.3"
 ## `DockerFile` source code
 
 ``` 
-ARG BASE_IMAGE=rockylinux:9
+ARG BASE_IMAGE=rockylinux:8
 FROM ${BASE_IMAGE}
 
 MAINTAINER Alexandre DEVELY
@@ -39,24 +39,24 @@ RUN mkdir -p /composer/init.d
 COPY etc/ /etc
 
 
-RUN  yum update -y && \
-     yum install -y --allowerasing \
+RUN  dnf update -y && \
+     dnf install -y --allowerasing \
      glibc-langpack-en \
      cups-client \
      pulseaudio-libs \
      curl \
-     xauth \
-     && yum -y clean all \
+     xorg-x11-xauth \
+     && dnf -y clean all \
      && rm -rf /var/cache 
 
 ENV LANG en_US.utf8
 
 COPY composer /composer
 
-RUN    yum update -y \
-    && yum module -y enable nodejs:18 \
-    && yum install -y nodejs \ 
-    && yum clean -y all \
+RUN    dnf update -y \
+    && dnf module -y enable nodejs:18 \
+    && dnf install -y nodejs \ 
+    && dnf clean -y all \
     && rm -rf /var/cache
 
 # Add nodejs service
@@ -91,4 +91,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.rockylinux.minimal.9.md is created at Tue Mar 26 2024 09:28:30 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.minimal.9.md is created at Tue Mar 26 2024 20:23:37 GMT+0000 (Coordinated Universal Time) by make-docs.js
