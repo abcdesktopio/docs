@@ -38,4 +38,4 @@ RUN apk add --no-cache --update  \
 
 
 
-> file oc.template.alpine.edge.gtk.libreoffice.md is created at Tue Mar 26 2024 20:38:54 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.edge.gtk.libreoffice.md is created at Wed Mar 27 2024 15:20:10 GMT+0000 (Coordinated Universal Time) by make-docs.js
