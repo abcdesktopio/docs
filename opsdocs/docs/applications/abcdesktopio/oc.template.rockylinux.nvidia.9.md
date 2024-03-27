@@ -1,6 +1,6 @@
-# oc.template.rockylinux.minimal.9
+# oc.template.rockylinux.nvidia.9
 ## from
- Docker official images [rockylinux:9](https://hub.docker.com/_/rockylinux)
+ inherit [nvidia/cuda:12.3.1-base-rockylinux9](../cuda)
 ## Container distribution release
 
 
@@ -91,4 +91,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.rockylinux.minimal.9.md is created at Wed Mar 27 2024 15:54:15 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.nvidia.9.md is created at Wed Mar 27 2024 15:54:36 GMT+0000 (Coordinated Universal Time) by make-docs.js

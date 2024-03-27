@@ -1,27 +1,27 @@
-# oc.template.rockylinux.minimal.9
+# oc.template.rockylinux.nvidia.8
 ## from
- Docker official images [rockylinux:9](https://hub.docker.com/_/rockylinux)
+ inherit [nvidia/cuda:12.3.1-base-rockylinux8](../cuda)
 ## Container distribution release
 
 
 ``` 
 NAME="Rocky Linux"
-VERSION="9.3 (Blue Onyx)"
+VERSION="8.9 (Green Obsidian)"
 ID="rocky"
 ID_LIKE="rhel centos fedora"
-VERSION_ID="9.3"
-PLATFORM_ID="platform:el9"
-PRETTY_NAME="Rocky Linux 9.3 (Blue Onyx)"
+VERSION_ID="8.9"
+PLATFORM_ID="platform:el8"
+PRETTY_NAME="Rocky Linux 8.9 (Green Obsidian)"
 ANSI_COLOR="0;32"
 LOGO="fedora-logo-icon"
-CPE_NAME="cpe:/o:rocky:rocky:9::baseos"
+CPE_NAME="cpe:/o:rocky:rocky:8:GA"
 HOME_URL="https://rockylinux.org/"
 BUG_REPORT_URL="https://bugs.rockylinux.org/"
-SUPPORT_END="2032-05-31"
-ROCKY_SUPPORT_PRODUCT="Rocky-Linux-9"
-ROCKY_SUPPORT_PRODUCT_VERSION="9.3"
+SUPPORT_END="2029-05-31"
+ROCKY_SUPPORT_PRODUCT="Rocky-Linux-8"
+ROCKY_SUPPORT_PRODUCT_VERSION="8.9"
 REDHAT_SUPPORT_PRODUCT="Rocky Linux"
-REDHAT_SUPPORT_PRODUCT_VERSION="9.3"
+REDHAT_SUPPORT_PRODUCT_VERSION="8.9"
 
 ```
 
@@ -91,4 +91,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.rockylinux.minimal.9.md is created at Wed Mar 27 2024 15:54:15 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.nvidia.8.md is created at Wed Mar 27 2024 15:56:02 GMT+0000 (Coordinated Universal Time) by make-docs.js
