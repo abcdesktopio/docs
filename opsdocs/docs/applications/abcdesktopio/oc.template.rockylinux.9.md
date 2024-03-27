@@ -51,4 +51,4 @@ RUN yum update -y && \
 
 
 
-> file oc.template.rockylinux.9.md is created at Wed Mar 27 2024 15:59:06 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.9.md is created at Wed Mar 27 2024 20:14:49 GMT+0000 (Coordinated Universal Time) by make-docs.js

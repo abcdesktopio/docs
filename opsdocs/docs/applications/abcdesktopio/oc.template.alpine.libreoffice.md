@@ -1,14 +1,14 @@
 # oc.template.alpine.libreoffice
 ## from
- inherite [abcdesktopio/oc.template.alpine](../oc.template.alpine)
+ inherit [abcdesktopio/oc.template.alpine](../oc.template.alpine)
 ## Container distribution release
 
 
 ``` 
 NAME="Alpine Linux"
 ID=alpine
-VERSION_ID=3.18.2
-PRETTY_NAME="Alpine Linux v3.18"
+VERSION_ID=3.19.1
+PRETTY_NAME="Alpine Linux v3.19"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
 
@@ -28,6 +28,8 @@ FROM ${BASE_IMAGE}:${TAG}
 
 # add libreoffice
 RUN apk add --no-cache --update  \
+   openjdk21 \
+   mesa-vulkan-swrast \  
    faenza-icon-theme-libreoffice \
    libreoffice 			 \
    libreoffice-gtk
@@ -35,21 +37,5 @@ RUN apk add --no-cache --update  \
 ```
 
 
-> file oc.template.alpine.libreoffice.md is created at Fri Jun 23 2023 16:46:45 GMT+0000 (Coordinated Universal Time) by make-docs.js
 
-``` 
-
-# default TAG is dev
-ARG TAG=dev
-ARG BASE_IMAGE
-FROM ${BASE_IMAGE}:${TAG}
-
-
-# add libreoffice
-RUN apk add --no-cache --update  \
-   faenza-icon-theme-libreoffice \
-   libreoffice 			 \
-   libreoffice-gtk
-
-```
-
+> file oc.template.alpine.libreoffice.md is created at Wed Mar 27 2024 20:37:37 GMT+0000 (Coordinated Universal Time) by make-docs.js

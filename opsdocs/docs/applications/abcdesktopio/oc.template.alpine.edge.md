@@ -44,4 +44,4 @@ RUN apk add  --no-cache --update  \
 
 
 
-> file oc.template.alpine.edge.md is created at Wed Mar 27 2024 15:57:37 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.edge.md is created at Wed Mar 27 2024 20:13:35 GMT+0000 (Coordinated Universal Time) by make-docs.js
