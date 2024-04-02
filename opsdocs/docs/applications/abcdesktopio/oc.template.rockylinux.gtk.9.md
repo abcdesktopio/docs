@@ -39,6 +39,7 @@ FROM ${BASE_IMAGE}:${TAG}
 RUN yum update && \
      yum install -y \
         gtk3 \
+        gnome-font-viewer \
      && yum -y clean all \
      && rm -rf /var/cache
 
@@ -49,4 +50,4 @@ COPY --from=abcdesktopio/oc.themes /usr/share/themes /usr/share/themes
 
 
 
-> file oc.template.rockylinux.gtk.9.md is created at Thu Mar 28 2024 16:15:58 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.gtk.9.md is created at Tue Apr 02 2024 13:23:22 GMT+0000 (Coordinated Universal Time) by make-docs.js

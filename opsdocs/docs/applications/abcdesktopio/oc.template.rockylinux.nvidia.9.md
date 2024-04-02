@@ -91,4 +91,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.rockylinux.nvidia.9.md is created at Thu Mar 28 2024 16:07:08 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.nvidia.9.md is created at Tue Apr 02 2024 13:04:17 GMT+0000 (Coordinated Universal Time) by make-docs.js

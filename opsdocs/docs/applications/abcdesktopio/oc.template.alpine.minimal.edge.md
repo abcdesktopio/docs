@@ -7,7 +7,7 @@
 ``` 
 NAME="Alpine Linux"
 ID=alpine
-VERSION_ID=3.20.0_alpha20240315
+VERSION_ID=3.20.0_alpha20240329
 PRETTY_NAME="Alpine Linux edge"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
@@ -81,4 +81,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.alpine.minimal.edge.md is created at Thu Mar 28 2024 16:05:22 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.minimal.edge.md is created at Tue Apr 02 2024 13:03:08 GMT+0000 (Coordinated Universal Time) by make-docs.js
