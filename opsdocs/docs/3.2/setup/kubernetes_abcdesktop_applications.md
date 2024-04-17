@@ -93,7 +93,7 @@ In this example, we install the application `2048` game, but you can choose anot
 
 
 ```
-curl https://raw.githubusercontent.com/abcdesktopio/images/main/artifact/3.1/2048-alpine.d.3.2.json --output 2048.json
+curl https://raw.githubusercontent.com/abcdesktopio/images/main/artifact/3.2/2048-alpine.d.3.2.json --output 2048.json
 ```
 
 To inspect image json you can also run crictl `inspecti` or `docker inspect` command.
