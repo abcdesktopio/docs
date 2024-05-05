@@ -1,14 +1,14 @@
 # oc.template.ubuntu.nvidia.22.04
 ## from
- inherit [nvidia/cuda:12.0.0-base-ubuntu22.04](../cuda)
+ inherit [nvidia/cuda:12.4.1-base-ubuntu22.04](../cuda)
 ## Container distribution release
 
 
 ``` 
-PRETTY_NAME="Ubuntu 22.04.3 LTS"
+PRETTY_NAME="Ubuntu 22.04.4 LTS"
 NAME="Ubuntu"
 VERSION_ID="22.04"
-VERSION="22.04.3 LTS (Jammy Jellyfish)"
+VERSION="22.04.4 LTS (Jammy Jellyfish)"
 VERSION_CODENAME=jammy
 ID=ubuntu
 ID_LIKE=debian
@@ -97,4 +97,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.ubuntu.nvidia.22.04.md is created at Thu May 02 2024 14:58:10 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.nvidia.22.04.md is created at Sun May 05 2024 13:43:01 GMT+0000 (Coordinated Universal Time) by make-docs.js

@@ -1,6 +1,6 @@
 # oc.template.rockylinux.nvidia.8
 ## from
- inherit [nvidia/cuda:12.3.1-base-rockylinux8](../cuda)
+ inherit [nvidia/cuda:12.4.1-base-rockylinux8](../cuda)
 ## Container distribution release
 
 
@@ -91,4 +91,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.rockylinux.nvidia.8.md is created at Thu May 02 2024 14:58:25 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.nvidia.8.md is created at Sun May 05 2024 13:42:42 GMT+0000 (Coordinated Universal Time) by make-docs.js

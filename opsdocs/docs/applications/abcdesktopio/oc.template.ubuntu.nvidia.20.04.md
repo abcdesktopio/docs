@@ -1,6 +1,6 @@
 # oc.template.ubuntu.nvidia.20.04
 ## from
- inherit [nvidia/cuda:12.0.0-base-ubuntu20.04](../cuda)
+ inherit [nvidia/cuda:12.4.1-base-ubuntu20.04](../cuda)
 ## Container distribution release
 
 
@@ -97,4 +97,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.ubuntu.nvidia.20.04.md is created at Thu May 02 2024 14:58:53 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.nvidia.20.04.md is created at Sun May 05 2024 13:42:52 GMT+0000 (Coordinated Universal Time) by make-docs.js
