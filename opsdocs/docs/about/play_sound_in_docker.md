@@ -168,7 +168,7 @@ function wavify_law(data, numberOfChannels, sampleRate, bitsPerSample, format ) 
 }
 ```
 
-Then use the ```WavPlayer.js``` from Julien Bouquillon [https://github.com/revolunet/webaudio-wav-stream-player](https://github.com/revolunet/webaudio-wav-stream-player]) to read data and send to javascript ```AudioContext()```
+Then use the ```WavPlayer.js``` from Julien Bouquillon [https://github.com/revolunet/webaudio-wav-stream-player](https://github.com/revolunet/webaudio-wav-stream-player) to read data and send to javascript ```AudioContext()```
 
 This Release is getting glitchy audio. In Chrome, the stream plays with a slight crackle. Read the issue [https://github.com/revolunet/webaudio-wav-stream-player/issues/10](https://github.com/revolunet/webaudio-wav-stream-player/issues/10)
 
