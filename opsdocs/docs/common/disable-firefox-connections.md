@@ -1,4 +1,4 @@
-# How to disable firefox automatic connections at startup 
+# How to disable Mozilla Firefox automatic connections at startup 
 
 ## Usage of policies.json
 
