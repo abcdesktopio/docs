@@ -47,7 +47,7 @@ To bypass this phenomena, we will create a file named `proxy.pac` that will bloc
 Save `proxy.pac` on your machine and keep in mind the path to your file. 
 
 Once done, you should add the following line to the `Proxy` policy inside your `policies.json` file :  
-`"AutoConfigURL": "file://path/to/your/proxy.pac"`
+`"AutoConfigURL": "file:///path/to/your/proxy.pac"`
 
 ## Disable startup connections
 
