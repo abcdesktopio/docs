@@ -90,7 +90,7 @@ Once done, you should add the following line to the `Proxy` policy inside your `
     },
     "Proxy": {
         "Mode": "autoConfig",
-        "AutoConfigURL": "file://path/to/your/proxy.pac"
+        "AutoConfigURL": "file:///path/to/your/proxy.pac"
     }
 }
 ```
