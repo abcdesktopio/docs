@@ -3703,7 +3703,7 @@ MacOS : <code>/Applications/Firefox.app/Contents/Resources/firefox.cfg</code></p
 To bypass this phenomena, we will create a file named <code>proxy.pac</code> that will block access to the remaining URLs by redirecting them to an unreachable proxy. </p>
 <p>Save <code>proxy.pac</code> on your machine and keep in mind the path to your file. </p>
 <p>Once done, you should add the following line to the <code>Proxy</code> policy inside your <code>policies.json</code> file :<br />
-<code>"AutoConfigURL": "file://path/to/your/proxy.pac"</code></p>
+<code>"AutoConfigURL": "file:///path/to/your/proxy.pac"</code></p>
 <h2 id="disable-startup-connections">Disable startup connections</h2>
 <h3 id="policiesjson">policies.json</h3>
 <table>
