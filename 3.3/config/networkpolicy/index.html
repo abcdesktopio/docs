@@ -3041,46 +3041,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#networkpolicy-example" class="md-nav__link">
+  <a href="#apply-the-default-netpol-default-33yaml-file" class="md-nav__link">
     <span class="md-ellipsis">
-      NetworkPolicy example
+      Apply the default netpol-default-3.3.yaml file
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="NetworkPolicy example">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#networkpolicy-rights-and-permits-for-the-memcached" class="md-nav__link">
-    <span class="md-ellipsis">
-      NetworkPolicy rights and permits for the memcached.
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#networkpolicy-rights-and-permits-for-the-users-pods" class="md-nav__link">
-    <span class="md-ellipsis">
-      NetworkPolicy rights and permits for the user's pods.
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#apply-the-default-netpol-defaultyaml-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Apply the default netpol-default.yaml file
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Apply the default netpol-default.yaml file">
+    <nav class="md-nav" aria-label="Apply the default netpol-default-3.3.yaml file">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3739,46 +3706,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#networkpolicy-example" class="md-nav__link">
+  <a href="#apply-the-default-netpol-default-33yaml-file" class="md-nav__link">
     <span class="md-ellipsis">
-      NetworkPolicy example
+      Apply the default netpol-default-3.3.yaml file
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="NetworkPolicy example">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#networkpolicy-rights-and-permits-for-the-memcached" class="md-nav__link">
-    <span class="md-ellipsis">
-      NetworkPolicy rights and permits for the memcached.
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#networkpolicy-rights-and-permits-for-the-users-pods" class="md-nav__link">
-    <span class="md-ellipsis">
-      NetworkPolicy rights and permits for the user's pods.
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#apply-the-default-netpol-defaultyaml-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Apply the default netpol-default.yaml file
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Apply the default netpol-default.yaml file">
+    <nav class="md-nav" aria-label="Apply the default netpol-default-3.3.yaml file">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3849,193 +3783,7 @@
 <p>The NetworkPolicy <code>permits</code> contains <code>egress</code> to a pod selected by tag. The NetworkPolicy <code>permits</code> means permit access to this pod.</p>
 </li>
 </ul>
-<h2 id="networkpolicy-example">NetworkPolicy example</h2>
-<p>The NetworkPolicy examples describe the network policies for the internal memcached pod and the user's pods.</p>
-<h3 id="networkpolicy-rights-and-permits-for-the-memcached">NetworkPolicy <code>rights</code> and <code>permits</code> for the <code>memcached</code>.</h3>
-<p>The <code>memcached</code> service is listening on TCP port 11211.
-The NetworkPolicy for memcached service <code>rights</code>, named <code>memcached-rights</code>, allows pods with label <code>run: memcached-od</code> to expose the TCP port 11211.</p>
-<pre><code class="language-yaml">apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: memcached-rights
-  namespace: abcdesktop
-spec:
-  podSelector:
-    matchLabels:
-      run: memcached-od
-  policyTypes:
-  - Ingress
-  ingress:
-  - ports:
-    - protocol: TCP
-      port: 11211
-    from:
-    - podSelector:
-        matchLabels:
-          netpol/memcached: 'true'
-    - namespaceSelector:
-        matchLabels:
-          name: kube-monitor
-      podSelector:
-        matchLabels:
-          netpol/metrics: 'true'
-</code></pre>
-<p>The NetworkPolicy for memcached service <code>permits</code>, named <code>memcached-permits</code>, allows all pods with label <code>netpol/memcached: 'true'</code> to reach the TCP port 11211 to pods with label <code>run: memcached-od</code>.</p>
-<pre><code class="language-yaml">apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: memcached-permits
-  namespace: abcdesktop
-spec:
-  podSelector:
-    matchLabels:
-      netpol/memcached: 'true'
-  policyTypes:
-  - Egress
-  egress:
-  - ports:
-    - protocol: TCP
-      port: 11211
-    to:
-    - podSelector:
-        matchLabels:
-          run: memcached-od
----
-</code></pre>
-<h3 id="networkpolicy-rights-and-permits-for-the-users-pods">NetworkPolicy <code>rights</code> and <code>permits</code> for the user's pods.</h3>
-<p>The <code>ocuser</code> pod is listening on TCP ports :</p>
-<ul>
-<li>4714</li>
-<li>6081</li>
-<li>29780</li>
-<li>29781</li>
-<li>29782</li>
-<li>29783</li>
-<li>29784</li>
-<li>29785</li>
-<li>29786</li>
-</ul>
-<p>The network policy for ocuser's pods <code>rights</code> is named <code>ocuser-rights</code>. It allows pods with label <code>type: 'x11server'</code> to expose the previous TCP ports.</p>
-<p>The <code>egress</code> network policy allows : </p>
-<ul>
-<li>dns queries to kube-dns</li>
-<li>http to any web site</li>
-<li>https to any web site</li>
-<li>kerberos auth to any kdc</li>
-</ul>
-<pre><code class="language-yaml">apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: ocuser-rights
-  namespace: abcdesktop
-spec:
-  podSelector:
-    matchLabels:
-      type: 'x11server'
-  policyTypes:
-  - Ingress
-  - Egress
-  ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          netpol/ocuser: 'true'
-    ports:
-    - protocol: TCP
-      port: 4714
-    - protocol: TCP
-      port: 6081
-    - protocol: TCP
-      port: 8000
-    - protocol: TCP
-      port: 29780
-    - protocol: TCP
-      port: 29781
-    - protocol: TCP
-      port: 29782
-    - protocol: TCP
-      port: 29783
-    - protocol: TCP
-      port: 29784
-    - protocol: TCP
-      port: 29785
-    # spawner_service_tcp_port
-    - protocol: TCP
-      port: 29786
-  egress:
-  # pod user can run dns query to all kube-system
-  - ports:
-    - protocol: TCP
-      port: 53
-    - protocol: UDP
-      port: 53
-    to:
-    - namespaceSelector:
-        matchLabels:
-          name: kube-system
-      podSelector:
-        matchLabels:
-          k8s-app: kube-dns
-# permit www website from pod user 
-  - ports:
-    - protocol: TCP
-      port: 443
-    - protocol: TCP
-      port: 80
-# permit kerberos auth kinit
-  - ports:
-    - protocol: UDP
-      port: 88
-    - protocol: TCP
-      port: 88
-</code></pre>
-<p>The network policy for ocuser's pods <code>permits</code> is named <code>ocuser-permits</code>. It allows pods with label <code>netpol/ocuser: 'true'</code> to reach the user's pods services.</p>
-<pre><code class="language-yaml">apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: ocuser-permits
-  namespace: abcdesktop
-spec:
-  podSelector:
-    matchLabels:
-      netpol/ocuser: 'true'
-  policyTypes:
-  - Egress
-  egress:
-  - to:
-    - podSelector:
-        matchLabels:
-          type: 'x11server'
-    ports:
-    # default pulseaudio websocket audio without webrtc gateway
-    - protocol: TCP
-      port: 4714
-    # vnc websockify
-    - protocol: TCP
-      port: 6081
-    # reserved
-    - protocol: TCP
-      port: 29780
-    # xterm_tcp_port
-    - protocol: TCP
-      port: 29781
-    # printerfile_service_tcp_port
-    - protocol: TCP
-      port: 29782
-    # file_service_tcp_port
-    - protocol: TCP
-      port: 29783
-    # broadcast_tcp_port 
-    - protocol: TCP
-      port: 29784
-    # reserved
-    - protocol: TCP
-      port: 29785
-    # spawner_service_tcp_port
-    - protocol: TCP
-      port: 29786
-</code></pre>
-<h2 id="apply-the-default-netpol-defaultyaml-file">Apply the default <code>netpol-default.yaml</code> file</h2>
+<h2 id="apply-the-default-netpol-default-33yaml-file">Apply the default <code>netpol-default-3.3.yaml</code> file</h2>
 <p>To apply the network policies run the command :</p>
 <pre><code class="language-bash">kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-3.3.yaml
 </code></pre>
