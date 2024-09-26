@@ -6,8 +6,9 @@ The abcdesktop infrastructure is using the contianers :
 
 | Container    | Role                     | Image                           | From         |
 |--------------|--------------------------|---------------------------------|--------------|
-| oc.pyos      | API Server               | abcdesktopio/oc.pyos:3.2        | abcdesktopio |
-| oc.nginx     | web server proxy         | abcdesktopio/oc.nginx:3.2       | abcdesktopio |
+| oc.pyos      | API Server               | abcdesktopio/oc.pyos:3.3        | abcdesktopio |
+| oc.nginx     | web server		         | abcdesktopio/oc.nginx:3.3       | abcdesktopio |
+| oc.router    | web router         | abcdesktopio/oc.router:3.3       | abcdesktopio |
 | oc.speedtest | http benchmarch          | abcdesktopio/oc.speedtest       | [LibreSpeed](https://librespeed.org/) |
 | oc.mongo     | json database server     | mongo                           | [MongoDB](https://www.mongodb.com/)   |
 | memcached    | cache server             | memcached                       | [Memcached](https://memcached.org/)   |
@@ -25,11 +26,6 @@ You can run the **Quick installation process** or choose the **Manually installa
 
 > Linux operating system is recommanded to run abcdesktop.io.
 
-
-## Quick installation (Microsoft Windows)
-
-If you are using a Microsoft Windows operating system please follow the dedicated link below  
-[Quick install for windows](./kubernetes_abcdesktop_windows.md)
 
 ## Quick installation (Linux or macOS)
 
@@ -155,14 +151,14 @@ The quick installation process runs the all commands step by step:
 You may need to replace the default namespace `abcdesktop` by your own during the install process. The `install-3.2.sh` bash script allow you to set the new namespace as an option.
 
 ```bash
-wget https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.2.sh
-chmod 755 install-3.2.sh 
+wget https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.3.sh
+chmod 755 install-3.3.sh 
 ```
 
-Run `install-3.2.sh`
+Run `install-3.3.sh`
 
 ```bash
-./install-3.2.sh --namespace superdesktop
+./install-3.3.sh --namespace superdesktop
 ```
 
 ```
@@ -178,40 +174,39 @@ Run `install-3.2.sh`
 [OK] label secret abcdesktopjwtusersigning
 [OK] use local file abcdesktop.yaml
 [OK] use local file od.config
-[OK] use local file poduser.yaml
 [OK] updated abcdesktop.yaml file with new namespace superdesktop
 [OK] updated abcdesktop.yaml file with new fqdn superdesktop.svc.cluster.local
 [OK] updated od.config file with new namespace superdesktop
 [OK] updated od.config file with new fqdn superdesktop.svc.cluster.local
-[OK] updated poduser.yaml file with new superdesktop
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n superdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
-[INFO] kubectl create -f poduser.yaml
-[OK] kubectl create -f poduser.yaml
-[INFO] waiting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready
-[OK] pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
-[INFO] deleting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready
-[OK] pod "anonymous-74bea267-8197-4b1d-acff-019b24e778c5" deleted
+[OK] default account is created
 [OK] role.rbac.authorization.k8s.io/pyos-role created
 rolebinding.rbac.authorization.k8s.io/pyos-rbac created
 serviceaccount/pyos-serviceaccount created
 configmap/configmap-mongodb-scripts created
-configmap/nginx-config created
 secret/secret-mongodb created
 deployment.apps/mongodb-od created
 deployment.apps/memcached-od created
+deployment.apps/router-od created
 deployment.apps/nginx-od created
 deployment.apps/speedtest-od created
 deployment.apps/pyos-od created
+deployment.apps/console-od created
+deployment.apps/openldap-od created
 endpoints/desktop created
 service/desktop created
 service/memcached created
 service/mongodb created
 service/speedtest created
-service/nginx created
 service/pyos created
-deployment.apps/openldap-od created
+service/console created
+service/http-router created
+service/website created
 service/openldap created
+[OK] pyos-serviceaccount account is created
+[INFO] waiting for deployment/console-od available
+[OK] deployment.apps/console-od condition met
 [INFO] waiting for deployment/memcached-od available
 [OK] deployment.apps/memcached-od condition met
 [INFO] waiting for deployment/mongodb-od available
@@ -222,40 +217,40 @@ service/openldap created
 [OK] deployment.apps/openldap-od condition met
 [INFO] waiting for deployment/pyos-od available
 [OK] deployment.apps/pyos-od condition met
+[INFO] waiting for deployment/router-od available
+[OK] deployment.apps/router-od condition met
 [INFO] waiting for deployment/speedtest-od available
 [OK] deployment.apps/speedtest-od condition met
-[INFO] waiting for pod/memcached-od-5ff8844d56-b75fb Ready
-[OK] pod/memcached-od-5ff8844d56-b75fb condition met
-[INFO] waiting for pod/mongodb-od-77c945467d-t8cv7 Ready
-[OK] pod/mongodb-od-77c945467d-t8cv7 condition met
-[INFO] waiting for pod/nginx-od-b8c8c7b95-lkjl6 Ready
-[OK] pod/nginx-od-b8c8c7b95-lkjl6 condition met
-[INFO] waiting for pod/openldap-od-56b6564c85-2npln Ready
-[OK] pod/openldap-od-56b6564c85-2npln condition met
-[INFO] waiting for pod/pyos-od-67dfc48d84-kww9n Ready
-[OK] pod/pyos-od-67dfc48d84-kww9n condition met
-[INFO] waiting for pod/speedtest-od-894b7c886-69vc4 Ready
-[OK] pod/speedtest-od-894b7c886-69vc4 condition met
+[INFO] waiting for pod/console-od-79bf9bf475-gbb62 Ready
+[OK] pod/console-od-79bf9bf475-gbb62 condition met
+[INFO] waiting for pod/memcached-od-d4b6b6867-c8b4p Ready
+[OK] pod/memcached-od-d4b6b6867-c8b4p condition met
+[INFO] waiting for pod/mongodb-od-5d996fd57b-z2pjl Ready
+[OK] pod/mongodb-od-5d996fd57b-z2pjl condition met
+[INFO] waiting for pod/nginx-od-57dccb8cf9-txgzc Ready
+[OK] pod/nginx-od-57dccb8cf9-txgzc condition met
+[INFO] waiting for pod/openldap-od-6955699d5-qhjzr Ready
+[OK] pod/openldap-od-6955699d5-qhjzr condition met
+[INFO] waiting for pod/pyos-od-777747f64b-r87x5 Ready
+[OK] pod/pyos-od-777747f64b-r87x5 condition met
+[INFO] waiting for pod/router-od-59d67d664f-f56m8 Ready
+[OK] pod/router-od-59d67d664f-f56m8 condition met
+[INFO] waiting for pod/speedtest-od-67db77f86f-wqkb7 Ready
+[OK] pod/speedtest-od-67db77f86f-wqkb7 condition met
 [INFO] list all pods in namespace superdesktop
 NAME                            READY   STATUS    RESTARTS   AGE
-memcached-od-5ff8844d56-b75fb   1/1     Running   0          20s
-mongodb-od-77c945467d-t8cv7     1/1     Running   0          20s
-nginx-od-b8c8c7b95-lkjl6        1/1     Running   0          20s
-openldap-od-56b6564c85-2npln    1/1     Running   0          18s
-pyos-od-67dfc48d84-kww9n        1/1     Running   0          20s
-speedtest-od-894b7c886-69vc4    1/1     Running   0          20s
+console-od-79bf9bf475-gbb62     1/1     Running   0          12s
+memcached-od-d4b6b6867-c8b4p    1/1     Running   0          13s
+mongodb-od-5d996fd57b-z2pjl     1/1     Running   0          13s
+nginx-od-57dccb8cf9-txgzc       1/1     Running   0          13s
+openldap-od-6955699d5-qhjzr     1/1     Running   0          12s
+pyos-od-777747f64b-r87x5        1/1     Running   0          13s
+router-od-59d67d664f-f56m8      1/1     Running   0          13s
+speedtest-od-67db77f86f-wqkb7   1/1     Running   0          13s
 [INFO] Setup done
 [INFO] Checking the service url on http://localhost:30443
-[INFO] service status is down
-[INFO] Looking for a free tcp port from 30443
-[OK] get a free tcp port from 30443
 
-[INFO] If you're using a cloud provider
-[INFO] Forwarding abcdesktop service for you on port=30443
-[INFO] For you setup is running the command 'kubectl port-forward nginx-od-b8c8c7b95-lkjl6 --address 0.0.0.0 30443:80 -n superdesktop'
-[OK] Please open your web browser and connect to
-
-[INFO] http://localhost:30443/
+[OK] Please open your web browser and connect to http://localhost:30443/
 ```
 
 ## Manually installation step by step (Linux, macOS or Windows)
@@ -346,39 +341,7 @@ abcdesktopjwtusersigning      Opaque                                2      67s
 ```
 
 
-#### Step 3: Download user pod images
-
-Create a pod user to make sure that Kubernetes will find the docker images at startup time. 
- 
-```
-kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser-3.2.yaml
-```
-
-You should read on stdout
-
-```
-pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 created
-```
-
-You can wait for user pod is `Ready`, this while take a while, for 
-container images are downloading.
-
-```
-kubectl wait --for=condition=Ready pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5  -n abcdesktop --timeout=-1s
-```
-
-```
-pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
-```
-
-You can delete the user pod `anonymous-74bea267-8197-4b1d-acff-019b24e778c5`. The container images are downloaded.
-
-```
-kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser-3.2.yaml
-```
-
-
-### Step 4: Download and create the abcdesktop config file 
+### Step 3: Download and create the abcdesktop config file 
 
 Download the od.config file. This is the main configuration file for `pyos` control plane.
 
@@ -398,14 +361,14 @@ You should read on sdtout
 configmap/abcdesktop-config created
 ```
 
-### Step 5: Create the abcdesktop pods and services
+### Step 4: Create the abcdesktop pods and services
 
 abcdesktop.yaml file contains declarations for all roles, service account, pods, and services required for abcdesktop.
 
 Run the command line
 
 ``` bash
-kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.2.yaml
+kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.3.yaml
 ```
 
 You should read on the standard output
@@ -415,21 +378,24 @@ role.rbac.authorization.k8s.io/pyos-role created
 rolebinding.rbac.authorization.k8s.io/pyos-rbac created
 serviceaccount/pyos-serviceaccount created
 configmap/configmap-mongodb-scripts created
-configmap/nginx-config created
 secret/secret-mongodb created
 deployment.apps/mongodb-od created
 deployment.apps/memcached-od created
+deployment.apps/router-od created
 deployment.apps/nginx-od created
 deployment.apps/speedtest-od created
 deployment.apps/pyos-od created
+deployment.apps/console-od created
+deployment.apps/openldap-od created
 endpoints/desktop created
 service/desktop created
 service/memcached created
 service/mongodb created
 service/speedtest created
-service/nginx created
 service/pyos created
-deployment.apps/openldap-od created
+service/console created
+service/http-router created
+service/website created
 service/openldap created
 ```
 
@@ -447,12 +413,14 @@ You should read on the standard output
 
 ``` bash
 NAME                            READY   STATUS    RESTARTS   AGE
-memcached-od-5ff8844d56-jv4bh   1/1     Running   0          18s
-mongodb-od-77c945467d-9xbnw     1/1     Running   0          18s
-nginx-od-7445969696-mwlc9       1/1     Running   0          18s
-openldap-od-5bbdd75864-c6th9    1/1     Running   0          18s
-pyos-od-7584db6787-tjlvk        1/1     Running   0          18s
-speedtest-od-7f5484966f-cxwpr   1/1     Running   0          18s
+console-od-79bf9bf475-cqtj5     1/1     Running   0          2m18s
+memcached-od-d4b6b6867-djzr6    1/1     Running   0          2m19s
+mongodb-od-5d996fd57b-gn4hv     1/1     Running   0          2m19s
+nginx-od-796c7d7d6b-rk2d5       1/1     Running   0          2m19s
+openldap-od-567dcf7bf6-krhpw    1/1     Running   0          2m18s
+pyos-od-65bdd9d479-5228d        1/1     Running   0          2m18s
+router-od-7b6dff8dd4-pn587      1/1     Running   0          2m19s
+speedtest-od-7fcc9649b4-n2ldl   1/1     Running   0          2m18s
 ```
 
 ### Connect your local abcdesktop
@@ -474,20 +442,14 @@ Few seconds later, processes are ready to run. You should see the abcdesktop mai
 Also, you can run again the command 
 
 ``` bash
-kubectl get pods -n abcdesktop
+kubectl get pods -l type=x11server -n abcdesktop
 ```
 
 You should see that the `anonymous-XXXXX` pod have been created and is `Running`
 
 ``` bash
-NAME                            READY   STATUS    RESTARTS   AGE
-anonymous-50b0f                 4/4     Running   0          5m22s
-memcached-od-5ff8844d56-jv4bh   1/1     Running   0          77m
-mongodb-od-77c945467d-9xbnw     1/1     Running   0          77m
-nginx-od-7445969696-mwlc9       1/1     Running   0          77m
-openldap-od-5bbdd75864-c6th9    1/1     Running   0          77m
-pyos-od-7584db6787-tjlvk        1/1     Running   0          77m
-speedtest-od-7f5484966f-cxwpr   1/1     Running   0          77m
+NAME              READY   STATUS    RESTARTS   AGE
+anonymous-c44fc   4/4     Running   0          116s
 ```
 
 Great you have installed abcdesktop.io.
