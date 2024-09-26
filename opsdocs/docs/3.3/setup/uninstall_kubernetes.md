@@ -32,21 +32,24 @@ role.rbac.authorization.k8s.io "pyos-role" deleted
 rolebinding.rbac.authorization.k8s.io "pyos-rbac" deleted
 serviceaccount "pyos-serviceaccount" deleted
 configmap "configmap-mongodb-scripts" deleted
-configmap "nginx-config" deleted
 secret "secret-mongodb" deleted
 deployment.apps "mongodb-od" deleted
 deployment.apps "memcached-od" deleted
+deployment.apps "router-od" deleted
 deployment.apps "nginx-od" deleted
 deployment.apps "speedtest-od" deleted
 deployment.apps "pyos-od" deleted
+deployment.apps "console-od" deleted
+deployment.apps "openldap-od" deleted
 endpoints "desktop" deleted
 service "desktop" deleted
 service "memcached" deleted
 service "mongodb" deleted
 service "speedtest" deleted
-service "nginx" deleted
 service "pyos" deleted
-deployment.apps "openldap-od" deleted
+service "console" deleted
+service "http-router" deleted
+service "website" deleted
 service "openldap" deleted
 [OK] kubectl delete -f abcdesktop.yaml
 [OK] kubectl delete secrets --all -n abcdesktop
@@ -69,14 +72,14 @@ Great, you have uninstalled abcdesktop for kubernetes.
 
 
 ```bash
-wget https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.2.sh
-chmod 755 uninstall-3.2.sh
+wget https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.3.sh
+chmod 755 uninstall-3.3.sh
 ```
 
-Run the `uninstall-3.2.sh` command line with your own namespace
+Run the `uninstall-3.3.sh` command line with your own namespace
 
 ```
-./uninstall-3.2.sh --namespace superdesktop
+./uninstall-3.3.sh --namespace superdesktop
 ```
 
 You should read on stdout
@@ -87,26 +90,28 @@ abcdesktop uninstall script namespace=superdesktop
 [OK] kubectl get namespace superdesktop
 [OK] delete pods --selector="type=x11server" -n superdesktop
 [OK] use local file abcdesktop.yaml
-[OK] updated abcdesktop.yaml file with new namespace superdesktop
 role.rbac.authorization.k8s.io "pyos-role" deleted
 rolebinding.rbac.authorization.k8s.io "pyos-rbac" deleted
 serviceaccount "pyos-serviceaccount" deleted
 configmap "configmap-mongodb-scripts" deleted
-configmap "nginx-config" deleted
 secret "secret-mongodb" deleted
 deployment.apps "mongodb-od" deleted
 deployment.apps "memcached-od" deleted
+deployment.apps "router-od" deleted
 deployment.apps "nginx-od" deleted
 deployment.apps "speedtest-od" deleted
 deployment.apps "pyos-od" deleted
+deployment.apps "console-od" deleted
+deployment.apps "openldap-od" deleted
 endpoints "desktop" deleted
 service "desktop" deleted
 service "memcached" deleted
 service "mongodb" deleted
 service "speedtest" deleted
-service "nginx" deleted
 service "pyos" deleted
-deployment.apps "openldap-od" deleted
+service "console" deleted
+service "http-router" deleted
+service "website" deleted
 service "openldap" deleted
 [OK] kubectl delete -f abcdesktop.yaml
 [OK] kubectl delete secrets --all -n superdesktop
