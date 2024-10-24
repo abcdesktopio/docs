@@ -5,10 +5,10 @@
 
 > Quick installation can be run on Linux or macOS operation system. 
 
-Download and execute the `pullapps-3.2.sh` script :
+Download and execute the `pullapps-3.3.sh` script :
 
 ```
-curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-3.2.sh | bash
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-3.3.sh | bash
 ```
 
 This script starts abcdesktop application on an empty desktop. Pod is created to ask Kubernetes for pulling containers image.
@@ -53,10 +53,10 @@ pod/pull-xterm-abcinst-0e802cfa8addb4648f843869325f3413d544bb9eae8 condition met
 
 > Quick installation can be run on Windows operation system. 
 
-Download and execute the `pullapps-3.2.ps1` script :
+Download and execute the `pullapps-3.3.ps1` script :
 
 ```PowerShell
-$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-3.2.ps1 
+$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-3.3.ps1 
 
 Invoke-Expression $($script.Content)
 ```
