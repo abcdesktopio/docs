@@ -1,18 +1,4 @@
-# abcdesktop in kubernetes mode
-
-abcdesktop release 3.x support only kubernetes mode. All applications containers can be distributed on different hosts.
-
-The abcdesktop infrastructure is using the contianers : 
-
-| Container    | Role                     | Image                           | From         |
-|--------------|--------------------------|---------------------------------|--------------|
-| oc.pyos      | API Server               | abcdesktopio/oc.pyos:3.3        | abcdesktopio |
-| oc.nginx     | web server		         | abcdesktopio/oc.nginx:3.3       | abcdesktopio |
-| oc.router    | web router         | abcdesktopio/oc.router:3.3       | abcdesktopio |
-| oc.speedtest | http benchmarch          | abcdesktopio/oc.speedtest       | [LibreSpeed](https://librespeed.org/) |
-| oc.mongo     | json database server     | mongo                           | [MongoDB](https://www.mongodb.com/)   |
-| memcached    | cache server             | memcached                       | [Memcached](https://memcached.org/)   |
-
+# abcdesktop
 
 ## Requirements
 
