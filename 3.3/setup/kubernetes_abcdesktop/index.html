@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
     
     
       
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#abcdesktop-in-kubernetes-mode" class="md-skip">
+        <a href="#abcdesktop" class="md-skip">
           Skip to content
         </a>
       
@@ -3887,57 +3887,7 @@
   
 
 
-<h1 id="abcdesktop-in-kubernetes-mode">abcdesktop in kubernetes mode</h1>
-<p>abcdesktop release 3.x support only kubernetes mode. All applications containers can be distributed on different hosts.</p>
-<p>The abcdesktop infrastructure is using the contianers : </p>
-<table>
-<thead>
-<tr>
-<th>Container</th>
-<th>Role</th>
-<th>Image</th>
-<th>From</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>oc.pyos</td>
-<td>API Server</td>
-<td>abcdesktopio/oc.pyos:3.3</td>
-<td>abcdesktopio</td>
-</tr>
-<tr>
-<td>oc.nginx</td>
-<td>web server</td>
-<td>abcdesktopio/oc.nginx:3.3</td>
-<td>abcdesktopio</td>
-</tr>
-<tr>
-<td>oc.router</td>
-<td>web router</td>
-<td>abcdesktopio/oc.router:3.3</td>
-<td>abcdesktopio</td>
-</tr>
-<tr>
-<td>oc.speedtest</td>
-<td>http benchmarch</td>
-<td>abcdesktopio/oc.speedtest</td>
-<td><a href="https://librespeed.org/">LibreSpeed</a></td>
-</tr>
-<tr>
-<td>oc.mongo</td>
-<td>json database server</td>
-<td>mongo</td>
-<td><a href="https://www.mongodb.com/">MongoDB</a></td>
-</tr>
-<tr>
-<td>memcached</td>
-<td>cache server</td>
-<td>memcached</td>
-<td><a href="https://memcached.org/">Memcached</a></td>
-</tr>
-</tbody>
-</table>
+<h1 id="abcdesktop">abcdesktop</h1>
 <h2 id="requirements">Requirements</h2>
 <p>You need to have a </p>
 <ul>
