@@ -17,7 +17,7 @@ abcdesktop uses a front HTML web site and X11 Linux application. So, to get a ne
 
 In the od.config, add the env var `ABCDESKTOP_BG_COLOR`
 
-```
+```json
 desktop.envlocal :  {
   'X11LISTEN':'tcp', 
   'WEBSOCKIFY_HEARTBEAT':'30',
@@ -27,7 +27,7 @@ desktop.envlocal :  {
 
 Then update the config map `abcdesktop-config` and restart deployment `pyos-od` 
 
-```
+```bash
 kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deployment pyos-od -n abcdesktop
 ```
@@ -38,6 +38,13 @@ You should read on stdout
 configmap/abcdesktop-config replaced
 deployment.apps/pyos-od restarted
 ```
+
+The new desktop is defined with the default background color
+
+![acme desktop update od.config](img/acmedesktopupdateodconfig.png)
+
+We need to change the top color with the same new default value `#18974c`
+
 
 ## Create new image for abcdesktop oc.nginx
 
@@ -55,14 +62,13 @@ Update your `ui.json` file.  `ui.json` is located in `transpile/config` director
 
 
 ```bash
-# cd webModules/transpile/config
-# ls -la
+ls -la  webModules/transpile/config
 total 204
-drwxrwxr-x   1 root root   4096 Feb  1 15:14 .
-drwxr-xr-x   1 root root   4096 Feb  1 15:14 ..
--rw-rw-r--   1 root root     34 Feb  1 15:14 .cache.json
--rw-rw-r--   1 root root   2215 Feb  1 15:11 modules.json
--rw-rw-r--   1 root root   1044 Feb  1 15:11 ui.json
+drwxr-xr-x   5 alexandredevely  staff   160 Nov 29 14:54 .
+drwxr-xr-x  11 alexandredevely  staff   352 Nov 29 14:54 ..
+-rw-r--r--   1 alexandredevely  staff    34 Nov 29 14:54 .cache.json
+-rw-r--r--   1 alexandredevely  staff  1924 Nov 29 14:54 modules.json
+-rw-r--r--   1 alexandredevely  staff  1548 Nov 29 14:54 ui.json
 ```
 
 `ui.json` is a json dictionary file
@@ -159,7 +165,16 @@ rojectNameSplitedStaged'>desktop</span>",
 
 ##### Login progress
 
-Login progress is from HTML `span` tags
+Login progress is embedded in `span` HTML tags. 
+Each `projectNameSplitedStage` describes a step during the user's authentification then pod's creation process.
+
+
+- projectNameSplitedStagea: `step 1`
+- projectNameSplitedStageb: `step 2`
+- projectNameSplitedStagec: `step 3`
+- projectNameSplitedStaged: `step 4` 
+
+
 
 ```html
 <span id='projectNameSplitedStagea'>a</span>
@@ -177,23 +192,22 @@ Login progress is from HTML `span` tags
 | @secondatry    | #2D2D2D        | #2D2D2D   |
 | @tertiary      | #6EC6F0        | #6EC6F0   |
 
-### Create a new `Dockerfile` to build changes
 
 #### Update the ui.json with your own values
 
-Change for example the name to
+Change for example the name `abcdesktop` to `acmedesktop`
 
-```
+```json
 "name": "acmedesktop.io"
 ```
 
-and the  
+Update the `projectNameSplitedHTML` values and the `@tertiary` color
 
-```
-@tertiary "value": "#00BCD4"
+```json
+@tertiary "value": "#18974c"
 ```
 
-Example
+Example with new `acmedesktop`
 
 ```json
 {
@@ -203,7 +217,7 @@ rojectNameSplitedStaged'>desktop</span>",
   "colors": [
     {
       "name": "@x11bgcolor",
-      "value": "#6EC6F0"
+      "value": "#18974c"
     },
     {
       "name": "@primary",
@@ -215,7 +229,7 @@ rojectNameSplitedStaged'>desktop</span>",
     },
     {
       "name": "@tertiary",
-      "value": "#00BCD4"
+      "value": "#18974c"
     },
     {
       "name": "@quaternary",
@@ -278,10 +292,11 @@ rojectNameSplitedStaged'>desktop</span>",
 ```
 
 
-#### docker build
+#### build your new image
 
 Run the docker build command to build the new `oc.nginx:acme` image
-The target image is `abcdesktopio/oc.nginx:acme` you shoudl change it with your own for example `myacme/oc.nginx:acme`
+
+The target image is `abcdesktopio/oc.nginx:acme` you should change it with your own for example `myacme/oc.nginx:acme`
 
 ```bash
 docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE=3.3 --build-arg TARGET=dev  -t abcdesktopio/oc.nginx:acme -f Dockerfile .
@@ -354,6 +369,49 @@ apply your abcdesktop.yaml file
 ```
 kubectl apply -f abcdesktop.yaml
 ```
+
+```
+role.rbac.authorization.k8s.io/pyos-role unchanged
+rolebinding.rbac.authorization.k8s.io/pyos-rbac unchanged
+serviceaccount/pyos-serviceaccount unchanged
+configmap/configmap-mongodb-scripts unchanged
+secret/secret-mongodb configured
+deployment.apps/mongodb-od configured
+deployment.apps/memcached-od configured
+deployment.apps/router-od configured
+deployment.apps/nginx-od configured
+deployment.apps/speedtest-od configured
+deployment.apps/pyos-od configured
+deployment.apps/console-od configured
+deployment.apps/openldap-od configured
+endpoints/desktop unchanged
+service/desktop unchanged
+service/memcached unchanged
+service/mongodb unchanged
+service/speedtest unchanged
+service/pyos unchanged
+service/console unchanged
+service/http-router unchanged
+service/website unchanged
+service/openldap unchanged
+```
+
+### Connect to your new website 
+
+Open your web browser to your abcdesktop website
+
+- acmedesktop login page
+
+![acme desktop login page](img/acmedesktoploginpage.png)
+
+- acmedesktop login process 
+
+![acme desktop login process](img/acmedesktoploginprocess.png)
+
+
+- `acmedesktop` colors updated
+
+![acme desktop color updated](img/acmedesktoplogindone.png)
 
 
 
