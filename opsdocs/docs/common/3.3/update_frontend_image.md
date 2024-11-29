@@ -45,6 +45,9 @@ The new desktop is defined with the default background color
 
 We need to change the top color with the same new default value `#18974c`
 
+![double color](img/acmedoublecolor.png)
+
+Update the `oc.nginx` container image to add `#18974c` inside the new graphic chart.
 
 ## Create new image for abcdesktop oc.nginx
 
