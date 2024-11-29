@@ -201,10 +201,17 @@ Change for example the name `abcdesktop` to `acmedesktop`
 "name": "acmedesktop.io"
 ```
 
-Update the `projectNameSplitedHTML` values and the `@tertiary` color
+Update the `projectNameSplitedHTML` values, the `@tertiary` and `@x11bgcolor` colors
 
 ```json
-@tertiary "value": "#18974c"
+    {
+      "name": "@x11bgcolor",
+      "value": "#18974c"
+    },
+    {
+      "name": "@tertiary",
+      "value": "#18974c"
+    },
 ```
 
 Example with new `acmedesktop`
