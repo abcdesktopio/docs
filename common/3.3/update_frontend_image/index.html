@@ -3535,21 +3535,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-new-dockerfile-to-build-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a new Dockerfile to build changes
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Create a new Dockerfile to build changes">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#update-the-uijson-with-your-own-values" class="md-nav__link">
     <span class="md-ellipsis">
@@ -3560,9 +3545,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#docker-build" class="md-nav__link">
+  <a href="#build-your-new-image" class="md-nav__link">
     <span class="md-ellipsis">
-      docker build
+      build your new image
     </span>
   </a>
   
@@ -3579,6 +3564,15 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-your-new-website" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect to your new website
+    </span>
+  </a>
   
 </li>
         
@@ -3894,21 +3888,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-new-dockerfile-to-build-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a new Dockerfile to build changes
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Create a new Dockerfile to build changes">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#update-the-uijson-with-your-own-values" class="md-nav__link">
     <span class="md-ellipsis">
@@ -3919,9 +3898,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#docker-build" class="md-nav__link">
+  <a href="#build-your-new-image" class="md-nav__link">
     <span class="md-ellipsis">
-      docker build
+      build your new image
     </span>
   </a>
   
@@ -3938,6 +3917,15 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-your-new-website" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect to your new website
+    </span>
+  </a>
   
 </li>
         
@@ -3982,20 +3970,23 @@
 </ul>
 <h2 id="configure-odconfig-to-use-the-new-color">Configure od.config to use the new color</h2>
 <p>In the od.config, add the env var <code>ABCDESKTOP_BG_COLOR</code></p>
-<pre><code>desktop.envlocal :  {
+<pre><code class="language-json">desktop.envlocal :  {
   'X11LISTEN':'tcp', 
   'WEBSOCKIFY_HEARTBEAT':'30',
   'TURN_PROTOCOL': 'tcp',
   'ABCDESKTOP_BG_COLOR': ‘#18974c’ }
 </code></pre>
 <p>Then update the config map <code>abcdesktop-config</code> and restart deployment <code>pyos-od</code> </p>
-<pre><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+<pre><code class="language-bash">kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deployment pyos-od -n abcdesktop
 </code></pre>
 <p>You should read on stdout</p>
 <pre><code>configmap/abcdesktop-config replaced
 deployment.apps/pyos-od restarted
 </code></pre>
+<p>The new desktop is defined with the default background color</p>
+<p><img alt="acme desktop update od.config" src="../img/acmedesktopupdateodconfig.png" /></p>
+<p>We need to change the top color with the same new default value <code>#18974c</code></p>
 <h2 id="create-new-image-for-abcdesktop-ocnginx">Create new image for abcdesktop oc.nginx</h2>
 <h3 id="clone-default-webmodules">Clone default webmodules</h3>
 <pre><code class="language-bash">git clone -b 3.3 https://github.com/abcdesktopio/webModules.git
@@ -4003,14 +3994,13 @@ deployment.apps/pyos-od restarted
 <h3 id="locate-project-and-ui-files">Locate project and ui files</h3>
 <h4 id="update-uijson-file">Update ui.json file</h4>
 <p>Update your <code>ui.json</code> file.  <code>ui.json</code> is located in <code>transpile/config</code> directory.</p>
-<pre><code class="language-bash"># cd webModules/transpile/config
-# ls -la
+<pre><code class="language-bash">ls -la  webModules/transpile/config
 total 204
-drwxrwxr-x   1 root root   4096 Feb  1 15:14 .
-drwxr-xr-x   1 root root   4096 Feb  1 15:14 ..
--rw-rw-r--   1 root root     34 Feb  1 15:14 .cache.json
--rw-rw-r--   1 root root   2215 Feb  1 15:11 modules.json
--rw-rw-r--   1 root root   1044 Feb  1 15:11 ui.json
+drwxr-xr-x   5 alexandredevely  staff   160 Nov 29 14:54 .
+drwxr-xr-x  11 alexandredevely  staff   352 Nov 29 14:54 ..
+-rw-r--r--   1 alexandredevely  staff    34 Nov 29 14:54 .cache.json
+-rw-r--r--   1 alexandredevely  staff  1924 Nov 29 14:54 modules.json
+-rw-r--r--   1 alexandredevely  staff  1548 Nov 29 14:54 ui.json
 </code></pre>
 <p><code>ui.json</code> is a json dictionary file</p>
 <p>The main entry is <code>name</code>, name is the project name:</p>
@@ -4111,7 +4101,14 @@ rojectNameSplitedStaged'&gt;desktop&lt;/span&gt;&quot;,
 }
 </code></pre>
 <h5 id="login-progress">Login progress</h5>
-<p>Login progress is from HTML <code>span</code> tags</p>
+<p>Login progress is embedded in <code>span</code> HTML tags. 
+Each <code>projectNameSplitedStage</code> describes a step during the user's authentification then pod's creation process.</p>
+<ul>
+<li>projectNameSplitedStagea: <code>step 1</code></li>
+<li>projectNameSplitedStageb: <code>step 2</code></li>
+<li>projectNameSplitedStagec: <code>step 3</code></li>
+<li>projectNameSplitedStaged: <code>step 4</code> </li>
+</ul>
 <pre><code class="language-html">&lt;span id='projectNameSplitedStagea'&gt;a&lt;/span&gt;
 &lt;span id='projectNameSplitedStageb'&gt;b&lt;/span&gt;
 &lt;span id='projectNameSplitedStagec'&gt;c&lt;/span&gt;
@@ -4144,15 +4141,14 @@ rojectNameSplitedStaged'&gt;desktop&lt;/span&gt;&quot;,
 </tr>
 </tbody>
 </table>
-<h3 id="create-a-new-dockerfile-to-build-changes">Create a new <code>Dockerfile</code> to build changes</h3>
 <h4 id="update-the-uijson-with-your-own-values">Update the ui.json with your own values</h4>
-<p>Change for example the name to</p>
-<pre><code>&quot;name&quot;: &quot;acmedesktop.io&quot;
+<p>Change for example the name <code>abcdesktop</code> to <code>acmedesktop</code></p>
+<pre><code class="language-json">&quot;name&quot;: &quot;acmedesktop.io&quot;
 </code></pre>
-<p>and the  </p>
-<pre><code>@tertiary &quot;value&quot;: &quot;#00BCD4&quot;
+<p>Update the <code>projectNameSplitedHTML</code> values and the <code>@tertiary</code> color</p>
+<pre><code class="language-json">@tertiary &quot;value&quot;: &quot;#18974c&quot;
 </code></pre>
-<p>Example</p>
+<p>Example with new <code>acmedesktop</code></p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;acmedesktop.io&quot;,
   &quot;projectNameSplitedHTML&quot;: &quot;&lt;span id='projectNameSplitedStagea'&gt;a&lt;/span&gt;&lt;span id='projectNameSplitedStageb'&gt;c&lt;/span&gt;&lt;span id='projectNameSplitedStagec'&gt;me&lt;/span&gt;&lt;span id='p
@@ -4160,7 +4156,7 @@ rojectNameSplitedStaged'&gt;desktop&lt;/span&gt;&quot;,
   &quot;colors&quot;: [
     {
       &quot;name&quot;: &quot;@x11bgcolor&quot;,
-      &quot;value&quot;: &quot;#6EC6F0&quot;
+      &quot;value&quot;: &quot;#18974c&quot;
     },
     {
       &quot;name&quot;: &quot;@primary&quot;,
@@ -4172,7 +4168,7 @@ rojectNameSplitedStaged'&gt;desktop&lt;/span&gt;&quot;,
     },
     {
       &quot;name&quot;: &quot;@tertiary&quot;,
-      &quot;value&quot;: &quot;#00BCD4&quot;
+      &quot;value&quot;: &quot;#18974c&quot;
     },
     {
       &quot;name&quot;: &quot;@quaternary&quot;,
@@ -4233,9 +4229,9 @@ rojectNameSplitedStaged'&gt;desktop&lt;/span&gt;&quot;,
   &quot;urlopensourceproject&quot;: &quot;https://www.abcdesktop.io/&quot;
 }
 </code></pre>
-<h4 id="docker-build">docker build</h4>
-<p>Run the docker build command to build the new <code>oc.nginx:acme</code> image
-The target image is <code>abcdesktopio/oc.nginx:acme</code> you shoudl change it with your own for example <code>myacme/oc.nginx:acme</code></p>
+<h4 id="build-your-new-image">build your new image</h4>
+<p>Run the docker build command to build the new <code>oc.nginx:acme</code> image</p>
+<p>The target image is <code>abcdesktopio/oc.nginx:acme</code> you should change it with your own for example <code>myacme/oc.nginx:acme</code></p>
 <pre><code class="language-bash">docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE=3.3 --build-arg TARGET=dev  -t abcdesktopio/oc.nginx:acme -f Dockerfile .
 </code></pre>
 <pre><code class="language-bash">docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE=3.3 --build-arg TARGET=prod  -t abcdesktopio/oc.nginx:acme -f Dockerfile .
@@ -4293,6 +4289,44 @@ The target image is <code>abcdesktopio/oc.nginx:acme</code> you shoudl change it
 <p>apply your abcdesktop.yaml file</p>
 <pre><code>kubectl apply -f abcdesktop.yaml
 </code></pre>
+<pre><code>role.rbac.authorization.k8s.io/pyos-role unchanged
+rolebinding.rbac.authorization.k8s.io/pyos-rbac unchanged
+serviceaccount/pyos-serviceaccount unchanged
+configmap/configmap-mongodb-scripts unchanged
+secret/secret-mongodb configured
+deployment.apps/mongodb-od configured
+deployment.apps/memcached-od configured
+deployment.apps/router-od configured
+deployment.apps/nginx-od configured
+deployment.apps/speedtest-od configured
+deployment.apps/pyos-od configured
+deployment.apps/console-od configured
+deployment.apps/openldap-od configured
+endpoints/desktop unchanged
+service/desktop unchanged
+service/memcached unchanged
+service/mongodb unchanged
+service/speedtest unchanged
+service/pyos unchanged
+service/console unchanged
+service/http-router unchanged
+service/website unchanged
+service/openldap unchanged
+</code></pre>
+<h3 id="connect-to-your-new-website">Connect to your new website</h3>
+<p>Open your web browser to your abcdesktop website</p>
+<ul>
+<li>acmedesktop login page</li>
+</ul>
+<p><img alt="acme desktop login page" src="../img/acmedesktoploginpage.png" /></p>
+<ul>
+<li>acmedesktop login process </li>
+</ul>
+<p><img alt="acme desktop login process" src="../img/acmedesktoploginprocess.png" /></p>
+<ul>
+<li><code>acmedesktop</code> colors updated</li>
+</ul>
+<p><img alt="acme desktop color updated" src="../img/acmedesktoplogindone.png" /></p>
 
 
 
