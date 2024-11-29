@@ -3987,6 +3987,8 @@ deployment.apps/pyos-od restarted
 <p>The new desktop is defined with the default background color</p>
 <p><img alt="acme desktop update od.config" src="../img/acmedesktopupdateodconfig.png" /></p>
 <p>We need to change the top color with the same new default value <code>#18974c</code></p>
+<p><img alt="double color" src="../img/acmedoublecolor.png" /></p>
+<p>Update the <code>oc.nginx</code> container image to add <code>#18974c</code> inside the new graphic chart.</p>
 <h2 id="create-new-image-for-abcdesktop-ocnginx">Create new image for abcdesktop oc.nginx</h2>
 <h3 id="clone-default-webmodules">Clone default webmodules</h3>
 <pre><code class="language-bash">git clone -b 3.3 https://github.com/abcdesktopio/webModules.git
