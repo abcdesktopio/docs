@@ -4145,8 +4145,15 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
 <p>Change for example the name <code>abcdesktop</code> to <code>acmedesktop</code></p>
 <pre><code class="language-json">&quot;name&quot;: &quot;acmedesktop.io&quot;
 </code></pre>
-<p>Update the <code>projectNameSplitedHTML</code> values and the <code>@tertiary</code> color</p>
-<pre><code class="language-json">@tertiary &quot;value&quot;: &quot;#18974c&quot;
+<p>Update the <code>projectNameSplitedHTML</code> values, the <code>@tertiary</code> and <code>@x11bgcolor</code> colors</p>
+<pre><code class="language-json">    {
+      &quot;name&quot;: &quot;@x11bgcolor&quot;,
+      &quot;value&quot;: &quot;#18974c&quot;
+    },
+    {
+      &quot;name&quot;: &quot;@tertiary&quot;,
+      &quot;value&quot;: &quot;#18974c&quot;
+    },
 </code></pre>
 <p>Example with new <code>acmedesktop</code></p>
 <pre><code class="language-json">{
