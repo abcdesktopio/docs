@@ -1,6 +1,6 @@
-# oc.template.debian
+# oc.template.ubuntu.24.04
 ## from
- inherit [abcdesktopio/oc.template.debian.minimal](../oc.template.debian.minimal)
+ inherit [abcdesktopio/oc.template.ubuntu.minimal.24.04](../oc.template.ubuntu.minimal.24.04)
 
 ## `DockerFile` source code
 
@@ -21,4 +21,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 
-> file oc.template.debian.md is created at Sat Nov 30 2024 22:37:28 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.24.04.md is created at Sat Nov 30 2024 22:38:43 GMT+0000 (Coordinated Universal Time) by make-docs.js

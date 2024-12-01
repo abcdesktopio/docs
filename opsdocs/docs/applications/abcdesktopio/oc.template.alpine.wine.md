@@ -7,8 +7,8 @@
 ``` 
 NAME="Alpine Linux"
 ID=alpine
-VERSION_ID=3.19.1
-PRETTY_NAME="Alpine Linux v3.19"
+VERSION_ID=3.20.3
+PRETTY_NAME="Alpine Linux v3.20"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
 
@@ -45,4 +45,4 @@ RUN if [ $(uname -m) == 'x86_64'  ]; then apk add --no-cache --update wine; fi
 
 
 
-> file oc.template.alpine.wine.md is created at Sun May 05 2024 13:58:10 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.wine.md is created at Sun Dec 01 2024 12:10:43 GMT+0000 (Coordinated Universal Time) by make-docs.js

@@ -1,6 +1,6 @@
-# oc.template.alpine.minimal
+# oc.template.alpine.minimal.3.20
 ## from
- Docker official images [alpine](https://hub.docker.com/_/alpine)
+ Docker official images [alpine:3.20](https://hub.docker.com/_/alpine)
 ## Container distribution release
 
 
@@ -81,4 +81,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.alpine.minimal.md is created at Sat Nov 30 2024 22:23:07 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.minimal.3.20.md is created at Sat Nov 30 2024 22:22:59 GMT+0000 (Coordinated Universal Time) by make-docs.js

@@ -7,8 +7,8 @@
 ``` 
 NAME="Alpine Linux"
 ID=alpine
-VERSION_ID=3.19.1
-PRETTY_NAME="Alpine Linux v3.19"
+VERSION_ID=3.20.3
+PRETTY_NAME="Alpine Linux v3.20"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
 
@@ -38,4 +38,4 @@ RUN apk add --no-cache --update  \
 
 
 
-> file oc.template.alpine.libreoffice.md is created at Sun May 05 2024 13:56:28 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.libreoffice.md is created at Sun Dec 01 2024 12:08:28 GMT+0000 (Coordinated Universal Time) by make-docs.js

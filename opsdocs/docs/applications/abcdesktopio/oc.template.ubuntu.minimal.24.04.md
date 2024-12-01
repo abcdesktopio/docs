@@ -1,22 +1,23 @@
-# oc.template.ubuntu.nvidia.22.04
+# oc.template.ubuntu.minimal.24.04
 ## from
- inherit [nvidia/cuda:12.4.1-base-ubuntu22.04](../cuda)
+ Docker official images [ubuntu:24.04](https://hub.docker.com/_/ubuntu)
 ## Container distribution release
 
 
 ``` 
-PRETTY_NAME="Ubuntu 22.04.4 LTS"
+PRETTY_NAME="Ubuntu 24.04.1 LTS"
 NAME="Ubuntu"
-VERSION_ID="22.04"
-VERSION="22.04.4 LTS (Jammy Jellyfish)"
-VERSION_CODENAME=jammy
+VERSION_ID="24.04"
+VERSION="24.04.1 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
 ID=ubuntu
 ID_LIKE=debian
 HOME_URL="https://www.ubuntu.com/"
 SUPPORT_URL="https://help.ubuntu.com/"
 BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
 PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-UBUNTU_CODENAME=jammy
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
 
 ```
 
@@ -97,4 +98,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.ubuntu.nvidia.22.04.md is created at Sat Nov 30 2024 22:26:02 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.minimal.24.04.md is created at Sat Nov 30 2024 22:36:23 GMT+0000 (Coordinated Universal Time) by make-docs.js

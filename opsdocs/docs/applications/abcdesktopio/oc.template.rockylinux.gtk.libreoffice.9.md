@@ -6,22 +6,24 @@
 
 ``` 
 NAME="Rocky Linux"
-VERSION="9.3 (Blue Onyx)"
+VERSION="9.5 (Blue Onyx)"
 ID="rocky"
 ID_LIKE="rhel centos fedora"
-VERSION_ID="9.3"
+VERSION_ID="9.5"
 PLATFORM_ID="platform:el9"
-PRETTY_NAME="Rocky Linux 9.3 (Blue Onyx)"
+PRETTY_NAME="Rocky Linux 9.5 (Blue Onyx)"
 ANSI_COLOR="0;32"
 LOGO="fedora-logo-icon"
 CPE_NAME="cpe:/o:rocky:rocky:9::baseos"
 HOME_URL="https://rockylinux.org/"
+VENDOR_NAME="RESF"
+VENDOR_URL="https://resf.org/"
 BUG_REPORT_URL="https://bugs.rockylinux.org/"
 SUPPORT_END="2032-05-31"
 ROCKY_SUPPORT_PRODUCT="Rocky-Linux-9"
-ROCKY_SUPPORT_PRODUCT_VERSION="9.3"
+ROCKY_SUPPORT_PRODUCT_VERSION="9.5"
 REDHAT_SUPPORT_PRODUCT="Rocky Linux"
-REDHAT_SUPPORT_PRODUCT_VERSION="9.3"
+REDHAT_SUPPORT_PRODUCT_VERSION="9.5"
 
 ```
 
@@ -44,4 +46,4 @@ RUN yum update && \
 
 
 
-> file oc.template.rockylinux.gtk.libreoffice.9.md is created at Sun May 05 2024 13:56:32 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.gtk.libreoffice.9.md is created at Sun Dec 01 2024 12:09:21 GMT+0000 (Coordinated Universal Time) by make-docs.js

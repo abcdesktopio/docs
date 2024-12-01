@@ -1,20 +1,6 @@
 # oc.template.alpine.edge
 ## from
  inherit [abcdesktopio/oc.template.alpine.minimal.edge](../oc.template.alpine.minimal.edge)
-## Container distribution release
-
-
-``` 
-NAME="Alpine Linux"
-ID=alpine
-VERSION_ID=3.20.0_alpha20240329
-PRETTY_NAME="Alpine Linux edge"
-HOME_URL="https://alpinelinux.org/"
-BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
-
-```
-
-
 
 ## `DockerFile` source code
 
@@ -44,4 +30,4 @@ RUN apk add  --no-cache --update  \
 
 
 
-> file oc.template.alpine.edge.md is created at Sun May 05 2024 13:45:19 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.alpine.edge.md is created at Sat Nov 30 2024 22:37:13 GMT+0000 (Coordinated Universal Time) by make-docs.js

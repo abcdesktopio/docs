@@ -1,22 +1,23 @@
-# oc.template.ubuntu.gtk.22.04
+# oc.template.ubuntu.gtk.24.04
 ## from
- inherit [abcdesktopio/oc.template.ubuntu.22.04](../oc.template.ubuntu.22.04)
+ inherit [abcdesktopio/oc.template.ubuntu.24.04](../oc.template.ubuntu.24.04)
 ## Container distribution release
 
 
 ``` 
-PRETTY_NAME="Ubuntu 22.04.5 LTS"
+PRETTY_NAME="Ubuntu 24.04.1 LTS"
 NAME="Ubuntu"
-VERSION_ID="22.04"
-VERSION="22.04.5 LTS (Jammy Jellyfish)"
-VERSION_CODENAME=jammy
+VERSION_ID="24.04"
+VERSION="24.04.1 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
 ID=ubuntu
 ID_LIKE=debian
 HOME_URL="https://www.ubuntu.com/"
 SUPPORT_URL="https://help.ubuntu.com/"
 BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
 PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-UBUNTU_CODENAME=jammy
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
 
 ```
 
@@ -90,4 +91,4 @@ COPY --from=abcdesktopio/oc.themes /usr/share/themes /usr/share/themes
 
 
 
-> file oc.template.ubuntu.gtk.22.04.md is created at Sun Dec 01 2024 12:00:56 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.gtk.24.04.md is created at Sun Dec 01 2024 12:06:22 GMT+0000 (Coordinated Universal Time) by make-docs.js

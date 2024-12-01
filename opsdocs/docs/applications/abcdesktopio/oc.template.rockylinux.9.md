@@ -1,31 +1,6 @@
 # oc.template.rockylinux.9
 ## from
  inherit [abcdesktopio/oc.template.rockylinux.minimal.9](../oc.template.rockylinux.minimal.9)
-## Container distribution release
-
-
-``` 
-NAME="Rocky Linux"
-VERSION="9.3 (Blue Onyx)"
-ID="rocky"
-ID_LIKE="rhel centos fedora"
-VERSION_ID="9.3"
-PLATFORM_ID="platform:el9"
-PRETTY_NAME="Rocky Linux 9.3 (Blue Onyx)"
-ANSI_COLOR="0;32"
-LOGO="fedora-logo-icon"
-CPE_NAME="cpe:/o:rocky:rocky:9::baseos"
-HOME_URL="https://rockylinux.org/"
-BUG_REPORT_URL="https://bugs.rockylinux.org/"
-SUPPORT_END="2032-05-31"
-ROCKY_SUPPORT_PRODUCT="Rocky-Linux-9"
-ROCKY_SUPPORT_PRODUCT_VERSION="9.3"
-REDHAT_SUPPORT_PRODUCT="Rocky Linux"
-REDHAT_SUPPORT_PRODUCT_VERSION="9.3"
-
-```
-
-
 
 ## `DockerFile` source code
 
@@ -51,4 +26,4 @@ RUN yum update -y && \
 
 
 
-> file oc.template.rockylinux.9.md is created at Sun May 05 2024 13:46:42 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.9.md is created at Sat Nov 30 2024 22:38:15 GMT+0000 (Coordinated Universal Time) by make-docs.js

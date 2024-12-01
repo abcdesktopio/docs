@@ -6,12 +6,12 @@
 
 ``` 
 NAME="Rocky Linux"
-VERSION="8.9 (Green Obsidian)"
+VERSION="8.10 (Green Obsidian)"
 ID="rocky"
 ID_LIKE="rhel centos fedora"
-VERSION_ID="8.9"
+VERSION_ID="8.10"
 PLATFORM_ID="platform:el8"
-PRETTY_NAME="Rocky Linux 8.9 (Green Obsidian)"
+PRETTY_NAME="Rocky Linux 8.10 (Green Obsidian)"
 ANSI_COLOR="0;32"
 LOGO="fedora-logo-icon"
 CPE_NAME="cpe:/o:rocky:rocky:8:GA"
@@ -19,9 +19,9 @@ HOME_URL="https://rockylinux.org/"
 BUG_REPORT_URL="https://bugs.rockylinux.org/"
 SUPPORT_END="2029-05-31"
 ROCKY_SUPPORT_PRODUCT="Rocky-Linux-8"
-ROCKY_SUPPORT_PRODUCT_VERSION="8.9"
+ROCKY_SUPPORT_PRODUCT_VERSION="8.10"
 REDHAT_SUPPORT_PRODUCT="Rocky Linux"
-REDHAT_SUPPORT_PRODUCT_VERSION="8.9"
+REDHAT_SUPPORT_PRODUCT_VERSION="8.10"
 
 ```
 
@@ -50,4 +50,4 @@ COPY --from=abcdesktopio/oc.themes /usr/share/themes /usr/share/themes
 
 
 
-> file oc.template.rockylinux.gtk.8.md is created at Sun May 05 2024 13:49:27 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.gtk.8.md is created at Sun Dec 01 2024 11:57:51 GMT+0000 (Coordinated Universal Time) by make-docs.js
