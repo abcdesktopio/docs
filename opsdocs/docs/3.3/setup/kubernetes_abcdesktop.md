@@ -12,6 +12,10 @@ You can run the **Quick installation process** or choose the **Manually installa
 
 > Linux operating system is recommanded to run abcdesktop.io.
 
+## Quick installation (Microsoft Windows)
+
+If you are using a Microsoft Windows operating system please follow the dedicated link below  
+[Quick install for windows](./kubernetes_abcdesktop_windows.md)
 
 ## Quick installation (Linux or macOS)
 

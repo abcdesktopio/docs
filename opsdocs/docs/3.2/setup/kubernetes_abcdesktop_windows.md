@@ -166,7 +166,7 @@ You can open a web browser and go to the http://localhost:30443/
 You may need to replace the default namespace `abcdesktop` by your own. The `install-3.2.ps1` PowerShell script allows you to set the new namespace as an option.
 
 ```PowerShell
-curl https://raw.githubusercontent.com/Matt307082/powershell-scripts/master/install-3.2.ps1 -OutFile install-3.2.ps1
+curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.2.ps1 -OutFile install-3.2.ps1
 ```
 
 Run `install-3.2.ps1`

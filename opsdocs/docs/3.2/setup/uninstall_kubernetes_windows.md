@@ -55,7 +55,7 @@ service "openldap" deleted
 
 
 ```PowerShell
-curl https://raw.githubusercontent.com/Matt307082/powershell-scripts/master/uninstall-3.2.ps1 -OutFile uninstall-3.2.ps1
+curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.2.ps1 -OutFile uninstall-3.2.ps1
 ```
 
 Run the `uninstall-3.2.ps1` command line with your own namespace
