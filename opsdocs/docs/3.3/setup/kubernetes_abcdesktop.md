@@ -32,7 +32,7 @@ You can read on stdout
 [OK] kubectl create namespace abcdesktop
 writing RSA key
 writing RSA key
-[OK] abcdesktop_jwt_desktop_payload keys create
+[OK] abcdesktop_jwt_desktop_payload keys created
 writing RSA key
 [OK] abcdesktop_jwt_desktop_signing keys create
 writing RSA key
@@ -45,35 +45,33 @@ writing RSA key
 [OK] label secret abcdesktopjwtusersigning
 [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.3.yaml
 [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.3
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/poduser-3.3.yaml
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
-[INFO] kubectl create -f poduser.yaml
-[OK] kubectl create -f poduser.yaml
-[INFO] waiting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready
-[OK] pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 condition met
-[INFO] deleting for pod/anonymous-74bea267-8197-4b1d-acff-019b24e778c5 Ready
-[OK] pod "anonymous-74bea267-8197-4b1d-acff-019b24e778c5" deleted
-[OK] role.rbac.authorization.k8s.io/pyos-role created
+role.rbac.authorization.k8s.io/pyos-role created
 rolebinding.rbac.authorization.k8s.io/pyos-rbac created
 serviceaccount/pyos-serviceaccount created
 configmap/configmap-mongodb-scripts created
-configmap/nginx-config created
 secret/secret-mongodb created
 deployment.apps/mongodb-od created
 deployment.apps/memcached-od created
+deployment.apps/router-od created
 deployment.apps/nginx-od created
 deployment.apps/speedtest-od created
 deployment.apps/pyos-od created
+deployment.apps/console-od created
+deployment.apps/openldap-od created
 endpoints/desktop created
 service/desktop created
 service/memcached created
 service/mongodb created
 service/speedtest created
-service/nginx created
 service/pyos created
-deployment.apps/openldap-od created
+service/console created
+service/http-router created
+service/website created
 service/openldap created
+[INFO] waiting for deployment/console-od available
+[OK] deployment.apps/console-od condition met
 [INFO] waiting for deployment/memcached-od available
 [OK] deployment.apps/memcached-od condition met
 [INFO] waiting for deployment/mongodb-od available
@@ -84,37 +82,30 @@ service/openldap created
 [OK] deployment.apps/openldap-od condition met
 [INFO] waiting for deployment/pyos-od available
 [OK] deployment.apps/pyos-od condition met
+[INFO] waiting for deployment/router-od available
+[OK] deployment.apps/router-od condition met
 [INFO] waiting for deployment/speedtest-od available
 [OK] deployment.apps/speedtest-od condition met
-[INFO] waiting for pod/memcached-od-5ff8844d56-6dt28 Ready
-[OK] pod/memcached-od-5ff8844d56-6dt28 condition met
-[INFO] waiting for pod/mongodb-od-77c945467d-r82kv Ready
-[OK] pod/mongodb-od-77c945467d-r82kv condition met
-[INFO] waiting for pod/nginx-od-7445969696-6z88w Ready
-[OK] pod/nginx-od-7445969696-6z88w condition met
-[INFO] waiting for pod/openldap-od-5bbdd75864-d5bpq Ready
-[OK] pod/openldap-od-5bbdd75864-d5bpq condition met
-[INFO] waiting for pod/pyos-od-7584db6787-vnp64 Ready
-[OK] pod/pyos-od-7584db6787-vnp64 condition met
-[INFO] waiting for pod/speedtest-od-7f5484966f-jsb2m Ready
-[OK] pod/speedtest-od-7f5484966f-jsb2m condition met
 [INFO] list all pods in namespace abcdesktop
 NAME                            READY   STATUS    RESTARTS   AGE
-memcached-od-5ff8844d56-6dt28   1/1     Running   0          40s
-mongodb-od-77c945467d-r82kv     1/1     Running   0          40s
-nginx-od-7445969696-6z88w       1/1     Running   0          40s
-openldap-od-5bbdd75864-d5bpq    1/1     Running   0          38s
-pyos-od-7584db6787-vnp64        1/1     Running   0          39s
-speedtest-od-7f5484966f-jsb2m   1/1     Running   0          39s
+console-od-844c749f85-vbbb7     1/1     Running   0          32s
+memcached-od-d4b6b6867-tbfgf    1/1     Running   0          33s
+mongodb-od-5d996fd57b-tcn45     1/1     Running   0          33s
+nginx-od-796c7d7d6b-lgnjb       1/1     Running   0          33s
+openldap-od-567dcf7bf6-h2nq9    1/1     Running   0          32s
+pyos-od-8d4988b56-vcd7z         1/1     Running   0          32s
+router-od-f5458658-b52hj        1/1     Running   0          33s
+speedtest-od-7fcc9649b4-qllr7   1/1     Running   0          32s
 [INFO] Setup done
 [INFO] Checking the service url on http://localhost:30443
 [INFO] service status is down
-[INFO] Looking for a free tcp port from 30443
-[OK] get a free tcp port from 30443
+[INFO] Looking for a free TCP port from 30443
+[OK] Get a free TCP port from 30443
 
 [INFO] If you're using a cloud provider
 [INFO] Forwarding abcdesktop service for you on port=30443
-[INFO] For you setup is running the command 'kubectl port-forward nginx-od-b8c8c7b95-lkjl6 --address 0.0.0.0 30443:80 -n abcdesktop'
+[INFO] For you setup is running the command 'kubectl port-forward nginx-od-796c7d7d6b-lgnjb --address 0.0.0.0 30443:80 -n abcdesktop'
+[OK] Port-Forward successful
 [OK] Please open your web browser and connect to
 
 [INFO] http://localhost:30443/
