@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://www.abcdesktop.io/3.2/setup/uninstall_kubernetes_windows/">
+        <link rel="canonical" href="https://www.abcdesktop.io/3.3/setup/uninstall_kubernetes_windows/">
       
       
       
@@ -1425,7 +1425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../k8slinuxinstallation/" class="md-nav__link">
+      <a href="../../../3.2/setup/k8slinuxinstallation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1446,7 +1446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kubernetes_abcdesktop/" class="md-nav__link">
+      <a href="../../../3.2/setup/kubernetes_abcdesktop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1467,7 +1467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kubernetes_abcdesktop_applications/" class="md-nav__link">
+      <a href="../../../3.2/setup/kubernetes_abcdesktop_applications/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1488,7 +1488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../uninstall_kubernetes/" class="md-nav__link">
+      <a href="../../../3.2/setup/uninstall_kubernetes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1552,7 +1552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../3.3/setup/kubernetes_abcdesktop/" class="md-nav__link">
+      <a href="../kubernetes_abcdesktop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1573,7 +1573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../3.3/setup/kubernetes_abcdesktop_applications/" class="md-nav__link">
+      <a href="../kubernetes_abcdesktop_applications/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1594,7 +1594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../3.3/setup/uninstall_kubernetes/" class="md-nav__link">
+      <a href="../uninstall_kubernetes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2866,7 +2866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/persistentvolumes/" class="md-nav__link">
+      <a href="../../../3.2/config/persistentvolumes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2887,7 +2887,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/webrtc/" class="md-nav__link">
+      <a href="../../../3.2/config/webrtc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2951,7 +2951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../3.3/config/networkpolicy/" class="md-nav__link">
+      <a href="../../config/networkpolicy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3668,7 +3668,7 @@
                   
 
   
-    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/3.2/setup/uninstall_kubernetes_windows.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/3.3/setup/uninstall_kubernetes_windows.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -3683,7 +3683,7 @@
 <p>Quick uninstallation can be run on Windows operation system. </p>
 </blockquote>
 <p>Download and extract the uninstall PowerShell script (Windows):</p>
-<pre><code class="language-PowerShell">$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.2.ps1 
+<pre><code class="language-PowerShell">$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.3.ps1 
 
 Invoke-Expression $($script.Content)
 </code></pre>
@@ -3697,21 +3697,24 @@ role.rbac.authorization.k8s.io &quot;pyos-role&quot; deleted
 rolebinding.rbac.authorization.k8s.io &quot;pyos-rbac&quot; deleted
 serviceaccount &quot;pyos-serviceaccount&quot; deleted
 configmap &quot;configmap-mongodb-scripts&quot; deleted
-configmap &quot;nginx-config&quot; deleted
 secret &quot;secret-mongodb&quot; deleted
 deployment.apps &quot;mongodb-od&quot; deleted
 deployment.apps &quot;memcached-od&quot; deleted
+deployment.apps &quot;router-od&quot; deleted
 deployment.apps &quot;nginx-od&quot; deleted
 deployment.apps &quot;speedtest-od&quot; deleted
 deployment.apps &quot;pyos-od&quot; deleted
+deployment.apps &quot;console-od&quot; deleted
+deployment.apps &quot;openldap-od&quot; deleted
 endpoints &quot;desktop&quot; deleted
 service &quot;desktop&quot; deleted
 service &quot;memcached&quot; deleted
 service &quot;mongodb&quot; deleted
 service &quot;speedtest&quot; deleted
-service &quot;nginx&quot; deleted
 service &quot;pyos&quot; deleted
-deployment.apps &quot;openldap-od&quot; deleted
+service &quot;console&quot; deleted
+service &quot;http-router&quot; deleted
+service &quot;website&quot; deleted
 service &quot;openldap&quot; deleted
 [OK] kubectl delete -f abcdesktop.yaml
 [OK] kubectl delete secrets --all -n abcdesktop
@@ -3725,10 +3728,10 @@ service &quot;openldap&quot; deleted
 [INFO] abcdesktop was succesfully uninstalled
 </code></pre>
 <h2 id="uninstall-with-a-dedicated-namespace">Uninstall with a dedicated namespace</h2>
-<pre><code class="language-PowerShell">curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.2.ps1 -OutFile uninstall-3.2.ps1
+<pre><code class="language-PowerShell">curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.3.ps1  -OutFile uninstall-3.3.ps1
 </code></pre>
-<p>Run the <code>uninstall-3.2.ps1</code> command line with your own namespace</p>
-<pre><code class="language-PowerShell">.\uninstall-3.2.ps1 --namespace superdesktop
+<p>Run the <code>uninstall-3.3.ps1</code> command line with your own namespace</p>
+<pre><code class="language-PowerShell">.\uninstall-3.3.ps1 --namespace superdesktop
 </code></pre>
 <p>You should read on stdout</p>
 <pre><code>[INFO] abcdesktop uninstall script namespace=superdesktop
@@ -3741,21 +3744,24 @@ role.rbac.authorization.k8s.io &quot;pyos-role&quot; deleted
 rolebinding.rbac.authorization.k8s.io &quot;pyos-rbac&quot; deleted
 serviceaccount &quot;pyos-serviceaccount&quot; deleted
 configmap &quot;configmap-mongodb-scripts&quot; deleted
-configmap &quot;nginx-config&quot; deleted
 secret &quot;secret-mongodb&quot; deleted
 deployment.apps &quot;mongodb-od&quot; deleted
 deployment.apps &quot;memcached-od&quot; deleted
+deployment.apps &quot;router-od&quot; deleted
 deployment.apps &quot;nginx-od&quot; deleted
 deployment.apps &quot;speedtest-od&quot; deleted
 deployment.apps &quot;pyos-od&quot; deleted
+deployment.apps &quot;console-od&quot; deleted
+deployment.apps &quot;openldap-od&quot; deleted
 endpoints &quot;desktop&quot; deleted
 service &quot;desktop&quot; deleted
 service &quot;memcached&quot; deleted
 service &quot;mongodb&quot; deleted
 service &quot;speedtest&quot; deleted
-service &quot;nginx&quot; deleted
 service &quot;pyos&quot; deleted
-deployment.apps &quot;openldap-od&quot; deleted
+service &quot;console&quot; deleted
+service &quot;http-router&quot; deleted
+service &quot;website&quot; deleted
 service &quot;openldap&quot; deleted
 [OK] kubectl delete -f abcdesktop.yaml
 [OK] kubectl delete secrets --all -n superdesktop

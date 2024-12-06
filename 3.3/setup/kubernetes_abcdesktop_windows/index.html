@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://www.abcdesktop.io/3.2/setup/uninstall_kubernetes_windows/">
+        <link rel="canonical" href="https://www.abcdesktop.io/3.3/setup/kubernetes_abcdesktop_windows/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Uninstall kubernetes windows - www.abcdesktop.io</title>
+        <title>Kubernetes abcdesktop windows - www.abcdesktop.io</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#quick-uninstallation-abcdesktop-windows" class="md-skip">
+        <a href="#quick-installation-windows" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Uninstall kubernetes windows
+              Kubernetes abcdesktop windows
             
           </span>
         </div>
@@ -1425,7 +1425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../k8slinuxinstallation/" class="md-nav__link">
+      <a href="../../../3.2/setup/k8slinuxinstallation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1446,7 +1446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kubernetes_abcdesktop/" class="md-nav__link">
+      <a href="../../../3.2/setup/kubernetes_abcdesktop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1467,7 +1467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kubernetes_abcdesktop_applications/" class="md-nav__link">
+      <a href="../../../3.2/setup/kubernetes_abcdesktop_applications/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1488,7 +1488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../uninstall_kubernetes/" class="md-nav__link">
+      <a href="../../../3.2/setup/uninstall_kubernetes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1552,7 +1552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../3.3/setup/kubernetes_abcdesktop/" class="md-nav__link">
+      <a href="../kubernetes_abcdesktop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1573,7 +1573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../3.3/setup/kubernetes_abcdesktop_applications/" class="md-nav__link">
+      <a href="../kubernetes_abcdesktop_applications/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1594,7 +1594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../3.3/setup/uninstall_kubernetes/" class="md-nav__link">
+      <a href="../uninstall_kubernetes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2866,7 +2866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/persistentvolumes/" class="md-nav__link">
+      <a href="../../../3.2/config/persistentvolumes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2887,7 +2887,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/webrtc/" class="md-nav__link">
+      <a href="../../../3.2/config/webrtc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2951,7 +2951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../3.3/config/networkpolicy/" class="md-nav__link">
+      <a href="../../config/networkpolicy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3636,18 +3636,66 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-uninstallation-abcdesktop-windows" class="md-nav__link">
+  <a href="#quick-installation-windows" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick uninstallation abcdesktop (Windows)
+      Quick installation (Windows)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick installation (Windows)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-and-configure-docker-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install and configure Docker Desktop
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#install-openssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install OpenSSL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-install-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the install script
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#uninstall-with-a-dedicated-namespace" class="md-nav__link">
+  <a href="#change-the-default-namespace" class="md-nav__link">
     <span class="md-ellipsis">
-      Uninstall with a dedicated namespace
+      Change the default namespace
     </span>
   </a>
   
@@ -3668,7 +3716,7 @@
                   
 
   
-    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/3.2/setup/uninstall_kubernetes_windows.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/3.3/setup/kubernetes_abcdesktop_windows.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -3676,98 +3724,225 @@
   
 
 
-  <h1>Uninstall kubernetes windows</h1>
+  <h1>Kubernetes abcdesktop windows</h1>
 
-<h2 id="quick-uninstallation-abcdesktop-windows">Quick uninstallation abcdesktop (Windows)</h2>
+<h2 id="quick-installation-windows">Quick installation (Windows)</h2>
 <blockquote>
-<p>Quick uninstallation can be run on Windows operation system. </p>
+<p>Quick installation can be run on Windows operation system.</p>
 </blockquote>
-<p>Download and extract the uninstall PowerShell script (Windows):</p>
-<pre><code class="language-PowerShell">$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.2.ps1 
+<h3 id="prerequisites">Prerequisites</h3>
+<h4 id="install-and-configure-docker-desktop">Install and configure Docker Desktop</h4>
+<p>To run abcdesktop on Microsoft Windows plateform you need to use <a href="https://www.docker.com/products/docker-desktop/">docker desktop</a></p>
+<p>Start <code>Docker Desktop</code> and wait for the docker engine to start.</p>
+<p><img alt="starting docker desktop" src="../img/starting-docker-desktop.PNG" /></p>
+<p>Once started go to the <code>Settings | Kubernetes</code> and click on <code>Enable Kubernetes</code>, starting your cluster may take a while.</p>
+<p><img alt="enable kubernetes" src="../img/enable-kubernetes.PNG" /></p>
+<p>Now your cluster should be correctly initialized, you can check it by opening a new PowerShell and run the command <code>kubectl version</code></p>
+<pre><code>kubectl version
+client version: V1.40.4
+Kustomise Version: V9-0-4-0.202506011699445602001590025
+Server Version: v1.28.2
+</code></pre>
+<p><img alt="check kubectl" src="../img/checking-kubernetes-start.PNG" /></p>
+<h4 id="install-openssl">Install OpenSSL</h4>
+<p>abcdesktop install process creates RSA keys using openssl, you need to install <code>openssl</code> command line.</p>
+<p>Download the <a href="https://www.openssl.org/source/">OpenSSL v3.2.0 Light</a> executable file.</p>
+<p><img alt="dl openssl" src="../img/dl-openssl.PNG" /></p>
+<p>Then follow the install process.</p>
+<p><img alt="follow install step1" src="../img/follow-install-step1.PNG" /></p>
+<p>Make sure to keep in mind the path where OpenSSL will be installed.</p>
+<p><img alt="follow install step2" src="../img/follow-install-step2.PNG" /></p>
+<p>Once installed, go to "Edit the system environement variables", and click on "Environement variables".</p>
+<p><img alt="go to edit env variables" src="../img/goto-edit-env-variable.PNG" /></p>
+<p>Go to the system variables section and search for <code>Path</code> </p>
+<p><img alt="system variables" src="../img/system-variables.PNG" /></p>
+<p>Click on <code>Edit</code> and add a new <code>Path</code>, you have to paste the absolute path to the bin folder of OpenSSL.</p>
+<p><img alt="add env variable" src="../img/add-env-variable.PNG" /></p>
+<p>Now <code>OpenSSL</code> should be correctly installed, you can check it by opening a new PowerShell and run the command </p>
+<pre><code>openssl version
+</code></pre>
+<p><img alt="check openssl" src="../img/checking-openssl-correctly-installed.PNG" /></p>
+<h3 id="run-the-install-script">Run the install script</h3>
+<p>Download and extract the latest release automatically (Windows):</p>
+<pre><code class="language-PowerShell">$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.3.ps1
 
 Invoke-Expression $($script.Content)
 </code></pre>
-<p>You should read on stdout </p>
-<pre><code>[INFO] abcdesktop uninstall script namespace=abcdesktop
+<p>You should read on stdout</p>
+<pre><code>[INFO] abcdesktop install script namespace=abcdesktop
 [OK] kubectl version
-[OK] kubectl get namespace abcdesktop
-[OK] delete pods --selector=\
-[OK] use local file abcdesktop.yaml
-role.rbac.authorization.k8s.io &quot;pyos-role&quot; deleted
-rolebinding.rbac.authorization.k8s.io &quot;pyos-rbac&quot; deleted
-serviceaccount &quot;pyos-serviceaccount&quot; deleted
-configmap &quot;configmap-mongodb-scripts&quot; deleted
-configmap &quot;nginx-config&quot; deleted
-secret &quot;secret-mongodb&quot; deleted
-deployment.apps &quot;mongodb-od&quot; deleted
-deployment.apps &quot;memcached-od&quot; deleted
-deployment.apps &quot;nginx-od&quot; deleted
-deployment.apps &quot;speedtest-od&quot; deleted
-deployment.apps &quot;pyos-od&quot; deleted
-endpoints &quot;desktop&quot; deleted
-service &quot;desktop&quot; deleted
-service &quot;memcached&quot; deleted
-service &quot;mongodb&quot; deleted
-service &quot;speedtest&quot; deleted
-service &quot;nginx&quot; deleted
-service &quot;pyos&quot; deleted
-deployment.apps &quot;openldap-od&quot; deleted
-service &quot;openldap&quot; deleted
-[OK] kubectl delete -f abcdesktop.yaml
-[OK] kubectl delete secrets --all -n abcdesktop
-[OK] kubectl delete configmap --all -n abcdesktop
-[OK] kubectl delete pvc --all -n abcdesktop
-[INFO] deleting namespace abcdesktop
-[OK] namespace &quot;abcdesktop&quot; deleted
-[INFO] delete abcdesktop related files
-[OK] remove od.config abcdesktop.yaml poduser.yaml
-[OK] remove *.pem
-[INFO] abcdesktop was succesfully uninstalled
+[OK] openssl version
+[OK] kubectl create namespace abcdesktop
+writing RSA key
+writing RSA key
+[OK] abcdesktop_jwt_desktop_payload keys created
+writing RSA key
+[OK] abcdesktop_jwt_desktop_signing keys create
+writing RSA key
+[OK] abcdesktop_jwt_user_signing keys create
+[OK] create secret generic abcdesktopjwtdesktoppayload
+[OK] create secret generic abcdesktopjwtdesktopsigning
+[OK] create secret generic abcdesktopjwtusersigning
+[OK] label secret abcdesktopjwtdesktoppayload
+[OK] label secret abcdesktopjwtdesktopsigning
+[OK] label secret abcdesktopjwtusersigning
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.3.yaml
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.3
+[OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
+[OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
+role.rbac.authorization.k8s.io/pyos-role created
+rolebinding.rbac.authorization.k8s.io/pyos-rbac created
+serviceaccount/pyos-serviceaccount created
+configmap/configmap-mongodb-scripts created
+secret/secret-mongodb created                                                                                           deployment.apps/mongodb-od created                                                                                      deployment.apps/memcached-od created                                                                                    deployment.apps/router-od created                                                                                       deployment.apps/nginx-od created
+deployment.apps/speedtest-od created
+deployment.apps/pyos-od created
+deployment.apps/console-od created
+deployment.apps/openldap-od created
+endpoints/desktop created
+service/desktop created
+service/memcached created
+service/mongodb created
+service/speedtest created
+service/pyos created
+service/console created
+service/http-router created
+service/website created
+service/openldap created
+[INFO] waiting for deployment/console-od available
+[OK] deployment.apps/console-od condition met
+[INFO] waiting for deployment/memcached-od available
+[OK] deployment.apps/memcached-od condition met
+[INFO] waiting for deployment/mongodb-od available
+[OK] deployment.apps/mongodb-od condition met
+[INFO] waiting for deployment/nginx-od available
+[OK] deployment.apps/nginx-od condition met
+[INFO] waiting for deployment/openldap-od available
+[OK] deployment.apps/openldap-od condition met
+[INFO] waiting for deployment/pyos-od available
+[OK] deployment.apps/pyos-od condition met
+[INFO] waiting for deployment/router-od available
+[OK] deployment.apps/router-od condition met
+[INFO] waiting for deployment/speedtest-od available
+[OK] deployment.apps/speedtest-od condition met
+[INFO] list all pods in namespace abcdesktop
+NAME                            READY   STATUS    RESTARTS   AGE
+console-od-844c749f85-pghrs     1/1     Running   0          12s
+memcached-od-d4b6b6867-wjvmz    1/1     Running   0          12s
+mongodb-od-5d996fd57b-2ncll     1/1     Running   0          12s
+nginx-od-796c7d7d6b-cxlzt       1/1     Running   0          12s
+openldap-od-567dcf7bf6-77zv7    1/1     Running   0          12s
+pyos-od-8d4988b56-7bg5z         1/1     Running   0          12s
+router-od-f5458658-znwcg        1/1     Running   0          12s
+speedtest-od-7fcc9649b4-kxnsn   1/1     Running   0          12s
+[INFO] Setup done
+[INFO] Checking the service url on http://localhost:30443
+[INFO] service status is down
+[INFO] Looking for a free TCP port from 30443
+[OK] Get a free TCP port from 30443
+
+[INFO] If you're using a cloud provider
+[INFO] Forwarding abcdesktop service for you on port=30443
+[INFO] For you setup is running the command 'kubectl port-forward nginx-od-796c7d7d6b-cxlzt --address 0.0.0.0 30443:80 -n abcdesktop'
+[OK] Port-Forward successful
+[OK] Please open your web browser and connect to
+
+[INFO] http://localhost:30443/
 </code></pre>
-<h2 id="uninstall-with-a-dedicated-namespace">Uninstall with a dedicated namespace</h2>
-<pre><code class="language-PowerShell">curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.2.ps1 -OutFile uninstall-3.2.ps1
+<p>You can open a web browser and go to the http://localhost:30443/ </p>
+<h2 id="change-the-default-namespace">Change the default namespace</h2>
+<p>You may need to replace the default namespace <code>abcdesktop</code> by your own. The <code>install-3.3.ps1</code> PowerShell script allows you to set the new namespace as an option.</p>
+<pre><code class="language-PowerShell">curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.3.ps1 -OutFile install-3.3.ps1
 </code></pre>
-<p>Run the <code>uninstall-3.2.ps1</code> command line with your own namespace</p>
-<pre><code class="language-PowerShell">.\uninstall-3.2.ps1 --namespace superdesktop
+<p>Run <code>install-3.3.ps1</code></p>
+<pre><code class="language-PowerShell">.\install-3.3.ps1 --namespace superdesktop
 </code></pre>
 <p>You should read on stdout</p>
-<pre><code>[INFO] abcdesktop uninstall script namespace=superdesktop
+<pre><code>[INFO] abcdesktop install script namespace=superdesktop
 [OK] kubectl version
-[OK] kubectl get namespace superdesktop
-[OK] delete pods --selector=\
-[OK] use local file abcdesktop.yaml
+[OK] openssl version
+[OK] kubectl create namespace superdesktop
+writing RSA key
+writing RSA key
+[OK] abcdesktop_jwt_desktop_payload keys created
+writing RSA key
+[OK] abcdesktop_jwt_desktop_signing keys create
+writing RSA key
+[OK] abcdesktop_jwt_user_signing keys create
+[OK] create secret generic abcdesktopjwtdesktoppayload
+[OK] create secret generic abcdesktopjwtdesktopsigning
+[OK] create secret generic abcdesktopjwtusersigning
+[OK] label secret abcdesktopjwtdesktoppayload
+[OK] label secret abcdesktopjwtdesktopsigning
+[OK] label secret abcdesktopjwtusersigning
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.3.yaml
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.3
 [OK] updated abcdesktop.yaml file with new namespace superdesktop
-role.rbac.authorization.k8s.io &quot;pyos-role&quot; deleted
-rolebinding.rbac.authorization.k8s.io &quot;pyos-rbac&quot; deleted
-serviceaccount &quot;pyos-serviceaccount&quot; deleted
-configmap &quot;configmap-mongodb-scripts&quot; deleted
-configmap &quot;nginx-config&quot; deleted
-secret &quot;secret-mongodb&quot; deleted
-deployment.apps &quot;mongodb-od&quot; deleted
-deployment.apps &quot;memcached-od&quot; deleted
-deployment.apps &quot;nginx-od&quot; deleted
-deployment.apps &quot;speedtest-od&quot; deleted
-deployment.apps &quot;pyos-od&quot; deleted
-endpoints &quot;desktop&quot; deleted
-service &quot;desktop&quot; deleted
-service &quot;memcached&quot; deleted
-service &quot;mongodb&quot; deleted
-service &quot;speedtest&quot; deleted
-service &quot;nginx&quot; deleted
-service &quot;pyos&quot; deleted
-deployment.apps &quot;openldap-od&quot; deleted
-service &quot;openldap&quot; deleted
-[OK] kubectl delete -f abcdesktop.yaml
-[OK] kubectl delete secrets --all -n superdesktop
-[OK] kubectl delete configmap --all -n superdesktop
-[OK] kubectl delete pvc --all -n superdesktop
-[INFO] deleting namespace superdesktop
-[OK] namespace &quot;superdesktop&quot; deleted
-[INFO] delete abcdesktop related files
-[OK] remove od.config abcdesktop.yaml poduser.yaml
-[OK] remove *.pem
-[INFO] abcdesktop was succesfully uninstalled
+[OK] updated abcdesktop.yaml file with new fqdn superdesktop.svc.cluster.local
+[OK] updated od.config file with new namespace superdesktop
+[OK] updated od.config file with new fqdn superdesktop.svc.cluster.local
+[OK] kubectl create configmap abcdesktop-config --from-file=od.config -n superdesktop
+[OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
+role.rbac.authorization.k8s.io/pyos-role created
+rolebinding.rbac.authorization.k8s.io/pyos-rbac created
+serviceaccount/pyos-serviceaccount created
+configmap/configmap-mongodb-scripts created
+secret/secret-mongodb created                                                                                           deployment.apps/mongodb-od created                                                                                      deployment.apps/memcached-od created                                                                                    deployment.apps/router-od created                                                                                       deployment.apps/nginx-od created
+deployment.apps/speedtest-od created
+deployment.apps/pyos-od created
+deployment.apps/console-od created
+deployment.apps/openldap-od created
+endpoints/desktop created
+service/desktop created
+service/memcached created
+service/mongodb created
+service/speedtest created
+service/pyos created
+service/console created
+service/http-router created
+service/website created
+service/openldap created
+[INFO] waiting for deployment/console-od available
+[OK] deployment.apps/console-od condition met
+[INFO] waiting for deployment/memcached-od available
+[OK] deployment.apps/memcached-od condition met
+[INFO] waiting for deployment/mongodb-od available
+[OK] deployment.apps/mongodb-od condition met
+[INFO] waiting for deployment/nginx-od available
+[OK] deployment.apps/nginx-od condition met
+[INFO] waiting for deployment/openldap-od available
+[OK] deployment.apps/openldap-od condition met
+[INFO] waiting for deployment/pyos-od available
+[OK] deployment.apps/pyos-od condition met
+[INFO] waiting for deployment/router-od available
+[OK] deployment.apps/router-od condition met
+[INFO] waiting for deployment/speedtest-od available
+[OK] deployment.apps/speedtest-od condition met
+[INFO] list all pods in namespace superdesktop
+NAME                            READY   STATUS    RESTARTS   AGE
+console-od-844c749f85-zqbdq     1/1     Running   0          22s
+memcached-od-d4b6b6867-wn7r4    1/1     Running   0          22s
+mongodb-od-5d996fd57b-xsnkf     1/1     Running   0          22s
+nginx-od-57dccb8cf9-z68q9       1/1     Running   0          22s
+openldap-od-6955699d5-rl8rd     1/1     Running   0          21s
+pyos-od-7f5f8d66b5-q686l        1/1     Running   0          22s
+router-od-c9fd4c987-xvcbq       1/1     Running   0          22s
+speedtest-od-67db77f86f-6fftb   1/1     Running   0          22s
+[INFO] Setup done
+[INFO] Checking the service url on http://localhost:30443
+[INFO] service status is down
+[INFO] Looking for a free TCP port from 30443
+[OK] Get a free TCP port from 30443
+
+[INFO] If you're using a cloud provider
+[INFO] Forwarding abcdesktop service for you on port=30443
+[INFO] For you setup is running the command 'kubectl port-forward nginx-od-57dccb8cf9-z68q9 --address 0.0.0.0 30443:80 -n superdesktop'
+[OK] Port-Forward successful
+[OK] Please open your web browser and connect to
+
+[INFO] http://localhost:30443/
 </code></pre>
+<p>You can open a web browser and go to the http://localhost:30443/</p>
 
 
 
