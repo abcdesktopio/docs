@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://www.abcdesktop.io/3.4/setup/kubernetes_abcdesktop/">
       
       
+        <link rel="prev" href="../../../3.3/setup/uninstall_kubernetes/">
+      
+      
+        <link rel="next" href="../kubernetes_abcdesktop_applications/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -18,7 +22,7 @@
     
     
       
-        <title>abcdesktop installation - www.abcdesktop.io</title>
+        <title>Setup abcdesktop for Kubernetes - www.abcdesktop.io</title>
       
     
     
@@ -105,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              abcdesktop installation
+              Setup abcdesktop for Kubernetes
             
           </span>
         </div>
@@ -887,17 +891,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
@@ -911,7 +917,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             Setup guide
@@ -1595,6 +1601,295 @@
   
     <li class="md-nav__item">
       <a href="../../../3.3/setup/uninstall_kubernetes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uninstall abcdesktop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Release 3.4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            Release 3.4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Setup abcdesktop for Kubernetes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Setup abcdesktop for Kubernetes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-installation-microsoft-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick installation (Microsoft Windows)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-installation-linux-or-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick installation (Linux or macOS)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-the-default-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change the default namespace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manually-installation-step-by-step-linux-macos-or-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manually installation step by step (Linux, macOS or Windows)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manually installation step by step (Linux, macOS or Windows)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-abcdesktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install abcdesktop
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install abcdesktop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-abcdesktop-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Create abcdesktop namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-secure-abcdesktop-jwt-exchange" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Secure abcdesktop JWT exchange
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Secure abcdesktop JWT exchange">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify Secrets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-download-and-create-the-abcdesktop-config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Download and create the abcdesktop config file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-the-abcdesktop-pods-and-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Create the abcdesktop pods and services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Create the abcdesktop pods and services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify Pods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-your-local-abcdesktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect your local abcdesktop
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes_abcdesktop_applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup applications for abcdesktop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uninstall_kubernetes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
