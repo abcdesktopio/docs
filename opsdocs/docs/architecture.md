@@ -29,7 +29,7 @@ The user creates a pod [user](/core/user)
 
 ### pyos
 
-Pyos is the core abcdesktop service act as a control plane. Pyos is a stateless services, Pyos's roles are :
+`pyos` is the core abcdesktop service act as a control plane. Pyos is a stateless services, Pyos's roles are :
 
 - Authenticate user on authenticate providers
  - OAuth 2.0 Provider : Google, Facebook, Orange
@@ -42,24 +42,27 @@ When a new user is authenticated, a dedicated user container is created.
 When the user starts an application (like LibreOffice for example) a dedicated application container is created.
 
 ### nginx
-The nginx container act as web server and websocket reverse proxy. 
+
+`nginx` container act as web server and websocket reverse proxy. 
 
 ### mongo
-Mongo is used by pyos to store user profil informations. 
+`mongo` is used by pyos to store user profil informations. 
 The profil informations are :
 
 - Login history
 - Dock configuration
-- Images and colors configuration 
+- Image and background color configuration 
 
 
 ### memcached
-Memcache is use to store progress text message information during login process 
-Memcache data are set and get pyos only.
+`memcache` stores progress text message information during login process. `memcache` datas are set and get only by the control plane.
 
 
 ### oc.user
-oc.user is the user container. oc.user runs X11 graphical environment
+[`oc.user`](https://github.com/abcdesktopio/oc.user) is the name of the user's container image. `oc.user` runs the X11 graphical service. `oc.user` is based on ubuntu distribution. 
+
+* The image `abcdesktopio/oc.user.ubuntu:3.0` is based on `ubuntu` distribution `22.04`. Get more details about [oc.user](https://github.com/abcdesktopio/oc.user) image.
+
 
 ### applications
-All applications are docker container, and share a graphical socket with the user container 
+All applications are containers or pods, and share a graphical socket with the user's container 

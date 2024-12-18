@@ -1,9 +1,5 @@
 # The POD User
 
-![Test and update oc.user.18.04](https://github.com/abcdesktopio/oc.user.18.04/workflows/Test%20and%20update%20oc.user.18.04/badge.svg)
-![Update oc.pulse.18.04](https://github.com/abcdesktopio/oc.pulseaudio.18.04/workflows/Update%20oc.pulse.18.04/badge.svg)
-![Update oc.cupsd.18.04](https://github.com/abcdesktopio/oc.cupsd.18.04/workflows/Update%20oc.cupsd.18.04/badge.svg)
-
 After the login process, if no associated pod is all ready running, a new user pod is started.
 This pod starts at least a container with the graphical image.
 

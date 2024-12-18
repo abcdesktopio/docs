@@ -11,7 +11,6 @@ language_tabs:
   - go: Go
 toc_footers: []
 includes: []
-search: true
 highlight_theme: darkula
 headingLevel: 2
 

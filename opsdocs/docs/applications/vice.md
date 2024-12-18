@@ -1,0 +1,188 @@
+# vice
+![c64.svg](icons/c64.svg){: style="height:64px;width:64px"}
+## inherite from
+[abcdesktopio/oc.template.ubuntu.gtk.18.04](../abcdesktopio/oc.template.ubuntu.gtk.18.04)
+## Displayname
+
+
+``` 
+Commodore64
+```
+
+## Path
+
+
+``` 
+/usr/bin/x64
+```
+
+## File extensions
+`"crt;bin"`
+## ACL
+
+``` json
+{
+    "permit": [
+        "all"
+    ]
+}
+```
+
+## WM_CLASS
+
+``` 
+x64.X64
+```
+
+> The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
+> to get the WM_CLASS property of an application, use the command line `wmctrl -lx`
+
+## Desktopfile
+
+``` 
+/usr/share/applications/x64.desktop
+```
+
+> A .desktop file is a simple text file that holds information about a program. It is usually placed in “/usr/share/applications/”.
+
+## PRE run command
+
+> PRE run command are run **before** the package install command
+
+```
+RUN apt-get update && apt-get install  --no-install-recommends --yes vice libmp3lame0 git wget && apt-get clean
+RUN git clone https://github.com/stuartcarnie/vice-emu/ && mv vice-emu/vice/data/DRIVES/* /usr/lib/vice/C64 && cd /vice-emu/vice/data/C64 && mv chargen kernal basic /usr/lib/vice/C64
+RUN mkdir /usr/lib/vice/C64/cartridge
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_1-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_1-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_2-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_2-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_3-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_3-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_4-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_4-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/C64638_Jack_Attack-8000.bin -O /usr/lib/vice/C64/cartridge/C64638_Jack_Attack-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315102-01.bin -O /usr/lib/vice/C64/cartridge/315102-01.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315103-01.bin -O /usr/lib/vice/C64/cartridge/315103-01.bin
+```
+
+
+
+## JSON dump
+json source file vice.d.3.0.json 
+
+``` json
+{
+    "acl": {
+        "permit": [
+            "all"
+        ]
+    },
+    "cat": "games",
+    "preruncommands": [
+        "RUN apt-get update && apt-get install  --no-install-recommends --yes vice libmp3lame0 git wget && apt-get clean",
+        "RUN git clone https://github.com/stuartcarnie/vice-emu/ && mv vice-emu/vice/data/DRIVES/* /usr/lib/vice/C64 && cd /vice-emu/vice/data/C64 && mv chargen kernal basic /usr/lib/vice/C64",
+        "RUN mkdir /usr/lib/vice/C64/cartridge",
+        "RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_1-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_1-8000.bin",
+        "RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_2-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_2-8000.bin",
+        "RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_3-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_3-8000.bin",
+        "RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_4-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_4-8000.bin",
+        "RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/C64638_Jack_Attack-8000.bin -O /usr/lib/vice/C64/cartridge/C64638_Jack_Attack-8000.bin",
+        "RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315102-01.bin -O /usr/lib/vice/C64/cartridge/315102-01.bin",
+        "RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315103-01.bin -O /usr/lib/vice/C64/cartridge/315103-01.bin"
+    ],
+    "debpackage": "",
+    "icon": "c64.svg",
+    "keyword": "x64,vice,commodore,c64",
+    "launch": "x64.X64",
+    "name": "vice",
+    "displayname": "Commodore64",
+    "installrecommends": true,
+    "path": "/usr/bin/x64",
+    "template": "abcdesktopio/oc.template.ubuntu.gtk.18.04",
+    "fileextensions": "crt;bin",
+    "desktopfile": "/usr/share/applications/x64.desktop",
+    "usedefaultapplication": false
+}
+```
+
+## Install the builded image
+>Replace the **ABCHOST** var set to localhost by default to your own server ip address
+
+``` sh
+ABCHOST=localhost
+curl --output vice.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vice.d.3.0.json
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @vice.d.3.0.json
+
+```
+
+## Generated `DockerFile` source code
+
+``` 
+# Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+# DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
+ARG TAG=dev
+FROM abcdesktopio/oc.template.ubuntu.gtk.18.04:$TAG
+USER root
+RUN apt-get update && apt-get install  --no-install-recommends --yes vice libmp3lame0 git wget && apt-get clean
+RUN git clone https://github.com/stuartcarnie/vice-emu/ && mv vice-emu/vice/data/DRIVES/* /usr/lib/vice/C64 && cd /vice-emu/vice/data/C64 && mv chargen kernal basic /usr/lib/vice/C64
+RUN mkdir /usr/lib/vice/C64/cartridge
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_1-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_1-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_2-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_2-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_3-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_3-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/Super_Games_4-8000.bin -O /usr/lib/vice/C64/cartridge/Super_Games_4-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/C64638_Jack_Attack-8000.bin -O /usr/lib/vice/C64/cartridge/C64638_Jack_Attack-8000.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315102-01.bin -O /usr/lib/vice/C64/cartridge/315102-01.bin
+RUN wget http://www.zimmers.net/anonftp/pub/cbm/firmware/misc/c64carts/315103-01.bin -O /usr/lib/vice/C64/cartridge/315103-01.bin
+LABEL oc.icon="c64.svg"
+LABEL oc.icondata="PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjE0MCIgaGVpZ2h0PSIxNDAiPg0KICA8cGF0aCBkPSJNODMsOTcuMTEwOSBMODMsMTI4LjU4MzMgQTYxLDYxIDAgMSwxIDgzLDExLjQxNjcgTDgzLDQyLjg4OTEgQTMyLDMyIDAgMSwwIDgzLDk3LjExMDkiIHN0cm9rZT0ibm9uZSIgZmlsbD0iIzAwMjI1NSIgLz4NCiAgPHBvbHlnb24gcG9pbnRzPSI4Myw0MyA4Myw2NyAxMTEsNjcgMTM1LDQzIiBzdHJva2U9Im5vbmUiIGZpbGw9IiMwMDIyNTUiIC8+DQogIDxwb2x5Z29uIHBvaW50cz0iODMsOTcgODMsNzMgMTExLDczIDEzNSw5NyIgc3Ryb2tlPSJub25lIiBmaWxsPSIjZmYwMDAwIiAvPg0KPC9zdmc+"
+LABEL oc.keyword="vice,x64,vice,commodore,c64"
+LABEL oc.cat="games"
+LABEL oc.desktopfile="x64.desktop"
+LABEL oc.launch="x64.X64"
+LABEL oc.template="abcdesktopio/oc.template.ubuntu.gtk.18.04"
+LABEL oc.name="vice"
+LABEL oc.displayname="Commodore64"
+LABEL oc.path="/usr/bin/x64"
+LABEL oc.type=app
+LABEL oc.fileextensions="crt;bin"
+LABEL oc.acl="{\"permit\":[\"all\"]}"
+RUN for d in /usr/share/icons /usr/share/pixmaps ; do echo "testing link in $d"; if [ -d $d ] && [ -x /composer/safelinks.sh ] ; then echo "fixing link in $d"; cd $d ; /composer/safelinks.sh ; fi; done
+ENV APPNAME "vice"
+ENV APPBIN "/usr/bin/x64"
+ENV APP "/usr/bin/x64"
+USER root
+RUN mkdir -p /var/secrets/abcdesktop/localaccount
+RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
+USER balloon
+CMD [ "/composer/appli-docker-entrypoint.sh" ]
+
+```
+
+## Rebuild the image manually
+
+### Download the Dockerfile manually
+[Dockerfile for application vice](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vice.d)
+``` sh
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vice.d
+```
+
+### build the `Dockerfile` to create a container image
+
+``` sh
+docker build --build-arg TAG=3.0 -f vice.d -t vice .
+```
+
+### Install the new image
+>If you are using `containerd` as container runtime, use the ctr command line
+
+ 
+>If you are not running this bash command on your abcdesktop node
+>Replace the **ABCHOST** variable set to localhost by default to your own server ip address
+
+
+``` sh
+ABCHOST=localhost
+docker inspect vice > vice.json
+docker image save vice -o vice.tar
+ctr -n k8s.io images import vice.tar
+curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @vice.json
+
+```
+

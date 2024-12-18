@@ -1,0 +1,61 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI.dispatch-from-oc.apps
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  repository_dispatch:
+    types: dispatch-from-oc.apps
+    
+permissions:
+  contents: write
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    # runs-on: self-hosted
+    runs-on: ubuntu-latest
+    env: 
+      APPLICATION_PATH: opsdocs/docs/applications
+      CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
+      CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref_name }}
+          
+      - name: git config
+        run: |   
+          git config --global pull.ff only
+          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+          git config --global user.email "abcdesktop@users.noreply.github.com"
+  
+          
+      - name: dump github.event.client_payload
+        run: |
+          echo "client_payload.repository ${{ github.event.client_payload.repository }}"
+          echo "client_payload.run_id ${{ github.event.client_payload.run_id }}"
+          echo "client_payload.artifact ${{ github.event.client_payload.artifact }}"
+          
+      - name: get artifact 
+        env:
+          # To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment variable.
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir artifact
+          gh run download -n ${{ github.event.client_payload.artifact }} --repo ${{ github.event.client_payload.repository }} --dir artifact
+          ls -la artifact
+          ls -la ${{ env.APPLICATION_PATH }}
+          cp artifact/* ${{ env.APPLICATION_PATH }}
+          ls -la ${{ env.APPLICATION_PATH }}
+          git add ${{ env.APPLICATION_PATH }}/*.md
+          git commit -m "${{ env.CI_COMMIT_MESSAGE }}" ${{ env.TEMPLATE_PATH }}/*.md
+          git push
+          

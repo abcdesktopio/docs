@@ -1,11 +1,11 @@
 # Application image format
 
-abcdesktop.io use docker image format, and add some labels to describe the application.
-Labels add new information to a docker container.
+abcdesktop.io uses OCI container image format and add some labels to describe the application.
+Labels add metadata to the container image.
 
 ## Requirements
 
-- A running dockerd last version 
+- A running container enegine (like dockerd) 
 - An access to the docker public registry
 
 ## Labels

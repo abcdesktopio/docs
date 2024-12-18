@@ -24,7 +24,7 @@ make docs
 To test your local changes
 
 ```
-make install
+pip3 install -r requirements.txt
 mkdocs serve
 # open your browser: http://127.0.0.1:8000
 ```

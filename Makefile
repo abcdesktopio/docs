@@ -14,10 +14,11 @@ docs:
 	# only to build md 
 	# comment take too long time use cache 
 	# $(MAKE) -C oc.apps docs
-	cp oc.apps/*.md opsdocs/docs/applications
-	mkdir -p opsdocs/docs/applications/icons
-	cp oc.apps/icons/* opsdocs/docs/applications/icons
+	# cp oc.apps/*.md opsdocs/docs/applications
+	# ls -la opsdocs/docs/applications
+	# mkdir -p opsdocs/docs/applications/icons
+	# cp oc.apps/icons/* opsdocs/docs/applications/icons
 	mkdocs build -f opsdocs/mkdocs.yml
 
 serve: 
-	mkdocs serve -f opsdocs/mkdocs.yml
+	mkdocs serve -a 0.0.0.0:8080 -f opsdocs/mkdocs.yml

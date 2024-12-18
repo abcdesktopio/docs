@@ -1,5 +1,5 @@
 theme: 
-  name: 'material'
+  name: material
   highlightjs: true
   logo: /img/abcdesktop.svg
   favicon: /img/abcdesktop128x128.ico
@@ -8,6 +8,9 @@ theme:
     - yaml
     - javascript
     - python
+  features:
+    - content.action.edit
+    - content.code.copy
 extra:
   analytics:
     provider: google
@@ -16,22 +19,25 @@ markdown_extensions:
   - attr_list
 site_name: www.abcdesktop.io
 repo_url: https://github.com/abcdesktopio/docs
+repo_name: abcdesktopio/docs
 site_url: https://www.abcdesktop.io
 edit_uri: 'edit/main/opsdocs/docs'
 nav:
 - About:
-    - How to do labs and exercices: 'about/howtodolabsexercices.md'
-    - Open source: 'about/opensource.md'
+    - Open source: about/opensource.md
     - Authors : about/authors.md
     - Licence : about/gnu-gpl-v2.0.md
-- Home: 'index.md'
-- Requirements : 'requirements.md'
+    - Others related projets: about/otherrelatedprojects.md
+- Home: index.md
+- Adopters: adopters.md
+- Requirements : requirements.md
 - Overview: overview.md
+- Changelog: changelog.md
 - GUI apps on Docker:
-   - 'VDI on Docker, related projets': guiappsoddocker.md
-   - 'Hands-on with VNC client': 'setup/vnc.md'
-   - 'Hands-on with no-VNC HTML5': 'setup/novnc.md'
-   - 'Play sound in docker to a webprojet': 'about/play_sound_in_docker.md' 
+   - 'VDI with containers, other related projets': guiappsoddocker.md
+   - 'Hands-on with VNC client': '1.0/setup/vnc.md'
+   - 'Hands-on with no-VNC HTML5': '1.0/setup/novnc.md'
+   - 'Play sound from a container to a web browser': 'about/play_sound_in_docker.md' 
 - Architecture: 
    - Overview: 'architecture.md'
    - Core :
@@ -44,64 +50,107 @@ nav:
    - Services :
      - Spawner-service: 'services/spawner-service.md'
      - File-service: 'services/file-service.md'
-- Setup guide: 
-   - Docker (non-cluster): 
-        - Install abcdesktop for docker : setup/dockermode.md
-        - Uninstall abcdesktop for docker : setup/uninstalldockermode.md
-   - Kubernetes : 
-        - Requirements : 
-            - Kubernetes on GNU/Linux : setup/k8slinuxinstallation.md
-            - Kubernetes on MacOS/X : setup/k8smacosinstallation.md
-            - Kubernetes on Windows 10 :  setup/k8swindows10installation.md
-        - Setup Kubernetes for GNU/Linux only: 'setup/kubernetesmode.md'
-        - Setup abcdesktop for Kubernetes : 'setup/kubernetes_abcdesktop.md'
-        - Setup applications for abcdesktop : setup/kubernetes_abcdesktop_applications.md
-        - Uninstall abcdesktop : setup/uninstall_kubernetes.md
-   - Kubernetes add-ons :
-        - Setup Network policy : 'setup/kubernetes_networkpolicies.md'
-        - Setup CIFS Volume : 'setup/kubernetes_flexvolume.md'
-        - Secure Dockerd : 'setup/secure_dockerd.md'
-        - Secure Etcd : 'setup/kubernetes_secure_etcd.md' 
-- Applications Containers:
-    - List of all applications ready to use : 'applications/list.md'
-    - Application image format : 'applicationsformat.md'
-    - Build your own abcdesktop GNU/Linux Image: 'buildapplicationsgnulinux.md'
-    - Build your own abcdesktop MsWindows Image: 'buildapplications.wine.md'
-    - Build non free applications : 'common/non-free-applications.md'
-- Configuration Guide:
-   - Edit your configuration file: 'config/editconfig.md'
-   - Stack mode: 'config/stack.md'
-   - Authentification: 
-        - config: 'config/authentification.md' 
+- Setup guide:
+   - Release 3.0 :
+     - Notes and Features :  3.0/features.md
+     - Requirements : 3.0/setup/requirements.md
+     - Install Kubernetes on GNU/Linux : 3.0/setup/k8slinuxinstallation.md
+     - Setup Kubernetes for GNU/Linux : 3.0/setup/kubernetesmode.md
+     - Setup abcdesktop for Kubernetes : 3.0/setup/kubernetes_abcdesktop.md
+     - Setup applications for abcdesktop : 3.0/setup/kubernetes_abcdesktop_applications.md
+     - Setup LoadBalacing service : 3.0/setup/kubernetes_abcdesktop_applications.md
+     - Troubleshooting core services: 3.0/setup/troubleshooting_core_services.md
+     - Uninstall abcdesktop : 3.0/setup/uninstall_kubernetes.md
+     - Kubernetes add-ons :
+       - Setup Network policy : setup/kubernetes_networkpolicies.md
+       - Setup CIFS Volume : setup/kubernetes_flexvolume.md
+   - Release 3.1 :
+     - Install Kubernetes on GNU/Linux : 3.1/setup/k8slinuxinstallation.md
+     - Setup abcdesktop for Kubernetes : 3.1/setup/kubernetes_abcdesktop.md
+     - Setup applications for abcdesktop : 3.1/setup/kubernetes_abcdesktop_applications.md
+     - Troubleshooting core services: 3.1/setup/troubleshooting_core_services.md
+     - Uninstall abcdesktop : 3.1/setup/uninstall_kubernetes.md
+   - Release 3.2 :
+     - Install Kubernetes on GNU/Linux : 3.2/setup/k8slinuxinstallation.md
+     - Setup abcdesktop for Kubernetes : 3.2/setup/kubernetes_abcdesktop.md
+     - Setup applications for abcdesktop : 3.2/setup/kubernetes_abcdesktop_applications.md
+     - Uninstall abcdesktop : 3.2/setup/uninstall_kubernetes.md
+   - Release 3.3 :
+     - Setup abcdesktop for Kubernetes : 3.3/setup/kubernetes_abcdesktop.md
+     - Setup applications for abcdesktop : 3.3/setup/kubernetes_abcdesktop_applications.md
+     - Uninstall abcdesktop : 3.3/setup/uninstall_kubernetes.md
+- Applications Containers :
+  - List of all applications ready to use : applications/list.md
+  - Release 3.0 :
+    - Application image format : applicationsformat.md
+    - Build your own abcdesktop GNU/Linux Image: buildapplicationsgnulinux.md
+    - Build your own abcdesktop MsWindows Image: buildapplications.wine.md
+    - Build non free applications : common/non-free-applications.md
+    - Create a sample application : 3.0/application/createsampleapplication.md
+    - Create an application from scratch for troubleshooting: common/3.0/createcontainerisedapplicationdebug.md
+    - Run application as a ephemeral container or as a pod: 3.0/application/applicationruntime_ephemeralcontainer_pod.md
+- Configuration Guide :
+  - Release 3.0 :
+    - Edit your configuration file: 3.0/config/editconfig.md
+    - Cloud Provider:
+        - Configure LoadBalancing service: 3.0/config/cloudprovider.loadbalancing.md
+        - Configure Persistent Volumes: 3.0/config/volumes.md
+    - Authentification: 
+        - config: 3.0/config/authentification.md
         - explicit:
-            - Directory services: 'config/authexplicit.md'
-            - LDAP: 'config/authexplicit-ldap.md'
-            - Active Directory: 'config/authexplicit-activedirectory.md'
-        - implicit: 'config/authimplicit.md'
-        - external: 'config/authexternal.md'
-        - rules: 'config/authentification-rules.md'
-   - Desktop: 'config/desktop.md'
-   - Front: 'config/frontjs.md'
-   - Languages: 'config/language.md'
-   - Logging: 
-        - Logging: config/logging.md
-        - Syslog: config/syslog.md
-   - Controllers:
-        - Overview : config/controllers.md
-        - Manager: config/controllers/manager.md
-   - WebRTC:
-        - Pulseaudio : config/webrtc.md
-   - Issue tracking:
-        - Jira : config/jira.md
-- Group discussion : 'https://groups.google.com/g/abcdesktop'
+          - Directory services: 3.0/config/authexplicit.md
+          - LDAP: 3.0/config/authexplicit-ldap.md
+          - Active Directory: 3.0/config/authexplicit-activedirectory.md
+        - implicit: 3.0/config/authimplicit.md
+        - external: 3.0/config/authexternal.md
+        - rules: 3.0/config/authentification-rules.md
+    - Pod User: 3.0/config/desktop.pod.md
+    - Persistent Volumes: 3.0/config/volumes.md
+    - Desktop: 3.0/config/desktop.md
+    - Front: 3.0/config/frontjs.md
+    - Languages: 3.0/config/language.md
+    - Logging: 
+      - Logging: 3.0/config/logging.md
+      - Syslog: 3.0/config/syslog.md
+    - Network Policy:
+      -  Network Policy: 3.0/config/networkpolicy.md
+    - Controllers:
+      - Overview : 3.0/config/controllers.md
+      - Manager: 3.0/config/controllers/manager.md
+    - WebRTC:
+      - Pulseaudio : 3.0/config/webrtc.md
+    - Issue tracking:
+      - Jira : 3.0/config/jira.md
+  - Release 3.1 :
+    - Persistent Volumes: 3.1/config/persistentvolumes.md
+  - Release 3.2 :
+    - Persistent Volumes: 3.2/config/persistentvolumes.md
+    - WebRTC: 3.2/config/webrtc.md
+  - Release 3.3 :
+    - Network Policy : 3.3/config/networkpolicy.md
+    - Update and custom frontend image : 'common/3.3/update_frontend_image.md'
+- Issue : 'https://github.com/abcdesktopio/conf/issues'
+- FAQ: faq.md 
 - How-to:
-   - Use abcdesktop as a bastion : 'common/abcdesktop.bastion.md'
-   - Get a root access inside a container : 'config/sudo-kubernetes.md' 
-   - Get all docker application image for abcdesktop : 'setup/retrieve_all_images.md'
-   - Bind a specific docker network for an application : common/docker_macvlan.md
+   - Release 1.0: 
+     - Update and custom frontend image : 'common/1.0/update_frontend_image.md'
+     - User data persistence : 'common/1.0/userdatapersistence.md'
+     - Use abcdesktop as a bastion : 'common/1.0/abcdesktop.bastion.md'
+     - Get a root access inside a container : '1.0/config/sudo-kubernetes.md' 
+     - Get all docker application image for abcdesktop : '1.0/setup/retrieve_all_images.md'
+     - Bind a specific docker network for an application : common/1.0/docker_macvlan.md
+   - Release 3.0:
+     - Create an application from scratch for troubleshooting: 'common/3.0/createcontainerisedapplicationdebug.md'
+     - Update and custom frontend image : 'common/3.0/update_frontend_image.md'
+     - Mount a nfs resource inside a user desktop: common/3.0/mount_nfs_tag.md
+     - RFC 2307 multiple groups and user securityContext on pod: common/3.0/multiplegroupsfeature.md
+   - Release 3.3:
+     - Update and custom frontend image : 'common/3.3/update_frontend_image.md'
+   - Debug you own application : common/debug_application.md
    - Define access control for an application : common/acl.md
-   - Update and custom frontend image : 'common/update_image.md'
    - Upload and from files with your desktop : 'common/upload_and_download_files.md'
    - Sync clipboard with Mozilla Firefox : 'common/firefox-extension.md'
+   - Disable Mozilla Firefox automatic connections at startup : 'common/disable-firefox-connections.md'
    - Custom default desktop wallpaper : 'common/custom-wallpaper.md'
    - Run Adobe Flash player with Mozilla Firefox-esr : 'common/flash-firefox-esr.md'
+   - Test POSIX and System V shared memory: 'common/shm.md'
