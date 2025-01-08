@@ -18,6 +18,9 @@ HTML, CSS, Javascript, Firefox clipboard extension, nodejs : Full Stack Javascri
 * [Vincent PENVERN](https://github.com/SixK) :
 Python, Ansible, Firefox clipboard extension, Pyos and embedded applications 
 
+* [Franck SEROT](https://github.com/franck-serot) :
+  Project owner, architect, developer, containers and security design, all components, maintainer of the code and has written much of the current code base
+  
 * [Jean-Philippe XAVIER](https://github.com/jpxavier-oio):
 Architect, design and network policies with calico
 
