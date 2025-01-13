@@ -68,7 +68,7 @@ openssl version
 Download and extract the latest release automatically (Windows):
 
 ```PowerShell
-$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.3.ps1
+$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.5.ps1
 
 Invoke-Expression $($script.Content)
 ```
@@ -93,8 +93,8 @@ writing RSA key
 [OK] label secret abcdesktopjwtdesktoppayload
 [OK] label secret abcdesktopjwtdesktopsigning
 [OK] label secret abcdesktopjwtusersigning
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.3.yaml
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.3
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.5.yaml
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.5
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
 role.rbac.authorization.k8s.io/pyos-role created
@@ -161,16 +161,16 @@ You can open a web browser and go to the http://localhost:30443/
 
 ## Change the default namespace
 
-You may need to replace the default namespace `abcdesktop` by your own. The `install-3.3.ps1` PowerShell script allows you to set the new namespace as an option.
+You may need to replace the default namespace `abcdesktop` by your own. The `install-3.5.ps1` PowerShell script allows you to set the new namespace as an option.
 
 ```PowerShell
-curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.3.ps1 -OutFile install-3.3.ps1
+curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.5.ps1 -OutFile install-3.5.ps1
 ```
 
-Run `install-3.3.ps1`
+Run `install-3.5.ps1`
 
 ```PowerShell
-.\install-3.3.ps1 --namespace superdesktop
+.\install-3.5.ps1 --namespace superdesktop
 ```
 
 You should read on stdout
@@ -193,8 +193,8 @@ writing RSA key
 [OK] label secret abcdesktopjwtdesktoppayload
 [OK] label secret abcdesktopjwtdesktopsigning
 [OK] label secret abcdesktopjwtusersigning
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.3.yaml
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.3
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.5.yaml
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.5
 [OK] updated abcdesktop.yaml file with new namespace superdesktop
 [OK] updated abcdesktop.yaml file with new fqdn superdesktop.svc.cluster.local
 [OK] updated od.config file with new namespace superdesktop
