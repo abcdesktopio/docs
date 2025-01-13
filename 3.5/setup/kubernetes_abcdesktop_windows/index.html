@@ -3976,7 +3976,7 @@ Server Version: v1.28.2
 <p><img alt="check openssl" src="../img/checking-openssl-correctly-installed.PNG" /></p>
 <h3 id="run-the-install-script">Run the install script</h3>
 <p>Download and extract the latest release automatically (Windows):</p>
-<pre><code class="language-PowerShell">$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.3.ps1
+<pre><code class="language-PowerShell">$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.5.ps1
 
 Invoke-Expression $($script.Content)
 </code></pre>
@@ -3998,8 +3998,8 @@ writing RSA key
 [OK] label secret abcdesktopjwtdesktoppayload
 [OK] label secret abcdesktopjwtdesktopsigning
 [OK] label secret abcdesktopjwtusersigning
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.3.yaml
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.3
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.5.yaml
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.5
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
 role.rbac.authorization.k8s.io/pyos-role created
@@ -4063,11 +4063,11 @@ speedtest-od-7fcc9649b4-kxnsn   1/1     Running   0          12s
 </code></pre>
 <p>You can open a web browser and go to the http://localhost:30443/ </p>
 <h2 id="change-the-default-namespace">Change the default namespace</h2>
-<p>You may need to replace the default namespace <code>abcdesktop</code> by your own. The <code>install-3.3.ps1</code> PowerShell script allows you to set the new namespace as an option.</p>
-<pre><code class="language-PowerShell">curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.3.ps1 -OutFile install-3.3.ps1
+<p>You may need to replace the default namespace <code>abcdesktop</code> by your own. The <code>install-3.5.ps1</code> PowerShell script allows you to set the new namespace as an option.</p>
+<pre><code class="language-PowerShell">curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.5.ps1 -OutFile install-3.5.ps1
 </code></pre>
-<p>Run <code>install-3.3.ps1</code></p>
-<pre><code class="language-PowerShell">.\install-3.3.ps1 --namespace superdesktop
+<p>Run <code>install-3.5.ps1</code></p>
+<pre><code class="language-PowerShell">.\install-3.5.ps1 --namespace superdesktop
 </code></pre>
 <p>You should read on stdout</p>
 <pre><code>[INFO] abcdesktop install script namespace=superdesktop
@@ -4087,8 +4087,8 @@ writing RSA key
 [OK] label secret abcdesktopjwtdesktoppayload
 [OK] label secret abcdesktopjwtdesktopsigning
 [OK] label secret abcdesktopjwtusersigning
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.3.yaml
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.3
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.5.yaml
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.5
 [OK] updated abcdesktop.yaml file with new namespace superdesktop
 [OK] updated abcdesktop.yaml file with new fqdn superdesktop.svc.cluster.local
 [OK] updated od.config file with new namespace superdesktop
