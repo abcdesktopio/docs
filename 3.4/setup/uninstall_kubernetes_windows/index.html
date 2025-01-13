@@ -3895,7 +3895,7 @@
 <p>Quick uninstallation can be run on Windows operation system. </p>
 </blockquote>
 <p>Download and extract the uninstall PowerShell script (Windows):</p>
-<pre><code class="language-PowerShell">$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.3.ps1 
+<pre><code class="language-PowerShell">$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.4.ps1 
 
 Invoke-Expression $($script.Content)
 </code></pre>
@@ -3940,10 +3940,10 @@ service &quot;openldap&quot; deleted
 [INFO] abcdesktop was succesfully uninstalled
 </code></pre>
 <h2 id="uninstall-with-a-dedicated-namespace">Uninstall with a dedicated namespace</h2>
-<pre><code class="language-PowerShell">curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.3.ps1  -OutFile uninstall-3.3.ps1
+<pre><code class="language-PowerShell">curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.4.ps1  -OutFile uninstall-3.4.ps1
 </code></pre>
-<p>Run the <code>uninstall-3.3.ps1</code> command line with your own namespace</p>
-<pre><code class="language-PowerShell">.\uninstall-3.3.ps1 --namespace superdesktop
+<p>Run the <code>uninstall-3.4.ps1</code> command line with your own namespace</p>
+<pre><code class="language-PowerShell">.\uninstall-3.4.ps1 --namespace superdesktop
 </code></pre>
 <p>You should read on stdout</p>
 <pre><code>[INFO] abcdesktop uninstall script namespace=superdesktop
