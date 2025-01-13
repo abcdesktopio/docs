@@ -53,7 +53,7 @@ pod/pull-xterm-abcinst-0e802cfa8addb4648f843869325f3413d544bb9eae8 condition met
 
 > Quick installation can be run on Windows operation system. 
 
-Download and execute the `pullapps-3.3.ps1` script :
+Download and execute the `pullapps-3.4.ps1` script :
 
 ```PowerShell
 $script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-3.4.ps1 
