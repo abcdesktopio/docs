@@ -6,7 +6,7 @@
 Download and extract the uninstall PowerShell script (Windows):
 
 ```PowerShell
-$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.3.ps1 
+$script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.4.ps1 
 
 Invoke-Expression $($script.Content)
 ```
@@ -58,13 +58,13 @@ service "openldap" deleted
 
 
 ```PowerShell
-curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.3.ps1  -OutFile uninstall-3.3.ps1
+curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.4.ps1  -OutFile uninstall-3.4.ps1
 ```
 
-Run the `uninstall-3.3.ps1` command line with your own namespace
+Run the `uninstall-3.4.ps1` command line with your own namespace
 
 ```PowerShell
-.\uninstall-3.3.ps1 --namespace superdesktop
+.\uninstall-3.4.ps1 --namespace superdesktop
 ```
 
 You should read on stdout
