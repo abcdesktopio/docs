@@ -129,7 +129,7 @@ The quick installation process runs the all commands step by step:
 
 ## Change the default namespace
 
-You may need to replace the default namespace `abcdesktop` by your own during the install process. The `install-3.2.sh` bash script allow you to set the new namespace as an option.
+You may need to replace the default namespace `abcdesktop` by your own during the install process. The `install-3.4.sh` bash script allow you to set the new namespace as an option.
 
 ```bash
 wget https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.4.sh
