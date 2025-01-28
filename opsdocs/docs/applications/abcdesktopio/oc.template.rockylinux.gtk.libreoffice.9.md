@@ -46,4 +46,4 @@ RUN yum update && \
 
 
 
-> file oc.template.rockylinux.gtk.libreoffice.9.md is created at Sun Dec 01 2024 12:09:21 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.gtk.libreoffice.9.md is created at Tue Jan 28 2025 14:18:17 GMT+0000 (Coordinated Universal Time) by make-docs.js

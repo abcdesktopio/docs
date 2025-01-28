@@ -52,4 +52,4 @@ COPY --from=abcdesktopio/oc.themes /usr/share/themes /usr/share/themes
 
 
 
-> file oc.template.rockylinux.gtk.9.md is created at Sun Dec 01 2024 12:00:39 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.gtk.9.md is created at Tue Jan 28 2025 14:10:48 GMT+0000 (Coordinated Universal Time) by make-docs.js

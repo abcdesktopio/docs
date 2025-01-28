@@ -97,4 +97,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.ubuntu.nvidia.22.04.md is created at Sat Nov 30 2024 22:26:02 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.nvidia.22.04.md is created at Tue Jan 28 2025 13:52:12 GMT+0000 (Coordinated Universal Time) by make-docs.js

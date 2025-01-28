@@ -91,4 +91,4 @@ RUN mkdir -p /var/log/desktop && \
 
 
 
-> file oc.template.rockylinux.minimal.8.md is created at Sat Nov 30 2024 22:27:02 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.rockylinux.minimal.8.md is created at Tue Jan 28 2025 13:53:37 GMT+0000 (Coordinated Universal Time) by make-docs.js

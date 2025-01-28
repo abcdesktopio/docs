@@ -1,6 +1,26 @@
 # oc.template.ubuntu.18.04
 ## from
  inherit [abcdesktopio/oc.template.ubuntu.minimal.18.04](../oc.template.ubuntu.minimal.18.04)
+## Container distribution release
+
+
+``` 
+NAME="Ubuntu"
+VERSION="18.04.6 LTS (Bionic Beaver)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 18.04.6 LTS"
+VERSION_ID="18.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=bionic
+UBUNTU_CODENAME=bionic
+
+```
+
+
 
 ## `DockerFile` source code
 
@@ -21,4 +41,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 
-> file oc.template.ubuntu.18.04.md is created at Sat Nov 30 2024 22:37:31 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.ubuntu.18.04.md is created at Tue Jan 28 2025 14:03:47 GMT+0000 (Coordinated Universal Time) by make-docs.js

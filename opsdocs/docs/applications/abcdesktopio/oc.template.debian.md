@@ -1,6 +1,23 @@
 # oc.template.debian
 ## from
  inherit [abcdesktopio/oc.template.debian.minimal](../oc.template.debian.minimal)
+## Container distribution release
+
+
+``` 
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+
+```
+
+
 
 ## `DockerFile` source code
 
@@ -21,4 +38,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 
-> file oc.template.debian.md is created at Sat Nov 30 2024 22:37:28 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.debian.md is created at Tue Jan 28 2025 14:03:28 GMT+0000 (Coordinated Universal Time) by make-docs.js

@@ -87,4 +87,4 @@ COPY --from=abcdesktopio/oc.themes /usr/share/themes /usr/share/themes
 
 
 
-> file oc.template.debian.gtk.md is created at Sun Dec 01 2024 12:02:41 GMT+0000 (Coordinated Universal Time) by make-docs.js
+> file oc.template.debian.gtk.md is created at Tue Jan 28 2025 14:09:08 GMT+0000 (Coordinated Universal Time) by make-docs.js
