@@ -103,10 +103,14 @@ The endpoint image returns a json documment
 
 * Inside the new webshell window run the command line `wmctrl -lx` to query the `WM_CLASS` attribut values
 
+
+![Started webshell](img/simplestapplication-running-wmctrl.png)
+
 ```
 wmctrl -lx
 0x0060000a  0 xeyes.XEyes           anonymous-d363a xeyes
 ```
+
 
 The `WM_CLASS` is `xeyes.XEyes`
 
