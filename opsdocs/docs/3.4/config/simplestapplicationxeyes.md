@@ -153,7 +153,7 @@ docker inspect $REGISTRY/samplexeyeswmclass:latest > samplexeyeswmclass.json
 ```
 
 
-* you can delete the previous image
+* you can delete the previous image, using a curl command line or if you prefer using the console service. The name of the image must be urlencoded `abcdesktopio/samplexeyes:latest` become the string `abcdesktopio%2Fsamplexeyes%3Alatest`  
 
 ```
 NAMESPACE=abcdesktop
