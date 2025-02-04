@@ -4377,7 +4377,7 @@ docker push $REGISTRY/samplexeyeswmclass
 docker inspect $REGISTRY/samplexeyeswmclass:latest &gt; samplexeyeswmclass.json
 </code></pre>
 <ul>
-<li>you can delete the previous image</li>
+<li>you can delete the previous image, using a curl command line or if you prefer using the console service. The name of the image must be urlencoded <code>abcdesktopio/samplexeyes:latest</code> become the string <code>abcdesktopio%2Fsamplexeyes%3Alatest</code>  </li>
 </ul>
 <pre><code>NAMESPACE=abcdesktop
 PYOS_POD_NAME=$(kubectl get pods -l run=pyos-od -o jsonpath={.items..metadata.name} -n &quot;$NAMESPACE&quot; | awk '{print $1}')
