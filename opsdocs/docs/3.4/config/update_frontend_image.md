@@ -308,7 +308,7 @@ Run the docker build command to build the new `oc.nginx:acme` image
 The target image is `abcdesktopio/oc.nginx:acme` you should change it with your own for example `myacme/oc.nginx:acme`
 
 ```bash
-docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE=3.4 --build-arg TARGET=dev  -t abcdesktopio/oc.nginx:acme -f Dockerfile .
+docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE=3.4 --build-arg TARGET=dev  -t abcdesktopio/oc.nginx.acme:3.4 -f Dockerfile .
 ```
 
 ```bash
@@ -337,12 +337,12 @@ docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.ng
  => exporting to image                                                                                                                                                 0.7s 
  => => exporting layers                                                                                                                                                0.7s 
  => => writing image sha256:d7bdbc9f7fafe3282161551e84c5997bb12051bded6405190267863dd73a1698                                                                           0.0s
- => => naming to docker.io/abcdesktopio/oc.nginx:acme  
+ => => naming to docker.io/abcdesktopio/oc.nginx.acme:3.4 
 ```
 
 #### update the `abcdesktop.yaml`
 
-To update the `abcdesktop.yaml` to replace `abcdesktopio/oc.nginx:3.4` by your own image `myacme/oc.nginx.acme:3.4`
+To update the `abcdesktop.yaml` to replace `oc.nginx:3.4` by your own image `oc.nginx.acme:3.4`
 
 
 - edit your own `abcdesktop.yaml` file
