@@ -1,6 +1,5 @@
 # Update and custom frontend web page
 
-
 abcdesktop uses a front HTML web site and X11 Linux application. So, to get a new graphic design, you have to define it twice in HTML (CSS) files and in X11 config.
 
 ## Requirements 
@@ -321,7 +320,7 @@ docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.ng
  => [internal] load .dockerignore                                                                                                                                      0.0s
  => => transferring context: 2B                                                                                                                                        0.0s
  => CACHED [stage-1 1/2] FROM docker.io/library/nginx:latest                                                                                                           0.0s
- => CACHED [builder  1/11] FROM docker.io/abcdesktopio/oc.nginx.builder:3.3                                                                                            0.0s
+ => CACHED [builder  1/11] FROM docker.io/abcdesktopio/oc.nginx.builder:3.4                                                                                            0.0s
  => [internal] load build context                                                                                                                                      0.1s
  => => transferring context: 265.27kB                                                                                                                                  0.1s
  => [builder  2/11] RUN echo current branch is                                                                                                                         0.2s
@@ -343,7 +342,7 @@ docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.ng
 
 #### update the `abcdesktop.yaml`
 
-To update the `abcdesktop.yaml` to replace `abcdesktopio/oc.nginx:3.3` by your own image `myacme/oc.nginx:acme`
+To update the `abcdesktop.yaml` to replace `abcdesktopio/oc.nginx:3.4` by your own image `myacme/oc.nginx.acme:3.4`
 
 
 - edit your own `abcdesktop.yaml` file
