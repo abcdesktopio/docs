@@ -4747,7 +4747,7 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
 <h4 id="build-your-new-image">build your new image</h4>
 <p>Run the docker build command to build the new <code>oc.nginx:acme</code> image</p>
 <p>The target image is <code>abcdesktopio/oc.nginx:acme</code> you should change it with your own for example <code>myacme/oc.nginx:acme</code></p>
-<pre><code class="language-bash">docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE=3.4 --build-arg TARGET=dev  -t abcdesktopio/oc.nginx:acme -f Dockerfile .
+<pre><code class="language-bash">docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE=3.4 --build-arg TARGET=dev  -t abcdesktopio/oc.nginx.acme:3.4 -f Dockerfile .
 </code></pre>
 <pre><code class="language-bash">[+] Building 16.5s (19/19) FINISHED                                                                                                                          docker:default
  =&gt; [internal] load build definition from Dockerfile                                                                                                                   0.0s
@@ -4774,10 +4774,10 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
  =&gt; exporting to image                                                                                                                                                 0.7s 
  =&gt; =&gt; exporting layers                                                                                                                                                0.7s 
  =&gt; =&gt; writing image sha256:d7bdbc9f7fafe3282161551e84c5997bb12051bded6405190267863dd73a1698                                                                           0.0s
- =&gt; =&gt; naming to docker.io/abcdesktopio/oc.nginx:acme  
+ =&gt; =&gt; naming to docker.io/abcdesktopio/oc.nginx.acme:3.4 
 </code></pre>
 <h4 id="update-the-abcdesktopyaml">update the <code>abcdesktop.yaml</code></h4>
-<p>To update the <code>abcdesktop.yaml</code> to replace <code>abcdesktopio/oc.nginx:3.4</code> by your own image <code>myacme/oc.nginx.acme:3.4</code></p>
+<p>To update the <code>abcdesktop.yaml</code> to replace <code>oc.nginx:3.4</code> by your own image <code>oc.nginx.acme:3.4</code></p>
 <ul>
 <li>edit your own <code>abcdesktop.yaml</code> file</li>
 </ul>
