@@ -12,34 +12,22 @@ The prominent changes for this release are:
 
 ## Compatibily support
 
-3.4 abcdesktop application format are compatible with 4.0 abcdesktop application.
+The abcdesktop applications in format `3.X` (including 3.4) are compatible with abcdesktop application in format `4.0`.
 
-From oc.user.4.0 Dockerfile 
+The `4.0` format includes a change for the files `/etc/shadow` and `/etc/gshadow`.
+
+- /etc/shadow  -> /etc/localaccount.shadow/shadow
+- /etc/gshadow -> /etc/localaccount.shadow/gshadow
+
+The symbolic links are linked to the `/etc/localaccount.shadow` volume. Some commands or programs (e.g., su, passwd, adduser and others) access to the shadow file.
+
+If your application need an access to the file '/etc/shadow' or the file '/etc/gshadow', then you have to add this line to your Dockerfile.
 
 ```
-# change passwd shadow group gshadow files
-# create a symlink for each files
-# target are provisioned in dedicated volumes to support ReadOnly, 
-# we can't update files /etc/passwd /etc/group /etc/shadow /etc/gshadow 
-# Note: SubPath is not supported in ephemeral 
-containers
-# Default value :
-# ABCDESKTOP_LOCALACCOUNT_DIR = /etc/localaccount
-
-RUN mkdir -p ${ABCDESKTOP_LOCALACCOUNT_DIR} ${ABCDESKTOP_LOCALACCOUNT_DIR}.shadow && \
-    for f in passwd group ; do \
-	cp /etc/${f} ${ABCDESKTOP_LOCALACCOUNT_DIR} ; \
-	rm -f /etc/${f}; \
-        ln -s ${ABCDESKTOP_LOCALACCOUNT_DIR}/${f} /etc/${f}; \
-    done && \
-    for f in shadow gshadow ; do \
-        cp /etc/${f} ${ABCDESKTOP_LOCALACCOUNT_DIR}.shadow ; \
-        rm -f /etc/${f}; \
-        ln -s ${ABCDESKTOP_LOCALACCOUNT_DIR}.shadow/${f} /etc/${f}; \
-    done
+RUN for f in shadow gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /etc/localaccount.shadow; rm -f /etc/$f; ln -s /etc/localaccount.shadow/$f /etc/$f; fi; done
 ```
 
-If your application need a access to file '/etc/shadow' or '/etc/gshadow', you have to add this line to your Dockerfile 
+The complete lines for a users support with ( passwd, group ) and ( shadow, gshadow ) 
 
 ```
 # Create links for local acccounts
