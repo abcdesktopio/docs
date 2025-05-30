@@ -1919,6 +1919,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Change log
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1930,6 +1943,34 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#compatibily-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compatibily support
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4335,6 +4376,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#compatibily-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compatibily support
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4365,6 +4423,40 @@
 <li><a href="https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml">abcdesktop.yaml</a> file include ConfigMap to customize user's local account files [ '/etc/passwd', '/etc/group', '/etc/shadow', '/etc/gshadow' ]. change file permissions to [ '/etc/shadow', '/etc/gshadow' ]</li>
 <li><a href="https://github.com/abcdesktopio/conf/blob/main/kubernetes/netpol-default-4.0.yaml">network policies</a> support Pod application</li>
 </ul>
+<h2 id="compatibily-support">Compatibily support</h2>
+<p>3.4 abcdesktop application format are compatible with 4.0 abcdesktop application.</p>
+<p>From oc.user.4.0 Dockerfile </p>
+<pre><code># change passwd shadow group gshadow files
+# create a symlink for each files
+# target are provisioned in dedicated volumes to support ReadOnly, 
+# we can't update files /etc/passwd /etc/group /etc/shadow /etc/gshadow 
+# Note: SubPath is not supported in ephemeral 
+containers
+# Default value :
+# ABCDESKTOP_LOCALACCOUNT_DIR = /etc/localaccount
+
+RUN mkdir -p ${ABCDESKTOP_LOCALACCOUNT_DIR} ${ABCDESKTOP_LOCALACCOUNT_DIR}.shadow &amp;&amp; \
+    for f in passwd group ; do \
+    cp /etc/${f} ${ABCDESKTOP_LOCALACCOUNT_DIR} ; \
+    rm -f /etc/${f}; \
+        ln -s ${ABCDESKTOP_LOCALACCOUNT_DIR}/${f} /etc/${f}; \
+    done &amp;&amp; \
+    for f in shadow gshadow ; do \
+        cp /etc/${f} ${ABCDESKTOP_LOCALACCOUNT_DIR}.shadow ; \
+        rm -f /etc/${f}; \
+        ln -s ${ABCDESKTOP_LOCALACCOUNT_DIR}.shadow/${f} /etc/${f}; \
+    done
+</code></pre>
+<p>If your application need a access to file '/etc/shadow' or '/etc/gshadow', you have to add this line to your Dockerfile </p>
+<pre><code># Create links for local acccounts
+# /etc/passwd  -&gt; /etc/localaccount/passwd
+# /etc/group   -&gt; /etc/localaccount/group
+# /etc/shadow  -&gt; /etc/localaccount.shadow/shadow
+# /etc/gshadow -&gt; /etc/localaccount.shadow/gshadow
+RUN mkdir -p /etc/localaccount /etc/localaccount.shadow
+RUN for f in passwd group ; do if [ -f /etc/$f ] ; then  cp /etc/$f /etc/localaccount; rm -f /etc/$f; ln -s /etc/localaccount/$f /etc/$f; fi; done
+RUN for f in shadow gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /etc/localaccount.shadow; rm -f /etc/$f; ln -s /etc/localaccount.shadow/$f /etc/$f; fi; done
+</code></pre>
 
 
 
