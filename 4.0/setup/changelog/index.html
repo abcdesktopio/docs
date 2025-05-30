@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://www.abcdesktop.io/4.0/setup/changelog/">
       
       
+        <link rel="prev" href="../../../3.4/setup/uninstall_kubernetes/">
+      
+      
+        <link rel="next" href="../kubernetes_abcdesktop/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -949,18 +953,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
@@ -976,7 +982,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             Setup guide
@@ -1861,18 +1867,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6" checked>
         
           
           <label class="md-nav__link" for="__nav_9_6" id="__nav_9_6_label" tabindex="0">
@@ -1888,12 +1896,45 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9_6">
             <span class="md-nav__icon md-icon"></span>
             Release 4.0
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Change log
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
             
               
                 
@@ -4321,9 +4362,8 @@
 <ul>
 <li>The native KDE Plasma inteface with <a href="https://github.com/yeyushengfan258/Win11OS-kde">Win11OS</a> theme. This change removes the HTML dock and search text area. </li>
 <li>Supports hardware accelerated OpenGL and Vulkan on drivers that supports GBM (FOSS drivers and newer Nvidia drivers) with <a href="https://github.com/TigerVNC/">TigerVNC</a> 1.15.0</li>
-<li>Define yaml ConfigMap to customize files [ '/etc/passwd', '/etc/group', '/etc/shadow', '/etc/gshadow' ] </li>
-<li>Fix file permissions to [ '/etc/shadow', '/etc/gshadow' ]</li>
-<li>Network Policies support Pod application</li>
+<li><a href="https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml">abcdesktop.yaml</a> file include ConfigMap to customize user's local account files [ '/etc/passwd', '/etc/group', '/etc/shadow', '/etc/gshadow' ]. change file permissions to [ '/etc/shadow', '/etc/gshadow' ]</li>
+<li><a href="https://github.com/abcdesktopio/conf/blob/main/kubernetes/netpol-default-4.0.yaml">network policies</a> support Pod application</li>
 </ul>
 
 
