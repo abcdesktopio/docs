@@ -4422,6 +4422,8 @@
 <li>Supports hardware accelerated OpenGL and Vulkan on drivers that supports GBM (FOSS drivers and newer Nvidia drivers) with <a href="https://github.com/TigerVNC/">TigerVNC</a> 1.15.0</li>
 <li><a href="https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml">abcdesktop.yaml</a> file include ConfigMap to customize user's local account files [ '/etc/passwd', '/etc/group', '/etc/shadow', '/etc/gshadow' ]. change file permissions to [ '/etc/shadow', '/etc/gshadow' ]</li>
 <li><a href="https://github.com/abcdesktopio/conf/blob/main/kubernetes/netpol-default-4.0.yaml">network policies</a> support Pod application</li>
+<li>The registry is hosted by gitHub container registry ghcr.io. All images start this the prefix <code>ghcr.io/abcdesktopio</code>. The <a href="https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml">abcdesktop.yaml</a> yaml file is updated with this new prefix. </li>
+<li><a href="https://raw.githubusercontent.com/abcdesktopio/oc.user/refs/heads/4.0/Dockerfile.ubuntu">oc.user</a> image uses <code>ubuntu:24.04</code> as based image.</li>
 </ul>
 <h2 id="compatibily-support">Compatibily support</h2>
 <p>The abcdesktop applications in format <code>3.X</code> (including 3.4) are compatible with abcdesktop application in format <code>4.0</code>.</p>
