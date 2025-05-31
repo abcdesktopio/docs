@@ -6,7 +6,7 @@ The prominent changes for this release are:
 * The native KDE Plasma inteface with [Win11OS](https://github.com/yeyushengfan258/Win11OS-kde) theme. KDE Plasmashell application replaces the HTML dock and search text area. 
 * Supports hardware accelerated OpenGL and Vulkan on drivers that supports GBM (FOSS drivers and newer Nvidia drivers) with [TigerVNC](https://github.com/TigerVNC/) 1.15.0
 * The registry is hosted by gitHub container registry ghcr.io. All images start this the prefix ```ghcr.io/abcdesktopio```. The [abcdesktop.yaml](https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml) yaml file and [od.config](https://github.com/abcdesktopio/conf/blob/main/reference/od.config.4.0) are updated with the prefix.
-* [abcdesktop.yaml](https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml) file include ConfigMap to customize user's local account files [ '/etc/passwd', '/etc/group', '/etc/shadow', '/etc/gshadow' ]. change file permissions to [ '/etc/shadow', '/etc/gshadow' ]
+* [abcdesktop.yaml](https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml) file include ConfigMap to customize user's local account files [ '/etc/passwd', '/etc/group', '/etc/shadow', '/etc/gshadow' ]
 * [network policies](https://github.com/abcdesktopio/conf/blob/main/kubernetes/netpol-default-4.0.yaml) support Pod application
 * [oc.user](https://raw.githubusercontent.com/abcdesktopio/oc.user/refs/heads/4.0/Dockerfile.ubuntu) image uses ```ubuntu:24.04``` as based image.
 
