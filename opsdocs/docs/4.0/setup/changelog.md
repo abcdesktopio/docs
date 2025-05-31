@@ -7,6 +7,8 @@ The prominent changes for this release are:
 * Supports hardware accelerated OpenGL and Vulkan on drivers that supports GBM (FOSS drivers and newer Nvidia drivers) with [TigerVNC](https://github.com/TigerVNC/) 1.15.0
 * [abcdesktop.yaml](https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml) file include ConfigMap to customize user's local account files [ '/etc/passwd', '/etc/group', '/etc/shadow', '/etc/gshadow' ]. change file permissions to [ '/etc/shadow', '/etc/gshadow' ]
 * [network policies](https://github.com/abcdesktopio/conf/blob/main/kubernetes/netpol-default-4.0.yaml) support Pod application
+* The registry is hosted by gitHub container registry ghcr.io. All images start this the prefix ```ghcr.io/abcdesktopio```. The [abcdesktop.yaml](https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml) yaml file is updated with this new prefix. 
+* [oc.user](https://raw.githubusercontent.com/abcdesktopio/oc.user/refs/heads/4.0/Dockerfile.ubuntu) image uses ```ubuntu:24.04``` as based image.
 
 
 
