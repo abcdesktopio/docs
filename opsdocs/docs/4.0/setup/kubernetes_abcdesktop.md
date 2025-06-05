@@ -12,7 +12,7 @@ You can run the **Quick installation process** or choose the **Manually installa
 
 ### Requirements for minikube
 
-Start minikube with enough cpu and memory resources to start all abcdesktop pods and the user's desktop
+Start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop
 
 ```
 minikube start --cpus 4 --memory 4096
