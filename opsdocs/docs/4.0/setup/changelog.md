@@ -21,6 +21,12 @@ There is 3 oc.user images, all images are based on `ubuntu:24.04`
 All images embedded the graphical services: X11 server (TigerVNC), websockify and plasmashell.
 
 
+## default `balloon` account is deleted
+
+The default `balloon` account does exist anymore, by default. 
+The files ( /etc/passwd, /etc/group, /etc/shadow, /etc/gshadow ) are customized during the login process, with the posix user login.
+`balloon` account can still be present only if your ldap (or your auth provider) doesn't provide posix groups and account. 
+
 ## Compatibily support
 
 The abcdesktop applications in format `3.X` (including 3.4) are compatible with abcdesktop application in format `4.0`.
