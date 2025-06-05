@@ -1969,6 +1969,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#default-balloon-account-is-deleted" class="md-nav__link">
+    <span class="md-ellipsis">
+      default balloon account is deleted
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#compatibily-support" class="md-nav__link">
     <span class="md-ellipsis">
       Compatibily support
@@ -4401,6 +4410,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#default-balloon-account-is-deleted" class="md-nav__link">
+    <span class="md-ellipsis">
+      default balloon account is deleted
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#compatibily-support" class="md-nav__link">
     <span class="md-ellipsis">
       Compatibily support
@@ -4451,6 +4469,10 @@
 <li><code>ghcr.io/abcdesktopio/oc.user.hardening.24.04:4.0</code> less built-in binary, without <code>sudo</code> command and without <code>webshell</code> console</li>
 </ul>
 <p>All images embedded the graphical services: X11 server (TigerVNC), websockify and plasmashell.</p>
+<h2 id="default-balloon-account-is-deleted">default <code>balloon</code> account is deleted</h2>
+<p>The default <code>balloon</code> account does exist anymore, by default. 
+The files ( /etc/passwd, /etc/group, /etc/shadow, /etc/gshadow ) are customized during the login process, with the posix user login.
+<code>balloon</code> account can still be present only if your ldap (or your auth provider) doesn't provide posix groups and account. </p>
 <h2 id="compatibily-support">Compatibily support</h2>
 <p>The abcdesktop applications in format <code>3.X</code> (including 3.4) are compatible with abcdesktop application in format <code>4.0</code>.</p>
 <p>The <code>4.0</code> format includes a change for the files <code>/etc/shadow</code> and <code>/etc/gshadow</code>.</p>
