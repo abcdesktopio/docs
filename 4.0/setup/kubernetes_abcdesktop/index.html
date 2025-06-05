@@ -1989,6 +1989,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements-for-minikube" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements for minikube
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4512,6 +4527,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements-for-minikube" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements for minikube
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4665,13 +4695,17 @@
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>kubernetes cluster ready to run</li>
-<li><code>kubectl</code> or <code>microk8s</code> command-line tool must be configured to communicate with your cluster. </li>
+<li><code>kubectl</code> or <code>minikube</code> command-line tool must be configured to communicate with your cluster. </li>
 <li><code>openssl</code> and <code>curl</code> command line must be installed too.</li>
 </ul>
 <p>You can run the <strong>Quick installation process</strong> or choose the <strong>Manually installation step by step</strong></p>
 <blockquote>
 <p>Linux operating system is recommanded to run abcdesktop.io.</p>
 </blockquote>
+<h3 id="requirements-for-minikube">Requirements for minikube</h3>
+<p>Start minikube with enough cpu and memory resources to start all abcdesktop pods and the user's desktop</p>
+<pre><code>minikube start --cpus 4 --memory 4096
+</code></pre>
 <h2 id="quick-installation-linux-or-macos">Quick installation (Linux or macOS)</h2>
 <blockquote>
 <p>Quick installation can be run on Linux or macOS operation system. </p>
