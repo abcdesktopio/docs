@@ -3,12 +3,21 @@
 ## Requirements
 
 - kubernetes cluster ready to run
-- `kubectl` or `microk8s` command-line tool must be configured to communicate with your cluster. 
+- `kubectl` or `minikube` command-line tool must be configured to communicate with your cluster. 
 - `openssl` and `curl` command line must be installed too.
 
 You can run the **Quick installation process** or choose the **Manually installation step by step**
 
 > Linux operating system is recommanded to run abcdesktop.io.
+
+### Requirements for minikube
+
+Start minikube with enough cpu and memory resources to start all abcdesktop pods and the user's desktop
+
+```
+minikube start --cpus 4 --memory 4096
+```
+
 
 ## Quick installation (Linux or macOS)
 
