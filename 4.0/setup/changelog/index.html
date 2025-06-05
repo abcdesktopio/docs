@@ -1960,6 +1960,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#ocuser-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      oc.user images
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#compatibily-support" class="md-nav__link">
     <span class="md-ellipsis">
       Compatibily support
@@ -4383,6 +4392,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#ocuser-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      oc.user images
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#compatibily-support" class="md-nav__link">
     <span class="md-ellipsis">
       Compatibily support
@@ -4424,6 +4442,13 @@
 <li><a href="https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml">abcdesktop.yaml</a> file include ConfigMap to customize user's local account files [ '/etc/passwd', '/etc/group', '/etc/shadow', '/etc/gshadow' ]</li>
 <li><a href="https://github.com/abcdesktopio/conf/blob/main/kubernetes/netpol-default-4.0.yaml">network policies</a> support Pod application</li>
 <li><a href="https://raw.githubusercontent.com/abcdesktopio/oc.user/refs/heads/4.0/Dockerfile.ubuntu">oc.user</a> image uses <code>ubuntu:24.04</code> as based image.</li>
+</ul>
+<h2 id="ocuser-images">oc.user images</h2>
+<p>There is 3 oc.user images, all images are based on <code>ubuntu:24.04</code> </p>
+<ul>
+<li><code>ghcr.io/abcdesktopio/oc.user.ubuntu.24.04:4.0</code> is the default oc.user image with console <code>webshell</code> support </li>
+<li><code>ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.0</code> like oc.user image with <code>sudo</code> command embedded, a user can run sudo command inside the container</li>
+<li><code>ghcr.io/abcdesktopio/oc.user.hardening.24.04:4.0</code> less built-in binary, without <code>sudo</code> command and without <code>webshell</code> console</li>
 </ul>
 <h2 id="compatibily-support">Compatibily support</h2>
 <p>The abcdesktop applications in format <code>3.X</code> (including 3.4) are compatible with abcdesktop application in format <code>4.0</code>.</p>
