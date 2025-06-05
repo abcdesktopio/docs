@@ -10,6 +10,14 @@ The prominent changes for this release are:
 * [network policies](https://github.com/abcdesktopio/conf/blob/main/kubernetes/netpol-default-4.0.yaml) support Pod application
 * [oc.user](https://raw.githubusercontent.com/abcdesktopio/oc.user/refs/heads/4.0/Dockerfile.ubuntu) image uses ```ubuntu:24.04``` as based image.
 
+## oc.user images
+
+There is 3 oc.user images, all images are based on `ubuntu:24.04` 
+
+- `ghcr.io/abcdesktopio/oc.user.ubuntu.24.04:4.0` is the default oc.user image with console `webshell` support 
+- `ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.0` like oc.user image with `sudo` command embedded, a user can run sudo command inside the container
+- `ghcr.io/abcdesktopio/oc.user.hardening.24.04:4.0` less built-in binary, without `sudo` command and without `webshell` console
+
 ## Compatibily support
 
 The abcdesktop applications in format `3.X` (including 3.4) are compatible with abcdesktop application in format `4.0`.
