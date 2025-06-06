@@ -4,10 +4,6 @@ Uninstall abcdesktop for kubernetes
 
 To uninstall abcdesktop. Choose run run the `uninstall-4.0.sh` bash script using a curl.
 
-## Quick uninstallation abcdesktop (Windows)
-
-If you are using a Windows operating system please click on the link below  
-[Quick uninstall for windows](./uninstall_kubernetes_windows.md)
 
 ## Quick uninstallation abcdesktop (Linux or macOS)
 
