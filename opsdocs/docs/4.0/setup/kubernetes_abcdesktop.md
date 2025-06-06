@@ -351,7 +351,7 @@ abcdesktop.yaml file contains declarations for all roles, service account, pods,
 Run the command line
 
 ``` bash
-kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.0.yaml
+kubectl create -n abcdesktop -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.0.yaml
 ```
 
 You should read on the standard output
