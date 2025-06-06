@@ -4983,7 +4983,7 @@ abcdesktopjwtusersigning      Opaque                                2      67s
 <h3 id="step-4-create-the-abcdesktop-pods-and-services">Step 4: Create the abcdesktop pods and services</h3>
 <p>abcdesktop.yaml file contains declarations for all roles, service account, pods, and services required for abcdesktop.</p>
 <p>Run the command line</p>
-<pre><code class="language-bash">kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.0.yaml
+<pre><code class="language-bash">kubectl create -n abcdesktop -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.0.yaml
 </code></pre>
 <p>You should read on the standard output</p>
 <pre><code class="language-bash">role.rbac.authorization.k8s.io/pyos-role created
