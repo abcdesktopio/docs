@@ -59,5 +59,22 @@ RUN for f in shadow gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /etc/local
 
 
 
+## abcdesktop.yaml 
+
+Remove the fixed namespace `namespace: abcdesktop` value in `abcdesktop.yaml` 
+The namespace value is set using `--namespace` option
+
+```
+kubectl apply --namespace abcdesktop -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.0.yaml
+```
+
+
+
+
+
+
+
+
+
 
 
