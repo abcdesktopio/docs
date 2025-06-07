@@ -1986,6 +1986,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#abcdesktopyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      abcdesktop.yaml
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4427,6 +4436,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#abcdesktopyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      abcdesktop.yaml
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4493,6 +4511,11 @@ The files ( /etc/passwd, /etc/group, /etc/shadow, /etc/gshadow ) are customized 
 RUN mkdir -p /etc/localaccount /etc/localaccount.shadow
 RUN for f in passwd group ; do if [ -f /etc/$f ] ; then  cp /etc/$f /etc/localaccount; rm -f /etc/$f; ln -s /etc/localaccount/$f /etc/$f; fi; done
 RUN for f in shadow gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /etc/localaccount.shadow; rm -f /etc/$f; ln -s /etc/localaccount.shadow/$f /etc/$f; fi; done
+</code></pre>
+<h2 id="abcdesktopyaml">abcdesktop.yaml</h2>
+<p>Remove the fixed namespace <code>namespace: abcdesktop</code> value in <code>abcdesktop.yaml</code> 
+The namespace value is set using <code>--namespace</code> option</p>
+<pre><code>kubectl apply --namespace abcdesktop -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.0.yaml
 </code></pre>
 
 
