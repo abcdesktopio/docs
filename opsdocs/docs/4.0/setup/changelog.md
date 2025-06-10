@@ -10,6 +10,7 @@ The prominent changes for this release are:
 * [network policies](https://github.com/abcdesktopio/conf/blob/main/kubernetes/netpol-default-4.0.yaml) support Pod application
 * All [oc.user](https://raw.githubusercontent.com/abcdesktopio/oc.user/refs/heads/4.0/Dockerfile.ubuntu) images use ```ubuntu:24.04``` as based image.
 * Add multi-arch `amd64` and `arm64` ( with Apple silicon )
+* All applications are located in an artifactory for [images 4.0](https://github.com/abcdesktopio/images/tree/main/artifact/4.0)
 
 ## oc.user images
 
