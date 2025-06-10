@@ -8,7 +8,7 @@ The prominent changes for this release are:
 * The registry is hosted by gitHub container registry ghcr.io. All images start this this prefix ```ghcr.io/abcdesktopio```. The [abcdesktop.yaml](https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml) yaml file and [od.config](https://github.com/abcdesktopio/conf/blob/main/reference/od.config.4.0) are updated with the prefix.
 * [abcdesktop.yaml](https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml) file include ConfigMap to customize user's local account files [ '/etc/passwd', '/etc/group', '/etc/shadow', '/etc/gshadow' ]
 * [network policies](https://github.com/abcdesktopio/conf/blob/main/kubernetes/netpol-default-4.0.yaml) support Pod application
-* [oc.user](https://raw.githubusercontent.com/abcdesktopio/oc.user/refs/heads/4.0/Dockerfile.ubuntu) image uses ```ubuntu:24.04``` as based image.
+* All [oc.user](https://raw.githubusercontent.com/abcdesktopio/oc.user/refs/heads/4.0/Dockerfile.ubuntu) images use ```ubuntu:24.04``` as based image.
 * Add multi-arch `amd64` and `arm64` ( with Apple silicon )
 
 ## oc.user images
