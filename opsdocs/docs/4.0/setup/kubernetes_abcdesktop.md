@@ -21,6 +21,8 @@ minikube start --cpus 4 --memory 4096
 
 ## Quick installation (Linux or macOS)
 
+### Install using kubectl
+
 > Quick installation can be run on Linux or macOS operation system. 
 
 Download and extract the latest release automatically (Linux or macOS):
