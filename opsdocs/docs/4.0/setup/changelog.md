@@ -9,6 +9,7 @@ The prominent changes for this release are:
 * [abcdesktop.yaml](https://github.com/abcdesktopio/conf/blob/main/kubernetes/abcdesktop-4.0.yaml) file include ConfigMap to customize user's local account files [ '/etc/passwd', '/etc/group', '/etc/shadow', '/etc/gshadow' ]
 * [network policies](https://github.com/abcdesktopio/conf/blob/main/kubernetes/netpol-default-4.0.yaml) support Pod application
 * [oc.user](https://raw.githubusercontent.com/abcdesktopio/oc.user/refs/heads/4.0/Dockerfile.ubuntu) image uses ```ubuntu:24.04``` as based image.
+* Add multi-arch `amd64` and `arm64` ( with Apple silicon )
 
 ## oc.user images
 
