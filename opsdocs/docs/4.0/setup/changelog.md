@@ -22,7 +22,7 @@ There is 3 oc.user images, all images are based on `ubuntu:24.04`
 All images embedded the graphical services: X11 server (TigerVNC), websockify and plasmashell.
 
 
-## default `balloon` account is deleted
+## default `balloon` account is removed
 
 The default `balloon` account does exist anymore, by default. 
 The files ( /etc/passwd, /etc/group, /etc/shadow, /etc/gshadow ) are customized during the login process, with the posix user login.
