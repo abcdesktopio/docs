@@ -4760,18 +4760,18 @@
 </blockquote>
 <h3 id="install-using-helm">Install using helm</h3>
 <blockquote>
-<p>Quick installation can be run on Linux or macOS operation system, using helm </p>
+<p>Quick installation can be run on Linux or macOS operation system, using helm</p>
 </blockquote>
 <pre><code class="language-bash">helm repo add abcdesktop https://abcdesktopio.github.io/helm/
 helm repo update
 helm upgrade --install abcdesktop --create-namespace abcdesktop/abcdesktop -n abcdesktop
 </code></pre>
-<p>the <code>-n abcdesktop</code> defines the default namespace <code>abcdesktop</code> </p>
+<p>To get more information about the helm installation process and options, please read the <a href="https://github.com/abcdesktopio/helm/">README.md</a> file on https://github.com/abcdesktopio/helm</p>
 <h3 id="install-using-kubectl">Install using kubectl</h3>
 <blockquote>
 <p>Quick installation can be run on Linux or macOS operation system. </p>
 </blockquote>
-<p>Download and extract the latest release automatically (Linux or macOS):</p>
+<p>Download and extract the latest release automatically (Linux or macOS)</p>
 <pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.0.sh | bash
 </code></pre>
 <p>You can read on stdout </p>
