@@ -25,7 +25,7 @@ minikube start --cpus 4 --memory 4096
 
 ### Install using helm
 
-> Quick installation can be run on Linux or macOS operation system, using helm
+> Quick installation can be run on Linux or macOS operation system, using helm (version > 3)
 
 ``` bash
 helm repo add abcdesktop https://abcdesktopio.github.io/helm/
