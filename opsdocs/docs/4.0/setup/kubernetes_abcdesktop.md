@@ -4,7 +4,7 @@
 
 - kubernetes cluster ready to run
 - `kubectl` or `minikube` command-line tool must be configured to communicate with your cluster. 
-- `openssl` and `curl` command line must be installed too.
+- `openssl` and `curl` command line must be installed too (only for install using kubectl). 
 
 You can run the **Quick installation process** or choose the **Manually installation step by step**
 
@@ -134,16 +134,14 @@ speedtest-od-7fcc9649b4-qllr7   1/1     Running   0          32s
 [INFO] http://localhost:30443/
 ```
 
-
 The command above downloads the latest release (numerically) of abcdesktop.io. 
 The quick installation process runs the all commands step by step:
 
 * create the `abcdesktop` namespace
 * create clusterRole and service account
-* build all `rsa` keys pairs for jwt signing and payload encryption
+* build all `rsa` keys pairs for jwt signing and payload encryption, using openssl command line
 * download the default configuration file `od.config`
 * create all `services`, `deployments`, `secrets` and `configmaps`
-* fetch pod user's container images
 
 
 ## Change the default namespace
