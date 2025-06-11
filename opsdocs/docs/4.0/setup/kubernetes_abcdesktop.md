@@ -21,6 +21,21 @@ minikube start --cpus 4 --memory 4096
 
 ## Quick installation (Linux or macOS)
 
+> Quick installation can be run on Linux or macOS operation system, using `helm` or using `kubectl` command
+
+### Install using helm
+
+> Quick installation can be run on Linux or macOS operation system, using helm 
+
+``` bash
+helm repo add abcdesktop https://abcdesktopio.github.io/helm/
+helm repo update
+helm upgrade --install abcdesktop --create-namespace abcdesktop/abcdesktop -n abcdesktop
+```
+
+the `-n abcdesktop` defines the default namespace `abcdesktop` 
+
+
 ### Install using kubectl
 
 > Quick installation can be run on Linux or macOS operation system. 
