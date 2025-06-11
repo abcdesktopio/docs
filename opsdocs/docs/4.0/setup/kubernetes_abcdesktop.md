@@ -6,7 +6,7 @@
 - `kubectl` or `minikube` command-line tool must be configured to communicate with your cluster. 
 - `openssl` and `curl` command line must be installed too (only for install using kubectl). 
 
-You can run the **Quick installation process** or choose the **Manually installation step by step**
+You can run the **Quick installation process using helm or kubectl** or choose the **Manually installation step by step**
 
 > Linux operating system is recommanded to run abcdesktop.io.
 
@@ -18,6 +18,7 @@ Start minikube with enough cpu and memory resources to start all abcdesktop's po
 minikube start --cpus 4 --memory 4096
 ```
 
+kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n abcdesktop ) --address 0.0.0.0 "30443:80" -n abcdesktop
 
 ## Quick installation (Linux or macOS)
 
