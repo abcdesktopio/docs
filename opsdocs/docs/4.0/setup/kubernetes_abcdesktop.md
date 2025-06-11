@@ -40,7 +40,7 @@ To get more information about the helm installation process and options, please 
 
 > Quick installation can be run on Linux or macOS operation system. 
 
-Download and extract the latest release automatically (Linux or macOS)
+Download and extract the latest release automatically
 
 ```
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.0.sh | bash
