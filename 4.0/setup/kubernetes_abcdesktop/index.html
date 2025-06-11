@@ -2017,6 +2017,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#install-using-helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install using helm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#install-using-kubectl" class="md-nav__link">
     <span class="md-ellipsis">
       Install using kubectl
@@ -4570,6 +4579,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#install-using-helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install using helm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#install-using-kubectl" class="md-nav__link">
     <span class="md-ellipsis">
       Install using kubectl
@@ -4737,6 +4755,18 @@
 <pre><code>minikube start --cpus 4 --memory 4096
 </code></pre>
 <h2 id="quick-installation-linux-or-macos">Quick installation (Linux or macOS)</h2>
+<blockquote>
+<p>Quick installation can be run on Linux or macOS operation system, using <code>helm</code> or using <code>kubectl</code> command</p>
+</blockquote>
+<h3 id="install-using-helm">Install using helm</h3>
+<blockquote>
+<p>Quick installation can be run on Linux or macOS operation system, using helm </p>
+</blockquote>
+<pre><code class="language-bash">helm repo add abcdesktop https://abcdesktopio.github.io/helm/
+helm repo update
+helm upgrade --install abcdesktop --create-namespace abcdesktop/abcdesktop -n abcdesktop
+</code></pre>
+<p>the <code>-n abcdesktop</code> defines the default namespace <code>abcdesktop</code> </p>
 <h3 id="install-using-kubectl">Install using kubectl</h3>
 <blockquote>
 <p>Quick installation can be run on Linux or macOS operation system. </p>
