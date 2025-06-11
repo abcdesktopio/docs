@@ -4744,7 +4744,7 @@
 <ul>
 <li>kubernetes cluster ready to run</li>
 <li><code>kubectl</code> or <code>minikube</code> command-line tool must be configured to communicate with your cluster. </li>
-<li><code>openssl</code> and <code>curl</code> command line must be installed too.</li>
+<li><code>openssl</code> and <code>curl</code> command line must be installed too (only for install using kubectl). </li>
 </ul>
 <p>You can run the <strong>Quick installation process</strong> or choose the <strong>Manually installation step by step</strong></p>
 <blockquote>
@@ -4864,10 +4864,9 @@ The quick installation process runs the all commands step by step:</p>
 <ul>
 <li>create the <code>abcdesktop</code> namespace</li>
 <li>create clusterRole and service account</li>
-<li>build all <code>rsa</code> keys pairs for jwt signing and payload encryption</li>
+<li>build all <code>rsa</code> keys pairs for jwt signing and payload encryption, using openssl command line</li>
 <li>download the default configuration file <code>od.config</code></li>
 <li>create all <code>services</code>, <code>deployments</code>, <code>secrets</code> and <code>configmaps</code></li>
-<li>fetch pod user's container images</li>
 </ul>
 <h2 id="change-the-default-namespace">Change the default namespace</h2>
 <p>You may need to replace the default namespace <code>abcdesktop</code> by your own during the install process. The <code>install-4.0.sh</code> bash script allow you to set the new namespace as an option.</p>
