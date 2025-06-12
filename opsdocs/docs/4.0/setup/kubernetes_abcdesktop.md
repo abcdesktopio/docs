@@ -141,13 +141,13 @@ speedtest-od-7fcc9649b4-qllr7   1/1     Running   0          32s
 ```
 
 The command above downloads the latest release (numerically) of abcdesktop.io. 
-The quick installation process runs the all commands step by step:
+The quick installation process runs the commands step by step :
 
 * create the `abcdesktop` namespace
-* create clusterRole and service account
 * build all `rsa` keys pairs for jwt signing and payload encryption, using openssl command line
-* download the default configuration file `od.config`
-* create all `services`, `deployments`, `secrets` and `configmaps`
+* create all `service account`, `services`, `deployments`, `secrets` and `configmaps` from [abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.0.yaml)
+* download and create the default configuration file [od.config](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.4.0)
+
 
 
 ## Change the default namespace
