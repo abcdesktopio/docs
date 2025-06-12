@@ -18,15 +18,13 @@ Start minikube with enough cpu and memory resources to start all abcdesktop's po
 minikube start --cpus 4 --memory 4096
 ```
 
-kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n abcdesktop ) --address 0.0.0.0 "30443:80" -n abcdesktop
-
 ## Quick installation (Linux or macOS)
 
 > Quick installation can be run on Linux or macOS operation system, using `helm` or using `kubectl` command
 
 ### Install using helm
 
-> Quick installation can be run on Linux or macOS operation system, using helm (version > 3)
+> Quick installation can be run using helm (version > 3)
 
 ``` bash
 helm repo add abcdesktop https://abcdesktopio.github.io/helm/
@@ -34,7 +32,14 @@ helm repo update
 helm upgrade --install abcdesktop --create-namespace abcdesktop/abcdesktop -n abcdesktop
 ```
 
-To get more information about the helm installation process and options, please read the [README.md](https://github.com/abcdesktopio/helm/) file on https://github.com/abcdesktopio/helm
+> To get more details about the helm installation process and options, please read the documentation on [helm repository](https://github.com/abcdesktopio/helm)
+
+When install process is read you may need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)
+
+``` bash
+kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n abcdesktop ) --address 0.0.0.0 "30443:80" -n abcdesktop
+```
+
 
 
 ### Install using kubectl
