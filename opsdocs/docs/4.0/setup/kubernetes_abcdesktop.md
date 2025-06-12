@@ -10,13 +10,6 @@ You can run the **Quick installation process using helm or kubectl** or choose t
 
 > Linux operating system is recommanded to run abcdesktop.io.
 
-### Requirements for minikube
-
-Start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop
-
-```
-minikube start --cpus 4 --memory 4096
-```
 
 ## Quick installation (Linux or macOS)
 
@@ -255,6 +248,14 @@ speedtest-od-67db77f86f-wqkb7   1/1     Running   0          13s
 [INFO] Checking the service url on http://localhost:30443
 
 [OK] Please open your web browser and connect to http://localhost:30443/
+```
+
+## Requirements for minikube
+
+Start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop
+
+```
+minikube start --cpus 4 --memory 4096
 ```
 
 ## Manually installation step by step (Linux, macOS or Windows)
