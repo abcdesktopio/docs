@@ -4865,13 +4865,12 @@ speedtest-od-7fcc9649b4-qllr7   1/1     Running   0          32s
 [INFO] http://localhost:30443/
 </code></pre>
 <p>The command above downloads the latest release (numerically) of abcdesktop.io. 
-The quick installation process runs the all commands step by step:</p>
+The quick installation process runs the commands step by step :</p>
 <ul>
 <li>create the <code>abcdesktop</code> namespace</li>
-<li>create clusterRole and service account</li>
 <li>build all <code>rsa</code> keys pairs for jwt signing and payload encryption, using openssl command line</li>
-<li>download the default configuration file <code>od.config</code></li>
-<li>create all <code>services</code>, <code>deployments</code>, <code>secrets</code> and <code>configmaps</code></li>
+<li>create all <code>service account</code>, <code>services</code>, <code>deployments</code>, <code>secrets</code> and <code>configmaps</code> from <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.0.yaml">abcdesktop.yaml</a></li>
+<li>download and create the default configuration file <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.4.0">od.config</a></li>
 </ul>
 <h2 id="change-the-default-namespace">Change the default namespace</h2>
 <p>You may need to replace the default namespace <code>abcdesktop</code> by your own during the install process. The <code>install-4.0.sh</code> bash script allow you to set the new namespace as an option.</p>
