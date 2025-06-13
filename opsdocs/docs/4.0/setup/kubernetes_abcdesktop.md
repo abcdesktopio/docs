@@ -31,7 +31,8 @@ When install your helm installation process is ready, you need to forward the po
 
 ``` bash
 LOCAL_PORT=30443
-kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n abcdesktop ) --address 0.0.0.0 "${LOCAL_PORT}:80" -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 "${LOCAL_PORT}:80" -n ${NAMESPACE} 
 ```
 
 
