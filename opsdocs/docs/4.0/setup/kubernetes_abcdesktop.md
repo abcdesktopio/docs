@@ -6,7 +6,7 @@
 - `kubectl` or `minikube` command-line tool must be configured to communicate with your cluster. 
 - `openssl` and `curl` command line must be installed too (only for install using kubectl). 
 
-You can run the **Quick installation process using helm or kubectl** or choose the **Manually installation step by step**
+You can run the **Quick installation process kubectl** or choose the **Manually installation step by step**
 
 > Linux operating system is recommanded to run abcdesktop.io.
 
@@ -14,27 +14,6 @@ You can run the **Quick installation process using helm or kubectl** or choose t
 ## Quick installation (Linux or macOS)
 
 > Quick installation can be run on Linux or macOS operation system, using `helm` or using `kubectl` command
-
-### Install using helm
-
-> Quick installation can be run using helm (version > 3)
-
-``` bash
-helm repo add abcdesktop https://abcdesktopio.github.io/helm/
-helm repo update
-helm upgrade --install abcdesktop --create-namespace abcdesktop/abcdesktop -n abcdesktop
-```
-
-> To get more details about the helm installation process and options, please read the documentation on [helm repository](https://github.com/abcdesktopio/helm)
-
-When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port `30443` (for example)
-
-``` bash
-LOCAL_PORT=30443
-NAMESPACE=abcdesktop
-kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 "${LOCAL_PORT}:80" -n ${NAMESPACE} 
-```
-
 
 
 ### Install using kubectl
