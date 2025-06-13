@@ -2002,15 +2002,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-using-helm" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install using helm
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#install-using-kubectl" class="md-nav__link">
     <span class="md-ellipsis">
       Install using kubectl
@@ -4558,15 +4549,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-using-helm" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install using helm
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#install-using-kubectl" class="md-nav__link">
     <span class="md-ellipsis">
       Install using kubectl
@@ -4734,7 +4716,7 @@
 <li><code>kubectl</code> or <code>minikube</code> command-line tool must be configured to communicate with your cluster. </li>
 <li><code>openssl</code> and <code>curl</code> command line must be installed too (only for install using kubectl). </li>
 </ul>
-<p>You can run the <strong>Quick installation process using helm or kubectl</strong> or choose the <strong>Manually installation step by step</strong></p>
+<p>You can run the <strong>Quick installation process kubectl</strong> or choose the <strong>Manually installation step by step</strong></p>
 <blockquote>
 <p>Linux operating system is recommanded to run abcdesktop.io.</p>
 </blockquote>
@@ -4742,22 +4724,6 @@
 <blockquote>
 <p>Quick installation can be run on Linux or macOS operation system, using <code>helm</code> or using <code>kubectl</code> command</p>
 </blockquote>
-<h3 id="install-using-helm">Install using helm</h3>
-<blockquote>
-<p>Quick installation can be run using helm (version &gt; 3)</p>
-</blockquote>
-<pre><code class="language-bash">helm repo add abcdesktop https://abcdesktopio.github.io/helm/
-helm repo update
-helm upgrade --install abcdesktop --create-namespace abcdesktop/abcdesktop -n abcdesktop
-</code></pre>
-<blockquote>
-<p>To get more details about the helm installation process and options, please read the documentation on <a href="https://github.com/abcdesktopio/helm">helm repository</a></p>
-</blockquote>
-<p>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port <code>30443</code> (for example)</p>
-<pre><code class="language-bash">LOCAL_PORT=30443
-NAMESPACE=abcdesktop
-kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 &quot;${LOCAL_PORT}:80&quot; -n ${NAMESPACE} 
-</code></pre>
 <h3 id="install-using-kubectl">Install using kubectl</h3>
 <blockquote>
 <p>Quick installation can be run on Linux or macOS operation system. </p>
