@@ -4753,8 +4753,9 @@ helm upgrade --install abcdesktop --create-namespace abcdesktop/abcdesktop -n ab
 <blockquote>
 <p>To get more details about the helm installation process and options, please read the documentation on <a href="https://github.com/abcdesktopio/helm">helm repository</a></p>
 </blockquote>
-<p>When install process is read you may need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)</p>
-<pre><code class="language-bash">kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n abcdesktop ) --address 0.0.0.0 &quot;30443:80&quot; -n abcdesktop
+<p>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port <code>30443</code> (for example)</p>
+<pre><code class="language-bash">LOCAL_PORT=30443
+kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n abcdesktop ) --address 0.0.0.0 &quot;${LOCAL_PORT}:80&quot; -n abcdesktop
 </code></pre>
 <h3 id="install-using-kubectl">Install using kubectl</h3>
 <blockquote>
