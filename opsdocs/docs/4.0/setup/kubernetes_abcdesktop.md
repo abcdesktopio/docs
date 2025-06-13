@@ -15,12 +15,36 @@ You can run the **Quick installation process kubectl** or choose the **Manually 
 
 > Quick installation can be run on Linux or macOS operation system, using `helm` or using `kubectl` command
 
+### Install using kubectl on Linux or macOS operation system
 
-### Install using kubectl
+> Download and extract the latest release automatically
 
-> Quick installation can be run on Linux or macOS operation system. 
+```
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.0.sh | bash
+```
 
-Download and extract the latest release automatically
+### Install using helm
+
+> Quick installation can be run using helm (version > 3)
+
+``` bash
+helm repo add abcdesktop https://abcdesktopio.github.io/helm/
+helm install my-abcdesktop abcdesktop/abcdesktop --version 4.0.0 --create-namespace -n abcdesktop
+```
+
+> To get more details about the helm installation process and options, please read the documentation on [helm repository](https://github.com/abcdesktopio/helm)
+
+When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port `30443` (for example)
+
+``` bash
+LOCAL_PORT=30443
+NAMESPACE=abcdesktop
+kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 "${LOCAL_PORT}:80" -n ${NAMESPACE} 
+```
+
+### detailed description of the installation with `kubectl`
+
+> Download and extract the latest release automatically
 
 ```
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.0.sh | bash
@@ -121,7 +145,6 @@ The quick installation process runs the commands step by step :
 * build all `rsa` keys pairs for jwt signing and payload encryption, using openssl command line
 * create all `service account`, `services`, `deployments`, `secrets` and `configmaps` from [abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.0.yaml)
 * download and create the default configuration file [od.config](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.4.0)
-
 
 
 ## Change the default namespace
