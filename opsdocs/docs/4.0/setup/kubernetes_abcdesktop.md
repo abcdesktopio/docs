@@ -254,7 +254,13 @@ speedtest-od-67db77f86f-wqkb7   1/1     Running   0          13s
 [OK] Please open your web browser and connect to http://localhost:30443/
 ```
 
-## Requirements for minikube
+## Requirements for minikube 
+
+To fix this issue
+
+```
+FailedScheduling 0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod
+```
 
 Start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop
 
