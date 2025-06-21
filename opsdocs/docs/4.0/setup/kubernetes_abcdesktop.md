@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- kubernetes cluster ready to run
+- kubernetes cluster READY to run
 - `kubectl` or `minikube` command-line tool must be configured to communicate with your cluster. 
 - `openssl` and `curl` command line must be installed too (only for install using kubectl). 
 
