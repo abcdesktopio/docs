@@ -16,7 +16,7 @@ You can run the **Quick installation process** or choose the **Manually installa
 
 ### Install using kubectl on Linux or macOS operation system
 
-> Download and extract the latest release automatically
+Download and extract the latest release automatically
 
 ```
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.0.sh | bash
@@ -158,10 +158,11 @@ The command above downloads the latest release (numerically) of abcdesktop.io.
 The quick installation process runs the commands step by step :
 
 * create the `abcdesktop` namespace
-* build all `rsa` keys pairs for jwt signing and payload encryption, using openssl command line
-* create all `service account`, `services`, `deployments`, `secrets` and `configmaps` from [abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.0.yaml)
+* build all `rsa` keys for jwt signing and payload encryption, using openssl command line
+* create all `service account`, `services`, `deployments`, `secrets` and `configmaps` from the [abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.0.yaml)
 * download and create the default configuration file [od.config](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.4.0)
 
+> This install process doesn't install applications for your desktop, you get a desktop with few applications in your dock
 
 ## Change the default namespace
 
