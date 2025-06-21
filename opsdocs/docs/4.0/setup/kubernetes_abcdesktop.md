@@ -29,7 +29,25 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/ins
 
 ``` bash
 helm repo add abcdesktop https://abcdesktopio.github.io/helm/
+helm repo update abcdesktop
 helm install my-abcdesktop abcdesktop/abcdesktop --version 4.0.0 --create-namespace -n abcdesktop
+```
+
+
+``` bash
+% helm repo add abcdesktop https://abcdesktopio.github.io/helm/
+"abcdesktop" has been added to your repositories
+% helm repo update abcdesktop                                  
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "abcdesktop" chart repository
+Update Complete. ⎈Happy Helming!⎈
+% helm install my-abcdesktop abcdesktop/abcdesktop --version 4.0.0 --create-namespace -n abcdesktop
+NAME: my-abcdesktop
+LAST DEPLOYED: Sat Jun 21 12:32:09 2025
+NAMESPACE: abcdesktop
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
 ```
 
 > To get more details about the helm installation process and options, please read the documentation on [helm repository](https://github.com/abcdesktopio/helm)
