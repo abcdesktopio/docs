@@ -6,10 +6,9 @@
 - `kubectl` or `minikube` command-line tool must be configured to communicate with your cluster. 
 - `openssl` and `curl` command line must be installed too (only for install using kubectl). 
 
-You can run the **Quick installation process kubectl** or choose the **Manually installation step by step**
+You can run the **Quick installation process** or choose the **Manually installation step by step**
 
 > Linux operating system is recommanded to run abcdesktop.io.
-
 
 ## Quick installation (Linux or macOS)
 
@@ -23,7 +22,7 @@ You can run the **Quick installation process kubectl** or choose the **Manually 
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.0.sh | bash
 ```
 
-### Install using helm
+### Install using helm on Linux or macOS operation system
 
 > Quick installation can be run using helm (version > 3)
 
@@ -32,7 +31,6 @@ helm repo add abcdesktop https://abcdesktopio.github.io/helm/
 helm repo update abcdesktop
 helm install my-abcdesktop abcdesktop/abcdesktop --version 4.0.0 --create-namespace -n abcdesktop
 ```
-
 
 ``` bash
 % helm repo add abcdesktop https://abcdesktopio.github.io/helm/
