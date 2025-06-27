@@ -69,22 +69,13 @@ http://localhost:30443/
 
 The new applications are installed, and ready to run.
 
-![applications after upload json](img/kubernetesaddapplications.png)
+![applications after upload json](img/abcdesktop-4-1-loginanonymous-with-applications.png)
 
-### Connect to your abcdesktop
+And then you can start new applications like `Firefox`
 
-The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.
+![Start Firefix application](img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png)
 
-Now reconnect to your abcdesktop. 
 
-Open your navigator to http://[your-ip-hostname]:30443/
 
-```	
-http://localhost:30443/
-```
 
-The new applications are installed, and ready to run.
-
-![applications after upload json](img/kubernetesaddapplication-2048.png)
- 
 
