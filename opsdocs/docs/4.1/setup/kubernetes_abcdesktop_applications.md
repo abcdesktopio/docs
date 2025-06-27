@@ -11,6 +11,12 @@ Download and execute the `pullapps-4.1.sh` script :
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.1.sh | bash
 ```
 
+You can watch the youtube video sample. This video describes the application installation process on a fresh kubernetes cluster.
+
+<iframe width="640" height="480" src="https://www.youtube.com/embed/JSIjnNA6kNE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+
+
+
 This script starts abcdesktop application on an empty desktop. Pod is created to ask Kubernetes for pulling containers image.
 
 
