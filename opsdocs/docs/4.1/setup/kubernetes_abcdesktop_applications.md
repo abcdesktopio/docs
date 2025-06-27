@@ -13,7 +13,7 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pul
 
 You can watch the youtube video sample. This video describes the application installation process on a fresh kubernetes cluster.
 
-<iframe width="640" height="480" src="https://www.youtube.com/embed/JSIjnNA6kNE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/JSIjnNA6kNE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
 
 
 
