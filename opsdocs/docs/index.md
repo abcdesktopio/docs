@@ -40,7 +40,7 @@ abcdesktop.io provides a way to run graphics software securely isolated in a con
 
 You can watch the youtube video sample. This video describes the Quick installation process using `helm`.
 
-<iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 Add the `helm` repo and then install it on Linux or macOS or read the step by step installation process [abcdesktop for kubernetes](/4.1/setup/kubernetes_abcdesktop)
 
