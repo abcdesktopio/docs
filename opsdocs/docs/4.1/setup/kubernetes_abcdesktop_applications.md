@@ -16,7 +16,6 @@ You can watch the youtube video sample. This video describes the application ins
 <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/JSIjnNA6kNE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
 
 
-
 This script starts abcdesktop application on an empty desktop. Pod is created to ask Kubernetes for pulling containers image.
 
 
@@ -75,7 +74,9 @@ And then you can start new applications like `Firefox`
 
 ![Start Firefix application](img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png)
 
+Another example with console admin interface usage
 
+<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/Dah78eAJykw" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
 
 
 
