@@ -10,7 +10,7 @@ keywords: graphical application container desktopless kubernetes secure desktop 
 
 abcdesktop.io is a cloud native desktop service built on and for [Kubernetes](https://kubernetes.io/). abcdesktop.io is also a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, desktopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface.
 
-![abcdesktopuserpod](img/abcdesktop-home-release-4.1.png)
+![abcdesktopuserpod](img/abcdesktopuserpod.png)
 
 abcdeskop.io is an open source and free solution that offers seamless access to secure desktops and applications on any device, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
 
@@ -34,7 +34,7 @@ To reach the demo website, follow the link [https://demo.abcdesktop.io](https://
 
 abcdesktop.io provides a way to run graphics software securely isolated in a container, and use a web browser HTML5 as display device. Because containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.
 
-![screenshot-applications](img/screenshot-applications.png)
+![screenshot-applications](img/abcdesktop-home-release-4.1.png)
 
 ## Quick installation using helm
 
