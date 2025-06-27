@@ -4849,7 +4849,12 @@
 
 <p>Add the <code>helm</code> repo and then install it on Linux or macOS or read the step by step installation process <a href="/4.1/setup/kubernetes_abcdesktop">abcdesktop for kubernetes</a></p>
 <pre><code>helm repo add abcdesktop https://abcdesktopio.github.io/helm/
-helm install my-abcdesktop abcdesktop/abcdesktop --version 4.1.0 --create-namespace -n abcdesktop
+helm install my-abcdesktop abcdesktop/abcdesktop --version 4.1.1 --create-namespace -n abcdesktop
+</code></pre>
+<p>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)</p>
+<pre><code>LOCAL_PORT=30443
+NAMESPACE=abcdesktop
+kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 &quot;${LOCAL_PORT}:80&quot; -n ${NAMESPACE} 
 </code></pre>
 <h2 id="adopters">Adopters</h2>
 <p>Here are some of the organizations we know are using abcdesktop.io.
