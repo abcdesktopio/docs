@@ -435,9 +435,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-installation-for-kubernetes" class="md-nav__link">
+  <a href="#quick-installation-using-helm" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick installation for kubernetes
+      Quick installation using helm
     </span>
   </a>
   
@@ -4639,9 +4639,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-installation-for-kubernetes" class="md-nav__link">
+  <a href="#quick-installation-using-helm" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick installation for kubernetes
+      Quick installation using helm
     </span>
   </a>
   
@@ -4757,7 +4757,7 @@
 
 <h1 id="abcdesktopio-is-a-cloud-native-desktop-service-built-on-and-for-kubernetes">abcdesktop.io is a cloud native desktop service built on and for Kubernetes.</h1>
 <p>abcdesktop.io is a cloud native desktop service built on and for <a href="https://kubernetes.io/">Kubernetes</a>. abcdesktop.io is also a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, desktopless computing allocates desktop resources on demand.  <strong>Each user’s application runs as a container</strong> to reduce attack surface.</p>
-<p><img alt="abcdesktopuserpod" src="img/abcdesktopuserpod.png" /></p>
+<p><img alt="abcdesktopuserpod" src="img/abcdesktop-home-release-4.1.png" /></p>
 <p>abcdeskop.io is an open source and free solution that offers seamless access to secure desktops and applications on any device, follow the <a href="https://github.com/abcdesktopio">https://github.com/abcdesktopio</a> links.</p>
 <p>This flexible working environment simplifies usage like</p>
 <ul>
@@ -4774,12 +4774,13 @@
 <h2 id="abcdesktopio-a-container-vdi-service">abcdesktop.io: a container VDI service</h2>
 <p>abcdesktop.io provides a way to run graphics software securely isolated in a container, and use a web browser HTML5 as display device. Because containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.</p>
 <p><img alt="screenshot-applications" src="img/screenshot-applications.png" /></p>
-<h2 id="quick-installation-for-kubernetes">Quick installation for kubernetes</h2>
-<p>You can watch the youtube video sample. This video describes the Quick installation process.</p>
-<iframe width="640" height="480" src="https://www.youtube.com/embed/KpjG4ksoGNI" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+<h2 id="quick-installation-using-helm">Quick installation using helm</h2>
+<p>You can watch the youtube video sample. This video describes the Quick installation process using <code>helm</code>.</p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
 
-<p>Download and extract the latest release automatically (Linux or macOS) or read the step by step installation process <a href="/3.2/setup/kubernetes_abcdesktop">abcdesktop for kubernetes</a></p>
-<pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-3.2.sh | sh -
+<p>Download and extract the latest release automatically (Linux or macOS) or read the step by step installation process <a href="/4.1/setup/kubernetes_abcdesktop">abcdesktop for kubernetes</a></p>
+<pre><code>helm repo add abcdesktop https://abcdesktopio.github.io/helm/
+helm install my-abcdesktop abcdesktop/abcdesktop --version 4.1.0 --create-namespace -n abcdesktop
 </code></pre>
 <h2 id="adopters">Adopters</h2>
 <p>Here are some of the organizations we know are using abcdesktop.io.
@@ -4913,7 +4914,7 @@ If you’re using Abcdesktop and aren’t on this list, please submit a pull req
 </tr>
 <tr>
 <td>3.1</td>
-<td>stable</td>
+<td>deprecated</td>
 <td>10/03/2023</td>
 <td>kubernetes &gt;= 1.24, all container engine</td>
 <td>An application is a pod or an ephemeral container, change PVC and PV support</td>
@@ -4921,10 +4922,34 @@ If you’re using Abcdesktop and aren’t on this list, please submit a pull req
 </tr>
 <tr>
 <td>3.2</td>
-<td>stable</td>
+<td>deprecated</td>
 <td>01/02/2024</td>
 <td>kubernetes &gt;= 1.24, all container engine</td>
 <td>An application is a pod or an ephemeral container, WebRTC sound support</td>
+<td>Release</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>deprecated</td>
+<td>01/09/2024</td>
+<td>kubernetes &gt;= 1.24, all container engine</td>
+<td>An application is a pod or an ephemeral container, WebRTC sound support</td>
+<td>Release</td>
+</tr>
+<tr>
+<td>4.0</td>
+<td>stable</td>
+<td>01/01/2025</td>
+<td>kubernetes &gt;= 1.24, all container engine</td>
+<td>An application is a pod or an ephemeral container, MPEG sound support</td>
+<td>Release</td>
+</tr>
+<tr>
+<td>4.1</td>
+<td>stable</td>
+<td>01/06/2025</td>
+<td>kubernetes &gt;= 1.24, all container engine</td>
+<td>An application is a pod or an ephemeral container, MPEG sound support</td>
 <td>Release</td>
 </tr>
 </tbody>
