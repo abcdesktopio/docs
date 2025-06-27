@@ -22,6 +22,9 @@ Download and extract the latest release automatically
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.1.sh | bash
 ```
 
+<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/vEEXVOT30w4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
+
+
 ### Install using helm on Linux or macOS operation system
 
 > Quick installation can be run using helm (version > 3)
@@ -48,6 +51,9 @@ REVISION: 1
 TEST SUITE: None
 ```
 
+<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
+
+
 > To get more details about the helm installation process and options, please read the documentation on [helm repository](https://github.com/abcdesktopio/helm)
 
 When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port `30443` (for example)
@@ -57,6 +63,9 @@ LOCAL_PORT=30443
 NAMESPACE=abcdesktop
 kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 "${LOCAL_PORT}:80" -n ${NAMESPACE} 
 ```
+
+
+
 
 ### installation with `kubectl`
 
