@@ -27,7 +27,7 @@ The `external` authentification configuration is defined as a dictionary object 
 
 Sample providers entry using the Google OAuth 2.0 authentification service. 
 
-```json
+```
 'external': {
     'providers': {
     'google': { 
