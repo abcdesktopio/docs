@@ -31,7 +31,6 @@ Sample providers entry using the Google OAuth 2.0 authentification service.
 'external': {
     'providers': {
     'google': { 
-    'google': { 
         'displayname': 'Google', 
         'textcolor': 'white',
         'backgroundcolor': '#cd3c14',
