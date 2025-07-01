@@ -108,9 +108,9 @@ New applications are now listed in the dock of `plasmashell`
 
 Start Firefox application
 
-> For the first run, you may have to wait for the image pulling process
+> The first run may involve waiting for the image pulling process to finish
 
-Go to the website mylocation.org to check where your pod is running.  In my case for the region `north-1`, the desktop is located near `Stockholm` city in `Sweeden`. 
+Go to `http://mylocation.org` website to check where your pod is running.  In my case for the region `north-1`, the desktop is located near `Stockholm` city in `Sweeden`. 
 
 
 ![abcdesktop for fry with applications](img/abcdesktop-firefox-aws-north-1.png)
