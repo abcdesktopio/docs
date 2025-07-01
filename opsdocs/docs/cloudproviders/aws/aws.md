@@ -76,6 +76,8 @@ Download and extract the latest release automatically
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.1.sh | bash
 ```
 
+To get more details about the install process, please read the [Setup guide](https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop/)
+
 
 ## Connect to your abcdesktop service 
 
@@ -104,6 +106,8 @@ Using the previous terminal shell, run the application install script
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.1.sh | bash
 ```
 
+To get more details about the install applications process, please read the [Setup applications guide](https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop_applications/)
+
 Then reload the web page with the desktop of `Philip J. Fry`
 New applications are now listed in the dock of `plasmashell`
 
@@ -114,7 +118,7 @@ Start Firefox application
 
 > The first run may involve waiting for the image pulling process to finish
 
-Go to `http://mylocation.org` website to check where your pod is running.  In my case for the region `north-1`, the desktop is located near `Stockholm` city in `Sweeden`. 
+Go to `https://mylocation.org` website to check where your pod is running.  In my case for the region `north-1`, the desktop is located near `Stockholm` city in `Sweeden`. 
 
 
 ![abcdesktop for fry with applications](img/abcdesktop-firefox-aws-north-1.png)
