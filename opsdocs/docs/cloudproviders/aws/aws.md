@@ -10,7 +10,11 @@
 - Define the environnement variables `AWS_ACCESS_KEY_ID` `AWS_SECRET_ACCESS_KEY` `AWS_SESSION_TOKEN` You can retrieve credentials as often as needed from your AWS access portal. 
 
 
+## EKS console overview
 
+This screenshot describes the Amazon Elastic Kubernetes Service console. It shows the `Cluster` and `Networking` informations.
+
+![aws eks console overview](img/aws-eks-console.png)
 
 
 ## Check your caller-identity
