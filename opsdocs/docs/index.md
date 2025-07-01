@@ -142,6 +142,10 @@ abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 1
 |  4.0     | stable     | 01/01/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
 |  4.1     | stable     | 01/06/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
 
+## Helm artifacthub report
+
+<div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="true" data-stars="false" data-responsive="true"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div><script async src="https://artifacthub.io/artifacthub-widget.js"></script>
+
 ## Github repositories ![Github stars](https://img.shields.io/github/stars/abcdesktopio?style=social)
 
 abcdesktop has 60 repositories available. Follow the code on GitHub [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code.
