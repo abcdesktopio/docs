@@ -14,7 +14,7 @@
         <link rel="prev" href="../../../4.1/config/add_external_provider/">
       
       
-        <link rel="next" href="../../../faq/">
+        <link rel="next" href="../../digitalocean/digitalocean/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -4021,6 +4021,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../digitalocean/digitalocean/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install on DigitalOcean Kubernetes cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4865,6 +4888,7 @@
 <p>Download and extract the latest release automatically</p>
 <pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.1.sh | bash
 </code></pre>
+<p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="connect-to-your-abcdesktop-service">Connect to your abcdesktop service</h2>
 <p>By default install script is listening on a free tcp port <code>:30443</code> and is using a <code>kubectl port-forward</code> command line to reach http web service <code>:80</code></p>
 <p>Open your web browser <code>http://locahost:30443</code></p>
@@ -4877,6 +4901,7 @@
 <p>Using the previous terminal shell, run the application install script </p>
 <pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.1.sh | bash
 </code></pre>
+<p>To get more details about the install applications process, please read the <a href="https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop_applications/">Setup applications guide</a></p>
 <p>Then reload the web page with the desktop of <code>Philip J. Fry</code>
 New applications are now listed in the dock of <code>plasmashell</code></p>
 <p><img alt="abcdesktop for fry with applications" src="../../img/abcdesktop-hompage-port30443-login-fry-applications.png" /></p>
@@ -4884,7 +4909,7 @@ New applications are now listed in the dock of <code>plasmashell</code></p>
 <blockquote>
 <p>The first run may involve waiting for the image pulling process to finish</p>
 </blockquote>
-<p>Go to <code>http://mylocation.org</code> website to check where your pod is running.  In my case for the region <code>north-1</code>, the desktop is located near <code>Stockholm</code> city in <code>Sweeden</code>. </p>
+<p>Go to <code>https://mylocation.org</code> website to check where your pod is running.  In my case for the region <code>north-1</code>, the desktop is located near <code>Stockholm</code> city in <code>Sweeden</code>. </p>
 <p><img alt="abcdesktop for fry with applications" src="../img/abcdesktop-firefox-aws-north-1.png" /></p>
 
 
