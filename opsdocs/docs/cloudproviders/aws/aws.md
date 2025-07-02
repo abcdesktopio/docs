@@ -118,11 +118,12 @@ Start Firefox application
 
 > The first run may involve waiting for the image pulling process to finish
 
-Go to `https://mylocation.org` website to check where your pod is running.  In my case for the region `north-1`, the desktop is located near `Stockholm` city in `Sweeden`. 
+Go to `https://mylocation.org` website to check where your pod is running.
 
 
 ![abcdesktop for fry with applications](img/abcdesktop-firefox-aws-north-1.png)
 
+In my case for the region `north-1`, the desktop is located near `Stockholm` city in `Sweeden`.
 
 
 
