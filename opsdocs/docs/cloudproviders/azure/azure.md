@@ -9,12 +9,16 @@
 
 ## AZURE console overview
 
-Create a new `AZURE Kubernetes service`. Options and features are set by default.
+Create a new `AZURE Kubernetes service`. 
+
+![azure console kubernetes create cluster](img/azure-aks-create-kubernetes-cluster.png)
+
+> Options and features are set by default.
 
 In this example the kubernetes cluster is named `abcdesktopkubernetescluster`.
 This screenshot describes the AZURE Kubernetes Service console. It shows the `Nodes pools` and `Networking` informations.
 
-![azur console overview](img/azure-aks-console.png)
+![azure console overview](img/azure-aks-console.png)
 
 
 ## Check your caller-identity
