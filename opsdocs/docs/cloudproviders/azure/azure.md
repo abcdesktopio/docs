@@ -29,7 +29,7 @@ If you don't have already done it, use the `az login` command line
 az login
 ```
 
-The next steps are running on your web broswer with your own credentials.  
+The next steps are running on your web browser with your own credentials.  
 
 
 ## Set your `subscription` to your azur account 
