@@ -14,7 +14,7 @@ Create a new `AZURE Kubernetes service`. Options and features are set by default
 In this example the kubernetes cluster is named `abcdesktopkubernetescluster`.
 This screenshot describes the AZURE Kubernetes Service console. It shows the `Nodes pools` and `Networking` informations.
 
-![azur console overview](img/azur-aks-console.png)
+![azur console overview](img/azure-aks-console.png)
 
 
 ## Check your caller-identity
@@ -120,7 +120,7 @@ Start Firefox application
 Go to `https://mylocation.org` website to check where your pod is running.  In my case for the region `North Europe`, the desktop is located near `Dublin` city in `Ireland`. 
 
 
-![abcdesktop for fry with applications](img/abcdesktop-firefox-azur-north-europe.png)
+![abcdesktop for fry with applications](img/abcdesktop-firefox-azure-north-europe.png)
 
 
 
