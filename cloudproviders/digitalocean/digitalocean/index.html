@@ -3987,6 +3987,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#digitalocean" class="md-nav__link">
+    <span class="md-ellipsis">
+      DigitalOcean
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#requirements" class="md-nav__link">
     <span class="md-ellipsis">
       Requirements
@@ -4756,6 +4765,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#digitalocean" class="md-nav__link">
+    <span class="md-ellipsis">
+      DigitalOcean
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#requirements" class="md-nav__link">
     <span class="md-ellipsis">
       Requirements
@@ -4843,11 +4861,14 @@
 
 
 <h1 id="deploy-abcdesktop-on-digitalocean-with-kubernetes">Deploy abcdesktop on DigitalOcean with Kubernetes</h1>
+<h2 id="digitalocean">DigitalOcean</h2>
+<p>DigitalOcean is a powerful and production-ready, cloud platform. <a href="https://m.do.co/c/609a26849792">Sign up and get a $200, 60-day credit to try our products</a> </p>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>doctl command line interface <a href="https://docs.digitalocean.com/reference/doctl/how-to/install/">doctl cli</a></li>
 <li>If you <code>doctl</code> command line for your first time, run <code>doctl auth</code> command line for use with your DigitalOcean account using tokens that you generate in the control panel at <a href="https://cloud.digitalocean.com/account/api/tokens">https://cloud.digitalocean.com/account/api/tokens</a>.</li>
 </ul>
+<p>You can try </p>
 <h2 id="create-a-kubernetes-cluster">Create a kubernetes cluster</h2>
 <p>If you don't have a running kubernetes cluster, run the <code>doctl</code> command line with the <code>kubernetes cluster create</code> </p>
 <pre><code>doctl kubernetes cluster create --node-pool 'auto-scale=true;size=s-4vcpu-8gb;min-nodes=3;max-nodes=5' myabccluster 
