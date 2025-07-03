@@ -5,9 +5,6 @@
 - doctl command line interface [doctl cli](https://docs.digitalocean.com/reference/doctl/how-to/install/)
 - If you `doctl` command line for your first time, run `doctl auth` command line for use with your DigitalOcean account using tokens that you generate in the control panel at [https://cloud.digitalocean.com/account/api/tokens](https://cloud.digitalocean.com/account/api/tokens).
 
-
-You can try 
-
 ## Create a kubernetes cluster
 
 If you don't have a running kubernetes cluster, run the `doctl` command line with the `kubernetes cluster create` 
