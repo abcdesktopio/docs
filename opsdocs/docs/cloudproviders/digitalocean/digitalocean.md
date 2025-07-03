@@ -1,9 +1,5 @@
 # Deploy abcdesktop on DigitalOcean with Kubernetes
 
-## DigitalOcean
-
-DigitalOcean is a powerful and production-ready, cloud platform. [Sign up and get a $200, 60-day credit to try digitalocean products](https://m.do.co/c/609a26849792) 
-
 ## Requirements
 
 - doctl command line interface [doctl cli](https://docs.digitalocean.com/reference/doctl/how-to/install/)
