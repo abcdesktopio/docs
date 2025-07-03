@@ -2,7 +2,7 @@
 
 ## DigitalOcean
 
-DigitalOcean is a powerful and production-ready, cloud platform. [Sign up and get a $200, 60-day credit to try our products](https://m.do.co/c/609a26849792) 
+DigitalOcean is a powerful and production-ready, cloud platform. [Sign up and get a $200, 60-day credit to try digitalocean products](https://m.do.co/c/609a26849792) 
 
 ## Requirements
 
