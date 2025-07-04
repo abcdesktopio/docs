@@ -8,9 +8,9 @@
 
 > If you `doctl` command line for your first time, run `doctl auth` command line for use with your DigitalOcean account using tokens that you generate in the control panel at [https://cloud.digitalocean.com/account/api/tokens](https://cloud.digitalocean.com/account/api/tokens).
 
-## Create a kubernetes cluster
+## Create a `DOKS` DigitalOcean Kubernetes cluster
 
-If you don't have a running kubernetes cluster, run the `doctl` command line with the `kubernetes cluster create` 
+If you don't have a running kubernetes cluster, run the `doctl` command line with the `kubernetes cluster create` to create your cluster.
 
 ```
 doctl kubernetes cluster create --node-pool 'auto-scale=true;size=s-4vcpu-8gb;min-nodes=3;max-nodes=5' myabccluster 
