@@ -17,7 +17,7 @@ doctl kubernetes cluster create --node-pool 'auto-scale=true;size=s-4vcpu-8gb;mi
 ```
 
 - `auto-scale`: Enables cluster auto-scaling on the node pool. 
-- `region`: The default region is "nyc1" 
+- `region`: The default region is "nyc1" [regional availability](https://docs.digitalocean.com/platform/regional-availability/)
 - `min-nodes`: 3 nodes min for auto-scaling
 - `max-nodes`: 5 nodes max for auto-scaling
 - `size`: `s-4vcpu-8gb` gets 4 shared vCPU, 8 GB vRAM, 160 GB Storage 
