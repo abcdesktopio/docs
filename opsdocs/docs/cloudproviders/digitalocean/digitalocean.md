@@ -1,21 +1,23 @@
 # Deploy abcdesktop on DigitalOcean with Kubernetes
 
-
 ## Requirements
 
-- doctl command line interface [doctl cli](https://docs.digitalocean.com/reference/doctl/how-to/install/)
-- If you `doctl` command line for your first time, run `doctl auth` command line for use with your DigitalOcean account using tokens that you generate in the control panel at [https://cloud.digitalocean.com/account/api/tokens](https://cloud.digitalocean.com/account/api/tokens).
+- a DigitalOcean account
+- `kubectl` 
+- `doctl` command line interface [doctl cli](https://docs.digitalocean.com/reference/doctl/how-to/install/)
 
-## Create a kubernetes cluster
+> If you `doctl` command line for your first time, run `doctl auth` command line for use with your DigitalOcean account using tokens that you generate in the control panel at [https://cloud.digitalocean.com/account/api/tokens](https://cloud.digitalocean.com/account/api/tokens).
 
-If you don't have a running kubernetes cluster, run the `doctl` command line with the `kubernetes cluster create` 
+## Create a `DOKS` DigitalOcean Kubernetes cluster
+
+If you don't have a running kubernetes cluster, run the `doctl` command line with the `kubernetes cluster create` to create your cluster.
 
 ```
 doctl kubernetes cluster create --node-pool 'auto-scale=true;size=s-4vcpu-8gb;min-nodes=3;max-nodes=5' myabccluster 
 ```
 
 - `auto-scale`: Enables cluster auto-scaling on the node pool. 
-- `region`: The default region is "nyc1" 
+- `region`: The default region is "nyc1" [regional availability](https://docs.digitalocean.com/platform/regional-availability/)
 - `min-nodes`: 3 nodes min for auto-scaling
 - `max-nodes`: 5 nodes max for auto-scaling
 - `size`: `s-4vcpu-8gb` gets 4 shared vCPU, 8 GB vRAM, 160 GB Storage 
