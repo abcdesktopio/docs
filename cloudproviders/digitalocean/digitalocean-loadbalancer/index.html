@@ -5059,6 +5059,9 @@ metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: &quot;80&quot;
     service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: &quot;http&quot;
+    service.beta.kubernetes.io/do-loadbalancer-protocol: &quot;http&quot;
+    service.beta.kubernetes.io/do-loadbalancer-tls-ports: &quot;443&quot;
+    service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: &quot;true&quot;
     service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: &quot;/healthz&quot;
 spec: 
   type: LoadBalancer
