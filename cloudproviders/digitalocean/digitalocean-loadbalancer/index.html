@@ -4219,6 +4219,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#update-deployment-http-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update deployment http-router
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reach-your-website-using-httpsprotocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reach your website using httpsprotocol
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5011,6 +5029,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#update-deployment-http-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update deployment http-router
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reach-your-website-using-httpsprotocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reach your website using httpsprotocol
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5103,6 +5139,7 @@ http-router   LoadBalancer   10.245.245.242   157.230.202.250   80:30443/TCP   6
 </code></pre>
 <p>You can open a web browser to reach your abcdesktop service with the IP address</p>
 <p><img alt="web browser to reach your abcdesktop service" src="../img/ipadress.png" /></p>
+<p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol</p>
 <h2 id="update-your-dns-zone-file">Update your DNS zone file</h2>
 <p>We will use a <code>FQDN</code> (Fully Qualified Domain Name) to replace the <code>IP Address</code>.</p>
 <p><img alt="digitalocean networking" src="../img/digitalocean-networking.png" /></p>
@@ -5119,6 +5156,7 @@ http-router   LoadBalancer   10.245.143.46   157.230.202.250   443:31196/TCP,80:
 <p><img alt="digital ocean console domain overview" src="../img/recorddone.png" /></p>
 <p>From your local device, you can open a web browser</p>
 <p><img alt="reach your website from your new name" src="../img/hello_http.png" /></p>
+<p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol.</p>
 <p>As you can see, your website is <code>Not Secured</code>, we are going to add X509 SSL certificate to secure your service.</p>
 <h2 id="obtain-a-certificat">Obtain a certificat</h2>
 <p>If you already have a X509 certificat with a private and public certified key files for your web site, you can skip this chapter.</p>
@@ -5198,10 +5236,12 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
 <p>Apply your new nginx confguration file</p>
 <pre><code>kubectl apply -f routehttp-config-4.1.yaml -n abcdesktop`
 </code></pre>
-<p>Restart the router-od <code>deployment</code> with a kubectl command</p>
-<pre><code>kubectl rollout restart deploy router-od -n abcdesktop
-deployment.apps/router-od restarted
+<h2 id="update-deployment-http-router">Update <code>deployment</code> http-router</h2>
+<p>Update the <code>deployment</code> route to add certificat ssl entry</p>
+<p>The <code>abcdesktop-deployment-routehttps.4.1.yaml</code> file  adds <code>mountPath: /etc/nginx/ssl</code> to <code>secretName: http-router-certificat</code></p>
+<pre><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.1.yaml -n abcdesktop
 </code></pre>
+<h2 id="reach-your-website-using-httpsprotocol">Reach your website using <code>https</code>protocol</h2>
 <p>You can now connect to your abcdesktop desktop pulic web site using <code>https</code> protocol. </p>
 <p><img alt="reach your website using https" src="../img/hello_https.png" /></p>
 <p>The status is secured and we get some informations from the certificate</p>
