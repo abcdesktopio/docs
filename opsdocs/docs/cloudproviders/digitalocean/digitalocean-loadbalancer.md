@@ -9,6 +9,7 @@
 - a domain of you own
 - `doctl` command line interface [doctl cli](https://docs.digitalocean.com/reference/doctl/how-to/install/)
 - `kubectl` command line
+- `wget` command line
 
 
 ## Overview
@@ -203,6 +204,10 @@ secret/http-router-certificat created
 ## Update `http-router` ConfigMap to use the new `http-router-certificat` secret
 
 Download [abcdesktop-routehttp-config.4.1.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.1.yaml) file 
+
+```
+wget https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.1.yaml
+```
 
 Open your `abcdesktop-routehttp-config.4.1.yaml` file, look for the ConfigMap `abcdesktop-routehttp-config`.
 
