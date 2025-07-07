@@ -99,6 +99,9 @@ You can open a web browser to reach your abcdesktop service with the IP address
 ![web browser to reach your abcdesktop service](img/ipadress.png)
 
 
+Web browser doesn't allow usage of websocket without secure protocol. To login you need `https` protocol
+
+
 ## Update your DNS zone file 
 
 
@@ -131,7 +134,11 @@ From your local device, you can open a web browser
 
 ![reach your website from your new name](img/hello_http.png)
 
+
+Web browser doesn't allow usage of websocket without secure protocol. To login you need `https` protocol.
+
 As you can see, your website is `Not Secured`, we are going to add X509 SSL certificate to secure your service.
+
 
 
 ## Obtain a certificat 
@@ -253,12 +260,17 @@ Apply your new nginx confguration file
 kubectl apply -f routehttp-config-4.1.yaml -n abcdesktop`
 ```
  
-Restart the router-od `deployment` with a kubectl command
+## Update `deployment` http-router
+ 
+Update the `deployment` route to add certificat ssl entry
+
+The `abcdesktop-deployment-routehttps.4.1.yaml` file  adds `mountPath: /etc/nginx/ssl` to `secretName: http-router-certificat`
 
 ```
-kubectl rollout restart deploy router-od -n abcdesktop
-deployment.apps/router-od restarted
+kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.1.yaml -n abcdesktop
 ```
+
+## Reach your website using `https`protocol 
 
 You can now connect to your abcdesktop desktop pulic web site using `https` protocol. 
 
