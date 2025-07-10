@@ -1,6 +1,5 @@
 # Deploy abcdesktop on AWS with Amazon Elastic Kubernetes Service
 
-
 ## Requirements
 
 - aws command line interface [aws-cli](https://aws.amazon.com/cli/)
