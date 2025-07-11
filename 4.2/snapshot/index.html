@@ -4910,11 +4910,13 @@
 <h1 id="snapshot-feature">Snapshot feature</h1>
 <p>The snapshot feature is a new point of view of how to manage desktop in abcdesktop.
 The user get a desktop, he can customize, install and remove applications inside his desktop.</p>
-<p>The user does a <code>commit</code> of his running desktop.
+<p>To keep all datas and installed application, the user can run a <code>commit</code> of his running desktop.
 The commit is pushed to a private docker registry with a dedicated tag.
 The user does a <code>logoff</code>, his pod is deleted.</p>
-<p>When the user <code>login again</code>, pyos service looks for the dedicated user's image with the lastest timestamp in the private registry.
-If a image is found for this user, pyos updates the image description with the lastest timestamp.</p>
+<p>When the user <code>login again</code>, abcdesktop service looks for the dedicated user's image with the lastest timestamp in the private registry.
+If a image is found for this user, pyos updates the image description with the lastest timestamp.
+The user get the latest commited image.</p>
+<p>This snapshot feature is also supported by the garbage collector service.</p>
 <h2 id="requirement">Requirement</h2>
 <ul>
 <li>a private registry</li>
@@ -5023,7 +5025,7 @@ NAME                          READY   STATUS    RESTARTS   AGE
 <p>In this case <code>12896316-a4dbc</code> is the name of the pod</p>
 <pre><code>kubectl -n abcdesktop get pod -o jsonpath={.spec.containers[*].name} 12896316-a4dbc 
 </code></pre>
-<p>A new container is present <code>t-snapshot</code> in the list of containers</p>
+<p>A new container <code>t-snapshot</code> appears in the list of containers</p>
 <pre><code>x-graphical c-printer s-sound f-filer o-storage t-snapshot
 </code></pre>
 <h2 id="take-a-snapshot">take a snapshot</h2>
