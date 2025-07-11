@@ -150,50 +150,47 @@ NAME                          READY   STATUS    RESTARTS   AGE
 
 Get the description of your pod
 
+In this case `12896316-a4dbc` is the name of the pod
+
 ```
-kubectl describe pods 12896316-a4dbc -n abcdesktop
-Events:
-  Type    Reason     Age   From               Message
-  ----    ------     ----  ----               -------
-  Normal  Scheduled  33m   default-scheduler  Successfully assigned abcdesktop/12896316-a4dbc to koumoula
-  Normal  Pulled     33m   kubelet            Container image "busybox" already present on machine
-  Normal  Created    33m   kubelet            Created container: i-init
-  Normal  Started    33m   kubelet            Started container i-init
-  Normal  Pulling    33m   kubelet            Pulling image "registry.pepins.net/abcdesktopio/oc.user.ubuntu.sudo.24.04:12896316-111111"
-  Normal  Pulled     33m   kubelet            Successfully pulled image "registry.pepins.net/abcdesktopio/oc.user.ubuntu.sudo.24.04:12896316-111111" in 146ms (146ms including waiting). Image size: 788037450 bytes.
-  Normal  Created    33m   kubelet            Created container: x-graphical
-  Normal  Started    33m   kubelet            Started container x-graphical
-  Normal  Pulled     33m   kubelet            Container image "ghcr.io/abcdesktopio/oc.cupsd:4.1" already present on machine
-  Normal  Created    33m   kubelet            Created container: c-printer
-  Normal  Started    33m   kubelet            Started container c-printer
-  Normal  Pulled     33m   kubelet            Container image "ghcr.io/abcdesktopio/oc.pulseaudio:4.1" already present on machine
-  Normal  Created    33m   kubelet            Created container: s-sound
-  Normal  Started    33m   kubelet            Started container s-sound
-  Normal  Pulled     33m   kubelet            Container image "ghcr.io/abcdesktopio/oc.filer:4.0" already present on machine
-  Normal  Created    33m   kubelet            Created container: f-filer
-  Normal  Started    33m   kubelet            Started container f-filer
-  Normal  Pulled     33m   kubelet            Container image "k8s.gcr.io/pause:3.8" already present on machine
-  Normal  Created    33m   kubelet            Created container: o-storage
-  Normal  Started    33m   kubelet            Started container o-storage
-  Normal  Pulling    33m   kubelet            Pulling image "ghcr.io/abcdesktopio/oc.snapshot:main"
-  Normal  Pulled     33m   kubelet            Successfully pulled image "ghcr.io/abcdesktopio/oc.snapshot:main" in 538ms (538ms including waiting). Image size: 2354837 bytes.
-  Normal  Created    33m   kubelet            Created container: t-snapshot
-  Normal  Started    33m   kubelet            Started container t-snapshot
+kubectl -n abcdesktop get pod -o jsonpath={.spec.containers[*].name} 12896316-a4dbc 
 ```
 
-A new container is present `t-snapshot`
+A new container is present `t-snapshot` in the list of containers
+
+```
+x-graphical c-printer s-sound f-filer o-storage t-snapshot
+```
 
 
 ## take a snapshot
 
 To take a `snapshot`, in fact it's more a `commit`, but we keep the snapshot word to make it more simple like the virtual machine feature
 
-- What the snapshot container does ?
 
-It runs `nerdctl` command list to execute a `nerdctl commit` of the running `grahical` container
-When `snapshot` tag the image with the current userid and a timestamp. The tag is formated as `$USERID-$TIMESTAMP`. When the commit is done, the `snapshot` container put the image to the regsitry using the kubernetes secret `kubernetes.io/dockerconfigjson` credentials.
+### What the snapshot container does ?
+
+- It runs `nerdctl` command list to execute a `nerdctl commit` of the running `grahical` container
+
+- When `snapshot` tags the image with the current userid and a timestamp. The tag is formated as `$USERID-$TIMESTAMP`. 
+
+- When the commit is done, the `snapshot` container put the image to the regsitry using the kubernetes secret `kubernetes.io/dockerconfigjson` credentials.
  
 You can read the `snapshot` log with the command 
+
+
+In this example `12896316-a4dbc` is the name of the pod
+
+```
+kubectl -n abcdesktop logs 12896316-a4dbc -c t-snapshot 
+```
+
+```
+Serveur démarré sur http://localhost:29785
+ping
+ping
+ping
+```
 
 
 
