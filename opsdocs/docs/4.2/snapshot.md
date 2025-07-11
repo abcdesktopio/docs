@@ -3,9 +3,9 @@
 # Snapshot feature
 
 The snapshot feature is a new point of view of how to manage desktop in abcdesktop.
-The user get a desktop, he can customize, install and remove applications inside his desktop.
+The user gets a desktop, he can customize, install and remove applications inside his desktop.
 
-To keep all datas and installed application, the user can run a `commit` of his running desktop.
+To keep all datas and installed applications, the user can run a `commit` of his running desktop.
 The commit is pushed to a private docker registry with a dedicated tag.
 The user does a `logoff`, his pod is deleted.
 
