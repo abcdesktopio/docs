@@ -5,12 +5,15 @@
 The snapshot feature is a new point of view of how to manage desktop in abcdesktop.
 The user get a desktop, he can customize, install and remove applications inside his desktop.
 
-The user does a `commit` of his running desktop.
+To keep all datas and installed application, the user can run a `commit` of his running desktop.
 The commit is pushed to a private docker registry with a dedicated tag.
 The user does a `logoff`, his pod is deleted.
 
-When the user `login again`, pyos service looks for the dedicated user's image with the lastest timestamp in the private registry.
+When the user `login again`, abcdesktop service looks for the dedicated user's image with the lastest timestamp in the private registry.
 If a image is found for this user, pyos updates the image description with the lastest timestamp.
+The user get the latest commited image.
+
+This snapshot feature is also supported by the garbage collector service.
 
 
 ## Requirement 
@@ -156,7 +159,7 @@ In this case `12896316-a4dbc` is the name of the pod
 kubectl -n abcdesktop get pod -o jsonpath={.spec.containers[*].name} 12896316-a4dbc 
 ```
 
-A new container is present `t-snapshot` in the list of containers
+A new container `t-snapshot` appears in the list of containers
 
 ```
 x-graphical c-printer s-sound f-filer o-storage t-snapshot
