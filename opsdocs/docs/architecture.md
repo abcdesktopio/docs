@@ -5,13 +5,14 @@
 
 ``` mermaid
 sequenceDiagram
+    actor Alice
     Alice->>Router: HTTPS GET /
     Router->>Website: HTTP GET /
     destroy Website
     Website->>Router: HTML Content
     Router->>Alice: HTML Content
-    Alice->>Router: Login me in (Alice, password)
-    Router->>Pyos: Login me in (Alice, password)
+    Alice->>Router: Logime in (Alice, password)
+    Router->>Pyos: Logme in (Alice, password)
     Note over Router,Pyos: 1. Authentication
     Create participant LDAP
     Pyos->>LDAP: BIND LDAP_SEARCH Alice
