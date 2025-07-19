@@ -17,6 +17,11 @@ extra:
     property: G-TN9YC7J01Z
 markdown_extensions:
   - attr_list
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 site_name: www.abcdesktop.io
 repo_url: https://github.com/abcdesktopio/docs
 repo_name: abcdesktopio/docs
