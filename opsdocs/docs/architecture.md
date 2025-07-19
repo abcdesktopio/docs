@@ -17,7 +17,7 @@ sequenceDiagram
     Create participant LDAP
     Pyos->>LDAP: BIND LDAP_SEARCH Alice
     destroy LDAP
-    LDAP->>Pyos: dn, cn, group
+    LDAP->>Pyos: ldap attributs dn, cn, group
     Pyos->>Router: User Alice JWT
     Router->>Alice: User Alice JWT
     Alice->>Router: Create Desktop (User Alice JWT)
@@ -47,17 +47,18 @@ sequenceDiagram
 
 
 1. User login, get a user JWT
-2. Create a user POD (or a container) and retrieve a Desktop JWT
-3. Run, the user is connected to his own POD (or container)
+2. Create a user POD and get a Desktop JWT
+3. User is connecting to his own POD
 
 	- All JWT are signed with RSA keys. 
-	- All JWT payload are encrypted with RSA keys
+	- All desktop's JWT payload are encrypted with RSA keys
 
 ## Services Infrastructure
 
 The service infrastructure is based on :
 
-- WebServer [Nginx container](/core/nginx)
+- Router nginx with lua script
+- Website [Nginx container](/core/nginx)
 - Database service [MongoDB](/core/mongodb/)
 - Memcached service [Memcached](/core/memcached/)
 - Pyos Core service (abcdesktop engine) [Pyos](/core/pyos/)
@@ -75,15 +76,22 @@ The user creates a pod [user](/core/user)
  - OAuth 2.0 Provider : Google, Facebook, Orange
  - LDAP and LDAPS
  - Active Directory
-- Start/Stop user container in docker mode and Pod in Kubernetes mode 
-- Start/Stop application container
+ - Anonymous (no auth)
+- Start/Stop user's Pod in Kubernetes 
+- Start/Stop user's applications as `ephemeral container` or as `pod`
 
-When a new user is authenticated, a dedicated user container is created. 
-When the user starts an application (like LibreOffice for example) a dedicated application container is created.
+> When a new user is authenticated, a dedicated user pod is created.
+> 
+> When the user starts an application (like LibreOffice for example) a dedicated container is created.
 
-### nginx
 
-`nginx` container act as web server and websocket reverse proxy. 
+### Router
+
+`router` pod act as a `http router` web server. It routes HTTP requets to `user's pods`, `web site`, or `pyos`.
+
+### WebSite
+
+`website` pod act as web server and delivers `html`, `javascript`, `svg` files. 
 
 ### mongo
 `mongo` is used by pyos to store user profil informations. 
@@ -101,8 +109,8 @@ The profil informations are :
 ### oc.user
 [`oc.user`](https://github.com/abcdesktopio/oc.user) is the name of the user's container image. `oc.user` runs the X11 graphical service. `oc.user` is based on ubuntu distribution. 
 
-* The image `abcdesktopio/oc.user.ubuntu:3.0` is based on `ubuntu` distribution `22.04`. Get more details about [oc.user](https://github.com/abcdesktopio/oc.user) image.
+* The image `abcdesktopio/oc.user.ubuntu:4.1` is based on `ubuntu` distribution `24.04`. Get more details about [oc.user](https://github.com/abcdesktopio/oc.user) image.
 
 
 ### applications
-All applications are containers or pods, and share a graphical socket with the user's container 
+All applications are `ephemeral containers` or `pods`, and share a graphical socket ( `unix` or `tcp` ) with the user's pod. 
