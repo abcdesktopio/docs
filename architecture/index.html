@@ -5054,13 +5054,14 @@
 <h1 id="architecture-in-docker-mode">Architecture in docker mode</h1>
 <h2 id="abcdesktop-workflow-with-ldap-auth">abcdesktop workflow (with LDAP Auth)</h2>
 <pre class="mermaid"><code>sequenceDiagram
+    actor Alice
     Alice-&gt;&gt;Router: HTTPS GET /
     Router-&gt;&gt;Website: HTTP GET /
     destroy Website
     Website-&gt;&gt;Router: HTML Content
     Router-&gt;&gt;Alice: HTML Content
-    Alice-&gt;&gt;Router: Login me in (Alice, password)
-    Router-&gt;&gt;Pyos: Login me in (Alice, password)
+    Alice-&gt;&gt;Router: Logime in (Alice, password)
+    Router-&gt;&gt;Pyos: Logme in (Alice, password)
     Note over Router,Pyos: 1. Authentication
     Create participant LDAP
     Pyos-&gt;&gt;LDAP: BIND LDAP_SEARCH Alice
