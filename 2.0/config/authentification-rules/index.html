@@ -4995,54 +4995,54 @@ For example to set a dedicated network for firefox application ( read the how-to
 </ul>
 <p>Example :</p>
 <p>To test if the user source IP address is equal to <code>8.8.8.1/32</code></p>
-<pre><code class="language-json">'rule-home': { 
-    'conditions' : [   { 'network': '8.8.8.1/32', 'expected' : True } ],
-                         'expected' : True,
-                         'label': 'homeipsource' }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">home&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">8.8.8.1</span><span class="err">/</span><span class="mi">32</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">                         </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">                         </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;homeipsource&#39;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <h3 id="the-conditions-object">The conditions object</h3>
 <p><code>conditions</code> is a list of condition. All condition are always tested, as a logical <code>AND</code>.
 The result must be equal to the <code>expected</code> value.</p>
 <h4 id="examples">Examples:</h4>
 <h4 id="example-true-and-true-expected-true">Example (TRUE and TRUE) expected TRUE:</h4>
 <p>To test if the user source IP address is in the subnet to <code>80.0.0.0/8</code> <code>AND</code> is <code>memberOf</code> ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' </p>
-<pre><code class="language-json"> 'rule-sample': { 'conditions':  [ 
-    { 'network': '80.0.0.0/8', 'expected' : True },
-    { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com',  'expected' : True } ], 
-    'expected' : True,
-    'label': 'shipcrewandnet80'
-}
-</code></pre>
-<p>Add the labels 'shipcrewandnet80', if the 'expected' value is <code>True</code></p>
+<p><div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">sample&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">80.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memberO</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;c</span><span class="kc">n</span><span class="err">=ship_crew</span><span class="p">,</span><span class="err">ou=people</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span><span class="w">  </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;shipcrewa</span><span class="kc">n</span><span class="err">d</span><span class="kc">net</span><span class="mi">80</span><span class="err">&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+Add the labels 'shipcrewandnet80', if the 'expected' value is <code>True</code></p>
 <h4 id="example-true-and-true-expected-false">Example (TRUE and TRUE) expected FALSE:</h4>
 <p>To test if the user source IP address is <code>NOT</code> in the subnet to <code>80.0.0.0/8</code> <code>AND</code> is  <code>NOT</code> a <code>memberOf</code> ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' </p>
-<pre><code class="language-json"> 'rule-sample': { 'conditions':  [ 
-    { 'network': '80.0.0.0/8', 'expected' : True },
-    { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com',  'expected' : True } ], 
-    'expected' : False,
-    'label': 'noshipcrewandnet80'
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">sample&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">80.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memberO</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;c</span><span class="kc">n</span><span class="err">=ship_crew</span><span class="p">,</span><span class="err">ou=people</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span><span class="w">  </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">oshipcrewa</span><span class="kc">n</span><span class="err">d</span><span class="kc">net</span><span class="mi">80</span><span class="err">&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Add the labels 'noshipcrewandnonet80', if the 'expected' value is <code>False</code></p>
 <h4 id="example-true-and-false-expected-true">Example (TRUE and FALSE) expected TRUE:</h4>
 <p>To test if the user source IP address is in the subnet to <code>80.0.0.0/8</code> <code>AND</code> is  <code>NOT</code> a <code>memberOf</code> ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' </p>
-<pre><code class="language-json"> 'rule-sample': { 'conditions':  [ 
-    { 'network': '80.0.0.0/8', 'expected' : True },
-    { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com',  'expected' : False } ], 
-    'expected' : True,
-    'label': 'noshipcrewandnet80'
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">sample&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">80.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memberO</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;c</span><span class="kc">n</span><span class="err">=ship_crew</span><span class="p">,</span><span class="err">ou=people</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span><span class="w">  </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">oshipcrewa</span><span class="kc">n</span><span class="err">d</span><span class="kc">net</span><span class="mi">80</span><span class="err">&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Add the labels 'noshipcrewandnet80', if the 'expected' value is <code>True</code></p>
 <h4 id="example-false-and-true-expected-true">Example (FALSE and TRUE) expected TRUE:</h4>
 <p>To test if the user source IP address is <code>NOT</code> in the subnet to <code>80.0.0.0/8</code> <code>AND</code> is   a <code>memberOf</code> ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' </p>
-<pre><code class="language-json"> 'rule-sample': { 'conditions':  [ 
-    { 'network': '80.0.0.0/8', 'expected' : False },
-    { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com',  'expected' : True } ], 
-    'expected' : True,
-    'label': 'shipcrewandnonet80'
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">sample&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">80.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memberO</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;c</span><span class="kc">n</span><span class="err">=ship_crew</span><span class="p">,</span><span class="err">ou=people</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span><span class="w">  </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;shipcrewa</span><span class="kc">n</span><span class="err">d</span><span class="kc">n</span><span class="err">o</span><span class="kc">net</span><span class="mi">80</span><span class="err">&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Add the labels 'shipcrewandnonet80', if the 'expected' value is <code>True</code></p>
 <h3 id="the-condition-value">The condition value</h3>
 <table>
@@ -5083,120 +5083,118 @@ The result must be equal to the <code>expected</code> value.</p>
 </table>
 <h4 id="condition-boolean">condition boolean</h4>
 <p>This condition is a dummy condition; Only use to force a label or to disable a test.</p>
-<pre><code>'boolean': boolean
-</code></pre>
+<div class="highlight"><pre><span></span><code>&#39;boolean&#39;: boolean
+</code></pre></div>
 <p>The commun usage is </p>
-<pre><code class="language-json">'rule-dummy': { 'conditions':  [  { 'boolean': True, 'expected' : True  } ],
-                   'expected' : True,
-                 'label': 'dummy'
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">dummy&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;boolea</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">                   </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">                 </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;dummy&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>or alway False</p>
-<pre><code class="language-json">'rule-dummy': { 'conditions':  [  { 'boolean': True, 'expected' : True  } ],
-                   'expected' : False,
-                 'label': 'dummy'
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">dummy&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;boolea</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">                   </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span>
+<span class="w">                 </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;dummy&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h4 id="condition-httpheader">condition httpheader</h4>
 <p>This condition is test if a HTTP Header value is equal to a string. </p>
-<pre><code>'httpheader': dict
-</code></pre>
+<div class="highlight"><pre><span></span><code>&#39;httpheader&#39;: dict
+</code></pre></div>
 <p>example : if the 'User-Agent' is equal to <code>'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36' then add the label 'chromemaxosx112'</code></p>
-<pre><code class="language-json">
- 'rule-httpheader': { 
-        'conditions' : [ 
-            {   'httpheader': { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36' }, 
-                'expected' : True  } ],
-        'expected' : True,
-        'label': 'chromemaxosx112' }
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">h</span><span class="kc">tt</span><span class="err">pheader&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span>
+<span class="w">            </span><span class="p">{</span><span class="w">   </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">pheader&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;User</span><span class="mi">-</span><span class="err">Age</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Mozilla/</span><span class="mf">5.0</span><span class="w"> </span><span class="err">(Maci</span><span class="kc">nt</span><span class="err">osh;</span><span class="w"> </span><span class="err">I</span><span class="kc">ntel</span><span class="w"> </span><span class="err">Mac</span><span class="w"> </span><span class="err">OS</span><span class="w"> </span><span class="err">X</span><span class="w"> </span><span class="mi">11</span><span class="err">_</span><span class="mi">2</span><span class="err">_</span><span class="mi">0</span><span class="err">)</span><span class="w"> </span><span class="err">AppleWebKi</span><span class="kc">t</span><span class="err">/</span><span class="mf">537.36</span><span class="w"> </span><span class="err">(KHTML</span><span class="p">,</span><span class="w"> </span><span class="err">like</span><span class="w"> </span><span class="err">Gecko)</span><span class="w"> </span><span class="err">Chrome/</span><span class="mf">88.0.4324.146</span><span class="w"> </span><span class="err">Sa</span><span class="kc">far</span><span class="err">i/</span><span class="mf">537.36</span><span class="err">&#39;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span>
+<span class="w">                </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">        </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;chromemaxosx</span><span class="mi">112</span><span class="err">&#39;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <h4 id="condition-network">condition network</h4>
 <p>This condition is test if the client source ip address is in a subnet. IPv4 and IPv6 are supported.</p>
-<pre><code>'network': string
-</code></pre>
+<div class="highlight"><pre><span></span><code>&#39;network&#39;: string
+</code></pre></div>
 <p>example</p>
 <p>To test if the user source IP address is equal to <code>8.8.8.1/32</code></p>
-<pre><code class="language-json">'rule-home': { 
-    'conditions' : [   { 'network': '8.8.8.1/32', 'expected' : True } ],
-                         'expected' : True,
-                         'label': 'homeipsource' }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">home&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">8.8.8.1</span><span class="err">/</span><span class="mi">32</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">                         </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">                         </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;homeipsource&#39;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <p>To test if the user source IP address is in the subnet <code>10.0.0.0/8</code></p>
-<pre><code class="language-json">'rule-localnet': { 
-    'conditions' : [   { 'network': '10.0.0.0/8', 'expected' : True } ],
-                         'expected' : True,
-                         'label': 'localnet' }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">local</span><span class="kc">net</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">10.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">                         </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">                         </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;local</span><span class="kc">net</span><span class="err">&#39;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <p>To test if the user source IP address is NOT in the subnet <code>192.168.0.0/24</code></p>
-<pre><code class="language-json">'rule-localnet': { 
-    'conditions' : [   { 'network': '192.168.0.0/24', 'expected' : False } ],
-                         'expected' : True,
-                         'label': 'no192168net' }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">local</span><span class="kc">net</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">192.168.0.0</span><span class="err">/</span><span class="mi">24</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">                         </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">                         </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="mi">192168</span><span class="kc">net</span><span class="err">&#39;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <p>same as </p>
-<pre><code class="language-json">'rule-localnet': { 
-    'conditions' : [   { 'network': '192.168.0.0/24', 'expected' : True } ],
-                         'expected' : False,
-                         'label': 'no192168net' }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">local</span><span class="kc">net</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">192.168.0.0</span><span class="err">/</span><span class="mi">24</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">                         </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span>
+<span class="w">                         </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="mi">192168</span><span class="kc">net</span><span class="err">&#39;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <h5 id="ipv4-and-ipv6-subnets-support">IPv4 and IPv6 subnets support</h5>
 <p>To support private ip addresses subnet in the <a href="https://tools.ietf.org/html/rfc1918">rfc 1918</a> and <a href="https://tools.ietf.org/html/rfc3927">rfc 3927</a>, write separated rules. Both IPv6 and IPv4 addresses are supported. 
 You can share the same label <code>privatenetwork</code> a separated rule. </p>
-<pre><code class="language-json">'policies': {
-    'acl' : {},
-    'rules' : { 
-          'rule-privatenetwork-10': {   'conditions' : [ { 'network': '10.0.0.0/8', 'expected' : True } ], 
-                                            'expected'   : True, 
-                                            'label': 'privatenetwork' },
-          'rule-privatenetwork-172': {'conditions' : [ { 'network': '172.16.0.0/12', 'expected' : True } ], 
-                                            'expected'   : True, 
-                                            'label': 'privatenetwork' },
-          'Rule-privatenetwork-192': {'conditions' : [ { 'network': '192.168.0.0/16',     'expected' : True } ], 
-                                            'expected'   : True, 
-                                            'label': 'privatenetwork' },
-          'Rule-privatenetwork-169': {'conditions' : [ { 'network': '169.254.0.0/16',     'expected' : True } ], 
-                                            'expected'   : True, 
-                                            'label': 'privatenetwork' },
-          'rule-privatenetwork-fe80':{  'conditions' : [ { 'network': 'fe80::/10',     'expected' : True } ], 
-                                                'expected'   : True, 
-                                                'label': 'privatenetwork' }
-    }
-}                       
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="err">&#39;rules&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">          </span><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">priva</span><span class="kc">tenet</span><span class="err">work</span><span class="mi">-10</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">   </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">10.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span>
+<span class="w">                                            </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                            </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;priva</span><span class="kc">tenet</span><span class="err">work&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">priva</span><span class="kc">tenet</span><span class="err">work</span><span class="mi">-172</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">172.16.0.0</span><span class="err">/</span><span class="mi">12</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span>
+<span class="w">                                            </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                            </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;priva</span><span class="kc">tenet</span><span class="err">work&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="err">&#39;Rule</span><span class="mi">-</span><span class="err">priva</span><span class="kc">tenet</span><span class="err">work</span><span class="mi">-192</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">192.168.0.0</span><span class="err">/</span><span class="mi">16</span><span class="err">&#39;</span><span class="p">,</span><span class="w">     </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span>
+<span class="w">                                            </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                            </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;priva</span><span class="kc">tenet</span><span class="err">work&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="err">&#39;Rule</span><span class="mi">-</span><span class="err">priva</span><span class="kc">tenet</span><span class="err">work</span><span class="mi">-169</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">169.254.0.0</span><span class="err">/</span><span class="mi">16</span><span class="err">&#39;</span><span class="p">,</span><span class="w">     </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span>
+<span class="w">                                            </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                            </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;priva</span><span class="kc">tenet</span><span class="err">work&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">priva</span><span class="kc">tenet</span><span class="err">work</span><span class="mi">-</span><span class="kc">fe</span><span class="mi">80</span><span class="err">&#39;</span><span class="p">:{</span><span class="w">  </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">net</span><span class="err">work&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">fe</span><span class="mi">80</span><span class="p">::</span><span class="err">/</span><span class="mi">10</span><span class="err">&#39;</span><span class="p">,</span><span class="w">     </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span>
+<span class="w">                                                </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                                </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;priva</span><span class="kc">tenet</span><span class="err">work&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span><span class="w">                       </span>
+</code></pre></div>
 <h4 id="condition-memberof">condition memberof</h4>
 <p>This condition test if the user is a member of a LDAP Distinguished Name. </p>
-<pre><code class="language-json">'memberOf': string
-</code></pre>
-<pre><code class="language-json"> 'rule-sample': { 'conditions':  [ 
-    { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com',  'expected' : True } ], 
-    'expected' : True,
-    'label': 'shipcrewgrp'
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;memberO</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">s</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">sample&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memberO</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;c</span><span class="kc">n</span><span class="err">=ship_crew</span><span class="p">,</span><span class="err">ou=people</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span><span class="w">  </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;shipcrewgrp&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h4 id="condition-primarygroupid">condition primarygroupid</h4>
 <p>This test is only used with Microsoft Active Directory.
 primarygroupid test if the user attibute primaryGroupID is equal to a string.</p>
-<pre><code class="language-json">'primarygroupid': string
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;primarygroupid&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">s</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g</span>
+</code></pre></div>
 <p>To check is a user is memberof a <code>DOMAIN\USER</code> the primary group id is <code>513</code></p>
-<pre><code class="language-json">'rule-domainuser': {    'conditions':  [ { 'primarygroupid': '513', 'expected' : True } ],
-                            'expected' : True,
-                            'label': 'domainuser'
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">domai</span><span class="kc">nuser</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;primarygroupid&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">513</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">                            </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;domai</span><span class="kc">nuser</span><span class="err">&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>However, if the user needed to be seen as a <code>Domain Admin for POSIX</code>, the <code>PrimaryGroupID</code> is <code>512</code>, the RID for that group. </p>
-<pre><code class="language-json">'rule-posixdomainadmin': {  'conditions':  [ { 'primarygroupid': '519', 'expected' : True } ],
-                            'expected' : True,
-                            'label': 'posixdomainadmin'
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">posixdomai</span><span class="kc">na</span><span class="err">dmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;primarygroupid&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">519</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">                            </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;posixdomai</span><span class="kc">na</span><span class="err">dmi</span><span class="kc">n</span><span class="err">&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>The <code>Enterprise Admins group</code>, <code>519</code>, is also used to grant this level in POSIX.</p>
-<pre><code class="language-json">'rule-enterpriseadmin': {   'conditions':  [ { 'primarygroupid': '519', 'expected' : True } ],
-                            'expected' : True,
-                            'label': 'enterpriseadmin'
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;rule</span><span class="mf">-e</span><span class="kc">nter</span><span class="err">priseadmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">   </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;primarygroupid&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">519</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">                            </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;e</span><span class="kc">nter</span><span class="err">priseadmi</span><span class="kc">n</span><span class="err">&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 

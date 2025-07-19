@@ -4984,14 +4984,14 @@ kms provider needs to use a dedicated container and will not work out of the box
 For abcdesktop we will use aescbc provider</p>
 <h2 id="aescbc-encryption-configuration">aescbc encryption configuration</h2>
 <h3 id="create-configuration-directory">create configuration directory</h3>
-<p>In  <code>/etc/kubernetes</code> directory, create a directory named aescbc:</p>
-<pre><code>sudo mkdir /etc/kubernetes/aescbc
-</code></pre>
+<p>In  <code>/etc/kubernetes</code> directory, create a directory named aescbc:
+<div class="highlight"><pre><span></span><code>sudo mkdir /etc/kubernetes/aescbc
+</code></pre></div></p>
 <h3 id="create-configuration-file">Create configuration file</h3>
-<p>Create aescbc yaml configuration file:</p>
-<pre><code>sudo vi /etc/kubernetes/aescbc/encrypt_config.yaml
-</code></pre>
-<pre><code>apiVersion: apiserver.config.k8s.io/v1
+<p>Create aescbc yaml configuration file:
+<div class="highlight"><pre><span></span><code>sudo vi /etc/kubernetes/aescbc/encrypt_config.yaml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>apiVersion: apiserver.config.k8s.io/v1
 kind: EncryptionConfiguration
 resources:
   - resources:
@@ -5002,44 +5002,44 @@ resources:
         - name: key1
           secret: vKZm8oL19mucMS8qKXW4P9wSpab5H7LrLtOOPUUcvQk=
     - identity: {}
-</code></pre>
+</code></pre></div></p>
 <h3 id="change-secret-key">Change secret key</h3>
-<p>Secret key can be generated using the following command:</p>
-<pre><code>head -c 32 /dev/urandom | base64
-</code></pre>
-<p>In encrypt_config.yaml,  replace secret for key1 in aescbc.keys section</p>
+<p>Secret key can be generated using the following command:
+<div class="highlight"><pre><span></span><code>head -c 32 /dev/urandom | base64
+</code></pre></div>
+In encrypt_config.yaml,  replace secret for key1 in aescbc.keys section</p>
 <h3 id="change-rights-on-directory-and-file">Change rights on directory and file</h3>
-<p>As the encryption key is also the key that will uncrypt Etcd, we will try to protect it as much as possible by changing rights on directory and file:</p>
-<pre><code>sudo chmod -R 600 /etc/kubernetes/aescbc
-</code></pre>
+<p>As the encryption key is also the key that will uncrypt Etcd, we will try to protect it as much as possible by changing rights on directory and file:
+<div class="highlight"><pre><span></span><code>sudo chmod -R 600 /etc/kubernetes/aescbc
+</code></pre></div></p>
 <h2 id="configure-kubernetes-api-server">Configure Kubernetes Api Server</h2>
 <p>Encryption will be done at Kubernetes Api Server level.
 We will now configure this server to crypt secrets</p>
 <h3 id="configure-kube-apiserveryaml">configure kube-apiserver.yaml</h3>
-<p>Edit <code>kube-apiserver.yaml</code> configuration file:</p>
-<pre><code>vim /etc/kubernetes/manifests/kube-apiserver.yaml
-</code></pre>
-<p>In spec.containers.command section add:</p>
-<pre><code>    - --encryption-provider-config=/etc/kubernetes/aescbc/encrypt_config.yaml
-</code></pre>
-<p>In spec.containers.volumeMounts section add:</p>
-<pre><code>    - mountPath: /etc/kubernetes/aescbc
+<p>Edit <code>kube-apiserver.yaml</code> configuration file:
+<div class="highlight"><pre><span></span><code>vim /etc/kubernetes/manifests/kube-apiserver.yaml
+</code></pre></div></p>
+<p>In spec.containers.command section add:
+<div class="highlight"><pre><span></span><code>    - --encryption-provider-config=/etc/kubernetes/aescbc/encrypt_config.yaml
+</code></pre></div></p>
+<p>In spec.containers.volumeMounts section add:
+<div class="highlight"><pre><span></span><code>    - mountPath: /etc/kubernetes/aescbc
       name: aescbc-config
       readOnly: true
-</code></pre>
-<p>In spec.volumes section add:</p>
-<pre><code>  - hostPath:
+</code></pre></div></p>
+<p>In spec.volumes section add:
+<div class="highlight"><pre><span></span><code>  - hostPath:
       path: /etc/kubernetes/aescbc
       type: DirectoryOrCreate
     name: aescbc-config
-</code></pre>
-<p>save the file</p>
+</code></pre></div>
+save the file</p>
 <h3 id="verify-api-server">verify api server</h3>
 <p>When saving file, Kubernetes will detect changes and restart Api Server.
-This can be verified using the following command:</p>
-<pre><code>kubectl -n kube-system get pods
-</code></pre>
-<pre><code>NAME                             READY   STATUS    RESTARTS   AGE
+This can be verified using the following command:
+<div class="highlight"><pre><span></span><code>kubectl -n kube-system get pods
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>NAME                             READY   STATUS    RESTARTS   AGE
 coredns-66bff467f8-69b8r         1/1     Running   0          21h
 coredns-66bff467f8-74j9n         1/1     Running   0          21h
 etcd-cube05                      1/1     Running   0          21h
@@ -5048,16 +5048,16 @@ kube-controller-manager-cube05   1/1     Running   1          21h
 kube-flannel-ds-amd64-p9xhq      1/1     Running   0          20h
 kube-proxy-8xk5g                 1/1     Running   0          21h
 kube-scheduler-cube05            1/1     Running   1          21h
-</code></pre>
-<p>At this state, all created secrets will be crypted in etcd</p>
+</code></pre></div>
+At this state, all created secrets will be crypted in etcd</p>
 <h2 id="verify-secrets-encryption">Verify secrets encryption</h2>
 <h3 id="create-a-secret">Create a secret</h3>
-<pre><code>kubectl create secret generic secret1 -n default --from-literal=mykey=mydata
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl create secret generic secret1 -n default --from-literal=mykey=mydata
+</code></pre></div>
 <h3 id="verify-secret-creation">Verify secret creation</h3>
-<pre><code>sudo kubectl -n default describe secret secret1
-</code></pre>
-<pre><code>Name:         secret1
+<p><div class="highlight"><pre><span></span><code>sudo kubectl -n default describe secret secret1
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Name:         secret1
 Namespace:    default
 Labels:       &lt;none&gt;
 Annotations:  &lt;none&gt;
@@ -5067,17 +5067,17 @@ Type:  Opaque
 Data
 ====
 mykey:  6 bytes
-</code></pre>
+</code></pre></div></p>
 <h3 id="verify-secret-encryption">Verify secret encryption</h3>
-<p>To verify secret encryption we will install etcd client package</p>
-<pre><code>apt-get install etcd-client
-</code></pre>
-<p>Run the following command:</p>
-<pre><code>ETCDCTL_API=3 etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+<p>To verify secret encryption we will install etcd client package
+<div class="highlight"><pre><span></span><code>apt-get install etcd-client
+</code></pre></div></p>
+<p>Run the following command:
+<div class="highlight"><pre><span></span><code>ETCDCTL_API=3 etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt \
 --cert=/etc/kubernetes/pki/etcd/ca.crt --key=/etc/kubernetes/pki/etcd/ca.key \
 --endpoints=https://localhost:2379 get /registry/secrets/default/secret1
-</code></pre>
-<p>Output will appear with the following text <code>k8s:enc:aescbc:v1:key1:</code> followed by binary values.</p>
+</code></pre></div>
+Output will appear with the following text <code>k8s:enc:aescbc:v1:key1:</code> followed by binary values.</p>
 <p>Secrets are now encoded with aescbc v1 provider using key1</p>
 
 

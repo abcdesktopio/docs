@@ -5039,8 +5039,8 @@ Labels add metadata to the container image.</p>
 </ul>
 <h2 id="labels">Labels</h2>
 <p>Docker images applications for abcdesktop use docker's LABELS as metadata. To select only abcdesktop applications from standard docker images, all abcdesktop's applications must have a label 'oc.type' set to the value 'app'.</p>
-<pre><code class="language-Dockerfile">LABEL oc.type=app
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">LABEL</span><span class="w"> </span>oc.type<span class="o">=</span>app
+</code></pre></div>
 <h3 id="label-descriptions">Label descriptions</h3>
 <table>
 <thead>
@@ -5157,7 +5157,7 @@ Labels add metadata to the container image.</p>
 </tbody>
 </table>
 <p>Example for Firefox application</p>
-<pre><code>LABEL oc.icon=&quot;firefox.svg&quot;
+<div class="highlight"><pre><span></span><code>LABEL oc.icon=&quot;firefox.svg&quot;
 LABEL oc.keyword=&quot;firefox,mozilla,internet&quot;
 LABEL oc.cat=&quot;office&quot;
 LABEL oc.launch=&quot;Navigator.Firefox&quot;
@@ -5170,29 +5170,29 @@ LABEL oc.showinview=&quot;dock&quot;
 LABEL oc.mimetype=&quot;text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml&quot;
 LABEL oc.fileextensions=&quot;html;xml;gif&quot;
 LABEL oc.legacyfileextensions=&quot;html;xml&quot;
-</code></pre>
+</code></pre></div>
 <h2 id="host_config-resource-description">host_config resource description</h2>
 <p><code>host_config</code> resource description allows to change the running context for docker application.
 <code>host_config</code> is a dictionary and uses the same format in <code>applist.json</code> file and <code>od.config</code> file.</p>
 <p>For example you can set low cpu and memory values to an application like the great X11 xeyes.</p>
-<pre><code class="language-json">{   
-    &quot;mem_limit&quot;:  &quot;32M&quot;, 
-    &quot;cpu_period&quot;:  50000, 
-    &quot;cpu_quota&quot;:   50000, 
-    &quot;pid_mode&quot;:   false, 
-    &quot;network_mode&quot;: &quot;none&quot; 
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w">   </span>
+<span class="w">    </span><span class="nt">&quot;mem_limit&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;32M&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;cpu_period&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">50000</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;cpu_quota&quot;</span><span class="p">:</span><span class="w">   </span><span class="mi">50000</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;pid_mode&quot;</span><span class="p">:</span><span class="w">   </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;network_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Read the dedicated chapter for resource description, to get more informations on <a href="/config/host_config/">host_config</a></p>
 <h2 id="inspect-an-abcdesktop-docker-images">Inspect an abcdesktop docker images</h2>
 <p>To download an abcdesktop docker image, run the command</p>
-<pre><code>docker pull abcdesktopio/firefox.d
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker pull abcdesktopio/firefox.d
+</code></pre></div>
 <p>To inspect the labels in the docker image, run docker inspect</p>
-<pre><code>docker inspect abcdesktopio/firefox.d:latest
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker inspect abcdesktopio/firefox.d:latest
+</code></pre></div>
 <p>Read the labels section :</p>
-<pre><code>&quot;Labels&quot;: {
+<div class="highlight"><pre><span></span><code>&quot;Labels&quot;: {
                 &quot;architecture&quot;: &quot;x86_64&quot;,
                 &quot;oc.cat&quot;: &quot;office&quot;,
                 &quot;oc.desktopfile&quot;: &quot;firefox.desktop&quot;,
@@ -5215,7 +5215,7 @@ LABEL oc.legacyfileextensions=&quot;html;xml&quot;
                 &quot;vcs-type&quot;: &quot;git&quot;,
                 &quot;version&quot;: &quot;1.2&quot;
  }
-</code></pre>
+</code></pre></div>
 <h2 id="the-inheritance-of-the-images">The inheritance of the images</h2>
 <p>All abcdesktop applications use by default the oc.template.gtk images name. </p>
 <h3 id="the-inheritance-of-the-classes">The inheritance of the classes.</h3>
@@ -5225,7 +5225,7 @@ For example <code>oc.template.gtk.firefox</code> use the <code>oc.template.gtk</
 <li>The <code>oc.template.gtk.firefox</code> contains the Mozilla Firefox application.</li>
 <li>The <code>oc.template.gtk.firefox.acme</code> may contain custom set for Mozilla Firefox application, like Root CA, proxy values or policy.json files for the acme.</li>
 </ul>
-<pre><code>+------------------------------+
+<div class="highlight"><pre><span></span><code>+------------------------------+
 |oc.template.gtk.firefox.acme  |
 +---------------+--------------+
                 |
@@ -5238,7 +5238,7 @@ For example <code>oc.template.gtk.firefox</code> use the <code>oc.template.gtk</
 +---------------+--------------+
 |oc.template.gtk               |
 +---------------+--------------+
-</code></pre>
+</code></pre></div>
 
 
 

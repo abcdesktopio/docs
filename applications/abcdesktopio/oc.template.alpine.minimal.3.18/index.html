@@ -4860,17 +4860,15 @@
 <h2 id="from">from</h2>
 <p>Docker official images <a href="https://hub.docker.com/_/alpine">alpine:3.18</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>NAME=&quot;Alpine Linux&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Alpine Linux&quot;
 ID=alpine
 VERSION_ID=3.18.11
 PRETTY_NAME=&quot;Alpine Linux v3.18&quot;
 HOME_URL=&quot;https://alpinelinux.org/&quot;
 BUG_REPORT_URL=&quot;https://gitlab.alpinelinux.org/alpine/aports/-/issues&quot;
-
-</code></pre>
+</code></pre></div>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code>
-ARG BASE_IMAGE=alpine
+<div class="highlight"><pre><span></span><code>ARG BASE_IMAGE=alpine
 FROM ${BASE_IMAGE}
 
 MAINTAINER Alexandre DEVELY 
@@ -4907,7 +4905,7 @@ ENV BUSER balloon
 ENV BGROUP balloon
 ENV BUID 4096
 ENV BGID 4096
-# RUN adduser --disabled-password --gecos '' $BUSER
+# RUN adduser --disabled-password --gecos &#39;&#39; $BUSER
 # RUN id -u $BUSER &amp;&gt;/dev/null || 
 RUN addgroup --gid $BGID $BGROUP
 RUN adduser -D -h /home/balloon -s /bin/sh -u $BUID -G balloon $BUSER
@@ -4917,17 +4915,16 @@ RUN adduser -D -h /home/balloon -s /bin/sh -u $BUID -G balloon $BUSER
 # PASS=ballon
 # Change password for user balloon
 
-# if --build-arg BUILD_BALLON_PASSWORD=1, set NODE_ENV to 'development' or set to null otherwise.
+# if --build-arg BUILD_BALLON_PASSWORD=1, set NODE_ENV to &#39;development&#39; or set to null otherwise.
 #ENV BALLOON_PASSWORD=${BUILD_BALLOON_PASSWORD:+development}
-# if BUILD_BALLOON_PASSWORD is null, set it to 'abcdesktop' (or leave as is otherwise).
+# if BUILD_BALLOON_PASSWORD is null, set it to &#39;abcdesktop&#39; (or leave as is otherwise).
 #ENV BALLOON_PASSWORD=${BUILD_BALLOON_PASSWORD:-abcdesktop}
 
 RUN echo &quot;balloon:lmdpocpetit&quot; | chpasswd $BUSER
 
 RUN mkdir -p /var/log/desktop &amp;&amp; \
     chown -R $BUSER:$BUSER /home/$BUSER /var/log/desktop
-
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>file oc.template.alpine.minimal.3.18.md is created at Tue Jan 28 2025 13:48:59 GMT+0000 (Coordinated Universal Time) by make-docs.js</p>
 </blockquote>

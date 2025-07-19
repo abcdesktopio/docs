@@ -5041,39 +5041,39 @@
 <p>This screenshot describes the Amazon Elastic Kubernetes Service console. It shows the <code>Cluster</code> and <code>Networking</code> informations.</p>
 <p><img alt="aws eks console overview" src="../img/aws-eks-console.png" /></p>
 <h2 id="check-your-caller-identity">Check your caller-identity</h2>
-<pre><code>aws sts get-caller-identity
-</code></pre>
+<div class="highlight"><pre><span></span><code>aws sts get-caller-identity
+</code></pre></div>
 <p>I'm using a <code>SandboxAdministratorAccess</code> but you can choose others  </p>
-<pre><code class="language-bash">$ aws sts get-caller-identity
-{
-    &quot;UserId&quot;: &quot;XXXXXXXXXXXXXXXXXXX:user.namee@domain.org&quot;,
-    &quot;Account&quot;: &quot;YYYYYYYYYYYYYYYY&quot;,
-    &quot;Arn&quot;: &quot;arn:aws:ZZZ::ZZZZZZZZZZZZZ:assumed-role/AWSReservedSSO_SandboxAdministratorAccess_ZZZZZZZZZZZZZZZ/user.namee@domain.org&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+<span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;UserId&quot;</span>:<span class="w"> </span><span class="s2">&quot;XXXXXXXXXXXXXXXXXXX:user.namee@domain.org&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Account&quot;</span>:<span class="w"> </span><span class="s2">&quot;YYYYYYYYYYYYYYYY&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Arn&quot;</span>:<span class="w"> </span><span class="s2">&quot;arn:aws:ZZZ::ZZZZZZZZZZZZZ:assumed-role/AWSReservedSSO_SandboxAdministratorAccess_ZZZZZZZZZZZZZZZ/user.namee@domain.org&quot;</span>
+<span class="o">}</span>
+</code></pre></div>
 <h2 id="find-your-clusters-name">Find your cluster's name</h2>
 <p>I use <code>eu-north-1</code> as my region value</p>
-<pre><code class="language-bash">aws eks list-clusters --region eu-north-1
-{
-    &quot;clusters&quot;: [
-        &quot;scrumptious-dance-potato&quot;
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>eks<span class="w"> </span>list-clusters<span class="w"> </span>--region<span class="w"> </span>eu-north-1
+<span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;clusters&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">        </span><span class="s2">&quot;scrumptious-dance-potato&quot;</span>
+<span class="w">    </span><span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div>
 <h2 id="create-your-kubernetes-config-file">Create your kubernetes config file</h2>
 <p>Create your kubernetes config file using the <code>aws eks update-kubeconfig</code> command line</p>
-<pre><code class="language-bash">aws eks update-kubeconfig --region region-code --name my-cluster
-</code></pre>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>eks<span class="w"> </span>update-kubeconfig<span class="w"> </span>--region<span class="w"> </span>region-code<span class="w"> </span>--name<span class="w"> </span>my-cluster
+</code></pre></div>
 <p>In this example </p>
-<pre><code class="language-bash">aws eks update-kubeconfig --region eu-north-1 --name scrumptious-dance-potato
-</code></pre>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>eks<span class="w"> </span>update-kubeconfig<span class="w"> </span>--region<span class="w"> </span>eu-north-1<span class="w"> </span>--name<span class="w"> </span>scrumptious-dance-potato
+</code></pre></div>
 <p>Run a <code>kubectl</code> command line like <code>kubectl cluster-info</code> command line to make sure that kubeconfig is defined  </p>
-<pre><code class="language-bash">kubectl cluster-info 
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cluster-info<span class="w"> </span>
+</code></pre></div>
 <h2 id="run-the-abcdesktop-install-script">Run the abcdesktop install script</h2>
 <p>Download and extract the latest release automatically</p>
-<pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.1.sh | bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.1.sh | bash
+</code></pre></div>
 <p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="connect-to-your-abcdesktop-service">Connect to your abcdesktop service</h2>
 <p>By default install script is listening on a free tcp port <code>:30443</code> and is using a <code>kubectl port-forward</code> command line to reach http web service <code>:80</code></p>
@@ -5085,8 +5085,8 @@
 <p><img alt="abcdesktop for fry" src="../../img/abcdesktop-hompage-port30443-user-fry-logged.png" /></p>
 <h2 id="add-applications-to-your-desktop">Add applications to your desktop</h2>
 <p>Using the previous terminal shell, run the application install script </p>
-<pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.1.sh | bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.1.sh | bash
+</code></pre></div>
 <p>To get more details about the install applications process, please read the <a href="https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop_applications/">Setup applications guide</a></p>
 <p>Then reload the web page with the desktop of <code>Philip J. Fry</code>
 New applications are now listed in the dock of <code>plasmashell</code></p>

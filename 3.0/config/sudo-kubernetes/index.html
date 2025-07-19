@@ -4870,47 +4870,47 @@
 <p>run the sudo command inside the user kubernetes pods</p>
 </blockquote>
 <p><img alt="effective uid is not 0" src="../img/sudo-kubernetes.png" /></p>
-<pre><code>balloon@43c2ef50-a7b9-4e36-8a9d-8ac3ce80180e:~$ sudo bash
-sudo: effective uid is not 0, is /usr/bin/sudo on a file system with the 'nosuid' option set or an NFS file system without root privileges?
-</code></pre>
+<div class="highlight"><pre><span></span><code>balloon@43c2ef50-a7b9-4e36-8a9d-8ac3ce80180e:~$ sudo bash
+sudo: effective uid is not 0, is /usr/bin/sudo on a file system with the &#39;nosuid&#39; option set or an NFS file system without root privileges?
+</code></pre></div>
 <h2 id="edit-the-odconfig-file">Edit the od.config file</h2>
 <p>In the <code>securityContext</code> add the entry <code>'allowPrivilegeEscalation': True</code></p>
-<pre><code>desktop.pod : {
-  'spec'   : {
-    'shareProcessMemorySize': '512Mi',
-    'shareProcessMemory': True,
-    'shareProcessNamespace': True,
-    'securityContext': { 
-      'supplementalGroups': [ '{{ supplementalGroups }}' ] ,
-      'readOnlyRootFilesystem': False, 
-      'allowPrivilegeEscalation': True, 
-      'runAsUser': '{{ uidNumber }}',
-      'runAsGroup': '{{ gidNumber }}',
-      'capabilities': { 
-        'add': [ &quot;SYS_ADMIN&quot;, &quot;CAP_SYS_ADMIN&quot;, &quot;CAP_DAC_OVERRIDE&quot;]
+<div class="highlight"><pre><span></span><code>desktop.pod : {
+  &#39;spec&#39;   : {
+    &#39;shareProcessMemorySize&#39;: &#39;512Mi&#39;,
+    &#39;shareProcessMemory&#39;: True,
+    &#39;shareProcessNamespace&#39;: True,
+    &#39;securityContext&#39;: { 
+      &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ] ,
+      &#39;readOnlyRootFilesystem&#39;: False, 
+      &#39;allowPrivilegeEscalation&#39;: True, 
+      &#39;runAsUser&#39;: &#39;{{ uidNumber }}&#39;,
+      &#39;runAsGroup&#39;: &#39;{{ gidNumber }}&#39;,
+      &#39;capabilities&#39;: { 
+        &#39;add&#39;: [ &quot;SYS_ADMIN&quot;, &quot;CAP_SYS_ADMIN&quot;, &quot;CAP_DAC_OVERRIDE&quot;]
       }
     }
   }
 ...
-</code></pre>
+</code></pre></div>
 <h2 id="update-the-kubernetes-config-with-the-new-abcdesktopyaml">Update the kubernetes config with the new abcdesktop.yaml</h2>
-<pre><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+</code></pre></div>
 <h2 id="restart-the-pyos-pod">Restart the pyos pod</h2>
 <p>Delete the pyos pod</p>
-<pre><code>kubectl delete pods -l run=pyos-od  -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl delete pods -l run=pyos-od  -n abcdesktop
 pod &quot;pyos-od-5586b88767-gsdl8&quot; deleted
-</code></pre>
+</code></pre></div>
 <ol>
 <li>Make sure that your user has done a logoff his pod, then login again and run terminal web shell </li>
 </ol>
 <p>The default balloon password is <code>lmdpocpetit</code></p>
-<pre><code>balloon@c182dc39-6a00-4869-8b01-2039f37c1eab:~$ sudo bash
+<div class="highlight"><pre><span></span><code>balloon@c182dc39-6a00-4869-8b01-2039f37c1eab:~$ sudo bash
 [sudo] password for balloon: 
 root@c182dc39-6a00-4869-8b01-2039f37c1eab:~# id
 uid=0(root) gid=0(root) groups=0(root),105(lpadmin)
 root@c182dc39-6a00-4869-8b01-2039f37c1eab:~#  
-</code></pre>
+</code></pre></div>
 <p>After the sudo command, you get a root level inside the shell of the users's pod</p>
 <p><img alt="sudo id root" src="../img/sudo-kubernetes-root.png" /></p>
 <blockquote>

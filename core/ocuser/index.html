@@ -5289,10 +5289,10 @@ These options are defined in the <a href="/config/desktop/">od.config</a> config
 <h3 id="supervisord">Supervisord</h3>
 <p><a href="http://supervisord.org">Supervisor</a> is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems.
 All process running inside the user container, are started by supervisord. </p>
-<pre><code>/usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
+</code></pre></div>
 <p>Supervisor is the parent of all running process</p>
-<pre><code>docker-entrypoi---supervisord-+-Xvnc
+<div class="highlight"><pre><span></span><code>docker-entrypoi---supervisord-+-Xvnc
                               |-node---10*[{node}]
                               |-4*[nodejs---10*[{nodejs}]]
                               |-nodejs---6*[{nodejs}]
@@ -5300,12 +5300,12 @@ All process running inside the user container, are started by supervisord. </p>
                               |        `-11*[{nodejs}]
                               |-openbox
                               `-xsettingsd
-</code></pre>
+</code></pre></div>
 <h2 id="tigervnc-xvnc">TigerVNC Xvnc</h2>
 <p><a href="https://tigervnc.org/">TigerVNC</a> is a high-performance, platform-neutral implementation of <code>VNC</code> (<code>Virtual Network Computing</code>), a client/server application that allows users to launch and interact with graphical applications on remote machines. <a href="https://tigervnc.org/">TigerVNC</a> provides the levels of performance necessary to run 3D and video applications, and it attempts to maintain a common look and feel and re-use components, where possible, across the various platforms that it supports. <a href="https://tigervnc.org/">TigerVNC</a> also provides extensions for advanced authentication methods and TLS encryption.</p>
 <p>Starts parameters </p>
-<pre><code>command=Xvnc :0 -geometry 3840x2160 -SendPrimary=0 -depth 24 -rfbunixpath /tmp/.x11vnc -pn -rfbauth /composer/run/.vnc/passwd```
-</code></pre>
+<div class="highlight"><pre><span></span><code>command=Xvnc :0 -geometry 3840x2160 -SendPrimary=0 -depth 24 -rfbunixpath /tmp/.x11vnc -pn -rfbauth /composer/run/.vnc/passwd```
+</code></pre></div>
 <p>The default DISPLAY is :0. 
 <code>Xvnc</code> listen on unix socket file <code>/tmp/.x11vnc</code>. </p>
 <h2 id="openbox">Openbox</h2>
@@ -5314,21 +5314,21 @@ All process running inside the user container, are started by supervisord. </p>
 This patch is only required to send message (Create/Close) to the abcdesktop.io web front.</p>
 <p>This patch add notification when X11/window change :</p>
 <p>The notify patch send signals SIGUSR1 and SIGUSR2 to a process (pid)</p>
-<pre><code>#define SIG_MANAGED_WINDOW   SIGUSR1
+<div class="highlight"><pre><span></span><code>#define SIG_MANAGED_WINDOW   SIGUSR1
 #define SIG_UNMANAGED_WINDOW SIGUSR2
-</code></pre>
+</code></pre></div>
 <ul>
 <li>SIGUSR1: when a new window is created</li>
 <li>SIGUSR2: when a window is closed</li>
 </ul>
 <p>Openbox is started by supervisord using the command :</p>
-<pre><code>command=/usr/bin/openbox --sm-disable --config-file /etc/X11/openbox/rc.xml --startup /composer/openbox/autostart.sh
-</code></pre>
+<div class="highlight"><pre><span></span><code>command=/usr/bin/openbox --sm-disable --config-file /etc/X11/openbox/rc.xml --startup /composer/openbox/autostart.sh
+</code></pre></div>
 <h2 id="ws-tcp-bridge">ws-tcp-bridge</h2>
 <p><a href="https://github.com/andrewchambers/ws-tcp-bridge">ws-tcp-bridge</a> A websocket to tcp proxy server, using nodejs which bridges websockets and tcp servers in either direction.</p>
 <p>ws-tcp-bridge is started by supervisord using the command :</p>
-<pre><code>/composer/node/ws-tcp-bridge/ws-tcp-bridge --method=ws2tcp --lport 6081 --rhost=unix:/tmp/.x11vnc
-</code></pre>
+<div class="highlight"><pre><span></span><code>/composer/node/ws-tcp-bridge/ws-tcp-bridge --method=ws2tcp --lport 6081 --rhost=unix:/tmp/.x11vnc
+</code></pre></div>
 <h2 id="spawner-servicejs">Spawner-service.js</h2>
 <p>spawner-service.js is a daemon written in nodejs, this daemon listen for messages on the tcp port 8001.
 spawner-service offers methods to interact with the container and the X11 server : </p>
@@ -5352,61 +5352,61 @@ spawner-service offers methods to interact with the container and the X11 server
 <li>echo: return an echo string</li>
 </ul>
 <p>spawner-service.js is started by supervisord using the command :</p>
-<pre><code>command=nodejs /composer/node/spawner-service/spawner-service.js
-</code></pre>
+<div class="highlight"><pre><span></span><code>command=nodejs /composer/node/spawner-service/spawner-service.js
+</code></pre></div>
 <h2 id="printer-servicejs">Printer-service.js</h2>
 <p>Printer-service.js waits for a file in /home/balloon/.printer-queue directory. Printer-service.js use broadcastevent to notify the web browser to download new files to print. 
 Printer-service.js is started by supervisord using the command :</p>
-<pre><code>command=nodejs /composer/node/printer-service/printer-service.js
-</code></pre>
+<div class="highlight"><pre><span></span><code>command=nodejs /composer/node/printer-service/printer-service.js
+</code></pre></div>
 <h2 id="broadcast-servicejs">Broadcast-service.js</h2>
 <p>Broadcast-service.js allows to broadcast messages between all user sharing the same session.</p>
 <p>Broadcast-service.js is started by supervisord using the command :</p>
-<pre><code>command=nodejs /composer/node/broadcast-service/broadcast-service.js
-</code></pre>
+<div class="highlight"><pre><span></span><code>command=nodejs /composer/node/broadcast-service/broadcast-service.js
+</code></pre></div>
 <h2 id="file-servicejs">File-service.js</h2>
 <p>File-service.js is a upload/download service to tranfert files between the browser and the user home directory. File-service.js supports the HTTP method POST to uploadFile and GET to respond data file. File-service.js is used for printer-service.js to download PDF printed files. File-service.js use the tcp port 8080.</p>
-<pre><code>http.createServer(function(req, res) {
-  if (req.method === 'POST') {
+<div class="highlight"><pre><span></span><code>http.createServer(function(req, res) {
+  if (req.method === &#39;POST&#39;) {
     uploadFile( req, res );
   } 
-  else if (req.method === 'GET') {
+  else if (req.method === &#39;GET&#39;) {
         respondFile( req, res );
   }
 }).listen(8080, function() {
-  console.log('Listening for requests');
+  console.log(&#39;Listening for requests&#39;);
 });
-</code></pre>
+</code></pre></div>
 <p>File-service.js is started by supervisord using the command :</p>
-<pre><code>command=nodejs /composer/node/file-service/file-service.js
-</code></pre>
+<div class="highlight"><pre><span></span><code>command=nodejs /composer/node/file-service/file-service.js
+</code></pre></div>
 <h2 id="pulseaudio">Pulseaudio</h2>
 <p><a href="https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Community/">PulseAudio</a> is a sound system for POSIX, and is a proxy for sound applications. It allows you to do advanced operations on your sound data as it passes between applications. Pulseaudio is use as server to forward sound between X11 applications and the user browser. It supports also virtual local sound. </p>
-<p>file etc/pulse/default.pa</p>
-<pre><code>load-module module-native-protocol-unix
+<p>file etc/pulse/default.pa
+<div class="highlight"><pre><span></span><code>load-module module-native-protocol-unix
 load-module module-always-sink
 load-module module-native-protocol-tcp
-</code></pre>
+</code></pre></div></p>
 <p>Pulseaudio is started by supervisord using the command :</p>
-<pre><code>command=/usr/bin/pulseaudio
-</code></pre>
+<div class="highlight"><pre><span></span><code>command=/usr/bin/pulseaudio
+</code></pre></div>
 <h2 id="xsettingsd">Xsettingsd</h2>
 <p><a href="https://github.com/derat/xsettingsd">Xsettingsd</a> is a daemon that implements the XSETTINGS specification. Xsettingsd is use to run GTK+ applications, to configure things such as themes, font antialiasing/hinting, and UI sound effects without we using the GNOME desktop environment.
-Xsettingsd set the default GTK theme and color pallette:</p>
-<pre><code>Net/ThemeName &quot;Numix-Flatstudio&quot;
+Xsettingsd set the default GTK theme and color pallette:
+<div class="highlight"><pre><span></span><code>Net/ThemeName &quot;Numix-Flatstudio&quot;
 Net/IconThemeName &quot;Numix-Light&quot;
 Gtk/ColorPalette &quot;black:white:gray50:red:purple:blue:light blue:green:yellow:orange:lavender:brown:goldenrod4:dodger blue:pink:light green:gray10:gray30:gray75:gray90&quot;
-</code></pre>
+</code></pre></div></p>
 <p>Xsettingsd is started by supervisord using the command.</p>
-<pre><code>command=/usr/bin/xsettingsd -c /home/balloon/.xsettings
-</code></pre>
+<div class="highlight"><pre><span></span><code>command=/usr/bin/xsettingsd -c /home/balloon/.xsettings
+</code></pre></div>
 <h2 id="build-the-user-container-image">Build the user container image</h2>
 <p>The image oc.user.XX.YY is based from the oc.software.XX.YY  witch came from oc.ubuntu.XX.YY.
 For example :
 * The image oc.user.18.04 is based from the oc.software.18.04 witch came from oc.ubuntu.18.04.
 * The image oc.user.20.04 is based from the oc.software.20.04 witch came from oc.ubuntu.20.04.
 * The image oc.user.21.04 is based from the oc.software.21.04 witch came from oc.ubuntu.21.04.</p>
-<pre><code>+-------------------+
+<div class="highlight"><pre><span></span><code>+-------------------+
 | oc.user.18.04     |       (abcdesktop.io custom software component)
 +---------+---------+
           |
@@ -5421,17 +5421,17 @@ For example :
 +---------+---------+
 |   ubuntu:18.04    |   (official ubuntu images from dockerhub)
 +-------------------+
-</code></pre>
+</code></pre></div>
 <p>To build the image oc.user container from scratch, you need to build there 3 images. Build oc.ubuntu.18.04 first, next oc.software.18.04, and finish by oc.user.18.04.
 This is done by the Makefile command.</p>
-<pre><code>docker build -t oc.ubuntu.18.04 -f oc.ubuntu.18.04 .
+<div class="highlight"><pre><span></span><code>docker build -t oc.ubuntu.18.04 -f oc.ubuntu.18.04 .
 docker build -t oc.software.18.04 -f oc.software.18.04 .
 docker build -t oc.user.18.04   -f oc.user.18.04 .
-</code></pre>
+</code></pre></div>
 <p>To do it automaticly, clone composer/dockerbuild and run the Makefile</p>
-<pre><code>git clone https://github.com/abcdesktopio/oc.user.git 
+<div class="highlight"><pre><span></span><code>git clone https://github.com/abcdesktopio/oc.user.git 
 make
-</code></pre>
+</code></pre></div>
 <h3 id="dockerfile-ocubuntuxxyy">Dockerfile oc.ubuntu.XX.YY.</h3>
 <p>oc.ubuntu.XX.YY is a Dockerfile, it starts 'FROM ubuntu:XX.YY' and  installs core services and libs:</p>
 <ul>
@@ -5452,7 +5452,7 @@ make
 <h3 id="dockerfile-ocuserxxyy">Dockerfile oc.user.XX.YY</h3>
 <p>oc.user.XX.YY is a Dockerfile, it starts 'FROM oc.software.XX.YY' and installs user software components:</p>
 <h4 id="install-nodejs-dev">Install nodejs dev</h4>
-<pre><code># Add nodejs service
+<div class="highlight"><pre><span></span><code># Add nodejs service
 RUN cd /composer/node/broadcast-service &amp;&amp; npm install  
 RUN cd /composer/node/file-service      &amp;&amp; npm install
 RUN cd /composer/node/printer-service   &amp;&amp; npm install
@@ -5460,13 +5460,13 @@ RUN cd /composer/node/spawner-service   &amp;&amp; npm install  \
 RUN cd /composer/node/spawner-service/node_modules/geoip-lite &amp;&amp; npm run-script updatedb
 RUN cd /composer/node/angular-filemanager-nodejs-bridge &amp;&amp; npm install 
 RUN cd /composer/node/livesound-service &amp;&amp; npm install
-</code></pre>
+</code></pre></div>
 <h4 id="create-the-balloon-user">Create the balloon user</h4>
-<pre><code>RUN groupadd --gid 4096 $BUSER
+<div class="highlight"><pre><span></span><code>RUN groupadd --gid 4096 $BUSER
 RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups lpadmin,sudo $BUSER
-</code></pre>
+</code></pre></div>
 <h4 id="change-default-permission-to-run-cupsd">Change default permission to run cupsd</h4>
-<pre><code># change acces right for printer support
+<div class="highlight"><pre><span></span><code># change acces right for printer support
 RUN addgroup $BUSER lpadmin
 RUN mkdir /var/run/cups 
 RUN     chown -R $BUSER:$BUSER /var/spool/cups            &amp;&amp; \
@@ -5475,10 +5475,10 @@ RUN     chown -R $BUSER:$BUSER /var/spool/cups            &amp;&amp; \
         chown -R $BUSER:$BUSER /var/cache/cups          &amp;&amp; \
         chown -R $BUSER:$BUSER /etc/cups/printers.conf  &amp;&amp; \
         chown -R $BUSER:$BUSER /var/run/cups/
-</code></pre>
+</code></pre></div>
 <h4 id="set-the-exposed-tcp-port">Set the exposed tcp port</h4>
 <p>Datas to these tcp ports are routed by <a href="../nginx/">nginx</a></p>
-<pre><code>PULSEAUDIO_HTTP_PORT                4714
+<div class="highlight"><pre><span></span><code>PULSEAUDIO_HTTP_PORT                4714
 WS_TCP_BRIDGE_SERVICE_TCP_PORT      6081
 RESERVED_FOR_NEXT_VERSION           29780
 XTERM_TCP_PORT                      29781
@@ -5486,7 +5486,7 @@ FILE_SERVICE_TCP_PORT               29783
 BROADCAST_SERVICE_TCP_PORT          29784
 RESERVED FOR CUPSD                  29785
 SPAWNER_SERVICE_TCP_PORT            29786
-</code></pre>
+</code></pre></div>
 
 
 

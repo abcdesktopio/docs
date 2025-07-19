@@ -5042,79 +5042,79 @@
 <p>These commands install the latest Kubernetes on a single node Ubuntu 22.04</p>
 <h4 id="step-0-disable-swap">Step 0: Disable swap</h4>
 <p>Execute command swapoff to disable swap.</p>
-<pre><code class="language-bash">swapoff -a
-</code></pre>
+<div class="highlight"><pre><span></span><code>swapoff<span class="w"> </span>-a
+</code></pre></div>
 <p>Load the <code>overlay</code> and <code>br_netfilter</code> kernel modules</p>
-<pre><code class="language-bash">modprobe overlay
-modprobe br_netfilter
-</code></pre>
+<div class="highlight"><pre><span></span><code>modprobe<span class="w"> </span>overlay
+modprobe<span class="w"> </span>br_netfilter
+</code></pre></div>
 <p>Create the <code>containerd.conf</code> to load modules</p>
-<pre><code class="language-bash">cat &gt;&gt;/etc/modules-load.d/containerd.conf &lt;&lt;EOF
-overlay
-br_netfilter
-EOF
-</code></pre>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;&gt;/etc/modules-load.d/containerd.conf<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">overlay</span>
+<span class="s">br_netfilter</span>
+<span class="s">EOF</span>
+</code></pre></div>
 <h4 id="step-1-install-containerdio-from-docker-repository">Step 1: Install <code>containerd.io</code> from docker repository</h4>
 <p>Install the containerd utility and required packages on node by running the following command as sudo in a Terminal :</p>
 <p>Install common packages</p>
-<pre><code class="language-bash">apt-get install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>curl<span class="w"> </span>gnupg2<span class="w"> </span>software-properties-common<span class="w"> </span>apt-transport-https<span class="w"> </span>ca-certificates
+</code></pre></div>
 <p>Add source</p>
-<pre><code class="language-bash">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmour -o /etc/apt/trusted.gpg.d/docker.gpg
-add-apt-repository &quot;deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span><span class="p">|</span><span class="w"> </span>gpg<span class="w"> </span>--dearmour<span class="w"> </span>-o<span class="w"> </span>/etc/apt/trusted.gpg.d/docker.gpg
+add-apt-repository<span class="w"> </span><span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2">] https://download.docker.com/linux/ubuntu </span><span class="k">$(</span>lsb_release<span class="w"> </span>-cs<span class="k">)</span><span class="s2"> stable&quot;</span>
+</code></pre></div>
 <p>You will be prompted with a Y/n option in order to proceed with the installation. </p>
-<pre><code class="language-bash">apt update
-apt install -y containerd.io
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>update
+apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>containerd.io
+</code></pre></div>
 <p><code>containerd.io</code> will then be installed on your system. </p>
 <h4 id="step-2-configure-containerdio">Step 2: Configure <code>containerd.io</code></h4>
 <p>Configure <code>containerd</code> to use <code>systemd</code> as <code>cgroup</code>. </p>
-<pre><code class="language-bash">containerd config default &gt; /etc/containerd/config.toml
-sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
-</code></pre>
+<div class="highlight"><pre><span></span><code>containerd<span class="w"> </span>config<span class="w"> </span>default<span class="w"> </span>&gt;<span class="w"> </span>/etc/containerd/config.toml
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/SystemdCgroup \= false/SystemdCgroup \= true/g&#39;</span><span class="w"> </span>/etc/containerd/config.toml
+</code></pre></div>
 <p>Enable the containerd utility by running the following command :</p>
-<pre><code class="language-bash">systemctl restart containerd
-systemctl enable containerd
-</code></pre>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>restart<span class="w"> </span>containerd
+systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>containerd
+</code></pre></div>
 <h4 id="step-3-add-the-kubernetes-signing-key">Step 3: Add the Kubernetes signing key</h4>
 <p>Run the following command in order to get the Kubernetes signing key:</p>
-<pre><code class="language-bash">curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - 
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>https://packages.cloud.google.com/apt/doc/apt-key.gpg<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>apt-key<span class="w"> </span>add<span class="w"> </span>-<span class="w"> </span>
+</code></pre></div>
 <h4 id="step-4-add-xenial-kubernetes-repository">Step 4: Add Xenial Kubernetes Repository</h4>
 <p>Run the following commands in order to add the Xenial Kubernetes repository:</p>
-<pre><code class="language-bash">echo &quot;deb https://apt.kubernetes.io/ kubernetes-xenial main&quot; | sudo tee -a /etc/apt/sources.list.d/kubernetes.list 
-apt-get update
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb https://apt.kubernetes.io/ kubernetes-xenial main&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/apt/sources.list.d/kubernetes.list<span class="w"> </span>
+apt-get<span class="w"> </span>update
+</code></pre></div>
 <h4 id="step-5-install-kubernetes">Step 5: Install Kubernetes</h4>
 <p>Create <code>kubernetes.conf</code> for <code>sysctl.d</code></p>
-<pre><code class="language-bash">cat &gt;&gt;/etc/sysctl.d/kubernetes.conf &lt;&lt;EOF
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
-net.ipv4.ip_forward = 1
-EOF
-</code></pre>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;&gt;/etc/sysctl.d/kubernetes.conf<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">net.bridge.bridge-nf-call-ip6tables = 1</span>
+<span class="s">net.bridge.bridge-nf-call-iptables = 1</span>
+<span class="s">net.ipv4.ip_forward = 1</span>
+<span class="s">EOF</span>
+</code></pre></div>
 <p>Reload your system <code>sysctl</code> changes </p>
-<pre><code class="language-bash">sysctl --system
-</code></pre>
+<div class="highlight"><pre><span></span><code>sysctl<span class="w"> </span>--system
+</code></pre></div>
 <p>Install the packages <code>kubelet</code> <code>kubeadm</code> <code>kubectl</code></p>
-<pre><code class="language-bash">apt install -y kubelet kubeadm kubectl
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>kubelet<span class="w"> </span>kubeadm<span class="w"> </span>kubectl
+</code></pre></div>
 <p>K8s utilities will then be installed on your system.</p>
 <p>You can check the version number of <code>kubeadm</code> and also verify the installation through the following command:</p>
-<pre><code class="language-bash"> kubeadm version -o yaml
-</code></pre>
-<pre><code class="language-yaml">clientVersion:
-  buildDate: &quot;2022-10-12T10:55:36Z&quot;
-  compiler: gc
-  gitCommit: 434bfd82814af038ad94d62ebe59b133fcb50506
-  gitTreeState: clean
-  gitVersion: v1.25.3
-  goVersion: go1.19.2
-  major: &quot;1&quot;
-  minor: &quot;25&quot;
-  platform: linux/amd64
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w"> </span>kubeadm<span class="w"> </span>version<span class="w"> </span>-o<span class="w"> </span>yaml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nt">clientVersion</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">buildDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2022-10-12T10:55:36Z&quot;</span>
+<span class="w">  </span><span class="nt">compiler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gc</span>
+<span class="w">  </span><span class="nt">gitCommit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">434bfd82814af038ad94d62ebe59b133fcb50506</span>
+<span class="w">  </span><span class="nt">gitTreeState</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clean</span>
+<span class="w">  </span><span class="nt">gitVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.25.3</span>
+<span class="w">  </span><span class="nt">goVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">go1.19.2</span>
+<span class="w">  </span><span class="nt">major</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span>
+<span class="w">  </span><span class="nt">minor</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;25&quot;</span>
+<span class="w">  </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux/amd64</span>
+</code></pre></div>
 
 
 

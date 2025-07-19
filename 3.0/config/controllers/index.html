@@ -5053,21 +5053,21 @@
 </table>
 <h2 id="access-permission">Access Permission</h2>
 <p>The <code>controllers</code> configuration is a dictionary, and is defined in the pyos's <code>od.config</code> file. </p>
-<pre><code class="language-json">controllers : { 
-    'AccountingController': { 
-        'apikey': [ 'fPCdPNcCafec4lXm3M' ],
-        'permitip': [ '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', 'fd00::/8', '169.254.0.0/16', '127.0.0.0/8' ] 
-    },
-    'ManagerController': { 
-        'apikey': [ 'fQDbvjCafec4l', 'KzH23EZjCZSfsd9'],
-        'permitip': [ '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', 'fd00::/8', '169.254.0.0/16', '127.0.0.0/8' ] 
-    },
-    'AuthController' :      { 'permitip': None },
-    'ComposerController' :  { 'permitip': None },
-    'CoreController' :      { 'permitip': None },
-    'UserController' :      { 'permitip': None }
-} 
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">co</span><span class="kc">ntr</span><span class="err">ollers</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;Accou</span><span class="kc">nt</span><span class="err">i</span><span class="kc">n</span><span class="err">gCo</span><span class="kc">ntr</span><span class="err">oller&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;apikey&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">PCdPNcCa</span><span class="kc">fe</span><span class="err">c</span><span class="mi">4</span><span class="err">lXm</span><span class="mi">3</span><span class="err">M&#39;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">        </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">ip&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">10.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">172.16.0.0</span><span class="err">/</span><span class="mi">12</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">192.168.0.0</span><span class="err">/</span><span class="mi">16</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">d</span><span class="mi">00</span><span class="p">::</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">169.254.0.0</span><span class="err">/</span><span class="mi">16</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">127.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;Ma</span><span class="kc">na</span><span class="err">gerCo</span><span class="kc">ntr</span><span class="err">oller&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;apikey&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">QDbvjCa</span><span class="kc">fe</span><span class="err">c</span><span class="mi">4</span><span class="err">l&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;KzH</span><span class="mf">23E</span><span class="err">ZjCZS</span><span class="kc">fs</span><span class="err">d</span><span class="mi">9</span><span class="err">&#39;</span><span class="p">],</span>
+<span class="w">        </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">ip&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">10.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">172.16.0.0</span><span class="err">/</span><span class="mi">12</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">192.168.0.0</span><span class="err">/</span><span class="mi">16</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">d</span><span class="mi">00</span><span class="p">::</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">169.254.0.0</span><span class="err">/</span><span class="mi">16</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">127.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;Au</span><span class="kc">t</span><span class="err">hCo</span><span class="kc">ntr</span><span class="err">oller&#39;</span><span class="w"> </span><span class="p">:</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">ip&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;ComposerCo</span><span class="kc">ntr</span><span class="err">oller&#39;</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">ip&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;CoreCo</span><span class="kc">ntr</span><span class="err">oller&#39;</span><span class="w"> </span><span class="p">:</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">ip&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;UserCo</span><span class="kc">ntr</span><span class="err">oller&#39;</span><span class="w"> </span><span class="p">:</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">ip&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span><span class="w"> </span>
+</code></pre></div>
 <p>By default, <code>AccountingController</code> and <code>ManagerController</code> access are protected by ip source filters.
 The configuration permits private networks defined in <a href="https://tools.ietf.org/html/rfc1918">rfc1918</a> and <a href="https://tools.ietf.org/html/rfc4193">rfc4193</a>. Get more information about the <a href="https://en.wikipedia.org/wiki/Private_network">private network</a>.</p>
 <p>By default, others controllers access is enabled, without any restriction.</p>
@@ -5080,59 +5080,59 @@ Each dictionary entry use the <code>controller</code> name and with entries <cod
 If <code>apikey</code>  is not set or the <code>controller</code> not defined, filtering features is disabled. The http header value is <code>X-API-Key</code></li>
 </ul>
 <p>If the source ip address is denied, the response is a HTTP status is 403 <code>code 403 Forbidden</code></p>
-<pre><code class="language-json">{&quot;status&quot;: 403, &quot;status_message&quot;: &quot;403 Forbidden&quot;, &quot;message&quot;: &quot;Request forbidden -- authorization will not help&quot;} 
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;status_message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;403 Forbidden&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Request forbidden -- authorization will not help&quot;</span><span class="p">}</span><span class="w"> </span>
+</code></pre></div>
 <h2 id="curl-http-requests-sample">Curl http requests sample</h2>
 <h3 id="curl-http-request-with-x-api-key">Curl http request with <code>X-API-Key</code></h3>
 <p>Add the http header <code>X-API-Key: fQDbvjCafec4l</code> to the curl command to list images</p>
-<pre><code class="language-bash">curl -X GET -H 'X-API-Key: fQDbvjCafec4l' -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/images
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;X-API-Key: fQDbvjCafec4l&#39;</span><span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/images
+</code></pre></div>
 <p>The command returns</p>
-<pre><code class="language-json">{}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{}</span>
+</code></pre></div>
 <p>Add the http header <code>X-API-Key: fQDbvjCafec4l</code> to the curl command to add new application</p>
-<pre><code class="language-bash">curl -X POST -H 'X-API-Key: fQDbvjCafec4l'  -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d@xeyes.d.3.0.json
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;X-API-Key: fQDbvjCafec4l&#39;</span><span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/image<span class="w"> </span>-d@xeyes.d.3.0.json
+</code></pre></div>
 <p>The command returns</p>
-<pre><code class="language-json">[
- {  &quot;cmd&quot;: [&quot;/composer/appli-docker-entrypoint.sh&quot;], 
-    &quot;path&quot;: &quot;/usr/bin/xeyes&quot;, 
-    &quot;sha_id&quot;: &quot;sha256:4ed2e110042b80f1634d8f3ae66b793914db813f53cd88811285448602d7540e&quot;, 
-    &quot;id&quot;: &quot;abcdesktopio/xeyes.d:3.0&quot;, 
-    &quot;rules&quot;: {}, 
-    &quot;acl&quot;: {&quot;permit&quot;: [&quot;all&quot;]}, 
-    &quot;launch&quot;: &quot;xeyes.XEyes&quot;, 
-    &quot;name&quot;: &quot;xeyes&quot;, 
-    &quot;icon&quot;: &quot;circle_xfce4-eyes.svg&quot;, 
-    &quot;keyword&quot;: &quot;xeyes,eyes&quot;, 
-    &quot;uniquerunkey&quot;: null, 
-    &quot;cat&quot;: &quot;utilities&quot;, 
-    &quot;args&quot;: null, 
-    &quot;execmode&quot;: null, 
-    &quot;showinview&quot;: null, 
-    &quot;displayname&quot;: &quot;xeyes&quot;, 
-    &quot;home&quot;: null, 
-    &quot;desktopfile&quot;: null, 
-    &quot;executeclassname&quot;: null, 
-    &quot;executablefilename&quot;: &quot;xeyes&quot;, 
-    &quot;usedefaultapplication&quot;: false, 
-    &quot;mimetype&quot;: [], 
-    &quot;fileextensions&quot;: [], 
-    &quot;legacyfileextensions&quot;: [], 
-    &quot;secrets_requirement&quot;: null, 
-    &quot;image_pull_policy&quot;: &quot;IfNotPresent&quot;, 
-    &quot;image_pull_secrets&quot;: null, 
-    &quot;containerengine&quot;: &quot;ephemeral_container&quot;, 
-    &quot;securitycontext&quot;: {}
- }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="nt">&quot;cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/composer/appli-docker-entrypoint.sh&quot;</span><span class="p">],</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/xeyes&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;sha_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha256:4ed2e110042b80f1634d8f3ae66b793914db813f53cd88811285448602d7540e&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/xeyes.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;all&quot;</span><span class="p">]},</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xeyes.XEyes&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xeyes&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;circle_xfce4-eyes.svg&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xeyes,eyes&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;uniquerunkey&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;utilities&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;execmode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;showinview&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xeyes&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;home&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;executeclassname&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;executablefilename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xeyes&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;usedefaultapplication&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;fileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;legacyfileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;secrets_requirement&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;image_pull_policy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IfNotPresent&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;image_pull_secrets&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;containerengine&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ephemeral_container&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;securitycontext&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <h3 id="curl-http-request-forbidden">Curl http request forbidden</h3>
-<pre><code class="language-bash">curl -X DELETE -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/images
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/images
+</code></pre></div>
 <p>The command returns</p>
-<pre><code class="language-json">{&quot;status&quot;: 403, &quot;message&quot;: &quot;Request forbidden -- authorization will not help&quot;}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Request forbidden -- authorization will not help&quot;</span><span class="p">}</span>
+</code></pre></div>
 
 
 

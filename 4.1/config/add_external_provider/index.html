@@ -5101,28 +5101,28 @@
 <p>Edit the AUTH section of <code>od.config</code> file. <code>external</code> authentification use OAuth 2.0 authenticaton.</p>
 <p>The <code>external</code> authentification configuration is defined as a dictionary object and contains a list of <code>external</code> provider. </p>
 <p>Sample providers entry using the Google OAuth 2.0 authentification service. </p>
-<pre><code>'external': {
-    'providers': {
-    'google': { 
-        'displayname': 'Google', 
-        'textcolor': 'white',
-        'backgroundcolor': '#cd3c14',
-        'icon': 'img/auth/google_icon.svg',
-        'enabled': True,
-        'client_id': 'xxxx', 
-        'client_secret': 'xxxx',
-        'userinfo_auth': True,
-        'scope': [ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ],
-        'userinfo_url': 'https://www.googleapis.com/oauth2/v1/userinfo',
-        'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
-        'redirect_uri_querystring': 'manager=external&amp;provider=google',
-        'authorization_base_url': 'https://accounts.google.com/o/oauth2/v2/auth',
-        'token_url': 'https://oauth2.googleapis.com/token',
-        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
+<div class="highlight"><pre><span></span><code>&#39;external&#39;: {
+    &#39;providers&#39;: {
+    &#39;google&#39;: { 
+        &#39;displayname&#39;: &#39;Google&#39;, 
+        &#39;textcolor&#39;: &#39;white&#39;,
+        &#39;backgroundcolor&#39;: &#39;#cd3c14&#39;,
+        &#39;icon&#39;: &#39;img/auth/google_icon.svg&#39;,
+        &#39;enabled&#39;: True,
+        &#39;client_id&#39;: &#39;xxxx&#39;, 
+        &#39;client_secret&#39;: &#39;xxxx&#39;,
+        &#39;userinfo_auth&#39;: True,
+        &#39;scope&#39;: [ &#39;https://www.googleapis.com/auth/userinfo.email&#39;,  &#39;openid&#39; ],
+        &#39;userinfo_url&#39;: &#39;https://www.googleapis.com/oauth2/v1/userinfo&#39;,
+        &#39;redirect_uri_prefix&#39; : &#39;https://hostname.domain.local/API/auth/oauth&#39;,
+        &#39;redirect_uri_querystring&#39;: &#39;manager=external&amp;provider=google&#39;,
+        &#39;authorization_base_url&#39;: &#39;https://accounts.google.com/o/oauth2/v2/auth&#39;,
+        &#39;token_url&#39;: &#39;https://oauth2.googleapis.com/token&#39;,
+        &#39;policies&#39;: { &#39;acl&#39;  : { &#39;permit&#39;: [ &#39;all&#39; ] } }
       }   
    }
 }
-</code></pre>
+</code></pre></div>
 <p>The variable values <code>client_id</code> and <code>client_secret</code> have been set to obfuscate value 'xxxx'. The FQDN <code>hostname.domain.local</code> is referred to your public server FQDN. </p>
 <table>
 <thead>
@@ -5216,12 +5216,12 @@
 </table>
 <p>The complete redirect url concats the two values <code>redirect_uri_prefix</code> and <code>redirect_uri_querystring</code>.</p>
 <h3 id="apply-new-config">Apply new config</h3>
-<p>Once saved, you need to apply the new abcdesktop configuration by running the following commands :</p>
-<pre><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
-</code></pre>
-<p>This will delete the previous configmap and create a new one with the updated <code>od.config</code> file. Then restart pyos in order to apply the new config</p>
-<pre><code>kubectl rollout restart deploy pyos-od -n abcdesktop
-</code></pre>
+<p>Once saved, you need to apply the new abcdesktop configuration by running the following commands :
+<div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+</code></pre></div>
+This will delete the previous configmap and create a new one with the updated <code>od.config</code> file. Then restart pyos in order to apply the new config
+<div class="highlight"><pre><span></span><code>kubectl rollout restart deploy pyos-od -n abcdesktop
+</code></pre></div></p>
 <h2 id="add-provider-icon-optional">Add provider icon (optional)</h2>
 <p>As mentionned earlier, there are a lot of external providers that you can add and you may want to add one that has not its icon pre installed in abcdesktop.<br />
 The ones that are already present are : 
@@ -5236,31 +5236,31 @@ The ones that are already present are :
 <h3 id="1-download-icon">1. Download icon</h3>
 <p>Go to the internet and download the x SVG icon, save it as <code>x_icon.svg</code></p>
 <h3 id="2-create-configmap">2. Create configmap</h3>
-<p>Then create a new kubernetes configmap from your SVG file. Go to the icon folder and run the following command : </p>
-<pre><code>kubectl create configmap x-icon --from-file=x_icon.svg -n abcdesktop
-</code></pre>
+<p>Then create a new kubernetes configmap from your SVG file. Go to the icon folder and run the following command : 
+<div class="highlight"><pre><span></span><code>kubectl create configmap x-icon --from-file=x_icon.svg -n abcdesktop
+</code></pre></div></p>
 <h3 id="3-edit-abcdesktopyaml">3. Edit abcdesktop.yaml</h3>
-<p>Open the <code>abcdesktop.yaml</code> file and find the pyos deployment section. This section starts with :</p>
-<pre><code class="language-yaml">apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: pyos-od
-</code></pre>
-<p>Find the <code>volumeMounts</code> entry and add a new volumeMount as below :</p>
-<pre><code class="language-yaml">- name: volume-abcdesktop-x-icon
-  mountPath: /var/pyos/img/auth/x_icon.svg # path to the icon inside pyos pod
-  subPath: img/auth/x_icon.svg
-  readOnly: true
-</code></pre>
-<p>Then find the <code>volume</code> entry and add a new volume as below :</p>
-<pre><code class="language-yaml">- name: volume-abcdesktop-x-icon
-  configMap:
-    name: x-icon # name of the configmap you created earlier
-</code></pre>
+<p>Open the <code>abcdesktop.yaml</code> file and find the pyos deployment section. This section starts with :
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyos-od</span>
+</code></pre></div></p>
+<p>Find the <code>volumeMounts</code> entry and add a new volumeMount as below :
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">volume-abcdesktop-x-icon</span>
+<span class="w">  </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/pyos/img/auth/x_icon.svg</span><span class="w"> </span><span class="c1"># path to the icon inside pyos pod</span>
+<span class="w">  </span><span class="nt">subPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">img/auth/x_icon.svg</span>
+<span class="w">  </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div></p>
+<p>Then find the <code>volume</code> entry and add a new volume as below :
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">volume-abcdesktop-x-icon</span>
+<span class="w">  </span><span class="nt">configMap</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x-icon</span><span class="w"> </span><span class="c1"># name of the configmap you created earlier</span>
+</code></pre></div></p>
 <h3 id="4-apply-config">4. Apply config</h3>
-<p>Once saved, you need to apply the new config by running </p>
-<pre><code>kubectl apply -f abcdesktop.yaml -n abcdesktop
-</code></pre>
+<p>Once saved, you need to apply the new config by running 
+<div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop.yaml -n abcdesktop
+</code></pre></div></p>
 
 
 

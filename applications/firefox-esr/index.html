@@ -5021,49 +5021,48 @@
 <p><a href="../abcdesktopio/oc.template.alpine.gtk">abcdesktopio/oc.template.alpine.gtk</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>alpine <img alt="alpine" src="../icons/alpine.svg" style="height:32px;" /></p>
-<pre><code>NAME=&quot;Alpine Linux&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Alpine Linux&quot;
 ID=alpine
 VERSION_ID=3.17.1
 PRETTY_NAME=&quot;Alpine Linux v3.17&quot;
 HOME_URL=&quot;https://alpinelinux.org/&quot;
 BUG_REPORT_URL=&quot;https://gitlab.alpinelinux.org/alpine/aports/-/issues&quot;
-
-</code></pre>
+</code></pre></div>
 <h2 id="alpine-packages">Alpine packages</h2>
-<pre><code>firefox-esr
-</code></pre>
+<div class="highlight"><pre><span></span><code>firefox-esr
+</code></pre></div>
 <h2 id="displayname">Displayname</h2>
-<pre><code>Firefox (esr alpine)
-</code></pre>
+<div class="highlight"><pre><span></span><code>Firefox (esr alpine)
+</code></pre></div>
 <h2 id="path">Path</h2>
-<pre><code>/usr/bin/firefox-esr
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/bin/firefox-esr
+</code></pre></div>
 <h2 id="showinview">Showinview</h2>
 <p>"dock"</p>
 <h2 id="mimetype">Mimetype</h2>
-<pre><code>text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;
-</code></pre>
+<div class="highlight"><pre><span></span><code>text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;
+</code></pre></div>
 <h2 id="file-extensions">File extensions</h2>
 <p><code>"htm;html;xml;gif"</code></p>
 <h2 id="legacy-file-extensions">Legacy file extensions</h2>
 <p><code>"htm;html;xml"</code></p>
 <h2 id="acl">ACL</h2>
-<pre><code class="language-json">{
-    &quot;permit&quot;: [
-        &quot;all&quot;
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;all&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="wm_class">WM_CLASS</h2>
-<pre><code>Navigator.firefox-esr
-</code></pre>
+<div class="highlight"><pre><span></span><code>Navigator.firefox-esr
+</code></pre></div>
 <blockquote>
 <p>The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
 to get the WM_CLASS property of an application, use the command line <code>wmctrl -lx</code></p>
 </blockquote>
 <h2 id="desktopfile">Desktopfile</h2>
-<pre><code>/usr/share/applications/firefox-esr.desktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/share/applications/firefox-esr.desktop
+</code></pre></div>
 <blockquote>
 <p>A .desktop file is a simple text file that holds information about a program. It is usually placed in “/usr/share/applications/”.</p>
 </blockquote>
@@ -5071,60 +5070,59 @@ to get the WM_CLASS property of an application, use the command line <code>wmctr
 <blockquote>
 <p>PRE run command are run <strong>before</strong> the package install command</p>
 </blockquote>
-<pre><code>COPY composer/init.d/init.firefox-esr /composer/init.d/init.firefox-esr
+<div class="highlight"><pre><span></span><code>COPY composer/init.d/init.firefox-esr /composer/init.d/init.firefox-esr
 COPY policies.json /usr/lib/firefox/distribution
 COPY /ntlm_auth /usr/bin/ntlm_auth.desktop
 RUN chown root:root /usr/bin/ntlm_auth.desktop &amp;&amp; chmod 111 /usr/bin/ntlm_auth.desktop
-</code></pre>
+</code></pre></div>
 <h2 id="json-dump">JSON dump</h2>
 <p>json source file firefox-esr.d.3.0.json </p>
-<pre><code class="language-json">{
-    &quot;acl&quot;: {
-        &quot;permit&quot;: [
-            &quot;all&quot;
-        ]
-    },
-    &quot;rules&quot;: {
-        &quot;homedir&quot;: {
-            &quot;default&quot;: true
-        }
-    },
-    &quot;cat&quot;: &quot;office&quot;,
-    &quot;comment&quot;: &quot;NSS_SDB_USE_CACHE=yes&quot;,
-    &quot;preruncommands&quot;: [
-        &quot;COPY composer/init.d/init.firefox-esr /composer/init.d/init.firefox-esr&quot;,
-        &quot;COPY policies.json /usr/lib/firefox/distribution&quot;,
-        &quot;COPY /ntlm_auth /usr/bin/ntlm_auth.desktop&quot;,
-        &quot;RUN chown root:root /usr/bin/ntlm_auth.desktop &amp;&amp; chmod 111 /usr/bin/ntlm_auth.desktop&quot;
-    ],
-    &quot;apkpackage&quot;: &quot;firefox-esr&quot;,
-    &quot;icon&quot;: &quot;circle_firefox.svg&quot;,
-    &quot;keyword&quot;: &quot;firefox,mozilla,web,internet&quot;,
-    &quot;launch&quot;: &quot;Navigator.firefox-esr&quot;,
-    &quot;name&quot;: &quot;firefox-esr&quot;,
-    &quot;displayname&quot;: &quot;Firefox (esr alpine)&quot;,
-    &quot;showinview&quot;: &quot;dock&quot;,
-    &quot;path&quot;: &quot;/usr/bin/firefox-esr&quot;,
-    &quot;args&quot;: &quot;&quot;,
-    &quot;template&quot;: &quot;abcdesktopio/oc.template.alpine.gtk&quot;,
-    &quot;mimetype&quot;: &quot;text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;&quot;,
-    &quot;legacyfileextensions&quot;: &quot;htm;html;xml&quot;,
-    &quot;fileextensions&quot;: &quot;htm;html;xml;gif&quot;,
-    &quot;desktopfile&quot;: &quot;/usr/share/applications/firefox-esr.desktop&quot;,
-    &quot;usedefaultapplication&quot;: true
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;all&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;office&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NSS_SDB_USE_CACHE=yes&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;preruncommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;COPY composer/init.d/init.firefox-esr /composer/init.d/init.firefox-esr&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;COPY policies.json /usr/lib/firefox/distribution&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;COPY /ntlm_auth /usr/bin/ntlm_auth.desktop&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;RUN chown root:root /usr/bin/ntlm_auth.desktop &amp;&amp; chmod 111 /usr/bin/ntlm_auth.desktop&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;apkpackage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;firefox-esr&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;circle_firefox.svg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;firefox,mozilla,web,internet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Navigator.firefox-esr&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;firefox-esr&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Firefox (esr alpine)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;showinview&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dock&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/firefox-esr&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/oc.template.alpine.gtk&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;legacyfileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;htm;html;xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;htm;html;xml;gif&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/share/applications/firefox-esr.desktop&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;usedefaultapplication&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
 <p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-curl --output firefox-esr.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/firefox-esr.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @firefox-esr.d.3.0.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+curl<span class="w"> </span>--output<span class="w"> </span>firefox-esr.d.3.0.json<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/firefox-esr.d.3.0.json
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@firefox-esr.d.3.0.json
+</code></pre></div>
 <h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
-<pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+<div class="highlight"><pre><span></span><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
 FROM abcdesktopio/oc.template.alpine.gtk:$TAG
@@ -5161,29 +5159,27 @@ RUN mkdir -p /var/secrets/abcdesktop/localaccount
 RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
 USER balloon
 CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
-
-</code></pre>
+</code></pre></div>
 <h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
 <h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/firefox-esr.d">Dockerfile for application firefox-esr</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/firefox-esr.d
-</code></pre>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/firefox-esr.d">Dockerfile for application firefox-esr</a>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/firefox-esr.d
+</code></pre></div></p>
 <h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f firefox-esr.d -t firefox-esr .
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">TAG</span><span class="o">=</span><span class="m">3</span>.0<span class="w"> </span>-f<span class="w"> </span>firefox-esr.d<span class="w"> </span>-t<span class="w"> </span>firefox-esr<span class="w"> </span>.
+</code></pre></div>
 <h3 id="install-the-new-image">Install the new image</h3>
 <blockquote>
 <p>If you are using <code>containerd</code> as container runtime, use the ctr command line</p>
 <p>If you are not running this bash command on your abcdesktop node
 Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-docker inspect firefox-esr &gt; firefox-esr.json
-docker image save firefox-esr -o firefox-esr.tar
-ctr -n k8s.io images import firefox-esr.tar
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @firefox-esr.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+docker<span class="w"> </span>inspect<span class="w"> </span>firefox-esr<span class="w"> </span>&gt;<span class="w"> </span>firefox-esr.json
+docker<span class="w"> </span>image<span class="w"> </span>save<span class="w"> </span>firefox-esr<span class="w"> </span>-o<span class="w"> </span>firefox-esr.tar
+ctr<span class="w"> </span>-n<span class="w"> </span>k8s.io<span class="w"> </span>images<span class="w"> </span>import<span class="w"> </span>firefox-esr.tar
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@firefox-esr.json
+</code></pre></div>
 
 
 

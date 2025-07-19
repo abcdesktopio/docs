@@ -4991,7 +4991,7 @@
 <li>The dock state is stored when the user changes it (for exemple add or remove an application inside the dock zone ).</li>
 <li>The collection's name is the userid. The key's name is 'dock'</li>
 </ul>
-<pre><code>[ 
+<div class="highlight"><pre><span></span><code>[ 
     &quot;keyboard&quot;,
     &quot;frontendjs.filemanager&quot;,
     &quot;Mail.Thunderbird&quot;,
@@ -5001,7 +5001,7 @@
     &quot;gimp.Gimp&quot;,
     &quot;gnome-terminal.Gnome-terminal&quot;
 ]
-</code></pre>
+</code></pre></div>
 <h3 id="loginhistory">loginHistory</h3>
 <ul>
 <li>Login History is an object collection.</li>
@@ -5010,7 +5010,7 @@
 <li>The javascript code can only read and NEVER write data to the loginHistory collection.</li>
 </ul>
 <p>The object's format is :</p>
-<pre><code>{
+<div class="highlight"><pre><span></span><code>{
  &quot;picture&quot;:&quot;https://scontent.xx.fbcdn.net/v/t1.0-1/p480x480/1452008_10202217750222019_1258804247_n.jpg?oh=a96b2290e63e1e81525ede1a5b073853&amp;oe=59184A75&quot;,
  &quot;sub&quot;:&quot;10208942501856324&quot;,
  &quot;ipaddr&quot;:&quot;181.125.208.3, 10.255.0.3&quot;,
@@ -5019,7 +5019,7 @@
  &quot;useragent&quot;:&quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.75 Safari/537.36&quot;,
  &quot;_id&quot;:&quot;5877665d0790160b0d59efd0&quot;,
  &quot;name&quot;:&quot;Alexandre Devely&quot;}
-</code></pre>
+</code></pre></div>
 <ul>
 <li>_id : is the mongodb id</li>
 <li>sub : is the userid</li>
@@ -5032,14 +5032,14 @@
 <h4 id="method">method</h4>
 <p>The method getCollection, is a ligth way to get a collection on the fron-end side. </p>
 <p>For exemple this method is use by whoami.js to obtain the login's history using the key 'loginHistory'.</p>
-<pre><code> getCollection('loginHistory', function(msg) {
+<div class="highlight"><pre><span></span><code> getCollection(&#39;loginHistory&#39;, function(msg) {
             if (msg.status === 200) {
                 var history = msg.result;
                 loginHistory = history;
                 buildHtmlTable(history);
             }
         })
-</code></pre>
+</code></pre></div>
 
 
 

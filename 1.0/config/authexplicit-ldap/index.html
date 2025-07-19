@@ -5071,15 +5071,15 @@
 <p><code>explicit</code> authentification use a directory service. The bind operation is used to authenticate clients to the directory server, to establish an authorization identity that will be used for subsequent operations processed on that connection.</p>
 <p>The <code>explicit</code> authentification configuration is defined as a dictionnary object and contains an <code>explicit</code> provider. </p>
 <p>For example :</p>
-<pre><code>'explicit': {
-    'show_domains': True,
-    'providers': {
-      'LDAP': { 
-        'config_ref': 'ldapconfig', 
-        'enabled': True
+<div class="highlight"><pre><span></span><code>&#39;explicit&#39;: {
+    &#39;show_domains&#39;: True,
+    &#39;providers&#39;: {
+      &#39;LDAP&#39;: { 
+        &#39;config_ref&#39;: &#39;ldapconfig&#39;, 
+        &#39;enabled&#39;: True
        }
 }
-</code></pre>
+</code></pre></div>
 <p>In this example, <code>ldapconfig</code> dict must have a key <code>LDAP</code></p>
 <table>
 <thead>
@@ -5117,11 +5117,12 @@
 The key name must be set with the same value in providers configuration and <code>config_ref</code>.</p>
 <p>Providers :</p>
 <p>The provider is formated as a dictionnary </p>
-<p><code>{ 'planet': {  
-            'config_ref': 'ldapconfig',  
-            'enabled': True  
-        }
- }</code></p>
+<div class="highlight"><pre><span></span><code>{ &#39;planet&#39;: {  
+           &#39;config_ref&#39;: &#39;ldapconfig&#39;,  
+           &#39;enabled&#39;: True  
+       }
+}
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -5145,17 +5146,17 @@ The key name must be set with the same value in providers configuration and <cod
 </table>
 <p>The ldapconfig is a dictionnary. </p>
 <p>For example :</p>
-<pre><code>ldapconfig : { 'planet': {    'default'       : True, 
-                        'ldap_timeout'  : 15,
-                        'ldap_protocol' : 'ldap',
-                        'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ '192.168.8.195' ],
-                        'secure'        : False,
-                        'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }
+<div class="highlight"><pre><span></span><code>ldapconfig : { &#39;planet&#39;: {    &#39;default&#39;       : True, 
+                        &#39;ldap_timeout&#39;  : 15,
+                        &#39;ldap_protocol&#39; : &#39;ldap&#39;,
+                        &#39;ldap_basedn&#39;   : &#39;ou=people,dc=planetexpress,dc=com&#39;,
+                        &#39;servers&#39;       : [ &#39;192.168.8.195&#39; ],
+                        &#39;secure&#39;        : False,
+                        &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;cn=admin,dc=planetexpress,dc=com&#39;, &#39;password&#39;: &#39;GoodNewsEveryone&#39; }
            }}
 
 }
-</code></pre>
+</code></pre></div>
 <h2 id="ldap-configuration-reference">ldap configuration reference</h2>
 <table>
 <thead>
@@ -5261,85 +5262,83 @@ We use an OpenLDAP Docker Image for testing with provioned values.</p>
 <h3 id="update-the-docker-composeyml-file">Update the docker-compose.yml file</h3>
 <p>Update the <code>docker-compose.yml</code> file to add an ldap as directory server </p>
 <p>The specific <code>openldap</code> section is describe as a service. The new complete <code>docker-compose.yml</code> file is now :</p>
-<pre><code class="language-YAML">version: '3'
-services:
-  pyos:
-    depends_on:
-      - memcached
-      - mongodb
-    image: 'abcdesktopio/oc.pyos'
-    networks:
-      - netback
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /Users/alexandredevely/src/abcdesktop/od.config:/var/pyos/od.config
-  speedtest:
-    image: 'abcdesktopio/oc.speedtest'
-    networks:
-      - netuser
-  nginx:
-    depends_on:
-      - memcached
-      - pyos
-    image: 'abcdesktopio/oc.nginx'
-    ports:
-      - '80:80'
-      - '443:443'
-    networks:
-      - netuser
-      - netback
-  memcached:
-    image: memcached
-    networks:
-      - netback
-  mongodb:
-    image: mongo
-    networks:
-      - netback
-  openldap:
-    image: abcdesktopio/oc.openldap
-    networks:
-      - netback
-networks:
-  netuser:
-    driver: bridge
-  netback:
-    internal: true
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">pyos</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;abcdesktopio/oc.pyos&#39;</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netback</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/run/docker.sock:/var/run/docker.sock</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Users/alexandredevely/src/abcdesktop/od.config:/var/pyos/od.config</span>
+<span class="w">  </span><span class="nt">speedtest</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;abcdesktopio/oc.speedtest&#39;</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netuser</span>
+<span class="w">  </span><span class="nt">nginx</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyos</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;abcdesktopio/oc.nginx&#39;</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;80:80&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;443:443&#39;</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netuser</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netback</span>
+<span class="w">  </span><span class="nt">memcached</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netback</span>
+<span class="w">  </span><span class="nt">mongodb</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongo</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netback</span>
+<span class="w">  </span><span class="nt">openldap</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcdesktopio/oc.openldap</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netback</span>
+<span class="nt">networks</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">netuser</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
+<span class="w">  </span><span class="nt">netback</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">internal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
 <h2 id="update-the-odconfig-configuration-file">Update the <code>od.config</code> configuration file</h2>
 <p>Update the <code>od.config</code> configuration file.</p>
 <p>Add the <code>explicit</code> entry to the dictionary <code>authmanagers</code>.</p>
-<pre><code>authmanagers: {
-  'external': {
+<div class="highlight"><pre><span></span><code>authmanagers: {
+  &#39;external&#39;: {
   },
-  'explicit': {
-    'show_domains': True,
-    'providers': {
-      'planet': { 
-        'config_ref': 'ldapconfig', 
-        'enabled': True
+  &#39;explicit&#39;: {
+    &#39;show_domains&#39;: True,
+    &#39;providers&#39;: {
+      &#39;planet&#39;: { 
+        &#39;config_ref&#39;: &#39;ldapconfig&#39;, 
+        &#39;enabled&#39;: True
        }
     }
   },
-  'implicit': {
+  &#39;implicit&#39;: {
   }}
-
-
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Note: the  <code>config_ref</code> is <code>ldapconfig</code>. </p>
 </blockquote>
 <p>Add a new dictionnary object named <code>ldapconfig</code> to the configuration file.
 These values come from the LDAP structure of OpenLDAP Docker Image for testing</p>
-<pre><code>ldapconfig : { 'planet': {    'default'       : True, 
-                        'ldap_timeout'  : 15,
-                        'ldap_protocol' : 'ldap',
-                        'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ 'openldap' ],
-                        'secure'        : False,
-                        'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }
+<div class="highlight"><pre><span></span><code>ldapconfig : { &#39;planet&#39;: {    &#39;default&#39;       : True, 
+                        &#39;ldap_timeout&#39;  : 15,
+                        &#39;ldap_protocol&#39; : &#39;ldap&#39;,
+                        &#39;ldap_basedn&#39;   : &#39;ou=people,dc=planetexpress,dc=com&#39;,
+                        &#39;servers&#39;       : [ &#39;openldap&#39; ],
+                        &#39;secure&#39;        : False,
+                        &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;cn=admin,dc=planetexpress,dc=com&#39;, &#39;password&#39;: &#39;GoodNewsEveryone&#39; }
            }}
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Note: the server name is the name of the service entry</p>
 </blockquote>
@@ -5774,8 +5773,8 @@ If it doesn't, restart your docker-compose to make sure that the od.py the your 
 <h2 id="applications-remainted">Applications remainted</h2>
 <p>Start LibreOffice Writer, and start a new file for your instructor. 
 Type few words for example :</p>
-<pre><code>I like this amazing project abcdesktop.io
-</code></pre>
+<div class="highlight"><pre><span></span><code>I like this amazing project abcdesktop.io
+</code></pre></div>
 <p>Do not save your file and just close your web browser.</p>
 <p>Start your web browser again, and open the same URL <code>http://localhost</code>, and log in with the same account: <code>Turanga Leela</code> as login and <code>leela</code> as password, then click on the <code>Sign in</code> button.</p>
 <p>The application LibreOffice Writer is still running and the greeting message <code>I like this amazing project abcdesktop.io</code></p>

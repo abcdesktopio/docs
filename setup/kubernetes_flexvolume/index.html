@@ -5014,12 +5014,12 @@ The update is part for abcdesktop.io</p>
 <p>The flexvolume plugin is a single shell script named <a href="https://github.com/abcdesktopio/cifs">cifs</a>. This shell script must be available on the Kubernetes master and on each of the Kubernetes nodes. By default, Kubernetes searches for third party volume plugins in <code>/usr/libexec/kubernetes/kubelet-plugins/volume/exec/</code>. </p>
 <p>The plugin directory can be configured with the kubelet's <code>--volume-plugin-dir</code> parameter, run <code>ps aux | grep kubelet</code> to learn the location of the plugin directory on your system (see [#1][9]). The <code>cifs</code> script must be located in a subdirectory named <code>abcdesktop~cifs/</code>. The directory name <code>abcdesktop~cifs/</code> will be <a href="https://github.com/kubernetes/community/blob/master/contributors/devel/flexvolume.md#prerequisites">mapped</a> to the Flexvolume driver name <code>abcdesktop/cifs</code>.</p>
 <p>On the Kubernetes master and on each Kubernetes node run the following commands:</p>
-<pre><code class="language-bash">VOLUME_PLUGIN_DIR=&quot;/usr/libexec/kubernetes/kubelet-plugins/volume/exec&quot;
-mkdir -p &quot;$VOLUME_PLUGIN_DIR/abcdesktop~cifs&quot;
-cd &quot;$VOLUME_PLUGIN_DIR/abcdesktop~cifs&quot;
-curl -L -O https://raw.githubusercontent.com/abcdesktop/cifs/main/cifs
-chmod 755 cifs
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">VOLUME_PLUGIN_DIR</span><span class="o">=</span><span class="s2">&quot;/usr/libexec/kubernetes/kubelet-plugins/volume/exec&quot;</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VOLUME_PLUGIN_DIR</span><span class="s2">/abcdesktop~cifs&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VOLUME_PLUGIN_DIR</span><span class="s2">/abcdesktop~cifs&quot;</span>
+curl<span class="w"> </span>-L<span class="w"> </span>-O<span class="w"> </span>https://raw.githubusercontent.com/abcdesktop/cifs/main/cifs
+chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>cifs
+</code></pre></div>
 <p>The <code>cifs</code> script requires a few executables to be available on each host system:</p>
 <ul>
 <li><code>mount.cifs</code>, on Ubuntu this is in the <a href="https://packages.ubuntu.com/bionic/cifs-utils">cifs-utils</a> package.</li>
@@ -5027,14 +5027,12 @@ chmod 755 cifs
 <li><code>mountpoint</code>, on Ubuntu this is in the <a href="https://packages.ubuntu.com/bionic/util-linux">util-linux</a> package.</li>
 <li><code>base64</code>, on Ubuntu this is in the <a href="https://packages.ubuntu.com/bionic/coreutils">coreutils</a> package.</li>
 </ul>
-<pre><code class="language-bash">apt-get install cifs-utils jq util-linux coreutils
-
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>cifs-utils<span class="w"> </span>jq<span class="w"> </span>util-linux<span class="w"> </span>coreutils
+</code></pre></div>
 <p>To check if the installation was successful, run the following command:</p>
-<pre><code class="language-bash">VOLUME_PLUGIN_DIR=&quot;/usr/libexec/kubernetes/kubelet-plugins/volume/exec&quot;
-$VOLUME_PLUGIN_DIR/abcdestkop~cifs/cifs init
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">VOLUME_PLUGIN_DIR</span><span class="o">=</span><span class="s2">&quot;/usr/libexec/kubernetes/kubelet-plugins/volume/exec&quot;</span>
+<span class="nv">$VOLUME_PLUGIN_DIR</span>/abcdestkop~cifs/cifs<span class="w"> </span>init
+</code></pre></div>
 <p>It should output a JSON string containing <code>"status": "Success"</code>. This command is also run by Kubernetes itself when the cifs plugin is detected on the file system.</p>
 <h2 id="update-your-odconfig-file">Update your od.config file</h2>
 <p>In this example, we use a Microsoft Active Directory as a LDAP Server.</p>
@@ -5042,16 +5040,15 @@ $VOLUME_PLUGIN_DIR/abcdestkop~cifs/cifs init
 <p>CIFS is supported with kubernetes configuration, CIFS is not supported in docker non-cluster mode</p>
 </blockquote>
 <p>Add a new policy to add a label <code>TAG</code> during the user's authentification process.</p>
-<pre><code>
-# Add an explicit authmanagers
+<div class="highlight"><pre><span></span><code># Add an explicit authmanagers
 authmanagers: { 
-    'explicit': {
-        'show_domains': True,
-        'default_domain': 'AD',
-        'providers': {
-          'AD': { 
-            'config_ref': 'adconfig', 
-            'enabled': True
+    &#39;explicit&#39;: {
+        &#39;show_domains&#39;: True,
+        &#39;default_domain&#39;: &#39;AD&#39;,
+        &#39;providers&#39;: {
+          &#39;AD&#39;: { 
+            &#39;config_ref&#39;: &#39;adconfig&#39;, 
+            &#39;enabled&#39;: True
            }
         }
     }
@@ -5059,41 +5056,39 @@ authmanagers: {
 
 
 # add the configuration reference for adconfig
-adconfig : { 'AD': {   'default'       : True, 
-                       'ldap_timeout'  : 15,
-                       'ldap_protocol' : 'ldap',
-                       'ldap_basedn'   : 'DC=ad,DC=domain,DC=local',
-                       'ldap_fqdn'     : '_ldap._tcp.ad.domain.local',
-                       'domain'        : 'AD',
-                       'domain_fqdn'   : 'AD.DOMAIN.LOCAL',
-                       'servers'       : [ '192.168.7.12' ],
-                       'kerberos_realm': 'AD.DOMAIN.LOCAL',
-                       'policies'      : { 'acls': None,
-                                           'rules' : { 'rule-domainuser' : {
-                                                  'conditions' : [ { 'primarygroupid': '513', 'expected' : True  } ],
-                                                  'expected'   : True,
-                                                  'label'      : 'domainuser' } 
+adconfig : { &#39;AD&#39;: {   &#39;default&#39;       : True, 
+                       &#39;ldap_timeout&#39;  : 15,
+                       &#39;ldap_protocol&#39; : &#39;ldap&#39;,
+                       &#39;ldap_basedn&#39;   : &#39;DC=ad,DC=domain,DC=local&#39;,
+                       &#39;ldap_fqdn&#39;     : &#39;_ldap._tcp.ad.domain.local&#39;,
+                       &#39;domain&#39;        : &#39;AD&#39;,
+                       &#39;domain_fqdn&#39;   : &#39;AD.DOMAIN.LOCAL&#39;,
+                       &#39;servers&#39;       : [ &#39;192.168.7.12&#39; ],
+                       &#39;kerberos_realm&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
+                       &#39;policies&#39;      : { &#39;acls&#39;: None,
+                                           &#39;rules&#39; : { &#39;rule-domainuser&#39; : {
+                                                  &#39;conditions&#39; : [ { &#39;primarygroupid&#39;: &#39;513&#39;, &#39;expected&#39; : True  } ],
+                                                  &#39;expected&#39;   : True,
+                                                  &#39;label&#39;      : &#39;domainuser&#39; } 
 } } } } } } }
-
-</code></pre>
+</code></pre></div>
 <p>In this example :</p>
 <ul>
 <li>To verify that a user is member of <code>DOMAIN USER</code> group, we check that the user's <code>primaryGroupID</code> is equal to <code>513</code></li>
 <li>If the <code>primaryGroupID</code> is equal to <code>513</code> the authentification process add the label <code>domainuser</code></li>
 </ul>
 <p>Then in the same od.config file, add rules to the desktop object to match this label <code>domainuser</code></p>
-<pre><code>desktop.policies: { 'rules': { 'volumes': { 'domainuser':  { 'type': 'cifs', 'name': 'homedirectory', 'volumename': 'homedir' } } },
-                        'acls' : {} }
-
-</code></pre>
+<div class="highlight"><pre><span></span><code>desktop.policies: { &#39;rules&#39;: { &#39;volumes&#39;: { &#39;domainuser&#39;:  { &#39;type&#39;: &#39;cifs&#39;, &#39;name&#39;: &#39;homedirectory&#39;, &#39;volumename&#39;: &#39;homedir&#39; } } },
+                        &#39;acls&#39; : {} }
+</code></pre></div>
 <p>In this example :</p>
 <ul>
 <li>If the user's label is equal <code>domainuser</code>, then the user attribut <code>homeDir</code> is mounted to the <code>homeDirectory</code> by the CIFS flexvolume plugin.</li>
 </ul>
 <h2 id="testing">Testing</h2>
 <h3 id="apply-new-configuration-file">Apply new configuration file</h3>
-<pre><code>kubectl apply -f abcdesktop.yml
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop.yml
+</code></pre></div>
 <p>Open you abcdesktop website and fill the authentation form with your  Microsoft Active Direcotry Service or Samba server credentials.</p>
 <p><img alt="kubernetes-flexvolume-authentification" src="../img/kubernetes-flexvolume-authentification.png" /></p>
 <p>Run authentification on the Microsoft Active Direcotry Service or on your Samba server</p>
@@ -5103,7 +5098,7 @@ adconfig : { 'AD': {   'default'       : True,
 <p><img alt="kubernetes-flexvolume-nas" src="../img/kubernetes-flexvolume-nas.png" /></p>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>Logs files are stored in host directory <code>/var/log/abcdesktop/cifs</code> </p>
-<pre><code># ls -la /var/log/abcdesktop/cifs
+<div class="highlight"><pre><span></span><code># ls -la /var/log/abcdesktop/cifs
 total 36
 drwxr-xr-x 2 root root 4096 janv. 28 16:39 .
 drwxr-xr-x 3 root root 4096 déc.   1 12:00 ..
@@ -5113,14 +5108,14 @@ drwxr-xr-x 3 root root 4096 déc.   1 12:00 ..
 -rw-r--r-- 1 root root  834 déc.   1 14:25 error.alex.log
 -rw-r--r-- 1 root root   50 janv. 28 16:39 mount.counter
 -rw-r--r-- 1 root root   44 déc.  22 12:20 umount.counter
-</code></pre>
+</code></pre></div>
 <p>Check the file sAMAccountName.log, cifs.log</p>
 <p>If there is an error, look at the <code>error.$sAMAccountName.json</code> and 
 <code>error.$sAMAccountName.log</code></p>
 <p>Example </p>
-<pre><code>-rw-r--r-- 1 root root 1264 déc.   1 14:25 error.alex.json
+<div class="highlight"><pre><span></span><code>-rw-r--r-- 1 root root 1264 déc.   1 14:25 error.alex.json
 -rw-r--r-- 1 root root  834 déc.   1 14:25 error.alex.log
-</code></pre>
+</code></pre></div>
 <p>Run mount command </p>
 <p><code>mount</code></p>
 <p>In this example :</p>
@@ -5129,18 +5124,18 @@ drwxr-xr-x 3 root root 4096 déc.   1 12:00 ..
 <li><code>//192.168.7.101/alex</code> is the shared ressource</li>
 <li><code>alex</code> is the sAMAccountName</li>
 </ul>
-<pre><code># mount | grep 192.168.7.101
+<div class="highlight"><pre><span></span><code># mount | grep 192.168.7.101
 //192.168.7.101/alex on /var/lib/kubelet/pods/b7530cc0-6903-458a-a133-d8a8450e3af4/volumes/abcdesktop~cifs/flexvol-cifs-homedir-alex type cifs (rw,relatime,vers=1.0,cache=strict,username=alex,uid=4096,forceuid,gid=4096,forcegid,addr=192.168.7.101,soft,unix,posixpaths,serverino,mapposix,acl,rsize=1048576,wsize=1048576,bsize=1048576,echo_interval=60,actimeo=1)
-</code></pre>
+</code></pre></div>
 <p>Check that the kubernetes secrets exist </p>
-<pre><code>kubectl get secrets -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl get secrets -n abcdesktop
 NAME                                  TYPE                                  DATA   AGE
 abcdesktopjwtdesktoppayload           Opaque                                2      65d
 abcdesktopjwtdesktopsigning           Opaque                                2      65d
 abcdesktopjwtusersigning              Opaque                                2      65d
 auth-cifs-alex-flexvol-cifs-homedir   abcdesktop/cifs                       4      10m
 auth-ldif-alex                        abcdesktop/ldif                       11     10m
-</code></pre>
+</code></pre></div>
 
 
 

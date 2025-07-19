@@ -5533,45 +5533,45 @@
 <p>Get a shell to your abcdestkop server.</p>
 <h2 id="download-2048-alpine-and-2048-ubuntu-json-files">Download <code>2048-alpine</code> and <code>2048-ubuntu</code> json files</h2>
 <p>Open a shell to your abcdesktop server</p>
-<pre><code class="language-sh">curl --output 2048-alpine.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.3.0.json
-curl --output 2048-ubuntu.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-ubuntu.d.3.0.json
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--output<span class="w"> </span><span class="m">2048</span>-alpine.d.3.0.json<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.3.0.json
+curl<span class="w"> </span>--output<span class="w"> </span><span class="m">2048</span>-ubuntu.d.3.0.json<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-ubuntu.d.3.0.json
+</code></pre></div>
 <p>Check that the json files are downloaded</p>
-<pre><code class="language-sh">$ ls -la *.json
--rw-r--r-- 1 root root 29183 Dec 28 16:24 2048-alpine.d.3.0.json
--rw-r--r-- 1 root root 29099 Dec 28 16:24 2048-ubuntu.d.3.0.json
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>*.json
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">29183</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">16</span>:24<span class="w"> </span><span class="m">2048</span>-alpine.d.3.0.json
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">29099</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">16</span>:24<span class="w"> </span><span class="m">2048</span>-ubuntu.d.3.0.json
+</code></pre></div>
 <p>Look at the label oc.containerengine for each json file </p>
 <h3 id="read-the-label-occontainerengine-for-2048-alpine">Read the label oc.containerengine for 2048-alpine</h3>
-<pre><code class="language-sh">cat 2048-alpine.d.3.0.json | jq -r '.[0].Config.Labels.&quot;oc.containerengine&quot;'
-</code></pre>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="m">2048</span>-alpine.d.3.0.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.[0].Config.Labels.&quot;oc.containerengine&quot;&#39;</span>
+</code></pre></div>
 <p>The response is <code>ephemeral_container</code></p>
-<pre><code>ephemeral_container
-</code></pre>
+<div class="highlight"><pre><span></span><code>ephemeral_container
+</code></pre></div>
 <p>This application 2048-alpine will start as an <code>ephemeral_container</code></p>
 <h3 id="read-the-label-occontainerengine-for-2048-alpine_1">Read the label oc.containerengine for 2048-alpine</h3>
-<pre><code class="language-sh">cat 2048-ubuntu.d.3.0.json | jq -r '.[0].Config.Labels.&quot;oc.containerengine&quot;'
-</code></pre>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="m">2048</span>-ubuntu.d.3.0.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.[0].Config.Labels.&quot;oc.containerengine&quot;&#39;</span>
+</code></pre></div>
 <p>The response is <code>pod_application</code></p>
-<pre><code>pod_application
-</code></pre>
+<div class="highlight"><pre><span></span><code>pod_application
+</code></pre></div>
 <p>This application 2048-ubuntu will start as a <code>pod_application</code>, it's a pod.</p>
 <h2 id="put-2048-alpine-and-2048-ubuntu-applications-to-your-abcdesktop-service">PUT <code>2048-alpine</code> and <code>2048-ubuntu</code> applications to your abcdesktop service</h2>
-<pre><code class="language-sh">curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048-alpine.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048-ubuntu.d.3.0.json
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@2048-alpine.d.3.0.json
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@2048-ubuntu.d.3.0.json
+</code></pre></div>
 <p>Each curl command returns a complete json document.</p>
 <p>Wait for the pull pod are <code>Ready</code></p>
-<pre><code class="language-sh">kubectl wait --for=condition=Ready pods --selector=type=pod_application --timeout=-1s -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>--for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span>Ready<span class="w"> </span>pods<span class="w"> </span>--selector<span class="o">=</span><span class="nv">type</span><span class="o">=</span>pod_application<span class="w"> </span>--timeout<span class="o">=</span>-1s<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
 <p>Wait for condition met</p>
-<pre><code>pod/pull-2048-alpine-install-4280c633e777dceb3f529f208b442c0dff891 condition met
+<div class="highlight"><pre><span></span><code>pod/pull-2048-alpine-install-4280c633e777dceb3f529f208b442c0dff891 condition met
 pod/pull-2048-ubuntu-install-ee652f4ff381655768bcc09d54a9b62ab7684 condition met
-</code></pre>
+</code></pre></div>
 <h2 id="login-to-your-abcdesktop-service">Login to your abcdesktop service</h2>
 <p>Using a web browser, open the abcdesktop service url. If your are running abcdesktop on your local device, the url should be : </p>
-<pre><code>http://localhost:30443
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost:30443
+</code></pre></div>
 <h3 id="choose-to-login-as-hermes">Choose to login as hermes</h3>
 <p>Login in as the user <code>Hermes Conrad</code> </p>
 <ul>
@@ -5597,44 +5597,44 @@ pod/pull-2048-ubuntu-install-ee652f4ff381655768bcc09d54a9b62ab7684 condition met
 <h2 id="lets-have-a-look-on-your-server-side">Let's have a look on your server side</h2>
 <h3 id="get-pod-application">Get pod application</h3>
 <p>Get the running pod using <code>kubectl get pods -n abcdesktop</code></p>
-<pre><code class="language-sh">kubectl get pods -n abcdesktop
-NAME                            READY   STATUS    RESTARTS   AGE
-hermes-app-2048-ubuntu-4dd6f    1/1     Running   0          8s
-hermes-db906                    4/4     Running   0          100s
-memcached-od-57c57c4f9d-92fs2   1/1     Running   0          38m
-mongodb-od-f69ff6b5b-v6ztc      1/1     Running   0          38m
-nginx-od-58f86c4dc8-8n9lf       1/1     Running   0          25m
-openldap-od-d66d66bf4-84lg8     1/1     Running   0          38m
-pyos-od-5586b88767-gsdl8        1/1     Running   0          14m
-speedtest-od-6c59bdff75-n6s66   1/1     Running   0          38m
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+NAME<span class="w">                            </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+hermes-app-2048-ubuntu-4dd6f<span class="w">    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>8s
+hermes-db906<span class="w">                    </span><span class="m">4</span>/4<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>100s
+memcached-od-57c57c4f9d-92fs2<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>38m
+mongodb-od-f69ff6b5b-v6ztc<span class="w">      </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>38m
+nginx-od-58f86c4dc8-8n9lf<span class="w">       </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>25m
+openldap-od-d66d66bf4-84lg8<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>38m
+pyos-od-5586b88767-gsdl8<span class="w">        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>14m
+speedtest-od-6c59bdff75-n6s66<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>38m
+</code></pre></div>
 <p>The application <code>2048-ubuntu</code> is listed as a pod. The application <code>2048-ubuntu</code> is a pod. The prefix is the <code>$userid-app</code> for example <code>hermes-app-2048-ubuntu-4dd6f</code>, followed by the application name <code>2048-ubuntu</code> and a uuid.</p>
 <p>The application <code>2048-alpine</code> is not a pod.</p>
 <p>The application <code>2048-alpine</code> is listed as an ephemeral container, inside the user pod <code>hermes-db906</code></p>
-<pre><code class="language-bash">kubectl get pods hermes-db906  -o json -n abcdesktop | jq -r &quot;.status.ephemeralContainerStatuses&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>hermes-db906<span class="w">  </span>-o<span class="w"> </span>json<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;.status.ephemeralContainerStatuses&quot;</span>
+</code></pre></div>
 <p>The application 2048-alpine.d is listed in the .status.ephemeralContainerStatuses </p>
-<pre><code class="language-json">[
-  {
-    &quot;containerID&quot;: &quot;containerd://eb5c1c4c19e5581dfd6a7290f46b63ce073b318bc1f9980bd3e37153cb66e44b&quot;,
-    &quot;image&quot;: &quot;docker.io/abcdesktopio/2048-alpine.d:3.0&quot;,
-    &quot;imageID&quot;: &quot;docker.io/abcdesktopio/2048-alpine.d@sha256:2c3c46c22689b8f91cbd5ebd4d5f80c95bc5ba9b1e23f13aebb54121d2f6d590&quot;,
-    &quot;lastState&quot;: {},
-    &quot;name&quot;: &quot;hermes-conrad-2048-alpine-1eef4&quot;,
-    &quot;ready&quot;: false,
-    &quot;restartCount&quot;: 0,
-    &quot;state&quot;: {
-      &quot;terminated&quot;: {
-        &quot;containerID&quot;: &quot;containerd://eb5c1c4c19e5581dfd6a7290f46b63ce073b318bc1f9980bd3e37153cb66e44b&quot;,
-        &quot;exitCode&quot;: 0,
-        &quot;finishedAt&quot;: &quot;2023-05-17T14:38:13Z&quot;,
-        &quot;reason&quot;: &quot;Completed&quot;,
-        &quot;startedAt&quot;: &quot;2023-05-17T14:37:00Z&quot;
-      }
-    }
-  }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;containerID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;containerd://eb5c1c4c19e5581dfd6a7290f46b63ce073b318bc1f9980bd3e37153cb66e44b&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;docker.io/abcdesktopio/2048-alpine.d:3.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;imageID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;docker.io/abcdesktopio/2048-alpine.d@sha256:2c3c46c22689b8f91cbd5ebd4d5f80c95bc5ba9b1e23f13aebb54121d2f6d590&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lastState&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hermes-conrad-2048-alpine-1eef4&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ready&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;restartCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;terminated&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;containerID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;containerd://eb5c1c4c19e5581dfd6a7290f46b63ce073b318bc1f9980bd3e37153cb66e44b&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;exitCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;finishedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-05-17T14:38:13Z&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Completed&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;startedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-05-17T14:37:00Z&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <h2 id="ephemeral-container-versus-pod-application">Ephemeral container versus Pod application</h2>
 <p>An <code>ephemeral container</code> can access to share memory <code>shm</code> with the X11 server. An ephemeral container run always on the same node as the X11 server. </p>
 <p>A <code>pod</code> can't access to share memory with the X11 server. An Kubernetes pod can run on a separated node from the X11 server.</p>
@@ -5676,22 +5676,22 @@ speedtest-od-6c59bdff75-n6s66   1/1     Running   0          38m
 <h3 id="troubleshooting-badshmseg-error">Troubleshooting <code>BadShmSeg</code> error</h3>
 <p>If you configure  2048-alpine with gtk to start as a pod and not as an ephemeral container, you will get the BadShmSeg error</p>
 <h4 id="install-the-application-2048-alpine-with-error">Install the application 2048-alpine-with-error</h4>
-<pre><code class="language-sh">curl --output 2048-alpine.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine-with-error.d.3.0.json
-2048-alpine-with-error.d.3.0.json
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--output<span class="w"> </span><span class="m">2048</span>-alpine.d.3.0.json<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine-with-error.d.3.0.json
+<span class="m">2048</span>-alpine-with-error.d.3.0.json
+</code></pre></div>
 <h4 id="put-2048-alpine-with-error-applications-to-your-abcdesktop-service">PUT <code>2048-alpine-with-error</code> applications to your abcdesktop service</h4>
-<pre><code class="language-sh">curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048-alpine-with-error.d.3.0.json
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@2048-alpine-with-error.d.3.0.json
+</code></pre></div>
 <p>Wait for the pulled pod are <code>Ready</code></p>
-<pre><code class="language-sh">kubectl wait --for=condition=Ready pods --selector=type=pod_application_pull --timeout=-1s -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>--for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span>Ready<span class="w"> </span>pods<span class="w"> </span>--selector<span class="o">=</span><span class="nv">type</span><span class="o">=</span>pod_application_pull<span class="w"> </span>--timeout<span class="o">=</span>-1s<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
 <p>Wait for condition met</p>
-<pre><code>pod/pull-2048-alpine-with-error-install-935509a58088531ae57756 condition met
-</code></pre>
+<div class="highlight"><pre><span></span><code>pod/pull-2048-alpine-with-error-install-935509a58088531ae57756 condition met
+</code></pre></div>
 <p>Login to your abcdesktop service </p>
 <p>Using a web browser, open the abcdesktop service url. If your are running abcdesktop on your local device, the url should be : </p>
-<pre><code>http://localhost:30443
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost:30443
+</code></pre></div>
 <h4 id="choose-to-login-as-hermes_1">Choose to login as hermes</h4>
 <p>Login in as the user <code>Hermes Conrad</code> </p>
 <ul>
@@ -5712,19 +5712,19 @@ It uses shared segment with X Window System, it must run as an ephemeral contain
 <p>In the abcdesktop menu, choose <code>Settings</code> | <code>Tasks</code>. </p>
 <p><img alt="alpine gtk with error" src="../img/gtkandqt2048applications-2048-alpine-with-error-log.png" /></p>
 <p>Then select the <code>Logs</code> button. The error was 'BadShmSeg (invalid shared segment parameter)'.</p>
-<pre><code>(org.gnome.TwentyFortyEight:36): Gdk-WARNING **: 10:14:26.185: The program 'org.gnome.TwentyFortyEight' received an X Window System error.
+<div class="highlight"><pre><span></span><code>(org.gnome.TwentyFortyEight:36): Gdk-WARNING **: 10:14:26.185: The program &#39;org.gnome.TwentyFortyEight&#39; received an X Window System error.
 This probably reflects a bug in the program.
-The error was 'BadShmSeg (invalid shared segment parameter)'.
+The error was &#39;BadShmSeg (invalid shared segment parameter)&#39;.
 (Details: serial 820 error_code 128 request_code 131 (MIT-SHM) minor_code 3)
 (Note to programmers: normally, X errors are reported asynchronously;
 that is, you will receive the error a while after causing it.
 To debug your program, run it with the GDK_SYNCHRONIZE environment
 variable to change this behavior. You can then get a meaningful
 backtrace from your debugger if you break on the gdk_x_error() function.)
-</code></pre>
+</code></pre></div>
 <p>If you are running QT application, you can disable the <a href="https://www.x.org/releases/X11R7.7/doc/xextproto/shm.html">X11 MIT Shared Memory Extension</a> support. The MIT-SHM is an extension to the X server which allows faster transactions by using shared memory. Container isolation blocks it. Qt applications can be forced not to use the extension, by setting the variable <code>QT_X11_NO_MITSHM</code> value to <code>1</code>.</p>
-<pre><code>QT_X11_NO_MITSHM=1 
-</code></pre>
+<div class="highlight"><pre><span></span><code>QT_X11_NO_MITSHM=1 
+</code></pre></div>
 <blockquote>
 <p>Note your can also use <code>QT_XCB_NO_MITSHM</code> value to <code>1</code> </p>
 </blockquote>
@@ -5741,42 +5741,42 @@ backtrace from your debugger if you break on the gdk_x_error() function.)
 </ul>
 <h3 id="troubleshooting-cannot-open-display-or-could-not-connect-to-display-error">Troubleshooting <code>cannot open display</code> or <code>could not connect to display</code> error</h3>
 <p>When you start an application the log file write <code>cannot open display</code> error</p>
-<pre><code>kubectl logs hermes-app-2048-ubuntu-c7360cd025d04813ad5e0af74b6df4ba  -n abcdesktop 
-</code></pre>
-<pre><code>qt.qpa.xcb: could not connect to display 172.17.0.10:0
+<div class="highlight"><pre><span></span><code>kubectl logs hermes-app-2048-ubuntu-c7360cd025d04813ad5e0af74b6df4ba  -n abcdesktop 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>qt.qpa.xcb: could not connect to display 172.17.0.10:0
 qt.qpa.plugin: Could not load the Qt platform plugin &quot;xcb&quot; in &quot;&quot; even though it was found.
 This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
 
 Available platform plugins are: eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, xcb.
-</code></pre>
+</code></pre></div>
 <p>Using the web shell inside an abcdesktop session, start <code>netstat -a</code> command line</p>
 <p>The result should show that the process <code>Xvnc</code> is listening on tcp port number <code>6000</code></p>
 <p><img alt="netstat-listentcp" src="../img/gtkandqt2048applications.netstat-listentcp.png" /></p>
-<pre><code>hermes:~$ netstat  -anp
+<div class="highlight"><pre><span></span><code>hermes:~$ netstat  -anp
 Active Internet connections (servers and established)
 Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
 tcp        0      0 0.0.0.0:6000            0.0.0.0:*               LISTEN      82/Xvnc               
-</code></pre>
+</code></pre></div>
 <p>If <code>Xvnc</code> is not listening on tcp port number <code>6000</code></p>
 <p><img alt="netstat-nolistentcp" src="../img/gtkandqt2048applications.netstat-nolistentcp.png" /></p>
 <p>Update od.config to make <code>Xvnc</code> listen on tcp port number <code>6000</code></p>
 <p>Open your od.config file, and look at the <code>desktop.envlocal</code> option.</p>
 <p>Add <code>'X11LISTEN': 'tcp'</code> to the dictionary :</p>
-<pre><code>desktop.envlocal :  {   'DISPLAY'               : ':0.0',
-                        'SET_DEFAULT_WALLPAPER' : 'welcometoabcdesktop.png',
-                        'X11LISTEN'             : 'tcp' }
-</code></pre>
-<p>Save your local <code>od.config</code> file.</p>
+<p><div class="highlight"><pre><span></span><code>desktop.envlocal :  {   &#39;DISPLAY&#39;               : &#39;:0.0&#39;,
+                        &#39;SET_DEFAULT_WALLPAPER&#39; : &#39;welcometoabcdesktop.png&#39;,
+                        &#39;X11LISTEN&#39;             : &#39;tcp&#39; }
+</code></pre></div>
+Save your local <code>od.config</code> file.</p>
 <p>To apply changes, you can replace the <code>abcdesktop-config</code></p>
-<pre><code>kubectl delete configmap abcdesktop-config -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl delete configmap abcdesktop-config -n abcdesktop
 kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
-</code></pre>
+</code></pre></div>
 <p>Then restart pyos pod</p>
-<pre><code>kubectl delete pod -l run=pyos-od -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl delete pod -l run=pyos-od -n abcdesktop
+</code></pre></div>
 <p>You should read on stdout</p>
-<pre><code>pod &quot;pyos-od-5586b88767-mrf28&quot; deleted
-</code></pre>
+<div class="highlight"><pre><span></span><code>pod &quot;pyos-od-5586b88767-mrf28&quot; deleted
+</code></pre></div>
 
 
 

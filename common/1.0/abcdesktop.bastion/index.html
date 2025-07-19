@@ -5450,19 +5450,19 @@
 <h2 id="script-and-vagrant-file">script and vagrant file</h2>
 <h3 id="get-script-and-vagrant-file">get script and vagrant file</h3>
 <p>To get the installation script and the vagrant file, run the command</p>
-<pre><code>git clone https://github.com/abcdesktopio/vagrant.git
-</code></pre>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/abcdesktopio/vagrant.git
+</code></pre></div>
 <ul>
 <li>The vagrant file name is <a href="https://raw.githubusercontent.com/abcdesktopio/vagrant/main/Vagrantfile.kubernetes.bastion"><code>Vagrantfile.kubernetes.bastion</code></a></li>
 <li>The installation script is <a href="https://raw.githubusercontent.com/abcdesktopio/vagrant/main/abcdesktop_kubernetes_bastion.sh"><code>abcdesktop_kubernetes_bastion.sh</code></a></li>
 </ul>
 <h4 id="start-vagrant-file-to-run-the-kmaster-vm">start vagrant file to run the <code>kmaster</code> vm</h4>
 <p>Run the command to run the vagrant file </p>
-<pre><code>$ cd vagrant
+<div class="highlight"><pre><span></span><code>$ cd vagrant
 $ VAGRANT_VAGRANTFILE=Vagrantfile.kubernetes.bastion vagrant up
-</code></pre>
+</code></pre></div>
 <p>This vagrant file defines a vm <code>kmaster</code> :</p>
-<pre><code>kmaster.vm.box = &quot;hashicorp/bionic64&quot;
+<div class="highlight"><pre><span></span><code>kmaster.vm.box = &quot;hashicorp/bionic64&quot;
 kmaster.vm.hostname = &quot;kmaster.example.com&quot;
 # By default, Vagrant uses a netmask of 255.255.255.0
 # config.vm.network :hostonly, &quot;10.11.12.13&quot;, :netmask =&gt; &quot;255.255.0.0&quot;
@@ -5476,7 +5476,7 @@ kmaster.vm.provider &quot;virtualbox&quot; do |v|
   v.cpus = 4
 end
 kmaster.vm.provision &quot;shell&quot;, path: &quot;abcdesktop_kubernetes_bastion.sh&quot;
-</code></pre>
+</code></pre></div>
 <p>It forward the host tcp port 30443 to guest port 30443 ( mapped as a host port in kubernetes )</p>
 <p>All networks are defined as <code>private_network</code> to make it simplest as possible.</p>
 <h4 id="abcdesktop_kubernetes_bastionsh-description"><code>abcdesktop_kubernetes_bastion.sh</code> description</h4>
@@ -5491,15 +5491,15 @@ kmaster.vm.provision &quot;shell&quot;, path: &quot;abcdesktop_kubernetes_bastio
 <p>You can read the vagrant stdout file as example
 <a href="https://raw.githubusercontent.com/abcdesktopio/vagrant/main/abcdesktop_kubernetes_bastion.install.log">abcdesktop kubernetes bastion install log file</a> </p>
 <h3 id="login-to-get-a-ssh-into-the-kmaster-vm">login to get a ssh into the <code>kmaster</code> vm</h3>
-<pre><code>VAGRANT_VAGRANTFILE=Vagrantfile.kubernetes.bastion vagrant ssh
-</code></pre>
+<div class="highlight"><pre><span></span><code>VAGRANT_VAGRANTFILE=Vagrantfile.kubernetes.bastion vagrant ssh
+</code></pre></div>
 <blockquote>
 <p>List <code>kube-system</code> pods and <code>abcdesktop</code> pods </p>
 </blockquote>
 <p>To run kubectl commands inside the master virtual machine</p>
-<pre><code>export KUBECONFIG=/etc/kubernetes/admin.conf 
-</code></pre>
-<pre><code>vagrant@kmaster:~$ kubectl get pods -n kube-system
+<div class="highlight"><pre><span></span><code>export KUBECONFIG=/etc/kubernetes/admin.conf 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>vagrant@kmaster:~$ kubectl get pods -n kube-system
 NAME                              READY   STATUS    RESTARTS   AGE
 coredns-64897985d-4d57p           1/1     Running   0          11h
 coredns-64897985d-qtmkq           1/1     Running   0          11h
@@ -5509,8 +5509,8 @@ kube-controller-manager-kmaster   1/1     Running   0          11h
 kube-flannel-ds-gskrs             1/1     Running   0          11h
 kube-proxy-c566l                  1/1     Running   0          11h
 kube-scheduler-kmaster            1/1     Running   0          11h
-</code></pre>
-<pre><code>vagrant@kmaster:~$ kubectl get pods -n abcdesktop
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>vagrant@kmaster:~$ kubectl get pods -n abcdesktop
 NAME                            READY   STATUS    RESTARTS   AGE
 daemonset-nginx-pt2j6           1/1     Running   0          11h
 daemonset-pyos-zqpf7            1/1     Running   0          11h
@@ -5518,12 +5518,12 @@ memcached-od-78578c879-kstcl    1/1     Running   0          11h
 mongodb-od-5c68794bb8-wf6sm     1/1     Running   0          11h
 openldap-od-558f7959d5-vhbln    1/1     Running   0          11h
 speedtest-od-7b66cc656b-fh97g   1/1     Running   0          11h
-</code></pre>
+</code></pre></div>
 <h2 id="login-as-a-user">Login as a user</h2>
 <h3 id="connect-your-local-abcdesktop">Connect your local abcdesktop</h3>
 <p>Open your web browser to </p>
-<pre><code>http://[your-ip-hostname]:30443/
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://[your-ip-hostname]:30443/
+</code></pre></div>
 <blockquote>
 <p>Replace <code>[your-ip-hostname]</code> by the host node IP address</p>
 </blockquote>
@@ -5575,36 +5575,36 @@ speedtest-od-7b66cc656b-fh97g   1/1     Running   0          11h
 <p><img alt="abcdesktop login bastion" src="../img/abcdesktop.bastion.webshell.png" /></p>
 <h3 id="run-ifconfig-command-to-list-network-interfaces">Run <code>ifconfig</code> command to list network interfaces</h3>
 <p>In the web shell, run the command</p>
-<pre><code>$ ifconfig -a
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ ifconfig -a
+</code></pre></div>
 <p><img alt="abcdesktop login bastion" src="../img/abcdesktop.bastion.ifconfig.png" /></p>
 <p>This command shows the network interfaces <code>net1</code> and <code>net2</code> with the associated ip address</p>
 <h2 id="tag-and-rules">Tag and rules</h2>
 <ul>
 <li>Login into your <code>kmaster</code> </li>
 </ul>
-<pre><code>VAGRANT_VAGRANTFILE=Vagrantfile.kubernetes.bastion vagrant ssh
-</code></pre>
+<div class="highlight"><pre><span></span><code>VAGRANT_VAGRANTFILE=Vagrantfile.kubernetes.bastion vagrant ssh
+</code></pre></div>
 <ul>
 <li>Become root into your <code>kmaster</code> </li>
 </ul>
-<pre><code>vagrant@kmaster:~$ sudo bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>vagrant@kmaster:~$ sudo bash
+</code></pre></div>
 <h3 id="config-file-abcdesktopyaml">Config file <code>abcdesktop.yaml</code></h3>
 <p>Open the <code>abcdesktop.yaml</code> configuration file, and look at <code>ldapconfig</code></p>
-<pre><code>    ldapconfig : { 'planet': {  'default'       : True,
-                                'ldap_timeout'  : 15,
-                                'ldap_protocol' : 'ldap',
-                                'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                                'servers'       : [ 'openldap.abcdesktop.svc.cluster.local' ],
-                                'secure'        : False,
-                                'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' },
-                                'policies': {
-                                    'acls': None,
-                                    'rules' : {
-                                        'rule-ship': { 'conditions' : [ { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com',   'expected' : True  } ], 'expected' : True, 'label': 'shipcrew'   },
-                                        'rule-test': { 'conditions' : [ { 'memberOf': 'cn=admin_staff,ou=people,dc=planetexpress,dc=com', 'expected' : True  } ], 'expected' : True, 'label': 'adminstaff' } } } } }
-</code></pre>
+<div class="highlight"><pre><span></span><code>    ldapconfig : { &#39;planet&#39;: {  &#39;default&#39;       : True,
+                                &#39;ldap_timeout&#39;  : 15,
+                                &#39;ldap_protocol&#39; : &#39;ldap&#39;,
+                                &#39;ldap_basedn&#39;   : &#39;ou=people,dc=planetexpress,dc=com&#39;,
+                                &#39;servers&#39;       : [ &#39;openldap.abcdesktop.svc.cluster.local&#39; ],
+                                &#39;secure&#39;        : False,
+                                &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;cn=admin,dc=planetexpress,dc=com&#39;, &#39;password&#39;: &#39;GoodNewsEveryone&#39; },
+                                &#39;policies&#39;: {
+                                    &#39;acls&#39;: None,
+                                    &#39;rules&#39; : {
+                                        &#39;rule-ship&#39;: { &#39;conditions&#39; : [ { &#39;memberOf&#39;: &#39;cn=ship_crew,ou=people,dc=planetexpress,dc=com&#39;,   &#39;expected&#39; : True  } ], &#39;expected&#39; : True, &#39;label&#39;: &#39;shipcrew&#39;   },
+                                        &#39;rule-test&#39;: { &#39;conditions&#39; : [ { &#39;memberOf&#39;: &#39;cn=admin_staff,ou=people,dc=planetexpress,dc=com&#39;, &#39;expected&#39; : True  } ], &#39;expected&#39; : True, &#39;label&#39;: &#39;adminstaff&#39; } } } } }
+</code></pre></div>
 <ul>
 <li><code>openldap.abcdesktop.svc.cluster.local</code> is a local ldap server running as a pod</li>
 </ul>
@@ -5620,30 +5620,30 @@ If a user is member of <code>'cn=admin_staff,ou=people,dc=planetexpress,dc=com'<
 </li>
 </ul>
 <p>In the <code>abcdesktop.yaml</code> configuration file, and look at the <code>desktop.policies</code> and the <code>network</code> option</p>
-<pre><code> desktop.policies: {
-        'rules': {
-            'network': {
-                'shipcrew': {
-                    'annotations' : {
-                        'k8s.v1.cni.cncf.io/networks': '[ {&quot;name&quot;:&quot;macvlan-conf-eth3&quot;}, { &quot;name&quot;:&quot;macvlan-conf-eth2&quot;, &quot;default-route&quot;: [&quot;10.9.1.100&quot;] } ]'
+<div class="highlight"><pre><span></span><code> desktop.policies: {
+        &#39;rules&#39;: {
+            &#39;network&#39;: {
+                &#39;shipcrew&#39;: {
+                    &#39;annotations&#39; : {
+                        &#39;k8s.v1.cni.cncf.io/networks&#39;: &#39;[ {&quot;name&quot;:&quot;macvlan-conf-eth3&quot;}, { &quot;name&quot;:&quot;macvlan-conf-eth2&quot;, &quot;default-route&quot;: [&quot;10.9.1.100&quot;] } ]&#39;
                     }
                 }
             }
         },
-        'acls' : {} }
-</code></pre>
-<p>If a pod as the <code>'shipcrew'</code> tag, then add the network annotations</p>
-<pre><code>[ 
+        &#39;acls&#39; : {} }
+</code></pre></div>
+<p>If a pod as the <code>'shipcrew'</code> tag, then add the network annotations
+<div class="highlight"><pre><span></span><code>[ 
     {   &quot;name&quot;: &quot;macvlan-conf-eth3&quot;}, 
     {   &quot;name&quot;: &quot;macvlan-conf-eth2&quot;, &quot;default-route&quot;: [&quot;10.9.1.100&quot;] }
 ]
-</code></pre>
+</code></pre></div></p>
 <h4 id="list-pods-and-labels-in-abcdesktop-namespace">List pods and labels in <code>abcdesktop</code> namespace</h4>
 <p>To list pod in the <code>abcdesktop</code> namespace, run the command</p>
-<pre><code>export KUBECONFIG=/etc/kubernetes/admin.conf 
+<div class="highlight"><pre><span></span><code>export KUBECONFIG=/etc/kubernetes/admin.conf 
 kubectl get pods -n abcdesktop 
-</code></pre>
-<pre><code>root@kmaster:~# export KUBECONFIG=/etc/kubernetes/admin.conf 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>root@kmaster:~# export KUBECONFIG=/etc/kubernetes/admin.conf 
 root@kmaster:~# kubectl get pods -n abcdesktop
 NAME                                       READY   STATUS    RESTARTS   AGE
 daemonset-nginx-5dzjc                      1/1     Running   0          151m
@@ -5653,13 +5653,13 @@ memcached-od-78578c879-vx26h               1/1     Running   0          151m
 mongodb-od-6568f85897-tgfjb                1/1     Running   0          151m
 openldap-od-558f7959d5-qz2kg               1/1     Running   0          151m
 speedtest-od-76d578578d-rl8k8              1/1     Running   0          151m
-</code></pre>
+</code></pre></div>
 <h4 id="describe-pods-fry">Describe pods fry</h4>
 <p>Run the command </p>
-<pre><code>kubectl describe pods YOUR_POD
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl describe pods YOUR_POD
+</code></pre></div>
 <p>Replace YOUR_POD by your pod </p>
-<pre><code>root@kmaster:~# kubectl describe pods fry-02579a7f-a464-4cdb-bb79-5d4d4a844308 -n abcdesktop
+<div class="highlight"><pre><span></span><code>root@kmaster:~# kubectl describe pods fry-02579a7f-a464-4cdb-bb79-5d4d4a844308 -n abcdesktop
 Name:         fry-02579a7f-a464-4cdb-bb79-5d4d4a844308
 Namespace:    abcdesktop
 Priority:     0
@@ -5675,11 +5675,11 @@ Labels:       access_provider=planet
               shipcrew=true
               type=x11server
               xauthkey=ad9e3675cb184db9b6c9eee4852a94est-od-76d578578d-rl8k8
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>The label <code>shipcrew=true</code> is set</p>
 </blockquote>
-<pre><code>Annotations:  k8s.v1.cni.cncf.io/network-status:
+<div class="highlight"><pre><span></span><code>Annotations:  k8s.v1.cni.cncf.io/network-status:
                 [{
                     &quot;name&quot;: &quot;cbr0&quot;,
                     &quot;interface&quot;: &quot;eth0&quot;,
@@ -5706,21 +5706,21 @@ Labels:       access_provider=planet
                     &quot;mac&quot;: &quot;86:eb:43:fe:db:e7&quot;,
                     &quot;dns&quot;: {}
                 }]
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>The <code>Annotations</code> <code>k8s.v1.cni.cncf.io/network-status</code> describes the network interfaces inside the pod.</p>
 </blockquote>
 <h3 id="look-at-the-pre-installed-network-rules">Look at the pre installed network rules</h3>
 <p>Run the command </p>
-<pre><code>kubectl get net-attach-def -n abcdesktop
-</code></pre>
-<pre><code>root@kmaster:~#  kubectl get net-attach-def -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl get net-attach-def -n abcdesktop
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>root@kmaster:~#  kubectl get net-attach-def -n abcdesktop
 NAME                AGE
 macvlan-conf-eth2   154m
 macvlan-conf-eth3   154m
-</code></pre>
+</code></pre></div>
 <p>Get more details about <code>macvlan-conf-eth3</code></p>
-<pre><code>root@kmaster:~# kubectl describe net-attach-def macvlan-conf-eth3 -n abcdesktop
+<div class="highlight"><pre><span></span><code>root@kmaster:~# kubectl describe net-attach-def macvlan-conf-eth3 -n abcdesktop
 Name:         macvlan-conf-eth3
 Namespace:    abcdesktop
 Labels:       &lt;none&gt;
@@ -5749,20 +5749,20 @@ Metadata:
 Spec:
   Config:  { &quot;cniVersion&quot;: &quot;0.3.0&quot;, &quot;type&quot;: &quot;macvlan&quot;, &quot;master&quot;: &quot;eth3&quot;, &quot;mode&quot;: &quot;bridge&quot;, &quot;ipam&quot;: { &quot;type&quot;: &quot;host-local&quot;, &quot;subnet&quot;: &quot;192.168.29.0/24&quot;, &quot;rangeStart&quot;: &quot;192.168.29.10&quot;, &quot;rangeEnd&quot;: &quot;192.168.29.99&quot;, &quot;gateway&quot;: &quot;192.168.29.100&quot; } }
 Events:    &lt;none&gt;
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p><code>macvlan-conf-eth3</code> is used by the user's pod.</p>
 </blockquote>
 <h4 id="list-multi-policy">List multi-policy</h4>
 <p>To list multi-policy, run the command </p>
-<pre><code>kubectl get multi-policy -n abcdesktop
-</code></pre>
-<pre><code>root@kmaster:~# kubectl get multi-policy -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl get multi-policy -n abcdesktop
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>root@kmaster:~# kubectl get multi-policy -n abcdesktop
 NAME                  AGE
 mnp-permit-shipcrew   3h
-</code></pre>
+</code></pre></div>
 <p>And get description about the policy <code>mnp-permit-shipcrew</code> </p>
-<pre><code>apiVersion: k8s.cni.cncf.io/v1beta1
+<div class="highlight"><pre><span></span><code>apiVersion: k8s.cni.cncf.io/v1beta1
 kind: MultiNetworkPolicy
 metadata:
   name: mnp-permit-shipcrew
@@ -5772,7 +5772,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      shipcrew: 'true' 
+      shipcrew: &#39;true&#39; 
   policyTypes:
   - Egress
   egress:
@@ -5784,7 +5784,7 @@ spec:
     ports:
       - protocol: TCP
         port: 22
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>If a pod in the <code>abcdesktop</code> namespace, contains a label <code>shipcrew: 'true'</code> set the <code>iptables</code> to permit egress to host <code>192.168.55.21/32</code> and <code>192.168.55.22/32</code> using protocol <code>TCP</code> destination port <code>22</code>.</p>
 </blockquote>
@@ -5792,25 +5792,25 @@ spec:
 <ul>
 <li>Login into your <code>kmaster</code> </li>
 </ul>
-<pre><code>VAGRANT_VAGRANTFILE=Vagrantfile.kubernetes.bastion vagrant ssh
-</code></pre>
+<div class="highlight"><pre><span></span><code>VAGRANT_VAGRANTFILE=Vagrantfile.kubernetes.bastion vagrant ssh
+</code></pre></div>
 <ul>
 <li>Become root into your <code>kmaster</code> </li>
 </ul>
-<pre><code>vagrant@kmaster:~$ sudo bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>vagrant@kmaster:~$ sudo bash
+</code></pre></div>
 <ul>
 <li>list the directories <code>/var/lib/multi-networkpolicy/iptables/</code> in <code>kmaster</code></li>
 </ul>
-<pre><code>root@kmaster:~# ls /var/lib/multi-networkpolicy/iptables/
+<div class="highlight"><pre><span></span><code>root@kmaster:~# ls /var/lib/multi-networkpolicy/iptables/
 afe82680-77b4-4bac-ad2b-8be9488402fb
-</code></pre>
+</code></pre></div>
 <p>A new <code>afe82680-77b4-4bac-ad2b-8be9488402fb</code> exists</p>
 <ul>
 <li>cat the <code>current.iptables</code> file content in the <code>/var/lib/multi-networkpolicy/iptables/
 afe82680-77b4-4bac-ad2b-8be9488402fb</code></li>
 </ul>
-<pre><code>root@kmaster:~# cat /var/lib/multi-networkpolicy/iptables/afe82680-77b4-4bac-ad2b-8be9488402fb/current.iptables 
+<div class="highlight"><pre><span></span><code>root@kmaster:~# cat /var/lib/multi-networkpolicy/iptables/afe82680-77b4-4bac-ad2b-8be9488402fb/current.iptables 
 # Generated by iptables-save v1.4.21 on Mon Jan 31 16:16:22 2022
 *mangle
 :PREROUTING ACCEPT [441:57462]
@@ -5847,23 +5847,23 @@ COMMIT
 # Completed on Mon Jan 31 16:16:22 2022
 # Generated by iptables-save v1.4.21 on Mon Jan 31 16:16:22 2022
 *nat
-</code></pre>
+</code></pre></div>
 <h3 id="add-some-applications-to-your-desktop">Add some applications to your desktop</h3>
 <p>For abcdesktop a desktop application is a container image. To add an application you just need to pull an container image.</p>
 <ul>
 <li>Login into your <code>kmaster</code> </li>
 </ul>
-<pre><code>VAGRANT_VAGRANTFILE=Vagrantfile.kubernetes.bastion vagrant ssh
-</code></pre>
+<div class="highlight"><pre><span></span><code>VAGRANT_VAGRANTFILE=Vagrantfile.kubernetes.bastion vagrant ssh
+</code></pre></div>
 <ul>
 <li>Become root into your <code>kmaster</code> </li>
 </ul>
-<pre><code>vagrant@kmaster:~$ sudo bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>vagrant@kmaster:~$ sudo bash
+</code></pre></div>
 <ul>
 <li>list your docker images</li>
 </ul>
-<pre><code>root@kmaster:~# docker images
+<div class="highlight"><pre><span></span><code>root@kmaster:~# docker images
 REPOSITORY                                                  TAG       IMAGE ID       CREATED         SIZE
 abcdesktopio/oc.pyos                                        dev       6bd8b8d33b73   19 hours ago    1.17GB
 rancher/mirrored-flannelcni-flannel                         v0.16.3   8cb5de74f107   3 days ago      59.7MB
@@ -5888,14 +5888,14 @@ k8s.gcr.io/pause                                            3.6       6270bb605e
 rroemhild/test-openldap                                     latest    c6b1bec361ca   10 months ago   144MB
 abcdesktopio/oc.mongo                                       latest    802219537d3b   12 months ago   493MB
 abcdesktopio/oc.speedtest                                   dev       298a391cfb5b   3 years ago     355MB
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Add new application images </li>
 </ul>
 <p>To add an application like Firefox, run the <code>docker pull</code> command :</p>
-<pre><code>root@kmaster:~# docker pull abcdesktopio/firefox.d:dev
-</code></pre>
-<pre><code>docker pull abcdesktopio/firefox.d:dev
+<div class="highlight"><pre><span></span><code>root@kmaster:~# docker pull abcdesktopio/firefox.d:dev
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>docker pull abcdesktopio/firefox.d:dev
 dev: Pulling from abcdesktopio/firefox.d
 7b1a6ab2e44d: Already exists 
 2371f0a6d5ec: Already exists 
@@ -5928,12 +5928,12 @@ aba0cc69761b: Pull complete
 Digest: sha256:454657f20f7a09d45dc8ac4f4d3263360480c15f69bece280dd06b8d1647ad7f
 Status: Downloaded newer image for abcdesktopio/firefox.d:dev
 docker.io/abcdesktopio/firefox.d:dev
-</code></pre>
+</code></pre></div>
 <h3 id="reload-the-web-browser-page">Reload the web browser page</h3>
 <h3 id="connect-your-local-abcdesktop_1">Connect your local abcdesktop</h3>
 <p>Reload or open your web browser </p>
-<pre><code>http://[your-ip-hostname]:30443/
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://[your-ip-hostname]:30443/
+</code></pre></div>
 <p><img alt="abcdesktop.bastion.firefox.png" src="../img/abcdesktop.bastion.firefox.png" /></p>
 <p>Firefox is added to your desktop dock.
 Start Firefox application</p>

@@ -5041,10 +5041,10 @@
 </ul>
 <h2 id="apply-the-default-netpol-default-33yaml-file">Apply the default <code>netpol-default-3.3.yaml</code> file</h2>
 <p>To apply the network policies run the command :</p>
-<pre><code class="language-bash">kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-3.3.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-3.3.yaml
+</code></pre></div>
 <p>The command returns </p>
-<pre><code>networkpolicy.networking.k8s.io/abcdesktop-rights created
+<div class="highlight"><pre><span></span><code>networkpolicy.networking.k8s.io/abcdesktop-rights created
 networkpolicy.networking.k8s.io/memcached-rights created
 networkpolicy.networking.k8s.io/memcached-permits created
 networkpolicy.networking.k8s.io/mongodb-rights created
@@ -5068,30 +5068,30 @@ networkpolicy.networking.k8s.io/storage-permits created
 networkpolicy.networking.k8s.io/coredns-permits created
 networkpolicy.networking.k8s.io/apiserver-permits created
 networkpolicy.networking.k8s.io/graylog-permits created
-</code></pre>
+</code></pre></div>
 <h3 id="test-the-network-policies">Test the network policies</h3>
 <ul>
 <li>Login to your abcdesktop </li>
 <li>Open a webshell and run a curl command. </li>
 </ul>
-<pre><code class="language-bash">curl http://pyos.abcdesktop.svc.cluster.local:8000/API/manager/images
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://pyos.abcdesktop.svc.cluster.local:8000/API/manager/images
+</code></pre></div>
 <p>This <strong>http request is denied by the network policy</strong> and you should get an error message</p>
 <p><img alt="http request is denied" src="../img/netpol.denied.http.png" /></p>
 <p>You should get an error message, the user's pod can't reach <code>https://pyos.abcdesktop.svc.cluster.local:8000/API</code>.</p>
 <h3 id="disable-the-network-policies">Disable the network policies</h3>
 <p>To disable the network policies, run the kubectl delete command :</p>
-<pre><code class="language-bash">kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-3.3.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-3.3.yaml
+</code></pre></div>
 <ul>
 <li>Login to your abcdesktop </li>
 <li>Open the web shell to run the same curl command</li>
 </ul>
-<pre><code class="language-bash">curl http://pyos.abcdesktop.svc.cluster.local:8000/API/manager/images
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://pyos.abcdesktop.svc.cluster.local:8000/API/manager/images
+</code></pre></div>
 <p>You should get a json document as http response</p>
-<pre><code class="language-json">{}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{}</span>
+</code></pre></div>
 <p><img alt="http request is allowed" src="../img/netpol.permit.jsondata.png" /></p>
 <p>You may need to update the <a href="https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-3.3.yaml">netpol-default.yaml</a> file with your own values.</p>
 

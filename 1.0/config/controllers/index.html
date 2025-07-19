@@ -4901,26 +4901,26 @@ If <code>permitip</code> is not set or the <code>controller</code> name is not s
 <p>The <code>controllers</code> dictionnary is defined in the <code>od.config</code> file. 
 By default the configuration permit private network defined in <a href="https://tools.ietf.org/html/rfc1918">rfc1918</a> and <a href="https://tools.ietf.org/html/rfc4193">rfc4193</a>. Get more information about the <a href="https://en.wikipedia.org/wiki/Private_network">private network</a>.</p>
 <p>By default others controllers access is enabled, without ip restriction.</p>
-<pre><code>    controllers : { 
-        'AccountingController': 
+<div class="highlight"><pre><span></span><code>    controllers : { 
+        &#39;AccountingController&#39;: 
             { 
-                'permitip': [ '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', 'fd00::/8', '169.254.0.0/16', '127.0.0.0/8' ] 
+                &#39;permitip&#39;: [ &#39;10.0.0.0/8&#39;, &#39;172.16.0.0/12&#39;, &#39;192.168.0.0/16&#39;, &#39;fd00::/8&#39;, &#39;169.254.0.0/16&#39;, &#39;127.0.0.0/8&#39; ] 
             },
-        'AuthController' :      { 'permitip': None },
-        'ComposerController' :  { 'permitip': None },
-        'CoreController' :      { 'permitip': None },
-        'ManagerController': 
+        &#39;AuthController&#39; :      { &#39;permitip&#39;: None },
+        &#39;ComposerController&#39; :  { &#39;permitip&#39;: None },
+        &#39;CoreController&#39; :      { &#39;permitip&#39;: None },
+        &#39;ManagerController&#39;: 
             { 
-                'permitip': [ '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', 'fd00::/8', '169.254.0.0/16', '127.0.0.0/8' ] 
+                &#39;permitip&#39;: [ &#39;10.0.0.0/8&#39;, &#39;172.16.0.0/12&#39;, &#39;192.168.0.0/16&#39;, &#39;fd00::/8&#39;, &#39;169.254.0.0/16&#39;, &#39;127.0.0.0/8&#39; ] 
             },
-        'PrinterController' :   { 'permitip': None },
-        'StoreController' :     { 'permitip': None },
-        'UserController' :      { 'permitip': None }
+        &#39;PrinterController&#39; :   { &#39;permitip&#39;: None },
+        &#39;StoreController&#39; :     { &#39;permitip&#39;: None },
+        &#39;UserController&#39; :      { &#39;permitip&#39;: None }
     } 
-</code></pre>
+</code></pre></div>
 <p>If the source ip address is not allowed, the response is a HTTP status <code>code 403 Forbidden</code></p>
-<pre><code>{&quot;status&quot;: 403, &quot;status_message&quot;: &quot;403 Forbidden&quot;, &quot;message&quot;: &quot;Request forbidden -- authorization will not help&quot;} 
-</code></pre>
+<div class="highlight"><pre><span></span><code>{&quot;status&quot;: 403, &quot;status_message&quot;: &quot;403 Forbidden&quot;, &quot;message&quot;: &quot;Request forbidden -- authorization will not help&quot;} 
+</code></pre></div>
 
 
 

@@ -5066,39 +5066,39 @@
 <p>In the auth provider add a <code>dummy</code> condition or a  <code>memberOf</code> condition. All types of conditions are supported, the goal is only to get a label.</p>
 <p>Update the <code>od.config</code> file and look for the default <code>ldapconfig</code> dictionnary</p>
 <h4 id="add-a-dummy-condition">Add a dummy condition</h4>
-<pre><code class="language-bash">ldapconfig : { 
-  'planet': {  
-    'default'       : True,
-    'ldap_timeout'  : 15,
-    'ldap_basedn'   : 'dc=planetexpress,dc=com',
-    'users_ou'      : 'ou=people,dc=planetexpress,dc=com',
-    'servers'       : [ 'ldap://openldap.abcdesktop.svc.cluster.local:30389' ],
-    'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' },
-    'policies': { 
-       'acls': None, 
-       'rules' : { 
-          'rule-dummy': { 
-             'conditions' : [ { 'boolean': True, 'expected' : True  } ],
-             'expected' : True,
-             'label': 'nfsuser' } } } } } }
-</code></pre>
+<div class="highlight"><pre><span></span><code>ldapconfig<span class="w"> </span>:<span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<span class="w">  </span><span class="s1">&#39;planet&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="w">  </span>
+<span class="w">    </span><span class="s1">&#39;default&#39;</span><span class="w">       </span>:<span class="w"> </span>True,
+<span class="w">    </span><span class="s1">&#39;ldap_timeout&#39;</span><span class="w">  </span>:<span class="w"> </span><span class="m">15</span>,
+<span class="w">    </span><span class="s1">&#39;ldap_basedn&#39;</span><span class="w">   </span>:<span class="w"> </span><span class="s1">&#39;dc=planetexpress,dc=com&#39;</span>,
+<span class="w">    </span><span class="s1">&#39;users_ou&#39;</span><span class="w">      </span>:<span class="w"> </span><span class="s1">&#39;ou=people,dc=planetexpress,dc=com&#39;</span>,
+<span class="w">    </span><span class="s1">&#39;servers&#39;</span><span class="w">       </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s1">&#39;ldap://openldap.abcdesktop.svc.cluster.local:30389&#39;</span><span class="w"> </span><span class="o">]</span>,
+<span class="w">    </span><span class="s1">&#39;serviceaccount&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="s1">&#39;login&#39;</span>:<span class="w"> </span><span class="s1">&#39;cn=admin,dc=planetexpress,dc=com&#39;</span>,<span class="w"> </span><span class="s1">&#39;password&#39;</span>:<span class="w"> </span><span class="s1">&#39;GoodNewsEveryone&#39;</span><span class="w"> </span><span class="o">}</span>,
+<span class="w">    </span><span class="s1">&#39;policies&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<span class="w">       </span><span class="s1">&#39;acls&#39;</span>:<span class="w"> </span>None,<span class="w"> </span>
+<span class="w">       </span><span class="s1">&#39;rules&#39;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<span class="w">          </span><span class="s1">&#39;rule-dummy&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<span class="w">             </span><span class="s1">&#39;conditions&#39;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="s1">&#39;boolean&#39;</span>:<span class="w"> </span>True,<span class="w"> </span><span class="s1">&#39;expected&#39;</span><span class="w"> </span>:<span class="w"> </span>True<span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>,
+<span class="w">             </span><span class="s1">&#39;expected&#39;</span><span class="w"> </span>:<span class="w"> </span>True,
+<span class="w">             </span><span class="s1">&#39;label&#39;</span>:<span class="w"> </span><span class="s1">&#39;nfsuser&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span>
+</code></pre></div>
 <h4 id="or-add-a-memberof-condition">Or Add a <code>memberOf</code> condition</h4>
-<pre><code class="language-bash">ldapconfig : { 
-  'planet': {  
-    'default'       : True,
-    'ldap_timeout'  : 15,
-    'ldap_basedn'   : 'dc=planetexpress,dc=com',
-    'users_ou'      : 'ou=people,dc=planetexpress,dc=com',
-    'servers'       : [ 'ldap://openldap.abcdesktop.svc.cluster.local:30389' ],
-    'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' },
-    'policies': { 
-       'acls': None, 
-       'rules' : { 
-          'rule-nfsuser':  { 
-              'conditions' : [ { 'memberOf': 'cn=admin_staff,ou=people,dc=planetexpress,dc=com',   'expected' : True  } ],
-              'expected' : True, 
-              'label': 'nfsuser' } } } } }
-</code></pre>
+<div class="highlight"><pre><span></span><code>ldapconfig<span class="w"> </span>:<span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<span class="w">  </span><span class="s1">&#39;planet&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="w">  </span>
+<span class="w">    </span><span class="s1">&#39;default&#39;</span><span class="w">       </span>:<span class="w"> </span>True,
+<span class="w">    </span><span class="s1">&#39;ldap_timeout&#39;</span><span class="w">  </span>:<span class="w"> </span><span class="m">15</span>,
+<span class="w">    </span><span class="s1">&#39;ldap_basedn&#39;</span><span class="w">   </span>:<span class="w"> </span><span class="s1">&#39;dc=planetexpress,dc=com&#39;</span>,
+<span class="w">    </span><span class="s1">&#39;users_ou&#39;</span><span class="w">      </span>:<span class="w"> </span><span class="s1">&#39;ou=people,dc=planetexpress,dc=com&#39;</span>,
+<span class="w">    </span><span class="s1">&#39;servers&#39;</span><span class="w">       </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s1">&#39;ldap://openldap.abcdesktop.svc.cluster.local:30389&#39;</span><span class="w"> </span><span class="o">]</span>,
+<span class="w">    </span><span class="s1">&#39;serviceaccount&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="s1">&#39;login&#39;</span>:<span class="w"> </span><span class="s1">&#39;cn=admin,dc=planetexpress,dc=com&#39;</span>,<span class="w"> </span><span class="s1">&#39;password&#39;</span>:<span class="w"> </span><span class="s1">&#39;GoodNewsEveryone&#39;</span><span class="w"> </span><span class="o">}</span>,
+<span class="w">    </span><span class="s1">&#39;policies&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<span class="w">       </span><span class="s1">&#39;acls&#39;</span>:<span class="w"> </span>None,<span class="w"> </span>
+<span class="w">       </span><span class="s1">&#39;rules&#39;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<span class="w">          </span><span class="s1">&#39;rule-nfsuser&#39;</span>:<span class="w">  </span><span class="o">{</span><span class="w"> </span>
+<span class="w">              </span><span class="s1">&#39;conditions&#39;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="s1">&#39;memberOf&#39;</span>:<span class="w"> </span><span class="s1">&#39;cn=admin_staff,ou=people,dc=planetexpress,dc=com&#39;</span>,<span class="w">   </span><span class="s1">&#39;expected&#39;</span><span class="w"> </span>:<span class="w"> </span>True<span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>,
+<span class="w">              </span><span class="s1">&#39;expected&#39;</span><span class="w"> </span>:<span class="w"> </span>True,<span class="w"> </span>
+<span class="w">              </span><span class="s1">&#39;label&#39;</span>:<span class="w"> </span><span class="s1">&#39;nfsuser&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span>
+</code></pre></div>
 <h3 id="add-a-rule-in-the-desktoppolicies">Add a <code>rule</code> in the <code>desktop.policies</code></h3>
 <p>In this example, we define entries :</p>
 <ul>
@@ -5107,8 +5107,8 @@
 <li><code>mountPath</code> is <code>/mnt/iso</code></li>
 </ul>
 <p>The mount command become like:</p>
-<pre><code class="language-bash">mount -t nfs 192.168.7.101:/volume1/isostore /mnt/iso
-</code></pre>
+<div class="highlight"><pre><span></span><code>mount<span class="w"> </span>-t<span class="w"> </span>nfs<span class="w"> </span><span class="m">192</span>.168.7.101:/volume1/isostore<span class="w"> </span>/mnt/iso
+</code></pre></div>
 <p>Update the <code>desktop.policies</code> dictionnary and add a new key <code>rules</code>.
 In the new <code>rules</code> define a new entry <code>nfsuser</code>. </p>
 <blockquote>
@@ -5116,33 +5116,33 @@ In the new <code>rules</code> define a new entry <code>nfsuser</code>. </p>
 </blockquote>
 <p>In this example the label is defined as <code>nfsuser</code>, but you can set differents values. 
 Then set nfs descriptions as you can read in <a href="https://kubernetes.io/docs/concepts/storage/volumes/">kubernetes nfs volume</a>  </p>
-<pre><code>desktop.policies: {  
-'acls' : {},
-'rules': { 
-  'volumes': { 
-    'nfsuser': {
-      'type': 'nfs', 
-      'name': 'isostore', 
-      'server': '192.168.7.101',
-      'path': '/volume1/isostore',
-      'mountPath': '/mnt/iso',
-      'readOnly': True } } } } 
-</code></pre>
+<div class="highlight"><pre><span></span><code>desktop.policies: {  
+&#39;acls&#39; : {},
+&#39;rules&#39;: { 
+  &#39;volumes&#39;: { 
+    &#39;nfsuser&#39;: {
+      &#39;type&#39;: &#39;nfs&#39;, 
+      &#39;name&#39;: &#39;isostore&#39;, 
+      &#39;server&#39;: &#39;192.168.7.101&#39;,
+      &#39;path&#39;: &#39;/volume1/isostore&#39;,
+      &#39;mountPath&#39;: &#39;/mnt/iso&#39;,
+      &#39;readOnly&#39;: True } } } } 
+</code></pre></div>
 <h3 id="apply-the-new-odconfig-file">Apply the new <code>od.config</code> file</h3>
 <p>Save your local changes in <code>od.config</code>, and update the new configmap <code>abcdesktop-config</code></p>
-<pre><code>kubectl delete configmap abcdesktop-config -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl delete configmap abcdesktop-config -n abcdesktop
 kubectl create --from-file=od.config -n abcdesktop
-</code></pre>
+</code></pre></div>
 <h3 id="restart-pyos">Restart <code>pyos</code></h3>
 <p>Restart <code>pyos</code>  pods</p>
-<pre><code>kubectl delete pod -l run=pyos-od -n abcdesktop
-</code></pre>
-<pre><code>pod &quot;pyos-od-5586b88767-64jwt&quot; deleted
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl delete pod -l run=pyos-od -n abcdesktop
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>pod &quot;pyos-od-5586b88767-64jwt&quot; deleted
+</code></pre></div>
 <h2 id="create-a-new-desktop-for-hermes-conrad-and-list-nfs-files">Create a new desktop for <code>Hermes Conrad</code> and list nfs files</h2>
 <p>Open the url <code>http://localhost:30443</code>, in your web browser, to start a simple user's pod. </p>
-<pre><code>http://localhost:30443
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost:30443
+</code></pre></div>
 <ul>
 <li>Login with a user <code>Hermes Conrad</code> for example.
 <code>Hermes Conrad</code> is member of <code>admin_staff</code>. </li>

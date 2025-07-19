@@ -4985,10 +4985,10 @@ The files ( /etc/passwd, /etc/group, /etc/shadow, /etc/gshadow ) are customized 
 </ul>
 <p>The symbolic links are linked to the <code>/etc/localaccount.shadow</code> volume. Some commands or programs (e.g., su, passwd, adduser and others) access to the shadow file.</p>
 <p>If your application need an access to the file '/etc/shadow' or the file '/etc/gshadow', then you have to add this line to your Dockerfile.</p>
-<pre><code>RUN for f in shadow gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /etc/localaccount.shadow; rm -f /etc/$f; ln -s /etc/localaccount.shadow/$f /etc/$f; fi; done
-</code></pre>
+<div class="highlight"><pre><span></span><code>RUN for f in shadow gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /etc/localaccount.shadow; rm -f /etc/$f; ln -s /etc/localaccount.shadow/$f /etc/$f; fi; done
+</code></pre></div>
 <p>The complete lines for a users support with ( passwd, group ) and ( shadow, gshadow ) </p>
-<pre><code># Create links for local acccounts
+<div class="highlight"><pre><span></span><code># Create links for local acccounts
 # /etc/passwd  -&gt; /etc/localaccount/passwd
 # /etc/group   -&gt; /etc/localaccount/group
 # /etc/shadow  -&gt; /etc/localaccount.shadow/shadow
@@ -4996,12 +4996,12 @@ The files ( /etc/passwd, /etc/group, /etc/shadow, /etc/gshadow ) are customized 
 RUN mkdir -p /etc/localaccount /etc/localaccount.shadow
 RUN for f in passwd group ; do if [ -f /etc/$f ] ; then  cp /etc/$f /etc/localaccount; rm -f /etc/$f; ln -s /etc/localaccount/$f /etc/$f; fi; done
 RUN for f in shadow gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /etc/localaccount.shadow; rm -f /etc/$f; ln -s /etc/localaccount.shadow/$f /etc/$f; fi; done
-</code></pre>
+</code></pre></div>
 <h2 id="abcdesktopyaml">abcdesktop.yaml</h2>
 <p>Remove the fixed namespace <code>namespace: abcdesktop</code> value in <code>abcdesktop.yaml</code> 
 The namespace value is set using <code>--namespace</code> option</p>
-<pre><code>kubectl apply --namespace abcdesktop -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.0.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl apply --namespace abcdesktop -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.0.yaml
+</code></pre></div>
 
 
 

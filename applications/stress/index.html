@@ -4976,7 +4976,7 @@
 <p><a href="../abcdesktopio/oc.template.ubuntu.gtk.language-pack-all">abcdesktopio/oc.template.ubuntu.gtk.language-pack-all</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>ubuntu <img alt="ubuntu" src="../icons/ubuntu.svg" style="height:32px;" /></p>
-<pre><code>NAME=&quot;Ubuntu&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Ubuntu&quot;
 VERSION=&quot;20.04.5 LTS (Focal Fossa)&quot;
 ID=ubuntu
 ID_LIKE=debian
@@ -4988,84 +4988,82 @@ BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
 PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
 VERSION_CODENAME=focal
 UBUNTU_CODENAME=focal
-
-</code></pre>
+</code></pre></div>
 <h2 id="ubuntu-packages">Ubuntu packages</h2>
-<pre><code>at-spi2-core gnome-terminal dbus-x11 stress
-</code></pre>
+<div class="highlight"><pre><span></span><code>at-spi2-core gnome-terminal dbus-x11 stress
+</code></pre></div>
 <h2 id="arguments">Arguments</h2>
 <p><code>"--disable-factory --class=stress"</code></p>
 <h2 id="path">Path</h2>
-<pre><code>/usr/bin/gnome-terminal
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/bin/gnome-terminal
+</code></pre></div>
 <h2 id="acl">ACL</h2>
-<pre><code class="language-json">{
-    &quot;permit&quot;: [
-        &quot;all&quot;
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;all&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="wm_class">WM_CLASS</h2>
-<pre><code>gnome-terminal-server.stress
-</code></pre>
+<div class="highlight"><pre><span></span><code>gnome-terminal-server.stress
+</code></pre></div>
 <blockquote>
 <p>The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
 to get the WM_CLASS property of an application, use the command line <code>wmctrl -lx</code></p>
 </blockquote>
 <h2 id="desktopfile">Desktopfile</h2>
-<pre><code>/usr/share/applications/gnome-terminal.desktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/share/applications/gnome-terminal.desktop
+</code></pre></div>
 <blockquote>
 <p>A .desktop file is a simple text file that holds information about a program. It is usually placed in “/usr/share/applications/”.</p>
 </blockquote>
 <h2 id="json-dump">JSON dump</h2>
 <p>json source file stress.d.3.0.json </p>
-<pre><code class="language-json">{
-    &quot;acl&quot;: {
-        &quot;permit&quot;: [
-            &quot;all&quot;
-        ]
-    },
-    &quot;cat&quot;: &quot;development&quot;,
-    &quot;debpackage&quot;: &quot;at-spi2-core gnome-terminal dbus-x11 stress&quot;,
-    &quot;icon&quot;: &quot;stress.svg&quot;,
-    &quot;keyword&quot;: &quot;stress,cpu,shell&quot;,
-    &quot;launch&quot;: &quot;gnome-terminal-server.stress&quot;,
-    &quot;name&quot;: &quot;stress&quot;,
-    &quot;path&quot;: &quot;/usr/bin/gnome-terminal&quot;,
-    &quot;rules&quot;: {
-        &quot;homedir&quot;: {
-            &quot;default&quot;: true
-        }
-    },
-    &quot;host_config&quot;: {
-        &quot;mem_limit&quot;: &quot;256M&quot;,
-        &quot;shm_size&quot;: &quot;128M&quot;,
-        &quot;pid_mode&quot;: false,
-        &quot;ipc_mode&quot;: false
-    },
-    &quot;args&quot;: &quot;--disable-factory --class=stress&quot;,
-    &quot;template&quot;: &quot;abcdesktopio/oc.template.ubuntu.gtk.language-pack-all&quot;,
-    &quot;desktopfile&quot;: &quot;/usr/share/applications/gnome-terminal.desktop&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;all&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;development&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;debpackage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;at-spi2-core gnome-terminal dbus-x11 stress&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stress.svg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stress,cpu,shell&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gnome-terminal-server.stress&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stress&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/gnome-terminal&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;host_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;mem_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;256M&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;shm_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;128M&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pid_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ipc_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;--disable-factory --class=stress&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/oc.template.ubuntu.gtk.language-pack-all&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/share/applications/gnome-terminal.desktop&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
 <p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-curl --output stress.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/stress.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @stress.d.3.0.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+curl<span class="w"> </span>--output<span class="w"> </span>stress.d.3.0.json<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/stress.d.3.0.json
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@stress.d.3.0.json
+</code></pre></div>
 <h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
-<pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+<div class="highlight"><pre><span></span><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
 FROM abcdesktopio/oc.template.ubuntu.gtk.language-pack-all:$TAG
 USER root
 RUN DEBIAN_FRONTEND=noninteractive apt-get update &amp;&amp; apt-get install -y  --no-install-recommends at-spi2-core gnome-terminal dbus-x11 stress &amp;&amp; apt-get clean
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+RUN echo &#39;debconf debconf/frontend select Noninteractive&#39; | debconf-set-selections
 LABEL oc.icon=&quot;stress.svg&quot;
 LABEL oc.icondata=&quot;PHN2ZyB3aWR0aD0iNDk2LjgiIGhlaWdodD0iNDk2LjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGlkPSJzdmdfMSIgZmlsbD0iIzZlYzZmMCIgZD0ibTE1Miw0ODRjMCw2LjQgLTUuNiwxMiAtMTIsMTJsMCwwYy02LjQsMCAtMTIsLTUuNiAtMTIsLTEybDAsLTQ3MmMwLC02LjQgNS42LC0xMiAxMiwtMTJsMCwwYzYuNCwwIDEyLDUuNiAxMiwxMmwwLDQ3MnoiLz4KICA8cGF0aCBpZD0ic3ZnXzMiIGZpbGw9IiM2ZWM2ZjAiIGQ9Im0yMDgsNDg0YzAsNi40IC01LjYsMTIgLTEyLDEybDAsMGMtNi40LDAgLTEyLC01LjYgLTEyLC0xMmwwLC00NzJjMCwtNi40IDUuNiwtMTIgMTIsLTEybDAsMGM2LjQsMCAxMiw1LjYgMTIsMTJsMCw0NzJ6Ii8+CiAgPHBhdGggaWQ9InN2Z181IiBmaWxsPSIjNmVjNmYwIiBkPSJtMzEyLDQ4NGMwLDYuNCAtNS42LDEyIC0xMiwxMmwwLDBjLTYuNCwwIC0xMiwtNS42IC0xMiwtMTJsMCwtNDcyYzAsLTYuNCA1LjYsLTEyIDEyLC0xMmwwLDBjNi40LDAgMTIsNS42IDEyLDEybDAsNDcyeiIvPgogIDxwYXRoIGlkPSJzdmdfNyIgZmlsbD0iIzZlYzZmMCIgZD0ibTM2OCw0ODRjMCw2LjQgLTUuNiwxMiAtMTIsMTJsMCwwYy02LjQsMCAtMTIsLTUuNiAtMTIsLTEybDAsLTQ3MmMwLC02LjQgNS42LC0xMiAxMiwtMTJsMCwwYzYuNCwwIDEyLDUuNiAxMiwxMmwwLDQ3MnoiLz4KICA8cGF0aCBpZD0ic3ZnXzkiIGZpbGw9IiM2ZWM2ZjAiIGQ9Im0yNjAsNDg0YzAsNi40IC01LjYsMTIgLTEyLDEybDAsMGMtNi40LDAgLTEyLC01LjYgLTEyLC0xMmwwLC00NzJjMCwtNi40IDUuNiwtMTIgMTIsLTEybDAsMGM2LjQsMCAxMiw1LjYgMTIsMTJsMCw0NzJ6Ii8+CiAgPHBhdGggaWQ9InN2Z18xMSIgZmlsbD0iIzZlYzZmMCIgZD0ibTEyLjgsMTUyYy03LjIsMCAtMTIuOCwtNC44IC0xMi44LC0xMmwwLDBjMCwtNy4yIDUuNiwtMTIgMTIuOCwtMTJsNDcxLjIsMGM3LjIsMCAxMi44LDQuOCAxMi44LDEybDAsMGMwLDcuMiAtNS42LDEyIC0xMi44LDEybC00NzEuMiwweiIvPgogIDxwYXRoIGlkPSJzdmdfMTMiIGZpbGw9IiM2ZWM2ZjAiIGQ9Im00OTYsMTk2YzAsNi40IC01LjYsMTIgLTEyLDEybC00NzIsMGMtNi40LDAgLTEyLC01LjYgLTEyLC0xMmwwLDBjMCwtNi40IDUuNiwtMTIgMTIsLTEybDQ3MiwwYzYuNCwwIDEyLDUuNiAxMiwxMmwwLDB6Ii8+CiAgPHBhdGggaWQ9InN2Z18xNSIgZmlsbD0iIzZlYzZmMCIgZD0ibTQ5NiwzMDBjMCw2LjQgLTUuNiwxMiAtMTIsMTJsLTQ3MiwwYy02LjQsMCAtMTIsLTUuNiAtMTIsLTEybDAsMGMwLC02LjQgNS42LC0xMiAxMiwtMTJsNDcyLDBjNi40LDAgMTIsNS42IDEyLDEybDAsMHoiLz4KICA8cGF0aCBpZD0ic3ZnXzE3IiBmaWxsPSIjNmVjNmYwIiBkPSJtNDk2LDI1MWMwLDYuNCAtNS42LDEyIC0xMiwxMmwtNDcyLDBjLTYuNCwwIC0xMiwtNS42IC0xMiwtMTJsMCwwYzAsLTYuNCA1LjYsLTEyIDEyLC0xMmw0NzIsMGM2LjQsMCAxMiw1LjYgMTIsMTJsMCwweiIvPgogIDxwYXRoIGlkPSJzdmdfMTkiIGZpbGw9IiM2ZWM2ZjAiIGQ9Im0xMi44LDM2OGMtNy4yLDAgLTEyLjgsLTQuOCAtMTIuOCwtMTJsMCwwYzAsLTcuMiA1LjYsLTEyIDEyLjgsLTEybDQ3MS4yLDBjNy4yLDAgMTIuOCw0LjggMTIuOCwxMmwwLDBjMCw3LjIgLTUuNiwxMiAtMTIuOCwxMmwtNDcxLjIsMHoiLz4KICA8cGF0aCBpZD0ic3ZnXzIxIiBmaWxsPSIjMzYzRjNFIiBkPSJtNDA4LDM4MS42YzAsMTQuNCAtMTIsMjYuNCAtMjYuNCwyNi40bC0yNTkuMiwwYy0xNC40LDAgLTI2LjQsLTEyIC0yNi40LC0yNi40bDAsLTI1OS4yYzAsLTE0LjQgMTIsLTI2LjQgMjYuNCwtMjYuNGwyNTkuMiwwYzE0LjQsMCAyNi40LDEyIDI2LjQsMjYuNGwwLDI1OS4yeiIvPgogIDxwYXRoIGlkPSJzdmdfMjIiIGQ9Im05NiwxMjIuNGMwLC0xNC40IDEyLC0yNi40IDI2LjQsLTI2LjRsMjU5LjIsMGMxNC40LDAgMjYuNCwxMiAyNi40LDI2LjRsMCwyNTkuMmMwLDE0LjQgLTEyLDI2LjQgLTI2LjQsMjYuNCIvPgogIDxwYXRoIGlkPSJzdmdfMjMiIGZpbGw9IiM0OTUxNTAiIGQ9Im0zNTIsMzM1LjJjMCw5LjYgLTcuMiwxNi44IC0xNi44LDE2LjhsLTE2Ni40LDBjLTkuNiwwIC0xNi44LC03LjIgLTE2LjgsLTE2LjhsMCwtMTY2LjRjMCwtOS42IDcuMiwtMTYuOCAxNi44LC0xNi44bDE2Ni40LDBjOS42LDAgMTYuOCw3LjIgMTYuOCwxNi44bDAsMTY2LjR6Ii8+CiAgPGcgaWQ9InN2Z18yOSIvPgogIDxnIGlkPSJzdmdfMzAiLz4KICA8ZyBpZD0ic3ZnXzMxIi8+CiAgPGcgaWQ9InN2Z18zMiIvPgogIDxnIGlkPSJzdmdfMzMiLz4KICA8ZyBpZD0ic3ZnXzM0Ii8+CiAgPGcgaWQ9InN2Z18zNSIvPgogIDxnIGlkPSJzdmdfMzYiLz4KICA8ZyBpZD0ic3ZnXzM3Ii8+CiAgPGcgaWQ9InN2Z18zOCIvPgogIDxnIGlkPSJzdmdfMzkiLz4KICA8ZyBpZD0ic3ZnXzQwIi8+CiAgPGcgaWQ9InN2Z180MSIvPgogIDxnIGlkPSJzdmdfNDIiLz4KICA8ZyBpZD0ic3ZnXzQzIi8+CiA8L2c+Cjwvc3ZnPg==&quot;
 LABEL oc.keyword=&quot;stress,stress,cpu,shell&quot;
@@ -5091,29 +5089,27 @@ RUN mkdir -p /var/secrets/abcdesktop/localaccount
 RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
 USER balloon
 CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
-
-</code></pre>
+</code></pre></div>
 <h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
 <h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/stress.d">Dockerfile for application stress</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/stress.d
-</code></pre>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/stress.d">Dockerfile for application stress</a>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/stress.d
+</code></pre></div></p>
 <h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f stress.d -t stress .
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">TAG</span><span class="o">=</span><span class="m">3</span>.0<span class="w"> </span>-f<span class="w"> </span>stress.d<span class="w"> </span>-t<span class="w"> </span>stress<span class="w"> </span>.
+</code></pre></div>
 <h3 id="install-the-new-image">Install the new image</h3>
 <blockquote>
 <p>If you are using <code>containerd</code> as container runtime, use the ctr command line</p>
 <p>If you are not running this bash command on your abcdesktop node
 Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-docker inspect stress &gt; stress.json
-docker image save stress -o stress.tar
-ctr -n k8s.io images import stress.tar
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @stress.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+docker<span class="w"> </span>inspect<span class="w"> </span>stress<span class="w"> </span>&gt;<span class="w"> </span>stress.json
+docker<span class="w"> </span>image<span class="w"> </span>save<span class="w"> </span>stress<span class="w"> </span>-o<span class="w"> </span>stress.tar
+ctr<span class="w"> </span>-n<span class="w"> </span>k8s.io<span class="w"> </span>images<span class="w"> </span>import<span class="w"> </span>stress.tar
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@stress.json
+</code></pre></div>
 
 
 

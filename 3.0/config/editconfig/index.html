@@ -4974,28 +4974,28 @@
 <h2 id="edit-your-configuration-file">Edit your configuration file</h2>
 <p>If the <code>od.config</code> file does not exist, download the default <a href="https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.0">od.config</a> file and save it as <code>od.config</code> to your abcdesktop local directory.</p>
 <p>To make change, edit your own <code>od.config</code> file</p>
-<pre><code class="language-bash">vim od.config 
-</code></pre>
+<div class="highlight"><pre><span></span><code>vim<span class="w"> </span>od.config<span class="w"> </span>
+</code></pre></div>
 <h2 id="make-changes">Make changes</h2>
 <p>Change the <code>defaultbackgroundcolors</code> option in the desktop options.</p>
 <p>Locate the line <code>desktop.defaultbackgroundcolors</code> and update the first entries with the values <code>'#FF0000', '#FFFFFF',  '#0000FF'</code></p>
-<pre><code class="language-json">desktop.defaultbackgroundcolors : [ '#FF0000', '#FFFFFF',  '#0000FF', '#CD3C14', '#4BB4E6', '#50BE87', '#A885D8', '#FFB4E6' ]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.de</span><span class="kc">fault</span><span class="err">backgrou</span><span class="kc">n</span><span class="err">dcolors</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;#FF</span><span class="mi">0000</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;#FFFFFF&#39;</span><span class="p">,</span><span class="w">  </span><span class="err">&#39;#</span><span class="mi">0000</span><span class="err">FF&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;#CD</span><span class="mi">3</span><span class="err">C</span><span class="mi">14</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;#</span><span class="mi">4</span><span class="err">BB</span><span class="mf">4E6</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;#</span><span class="mi">50</span><span class="err">BE</span><span class="mi">87</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;#A</span><span class="mi">885</span><span class="err">D</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;#FFB</span><span class="mf">4E6</span><span class="err">&#39;</span><span class="w"> </span><span class="p">]</span>
+</code></pre></div>
 <p>Save your local file <code>od.config</code>.</p>
 <h2 id="apply-changes">Apply changes</h2>
 <p>To apply changes, you can replace the <code>abcdesktop-config</code></p>
-<pre><code class="language-bash">kubectl delete configmap abcdesktop-config -n abcdesktop
-kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+kubectl<span class="w"> </span>create<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>--from-file<span class="o">=</span>od.config<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
 <p>Or you can also use the replace command <code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -</code></p>
 <h2 id="restart-pyos-pods">Restart pyos pods</h2>
-<pre><code class="language-bash">kubectl delete pods -l run=pyos-od -n abcdesktop
-pod &quot;pyos-od-6fc597d444-qgzhc&quot; deleted
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+pod<span class="w"> </span><span class="s2">&quot;pyos-od-6fc597d444-qgzhc&quot;</span><span class="w"> </span>deleted
+</code></pre></div>
 <h2 id="check-your-changes">Check your changes</h2>
 <p>To check that the new colours are presents in front, open the url <code>http://localhost:30443</code>, in your web browser, to start a simple abcdesktop.io container. </p>
-<pre><code>http://localhost:30443
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost:30443
+</code></pre></div>
 <p>You should see the abcdesktop.io home page.</p>
 <p>Press the <code>Sign-in Anonymously, have look</code></p>
 <p>At the right top corner, click on the menu and choose <code>Settings</code>, then click on <code>Screen Colors</code></p>

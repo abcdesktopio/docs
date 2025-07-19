@@ -5026,15 +5026,15 @@
 <ul>
 <li>Add the new entry <code>SET_DEFAULT_WALLPAPER</code> to the value like <code>welcometoabcdesktop.png</code>. The file <code>welcometoabcdesktop.png</code> already exists in the <code>/composer/wallpapers</code> directory of your abcdesktopio/oc.user.XX.YY container image.</li>
 </ul>
-<pre><code>desktop.envlocal :  {   'DISPLAY'               : ':0.0',
-                        'USER'                  : 'balloon',
-                        'LOGNAME'               : 'balloon',
-                        'LIBOVERLAY_SCROLLBAR'  : '0',
-                        'UBUNTU_MENUPROXY'      : '0',
-                        'HOME'                  : '/home/balloon',
-                          'SET_DEFAULT_WALLPAPER' : 'welcometoabcdesktop.png'
+<div class="highlight"><pre><span></span><code>desktop.envlocal :  {   &#39;DISPLAY&#39;               : &#39;:0.0&#39;,
+                        &#39;USER&#39;                  : &#39;balloon&#39;,
+                        &#39;LOGNAME&#39;               : &#39;balloon&#39;,
+                        &#39;LIBOVERLAY_SCROLLBAR&#39;  : &#39;0&#39;,
+                        &#39;UBUNTU_MENUPROXY&#39;      : &#39;0&#39;,
+                        &#39;HOME&#39;                  : &#39;/home/balloon&#39;,
+                          &#39;SET_DEFAULT_WALLPAPER&#39; : &#39;welcometoabcdesktop.png&#39;
                     } 
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Restart your pyos daemon, to make sure that the <code>ENV</code> dictionary will be use to start a new user container.</li>
 <li>Login on your abcdesktop service, your should see the wallpaper file:</li>
@@ -5051,19 +5051,19 @@
 <li>Create a Dockerfile to copy the new wallpaper file in <code>/composer/wallpapers</code> directory</li>
 </ul>
 <p>Not For a development environment, add the TAG dev</p>
-<pre><code>FROM abcdesktopio/oc.user.18.04:dev 
+<div class="highlight"><pre><span></span><code>FROM abcdesktopio/oc.user.18.04:dev 
 USER root
 COPY silas-baisch-unsplash.jpg /composer/wallpapers
 USER balloon
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Build the new docker image</li>
 </ul>
 <p>To build the new docker image, run the command line</p>
-<pre><code>docker build -t abcdesktopio/oc.user.18.04 .
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker build -t abcdesktopio/oc.user.18.04 .
+</code></pre></div>
 <p>You should read on the standard output :</p>
-<pre><code>Sending build context to Docker daemon  3.184MB
+<div class="highlight"><pre><span></span><code>Sending build context to Docker daemon  3.184MB
 Step 1/4 : FROM abcdesktopio/oc.user.18.04:dev
  ---&gt; 61bfdb4e71d4
 Step 2/4 : USER root
@@ -5077,21 +5077,21 @@ Removing intermediate container 1e0ad794c0cb
  ---&gt; a0b12a183b47
 Successfully built a0b12a183b47
 Successfully tagged abcdesktopio/oc.user.18.04:dev
-</code></pre>
+</code></pre></div>
 <h2 id="change-odconfig-file_1">Change od.config file</h2>
 <p>To update the default wallpaper file, add a <code>ENV</code> variable in the <code>desktop.envlocal</code> dictionary.</p>
 <ul>
 <li>Add the new entry <code>SET_DEFAULT_WALLPAPER</code> to the value like <code>silas-baisch-unsplash.jpg</code>. The file <code>silas-baisch-unsplash.jpg</code> exists in the <code>/composer/wallpapers</code> directory of your <strong>new</strong> <code>abcdesktopio/oc.user.18.04</code> container image.</li>
 </ul>
-<pre><code>desktop.envlocal :  {   'DISPLAY'               : ':0.0',
-                        'USER'                  : 'balloon',
-                        'LOGNAME'               : 'balloon',
-                        'LIBOVERLAY_SCROLLBAR'  : '0',
-                        'UBUNTU_MENUPROXY'      : '0',
-                        'HOME'                  : '/home/balloon',
-                          'SET_DEFAULT_WALLPAPER' : 'silas-baisch-unsplash.jpg'
+<div class="highlight"><pre><span></span><code>desktop.envlocal :  {   &#39;DISPLAY&#39;               : &#39;:0.0&#39;,
+                        &#39;USER&#39;                  : &#39;balloon&#39;,
+                        &#39;LOGNAME&#39;               : &#39;balloon&#39;,
+                        &#39;LIBOVERLAY_SCROLLBAR&#39;  : &#39;0&#39;,
+                        &#39;UBUNTU_MENUPROXY&#39;      : &#39;0&#39;,
+                        &#39;HOME&#39;                  : &#39;/home/balloon&#39;,
+                          &#39;SET_DEFAULT_WALLPAPER&#39; : &#39;silas-baisch-unsplash.jpg&#39;
                     } 
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Restart your pyos daemon, to make sure that the <code>ENV</code> dictionary will be use to start a new user container.</li>
 <li>Login on your abcdesktop service, your should see the wallpaper :</li>

@@ -5374,12 +5374,12 @@ This dedicated network can use macvlan, ipvlan or an SRIOV network driver.</li>
 </ul>
 <h4 id="example-with-macvlan">Example with <code>macvlan</code> :</h4>
 <p>Create a network abcnetfirefox with the driver macvlan and bridge the network interface eno1 with the vlan 123 </p>
-<pre><code class="language-bash">docker network create --label type=oc.app -d macvlan --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.0/27 -o parent=eno1.123 abcnetfirefox
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>--label<span class="w"> </span><span class="nv">type</span><span class="o">=</span>oc.app<span class="w"> </span>-d<span class="w"> </span>macvlan<span class="w"> </span>--subnet<span class="o">=</span><span class="m">192</span>.168.8.0/24<span class="w"> </span>--gateway<span class="o">=</span><span class="m">192</span>.168.8.254<span class="w"> </span>--ip-range<span class="o">=</span><span class="m">192</span>.168.8.0/27<span class="w"> </span>-o<span class="w"> </span><span class="nv">parent</span><span class="o">=</span>eno1.123<span class="w"> </span>abcnetfirefox
+</code></pre></div>
 <h4 id="example-with-ipvlan-ipvlan_model2">Example with <code>ipvlan</code> ipvlan_mode=l2 :</h4>
 <p>Create a network abcnetfirefox with the driver ipvlan with ipvlan_mode=l2 option and bridge the network interface eno1 with the vlan 123.</p>
-<pre><code class="language-bash">docker network create --label type=oc.app -d ipvlan  -o ipvlan_mode=l2 --subnet=192.168.8.0/24 --gateway=192.168.8.254 --ip-range=192.168.8.0/27 -o parent=eno1.123 abcnetfirefox
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>--label<span class="w"> </span><span class="nv">type</span><span class="o">=</span>oc.app<span class="w"> </span>-d<span class="w"> </span>ipvlan<span class="w">  </span>-o<span class="w"> </span><span class="nv">ipvlan_mode</span><span class="o">=</span>l2<span class="w"> </span>--subnet<span class="o">=</span><span class="m">192</span>.168.8.0/24<span class="w"> </span>--gateway<span class="o">=</span><span class="m">192</span>.168.8.254<span class="w"> </span>--ip-range<span class="o">=</span><span class="m">192</span>.168.8.0/27<span class="w"> </span>-o<span class="w"> </span><span class="nv">parent</span><span class="o">=</span>eno1.123<span class="w"> </span>abcnetfirefox
+</code></pre></div>
 <h4 id="test-your-new-network-macvlan-or-ipvlan">Test your new network (<code>macvlan</code> or <code>ipvlan</code>):</h4>
 <p>Make sure that's you can reach the default gateway and the dns server for container.
 In this example, just start a busybox to :</p>
@@ -5387,102 +5387,102 @@ In this example, just start a busybox to :</p>
 <li><code>ping</code> the default gateway</li>
 <li><code>nslookup</code> to query www.google.com ip address</li>
 </ul>
-<pre><code class="language-bash">export GATEWAY=192.168.8.254
-docker run --rm --network abcnetfirefox busybox ping $GATEWAY
-# Google’s public DNS server 8.8.8.8 is added
-docker run --rm --network abcnetfirefox --dns 8.8.8.8 busybox ping www.google.com
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">GATEWAY</span><span class="o">=</span><span class="m">192</span>.168.8.254
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--network<span class="w"> </span>abcnetfirefox<span class="w"> </span>busybox<span class="w"> </span>ping<span class="w"> </span><span class="nv">$GATEWAY</span>
+<span class="c1"># Google’s public DNS server 8.8.8.8 is added</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--network<span class="w"> </span>abcnetfirefox<span class="w"> </span>--dns<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span>busybox<span class="w"> </span>ping<span class="w"> </span>www.google.com
+</code></pre></div>
 <h2 id="applications-rules">Applications rules</h2>
 <p>Update your <code>applist.json</code> file and add a specific rule into the firefox application description </p>
-<pre><code class="language-bash">git clone https://github.com/abcdesktopio/oc.apps.git
-cd oc.apps
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/abcdesktopio/oc.apps.git
+<span class="nb">cd</span><span class="w"> </span>oc.apps
+</code></pre></div>
 <p>Specific rules entry example</p>
-<pre><code class="language-json">&quot;rules&quot;: { &quot;homedir&quot;: { &quot;default&quot;: true, &quot;ship&quot;: true }, 
-           &quot;network&quot;: { &quot;default&quot;: false, 
-                        &quot;internet&quot;: { 
-                                    &quot;name&quot;: &quot;abcnetfirefox&quot;, 
-                                    &quot;dns&quot;: [ &quot;8.8.8.8&quot; ] } } },
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ship&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span><span class="w"> </span>
+<span class="w">           </span><span class="nt">&quot;network&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="nt">&quot;internet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcnetfirefox&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                    </span><span class="nt">&quot;dns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;8.8.8.8&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+</code></pre></div>
 <p>In this example, if the current user token contains the tag label <code>internet</code> when the firefox application use <code>abcnetfirefox</code> and the dns <code>8.8.8.8</code></p>
 <h3 id="edit-the-applistjson-file">Edit the <code>applist.json</code> file</h3>
 <p>Edit the <code>applist.json</code> file, and add rules to the application <code>firefox</code> for example</p>
 <p>The new firefox dictionary with rules :</p>
-<pre><code class="language-json">{
-    &quot;cat&quot;: &quot;office&quot;,
-    &quot;preruncommands&quot;: [ &quot;RUN DEBIAN_FRONTEND=noninteractive echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections&quot;,
-                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes ttf-mscorefonts-installer ttf-bitstream-vera ttf-dejavu ttf-xfree86-nonfree &amp;&amp; apt-get clean&quot;,
-                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes winbind firefox $(apt-cache search firefox-locale | awk '{print $1 }') &amp;&amp; apt-get clean&quot;,
-                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes flashplugin-installer ubuntu-restricted-extras libavc1394-0 &amp;&amp; apt-get clean&quot;,
-                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes libasound2-plugins libgail-common libgtk2.0-bin chromium-codecs-ffmpeg-extra gstreamer1.0-libav gstreamer1.0-plugins-ugly gstreamer1.0-vaapi libavcodec-extra &amp;&amp; apt-get clean&quot;,
-                        &quot;COPY composer/init.d/init.firefox /composer/init.d/init.firefox&quot;,
-                        &quot;COPY policies.json /usr/lib/firefox/distribution&quot;,
-                        &quot;COPY /ntlm_auth /usr/bin/ntlm_auth.abcdesktop&quot;,
-                        &quot;RUN chown root:root /usr/bin/ntlm_auth.desktop &amp;&amp; chmod 111 /usr/bin/ntlm_auth.abcdesktop&quot;,
-                        &quot;ENV NSS_SDB_USE_CACHE=yes&quot; ],
-    &quot;debpackage&quot;: &quot;&quot;,
-    &quot;icon&quot;: &quot;firefox.svg&quot;,
-    &quot;keyword&quot;: &quot;firefox,mozilla,web,internet&quot;,
-    &quot;launch&quot;: &quot;Navigator.Firefox&quot;,
-    &quot;name&quot;: &quot;Firefox&quot;,
-    &quot;displayname&quot;: &quot;Firefox&quot;,
-    &quot;showinview&quot;: &quot;dock&quot;,
-    &quot;splash&quot;: &quot;enable&quot;,
-    &quot;mem_limit&quot;: &quot;16gb&quot;,
-    &quot;oomkilldisable&quot;: true,
-    &quot;path&quot;: &quot;/usr/bin/firefox&quot;,
-    &quot;template&quot;: &quot;abcdesktopio/oc.template.gtk&quot;,
-    &quot;mimetype&quot;: &quot;text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;&quot;,
-    &quot;legacyfileextensions&quot;: &quot;htm;html;xml&quot;,
-    &quot;fileextensions&quot;: &quot;htm;html;xml;gif&quot;,
-    &quot;desktopfile&quot;:&quot;/usr/share/applications/firefox.desktop&quot;,
-    &quot;shm_size&quot;: &quot;2gb&quot;,
-    &quot;usedefaultapplication&quot;: true,
-    &quot;rules&quot;: { &quot;homedir&quot;: { &quot;default&quot;: true, &quot;ship&quot;: true }, 
-           &quot;network&quot;: { &quot;default&quot;: false, 
-                        &quot;internet&quot;: { 
-                                    &quot;name&quot;: &quot;abcnetfirefox&quot;, 
-                                    &quot;dns&quot;: [ &quot;8.8.8.8&quot; ] } } }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;office&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;preruncommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;RUN DEBIAN_FRONTEND=noninteractive echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes ttf-mscorefonts-installer ttf-bitstream-vera ttf-dejavu ttf-xfree86-nonfree &amp;&amp; apt-get clean&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes winbind firefox $(apt-cache search firefox-locale | awk &#39;{print $1 }&#39;) &amp;&amp; apt-get clean&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes flashplugin-installer ubuntu-restricted-extras libavc1394-0 &amp;&amp; apt-get clean&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes libasound2-plugins libgail-common libgtk2.0-bin chromium-codecs-ffmpeg-extra gstreamer1.0-libav gstreamer1.0-plugins-ugly gstreamer1.0-vaapi libavcodec-extra &amp;&amp; apt-get clean&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;COPY composer/init.d/init.firefox /composer/init.d/init.firefox&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;COPY policies.json /usr/lib/firefox/distribution&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;COPY /ntlm_auth /usr/bin/ntlm_auth.abcdesktop&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;RUN chown root:root /usr/bin/ntlm_auth.desktop &amp;&amp; chmod 111 /usr/bin/ntlm_auth.abcdesktop&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;ENV NSS_SDB_USE_CACHE=yes&quot;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;debpackage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;firefox.svg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;firefox,mozilla,web,internet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Navigator.Firefox&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Firefox&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Firefox&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;showinview&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dock&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;splash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;enable&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mem_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;16gb&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;oomkilldisable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/firefox&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/oc.template.gtk&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;legacyfileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;htm;html;xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;htm;html;xml;gif&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="s2">&quot;/usr/share/applications/firefox.desktop&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;shm_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2gb&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;usedefaultapplication&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ship&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span><span class="w"> </span>
+<span class="w">           </span><span class="nt">&quot;network&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="nt">&quot;internet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcnetfirefox&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                    </span><span class="nt">&quot;dns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;8.8.8.8&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Save your changes, and run <code>make dockerfile</code>, next <code>docker build</code></p>
 <p>Build and update your new firefox application</p>
-<pre><code class="language-bash"># create the Dockerfile firefox.d 
-make dockerfile
+<div class="highlight"><pre><span></span><code><span class="c1"># create the Dockerfile firefox.d </span>
+make<span class="w"> </span>dockerfile
 
-# build the new image
-docker build -f firefox.d -t firefox.d .
-</code></pre>
+<span class="c1"># build the new image</span>
+docker<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>firefox.d<span class="w"> </span>-t<span class="w"> </span>firefox.d<span class="w"> </span>.
+</code></pre></div>
 <p>Check that the <code>oc.rules</code> label in new firefox.d image </p>
-<pre><code class="language-bash">docker inspect firefox.d 
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>inspect<span class="w"> </span>firefox.d<span class="w"> </span>
+</code></pre></div>
 <p>The <code>oc.rules</code> label is a string json formated</p>
-<pre><code>&quot;oc.rules&quot;: &quot;{\&quot;homedir\&quot;:{\&quot;default\&quot;:true,\&quot;ship\&quot;:true},\&quot;network\&quot;:{\&quot;default\&quot;:false,\&quot;internet\&quot;:{\&quot;name\&quot;:\&quot;abcnetfirefox\&quot;,\&quot;dns\&quot;:[\&quot;8.8.8.8\&quot;]}}}&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code>&quot;oc.rules&quot;: &quot;{\&quot;homedir\&quot;:{\&quot;default\&quot;:true,\&quot;ship\&quot;:true},\&quot;network\&quot;:{\&quot;default\&quot;:false,\&quot;internet\&quot;:{\&quot;name\&quot;:\&quot;abcnetfirefox\&quot;,\&quot;dns\&quot;:[\&quot;8.8.8.8\&quot;]}}}&quot;
+</code></pre></div>
 <h2 id="add-tag-the-user-auth">Add tag the user auth</h2>
 <p>Add a tag <code>internet</code> to the user auth provider</p>
 <h3 id="update-authprovider-in-odconfig-file">Update authprovider in <code>od.config</code> file</h3>
 <p>Update the <code>ldapconfig</code> for planet with the new <code>policies</code> dict</p>
-<pre><code class="language-json">  'policies': { 'acls': None, 
-              'rules'   : { 'rule-ship': { 'conditions' : [ { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com', 'expected' : True  } ],
-              'expected' : True, 
-              'label': 'internet' },
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acls&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="p">,</span><span class="w"> </span>
+<span class="w">              </span><span class="err">&#39;rules&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">ship&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memberO</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;c</span><span class="kc">n</span><span class="err">=ship_crew</span><span class="p">,</span><span class="err">ou=people</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">              </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">              </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;i</span><span class="kc">nternet</span><span class="err">&#39;</span><span class="w"> </span><span class="p">},</span>
+</code></pre></div>
 <p>The complete <code>ldapconfig</code> for planet is </p>
-<pre><code class="language-json">ldapconfig : { 'planet': {    'default'       : True,
-                        'ldap_timeout'  : 15,
-                        'ldap_protocol' : 'ldap',
-                        'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ '192.168.7.69' ],
-                        'secure'        : False,
-                        'auth_protocol' : { 'ntlm': True, 'cntlm': False, 'kerberos': False, 'citrix': False},
-                        'citrix_all_regions' : 'Hello, {{ domain }}\\{{ user }}:{{ password }}',  
-                        'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' },
+<div class="highlight"><pre><span></span><code><span class="err">ldapco</span><span class="kc">nf</span><span class="err">ig</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;pla</span><span class="kc">net</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="err">&#39;de</span><span class="kc">fault</span><span class="err">&#39;</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">                        </span><span class="err">&#39;ldap_</span><span class="kc">t</span><span class="err">imeou</span><span class="kc">t</span><span class="err">&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">                        </span><span class="err">&#39;ldap_pro</span><span class="kc">t</span><span class="err">ocol&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ldap&#39;</span><span class="p">,</span>
+<span class="w">                        </span><span class="err">&#39;ldap_based</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ou=people</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span>
+<span class="w">                        </span><span class="err">&#39;servers&#39;</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">192.168.7.69</span><span class="err">&#39;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">                        </span><span class="err">&#39;secure&#39;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span>
+<span class="w">                        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">h_pro</span><span class="kc">t</span><span class="err">ocol&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">ntl</span><span class="err">m&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;c</span><span class="kc">ntl</span><span class="err">m&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;kerberos&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ci</span><span class="kc">tr</span><span class="err">ix&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">},</span>
+<span class="w">                        </span><span class="err">&#39;ci</span><span class="kc">tr</span><span class="err">ix_all_regio</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Hello</span><span class="p">,</span><span class="w"> </span><span class="p">{{</span><span class="w"> </span><span class="err">domai</span><span class="kc">n</span><span class="w"> </span><span class="p">}}</span><span class="err">\\</span><span class="p">{{</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="p">}}:{{</span><span class="w"> </span><span class="err">password</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span><span class="p">,</span><span class="w">  </span>
+<span class="w">                        </span><span class="err">&#39;serviceaccou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;logi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;c</span><span class="kc">n</span><span class="err">=admi</span><span class="kc">n</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;password&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;GoodNewsEveryo</span><span class="kc">ne</span><span class="err">&#39;</span><span class="w"> </span><span class="p">},</span>
 
-                        'policies': { 'acls': None, 
-             'rules'    : { 'rule-ship': { 'conditions' : [ { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com', 'expected' : True  } ], 'expected' : True, 'label': 'internet' } 
-      } } } }
-</code></pre>
+<span class="w">                        </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acls&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="p">,</span><span class="w"> </span>
+<span class="w">             </span><span class="err">&#39;rules&#39;</span><span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;rule</span><span class="mi">-</span><span class="err">ship&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;co</span><span class="kc">n</span><span class="err">di</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memberO</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;c</span><span class="kc">n</span><span class="err">=ship_crew</span><span class="p">,</span><span class="err">ou=people</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="err">&#39;expec</span><span class="kc">te</span><span class="err">d&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;i</span><span class="kc">nternet</span><span class="err">&#39;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <p>Restart your kubernetes pyos pod, to reload new the <code>od.config</code> configuration file.</p>
 <h3 id="use-the-philip-j-fry-user-context">Use the <code>Philip J. Fry</code> user context.</h3>
 <p>Open a web browser, go to the abcdesktop login page.</p>
@@ -5515,52 +5515,52 @@ docker build -f firefox.d -t firefox.d .
 <p>Start the new application <code>firefox</code>, the docker network for this application use the <code>abcnetfirefox</code> </p>
 <p><img alt="firefox use macvlan" src="../img/firefox-macvlan.png" /></p>
 <p>Run the command</p>
-<pre><code class="language-bash">docker network inspect abcnetfirefox
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>network<span class="w"> </span>inspect<span class="w"> </span>abcnetfirefox
+</code></pre></div>
 <p>abcdesktop start a new container <code>"Name": "philip-j--fry-firefox-d2c22d9912fc4a489a1224237af9a3e0"</code> and bind the <code>abcnetfirefox</code> to user container.</p>
-<pre><code class="language-json">[
-    {
-        &quot;Name&quot;: &quot;abcnetfirefox&quot;,
-        &quot;Id&quot;: &quot;69c5ac0996226654635377458c044675114d5feb742a8a56d8a228180829d9cd&quot;,
-        &quot;Created&quot;: &quot;2021-02-05T16:24:41.781733948+01:00&quot;,
-        &quot;Scope&quot;: &quot;local&quot;,
-        &quot;Driver&quot;: &quot;macvlan&quot;,
-        &quot;EnableIPv6&quot;: false,
-        &quot;IPAM&quot;: {
-            &quot;Driver&quot;: &quot;default&quot;,
-            &quot;Options&quot;: {},
-            &quot;Config&quot;: [
-                {
-                    &quot;Subnet&quot;: &quot;192.168.8.0/24&quot;,
-                    &quot;Gateway&quot;: &quot;192.168.8.254&quot;
-                }
-            ]
-        },
-        &quot;Internal&quot;: false,
-        &quot;Attachable&quot;: false,
-        &quot;Ingress&quot;: false,
-        &quot;ConfigFrom&quot;: {
-            &quot;Network&quot;: &quot;&quot;
-        },
-        &quot;ConfigOnly&quot;: false,
-        &quot;Containers&quot;: {
-            &quot;05f88ee41055b209e7599a455705088cf633f6458313508ce867d13b8d39014a&quot;: {
-                &quot;Name&quot;: &quot;philip-j--fry-firefox-d2c22d9912fc4a489a1224237af9a3e0&quot;,
-                &quot;EndpointID&quot;: &quot;ae0271ed73aa5478ac364444b29342278b82bc710bd4e4eeb64a51d7eeec4d9c&quot;,
-                &quot;MacAddress&quot;: &quot;02:42:a1:69:d0:82&quot;,
-                &quot;IPv4Address&quot;: &quot;192.168.8.1/24&quot;,
-                &quot;IPv6Address&quot;: &quot;&quot;
-            }
-        },
-        &quot;Options&quot;: {
-            &quot;parent&quot;: &quot;eno1.106&quot;
-        },
-        &quot;Labels&quot;: {
-            &quot;type&quot;: &quot;oc.app&quot;
-        }
-    }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcnetfirefox&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;69c5ac0996226654635377458c044675114d5feb742a8a56d8a228180829d9cd&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-02-05T16:24:41.781733948+01:00&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Scope&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;local&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Driver&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;macvlan&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;EnableIPv6&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;IPAM&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Driver&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">            </span><span class="nt">&quot;Config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;Subnet&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.8.0/24&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Gateway&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.8.254&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Internal&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Attachable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Ingress&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ConfigFrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Network&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;ConfigOnly&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Containers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;05f88ee41055b209e7599a455705088cf633f6458313508ce867d13b8d39014a&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;philip-j--fry-firefox-d2c22d9912fc4a489a1224237af9a3e0&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;EndpointID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ae0271ed73aa5478ac364444b29342278b82bc710bd4e4eeb64a51d7eeec4d9c&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;MacAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;02:42:a1:69:d0:82&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;IPv4Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.8.1/24&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;IPv6Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eno1.106&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;oc.app&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <p>Close the firefox application.</p>
 <p>Logoff, to remove the user pod <code>Philip J. Fry</code>. </p>
 <p><img alt="logoff as Philip J. Fry" src="../img/logoff-fry-macvlan.png" /></p>
@@ -5572,175 +5572,175 @@ docker build -f firefox.d -t firefox.d .
 <p><img alt="login as Hubert J. Farnsworth" src="../img/login-professor-macvlan.png" /></p>
 <p>Start the new application <code>firefox</code>, the docker network for this application do <strong>NOT use</strong> the <code>abcnetfirefox</code> </p>
 <p>Run the command</p>
-<pre><code class="language-bash">docker network inspect abcnetfirefox
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>network<span class="w"> </span>inspect<span class="w"> </span>abcnetfirefox
+</code></pre></div>
 <p><code>abcnetfirefox</code> description :</p>
-<pre><code class="language-json">docker network inspect abcnetfirefox
-[
-    {
-        &quot;Name&quot;: &quot;abcnetfirefox&quot;,
-        &quot;Id&quot;: &quot;69c5ac0996226654635377458c044675114d5feb742a8a56d8a228180829d9cd&quot;,
-        &quot;Created&quot;: &quot;2021-02-05T16:24:41.781733948+01:00&quot;,
-        &quot;Scope&quot;: &quot;local&quot;,
-        &quot;Driver&quot;: &quot;macvlan&quot;,
-        &quot;EnableIPv6&quot;: false,
-        &quot;IPAM&quot;: {
-            &quot;Driver&quot;: &quot;default&quot;,
-            &quot;Options&quot;: {},
-            &quot;Config&quot;: [
-                {
-                    &quot;Subnet&quot;: &quot;192.168.8.0/24&quot;,
-                    &quot;Gateway&quot;: &quot;192.168.8.254&quot;
-                }
-            ]
-        },
-        &quot;Internal&quot;: false,
-        &quot;Attachable&quot;: false,
-        &quot;Ingress&quot;: false,
-        &quot;ConfigFrom&quot;: {
-            &quot;Network&quot;: &quot;&quot;
-        },
-        &quot;ConfigOnly&quot;: false,
-        &quot;Containers&quot;: {},
-        &quot;Options&quot;: {
-            &quot;parent&quot;: &quot;eno1.106&quot;
-        },
-        &quot;Labels&quot;: {
-            &quot;type&quot;: &quot;oc.app&quot;
-        }
-    }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">docker</span><span class="w"> </span><span class="kc">net</span><span class="err">work</span><span class="w"> </span><span class="err">i</span><span class="kc">ns</span><span class="err">pec</span><span class="kc">t</span><span class="w"> </span><span class="err">abc</span><span class="kc">netf</span><span class="err">ire</span><span class="kc">f</span><span class="err">ox</span>
+<span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcnetfirefox&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;69c5ac0996226654635377458c044675114d5feb742a8a56d8a228180829d9cd&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-02-05T16:24:41.781733948+01:00&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Scope&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;local&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Driver&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;macvlan&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;EnableIPv6&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;IPAM&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Driver&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">            </span><span class="nt">&quot;Config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;Subnet&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.8.0/24&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Gateway&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.8.254&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Internal&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Attachable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Ingress&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ConfigFrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Network&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;ConfigOnly&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Containers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">        </span><span class="nt">&quot;Options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eno1.106&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;oc.app&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <p>The new firefox container doesn't use the docker network <code>abcnetfirefox</code>, because the <code>Hubert J. Farnsworth</code> user account is <strong>NOT member of</strong> <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code></p>
 <p>The network is disabled by default.</p>
 <p><img alt="disabled network for Hubert J. Farnsworth" src="../img/firefox-no-network.png" /></p>
 <p>Inspect the <code>Hubert J. Farnsworth</code> firefox container</p>
-<pre><code class="language-json">        &quot;NetworkSettings&quot;: {
-            &quot;Bridge&quot;: &quot;&quot;,
-            &quot;SandboxID&quot;: &quot;&quot;,
-            &quot;HairpinMode&quot;: false,
-            &quot;LinkLocalIPv6Address&quot;: &quot;&quot;,
-            &quot;LinkLocalIPv6PrefixLen&quot;: 0,
-            &quot;Ports&quot;: {},
-            &quot;SandboxKey&quot;: &quot;&quot;,
-            &quot;SecondaryIPAddresses&quot;: null,
-            &quot;SecondaryIPv6Addresses&quot;: null,
-            &quot;EndpointID&quot;: &quot;&quot;,
-            &quot;Gateway&quot;: &quot;&quot;,
-            &quot;GlobalIPv6Address&quot;: &quot;&quot;,
-            &quot;GlobalIPv6PrefixLen&quot;: 0,
-            &quot;IPAddress&quot;: &quot;&quot;,
-            &quot;IPPrefixLen&quot;: 0,
-            &quot;IPv6Gateway&quot;: &quot;&quot;,
-            &quot;MacAddress&quot;: &quot;&quot;,
-            &quot;Networks&quot;: {}
-        }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="nt">&quot;NetworkSettings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Bridge&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;SandboxID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;HairpinMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;LinkLocalIPv6Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;LinkLocalIPv6PrefixLen&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Ports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">            </span><span class="nt">&quot;SandboxKey&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;SecondaryIPAddresses&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;SecondaryIPv6Addresses&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;EndpointID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Gateway&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;GlobalIPv6Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;GlobalIPv6PrefixLen&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;IPAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;IPPrefixLen&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;IPv6Gateway&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;MacAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Networks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">        </span><span class="p">}</span>
+</code></pre></div>
 <p>The network access is disable for this application</p>
-<pre><code class="language-json">&quot;rules&quot;: { &quot;homedir&quot;: { &quot;default&quot;: true, &quot;ship&quot;: true }, 
-           &quot;network&quot;: { &quot;default&quot;: false, 
-                        &quot;internet&quot;: { 
-                                    &quot;name&quot;: &quot;abcnetfirefox&quot;, 
-                                    &quot;dns&quot;: [ &quot;8.8.8.8&quot; ] } } }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ship&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span><span class="w"> </span>
+<span class="w">           </span><span class="nt">&quot;network&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="nt">&quot;internet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcnetfirefox&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                    </span><span class="nt">&quot;dns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;8.8.8.8&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <p>In this case, only users with the label tag <code>internet</code>, can bind the network name <code>abcnetfirefox</code>.</p>
 <h3 id="enable-network-for-hubert-j-farnsworth">Enable network for <code>Hubert J. Farnsworth</code></h3>
 <p>Update the application firefox rules</p>
 <p>Now it's time to permit network access to </p>
 <p>Update the applist.json file :</p>
 <p>Specific rules entry example</p>
-<pre><code class="language-json">&quot;rules&quot;: { &quot;homedir&quot;: { &quot;default&quot;: true, &quot;ship&quot;: true }, 
-           &quot;network&quot;: { &quot;default&quot;: true, 
-                        &quot;internet&quot;: { 
-                                    &quot;name&quot;: &quot;abcnetfirefox&quot;, 
-                                    &quot;dns&quot;: [ &quot;8.8.8.8&quot; ] } } },
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ship&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span><span class="w"> </span>
+<span class="w">           </span><span class="nt">&quot;network&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="nt">&quot;internet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcnetfirefox&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                    </span><span class="nt">&quot;dns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;8.8.8.8&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+</code></pre></div>
 <p>The new firefox dictionary with network rules set with "default": true :</p>
-<pre><code class="language-json">{
-    &quot;cat&quot;: &quot;office&quot;,
-    &quot;preruncommands&quot;: [ &quot;RUN DEBIAN_FRONTEND=noninteractive echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections&quot;,
-                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes ttf-mscorefonts-installer ttf-bitstream-vera ttf-dejavu ttf-xfree86-nonfree &amp;&amp; apt-get clean&quot;,
-                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes winbind firefox $(apt-cache search firefox-locale | awk '{print $1 }') &amp;&amp; apt-get clean&quot;,
-                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes flashplugin-installer ubuntu-restricted-extras libavc1394-0 &amp;&amp; apt-get clean&quot;,
-                        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes libasound2-plugins libgail-common libgtk2.0-bin chromium-codecs-ffmpeg-extra gstreamer1.0-libav gstreamer1.0-plugins-ugly gstreamer1.0-vaapi libavcodec-extra &amp;&amp; apt-get clean&quot;,
-                        &quot;COPY composer/init.d/init.firefox /composer/init.d/init.firefox&quot;,
-                        &quot;COPY policies.json /usr/lib/firefox/distribution&quot;,
-                        &quot;COPY /ntlm_auth /usr/bin/ntlm_auth.abcdesktop&quot;,
-                        &quot;RUN chown root:root /usr/bin/ntlm_auth.desktop &amp;&amp; chmod 111 /usr/bin/ntlm_auth.abcdesktop&quot;,
-                        &quot;ENV NSS_SDB_USE_CACHE=yes&quot; ],
-    &quot;debpackage&quot;: &quot;&quot;,
-    &quot;icon&quot;: &quot;firefox.svg&quot;,
-    &quot;keyword&quot;: &quot;firefox,mozilla,web,internet&quot;,
-    &quot;launch&quot;: &quot;Navigator.Firefox&quot;,
-    &quot;name&quot;: &quot;Firefox&quot;,
-    &quot;displayname&quot;: &quot;Firefox&quot;,
-    &quot;showinview&quot;: &quot;dock&quot;,
-    &quot;splash&quot;: &quot;enable&quot;,
-    &quot;mem_limit&quot;: &quot;16gb&quot;,
-    &quot;oomkilldisable&quot;: true,
-    &quot;path&quot;: &quot;/usr/bin/firefox&quot;,
-    &quot;template&quot;: &quot;abcdesktopio/oc.template.gtk&quot;,
-    &quot;mimetype&quot;: &quot;text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;&quot;,
-    &quot;legacyfileextensions&quot;: &quot;htm;html;xml&quot;,
-    &quot;fileextensions&quot;: &quot;htm;html;xml;gif&quot;,
-    &quot;desktopfile&quot;:&quot;/usr/share/applications/firefox.desktop&quot;,
-    &quot;shm_size&quot;: &quot;2gb&quot;,
-    &quot;usedefaultapplication&quot;: true,
-    &quot;rules&quot;: { &quot;homedir&quot;: { &quot;default&quot;: true, &quot;ship&quot;: true }, 
-           &quot;network&quot;: { &quot;default&quot;: true, 
-                        &quot;internet&quot;: { 
-                                    &quot;name&quot;: &quot;abcnetfirefox&quot;, 
-                                    &quot;dns&quot;: [ &quot;8.8.8.8&quot; ] } } }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;office&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;preruncommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;RUN DEBIAN_FRONTEND=noninteractive echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes ttf-mscorefonts-installer ttf-bitstream-vera ttf-dejavu ttf-xfree86-nonfree &amp;&amp; apt-get clean&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes winbind firefox $(apt-cache search firefox-locale | awk &#39;{print $1 }&#39;) &amp;&amp; apt-get clean&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes flashplugin-installer ubuntu-restricted-extras libavc1394-0 &amp;&amp; apt-get clean&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes libasound2-plugins libgail-common libgtk2.0-bin chromium-codecs-ffmpeg-extra gstreamer1.0-libav gstreamer1.0-plugins-ugly gstreamer1.0-vaapi libavcodec-extra &amp;&amp; apt-get clean&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;COPY composer/init.d/init.firefox /composer/init.d/init.firefox&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;COPY policies.json /usr/lib/firefox/distribution&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;COPY /ntlm_auth /usr/bin/ntlm_auth.abcdesktop&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;RUN chown root:root /usr/bin/ntlm_auth.desktop &amp;&amp; chmod 111 /usr/bin/ntlm_auth.abcdesktop&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;ENV NSS_SDB_USE_CACHE=yes&quot;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;debpackage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;firefox.svg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;firefox,mozilla,web,internet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Navigator.Firefox&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Firefox&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Firefox&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;showinview&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dock&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;splash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;enable&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mem_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;16gb&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;oomkilldisable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/firefox&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/oc.template.gtk&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;legacyfileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;htm;html;xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;htm;html;xml;gif&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="s2">&quot;/usr/share/applications/firefox.desktop&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;shm_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2gb&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;usedefaultapplication&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ship&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span><span class="w"> </span>
+<span class="w">           </span><span class="nt">&quot;network&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="nt">&quot;internet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcnetfirefox&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                    </span><span class="nt">&quot;dns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;8.8.8.8&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Save your changes, and run <code>make dockerfile</code>, next <code>docker build</code></p>
 <p>Build and update your new firefox application</p>
-<pre><code class="language-bash"># create the Dockerfile firefox.d 
-make dockerfile
+<div class="highlight"><pre><span></span><code><span class="c1"># create the Dockerfile firefox.d </span>
+make<span class="w"> </span>dockerfile
 
-# build the new image
-docker build -f firefox.d -t firefox.d .
-</code></pre>
+<span class="c1"># build the new image</span>
+docker<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>firefox.d<span class="w"> </span>-t<span class="w"> </span>firefox.d<span class="w"> </span>.
+</code></pre></div>
 <p>Check that the <code>oc.rules</code> label in new firefox.d image </p>
-<pre><code class="language-bash">docker inspect firefox.d 
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>inspect<span class="w"> </span>firefox.d<span class="w"> </span>
+</code></pre></div>
 <p>The <code>oc.rules</code> label is a string json formated</p>
-<pre><code> &quot;oc.rules&quot;: &quot;{\&quot;homedir\&quot;:{\&quot;default\&quot;:true,\&quot;ship\&quot;:true},\&quot;network\&quot;:{\&quot;default\&quot;:true,\&quot;internet\&quot;:{\&quot;name\&quot;:\&quot;abcnetfirefox\&quot;,\&quot;dns\&quot;:[\&quot;8.8.8.8\&quot;]}}}&quot;,
-</code></pre>
+<div class="highlight"><pre><span></span><code> &quot;oc.rules&quot;: &quot;{\&quot;homedir\&quot;:{\&quot;default\&quot;:true,\&quot;ship\&quot;:true},\&quot;network\&quot;:{\&quot;default\&quot;:true,\&quot;internet\&quot;:{\&quot;name\&quot;:\&quot;abcnetfirefox\&quot;,\&quot;dns\&quot;:[\&quot;8.8.8.8\&quot;]}}}&quot;,
+</code></pre></div>
 <p>Request the abcdesktop core service to update the application cache data</p>
 <blockquote>
 <p>Replace MY_FQDN by your own hostname </p>
 </blockquote>
-<pre><code class="language-bash">export MY_FQDN=localhost
-curl http://$MY_FQDN/API/manager/buildapplist 
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">MY_FQDN</span><span class="o">=</span>localhost
+curl<span class="w"> </span>http://<span class="nv">$MY_FQDN</span>/API/manager/buildapplist<span class="w"> </span>
+</code></pre></div>
 <p>You do not need to logoff the <code>Hubert J. Farnsworth</code>, just close Firefox application and start it again. The new firefox container use the default network.</p>
 <p><img alt="enable network by default" src="../img/firefox-withdefault-network.png" /></p>
 <p>Now default user has a network access, and member of <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code> use the <code>abcnetfirefox</code> network.</p>
 <h2 id="webhook-events-create-and-destroy-application">Webhook events <code>create</code> and <code>destroy</code> application</h2>
 <p>A rule support a specific bash command to notify external security equipment like firewalls, by sending <code>create</code> and <code>destroy</code> events. </p>
-<pre><code>&quot;rules&quot;: {  &quot;homedir&quot;: { &quot;default&quot;: false, &quot;ship&quot;: true }, 
+<div class="highlight"><pre><span></span><code>&quot;rules&quot;: {  &quot;homedir&quot;: { &quot;default&quot;: false, &quot;ship&quot;: true }, 
                 &quot;network&quot;: { &quot;default&quot;: false, 
                     &quot;ship&quot;: { &quot;name&quot;: &quot;abcnetfirefox&quot;, 
                                 &quot;dns&quot;: [ &quot;8.8.8.8&quot; ], 
                                 &quot;webhook&quot;: { 
-                                    &quot;create&quot;: &quot;/usr/bin/curl 'http://firewall.domain.local/update?action=create&amp;key={{ key }}&amp;name={{ name }}&amp;ip={{ container_ip }}'&quot;, 
-                                    &quot;destroy&quot;: &quot;/usr/bin/curl 'http://firewall.domain.local/update?action=destroy&amp;key={{ key }}&amp;name={{ name }}&amp;ip={{ container_ip }}'&quot; 
+                                    &quot;create&quot;: &quot;/usr/bin/curl &#39;http://firewall.domain.local/update?action=create&amp;key={{ key }}&amp;name={{ name }}&amp;ip={{ container_ip }}&#39;&quot;, 
+                                    &quot;destroy&quot;: &quot;/usr/bin/curl &#39;http://firewall.domain.local/update?action=destroy&amp;key={{ key }}&amp;name={{ name }}&amp;ip={{ container_ip }}&#39;&quot; 
                                 } 
                     }
                 }
 }
-</code></pre>
+</code></pre></div>
 <ul>
 <li>When a new docker container is created, the control plane <code>pyos</code> execute the command  </li>
 </ul>
-<pre><code>/usr/bin/curl 'http://firewall.domain.local/update?action=create&amp;key={{ key }}&amp;name={{ name }}&amp;ip={{ container_ip }}
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/bin/curl &#39;http://firewall.domain.local/update?action=create&amp;key={{ key }}&amp;name={{ name }}&amp;ip={{ container_ip }}
+</code></pre></div>
 <ul>
 <li>When a new docker container is destoyed, the control plane <code>pyos</code> call the url  </li>
 </ul>
-<pre><code>/usr/bin/curl 'http://firewall.domain.local/update?action=destroy&amp;key={{ key }}&amp;name={{ name }}&amp;ip={{ container_ip }}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/bin/curl &#39;http://firewall.domain.local/update?action=destroy&amp;key={{ key }}&amp;name={{ name }}&amp;ip={{ container_ip }}&#39;
+</code></pre></div>
 <p>Each <code>{{ $label }}</code> is a mustached value.</p>
 <table>
 <thead>
@@ -5844,17 +5844,17 @@ curl http://$MY_FQDN/API/manager/buildapplist
 Set <code>desktop.webhookencodeparams</code> to <code>True</code> to encode label name. The default value is <code>False</code></p>
 <h4 id="additional-dict-datas">additional dict datas</h4>
 <p>Additional datas can be set using the <code>desktop.webhookdict</code> option in od.config file</p>
-<pre><code class="language-json">desktop.webhookdict: { 
-        'api_key': 'supersecret', 
-        'firewall_manage_ip': '161.105.208.129'  
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.webhookdic</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;api_key&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;supersecre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">irewall_ma</span><span class="kc">na</span><span class="err">ge_ip&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">161.105.208.129</span><span class="err">&#39;</span><span class="w">  </span>
+<span class="p">}</span>
+</code></pre></div>
 <p>The command line </p>
-<pre><code class="language-bash">/usr/bin/curl 'http://{{ firewall_manage_ip }}/update?action=destroy&amp;key={{ api_key }}&amp;name={{ name }}&amp;ip={{ container_ip }}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/bin/curl<span class="w"> </span><span class="s1">&#39;http://{{ firewall_manage_ip }}/update?action=destroy&amp;key={{ api_key }}&amp;name={{ name }}&amp;ip={{ container_ip }}&#39;</span>
+</code></pre></div>
 <p>becomes</p>
-<pre><code class="language-bash">/usr/bin/curl 'http://161.105.208.129/update?action=destroy&amp;key=supersecret&amp;name={{ name }}&amp;ip={{ container_ip }}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/bin/curl<span class="w"> </span><span class="s1">&#39;http://161.105.208.129/update?action=destroy&amp;key=supersecret&amp;name={{ name }}&amp;ip={{ container_ip }}&#39;</span>
+</code></pre></div>
 
 
 

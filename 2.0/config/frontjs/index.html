@@ -4865,15 +4865,15 @@
 <h1 id="dock-configuration-in-odconfig">dock configuration in od.config</h1>
 <h2 id="menu-setting">Menu Setting</h2>
 <p>The menu can be changed using the dictionnary object <code>menuconfig</code></p>
-<pre><code class="language-json">menuconfig : {
-    'settings'  : True, 
-    'appstore'  : True, 
-    'screenshot'    : True, 
-    'download'  : True, 
-    'logout'        : True, 
-    'disconnect'    : True 
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">me</span><span class="kc">nu</span><span class="err">co</span><span class="kc">nf</span><span class="err">ig</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;se</span><span class="kc">tt</span><span class="err">i</span><span class="kc">n</span><span class="err">gs&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;apps</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;scree</span><span class="kc">ns</span><span class="err">ho</span><span class="kc">t</span><span class="err">&#39;</span><span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;dow</span><span class="kc">nl</span><span class="err">oad&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;logou</span><span class="kc">t</span><span class="err">&#39;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;disco</span><span class="kc">nne</span><span class="err">c</span><span class="kc">t</span><span class="err">&#39;</span><span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="default-dock-config">default dock config</h2>
 <p>The dock session in od.config file describe the default docker in abcdesktop.io.
 The default dock value contains the default applications.
@@ -4904,55 +4904,55 @@ The <code>dock</code> option is a dictionnary read by the front web as a json ob
 </tr>
 </tbody>
 </table>
-<pre><code class="language-json">dock : {       
-    'filemanager':  {       'args': None,
-                            'showinview': u'dock',
-                            'name': u'FileManager',
-                            'keyword': u'files,file manager',
-                            'launch': u'nautilus.Nautilus',
-                            'displayname': u'FileManager',
-                            'execmode': u'builtin',
-                            'cat': u'utilities,office',
-                            'id': u'filemanager.d',
-                            'icon': u'pantheon-files-icons.svg' },
-    'terminal':     {       'args': '',
-                            'name': u'TerminalBuiltin',
-                            'keyword': u'terminal,shell,bash,builtin,pantheon',
-                            'launch': u'qterminal.qterminal',
-                            'displayname': u'Terminal Builtin',
-                            'execmode': u'builtin',
-                            'cat': u'utilities,development',
-                            'id': u'terminalbuiltin.d',
-                            'hideindock': True,
-                            'icon': u'pantheon-terminal-builtin-icons.svg' },
+<div class="highlight"><pre><span></span><code><span class="err">dock</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">       </span>
+<span class="w">    </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">ilema</span><span class="kc">na</span><span class="err">ger&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">       </span><span class="err">&#39;args&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;showi</span><span class="kc">n</span><span class="err">view&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;dock&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;FileMa</span><span class="kc">na</span><span class="err">ger&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;keyword&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;</span><span class="kc">f</span><span class="err">iles</span><span class="p">,</span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="err">ma</span><span class="kc">na</span><span class="err">ger&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;lau</span><span class="kc">n</span><span class="err">ch&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;</span><span class="kc">naut</span><span class="err">ilus.Nau</span><span class="kc">t</span><span class="err">ilus&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;FileMa</span><span class="kc">na</span><span class="err">ger&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;execmode&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;buil</span><span class="kc">t</span><span class="err">i</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;ca</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;u</span><span class="kc">t</span><span class="err">ili</span><span class="kc">t</span><span class="err">ies</span><span class="p">,</span><span class="err">o</span><span class="kc">ff</span><span class="err">ice&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;</span><span class="kc">f</span><span class="err">ilema</span><span class="kc">na</span><span class="err">ger.d&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;pa</span><span class="kc">nt</span><span class="err">heo</span><span class="kc">n</span><span class="mi">-</span><span class="kc">f</span><span class="err">iles</span><span class="mi">-</span><span class="err">ico</span><span class="kc">ns</span><span class="err">.svg&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;</span><span class="kc">ter</span><span class="err">mi</span><span class="kc">nal</span><span class="err">&#39;</span><span class="p">:</span><span class="w">     </span><span class="p">{</span><span class="w">       </span><span class="err">&#39;args&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;Termi</span><span class="kc">nal</span><span class="err">Buil</span><span class="kc">t</span><span class="err">i</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;keyword&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;</span><span class="kc">ter</span><span class="err">mi</span><span class="kc">nal</span><span class="p">,</span><span class="err">shell</span><span class="p">,</span><span class="err">bash</span><span class="p">,</span><span class="err">buil</span><span class="kc">t</span><span class="err">i</span><span class="kc">n</span><span class="p">,</span><span class="err">pa</span><span class="kc">nt</span><span class="err">heo</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;lau</span><span class="kc">n</span><span class="err">ch&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;q</span><span class="kc">ter</span><span class="err">mi</span><span class="kc">nal</span><span class="err">.q</span><span class="kc">ter</span><span class="err">mi</span><span class="kc">nal</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;Termi</span><span class="kc">nal</span><span class="w"> </span><span class="err">Buil</span><span class="kc">t</span><span class="err">i</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;execmode&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;buil</span><span class="kc">t</span><span class="err">i</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;ca</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;u</span><span class="kc">t</span><span class="err">ili</span><span class="kc">t</span><span class="err">ies</span><span class="p">,</span><span class="err">developme</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;</span><span class="kc">ter</span><span class="err">mi</span><span class="kc">nal</span><span class="err">buil</span><span class="kc">t</span><span class="err">i</span><span class="kc">n</span><span class="err">.d&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;hidei</span><span class="kc">n</span><span class="err">dock&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;pa</span><span class="kc">nt</span><span class="err">heo</span><span class="kc">n</span><span class="mi">-</span><span class="kc">ter</span><span class="err">mi</span><span class="kc">nal</span><span class="mi">-</span><span class="err">buil</span><span class="kc">t</span><span class="err">i</span><span class="kc">n</span><span class="mi">-</span><span class="err">ico</span><span class="kc">ns</span><span class="err">.svg&#39;</span><span class="w"> </span><span class="p">},</span>
 
-    'webshell':     {       'name': u'WebShell',
-                            'keyword': u'terminal,shell,webshell,bash',
-                            'launch': u'frontendjs.webshell',
-                            'displayname': u'Web Shell',
-                            'execmode': u'frontendjs',
-                            'cat': u'utilities,development',
-                            'id': u'webshell.d',
-                            'icon': u'webshell.svg' }
-}
-</code></pre>
+<span class="w">    </span><span class="err">&#39;webshell&#39;</span><span class="p">:</span><span class="w">     </span><span class="p">{</span><span class="w">       </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;WebShell&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;keyword&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;</span><span class="kc">ter</span><span class="err">mi</span><span class="kc">nal</span><span class="p">,</span><span class="err">shell</span><span class="p">,</span><span class="err">webshell</span><span class="p">,</span><span class="err">bash&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;lau</span><span class="kc">n</span><span class="err">ch&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;</span><span class="kc">fr</span><span class="err">o</span><span class="kc">nten</span><span class="err">djs.webshell&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;Web</span><span class="w"> </span><span class="err">Shell&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;execmode&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;</span><span class="kc">fr</span><span class="err">o</span><span class="kc">nten</span><span class="err">djs&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;ca</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;u</span><span class="kc">t</span><span class="err">ili</span><span class="kc">t</span><span class="err">ies</span><span class="p">,</span><span class="err">developme</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;webshell.d&#39;</span><span class="p">,</span>
+<span class="w">                            </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;webshell.svg&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="additional-applications">Additional applications</h3>
 <p>This feature is deprecated.
 To run embeded application inside the oc.user image container, with specific attribut <code>{ 'execmode': 'builtin' }</code> add </p>
-<pre><code class="language-json">'webshortcut':  {   'name': u'xlogo',
-                    'showinview': u'dock',
-                    'keyword': u'xlogo',
-                    'execmode': u'builtin',
-                    'launch': u'/usr/bin/xlogo',
-                    'displayname': u'xlogo',
-                    'execmode': u'builtin',
-                    'cat': u'utilities',
-                    'id': u'xlogo.d',
-                    'icon': u'xlogo.svg',
-                    'hideindock': False,
-                    'args': '' 
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;webshor</span><span class="kc">t</span><span class="err">cu</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">   </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;xlogo&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;showi</span><span class="kc">n</span><span class="err">view&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;dock&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;keyword&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;xlogo&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;execmode&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;buil</span><span class="kc">t</span><span class="err">i</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;lau</span><span class="kc">n</span><span class="err">ch&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;/usr/bi</span><span class="kc">n</span><span class="err">/xlogo&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;xlogo&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;execmode&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;buil</span><span class="kc">t</span><span class="err">i</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;ca</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;u</span><span class="kc">t</span><span class="err">ili</span><span class="kc">t</span><span class="err">ies&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;xlogo.d&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">u&#39;xlogo.svg&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;hidei</span><span class="kc">n</span><span class="err">dock&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;args&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;&#39;</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 

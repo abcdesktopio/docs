@@ -5070,29 +5070,28 @@ You should not repeat the process in production, but prefer use a Dockerfile and
 <h2 id="create-a-shared-volume-myshared">Create a shared volume myshared</h2>
 <p>Before creating containers, we need a shared volume, to share data and unix socket between containers.
 Run the docker volume create command.</p>
-<pre><code>docker volume create myshared 
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker volume create myshared 
+</code></pre></div>
 <h2 id="start-the-first-container-myx11server">Start the first container myx11server</h2>
 <p>Start the first graphical container named <strong>myx11server</strong>, forward the tcp port 5900 to the container.</p>
 <ul>
 <li>The tcp port 5900 will be use later by the vnc server.</li>
 <li>The volume myshared is mounted to /tmp</li>
 </ul>
-<pre><code>docker run -it -v myshared:/tmp --name myx11server -p 5900:5900 ubuntu:latest bash
-
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker run -it -v myshared:/tmp --name myx11server -p 5900:5900 ubuntu:latest bash
+</code></pre></div>
 <p>You should see a prompt like :</p>
-<pre><code>root@6de36e574877:/#
-</code></pre>
+<div class="highlight"><pre><span></span><code>root@6de36e574877:/#
+</code></pre></div>
 <p>Install the X11 graphics server tigervnc</p>
-<pre><code>apt-get update
+<div class="highlight"><pre><span></span><code>apt-get update
 apt-get install -y tigervnc-standalone-server tigervnc-xorg-extension
-</code></pre>
+</code></pre></div>
 <p>Start the X11 graphics server tigervnc</p>
-<pre><code> Xvnc :0 -SecurityTypes=none &amp;
-</code></pre>
+<div class="highlight"><pre><span></span><code> Xvnc :0 -SecurityTypes=none &amp;
+</code></pre></div>
 <p>You should read the output </p>
-<pre><code>Xvnc TigerVNC 1.7.0 - built Dec  5 2017 09:25:01
+<div class="highlight"><pre><span></span><code>Xvnc TigerVNC 1.7.0 - built Dec  5 2017 09:25:01
 Copyright (C) 1999-2016 TigerVNC Team and many others (see README.txt)
 See http://www.tigervnc.org for information on TigerVNC.
 Underlying X server release 11905000, The X.Org Foundation
@@ -5102,7 +5101,7 @@ Mon Mar  2 11:43:56 2020
  vncext:      VNC extension running!
  vncext:      Listening for VNC connections on all interface(s), port 5900
  vncext:      created VNC server for screen 0
-</code></pre>
+</code></pre></div>
 <p>Great, you have installed an X11 server inside a docker container, and the Xvnc server is listening for VNC connections on the tcp port 5900. Keep this container running.</p>
 <p>We will use the host tcp port <strong>5900</strong> to connect VNC Client.</p>
 <h2 id="use-vnc-client-to-connect-to-your-first-container-myx11server">Use VNC client to connect to your first container myx11server</h2>
@@ -5123,66 +5122,65 @@ As we did not set a password to protect the VNC access, you have to confirm the 
 <h2 id="install-an-x11-application-as-a-docker-application">Install an x11 application as a docker application</h2>
 <p>On your host, where your container myx11server is running.
 Open a new shell window and start a new docker container named myapp. The myapp container access to the volume myshared and mount it to /tmp.</p>
-<pre><code>docker run -it -v myshared:/tmp --name myapp ubuntu:latest
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker run -it -v myshared:/tmp --name myapp ubuntu:latest
+</code></pre></div>
 <p>You should see a prompt like :</p>
-<pre><code>root@96df62a73e4f:/# 
-</code></pre>
-<p>To install standart application like xedit, xman or xeyes, install the package x11-apps.</p>
+<p><div class="highlight"><pre><span></span><code>root@96df62a73e4f:/# 
+</code></pre></div>
+To install standart application like xedit, xman or xeyes, install the package x11-apps.</p>
 <p>Run those commands in your myx11server container.</p>
-<pre><code>apt-get update
+<div class="highlight"><pre><span></span><code>apt-get update
 apt-get install -y x11-apps
-</code></pre>
+</code></pre></div>
 <p>Set the DISPLAY environment variable to :0.0 and then start the <strong>xedit</strong> command.</p>
-<pre><code>export DISPLAY=:0.0
+<div class="highlight"><pre><span></span><code>export DISPLAY=:0.0
 xedit
-</code></pre>
+</code></pre></div>
 <p>On the VNC Viewer, the application xedit should appear. </p>
 <p><img alt="vncviewer-xedit" src="../img/vncviewer-xedit.png" /></p>
 <p>Great, you can run a X11 application inside a dedicated docker container, and use your myx11server as DISPLAY. But you can't move, resize or close the xedit window.</p>
 <h2 id="install-the-windows-manager-openbox-on-your-myx11server-container">Install the windows manager openbox on your myx11server container</h2>
 <p>To move, resize, close, the windows applications, we need a windows manager. abcdesktop use the windows manager openbox. OpenBox is a lightweight, powerful, and highly configurable stacking window manager with extensive standards support. </p>
 <p>Run the install <strong>openbox</strong> command in your myx11server container.</p>
-<pre><code>apt-get install -y openbox
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get install -y openbox
+</code></pre></div>
 <p>Set the DISPLAY environment variable to :0.0 and then start openbox.</p>
-<pre><code>export DISPLAY=:0.0
+<div class="highlight"><pre><span></span><code>export DISPLAY=:0.0
 openbox
-</code></pre>
+</code></pre></div>
 <p>The Openbox message appear to the sdterr </p>
-<pre><code>Openbox-Message: Unable to find a valid menu file &quot;/var/lib/openbox/debian-menu.xml&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code>Openbox-Message: Unable to find a valid menu file &quot;/var/lib/openbox/debian-menu.xml&quot;
+</code></pre></div>
 <p><img alt="vncviewer-xedit-openbox" src="../img/vncviewer-xedit-openbox.png" /></p>
 <p>Now, you can move the window xedit. The windows are decorated. </p>
 <h2 id="remove-the-myapp-container">Remove the myapp container</h2>
 <p>Activate the window shell with your myapp running container, and press CTRL+C</p>
-<pre><code>root@9abc7da524a5:/# xedit 
+<div class="highlight"><pre><span></span><code>root@9abc7da524a5:/# xedit 
 ^C
 root@9abc7da524a5:/# exit
 exit
-</code></pre>
+</code></pre></div>
 <p>You can remove your docker container, to clean up your environment</p>
-<pre><code>docker rm myapp
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker rm myapp
+</code></pre></div>
 <h2 id="install-another-x11-application-as-a-docker-application">Install another x11 application as a docker application</h2>
 <p>On your host, where your container myx11server is running, open a new shell window and start a new docker container named myapp.</p>
-<pre><code>docker run -it -v myshared:/tmp --name myfirefox ubuntu:latest
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker run -it -v myshared:/tmp --name myfirefox ubuntu:latest
+</code></pre></div>
 <p>You should see a prompt like :</p>
-<pre><code>root@96df62a73e4f:/# 
-</code></pre>
+<div class="highlight"><pre><span></span><code>root@96df62a73e4f:/# 
+</code></pre></div>
 <p>To install firefox application, run the install firefox command in your myfirefox container.</p>
-<pre><code>apt-get update
+<div class="highlight"><pre><span></span><code>apt-get update
 apt-get install -y firefox
-</code></pre>
-<p>Run the firefox command</p>
-<pre><code>export DISPLAY=:0.0
+</code></pre></div>
+<p>Run the firefox command
+<div class="highlight"><pre><span></span><code>export DISPLAY=:0.0
 firefox
-</code></pre>
+</code></pre></div></p>
 <p>You should read the output </p>
-<pre><code>
-(firefox:1831): LIBDBUSMENU-GLIB-WARNING **: 14:42:14.737: Unable to get session bus: Failed to execute child process ?dbus-launch? (No such file or directory)
-</code></pre>
+<div class="highlight"><pre><span></span><code>(firefox:1831): LIBDBUSMENU-GLIB-WARNING **: 14:42:14.737: Unable to get session bus: Failed to execute child process ?dbus-launch? (No such file or directory)
+</code></pre></div>
 <p>On the VNC Viewer, the application firefox should appear. </p>
 <p><img alt="vncviewer-firefox-openbox" src="../img/vncviewer-firefox-openbox.png" /></p>
 <p>Check that firefox works and go to your favorite web site.</p>
@@ -5190,11 +5188,10 @@ firefox
 <p>To clean your work space, stop the running containers myapp myfirefox myx11server, then remove them.
 We also need to remove the shared volume myshared</p>
 <p>Run the commands :</p>
-<pre><code>docker stop myfirefox myx11server
+<div class="highlight"><pre><span></span><code>docker stop myfirefox myx11server
 docker rm myfirefox myx11server
 docker volume rm myshared
-
-</code></pre>
+</code></pre></div>
 <p>Keep the docker images ubuntu, we will use it in the next chapter</p>
 <h2 id="next-chapter">Next chapter</h2>
 <p>In the next chapter, we will replace the VNC Client by a web browser.</p>

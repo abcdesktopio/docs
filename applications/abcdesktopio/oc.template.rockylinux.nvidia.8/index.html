@@ -4860,7 +4860,7 @@
 <h2 id="from">from</h2>
 <p>inherit <a href="../cuda">nvidia/cuda:12.4.1-base-rockylinux8</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>NAME=&quot;Rocky Linux&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Rocky Linux&quot;
 VERSION=&quot;8.10 (Green Obsidian)&quot;
 ID=&quot;rocky&quot;
 ID_LIKE=&quot;rhel centos fedora&quot;
@@ -4877,10 +4877,9 @@ ROCKY_SUPPORT_PRODUCT=&quot;Rocky-Linux-8&quot;
 ROCKY_SUPPORT_PRODUCT_VERSION=&quot;8.10&quot;
 REDHAT_SUPPORT_PRODUCT=&quot;Rocky Linux&quot;
 REDHAT_SUPPORT_PRODUCT_VERSION=&quot;8.10&quot;
-
-</code></pre>
+</code></pre></div>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code>ARG BASE_IMAGE=rockylinux:8
+<div class="highlight"><pre><span></span><code>ARG BASE_IMAGE=rockylinux:8
 FROM ${BASE_IMAGE}
 
 MAINTAINER Alexandre DEVELY
@@ -4917,7 +4916,7 @@ RUN cd /composer/node/ocrun      &amp;&amp; npm install
 ##########
 # Next command use $BUSER context
 ENV BUSER balloon
-# RUN adduser --disabled-password --gecos '' $BUSER
+# RUN adduser --disabled-password --gecos &#39;&#39; $BUSER
 # RUN id -u $BUSER &amp;&gt;/dev/null || 
 RUN groupadd --gid 4096 $BUSER
 RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups $BUSER $BUSER
@@ -4926,18 +4925,16 @@ RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups $BUSER
 # PASS=ballon
 # Change password for user balloon
 
-# if --build-arg BUILD_BALLON_PASSWORD=1, set NODE_ENV to 'development' or set to null otherwise.
+# if --build-arg BUILD_BALLON_PASSWORD=1, set NODE_ENV to &#39;development&#39; or set to null otherwise.
 #ENV BALLOON_PASSWORD=${BUILD_BALLOON_PASSWORD:+development}
-# if BUILD_BALLOON_PASSWORD is null, set it to 'abcdesktop' (or leave as is otherwise).
+# if BUILD_BALLOON_PASSWORD is null, set it to &#39;abcdesktop&#39; (or leave as is otherwise).
 #ENV BALLOON_PASSWORD=${BUILD_BALLOON_PASSWORD:-abcdesktop}
 
 RUN echo &quot;balloon:lmdpocpetit&quot; | chpasswd $BUSER
 
 RUN mkdir -p /var/log/desktop &amp;&amp; \
     chown -R $BUSER:$BUSER /home/$BUSER /var/log/desktop
-
-
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>file oc.template.rockylinux.nvidia.8.md is created at Tue Jan 28 2025 13:55:08 GMT+0000 (Coordinated Universal Time) by make-docs.js</p>
 </blockquote>

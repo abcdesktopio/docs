@@ -5099,12 +5099,12 @@ This update differs depending on the configuration docker mode or kubernetes mod
 <a href="../editconfig/">Update your configuration file and apply the new configuration file</a> section to make change in <code>od.config</code> file for kubernetes cluster.</p>
 <h2 id="the-dictionary-authmanagers">The dictionary authmanagers</h2>
 <p>The authmanagers is defined as a dictionary object :</p>
-<pre><code>authmanagers: {
-  'external': { },
-  'explicit': { },
-  'implicit': { }
+<div class="highlight"><pre><span></span><code>authmanagers: {
+  &#39;external&#39;: { },
+  &#39;explicit&#39;: { },
+  &#39;implicit&#39;: { }
 }
-</code></pre>
+</code></pre></div>
 <p>The <code>od.config</code> defines four kinds of entries in the <code>authmanagers</code> object :</p>
 <ul>
 <li><code>external</code>: use for OAuth 2.0 Authentification</li>
@@ -5147,12 +5147,12 @@ This update differs depending on the configuration docker mode or kubernetes mod
 </ul>
 <h3 id="change-authmanagers-configuration">Change authmanagers configuration</h3>
 <p>Edit your od.config pyos configuration file, and set the value to the authmanagers dictionary with empty values for <code>implicit</code>, <code>explicit</code>, and <code>external</code>, as describe :</p>
-<pre><code>authmanagers: {
-  'external': { },
-  'explicit': { },
-  'implicit': { }
+<div class="highlight"><pre><span></span><code>authmanagers: {
+  &#39;external&#39;: { },
+  &#39;explicit&#39;: { },
+  &#39;implicit&#39;: { }
 }
-</code></pre>
+</code></pre></div>
 <p>Save your new <code>od.config</code> file, and restart the pyos pod</p>
 <p>Start your web browser and open the URL <code>http://localhost:30443</code></p>
 <p><img alt="authmanangers no provider" src="../img/auth-no-provider.png" /></p>
@@ -5174,100 +5174,100 @@ Read the <a href="../authexternal/">authmanagers external</a> Section.</p>
 <h2 id="authmanagers-sample">authmanagers sample</h2>
 <p>In the <a href="../authimplicit/">authmanagers implicit</a> section, <a href="../authexplicit/">authmanagers explicit</a> section, and <a href="../authexternal/">authmanagers external</a> section, you have learned how to defined the providers. </p>
 <p>You can set a complete <code>authmanagers</code> dictionary as described with <code>external</code>, <code>explicit</code> and <code>implicit</code></p>
-<pre><code class="language-json">authmanagers: {
-   'external': {
-    'providers': {
-      'google': { 
-        'displayname': 'Google', 
-        'enabled': True,
-        'client_id': 'xxxx', 
-        'client_secret': 'xxxx',
-        'userinfo_auth': True,
-        'scope': [ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ],
-        'userinfo_url': 'https://www.googleapis.com/oauth2/v1/userinfo',
-        'redirect_uri_prefix' : 'https://www.mydomain.com/API/auth/oauth',
-        'redirect_uri_querystring': 'manager=external&amp;provider=google',
-        'authorization_base_url': 'https://accounts.google.com/o/oauth2/v2/auth',
-        'token_url': 'https://oauth2.googleapis.com/token',
-        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
-      },
-      'facebook': { 
-        'displayname': 'Facebook', 
-        'enabled': True,
-        'userinfo_auth': True,
-        'client_id': 'xxxx', 
-        'client_secret': 'xxxx', 
-        'redirect_uri_prefix' : 'https://www.mydomain.com/API/auth/oauth',
-        'redirect_uri_querystring': 'manager=external&amp;provider=facebook',
-        'authorization_base_url': 'https://www.facebook.com/dialog/oauth',
-        'userinfo_url': 'https://graph.facebook.com/v2.6/me?fields=picture.width(400),name',
-        'token_url': 'https://graph.facebook.com/v2.3/oauth/access_token',
-        'userinfomap': {
-            '*': '*',
-            'picture': 'picture.data.url'
-        },
-        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
-      },
-      'github': {
-        'displayname': 'Github',
-        'enabled': True,
-        'basic_auth': True,
-        'userinfo_auth': True,
-        'scope' : [ 'read:user' ], 
-        'client_id': 'xxxx',
-        'client_secret': 'xxxx',
-        'redirect_uri_prefix' : 'https://www.mydomain.com/API/auth/oauth',
-        'redirect_uri_querystring': 'manager=external&amp;provider=github',
-        'authorization_base_url': 'https://github.com/login/oauth/authorize',
-        'token_url': 'https://github.com/login/oauth/access_token',
-        'userinfo_url': 'https://api.github.com/user',
-        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
-      }
-    }
-  },
-  'explicit': {
-    'show_domains': True,
-    'default_domain': 'AD',
-    'providers': {
-      'AD': { 
-        'config_ref': 'adconfig', 
-        'enabled': True
-       }
-    }
-  },
-  'implicit': {
-    'providers': {
-      'anonymous': {
-        'displayname': 'Anonymous',
-        'caption': 'Have a look !',
-        'userid': 'anonymous',
-        'username': 'Anonymous'
-      }     
-    }
-  }}
+<div class="highlight"><pre><span></span><code><span class="err">au</span><span class="kc">t</span><span class="err">hma</span><span class="kc">na</span><span class="err">gers</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="err">&#39;ex</span><span class="kc">ternal</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;providers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="err">&#39;google&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Google&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;scope&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/auth/userinfo.email&#39;,  &#39;openid&#39; ],</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/oauth2/v1/userinfo&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.mydomain.com/API/auth/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=google&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//accounts.google.com/o/oauth2/v2/auth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//oauth2.googleapis.com/token&#39;,</span>
+<span class="w">        </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acl&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">fa</span><span class="err">cebook&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Facebook&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.mydomain.com/API/auth/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=</span><span class="kc">fa</span><span class="err">cebook&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.facebook.com/dialog/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//graph.facebook.com/v2.6/me?fields=picture.width(400),name&#39;,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//graph.facebook.com/v2.3/oauth/access_token&#39;,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">omap&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="err">&#39;*&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;*&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;pic</span><span class="kc">ture</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;pic</span><span class="kc">ture</span><span class="err">.da</span><span class="kc">ta</span><span class="err">.url&#39;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acl&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="err">&#39;gi</span><span class="kc">t</span><span class="err">hub&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Gi</span><span class="kc">t</span><span class="err">hub&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;basic_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;scope&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;read</span><span class="p">:</span><span class="err">user&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.mydomain.com/API/auth/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=gi</span><span class="kc">t</span><span class="err">hub&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//github.com/login/oauth/authorize&#39;,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//github.com/login/oauth/access_token&#39;,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//api.github.com/user&#39;,</span>
+<span class="w">        </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acl&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;explici</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;show_domai</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;de</span><span class="kc">fault</span><span class="err">_domai</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;AD&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;providers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="err">&#39;AD&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;co</span><span class="kc">nf</span><span class="err">ig_re</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;adco</span><span class="kc">nf</span><span class="err">ig&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;implici</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;providers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="err">&#39;a</span><span class="kc">n</span><span class="err">o</span><span class="kc">n</span><span class="err">ymous&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;A</span><span class="kc">n</span><span class="err">o</span><span class="kc">n</span><span class="err">ymous&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;cap</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Have</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">look</span><span class="w"> </span><span class="err">!&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;userid&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;a</span><span class="kc">n</span><span class="err">o</span><span class="kc">n</span><span class="err">ymous&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;user</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;A</span><span class="kc">n</span><span class="err">o</span><span class="kc">n</span><span class="err">ymous&#39;</span>
+<span class="w">      </span><span class="p">}</span><span class="w">     </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}}</span>
 
 
-adconfig : { 
-  'AD': { 
-      'default' : True, 
-      'ldap_timeout': 15,
-      'ldap_basedn': 'DC=ad,DC=domain,DC=local',
-      'ldap_fqdn': '_ldap._tcp.ad.domain.local',
-      'domain': 'AD',
-      'auth_type': 'KERBEROS',
-      'domain_fqdn': 'AD.DOMAIN.LOCAL',
-      'krb5_conf': '/etc/krb5.conf',
-      'servers'    :  [ 'ldap://192.168.7.12' ],
-      'kerberos_realm': 'AD.DOMAIN.LOCAL',
-      'serviceaccount': { 'login': 'svcaccount', 'password':'account' },
-     'auth_protocol' : { 
-            'ntlm': True, 
-            'cntlm': False, 
-            'kerberos': True, 
-            'citrix': False, 
-            'localaccount': True },
-     'query_dcs' : False } } }
-</code></pre>
+<span class="err">adco</span><span class="kc">nf</span><span class="err">ig</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="err">&#39;AD&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="err">&#39;de</span><span class="kc">fault</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="err">&#39;ldap_</span><span class="kc">t</span><span class="err">imeou</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;ldap_based</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;DC=ad</span><span class="p">,</span><span class="err">DC=domai</span><span class="kc">n</span><span class="p">,</span><span class="err">DC=local&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;ldap_</span><span class="kc">f</span><span class="err">qd</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;_ldap._</span><span class="kc">t</span><span class="err">cp.ad.domai</span><span class="kc">n</span><span class="err">.local&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;domai</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;AD&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">h_</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;KERBEROS&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;domai</span><span class="kc">n</span><span class="err">_</span><span class="kc">f</span><span class="err">qd</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;AD.DOMAIN.LOCAL&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;krb</span><span class="mi">5</span><span class="err">_co</span><span class="kc">nf</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/e</span><span class="kc">t</span><span class="err">c/krb</span><span class="mf">5.</span><span class="err">co</span><span class="kc">nf</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;servers&#39;</span><span class="w">    </span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ldap</span><span class="p">:</span><span class="c1">//192.168.7.12&#39; ],</span>
+<span class="w">      </span><span class="err">&#39;kerberos_realm&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;AD.DOMAIN.LOCAL&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;serviceaccou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;logi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;svcaccou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;password&#39;</span><span class="p">:</span><span class="err">&#39;accou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">     </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">h_pro</span><span class="kc">t</span><span class="err">ocol&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;</span><span class="kc">ntl</span><span class="err">m&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;c</span><span class="kc">ntl</span><span class="err">m&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;kerberos&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;ci</span><span class="kc">tr</span><span class="err">ix&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;localaccou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">},</span>
+<span class="w">     </span><span class="err">&#39;query_dcs&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 
 
 

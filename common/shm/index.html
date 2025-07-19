@@ -5065,9 +5065,9 @@ Does System V shared memory work with containers ? </p>
 </ul>
 <h2 id="install-the-bash-and-yaml-files">Install the bash and yaml files</h2>
 <p>To install the bash and yaml files, run the command</p>
-<pre><code>git clone https://github.com/abcdesktopio/podshmtest.git
+<div class="highlight"><pre><span></span><code>git clone https://github.com/abcdesktopio/podshmtest.git
 cd podshmtest
-</code></pre>
+</code></pre></div>
 <h2 id="shared-memory">Shared memory</h2>
 <h3 id="system-v-shared-memory">System V shared memory</h3>
 <p>Goal: Test <code>System V shared memory</code> between two containers inside the same pod</p>
@@ -5077,36 +5077,36 @@ cd podshmtest
 <ul>
 <li>The sender container writes a string from stdin into shared memory. The source code is <a href="https://github.com/abcdesktopio/podshmtest/tree/main/src/sysv">here</a></li>
 </ul>
-<pre><code class="language-c">    int exit_code = -1;
-    // ftok to generate unique key 
-    key_t key = ftok(&quot;/shared/shmfile&quot;,65);
-    // shmget returns an identifier in shmid 
-    int shmid = shmget(key,1024,0666|IPC_CREAT);
-    // shmat to attach to shared memory 
-    char *str = (char*) shmat(shmid,(void*)0,0);
-    strcpy( str, MemContents );
-    //detach from shared memory  
-    exit_code = shmdt(str);
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">exit_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ftok to generate unique key </span>
+<span class="w">    </span><span class="kt">key_t</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ftok</span><span class="p">(</span><span class="s">&quot;/shared/shmfile&quot;</span><span class="p">,</span><span class="mi">65</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// shmget returns an identifier in shmid </span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">shmid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shmget</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="mi">1024</span><span class="p">,</span><span class="mo">0666</span><span class="o">|</span><span class="n">IPC_CREAT</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// shmat to attach to shared memory </span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">shmat</span><span class="p">(</span><span class="n">shmid</span><span class="p">,(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">strcpy</span><span class="p">(</span><span class="w"> </span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="n">MemContents</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="c1">//detach from shared memory  </span>
+<span class="w">    </span><span class="n">exit_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shmdt</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+</code></pre></div>
 <ul>
 <li>The receiver container print the sender's shared memory string to stdout. The source code is <a href="https://github.com/abcdesktopio/podshmtest/tree/main/src/sysv">here</a></li>
 </ul>
-<pre><code class="language-c">    // ftok to generate unique key 
-    key_t key = ftok(&quot;/shared/shmfile&quot;,65);
-    // shmget returns an identifier in shmid 
-    int shmid = shmget(key,1024,0666|IPC_CREAT);
-    // shmat to attach to shared memory 
-    char *str = (char*) shmat(shmid,(void*)0,0);
-    printf(&quot;%s\n&quot;,str);
-    cmp_code = strcmp( str, MemContents );
-    //detach from shared memory  
-    exit_code = shmdt(str);
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">// ftok to generate unique key </span>
+<span class="w">    </span><span class="kt">key_t</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ftok</span><span class="p">(</span><span class="s">&quot;/shared/shmfile&quot;</span><span class="p">,</span><span class="mi">65</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// shmget returns an identifier in shmid </span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">shmid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shmget</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="mi">1024</span><span class="p">,</span><span class="mo">0666</span><span class="o">|</span><span class="n">IPC_CREAT</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// shmat to attach to shared memory </span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">shmat</span><span class="p">(</span><span class="n">shmid</span><span class="p">,(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">str</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cmp_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strcmp</span><span class="p">(</span><span class="w"> </span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="n">MemContents</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="c1">//detach from shared memory  </span>
+<span class="w">    </span><span class="n">exit_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shmdt</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+</code></pre></div>
 <p>To run the <code>System V</code> tests</p>
 <h3 id="run-a-shared-memory-test-access-using-a-shared-path">Run a shared memory test access using a shared path</h3>
 <p>In this yaml file, sender and receiver containers share a file. This file is
 <code>/shared/me</code> and it is the first parameter to <code>ftok</code> system V call. </p>
-<pre><code>apiVersion: v1
+<div class="highlight"><pre><span></span><code>apiVersion: v1
 kind: Pod
 metadata:
   name: podsysvsendershmtest
@@ -5137,17 +5137,17 @@ spec:
       env:
       - name: FTOK_PATH
         value: &quot;/shared/me&quot;
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>The env var <code>FTOK_PATH</code> set the first parameter to <code>ftok</code> system V call.</p>
 </blockquote>
 <p>Run the test </p>
-<pre><code class="language-bash"># this test result is success
-./runtest.sh podsendershared_success.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># this test result is success</span>
+./runtest.sh<span class="w"> </span>podsendershared_success.yaml
+</code></pre></div>
 <p>You can read the same string from sender to receive container. </p>
 <p><strong>This test is OK.</strong></p>
-<pre><code>pod/podsysvsendershmtest created
+<div class="highlight"><pre><span></span><code>pod/podsysvsendershmtest created
 pod/podsysvsendershmtest condition met
 **** Start sender ****
 sender starts
@@ -5157,51 +5157,51 @@ sending success This is the way the world ends...
 receive starts
 identity of the file named FTOK_PATH=/shared/me
 read This is the way the world ends...
-</code></pre>
+</code></pre></div>
 <h3 id="run-a-shared-memory-test-access-without-shared-path">Run a shared memory test access without shared path</h3>
 <p>In this yaml file, sender and receiver do not share file.
 <code>/dummy</code> filename is the first parameter to <code>ftok</code> system V call. </p>
-<pre><code class="language-yaml">apiVersion: v1
-kind: Pod
-metadata:
-  name: podsysvsendershmtest
-spec:
-  shareProcessNamespace: true
-  restartPolicy : Never
-  volumes:
-    - name: shared 
-      emptyDir: {}
-  containers:
-    - name: sender
-      image: abcdesktopio/ipctest
-      command: [ &quot;/bin/sleep&quot;, &quot;1d&quot; ]
-      volumeMounts:
-      - name: shared
-        mountPath: /shared
-      env:
-      - name: FTOK_PATH
-        value: &quot;/dummy&quot;
-    - name: receiver
-      image: abcdesktopio/ipctest
-      command: [ &quot;/bin/sleep&quot;, &quot;1d&quot; ]
-      volumeMounts:
-      - name: shared
-        mountPath: /shared
-      env:
-      - name: FTOK_PATH
-        value: &quot;/dummy&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">podsysvsendershmtest</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">shareProcessNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">restartPolicy </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Never</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shared</span><span class="w"> </span>
+<span class="w">      </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sender</span>
+<span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcdesktopio/ipctest</span>
+<span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;/bin/sleep&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;1d&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shared</span>
+<span class="w">        </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/shared</span>
+<span class="w">      </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FTOK_PATH</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/dummy&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">receiver</span>
+<span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcdesktopio/ipctest</span>
+<span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;/bin/sleep&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;1d&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shared</span>
+<span class="w">        </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/shared</span>
+<span class="w">      </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FTOK_PATH</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/dummy&quot;</span>
+</code></pre></div>
 <blockquote>
 <p>The env var <code>FTOK_PATH</code> set the first parameter to <code>ftok</code> system V call.</p>
 </blockquote>
 <p>Run the test </p>
-<pre><code class="language-bash"># this test result is failed
-./runtest.sh podsendershared_failed.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># this test result is failed</span>
+./runtest.sh<span class="w"> </span>podsendershared_failed.yaml
+</code></pre></div>
 <p>You can read that the sender write a string.
 The receiver does not read this string. </p>
 <p><strong>This test is KO.</strong></p>
-<pre><code>pod &quot;podsysvsendershmtest&quot; deleted
+<div class="highlight"><pre><span></span><code>pod &quot;podsysvsendershmtest&quot; deleted
 pod/podsysvsendershmtest created
 pod/podsysvsendershmtest condition met
 **** Start sender ****
@@ -5224,7 +5224,7 @@ this is an unlimited loop, waiting 5s
 ...
 ^C
 command terminated with exit code 130
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>The <a href="https://man7.org/linux/man-pages/man3/ftok.3.html">ftok</a>() function uses the identity of the file named by the given pathname (which must refer to an existing, accessible file)
 The file named by the given pathname must be shared by using a volume between containers</p>
@@ -5240,134 +5240,133 @@ Learn how processes synchronize with each other in Linux</a>
 <ul>
 <li>The sender container writes a string into shared memory map file <code>/shMemEx</code></li>
 </ul>
-<pre><code class="language-c">  int fd = shm_open(BackingFile,      /* name from smem.h */
-                    O_RDWR | O_CREAT, /* read/write, create if needed */
-                    AccessPerms);     /* access permissions (0644) */
-  if (fd &lt; 0) report_and_exit(&quot;Can't open shared mem segment...&quot;);
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shm_open</span><span class="p">(</span><span class="n">BackingFile</span><span class="p">,</span><span class="w">      </span><span class="cm">/* name from smem.h */</span>
+<span class="w">                    </span><span class="n">O_RDWR</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">O_CREAT</span><span class="p">,</span><span class="w"> </span><span class="cm">/* read/write, create if needed */</span>
+<span class="w">                    </span><span class="n">AccessPerms</span><span class="p">);</span><span class="w">     </span><span class="cm">/* access permissions (0644) */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">report_and_exit</span><span class="p">(</span><span class="s">&quot;Can&#39;t open shared mem segment...&quot;</span><span class="p">);</span>
 
-  ftruncate(fd, ByteSize); /* get the bytes */
+<span class="w">  </span><span class="n">ftruncate</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="n">ByteSize</span><span class="p">);</span><span class="w"> </span><span class="cm">/* get the bytes */</span>
 
-  caddr_t memptr = mmap(NULL,       /* let system pick where to put segment */
-                        ByteSize,   /* how many bytes */
-                        PROT_READ | PROT_WRITE, /* access protections */
-                        MAP_SHARED, /* mapping visible to other processes */
-                        fd,         /* file descriptor */
-                        0);         /* offset: start at 1st byte */
-  if ((caddr_t) -1  == memptr) report_and_exit(&quot;Can't get segment...&quot;);
+<span class="w">  </span><span class="n">caddr_t</span><span class="w"> </span><span class="n">memptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mmap</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w">       </span><span class="cm">/* let system pick where to put segment */</span>
+<span class="w">                        </span><span class="n">ByteSize</span><span class="p">,</span><span class="w">   </span><span class="cm">/* how many bytes */</span>
+<span class="w">                        </span><span class="n">PROT_READ</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PROT_WRITE</span><span class="p">,</span><span class="w"> </span><span class="cm">/* access protections */</span>
+<span class="w">                        </span><span class="n">MAP_SHARED</span><span class="p">,</span><span class="w"> </span><span class="cm">/* mapping visible to other processes */</span>
+<span class="w">                        </span><span class="n">fd</span><span class="p">,</span><span class="w">         </span><span class="cm">/* file descriptor */</span>
+<span class="w">                        </span><span class="mi">0</span><span class="p">);</span><span class="w">         </span><span class="cm">/* offset: start at 1st byte */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">caddr_t</span><span class="p">)</span><span class="w"> </span><span class="mi">-1</span><span class="w">  </span><span class="o">==</span><span class="w"> </span><span class="n">memptr</span><span class="p">)</span><span class="w"> </span><span class="n">report_and_exit</span><span class="p">(</span><span class="s">&quot;Can&#39;t get segment...&quot;</span><span class="p">);</span>
 
-  fprintf(stderr, &quot;shared mem address: %p [0..%d]\n&quot;, memptr, ByteSize - 1);
-  fprintf(stderr, &quot;backing file:       /dev/shm%s\n&quot;, BackingFile );
+<span class="w">  </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;shared mem address: %p [0..%d]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">memptr</span><span class="p">,</span><span class="w"> </span><span class="n">ByteSize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;backing file:       /dev/shm%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">BackingFile</span><span class="w"> </span><span class="p">);</span>
 
-  /* semahore code to lock the shared mem */
-  sem_t* semptr = sem_open(SemaphoreName, /* name */
-                           O_CREAT,       /* create the semaphore */
-                           AccessPerms,   /* protection perms */
-                           0);            /* initial value */
-  if (semptr == (void*) -1) report_and_exit(&quot;sem_open&quot;);
+<span class="w">  </span><span class="cm">/* semahore code to lock the shared mem */</span>
+<span class="w">  </span><span class="n">sem_t</span><span class="o">*</span><span class="w"> </span><span class="n">semptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sem_open</span><span class="p">(</span><span class="n">SemaphoreName</span><span class="p">,</span><span class="w"> </span><span class="cm">/* name */</span>
+<span class="w">                           </span><span class="n">O_CREAT</span><span class="p">,</span><span class="w">       </span><span class="cm">/* create the semaphore */</span>
+<span class="w">                           </span><span class="n">AccessPerms</span><span class="p">,</span><span class="w">   </span><span class="cm">/* protection perms */</span>
+<span class="w">                           </span><span class="mi">0</span><span class="p">);</span><span class="w">            </span><span class="cm">/* initial value */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">semptr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="n">report_and_exit</span><span class="p">(</span><span class="s">&quot;sem_open&quot;</span><span class="p">);</span>
 
-  strcpy(memptr, MemContents); /* copy some ASCII bytes to the segment */
+<span class="w">  </span><span class="n">strcpy</span><span class="p">(</span><span class="n">memptr</span><span class="p">,</span><span class="w"> </span><span class="n">MemContents</span><span class="p">);</span><span class="w"> </span><span class="cm">/* copy some ASCII bytes to the segment */</span>
 
-  /* increment the semaphore so that memreader can read */
-  if (sem_post(semptr) &lt; 0) report_and_exit(&quot;sem_post&quot;);
+<span class="w">  </span><span class="cm">/* increment the semaphore so that memreader can read */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sem_post</span><span class="p">(</span><span class="n">semptr</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">report_and_exit</span><span class="p">(</span><span class="s">&quot;sem_post&quot;</span><span class="p">);</span>
 
-  sleep(12); /* give reader a chance */
+<span class="w">  </span><span class="n">sleep</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span><span class="w"> </span><span class="cm">/* give reader a chance */</span>
 
-  /* clean up */
-  munmap(memptr, ByteSize); /* unmap the storage */
-  close(fd);
-  sem_close(semptr);
-  shm_unlink(BackingFile); /* unlink from the backing file */
-
-</code></pre>
+<span class="w">  </span><span class="cm">/* clean up */</span>
+<span class="w">  </span><span class="n">munmap</span><span class="p">(</span><span class="n">memptr</span><span class="p">,</span><span class="w"> </span><span class="n">ByteSize</span><span class="p">);</span><span class="w"> </span><span class="cm">/* unmap the storage */</span>
+<span class="w">  </span><span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+<span class="w">  </span><span class="n">sem_close</span><span class="p">(</span><span class="n">semptr</span><span class="p">);</span>
+<span class="w">  </span><span class="n">shm_unlink</span><span class="p">(</span><span class="n">BackingFile</span><span class="p">);</span><span class="w"> </span><span class="cm">/* unlink from the backing file */</span>
+</code></pre></div>
 <ul>
 <li>The receiver container print the sender's shared memory string to stdout</li>
 </ul>
-<pre><code class="language-c">  int fd = shm_open(BackingFile, O_RDWR, AccessPerms);  /* empty to begin */
-  if (fd &lt; 0) report_and_exit(&quot;Can't get file descriptor...&quot;);
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shm_open</span><span class="p">(</span><span class="n">BackingFile</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDWR</span><span class="p">,</span><span class="w"> </span><span class="n">AccessPerms</span><span class="p">);</span><span class="w">  </span><span class="cm">/* empty to begin */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">report_and_exit</span><span class="p">(</span><span class="s">&quot;Can&#39;t get file descriptor...&quot;</span><span class="p">);</span>
 
-  /* get a pointer to memory */
-  caddr_t memptr = mmap(NULL,       /* let system pick where to put segment */
-                        ByteSize,   /* how many bytes */
-                        PROT_READ | PROT_WRITE, /* access protections */
-                        MAP_SHARED, /* mapping visible to other processes */
-                        fd,         /* file descriptor */
-                        0);         /* offset: start at 1st byte */
-  if ((caddr_t) -1 == memptr) report_and_exit(&quot;Can't access segment...&quot;);
+<span class="w">  </span><span class="cm">/* get a pointer to memory */</span>
+<span class="w">  </span><span class="n">caddr_t</span><span class="w"> </span><span class="n">memptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mmap</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w">       </span><span class="cm">/* let system pick where to put segment */</span>
+<span class="w">                        </span><span class="n">ByteSize</span><span class="p">,</span><span class="w">   </span><span class="cm">/* how many bytes */</span>
+<span class="w">                        </span><span class="n">PROT_READ</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PROT_WRITE</span><span class="p">,</span><span class="w"> </span><span class="cm">/* access protections */</span>
+<span class="w">                        </span><span class="n">MAP_SHARED</span><span class="p">,</span><span class="w"> </span><span class="cm">/* mapping visible to other processes */</span>
+<span class="w">                        </span><span class="n">fd</span><span class="p">,</span><span class="w">         </span><span class="cm">/* file descriptor */</span>
+<span class="w">                        </span><span class="mi">0</span><span class="p">);</span><span class="w">         </span><span class="cm">/* offset: start at 1st byte */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">caddr_t</span><span class="p">)</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">memptr</span><span class="p">)</span><span class="w"> </span><span class="n">report_and_exit</span><span class="p">(</span><span class="s">&quot;Can&#39;t access segment...&quot;</span><span class="p">);</span>
 
-  /* create a semaphore for mutual exclusion */
-  sem_t* semptr = sem_open(SemaphoreName, /* name */
-                           O_CREAT,       /* create the semaphore */
-                           AccessPerms,   /* protection perms */
-                           0);            /* initial value */
-  if (semptr == (void*) -1) report_and_exit(&quot;sem_open&quot;);
+<span class="w">  </span><span class="cm">/* create a semaphore for mutual exclusion */</span>
+<span class="w">  </span><span class="n">sem_t</span><span class="o">*</span><span class="w"> </span><span class="n">semptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sem_open</span><span class="p">(</span><span class="n">SemaphoreName</span><span class="p">,</span><span class="w"> </span><span class="cm">/* name */</span>
+<span class="w">                           </span><span class="n">O_CREAT</span><span class="p">,</span><span class="w">       </span><span class="cm">/* create the semaphore */</span>
+<span class="w">                           </span><span class="n">AccessPerms</span><span class="p">,</span><span class="w">   </span><span class="cm">/* protection perms */</span>
+<span class="w">                           </span><span class="mi">0</span><span class="p">);</span><span class="w">            </span><span class="cm">/* initial value */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">semptr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="n">report_and_exit</span><span class="p">(</span><span class="s">&quot;sem_open&quot;</span><span class="p">);</span>
 
-  /* use semaphore as a mutex (lock) by waiting for writer to increment it */
-  if (!sem_wait(semptr)) { /* wait until semaphore != 0 */
-    int i;
-    for (i = 0; i &lt; strlen(MemContents); i++)
-      write(STDOUT_FILENO, memptr + i, 1); /* one byte at a time */
-    sem_post(semptr);
-  }
+<span class="w">  </span><span class="cm">/* use semaphore as a mutex (lock) by waiting for writer to increment it */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">sem_wait</span><span class="p">(</span><span class="n">semptr</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* wait until semaphore != 0 */</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">MemContents</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">      </span><span class="n">write</span><span class="p">(</span><span class="n">STDOUT_FILENO</span><span class="p">,</span><span class="w"> </span><span class="n">memptr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="cm">/* one byte at a time */</span>
+<span class="w">    </span><span class="n">sem_post</span><span class="p">(</span><span class="n">semptr</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-  /* cleanup */
-  munmap(memptr, ByteSize);
-  close(fd);
-  sem_close(semptr);
-  unlink(BackingFile);
-</code></pre>
+<span class="w">  </span><span class="cm">/* cleanup */</span>
+<span class="w">  </span><span class="n">munmap</span><span class="p">(</span><span class="n">memptr</span><span class="p">,</span><span class="w"> </span><span class="n">ByteSize</span><span class="p">);</span>
+<span class="w">  </span><span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+<span class="w">  </span><span class="n">sem_close</span><span class="p">(</span><span class="n">semptr</span><span class="p">);</span>
+<span class="w">  </span><span class="n">unlink</span><span class="p">(</span><span class="n">BackingFile</span><span class="p">);</span>
+</code></pre></div>
 <p>To run the <code>POSIX</code> test</p>
-<pre><code>kubectl create -f podposixshm.yaml 
+<div class="highlight"><pre><span></span><code>kubectl create -f podposixshm.yaml 
 pod/podposixshm created
-</code></pre>
+</code></pre></div>
 <p>The <code>podposixshm</code> pod status must be <code>Completed</code></p>
-<pre><code>kubectl get pods podposixshm  
+<div class="highlight"><pre><span></span><code>kubectl get pods podposixshm  
 NAME          READY   STATUS      RESTARTS   AGE
 podposixshm   0/2     Completed   0          27s
-</code></pre>
+</code></pre></div>
 <p>The podposixshm sender log file should be :</p>
-<pre><code>kubectl logs pod/podposixshm sender
+<div class="highlight"><pre><span></span><code>kubectl logs pod/podposixshm sender
 shared mem address: 0x7fc0ea582000 [0..511]
 backing file:       /dev/shm/shMemEx
-</code></pre>
+</code></pre></div>
 <p>The pod/podposixshm receiver log file should be :</p>
-<pre><code>kubectl logs pod/podposixshm receiver
+<div class="highlight"><pre><span></span><code>kubectl logs pod/podposixshm receiver
 This is the way the world ends...
-</code></pre>
+</code></pre></div>
 <p>Delete the <code>podposixshm</code> pod </p>
-<pre><code>kubectl delete pods podposixshm 
+<div class="highlight"><pre><span></span><code>kubectl delete pods podposixshm 
 pod &quot;podposixshm&quot; deleted
-</code></pre>
+</code></pre></div>
 <h2 id="read-the-shared-memory-default-limit">Read the shared memory default limit</h2>
 <p>On a pod, we can see that the default size of <code>/dev/shm</code> is 64MB, when running the <code>df /dev/shm</code> command.</p>
-<pre><code class="language-bash">kubectl run -it --image alpine:edge shmtest -- sh
-If you don't see a command prompt, try pressing enter.
-</code></pre>
-<pre><code class="language-bash">df /dev/shm
-Filesystem           1K-blocks      Used Available Use% Mounted on
-shm                      65536     65536         0 100% /dev/shm
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--image<span class="w"> </span>alpine:edge<span class="w"> </span>shmtest<span class="w"> </span>--<span class="w"> </span>sh
+If<span class="w"> </span>you<span class="w"> </span>don<span class="err">&#39;</span>t<span class="w"> </span>see<span class="w"> </span>a<span class="w"> </span><span class="nb">command</span><span class="w"> </span>prompt,<span class="w"> </span>try<span class="w"> </span>pressing<span class="w"> </span>enter.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>df<span class="w"> </span>/dev/shm
+Filesystem<span class="w">           </span>1K-blocks<span class="w">      </span>Used<span class="w"> </span>Available<span class="w"> </span>Use%<span class="w"> </span>Mounted<span class="w"> </span>on
+shm<span class="w">                      </span><span class="m">65536</span><span class="w">     </span><span class="m">65536</span><span class="w">         </span><span class="m">0</span><span class="w"> </span><span class="m">100</span>%<span class="w"> </span>/dev/shm
+</code></pre></div>
 <p>A <code>dd</code> command confirm this limit. it will throw an exception when it reaches 64MB: “No space left on device”.</p>
 <p>Run the <code>dd</code> command</p>
-<pre><code class="language-bash">dd if=/dev/zero of=/dev/shm/test
-dd: error writing '/dev/shm/test': No space left on device
-131073+0 records in
-131072+0 records out
-</code></pre>
+<div class="highlight"><pre><span></span><code>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/zero<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/shm/test
+dd:<span class="w"> </span>error<span class="w"> </span>writing<span class="w"> </span><span class="s1">&#39;/dev/shm/test&#39;</span>:<span class="w"> </span>No<span class="w"> </span>space<span class="w"> </span>left<span class="w"> </span>on<span class="w"> </span>device
+<span class="m">131073</span>+0<span class="w"> </span>records<span class="w"> </span><span class="k">in</span>
+<span class="m">131072</span>+0<span class="w"> </span>records<span class="w"> </span>out
+</code></pre></div>
 <p>Run the <code>df /dev/shm</code> command</p>
-<pre><code>df /dev/shm
+<div class="highlight"><pre><span></span><code>df /dev/shm
 Filesystem           1K-blocks      Used Available Use% Mounted on
 shm                      65536     65536         0 100% /dev/shm
-</code></pre>
+</code></pre></div>
 <p>Delete the <code>shmtest</code> pod</p>
-<pre><code class="language-bash">kubectl delete pods shmtest
-pod &quot;shmtest&quot; deleted
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>shmtest
+pod<span class="w"> </span><span class="s2">&quot;shmtest&quot;</span><span class="w"> </span>deleted
+</code></pre></div>
 <blockquote>
 <p>The default size is 64 MB.</p>
 </blockquote>
 <h2 id="increase-the-shared-memory-default-limit">Increase the shared memory default limit</h2>
 <p>Create a <code>updateshm.yaml</code> file with the yaml content </p>
-<pre><code>apiVersion: v1
+<div class="highlight"><pre><span></span><code>apiVersion: v1
 kind: Pod
 metadata:
   labels:
@@ -5390,19 +5389,19 @@ spec:
           name: volumeshm
   dnsPolicy: ClusterFirst
   restartPolicy: Never
-</code></pre>
+</code></pre></div>
 <p>Create the new pod <code>updateshm</code></p>
-<pre><code>kubectl apply -f updateshm.yaml 
+<div class="highlight"><pre><span></span><code>kubectl apply -f updateshm.yaml 
 pod/updateshm created
-</code></pre>
+</code></pre></div>
 <p>Execute a <code>df /dev/shm</code> command inside this pods to read the size of <code>/dev/shm</code></p>
-<pre><code>kubectl exec updateshm -- df /dev/shm
+<div class="highlight"><pre><span></span><code>kubectl exec updateshm -- df /dev/shm
 Filesystem           1K-blocks      Used Available Use% Mounted on
 tmpfs                 16176264         0  16176264   0% /dev/shm
-</code></pre>
+</code></pre></div>
 <p>The size of <code>/dev/shm</code> is 16176264 of 1K blocks. The new default size is 16 GB.</p>
 <p>To set a fixed limit use the <code>sizeLimit</code> in the <code>spec.volumes</code></p>
-<pre><code>apiVersion: v1
+<div class="highlight"><pre><span></span><code>apiVersion: v1
 kind: Pod
 metadata:
   labels:
@@ -5426,7 +5425,7 @@ spec:
           name: updateshm512
   dnsPolicy: ClusterFirst
   restartPolicy: Never
-</code></pre>
+</code></pre></div>
 
 
 

@@ -5098,66 +5098,66 @@
 </ul>
 <h3 id="check-the-kubernetes-supplementalgroups-support">Check the <code>kubernetes</code> <code>supplementalGroups</code> support</h3>
 <p>Let's create a yaml file to define pod with <code>securityContext</code> and <code>supplementalGroups</code></p>
-<pre><code class="language-yaml">apiVersion: v1
-kind: Pod
-metadata:
-  name: security-context-supplementalgroups-demo
-spec:
-  securityContext:
-    runAsUser: 1000
-    runAsGroup: 3000
-    supplementalGroups: [2000,4000,5000,6000]
-  volumes:
-  - name: sec-ctx-vol
-    emptyDir: {}
-  containers:
-  - name: sec-ctx-demo
-    image: busybox:1.28
-    command: [ &quot;sh&quot;, &quot;-c&quot;, &quot;sleep 1h&quot; ]
-    volumeMounts:
-    - name: sec-ctx-vol
-      mountPath: /data/demo
-    securityContext:
-      allowPrivilegeEscalation: false
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security-context-supplementalgroups-demo</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">securityContext</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runAsUser</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">runAsGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3000</span>
+<span class="w">    </span><span class="nt">supplementalGroups</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2000</span><span class="p p-Indicator">,</span><span class="nv">4000</span><span class="p p-Indicator">,</span><span class="nv">5000</span><span class="p p-Indicator">,</span><span class="nv">6000</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sec-ctx-vol</span>
+<span class="w">    </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sec-ctx-demo</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">busybox:1.28</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;sh&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;-c&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;sleep</span><span class="nv"> </span><span class="s">1h&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sec-ctx-vol</span>
+<span class="w">      </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/demo</span>
+<span class="w">    </span><span class="nt">securityContext</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">allowPrivilegeEscalation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
 <p>Create the pod <a href="https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/security-context-supplementalgroups-demo.yaml"><code>security-context-supplementalgroups-demo</code></a></p>
-<pre><code class="language-bash">$ kubectl create -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/security-context-supplementalgroups-demo.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>kubectl<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/security-context-supplementalgroups-demo.yaml
+</code></pre></div>
 <p>The pod is created</p>
-<pre><code>pod/security-context-supplementalgroups-demo created
-</code></pre>
+<div class="highlight"><pre><span></span><code>pod/security-context-supplementalgroups-demo created
+</code></pre></div>
 <p>Test the <code>id</code> command, you get the list <code>uid=1000</code> <code>gid=3000</code> <code>groups=2000,4000,5000,6000</code></p>
-<pre><code class="language-bash">$ kubectl exec -it pod/security-context-supplementalgroups-demo -- id
-uid=1000 gid=3000 groups=2000,4000,5000,6000
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>pod/security-context-supplementalgroups-demo<span class="w"> </span>--<span class="w"> </span>id
+<span class="nv">uid</span><span class="o">=</span><span class="m">1000</span><span class="w"> </span><span class="nv">gid</span><span class="o">=</span><span class="m">3000</span><span class="w"> </span><span class="nv">groups</span><span class="o">=</span><span class="m">2000</span>,4000,5000,6000
+</code></pre></div>
 <p>Run the group command inside the pod </p>
-<pre><code class="language-bash">$ kubectl exec -it pod/security-context-supplementalgroups-demo -- groups
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>pod/security-context-supplementalgroups-demo<span class="w"> </span>--<span class="w"> </span>groups
+</code></pre></div>
 <p>The result <code>exit</code> with <code>code 1</code>. The groups do not exist in <code>/etc/group</code></p>
-<pre><code> 3000groups: unknown ID 3000
+<div class="highlight"><pre><span></span><code> 3000groups: unknown ID 3000
  2000groups: unknown ID 2000
  4000groups: unknown ID 4000
  5000groups: unknown ID 5000
  6000groups: unknown ID 6000
  command terminated with exit code 1
-</code></pre>
+</code></pre></div>
 <p>This is what you want to do with abcdesktop, the id numbers are replaced by strings. The <code>uid</code>, <code>gid</code> and <code>supplementalgroups</code> are read from <code>posixAccount</code> and <code>posixGroup</code> in the directory service. </p>
 <h3 id="read-specsecuritycontext-from-a-pod">Read <code>.spec.securityContext</code> from a pod</h3>
 <p>kubectl command  to read <code>.spec.securityContext</code></p>
-<pre><code class="language-bash">kubectl get pod/security-context-supplementalgroups-demo -o json | jq '.spec.securityContext' 
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pod/security-context-supplementalgroups-demo<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.spec.securityContext&#39;</span><span class="w"> </span>
+</code></pre></div>
 <p>You read as output</p>
-<pre><code class="language-json">{
-  &quot;runAsGroup&quot;: 3000,
-  &quot;runAsUser&quot;: 1000,
-  &quot;supplementalGroups&quot;: [
-    2000,
-    4000,
-    5000,
-    6000
-  ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;runAsGroup&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;runAsUser&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;supplementalGroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="mi">2000</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4000</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">5000</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">6000</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="accounts-description">Accounts description</h3>
 <ul>
 <li>defined a user in the LDAP series</li>
@@ -5196,66 +5196,66 @@ uid=1000 gid=3000 groups=2000,4000,5000,6000
 <h2 id="login-to-abcdesktop">Login to abcdesktop</h2>
 <p>Login to abcdesktop as <code>Hermes Conrad</code> account</p>
 <p>Inside the user pod, the unix group file contains : </p>
-<pre><code class="language-bash">cat /etc/group
-</code></pre>
-<pre><code class="language-group">hermes:x:1036:
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/etc/group
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>hermes:x:1036:
 humans:x:20467:hermes,fry
 accountant:x:18430:hermes
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>This is correct.</p>
 </blockquote>
 <p>The user's pod is defined with a <code>securityContext</code></p>
 <p>In this example you can replace <code>hermes-d1411d93-8922-4c33-81d7-3c085f381a27</code> by your own pod's name</p>
-<pre><code class="language-bash">kubectl get pods hermes-d1411d93-8922-4c33-81d7-3c085f381a27 -n abcdesktop -o json| jq '.spec.securityContext'  
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>hermes-d1411d93-8922-4c33-81d7-3c085f381a27<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-o<span class="w"> </span>json<span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.spec.securityContext&#39;</span><span class="w">  </span>
+</code></pre></div>
 <p>You can read on stdout</p>
-<pre><code class="language-json">{
-  &quot;runAsGroup&quot;: 1036,
-  &quot;runAsUser&quot;: 1035,
-  &quot;supplementalGroups&quot;: [
-    20467,
-    18430
-  ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;runAsGroup&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1036</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;runAsUser&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1035</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;supplementalGroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="mi">20467</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">18430</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <blockquote>
 <p>This is correct.
 <code>supplementalGroups</code> defines the others groups from LDAP for DN:<code>cn=hermes,ou=groups,dc=planetexpress,dc=com</code></p>
 </blockquote>
 <p>Inside the user pod run the <code>id</code> command</p>
 <p><img alt="id group command fro hermes" src="../img/idgroup-hermes.png" /></p>
-<pre><code class="language-bash">hermes:~$ id
-uid=1035(hermes) gid=1036(hermes) groups=1036(hermes),18430(accountant),20467(humans)
-hermes:~$ groups
-hermes accountant humans
+<div class="highlight"><pre><span></span><code>hermes:~$<span class="w"> </span>id
+<span class="nv">uid</span><span class="o">=</span><span class="m">1035</span><span class="o">(</span>hermes<span class="o">)</span><span class="w"> </span><span class="nv">gid</span><span class="o">=</span><span class="m">1036</span><span class="o">(</span>hermes<span class="o">)</span><span class="w"> </span><span class="nv">groups</span><span class="o">=</span><span class="m">1036</span><span class="o">(</span>hermes<span class="o">)</span>,18430<span class="o">(</span>accountant<span class="o">)</span>,20467<span class="o">(</span>humans<span class="o">)</span>
+hermes:~$<span class="w"> </span>groups
+hermes<span class="w"> </span>accountant<span class="w"> </span>humans
 hermes:~$
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>This is correct.</p>
 </blockquote>
 <h3 id="create-new-file-on-host">Create new file on host</h3>
 <p>The default home directory in <code>od.config</code> is a volume <code>hostPath</code> set to <code>/tmp</code></p>
-<pre><code class="language-od.config">desktop.homedirectorytype: 'hostPath' 
-desktop.hostPathRoot: '/tmp'
-</code></pre>
+<div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;hostPath&#39; 
+desktop.hostPathRoot: &#39;/tmp&#39;
+</code></pre></div>
 <p>On your host server, get a shell with as root account, create a file <code>humansfile</code>  with restricted access to member of <code>humans</code> group.</p>
 <p><img alt="createhumans file as root" src="../img/createhumansfileasroot.png" /></p>
-<pre><code class="language-bash">cd /mnt/hermes-conrad
-echo 'hello' &gt; humansfile
-chown 0:20467 humansfile
-chmod 070 humansfile 
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/mnt/hermes-conrad
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;hello&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>humansfile
+chown<span class="w"> </span><span class="m">0</span>:20467<span class="w"> </span>humansfile
+chmod<span class="w"> </span><span class="m">070</span><span class="w"> </span>humansfile<span class="w"> </span>
+</code></pre></div>
 <p>Check the owner and group of the new file <code>humansfile</code></p>
-<pre><code>ls -la humansfile
+<div class="highlight"><pre><span></span><code>ls -la humansfile
 ----rwx--- 1 root 20467 6 nov.  23 17:16 humansfile
-</code></pre>
+</code></pre></div>
 <p>Check inside the user pod check that <code>hermes</code> account <strong>can write data</strong> in the new file <code>humansfile</code>.</p>
 <blockquote>
 <p>This is correct <code>hermes</code> is member of <code>humans</code> group.</p>
 </blockquote>
 <p><img alt="humansfile-hermes" src="../img/humansfile-hermes.png" /></p>
-<pre><code>hermes:~$ ls -la humansfile 
+<div class="highlight"><pre><span></span><code>hermes:~$ ls -la humansfile 
 =======
 - memberUid: `hermes`
 
@@ -5263,148 +5263,148 @@ Inside the user pod, the unix group file contains :
 
 ```bash
 cat /etc/group
-</code></pre>
-<pre><code>hermes:x:1036:
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>hermes:x:1036:
 humans:x:20467:hermes,fry
 accountant:x:18430:hermes
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>This is correct.</p>
 </blockquote>
 <p>The user's pod is defined with a <code>securityContext</code></p>
-<pre><code class="language-json">'securityContext': {
-  'runAsUser': 1035,
-  'runAsGroup': 1036,
-  'supplementalGroups': [20467, 18430] 
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;securi</span><span class="kc">t</span><span class="err">yCo</span><span class="kc">nte</span><span class="err">x</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="err">&#39;ru</span><span class="kc">n</span><span class="err">AsUser&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">1035</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;ru</span><span class="kc">n</span><span class="err">AsGroup&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">1036</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;suppleme</span><span class="kc">ntal</span><span class="err">Groups&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">20467</span><span class="p">,</span><span class="w"> </span><span class="mi">18430</span><span class="p">]</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
 <blockquote>
 <p>This is correct.
 <code>supplementalGroups</code> defines the others groups from LDAP</p>
 </blockquote>
 <p>Inside the user pod run the <code>id</code> command</p>
 <p><img alt="id group command fro hermes" src="../img/idgroup-hermes.png" /></p>
-<pre><code class="language-bash">hermes:~$ id
-uid=1035(hermes) gid=1036(hermes) groups=1036(hermes),18430(accountant),20467(humans)
-hermes:~$ groups
-hermes accountant humans
+<div class="highlight"><pre><span></span><code>hermes:~$<span class="w"> </span>id
+<span class="nv">uid</span><span class="o">=</span><span class="m">1035</span><span class="o">(</span>hermes<span class="o">)</span><span class="w"> </span><span class="nv">gid</span><span class="o">=</span><span class="m">1036</span><span class="o">(</span>hermes<span class="o">)</span><span class="w"> </span><span class="nv">groups</span><span class="o">=</span><span class="m">1036</span><span class="o">(</span>hermes<span class="o">)</span>,18430<span class="o">(</span>accountant<span class="o">)</span>,20467<span class="o">(</span>humans<span class="o">)</span>
+hermes:~$<span class="w"> </span>groups
+hermes<span class="w"> </span>accountant<span class="w"> </span>humans
 hermes:~$
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>This is correct.</p>
 </blockquote>
 <h3 id="create-new-file-on-host_1">Create new file on host</h3>
 <p>The default home directory in <code>od.config</code> is a volume <code>hostPath</code> set to <code>/tmp</code></p>
-<pre><code class="language-od.config">desktop.homedirectorytype: 'hostPath' 
-desktop.hostPathRoot: '/tmp'
-</code></pre>
+<div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;hostPath&#39; 
+desktop.hostPathRoot: &#39;/tmp&#39;
+</code></pre></div>
 <p>On your host server, using a root account, create a file <code>humansfile</code>  with restricted access to member of <code>humans</code> group.</p>
 <p><img alt="createhumans file as root" src="../img/createhumansfileasroot.png" /></p>
-<pre><code class="language-bash">cd /mnt/hermes-conrad
-echo 'hello' &gt; humansfile
-chown 0:20467 humansfile
-chmod 070 humansfile 
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/mnt/hermes-conrad
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;hello&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>humansfile
+chown<span class="w"> </span><span class="m">0</span>:20467<span class="w"> </span>humansfile
+chmod<span class="w"> </span><span class="m">070</span><span class="w"> </span>humansfile<span class="w"> </span>
+</code></pre></div>
 <p>Check the owner and group</p>
-<pre><code>ls -la humansfile
+<div class="highlight"><pre><span></span><code>ls -la humansfile
 ----rwx--- 1 root 20467 6 nov.  23 17:16 humansfile
-</code></pre>
+</code></pre></div>
 <p>Check inside the user pod check that <code>hermes</code> account <strong>can to write data</strong> in file <code>humansfile</code>, because <code>hermes</code> is member of <code>humans</code> group.</p>
 <p><img alt="humansfile-hermes" src="../img/humansfile-hermes.png" /></p>
-<pre><code>hermes:~$ ls -la humansfile 
+<div class="highlight"><pre><span></span><code>hermes:~$ ls -la humansfile 
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; 612b52bcffb502a9d934c0cbba40a43d553fc731
 ----rwx--- 1 root humans 6 Nov 23 16:16 humansfile
-hermes:~$ echo 'hello from hermes' &gt;&gt; humansfile 
+hermes:~$ echo &#39;hello from hermes&#39; &gt;&gt; humansfile 
 hermes:~$ more humansfile 
 hello
 hello from hermes
 &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 hermes:~$ 
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>This is correct.</p>
 </blockquote>
 <p>We describe a common features with multiple groups and user <code>securityContext</code> on pods and abcdesktop support multiple groups with posixGroup define in RFC2307. </p>
 <h3 id="ldap-ldif-dump">LDAP ldif dump</h3>
 <p>To get more details about the ldif and ldap datas, you can download the <a href="../planetexpressRFC2307.ldif">ldif file planetexpress</a>.</p>
-<pre><code class="language-ldif">version: 1
-=======
-hermes:~$ 
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">version</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="err">=======</span>
+<span class="na">hermes</span><span class="p">:</span><span class="err">~$ </span>
+</code></pre></div>
 <blockquote>
 <p>This is correct.</p>
 </blockquote>
 <p>We describe a common features with multiple groups and user <code>securityContext</code> on pods and abcdesktop support multiple groups with posixGroup define in RFC2307. </p>
 <h3 id="ldif-dump">ldif dump</h3>
 <p>To get more details about the ldif and ldap datas, you can download the <a href="../planetexpressRFC2307.ldif">ldif file planetexpress</a>.</p>
-<pre><code class="language-ldif">version: 1
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; 612b52bcffb502a9d934c0cbba40a43d553fc731
+<div class="highlight"><pre><span></span><code><span class="k">version</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="err">&gt;&gt;&gt;&gt;&gt;&gt;&gt; 612b52bcffb502a9d934c0cbba40a43d553fc731</span>
 
-dn: dc=planetexpress,dc=com
-objectClass: dcObject
-objectClass: organization
-objectClass: top
-dc: planetexpress
-o: Planet Express, Inc.
+<span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">dc</span><span class="o">=</span><span class="s">planetexpress</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">dcObject</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">organization</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<span class="na">dc</span><span class="p">:</span><span class="w"> </span><span class="s">planetexpress</span>
+<span class="na">o</span><span class="p">:</span><span class="w"> </span><span class="s">Planet Express, Inc.</span>
 
-dn: ou=people,dc=planetexpress,dc=com
-objectClass: organizationalUnit
-objectClass: top
-ou: people
-description: Planet Express crew
+<span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">ou</span><span class="o">=</span><span class="s">people</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">planetexpress</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">organizationalUnit</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<span class="na">ou</span><span class="p">:</span><span class="w"> </span><span class="s">people</span>
+<span class="na">description</span><span class="p">:</span><span class="w"> </span><span class="s">Planet Express crew</span>
 
-dn: cn=Hermes Conrad,ou=people,dc=planetexpress,dc=com
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: posixAccount
-objectClass: top
-cn: Hermes Conrad
-gidNumber: 1036
-homeDirectory: /home/hermes
-sn: Conrad
-uid: hermes
-uidNumber: 1035
-description: Human
-employeeType: Accountant
-employeeType: Bureaucrat
-givenName: Hermes
-mail: hermes@planetexpress.com
-ou: Office Management
+<span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">cn</span><span class="o">=</span><span class="s">Hermes Conrad</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">people</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">planetexpress</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">inetOrgPerson</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">organizationalPerson</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">person</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">posixAccount</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<span class="na">cn</span><span class="p">:</span><span class="w"> </span><span class="s">Hermes Conrad</span>
+<span class="na">gidNumber</span><span class="p">:</span><span class="w"> </span><span class="s">1036</span>
+<span class="na">homeDirectory</span><span class="p">:</span><span class="w"> </span><span class="s">/home/hermes</span>
+<span class="na">sn</span><span class="p">:</span><span class="w"> </span><span class="s">Conrad</span>
+<span class="na">uid</span><span class="p">:</span><span class="w"> </span><span class="s">hermes</span>
+<span class="na">uidNumber</span><span class="p">:</span><span class="w"> </span><span class="s">1035</span>
+<span class="na">description</span><span class="p">:</span><span class="w"> </span><span class="s">Human</span>
+<span class="na">employeeType</span><span class="p">:</span><span class="w"> </span><span class="s">Accountant</span>
+<span class="na">employeeType</span><span class="p">:</span><span class="w"> </span><span class="s">Bureaucrat</span>
+<span class="na">givenName</span><span class="p">:</span><span class="w"> </span><span class="s">Hermes</span>
+<span class="na">mail</span><span class="p">:</span><span class="w"> </span><span class="s">hermes@planetexpress.com</span>
+<span class="na">ou</span><span class="p">:</span><span class="w"> </span><span class="s">Office Management</span>
 
-dn: ou=groups,dc=planetexpress,dc=com
-objectClass: organizationalUnit
-objectClass: top
-ou: groups
+<span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">ou</span><span class="o">=</span><span class="s">groups</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">planetexpress</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">organizationalUnit</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<span class="na">ou</span><span class="p">:</span><span class="w"> </span><span class="s">groups</span>
 
-dn: cn=fry,ou=groups,dc=planetexpress,dc=com
-objectClass: posixGroup
-objectClass: top
-cn: fry
-gidNumber: 1025
-memberUid: fry
+<span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">cn</span><span class="o">=</span><span class="s">fry</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">groups</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">planetexpress</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">posixGroup</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<span class="na">cn</span><span class="p">:</span><span class="w"> </span><span class="s">fry</span>
+<span class="na">gidNumber</span><span class="p">:</span><span class="w"> </span><span class="s">1025</span>
+<span class="na">memberUid</span><span class="p">:</span><span class="w"> </span><span class="s">fry</span>
 
-dn: cn=humans,ou=groups,dc=planetexpress,dc=com
-objectClass: posixGroup
-objectClass: top
-cn: humans
-gidNumber: 20467
-memberUid: fry
-memberUid: hermes
+<span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">cn</span><span class="o">=</span><span class="s">humans</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">groups</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">planetexpress</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">posixGroup</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<span class="na">cn</span><span class="p">:</span><span class="w"> </span><span class="s">humans</span>
+<span class="na">gidNumber</span><span class="p">:</span><span class="w"> </span><span class="s">20467</span>
+<span class="na">memberUid</span><span class="p">:</span><span class="w"> </span><span class="s">fry</span>
+<span class="na">memberUid</span><span class="p">:</span><span class="w"> </span><span class="s">hermes</span>
 
-dn: cn=hermes,ou=groups,dc=planetexpress,dc=com
-objectClass: posixGroup
-objectClass: top
-cn: hermes
-gidNumber: 1036
+<span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">cn</span><span class="o">=</span><span class="s">hermes</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">groups</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">planetexpress</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">posixGroup</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<span class="na">cn</span><span class="p">:</span><span class="w"> </span><span class="s">hermes</span>
+<span class="na">gidNumber</span><span class="p">:</span><span class="w"> </span><span class="s">1036</span>
 
-dn: cn=accountant,ou=groups,dc=planetexpress,dc=com
-objectClass: posixGroup
-objectClass: top
-cn: accountant
-gidNumber: 18430
-memberUid: hermes
-</code></pre>
+<span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">cn</span><span class="o">=</span><span class="s">accountant</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">groups</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">planetexpress</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">posixGroup</span>
+<span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<span class="na">cn</span><span class="p">:</span><span class="w"> </span><span class="s">accountant</span>
+<span class="na">gidNumber</span><span class="p">:</span><span class="w"> </span><span class="s">18430</span>
+<span class="na">memberUid</span><span class="p">:</span><span class="w"> </span><span class="s">hermes</span>
+</code></pre></div>
 
 
 

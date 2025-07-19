@@ -4860,7 +4860,7 @@
 <h2 id="from">from</h2>
 <p>inherit <a href="../oc.template.ubuntu.minimal.24.04">abcdesktopio/oc.template.ubuntu.minimal.24.04</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>PRETTY_NAME=&quot;Ubuntu 24.04.1 LTS&quot;
+<div class="highlight"><pre><span></span><code>PRETTY_NAME=&quot;Ubuntu 24.04.1 LTS&quot;
 NAME=&quot;Ubuntu&quot;
 VERSION_ID=&quot;24.04&quot;
 VERSION=&quot;24.04.1 LTS (Noble Numbat)&quot;
@@ -4873,10 +4873,9 @@ BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
 PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
 UBUNTU_CODENAME=noble
 LOGO=ubuntu-logo
-
-</code></pre>
+</code></pre></div>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code># default TAG is dev
+<div class="highlight"><pre><span></span><code># default TAG is dev
 ARG TAG=dev
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}:${TAG}
@@ -4887,8 +4886,7 @@ RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends \
      krb5-user              \
      &amp;&amp; apt-get clean           \
      &amp;&amp; rm -rf /var/lib/apt/lists/  
-
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>file oc.template.ubuntu.24.04.md is created at Tue Jan 28 2025 14:04:59 GMT+0000 (Coordinated Universal Time) by make-docs.js</p>
 </blockquote>

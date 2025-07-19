@@ -4860,7 +4860,7 @@
 <h2 id="from">from</h2>
 <p>Docker official images <a href="https://hub.docker.com/_/ubuntu">ubuntu:22.04</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>PRETTY_NAME=&quot;Ubuntu 22.04.5 LTS&quot;
+<div class="highlight"><pre><span></span><code>PRETTY_NAME=&quot;Ubuntu 22.04.5 LTS&quot;
 NAME=&quot;Ubuntu&quot;
 VERSION_ID=&quot;22.04&quot;
 VERSION=&quot;22.04.5 LTS (Jammy Jellyfish)&quot;
@@ -4872,10 +4872,9 @@ SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
 BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
 PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
 UBUNTU_CODENAME=jammy
-
-</code></pre>
+</code></pre></div>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code>ARG BASE_IMAGE
+<div class="highlight"><pre><span></span><code>ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
 MAINTAINER Alexandre DEVELY 
@@ -4885,7 +4884,7 @@ COPY etc/ /etc
 # correct debconf: (TERM is not set, so the dialog frontend is not usable.)
 ENV DEBCONF_FRONTEND noninteractive
 ENV TERM linux
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+RUN echo &#39;debconf debconf/frontend select Noninteractive&#39; | debconf-set-selections
 
 RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends \
      gnupg \
@@ -4941,9 +4940,7 @@ RUN groupadd --gid 4096 $BUSER &amp;&amp; \
 # allow default user to write in /var/log/desktop  if no user defined 
 RUN mkdir -p /var/log/desktop &amp;&amp; \
     chown -R $BUSER:$BUSER /home/$BUSER /var/log/desktop
-
-
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>file oc.template.ubuntu.minimal.22.04.md is created at Tue Jan 28 2025 13:52:57 GMT+0000 (Coordinated Universal Time) by make-docs.js</p>
 </blockquote>

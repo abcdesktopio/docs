@@ -4989,26 +4989,26 @@
 <p>Choose <code>Logs</code> to read the stdout log file of an application</p>
 <p><img alt="" src="../img/debug-application-log-web-interface.png" /></p>
 <p>This application write on <code>stdout</code></p>
-<pre><code>Error setting cipher RC4
+<div class="highlight"><pre><span></span><code>Error setting cipher RC4
 40F7D1D5D07F0000:error:0308010C:digital envelope routines:inner_evp_generic_fetch:unsupported:../crypto/evp/evp_fetch.c:349:Global default library context, Algorithm (RC4 : 37), Properties ()
-QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-balloon'
+QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to &#39;/tmp/runtime-balloon&#39;
 qml: Started a new game
-</code></pre>
+</code></pre></div>
 <h2 id="read-log-from-daemon-interface-optionnal">Read log from daemon interface (optionnal)</h2>
 <p>You will read the sample stdout line, using a <code>docker logs</code> command, open a shell on you host.</p>
 <p>In a shell on your host, look for the <code>container id</code> of the <code>2048</code> containerised application</p>
-<pre><code class="language-bash">$ docker ps -a|grep 2048
-01579054a1f6   abcdesktopio/ubuntu-2048.d:3.0   &quot;/composer/appli-doc…&quot;   21 minutes ago     Up 21 minutes                                                                   anonymous-ubuntu-2048-37830ad00d9f473aa4d0c7872089c6b8
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="p">|</span>grep<span class="w"> </span><span class="m">2048</span>
+01579054a1f6<span class="w">   </span>abcdesktopio/ubuntu-2048.d:3.0<span class="w">   </span><span class="s2">&quot;/composer/appli-doc…&quot;</span><span class="w">   </span><span class="m">21</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">     </span>Up<span class="w"> </span><span class="m">21</span><span class="w"> </span>minutes<span class="w">                                                                   </span>anonymous-ubuntu-2048-37830ad00d9f473aa4d0c7872089c6b8
+</code></pre></div>
 <p>Read the log file form the <code>docker logs</code> command</p>
-<pre><code class="language-bash">$ docker logs 01579054a1f6
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>logs<span class="w"> </span>01579054a1f6
+</code></pre></div>
 <p>You should read on output the same lines written on the web interface</p>
-<pre><code>Error setting cipher RC4
+<div class="highlight"><pre><span></span><code>Error setting cipher RC4
 40F7D1D5D07F0000:error:0308010C:digital envelope routines:inner_evp_generic_fetch:unsupported:../crypto/evp/evp_fetch.c:349:Global default library context, Algorithm (RC4 : 37), Properties ()
-QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-balloon'
+QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to &#39;/tmp/runtime-balloon&#39;
 qml: Started a new game
-</code></pre>
+</code></pre></div>
 <h2 id="read-log-files-from-an-application-using-the-redirected-stderr-and-stdout">Read log files from an application using the redirected <code>stderr</code> and <code>stdout</code></h2>
 <p>The main log files are <code>lastcmd.log</code> <code>lastcmdenv.log</code> and <code>$APPBIN.log</code>:</p>
 <ul>
@@ -5017,20 +5017,20 @@ qml: Started a new game
 <li><code>/tmp/$APPBIN.log</code>: contains <code>stderr</code> and <code>stdout</code> of the application <code>$APPBIN</code>. <code>$APPBIN</code> should be replace by the name of your binary application filename.</li>
 </ul>
 <p>By default, with all abcdesktop templates, applications redirect <code>stderr</code> to <code>stdout</code> and pipe to a tee.</p>
-<pre><code>${APP} ${ARGS} &quot;${APPARGS}&quot; 2&gt;&amp;1 | tee /tmp/$BASENAME_APP.log
-</code></pre>
+<div class="highlight"><pre><span></span><code>${APP} ${ARGS} &quot;${APPARGS}&quot; 2&gt;&amp;1 | tee /tmp/$BASENAME_APP.log
+</code></pre></div>
 <p>By default, the <code>/tmp</code> volume is shared with all containers.
 So to debug and read log applications, you can run a <code>webshell</code> to have an access to <code>stdout</code> and <code>stderr</code> content.</p>
 <p>The var <code>$BASENAME_APP</code> is the name of your application</p>
-<pre><code>BASENAME_APP=$(basename &quot;$APPBIN&quot;)
-</code></pre>
+<div class="highlight"><pre><span></span><code>BASENAME_APP=$(basename &quot;$APPBIN&quot;)
+</code></pre></div>
 <p>and <code>APPBIN</code> is <code>path</code> to the binary</p>
 <p>Example with the <code>2048-qt</code> application</p>
-<pre><code>APPBIN=/usr/games/2048-qt
-</code></pre>
+<div class="highlight"><pre><span></span><code>APPBIN=/usr/games/2048-qt
+</code></pre></div>
 <p><img alt="application log" src="../img/debug-application.png" /></p>
 <p>The <code>/tmp</code> directory, you can read the log file '/tmp/2048-qt.log'. Look at the <code>/tmp</code> directory</p>
-<pre><code>balloon:~$ ls -la /tmp/
+<div class="highlight"><pre><span></span><code>balloon:~$ ls -la /tmp/
 total 20
 drwxrwxrwt 5 root    root     260 Dec  1 09:58 .
 drwxr-xr-x 1 root    root    4096 Dec  1 09:55 ..
@@ -5046,7 +5046,7 @@ drwx------ 2 balloon balloon   40 Dec  1 09:58 runtime-balloon
 drwxrwxrwt 2 root    root      60 Dec  1 09:55 .X11-unix
 srw------- 1 balloon balloon    0 Dec  1 09:55 .x11vnc
 balloon:~$
-</code></pre>
+</code></pre></div>
 <p>The files are <code>/tmp/lastcmd.log</code>, <code>/tmp/lastcmdenv.log</code> and  <code>/tmp/2048-qt.log</code>.</p>
 <ul>
 <li><code>/tmp/lastcmd.log</code> the init command log file created by  <code>/composer/appli-docker-entrypoint.sh</code></li>
@@ -5055,12 +5055,12 @@ balloon:~$
 </ul>
 <p>Dump the <code>/tmp/2048-qt.log</code>, with a cat command <code>cat /tmp/2048-qt.log</code>. Replace <code>/tmp/2048-qt.log</code> by your own application (binary) if you choose another application.</p>
 <p>You can run all bash commands inside the <code>webshell</code>.</p>
-<pre><code>balloon:~$ cat /tmp/2048-qt.log 
-QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-balloon'
+<div class="highlight"><pre><span></span><code>balloon:~$ cat /tmp/2048-qt.log 
+QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to &#39;/tmp/runtime-balloon&#39;
 qml: Started a new game
-</code></pre>
+</code></pre></div>
 <p>Dump the <code>/composer/appli-docker-entrypoint.sh</code> result in <code>/tmp/lastcmd.log</code>, with a cat command <code>cat /tmp/lastcmd.log</code>.</p>
-<pre><code>balloon:~$ cat /tmp/lastcmd.log 
+<div class="highlight"><pre><span></span><code>balloon:~$ cat /tmp/lastcmd.log 
 APP=/usr/bin/gnome-2048
 ARGS=
 APPARGS=
@@ -5070,9 +5070,9 @@ BASENAME_APP=gnome-2048
 xauth add :0.0 MIT-MAGIC-COOKIE-1 55dd9838e9404e3b13b635153365d3
 setting pulseaudio cookie
 end of app exit_code=0
-</code></pre>
+</code></pre></div>
 <p>Dump all environment variables in file <code>/tmp/lastcmdenv.log</code>.</p>
-<pre><code>balloon:/tmp$ cat /tmp/lastcmdenv.log 
+<div class="highlight"><pre><span></span><code>balloon:/tmp$ cat /tmp/lastcmdenv.log 
 BUSER=balloon
 SENDCUTTEXT=enabled
 PARENT_ID=2eecb67f5408c2552e7ee78b4fa2c9a419e9af9557c12c4d2f9f5c4fd1af70f4
@@ -5112,7 +5112,7 @@ LC_ALL=en_US.UTF-8
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 PULSE_SERVER=/tmp/.pulse.sock
 LC_NUMERIC=en_US.UTF-8
-</code></pre>
+</code></pre></div>
 <p>We describe how to read the environment variables, the stdout file and the stderr file, to get some information and error for a containerised application.</p>
 <p>In <a href="debug_application_create">next chapter</a> we will start an application from a fresh ubuntu image, to get more details.</p>
 

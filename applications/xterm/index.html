@@ -4994,42 +4994,41 @@
 <p><a href="../abcdesktopio/oc.template.alpine">abcdesktopio/oc.template.alpine</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>alpine <img alt="alpine" src="../icons/alpine.svg" style="height:32px;" /></p>
-<pre><code>NAME=&quot;Alpine Linux&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Alpine Linux&quot;
 ID=alpine
 VERSION_ID=3.17.1
 PRETTY_NAME=&quot;Alpine Linux v3.17&quot;
 HOME_URL=&quot;https://alpinelinux.org/&quot;
 BUG_REPORT_URL=&quot;https://gitlab.alpinelinux.org/alpine/aports/-/issues&quot;
-
-</code></pre>
+</code></pre></div>
 <h2 id="alpine-packages">Alpine packages</h2>
-<pre><code>xterm sudo
-</code></pre>
+<div class="highlight"><pre><span></span><code>xterm sudo
+</code></pre></div>
 <h2 id="arguments">Arguments</h2>
 <p><code>"-xrm 'XTerm*selectToClipboard:true'"</code></p>
 <h2 id="displayname">Displayname</h2>
-<pre><code>Xterm (sudo)
-</code></pre>
+<div class="highlight"><pre><span></span><code>Xterm (sudo)
+</code></pre></div>
 <h2 id="path">Path</h2>
-<pre><code>/usr/bin/xterm
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/bin/xterm
+</code></pre></div>
 <h2 id="acl">ACL</h2>
-<pre><code class="language-json">{
-    &quot;permit&quot;: [
-        &quot;all&quot;
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;all&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="wm_class">WM_CLASS</h2>
-<pre><code>xterm.XTerm
-</code></pre>
+<div class="highlight"><pre><span></span><code>xterm.XTerm
+</code></pre></div>
 <blockquote>
 <p>The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
 to get the WM_CLASS property of an application, use the command line <code>wmctrl -lx</code></p>
 </blockquote>
 <h2 id="desktopfile">Desktopfile</h2>
-<pre><code>/usr/share/applications/xterm.desktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/share/applications/xterm.desktop
+</code></pre></div>
 <blockquote>
 <p>A .desktop file is a simple text file that holds information about a program. It is usually placed in “/usr/share/applications/”.</p>
 </blockquote>
@@ -5037,49 +5036,48 @@ to get the WM_CLASS property of an application, use the command line <code>wmctr
 <blockquote>
 <p>POST run command are run <strong>after</strong> the package install comman</p>
 </blockquote>
-<pre><code>RUN echo &quot;ALL ALL=(ALL:ALL) ALL&quot;&gt;/etc/sudoers.d/all
-</code></pre>
+<div class="highlight"><pre><span></span><code>RUN echo &quot;ALL ALL=(ALL:ALL) ALL&quot;&gt;/etc/sudoers.d/all
+</code></pre></div>
 <h2 id="json-dump">JSON dump</h2>
 <p>json source file xterm.d.3.0.json </p>
-<pre><code class="language-json">{
-    &quot;acl&quot;: {
-        &quot;permit&quot;: [
-            &quot;all&quot;
-        ]
-    },
-    &quot;cat&quot;: &quot;development&quot;,
-    &quot;icon&quot;: &quot;circle_xterm.svg&quot;,
-    &quot;apkpackage&quot;: &quot;xterm sudo&quot;,
-    &quot;keyword&quot;: &quot;xterm,shell,cmd&quot;,
-    &quot;launch&quot;: &quot;xterm.XTerm&quot;,
-    &quot;name&quot;: &quot;xterm&quot;,
-    &quot;displayname&quot;: &quot;Xterm (sudo)&quot;,
-    &quot;path&quot;: &quot;/usr/bin/xterm&quot;,
-    &quot;rules&quot;: {
-        &quot;homedir&quot;: {
-            &quot;default&quot;: true
-        }
-    },
-    &quot;template&quot;: &quot;abcdesktopio/oc.template.alpine&quot;,
-    &quot;desktopfile&quot;: &quot;/usr/share/applications/xterm.desktop&quot;,
-    &quot;args&quot;: &quot;-xrm 'XTerm*selectToClipboard:true'&quot;,
-    &quot;postruncommands&quot;: [
-        &quot;RUN echo \&quot;ALL ALL=(ALL:ALL) ALL\&quot;&gt;/etc/sudoers.d/all&quot;
-    ],
-    &quot;quick&quot;: true
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;all&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;development&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;circle_xterm.svg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;apkpackage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xterm sudo&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xterm,shell,cmd&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xterm.XTerm&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xterm&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Xterm (sudo)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/xterm&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/oc.template.alpine&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/share/applications/xterm.desktop&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-xrm &#39;XTerm*selectToClipboard:true&#39;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;postruncommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;RUN echo \&quot;ALL ALL=(ALL:ALL) ALL\&quot;&gt;/etc/sudoers.d/all&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;quick&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
 <p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-curl --output xterm.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/xterm.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @xterm.d.3.0.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+curl<span class="w"> </span>--output<span class="w"> </span>xterm.d.3.0.json<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/xterm.d.3.0.json
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@xterm.d.3.0.json
+</code></pre></div>
 <h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
-<pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+<div class="highlight"><pre><span></span><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
 FROM abcdesktopio/oc.template.alpine:$TAG
@@ -5092,7 +5090,7 @@ LABEL oc.cat=&quot;development&quot;
 LABEL oc.desktopfile=&quot;xterm.desktop&quot;
 LABEL oc.launch=&quot;xterm.XTerm&quot;
 LABEL oc.template=&quot;abcdesktopio/oc.template.alpine&quot;
-ENV ARGS=&quot;-xrm 'XTerm*selectToClipboard:true'&quot;
+ENV ARGS=&quot;-xrm &#39;XTerm*selectToClipboard:true&#39;&quot;
 LABEL oc.name=&quot;xterm&quot;
 LABEL oc.displayname=&quot;Xterm (sudo)&quot;
 LABEL oc.path=&quot;/usr/bin/xterm&quot;
@@ -5102,7 +5100,7 @@ LABEL oc.acl=&quot;{\&quot;permit\&quot;:[\&quot;all\&quot;]}&quot;
 RUN for d in /usr/share/icons /usr/share/pixmaps ; do echo &quot;testing link in $d&quot;; if [ -d $d ] &amp;&amp; [ -x /composer/safelinks.sh ] ; then echo &quot;fixing link in $d&quot;; cd $d ; /composer/safelinks.sh ; fi; done
 ENV APPNAME &quot;xterm&quot;
 ENV APPBIN &quot;/usr/bin/xterm&quot;
-LABEL oc.args=&quot;-xrm 'XTerm*selectToClipboard:true'&quot;
+LABEL oc.args=&quot;-xrm &#39;XTerm*selectToClipboard:true&#39;&quot;
 ENV APP &quot;/usr/bin/xterm&quot;
 RUN echo &quot;ALL ALL=(ALL:ALL) ALL&quot;&gt;/etc/sudoers.d/all
 USER root
@@ -5110,29 +5108,27 @@ RUN mkdir -p /var/secrets/abcdesktop/localaccount
 RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
 USER balloon
 CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
-
-</code></pre>
+</code></pre></div>
 <h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
 <h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/xterm.d">Dockerfile for application xterm</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/xterm.d
-</code></pre>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/xterm.d">Dockerfile for application xterm</a>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/xterm.d
+</code></pre></div></p>
 <h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f xterm.d -t xterm .
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">TAG</span><span class="o">=</span><span class="m">3</span>.0<span class="w"> </span>-f<span class="w"> </span>xterm.d<span class="w"> </span>-t<span class="w"> </span>xterm<span class="w"> </span>.
+</code></pre></div>
 <h3 id="install-the-new-image">Install the new image</h3>
 <blockquote>
 <p>If you are using <code>containerd</code> as container runtime, use the ctr command line</p>
 <p>If you are not running this bash command on your abcdesktop node
 Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-docker inspect xterm &gt; xterm.json
-docker image save xterm -o xterm.tar
-ctr -n k8s.io images import xterm.tar
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @xterm.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+docker<span class="w"> </span>inspect<span class="w"> </span>xterm<span class="w"> </span>&gt;<span class="w"> </span>xterm.json
+docker<span class="w"> </span>image<span class="w"> </span>save<span class="w"> </span>xterm<span class="w"> </span>-o<span class="w"> </span>xterm.tar
+ctr<span class="w"> </span>-n<span class="w"> </span>k8s.io<span class="w"> </span>images<span class="w"> </span>import<span class="w"> </span>xterm.tar
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@xterm.json
+</code></pre></div>
 
 
 

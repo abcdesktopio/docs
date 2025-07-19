@@ -4860,7 +4860,7 @@
 <h2 id="from">from</h2>
 <p>inherit <a href="../oc.template.rockylinux.8">abcdesktopio/oc.template.rockylinux.8</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>NAME=&quot;Rocky Linux&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Rocky Linux&quot;
 VERSION=&quot;8.10 (Green Obsidian)&quot;
 ID=&quot;rocky&quot;
 ID_LIKE=&quot;rhel centos fedora&quot;
@@ -4877,10 +4877,9 @@ ROCKY_SUPPORT_PRODUCT=&quot;Rocky-Linux-8&quot;
 ROCKY_SUPPORT_PRODUCT_VERSION=&quot;8.10&quot;
 REDHAT_SUPPORT_PRODUCT=&quot;Rocky Linux&quot;
 REDHAT_SUPPORT_PRODUCT_VERSION=&quot;8.10&quot;
-
-</code></pre>
+</code></pre></div>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code># default TAG is dev
+<div class="highlight"><pre><span></span><code># default TAG is dev
 ARG TAG=dev
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}:${TAG} 
@@ -4895,8 +4894,7 @@ RUN yum update &amp;&amp; \
 
 COPY --from=abcdesktopio/oc.themes /usr/share/icons  /usr/share/icons
 COPY --from=abcdesktopio/oc.themes /usr/share/themes /usr/share/themes
-
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>file oc.template.rockylinux.gtk.8.md is created at Tue Jan 28 2025 14:08:00 GMT+0000 (Coordinated Universal Time) by make-docs.js</p>
 </blockquote>

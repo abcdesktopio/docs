@@ -5021,7 +5021,7 @@
 <p><a href="../abcdesktopio/oc.template.ubuntu.minimal.22.04">abcdesktopio/oc.template.ubuntu.minimal.22.04</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>ubuntu <img alt="ubuntu" src="../icons/ubuntu.svg" style="height:32px;" /></p>
-<pre><code>PRETTY_NAME=&quot;Ubuntu 22.04.1 LTS&quot;
+<div class="highlight"><pre><span></span><code>PRETTY_NAME=&quot;Ubuntu 22.04.1 LTS&quot;
 NAME=&quot;Ubuntu&quot;
 VERSION_ID=&quot;22.04&quot;
 VERSION=&quot;22.04.1 LTS (Jammy Jellyfish)&quot;
@@ -5033,43 +5033,42 @@ SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
 BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
 PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
 UBUNTU_CODENAME=jammy
-
-</code></pre>
+</code></pre></div>
 <h2 id="ubuntu-packages">Ubuntu packages</h2>
-<pre><code>firefox
-</code></pre>
+<div class="highlight"><pre><span></span><code>firefox
+</code></pre></div>
 <h2 id="arguments">Arguments</h2>
 <p><code>"-P youtube --class=youtube https://www.youtube.com/"</code></p>
 <h2 id="displayname">Displayname</h2>
-<pre><code>Youtube
-</code></pre>
+<div class="highlight"><pre><span></span><code>Youtube
+</code></pre></div>
 <h2 id="path">Path</h2>
-<pre><code>/usr/bin/firefox
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/bin/firefox
+</code></pre></div>
 <h2 id="mimetype">Mimetype</h2>
-<pre><code>text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;
-</code></pre>
+<div class="highlight"><pre><span></span><code>text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;
+</code></pre></div>
 <h2 id="file-extensions">File extensions</h2>
 <p><code>"html;xml;gif"</code></p>
 <h2 id="legacy-file-extensions">Legacy file extensions</h2>
 <p><code>"html;xml"</code></p>
 <h2 id="acl">ACL</h2>
-<pre><code class="language-json">{
-    &quot;permit&quot;: [
-        &quot;all&quot;
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;all&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="wm_class">WM_CLASS</h2>
-<pre><code>Navigator.youtube
-</code></pre>
+<div class="highlight"><pre><span></span><code>Navigator.youtube
+</code></pre></div>
 <blockquote>
 <p>The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
 to get the WM_CLASS property of an application, use the command line <code>wmctrl -lx</code></p>
 </blockquote>
 <h2 id="desktopfile">Desktopfile</h2>
-<pre><code>/usr/share/applications/firefox.desktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/share/applications/firefox.desktop
+</code></pre></div>
 <blockquote>
 <p>A .desktop file is a simple text file that holds information about a program. It is usually placed in “/usr/share/applications/”.</p>
 </blockquote>
@@ -5077,65 +5076,64 @@ to get the WM_CLASS property of an application, use the command line <code>wmctr
 <blockquote>
 <p>PRE run command are run <strong>before</strong> the package install command</p>
 </blockquote>
-<pre><code>COPY composer/init.d/init.firefox.youtube /composer/init.d/init.firefox
-</code></pre>
+<div class="highlight"><pre><span></span><code>COPY composer/init.d/init.firefox.youtube /composer/init.d/init.firefox
+</code></pre></div>
 <h2 id="json-dump">JSON dump</h2>
 <p>json source file</p>
-<pre><code class="language-json">{
-    &quot;acl&quot;: {
-        &quot;permit&quot;: [
-            &quot;all&quot;
-        ]
-    },
-    &quot;cat&quot;: &quot;development&quot;,
-    &quot;debpackage&quot;: &quot;firefox&quot;,
-    &quot;icon&quot;: &quot;circle_youtube.svg&quot;,
-    &quot;keyword&quot;: &quot;youtube,tube&quot;,
-    &quot;launch&quot;: &quot;Navigator.youtube&quot;,
-    &quot;args&quot;: &quot;-P youtube --class=youtube https://www.youtube.com/&quot;,
-    &quot;name&quot;: &quot;youtube&quot;,
-    &quot;displayname&quot;: &quot;Youtube&quot;,
-    &quot;rules&quot;: {
-        &quot;homedir&quot;: {
-            &quot;default&quot;: false
-        }
-    },
-    &quot;host_config&quot;: {
-        &quot;mem_limit&quot;: &quot;2G&quot;,
-        &quot;shm_size&quot;: &quot;2G&quot;
-    },
-    &quot;installrecommends&quot;: true,
-    &quot;path&quot;: &quot;/usr/bin/firefox&quot;,
-    &quot;template&quot;: &quot;abcdesktopio/oc.template.ubuntu.minimal.22.04&quot;,
-    &quot;mimetype&quot;: &quot;text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;&quot;,
-    &quot;legacyfileextensions&quot;: &quot;html;xml&quot;,
-    &quot;fileextensions&quot;: &quot;html;xml;gif&quot;,
-    &quot;desktopfile&quot;: &quot;/usr/share/applications/firefox.desktop&quot;,
-    &quot;preventhomemount&quot;: false,
-    &quot;quick&quot;: true,
-    &quot;preruncommands&quot;: [
-        &quot;COPY composer/init.d/init.firefox.youtube /composer/init.d/init.firefox&quot;
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;all&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;development&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;debpackage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;firefox&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;circle_youtube.svg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;youtube,tube&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Navigator.youtube&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-P youtube --class=youtube https://www.youtube.com/&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;youtube&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Youtube&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;host_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;mem_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2G&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;shm_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2G&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;installrecommends&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/firefox&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/oc.template.ubuntu.minimal.22.04&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;video/webm;application/x-xpinstall;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;legacyfileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;html;xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;html;xml;gif&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/share/applications/firefox.desktop&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;preventhomemount&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;quick&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;preruncommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;COPY composer/init.d/init.firefox.youtube /composer/init.d/init.firefox&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
 <p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-curl --output youtube.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/youtube.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @youtube.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+curl<span class="w"> </span>--output<span class="w"> </span>youtube.json<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/youtube.d.3.0.json
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@youtube.json
+</code></pre></div>
 <h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
-<pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+<div class="highlight"><pre><span></span><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
 FROM abcdesktopio/oc.template.ubuntu.minimal.22.04:$TAG
 USER root
 COPY composer/init.d/init.firefox.youtube /composer/init.d/init.firefox
 RUN DEBIAN_FRONTEND=noninteractive apt-get update &amp;&amp; apt-get install -y firefox &amp;&amp; apt-get clean
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+RUN echo &#39;debconf debconf/frontend select Noninteractive&#39; | debconf-set-selections
 LABEL oc.icon=&quot;circle_youtube.svg&quot;
 LABEL oc.icondata=&quot;PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDY0IDY0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KIDxkZWZzPgogIDxsaW5lYXJHcmFkaWVudCBpZD0ibGluZWFyR3JhZGllbnQ4OTkiIHgxPSItMzkuNjA1IiB4Mj0iLTM5LjYwNSIgeTE9IjU4LjI0NyIgeTI9IjYuOTg3NyIgZ3JhZGllbnRUcmFuc2Zvcm09InRyYW5zbGF0ZSg3MC41NDMgLjQxOTc1KSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICA8c3RvcCBzdG9wLWNvbG9yPSIjZDAwYzIzIiBvZmZzZXQ9IjAiLz4KICAgPHN0b3Agc3RvcC1jb2xvcj0iI2ZmNTE1MSIgb2Zmc2V0PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8ZmlsdGVyIGlkPSJmaWx0ZXI5MzAiIHg9Ii0uMDM4ODgiIHk9Ii0uMDM4ODgiIHdpZHRoPSIxLjA3NzgiIGhlaWdodD0iMS4wNzc4IiBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9InNSR0IiPgogICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIwLjk3MiIvPgogIDwvZmlsdGVyPgogPC9kZWZzPgogPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iMzAiIGZpbGw9IiMwMDAwMDAiIGZpbHRlcj0idXJsKCNmaWx0ZXI5MzApIiBvcGFjaXR5PSIuMTUiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS13aWR0aD0iMi4yODgxIiBzdHlsZT0iaXNvbGF0aW9uOmlzb2xhdGU7cGFpbnQtb3JkZXI6c3Ryb2tlIGZpbGwgbWFya2VycyIvPgogPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iMzAiIGZpbGw9InVybCgjbGluZWFyR3JhZGllbnQ4OTkpIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2Utd2lkdGg9IjIuMjg4MSIgc3R5bGU9Imlzb2xhdGlvbjppc29sYXRlO3BhaW50LW9yZGVyOnN0cm9rZSBmaWxsIG1hcmtlcnMiLz4KIDxpbWFnZSB4PSIxMC41IiB5PSIxOSIgd2lkdGg9IjQzIiBoZWlnaHQ9IjMyIiBpbWFnZS1yZW5kZXJpbmc9Im9wdGltaXplUXVhbGl0eSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgeGxpbms6aHJlZj0iZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFDc0FBQUFnQ0FZQUFBQ0xtb0VEQUFBQUNYQklXWE1BQUE3REFBQU93d0hIYjZoa0FBQUEgR1hSRldIUlRiMlowZDJGeVpRQjNkM2N1YVc1cmMyTmhjR1V1YjNKbm0rNDhHZ0FBQWg5SlJFRlVXSVcxbU8yV2hDQUlodCttWnZmKyBiM2VhY24va1c0UllnaTNuY1ByUTdJa1FrUUh0TWpqNmVpWDFBQXpHdWRVMzhnRVdXRExhaW41VEJXQUE4TXJLYTZoejZ6a1BJTzhuIGRiNW1MWjdUTHlEa0JHQVVPcUNFYmdXdEFXdklCR0FSK3MzUSszUFNzZ1I5QS9qSnh6ZHM2N1lDM29GcllFTE9lZnhaQW12WU1RUCsgWnAxUVd2VktyRDR0azBlNndJTE5RTHplWFlXdzh2Zi80TEFzWGFCRklqNXI5Wk9naXdTMkxEdmg4TmxXaTk2Slp3eUxBY0QyRlJ6cyBwZlFwVUkvb1NDUlpDcDg4TlRwRWhxQW5KcUFWT2dmdEJoRnJ5dGlZeEl1aTQxVjU5S0xnZllFT09Tc08zeDl4V0lkamgwRTFiTlFLIGhKMnpjbHlwRVdESnRROGFIWVJDNjM0QmZMQlpsek9hQzR1RTlscDRQOVp5Z3dndzQrSlg2WUl0YmllY1YwUzNXTEE5UW1qZ25KQncgMG5YRjd0ZDlsNURVa3BZdXNTemJNN0FNVzB5S21CaDFyNGlFN2YxeS9ac2xLQ2NZUTFrM0xDVUNUV3VOMkN3SUhObWJoSXl1alB0eCBxalU0WVFsS3NONUZRWXFaZk11R1ZtQUM4UGN6MStoZGJ1WHVZUmR0MmFKRGcwZzRHTWVvRkR5VHVpa1RFbzg4blU1cWxnUWd2WXpHIEZYSG9KeUVMRHUwR1RFZ2k2emd1K251Mk5TdU9UZU1DWTRMcFRxTm90L3pSQTNzSEtpYzE4NHRQNWpodHh5M0xmdkwxQ25zdlpsVnIgUEdKVlhlU2NtWVdlTEZzcmNqREYwd0g5cVNKSHJXN0F2MnNXT1dyMUs3M0d0NFNsTytCYUhhdFdQaXJDNk5VTFd1T214eFd1YWw3NiB2T2dieWRyL1E1cWl4Ujhhbk1NQzBGUlNNZ0FBQUFCSlJVNUVya0pnZ2c9PSAiLz4KIDxwYXRoIGQ9Im0zMi4wMDMgMTkuMTQyYy02LjQ0OTQgMC0xMi40NDUgMC4yMjU1MS0xMy43NzEgMC41MTczMS0wLjg4ODY5IDAuMTk1NDktMS41OTI3IDAuNTY2MDctMi4yMzM3IDEuMTc1Mi0wLjUxMDAxIDAuNDg0Ny0wLjc5MDIzIDAuOTI0NDYtMS4wOTc0IDEuNzIxNC0wLjMzNzI4IDAuODc1MTMtMC41MTU5NCAxLjcwMDEtMC42MzkxIDIuOTQxOS0wLjIzNDg2IDIuMzY4Ny0wLjI3NzExIDMuNTM4MS0wLjI1NjE0IDcuMTA2NyAwLjAxNzggMy4wMzQ1IDAuMDMwNzEgMy4zODc0IDAuMjAyMTUgNS4zMzUxIDAuMTUxOTIgMS43MjU4IDAuMzE3OTMgMi41NDA5IDAuNzI0NDggMy41Njg0IDAuNDQ0NjcgMS4xMjM5IDEuMDYwOSAxLjgyMTggMi4wNTE3IDIuMzIxNiAwLjU5OTg3IDAuMzAyNjQgMS4xMzE4IDAuNDQzNyAyLjIxNDkgMC41ODg4OCAxLjQ3NjkgMC4xOTc5NiAzLjg5MTEgMC4zMDAyIDkuODQxNCAwLjQxNTYgNC43ODg0IDAuMDkyODggMTMuMS0wLjEwNjI2IDE1LjgyMi0wLjM3OTE5IDAuODc4MzctMC4wODgwOCAxLjQyMzMtMC4yMjU0NSAxLjk5NTItMC41MDA5OCAwLjU2NDc3LTAuMjcyMTEgMS4yMzk5LTAuODEyMDggMS41ODIxLTEuMjY1NiAwLjQ5ODY3LTAuNjYxMSAwLjk0MTI1LTEuODI0MyAxLjE2NjUtMy4wNjYyIDAuMDg3Ni0wLjQ4MzA0IDAuMjE5MjUtMS44MzI4IDAuMzI2NDYtMy4zNDg3IDAuMDkxNjEtMS4yOTU4IDAuMDkxNjItNy4yNjQyIDAtOC41NjA3LTAuMTkyOTQtMi43MzAxLTAuMzIzNC0zLjY1MjItMC42NjI5Ni00LjY5NDctMC4zMjk1NC0xLjAxMTctMC42MDYyLTEuNTA5OC0xLjE0MzktMi4wNTc5LTAuNjg2OTQtMC43MDAzNi0xLjM5MTItMS4wODk4LTIuMzUwNS0xLjMwMDgtMS4zMjY1LTAuMjkxNzktNy4zMjItMC41MTczMS0xMy43NzEtMC41MTczMXptLTMuMTkxNyA3LjcxNDRjMC4wNDM1NS0wLjAyOTU0IDguOTc1IDUuMTAzNSA4Ljk3NSA1LjE1OCAwIDAuMDU4MjkgMC4xMDkwNi0wLjAwNTItNC45OTM1IDIuODk3OS0yLjEyODUgMS4yMTEtMy44OTE5IDIuMjExLTMuOTE4NyAyLjIyMjQtMC4wMjY4OCAwLjAxMTM3LTAuMDU4MTMgMC4wMTA1Ny0wLjA2OTA1LTAuMDAxMi0wLjAyODk3LTAuMDMyMjctMC4wMjMxNC0xMC4yNTcgMC4wMDYzLTEwLjI3N3oiIGZpbGw9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjY0Mjg3Ii8+Cjwvc3ZnPgo=&quot;
 LABEL oc.keyword=&quot;youtube,youtube,tube&quot;
@@ -5168,29 +5166,27 @@ RUN rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shad
 RUN rm -f /etc/gshadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
 USER balloon
 CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
-
-</code></pre>
+</code></pre></div>
 <h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
 <h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/youtube.d">Dockerfile for application youtube</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/youtube.d
-</code></pre>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/youtube.d">Dockerfile for application youtube</a>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/youtube.d
+</code></pre></div></p>
 <h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f youtube.d -t youtube .
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">TAG</span><span class="o">=</span><span class="m">3</span>.0<span class="w"> </span>-f<span class="w"> </span>youtube.d<span class="w"> </span>-t<span class="w"> </span>youtube<span class="w"> </span>.
+</code></pre></div>
 <h3 id="install-the-new-image">Install the new image</h3>
 <blockquote>
 <p>If you are using <code>containerd</code> as container runtime, use the ctr command line</p>
 <p>If you are not running this bash command on your abcdesktop node
 Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-docker inspect youtube &gt; youtube.json
-docker image save youtube -o youtube.tar
-ctr -n k8s.io images import youtube.tar
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @youtube.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+docker<span class="w"> </span>inspect<span class="w"> </span>youtube<span class="w"> </span>&gt;<span class="w"> </span>youtube.json
+docker<span class="w"> </span>image<span class="w"> </span>save<span class="w"> </span>youtube<span class="w"> </span>-o<span class="w"> </span>youtube.tar
+ctr<span class="w"> </span>-n<span class="w"> </span>k8s.io<span class="w"> </span>images<span class="w"> </span>import<span class="w"> </span>youtube.tar
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@youtube.json
+</code></pre></div>
 
 
 

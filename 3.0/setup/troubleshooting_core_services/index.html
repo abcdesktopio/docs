@@ -5068,177 +5068,177 @@
 <h1 id="troubeshooting-abcdesktop-core-services">Troubeshooting abcdesktop core services</h1>
 <h2 id="troubeshooting-nginx-errors">Troubeshooting <code>nginx</code> errors</h2>
 <h3 id="read-pods-status">Read pod's status</h3>
-<pre><code class="language-bash">kubectl get pods -n abcdesktop
-NAME                           READY   STATUS             RESTARTS       AGE
-memcached-od-78578c879-bb8qq   1/1     Running            0              164m
-mongodb-od-5b4dd4765f-ptw2j    1/1     Running            0              164m
-nginx-od-788c97cdc9-b4gbq      0/1     CrashLoopBackOff   36 (57s ago)   164m
-openldap-od-65759b74dc-tbvfg   1/1     Running            0              164m
-pyos-od-7d5d9457cf-jw6nk       1/1     Running            0              164m
-speedtest-od-c94b56c88-48cvq   1/1     Running            0              164m
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+NAME<span class="w">                           </span>READY<span class="w">   </span>STATUS<span class="w">             </span>RESTARTS<span class="w">       </span>AGE
+memcached-od-78578c879-bb8qq<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">            </span><span class="m">0</span><span class="w">              </span>164m
+mongodb-od-5b4dd4765f-ptw2j<span class="w">    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">            </span><span class="m">0</span><span class="w">              </span>164m
+nginx-od-788c97cdc9-b4gbq<span class="w">      </span><span class="m">0</span>/1<span class="w">     </span>CrashLoopBackOff<span class="w">   </span><span class="m">36</span><span class="w"> </span><span class="o">(</span>57s<span class="w"> </span>ago<span class="o">)</span><span class="w">   </span>164m
+openldap-od-65759b74dc-tbvfg<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">            </span><span class="m">0</span><span class="w">              </span>164m
+pyos-od-7d5d9457cf-jw6nk<span class="w">       </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">            </span><span class="m">0</span><span class="w">              </span>164m
+speedtest-od-c94b56c88-48cvq<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">            </span><span class="m">0</span><span class="w">              </span>164m
+</code></pre></div>
 <p>The pod <code>nginx-od-788c97cdc9-b4gbq</code> has <code>CrashLoopBackOff</code> status. This is wrong.</p>
 <h3 id="read-the-pods-log">Read the pod's log</h3>
-<pre><code class="language-bash">kubectl logs -l run=nginx-od -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>nginx-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
 <h3 id="issue-with-an-error-in-nginx-configuration-file">Issue with an error in nginx configuration file</h3>
-<pre><code class="language-bash">running standart configuration file
-starting nginx web server in foreground
-nginx: [emerg] unexpected &quot;s&quot; in /etc/nginx/sites-enabled/default:10
-</code></pre>
+<div class="highlight"><pre><span></span><code>running<span class="w"> </span>standart<span class="w"> </span>configuration<span class="w"> </span>file
+starting<span class="w"> </span>nginx<span class="w"> </span>web<span class="w"> </span>server<span class="w"> </span><span class="k">in</span><span class="w"> </span>foreground
+nginx:<span class="w"> </span><span class="o">[</span>emerg<span class="o">]</span><span class="w"> </span>unexpected<span class="w"> </span><span class="s2">&quot;s&quot;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>/etc/nginx/sites-enabled/default:10
+</code></pre></div>
 <p>Nginx has failed to start. There is an error in the configuration file. </p>
 <p>We need to fix the <code>nginx-config</code> ConfigMap in the yaml file.</p>
 <h2 id="start-the-pod-by-hands">Start the pod by hands</h2>
 <p>If the <code>kubectl logs</code> command doesn't return usable information. You can update the pod default command and then start the service by hands.</p>
 <p>Update the container description to replace the default command by a sleep command</p>
-<pre><code class="language-yaml">      - name: nginx
-        imagePullPolicy: Always
-        image: abcdesktopio/oc.nginx:3.0
-        command: [ &quot;/usr/bin/sleep&quot; ]
-        args: [&quot;1d&quot;]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcdesktopio/oc.nginx:3.0</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;/usr/bin/sleep&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;1d&quot;</span><span class="p p-Indicator">]</span>
+</code></pre></div>
 <p>The container will start the command <code>/usr/bin/sleep</code> for <code>1d</code> (one day).</p>
 <p>A default nginx debug pods is available on <a href="https://github.com/abcdesktopio/conf/tree/main/kubernetes/debug">https://github.com/abcdesktopio/conf/tree/main/kubernetes/debug</a></p>
-<pre><code class="language-bash">kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/debug/nginx-3.0.yaml
-deployment.apps/nginx-od configured
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/debug/nginx-3.0.yaml
+deployment.apps/nginx-od<span class="w"> </span>configured
+</code></pre></div>
 <p>Check that nginx pod has been updated and that the status is <code>Running</code></p>
-<pre><code class="language-bash">kubectl get pods  -l run=nginx-od -n abcdesktop
-NAME                       READY   STATUS    RESTARTS   AGE
-nginx-od-666df64f4-whtng   1/1     Running   0          2m30s
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w">  </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>nginx-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+NAME<span class="w">                       </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+nginx-od-666df64f4-whtng<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2m30s
+</code></pre></div>
 <p>Nginx web service is not started inside the container, only the pod is started. We need to get a shell inside the container to start the nginx web service by hands.</p>
 <p>Run the command <code>/usr/local/openresty/nginx/sbin/nginx -p /etc/nginx -c nginx.conf -e /var/log/nginx/error.log</code></p>
-<pre><code class="language-bash">kubectl exec -n abcdesktop -it deployment/nginx-od -- bash
-root@nginx-od-666df64f4-whtng:/# /usr/local/openresty/nginx/sbin/nginx -p /etc/nginx -c nginx.conf -e /var/log/nginx/error.log
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-it<span class="w"> </span>deployment/nginx-od<span class="w"> </span>--<span class="w"> </span>bash
+root@nginx-od-666df64f4-whtng:/#<span class="w"> </span>/usr/local/openresty/nginx/sbin/nginx<span class="w"> </span>-p<span class="w"> </span>/etc/nginx<span class="w"> </span>-c<span class="w"> </span>nginx.conf<span class="w"> </span>-e<span class="w"> </span>/var/log/nginx/error.log
+</code></pre></div>
 <p>Nginx returns an explicit error, the <code>/etc/nginx/sites-enabled/default</code> file is wrong.</p>
-<pre><code class="language-bash">nginx: [emerg] unexpected &quot;s&quot; in /etc/nginx/sites-enabled/default:10
-root@nginx-od-666df64f4-whtng:/# 
-</code></pre>
+<div class="highlight"><pre><span></span><code>nginx:<span class="w"> </span><span class="o">[</span>emerg<span class="o">]</span><span class="w"> </span>unexpected<span class="w"> </span><span class="s2">&quot;s&quot;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>/etc/nginx/sites-enabled/default:10
+root@nginx-od-666df64f4-whtng:/#<span class="w"> </span>
+</code></pre></div>
 <p>It's time to fix the <code>nginx-config</code> ConfigMap in the yaml file.</p>
 <h2 id="troubeshooting-pyos-errors">Troubeshooting <code>pyos</code> errors</h2>
 <h3 id="read-pods-status_1">Read pod's status</h3>
-<pre><code class="language-bash">kubectl get pods -n abcdesktop
-NAME                            READY   STATUS             RESTARTS      AGE
-memcached-od-5ff8844d56-sw9n5   1/1     Running            0             90m
-mongodb-od-77c945467d-c47nl     1/1     Running            0             90m
-nginx-od-666df64f4-wf99b        1/1     Running            0             22m
-openldap-od-5bbdd75864-m6qmh    1/1     Running            0             90m
-pyos-od-57946b67c4-m5zc9        0/1     CrashLoopBackOff   5 (17s ago)   3m18s
-speedtest-od-7f5484966f-kxkw4   1/1     Running            0             90m
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+NAME<span class="w">                            </span>READY<span class="w">   </span>STATUS<span class="w">             </span>RESTARTS<span class="w">      </span>AGE
+memcached-od-5ff8844d56-sw9n5<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">            </span><span class="m">0</span><span class="w">             </span>90m
+mongodb-od-77c945467d-c47nl<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">            </span><span class="m">0</span><span class="w">             </span>90m
+nginx-od-666df64f4-wf99b<span class="w">        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">            </span><span class="m">0</span><span class="w">             </span>22m
+openldap-od-5bbdd75864-m6qmh<span class="w">    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">            </span><span class="m">0</span><span class="w">             </span>90m
+pyos-od-57946b67c4-m5zc9<span class="w">        </span><span class="m">0</span>/1<span class="w">     </span>CrashLoopBackOff<span class="w">   </span><span class="m">5</span><span class="w"> </span><span class="o">(</span>17s<span class="w"> </span>ago<span class="o">)</span><span class="w">   </span>3m18s
+speedtest-od-7f5484966f-kxkw4<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">            </span><span class="m">0</span><span class="w">             </span>90m
+</code></pre></div>
 <p>The pod <code>pyos-od-57946b67c4-m5zc9</code> has <code>CrashLoopBackOff</code> status. This is wrong.</p>
 <h3 id="read-the-pods-log_1">Read the pod's log</h3>
-<pre><code class="language-bash">kubectl logs -l run=pyos-od -n abcdesktop
-</code></pre>
-<pre><code class="language-bash">2023-10-15 14:53:00,136 [INFO   ] oc.logging.init_logging: Initializing logging subsystem
-2023-10-15 14:53:00,136 [INFO   ] oc.logging.load_config: Reading cherrypy configuration section 'global/logging': path = od.config
-2023-10-15 14:53:00,138 [CRITICAL] oc.logging.configure: Failed to configure logging: config_or_path = 'od.config'
-Traceback (most recent call last):
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 179, in as_dict
-    value = unrepr(value)
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 367, in unrepr
-    obj = b.astnode(s)
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 229, in astnode
-    p = ast.parse('__tempvalue__ = ' + s)
-  File &quot;/usr/lib/python3.8/ast.py&quot;, line 47, in parse
-    return compile(source, filename, mode, flags,
-  File &quot;&lt;unknown&gt;&quot;, line 1
-    __tempvalue__ = 'abcdesktop
-                              ^
-SyntaxError: EOL while scanning string literal
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="m">2023</span>-10-15<span class="w"> </span><span class="m">14</span>:53:00,136<span class="w"> </span><span class="o">[</span>INFO<span class="w">   </span><span class="o">]</span><span class="w"> </span>oc.logging.init_logging:<span class="w"> </span>Initializing<span class="w"> </span>logging<span class="w"> </span>subsystem
+<span class="m">2023</span>-10-15<span class="w"> </span><span class="m">14</span>:53:00,136<span class="w"> </span><span class="o">[</span>INFO<span class="w">   </span><span class="o">]</span><span class="w"> </span>oc.logging.load_config:<span class="w"> </span>Reading<span class="w"> </span>cherrypy<span class="w"> </span>configuration<span class="w"> </span>section<span class="w"> </span><span class="s1">&#39;global/logging&#39;</span>:<span class="w"> </span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>od.config
+<span class="m">2023</span>-10-15<span class="w"> </span><span class="m">14</span>:53:00,138<span class="w"> </span><span class="o">[</span>CRITICAL<span class="o">]</span><span class="w"> </span>oc.logging.configure:<span class="w"> </span>Failed<span class="w"> </span>to<span class="w"> </span>configure<span class="w"> </span>logging:<span class="w"> </span><span class="nv">config_or_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;od.config&#39;</span>
+Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">179</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>as_dict
+<span class="w">    </span><span class="nv">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>unrepr<span class="o">(</span>value<span class="o">)</span>
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">367</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>unrepr
+<span class="w">    </span><span class="nv">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>b.astnode<span class="o">(</span>s<span class="o">)</span>
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">229</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>astnode
+<span class="w">    </span><span class="nv">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ast.parse<span class="o">(</span><span class="s1">&#39;__tempvalue__ = &#39;</span><span class="w"> </span>+<span class="w"> </span>s<span class="o">)</span>
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/usr/lib/python3.8/ast.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">47</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>parse
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>compile<span class="o">(</span>source,<span class="w"> </span>filename,<span class="w"> </span>mode,<span class="w"> </span>flags,
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;&lt;unknown&gt;&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="nv">__tempvalue__</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;abcdesktop</span>
+<span class="s1">                              ^</span>
+<span class="s1">SyntaxError: EOL while scanning string literal</span>
 
-During handling of the above exception, another exception occurred:
+<span class="s1">During handling of the above exception, another exception occurred:</span>
 
-Traceback (most recent call last):
-  File &quot;/var/pyos/oc/logging.py&quot;, line 89, in configure
-    init_logging(config_or_path, is_cp_file)
-  File &quot;/var/pyos/oc/logging.py&quot;, line 80, in init_logging
-    cfg = config_or_path if isinstance(config_or_path, dict) else load_config(config_or_path, is_cp_file)
-  File &quot;/var/pyos/oc/logging.py&quot;, line 66, in load_config
-    cfg = Config(path)['global']['logging']
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 119, in __init__
-    self.update(file)
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 130, in update
-    self._apply(Parser.load(config))
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 205, in load
-    return Parser().dict_from_file(input) if is_file else input.copy()
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 194, in dict_from_file
-    return self.as_dict()
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 185, in as_dict
-    raise ValueError(msg, x.__class__.__name__, x.args)
-ValueError: ('Config error in section: \'global\', option: \'namespace\', value: &quot;\'abcdesktop&quot;. Config values must be valid Python.', 'SyntaxError', ('EOL while scanning string literal', ('&lt;unknown&gt;', 1, 28, &quot;__tempvalue__ = 'abcdesktop\n&quot;)))
-Failed to load configuration file od.config ('Config error in section: \'global\', option: \'namespace\', value: &quot;\'abcdesktop&quot;. Config values must be valid Python.', 'SyntaxError', ('EOL while scanning string literal', ('&lt;unknown&gt;', 1, 28, &quot;__tempvalue__ = 'abcdesktop\n&quot;)))
-</code></pre>
+<span class="s1">Traceback (most recent call last):</span>
+<span class="s1">  File &quot;/var/pyos/oc/logging.py&quot;, line 89, in configure</span>
+<span class="s1">    init_logging(config_or_path, is_cp_file)</span>
+<span class="s1">  File &quot;/var/pyos/oc/logging.py&quot;, line 80, in init_logging</span>
+<span class="s1">    cfg = config_or_path if isinstance(config_or_path, dict) else load_config(config_or_path, is_cp_file)</span>
+<span class="s1">  File &quot;/var/pyos/oc/logging.py&quot;, line 66, in load_config</span>
+<span class="s1">    cfg = Config(path)[&#39;</span>global<span class="s1">&#39;][&#39;</span>logging<span class="s1">&#39;]</span>
+<span class="s1">  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 119, in __init__</span>
+<span class="s1">    self.update(file)</span>
+<span class="s1">  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 130, in update</span>
+<span class="s1">    self._apply(Parser.load(config))</span>
+<span class="s1">  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 205, in load</span>
+<span class="s1">    return Parser().dict_from_file(input) if is_file else input.copy()</span>
+<span class="s1">  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 194, in dict_from_file</span>
+<span class="s1">    return self.as_dict()</span>
+<span class="s1">  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 185, in as_dict</span>
+<span class="s1">    raise ValueError(msg, x.__class__.__name__, x.args)</span>
+<span class="s1">ValueError: (&#39;</span>Config<span class="w"> </span>error<span class="w"> </span><span class="k">in</span><span class="w"> </span>section:<span class="w"> </span><span class="se">\&#39;</span>global<span class="se">\&#39;</span>,<span class="w"> </span>option:<span class="w"> </span><span class="se">\&#39;</span>namespace<span class="se">\&#39;</span>,<span class="w"> </span>value:<span class="w"> </span><span class="s2">&quot;\&#39;abcdesktop&quot;</span>.<span class="w"> </span>Config<span class="w"> </span>values<span class="w"> </span>must<span class="w"> </span>be<span class="w"> </span>valid<span class="w"> </span>Python.<span class="s1">&#39;, &#39;</span>SyntaxError<span class="s1">&#39;, (&#39;</span>EOL<span class="w"> </span><span class="k">while</span><span class="w"> </span>scanning<span class="w"> </span>string<span class="w"> </span>literal<span class="s1">&#39;, (&#39;</span>&lt;unknown&gt;<span class="s1">&#39;, 1, 28, &quot;__tempvalue__ = &#39;</span>abcdesktop<span class="se">\n</span><span class="s2">&quot;)))</span>
+<span class="s2">Failed to load configuration file od.config (&#39;Config error in section: \&#39;global\&#39;, option: \&#39;namespace\&#39;, value: &quot;</span><span class="se">\&#39;</span>abcdesktop<span class="s2">&quot;. Config values must be valid Python.&#39;, &#39;SyntaxError&#39;, (&#39;EOL while scanning string literal&#39;, (&#39;&lt;unknown&gt;&#39;, 1, 28, &quot;</span><span class="nv">__tempvalue__</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">&#39;</span>abcdesktop<span class="se">\n</span><span class="s2">&quot;)))</span>
+</code></pre></div>
 <p>It's time to fix the <code>abcdesktop-config</code> ConfigMap.</p>
 <h2 id="start-the-pod-by-hands_1">Start the pod by hands</h2>
 <p>If the <code>kubectl logs</code> command doesn't return usable information. You can update the pod default command and then start the service by hands.</p>
 <p>Update the container description to replace the default command by a sleep command</p>
-<pre><code class="language-yaml">      - name : pyos
-        imagePullPolicy: Always
-        image: abcdesktopio/oc.pyos:3.0
-        command: [ &quot;/usr/bin/sleep&quot; ]
-        args: [&quot;1d&quot;]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyos</span>
+<span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcdesktopio/oc.pyos:3.0</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;/usr/bin/sleep&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;1d&quot;</span><span class="p p-Indicator">]</span>
+</code></pre></div>
 <p>The container will start the command <code>/usr/bin/sleep</code> for <code>1d</code> (one day).</p>
 <p>A default nginx debug pods is available on <a href="https://github.com/abcdesktopio/conf/tree/main/kubernetes/debug">https://github.com/abcdesktopio/conf/tree/main/kubernetes/debug</a></p>
-<pre><code class="language-bash">kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/debug/pyos-3.0.yaml
-deployment.apps/pyos-od configured
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/debug/pyos-3.0.yaml
+deployment.apps/pyos-od<span class="w"> </span>configured
+</code></pre></div>
 <p>Check that pyos pod is <code>Running</code></p>
-<pre><code class="language-yaml">kubectl get pods  -l run=pyos-od -n abcdesktop
-NAME                       READY   STATUS    RESTARTS   AGE
-pyos-od-6cd679d6b8-css9q   1/1     Running   0          5s
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">kubectl get pods  -l run=pyos-od -n abcdesktop</span>
+<span class="l l-Scalar l-Scalar-Plain">NAME                       READY   STATUS    RESTARTS   AGE</span>
+<span class="l l-Scalar l-Scalar-Plain">pyos-od-6cd679d6b8-css9q   1/1     Running   0          5s</span>
+</code></pre></div>
 <p>Pyos service is not started inside the container, only the pod is started. We need to get a shell inside the container to start the pyos service by hands.</p>
 <p>Run the command <code>cd /var/pyos &amp;&amp; ./od.py</code></p>
-<pre><code class="language-yaml">kubectl exec -n abcdesktop -it deployment/pyos-od -- bash
-root@pyos-od-6cd679d6b8-css9q:/var/pyos# cd /var/pyos &amp;&amp; ./od.py 
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">kubectl exec -n abcdesktop -it deployment/pyos-od -- bash</span>
+<span class="l l-Scalar l-Scalar-Plain">root@pyos-od-6cd679d6b8-css9q:/var/pyos# cd /var/pyos &amp;&amp; ./od.py</span><span class="w"> </span>
+</code></pre></div>
 <p><code>od.py</code> command returns the same explicit error, the <code>od.config</code> file is wrong.</p>
-<pre><code class="language-bash">2023-10-15 14:53:00,136 [INFO   ] oc.logging.init_logging: Initializing logging subsystem
-2023-10-15 14:53:00,136 [INFO   ] oc.logging.load_config: Reading cherrypy configuration section 'global/logging': path = od.config
-2023-10-15 14:53:00,138 [CRITICAL] oc.logging.configure: Failed to configure logging: config_or_path = 'od.config'
-Traceback (most recent call last):
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 179, in as_dict
-    value = unrepr(value)
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 367, in unrepr
-    obj = b.astnode(s)
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 229, in astnode
-    p = ast.parse('__tempvalue__ = ' + s)
-  File &quot;/usr/lib/python3.8/ast.py&quot;, line 47, in parse
-    return compile(source, filename, mode, flags,
-  File &quot;&lt;unknown&gt;&quot;, line 1
-    __tempvalue__ = 'abcdesktop
-                              ^
-SyntaxError: EOL while scanning string literal
+<div class="highlight"><pre><span></span><code><span class="m">2023</span>-10-15<span class="w"> </span><span class="m">14</span>:53:00,136<span class="w"> </span><span class="o">[</span>INFO<span class="w">   </span><span class="o">]</span><span class="w"> </span>oc.logging.init_logging:<span class="w"> </span>Initializing<span class="w"> </span>logging<span class="w"> </span>subsystem
+<span class="m">2023</span>-10-15<span class="w"> </span><span class="m">14</span>:53:00,136<span class="w"> </span><span class="o">[</span>INFO<span class="w">   </span><span class="o">]</span><span class="w"> </span>oc.logging.load_config:<span class="w"> </span>Reading<span class="w"> </span>cherrypy<span class="w"> </span>configuration<span class="w"> </span>section<span class="w"> </span><span class="s1">&#39;global/logging&#39;</span>:<span class="w"> </span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>od.config
+<span class="m">2023</span>-10-15<span class="w"> </span><span class="m">14</span>:53:00,138<span class="w"> </span><span class="o">[</span>CRITICAL<span class="o">]</span><span class="w"> </span>oc.logging.configure:<span class="w"> </span>Failed<span class="w"> </span>to<span class="w"> </span>configure<span class="w"> </span>logging:<span class="w"> </span><span class="nv">config_or_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;od.config&#39;</span>
+Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">179</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>as_dict
+<span class="w">    </span><span class="nv">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>unrepr<span class="o">(</span>value<span class="o">)</span>
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">367</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>unrepr
+<span class="w">    </span><span class="nv">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>b.astnode<span class="o">(</span>s<span class="o">)</span>
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">229</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>astnode
+<span class="w">    </span><span class="nv">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ast.parse<span class="o">(</span><span class="s1">&#39;__tempvalue__ = &#39;</span><span class="w"> </span>+<span class="w"> </span>s<span class="o">)</span>
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/usr/lib/python3.8/ast.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">47</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>parse
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>compile<span class="o">(</span>source,<span class="w"> </span>filename,<span class="w"> </span>mode,<span class="w"> </span>flags,
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;&lt;unknown&gt;&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="nv">__tempvalue__</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;abcdesktop</span>
+<span class="s1">                              ^</span>
+<span class="s1">SyntaxError: EOL while scanning string literal</span>
 
-During handling of the above exception, another exception occurred:
+<span class="s1">During handling of the above exception, another exception occurred:</span>
 
-Traceback (most recent call last):
-  File &quot;/var/pyos/oc/logging.py&quot;, line 89, in configure
-    init_logging(config_or_path, is_cp_file)
-  File &quot;/var/pyos/oc/logging.py&quot;, line 80, in init_logging
-    cfg = config_or_path if isinstance(config_or_path, dict) else load_config(config_or_path, is_cp_file)
-  File &quot;/var/pyos/oc/logging.py&quot;, line 66, in load_config
-    cfg = Config(path)['global']['logging']
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 119, in __init__
-    self.update(file)
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 130, in update
-    self._apply(Parser.load(config))
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 205, in load
-    return Parser().dict_from_file(input) if is_file else input.copy()
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 194, in dict_from_file
-    return self.as_dict()
-  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 185, in as_dict
-    raise ValueError(msg, x.__class__.__name__, x.args)
-ValueError: ('Config error in section: \'global\', option: \'namespace\', value: &quot;\'abcdesktop&quot;. Config values must be valid Python.', 'SyntaxError', ('EOL while scanning string literal', ('&lt;unknown&gt;', 1, 28, &quot;__tempvalue__ = 'abcdesktop\n&quot;)))
-Failed to load configuration file od.config ('Config error in section: \'global\', option: \'namespace\', value: &quot;\'abcdesktop&quot;. Config values must be valid Python.', 'SyntaxError', ('EOL while scanning string literal', ('&lt;unknown&gt;', 1, 28, &quot;__tempvalue__ = 'abcdesktop\n&quot;)))
-</code></pre>
+<span class="s1">Traceback (most recent call last):</span>
+<span class="s1">  File &quot;/var/pyos/oc/logging.py&quot;, line 89, in configure</span>
+<span class="s1">    init_logging(config_or_path, is_cp_file)</span>
+<span class="s1">  File &quot;/var/pyos/oc/logging.py&quot;, line 80, in init_logging</span>
+<span class="s1">    cfg = config_or_path if isinstance(config_or_path, dict) else load_config(config_or_path, is_cp_file)</span>
+<span class="s1">  File &quot;/var/pyos/oc/logging.py&quot;, line 66, in load_config</span>
+<span class="s1">    cfg = Config(path)[&#39;</span>global<span class="s1">&#39;][&#39;</span>logging<span class="s1">&#39;]</span>
+<span class="s1">  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 119, in __init__</span>
+<span class="s1">    self.update(file)</span>
+<span class="s1">  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 130, in update</span>
+<span class="s1">    self._apply(Parser.load(config))</span>
+<span class="s1">  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 205, in load</span>
+<span class="s1">    return Parser().dict_from_file(input) if is_file else input.copy()</span>
+<span class="s1">  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 194, in dict_from_file</span>
+<span class="s1">    return self.as_dict()</span>
+<span class="s1">  File &quot;/usr/local/lib/python3.8/dist-packages/cherrypy/lib/reprconf.py&quot;, line 185, in as_dict</span>
+<span class="s1">    raise ValueError(msg, x.__class__.__name__, x.args)</span>
+<span class="s1">ValueError: (&#39;</span>Config<span class="w"> </span>error<span class="w"> </span><span class="k">in</span><span class="w"> </span>section:<span class="w"> </span><span class="se">\&#39;</span>global<span class="se">\&#39;</span>,<span class="w"> </span>option:<span class="w"> </span><span class="se">\&#39;</span>namespace<span class="se">\&#39;</span>,<span class="w"> </span>value:<span class="w"> </span><span class="s2">&quot;\&#39;abcdesktop&quot;</span>.<span class="w"> </span>Config<span class="w"> </span>values<span class="w"> </span>must<span class="w"> </span>be<span class="w"> </span>valid<span class="w"> </span>Python.<span class="s1">&#39;, &#39;</span>SyntaxError<span class="s1">&#39;, (&#39;</span>EOL<span class="w"> </span><span class="k">while</span><span class="w"> </span>scanning<span class="w"> </span>string<span class="w"> </span>literal<span class="s1">&#39;, (&#39;</span>&lt;unknown&gt;<span class="s1">&#39;, 1, 28, &quot;__tempvalue__ = &#39;</span>abcdesktop<span class="se">\n</span><span class="s2">&quot;)))</span>
+<span class="s2">Failed to load configuration file od.config (&#39;Config error in section: \&#39;global\&#39;, option: \&#39;namespace\&#39;, value: &quot;</span><span class="se">\&#39;</span>abcdesktop<span class="s2">&quot;. Config values must be valid Python.&#39;, &#39;SyntaxError&#39;, (&#39;EOL while scanning string literal&#39;, (&#39;&lt;unknown&gt;&#39;, 1, 28, &quot;</span><span class="nv">__tempvalue__</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">&#39;</span>abcdesktop<span class="se">\n</span><span class="s2">&quot;)))</span>
+</code></pre></div>
 <p>We need to fix the <code>abcdesktop-config</code> ConfigMap in the yaml file.</p>
-<pre><code class="language-bash">kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>--from-file<span class="o">=</span>od.config<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span>--dry-run<span class="o">=</span>client<span class="w"> </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>replace<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-f<span class="w"> </span>-
+</code></pre></div>
 
 
 

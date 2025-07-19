@@ -4872,8 +4872,8 @@
 <p><a href="http://www.winehq.org">Wine</a> (originally an acronym for "Wine Is Not an Emulator") is a compatibility layer capable of running Windows applications on several POSIX-compliant operating systems, such as Linux, macOS, &amp; BSD. Instead of simulating internal Windows logic like a virtual machine or emulator, Wine translates Windows API calls into POSIX calls on-the-fly, eliminating the performance and memory penalties of other methods and allowing you to cleanly integrate Windows applications into your desktop.</p>
 <p>To run Windows applications abcdesktop.io use WineHQ. A dedicated image template source is ready to use as source of others Windows applications. This image template is named <code>abcdesktopio/oc.template.gtk.wine.50</code></p>
 <p>Start pulling this template image :</p>
-<pre><code class="language-bash">docker pull abcdesktopio/oc.template.gtk.wine
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>abcdesktopio/oc.template.gtk.wine
+</code></pre></div>
 <p>Look at the Dockerfile to build the <code>abcdesktopio/oc.template.gtk.wine</code> on the <a href="https://hub.docker.com/">https://hub.docker.com/</a> web site.</p>
 <p>For a better support, we are using the 32 bits library, as i386 libs on GNU/Linux.  Your can read in the Dockerfile, how the <code>abcdesktopio/oc.template.gtk.wine</code> is created.</p>
 <blockquote>
@@ -4893,69 +4893,69 @@
 <p>Login using the <code>Anonymous</code> authentification provider.</p>
 <p><img alt="user logged as Anonymous done" src="../img/wine-login-auth-done.png" /></p>
 <p>Keep your web browser open, then on your host, open a terminal shell window and run the command </p>
-<pre><code>docker ps --filter ancestor=abcdesktopio/oc.user.18.04
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker ps --filter ancestor=abcdesktopio/oc.user.18.04
+</code></pre></div>
 <p>The option <code>--filter ancestor=abcdesktopio/oc.user.18.04</code> ask to filter only container with the image <code>ancestor</code> set with value <code>abcdesktopio/oc.user.18.04</code>
 You should read the container with the image named abcdesktopio/oc.user.18.04 </p>
-<pre><code>docker ps --filter ancestor=abcdesktopio/oc.user.18.04
+<div class="highlight"><pre><span></span><code>docker ps --filter ancestor=abcdesktopio/oc.user.18.04
 CONTAINER ID   IMAGE                        COMMAND                  CREATED         STATUS         PORTS                                                            NAMES
 86df3ff126ac   abcdesktopio/oc.user.18.04   &quot;/composer/docker-en…&quot;   3 minutes ago   Up 3 minutes   4714/tcp, 6081/tcp, 29780-29781/tcp, 29783-29784/tcp, 29786/tcp  g-5f4300d2-7c8e-43c6-89ab-f85bd8b68138
-</code></pre>
+</code></pre></div>
 <p>Read the values <code>CONTAINER ID</code> and <code>NAMES</code></p>
 <p>In this example, the CONTAINER ID is <code>86df3ff126ac</code> and the NAME is <code>g-5f4300d2-7c8e-43c6-89ab-f85bd8b68138</code>.</p>
 <p>We are using the <code>/tmp</code> volume of this <code>CONTAINER ID</code> 86df3ff126ac</p>
 <p>Using an anonymous authnetification, the name of your container id is an <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">UUID</a>, for example <code>57be1e5b-0b14-4c05-ae79-75e9a03c77be</code>. The name of the <code>tmp</code> volume is  <code>tmp-57be1e5b-0b14-4c05-ae79-75e9a03c77be</code></p>
 <p>Run a <code>docker inspect -f "{{ .HostConfig.Binds }}"</code> and add your <code>CONTAINER ID</code> as parameter.</p>
-<pre><code>docker inspect -f &quot;{{ .HostConfig.Binds }}&quot; CONTAINER_ID
-</code></pre>
-<p>For example</p>
-<pre><code>docker inspect -f &quot;{{ .HostConfig.Binds }}&quot; 86df3ff126ac
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker inspect -f &quot;{{ .HostConfig.Binds }}&quot; CONTAINER_ID
+</code></pre></div>
+<p>For example
+<div class="highlight"><pre><span></span><code>docker inspect -f &quot;{{ .HostConfig.Binds }}&quot; 86df3ff126ac
+</code></pre></div></p>
 <p>You should read the volume name starting by <code>tmp-</code> with your uuid concatened</p>
-<pre><code>[tmp-5f4300d2-7c8e-43c6-89ab-f85bd8b68138:/tmp home-5f4300d2-7c8e-43c6-89ab-f85bd8b68138:/home/balloon]
-</code></pre>
+<div class="highlight"><pre><span></span><code>[tmp-5f4300d2-7c8e-43c6-89ab-f85bd8b68138:/tmp home-5f4300d2-7c8e-43c6-89ab-f85bd8b68138:/home/balloon]
+</code></pre></div>
 <blockquote>
 <p>Note: if your are using an LDAP authentification, the name of your container id is the username, for example <code>hermes</code>. The name of the <code>tmp</code> volume is  <code>tmp-hermes</code></p>
 </blockquote>
 <p>Now, start a new docker container with the same HostConfig.Bings as your oc.user container. The <code>-v</code> parameter is the first entry of the result in the previous command <code>docker inspect -f "{{ .HostConfig.Binds }}"</code></p>
-<pre><code>docker run -it -v TMP_VOLUMENAME:/tmp  --user balloon abcdesktopio/oc.template.gtk.wine bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker run -it -v TMP_VOLUMENAME:/tmp  --user balloon abcdesktopio/oc.template.gtk.wine bash
+</code></pre></div>
 <p>For example with an <code>Anonymous</code> user:</p>
-<pre><code>docker run -it -v  tmp-5f4300d2-7c8e-43c6-89ab-f85bd8b68138:/tmp --user balloon abcdesktopio/oc.template.gtk.wine bash 
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker run -it -v  tmp-5f4300d2-7c8e-43c6-89ab-f85bd8b68138:/tmp --user balloon abcdesktopio/oc.template.gtk.wine bash 
+</code></pre></div>
 <p>Great, you have started a new docker container. The oc.user containter and your new container are sharing the same volume mounted as <code>/tmp</code>. You get a prompt inside the new docker container.</p>
-<pre><code>To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.
+<div class="highlight"><pre><span></span><code>To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.
 See &quot;man sudo_root&quot; for details.
 
 balloon@8684ae888f74:~$
-</code></pre>
+</code></pre></div>
 <p>And now start the <code>notepad.exe</code> with wine</p>
-<pre><code>balloon@8684ae888f74:/$ wine notepad
-</code></pre>
+<div class="highlight"><pre><span></span><code>balloon@8684ae888f74:/$ wine notepad
+</code></pre></div>
 <p>After few seconds you should read on the standard error</p>
-<pre><code>balloon@8684ae888f74:/$  wine notepad
+<div class="highlight"><pre><span></span><code>balloon@8684ae888f74:/$  wine notepad
 0015:err:clipboard:convert_selection Timed out waiting for SelectionNotify event
-0014:err:ole:marshal_object couldn't get IPSFactory buffer for interface {00000131-0000-0000-c000-000000000046}
-0014:err:ole:marshal_object couldn't get IPSFactory buffer for interface {6d5140c1-7436-11ce-8034-00aa006009fa}
+0014:err:ole:marshal_object couldn&#39;t get IPSFactory buffer for interface {00000131-0000-0000-c000-000000000046}
+0014:err:ole:marshal_object couldn&#39;t get IPSFactory buffer for interface {6d5140c1-7436-11ce-8034-00aa006009fa}
 0014:err:ole:StdMarshalImpl_MarshalInterface Failed to create ifstub, hres=0x80004002
 0014:err:ole:CoMarshalInterface Failed to marshal the interface {6d5140c1-7436-11ce-8034-00aa006009fa}, 80004002
 0014:err:ole:get_local_server_stream Failed: 80004002
-0012:err:ole:marshal_object couldn't get IPSFactory buffer for interface {00000131-0000-0000-c000-000000000046}
-0012:err:ole:marshal_object couldn't get IPSFactory buffer for interface {6d5140c1-7436-11ce-8034-00aa006009fa}
+0012:err:ole:marshal_object couldn&#39;t get IPSFactory buffer for interface {00000131-0000-0000-c000-000000000046}
+0012:err:ole:marshal_object couldn&#39;t get IPSFactory buffer for interface {6d5140c1-7436-11ce-8034-00aa006009fa}
 0012:err:ole:StdMarshalImpl_MarshalInterface Failed to create ifstub, hres=0x80004002
 0012:err:ole:CoMarshalInterface Failed to marshal the interface {6d5140c1-7436-11ce-8034-00aa006009fa}, 80004002
 0012:err:ole:get_local_server_stream Failed: 80004002
 Could not find Wine Gecko. HTML rendering will be disabled.
 wine: configuration in L&quot;/composer/.wine&quot; has been updated.
-</code></pre>
+</code></pre></div>
 <p>And the notepad window should be open inside your Web browser</p>
 <p><img alt="notepadrunning" src="../img/notepadrunning.png" /></p>
 <p>This Windows application is running inside a docker container on abcdesktop.io desktop.</p>
 <p>In the Terminal shell press <code>CTRL+C</code> to stop the <code>wine notepad</code> process, then type <code>exit</code> to quit your shell in container.</p>
-<pre><code class="language-bash">^C0032:fixme:console:CONSOLE_DefaultHandler Terminating process 8 on event 0
-balloon@4c4d806557dc:~$ exit
-exit
-</code></pre>
+<div class="highlight"><pre><span></span><code>^C0032:fixme:console:CONSOLE_DefaultHandler<span class="w"> </span>Terminating<span class="w"> </span>process<span class="w"> </span><span class="m">8</span><span class="w"> </span>on<span class="w"> </span>event<span class="w"> </span><span class="m">0</span>
+balloon@4c4d806557dc:~$<span class="w"> </span><span class="nb">exit</span>
+<span class="nb">exit</span>
+</code></pre></div>
 <p>It's time to build your own abcdesktop application image. Read the next chapter <a href="../buildapplications.wine/">Build abcdesktop.io docker image for Windows using Wine</a>.</p>
 
 

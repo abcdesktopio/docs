@@ -5112,9 +5112,9 @@
 <h3 id="how-can-i-reach-my-new-service-on-a-kubernetes-cloud-provider">How can I reach my new service on a Kubernetes cloud provider ?</h3>
 <p>I was attempting to deploy the ABCDesktop (kubernetes-version-3.0) for testing my setup with a few of my own desktop applications. Everything worked fine when tested locally in my Ubuntu (22.04) machine. I then thought to deploy the setup in a Kubernetes cloud provider with 3 nodes cluster. How can I reach my new hosted service on a Kubernetes cloud provider (Amazon EKS, Digital Ocean, Azur AKS, Google GKE) ?</p>
 <p>We use the <code>kubectl port-forward</code> to the nginx pod </p>
-<pre><code class="language-bash">NGINX_POD_NAME=$(kubectl get pods -l run=nginx-od -o jsonpath={.items..metadata.name} -n abcdesktop)
-kubectl port-forward $NGINX_POD_NAME --address 0.0.0.0 80:80 -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">NGINX_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>nginx-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="k">)</span>
+kubectl<span class="w"> </span>port-forward<span class="w"> </span><span class="nv">$NGINX_POD_NAME</span><span class="w"> </span>--address<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
 <p>Then open your web browser to reach the <code>http://localhost</code></p>
 <p>Then open your web browser, you get the home page, login using <code>LDAP auth</code> or <code>Anonymous auth</code>.</p>
 <p><img width="1020" alt="Screenshot 2023-05-06 at 12 32 45" src="https://user-images.githubusercontent.com/12896316/236619023-5fdd3f7d-9256-4da6-8f49-6a673a0d83a2.png"></p>
@@ -5127,39 +5127,39 @@ kubectl port-forward $NGINX_POD_NAME --address 0.0.0.0 80:80 -n abcdesktop
 <p>I was attempting to deploy the abcesktop (kubernetes-version-3.0) for testing my setup with a few of my own desktop applications. Everything worked fine when tested locally in my Ubuntu (22.04) machine. I then thought to deploy the setup in a Kubernetes cloud provider with 3 nodes cluster. How can I expose my new service with an external IP address ?</p>
 <p>To expose the service with an external IP address, we need to update the nginx service type. The default type on your own desktop is <code>type: NodePort</code>, the nginx service type on a Kubernetes cloud provider becomes <code>type: LoadBalancer</code>. </p>
 <p>Delete the previous abcdesktop's nginx service </p>
-<pre><code class="language-bash">kubectl delete service nginx -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>service<span class="w"> </span>nginx<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
 <p>Create a new nginx service yaml file named <code>nginx-lb.yaml</code>
 The new nginx service type is <code>LoadBalancer</code></p>
-<pre><code class="language-yaml">kind: Service
-apiVersion: v1
-metadata:
-  name: nginx
-  namespace: abcdesktop
-spec:
-  type: LoadBalancer
-  selector:
-    run: nginx-od
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-    name: http
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcdesktop</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-od</span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+</code></pre></div>
 <p>Apply the nginx service type LoadBalancer</p>
-<pre><code class="language-bash">kubectl apply -f nginx-lb.yaml
-service/nginx created
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>nginx-lb.yaml
+service/nginx<span class="w"> </span>created
+</code></pre></div>
 <p>Wait for an <code>EXTERNAL-IP</code> from you kubernetes cloud provider</p>
-<pre><code class="language-bash">kubectl get service nginx -n abcdesktop
-NAME    TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-nginx   LoadBalancer   10.245.105.75   &lt;pending&gt;     80:31581/TCP   64s
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>service<span class="w"> </span>nginx<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+NAME<span class="w">    </span>TYPE<span class="w">           </span>CLUSTER-IP<span class="w">      </span>EXTERNAL-IP<span class="w">   </span>PORT<span class="o">(</span>S<span class="o">)</span><span class="w">        </span>AGE
+nginx<span class="w">   </span>LoadBalancer<span class="w">   </span><span class="m">10</span>.245.105.75<span class="w">   </span>&lt;pending&gt;<span class="w">     </span><span class="m">80</span>:31581/TCP<span class="w">   </span>64s
+</code></pre></div>
 <p>You get the <code>EXTERNAL-IP</code> for your <code>LoadBalancer</code></p>
-<pre><code class="language-bash">kubectl get service nginx -n abcdesktop
-NAME        TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)           AGE
-nginx       LoadBalancer   10.245.172.53    161.35.246.4   80:30443/TCP      2m36s
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>service<span class="w"> </span>nginx<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+NAME<span class="w">        </span>TYPE<span class="w">           </span>CLUSTER-IP<span class="w">       </span>EXTERNAL-IP<span class="w">    </span>PORT<span class="o">(</span>S<span class="o">)</span><span class="w">           </span>AGE
+nginx<span class="w">       </span>LoadBalancer<span class="w">   </span><span class="m">10</span>.245.172.53<span class="w">    </span><span class="m">161</span>.35.246.4<span class="w">   </span><span class="m">80</span>:30443/TCP<span class="w">      </span>2m36s
+</code></pre></div>
 <p>In case, the <code>LoadBalancer</code> service returns the <code>EXTERNAL-IP</code> 161.35.246.4
 Then open your web browser to reach this <code>EXTERNAL-IP</code> 161.35.246.4.</p>
 <p><img width="1421" alt="abcdesktop homepage" src="https://user-images.githubusercontent.com/12896316/236620625-33c42cab-9531-44ba-8d77-cdb843ae8bb5.png"></p>
@@ -5170,7 +5170,7 @@ Then open your web browser to reach this <code>EXTERNAL-IP</code> 161.35.246.4.<
 <h3 id="how-can-i-expose-my-new-service-with-ingress-controller">How can I expose my new service with Ingress Controller ?</h3>
 <p>A Kubernetes Ingress Controller acts as a reverse proxy. </p>
 <p>In the <code>Ingress</code>, define a path to the abcdesktop's nginx service.</p>
-<pre><code>apiVersion: networking.k8s.io/v1
+<div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-demo
@@ -5188,7 +5188,7 @@ spec:
                 port:
                   number: 80
   ingressClassName: nginx
-</code></pre>
+</code></pre></div>
 <p>The request <code>path: /</code> is proxyfied to service named nginx in abcdesktop namespace.</p>
 <h3 id="how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity">How to prevent the connection from closing after 60 seconds of inactivity ?</h3>
 <p>My desktop is disconnected after 60 seconds of inactivity, and the message <em>"Your abcdesktop session has been disconnected. Please reload this page"</em> appears.</p>
@@ -5196,15 +5196,15 @@ spec:
 <p>The message <code>Your abcdesktop session has been disconnected. Please reload this page</code> appears when the <code>websockify</code> websocket is disconnected.</p>
 <p>Add an heartbeat value to send a ping to the client every INTERVAL seconds</p>
 <p>Edit the <code>od.config</code> file, add to the <code>desktop.envlocal</code> option <code>'WEBSOCKIFY_HEARTBEAT':'30'</code></p>
-<pre><code>desktop.envlocal: { 'WEBSOCKIFY_HEARTBEAT':'30', 'LIBOVERLAY_SCROLLBAR':'0', 'UBUNTU_MENUPROXY':'0', 'X11LISTEN':'tcp' }
-</code></pre>
+<div class="highlight"><pre><span></span><code>desktop.envlocal: { &#39;WEBSOCKIFY_HEARTBEAT&#39;:&#39;30&#39;, &#39;LIBOVERLAY_SCROLLBAR&#39;:&#39;0&#39;, &#39;UBUNTU_MENUPROXY&#39;:&#39;0&#39;, &#39;X11LISTEN&#39;:&#39;tcp&#39; }
+</code></pre></div>
 <p>In this case, the command <code>/usr/bin/websockify</code> sends a ping to the client every 30 seconds. This command runs in the user's pod.</p>
 <p>Update the configmap abcdesktop-config</p>
-<pre><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+</code></pre></div>
 <p>Restart the pyos pod</p>
-<pre><code>kubectl delete pods -l run=pyos-od -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl delete pods -l run=pyos-od -n abcdesktop
+</code></pre></div>
 <p>To get more informations how to 
 <a href="https://websockets.readthedocs.io/en/stable/topics/timeouts.html">Keepalive in websockets</a></p>
 <p>Timeout is a main feature to preserve from unnecessary network bandwidth. </p>
@@ -5213,7 +5213,7 @@ spec:
 <p>To prevent the connection from closing after 60 seconds of inactivity through Ingress Controller, make sure the Ingress Controller isn't configured to automatically terminate long connections.
 The default value nginx's ingress controller is 60 seconds.</p>
 <p>Update the default values for <code>nginx.ingress.kubernetes.io/proxy-read-timeout</code> and <code>nginx.ingress.kubernetes.io/proxy-send-timeout</code> annotations to more than 60 seconds.</p>
-<pre><code>apiVersion: networking.k8s.io/v1
+<div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-demo
@@ -5234,7 +5234,7 @@ spec:
                 port:
                   number: 80
   ingressClassName: nginx
-</code></pre>
+</code></pre></div>
 <h2 id="applications">Applications</h2>
 <p>This list of questions and answers is relating abcdesktop's applications, talking about </p>
 <ul>
@@ -5242,31 +5242,31 @@ spec:
 </ul>
 <h3 id="how-to-delete-all-applications">How to delete all applications ?</h3>
 <p>To delete all applications use the images endpoint, replace <code>localhost:30443</code> by your own datas</p>
-<pre><code class="language-bash">curl -X DELETE -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/images/
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/images/
+</code></pre></div>
 <p>It returns a json list of all deleted applications</p>
-<pre><code class="language-json">[&quot;abcdesktopio/2048-alpine.d:3.0&quot;, &quot;abcdesktopio/2048-ubuntu.d:3.0&quot;, &quot;abcdesktopio/apachedirectorystudio.d:3.0&quot;, &quot;abcdesktopio/astromenace.d:3.0&quot;, &quot;abcdesktopio/base.d:3.0&quot;, &quot;abcdesktopio/beekeeperstudio.d:3.0&quot;, &quot;abcdesktopio/blender.d:3.0&quot;, &quot;abcdesktopio/bless.d:3.0&quot;, &quot;abcdesktopio/blobby.d:3.0&quot;, &quot;abcdesktopio/boxes.d:3.0&quot;, &quot;abcdesktopio/calculator.d:3.0&quot;, &quot;abcdesktopio/chess.d:3.0&quot;, &quot;abcdesktopio/chimerax.d:dev&quot;, &quot;abcdesktopio/chrome.d:3.0&quot;, &quot;abcdesktopio/chromium.d:3.0&quot;, &quot;abcdesktopio/citrix.d:3.0&quot;, &quot;abcdesktopio/cloudfoundry.d:3.0&quot;, &quot;abcdesktopio/cmd.exe.d:3.0&quot;, &quot;abcdesktopio/corsix-th.d:3.0&quot;, &quot;abcdesktopio/cuda.d:dev&quot;]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s2">&quot;abcdesktopio/2048-alpine.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/2048-ubuntu.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/apachedirectorystudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/astromenace.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/base.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/beekeeperstudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blender.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/bless.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blobby.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/boxes.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/calculator.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chess.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chimerax.d:dev&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chrome.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chromium.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/citrix.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cloudfoundry.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cmd.exe.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/corsix-th.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cuda.d:dev&quot;</span><span class="p">]</span>
+</code></pre></div>
 <h3 id="how-to-add-an-application">How to add an application ?</h3>
 <p>To add an application :
 - get the json file of an application 
 - push the json file to the abcdesktop's images endpoint</p>
-<pre><code class="language-bash">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.3.0.json
-curl -X POST -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048-alpine.d.3.0.json
-</code></pre>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.3.0.json
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@2048-alpine.d.3.0.json
+</code></pre></div>
 <p>The first start will pull the 2048 image, so it can take a while.</p>
 <h3 id="how-to-get-the-json-file-of-a-containerized-application">How to get the json file of a containerized application ?</h3>
 <p>To get the json file of a containerized application, you can use <code>docker</code> command or <code>crictl</code> command</p>
 <ul>
 <li><code>docker</code> command</li>
 </ul>
-<pre><code class="language-bash">docker inspect abcdesktopio/2048-alpine.d:3.0 &gt; 2048-alpine.json
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>inspect<span class="w"> </span>abcdesktopio/2048-alpine.d:3.0<span class="w"> </span>&gt;<span class="w"> </span><span class="m">2048</span>-alpine.json
+</code></pre></div>
 <ul>
 <li><code>crictl</code> command</li>
 </ul>
-<pre><code class="language-bash">crictl inspecti abcdesktopio/2048-alpine.d:3.0 &gt; 2048-alpine.json
-</code></pre>
+<div class="highlight"><pre><span></span><code>crictl<span class="w"> </span>inspecti<span class="w"> </span>abcdesktopio/2048-alpine.d:3.0<span class="w"> </span>&gt;<span class="w"> </span><span class="m">2048</span>-alpine.json
+</code></pre></div>
 <h3 id="my-application-doesnt-start-how-to-get-log-files">My application doesn't start. How to get log files ?</h3>
 <p>Open the <code>webshell</code> and read the logs files.</p>
 <p>The log files are /tmp/lastcmd.log, /tmp/lastcmdenv.log and /tmp/NAME OF THE APPLICATION.log.</p>

@@ -4984,48 +4984,48 @@
 <h2 id="update-nginx-service-to-use-http-loadbalancer">Update nginx service to use http LoadBalancer</h2>
 <p>Replace <code>type: NodePort</code>by <code>type: LoadBalancer</code> into the nginx service</p>
 <p>Save this yaml as <code>nginx.service.http.loadbalancer.yaml</code> file name</p>
-<pre><code class="language-yaml">kind: Service
-apiVersion: v1
-metadata:
-  name: nginx
-  namespace: abcdesktop
-spec:
-  type: LoadBalancer
-  selector:
-    run: nginx-od 
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-    name: http
-</code></pre>
-<pre><code class="language-bash"># delete the previous nginx service
-kubectl delete service nginx -n abcdektop
-# create the new  nginx service
-kubectl apply -f nginx.service.http.loadbalancer.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcdesktop</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-od</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># delete the previous nginx service</span>
+kubectl<span class="w"> </span>delete<span class="w"> </span>service<span class="w"> </span>nginx<span class="w"> </span>-n<span class="w"> </span>abcdektop
+<span class="c1"># create the new  nginx service</span>
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>nginx.service.http.loadbalancer.yaml
+</code></pre></div>
 <p>Wait few minutes to obtain an ip address LoadBalancer <EXTERNAL-IP> from your cloud provider service</p>
-<pre><code class="language-bash">kubectl get services -n abcdesktop
-NAME        TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)           AGE
-desktop     ClusterIP      None             &lt;none&gt;        &lt;none&gt;            57m
-memcached   ClusterIP      10.245.247.50    &lt;none&gt;        11211/TCP         57m
-mongodb     ClusterIP      10.245.198.243   &lt;none&gt;        27017/TCP         57m
-nginx       LoadBalancer   10.245.172.53    &lt;pending&gt;     80:30443/TCP      57m
-openldap    ClusterIP      10.245.109.131   &lt;none&gt;        389/TCP,636/TCP   57m
-pyos        ClusterIP      10.245.94.15     &lt;none&gt;        8000/TCP          57m
-speedtest   ClusterIP      10.245.67.168    &lt;none&gt;        80/TCP            57m
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>services<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+NAME<span class="w">        </span>TYPE<span class="w">           </span>CLUSTER-IP<span class="w">       </span>EXTERNAL-IP<span class="w">   </span>PORT<span class="o">(</span>S<span class="o">)</span><span class="w">           </span>AGE
+desktop<span class="w">     </span>ClusterIP<span class="w">      </span>None<span class="w">             </span>&lt;none&gt;<span class="w">        </span>&lt;none&gt;<span class="w">            </span>57m
+memcached<span class="w">   </span>ClusterIP<span class="w">      </span><span class="m">10</span>.245.247.50<span class="w">    </span>&lt;none&gt;<span class="w">        </span><span class="m">11211</span>/TCP<span class="w">         </span>57m
+mongodb<span class="w">     </span>ClusterIP<span class="w">      </span><span class="m">10</span>.245.198.243<span class="w">   </span>&lt;none&gt;<span class="w">        </span><span class="m">27017</span>/TCP<span class="w">         </span>57m
+nginx<span class="w">       </span>LoadBalancer<span class="w">   </span><span class="m">10</span>.245.172.53<span class="w">    </span>&lt;pending&gt;<span class="w">     </span><span class="m">80</span>:30443/TCP<span class="w">      </span>57m
+openldap<span class="w">    </span>ClusterIP<span class="w">      </span><span class="m">10</span>.245.109.131<span class="w">   </span>&lt;none&gt;<span class="w">        </span><span class="m">389</span>/TCP,636/TCP<span class="w">   </span>57m
+pyos<span class="w">        </span>ClusterIP<span class="w">      </span><span class="m">10</span>.245.94.15<span class="w">     </span>&lt;none&gt;<span class="w">        </span><span class="m">8000</span>/TCP<span class="w">          </span>57m
+speedtest<span class="w">   </span>ClusterIP<span class="w">      </span><span class="m">10</span>.245.67.168<span class="w">    </span>&lt;none&gt;<span class="w">        </span><span class="m">80</span>/TCP<span class="w">            </span>57m
+</code></pre></div>
 <p>You get the <code>EXTERNAL-IP</code> for your <code>LoadBalancer</code> service</p>
-<pre><code class="language-bash">kubectl get services -n abcdesktop
-NAME        TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)           AGE
-desktop     ClusterIP      None             &lt;none&gt;         &lt;none&gt;            61m
-memcached   ClusterIP      10.245.247.50    &lt;none&gt;         11211/TCP         61m
-mongodb     ClusterIP      10.245.198.243   &lt;none&gt;         27017/TCP         61m
-nginx       LoadBalancer   10.245.172.53    161.35.246.4   80:30443/TCP      61m
-openldap    ClusterIP      10.245.109.131   &lt;none&gt;         389/TCP,636/TCP   61m
-pyos        ClusterIP      10.245.94.15     &lt;none&gt;         8000/TCP          61m
-speedtest   ClusterIP      10.245.67.168    &lt;none&gt;         80/TCP            61m
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>services<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+NAME<span class="w">        </span>TYPE<span class="w">           </span>CLUSTER-IP<span class="w">       </span>EXTERNAL-IP<span class="w">    </span>PORT<span class="o">(</span>S<span class="o">)</span><span class="w">           </span>AGE
+desktop<span class="w">     </span>ClusterIP<span class="w">      </span>None<span class="w">             </span>&lt;none&gt;<span class="w">         </span>&lt;none&gt;<span class="w">            </span>61m
+memcached<span class="w">   </span>ClusterIP<span class="w">      </span><span class="m">10</span>.245.247.50<span class="w">    </span>&lt;none&gt;<span class="w">         </span><span class="m">11211</span>/TCP<span class="w">         </span>61m
+mongodb<span class="w">     </span>ClusterIP<span class="w">      </span><span class="m">10</span>.245.198.243<span class="w">   </span>&lt;none&gt;<span class="w">         </span><span class="m">27017</span>/TCP<span class="w">         </span>61m
+nginx<span class="w">       </span>LoadBalancer<span class="w">   </span><span class="m">10</span>.245.172.53<span class="w">    </span><span class="m">161</span>.35.246.4<span class="w">   </span><span class="m">80</span>:30443/TCP<span class="w">      </span>61m
+openldap<span class="w">    </span>ClusterIP<span class="w">      </span><span class="m">10</span>.245.109.131<span class="w">   </span>&lt;none&gt;<span class="w">         </span><span class="m">389</span>/TCP,636/TCP<span class="w">   </span>61m
+pyos<span class="w">        </span>ClusterIP<span class="w">      </span><span class="m">10</span>.245.94.15<span class="w">     </span>&lt;none&gt;<span class="w">         </span><span class="m">8000</span>/TCP<span class="w">          </span>61m
+speedtest<span class="w">   </span>ClusterIP<span class="w">      </span><span class="m">10</span>.245.67.168<span class="w">    </span>&lt;none&gt;<span class="w">         </span><span class="m">80</span>/TCP<span class="w">            </span>61m
+</code></pre></div>
 <p>Open your web browser to reach the abcdesktop service.
 In this case, the loadbalancing service returns the ip address <em>161.35.246.4</em></p>
 <p><img alt="public ip access" src="../img/loadBalancer.ipaddress.png" /></p>
@@ -5036,14 +5036,14 @@ In this case, the loadbalancing service returns the ip address <em>161.35.246.4<
 <h2 id="troubleshooting-with-port-forward">Troubleshooting with <code>port-forward</code></h2>
 <p>Use the kubectl <code>port-forward</code> command and a forwarded local port to help troubleshooting issues.</p>
 <p>Get the pod name for nginx </p>
-<pre><code class="language-bash">kubectl get pods -l run=nginx-od -n abcdesktop
-NAME                        READY   STATUS    RESTARTS   AGE
-nginx-od-69fb8fd8bb-qg4z2   1/1     Running   0          11h
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>nginx-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+NAME<span class="w">                        </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+nginx-od-69fb8fd8bb-qg4z2<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>11h
+</code></pre></div>
 <p>Choose the nginx's pod, to forward local port 80 to nginx 80</p>
-<pre><code class="language-bash">kubectl port-forward nginx-od-69fb8fd8bb-qg4z2 --address 0.0.0.0 80:80 -n abcdesktop
-Forwarding from 0.0.0.0:80 -&gt; 80
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>port-forward<span class="w"> </span>nginx-od-69fb8fd8bb-qg4z2<span class="w"> </span>--address<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+Forwarding<span class="w"> </span>from<span class="w"> </span><span class="m">0</span>.0.0.0:80<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">80</span>
+</code></pre></div>
 <blockquote>
 <p>Your localhost is listening on 0.0.0.0:80 and forward to the nginx port 80</p>
 </blockquote>
@@ -5053,32 +5053,32 @@ Forwarding from 0.0.0.0:80 -&gt; 80
 <blockquote>
 <p>For the first time, you may get a time out error, if all container image can not be downloaded in less than 180 seconds on the worker node.</p>
 </blockquote>
-<pre><code class="language-bash">kubectl get pods -n abcdesktop                                                   
-NAME                            READY   STATUS    RESTARTS   AGE
-memcached-od-bdcbbcb74-nhd68    1/1     Running   0          11h
-mongodb-od-d46d79476-fmbj5      1/1     Running   0          11h
-nginx-od-69fb8fd8bb-qg4z2       1/1     Running   0          11h
-openldap-od-795c55f6db-wz7l4    1/1     Running   0          11h
-pyos-od-988887859-8kwdx         1/1     Running   0          11h
-speedtest-od-6b5f8584f5-cs69t   1/1     Running   0          11h
-fry-2cf3a                       4/4     Running   0          4m15s
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w">                                                   </span>
+NAME<span class="w">                            </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+memcached-od-bdcbbcb74-nhd68<span class="w">    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>11h
+mongodb-od-d46d79476-fmbj5<span class="w">      </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>11h
+nginx-od-69fb8fd8bb-qg4z2<span class="w">       </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>11h
+openldap-od-795c55f6db-wz7l4<span class="w">    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>11h
+pyos-od-988887859-8kwdx<span class="w">         </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>11h
+speedtest-od-6b5f8584f5-cs69t<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>11h
+fry-2cf3a<span class="w">                       </span><span class="m">4</span>/4<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>4m15s
+</code></pre></div>
 <p>The user <code>fry</code> gets the abcdesktop pod <code>fry-2cf3a</code></p>
 <p><img alt="port forward localhost desktop" src="../img/troubleshooting.portforward.loged.fry.png" /></p>
 <h2 id="update-nginx-service-to-use-loadbalancer-service-with-https">Update nginx service to use LoadBalancer service with https</h2>
 <p>This example works on digitalocean cloud provider.</p>
 <p>First of all, you need to get your <code>loadbalancer-certificate-id</code></p>
 <p>To list available certificates and their IDs, install doctl and run the command</p>
-<pre><code>doctl compute certificate list
-</code></pre>
+<div class="highlight"><pre><span></span><code>doctl compute certificate list
+</code></pre></div>
 <p>Then define <code>annotations</code> on the abcdesktop nginx service like</p>
-<pre><code>  service.beta.kubernetes.io/do-loadbalancer-certificate-id: &quot;3619b45a-714b-455c-a01a-e92fc8a29cbb&quot;
+<div class="highlight"><pre><span></span><code>  service.beta.kubernetes.io/do-loadbalancer-certificate-id: &quot;3619b45a-714b-455c-a01a-e92fc8a29cbb&quot;
   service.beta.kubernetes.io/do-loadbalancer-protocol: &quot;https&quot;
   service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: &quot;false&quot;
-</code></pre>
+</code></pre></div>
 <p>Create a <code>loadbalancing.yaml</code> file, to update the default abcdestkop <code>service/nginx</code>
 You need to replace <code>service.beta.kubernetes.io/do-loadbalancer-certificate-id</code> with your own certificate value. </p>
-<pre><code>---         
+<div class="highlight"><pre><span></span><code>---         
 kind: Service 
 apiVersion: v1
 metadata:   
@@ -5100,19 +5100,19 @@ spec:
     targetPort: 80
     name: https
 ---
-</code></pre>
+</code></pre></div>
 <p>Apply the new  <code>loadbalancing.yaml</code> file </p>
-<pre><code class="language-bash">kubectl apply -f loadbalancing.yaml
-</code></pre>
-<p>You can read </p>
-<pre><code>service/nginx configured
-</code></pre>
+<p><div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>loadbalancing.yaml
+</code></pre></div>
+You can read </p>
+<div class="highlight"><pre><span></span><code>service/nginx configured
+</code></pre></div>
 <p>Check the nginx/services </p>
-<pre><code>kubectl get service/nginx -n abcdesktop
-</code></pre>
-<pre><code>NAME    TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)         AGE
+<div class="highlight"><pre><span></span><code>kubectl get service/nginx -n abcdesktop
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>NAME    TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)         AGE
 nginx   LoadBalancer   10.245.188.146   161.35.246.4    443:32086/TCP   28m
-</code></pre>
+</code></pre></div>
 <p>Now you can replace <code>http</code> by the secure protocol <code>https</code></p>
 
 

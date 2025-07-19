@@ -5068,14 +5068,14 @@
 <p><code>explicit</code> authentification use a directory service. A bind operation is used to authenticate clients to the directory server, to establish an authorisation identity that will be used for subsequent operations processed on that connection. </p>
 <p>The <code>explicit</code> authentification configuration is defined as a dictionary object and contains an <code>explicit</code> provider. </p>
 <p>For example :</p>
-<pre><code>'explicit': {
-    'providers': {
-      'LDAP': { 
-        'config_ref': 'ldapconfig', 
-        'enabled': True
+<div class="highlight"><pre><span></span><code>&#39;explicit&#39;: {
+    &#39;providers&#39;: {
+      &#39;LDAP&#39;: { 
+        &#39;config_ref&#39;: &#39;ldapconfig&#39;, 
+        &#39;enabled&#39;: True
        }
 }
-</code></pre>
+</code></pre></div>
 <p>In this example, <code>ldapconfig</code> dict must have a key <code>LDAP</code></p>
 <table>
 <thead>
@@ -5107,12 +5107,12 @@
 <p>The <code>provider</code> authentification configuration is defined as a dictionary object and must contain a key name.
 The key name must be set with the same value in provider configuration and <code>config_ref</code>.</p>
 <p>The provider is formatted as a dictionary. Example for a <code>provider</code> defined as <code>planet</code></p>
-<pre><code> { 'planet': {  
-            'config_ref': 'ldapconfig',  
-            'enabled': True  
+<div class="highlight"><pre><span></span><code> { &#39;planet&#39;: {  
+            &#39;config_ref&#39;: &#39;ldapconfig&#39;,  
+            &#39;enabled&#39;: True  
         }
  }
-</code></pre>
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -5136,18 +5136,18 @@ The key name must be set with the same value in provider configuration and <code
 </table>
 <p>The <code>ldapconfig</code> is a dictionary. </p>
 <p>For example :</p>
-<pre><code class="language-json">ldapconfig : { 
-  'planet': {    
-    'default'       : True, 
-    'ldap_timeout'  : 15,
-    'ldap_protocol' : 'ldap',
-    'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-    'servers'       : [ 'ldap://192.168.8.195' ],
-    'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' } 
-  } 
- } 
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">ldapco</span><span class="kc">nf</span><span class="err">ig</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="err">&#39;pla</span><span class="kc">net</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">    </span>
+<span class="w">    </span><span class="err">&#39;de</span><span class="kc">fault</span><span class="err">&#39;</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;ldap_</span><span class="kc">t</span><span class="err">imeou</span><span class="kc">t</span><span class="err">&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;ldap_pro</span><span class="kc">t</span><span class="err">ocol&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ldap&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;ldap_based</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ou=people</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;servers&#39;</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ldap</span><span class="p">:</span><span class="c1">//192.168.8.195&#39; ],</span>
+<span class="w">    </span><span class="err">&#39;serviceaccou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;logi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;c</span><span class="kc">n</span><span class="err">=admi</span><span class="kc">n</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;password&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;GoodNewsEveryo</span><span class="kc">ne</span><span class="err">&#39;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span>
+<span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="ldap-configuration-reference">ldap configuration reference</h2>
 <table>
 <thead>
@@ -5260,31 +5260,31 @@ We use an OpenLDAP container for testing with provisioned values. <a href="https
 <h2 id="update-the-odconfig-configuration-file">Update the <code>od.config</code> configuration file</h2>
 <p>Update the <code>od.config</code> configuration file.</p>
 <p>Add the <code>explicit</code> entry to the dictionary <code>authmanagers</code>.</p>
-<pre><code>authmanagers: {
-  'external': {
+<div class="highlight"><pre><span></span><code>authmanagers: {
+  &#39;external&#39;: {
   },
-  'explicit': {
-    'show_domains': True,
-    'providers': {
-      'planet': { 
-        'config_ref': 'ldapconfig', 
-        'enabled': True
+  &#39;explicit&#39;: {
+    &#39;show_domains&#39;: True,
+    &#39;providers&#39;: {
+      &#39;planet&#39;: { 
+        &#39;config_ref&#39;: &#39;ldapconfig&#39;, 
+        &#39;enabled&#39;: True
        }
     }
   },
-  'implicit': {
+  &#39;implicit&#39;: {
   }}      
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Note: the <code>config_ref</code> is <code>ldapconfig</code>. </p>
 </blockquote>
 <p>Add a new dictionary object named <code>ldapconfig</code> to the configuration file.
 These values come from the LDAP structure of OpenLDAP Docker Image for testing</p>
-<pre><code>ldapconfig : { 'planet': {    
-                        'default'       : True, 
-                        'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ 'ldap://openldap' ] }}
-</code></pre>
+<div class="highlight"><pre><span></span><code>ldapconfig : { &#39;planet&#39;: {    
+                        &#39;default&#39;       : True, 
+                        &#39;ldap_basedn&#39;   : &#39;ou=people,dc=planetexpress,dc=com&#39;,
+                        &#39;servers&#39;       : [ &#39;ldap://openldap&#39; ] }}
+</code></pre></div>
 <p>Save your new od.config file.</p>
 <p>Open the URL:<code>http://localhost:30443</code></p>
 <p>The authmanagers <code>explicit</code> is enabled. The Web home page insert the new input values <code>Login</code> and <code>Password</code> to authenticate this user.</p>
@@ -5710,8 +5710,8 @@ These values come from the LDAP structure of OpenLDAP Docker Image for testing</
 <h2 id="applications-remainted">Applications remainted</h2>
 <p>Start LibreOffice Writer, and start a new file for your instructor. 
 Type few words for example :</p>
-<pre><code>I like this amazing project abcdesktop.io
-</code></pre>
+<div class="highlight"><pre><span></span><code>I like this amazing project abcdesktop.io
+</code></pre></div>
 <p>Do not save your file and just close your web browser.</p>
 <p>Start your web browser again, and open the same URL <code>http://localhost</code>, and log in with the same account: <code>Turanga Leela</code> as login and <code>leela</code> as password, then click on the <code>Sign in</code> button.</p>
 <p>The application LibreOffice Writer is still running and the greeting message <code>I like this amazing project abcdesktop.io</code></p>

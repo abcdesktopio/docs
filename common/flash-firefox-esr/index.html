@@ -5044,30 +5044,30 @@
 </ul>
 <h3 id="edit-the-mmscfg-file">Edit the mms.cfg file</h3>
 <p>Edit the mms.cfg file, and add your own website url</p>
-<pre><code>EOLUninstallDisable=1
+<div class="highlight"><pre><span></span><code>EOLUninstallDisable=1
 SilentAutoUpdateEnable=0
 AutoUpdateDisable=1
 EnableAllowList=1
 AllowListURLPattern=*://*.adobe.com
 AllowListURLPattern=https://*.abcdesktop.io
-</code></pre>
+</code></pre></div>
 <p>Add the a new line and replace <code>https://www.domain.com</code>by your own web site</p>
-<pre><code>AllowListURLPattern=https://www.domain.com
-</code></pre>
+<div class="highlight"><pre><span></span><code>AllowListURLPattern=https://www.domain.com
+</code></pre></div>
 <h2 id="create-file-firefox-esrd">Create file firefox-esr.d</h2>
 <p>Create a Dockerfile <code>firefox-esr.d</code></p>
 <ul>
 <li>to copy your new <code>mms.cfg</code> into the directory <code>/etc/adobe</code> of your container image</li>
 </ul>
-<pre><code>FROM abcdesktopio/firefox-esr.d
+<div class="highlight"><pre><span></span><code>FROM abcdesktopio/firefox-esr.d
 USER 0
 COPY mms.cfg /etc/adobe/mms.cfg
 USER balloon
-</code></pre>
+</code></pre></div>
 <h2 id="build-the-new-firefox-esr-abcdesktop-image">Build the new firefox-esr abcdesktop image</h2>
 <p>Run the docker build command </p>
-<pre><code>docker build -t firefox-esr.d -f firefox-esr.d .
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker build -t firefox-esr.d -f firefox-esr.d .
+</code></pre></div>
 <h2 id="run-the-firefox-esr-application">Run the firefox-esr application</h2>
 <h3 id="login-to-your-abcdesktop-service">Login to your abcdesktop service</h3>
 <p>Using you web browser, log in to your abcdesktop service</p>

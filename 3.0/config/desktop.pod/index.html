@@ -5167,128 +5167,127 @@ Each container offers a service. </p>
 <li>can set dedicated <code>'secrets_requirement</code>, a list of secrets to run example  <code>['abcdesktop/vnc', 'abcdesktop/kerberos']</code></li>
 </ul>
 <h2 id="default-desktoppod">default desktop.pod</h2>
-<pre><code class="language-json">desktop.pod : { 
-  'spec' : {
-    'shareProcessNamespace': True,
-    'shareProcessMemory': True,
-    'shareProcessMemorySize': '256Mi',
-    'securityContext': { 
-      'supplementalGroups': [ '{{ supplementalGroups }}' ],
-      'runAsUser': '{{ uidNumber }}',
-      'runAsGroup': '{{ gidNumber }}',
-      'readOnlyRootFilesystem': False, 
-      'allowPrivilegeEscalation': True
-    }
-  },  
-  'graphical' : { 
-    'image': { 'default': 'abcdesktopio/oc.user.ubuntu:3.0' },
-    'imagePullPolicy': 'IfNotPresent',
-    'enable': True,
-    'acl': { 'permit': [ 'all' ] },
-    'waitportbin': '/composer/node/wait-port/node_modules/.bin/wait-port',
-    'resources': { 
-            'requests': { 'memory': &quot;320Mi&quot;, 'cpu': &quot;250m&quot;  }, 
-            'limits':   { 'memory': &quot;1Gi&quot;,   'cpu': &quot;1000m&quot; } 
-    },
-    'shareProcessNamespace': True,
-    'tcpport': 6081,
-    'secrets_requirement' : [ 'abcdesktop/vnc', 'abcdesktop/kerberos']
-  },
-  'spawner' : { 
-    'enable': True,
-    'tcpport': 29786,
-    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
-    'acl':  { 'permit': [ 'all' ] } 
-  },
-  'broadcast' : { 
-    'enable': True,
-    'tcpport': 29784,
-    'acl':  { 'permit': [ 'all' ] } 
-  },
-  'webshell' : { 
-    'enable': True,
-    'tcpport': 29781,
-    'acl':  { 'permit': [ 'all' ] } 
-  },
-  'printer' : { 
-    'image': 'abcdesktopio/oc.cupsd:3.0',
-    'imagePullPolicy': 'IfNotPresent',
-    'enable': True,
-    'tcpport': 681,
-    # cupsd need to start as root
-    'securityContext': { 'runAsUser': 0 },
-    'resources': { 
-      'requests': { 'memory': &quot;64Mi&quot;, 'cpu': &quot;125m&quot; },  
-      'limits'  : { 'memory': &quot;512Mi&quot;,  'cpu': &quot;500m&quot; } 
-    },
-    'acl':  { 'permit': [ 'all' ] } 
-  },
-  'printerfile' : { 
-    'enable': True,
-    'tcpport': 29782,
-    'acl':  { 'permit': [ 'all' ] } 
-  },
-  'filer' : { 
-    'image': 'abcdesktopio/oc.filer:3.0',
-    'imagePullPolicy':  'IfNotPresent',
-    'enable': True,
-    'tcpport': 29783,
-    'acl':  { 'permit': [ 'all' ] } 
-    },
-  'storage' : { 
-    'image': 'k8s.gcr.io/pause:3.8',
-    'imagePullPolicy':  'IfNotPresent',
-    'enable': True,
-    'acl': { 'permit': [ 'all' ] },
-    'resources': { 
-      'requests': { 'memory': &quot;32Mi&quot;,  'cpu': &quot;100m&quot; },  
-      'limits'  : { 'memory': &quot;128Mi&quot;, 'cpu': &quot;250m&quot; } 
-    }
-  },
-  'sound': { 
-    'image': 'abcdesktopio/oc.pulseaudio:3.0',
-    'imagePullPolicy': 'IfNotPresent',
-    'enable': False,
-    'tcpport': 4714,
-    'acl':  { 'permit': [ 'all' ] },
-    'resources': { 
-      'requests': { 'memory': &quot;8Mi&quot;,  'cpu': &quot;50m&quot;  },  
-      'limits'  : { 'memory': &quot;64Mi&quot;, 'cpu': &quot;250m&quot; } 
-    } 
-  },
-  'init': { 
-    'image': 'busybox',
-    'enable': True,
-    # 'imagePullSecrets': [ { 'name': name_of_secret } ]
-    'imagePullPolicy': 'IfNotPresent',
-    'securityContext': { 'runAsUser': 0 },
-    'acl':  { 'permit': [ 'all' ] },
-    'command':  [ 'sh', '-c',  'chmod 750 ~ &amp;&amp; chown {{ uidNumber }}:{{ gidNumber }} ~ || true' ] 
-  },
-  'ephemeral_container': {
-    'enable': True,
-    'securityContext': { 
-        'supplementalGroups': [ '{{ supplementalGroups }}' ] ,
-        'readOnlyRootFilesystem': False, 
-        'allowPrivilegeEscalation': True, 
-        'runAsUser':                '{{ uidNumber }}',
-        'runAsGroup':               '{{ gidNumber }}'
-     },
-    'acl':  { 'permit': [ 'all' ] }
-  },
-  'pod_application' : {
-    'enable': True,
-    'securityContext': { 
-        'supplementalGroups': [ '{{ supplementalGroups }}' ] ,
-        'readOnlyRootFilesystem': False, 
-        'allowPrivilegeEscalation': True, 
-        'runAsUser':                '{{ uidNumber }}',
-        'runAsGroup':               '{{ gidNumber }}'
-    },
-    # 'imagePullSecrets': [ { 'name': name_of_secret } ]
-    'acl':  { 'permit': [ 'all' ] } } }
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.pod</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="err">&#39;spec&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;shareProcessNamespace&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;shareProcessMemory&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;shareProcessMemorySize&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">256</span><span class="err">Mi&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;securi</span><span class="kc">t</span><span class="err">yCo</span><span class="kc">nte</span><span class="err">x</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="err">&#39;suppleme</span><span class="kc">ntal</span><span class="err">Groups&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="p">{{</span><span class="w"> </span><span class="err">suppleme</span><span class="kc">ntal</span><span class="err">Groups</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">      </span><span class="err">&#39;ru</span><span class="kc">n</span><span class="err">AsUser&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="p">{{</span><span class="w"> </span><span class="err">uidNumber</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;ru</span><span class="kc">n</span><span class="err">AsGroup&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="p">{{</span><span class="w"> </span><span class="err">gidNumber</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;readO</span><span class="kc">nl</span><span class="err">yRoo</span><span class="kc">t</span><span class="err">Filesys</span><span class="kc">te</span><span class="err">m&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="err">&#39;allowPrivilegeEscala</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span><span class="w">  </span>
+<span class="w">  </span><span class="err">&#39;graphical&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;image&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;de</span><span class="kc">fault</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;abcdesk</span><span class="kc">t</span><span class="err">opio/oc.user.ubu</span><span class="kc">ntu</span><span class="p">:</span><span class="mf">3.0</span><span class="err">&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;imagePullPolicy&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;I</span><span class="kc">f</span><span class="err">No</span><span class="kc">t</span><span class="err">Prese</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">ble&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;wai</span><span class="kc">t</span><span class="err">por</span><span class="kc">t</span><span class="err">bi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/composer/</span><span class="kc">n</span><span class="err">ode/wai</span><span class="kc">t</span><span class="mi">-</span><span class="err">por</span><span class="kc">t</span><span class="err">/</span><span class="kc">n</span><span class="err">ode_modules/.bi</span><span class="kc">n</span><span class="err">/wai</span><span class="kc">t</span><span class="mi">-</span><span class="err">por</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;resources&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;reques</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memory&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;320Mi&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;cpu&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;250m&quot;</span><span class="w">  </span><span class="p">},</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;limi</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memory&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1Gi&quot;</span><span class="p">,</span><span class="w">   </span><span class="err">&#39;cpu&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1000m&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;shareProcessNamespace&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">cppor</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">6081</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;secre</span><span class="kc">ts</span><span class="err">_requireme</span><span class="kc">nt</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;abcdesk</span><span class="kc">t</span><span class="err">op/v</span><span class="kc">n</span><span class="err">c&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;abcdesk</span><span class="kc">t</span><span class="err">op/kerberos&#39;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;spaw</span><span class="kc">ner</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">ble&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">cppor</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">29786</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;wai</span><span class="kc">t</span><span class="err">por</span><span class="kc">t</span><span class="err">bi</span><span class="kc">n</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/composer/</span><span class="kc">n</span><span class="err">ode/wai</span><span class="kc">t</span><span class="mi">-</span><span class="err">por</span><span class="kc">t</span><span class="err">/</span><span class="kc">n</span><span class="err">ode_modules/.bi</span><span class="kc">n</span><span class="err">/wai</span><span class="kc">t</span><span class="mi">-</span><span class="err">por</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;broadcas</span><span class="kc">t</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">ble&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">cppor</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">29784</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;webshell&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">ble&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">cppor</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">29781</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;pri</span><span class="kc">nter</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;image&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;abcdesk</span><span class="kc">t</span><span class="err">opio/oc.cupsd</span><span class="p">:</span><span class="mf">3.0</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;imagePullPolicy&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;I</span><span class="kc">f</span><span class="err">No</span><span class="kc">t</span><span class="err">Prese</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">ble&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">cppor</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">681</span><span class="p">,</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">cupsd</span><span class="w"> </span><span class="kc">nee</span><span class="err">d</span><span class="w"> </span><span class="kc">t</span><span class="err">o</span><span class="w"> </span><span class="err">s</span><span class="kc">tart</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">roo</span><span class="kc">t</span>
+<span class="w">    </span><span class="err">&#39;securi</span><span class="kc">t</span><span class="err">yCo</span><span class="kc">nte</span><span class="err">x</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;ru</span><span class="kc">n</span><span class="err">AsUser&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;resources&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="err">&#39;reques</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memory&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;64Mi&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;cpu&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;125m&quot;</span><span class="w"> </span><span class="p">},</span><span class="w">  </span>
+<span class="w">      </span><span class="err">&#39;limi</span><span class="kc">ts</span><span class="err">&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memory&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;512Mi&quot;</span><span class="p">,</span><span class="w">  </span><span class="err">&#39;cpu&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;500m&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;pri</span><span class="kc">nterf</span><span class="err">ile&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">ble&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">cppor</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">29782</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">iler&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;image&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;abcdesk</span><span class="kc">t</span><span class="err">opio/oc.</span><span class="kc">f</span><span class="err">iler</span><span class="p">:</span><span class="mf">3.0</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;imagePullPolicy&#39;</span><span class="p">:</span><span class="w">  </span><span class="err">&#39;I</span><span class="kc">f</span><span class="err">No</span><span class="kc">t</span><span class="err">Prese</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">ble&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">cppor</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">29783</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;s</span><span class="kc">t</span><span class="err">orage&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;image&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;k</span><span class="mi">8</span><span class="err">s.gcr.io/pause</span><span class="p">:</span><span class="mf">3.8</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;imagePullPolicy&#39;</span><span class="p">:</span><span class="w">  </span><span class="err">&#39;I</span><span class="kc">f</span><span class="err">No</span><span class="kc">t</span><span class="err">Prese</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">ble&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;resources&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="err">&#39;reques</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memory&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;32Mi&quot;</span><span class="p">,</span><span class="w">  </span><span class="err">&#39;cpu&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;100m&quot;</span><span class="w"> </span><span class="p">},</span><span class="w">  </span>
+<span class="w">      </span><span class="err">&#39;limi</span><span class="kc">ts</span><span class="err">&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memory&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;128Mi&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;cpu&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;250m&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;sou</span><span class="kc">n</span><span class="err">d&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;image&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;abcdesk</span><span class="kc">t</span><span class="err">opio/oc.pulseaudio</span><span class="p">:</span><span class="mf">3.0</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;imagePullPolicy&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;I</span><span class="kc">f</span><span class="err">No</span><span class="kc">t</span><span class="err">Prese</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">ble&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">cppor</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">4714</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;resources&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="err">&#39;reques</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memory&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8Mi&quot;</span><span class="p">,</span><span class="w">  </span><span class="err">&#39;cpu&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;50m&quot;</span><span class="w">  </span><span class="p">},</span><span class="w">  </span>
+<span class="w">      </span><span class="err">&#39;limi</span><span class="kc">ts</span><span class="err">&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;memory&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;64Mi&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;cpu&#39;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;250m&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;i</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;image&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;busybox&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">ble&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">&#39;imagePullSecre</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="kc">na</span><span class="err">me_o</span><span class="kc">f</span><span class="err">_secre</span><span class="kc">t</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="err">&#39;imagePullPolicy&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;I</span><span class="kc">f</span><span class="err">No</span><span class="kc">t</span><span class="err">Prese</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;securi</span><span class="kc">t</span><span class="err">yCo</span><span class="kc">nte</span><span class="err">x</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;ru</span><span class="kc">n</span><span class="err">AsUser&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;comma</span><span class="kc">n</span><span class="err">d&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;sh&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">-</span><span class="err">c&#39;</span><span class="p">,</span><span class="w">  </span><span class="err">&#39;chmod</span><span class="w"> </span><span class="mi">750</span><span class="w"> </span><span class="err">~</span><span class="w"> </span><span class="err">&amp;&amp;</span><span class="w"> </span><span class="err">chow</span><span class="kc">n</span><span class="w"> </span><span class="p">{{</span><span class="w"> </span><span class="err">uidNumber</span><span class="w"> </span><span class="p">}}:{{</span><span class="w"> </span><span class="err">gidNumber</span><span class="w"> </span><span class="p">}}</span><span class="w"> </span><span class="err">~</span><span class="w"> </span><span class="err">||</span><span class="w"> </span><span class="kc">true</span><span class="err">&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;ephemeral_co</span><span class="kc">nta</span><span class="err">i</span><span class="kc">ner</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">ble&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;securi</span><span class="kc">t</span><span class="err">yCo</span><span class="kc">nte</span><span class="err">x</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;suppleme</span><span class="kc">ntal</span><span class="err">Groups&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="p">{{</span><span class="w"> </span><span class="err">suppleme</span><span class="kc">ntal</span><span class="err">Groups</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;readO</span><span class="kc">nl</span><span class="err">yRoo</span><span class="kc">t</span><span class="err">Filesys</span><span class="kc">te</span><span class="err">m&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;allowPrivilegeEscala</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;ru</span><span class="kc">n</span><span class="err">AsUser&#39;</span><span class="p">:</span><span class="w">                </span><span class="err">&#39;</span><span class="p">{{</span><span class="w"> </span><span class="err">uidNumber</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;ru</span><span class="kc">n</span><span class="err">AsGroup&#39;</span><span class="p">:</span><span class="w">               </span><span class="err">&#39;</span><span class="p">{{</span><span class="w"> </span><span class="err">gidNumber</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span>
+<span class="w">     </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;pod_applica</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">ble&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;securi</span><span class="kc">t</span><span class="err">yCo</span><span class="kc">nte</span><span class="err">x</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;suppleme</span><span class="kc">ntal</span><span class="err">Groups&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="p">{{</span><span class="w"> </span><span class="err">suppleme</span><span class="kc">ntal</span><span class="err">Groups</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;readO</span><span class="kc">nl</span><span class="err">yRoo</span><span class="kc">t</span><span class="err">Filesys</span><span class="kc">te</span><span class="err">m&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;allowPrivilegeEscala</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;ru</span><span class="kc">n</span><span class="err">AsUser&#39;</span><span class="p">:</span><span class="w">                </span><span class="err">&#39;</span><span class="p">{{</span><span class="w"> </span><span class="err">uidNumber</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;ru</span><span class="kc">n</span><span class="err">AsGroup&#39;</span><span class="p">:</span><span class="w">               </span><span class="err">&#39;</span><span class="p">{{</span><span class="w"> </span><span class="err">gidNumber</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">&#39;imagePullSecre</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="kc">na</span><span class="err">me_o</span><span class="kc">f</span><span class="err">_secre</span><span class="kc">t</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <h3 id="common-options">common options</h3>
 <h4 id="enable">enable</h4>
 <p>A container is added to the user pod if <code>'enable': True</code></p>
@@ -5306,8 +5305,8 @@ Read the <a href="/config/authentification-rules/">authentification-rules</a> ab
 <h4 id="waitportbin">waitportbin</h4>
 <p><code>waitportbin</code> is a binary command line, embedded inside the container, to check if the container is ready to run. Commonly it uses the <code>tcpport</code> value.</p>
 <p>The command is run with parameters :</p>
-<pre><code class="language-bash">/composer/node/wait-port/node_modules/.bin/wait-port -t {waitportbintimeout}*1000 {container_ipaddr}:{container_tcpport}
-</code></pre>
+<div class="highlight"><pre><span></span><code>/composer/node/wait-port/node_modules/.bin/wait-port<span class="w"> </span>-t<span class="w"> </span><span class="o">{</span>waitportbintimeout<span class="o">}</span>*1000<span class="w"> </span><span class="o">{</span>container_ipaddr<span class="o">}</span>:<span class="o">{</span>container_tcpport<span class="o">}</span>
+</code></pre></div>
 <h4 id="waitportbintimeout">waitportbintimeout</h4>
 <p><code>waitportbintimeout</code> is the timeout in seconds to get <code>waitportbin</code> command result.  </p>
 <h4 id="image">image</h4>
@@ -5315,21 +5314,21 @@ Read the <a href="/config/authentification-rules/">authentification-rules</a> ab
 <h4 id="imagepullsecrets">imagePullSecrets</h4>
 <p>The <code>imagePullSecret</code> entry is the list of the secret name used by kubernetes to access to the private registry.
 The type of <code>imagePullSecret</code> is a list. This option is used if you need to store the abcdesktop docker image on your a private registry.</p>
-<pre><code class="language-json"> imagePullSecret : [ { 'name': name_of_secret } ]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">imagePullSecre</span><span class="kc">t</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="kc">na</span><span class="err">me_o</span><span class="kc">f</span><span class="err">_secre</span><span class="kc">t</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
+</code></pre></div>
 <ul>
 <li>Example to build a registry Kubernetes secret named abcdesktopregistrysecret with the docker hub.</li>
 </ul>
-<pre><code class="language-bash">kubectl create secret docker-registry abcdesktopregistrysecret --docker-server=https://index.docker.io/v1/ --docker-username=XXXXXXX --docker-password=YYYYYYYU
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>docker-registry<span class="w"> </span>abcdesktopregistrysecret<span class="w"> </span>--docker-server<span class="o">=</span>https://index.docker.io/v1/<span class="w"> </span>--docker-username<span class="o">=</span>XXXXXXX<span class="w"> </span>--docker-password<span class="o">=</span>YYYYYYYU
+</code></pre></div>
 <ul>
 <li>Example to build a registry Kubernetes secret named abcdesktopregistrysecret with your own privateregistry</li>
 </ul>
-<pre><code class="language-bash">kubectl create secret docker-registry abcdesktopregistrysecret --docker-server=registry.mydomain.local:443 --docker-username=XXXXXXX --docker-password=YYYYYYYU
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>docker-registry<span class="w"> </span>abcdesktopregistrysecret<span class="w"> </span>--docker-server<span class="o">=</span>registry.mydomain.local:443<span class="w"> </span>--docker-username<span class="o">=</span>XXXXXXX<span class="w"> </span>--docker-password<span class="o">=</span>YYYYYYYU
+</code></pre></div>
 <p>The <code>imagePullSecret</code> become in this sample</p>
-<pre><code class="language-json"> imagePullSecret : [ { 'name': 'abcdesktopregistrysecret' } ]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">imagePullSecre</span><span class="kc">t</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;abcdesk</span><span class="kc">t</span><span class="err">opregis</span><span class="kc">tr</span><span class="err">ysecre</span><span class="kc">t</span><span class="err">&#39;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
+</code></pre></div>
 <h4 id="resources">resources</h4>
 <p>Resources come from the kubernetes resources containers management. Read the <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">resources</a> kubernetes documentation to get more details.</p>
 <h3 id="spec-entry">spec entry</h3>
@@ -5354,18 +5353,18 @@ The type of <code>imagePullSecret</code> is a list. This option is used if you n
 <p><code>shareProcessMemorySize</code> is the size of <code>shareProcessMemory</code>. The size is set to the <code>shm</code> volume  <code>'sizeLimit': shareProcessMemorySize</code></p>
 </li>
 </ul>
-<pre><code class="language-json">'spec' : {
-    'shareProcessNamespace': True,
-    'shareProcessMemory': True,
-    'shareProcessMemorySize': '256Mi',
-    'securityContext': { 
-      'supplementalGroups': [ '{{ supplementalGroups }}' ],
-      'runAsUser': '{{ uidNumber }}',
-      'runAsGroup': '{{ gidNumber }}',
-      'readOnlyRootFilesystem': False, 
-      'allowPrivilegeEscalation': True
-    }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;spec&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;shareProcessNamespace&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;shareProcessMemory&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;shareProcessMemorySize&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">256</span><span class="err">Mi&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;securi</span><span class="kc">t</span><span class="err">yCo</span><span class="kc">nte</span><span class="err">x</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="err">&#39;suppleme</span><span class="kc">ntal</span><span class="err">Groups&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="p">{{</span><span class="w"> </span><span class="err">suppleme</span><span class="kc">ntal</span><span class="err">Groups</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">      </span><span class="err">&#39;ru</span><span class="kc">n</span><span class="err">AsUser&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="p">{{</span><span class="w"> </span><span class="err">uidNumber</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;ru</span><span class="kc">n</span><span class="err">AsGroup&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="p">{{</span><span class="w"> </span><span class="err">gidNumber</span><span class="w"> </span><span class="p">}}</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;readO</span><span class="kc">nl</span><span class="err">yRoo</span><span class="kc">t</span><span class="err">Filesys</span><span class="kc">te</span><span class="err">m&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="err">&#39;allowPrivilegeEscala</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
 <h3 id="init-container">init container</h3>
 <p>init container run the init command. It changes access right to the user home directory. The init command runs as root by default with a securityContext <code>'securityContext': {'runAsUser':0, 'runAsGroup':0 }</code>.</p>
 <p>The command support <code>{{ }}</code> values. Values can be </p>
@@ -5381,8 +5380,8 @@ The type of <code>imagePullSecret</code> is a list. This option is used if you n
 <li><code>'{{ uid }}'</code> is replaced by the ldap <code>uid</code> or if not set by the default user name set in option <code>desktop.username</code></li>
 </ul>
 <p>Example</p>
-<pre><code class="language-json"> 'command':  [ 'sh', '-c',  'chmod 755 ~ &amp;&amp; chown {{ uidNumber }}:{{ gidNumber }} ~ || true' ]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;comma</span><span class="kc">n</span><span class="err">d&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;sh&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">-</span><span class="err">c&#39;</span><span class="p">,</span><span class="w">  </span><span class="err">&#39;chmod</span><span class="w"> </span><span class="mi">755</span><span class="w"> </span><span class="err">~</span><span class="w"> </span><span class="err">&amp;&amp;</span><span class="w"> </span><span class="err">chow</span><span class="kc">n</span><span class="w"> </span><span class="p">{{</span><span class="w"> </span><span class="err">uidNumber</span><span class="w"> </span><span class="p">}}:{{</span><span class="w"> </span><span class="err">gidNumber</span><span class="w"> </span><span class="p">}}</span><span class="w"> </span><span class="err">~</span><span class="w"> </span><span class="err">||</span><span class="w"> </span><span class="kc">true</span><span class="err">&#39;</span><span class="w"> </span><span class="p">]</span>
+</code></pre></div>
 
 
 

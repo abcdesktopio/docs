@@ -4860,17 +4860,15 @@
 <h2 id="from">from</h2>
 <p>inherit <a href="../oc.template.alpine.minimal">abcdesktopio/oc.template.alpine.minimal</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>NAME=&quot;Alpine Linux&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Alpine Linux&quot;
 ID=alpine
 VERSION_ID=3.21.2
 PRETTY_NAME=&quot;Alpine Linux v3.21&quot;
 HOME_URL=&quot;https://alpinelinux.org/&quot;
 BUG_REPORT_URL=&quot;https://gitlab.alpinelinux.org/alpine/aports/-/issues&quot;
-
-</code></pre>
+</code></pre></div>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code>
-# default TAG is dev
+<div class="highlight"><pre><span></span><code># default TAG is dev
 ARG TAG=dev
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}:${TAG}
@@ -4889,8 +4887,7 @@ RUN apk add  --no-cache --update  \
     font-ibm-type1 \
     font-liberation \
     font-sony-misc
-
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>file oc.template.alpine.md is created at Tue Jan 28 2025 14:03:22 GMT+0000 (Coordinated Universal Time) by make-docs.js</p>
 </blockquote>

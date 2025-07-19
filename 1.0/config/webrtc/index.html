@@ -4928,35 +4928,35 @@
 <p>By default, abcdesktop uses the pulseaudio http stream and play wave data (poor sound quality but works in https only)</p>
 <p><img alt="pulseaudio http stream" src="../../../config/img/soundmodulehttp.png" /></p>
 <p>In terminal webshell run the command :</p>
-<pre><code class="language-bash">pactl -s /tmp/.pulse.sock list short modules
-</code></pre>
-<pre><code>balloon@bac345323f37:/var/log/desktop$ pactl -s /tmp/.pulse.sock list short modules
+<div class="highlight"><pre><span></span><code>pactl<span class="w"> </span>-s<span class="w"> </span>/tmp/.pulse.sock<span class="w"> </span>list<span class="w"> </span>short<span class="w"> </span>modules
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>balloon@bac345323f37:/var/log/desktop$ pactl -s /tmp/.pulse.sock list short modules
 0 module-augment-properties
-1 module-null-sink sink_name=u8_1_11025 format=u8 channels=1 rate=11025 sink_properties=&quot;device.description='default format=u8 c=1 rate=11025'&quot;
-2 module-null-sink sink_name=s16_1_22050 format=s16be channels=1 rate=22050 sink_properties=&quot;device.description='default format=s16be c=1 rate=22050'&quot;
-3 module-null-sink sink_name=s16_1_44100 format=s16be channels=1 rate=44100 sink_properties=&quot;device.description='default format=s16be c=1 rate=44100'&quot;
-4 module-null-sink sink_name=ulaw8_1_8000 format=ulaw channels=1 rate=8000 sink_properties=&quot;device.description='default format=ulaw c=1 rate=8000'&quot;
-5 module-null-sink sink_name=rtp format=alaw channels=1 rate=8000 sink_properties=&quot;device.description='RTP Multicast Sink'&quot;
+1 module-null-sink sink_name=u8_1_11025 format=u8 channels=1 rate=11025 sink_properties=&quot;device.description=&#39;default format=u8 c=1 rate=11025&#39;&quot;
+2 module-null-sink sink_name=s16_1_22050 format=s16be channels=1 rate=22050 sink_properties=&quot;device.description=&#39;default format=s16be c=1 rate=22050&#39;&quot;
+3 module-null-sink sink_name=s16_1_44100 format=s16be channels=1 rate=44100 sink_properties=&quot;device.description=&#39;default format=s16be c=1 rate=44100&#39;&quot;
+4 module-null-sink sink_name=ulaw8_1_8000 format=ulaw channels=1 rate=8000 sink_properties=&quot;device.description=&#39;default format=ulaw c=1 rate=8000&#39;&quot;
+5 module-null-sink sink_name=rtp format=alaw channels=1 rate=8000 sink_properties=&quot;device.description=&#39;RTP Multicast Sink&#39;&quot;
 6 module-native-protocol-unix auth-group=balloon socket=/tmp/.pulse.sock
 7 module-http-protocol-tcp listen=172.21.0.5
 8 module-always-sink
-</code></pre>
+</code></pre></div>
 <h2 id="webrtc-gateway-enable">webrtc gateway enable</h2>
 <p>To get a better sound quality, you can use a webrtc gateway and send a rtp stream to the webrtc gateway. abcdesktop plays sound using the web browser webrtc stack (good sound quality)</p>
 <p><img alt="pulseaudio rtp stream" src="../../../config/img/soundmodulertp.png" /></p>
 <p>abcdesktop update the pulseaudio configuration, and add <code>module-rtp-send</code>. The <code>module-rtp-send</code> pusleaudio send to the destination_ip (in this example 1.2.3.4) </p>
-<pre><code class="language-bash">pactl -s /tmp/.pulse.sock list short modules
-</code></pre>
-<pre><code>balloon@414e3db9-60d8-4f92-a356-a3a74833990c:~$ pactl -s /tmp/.pulse.sock list short modules
+<div class="highlight"><pre><span></span><code>pactl<span class="w"> </span>-s<span class="w"> </span>/tmp/.pulse.sock<span class="w"> </span>list<span class="w"> </span>short<span class="w"> </span>modules
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>balloon@414e3db9-60d8-4f92-a356-a3a74833990c:~$ pactl -s /tmp/.pulse.sock list short modules
 0       module-augment-properties
-1       module-null-sink        sink_name=rtp  format=alaw channels=1 rate=8000 sink_properties=&quot;device.description='RTP Multicast Sink'&quot;
+1       module-null-sink        sink_name=rtp  format=alaw channels=1 rate=8000 sink_properties=&quot;device.description=&#39;RTP Multicast Sink&#39;&quot;
 2       module-native-protocol-unix     auth-group=balloon socket=/tmp/.pulse.sock
 3       module-always-sink
 4       module-rtp-send source=rtp.monitor destination_ip=1.2.3.4 port=5119 channels=1 format=alaw
-</code></pre>
+</code></pre></div>
 <p>The <code>sink_name</code> is rtp, and the <code>source</code> for the <code>module-rtp-send</code> is rtp.monitor.</p>
 <p>The default source is <code>rtp.monitor</code></p>
-<pre><code>Source #
+<div class="highlight"><pre><span></span><code>Source #
         State: RUNNING
         Name: rtp.monitor
         Description: Monitor of RTP Multicast Sink
@@ -4977,10 +4977,9 @@
                 device.icon_name = &quot;audio-input-microphone&quot;
         Formats:
                 pcm
-</code></pre>
+</code></pre></div>
 <p>The default output is </p>
-<pre><code>
-Source Output #0
+<div class="highlight"><pre><span></span><code>Source Output #0
         Driver: module-rtp-send.c
         Owner Module: 9
         Client: n/a
@@ -5002,14 +5001,14 @@ Source Output #0
                 rtp.mtu = &quot;1280&quot;
                 rtp.port = &quot;5119&quot;
                 rtp.ttl = &quot;1&quot;
-</code></pre>
+</code></pre></div>
 <p>By default, the format is <code>pcm</code></p>
-<pre><code>Format: pcm, format.sample_format = &quot;\&quot;aLaw\&quot;&quot;  format.rate = &quot;8000&quot;  format.channels = &quot;1&quot;  format.channel_map = &quot;\&quot;mono\&quot;&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code>Format: pcm, format.sample_format = &quot;\&quot;aLaw\&quot;&quot;  format.rate = &quot;8000&quot;  format.channels = &quot;1&quot;  format.channel_map = &quot;\&quot;mono\&quot;&quot;
+</code></pre></div>
 <p>To change the default format update the values in od.config file.</p>
-<pre><code> 'audiopt': 8,
- 'audiortpmap': 'PCMA/8000',
-</code></pre>
+<div class="highlight"><pre><span></span><code> &#39;audiopt&#39;: 8,
+ &#39;audiortpmap&#39;: &#39;PCMA/8000&#39;,
+</code></pre></div>
 <p>To get the 'audiopt' and 'audiortpmap' values, read the web pages</p>
 <ul>
 <li><a href="https://janus.conf.meetecho.com/docs/streaming.html">meetecho streaming plugin documentation</a></li>
@@ -5023,49 +5022,49 @@ Source Output #0
 <h2 id="install-a-janus-server">Install a janus server</h2>
 <h3 id="install-janus">Install janus</h3>
 <p>Install a janus service from <a href="https://janus.conf.meetecho.com/">meetecho.com</a> on a server </p>
-<pre><code>apt-get install janus
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get install janus
+</code></pre></div>
 <h3 id="add-x509-certificats">Add X509 certificats</h3>
 <p>Add X509 certificats in your janus.jcfg configuration. Certificate and key to use for DTLS (and passphrase if needed). If missing, Janus will autogenerate a self-signed certificate to use. Notice that self-signed certificates are fine for the purpose of WebRTC DTLS connectivity, for the time being, at least until Identity Providers are standardized and implemented in browsers.</p>
-<pre><code>certificates: {
+<div class="highlight"><pre><span></span><code>certificates: {
     cert_pem = &quot;/etc/ssl/certs/ssl-cert-snakeoil.pem&quot;
     cert_key = &quot;/etc/ssl/private/ssl-cert-snakeoil.key&quot;
     cert_pwd = &quot;secretpassphrase&quot;
 }
-</code></pre>
+</code></pre></div>
 <h2 id="add-the-webrtc-entry-in-odconfig">add the webrtc entry in od.config</h2>
 <p>Update the od.config file, for example :</p>
-<pre><code># WebRTC Janus config
+<div class="highlight"><pre><span></span><code># WebRTC Janus config
 webrtc.enable : True
-webrtc.server : {   'janus.domain.local' : { 'schema' : 'http',
-                                          'host': 'janus.domain.local',
-                                          'hostip': '1.2.3.4',
-                                          'port': 8088,
-                                          'audiopt': 8,
-                                          'audiortpmap': 'PCMA/8000',
-                                          'apisecret': 'janusrocks',
-                                          'adminkey': 'supersecret',
-                                          'startport': 5100 } }
-</code></pre>
+webrtc.server : {   &#39;janus.domain.local&#39; : { &#39;schema&#39; : &#39;http&#39;,
+                                          &#39;host&#39;: &#39;janus.domain.local&#39;,
+                                          &#39;hostip&#39;: &#39;1.2.3.4&#39;,
+                                          &#39;port&#39;: 8088,
+                                          &#39;audiopt&#39;: 8,
+                                          &#39;audiortpmap&#39;: &#39;PCMA/8000&#39;,
+                                          &#39;apisecret&#39;: &#39;janusrocks&#39;,
+                                          &#39;adminkey&#39;: &#39;supersecret&#39;,
+                                          &#39;startport&#39;: 5100 } }
+</code></pre></div>
 <h3 id="webrtcenable">webrtc.enable</h3>
 <p><code>webrtc.enable</code> is a boolean. The default value is <code>False</code>. Set this value to <code>True</code> to enable webrtc services for <code>pulseaudio</code>.</p>
 <h3 id="webrtcserver">webrtc.server</h3>
 <p><code>webrtc.server</code> is a dict. The default value is <code>None</code>. 
 Set all dictionnary values to enable webrtc access for <code>pulseaudio</code> and for the web browser client.</p>
 <p>The <code>hostip</code> value, is used by pluse audio to configure the rtp stream. This value <strong>must be</strong> an ip address (do not set the fqdn). This can be an internal ip address, and is only to configure pulseaudio module and describe how to send stream data to reach the webrtc gateway.</p>
-<pre><code>'hostip': '1.2.3.4'
-</code></pre>
+<div class="highlight"><pre><span></span><code>&#39;hostip&#39;: &#39;1.2.3.4&#39;
+</code></pre></div>
 <p>The <code>host</code> value, is used by the browser to reach the webrtc gateway and get the rtp stream. This value must(should) be a <code>fqdn</code>. This <code>fqdn</code> is used by the web browser.</p>
-<pre><code>webrtc.server : {   'janus.domain.local' : { 'schema' : 'http',
-                                          'host': 'janus.domain.local',
-                                          'hostip': '1.2.3.4',
-                                          'port': 8088,
-                                          'audiopt': 8,
-                                          'audiortpmap': 'PCMA/8000',
-                                          'apisecret': 'janusrocks',
-                                          'adminkey': 'supersecret',
-                                          'startport': 5100 } }
-</code></pre>
+<div class="highlight"><pre><span></span><code>webrtc.server : {   &#39;janus.domain.local&#39; : { &#39;schema&#39; : &#39;http&#39;,
+                                          &#39;host&#39;: &#39;janus.domain.local&#39;,
+                                          &#39;hostip&#39;: &#39;1.2.3.4&#39;,
+                                          &#39;port&#39;: 8088,
+                                          &#39;audiopt&#39;: 8,
+                                          &#39;audiortpmap&#39;: &#39;PCMA/8000&#39;,
+                                          &#39;apisecret&#39;: &#39;janusrocks&#39;,
+                                          &#39;adminkey&#39;: &#39;supersecret&#39;,
+                                          &#39;startport&#39;: 5100 } }
+</code></pre></div>
 
 
 

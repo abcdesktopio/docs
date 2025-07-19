@@ -5146,14 +5146,14 @@
 <div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="false" data-stars="false" data-responsive="false"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div>
 <script async src="https://artifacthub.io/artifacthub-widget.js"></script>
 
-<pre><code>helm repo add abcdesktop https://abcdesktopio.github.io/helm/
+<div class="highlight"><pre><span></span><code>helm repo add abcdesktop https://abcdesktopio.github.io/helm/
 helm install my-abcdesktop abcdesktop/abcdesktop --version 4.1.1 --create-namespace -n abcdesktop
-</code></pre>
+</code></pre></div>
 <p>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)</p>
-<pre><code>LOCAL_PORT=30443
+<div class="highlight"><pre><span></span><code>LOCAL_PORT=30443
 NAMESPACE=abcdesktop
 kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 &quot;${LOCAL_PORT}:80&quot; -n ${NAMESPACE} 
-</code></pre>
+</code></pre></div>
 <h2 id="adopters">Adopters</h2>
 <p>Here are some of the organizations we know are using abcdesktop.io.
 If you’re using Abcdesktop and aren’t on this list, please submit a pull request!</p>

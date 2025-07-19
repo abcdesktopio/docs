@@ -4995,32 +4995,32 @@
 <h2 id="arguments">Arguments</h2>
 <p><code>"--extensions-dir /usr/share/code/extensions --verbose"</code></p>
 <h2 id="path">Path</h2>
-<pre><code>/usr/bin/code
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/bin/code
+</code></pre></div>
 <h2 id="mimetype">Mimetype</h2>
-<pre><code>text/x-c;application/json;application/javascript;application/xml;text/xml;application/java-archive;text/x-java-source;text/plain;image/svg+xml;application/x-csh;text/x-yaml;application/x-yaml;application/x-python;
-</code></pre>
+<div class="highlight"><pre><span></span><code>text/x-c;application/json;application/javascript;application/xml;text/xml;application/java-archive;text/x-java-source;text/plain;image/svg+xml;application/x-csh;text/x-yaml;application/x-yaml;application/x-python;
+</code></pre></div>
 <h2 id="file-extensions">File extensions</h2>
 <p><code>"c;cpp;py;json;js;java;jav;md;xml;txt;svg;html;htm;sh;csh;css;jsx;tsx;vue;yml;yaml;"</code></p>
 <h2 id="legacy-file-extensions">Legacy file extensions</h2>
 <p><code>"c;cpp;py;json;java;md;yml;yaml;"</code></p>
 <h2 id="acl">ACL</h2>
-<pre><code class="language-json">{
-    &quot;permit&quot;: [
-        &quot;all&quot;
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;all&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="wm_class">WM_CLASS</h2>
-<pre><code>code.Code
-</code></pre>
+<div class="highlight"><pre><span></span><code>code.Code
+</code></pre></div>
 <blockquote>
 <p>The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
 to get the WM_CLASS property of an application, use the command line <code>wmctrl -lx</code></p>
 </blockquote>
 <h2 id="desktopfile">Desktopfile</h2>
-<pre><code>/usr/share/applications/code.desktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/share/applications/code.desktop
+</code></pre></div>
 <blockquote>
 <p>A .desktop file is a simple text file that holds information about a program. It is usually placed in “/usr/share/applications/”.</p>
 </blockquote>
@@ -5028,67 +5028,66 @@ to get the WM_CLASS property of an application, use the command line <code>wmctr
 <blockquote>
 <p>PRE run command are run <strong>before</strong> the package install command</p>
 </blockquote>
-<pre><code>RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg
+<div class="highlight"><pre><span></span><code>RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg
 RUN echo &quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main&quot; &gt; /etc/apt/sources.list.d/teams.list
 RUN apt update &amp;&amp; apt install -y --no-install-recommends code &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /usr/share/code/extensions &amp;&amp; chmod 777 /usr/share/code /usr/share/code/extensions
-</code></pre>
+</code></pre></div>
 <h2 id="json-dump">JSON dump</h2>
 <p>json source file vscode.d.3.0.json </p>
-<pre><code class="language-json">{
-    &quot;acl&quot;: {
-        &quot;permit&quot;: [
-            &quot;all&quot;
-        ]
-    },
-    &quot;cat&quot;: &quot;development&quot;,
-    &quot;debpackage&quot;: &quot;&quot;,
-    &quot;icon&quot;: &quot;circle_visual-studio-code.svg&quot;,
-    &quot;keyword&quot;: &quot;ide,vscode,visual studio code,code&quot;,
-    &quot;launch&quot;: &quot;code.Code&quot;,
-    &quot;name&quot;: &quot;VSCode&quot;,
-    &quot;path&quot;: &quot;/usr/bin/code&quot;,
-    &quot;rules&quot;: {
-        &quot;homedir&quot;: {
-            &quot;default&quot;: true
-        }
-    },
-    &quot;template&quot;: &quot;abcdesktopio/oc.template.ubuntu.minimal.22.04&quot;,
-    &quot;desktop&quot;: &quot;code.desktop&quot;,
-    &quot;host_config&quot;: {
-        &quot;mem_limit&quot;: &quot;2G&quot;,
-        &quot;shm_size&quot;: &quot;2G&quot;,
-        &quot;cpu_period&quot;: 200000,
-        &quot;cpu_quota&quot;: 200000,
-        &quot;cap_add&quot;: [
-            &quot;SYS_ADMIN&quot;
-        ]
-    },
-    &quot;args&quot;: &quot;--extensions-dir /usr/share/code/extensions --verbose&quot;,
-    &quot;mimetype&quot;: &quot;text/x-c;application/json;application/javascript;application/xml;text/xml;application/java-archive;text/x-java-source;text/plain;image/svg+xml;application/x-csh;text/x-yaml;application/x-yaml;application/x-python;&quot;,
-    &quot;legacyfileextensions&quot;: &quot;c;cpp;py;json;java;md;yml;yaml;&quot;,
-    &quot;fileextensions&quot;: &quot;c;cpp;py;json;js;java;jav;md;xml;txt;svg;html;htm;sh;csh;css;jsx;tsx;vue;yml;yaml;&quot;,
-    &quot;desktopfile&quot;: &quot;/usr/share/applications/code.desktop&quot;,
-    &quot;preruncommands&quot;: [
-        &quot;RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg&quot;,
-        &quot;RUN echo \&quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main\&quot; &gt; /etc/apt/sources.list.d/teams.list&quot;,
-        &quot;RUN apt update &amp;&amp; apt install -y --no-install-recommends code &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*&quot;,
-        &quot;RUN mkdir -p /usr/share/code/extensions &amp;&amp; chmod 777 /usr/share/code /usr/share/code/extensions&quot;
-    ],
-    &quot;quick&quot;: true
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;all&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;development&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;debpackage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;circle_visual-studio-code.svg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ide,vscode,visual studio code,code&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;code.Code&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VSCode&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/code&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/oc.template.ubuntu.minimal.22.04&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;desktop&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;code.desktop&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;host_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;mem_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2G&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;shm_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2G&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;cpu_period&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;cpu_quota&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;cap_add&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;SYS_ADMIN&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;--extensions-dir /usr/share/code/extensions --verbose&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text/x-c;application/json;application/javascript;application/xml;text/xml;application/java-archive;text/x-java-source;text/plain;image/svg+xml;application/x-csh;text/x-yaml;application/x-yaml;application/x-python;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;legacyfileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;c;cpp;py;json;java;md;yml;yaml;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;c;cpp;py;json;js;java;jav;md;xml;txt;svg;html;htm;sh;csh;css;jsx;tsx;vue;yml;yaml;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/share/applications/code.desktop&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;preruncommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;RUN echo \&quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main\&quot; &gt; /etc/apt/sources.list.d/teams.list&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;RUN apt update &amp;&amp; apt install -y --no-install-recommends code &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;RUN mkdir -p /usr/share/code/extensions &amp;&amp; chmod 777 /usr/share/code /usr/share/code/extensions&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;quick&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
 <p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-curl --output vscode.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vscode.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @vscode.d.3.0.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+curl<span class="w"> </span>--output<span class="w"> </span>vscode.d.3.0.json<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vscode.d.3.0.json
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@vscode.d.3.0.json
+</code></pre></div>
 <h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
-<pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+<div class="highlight"><pre><span></span><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
 FROM abcdesktopio/oc.template.ubuntu.minimal.22.04:$TAG
@@ -5125,29 +5124,27 @@ RUN mkdir -p /var/secrets/abcdesktop/localaccount
 RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
 USER balloon
 CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
-
-</code></pre>
+</code></pre></div>
 <h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
 <h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/VSCode.d">Dockerfile for application VSCode</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/VSCode.d
-</code></pre>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/VSCode.d">Dockerfile for application VSCode</a>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/VSCode.d
+</code></pre></div></p>
 <h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f VSCode.d -t VSCode .
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">TAG</span><span class="o">=</span><span class="m">3</span>.0<span class="w"> </span>-f<span class="w"> </span>VSCode.d<span class="w"> </span>-t<span class="w"> </span>VSCode<span class="w"> </span>.
+</code></pre></div>
 <h3 id="install-the-new-image">Install the new image</h3>
 <blockquote>
 <p>If you are using <code>containerd</code> as container runtime, use the ctr command line</p>
 <p>If you are not running this bash command on your abcdesktop node
 Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-docker inspect VSCode &gt; VSCode.json
-docker image save VSCode -o VSCode.tar
-ctr -n k8s.io images import VSCode.tar
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @VSCode.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+docker<span class="w"> </span>inspect<span class="w"> </span>VSCode<span class="w"> </span>&gt;<span class="w"> </span>VSCode.json
+docker<span class="w"> </span>image<span class="w"> </span>save<span class="w"> </span>VSCode<span class="w"> </span>-o<span class="w"> </span>VSCode.tar
+ctr<span class="w"> </span>-n<span class="w"> </span>k8s.io<span class="w"> </span>images<span class="w"> </span>import<span class="w"> </span>VSCode.tar
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@VSCode.json
+</code></pre></div>
 
 
 

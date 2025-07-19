@@ -4967,13 +4967,13 @@
 <ul>
 <li>Create a Dockerfile to install <code>xedit</code> application from <code>x11-apps</code> package</li>
 </ul>
-<pre><code class="language-Dockerfile">FROM ubuntu
-RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends x11-apps &amp;&amp; apt-get clean
-LABEL oc.launch=xedit.Xedit
-RUN mkdir -p /etc/localaccount 
-RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /etc/localaccount; rm -f /etc/$f; ln -s /etc/localaccount/$f /etc/$f; fi; done
-CMD [&quot;/usr/bin/xedit&quot;]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>x11-apps<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>clean
+<span class="k">LABEL</span><span class="w"> </span>oc.launch<span class="o">=</span>xedit.Xedit
+<span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/localaccount<span class="w"> </span>
+<span class="k">RUN</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span>passwd<span class="w"> </span>shadow<span class="w"> </span>group<span class="w"> </span>gshadow<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>/etc/<span class="nv">$f</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w">  </span>cp<span class="w"> </span>/etc/<span class="nv">$f</span><span class="w"> </span>/etc/localaccount<span class="p">;</span><span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>/etc/<span class="nv">$f</span><span class="p">;</span><span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/localaccount/<span class="nv">$f</span><span class="w"> </span>/etc/<span class="nv">$f</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/bin/xedit&quot;</span><span class="p">]</span>
+</code></pre></div>
 <p>Dockerfile description </p>
 <p>This image is based on ubuntu, and install the <code>x11-apps</code> package. Then we define <code>/usr/bin/xedit</code> as the CMD, ENTRYPOINT is also supported.</p>
 <ul>
@@ -4986,9 +4986,9 @@ CMD [&quot;/usr/bin/xedit&quot;]
 <p>Build the image for xedit application</p>
 </li>
 </ul>
-<pre><code class="language-bash">REGISTRY=abcdesktopio
-docker build -t $REGISTRY/samplexedit .
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexedit<span class="w"> </span>.
+</code></pre></div>
 <blockquote>
 <p>You should replace the value of <code>REGISTRY=abcdesktopio</code> by your own registry's name.
 If you don't have one, you can use the <code>abcdesktopio/samplexedit</code> as a readonly dockerhub registry.</p>
@@ -4996,69 +4996,69 @@ If you don't have one, you can use the <code>abcdesktopio/samplexedit</code> as 
 <ul>
 <li>Push the image to your registry <em>(only if you have your own registry)</em></li>
 </ul>
-<pre><code class="language-bash">REGISTRY=abcdesktopio
-docker push $REGISTRY/samplexedit
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+docker<span class="w"> </span>push<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexedit
+</code></pre></div>
 <ul>
 <li>Inspect the image to create a json file</li>
 </ul>
-<pre><code class="language-bash">REGISTRY=abcdesktopio
-docker inspect $REGISTRY/samplexedit:latest &gt; samplexedit.json
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+docker<span class="w"> </span>inspect<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexedit:latest<span class="w"> </span>&gt;<span class="w"> </span>samplexedit.json
+</code></pre></div>
 <ul>
 <li>Send the image to abcdesktop pyos instance</li>
 </ul>
 <p>The commands read the <code>PYOS_POD</code> name, then copy the <code>samplexeyes.json</code> file to <code>/tmp</code> of PYOS_POD,
 then send the <code>/tmp/samplexeyes.json</code> to REST API server</p>
-<pre><code class="language-bash">NAMESPACE=abcdesktop
-PYOS_POD_NAME=$(kubectl get pods -l run=pyos-od -o jsonpath={.items..metadata.name} -n &quot;$NAMESPACE&quot; | awk '{print $1}')
-kubectl cp samplexeyes.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
-kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/samplexedit.json
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
+<span class="nv">PYOS_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NAMESPACE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+kubectl<span class="w"> </span>cp<span class="w"> </span>samplexeyes.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/samplexedit.json
+</code></pre></div>
 <p>The endpoint image returns a json documment </p>
-<pre><code class="language-json">[
-  {
-    &quot;cmd&quot;: [
-      &quot;/usr/bin/xedit&quot;
-    ],
-    &quot;path&quot;: null,
-    &quot;sha_id&quot;: &quot;sha256:271cbe5516574119905fe83a733dc5f1c46c1ea337e3e888de63ed419f7e7186&quot;,
-    &quot;id&quot;: &quot;abcdesktopio/samplexedit:latest&quot;,
-    &quot;architecture&quot;: &quot;amd64&quot;,
-    &quot;os&quot;: &quot;linux&quot;,
-    &quot;rules&quot;: {},
-    &quot;acl&quot;: {
-      &quot;permit&quot;: [
-        &quot;all&quot;
-      ]
-    },
-    &quot;launch&quot;: &quot;xedit.Xedit&quot;,
-    &quot;name&quot;: &quot;xedit&quot;,
-    &quot;icon&quot;: &quot;xedit&quot;,
-    &quot;icondata&quot;: &quot;PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIwIiB5PSIzMiIgZmlsbD0iYmxhY2siPnhlZGl0PC90ZXh0Pjwvc3ZnPg==&quot;,
-    &quot;keyword&quot;: null,
-    &quot;uniquerunkey&quot;: null,
-    &quot;cat&quot;: null,
-    &quot;args&quot;: null,
-    &quot;execmode&quot;: null,
-    &quot;showinview&quot;: null,
-    &quot;displayname&quot;: &quot;xedit&quot;,
-    &quot;desktopfile&quot;: null,
-    &quot;executeclassname&quot;: null,
-    &quot;executablefilename&quot;: &quot;xedit&quot;,
-    &quot;usedefaultapplication&quot;: false,
-    &quot;mimetype&quot;: [],
-    &quot;fileextensions&quot;: [],
-    &quot;legacyfileextensions&quot;: [],
-    &quot;secrets_requirement&quot;: null,
-    &quot;image_pull_policy&quot;: &quot;IfNotPresent&quot;,
-    &quot;image_pull_secrets&quot;: null,
-    &quot;containerengine&quot;: &quot;ephemeral_container&quot;,
-    &quot;securitycontext&quot;: {},
-    &quot;created&quot;: &quot;2025-02-04T09:36:19.796314327Z&quot;
-  }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;/usr/bin/xedit&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;sha_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha256:271cbe5516574119905fe83a733dc5f1c46c1ea337e3e888de63ed419f7e7186&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/samplexedit:latest&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;architecture&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;amd64&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;os&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;linux&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;all&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xedit.Xedit&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xedit&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xedit&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icondata&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIwIiB5PSIzMiIgZmlsbD0iYmxhY2siPnhlZGl0PC90ZXh0Pjwvc3ZnPg==&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;uniquerunkey&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;execmode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;showinview&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xedit&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;executeclassname&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;executablefilename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xedit&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;usedefaultapplication&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;fileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;legacyfileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;secrets_requirement&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;image_pull_policy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IfNotPresent&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;image_pull_secrets&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;containerengine&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ephemeral_container&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;securitycontext&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-02-04T09:36:19.796314327Z&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <h2 id="execute-the-new-application-xedit">Execute the new application <code>xedit</code></h2>
 <ul>
 <li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop </li>

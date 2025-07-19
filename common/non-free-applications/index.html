@@ -4901,27 +4901,25 @@
 <h2 id="install-and-build-citrix-receiver-for-abcdesktop">Install and build <code>Citrix Receiver</code> for abcdesktop</h2>
 <p><code>Citrix Workspace App</code> or <code>Citrix Receiver</code> does not exist in official debian repository. You need to download the <code>deb package</code> from the www.citrix.com website manually.</p>
 <ul>
-<li>Clone the abcdesktopio/oc.apps repository</li>
-</ul>
-<pre><code>git clone https://github.com/abcdesktopio/oc.apps.git
-</code></pre>
-<ul>
+<li>
+<p>Clone the abcdesktopio/oc.apps repository
+<div class="highlight"><pre><span></span><code>git clone https://github.com/abcdesktopio/oc.apps.git
+</code></pre></div></p>
+</li>
 <li>
 <p>Download the Citrix Receiver for Linux .deb package. Go to <a href="https://www.citrix.com/downloads/citrix-receiver/linux/receiver-for-linux-latest.html">https://www.citrix.com/downloads/citrix-receiver/linux/receiver-for-linux-latest.html</a></p>
 </li>
 <li>
-<p>Copy the downloaded file <code>icaclient_13.10.0.20_amd64.deb</code> for example as <strong>icaclient_amd64.deb</strong> to your local oc.apps directory</p>
-</li>
-</ul>
-<pre><code>cd oc.apps
+<p>Copy the downloaded file <code>icaclient_13.10.0.20_amd64.deb</code> for example as <strong>icaclient_amd64.deb</strong> to your local oc.apps directory
+<div class="highlight"><pre><span></span><code>cd oc.apps
 cp ~/Download/icaclient_13.10.0.20_amd64.deb icaclient_amd64.deb 
-</code></pre>
-<ul>
+</code></pre></div></p>
+</li>
 <li>Run docker build command</li>
 </ul>
-<pre><code>docker build --build-arg TAG=dev -t abcdesktopio/citrix.d:dev -f citrix.d .
-</code></pre>
-<pre><code>Sending build context to Docker daemon  29.13MB
+<div class="highlight"><pre><span></span><code>docker build --build-arg TAG=dev -t abcdesktopio/citrix.d:dev -f citrix.d .
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Sending build context to Docker daemon  29.13MB
 Step 1/28 : ARG TAG=dev
 Step 2/28 : FROM abcdesktopio/oc.template.gtk.18.04:$TAG
  ---&gt; c66ccd2edc52
@@ -5005,7 +5003,7 @@ Step 28/28 : LABEL oc.usedefaultapplication=true
  ---&gt; 5cd6ea7a4228
 Successfully built 5cd6ea7a4228
 Successfully tagged abcdesktopio/citrix.d:dev
-</code></pre>
+</code></pre></div>
 <ul>
 <li>The new ica citrix docker image <code>abcdesktopio/citrix.d:dev</code> is ready to run</li>
 </ul>

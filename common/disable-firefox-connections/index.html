@@ -5111,10 +5111,10 @@ MacOS : <code>/Applications/Firefox.app/Contents/Resources/distribution/policies
 <p>Some preferences cannot be set through the <code>policies.json</code> file, such as disable normandy, because of firefox restrictions. But we can bypass it by creating a JS file called <code>autoconfig.js</code> and a config file called <code>firefox.cfg</code>. </p>
 <p><code>autoconfig.js</code> is used to load and execute <code>firefox.cfg</code>.  </p>
 <h3 id="autoconfigjs">autoconfig.js</h3>
-<pre><code class="language-JS">// Setup config file
-pref(&quot;general.config.filename&quot;, &quot;firefox.cfg&quot;);
-pref(&quot;general.config.obscure_value&quot;, 0);
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1">// Setup config file</span>
+<span class="nx">pref</span><span class="p">(</span><span class="s2">&quot;general.config.filename&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;firefox.cfg&quot;</span><span class="p">);</span>
+<span class="nx">pref</span><span class="p">(</span><span class="s2">&quot;general.config.obscure_value&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+</code></pre></div>
 <p>Path to <code>autoconfig.js</code> depending on your OS (you may have to create directories of the paths):  </p>
 <p>Windows : <code>C:\Program Files\Mozilla Firefox\defaults\pref\autoconfig.js</code><br />
 Linux : <code>/usr/lib/firefox/defaults/pref/autoconfig.js</code><br />
@@ -5194,33 +5194,33 @@ To bypass this phenomena, we will create a file named <code>proxy.pac</code> tha
 </tbody>
 </table>
 <h3 id="example-of-policiesjson-file">Example of policies.json file</h3>
-<pre><code class="language-JSON">&quot;policies&quot;: {
-    &quot;DisableTelemetry&quot;: true,
-    &quot;Preferences&quot;: {
-        &quot;browser.region.network.url&quot;: &quot;&quot;,
-        &quot;browser.topsites.contile.endpoint&quot;: &quot;&quot;,
-        &quot;browser.newtabpage.activity-stream.discoverystream.enabled&quot;: false,
-        &quot;browser.startup.homepage_override.mstone&quot;: &quot;ignore&quot;,
-        &quot;browser.safebrowsing.provider.mozilla.gethashURL&quot;: &quot;&quot;,
-        &quot;browser.safebrowsing.provider.mozilla.updateURL&quot;: &quot;&quot;,
-        &quot;browser.safebrowsing.downloads.remote.enabled&quot;: false,
-        &quot;dom.push.connection.enabled&quot;: false,
-        &quot;network.captive-portal-service.enabled&quot;: false,
-        &quot;network.connectivity-service.enabled&quot;: false
-    },
-    &quot;Proxy&quot;: {
-        &quot;Mode&quot;: &quot;autoConfig&quot;,
-        &quot;AutoConfigURL&quot;: &quot;file:///path/to/your/proxy.pac&quot;
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;policies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;DisableTelemetry&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Preferences&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;browser.region.network.url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;browser.topsites.contile.endpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;browser.newtabpage.activity-stream.discoverystream.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;browser.startup.homepage_override.mstone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;browser.safebrowsing.provider.mozilla.gethashURL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;browser.safebrowsing.provider.mozilla.updateURL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;browser.safebrowsing.downloads.remote.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;dom.push.connection.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;network.captive-portal-service.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;network.connectivity-service.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;Proxy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;autoConfig&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;AutoConfigURL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:///path/to/your/proxy.pac&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="example-of-firefoxcfg-file">Example of firefox.cfg file</h3>
-<pre><code>// Disable Normandy service
+<div class="highlight"><pre><span></span><code>// Disable Normandy service
 lockPref(&quot;app.normandy.enabled&quot;, false);
 lockPref(&quot;app.normandy.api_url&quot;, &quot;&quot;);
-</code></pre>
+</code></pre></div>
 <h3 id="example-of-proxypac-file">Example of proxy.pac file</h3>
-<pre><code>// File PAC
+<div class="highlight"><pre><span></span><code>// File PAC
 //
 function FindProxyForURL(url, host)
 {
@@ -5238,7 +5238,7 @@ function FindProxyForURL(url, host)
 
   return  &quot;DIRECT; &quot;;
 }
-</code></pre>
+</code></pre></div>
 <h2 id="sources">Sources</h2>
 <ul>
 <li><a href="https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections">How to stop Firefox from making automatic connections</a>  </li>

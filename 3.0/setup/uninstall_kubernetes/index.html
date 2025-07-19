@@ -4923,68 +4923,68 @@
 <p>Quick uninstallation can be run on Linux or macOS operation system. </p>
 </blockquote>
 <p>Download and extract the uninstall bash script (Linux or macOS):</p>
-<pre><code class="language-bash">curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.0.sh | bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sL<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.0.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div>
 <p>You should read on stdout </p>
-<pre><code class="language-bash">starting abcdesktop uninstall commands start at 1669824908 epoch seconds
-stop and remove abcdesktop user pods
-pod &quot;anonymous-33c30478-5cc0-4e18-b128-735694c98f3c&quot; deleted
-remove all services, pods
-clusterrole.rbac.authorization.k8s.io &quot;pyos-role&quot; deleted
-clusterrolebinding.rbac.authorization.k8s.io &quot;pyos-rbac&quot; deleted
-serviceaccount &quot;pyos-serviceaccount&quot; deleted
-storageclass.storage.k8s.io &quot;storage-local-abcdesktop&quot; deleted
-configmap &quot;nginx-config&quot; deleted
-deployment.apps &quot;memcached-od&quot; deleted
-secret &quot;mongodb-secret&quot; deleted
-deployment.apps &quot;mongodb-od&quot; deleted
-deployment.apps &quot;nginx-od&quot; deleted
-deployment.apps &quot;speedtest-od&quot; deleted
-deployment.apps &quot;pyos-od&quot; deleted
-endpoints &quot;desktop&quot; deleted
-service &quot;desktop&quot; deleted
-service &quot;memcached&quot; deleted
-service &quot;mongodb&quot; deleted
-service &quot;speedtest&quot; deleted
-service &quot;nginx&quot; deleted
-service &quot;pyos&quot; deleted
-deployment.apps &quot;openldap-od&quot; deleted
-service &quot;openldap&quot; deleted
-remove all secrets
-secret &quot;abcdesktopjwtdesktoppayload&quot; deleted
-secret &quot;abcdesktopjwtdesktopsigning&quot; deleted
-secret &quot;abcdesktopjwtusersigning&quot; deleted
-remove all configmaps
-configmap &quot;abcdesktop-config&quot; deleted
-configmap &quot;kube-root-ca.crt&quot; deleted
-remove all pvc
-No resources found
-remove all pv
-No resources found
-remove namespace
-namespace &quot;abcdesktop&quot; deleted
-abcdesktop is uninstalled, in 48 seconds
-</code></pre>
+<div class="highlight"><pre><span></span><code>starting<span class="w"> </span>abcdesktop<span class="w"> </span>uninstall<span class="w"> </span>commands<span class="w"> </span>start<span class="w"> </span>at<span class="w"> </span><span class="m">1669824908</span><span class="w"> </span>epoch<span class="w"> </span>seconds
+stop<span class="w"> </span>and<span class="w"> </span>remove<span class="w"> </span>abcdesktop<span class="w"> </span>user<span class="w"> </span>pods
+pod<span class="w"> </span><span class="s2">&quot;anonymous-33c30478-5cc0-4e18-b128-735694c98f3c&quot;</span><span class="w"> </span>deleted
+remove<span class="w"> </span>all<span class="w"> </span>services,<span class="w"> </span>pods
+clusterrole.rbac.authorization.k8s.io<span class="w"> </span><span class="s2">&quot;pyos-role&quot;</span><span class="w"> </span>deleted
+clusterrolebinding.rbac.authorization.k8s.io<span class="w"> </span><span class="s2">&quot;pyos-rbac&quot;</span><span class="w"> </span>deleted
+serviceaccount<span class="w"> </span><span class="s2">&quot;pyos-serviceaccount&quot;</span><span class="w"> </span>deleted
+storageclass.storage.k8s.io<span class="w"> </span><span class="s2">&quot;storage-local-abcdesktop&quot;</span><span class="w"> </span>deleted
+configmap<span class="w"> </span><span class="s2">&quot;nginx-config&quot;</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">&quot;memcached-od&quot;</span><span class="w"> </span>deleted
+secret<span class="w"> </span><span class="s2">&quot;mongodb-secret&quot;</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">&quot;mongodb-od&quot;</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">&quot;nginx-od&quot;</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">&quot;speedtest-od&quot;</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">&quot;pyos-od&quot;</span><span class="w"> </span>deleted
+endpoints<span class="w"> </span><span class="s2">&quot;desktop&quot;</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">&quot;desktop&quot;</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">&quot;memcached&quot;</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">&quot;mongodb&quot;</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">&quot;speedtest&quot;</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">&quot;nginx&quot;</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">&quot;pyos&quot;</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">&quot;openldap-od&quot;</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">&quot;openldap&quot;</span><span class="w"> </span>deleted
+remove<span class="w"> </span>all<span class="w"> </span>secrets
+secret<span class="w"> </span><span class="s2">&quot;abcdesktopjwtdesktoppayload&quot;</span><span class="w"> </span>deleted
+secret<span class="w"> </span><span class="s2">&quot;abcdesktopjwtdesktopsigning&quot;</span><span class="w"> </span>deleted
+secret<span class="w"> </span><span class="s2">&quot;abcdesktopjwtusersigning&quot;</span><span class="w"> </span>deleted
+remove<span class="w"> </span>all<span class="w"> </span>configmaps
+configmap<span class="w"> </span><span class="s2">&quot;abcdesktop-config&quot;</span><span class="w"> </span>deleted
+configmap<span class="w"> </span><span class="s2">&quot;kube-root-ca.crt&quot;</span><span class="w"> </span>deleted
+remove<span class="w"> </span>all<span class="w"> </span>pvc
+No<span class="w"> </span>resources<span class="w"> </span>found
+remove<span class="w"> </span>all<span class="w"> </span>pv
+No<span class="w"> </span>resources<span class="w"> </span>found
+remove<span class="w"> </span>namespace
+namespace<span class="w"> </span><span class="s2">&quot;abcdesktop&quot;</span><span class="w"> </span>deleted
+abcdesktop<span class="w"> </span>is<span class="w"> </span>uninstalled,<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">48</span><span class="w"> </span>seconds
+</code></pre></div>
 <h2 id="run-step-by-step-uninstall-commands">Run step by step uninstall commands</h2>
 <p>Run the bash commands from the <code>uninstall-3.0.sh</code> main content : </p>
-<pre><code class="language-bash">echo &quot;stop and remove abcdesktop user pods&quot;
-kubectl delete pods --selector=&quot;type=x11server&quot; -n abcdesktop
-echo &quot;remove all services, pods&quot;
-kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.0.yaml 
-echo &quot;remove all secrets&quot;
-kubectl delete secrets --all -n abcdesktop
-echo &quot;remove all configmaps&quot;
-kubectl delete cm --all -n abcdesktop
-echo &quot;remove all pvc&quot;
-kubectl delete pvc --all -n abcdesktop 2&gt;/dev/null
-echo &quot;remove namespace&quot;
-kubectl delete namespace abcdesktop
-echo &quot;abcdesktop is uninstalled&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;stop and remove abcdesktop user pods&quot;</span>
+kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>--selector<span class="o">=</span><span class="s2">&quot;type=x11server&quot;</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove all services, pods&quot;</span>
+kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.0.yaml<span class="w"> </span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove all secrets&quot;</span>
+kubectl<span class="w"> </span>delete<span class="w"> </span>secrets<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove all configmaps&quot;</span>
+kubectl<span class="w"> </span>delete<span class="w"> </span>cm<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove all pvc&quot;</span>
+kubectl<span class="w"> </span>delete<span class="w"> </span>pvc<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove namespace&quot;</span>
+kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>abcdesktop
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;abcdesktop is uninstalled&quot;</span>
+</code></pre></div>
 <p>The last command <code>kubectl delete namespace</code> can take few minutes.</p>
 <p>Please wait for the output message: </p>
-<pre><code>abcdesktop is uninstalled
-</code></pre>
+<div class="highlight"><pre><span></span><code>abcdesktop is uninstalled
+</code></pre></div>
 <p>Great, you have uninstalled abcdesktop for kubernetes.</p>
 
 

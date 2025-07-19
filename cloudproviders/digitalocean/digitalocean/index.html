@@ -5017,8 +5017,8 @@
 </blockquote>
 <h2 id="create-a-doks-digitalocean-kubernetes-cluster">Create a <code>DOKS</code> DigitalOcean Kubernetes cluster</h2>
 <p>If you don't have a running kubernetes cluster, run the <code>doctl</code> command line with the <code>kubernetes cluster create</code> to create your cluster.</p>
-<pre><code>doctl kubernetes cluster create --node-pool 'auto-scale=true;size=s-4vcpu-8gb;min-nodes=3;max-nodes=5' myabccluster 
-</code></pre>
+<div class="highlight"><pre><span></span><code>doctl kubernetes cluster create --node-pool &#39;auto-scale=true;size=s-4vcpu-8gb;min-nodes=3;max-nodes=5&#39; myabccluster 
+</code></pre></div>
 <ul>
 <li><code>auto-scale</code>: Enables cluster auto-scaling on the node pool. </li>
 <li><code>region</code>: The default region is "nyc1" <a href="https://docs.digitalocean.com/platform/regional-availability/">regional availability</a></li>
@@ -5027,31 +5027,31 @@
 <li><code>size</code>: <code>s-4vcpu-8gb</code> gets 4 shared vCPU, 8 GB vRAM, 160 GB Storage </li>
 </ul>
 <p>After few minutes, you get a kubernetes cluster ready</p>
-<pre><code>Notice: Cluster is provisioning, waiting for cluster to be running
+<div class="highlight"><pre><span></span><code>Notice: Cluster is provisioning, waiting for cluster to be running
 ...............................................................
 Notice: Cluster created, fetching credentials
 Notice: Adding cluster credentials to kubeconfig file found in &quot;/Users/myuser/.kube/config&quot;
 Notice: Setting current-context to do-nyc1-myabccluster
 ID                                      Name            Region    Version        Auto Upgrade    Status     Node Pools
 83aae84d-cfa9-4a89-ae75-89f0d5078d33    myabccluster    nyc1      1.33.1-do.0    false           running    myabccluster-default-pool
-</code></pre>
+</code></pre></div>
 <h2 id="digitalocean-console-overview">DigitalOcean console overview</h2>
 <p>This screenshot describes the DigitalOcean control panel. It shows the <code>Resources</code> of the kubernetes cluster and <code>Nodes</code> informations.</p>
 <p><img alt="digital ocean console overview" src="../img/digitalocean-console.png" /></p>
 <h2 id="check-your-kubernetes-config-file">Check your kubernetes config file</h2>
 <p>Run a <code>kubectl</code> command line like <code>kubectl cluster-info</code> command line to make sure that kubeconfig has been updated by <code>doctl</code> command.</p>
-<pre><code class="language-bash">kubectl cluster-info 
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cluster-info<span class="w"> </span>
+</code></pre></div>
 <p>The kubectl <code>cluster-info</code> results</p>
-<pre><code>Kubernetes control plane is running at https://83aae84d-cfa9-4a89-ae75-89f0d5078d33.k8s.ondigitalocean.com
+<div class="highlight"><pre><span></span><code>Kubernetes control plane is running at https://83aae84d-cfa9-4a89-ae75-89f0d5078d33.k8s.ondigitalocean.com
 CoreDNS is running at https://83aae84d-cfa9-4a89-ae75-89f0d5078d33.k8s.ondigitalocean.com/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 
-To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-</code></pre>
+To further debug and diagnose cluster problems, use &#39;kubectl cluster-info dump&#39;.
+</code></pre></div>
 <h2 id="run-the-abcdesktop-install-script">Run the abcdesktop install script</h2>
 <p>Download and install the latest release automatically</p>
-<pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.1.sh | bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.1.sh | bash
+</code></pre></div>
 <p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="connect-to-your-abcdesktop-service">Connect to your abcdesktop service</h2>
 <p>By default install script is listening on a free tcp port <code>:30443</code> and is using a <code>kubectl port-forward</code> command line to reach http web service <code>:80</code></p>
@@ -5063,8 +5063,8 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 <p><img alt="abcdesktop for fry" src="../../img/abcdesktop-hompage-port30443-user-fry-logged.png" /></p>
 <h2 id="add-applications-to-your-desktop">Add applications to your desktop</h2>
 <p>Using the previous terminal shell, run the application install script </p>
-<pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.1.sh | bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.1.sh | bash
+</code></pre></div>
 <p>To get more details about the install applications process, please read the <a href="https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop_applications/">Setup applications guide</a></p>
 <p>Then reload the web page with the desktop of <code>Philip J. Fry</code>
 New applications are now listed in the dock of <code>plasmashell</code>.</p>

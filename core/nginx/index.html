@@ -5007,8 +5007,8 @@
 <h2 id="lua-scripts">LUA scripts</h2>
 <p>The /etc/nginx/get.targetmap.lua read the <code>jwt_token</code> and return the ip address or the pod's fqdn, using the <code>jwt_desktop_signing_public_key</code> and the <code>jwt_desktop_payload_private_key</code></p>
 <p>It uses a targetmap (dict) as first cache level.</p>
-<pre><code>lua_shared_dict targetmap 1m;
-</code></pre>
+<div class="highlight"><pre><span></span><code>lua_shared_dict targetmap 1m;
+</code></pre></div>
 <p>Read the lua script <a href="https://github.com/abcdesktopio/oc.nginx/blob/main/etc/nginx/get.targetmap.lua">get.targetmap.lua</a> to get details jwt token data and payload encryption.</p>
 
 

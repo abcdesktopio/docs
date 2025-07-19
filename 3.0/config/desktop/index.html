@@ -5306,8 +5306,8 @@ The user find a mount point named <code>homeDrive</code> value, and mounted to <
 <p>The default value is a list of string <code>[ '#6EC6F0', '#333333',  '#666666', '#CD3C14', '#4BB4E6', '#50BE87', '#A885D8', '#FFB4E6' ]</code></p>
 <p>The <code>desktop.defaultbackgroundcolors</code> length can contain up to 8 entries. To see the color </p>
 <p>Open the url http://localhost:30443, in your web browser, to start a simple abcdesktop.io container. </p>
-<pre><code class="language-url">http://localhost:30443
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost:30443
+</code></pre></div>
 <p>You should see the abcdesktop.io home page.</p>
 <p>Press the <code>Connect with Anonymous access, have look</code></p>
 <p>At the right top corner, click on the menu and choose <code>Settings</code>, then click on <code>Screen Colors</code></p>
@@ -5316,10 +5316,10 @@ The user find a mount point named <code>homeDrive</code> value, and mounted to <
 <h2 id="desktopenvlocal">desktop.envlocal</h2>
 <p><code>desktop.envlocal</code> is a dictionary. <code>desktop.envlocal</code> contains a (key,value) added as environment variables to oc.user.</p>
 <p>The default value is :</p>
-<pre><code class="language-json">{ 
-  'X11LISTEN': 'tcp'
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="err">&#39;X</span><span class="mi">11</span><span class="err">LISTEN&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">cp&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="reserved-variables">Reserved variables</h3>
 <table>
 <thead>
@@ -5377,23 +5377,23 @@ The user find a mount point named <code>homeDrive</code> value, and mounted to <
 <p>It specifies a map of key-value pairs. For the pod to be eligible to run on a node, the node must have each of the indicated key-value pairs as labels (it can have additional labels as well). 
 The most common usage is one key-value pair. </p>
 <p>The value must be a string, by example 'true', and matches the labels node value.  </p>
-<pre><code class="language-json">desktop.nodeselector:  { 'abcdesktopworker': 'true' }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.</span><span class="kc">n</span><span class="err">odeselec</span><span class="kc">t</span><span class="err">or</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;abcdesk</span><span class="kc">t</span><span class="err">opworker&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">true</span><span class="err">&#39;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <p>To set a label <code>abcdesktopworker=true</code> to a node </p>
-<pre><code class="language-bash">kubectl label node $YOUR_NODE abcdesktopworker=true
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span><span class="nv">$YOUR_NODE</span><span class="w"> </span><span class="nv">abcdesktopworker</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
 <p>The commands returns</p>
-<pre><code>node/nodesample01 labeled
-</code></pre>
+<div class="highlight"><pre><span></span><code>node/nodesample01 labeled
+</code></pre></div>
 <p>To list all labels on all nodes </p>
-<pre><code class="language-bash">kubectl -n abcdesktop get nodes --template '{{range .items}}{{.metadata.labels}}{{&quot;\n&quot;}}{{end}}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>--template<span class="w"> </span><span class="s1">&#39;{{range .items}}{{.metadata.labels}}{{&quot;\n&quot;}}{{end}}&#39;</span>
+</code></pre></div>
 <p>The commands returns</p>
-<pre><code class="language-json">map[beta.kubernetes.io/arch:amd64 beta.kubernetes.io/os:linux kubernetes.io/arch:amd64 kubernetes.io/hostname:abc3cp01 kubernetes.io/os:linux node-role.kubernetes.io/control-plane: node.kubernetes.io/exclude-from-external-load-balancers:]
-map[abcdesktopworker:true beta.kubernetes.io/arch:amd64 beta.kubernetes.io/os:linux kubernetes.io/arch:amd64 kubernetes.io/hostname:abc3ws01 kubernetes.io/os:linux node-role.kubernetes.io/worker:worker]
-map[abcdesktopworker:true beta.kubernetes.io/arch:amd64 beta.kubernetes.io/os:linux kubernetes.io/arch:amd64 kubernetes.io/hostname:abc3ws02 kubernetes.io/os:linux node-role.kubernetes.io/worker:worker]
-map[abcdesktopworker:true beta.kubernetes.io/arch:amd64 beta.kubernetes.io/os:linux kubernetes.io/arch:amd64 kubernetes.io/hostname:abc3ws03 kubernetes.io/os:linux node-role.kubernetes.io/worker:worker]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">map</span><span class="p">[</span><span class="err">be</span><span class="kc">ta</span><span class="err">.kuber</span><span class="kc">netes</span><span class="err">.io/arch</span><span class="p">:</span><span class="err">amd</span><span class="mi">64</span><span class="w"> </span><span class="err">be</span><span class="kc">ta</span><span class="err">.kuber</span><span class="kc">netes</span><span class="err">.io/os</span><span class="p">:</span><span class="err">li</span><span class="kc">nu</span><span class="err">x</span><span class="w"> </span><span class="err">kuber</span><span class="kc">netes</span><span class="err">.io/arch</span><span class="p">:</span><span class="err">amd</span><span class="mi">64</span><span class="w"> </span><span class="err">kuber</span><span class="kc">netes</span><span class="err">.io/hos</span><span class="kc">tna</span><span class="err">me</span><span class="p">:</span><span class="err">abc</span><span class="mi">3</span><span class="err">cp</span><span class="mi">01</span><span class="w"> </span><span class="err">kuber</span><span class="kc">netes</span><span class="err">.io/os</span><span class="p">:</span><span class="err">li</span><span class="kc">nu</span><span class="err">x</span><span class="w"> </span><span class="kc">n</span><span class="err">ode</span><span class="mi">-</span><span class="err">role.kuber</span><span class="kc">netes</span><span class="err">.io/co</span><span class="kc">ntr</span><span class="err">ol</span><span class="mi">-</span><span class="err">pla</span><span class="kc">ne</span><span class="p">:</span><span class="w"> </span><span class="kc">n</span><span class="err">ode.kuber</span><span class="kc">netes</span><span class="err">.io/exclude</span><span class="mi">-</span><span class="kc">fr</span><span class="err">om</span><span class="mf">-e</span><span class="err">x</span><span class="kc">ternal</span><span class="mi">-</span><span class="err">load</span><span class="mi">-</span><span class="err">bala</span><span class="kc">n</span><span class="err">cers</span><span class="p">:]</span>
+<span class="err">map</span><span class="p">[</span><span class="err">abcdesk</span><span class="kc">t</span><span class="err">opworker</span><span class="p">:</span><span class="kc">true</span><span class="w"> </span><span class="err">be</span><span class="kc">ta</span><span class="err">.kuber</span><span class="kc">netes</span><span class="err">.io/arch</span><span class="p">:</span><span class="err">amd</span><span class="mi">64</span><span class="w"> </span><span class="err">be</span><span class="kc">ta</span><span class="err">.kuber</span><span class="kc">netes</span><span class="err">.io/os</span><span class="p">:</span><span class="err">li</span><span class="kc">nu</span><span class="err">x</span><span class="w"> </span><span class="err">kuber</span><span class="kc">netes</span><span class="err">.io/arch</span><span class="p">:</span><span class="err">amd</span><span class="mi">64</span><span class="w"> </span><span class="err">kuber</span><span class="kc">netes</span><span class="err">.io/hos</span><span class="kc">tna</span><span class="err">me</span><span class="p">:</span><span class="err">abc</span><span class="mi">3</span><span class="err">ws</span><span class="mi">01</span><span class="w"> </span><span class="err">kuber</span><span class="kc">netes</span><span class="err">.io/os</span><span class="p">:</span><span class="err">li</span><span class="kc">nu</span><span class="err">x</span><span class="w"> </span><span class="kc">n</span><span class="err">ode</span><span class="mi">-</span><span class="err">role.kuber</span><span class="kc">netes</span><span class="err">.io/worker</span><span class="p">:</span><span class="err">worker</span><span class="p">]</span>
+<span class="err">map</span><span class="p">[</span><span class="err">abcdesk</span><span class="kc">t</span><span class="err">opworker</span><span class="p">:</span><span class="kc">true</span><span class="w"> </span><span class="err">be</span><span class="kc">ta</span><span class="err">.kuber</span><span class="kc">netes</span><span class="err">.io/arch</span><span class="p">:</span><span class="err">amd</span><span class="mi">64</span><span class="w"> </span><span class="err">be</span><span class="kc">ta</span><span class="err">.kuber</span><span class="kc">netes</span><span class="err">.io/os</span><span class="p">:</span><span class="err">li</span><span class="kc">nu</span><span class="err">x</span><span class="w"> </span><span class="err">kuber</span><span class="kc">netes</span><span class="err">.io/arch</span><span class="p">:</span><span class="err">amd</span><span class="mi">64</span><span class="w"> </span><span class="err">kuber</span><span class="kc">netes</span><span class="err">.io/hos</span><span class="kc">tna</span><span class="err">me</span><span class="p">:</span><span class="err">abc</span><span class="mi">3</span><span class="err">ws</span><span class="mi">02</span><span class="w"> </span><span class="err">kuber</span><span class="kc">netes</span><span class="err">.io/os</span><span class="p">:</span><span class="err">li</span><span class="kc">nu</span><span class="err">x</span><span class="w"> </span><span class="kc">n</span><span class="err">ode</span><span class="mi">-</span><span class="err">role.kuber</span><span class="kc">netes</span><span class="err">.io/worker</span><span class="p">:</span><span class="err">worker</span><span class="p">]</span>
+<span class="err">map</span><span class="p">[</span><span class="err">abcdesk</span><span class="kc">t</span><span class="err">opworker</span><span class="p">:</span><span class="kc">true</span><span class="w"> </span><span class="err">be</span><span class="kc">ta</span><span class="err">.kuber</span><span class="kc">netes</span><span class="err">.io/arch</span><span class="p">:</span><span class="err">amd</span><span class="mi">64</span><span class="w"> </span><span class="err">be</span><span class="kc">ta</span><span class="err">.kuber</span><span class="kc">netes</span><span class="err">.io/os</span><span class="p">:</span><span class="err">li</span><span class="kc">nu</span><span class="err">x</span><span class="w"> </span><span class="err">kuber</span><span class="kc">netes</span><span class="err">.io/arch</span><span class="p">:</span><span class="err">amd</span><span class="mi">64</span><span class="w"> </span><span class="err">kuber</span><span class="kc">netes</span><span class="err">.io/hos</span><span class="kc">tna</span><span class="err">me</span><span class="p">:</span><span class="err">abc</span><span class="mi">3</span><span class="err">ws</span><span class="mi">03</span><span class="w"> </span><span class="err">kuber</span><span class="kc">netes</span><span class="err">.io/os</span><span class="p">:</span><span class="err">li</span><span class="kc">nu</span><span class="err">x</span><span class="w"> </span><span class="kc">n</span><span class="err">ode</span><span class="mi">-</span><span class="err">role.kuber</span><span class="kc">netes</span><span class="err">.io/worker</span><span class="p">:</span><span class="err">worker</span><span class="p">]</span>
+</code></pre></div>
 <p><code>desktop.nodeselector</code> is used as selector by pyos to create user's pods and to pull container's images.</p>
 <h2 id="desktopusername">desktop.username</h2>
 <p><code>desktop.username</code> is the name of the default username inside the user's pod.
@@ -5439,17 +5439,17 @@ If <code>desktop.uselocaltime</code> is True, this add a volume mapping from hos
 </tbody>
 </table>
 <p>Example</p>
-<pre><code class="language-json">desktop.policies: { 
-  'rules': { 
-    'volumes': { 
-      'domainuser':   { 'type': 'cifs', 'name': 'homedirectory', 'volumename': 'homedir' },
-      'Mygroupteam':  { 'type': 'cifs', 'name': 'toto', 'unc': '//192.168.7.101/team', 'volumename': 'team' } 
-      } 
-  },
-  'acls' : {},
-  'max_app_counter' : 4  
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="err">&#39;rules&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;volumes&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="err">&#39;domai</span><span class="kc">nuser</span><span class="err">&#39;</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ci</span><span class="kc">fs</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;homedirec</span><span class="kc">t</span><span class="err">ory&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;volume</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;homedir&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="err">&#39;Mygroup</span><span class="kc">tea</span><span class="err">m&#39;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ci</span><span class="kc">fs</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">o</span><span class="kc">t</span><span class="err">o&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;u</span><span class="kc">n</span><span class="err">c&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="c1">//192.168.7.101/team&#39;, &#39;volumename&#39;: &#39;team&#39; } </span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">&#39;acls&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">  </span><span class="err">&#39;max_app_cou</span><span class="kc">nter</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">  </span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="desktopwebhookdict">desktop.webhookdict</h2>
 <p>desktop.webhookdict is a dictionary to add key/value to the command <code>create</code> and <code>destroy</code> in rules objects.</p>
 <h2 id="experimental-features">Experimental features</h2>
@@ -5463,33 +5463,33 @@ If this value is set to <code>True</code> the payload data in the JWT Desktop To
 <p>If you CAN NOT add <code>endpoint_pod_names</code> in the coredns configuration, you MUST set <code>desktop.desktopuseinternalfqdn</code> to <code>False</code>.
 This choice is less secure.</p>
 <p>To set <code>desktop.desktopuseinternalfqdn</code> to <code>True</code> value, you have to update the <code>coredns</code> ConfigMap.</p>
-<pre><code class="language-yaml">kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: coredns
-  namespace: kube-system
-data:
-  Corefile: |
-    .:53 {
-        log
-        errors
-        health
-        ready
-        kubernetes cluster.local in-addr.arpa ip6.arpa {
-           endpoint_pod_names
-           pods insecure
-           fallthrough in-addr.arpa ip6.arpa
-           transfer to * 
-           ttl 30
-        }
-        prometheus :9153
-        forward . /etc/resolv.conf
-        cache 30
-        loop
-        reload
-        loadbalance
-    }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coredns</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-system</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Corefile</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">.:53 {</span>
+<span class="w">        </span><span class="no">log</span>
+<span class="w">        </span><span class="no">errors</span>
+<span class="w">        </span><span class="no">health</span>
+<span class="w">        </span><span class="no">ready</span>
+<span class="w">        </span><span class="no">kubernetes cluster.local in-addr.arpa ip6.arpa {</span>
+<span class="w">           </span><span class="no">endpoint_pod_names</span>
+<span class="w">           </span><span class="no">pods insecure</span>
+<span class="w">           </span><span class="no">fallthrough in-addr.arpa ip6.arpa</span>
+<span class="w">           </span><span class="no">transfer to * </span>
+<span class="w">           </span><span class="no">ttl 30</span>
+<span class="w">        </span><span class="no">}</span>
+<span class="w">        </span><span class="no">prometheus :9153</span>
+<span class="w">        </span><span class="no">forward . /etc/resolv.conf</span>
+<span class="w">        </span><span class="no">cache 30</span>
+<span class="w">        </span><span class="no">loop</span>
+<span class="w">        </span><span class="no">reload</span>
+<span class="w">        </span><span class="no">loadbalance</span>
+<span class="w">    </span><span class="no">}</span>
+</code></pre></div>
 
 
 

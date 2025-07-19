@@ -4937,23 +4937,23 @@
 <p><code>external</code> authentification use OAuth 2.0 authenticaton.</p>
 <p>The <code>external</code> authentification configuration is defined as a dictionary object and contains a list of <code>external</code> provider. </p>
 <p>Sample providers entry using the Google OAuth 2.0 authentification service. </p>
-<pre><code class="language-json">'external': {
-    'providers': {
-    'google': { 
-        'displayname': 'Google', 
-        'enabled': True,
-        'client_id': 'XXX-YYY.apps.googleusercontent.com', 
-        'client_secret': 'XXX',
-        'userinfo_auth': True,
-        'scope': [ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ],
-        'userinfo_url': 'https://www.googleapis.com/oauth2/v1/userinfo',
-        'redirect_uri_prefix' : 'https://host.domain.local/API/auth/oauth',
-        'redirect_uri_querystring': 'manager=external&amp;provider=google',
-        'authorization_base_url': 'https://accounts.google.com/o/oauth2/v2/auth',
-        'token_url': 'https://oauth2.googleapis.com/token'
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;ex</span><span class="kc">ternal</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;providers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;google&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Google&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;XXX</span><span class="mi">-</span><span class="err">YYY.apps.googleuserco</span><span class="kc">ntent</span><span class="err">.com&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;XXX&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;scope&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/auth/userinfo.email&#39;,  &#39;openid&#39; ],</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/oauth2/v1/userinfo&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//host.domain.local/API/auth/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=google&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//accounts.google.com/o/oauth2/v2/auth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//oauth2.googleapis.com/token&#39;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>The variable values <code>client_id</code> and <code>client_secret</code> have been set to obfuscate value 'XXX'. The FQDN is refered to the public server FQDN. </p>
 <table>
 <thead>
@@ -5032,59 +5032,59 @@
 <p>Orange's OAuth is supported for authentication. This API is based on OpenID Connect, which combines end-user authentication with OAuth2 authorisation. </p>
 <h3 id="orange-application">Orange Application</h3>
 <p>Create your Orange Application here <a href="https://developer.orange.com/apis">https://developer.orange.com/apis</a> and set credentials for Orange Authentification API in the section </p>
-<pre><code class="language-json">'orange': {       
-        'displayname': 'Orange', 
-        'enabled': True,
-        'basic_auth': True,
-        'userinfo_auth': True,
-        'scope' : [ 'openid', 'form_filling' ],
-        'client_id': 'XXX',
-        'client_secret': 'YYY',
-        'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
-        'redirect_uri_querystring': 'manager=external&amp;provider=orange',
-        'authorization_base_url': 'https://api.orange.com/openidconnect/fr/v1/authorize',
-        'token_url': 'https://api.orange.com/openidconnect/fr/v1/token', 
-        'userinfo_url': 'https://api.orange.com/formfilling/fr/v1/userinfo',
-      }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;ora</span><span class="kc">n</span><span class="err">ge&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">       </span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Ora</span><span class="kc">n</span><span class="err">ge&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;basic_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;scope&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ope</span><span class="kc">n</span><span class="err">id&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">orm_</span><span class="kc">f</span><span class="err">illi</span><span class="kc">n</span><span class="err">g&#39;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;XXX&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;YYY&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//hostname.domain.local/API/auth/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=ora</span><span class="kc">n</span><span class="err">ge&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//api.orange.com/openidconnect/fr/v1/authorize&#39;,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//api.orange.com/openidconnect/fr/v1/token&#39;, </span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//api.orange.com/formfilling/fr/v1/userinfo&#39;,</span>
+<span class="w">      </span><span class="p">}</span>
+</code></pre></div>
 <h2 id="facebook-oauth-20">Facebook OAuth 2.0</h2>
 <p>Facebook's OAuth is supported for authentication. </p>
 <h3 id="facebook-application">Facebook Application</h3>
 <p>Create your Facebook Application credentials here : <a href="https://developers.facebook.com/apps/">https://developers.facebook.com/apps/</a> and set the credentials for Facebook Authentification API  </p>
-<pre><code class="language-json">'facebook': { 
-        'displayname': 'Facebook', 
-        'enabled': True,
-        'userinfo_auth': True,
-        'client_id': 'XXX', 
-        'client_secret': 'YYY', 
-        'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
-        'redirect_uri_querystring': 'manager=external&amp;provider=facebook',
-        'authorization_base_url': 'https://www.facebook.com/dialog/oauth',
-        'userinfo_url': 'https://graph.facebook.com/v2.6/me?fields=picture.width(400),name',
-        'token_url': 'https://graph.facebook.com/v2.3/oauth/access_token',
-        'userinfomap': {
-            '*': '*',
-            'picture': 'picture.data.url'
-        }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;</span><span class="kc">fa</span><span class="err">cebook&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Facebook&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;XXX&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;YYY&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//hostname.domain.local/API/auth/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=</span><span class="kc">fa</span><span class="err">cebook&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.facebook.com/dialog/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//graph.facebook.com/v2.6/me?fields=picture.width(400),name&#39;,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//graph.facebook.com/v2.3/oauth/access_token&#39;,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">omap&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="err">&#39;*&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;*&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;pic</span><span class="kc">ture</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;pic</span><span class="kc">ture</span><span class="err">.da</span><span class="kc">ta</span><span class="err">.url&#39;</span>
+<span class="w">        </span><span class="p">}</span>
+</code></pre></div>
 <h2 id="google-oauth-20">Google OAuth 2.0</h2>
 <p>Google's OAuth is supported for authentication. The client_id is the google's OAuth client ID, and the client_secret is the OAuth client secret. </p>
 <h3 id="google-application">Google Application</h3>
 <p>Create your Google credentials here : <a href="https://console.developers.google.com/apis/">https://console.developers.google.com/apis/</a> and set the correct credentials for Google Authentification API in the section [gauth]</p>
-<pre><code class="language-json">'google': { 
-        'displayname': 'Google', 
-        'enabled': True,
-        'client_id': 'XXX-YYY.apps.googleusercontent.com', 
-        'client_secret': 'XXX',
-        'userinfo_auth': True,
-        'scope': [ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ],
-        'userinfo_url': 'https://www.googleapis.com/oauth2/v1/userinfo',
-        'redirect_uri_prefix' : 'https://host.domain.local/API/auth/oauth',
-        'redirect_uri_querystring': 'manager=external&amp;provider=google',
-        'authorization_base_url': 'https://accounts.google.com/o/oauth2/v2/auth',
-        'token_url': 'https://oauth2.googleapis.com/token'
-    }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;google&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Google&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;XXX</span><span class="mi">-</span><span class="err">YYY.apps.googleuserco</span><span class="kc">ntent</span><span class="err">.com&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;XXX&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;scope&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/auth/userinfo.email&#39;,  &#39;openid&#39; ],</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/oauth2/v1/userinfo&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//host.domain.local/API/auth/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=google&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//accounts.google.com/o/oauth2/v2/auth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//oauth2.googleapis.com/token&#39;</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
 <p>Great, you have check how the implicit Authentification configuration works.</p>
 
 

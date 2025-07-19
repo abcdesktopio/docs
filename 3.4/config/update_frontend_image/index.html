@@ -5162,20 +5162,20 @@
 </ul>
 <h2 id="configure-odconfig-to-use-the-new-color">Configure od.config to use the new color</h2>
 <p>In the od.config, add the env var <code>ABCDESKTOP_BG_COLOR</code></p>
-<pre><code class="language-json">desktop.envlocal :  {
-  'X11LISTEN':'tcp', 
-  'WEBSOCKIFY_HEARTBEAT':'30',
-  'TURN_PROTOCOL': 'tcp',
-  'ABCDESKTOP_BG_COLOR': ‘#18974c’ }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.e</span><span class="kc">n</span><span class="err">vlocal</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="p">{</span>
+<span class="w">  </span><span class="err">&#39;X</span><span class="mi">11</span><span class="err">LISTEN&#39;</span><span class="p">:</span><span class="err">&#39;</span><span class="kc">t</span><span class="err">cp&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="err">&#39;WEBSOCKIFY_HEARTBEAT&#39;</span><span class="p">:</span><span class="err">&#39;</span><span class="mi">30</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;TURN_PROTOCOL&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">cp&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;ABCDESKTOP_BG_COLOR&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">‘#</span><span class="mi">18974</span><span class="err">c’</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <p>Then update the config map <code>abcdesktop-config</code> and restart deployment <code>pyos-od</code> </p>
-<pre><code class="language-bash">kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
-kubectl rollout restart deployment pyos-od -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>--from-file<span class="o">=</span>od.config<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span>--dry-run<span class="o">=</span>client<span class="w"> </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>replace<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-f<span class="w"> </span>-
+kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment<span class="w"> </span>pyos-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
 <p>You should read on stdout</p>
-<pre><code>configmap/abcdesktop-config replaced
+<div class="highlight"><pre><span></span><code>configmap/abcdesktop-config replaced
 deployment.apps/pyos-od restarted
-</code></pre>
+</code></pre></div>
 <p>The new desktop is defined with the default background color</p>
 <p><img alt="acme desktop update od.config" src="../img/acmedesktopupdateodconfig.png" /></p>
 <p>We need to change the top color with the same new default value <code>#18974c</code></p>
@@ -5183,20 +5183,20 @@ deployment.apps/pyos-od restarted
 <p>Update the <code>oc.nginx</code> container image to add <code>#18974c</code> inside the new graphic chart.</p>
 <h2 id="create-new-image-for-abcdesktop-ocnginx">Create new image for abcdesktop oc.nginx</h2>
 <h3 id="clone-default-webmodules">Clone default webmodules</h3>
-<pre><code class="language-bash">BRANCH=3.4
-git clone -b $BRANCH https://github.com/abcdesktopio/webModules.git
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">BRANCH</span><span class="o">=</span><span class="m">3</span>.4
+git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span><span class="nv">$BRANCH</span><span class="w"> </span>https://github.com/abcdesktopio/webModules.git
+</code></pre></div>
 <h3 id="locate-project-and-ui-files">Locate project and ui files</h3>
 <h4 id="update-uijson-file">Update ui.json file</h4>
 <p>Update your <code>ui.json</code> file.  <code>ui.json</code> is located in <code>transpile/config</code> directory.</p>
-<pre><code class="language-bash">ls -la  webModules/transpile/config
-total 204
-drwxr-xr-x   5 alexandredevely  staff   160 Nov 29 14:54 .
-drwxr-xr-x  11 alexandredevely  staff   352 Nov 29 14:54 ..
--rw-r--r--   1 alexandredevely  staff    34 Nov 29 14:54 .cache.json
--rw-r--r--   1 alexandredevely  staff  1924 Nov 29 14:54 modules.json
--rw-r--r--   1 alexandredevely  staff  1548 Nov 29 14:54 ui.json
-</code></pre>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-la<span class="w">  </span>webModules/transpile/config
+total<span class="w"> </span><span class="m">204</span>
+drwxr-xr-x<span class="w">   </span><span class="m">5</span><span class="w"> </span>alexandredevely<span class="w">  </span>staff<span class="w">   </span><span class="m">160</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">14</span>:54<span class="w"> </span>.
+drwxr-xr-x<span class="w">  </span><span class="m">11</span><span class="w"> </span>alexandredevely<span class="w">  </span>staff<span class="w">   </span><span class="m">352</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">14</span>:54<span class="w"> </span>..
+-rw-r--r--<span class="w">   </span><span class="m">1</span><span class="w"> </span>alexandredevely<span class="w">  </span>staff<span class="w">    </span><span class="m">34</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">14</span>:54<span class="w"> </span>.cache.json
+-rw-r--r--<span class="w">   </span><span class="m">1</span><span class="w"> </span>alexandredevely<span class="w">  </span>staff<span class="w">  </span><span class="m">1924</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">14</span>:54<span class="w"> </span>modules.json
+-rw-r--r--<span class="w">   </span><span class="m">1</span><span class="w"> </span>alexandredevely<span class="w">  </span>staff<span class="w">  </span><span class="m">1548</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">14</span>:54<span class="w"> </span>ui.json
+</code></pre></div>
 <p><code>ui.json</code> is a json dictionary file</p>
 <p>The main entry is <code>name</code>, name is the project name:</p>
 <table>
@@ -5215,86 +5215,86 @@ drwxr-xr-x  11 alexandredevely  staff   352 Nov 29 14:54 ..
 </tr>
 </tbody>
 </table>
-<pre><code class="language-json">{
-  &quot;name&quot;: &quot;abcdesktop.io&quot;,
-  &quot;projectNameSplitedHTML&quot;: &quot;&lt;span id='projectNameSplitedStagea'&gt;a&lt;/span&gt;&lt;span id='projectNameSplitedStageb'&gt;b&lt;/span&gt;&lt;span id='projectNameSplitedStagec'&gt;c&lt;/span&gt;&lt;span id='p
-rojectNameSplitedStaged'&gt;desktop&lt;/span&gt;&quot;,
-  &quot;colors&quot;: [
-    {
-      &quot;name&quot;: &quot;@x11bgcolor&quot;,
-      &quot;value&quot;: &quot;#6EC6F0&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@primary&quot;,
-      &quot;value&quot;: &quot;#474B55&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@secondary&quot;,
-      &quot;value&quot;: &quot;#2D2D2D&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@tertiary&quot;,
-      &quot;value&quot;: &quot;#6EC6F0&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@quaternary&quot;,
-      &quot;value&quot;: &quot;#1E1E1E&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@svgColor&quot;,
-      &quot;value&quot;: &quot;#FFFFFF&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@danger&quot;,
-      &quot;value&quot;: &quot;#CD3C14&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@success&quot;,
-      &quot;value&quot;: &quot;#32C832&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@info&quot;,
-      &quot;value&quot;: &quot;#527EDB&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@warning&quot;,
-      &quot;value&quot;: &quot;#FFCC00&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@light&quot;,
-      &quot;value&quot;: &quot;#FFFFFF&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@dark&quot;,
-      &quot;value&quot;: &quot;#666666&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@blue&quot;,
-      &quot;value&quot;: &quot;#4BB4E6&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@green&quot;,
-      &quot;value&quot;: &quot;#50BE87&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@purple&quot;,
-      &quot;value&quot;: &quot;#A885D8&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@pink&quot;,
-      &quot;value&quot;: &quot;#FFB4E6&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@yellow&quot;,
-      &quot;value&quot;: &quot;#FFD200&quot;
-    }
-  ],
-  &quot;urlcannotopensession&quot;: &quot;/identification/site/&quot;,
-  &quot;urlusermanual&quot;:  &quot;https://www.abcdesktop.io/&quot;,
-  &quot;urlusersupport&quot;: &quot;https://www.abcdesktop.io/&quot;,
-  &quot;urlopensourceproject&quot;: &quot;https://www.abcdesktop.io/&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktop.io&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;projectNameSplitedHTML&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;span id=&#39;projectNameSplitedStagea&#39;&gt;a&lt;/span&gt;&lt;span id=&#39;projectNameSplitedStageb&#39;&gt;b&lt;/span&gt;&lt;span id=&#39;projectNameSplitedStagec&#39;&gt;c&lt;/span&gt;&lt;span id=&#39;p</span>
+<span class="s2">rojectNameSplitedStaged&#39;&gt;desktop&lt;/span&gt;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;colors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@x11bgcolor&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#6EC6F0&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@primary&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#474B55&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@secondary&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#2D2D2D&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@tertiary&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#6EC6F0&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@quaternary&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#1E1E1E&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@svgColor&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#FFFFFF&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@danger&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#CD3C14&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@success&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#32C832&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@info&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#527EDB&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@warning&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#FFCC00&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@light&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#FFFFFF&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@dark&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#666666&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@blue&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#4BB4E6&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@green&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#50BE87&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@purple&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#A885D8&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@pink&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#FFB4E6&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@yellow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#FFD200&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;urlcannotopensession&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/identification/site/&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;urlusermanual&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;https://www.abcdesktop.io/&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;urlusersupport&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.abcdesktop.io/&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;urlopensourceproject&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.abcdesktop.io/&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h5 id="login-progress">Login progress</h5>
 <p>Login progress is embedded in <code>span</code> HTML tags. 
 Each <code>projectNameSplitedStage</code> describes a step during the user's authentification then pod's creation process.</p>
@@ -5304,11 +5304,11 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
 <li>projectNameSplitedStagec: <code>step 3</code></li>
 <li>projectNameSplitedStaged: <code>step 4</code> </li>
 </ul>
-<pre><code class="language-html">&lt;span id='projectNameSplitedStagea'&gt;a&lt;/span&gt;
-&lt;span id='projectNameSplitedStageb'&gt;b&lt;/span&gt;
-&lt;span id='projectNameSplitedStagec'&gt;c&lt;/span&gt;
-&lt;span id='projectNameSplitedStaged'&gt;desktop&lt;/span&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;projectNameSplitedStagea&#39;</span><span class="p">&gt;</span>a<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;projectNameSplitedStageb&#39;</span><span class="p">&gt;</span>b<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;projectNameSplitedStagec&#39;</span><span class="p">&gt;</span>c<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;projectNameSplitedStaged&#39;</span><span class="p">&gt;</span>desktop<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</code></pre></div>
 <h4 id="colors-dictionary-entries">Colors dictionary entries</h4>
 <table>
 <thead>
@@ -5338,136 +5338,136 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
 </table>
 <h4 id="update-the-uijson-with-your-own-values">Update the ui.json with your own values</h4>
 <p>Change for example the name <code>abcdesktop</code> to <code>acmedesktop</code></p>
-<pre><code class="language-json">&quot;name&quot;: &quot;acmedesktop.io&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;acmedesktop.io&quot;</span>
+</code></pre></div>
 <p>Update the <code>projectNameSplitedHTML</code> values, the <code>@tertiary</code> and <code>@x11bgcolor</code> colors</p>
-<pre><code class="language-json">    {
-      &quot;name&quot;: &quot;@x11bgcolor&quot;,
-      &quot;value&quot;: &quot;#18974c&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@tertiary&quot;,
-      &quot;value&quot;: &quot;#18974c&quot;
-    },
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@x11bgcolor&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#18974c&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@tertiary&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#18974c&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+</code></pre></div>
 <p>Example with new <code>acmedesktop</code></p>
-<pre><code class="language-json">{
-  &quot;name&quot;: &quot;acmedesktop.io&quot;,
-  &quot;projectNameSplitedHTML&quot;: &quot;&lt;span id='projectNameSplitedStagea'&gt;a&lt;/span&gt;&lt;span id='projectNameSplitedStageb'&gt;c&lt;/span&gt;&lt;span id='projectNameSplitedStagec'&gt;me&lt;/span&gt;&lt;span id='projectNameSplitedStaged'&gt;desktop&lt;/span&gt;&quot;,
-  &quot;colors&quot;: [
-    {
-      &quot;name&quot;: &quot;@x11bgcolor&quot;,
-      &quot;value&quot;: &quot;#18974c&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@primary&quot;,
-      &quot;value&quot;: &quot;#474B55&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@secondary&quot;,
-      &quot;value&quot;: &quot;#2D2D2D&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@tertiary&quot;,
-      &quot;value&quot;: &quot;#18974c&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@quaternary&quot;,
-      &quot;value&quot;: &quot;#1E1E1E&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@svgColor&quot;,
-      &quot;value&quot;: &quot;#FFFFFF&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@danger&quot;,
-      &quot;value&quot;: &quot;#CD3C14&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@success&quot;,
-      &quot;value&quot;: &quot;#32C832&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@info&quot;,
-      &quot;value&quot;: &quot;#527EDB&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@warning&quot;,
-      &quot;value&quot;: &quot;#FFCC00&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@light&quot;,
-      &quot;value&quot;: &quot;#FFFFFF&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@dark&quot;,
-      &quot;value&quot;: &quot;#666666&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@blue&quot;,
-      &quot;value&quot;: &quot;#4BB4E6&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@green&quot;,
-      &quot;value&quot;: &quot;#50BE87&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@purple&quot;,
-      &quot;value&quot;: &quot;#A885D8&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@pink&quot;,
-      &quot;value&quot;: &quot;#FFB4E6&quot;
-    },
-    {
-      &quot;name&quot;: &quot;@yellow&quot;,
-      &quot;value&quot;: &quot;#FFD200&quot;
-    }
-  ],
-  &quot;urlcannotopensession&quot;: &quot;/identification/site/&quot;,
-  &quot;urlusermanual&quot;:  &quot;https://www.abcdesktop.io/&quot;,
-  &quot;urlusersupport&quot;: &quot;https://www.abcdesktop.io/&quot;,
-  &quot;urlopensourceproject&quot;: &quot;https://www.abcdesktop.io/&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;acmedesktop.io&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;projectNameSplitedHTML&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;span id=&#39;projectNameSplitedStagea&#39;&gt;a&lt;/span&gt;&lt;span id=&#39;projectNameSplitedStageb&#39;&gt;c&lt;/span&gt;&lt;span id=&#39;projectNameSplitedStagec&#39;&gt;me&lt;/span&gt;&lt;span id=&#39;projectNameSplitedStaged&#39;&gt;desktop&lt;/span&gt;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;colors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@x11bgcolor&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#18974c&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@primary&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#474B55&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@secondary&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#2D2D2D&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@tertiary&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#18974c&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@quaternary&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#1E1E1E&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@svgColor&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#FFFFFF&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@danger&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#CD3C14&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@success&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#32C832&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@info&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#527EDB&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@warning&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#FFCC00&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@light&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#FFFFFF&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@dark&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#666666&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@blue&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#4BB4E6&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@green&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#50BE87&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@purple&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#A885D8&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@pink&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#FFB4E6&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@yellow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#FFD200&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;urlcannotopensession&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/identification/site/&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;urlusermanual&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;https://www.abcdesktop.io/&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;urlusersupport&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.abcdesktop.io/&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;urlopensourceproject&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.abcdesktop.io/&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h4 id="build-your-new-image">build your new image</h4>
 <p>Run the docker build command to build the new <code>oc.nginx:acme</code> image</p>
 <p>The target image is <code>abcdesktopio/oc.nginx:acme</code> you should change it with your own for example <code>myacme/oc.nginx:acme</code></p>
-<pre><code class="language-bash">docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE=3.4 --build-arg TARGET=dev  -t abcdesktopio/oc.nginx.acme:3.4 -f Dockerfile .
-</code></pre>
-<pre><code class="language-bash">[+] Building 16.5s (19/19) FINISHED                                                                                                                          docker:default
- =&gt; [internal] load build definition from Dockerfile                                                                                                                   0.0s
- =&gt; =&gt; transferring dockerfile: 962B                                                                                                                                   0.0s
- =&gt; [internal] load metadata for docker.io/library/nginx:latest                                                                                                        0.0s
- =&gt; [internal] load metadata for docker.io/abcdesktopio/oc.nginx.builder:3.4                                                                                           0.0s
- =&gt; [internal] load .dockerignore                                                                                                                                      0.0s
- =&gt; =&gt; transferring context: 2B                                                                                                                                        0.0s
- =&gt; CACHED [stage-1 1/2] FROM docker.io/library/nginx:latest                                                                                                           0.0s
- =&gt; CACHED [builder  1/11] FROM docker.io/abcdesktopio/oc.nginx.builder:3.4                                                                                            0.0s
- =&gt; [internal] load build context                                                                                                                                      0.1s
- =&gt; =&gt; transferring context: 265.27kB                                                                                                                                  0.1s
- =&gt; [builder  2/11] RUN echo current branch is                                                                                                                         0.2s
- =&gt; [builder  3/11] RUN echo NODE release is 20                                                                                                                        0.2s
- =&gt; [builder  4/11] RUN echo current target is prod it can be 'dev' or 'prod'                                                                                          0.2s
- =&gt; [builder  5/11] COPY . /var/webModules                                                                                                                             0.4s
- =&gt; [builder  6/11] WORKDIR /var/webModules                                                                                                                            0.1s
- =&gt; [builder  7/11] RUN make clean                                                                                                                                     0.7s
- =&gt; [builder  8/11] RUN make prod                                                                                                                                      9.7s
- =&gt; [builder  9/11] RUN ./mkversion.sh &amp;&amp; cat version.json                                                                                                             0.2s
- =&gt; [builder 10/11] RUN /myenv/bin/html5validator index.html                                                                                                           2.0s 
- =&gt; [builder 11/11] RUN make removebuildtools                                                                                                                          0.8s 
- =&gt; [stage-1 2/2] COPY --from=builder /var/webModules /usr/share/nginx/html                                                                                            0.7s 
- =&gt; exporting to image                                                                                                                                                 0.7s 
- =&gt; =&gt; exporting layers                                                                                                                                                0.7s 
- =&gt; =&gt; writing image sha256:d7bdbc9f7fafe3282161551e84c5997bb12051bded6405190267863dd73a1698                                                                           0.0s
- =&gt; =&gt; naming to docker.io/abcdesktopio/oc.nginx.acme:3.4 
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">NODE_MAJOR</span><span class="o">=</span><span class="m">20</span><span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">BASE_IMAGE</span><span class="o">=</span>abcdesktopio/oc.nginx.builder<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">BASE_IMAGE_RELEASE</span><span class="o">=</span><span class="m">3</span>.4<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">TARGET</span><span class="o">=</span>dev<span class="w">  </span>-t<span class="w"> </span>abcdesktopio/oc.nginx.acme:3.4<span class="w"> </span>-f<span class="w"> </span>Dockerfile<span class="w"> </span>.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Building<span class="w"> </span><span class="m">16</span>.5s<span class="w"> </span><span class="o">(</span><span class="m">19</span>/19<span class="o">)</span><span class="w"> </span>FINISHED<span class="w">                                                                                                                          </span>docker:default
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>build<span class="w"> </span>definition<span class="w"> </span>from<span class="w"> </span>Dockerfile<span class="w">                                                                                                                   </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>dockerfile:<span class="w"> </span>962B<span class="w">                                                                                                                                   </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>metadata<span class="w"> </span><span class="k">for</span><span class="w"> </span>docker.io/library/nginx:latest<span class="w">                                                                                                        </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>metadata<span class="w"> </span><span class="k">for</span><span class="w"> </span>docker.io/abcdesktopio/oc.nginx.builder:3.4<span class="w">                                                                                           </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>.dockerignore<span class="w">                                                                                                                                      </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>context:<span class="w"> </span>2B<span class="w">                                                                                                                                        </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>CACHED<span class="w"> </span><span class="o">[</span>stage-1<span class="w"> </span><span class="m">1</span>/2<span class="o">]</span><span class="w"> </span>FROM<span class="w"> </span>docker.io/library/nginx:latest<span class="w">                                                                                                           </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>CACHED<span class="w"> </span><span class="o">[</span>builder<span class="w">  </span><span class="m">1</span>/11<span class="o">]</span><span class="w"> </span>FROM<span class="w"> </span>docker.io/abcdesktopio/oc.nginx.builder:3.4<span class="w">                                                                                            </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>build<span class="w"> </span>context<span class="w">                                                                                                                                      </span><span class="m">0</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>context:<span class="w"> </span><span class="m">265</span>.27kB<span class="w">                                                                                                                                  </span><span class="m">0</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w">  </span><span class="m">2</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>current<span class="w"> </span>branch<span class="w"> </span>is<span class="w">                                                                                                                         </span><span class="m">0</span>.2s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w">  </span><span class="m">3</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>NODE<span class="w"> </span>release<span class="w"> </span>is<span class="w"> </span><span class="m">20</span><span class="w">                                                                                                                        </span><span class="m">0</span>.2s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w">  </span><span class="m">4</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>current<span class="w"> </span>target<span class="w"> </span>is<span class="w"> </span>prod<span class="w"> </span>it<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span><span class="s1">&#39;dev&#39;</span><span class="w"> </span>or<span class="w"> </span><span class="s1">&#39;prod&#39;</span><span class="w">                                                                                          </span><span class="m">0</span>.2s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w">  </span><span class="m">5</span>/11<span class="o">]</span><span class="w"> </span>COPY<span class="w"> </span>.<span class="w"> </span>/var/webModules<span class="w">                                                                                                                             </span><span class="m">0</span>.4s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w">  </span><span class="m">6</span>/11<span class="o">]</span><span class="w"> </span>WORKDIR<span class="w"> </span>/var/webModules<span class="w">                                                                                                                            </span><span class="m">0</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w">  </span><span class="m">7</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>make<span class="w"> </span>clean<span class="w">                                                                                                                                     </span><span class="m">0</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w">  </span><span class="m">8</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>make<span class="w"> </span>prod<span class="w">                                                                                                                                      </span><span class="m">9</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w">  </span><span class="m">9</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>./mkversion.sh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cat<span class="w"> </span>version.json<span class="w">                                                                                                             </span><span class="m">0</span>.2s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w"> </span><span class="m">10</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>/myenv/bin/html5validator<span class="w"> </span>index.html<span class="w">                                                                                                           </span><span class="m">2</span>.0s<span class="w"> </span>
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w"> </span><span class="m">11</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>make<span class="w"> </span>removebuildtools<span class="w">                                                                                                                          </span><span class="m">0</span>.8s<span class="w"> </span>
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>stage-1<span class="w"> </span><span class="m">2</span>/2<span class="o">]</span><span class="w"> </span>COPY<span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/var/webModules<span class="w"> </span>/usr/share/nginx/html<span class="w">                                                                                            </span><span class="m">0</span>.7s<span class="w"> </span>
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>to<span class="w"> </span>image<span class="w">                                                                                                                                                 </span><span class="m">0</span>.7s<span class="w"> </span>
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>layers<span class="w">                                                                                                                                                </span><span class="m">0</span>.7s<span class="w"> </span>
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>writing<span class="w"> </span>image<span class="w"> </span>sha256:d7bdbc9f7fafe3282161551e84c5997bb12051bded6405190267863dd73a1698<span class="w">                                                                           </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>naming<span class="w"> </span>to<span class="w"> </span>docker.io/abcdesktopio/oc.nginx.acme:3.4<span class="w"> </span>
+</code></pre></div>
 <h4 id="update-the-abcdesktopyaml">update the <code>abcdesktop.yaml</code></h4>
 <p>To update the <code>abcdesktop.yaml</code> to replace <code>oc.nginx:3.4</code> by your own image <code>oc.nginx.acme:3.4</code></p>
 <ul>
 <li>edit your own <code>abcdesktop.yaml</code> file</li>
 </ul>
-<pre><code>      [...]
+<div class="highlight"><pre><span></span><code>      [...]
       - name: nginx
         imagePullPolicy: Always
         image: abcdesktopio/oc.nginx:3.4
@@ -5475,9 +5475,9 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
           - containerPort: 80
             name: http
       [...]
-</code></pre>
+</code></pre></div>
 <p>Update the <code>deployement</code> with your new image name <code>abcdesktopio/oc.nginx:acme</code></p>
-<pre><code>      [...]
+<div class="highlight"><pre><span></span><code>      [...]
       - name: nginx
         imagePullPolicy: Always
         image: abcdesktopio/oc.nginx.acme:3.4
@@ -5485,11 +5485,11 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
           - containerPort: 80
             name: http
       [...]
-</code></pre>
+</code></pre></div>
 <p>apply your abcdesktop.yaml file</p>
-<pre><code>kubectl apply -f abcdesktop.yaml
-</code></pre>
-<pre><code>role.rbac.authorization.k8s.io/pyos-role unchanged
+<div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop.yaml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>role.rbac.authorization.k8s.io/pyos-role unchanged
 rolebinding.rbac.authorization.k8s.io/pyos-rbac unchanged
 serviceaccount/pyos-serviceaccount unchanged
 configmap/configmap-mongodb-scripts unchanged
@@ -5512,7 +5512,7 @@ service/console unchanged
 service/http-router unchanged
 service/website unchanged
 service/openldap unchanged
-</code></pre>
+</code></pre></div>
 <h3 id="connect-to-your-new-website">Connect to your new website</h3>
 <p>Open your web browser to your abcdesktop website</p>
 <ul>

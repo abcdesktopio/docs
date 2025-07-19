@@ -4933,13 +4933,13 @@
 <p>Quick installation can be run on Linux or macOS operation system. </p>
 </blockquote>
 <p>Download and execute the <code>pullapps-4.1.sh</code> script :</p>
-<pre><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.1.sh | bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.1.sh | bash
+</code></pre></div>
 <p>You can watch the youtube video sample. This video describes the application installation process on a fresh kubernetes cluster.</p>
 <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/JSIjnNA6kNE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
 
 <p>This script starts abcdesktop application on an empty desktop. Pod is created to ask Kubernetes for pulling containers image.</p>
-<pre><code>NAME                                                             READY   STATUS              RESTARTS   AGE
+<div class="highlight"><pre><span></span><code>NAME                                                             READY   STATUS              RESTARTS   AGE
 daemonset-nginx-dqxzx                                            1/1     Running             0          100m
 daemonset-pyos-rdwws                                             1/1     Running             0          100m
 memcached-od-bdcbbcb74-xbg8x                                     1/1     Running             0          100m
@@ -4953,9 +4953,9 @@ pull-impress-abcinst-f74fed932051c2760b3fd69f4ef475e34ad1a8a49   0/1     Contain
 pull-writer-abcinst-cfe1a4f74d19fbe49d86d211f99d005532b6cf7c87   1/1     Running             0          3s
 pull-xterm-abcinst-0e802cfa8addb4648f843869325f3413d544bb9eae8   1/1     Running             0          4s
 speedtest-od-5565dfdc67-vdwcl                                    1/1     Running             0          100m
-</code></pre>
+</code></pre></div>
 <p>list of created pods for pulling is pull-2048-abcinst-9fd80f22ad6b0750cb3d248bda04de25444bab2cf274</p>
-<pre><code>pull-calc-abcinst-57622131ac1ce4b37d5cec51ee7f0071c460293158a4
+<div class="highlight"><pre><span></span><code>pull-calc-abcinst-57622131ac1ce4b37d5cec51ee7f0071c460293158a4
 pull-firefox-abcinst-d2872d0d272a3a02606b4877c12e832755ba1a378
 pull-gimp-abcinst-051fefa55d97338653a58e86ccdd5f1a3e66f7f05017
 pull-impress-abcinst-f74fed932051c2760b3fd69f4ef475e34ad1a8a49
@@ -4968,13 +4968,13 @@ pod/pull-gimp-abcinst-051fefa55d97338653a58e86ccdd5f1a3e66f7f05017 condition met
 pod/pull-impress-abcinst-f74fed932051c2760b3fd69f4ef475e34ad1a8a49 condition met
 pod/pull-writer-abcinst-cfe1a4f74d19fbe49d86d211f99d005532b6cf7c87 condition met
 pod/pull-xterm-abcinst-0e802cfa8addb4648f843869325f3413d544bb9eae8 condition met
-</code></pre>
+</code></pre></div>
 <h3 id="connect-to-your-abcdesktop">Connect to your abcdesktop</h3>
 <p>The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.</p>
 <p>Now reconnect to your abcdesktop. </p>
 <p>Open your navigator to http://[your-ip-hostname]:30443/</p>
-<pre><code>http://localhost:30443/
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost:30443/
+</code></pre></div>
 <p>The new applications are installed, and ready to run.</p>
 <p><img alt="applications after upload json" src="../img/abcdesktop-4-1-loginanonymous-with-applications.png" /></p>
 <p>And then you can start new applications like <code>Firefox</code></p>

@@ -4877,24 +4877,24 @@
 <p>The <code>explicit</code> authentification configuration is defined as a dictionary object and contains an <code>explicit</code> provider. </p>
 <p>The <code>explicit</code> provider support the directory services <code>ldap</code>, <code>ldaps</code>, and <code>Microsoft Active Directory</code>, and <code>SIMPLE</code>, <code>NTLM</code> and <code>KERBEROS</code> protocols.</p>
 <p>Configuration sample for <code>Microsoft Active Directory</code> with <code>KERBEROS</code> protocol :</p>
-<pre><code>'explicit': {
-    'providers': {
-      'AD': { 
-        'config_ref': 'adconfig', 
-        'enabled': True
+<div class="highlight"><pre><span></span><code>&#39;explicit&#39;: {
+    &#39;providers&#39;: {
+      &#39;AD&#39;: { 
+        &#39;config_ref&#39;: &#39;adconfig&#39;, 
+        &#39;enabled&#39;: True
        }
 }
-</code></pre>
-<pre><code>adconfig : { 'AD': {   'default'       : True, 
-                       'ldap_timeout'  : 15,
-                       'ldap_basedn'   : 'DC=ad,DC=domain,DC=local',
-                       'ldap_fqdn'     : '_ldap._tcp.ad.domain.local',
-                       'domain'        : 'AD',
-                       'auth_type'     : 'KERBEROS'
-                       'domain_fqdn'   : 'AD.DOMAIN.LOCAL',
-                       'servers'       : [ 'ldap://192.168.7.12' ],
-                       'kerberos_realm': 'AD.DOMAIN.LOCAL' } } }
-</code></pre>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>adconfig : { &#39;AD&#39;: {   &#39;default&#39;       : True, 
+                       &#39;ldap_timeout&#39;  : 15,
+                       &#39;ldap_basedn&#39;   : &#39;DC=ad,DC=domain,DC=local&#39;,
+                       &#39;ldap_fqdn&#39;     : &#39;_ldap._tcp.ad.domain.local&#39;,
+                       &#39;domain&#39;        : &#39;AD&#39;,
+                       &#39;auth_type&#39;     : &#39;KERBEROS&#39;
+                       &#39;domain_fqdn&#39;   : &#39;AD.DOMAIN.LOCAL&#39;,
+                       &#39;servers&#39;       : [ &#39;ldap://192.168.7.12&#39; ],
+                       &#39;kerberos_realm&#39;: &#39;AD.DOMAIN.LOCAL&#39; } } }
+</code></pre></div>
 <h3 id="home-page-authentification">Home page authentification</h3>
 <p>If the authmanagers <code>explicit</code> is enabled. The Web home page insert the new input values <code>Login</code> and <code>Password</code> to authenticate this user.</p>
 <p><img alt="auth-provider-explicit" src="../img/auth-provider-explicit.png" /></p>

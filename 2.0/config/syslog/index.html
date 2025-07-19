@@ -4952,50 +4952,50 @@
 <h3 id="start-syslog-container">Start syslog container</h3>
 <p>Those running linux can simply modify their syslog configuration file following <a href="../linux_syslog_config">linux syslog config</a> steps</p>
 <p>For others (Windows/Mac) or those that don't want to modify their syslog config, you can simply run the following command :</p>
-<pre><code>docker run -it -p 514:514/udp --name syslog-ng balabit/syslog-ng:latest -edv
-</code></pre>
-<pre><code>[2020-04-07T12:29:39.485318] Accepting connections; addr='AF_INET(0.0.0.0:514)'
-[2020-04-07T12:29:39.485752] You have a TLS enabled source without a X.509 keypair. Make sure you have tls(key-file() and cert-file()) options, TLS handshake to this source will fail; location='/etc/syslog-ng/syslog-ng.conf:21:2'
-[2020-04-07T12:29:39.485964] Accepting connections; addr='AF_INET(0.0.0.0:6514)'
-[2020-04-07T12:29:39.486179] Accepting connections; addr='AF_INET(0.0.0.0:601)'
-[2020-04-07T12:29:39.486600] Running application hooks; hook='1'
-[2020-04-07T12:29:39.486621] Running application hooks; hook='6'
-[2020-04-07T12:29:39.486674] syslog-ng starting up; version='3.26.1'
-[2020-04-07T12:29:39.486850] Running application hooks; hook='2'
-[2020-04-07T12:39:39.587220] Log statistics; processed='global(payload_reallocs)=0', processed='global(sdata_updates)=0', queued='global(scratch_buffers_bytes)=0', processed='src.internal(s_local#0)=0', stamp='src.internal(s_local#0)=0', processed='destination(d_local)=0', processed='source(s_local)=0', processed='source(s_network)=0', processed='global(msg_clones)=0', processed='center(received)=0', queued='global(scratch_buffers_count)=0', processed='center(queued)=0'
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker run -it -p 514:514/udp --name syslog-ng balabit/syslog-ng:latest -edv
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[2020-04-07T12:29:39.485318] Accepting connections; addr=&#39;AF_INET(0.0.0.0:514)&#39;
+[2020-04-07T12:29:39.485752] You have a TLS enabled source without a X.509 keypair. Make sure you have tls(key-file() and cert-file()) options, TLS handshake to this source will fail; location=&#39;/etc/syslog-ng/syslog-ng.conf:21:2&#39;
+[2020-04-07T12:29:39.485964] Accepting connections; addr=&#39;AF_INET(0.0.0.0:6514)&#39;
+[2020-04-07T12:29:39.486179] Accepting connections; addr=&#39;AF_INET(0.0.0.0:601)&#39;
+[2020-04-07T12:29:39.486600] Running application hooks; hook=&#39;1&#39;
+[2020-04-07T12:29:39.486621] Running application hooks; hook=&#39;6&#39;
+[2020-04-07T12:29:39.486674] syslog-ng starting up; version=&#39;3.26.1&#39;
+[2020-04-07T12:29:39.486850] Running application hooks; hook=&#39;2&#39;
+[2020-04-07T12:39:39.587220] Log statistics; processed=&#39;global(payload_reallocs)=0&#39;, processed=&#39;global(sdata_updates)=0&#39;, queued=&#39;global(scratch_buffers_bytes)=0&#39;, processed=&#39;src.internal(s_local#0)=0&#39;, stamp=&#39;src.internal(s_local#0)=0&#39;, processed=&#39;destination(d_local)=0&#39;, processed=&#39;source(s_local)=0&#39;, processed=&#39;source(s_network)=0&#39;, processed=&#39;global(msg_clones)=0&#39;, processed=&#39;center(received)=0&#39;, queued=&#39;global(scratch_buffers_count)=0&#39;, processed=&#39;center(queued)=0&#39;
+</code></pre></div>
 <h4 id="modify-logging-entry">Modify logging entry</h4>
 <p>To let abcdesktop log events in syslog trought UDP, we will have to modify abcdesktop configuration file to add  an handler and 'syslog' entry in general logger and cherrypy.error logger. (syslog formatter is already in sample file)</p>
 <h5 id="add-syslog-handler">Add Syslog Handler</h5>
 <p>In handlers entry add the following lines:</p>
-<pre><code>        ,
-        'syslog': {
-          'class': 'logging.handlers.SysLogHandler',
-          'filters': [ 'odcontext' ],
-          'formatter': 'syslog',
-          'socktype': 2,
-          'address' : [ '192.168.0.52', 514 ]
+<p><div class="highlight"><pre><span></span><code>        ,
+        &#39;syslog&#39;: {
+          &#39;class&#39;: &#39;logging.handlers.SysLogHandler&#39;,
+          &#39;filters&#39;: [ &#39;odcontext&#39; ],
+          &#39;formatter&#39;: &#39;syslog&#39;,
+          &#39;socktype&#39;: 2,
+          &#39;address&#39; : [ &#39;192.168.0.52&#39;, 514 ]
         }
-</code></pre>
-<p>Replace 192.168.0.52 ip address by your local IP Addresse.</p>
+</code></pre></div>
+Replace 192.168.0.52 ip address by your local IP Addresse.</p>
 <p>You can get your local IP address using the following command:</p>
-<pre><code>hostname -I | cut -d ' ' -f1
-</code></pre>
+<div class="highlight"><pre><span></span><code>hostname -I | cut -d &#39; &#39; -f1
+</code></pre></div>
 <h5 id="add-loggers-handlers-entries">Add loggers handlers entries</h5>
 <p>In general loggers (key '' in loggers entry) and 'cherrypy.error' add <code>syslog'</code> handler in handlers list:</p>
-<pre><code>        '': {
-          'handlers': [ 'console', 'cherrypy_trace', 'syslog' ],
-          'level': 'INFO'
+<div class="highlight"><pre><span></span><code>        &#39;&#39;: {
+          &#39;handlers&#39;: [ &#39;console&#39;, &#39;cherrypy_trace&#39;, &#39;syslog&#39; ],
+          &#39;level&#39;: &#39;INFO&#39;
         }
 
-       'cherrypy.error': {
-          'handlers': [ 'console', 'cherrypy_trace', 'syslog' ],
-          'level': 'ERROR',
-          'propagate': False
+       &#39;cherrypy.error&#39;: {
+          &#39;handlers&#39;: [ &#39;console&#39;, &#39;cherrypy_trace&#39;, &#39;syslog&#39; ],
+          &#39;level&#39;: &#39;ERROR&#39;,
+          &#39;propagate&#39;: False
         }
-</code></pre>
+</code></pre></div>
 <h4 id="resulting-modified-sample-configuration-file">Resulting Modified sample configuration file</h4>
-<pre><code>#              
+<div class="highlight"><pre><span></span><code>#              
 # logging configuration 
 # come from https://docs.python.org/3.8/library/logging.config.html
 # need double %% to escape %
@@ -5009,107 +5009,107 @@
 # graypy.GELFRabbitHandler - RabbitMQ log forwarding
 
 logging: {
-  'version': 1,
-  'disable_existing_loggers': False,
-  'formatters': {
-    'access': {
-      'format': '%%(message)s - user: %%(userid)s',
-      'datefmt': '%%Y-%%m-%%d %%H:%%M:%%S'
+  &#39;version&#39;: 1,
+  &#39;disable_existing_loggers&#39;: False,
+  &#39;formatters&#39;: {
+    &#39;access&#39;: {
+      &#39;format&#39;: &#39;%%(message)s - user: %%(userid)s&#39;,
+      &#39;datefmt&#39;: &#39;%%Y-%%m-%%d %%H:%%M:%%S&#39;
     },
-    'standard': {
-      'format': '%%(asctime)s %%(module)s [%%(levelname)-7s] %%(name)s.%%(funcName)s:%%(userid)s %%(message)s',
-      'datefmt': '%%Y-%%m-%%d %%H:%%M:%%S'
+    &#39;standard&#39;: {
+      &#39;format&#39;: &#39;%%(asctime)s %%(module)s [%%(levelname)-7s] %%(name)s.%%(funcName)s:%%(userid)s %%(message)s&#39;,
+      &#39;datefmt&#39;: &#39;%%Y-%%m-%%d %%H:%%M:%%S&#39;
     },
-    'syslog': {
-      'format': '%%(asctime)s %%(levelname)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s',
-      'datefmt': '%%Y-%%m-%%d %%H:%%M:%%S'
+    &#39;syslog&#39;: {
+      &#39;format&#39;: &#39;%%(asctime)s %%(levelname)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s&#39;,
+      &#39;datefmt&#39;: &#39;%%Y-%%m-%%d %%H:%%M:%%S&#39;
     },
-    'graylog': {
-      'format': '%%(levelname)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s'      
+    &#39;graylog&#39;: {
+      &#39;format&#39;: &#39;%%(levelname)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s&#39;      
     }
   },
-  'filters': {
-    'odcontext': {
-      '()': 'oc.logging.OdContextFilter'
+  &#39;filters&#39;: {
+    &#39;odcontext&#39;: {
+      &#39;()&#39;: &#39;oc.logging.OdContextFilter&#39;
     }
   },
-  'handlers': {
-    'console': {
-      'class': 'logging.StreamHandler',
-      'filters': [ 'odcontext' ],
-      'formatter': 'standard',
-      'stream': 'ext://sys.stdout'
+  &#39;handlers&#39;: {
+    &#39;console&#39;: {
+      &#39;class&#39;: &#39;logging.StreamHandler&#39;,
+      &#39;filters&#39;: [ &#39;odcontext&#39; ],
+      &#39;formatter&#39;: &#39;standard&#39;,
+      &#39;stream&#39;: &#39;ext://sys.stdout&#39;
     },
-    'cherrypy_console': {
-      'class': 'logging.StreamHandler',
-      'filters': [ 'odcontext' ],
-      'formatter': 'access',
-      'stream': 'ext://sys.stdout'
+    &#39;cherrypy_console&#39;: {
+      &#39;class&#39;: &#39;logging.StreamHandler&#39;,
+      &#39;filters&#39;: [ &#39;odcontext&#39; ],
+      &#39;formatter&#39;: &#39;access&#39;,
+      &#39;stream&#39;: &#39;ext://sys.stdout&#39;
     },
-    'cherrypy_access': {
-      'class': 'logging.handlers.RotatingFileHandler',
-      'filters': [ 'odcontext' ],
-      'formatter': 'access',
-      'filename': 'logs/access.log',
-      'maxBytes': 10485760,
-      'backupCount': 20,
-      'encoding': 'utf8'
+    &#39;cherrypy_access&#39;: {
+      &#39;class&#39;: &#39;logging.handlers.RotatingFileHandler&#39;,
+      &#39;filters&#39;: [ &#39;odcontext&#39; ],
+      &#39;formatter&#39;: &#39;access&#39;,
+      &#39;filename&#39;: &#39;logs/access.log&#39;,
+      &#39;maxBytes&#39;: 10485760,
+      &#39;backupCount&#39;: 20,
+      &#39;encoding&#39;: &#39;utf8&#39;
     },
-    'cherrypy_trace': {
-      'class': 'logging.handlers.RotatingFileHandler',
-      'filters': [ 'odcontext' ],
-      'formatter': 'standard',
-      'filename': 'logs/trace.log',
-      'maxBytes': 10485760,
-      'backupCount': 20,
-      'encoding': 'utf8',
-      'mode': 'w'
+    &#39;cherrypy_trace&#39;: {
+      &#39;class&#39;: &#39;logging.handlers.RotatingFileHandler&#39;,
+      &#39;filters&#39;: [ &#39;odcontext&#39; ],
+      &#39;formatter&#39;: &#39;standard&#39;,
+      &#39;filename&#39;: &#39;logs/trace.log&#39;,
+      &#39;maxBytes&#39;: 10485760,
+      &#39;backupCount&#39;: 20,
+      &#39;encoding&#39;: &#39;utf8&#39;,
+      &#39;mode&#39;: &#39;w&#39;
     },
-    'syslog': {
-       'class': 'logging.handlers.SysLogHandler',
-       'filters': [ 'odcontext' ],
-       'formatter': 'syslog',
-       'socktype': 2,
-       'address' : [ '192.168.0.52', 514 ]
+    &#39;syslog&#39;: {
+       &#39;class&#39;: &#39;logging.handlers.SysLogHandler&#39;,
+       &#39;filters&#39;: [ &#39;odcontext&#39; ],
+       &#39;formatter&#39;: &#39;syslog&#39;,
+       &#39;socktype&#39;: 2,
+       &#39;address&#39; : [ &#39;192.168.0.52&#39;, 514 ]
     }
   },
-  'loggers': {
-    '': {
-      'handlers': [ 'console', 'cherrypy_trace', 'syslog'  ],
-      'level': 'DEBUG'
+  &#39;loggers&#39;: {
+    &#39;&#39;: {
+      &#39;handlers&#39;: [ &#39;console&#39;, &#39;cherrypy_trace&#39;, &#39;syslog&#39;  ],
+      &#39;level&#39;: &#39;DEBUG&#39;
     },
-    'docker.utils.config': {
-      'level': 'INFO'
+    &#39;docker.utils.config&#39;: {
+      &#39;level&#39;: &#39;INFO&#39;
     },
-    'urllib3.connectionpool': {
-      'level': 'ERROR'
+    &#39;urllib3.connectionpool&#39;: {
+      &#39;level&#39;: &#39;ERROR&#39;
     },
-    'cherrypy.access': {
-      'handlers': [ 'cherrypy_access' ],
-      'level': 'INFO',
-      'propagate': False
+    &#39;cherrypy.access&#39;: {
+      &#39;handlers&#39;: [ &#39;cherrypy_access&#39; ],
+      &#39;level&#39;: &#39;INFO&#39;,
+      &#39;propagate&#39;: False
     },
-    'cherrypy.error': {
-      'handlers': [ 'console', 'cherrypy_trace', 'syslog' ],
-      'level': 'ERROR',
-      'propagate': False
+    &#39;cherrypy.error&#39;: {
+      &#39;handlers&#39;: [ &#39;console&#39;, &#39;cherrypy_trace&#39;, &#39;syslog&#39; ],
+      &#39;level&#39;: &#39;ERROR&#39;,
+      &#39;propagate&#39;: False
     }
   } }
-</code></pre>
+</code></pre></div>
 <h4 id="restart-pods">Restart Pods</h4>
 <p>To restart Pods, we will delete and recreate all pods</p>
 <h5 id="delete-pods">Delete pods</h5>
 <p>To delete pods, execute the following command:</p>
-<pre><code>kubectl delete -f abcdesktop.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl delete -f abcdesktop.yaml
+</code></pre></div>
 <h5 id="create-pods">Create pods</h5>
 <p>To create pods, execute the following command:</p>
-<pre><code>kubectl create -f abcdesktop.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl create -f abcdesktop.yaml
+</code></pre></div>
 <h4 id="verify-syslogs">Verify syslogs</h4>
 <p>At this state, new abcdesktop logging configuration should be applied. We can now verify syslog logs:</p>
-<pre><code>tail /var/log/syslog
-</code></pre>
+<div class="highlight"><pre><span></span><code>tail /var/log/syslog
+</code></pre></div>
 <p><img alt="syslog_messages" src="../img/syslog_messages.png" /> </p>
 <p>If you see some lines with 'INFO' Level, you probably see abcdesktop logs in syslog !<br />
 If not try to do actions in abcdesktop (open session, launch new application, close session) and apply the tail command again.</p>

@@ -4874,14 +4874,14 @@
 <h1 id="docker-scripting-cheatsheets">Docker scripting cheatsheets</h1>
 <h2 id="common-docker-commands">Common Docker commands</h2>
 <h3 id="update-all-images">update all images</h3>
-<pre><code>docker images |grep -v REPOSITORY|awk '{print $1}'|xargs -L1 docker pull
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker images |grep -v REPOSITORY|awk &#39;{print $1}&#39;|xargs -L1 docker pull
+</code></pre></div>
 <h3 id="remove-exited-container">Remove exited container</h3>
-<pre><code>docker rm `docker ps -a -q -f &quot;status=exited&quot;`
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker rm `docker ps -a -q -f &quot;status=exited&quot;`
+</code></pre></div>
 <h3 id="remove-dangling-images">Remove dangling images</h3>
-<pre><code>docker rmi `docker images -q --filter &quot;dangling=true&quot;`
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker rmi `docker images -q --filter &quot;dangling=true&quot;`
+</code></pre></div>
 
 
 

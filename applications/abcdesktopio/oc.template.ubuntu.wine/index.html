@@ -4860,7 +4860,7 @@
 <h2 id="from">from</h2>
 <p>inherit <a href="../oc.template.ubuntu.20.04">abcdesktopio/oc.template.ubuntu.20.04</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>NAME=&quot;Ubuntu&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Ubuntu&quot;
 VERSION=&quot;20.04.6 LTS (Focal Fossa)&quot;
 ID=ubuntu
 ID_LIKE=debian
@@ -4872,10 +4872,9 @@ BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
 PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
 VERSION_CODENAME=focal
 UBUNTU_CODENAME=focal
-
-</code></pre>
+</code></pre></div>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code>ARG TAG=dev
+<div class="highlight"><pre><span></span><code>ARG TAG=dev
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}:$TAG
 MAINTAINER Alexandre DEVELY 
@@ -4887,11 +4886,11 @@ RUN apt-get update &amp;&amp; apt-get install --no-install-recommends --yes \
 
 
 # set arch to i386
-RUN if [ $(dpkg --print-architecture) == 'amd64' ]; then dpkg --add-architecture i386; fi
+RUN if [ $(dpkg --print-architecture) == &#39;amd64&#39; ]; then dpkg --add-architecture i386; fi
 
 # only to use wine repo
 # RUN wget -qO - https://dl.winehq.org/wine-builds/winehq.key | apt-key add -
-# RUN apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
+# RUN apt-add-repository &#39;deb https://dl.winehq.org/wine-builds/ubuntu/ focal main&#39;
 
 
 # tools for winetricks
@@ -4998,8 +4997,7 @@ RUN  mkdir /composer/.wine /composer/bin &amp;&amp; chmod 777 /composer/.wine /c
 # Set for each app 
 ENV WINEPREFIX=/composer/.wine
 #ENV WINEARCH win32
-
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>file oc.template.ubuntu.wine.md is created at Tue Jan 28 2025 14:18:38 GMT+0000 (Coordinated Universal Time) by make-docs.js</p>
 </blockquote>

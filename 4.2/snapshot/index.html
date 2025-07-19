@@ -4926,8 +4926,8 @@ The user get the latest commited image.</p>
 </ul>
 <h2 id="create-your-kubernetes-secret-to-access-to-your-private-registry">Create your kubernetes secret to access to your private registry</h2>
 <p>Create a <code>docker-registry</code> secret. </p>
-<pre><code>kubectl create secret docker-registry regcred --docker-server=&lt;your-registry-server&gt; --docker-username=&lt;your-name&gt; --docker-password=&lt;your-pword&gt; --docker-email=&lt;your-email&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl create secret docker-registry regcred --docker-server=&lt;your-registry-server&gt; --docker-username=&lt;your-name&gt; --docker-password=&lt;your-pword&gt; --docker-email=&lt;your-email&gt;
+</code></pre></div>
 <ul>
 <li><your-registry-server> is your Private Docker Registry FQDN. Use https://index.docker.io/v1/ for DockerHub.</li>
 <li><your-name> is your Docker username.</li>
@@ -4938,96 +4938,94 @@ The user get the latest commited image.</p>
 <p>Only secret type <code>kubernetes.io/dockerconfigjson</code> is supported. The type of the secret must be <code>kubernetes.io/dockerconfigjson</code></p>
 </blockquote>
 <p>Example</p>
-<pre><code>kubectl create secret docker-registry snapregistry --docker-server=myregistry.domain.com --docker-username=snapreguser --docker-password=22qFaWfjaZeSa --docker-email='user@myregistry.domain.com' -n abcdesktop
-</code></pre>
-<pre><code>secret/snapregistry created
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl create secret docker-registry snapregistry --docker-server=myregistry.domain.com --docker-username=snapreguser --docker-password=22qFaWfjaZeSa --docker-email=&#39;user@myregistry.domain.com&#39; -n abcdesktop
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>secret/snapregistry created
+</code></pre></div>
 <h2 id="update-odconfig-file">Update <code>od.config</code> file</h2>
 <p>Update file  <code>od.config</code></p>
 <ul>
 <li>Add new entry</li>
 </ul>
-<pre><code>desktop.snapshotregistrysecretname : 'NAME_OF_YOUR_KUBERNETES_DOCKER-REGISTRY_SECRET'
-desktop.snapshotregistryprotocol : 'https'
-</code></pre>
+<div class="highlight"><pre><span></span><code>desktop.snapshotregistrysecretname : &#39;NAME_OF_YOUR_KUBERNETES_DOCKER-REGISTRY_SECRET&#39;
+desktop.snapshotregistryprotocol : &#39;https&#39;
+</code></pre></div>
 <p>For example</p>
-<pre><code>desktop.snapshotregistrysecretname : 'snapregistry'
-desktop.snapshotregistryprotocol : 'https'
-</code></pre>
+<div class="highlight"><pre><span></span><code>desktop.snapshotregistrysecretname : &#39;snapregistry&#39;
+desktop.snapshotregistryprotocol : &#39;https&#39;
+</code></pre></div>
 <ul>
 <li>Update the <code>desktop.pod</code> dictionary to add a new entry </li>
 </ul>
-<pre><code>
- 'snapshot': { 
-    'image': 'ghcr.io/abcdesktopio/oc.snapshot:main',
-    'imagePullPolicy': 'Always',
-    'enable': True,
-    'tcpport': 29785,
-    'securityContext': { 'runAsUser': 0, 'runAsGroup': 0 },
-    'acl':  { 'permit': [ 'all' ] },
-    'resources': { 
-      'requests': { 'memory': &quot;32Mi&quot;,  'cpu': &quot;50m&quot;  },  
-      'limits'  : { 'memory': &quot;256Mi&quot;, 'cpu': &quot;500m&quot; } 
+<div class="highlight"><pre><span></span><code> &#39;snapshot&#39;: { 
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.snapshot:main&#39;,
+    &#39;imagePullPolicy&#39;: &#39;Always&#39;,
+    &#39;enable&#39;: True,
+    &#39;tcpport&#39;: 29785,
+    &#39;securityContext&#39;: { &#39;runAsUser&#39;: 0, &#39;runAsGroup&#39;: 0 },
+    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
+    &#39;resources&#39;: { 
+      &#39;requests&#39;: { &#39;memory&#39;: &quot;32Mi&quot;,  &#39;cpu&#39;: &quot;50m&quot;  },  
+      &#39;limits&#39;  : { &#39;memory&#39;: &quot;256Mi&quot;, &#39;cpu&#39;: &quot;500m&quot; } 
     }
   },
-
-</code></pre>
+</code></pre></div>
 <p>A example with the entries before and after the 'snapshot' container</p>
-<pre><code> 'sound': { 
-    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.1',
-    'imagePullPolicy': 'IfNotPresent',
-    'enable': True,
-    'tcpport': 29788,
-    'acl':  { 'permit': [ 'all' ] },
-    'resources': { 
-      'requests': { 'memory': &quot;32Mi&quot;,  'cpu': &quot;50m&quot;  },  
-      'limits'  : { 'memory': &quot;256Mi&quot;, 'cpu': &quot;500m&quot; } 
+<div class="highlight"><pre><span></span><code> &#39;sound&#39;: { 
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.1&#39;,
+    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
+    &#39;enable&#39;: True,
+    &#39;tcpport&#39;: 29788,
+    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
+    &#39;resources&#39;: { 
+      &#39;requests&#39;: { &#39;memory&#39;: &quot;32Mi&quot;,  &#39;cpu&#39;: &quot;50m&quot;  },  
+      &#39;limits&#39;  : { &#39;memory&#39;: &quot;256Mi&quot;, &#39;cpu&#39;: &quot;500m&quot; } 
     }
   },
-  'snapshot': { 
-    'image': 'ghcr.io/abcdesktopio/oc.snapshot:main',
-    'imagePullPolicy': 'Always',
-    'enable': True,
-    'tcpport': 29785,
-    'securityContext': { 'runAsUser': 0, 'runAsGroup': 0 },
-    'acl':  { 'permit': [ 'all' ] },
-    'resources': { 
-      'requests': { 'memory': &quot;32Mi&quot;,  'cpu': &quot;50m&quot;  },  
-      'limits'  : { 'memory': &quot;256Mi&quot;, 'cpu': &quot;500m&quot; } 
+  &#39;snapshot&#39;: { 
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.snapshot:main&#39;,
+    &#39;imagePullPolicy&#39;: &#39;Always&#39;,
+    &#39;enable&#39;: True,
+    &#39;tcpport&#39;: 29785,
+    &#39;securityContext&#39;: { &#39;runAsUser&#39;: 0, &#39;runAsGroup&#39;: 0 },
+    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
+    &#39;resources&#39;: { 
+      &#39;requests&#39;: { &#39;memory&#39;: &quot;32Mi&quot;,  &#39;cpu&#39;: &quot;50m&quot;  },  
+      &#39;limits&#39;  : { &#39;memory&#39;: &quot;256Mi&quot;, &#39;cpu&#39;: &quot;500m&quot; } 
     }
   },
   # container init
   # a simple busybox to chowner and chmod of homedir
   # by defaul homedir belongs to root
-  'init': { 
-    'image': 'busybox',
-    'enable': True,
-    'imagePullPolicy': 'IfNotPresent',
-    'securityContext': { 'runAsUser': 0 },
-    'acl':  { 'permit': [ 'all' ] },
-    'resources': { 
-      'requests': { 'memory': &quot;8Mi&quot;,  'cpu': &quot;5m&quot;  },  
-      'limits'  : { 'memory': &quot;32Mi&quot;, 'cpu': &quot;100m&quot; } 
+  &#39;init&#39;: { 
+    &#39;image&#39;: &#39;busybox&#39;,
+    &#39;enable&#39;: True,
+    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
+    &#39;securityContext&#39;: { &#39;runAsUser&#39;: 0 },
+    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
+    &#39;resources&#39;: { 
+      &#39;requests&#39;: { &#39;memory&#39;: &quot;8Mi&quot;,  &#39;cpu&#39;: &quot;5m&quot;  },  
+      &#39;limits&#39;  : { &#39;memory&#39;: &quot;32Mi&quot;, &#39;cpu&#39;: &quot;100m&quot; } 
     }, 
-    'command':  [ 'sh', '-c',  'chmod 750 ~ &amp;&amp; chown {{ uidNumber }}:{{ gidNumber }} ~' ] 
+    &#39;command&#39;:  [ &#39;sh&#39;, &#39;-c&#39;,  &#39;chmod 750 ~ &amp;&amp; chown {{ uidNumber }}:{{ gidNumber }} ~&#39; ] 
   },
-</code></pre>
+</code></pre></div>
 <p>By settings <code>'enable': True</code> in the <code>snapshot</code> container, this will add a new entry in the front menu.</p>
 <p><img alt="snaphost entry" src="../img/snapshot-menu.png" /></p>
 <h2 id="login-to-you-abcdesktop">Login to you abcdesktop</h2>
 <h2 id="check-the-pods">Check the pods</h2>
 <p>List your pods with a <code>kubectl</code> command line</p>
-<pre><code>kubectl  get pods -l type=x11server  -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl  get pods -l type=x11server  -n abcdesktop
 NAME                          READY   STATUS    RESTARTS   AGE
 12896316-a4dbc                6/6     Running   0          32m
-</code></pre>
+</code></pre></div>
 <p>Get the description of your pod</p>
 <p>In this case <code>12896316-a4dbc</code> is the name of the pod</p>
-<pre><code>kubectl -n abcdesktop get pod -o jsonpath={.spec.containers[*].name} 12896316-a4dbc 
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl -n abcdesktop get pod -o jsonpath={.spec.containers[*].name} 12896316-a4dbc 
+</code></pre></div>
 <p>A new container <code>t-snapshot</code> appears in the list of containers</p>
-<pre><code>x-graphical c-printer s-sound f-filer o-storage t-snapshot
-</code></pre>
+<div class="highlight"><pre><span></span><code>x-graphical c-printer s-sound f-filer o-storage t-snapshot
+</code></pre></div>
 <h2 id="take-a-snapshot">take a snapshot</h2>
 <p>To take a <code>snapshot</code>, in fact it's more a <code>commit</code>, but we keep the snapshot word to make it more simple like the virtual machine feature</p>
 <h3 id="what-the-snapshot-container-does">What the snapshot container does ?</h3>
@@ -5044,22 +5042,22 @@ NAME                          READY   STATUS    RESTARTS   AGE
 </ul>
 <p>You can read the <code>snapshot</code> log with the command </p>
 <p>In this example <code>12896316-a4dbc</code> is the name of the pod</p>
-<pre><code>kubectl -n abcdesktop logs 12896316-a4dbc -c t-snapshot 
-</code></pre>
-<pre><code>Serveur démarré sur http://localhost:29785
+<div class="highlight"><pre><span></span><code>kubectl -n abcdesktop logs 12896316-a4dbc -c t-snapshot 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Serveur démarré sur http://localhost:29785
 ping
 ping
 ping
-</code></pre>
+</code></pre></div>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>Check your credentials on your registry with <code>nerdctl login</code> command line</p>
 <p>For example</p>
-<pre><code>nerdctl login myregistry.domain.com --username snapreguser --password 22qFaWfjaZeSa
-</code></pre>
+<div class="highlight"><pre><span></span><code>nerdctl login myregistry.domain.com --username snapreguser --password 22qFaWfjaZeSa
+</code></pre></div>
 <p>You should get </p>
-<pre><code>WARN[0000] WARNING! Using --password via the CLI is insecure. Use --password-stdin. 
+<div class="highlight"><pre><span></span><code>WARN[0000] WARNING! Using --password via the CLI is insecure. Use --password-stdin. 
 Login Succeeded
-</code></pre>
+</code></pre></div>
 
 
 

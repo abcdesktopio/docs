@@ -4884,16 +4884,16 @@
 <h2 id="authmanagers-explicit-object">authmanagers <code>explicit</code> object</h2>
 <p>The <code>explicit</code> authentification configuration is defined as a dictionnary object and contains an <code>explicit</code> provider. </p>
 <p>For example :</p>
-<pre><code>'explicit': {
-    'show_domains': True,
-    'default_domain': 'AD',
-    'providers': {
-      'AD': { 
-        'config_ref': 'adconfig', 
-        'enabled': True
+<div class="highlight"><pre><span></span><code>&#39;explicit&#39;: {
+    &#39;show_domains&#39;: True,
+    &#39;default_domain&#39;: &#39;AD&#39;,
+    &#39;providers&#39;: {
+      &#39;AD&#39;: { 
+        &#39;config_ref&#39;: &#39;adconfig&#39;, 
+        &#39;enabled&#39;: True
        }
 }
-</code></pre>
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -4930,11 +4930,12 @@
 The key name must be set as the <a href="https://en.wikipedia.org/wiki/Windows_domain"><code>USERDOMAIN</code></a> and defined in the <code>config_ref</code> with the exact same value.</p>
 <p>Providers :</p>
 <p>The provider is formated as a dictionnary </p>
-<p><code>{ 'AD': {  
-            'config_ref': 'adconfig',  
-            'enabled': True  
-        }
- }</code></p>
+<div class="highlight"><pre><span></span><code>{ &#39;AD&#39;: {  
+           &#39;config_ref&#39;: &#39;adconfig&#39;,  
+           &#39;enabled&#39;: True  
+       }
+}
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -4957,21 +4958,21 @@ The key name must be set as the <a href="https://en.wikipedia.org/wiki/Windows_d
 </tbody>
 </table>
 <p>The adconfig is a dictionnary. For example :</p>
-<pre><code>adconfig : { 'AD': {   'default'       : True, 
-                       'ldap_timeout'  : 15,
-                       'ldap_protocol' : 'ldap',
-                       'ldap_basedn'   : 'DC=ad,DC=domain,DC=local',
-                       'ldap_fqdn'     : '_ldap._tcp.ad.domain.local',
-                       'domain'        : 'AD',
-                       'domain_fqdn': 'AD.DOMAIN.LOCAL',
-                       'servers'    : [ '192.168.7.12' ],
-                        'kerberos_realm': 'AD.DOMAIN.LOCAL',
-                        'query_dcs' : True,
-                        'wins_servers'  : [ '192.168.1.12' ],
-                        'serviceaccount': { 'login': 'SVCACCOUNT', 'password': 'SVCACCOUNTPASSWORD' }
+<div class="highlight"><pre><span></span><code>adconfig : { &#39;AD&#39;: {   &#39;default&#39;       : True, 
+                       &#39;ldap_timeout&#39;  : 15,
+                       &#39;ldap_protocol&#39; : &#39;ldap&#39;,
+                       &#39;ldap_basedn&#39;   : &#39;DC=ad,DC=domain,DC=local&#39;,
+                       &#39;ldap_fqdn&#39;     : &#39;_ldap._tcp.ad.domain.local&#39;,
+                       &#39;domain&#39;        : &#39;AD&#39;,
+                       &#39;domain_fqdn&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
+                       &#39;servers&#39;    : [ &#39;192.168.7.12&#39; ],
+                        &#39;kerberos_realm&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
+                        &#39;query_dcs&#39; : True,
+                        &#39;wins_servers&#39;  : [ &#39;192.168.1.12&#39; ],
+                        &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;SVCACCOUNT&#39;, &#39;password&#39;: &#39;SVCACCOUNTPASSWORD&#39; }
      }
 }
-</code></pre>
+</code></pre></div>
 <p>If this example, the Microsoft Active Directory value are set to :</p>
 <table>
 <thead>

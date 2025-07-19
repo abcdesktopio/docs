@@ -5021,10 +5021,10 @@
 <ul>
 <li>Create a Dockerfile to install <code>xeyes</code> application from <code>x11-apps</code> package</li>
 </ul>
-<pre><code class="language-Dockerfile">FROM ubuntu
-RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends x11-apps &amp;&amp; apt-get clean
-CMD [&quot;/usr/bin/xeyes&quot;]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>x11-apps<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>clean
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/bin/xeyes&quot;</span><span class="p">]</span>
+</code></pre></div>
 <p>This image is based on ubuntu, and install the <code>x11-apps</code> package. Then we define <code>/usr/bin/xeyes</code> as the CMD.</p>
 <blockquote>
 <p>ENTRYPOINT is also supported </p>
@@ -5032,9 +5032,9 @@ CMD [&quot;/usr/bin/xeyes&quot;]
 <ul>
 <li>Build the image for xedit application</li>
 </ul>
-<pre><code class="language-bash">REGISTRY=abcdesktopio
-docker build -t $REGISTRY/samplexeyes .
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexeyes<span class="w"> </span>.
+</code></pre></div>
 <blockquote>
 <p>You should replace the value of <code>REGISTRY=abcdesktopio</code> by your own registry's name.
 If you don't have one, you can use the <code>abcdesktopio/samplexeyes</code> as a readonly dockerhub registry.</p>
@@ -5042,28 +5042,28 @@ If you don't have one, you can use the <code>abcdesktopio/samplexeyes</code> as 
 <ul>
 <li>Push the image to your registry <em>(only if you have one registry)</em></li>
 </ul>
-<pre><code class="language-bash">REGISTRY=abcdesktopio
-docker push $REGISTRY/samplexeyes
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+docker<span class="w"> </span>push<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexeyes
+</code></pre></div>
 <ul>
 <li>Inspect the image to create a json file</li>
 </ul>
-<pre><code class="language-bash">REGISTRY=abcdesktopio
-docker inspect $REGISTRY/samplexeyes:latest &gt; samplexeyes.json
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+docker<span class="w"> </span>inspect<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexeyes:latest<span class="w"> </span>&gt;<span class="w"> </span>samplexeyes.json
+</code></pre></div>
 <ul>
 <li>Send the image to abcdesktop pyos instance</li>
 </ul>
 <p>The commands read the <code>PYOS_POD</code> name, then copy the <code>samplexeyes.json</code> file to <code>/tmp</code> of PYOS_POD,
 then send the <code>/tmp/samplexeyes.json</code> to REST API server</p>
-<pre><code class="language-bash">NAMESPACE=abcdesktop
-PYOS_POD_NAME=$(kubectl get pods -l run=pyos-od -o jsonpath={.items..metadata.name} -n &quot;$NAMESPACE&quot; | awk '{print $1}')
-kubectl cp samplexeyes.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
-kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/samplexeyes.json
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
+<span class="nv">PYOS_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NAMESPACE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+kubectl<span class="w"> </span>cp<span class="w"> </span>samplexeyes.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/samplexeyes.json
+</code></pre></div>
 <p>The endpoint image returns a json documment </p>
-<pre><code>[{&quot;cmd&quot;: [&quot;/usr/bin/xeyes&quot;], &quot;path&quot;: null, &quot;sha_id&quot;: &quot;sha256:f13075e3caceccf5818f9d3b0bdd231b2d800850eb9c81d2906704ec633372c7&quot;, &quot;id&quot;: &quot;abcdesktopio/samplexeyes:latest&quot;, &quot;architecture&quot;: &quot;amd64&quot;, &quot;os&quot;: &quot;linux&quot;, &quot;rules&quot;: {}, &quot;acl&quot;: {&quot;permit&quot;: [&quot;all&quot;]}, &quot;launch&quot;: &quot;xeyes&quot;, &quot;name&quot;: &quot;xeyes&quot;, &quot;icon&quot;: &quot;xeyes&quot;, &quot;icondata&quot;: &quot;PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIwIiB5PSIzMiIgZmlsbD0iYmxhY2siPnhleWVzPC90ZXh0Pjwvc3ZnPg==&quot;, &quot;keyword&quot;: null, &quot;uniquerunkey&quot;: null, &quot;cat&quot;: null, &quot;args&quot;: null, &quot;execmode&quot;: null, &quot;showinview&quot;: null, &quot;displayname&quot;: &quot;xeyes&quot;, &quot;desktopfile&quot;: null, &quot;executeclassname&quot;: null, &quot;executablefilename&quot;: &quot;xeyes&quot;, &quot;usedefaultapplication&quot;: false, &quot;mimetype&quot;: [], &quot;fileextensions&quot;: [], &quot;legacyfileextensions&quot;: [], &quot;secrets_requirement&quot;: null, &quot;i100  4670  100  1115  100  3555  41296   128k --:--:-- --:--:-- --:--:--  168ke&quot;: &quot;ephemeral_container&quot;, &quot;securitycontext&quot;: {}, &quot;created&quot;: &quot;2025-02-03T15:45:36.493950688Z&quot;}]
-</code></pre>
+<div class="highlight"><pre><span></span><code>[{&quot;cmd&quot;: [&quot;/usr/bin/xeyes&quot;], &quot;path&quot;: null, &quot;sha_id&quot;: &quot;sha256:f13075e3caceccf5818f9d3b0bdd231b2d800850eb9c81d2906704ec633372c7&quot;, &quot;id&quot;: &quot;abcdesktopio/samplexeyes:latest&quot;, &quot;architecture&quot;: &quot;amd64&quot;, &quot;os&quot;: &quot;linux&quot;, &quot;rules&quot;: {}, &quot;acl&quot;: {&quot;permit&quot;: [&quot;all&quot;]}, &quot;launch&quot;: &quot;xeyes&quot;, &quot;name&quot;: &quot;xeyes&quot;, &quot;icon&quot;: &quot;xeyes&quot;, &quot;icondata&quot;: &quot;PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIwIiB5PSIzMiIgZmlsbD0iYmxhY2siPnhleWVzPC90ZXh0Pjwvc3ZnPg==&quot;, &quot;keyword&quot;: null, &quot;uniquerunkey&quot;: null, &quot;cat&quot;: null, &quot;args&quot;: null, &quot;execmode&quot;: null, &quot;showinview&quot;: null, &quot;displayname&quot;: &quot;xeyes&quot;, &quot;desktopfile&quot;: null, &quot;executeclassname&quot;: null, &quot;executablefilename&quot;: &quot;xeyes&quot;, &quot;usedefaultapplication&quot;: false, &quot;mimetype&quot;: [], &quot;fileextensions&quot;: [], &quot;legacyfileextensions&quot;: [], &quot;secrets_requirement&quot;: null, &quot;i100  4670  100  1115  100  3555  41296   128k --:--:-- --:--:-- --:--:--  168ke&quot;: &quot;ephemeral_container&quot;, &quot;securitycontext&quot;: {}, &quot;created&quot;: &quot;2025-02-03T15:45:36.493950688Z&quot;}]
+</code></pre></div>
 <h2 id="execute-the-new-application-xeyes">Execute the new application <code>xeyes</code></h2>
 <ul>
 <li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop </li>
@@ -5093,25 +5093,25 @@ kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: t
 <li>Inside the new webshell window run the command line <code>wmctrl -lx</code> to query the <code>WM_CLASS</code> attribut values</li>
 </ul>
 <p><img alt="Started webshell" src="../img/simplestapplication-running-wmctrl.png" /></p>
-<pre><code>wmctrl -lx
+<div class="highlight"><pre><span></span><code>wmctrl -lx
 0x0060000a  0 xeyes.XEyes           anonymous-d363a xeyes
-</code></pre>
+</code></pre></div>
 <p>The <code>WM_CLASS</code> is <code>xeyes.XEyes</code></p>
 <h2 id="rebuild-the-xeyes-images-with-the-wm_class">Rebuild the <code>xeyes</code> images with the <code>WM_CLASS</code></h2>
 <ul>
 <li>Update the Dockerfile to add the label <code>oc.launch</code></li>
 </ul>
-<pre><code class="language-Dockerfile">FROM ubuntu
-RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends x11-apps &amp;&amp; apt-get clean
-LABEL oc.launch=xeyes.XEyes
-CMD [&quot;/usr/bin/xeyes&quot;]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>x11-apps<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>clean
+<span class="k">LABEL</span><span class="w"> </span>oc.launch<span class="o">=</span>xeyes.XEyes
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/bin/xeyes&quot;</span><span class="p">]</span>
+</code></pre></div>
 <ul>
 <li>Rebuild the image for xedit application</li>
 </ul>
-<pre><code class="language-bash">REGISTRY=abcdesktopio
-docker build -t $REGISTRY/samplexeyeswmclass .
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexeyeswmclass<span class="w"> </span>.
+</code></pre></div>
 <blockquote>
 <p>You should replace the value of <code>REGISTRY=abcdesktopio</code> by your own registry's name.
 If you don't have one, you can use the <code>abcdesktopio/samplexeyeswmclass</code> as a readonly dockerhub registry.</p>
@@ -5119,34 +5119,34 @@ If you don't have one, you can use the <code>abcdesktopio/samplexeyeswmclass</co
 <ul>
 <li>Push the image to your registry <em>(only if you have one registry)</em></li>
 </ul>
-<pre><code class="language-bash">REGISTRY=abcdesktopio
-docker push $REGISTRY/samplexeyeswmclass
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+docker<span class="w"> </span>push<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexeyeswmclass
+</code></pre></div>
 <ul>
 <li>Inspect the image to create a json file</li>
 </ul>
-<pre><code class="language-bash">REGISTRY=abcdesktopio
-docker inspect $REGISTRY/samplexeyeswmclass:latest &gt; samplexeyeswmclass.json
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+docker<span class="w"> </span>inspect<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexeyeswmclass:latest<span class="w"> </span>&gt;<span class="w"> </span>samplexeyeswmclass.json
+</code></pre></div>
 <ul>
 <li>you can delete the previous image, using a curl command line or if you prefer using the console service. The name of the image must be urlencoded <code>abcdesktopio/samplexeyes:latest</code> become the string <code>abcdesktopio%2Fsamplexeyes%3Alatest</code>  </li>
 </ul>
-<pre><code>NAMESPACE=abcdesktop
-PYOS_POD_NAME=$(kubectl get pods -l run=pyos-od -o jsonpath={.items..metadata.name} -n &quot;$NAMESPACE&quot; | awk '{print $1}')
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+PYOS_POD_NAME=$(kubectl get pods -l run=pyos-od -o jsonpath={.items..metadata.name} -n &quot;$NAMESPACE&quot; | awk &#39;{print $1}&#39;)
 kubectl cp samplexeyes.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X DELETE  http://localhost:8000/API/manager/image/abcdesktopio%2Fsamplexeyes%3Alatest
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Add the new <code>xeyes</code>images</li>
 </ul>
-<pre><code class="language-bash">NAMESPACE=abcdesktop
-PYOS_POD_NAME=$(kubectl get pods -l run=pyos-od -o jsonpath={.items..metadata.name} -n &quot;$NAMESPACE&quot; | awk '{print $1}')
-kubectl cp samplexeyeswmclass.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
-kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/samplexeyeswmclass.json 
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
+<span class="nv">PYOS_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NAMESPACE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+kubectl<span class="w"> </span>cp<span class="w"> </span>samplexeyeswmclass.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/samplexeyeswmclass.json<span class="w"> </span>
+</code></pre></div>
 <p>The endpoint return a json document </p>
-<pre><code>[{&quot;cmd&quot;: [&quot;/usr/bin/xeyes&quot;], &quot;path&quot;: null, &quot;sha_id&quot;: &quot;sha256:d11bb1d5c5b452efe763a92dca0749bb8e919f29c81a3aeccb9971f232391210&quot;, &quot;id&quot;: &quot;abcdesktopio/samplexeyeswmclass:latest&quot;, &quot;architecture&quot;: &quot;amd64&quot;, &quot;os&quot;: &quot;linux&quot;, &quot;rules&quot;: {}, &quot;acl&quot;: {&quot;permit&quot;: [&quot;all&quot;]}, &quot;launch&quot;: &quot;xeyes.XEyes&quot;, &quot;name&quot;: &quot;xeyes&quot;, &quot;icon&quot;: &quot;xeyes&quot;, &quot;icondata&quot;: &quot;PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIwIiB5PSIzMiIgZmlsbD0iYmxhY2siPnhleWVzPC90ZXh0Pjwvc3ZnPg==&quot;, &quot;keyword&quot;: null, &quot;uniquerunkey&quot;: null, &quot;cat&quot;: null, &quot;args&quot;: null, &quot;execmode&quot;: null, &quot;showinview&quot;: null, &quot;displayname&quot;: &quot;xeyes&quot;, &quot;desktopfile&quot;: null, &quot;executeclassname&quot;: null, &quot;executablefilename&quot;: &quot;xeyes&quot;, &quot;usedefaultapplication&quot;: false, &quot;mimetype&quot;: [], &quot;fileextensions&quot;: [], &quot;legacyfileextensions&quot;: [], &quot;secrets_requirement&quot;: null, &quot;image_pull_policy&quot;: &quot;IfNotPresent&quot;, &quot;image_pull_secrets&quot;: null, &quot;containerengine&quot;: &quot;ephemeral_container&quot;, &quot;securitycontext&quot;: {}, &quot;created&quot;: &quot;2025-02-03T16:11:43.151188552Z&quot;}]
-</code></pre>
+<div class="highlight"><pre><span></span><code>[{&quot;cmd&quot;: [&quot;/usr/bin/xeyes&quot;], &quot;path&quot;: null, &quot;sha_id&quot;: &quot;sha256:d11bb1d5c5b452efe763a92dca0749bb8e919f29c81a3aeccb9971f232391210&quot;, &quot;id&quot;: &quot;abcdesktopio/samplexeyeswmclass:latest&quot;, &quot;architecture&quot;: &quot;amd64&quot;, &quot;os&quot;: &quot;linux&quot;, &quot;rules&quot;: {}, &quot;acl&quot;: {&quot;permit&quot;: [&quot;all&quot;]}, &quot;launch&quot;: &quot;xeyes.XEyes&quot;, &quot;name&quot;: &quot;xeyes&quot;, &quot;icon&quot;: &quot;xeyes&quot;, &quot;icondata&quot;: &quot;PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIwIiB5PSIzMiIgZmlsbD0iYmxhY2siPnhleWVzPC90ZXh0Pjwvc3ZnPg==&quot;, &quot;keyword&quot;: null, &quot;uniquerunkey&quot;: null, &quot;cat&quot;: null, &quot;args&quot;: null, &quot;execmode&quot;: null, &quot;showinview&quot;: null, &quot;displayname&quot;: &quot;xeyes&quot;, &quot;desktopfile&quot;: null, &quot;executeclassname&quot;: null, &quot;executablefilename&quot;: &quot;xeyes&quot;, &quot;usedefaultapplication&quot;: false, &quot;mimetype&quot;: [], &quot;fileextensions&quot;: [], &quot;legacyfileextensions&quot;: [], &quot;secrets_requirement&quot;: null, &quot;image_pull_policy&quot;: &quot;IfNotPresent&quot;, &quot;image_pull_secrets&quot;: null, &quot;containerengine&quot;: &quot;ephemeral_container&quot;, &quot;securitycontext&quot;: {}, &quot;created&quot;: &quot;2025-02-03T16:11:43.151188552Z&quot;}]
+</code></pre></div>
 <h2 id="execute-the-new-application-xeyes_1">Execute the new application <code>xeyes</code></h2>
 <ul>
 <li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop </li>

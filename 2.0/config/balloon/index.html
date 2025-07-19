@@ -4853,10 +4853,10 @@
 </table>
 <p>If you change this value, you have to rebuild your own oc.user file
 The script oc.user in Dockerfile oc.user :</p>
-<pre><code>ENV BUSER balloon
+<div class="highlight"><pre><span></span><code>ENV BUSER balloon
 RUN groupadd --gid 4096 $BUSER
 RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups lpadmin,sudo $BUSER
-</code></pre>
+</code></pre></div>
 
 
 

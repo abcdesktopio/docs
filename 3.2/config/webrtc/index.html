@@ -4866,8 +4866,8 @@
 <h3 id="stun-server">STUN server</h3>
 <p>STUN servers are used by both client and abcdesktop WebRTC to determine their IP address as visible by the global Internet.</p>
 <p>The STUN server can to hosted on a dedicated droplets and on an external network. For a public Internet usage, the Google-hosted STUN servers is a good </p>
-<pre><code>{ 'urls': 'stun:stun.l.google.com:19302' }
-</code></pre>
+<div class="highlight"><pre><span></span><code>{ &#39;urls&#39;: &#39;stun:stun.l.google.com:19302&#39; }
+</code></pre></div>
 <h3 id="turn-server">TURN server</h3>
 <p>The TURN server can to hosted on a dedicated droplets and on an external network. To reduce latency you should host your TURN server near your kubernetes network.  </p>
 <p>You can run <a href="https://github.com/coturn/coturn">coturn</a> service on dedicated machines or virtual machines, to avoid any scenario where the port range is being restricted or set arbitrarily by the infrastructure or orchestration tools.</p>
@@ -4876,8 +4876,8 @@
 <ul>
 <li>Coturn installation </li>
 </ul>
-<pre><code class="language-bash">apt-get install coturn 
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>coturn<span class="w"> </span>
+</code></pre></div>
 <ul>
 <li>use SSL certificates</li>
 </ul>
@@ -4887,7 +4887,7 @@
 <li>Minimal COTURN configuration file </li>
 </ul>
 <p>Default minimal configuration file <code>/etc/turnserver.conf</code> for abcdesktop. </p>
-<pre><code>listening-port=3478
+<div class="highlight"><pre><span></span><code>listening-port=3478
 tls-listening-port=5349
 lt-cred-mech
 use-auth-secret
@@ -4896,7 +4896,7 @@ server-name=turn.domain.local
 realm=turn.domain.local
 cert=/usr/local/etc/turn.domain.local.pem
 pkey=/usr/local/etc/turn.domain.local.pem
-</code></pre>
+</code></pre></div>
 <p>Update the following configuration file with you own values </p>
 <ul>
 <li><code>static-auth-secret</code></li>
@@ -4917,17 +4917,17 @@ pkey=/usr/local/etc/turn.domain.local.pem
 <li><code>protocol</code> define the <a href="https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT">Traversal Using Relays around NAT</a>  protocol, value can be <code>turn</code> or <code>turns</code></li>
 <li><code>url</code> url for the <a href="https://github.com/coturn/coturn/">coturn</a> service</li>
 </ul>
-<pre><code>webrtc.enable:True
-webrtc.rtc_configuration:{ 'iceServers':[ {'urls':'stun:stun.l.google.com:19302'} ] }
+<div class="highlight"><pre><span></span><code>webrtc.enable:True
+webrtc.rtc_configuration:{ &#39;iceServers&#39;:[ {&#39;urls&#39;:&#39;stun:stun.l.google.com:19302&#39;} ] }
 webrtc.coturn: { 
-  'coturn_static_auth_secret': 'CHANGEME', 
-  'ttl':3600,
-  'protocol': 'turns',
-  'url': 'turn.domain.local:3478' }
-</code></pre>
+  &#39;coturn_static_auth_secret&#39;: &#39;CHANGEME&#39;, 
+  &#39;ttl&#39;:3600,
+  &#39;protocol&#39;: &#39;turns&#39;,
+  &#39;url&#39;: &#39;turn.domain.local:3478&#39; }
+</code></pre></div>
 <p>pyos merges a new <code>rtc_configuration</code> json document from the <code>webrtc.coturn</code> and from <code>webrtc.coturn</code> values. </p>
 <p>pyos adds <code>username</code> and <code>credential</code> entries. For example, a new <code>rtc_configuration</code> json document is send to the web browser </p>
-<pre><code>{
+<div class="highlight"><pre><span></span><code>{
   &quot;iceServers&quot;: [
     { &quot;urls&quot;: &quot;stun:stun.l.google.com:19302&quot; },
     { &quot;urls&quot;: &quot;turns:nturns.domain.local:3478&quot;,
@@ -4935,47 +4935,46 @@ webrtc.coturn: {
       &quot;credential&quot;: &quot;+BuFkb0hFf8pAoFwpp0A0UbO+1k=&quot; } 
   ]
 }
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Update the default environment variable <code>desktop.envlocal</code> to add <code>STUN_SERVER</code></li>
 </ul>
 <p>STUN_SERVER value is used by the <code>gstreamer webrtcbin</code></p>
-<pre><code>desktop.envlocal :  { 
-  'STUN_SERVER': 'stun://stun.l.google.com:19302',
+<div class="highlight"><pre><span></span><code>desktop.envlocal :  { 
+  &#39;STUN_SERVER&#39;: &#39;stun://stun.l.google.com:19302&#39;,
 }
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Update the <code>sound</code> entry in <code>desktop.pod</code> to enable <code>pulseaudio</code> service </li>
 </ul>
 <p>Update the value <code>'enable': False</code> to  <code>'enable': True</code></p>
-<pre><code>desktop.pod : 
+<div class="highlight"><pre><span></span><code>desktop.pod : 
 
     ...[CUT HERE ]...
 
-'sound': { 
-    'image': 'abcdesktopio/oc.pulseaudio:3.2',
-    'pullpolicy': 'IfNotPresent',
-    'enable': True,
-    'tcpport': 4714,
-    'acl':  { 'permit': [ 'all' ] },
-    'resources': { 
-        'requests': { 'memory': &quot;8Mi&quot;, 'cpu': &quot;50m&quot;  },  
-        'limits'  : { 'memory': &quot;2Gi&quot;, 'cpu': &quot;2000m&quot; } 
+&#39;sound&#39;: { 
+    &#39;image&#39;: &#39;abcdesktopio/oc.pulseaudio:3.2&#39;,
+    &#39;pullpolicy&#39;: &#39;IfNotPresent&#39;,
+    &#39;enable&#39;: True,
+    &#39;tcpport&#39;: 4714,
+    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
+    &#39;resources&#39;: { 
+        &#39;requests&#39;: { &#39;memory&#39;: &quot;8Mi&quot;, &#39;cpu&#39;: &quot;50m&quot;  },  
+        &#39;limits&#39;  : { &#39;memory&#39;: &quot;2Gi&quot;, &#39;cpu&#39;: &quot;2000m&quot; } 
     } },
 
     ...[CUT HERE ]...
-
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Apply the new configmap <code>abcdesktop-config</code> for the <code>od.config</code> file</li>
 </ul>
-<pre><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+</code></pre></div>
 <ul>
 <li>Restart pyos pod instance </li>
 </ul>
-<pre><code>kubectl delete pods -l run=pyos-od -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl delete pods -l run=pyos-od -n abcdesktop
+</code></pre></div>
 <h2 id="connect-to-your-desktop">connect to your desktop</h2>
 <p>Open your web browser, and go to your abcdesktop web site. </p>
 <p>Make sure to use secured https protocol, else WebRTC is disabled.</p>
@@ -4992,14 +4991,14 @@ The web browser has an access to local speaker.
 The web browser can get an access to local microphone only if the user allows the access.</p>
 <h4 id="play-sound-with-paplay">Play sound with paplay</h4>
 <p>Open a <code>Terminal Web Shell</code> application and run the command inside the web shell</p>
-<pre><code>paplay /usr/share/sounds/alsa/Rear_Center.wav 
-</code></pre>
+<div class="highlight"><pre><span></span><code>paplay /usr/share/sounds/alsa/Rear_Center.wav 
+</code></pre></div>
 <p>You should heard <code>Rear Center</code> on your local sound device </p>
 <p><img alt="webrtc play sound" src="../img/webrtc_playsound.png" /></p>
 <h4 id="test-microphone-access">Test microphone access</h4>
 <p>Open a <code>Terminal Web Shell</code> application and run the command inside the web shell</p>
-<pre><code>pavumeter --record
-</code></pre>
+<div class="highlight"><pre><span></span><code>pavumeter --record
+</code></pre></div>
 <p>You should see cursor changes if you talk to your abcdesktop</p>
 <p><img alt="webrtc microphone" src="../img/webrtc_microphone.png" /></p>
 <h3 id="step-3-look-at-the-web-browsers-console-log">Step 3, look at the web browser's console log</h3>

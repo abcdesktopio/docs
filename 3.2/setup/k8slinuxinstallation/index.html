@@ -4922,13 +4922,13 @@
 <p>These commands install the latest Kubernetes on a single node Ubuntu 22.04.
 <code>km</code> is a command tools from <a href="https://github.com/jfv-opensource/kube-tools">https://github.com/jfv-opensource/kube-tools</a> repository.</p>
 <p>Clone <a href="https://github.com/jfv-opensource/kube-tools">kube-tools</a> and run <code>km --apply</code> as root.</p>
-<pre><code class="language-bash">git clone https://github.com/jfv-opensource/kube-tools.git
-cd kube-tools
-./km --apply
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/jfv-opensource/kube-tools.git
+<span class="nb">cd</span><span class="w"> </span>kube-tools
+./km<span class="w"> </span>--apply
+</code></pre></div>
 <p>kube-tools installs and configures all components.
 kube-tools runs a simple hello-world pods to check the pods execution.</p>
-<pre><code>Configure repositories &amp; install packages
+<div class="highlight"><pre><span></span><code>Configure repositories &amp; install packages
 2023-10-06 12:37:52 [OK] - fv-az1111-309: Updating package repository
 2023-10-06 12:37:53 [OK] - fv-az1111-309: Installing base needed packages
 2023-10-06 12:37:53 [OK] - fv-az1111-309: Adding docker package repository signature
@@ -4943,7 +4943,7 @@ Get:8 https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages [22.2
 Hit:9 https://ppa.launchpadcontent.net/ubuntu-toolchain-r/test/ubuntu jammy InRelease
 Fetched 71.0 kB in 1s (71.4 kB/s)
 Reading package lists...
-Repository: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable'
+Repository: &#39;deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable&#39;
 Description:
 Archive for codename: jammy components: stable
 More info: https://download.docker.com/linux/ubuntu
@@ -4985,7 +4985,7 @@ Error from server (NotFound): serviceaccounts &quot;default&quot; not found
 2023-10-06 12:39:17 [OK] - fv-az1111-309: delete pod-helloworld
 Configuration archive
 2023-10-06 12:39:17 [OK] - fv-az1111-309: Generating config archive
-</code></pre>
+</code></pre></div>
 
 
 

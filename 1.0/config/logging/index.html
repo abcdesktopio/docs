@@ -4872,7 +4872,7 @@
 </tbody>
 </table>
 <p>The <code>logging</code> sample configuration :</p>
-<pre><code>#              
+<div class="highlight"><pre><span></span><code>#              
 # logging configuration 
 # come from https://docs.python.org/3.8/library/logging.config.html
 # need double %% to escape %
@@ -4886,86 +4886,86 @@
 # graypy.GELFRabbitHandler - RabbitMQ log forwarding
 
 logging: {
-  'version': 1,
-  'disable_existing_loggers': False,
-  'formatters': {
-    'access': {
-      'format': '%%(message)s - user: %%(userid)s',
-      'datefmt': '%%Y-%%m-%%d %%H:%%M:%%S'
+  &#39;version&#39;: 1,
+  &#39;disable_existing_loggers&#39;: False,
+  &#39;formatters&#39;: {
+    &#39;access&#39;: {
+      &#39;format&#39;: &#39;%%(message)s - user: %%(userid)s&#39;,
+      &#39;datefmt&#39;: &#39;%%Y-%%m-%%d %%H:%%M:%%S&#39;
     },
-    'standard': {
-      'format': '%%(asctime)s %%(module)s [%%(levelname)-7s] %%(name)s.%%(funcName)s:%%(userid)s %%(message)s',
-      'datefmt': '%%Y-%%m-%%d %%H:%%M:%%S'
+    &#39;standard&#39;: {
+      &#39;format&#39;: &#39;%%(asctime)s %%(module)s [%%(levelname)-7s] %%(name)s.%%(funcName)s:%%(userid)s %%(message)s&#39;,
+      &#39;datefmt&#39;: &#39;%%Y-%%m-%%d %%H:%%M:%%S&#39;
     },
-    'syslog': {
-      'format': '%%(asctime)s %%(levelname)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s',
-      'datefmt': '%%Y-%%m-%%d %%H:%%M:%%S'
+    &#39;syslog&#39;: {
+      &#39;format&#39;: &#39;%%(asctime)s %%(levelname)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s&#39;,
+      &#39;datefmt&#39;: &#39;%%Y-%%m-%%d %%H:%%M:%%S&#39;
     },
-    'graylog': {
-      'format': '%%(levelname)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s'      
+    &#39;graylog&#39;: {
+      &#39;format&#39;: &#39;%%(levelname)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s&#39;      
     }
   },
-  'filters': {
-    'odcontext': {
-      '()': 'oc.logging.OdContextFilter'
+  &#39;filters&#39;: {
+    &#39;odcontext&#39;: {
+      &#39;()&#39;: &#39;oc.logging.OdContextFilter&#39;
     }
   },
-  'handlers': {
-    'console': {
-      'class': 'logging.StreamHandler',
-      'filters': [ 'odcontext' ],
-      'formatter': 'standard',
-      'stream': 'ext://sys.stdout'
+  &#39;handlers&#39;: {
+    &#39;console&#39;: {
+      &#39;class&#39;: &#39;logging.StreamHandler&#39;,
+      &#39;filters&#39;: [ &#39;odcontext&#39; ],
+      &#39;formatter&#39;: &#39;standard&#39;,
+      &#39;stream&#39;: &#39;ext://sys.stdout&#39;
     },
-    'cherrypy_console': {
-      'class': 'logging.StreamHandler',
-      'filters': [ 'odcontext' ],
-      'formatter': 'access',
-      'stream': 'ext://sys.stdout'
+    &#39;cherrypy_console&#39;: {
+      &#39;class&#39;: &#39;logging.StreamHandler&#39;,
+      &#39;filters&#39;: [ &#39;odcontext&#39; ],
+      &#39;formatter&#39;: &#39;access&#39;,
+      &#39;stream&#39;: &#39;ext://sys.stdout&#39;
     },
-    'cherrypy_access': {
-      'class': 'logging.handlers.RotatingFileHandler',
-      'filters': [ 'odcontext' ],
-      'formatter': 'access',
-      'filename': 'logs/access.log',
-      'maxBytes': 10485760,
-      'backupCount': 20,
-      'encoding': 'utf8'
+    &#39;cherrypy_access&#39;: {
+      &#39;class&#39;: &#39;logging.handlers.RotatingFileHandler&#39;,
+      &#39;filters&#39;: [ &#39;odcontext&#39; ],
+      &#39;formatter&#39;: &#39;access&#39;,
+      &#39;filename&#39;: &#39;logs/access.log&#39;,
+      &#39;maxBytes&#39;: 10485760,
+      &#39;backupCount&#39;: 20,
+      &#39;encoding&#39;: &#39;utf8&#39;
     },
-    'cherrypy_trace': {
-      'class': 'logging.handlers.RotatingFileHandler',
-      'filters': [ 'odcontext' ],
-      'formatter': 'standard',
-      'filename': 'logs/trace.log',
-      'maxBytes': 10485760,
-      'backupCount': 20,
-      'encoding': 'utf8',
-      'mode': 'w'
+    &#39;cherrypy_trace&#39;: {
+      &#39;class&#39;: &#39;logging.handlers.RotatingFileHandler&#39;,
+      &#39;filters&#39;: [ &#39;odcontext&#39; ],
+      &#39;formatter&#39;: &#39;standard&#39;,
+      &#39;filename&#39;: &#39;logs/trace.log&#39;,
+      &#39;maxBytes&#39;: 10485760,
+      &#39;backupCount&#39;: 20,
+      &#39;encoding&#39;: &#39;utf8&#39;,
+      &#39;mode&#39;: &#39;w&#39;
     }
   },
-  'loggers': {
-    '': {
-      'handlers': [ 'console', 'cherrypy_trace'  ],
-      'level': 'DEBUG'
+  &#39;loggers&#39;: {
+    &#39;&#39;: {
+      &#39;handlers&#39;: [ &#39;console&#39;, &#39;cherrypy_trace&#39;  ],
+      &#39;level&#39;: &#39;DEBUG&#39;
     },
-    'docker.utils.config': {
-      'level': 'INFO'
+    &#39;docker.utils.config&#39;: {
+      &#39;level&#39;: &#39;INFO&#39;
     },
-    'urllib3.connectionpool': {
-      'level': 'ERROR'
+    &#39;urllib3.connectionpool&#39;: {
+      &#39;level&#39;: &#39;ERROR&#39;
     },
-    'cherrypy.access': {
-      'handlers': [ 'cherrypy_access' ],
-      'level': 'INFO',
-      'propagate': False
+    &#39;cherrypy.access&#39;: {
+      &#39;handlers&#39;: [ &#39;cherrypy_access&#39; ],
+      &#39;level&#39;: &#39;INFO&#39;,
+      &#39;propagate&#39;: False
     },
-    'cherrypy.error': {
-      'handlers': [ 'console', 'cherrypy_trace' ],
-      'level': 'ERROR',
-      'propagate': False
+    &#39;cherrypy.error&#39;: {
+      &#39;handlers&#39;: [ &#39;console&#39;, &#39;cherrypy_trace&#39; ],
+      &#39;level&#39;: &#39;ERROR&#39;,
+      &#39;propagate&#39;: False
     }
   } }
-</code></pre>
+</code></pre></div>
 
 
 

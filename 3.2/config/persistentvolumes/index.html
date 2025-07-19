@@ -5362,26 +5362,26 @@
 </blockquote>
 <h2 id="define-clusterrole-only-if-you-need-to-create-persistent-volume">Define <code>ClusterRole</code> only if you need to create <code>Persistent Volume</code></h2>
 <p><code>Persistent Volume</code> is a non-namespaced resource, so you need to update the <code>pyos-role</code> to <code>ClusterRole</code> to allow methods <code>[ "get", "list", "create", "patch", "delete" ]</code></p>
-<pre><code class="language-yaml">- apiGroups: [&quot;&quot;]
-  resources: [&quot;persistentvolumes&quot;]
-  verbs: [&quot;get&quot;, &quot;list&quot;, &quot;create&quot;, &quot;patch&quot;, &quot;delete&quot;] 
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiGroups</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;persistentvolumes&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;get&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;list&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;create&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;patch&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;delete&quot;</span><span class="p p-Indicator">]</span><span class="w"> </span>
+</code></pre></div>
 <p>Update the default pyos role to <code>ClusterRole</code></p>
-<pre><code class="language-bash">kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/rbac-role.yaml
-kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/rbac-cluster.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/rbac-role.yaml
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/rbac-cluster.yaml
+</code></pre></div>
 <h2 id="define-persistent-volume-and-persistent-volume-claim">Define <code>persistent volume</code> and <code>persistent volume claim</code></h2>
 <p>To define <code>Persistent Volume</code> or <code>Persistent Volume Claim</code>, update the od.config file and set</p>
-<pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
+<div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
 desktop.persistentvolume: { YOUR PERSISTENT VOLUME DICT CONFIGURATION TEMPLATE - THIS CAN BE NONE }
-desktop.persistentvolumeclaim: 'NAME OF AN EXISTING PVC' OR { YOUR PERSISTENT VOLUME CLAIM DICT CONFIGURATION TEMPLATE } 
+desktop.persistentvolumeclaim: &#39;NAME OF AN EXISTING PVC&#39; OR { YOUR PERSISTENT VOLUME CLAIM DICT CONFIGURATION TEMPLATE } 
 desktop.removepersistentvolume: False
 desktop.removepersistentvolumeclaim: True
-</code></pre>
+</code></pre></div>
 <h3 id="desktophomedirectorytype">desktop.homedirectorytype</h3>
 <p>To use <code>desktop.persistentvolume</code> and <code>desktop.persistentvolumeclaim</code> values, the <code>desktop.homedirectorytype</code> must be set to <code>persistentVolumeClaim</code></p>
-<pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
-</code></pre>
+<div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
+</code></pre></div>
 <h3 id="define-desktoppersistentvolume-is-optional">Define <code>desktop.persistentvolume</code> is optional</h3>
 <p><code>desktop.persistentvolume</code> is optional, the default value is <code>None</code>. 
 <code>desktop.persistentvolume</code> can be <code>None</code>, or a <code>string</code> or a <code>dict</code>. </p>
@@ -5389,26 +5389,26 @@ desktop.removepersistentvolumeclaim: True
 <p>If desktop.persistentvolume is a string, it must match the name of a persistentvolume. abcdesktop does not create the persistent volume. The persistent volumes should already exist.</p>
 <p>If desktop.persistentvolume is a <code>dict</code> then abcdesktop creates the persistent volume. The <code>dict</code> values of persistent volume support template values. </p>
 <p>For example : </p>
-<pre><code>desktop.persistentvolume: {
-    'metadata': { 'name': '{{ provider }}-{{ userid }}-{{ uuid }}' },
-    'spec': {
-    'storageClassName': 'nfs-csi',
-    'mountOptions': [
-      'nfsvers=3'
+<div class="highlight"><pre><span></span><code>desktop.persistentvolume: {
+    &#39;metadata&#39;: { &#39;name&#39;: &#39;{{ provider }}-{{ userid }}-{{ uuid }}&#39; },
+    &#39;spec&#39;: {
+    &#39;storageClassName&#39;: &#39;nfs-csi&#39;,
+    &#39;mountOptions&#39;: [
+      &#39;nfsvers=3&#39;
     ],
-    'capacity': {
-      'storage': '10Gi'
+    &#39;capacity&#39;: {
+      &#39;storage&#39;: &#39;10Gi&#39;
     },
-    'accessModes': [ 'ReadWriteOnce' ],
-    'csi': {
-      'driver': 'nfs.csi.k8s.io',
-      'readOnly': False,
-      'volumeHandle': '192.168.7.101#volume1#homedir#{{ userid }}',
-      'volumeAttributes': {
-          'server': '192.168.7.101',
-          'share': '/volume1/homedir/{{ userid }}'
+    &#39;accessModes&#39;: [ &#39;ReadWriteOnce&#39; ],
+    &#39;csi&#39;: {
+      &#39;driver&#39;: &#39;nfs.csi.k8s.io&#39;,
+      &#39;readOnly&#39;: False,
+      &#39;volumeHandle&#39;: &#39;192.168.7.101#volume1#homedir#{{ userid }}&#39;,
+      &#39;volumeAttributes&#39;: {
+          &#39;server&#39;: &#39;192.168.7.101&#39;,
+          &#39;share&#39;: &#39;/volume1/homedir/{{ userid }}&#39;
       } } } }
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>If you set <code>desktop.persistentvolume</code> to <code>None</code>, or if you create the persistent volume manualy, then you don't need to update the pyos role.</p>
 </blockquote>
@@ -5422,11 +5422,11 @@ The type of <code>desktop.persistentvolumeclaim</code> can be <code>None</code>,
 <h4 id="define-desktoppersistentvolumeclaim-as-a-string">Define <code>desktop.persistentvolumeclaim</code> as a string</h4>
 <p>All pods will share the same persistent volume claim, and the same persistent volume. The access mode must be <code>ReadWriteMany</code>, else only one pod (the first one) will bound the pvc.</p>
 <p>Create a persistent volume</p>
-<pre><code>kubectl get pv -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl get pv -n abcdesktop
 NAME     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                      STORAGECLASS   REASON   AGE
 pv-nfs   10Gi       RWX            Retain           Bound    abcdesktop/homedir         nfs-csi                 3d22h
-</code></pre>
-<pre><code>kubectl describe pv pv-nfs 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>kubectl describe pv pv-nfs 
 Name:            pv-nfs
 Labels:          &lt;none&gt;
 Annotations:     pv.kubernetes.io/bound-by-controller: yes
@@ -5450,13 +5450,13 @@ Source:
     VolumeAttributes:      server=192.168.7.101
                            share=/volume1/homedir
 Events:                &lt;none&gt;
-</code></pre>
+</code></pre></div>
 <p>Create a persistent volume claim</p>
-<pre><code>kubectl get pvc -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl get pvc -n abcdesktop
 NAME      STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 homedir   Bound    pv-nfs   10Gi       RWX            nfs-csi        3d22h
-</code></pre>
-<pre><code>kubectl describe pvc homedir -n abcdesktop
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>kubectl describe pvc homedir -n abcdesktop
 Name:          homedir
 Namespace:     abcdesktop
 StorageClass:  nfs-csi
@@ -5470,54 +5470,54 @@ VolumeMode:    Filesystem
 Used By:       fry-88a6e
                hermes-7d84b
 Events:        &lt;none&gt;
-</code></pre>
+</code></pre></div>
 <p>In the od.config file, set the values</p>
-<pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
+<div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
 desktop.persistentvolume: None
-desktop.persistentvolumeclaim: 'homedir'
+desktop.persistentvolumeclaim: &#39;homedir&#39;
 desktop.removepersistentvolumeclaim: False
-</code></pre>
+</code></pre></div>
 <p>If you need to use subPath</p>
-<pre><code>desktop.persistentvolumeclaimforcesubpath: True
-</code></pre>
+<div class="highlight"><pre><span></span><code>desktop.persistentvolumeclaimforcesubpath: True
+</code></pre></div>
 <p>'subPath' is not supported for ephemeral container.</p>
 <h4 id="define-desktoppersistentvolumeclaim-as-a-dictionary">Define <code>desktop.persistentvolumeclaim</code> as a dictionary</h4>
 <p>in od.config file</p>
-<pre><code># set to persistentVolumeClaim
-desktop.homedirectorytype: 'persistentVolumeClaim'
+<div class="highlight"><pre><span></span><code># set to persistentVolumeClaim
+desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
 desktop.persistentvolumespec: None
 desktop.persistentvolumeclaim: {
-    'metadata': {
-        'name': '{{ provider }}-{{ userid }}',
+    &#39;metadata&#39;: {
+        &#39;name&#39;: &#39;{{ provider }}-{{ userid }}&#39;,
     },
-    'spec': {
-      'storageClassName': 'mystorageclass',
-      'resources': { 
-        'requests': { 
-          'storage': '1Gi'
+    &#39;spec&#39;: {
+      &#39;storageClassName&#39;: &#39;mystorageclass&#39;,
+      &#39;resources&#39;: { 
+        &#39;requests&#39;: { 
+          &#39;storage&#39;: &#39;1Gi&#39;
         } 
     },
-    'accessModes': [ 'ReadWriteMany' ] } }
-</code></pre>
+    &#39;accessModes&#39;: [ &#39;ReadWriteMany&#39; ] } }
+</code></pre></div>
 <p>Replace <code>mystorageclass</code> by storageclass of your cloud provider.</p>
 <p>To list the storage classes</p>
-<pre><code class="language-bash">kubectl get storageclass
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
+</code></pre></div>
 <ul>
 <li>The example output is as follows on the cloud provider <a href="https://aws.amazon.com/">aws</a>.</li>
 </ul>
-<pre><code>NAME            PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+<div class="highlight"><pre><span></span><code>NAME            PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
 gp2 (default)   kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   false 
-</code></pre>
+</code></pre></div>
 <ul>
 <li>The example output is as follows on the cloud provider <a href="https://www.digitalocean.com/">digitalocean</a>.</li>
 </ul>
-<pre><code>NAME                          PROVISIONER                    RECLAIMPOLICY          Immediate           false                  3h22m
+<div class="highlight"><pre><span></span><code>NAME                          PROVISIONER                    RECLAIMPOLICY          Immediate           false                  3h22m
 do-block-storage (default)    dobs.csi.digitalocean.com      Delete          Immediate           true                   2d7h
 do-block-storage-retain       dobs.csi.digitalocean.com      Retain          Immediate           true                   2d7h
 do-block-storage-xfs          dobs.csi.digitalocean.com      Delete          Immediate           true                   2d7h
 do-block-storage-xfs-retain   dobs.csi.digitalocean.com      Retain          Immediate           true                   2d7h
-</code></pre>
+</code></pre></div>
 <h3 id="template-values-for-desktoppersistentvolumespec-and-desktoppersistentvolumeclaim">Template values for <code>desktop.persistentvolumespec</code> and <code>desktop.persistentvolumeclaim</code></h3>
 <p>Value defines inside <code>{{ VALUE }}</code> is replaced by the templated value keys:</p>
 <p>The template values can be one of them :</p>
@@ -5604,71 +5604,71 @@ do-block-storage-xfs-retain   dobs.csi.digitalocean.com      Retain          Imm
 </tbody>
 </table>
 <p>The <code>uuid</code> have the same value for the persistent volume and for the persistent volume claim. <code>uuid</code> can be use for naming the PVC or the PV, or on all string values.</p>
-<pre><code>desktop.persistentvolumeclaim: {
-    'metadata': {
-        'name': '{{ provider }}-{{ userid }}-{{ uuid }}',
+<div class="highlight"><pre><span></span><code>desktop.persistentvolumeclaim: {
+    &#39;metadata&#39;: {
+        &#39;name&#39;: &#39;{{ provider }}-{{ userid }}-{{ uuid }}&#39;,
     },
-    'spec': {
-      'volumeName': '{{ provider }}-{{ userid }}-{{ uuid }}',
-      'storageClassName': 'nfs-csi',
-      'resources': { 
-        'requests': { 
-          'storage': '1Gi'
+    &#39;spec&#39;: {
+      &#39;volumeName&#39;: &#39;{{ provider }}-{{ userid }}-{{ uuid }}&#39;,
+      &#39;storageClassName&#39;: &#39;nfs-csi&#39;,
+      &#39;resources&#39;: { 
+        &#39;requests&#39;: { 
+          &#39;storage&#39;: &#39;1Gi&#39;
         } 
     },
-    'accessModes': [ 'ReadWriteOnce' ] } }
+    &#39;accessModes&#39;: [ &#39;ReadWriteOnce&#39; ] } }
 
 desktop.persistentvolume: {
-    'metadata': { 'name': '{{ provider }}-{{ userid }}-{{ uuid }}' },
-    'spec': {
-    'storageClassName': 'nfs-csi',
-    'mountOptions': [
-      'nfsvers=3'
+    &#39;metadata&#39;: { &#39;name&#39;: &#39;{{ provider }}-{{ userid }}-{{ uuid }}&#39; },
+    &#39;spec&#39;: {
+    &#39;storageClassName&#39;: &#39;nfs-csi&#39;,
+    &#39;mountOptions&#39;: [
+      &#39;nfsvers=3&#39;
     ],
-    'capacity': {
-      'storage': '10Gi'
+    &#39;capacity&#39;: {
+      &#39;storage&#39;: &#39;10Gi&#39;
     },
-    'accessModes': [ 'ReadWriteOnce' ],
-    'csi': {
-      'driver': 'nfs.csi.k8s.io',
-      'readOnly': False,
-      'volumeHandle': '192.168.7.101#volume1#homedir#{{ userid }}',
-      'volumeAttributes': {
-          'server': '192.168.7.101',
-          'share': '/volume1/homedir/{{ userid }}'
+    &#39;accessModes&#39;: [ &#39;ReadWriteOnce&#39; ],
+    &#39;csi&#39;: {
+      &#39;driver&#39;: &#39;nfs.csi.k8s.io&#39;,
+      &#39;readOnly&#39;: False,
+      &#39;volumeHandle&#39;: &#39;192.168.7.101#volume1#homedir#{{ userid }}&#39;,
+      &#39;volumeAttributes&#39;: {
+          &#39;server&#39;: &#39;192.168.7.101&#39;,
+          &#39;share&#39;: &#39;/volume1/homedir/{{ userid }}&#39;
       } } } }
-</code></pre>
+</code></pre></div>
 <p>The variables persistentvolumeclaim and persistentvolume become </p>
-<pre><code>desktop.persistentvolumeclaim: {
-      'metadata': {'name': 'planet-fry-1841f'}, 
-      'spec': {
-        'volumeName': 'planet-fry-1841f', 
-        'storageClassName': 'nfs-csi', 
-        'resources': {
-          'requests': {'storage': '1Gi'}
+<div class="highlight"><pre><span></span><code>desktop.persistentvolumeclaim: {
+      &#39;metadata&#39;: {&#39;name&#39;: &#39;planet-fry-1841f&#39;}, 
+      &#39;spec&#39;: {
+        &#39;volumeName&#39;: &#39;planet-fry-1841f&#39;, 
+        &#39;storageClassName&#39;: &#39;nfs-csi&#39;, 
+        &#39;resources&#39;: {
+          &#39;requests&#39;: {&#39;storage&#39;: &#39;1Gi&#39;}
         }, 
-        'accessModes': ['ReadWriteOnce']
+        &#39;accessModes&#39;: [&#39;ReadWriteOnce&#39;]
       }
 }
 desktop.persistentvolume: {
-     'metadata': { 'name': 'planet-fry-1841f'}, 
-     'spec': {
-       'storageClassName': 'nfs-csi', 
-       'mountOptions': ['nfsvers=3'], 
-       'capacity': {'storage': '10Gi'}, 
-       'accessModes': ['ReadWriteOnce'], 
-       'csi': {
-         'driver': 'nfs.csi.k8s.io', 
-         'readOnly': False, 
-         'volumeHandle': '192.168.7.101#volume1#homedir#fry',
-         'volumeAttributes': {
-           'server': '192.168.7.101', 
-           'share': '/volume1/homedir/fry'
+     &#39;metadata&#39;: { &#39;name&#39;: &#39;planet-fry-1841f&#39;}, 
+     &#39;spec&#39;: {
+       &#39;storageClassName&#39;: &#39;nfs-csi&#39;, 
+       &#39;mountOptions&#39;: [&#39;nfsvers=3&#39;], 
+       &#39;capacity&#39;: {&#39;storage&#39;: &#39;10Gi&#39;}, 
+       &#39;accessModes&#39;: [&#39;ReadWriteOnce&#39;], 
+       &#39;csi&#39;: {
+         &#39;driver&#39;: &#39;nfs.csi.k8s.io&#39;, 
+         &#39;readOnly&#39;: False, 
+         &#39;volumeHandle&#39;: &#39;192.168.7.101#volume1#homedir#fry&#39;,
+         &#39;volumeAttributes&#39;: {
+           &#39;server&#39;: &#39;192.168.7.101&#39;, 
+           &#39;share&#39;: &#39;/volume1/homedir/fry&#39;
          }
        }
       }
 }
-</code></pre>
+</code></pre></div>
 <h3 id="desktopremovepersistentvolume">desktop.removepersistentvolume</h3>
 <p>During the remove desktop process, delete or not the persistent volume. The persistent volume can be delete only if the <code>desktop.deletepersistentvolumeclaim</code> is True.</p>
 <p>The default value for <code>desktop.removepersistentvolume</code> is <code>False</code>. </p>
@@ -5681,45 +5681,45 @@ desktop.persistentvolume: {
 <h3 id="on-the-nfs-server">On the nfs server</h3>
 <p>On the nfs server, create an export with the <code>no_root_squash</code> option</p>
 <p>For example export <code>/volume1/pods</code></p>
-<pre><code>/volume1/pods        192.168.7.0/24(rw,async,no_wdelay,crossmnt,insecure,no_root_squash,insecure_locks,anonuid=1025,anongid=100)
-</code></pre>
+<div class="highlight"><pre><span></span><code>/volume1/pods        192.168.7.0/24(rw,async,no_wdelay,crossmnt,insecure,no_root_squash,insecure_locks,anonuid=1025,anongid=100)
+</code></pre></div>
 <h3 id="install-the-csi-driver-nfs">Install the <code>csi-driver-nfs</code></h3>
 <p>Run the install <code>install-driver.sh</code> command from <a href="https://github.com/kubernetes-csi/csi-driver-nfs">kubernetes-csi/csi-driver-nfs</a> GitHub repository.</p>
-<pre><code>curl -skSL https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/v4.4.0/deploy/install-driver.sh | bash -s v4.4.0 --
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl -skSL https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/v4.4.0/deploy/install-driver.sh | bash -s v4.4.0 --
+</code></pre></div>
 <p>Create a storage class file nfs-csi-sc-ds01.yaml,</p>
 <ul>
 <li>replace server: <code>192.168.7.101</code> by your own nfs server ip address</li>
 <li>replace share: <code>/volume1/pods</code> by your own share</li>
 </ul>
 <p>Content of the default <code>nfs-csi-sc-ds01.yaml</code></p>
-<pre><code class="language-yaml">apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: nfs-csi-sc-ds01
-provisioner: nfs.csi.k8s.io
-parameters:
-  server: 192.168.7.101
-  share: /volume1/pods
-  mountPermissions: &quot;0755&quot;
-  # csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume
-  # csi.storage.k8s.io/provisioner-secret-name: &quot;mount-options&quot;
-  # csi.storage.k8s.io/provisioner-secret-namespace: &quot;default&quot;
-reclaimPolicy: Delete
-volumeBindingMode: Immediate
-mountOptions:
-  - nfsvers=3
-</code></pre>
-<pre><code class="language-bash">kubectl apply -f nfs-csi-sc-ds01.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">storage.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StorageClass</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nfs-csi-sc-ds01</span>
+<span class="nt">provisioner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nfs.csi.k8s.io</span>
+<span class="nt">parameters</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.7.101</span>
+<span class="w">  </span><span class="nt">share</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/volume1/pods</span>
+<span class="w">  </span><span class="nt">mountPermissions</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0755&quot;</span>
+<span class="w">  </span><span class="c1"># csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume</span>
+<span class="w">  </span><span class="c1"># csi.storage.k8s.io/provisioner-secret-name: &quot;mount-options&quot;</span>
+<span class="w">  </span><span class="c1"># csi.storage.k8s.io/provisioner-secret-namespace: &quot;default&quot;</span>
+<span class="nt">reclaimPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Delete</span>
+<span class="nt">volumeBindingMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Immediate</span>
+<span class="nt">mountOptions</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nfsvers=3</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>nfs-csi-sc-ds01.yaml
+</code></pre></div>
 <p>You read the response on stdout</p>
-<pre><code>storageclass.storage.k8s.io/nfs-csi-sc-ds01 created
-</code></pre>
+<div class="highlight"><pre><span></span><code>storageclass.storage.k8s.io/nfs-csi-sc-ds01 created
+</code></pre></div>
 <p>Check the storage class <code>nfs-csi-sc-ds01</code></p>
-<pre><code>kubectl get sc
+<div class="highlight"><pre><span></span><code>kubectl get sc
 NAME                 PROVISIONER      RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
 nfs-csi-sc-ds01      nfs.csi.k8s.io   Delete          Immediate           false                  18m
-</code></pre>
+</code></pre></div>
 <h3 id="update-the-odconfig-file">Update the <code>od.config</code> file</h3>
 <p>In your od.config file, define the entry <code>desktop.persistentvolumeclaim</code></p>
 <ul>
@@ -5728,53 +5728,53 @@ nfs-csi-sc-ds01      nfs.csi.k8s.io   Delete          Immediate           false 
 <li><code>desktop.persistentvolumeclaim</code> create a new persistent volume claim for the user's homeDir, the storageClassName <code>nfs-csi-sc-ds01</code></li>
 </ul>
 <p>The Persistent Volume and Persistent Volume Claim are created by abcdesktop. Abcdesktop defines a binding between that specific PV and PVC</p>
-<pre><code># set to persistentVolumeClaim
-desktop.homedirectorytype: 'persistentVolumeClaim'
+<div class="highlight"><pre><span></span><code># set to persistentVolumeClaim
+desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
 desktop.deletepersistentvolume: False
 desktop.deletepersistentvolumeclaim: True
 desktop.persistentvolume: {
-            'metadata': { 'name': '{{ provider }}-{{ userid }}' },
-            'spec': {
-            'storageClassName': 'nfs-csi',
-            'mountOptions': [
-              'nfsvers=3'
+            &#39;metadata&#39;: { &#39;name&#39;: &#39;{{ provider }}-{{ userid }}&#39; },
+            &#39;spec&#39;: {
+            &#39;storageClassName&#39;: &#39;nfs-csi&#39;,
+            &#39;mountOptions&#39;: [
+              &#39;nfsvers=3&#39;
             ],
-            'capacity': {
-              'storage': '10Gi'
+            &#39;capacity&#39;: {
+              &#39;storage&#39;: &#39;10Gi&#39;
             },
-            'accessModes': [ 'ReadWriteOnce' ],
-            'csi': {
-              'driver': 'nfs.csi.k8s.io',
-              'readOnly': False,
-              'volumeHandle': '192.168.7.101#volume1#homedir#{{ userid }}',
-              'volumeAttributes': {
-                  'server': '192.168.7.101',
-                  'share': '/volume1/homedir/{{ userid }}'
+            &#39;accessModes&#39;: [ &#39;ReadWriteOnce&#39; ],
+            &#39;csi&#39;: {
+              &#39;driver&#39;: &#39;nfs.csi.k8s.io&#39;,
+              &#39;readOnly&#39;: False,
+              &#39;volumeHandle&#39;: &#39;192.168.7.101#volume1#homedir#{{ userid }}&#39;,
+              &#39;volumeAttributes&#39;: {
+                  &#39;server&#39;: &#39;192.168.7.101&#39;,
+                  &#39;share&#39;: &#39;/volume1/homedir/{{ userid }}&#39;
               } } } }
 
 desktop.persistentvolumeclaim: {
-            'metadata': {
-                'name': '{{ provider }}-{{ userid }}',
+            &#39;metadata&#39;: {
+                &#39;name&#39;: &#39;{{ provider }}-{{ userid }}&#39;,
             },
-            'spec': {
-              'storageClassName': 'nfs-csi',
-              'volumeName': '{{ provider }}-{{ userid }}',
-              'resources': { 
-                'requests': { 
-                  'storage': '1Gi'
+            &#39;spec&#39;: {
+              &#39;storageClassName&#39;: &#39;nfs-csi&#39;,
+              &#39;volumeName&#39;: &#39;{{ provider }}-{{ userid }}&#39;,
+              &#39;resources&#39;: { 
+                &#39;requests&#39;: { 
+                  &#39;storage&#39;: &#39;1Gi&#39;
                 } 
             },
-            'accessModes': [ 'ReadWriteMany' ] } }
-</code></pre>
+            &#39;accessModes&#39;: [ &#39;ReadWriteMany&#39; ] } }
+</code></pre></div>
 <p>Update the new config file and restart <code>pyos</code> pods.
 Update the pyos role to allow </p>
-<pre><code class="language-bash">kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/rbac-role.yaml
-kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/rbac-cluster.yaml
-</code></pre>
-<pre><code class="language-bash">kubectl delete configmap abcdesktop-config -n abcdesktop
-kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
-kubectl delete pods -l run=pyos-od -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/rbac-role.yaml
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/rbac-cluster.yaml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+kubectl<span class="w"> </span>create<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>--from-file<span class="o">=</span>od.config<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
 <p>abcdesktop creates PV and PVC for you.</p>
 <h3 id="login-to-your-abcdesktop-service">Login to your abcdesktop service</h3>
 <p>Login as user (<code>Philip J. Fry</code>, <code>fry</code>)</p>
@@ -5787,35 +5787,35 @@ kubectl delete pods -l run=pyos-od -n abcdesktop
 <p>The fry home dir is mounted on <code>192.168.7.101:/volume1/pods/pvc-b8317d7b-dc35-4fc3-88e9-ad894ab11d32</code></p>
 <h3 id="list-the-persistentvolume-and-persistentvolumeclaim">List the PersistentVolume and PersistentVolumeClaim</h3>
 <p>List the new PersistentVolume</p>
-<pre><code class="language-bash">kubectl get pv 
-NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                         STORAGECLASS      REASON   AGE
-planet-fry                                 10Gi       RWO            Retain           Bound    abcdesktop/planet-fry         nfs-csi                    2m58s
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pv<span class="w"> </span>
+NAME<span class="w">                                       </span>CAPACITY<span class="w">   </span>ACCESS<span class="w"> </span>MODES<span class="w">   </span>RECLAIM<span class="w"> </span>POLICY<span class="w">   </span>STATUS<span class="w">   </span>CLAIM<span class="w">                         </span>STORAGECLASS<span class="w">      </span>REASON<span class="w">   </span>AGE
+planet-fry<span class="w">                                 </span>10Gi<span class="w">       </span>RWO<span class="w">            </span>Retain<span class="w">           </span>Bound<span class="w">    </span>abcdesktop/planet-fry<span class="w">         </span>nfs-csi<span class="w">                    </span>2m58s
+</code></pre></div>
 <p>List the new PersistentVolumeClaim</p>
-<pre><code class="language-bash">kubectl get pvc -n abcdesktop 
-NAME               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
-planet-fry         Bound    planet-fry                                 10Gi       RWO            nfs-csi        107s
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>
+NAME<span class="w">               </span>STATUS<span class="w">   </span>VOLUME<span class="w">                                     </span>CAPACITY<span class="w">   </span>ACCESS<span class="w"> </span>MODES<span class="w">   </span>STORAGECLASS<span class="w">      </span>AGE
+planet-fry<span class="w">         </span>Bound<span class="w">    </span>planet-fry<span class="w">                                 </span>10Gi<span class="w">       </span>RWO<span class="w">            </span>nfs-csi<span class="w">        </span>107s
+</code></pre></div>
 <p>Get the persistent volume claim's description</p>
-<pre><code class="language-bash">kubectl describe pvc planet-fry  -n abcdesktop
-Name:          planet-fry
-Namespace:     abcdesktop
-StorageClass:  nfs-csi
-Status:        Bound
-Volume:        planet-fry
-Labels:        access_provider=planet
-               access_providertype=ldap
-               access_userid=fry
-Annotations:   pv.kubernetes.io/bind-completed: yes
-Finalizers:    [kubernetes.io/pvc-protection]
-Capacity:      10Gi
-Access Modes:  RWO
-VolumeMode:    Filesystem
-Used By:       fry-055f6
-Events:        &lt;none&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span>planet-fry<span class="w">  </span>-n<span class="w"> </span>abcdesktop
+Name:<span class="w">          </span>planet-fry
+Namespace:<span class="w">     </span>abcdesktop
+StorageClass:<span class="w">  </span>nfs-csi
+Status:<span class="w">        </span>Bound
+Volume:<span class="w">        </span>planet-fry
+Labels:<span class="w">        </span><span class="nv">access_provider</span><span class="o">=</span>planet
+<span class="w">               </span><span class="nv">access_providertype</span><span class="o">=</span>ldap
+<span class="w">               </span><span class="nv">access_userid</span><span class="o">=</span>fry
+Annotations:<span class="w">   </span>pv.kubernetes.io/bind-completed:<span class="w"> </span>yes
+Finalizers:<span class="w">    </span><span class="o">[</span>kubernetes.io/pvc-protection<span class="o">]</span>
+Capacity:<span class="w">      </span>10Gi
+Access<span class="w"> </span>Modes:<span class="w">  </span>RWO
+VolumeMode:<span class="w">    </span>Filesystem
+Used<span class="w"> </span>By:<span class="w">       </span>fry-055f6
+Events:<span class="w">        </span>&lt;none&gt;
+</code></pre></div>
 <p>Get the persistent volume description</p>
-<pre><code>kubectl describe pv planet-fry
+<div class="highlight"><pre><span></span><code>kubectl describe pv planet-fry
 Name:            planet-fry
 Labels:          access_provider=planet
                  access_providertype=ldap
@@ -5840,33 +5840,33 @@ Source:
     VolumeAttributes:      server=192.168.7.101
                            share=/volume1/homedir/fry
 Events:                &lt;none&gt;
-</code></pre>
+</code></pre></div>
 <h2 id="define-persistentvolume-using-storage-class-do-block-storage-on-digitalocean">Define persistentVolume using storage class <code>do-block-storage</code> on digitalocean</h2>
 <h3 id="update-odconfig-file">Update od.config file</h3>
 <p>Update od.config file with the options</p>
-<pre><code>desktop.homedirectorytype: 'persistentVolumeClaim'
+<div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
 desktop.persistentvolume: None
 desktop.persistentvolumeclaim: {
-            'metadata': {
-                'name': '{{ provider }}-{{ userid }}',
+            &#39;metadata&#39;: {
+                &#39;name&#39;: &#39;{{ provider }}-{{ userid }}&#39;,
             },
-            'spec': {
-              'storageClassName': 'do-block-storage',
-              'resources': {
-                'requests': {
-                  'storage': '1Gi'
+            &#39;spec&#39;: {
+              &#39;storageClassName&#39;: &#39;do-block-storage&#39;,
+              &#39;resources&#39;: {
+                &#39;requests&#39;: {
+                  &#39;storage&#39;: &#39;1Gi&#39;
                 }
             },
-            'accessModes': [ 'ReadWriteOnce' ] } }
-</code></pre>
+            &#39;accessModes&#39;: [ &#39;ReadWriteOnce&#39; ] } }
+</code></pre></div>
 <p>Update the configmap</p>
-<pre><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+</code></pre></div>
 <p>Restart pyos pod</p>
-<pre><code>kubectl delete pods -l run=pyos-od -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl delete pods -l run=pyos-od -n abcdesktop
+</code></pre></div>
 <p>Login to your abcdesktop service, you should read on the html page, the status</p>
-<pre><code>b.Reading your persistent volume claim planet-fry, status is Pending, using storage class do-block-storage ....
+<div class="highlight"><pre><span></span><code>b.Reading your persistent volume claim planet-fry, status is Pending, using storage class do-block-storage ....
 b.Creating your desktop
 b.Successfully assigned abcdesktop/fry-0d805 to pool-g8u8ddr44-yhh3i.................
 b.Your pod gets event SuccessfulAttachVolume AttachVolume.Attach succeeded for volume &quot;pvc-38899590-c94a-4849-a111-31ae7de624e1&quot; ..
@@ -5878,9 +5878,9 @@ c.Waiting for desktop graphical service 1/42........
 c.Waiting for desktop spawner service 1/42
 c.Waiting for desktop graphical service 2/42
 Rock and roll
-</code></pre>
+</code></pre></div>
 <p>Read the new pod for fry the user <code>fry</code></p>
-<pre><code>kubectl get pods  -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl get pods  -n abcdesktop
 NAME                            READY   STATUS    RESTARTS   AGE
 fry-0d805                       4/4     Running   0          17m
 memcached-od-5ff8844d56-lcn7p   1/1     Running   0          106m
@@ -5889,29 +5889,29 @@ nginx-od-7445969696-lpfhh       1/1     Running   0          106m
 openldap-od-5bbdd75864-dprvl    1/1     Running   0          106m
 pyos-od-7584db6787-chtdc        1/1     Running   0          19m
 speedtest-od-7f5484966f-5pl6k   1/1     Running   0          106m
-</code></pre>
+</code></pre></div>
 <p>Read the pvc for fry</p>
-<pre><code>kubectl get pvc  -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl get pvc  -n abcdesktop
 NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
 planet-fry   Bound    pvc-38899590-c94a-4849-a111-31ae7de624e1   1Gi        RWO            do-block-storage   17m
-</code></pre>
+</code></pre></div>
 <p>Read the pv for fry</p>
-<pre><code>kubectl get pv                
+<div class="highlight"><pre><span></span><code>kubectl get pv                
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS       REASON   AGE
 pvc-38899590-c94a-4849-a111-31ae7de624e1   1Gi        RWO            Delete           Bound    abcdesktop/planet-fry   do-block-storage            17m
-</code></pre>
+</code></pre></div>
 <h2 id="define-desktoppersistentvolumeclaimforcesubpath">Define <code>desktop.persistentvolumeclaimforcesubpath</code></h2>
 <p><code>desktop.persistentvolumeclaimforcesubpath</code> is a boolean. 
 The default value of <code>desktop.persistentvolumeclaimforcesubpath</code> is <code>False</code></p>
 <p>If <code>desktop.persistentvolumeclaimforcesubpath</code> is set to <code>True</code> then <code>persistentvolumeclaim</code> is mounted with the <code>subPath</code> option.</p>
 <p>Subpath mounts are not allowed for <a href="https://github.com/kubernetes-client/python/blob/master/kubernetes/docs/V1EphemeralContainer.md">ephemeral containers</a>. Subpath cannot be updated. So you can run only pod applications, if you set <code>desktop.persistentvolumeclaimforcesubpath</code> to <code>True</code>.</p>
 <p>If you try to start an ephemeral container application, you get an error code <code>422</code> and the message</p>
-<pre><code class="language-json">{ 
-    &quot;reason&quot;:&quot;FieldValueForbidden&quot;,
-    &quot;message&quot;:&quot;Forbidden: can not be set for an Ephemeral Container&quot;,
-    &quot;field&quot;:&quot;spec.ephemeralContainers[8].volumeMounts[0].subPath&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="s2">&quot;FieldValueForbidden&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;Forbidden: can not be set for an Ephemeral Container&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;spec.ephemeralContainers[8].volumeMounts[0].subPath&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="use-case-for-the-desktoppersistentvolumeclaimforcesubpath-option">Use case for the <code>desktop.persistentvolumeclaimforcesubpath</code> option</h3>
 <p>In this case :</p>
 <ul>
@@ -5920,7 +5920,7 @@ The default value of <code>desktop.persistentvolumeclaimforcesubpath</code> is <
 <li>The nfs server allows user to access subfolders</li>
 </ul>
 <p>We create the unique <code>PersistentVolume</code> named <code>pv-nfs</code>.</p>
-<pre><code>---
+<div class="highlight"><pre><span></span><code>---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -5946,12 +5946,12 @@ spec:
       server: 192.168.7.101
       share: /volume1/home
 ---
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>accessModes is <code>ReadWriteMany</code> for the <code>PersistentVolume</code></p>
 </blockquote>
 <p>We create the unique <code>PersistentVolumeClaim</code> named <code>pvc-nfs-homedir</code></p>
-<pre><code>---
+<div class="highlight"><pre><span></span><code>---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -5966,30 +5966,30 @@ spec:
   volumeName: pv-nfs
   storageClassName: nfs-csi
 ---
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>accessModes is <code>ReadWriteMany</code> for the <code>PersistentVolumeClaim</code></p>
 </blockquote>
 <p>We define in od.config file</p>
-<pre><code>desktop.persistentvolume: 'pvc-nfs'
-desktop.persistentvolumeclaim: 'pvc-nfs-homedir'
+<div class="highlight"><pre><span></span><code>desktop.persistentvolume: &#39;pvc-nfs&#39;
+desktop.persistentvolumeclaim: &#39;pvc-nfs-homedir&#39;
 desktop.persistentvolumeclaimforcesubpath : True
-</code></pre>
+</code></pre></div>
 <p>All pods share the same <code>PersistentVolumeClaim</code> named <code>pvc-nfs-homedir</code>, the <code>desktop.persistentvolumeclaimforcesubpath</code> is set to <code>True</code>, the subPath value is set with the default of the current LDAP <code>userid</code>. So the user's home directory is <code>/volume1/home/{{ userid }}</code>. The nfs server allows user to access subfolders, the mount operation is permitted.</p>
 <h2 id="known-issues">known issues</h2>
 <h3 id="bound-a-volume-if-desktopdeletepersistentvolumeclaim-is-false">Bound a volume if <code>desktop.deletepersistentvolumeclaim</code> is <code>False</code></h3>
 <p>When <code>desktop.deletepersistentvolumeclaim</code> is <code>True</code> and <code>desktop.deletepersistentvolume</code> is <code>False</code>, if you create manually the persistent volumes, you may have to patch the <code>claimRef</code> of the persistent volumes to make it <code>Available</code> again.</p>
-<pre><code>kubectl get pv 
+<div class="highlight"><pre><span></span><code>kubectl get pv 
 NAME        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS     CLAIM                   STORAGECLASS   REASON   AGE
 planet-fry  10Gi       RWO            Retain           Released   abcdesktop/planet-fry   nfs-csi                 4m1                           
-</code></pre>
-<pre><code class="language-bash">kubectl patch pv planet-fry -p '{&quot;spec&quot;:{&quot;claimRef&quot;: null}}' 
-persistentvolume/planet-fry patched
-</code></pre>
-<pre><code>kubectl get pv 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>patch<span class="w"> </span>pv<span class="w"> </span>planet-fry<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;claimRef&quot;: null}}&#39;</span><span class="w"> </span>
+persistentvolume/planet-fry<span class="w"> </span>patched
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>kubectl get pv 
 NAME          CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM      STORAGECLASS   REASON   AGE
 planet-fry    10Gi       RWO            Retain           Available              nfs-csi                 8m
-</code></pre>
+</code></pre></div>
 
 
 

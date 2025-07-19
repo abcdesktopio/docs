@@ -4860,7 +4860,7 @@
 <h2 id="from">from</h2>
 <p>inherite <a href="../oc.template.ubuntu.gtk.20.04">abcdesktopio/oc.template.ubuntu.gtk.20.04</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>NAME=&quot;Ubuntu&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Ubuntu&quot;
 VERSION=&quot;20.04.5 LTS (Focal Fossa)&quot;
 ID=ubuntu
 ID_LIKE=debian
@@ -4872,10 +4872,9 @@ BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
 PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
 VERSION_CODENAME=focal
 UBUNTU_CODENAME=focal
-
-</code></pre>
+</code></pre></div>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code># default TAG is dev
+<div class="highlight"><pre><span></span><code># default TAG is dev
 ARG TAG=dev
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}:${TAG}
@@ -4884,7 +4883,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # install help in all language
 #RUN DEBIAN_FRONTEND=noninteractive  apt-get update &amp;&amp; apt-get install -y  --no-install-recommends       \
-#        $(apt-cache search language-pack-gnome | awk '{print $1 }')                \
+#        $(apt-cache search language-pack-gnome | awk &#39;{print $1 }&#39;)                \
 #        &amp;&amp; rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update &amp;&amp; apt install -y                \
@@ -4899,29 +4898,29 @@ RUN apt-get update &amp;&amp; apt install -y                \
 
 # install help in all language
 #RUN apt-get update &amp;&amp; apt-get install -y  --no-install-recommends  \
-#   $(apt-cache search libreoffice-help | awk '{print $1 }')    \
+#   $(apt-cache search libreoffice-help | awk &#39;{print $1 }&#39;)    \
 #   &amp;&amp; apt-get clean
 
 # install myspell-dictionary packages when available
 #RUN DEBIAN_FRONTEND=noninteractive  apt-get update &amp;&amp; apt-get install -y   \       
-#        $(apt-cache search myspell-dictionary | awk '{print $1 }')     \
+#        $(apt-cache search myspell-dictionary | awk &#39;{print $1 }&#39;)     \
 #       &amp;&amp; rm -rf /var/lib/apt/lists/*
 
 # install hyphen when available
 #RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends           \       
-#        $(apt-cache search hyphen | awk '{print $1 }')                 \
+#        $(apt-cache search hyphen | awk &#39;{print $1 }&#39;)                 \
 #    &amp;&amp; apt-get clean
 
 
 # install ibreoffice-grammarcheck when available
 #RUN apt-get update &amp;&amp; apt-get install -y  --no-install-recommends       \
-#        $(apt-cache search libreoffice-grammarcheck | awk '{print $1 }') \
+#        $(apt-cache search libreoffice-grammarcheck | awk &#39;{print $1 }&#39;) \
 #    &amp;&amp; apt-get clean
 
 
 # l10n files are loaded by libreoffice-help packages when available
 #RUN apt-get update &amp;&amp; apt-get install -y  --no-install-recommends  \
-#   $(apt-cache search libreoffice-l10n | awk '{print $1 }')    \
+#   $(apt-cache search libreoffice-l10n | awk &#39;{print $1 }&#39;)    \
 #    &amp;&amp; apt-get clean
 
 #
@@ -4933,9 +4932,7 @@ RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends    \
     &amp;&amp; apt-get clean
 
 RUN mkdir -p /run/user/ &amp;&amp; chmod 777 /run/user/
-
-
-</code></pre>
+</code></pre></div>
 
 
 

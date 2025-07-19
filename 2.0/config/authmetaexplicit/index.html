@@ -4875,14 +4875,14 @@
 <h2 id="authmanagers-metaexplicit-object">authmanagers <code>metaexplicit</code> object</h2>
 <p>The <code>metaexplicit</code> authentification manager contains only one provider.
 The provider must be defined as <code>metadirectory</code>.</p>
-<pre><code class="language-json">'metaexplicit': {
-    'providers': {
-      'metadirectory': { 
-        'config_ref': 'coporateconfig', 
-        'enabled': True
-       }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;me</span><span class="kc">tae</span><span class="err">xplici</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;providers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="err">&#39;me</span><span class="kc">ta</span><span class="err">direc</span><span class="kc">t</span><span class="err">ory&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;co</span><span class="kc">nf</span><span class="err">ig_re</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;copora</span><span class="kc">te</span><span class="err">co</span><span class="kc">nf</span><span class="err">ig&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -4904,25 +4904,25 @@ The provider must be defined as <code>metadirectory</code>.</p>
 The key name must be set as the name of a dictionaryin the <code>config_ref</code>.</p>
 <p>A <code>metadirectory</code> provider must contain a ldap attribut to describe the original DOMAIN and sAMaccountName.
 The ldap attribut is defined as <code>join_key_ldapattribut</code>.</p>
-<pre><code>coporateconfig : { 'metadirectory': {  
-                    'domain'        : 'CORPORATE',
-                    'ldap_basedn'   : 'DC=foo,DC=corporate,DC=local',
-                    'ldap_fqdn'     : '_ldap._tcp.foo.corporate.local',
-                    'servers'       : [ 'ldap://192.168.9.11', 'ldap://192.168.7.12', 'ldap://192.168.7.13' ],
+<div class="highlight"><pre><span></span><code>coporateconfig : { &#39;metadirectory&#39;: {  
+                    &#39;domain&#39;        : &#39;CORPORATE&#39;,
+                    &#39;ldap_basedn&#39;   : &#39;DC=foo,DC=corporate,DC=local&#39;,
+                    &#39;ldap_fqdn&#39;     : &#39;_ldap._tcp.foo.corporate.local&#39;,
+                    &#39;servers&#39;       : [ &#39;ldap://192.168.9.11&#39;, &#39;ldap://192.168.7.12&#39;, &#39;ldap://192.168.7.13&#39; ],
                     # join_key_ldapattribut must be defined for a metadirectory provider
-                    'join_key_ldapattribut' : 'description',
-                    'auth_type'  : 'KERBEROS',
-                    'domain_fqdn': 'foo.corporate.local',
-                    'kerberos_realm': 'FOO.CORPORATE.LOCAL',
+                    &#39;join_key_ldapattribut&#39; : &#39;description&#39;,
+                    &#39;auth_type&#39;  : &#39;KERBEROS&#39;,
+                    &#39;domain_fqdn&#39;: &#39;foo.corporate.local&#39;,
+                    &#39;kerberos_realm&#39;: &#39;FOO.CORPORATE.LOCAL&#39;,
                     # serviceaccount must be defined for a metadirectory provider
-                    'serviceaccount': { 'login': 'svcaccount', 'password':'superpass' }
+                    &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;svcaccount&#39;, &#39;password&#39;:&#39;superpass&#39; }
                  } } 
-</code></pre>
+</code></pre></div>
 <p>Pyos binds the metadirectory ldap server with serviceaccount credentials
 Pyos read the ldap attribut <code>description</code> value to get the user's trusted domain.</p>
-<p>For example :</p>
-<pre><code class="language-ldif">description: AD\john
-</code></pre>
+<p>For example :
+<div class="highlight"><pre><span></span><code><span class="na">description</span><span class="p">:</span><span class="w"> </span><span class="s">AD\john</span>
+</code></pre></div></p>
 <p>Then pyos look for provider <code>AD</code> configuration and process authentification on domain <code>AD</code></p>
 <p>The <code>metadirectory</code> accounts can be disabled. 
 The ldap attribut <code>userAccountControl</code> is not read on metaDirectory provider. The account can have the bit <code>UF_ACCOUNT_DISABLE</code> set or not.</p>
@@ -4931,73 +4931,73 @@ The ldap attribut <code>userAccountControl</code> is not read on metaDirectory p
 <p>The user's domain mane is AD.
 The meta domain name is CORPORATE.
 The meta domain use a dedicated attribut <code>join_key_ldapattribut</code></p>
-<pre><code class="language-json">authmanagers: {
-  #
-  # define the meta explicit manager
-  # This is the trusted external forest for the followed domain
-  #
-  'metaexplicit': {
-    'providers': {
-      # define the metadirectory provider
-      # only one metadirectory provider is supported 
-      'metadirectory': { 
-        'config_ref': 'coporateconfig', 
-        'enabled': True } 
-    }
-  },
+<div class="highlight"><pre><span></span><code><span class="err">au</span><span class="kc">t</span><span class="err">hma</span><span class="kc">na</span><span class="err">gers</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="err">#</span>
+<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">ne</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">me</span><span class="kc">ta</span><span class="w"> </span><span class="err">explici</span><span class="kc">t</span><span class="w"> </span><span class="err">ma</span><span class="kc">na</span><span class="err">ger</span>
+<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">This</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="kc">truste</span><span class="err">d</span><span class="w"> </span><span class="err">ex</span><span class="kc">ternal</span><span class="w"> </span><span class="kc">f</span><span class="err">ores</span><span class="kc">t</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="kc">f</span><span class="err">ollowed</span><span class="w"> </span><span class="err">domai</span><span class="kc">n</span>
+<span class="w">  </span><span class="err">#</span>
+<span class="w">  </span><span class="err">&#39;me</span><span class="kc">tae</span><span class="err">xplici</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;providers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">ne</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">me</span><span class="kc">ta</span><span class="err">direc</span><span class="kc">t</span><span class="err">ory</span><span class="w"> </span><span class="err">provider</span>
+<span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="err">o</span><span class="kc">nl</span><span class="err">y</span><span class="w"> </span><span class="err">o</span><span class="kc">ne</span><span class="w"> </span><span class="err">me</span><span class="kc">ta</span><span class="err">direc</span><span class="kc">t</span><span class="err">ory</span><span class="w"> </span><span class="err">provider</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">suppor</span><span class="kc">te</span><span class="err">d</span><span class="w"> </span>
+<span class="w">      </span><span class="err">&#39;me</span><span class="kc">ta</span><span class="err">direc</span><span class="kc">t</span><span class="err">ory&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;co</span><span class="kc">nf</span><span class="err">ig_re</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;copora</span><span class="kc">te</span><span class="err">co</span><span class="kc">nf</span><span class="err">ig&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
 
-  #        
-  # define the Active Directory provider for each DOMAIN
-  # define two domains in two disctinct forest with a trust relationship 
-  # 
-  'explicit': { 
-    # define an Active Directory provider AD 
-    'AD': {  'config_ref': 'adconfig', 'enabled': True },
-    # define an Active Directory provider ANOTHER
-    'ANOTHER': { 'config_ref': 'anotherconfig', 'enabled': True }  
-  }
-} # end of authmanagers
+<span class="w">  </span><span class="err">#</span><span class="w">        </span>
+<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">ne</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">Ac</span><span class="kc">t</span><span class="err">ive</span><span class="w"> </span><span class="err">Direc</span><span class="kc">t</span><span class="err">ory</span><span class="w"> </span><span class="err">provider</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">each</span><span class="w"> </span><span class="err">DOMAIN</span>
+<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">ne</span><span class="w"> </span><span class="kc">t</span><span class="err">wo</span><span class="w"> </span><span class="err">domai</span><span class="kc">ns</span><span class="w"> </span><span class="err">i</span><span class="kc">n</span><span class="w"> </span><span class="kc">t</span><span class="err">wo</span><span class="w"> </span><span class="err">disc</span><span class="kc">t</span><span class="err">i</span><span class="kc">n</span><span class="err">c</span><span class="kc">t</span><span class="w"> </span><span class="kc">f</span><span class="err">ores</span><span class="kc">t</span><span class="w"> </span><span class="err">wi</span><span class="kc">t</span><span class="err">h</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="kc">trust</span><span class="w"> </span><span class="err">rela</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">hip</span><span class="w"> </span>
+<span class="w">  </span><span class="err">#</span><span class="w"> </span>
+<span class="w">  </span><span class="err">&#39;explici</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">ne</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="w"> </span><span class="err">Ac</span><span class="kc">t</span><span class="err">ive</span><span class="w"> </span><span class="err">Direc</span><span class="kc">t</span><span class="err">ory</span><span class="w"> </span><span class="err">provider</span><span class="w"> </span><span class="err">AD</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;AD&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">&#39;co</span><span class="kc">nf</span><span class="err">ig_re</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;adco</span><span class="kc">nf</span><span class="err">ig&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">ne</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="w"> </span><span class="err">Ac</span><span class="kc">t</span><span class="err">ive</span><span class="w"> </span><span class="err">Direc</span><span class="kc">t</span><span class="err">ory</span><span class="w"> </span><span class="err">provider</span><span class="w"> </span><span class="err">ANOTHER</span>
+<span class="w">    </span><span class="err">&#39;ANOTHER&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;co</span><span class="kc">nf</span><span class="err">ig_re</span><span class="kc">f</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;a</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">herco</span><span class="kc">nf</span><span class="err">ig&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w">  </span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">o</span><span class="kc">f</span><span class="w"> </span><span class="err">au</span><span class="kc">t</span><span class="err">hma</span><span class="kc">na</span><span class="err">gers</span>
 
-# In this example ldap attribut's description contains AD\myuser or ANOTHER\myuser 
-coporateconfig : { 'metadirectory': {  
-                    'domain'        : 'CORPORATE',
-                    'ldap_basedn'   : 'DC=foo,DC=corporate,DC=local',
-                    'ldap_fqdn'     : '_ldap._tcp.foo.corporate.local',
-                    'servers'       : [ 'ldap://192.168.9.11', 'ldap://192.168.7.12', 'ldap://192.168.7.13' ],
-                    # join_key_ldapattribut must be defined for a metadirectory provider
-                    'join_key_ldapattribut' : 'description',
-                    'auth_type'  : 'KERBEROS',
-                    'domain_fqdn': 'foo.corporate.local',
-                    'kerberos_realm': 'FOO.CORPORATE.LOCAL',
-                    # serviceaccount must be defined for a metadirectory provider
-                    'serviceaccount': { 'login': 'svcaccount', 'password':'superpass' }
-                 } }
+<span class="err">#</span><span class="w"> </span><span class="err">I</span><span class="kc">n</span><span class="w"> </span><span class="kc">t</span><span class="err">his</span><span class="w"> </span><span class="err">example</span><span class="w"> </span><span class="err">ldap</span><span class="w"> </span><span class="err">a</span><span class="kc">ttr</span><span class="err">ibu</span><span class="kc">t</span><span class="err">&#39;s</span><span class="w"> </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">co</span><span class="kc">nta</span><span class="err">i</span><span class="kc">ns</span><span class="w"> </span><span class="err">AD\myuser</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">ANOTHER\myuser</span><span class="w"> </span>
+<span class="err">copora</span><span class="kc">te</span><span class="err">co</span><span class="kc">nf</span><span class="err">ig</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;me</span><span class="kc">ta</span><span class="err">direc</span><span class="kc">t</span><span class="err">ory&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">                    </span><span class="err">&#39;domai</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;CORPORATE&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;ldap_based</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;DC=</span><span class="kc">f</span><span class="err">oo</span><span class="p">,</span><span class="err">DC=corpora</span><span class="kc">te</span><span class="p">,</span><span class="err">DC=local&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;ldap_</span><span class="kc">f</span><span class="err">qd</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;_ldap._</span><span class="kc">t</span><span class="err">cp.</span><span class="kc">f</span><span class="err">oo.corpora</span><span class="kc">te</span><span class="err">.local&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;servers&#39;</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ldap</span><span class="p">:</span><span class="c1">//192.168.9.11&#39;, &#39;ldap://192.168.7.12&#39;, &#39;ldap://192.168.7.13&#39; ],</span>
+<span class="w">                    </span><span class="err">#</span><span class="w"> </span><span class="err">joi</span><span class="kc">n</span><span class="err">_key_ldapa</span><span class="kc">ttr</span><span class="err">ibu</span><span class="kc">t</span><span class="w"> </span><span class="err">mus</span><span class="kc">t</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">ne</span><span class="err">d</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">me</span><span class="kc">ta</span><span class="err">direc</span><span class="kc">t</span><span class="err">ory</span><span class="w"> </span><span class="err">provider</span>
+<span class="w">                    </span><span class="err">&#39;joi</span><span class="kc">n</span><span class="err">_key_ldapa</span><span class="kc">ttr</span><span class="err">ibu</span><span class="kc">t</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">h_</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;KERBEROS&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;domai</span><span class="kc">n</span><span class="err">_</span><span class="kc">f</span><span class="err">qd</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">oo.corpora</span><span class="kc">te</span><span class="err">.local&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">&#39;kerberos_realm&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;FOO.CORPORATE.LOCAL&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="err">#</span><span class="w"> </span><span class="err">serviceaccou</span><span class="kc">nt</span><span class="w"> </span><span class="err">mus</span><span class="kc">t</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">ne</span><span class="err">d</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">me</span><span class="kc">ta</span><span class="err">direc</span><span class="kc">t</span><span class="err">ory</span><span class="w"> </span><span class="err">provider</span>
+<span class="w">                    </span><span class="err">&#39;serviceaccou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;logi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;svcaccou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;password&#39;</span><span class="p">:</span><span class="err">&#39;superpass&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">                 </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 
 
-# 
-# define the first DOMAIN AD
-# The adconfig ref for domain AD
-#
-adconfig : { 'AD': {  'ldap_basedn'   : 'DC=ad,DC=domain,DC=local',
-                      'ldap_fqdn'     : '_ldap._tcp.ad.domain.local',
-                      'domain'        : 'AD',
-                      'auth_type'     : 'NTLM',
-                      'domain_fqdn'   : 'AD.DOMAIN.LOCAL',
-                      'servers'       : [ 'ldap://192.168.7.12' ] } }
+<span class="err">#</span><span class="w"> </span>
+<span class="err">#</span><span class="w"> </span><span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">ne</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="kc">f</span><span class="err">irs</span><span class="kc">t</span><span class="w"> </span><span class="err">DOMAIN</span><span class="w"> </span><span class="err">AD</span>
+<span class="err">#</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">adco</span><span class="kc">nf</span><span class="err">ig</span><span class="w"> </span><span class="err">re</span><span class="kc">f</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">domai</span><span class="kc">n</span><span class="w"> </span><span class="err">AD</span>
+<span class="err">#</span>
+<span class="err">adco</span><span class="kc">nf</span><span class="err">ig</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;AD&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">&#39;ldap_based</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;DC=ad</span><span class="p">,</span><span class="err">DC=domai</span><span class="kc">n</span><span class="p">,</span><span class="err">DC=local&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="err">&#39;ldap_</span><span class="kc">f</span><span class="err">qd</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;_ldap._</span><span class="kc">t</span><span class="err">cp.ad.domai</span><span class="kc">n</span><span class="err">.local&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="err">&#39;domai</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;AD&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">h_</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;NTLM&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="err">&#39;domai</span><span class="kc">n</span><span class="err">_</span><span class="kc">f</span><span class="err">qd</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;AD.DOMAIN.LOCAL&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="err">&#39;servers&#39;</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ldap</span><span class="p">:</span><span class="c1">//192.168.7.12&#39; ] } }</span>
 
-#
-# define the second DOMAIN ANOTHER
-# The anotherconfig ref for domain ANOTHER
-#
-anotherconfig : { 'ANOTHER': {
-                      'ldap_basedn'   : 'DC=another,DC=super,DC=local',
-                      'ldap_fqdn'     : '_ldap._tcp.another.super.local',
-                      'domain'        : 'ANOTHER',
-                      'auth_type'     : 'KERBEROS',
-                      'domain_fqdn'   : 'ANOTHER.SUPER.LOCAL',
-                      'servers'       : [ 'ldap://192.168.10.12' ],
-                      'kerberos_realm': 'AD.SUPER.LOCAL' } }
-</code></pre>
+<span class="err">#</span>
+<span class="err">#</span><span class="w"> </span><span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">ne</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">seco</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">DOMAIN</span><span class="w"> </span><span class="err">ANOTHER</span>
+<span class="err">#</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">herco</span><span class="kc">nf</span><span class="err">ig</span><span class="w"> </span><span class="err">re</span><span class="kc">f</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">domai</span><span class="kc">n</span><span class="w"> </span><span class="err">ANOTHER</span>
+<span class="err">#</span>
+<span class="err">a</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">herco</span><span class="kc">nf</span><span class="err">ig</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;ANOTHER&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                      </span><span class="err">&#39;ldap_based</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;DC=a</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">her</span><span class="p">,</span><span class="err">DC=super</span><span class="p">,</span><span class="err">DC=local&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="err">&#39;ldap_</span><span class="kc">f</span><span class="err">qd</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;_ldap._</span><span class="kc">t</span><span class="err">cp.a</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">her.super.local&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="err">&#39;domai</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ANOTHER&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">h_</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;KERBEROS&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="err">&#39;domai</span><span class="kc">n</span><span class="err">_</span><span class="kc">f</span><span class="err">qd</span><span class="kc">n</span><span class="err">&#39;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ANOTHER.SUPER.LOCAL&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="err">&#39;servers&#39;</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ldap</span><span class="p">:</span><span class="c1">//192.168.10.12&#39; ],</span>
+<span class="w">                      </span><span class="err">&#39;kerberos_realm&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;AD.SUPER.LOCAL&#39;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <h3 id="metadirectorysupport"><code>metadirectory</code>support</h3>
 <p><code>metadirectory</code> support the foreign security principal (FSP) to query security principal in the trusted external forest. These objects are created in the foreign security principals container of the domain.
 <code>metadirectory</code> support <code>isMemberOf</code> on foreign security principal. </p>

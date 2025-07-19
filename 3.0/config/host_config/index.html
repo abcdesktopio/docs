@@ -4912,15 +4912,15 @@
 <code>host_config</code> is a dictionary and uses the same format in <code>applist.json</code> file and <code>od.config</code> file.</p>
 <p>The same <code>host_config</code> format is reused in a multiple configuration files. <code>host_config</code> is present in <code>applist.json</code> file to build application image, and in <code>od.config</code> to set default running values in desktop and in application.</p>
 <p>For example you can set low cpu and memory values to an application like the great X11 xeyes.</p>
-<pre><code class="language-json">{   
-    &quot;mem_limit&quot;:  &quot;32M&quot;, 
-    &quot;shm_size&quot;:   &quot;OM&quot;, 
-    &quot;cpu_period&quot;:  50000, 
-    &quot;cpu_quota&quot;:   50000, 
-    &quot;pid_mode&quot;:   false, 
-    &quot;network_mode&quot;: &quot;none&quot; 
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w">   </span>
+<span class="w">    </span><span class="nt">&quot;mem_limit&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;32M&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;shm_size&quot;</span><span class="p">:</span><span class="w">   </span><span class="s2">&quot;OM&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;cpu_period&quot;</span><span class="p">:</span><span class="w">  </span><span class="mi">50000</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;cpu_quota&quot;</span><span class="p">:</span><span class="w">   </span><span class="mi">50000</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;pid_mode&quot;</span><span class="p">:</span><span class="w">   </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;network_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="host_config-entries">host_config entries</h2>
 <table>
 <thead>
@@ -5411,15 +5411,15 @@ If these types of applications are broken into multiple containers, you might ne
 <p>Read <a href="https://docs.docker.com/engine/security/seccomp/">security_opt</a> from the docker website.</p>
 <h2 id="capabilities-cap_add-cap_drop">capabilities <code>cap_add</code> <code>cap_drop</code></h2>
 <p>This value is added to the oc.user docker container, or as securityContext attribut in kubernetes mode :</p>
-<pre><code>securityContext:
+<div class="highlight"><pre><span></span><code>securityContext:
       capabilities:
         desktop.capabilities
-</code></pre>
+</code></pre></div>
 <p>For example </p>
-<pre><code class="language-json">    { 
-        'add': [ &quot;SYS_ADMIN&quot;, &quot;SYS_PTRACE&quot; ]
-    }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;add&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;SYS_ADMIN&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;SYS_PTRACE&quot;</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
 <p>Permit a container  to call ptrace:</p>
 <ul>
 <li>"SYS_PTRACE": Trace arbitrary processes using ptrace</li>

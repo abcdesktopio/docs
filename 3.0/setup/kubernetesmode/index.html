@@ -5069,60 +5069,60 @@
 <h3 id="kubernetes-master-node">Kubernetes Master Node</h3>
 <h4 id="step-1-disable-swap-memory-if-running">Step 1: Disable swap memory (if running)</h4>
 <p>You need to disable swap memory on nodes as Kubernetes does not perform properly on a system that is using swap memory. Run the following command in order to disable swap memory.  </p>
-<pre><code class="language-bash">swapoff -a
-</code></pre>
+<div class="highlight"><pre><span></span><code>swapoff<span class="w"> </span>-a
+</code></pre></div>
 <p>If you have some swaps in /etc/fstab, just comment them out.
 <code>swapoff -a</code> will disable all swaps temporarily.</p>
 <ul>
 <li>disable by masking it with sysctl:</li>
 </ul>
-<pre><code class="language-bash">systemctl mask dev-zram1.swap
-Created symlink /etc/systemd/system/dev-zram1.swap → /dev/null.
-</code></pre>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>mask<span class="w"> </span>dev-zram1.swap
+Created<span class="w"> </span>symlink<span class="w"> </span>/etc/systemd/system/dev-zram1.swap<span class="w"> </span>→<span class="w"> </span>/dev/null.
+</code></pre></div>
 <h4 id="step-2-init-kubernetes">Step 2: init kubernetes</h4>
 <p>Run the following command as sudo on the master node:</p>
-<pre><code class="language-bash">kubeadm init --pod-network-cidr=10.244.0.0/16
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubeadm<span class="w"> </span>init<span class="w"> </span>--pod-network-cidr<span class="o">=</span><span class="m">10</span>.244.0.0/16
+</code></pre></div>
 <p>The process might take a minute or more depending on your internet connection.  </p>
 <p>To be able to manage your kubernetes server, you need to run the following commands as a regular user:</p>
-<pre><code class="language-bash">mkdir -p $HOME/.kube
-cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-chown $(id -u):$(id -g) $HOME/.kube/config
-</code></pre>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/.kube
+cp<span class="w"> </span>-i<span class="w"> </span>/etc/kubernetes/admin.conf<span class="w"> </span><span class="nv">$HOME</span>/.kube/config
+chown<span class="w"> </span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span>:<span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="w"> </span><span class="nv">$HOME</span>/.kube/config
+</code></pre></div>
 <h4 id="step-3-permit-schedule">Step 3: Permit Schedule</h4>
 <p>Taints are Kubernetes flags to prevent Pod Scheduling. Remove the taints on the master so that you can schedule pods on it.</p>
-<pre><code class="language-bash">kubectl taint node `hostname` node-role.kubernetes.io/control-plane:NoSchedule-
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>taint<span class="w"> </span>node<span class="w"> </span><span class="sb">`</span>hostname<span class="sb">`</span><span class="w"> </span>node-role.kubernetes.io/control-plane:NoSchedule-
+</code></pre></div>
 <p>It should return the following string.</p>
-<pre><code>node/&lt;your-hostname&gt; untainted
-</code></pre>
-<p>Taints are Kubernetes flags to prevent Pod Scheduling.</p>
+<p><div class="highlight"><pre><span></span><code>node/&lt;your-hostname&gt; untainted
+</code></pre></div>
+Taints are Kubernetes flags to prevent Pod Scheduling.</p>
 <p>Confirm that you now have a node in your cluster with the following command.</p>
-<pre><code class="language-bash">kubectl get nodes -o wide
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+</code></pre></div>
 <p>It should return something like the following.</p>
-<pre><code>NAME      STATUS     ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+<div class="highlight"><pre><span></span><code>NAME      STATUS     ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
 hostname  NotReady   control-plane   3m17s   v1.25.3   192.168.7.187   &lt;none&gt;        Ubuntu 22.04.1 LTS   5.15.0-52-generic   containerd://1.6.9
-</code></pre>
+</code></pre></div>
 <h4 id="step-4-deploy-flannel-through-the-master-node">Step 4: Deploy flannel through the master node</h4>
 <p>A pod network is a medium of communication between the nodes of a network. We are deploying flannel network on our cluster through the following command:</p>
-<pre><code class="language-bash">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+</code></pre></div>
 <p>It should return the following strings.</p>
-<pre><code>namespace/kube-flannel created
+<div class="highlight"><pre><span></span><code>namespace/kube-flannel created
 clusterrole.rbac.authorization.k8s.io/flannel created
 clusterrolebinding.rbac.authorization.k8s.io/flannel created
 serviceaccount/flannel created
 configmap/kube-flannel-cfg created
 daemonset.apps/kube-flannel-ds created
-</code></pre>
+</code></pre></div>
 <h5 id="check-node-status">Check node status</h5>
 <p>Now when you see the status of the nodes, you will see that the master-node is ready :</p>
-<pre><code class="language-bash">kubectl get nodes -o wide
-</code></pre>
-<pre><code>NAME      STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>NAME      STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
 Hostname  Ready    control-plane   4m12s   v1.25.3   192.168.7.187   &lt;none&gt;        Ubuntu 22.04.1 LTS   5.15.0-52-generic   containerd://1.6.9
-</code></pre>
+</code></pre></div>
 <p>At this step, there is no more <code>Taints</code> and your node is <code>Ready</code>. </p>
 <p>Next step, continue with the <a href="../kubernetes_abcdesktop/">setup abcdesktop</a> for kubernetes.</p>
 

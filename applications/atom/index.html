@@ -4896,9 +4896,8 @@
 <h2 id="path">path</h2>
 <p>"/usr/bin/atom"</p>
 <h2 id="pre-run-command">Pre run command</h2>
-<pre><code>
-RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes wget &amp;&amp; apt-get clean,RUN apt-get update &amp;&amp; apt-get install                          --yes libxss1 &amp;&amp; apt-get clean,RUN wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | apt-key add -,RUN echo &quot;deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main&quot; &gt; /etc/apt/sources.list.d/atom.list,RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes $(apt-cache search aspell- | awk '{print $1 }') &amp;&amp; rm -rf /var/lib/apt/lists/*
-</code></pre>
+<div class="highlight"><pre><span></span><code>RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes wget &amp;&amp; apt-get clean,RUN apt-get update &amp;&amp; apt-get install                          --yes libxss1 &amp;&amp; apt-get clean,RUN wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | apt-key add -,RUN echo &quot;deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main&quot; &gt; /etc/apt/sources.list.d/atom.list,RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes $(apt-cache search aspell- | awk &#39;{print $1 }&#39;) &amp;&amp; rm -rf /var/lib/apt/lists/*
+</code></pre></div>
 
 
 

@@ -5182,8 +5182,8 @@ aware of:</p>
 <h2 id="create-a-shared-volume-myshared">Create a shared volume myshared</h2>
 <p>Before creating containers, we need a shared volume, to share data and unix socket between containers.
 Run the docker volume create command.</p>
-<pre><code>docker volume create myshared 
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker volume create myshared 
+</code></pre></div>
 <h2 id="start-the-first-container-myx11server">Start the first container myx11server</h2>
 <p>Start the first graphical container named <strong>myx11server</strong> and forward the tcp port 6081 to the 6081 container tcp port.</p>
 <ul>
@@ -5191,12 +5191,11 @@ Run the docker volume create command.</p>
 <li>The volume myshared is mounted to /tmp</li>
 </ul>
 <p>Note: We do not need the default 5900 VNC tcp port any more.</p>
-<pre><code>docker run -it -v myshared:/tmp --name myx11server -p 6081:6081 ubuntu:latest bash
-
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker run -it -v myshared:/tmp --name myx11server -p 6081:6081 ubuntu:latest bash
+</code></pre></div>
 <p>You should see a prompt like :</p>
-<pre><code>root@6de36e574877:/#
-</code></pre>
+<div class="highlight"><pre><span></span><code>root@6de36e574877:/#
+</code></pre></div>
 <p>Install the package wget 
 Install the library files for tigervnc. </p>
 <p>Package list:</p>
@@ -5204,24 +5203,24 @@ Install the library files for tigervnc. </p>
 <li>libx11-6 xkb-data x11-xkb-utils xauth libfile-readbackwards-perl netbase libaudit1 libbsd0 libgcrypt20 libgl1 libgnutls30 libjpeg8 libpam0g libpixman-1-0 libselinux1 libstdc++6 libsystemd0 libunwind8 libxau6 libxdmcp6 libxfont2 zlib1g libgl1-mesa-dri xfonts-base x11-xserver-utils xfonts-100dpi xfonts-scalable </li>
 </ul>
 <p>Those packages are used by tigervnc. We need to install them.</p>
-<pre><code>apt-get update
+<div class="highlight"><pre><span></span><code>apt-get update
 apt-get install -y wget
 apt-get install -y libx11-6 xkb-data x11-xkb-utils xauth libfile-readbackwards-perl netbase libaudit1 libbsd0 libgcrypt20 libgl1 libgnutls30 libjpeg8 libpam0g libpixman-1-0 libselinux1 libstdc++6 libsystemd0 libunwind8 libxau6 libxdmcp6 libxfont2 zlib1g libgl1-mesa-dri xfonts-base x11-xserver-utils xfonts-100dpi xfonts-scalable 
-</code></pre>
+</code></pre></div>
 <p>Download the last tigervnc X11 graphics server from the bintray.com web site</p>
-<pre><code> wget &quot;https://bintray.com/tigervnc/stable/download_file?file_path=tigervnc-1.10.1.x86_64.tar.gz&quot; -O tigervnc-1.10.1.x86_64.tar.gz
-</code></pre>
+<div class="highlight"><pre><span></span><code> wget &quot;https://bintray.com/tigervnc/stable/download_file?file_path=tigervnc-1.10.1.x86_64.tar.gz&quot; -O tigervnc-1.10.1.x86_64.tar.gz
+</code></pre></div>
 <p>Untar the tigervnc-1.10.1.x86_64.tar.gz file in the container's root file system </p>
-<pre><code>cd /
+<div class="highlight"><pre><span></span><code>cd /
 tar -xvf tigervnc-1.10.1.x86_64.tar.gz
 cp -r /tigervnc-1.10.1.x86_64/usr/* /usr/
-</code></pre>
+</code></pre></div>
 <p>Start the tigervnc release 1.10.
 The tigervnc release 1.10 support the option rfbunixpath used by ws-tcp-bridge in next section</p>
-<pre><code>Xvnc :0 -rfbunixpath /tmp/.x11vnc -SecurityTypes=none &amp;
-</code></pre>
+<div class="highlight"><pre><span></span><code>Xvnc :0 -rfbunixpath /tmp/.x11vnc -SecurityTypes=none &amp;
+</code></pre></div>
 <p>You should read the output </p>
-<pre><code>Xvnc TigerVNC 1.10.0 - built Dec 20 2019 07:12:07
+<div class="highlight"><pre><span></span><code>Xvnc TigerVNC 1.10.0 - built Dec 20 2019 07:12:07
 Copyright (C) 1999-2019 TigerVNC Team and many others (see README.rst)
 See https://www.tigervnc.org for information on TigerVNC.
 Underlying X server release 12001000, The X.Org Foundation
@@ -5231,40 +5230,40 @@ Tue Mar  3 11:05:48 2020
  vncext:      VNC extension running!
  vncext:      Listening for VNC connections on /tmp/.x11vnc (mode 0600)
  vncext:      created VNC server for screen 0
-</code></pre>
+</code></pre></div>
 <p>Check that the Xvnc TigerVNC release is <strong>1.10.0</strong>. </p>
 <p>Great, you have installed an X11 server inside a docker container, and the Xvnc server is listening for VNC connections on /tmp/.x11vnc. </p>
 <h2 id="install-the-ws-tcp-bridge">Install the ws-tcp-bridge</h2>
 <p>ws-tcp-bridge translate websocket to tcp and have to listen on websocket tcp port 6081 and forward to local unix socket unix:/tmp/.x11vnc.</p>
 <p>ws-tcp-bridge is a nodejs server, then we need to install nodejs and npm.</p>
 <p>Before, install the package gcc g++ make curl </p>
-<pre><code>apt-get install -y gcc g++ make curl 
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get install -y gcc g++ make curl 
+</code></pre></div>
 <p>Install nodejs and npm</p>
-<pre><code>curl -sL https://deb.nodesource.com/setup_13.x | bash -
-</code></pre>
-<pre><code>apt-get install -y nodejs
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl -sL https://deb.nodesource.com/setup_13.x | bash -
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>apt-get install -y nodejs
+</code></pre></div>
 <p>Install ws-tcp-bridge</p>
-<pre><code>npm install ws-tcp-bridge -g
-</code></pre>
+<div class="highlight"><pre><span></span><code>npm install ws-tcp-bridge -g
+</code></pre></div>
 <p>Start ws-tcp-bridge with the parameters --method=ws2tcp --lport 6081 --rhost=unix:/tmp/.x11vnc in background </p>
 <blockquote>
 <p>Add the <code>&amp;</code> at the end of the command line to run this process in background</p>
 </blockquote>
-<pre><code>/usr/bin/ws-tcp-bridge --method=ws2tcp --lport 6081 --rhost=unix:/tmp/.x11vnc &amp;
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/bin/ws-tcp-bridge --method=ws2tcp --lport 6081 --rhost=unix:/tmp/.x11vnc &amp;
+</code></pre></div>
 <p>You should read on the standard output</p>
-<pre><code>proxy mode ws -&gt; tcp
+<div class="highlight"><pre><span></span><code>proxy mode ws -&gt; tcp
 forwarding port 6081 to unix:/tmp/.x11vnc
-</code></pre>
+</code></pre></div>
 <p>Great, ws-tcp-bridge is running and forward websocket to Xvnc unix socket </p>
 <h2 id="get-the-ip-address-on-your-first-container-myx11server">Get the ip address on your first container myx11server</h2>
 <p>On the container myx11server, to get the container local IP Address, install the package net-tools package</p>
-<pre><code>apt-get install -y net-tools
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get install -y net-tools
+</code></pre></div>
 <p>And run the ifconfig command </p>
-<pre><code>ifconfig eth0
+<div class="highlight"><pre><span></span><code>ifconfig eth0
 eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
         inet 172.17.0.2 netmask 255.255.0.0  broadcast 172.17.255.255
         ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
@@ -5272,51 +5271,51 @@ eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 20880  bytes 1159982 (1.1 MB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-</code></pre>
+</code></pre></div>
 <p>Write here the ip address of your container myx11server:</p>
 <p>IP Address of myx11server <strong><em>_ . </em></strong><em> . <strong><em>_ . </em></strong></em></p>
 <h2 id="create-a-new-container-webserver">Create a new container webserver</h2>
 <p>Open a new shell window and start a new docker container named mywebserver, forward the tcp port 80 to the container tcp port 80.</p>
-<pre><code>docker run -it --name mywebserver -p 80:80 ubuntu:latest
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker run -it --name mywebserver -p 80:80 ubuntu:latest
+</code></pre></div>
 <p>You should see a prompt like:</p>
-<pre><code>root@96df62a73e4f:/# 
-</code></pre>
+<div class="highlight"><pre><span></span><code>root@96df62a73e4f:/# 
+</code></pre></div>
 <p>Install nginx webserver, run the command</p>
-<pre><code>apt-get update
+<div class="highlight"><pre><span></span><code>apt-get update
 apt-get install -y nginx-extras
-</code></pre>
+</code></pre></div>
 <p>Install the git and vim package, run the command</p>
-<pre><code>apt-get install -y git vim
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get install -y git vim
+</code></pre></div>
 <p>Clone the novnc git on github.com, inside the nginx's root directory.</p>
-<pre><code>cd /var/www/html
+<div class="highlight"><pre><span></span><code>cd /var/www/html
 git clone https://github.com/novnc/noVNC.git
-</code></pre>
+</code></pre></div>
 <p>You should read on the standart output </p>
-<pre><code>Cloning into 'noVNC'...
+<div class="highlight"><pre><span></span><code>Cloning into &#39;noVNC&#39;...
 remote: Enumerating objects: 26, done.
 remote: Counting objects: 100% (26/26), done.
 remote: Compressing objects: 100% (21/21), done.
 remote: Total 10395 (delta 8), reused 13 (delta 5), pack-reused 10369
 Receiving objects: 100% (10395/10395), 9.01 MiB | 7.15 MiB/s, done.
 Resolving deltas: 100% (7310/7310), done.
-</code></pre>
+</code></pre></div>
 <p>Start the nginx web server</p>
-<pre><code>nginx
-</code></pre>
+<div class="highlight"><pre><span></span><code>nginx
+</code></pre></div>
 <p>The web server nginx is running in backgound. </p>
 <p>Great, nginx web server is running, now we need to configure the proxy pass rule with the myx11server container's ip address.</p>
 <h2 id="check-that-the-container-webserver-can-ping-the-container-myx11server">Check that the container webserver can ping the container myx11server</h2>
 <p>Install the ping command, run the command</p>
-<pre><code>apt-get install -y iputils-ping
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get install -y iputils-ping
+</code></pre></div>
 <p>Get the myx11server container's ip address write before and replace 
 xxx.xxx.xxx.xxx with the myx11server container's ip address</p>
-<pre><code>ping -c 5 xxx.xxx.xxx.xxx
-</code></pre>
+<div class="highlight"><pre><span></span><code>ping -c 5 xxx.xxx.xxx.xxx
+</code></pre></div>
 <p>In this example, i replace xxx.xxx.xxx.xxx by 172.17.0.2</p>
-<pre><code>ping -c 5 172.17.0.2
+<div class="highlight"><pre><span></span><code>ping -c 5 172.17.0.2
 PING 172.17.0.2 (172.17.0.2) 56(84) bytes of data.
 64 bytes from 172.17.0.2: icmp_seq=1 ttl=64 time=0.108 ms
 64 bytes from 172.17.0.2: icmp_seq=2 ttl=64 time=0.365 ms
@@ -5327,36 +5326,36 @@ PING 172.17.0.2 (172.17.0.2) 56(84) bytes of data.
 --- 172.17.0.2 ping statistics ---
 5 packets transmitted, 5 received, 0% packet loss, time 4074ms
 rtt min/avg/max/mdev = 0.108/0.213/0.365/0.084 ms
-</code></pre>
+</code></pre></div>
 <p>The container webserver should receive package from the myx11server container</p>
 <h2 id="edit-the-nginx-configuration-file">Edit the nginx configuration file</h2>
 <p>Edit the nginx configuration file <strong>/etc/nginx/sites-enabled/default</strong> with the vim editor.</p>
-<pre><code>vim /etc/nginx/sites-enabled/default
-</code></pre>
+<div class="highlight"><pre><span></span><code>vim /etc/nginx/sites-enabled/default
+</code></pre></div>
 <p>In the <strong>server</strong> section, after the line location you should found :</p>
-<pre><code>    location / {
+<div class="highlight"><pre><span></span><code>    location / {
         # First attempt to serve request as file, then
         # as directory, then fall back to displaying a 404.
         try_files $uri $uri/ =404;
     }
-</code></pre>
+</code></pre></div>
 <p>Add a <strong>/websockify</strong> route to proxyfied the websocket http request to your myx11server container. </p>
-<pre><code>    location = /websockify {
+<div class="highlight"><pre><span></span><code>    location = /websockify {
         proxy_buffering              off;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Upgrade         $http_upgrade;
         proxy_set_header Connection      &quot;upgrade&quot;;
         proxy_pass                       http://XXX.XXX.XXX.XXX:6081/;
     }
-</code></pre>
+</code></pre></div>
 <p>You have to replace the line  </p>
-<pre><code>proxy_pass       http://XXX.XXX.XXX.XXX:6081/;
-</code></pre>
+<div class="highlight"><pre><span></span><code>proxy_pass       http://XXX.XXX.XXX.XXX:6081/;
+</code></pre></div>
 <p>by the ip address of your myx11server container, for example replace <strong>http://XXX.XXX.XXX.XXX:6081/</strong> with <strong>http://172.17.0.2:6081/</strong> </p>
-<pre><code>proxy_pass       http://172.17.0.2:6081/;
-</code></pre>
+<div class="highlight"><pre><span></span><code>proxy_pass       http://172.17.0.2:6081/;
+</code></pre></div>
 <p>The complete server section in the nginx file is for example</p>
-<pre><code>server {
+<div class="highlight"><pre><span></span><code>server {
     listen 80 default_server;
     listen [::]:80 default_server;
 
@@ -5372,7 +5371,7 @@ rtt min/avg/max/mdev = 0.108/0.213/0.365/0.084 ms
     # See: https://bugs.debian.org/765782
     #
     # Self signed certs generated by the ssl-cert package
-    # Don't use them in a production server!
+    # Don&#39;t use them in a production server!
     #
     # include snippets/snakeoil.conf;
 
@@ -5409,33 +5408,33 @@ rtt min/avg/max/mdev = 0.108/0.213/0.365/0.084 ms
     #   fastcgi_pass 127.0.0.1:9000;
     #}
 
-    # deny access to .htaccess files, if Apache's document root
-    # concurs with nginx's one
+    # deny access to .htaccess files, if Apache&#39;s document root
+    # concurs with nginx&#39;s one
     #
     #location ~ /\.ht {
     #   deny all;
     #}
 }
-</code></pre>
+</code></pre></div>
 <p>Now, it's time to reload your nginx configuration, by running the command</p>
-<pre><code>nginx -s reload
-</code></pre>
+<div class="highlight"><pre><span></span><code>nginx -s reload
+</code></pre></div>
 <h2 id="connect-to-your-nginx-website">Connect to your nginx website</h2>
 <p>Run a web browser like Google Chrome or Firefox and go to your nginx website. If you run the nginx website on a separated host replace the name with your hostname or his ip address.</p>
 <p>Go to the URL http://localhost or the ip address of your own server</p>
 <blockquote>
 <p>In this exercice in use <code>localhost</code> in the screenshot because all containers are running on my desktop, you may have to replace localhost by ip address, or the <code>fully qualified domain name</code> of your own server.</p>
 </blockquote>
-<pre><code>http://localhost
-</code></pre>
-<p>or</p>
-<pre><code>http://YOUR_SERVER_IP_ADDRESS
-</code></pre>
+<p><div class="highlight"><pre><span></span><code>http://localhost
+</code></pre></div>
+or</p>
+<div class="highlight"><pre><span></span><code>http://YOUR_SERVER_IP_ADDRESS
+</code></pre></div>
 <p>You should read the <strong>Welcome to nginx!</strong> message in your web browser</p>
 <p><img alt="chrome-nginx" src="../img/chrome-nginx.png" /></p>
 <p>Go to the noVNC URL http://localhost/noVNC/vnc.html</p>
-<pre><code>http://localhost/noVNC/vnc.html
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost/noVNC/vnc.html
+</code></pre></div>
 <blockquote>
 <p>Remember, remplace localhost by your <code>fully qualified domain name</code> if need</p>
 </blockquote>
@@ -5454,22 +5453,22 @@ You have to fill the WebSocket properties as follow:</p>
 <h2 id="install-libreoffice-as-a-docker-application">Install libreoffice as a docker application</h2>
 <p>On your host, where your container myx11server is running.
 Open a new shell window and start a new docker container named mylibreoffice.</p>
-<pre><code>docker run -it -v myshared:/tmp --name mylibreoffice ubuntu:latest
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker run -it -v myshared:/tmp --name mylibreoffice ubuntu:latest
+</code></pre></div>
 <p>You should see a prompt like :</p>
-<pre><code>root@96df62a73e4f:/# 
-</code></pre>
+<div class="highlight"><pre><span></span><code>root@96df62a73e4f:/# 
+</code></pre></div>
 <p>To install libreoffice application, run the install libreoffice command in your mylibreoffice container.</p>
-<pre><code>apt-get update
+<div class="highlight"><pre><span></span><code>apt-get update
 apt-get install -y libreoffice
-</code></pre>
+</code></pre></div>
 <p>Run the soffice command to start Libreoffice</p>
-<pre><code>export DISPLAY=:0.0
+<div class="highlight"><pre><span></span><code>export DISPLAY=:0.0
 soffice --writer
-</code></pre>
+</code></pre></div>
 <p>You should read the output </p>
-<pre><code>(soffice:7412): dbind-WARNING **: 16:32:03.928: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus-HN3KrNpoAq: Connection refused
-</code></pre>
+<div class="highlight"><pre><span></span><code>(soffice:7412): dbind-WARNING **: 16:32:03.928: Couldn&#39;t connect to accessibility bus: Failed to connect to socket /tmp/dbus-HN3KrNpoAq: Connection refused
+</code></pre></div>
 <p>On the web browser, the application <code>Libreoffice Writer</code> should appear. </p>
 <p><img alt="chrome-libreoffice" src="../img/chrome-libreoffice.png" /></p>
 <p>Type some text data like 'Hello, I am running inside a docker container'</p>
@@ -5477,12 +5476,12 @@ soffice --writer
 <h2 id="install-the-windows-manager-openbox-on-your-myx11server-container">Install the windows manager openbox on your myx11server container</h2>
 <p>To move, resize, close, the windows applications, we need a windows manager. <code>abcdesktop</code> is the windows manager. <a href="http://www.http://openbox.org/">OpenBox</a> is a lightweight, powerful, and highly configurable stacking window manager with extensive standards support. </p>
 <p>Run the install <strong>openbox</strong> command in your myx11server container.</p>
-<pre><code>apt-get install -y openbox
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get install -y openbox
+</code></pre></div>
 <p>Set the DISPLAY environment variable to :0.0 and start openbox in background</p>
-<pre><code>export DISPLAY=:0.0
+<div class="highlight"><pre><span></span><code>export DISPLAY=:0.0
 openbox &amp;
-</code></pre>
+</code></pre></div>
 <p><img alt="chrome-libreoffice-openbox" src="../img/chrome-libreoffice-openbox.png" /></p>
 <p>Now, you can move the <code>Libreoffice</code> windows. All windows are decorated. </p>
 <p>Great you have installed the novnc gateway, and you just need a HTML Web browser to use a <code>Libreoffice</code> </p>

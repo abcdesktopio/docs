@@ -5000,51 +5000,51 @@
 <p>Get a shell to your host. All next command use a host shell.</p>
 <h3 id="get-the-hermess-pod-name">Get the hermes's pod <code>name</code></h3>
 <p>To read the hermes <code>pod name</code>, <code>MIT-MAGIC-COOKIE-1</code>, and <code>uid</code></p>
-<pre><code class="language-bash">kubectl get pod -l=access_userid=hermes -o jsonpath='{.items[0].metadata.name}' -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="o">=</span><span class="nv">access_userid</span><span class="o">=</span>hermes<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[0].metadata.name}&#39;</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
 <p>We save this value in the <code>pod</code> variable, for next usage</p>
-<pre><code class="language-bash">POD=$(kubectl get pod -l=access_userid=hermes -o jsonpath='{.items[0].metadata.name}' -n abcdesktop)
-echo $POD
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">POD</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="o">=</span><span class="nv">access_userid</span><span class="o">=</span>hermes<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[0].metadata.name}&#39;</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="k">)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$POD</span>
+</code></pre></div>
 <p>You should read on stdout</p>
-<pre><code class="language-bash">hermes-da0ca3c8-48ba-4736-85a9-d3fd2c85f009
-</code></pre>
+<div class="highlight"><pre><span></span><code>hermes-da0ca3c8-48ba-4736-85a9-d3fd2c85f009
+</code></pre></div>
 <p>We save this value in the <code>$POD</code> for a next usage.</p>
 <h3 id="get-the-hermess-xauth_key">Get the hermes's <code>XAUTH_KEY</code></h3>
 <p>The release 3.0 need the <code>MIT-MAGIC-COOKIE-1</code> to reach the x11 <code>DISPLAY</code>.</p>
 <p>Run the command <code>echo $XAUTH_KEY</code> to read the <code>$XAUTH_KEY</code> value inside the hermes's pod</p>
-<pre><code class="language-bash">export XAUTH_KEY=$(kubectl exec -n abcdesktop -it $POD -- bash -c 'echo $XAUTH_KEY')
-</code></pre>
-<pre><code>Defaulted container &quot;x-planet-hermes&quot; out of: x-planet-hermes, c-planet-hermes, f-planet-hermes, o-planet-hermes, hermes-conrad-xterm-9e2589dc0da0473da8e33d3ab98abedc (ephem), i-planet-hermes (init)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">XAUTH_KEY</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-it<span class="w"> </span><span class="nv">$POD</span><span class="w"> </span>--<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo $XAUTH_KEY&#39;</span><span class="k">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Defaulted container &quot;x-planet-hermes&quot; out of: x-planet-hermes, c-planet-hermes, f-planet-hermes, o-planet-hermes, hermes-conrad-xterm-9e2589dc0da0473da8e33d3ab98abedc (ephem), i-planet-hermes (init)
+</code></pre></div>
 <p>The <code>XAUTH_KEY</code> variable is exported for a next usage.</p>
-<pre><code class="language-sh">echo $XAUTH_KEY
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$XAUTH_KEY</span>
 306908f8e4d4768c7595ce5ad53479
-</code></pre>
+</code></pre></div>
 <h3 id="get-the-hermess-pod-uid">Get the hermes's pod <code>uid</code></h3>
-<pre><code class="language-bash">kubectl get pod -l=access_userid=hermes -o jsonpath='{.items[0].metadata.uid}' -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="o">=</span><span class="nv">access_userid</span><span class="o">=</span>hermes<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[0].metadata.uid}&#39;</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
 <p>We save this value in the <code>PODUID</code> exported variable, for next usage</p>
-<pre><code class="language-bash">export PODUID=$(kubectl get pod -l=access_userid=hermes -o jsonpath='{.items[0].metadata.uid}' -n abcdesktop)
-</code></pre>
-<pre><code class="language-bash">echo $PODUID
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PODUID</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="o">=</span><span class="nv">access_userid</span><span class="o">=</span>hermes<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[0].metadata.uid}&#39;</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="k">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$PODUID</span>
 c6d2f8a7-eb7d-4a25-9a9c-9778ca9e35cf
-</code></pre>
+</code></pre></div>
 <h2 id="inspect-the-hermess-pod-to-look-for-binding-volume-mapping">Inspect the Hermes's pod to look for <code>Binding</code> volume mapping</h2>
 <h3 id="list-files-in-varlibkubeletpodspoduid">List files in <code>/var/lib/kubelet/pods/$PODUID</code></h3>
 <p>The default <a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/">kubelet's</a> pod directory is <code>/var/lib/kubelet/pods/</code>. If you change it during the installation process replace <code>/var/lib/kubelet/pods/</code> by your own directory.</p>
-<pre><code class="language-bash">ls -la /var/lib/kubelet/pods/$PODUID/volumes/kubernetes.io~empty-dir/x11socket
-</code></pre>
-<pre><code class="language-bash">ls -la /var/lib/kubelet/pods/$PODUID/volumes/kubernetes.io~empty-dir/x11socket
-total 4
-drwxrwxrwt 2 root root   60 Dec  8 19:43 .
-drwxr-xr-x 9 root root 4096 Dec  8 19:43 ..
-srwxrwxrwx 1 1051 2051    0 Dec  8 19:43 X0
-</code></pre>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-la<span class="w"> </span>/var/lib/kubelet/pods/<span class="nv">$PODUID</span>/volumes/kubernetes.io~empty-dir/x11socket
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-la<span class="w"> </span>/var/lib/kubelet/pods/<span class="nv">$PODUID</span>/volumes/kubernetes.io~empty-dir/x11socket
+total<span class="w"> </span><span class="m">4</span>
+drwxrwxrwt<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">   </span><span class="m">60</span><span class="w"> </span>Dec<span class="w">  </span><span class="m">8</span><span class="w"> </span><span class="m">19</span>:43<span class="w"> </span>.
+drwxr-xr-x<span class="w"> </span><span class="m">9</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Dec<span class="w">  </span><span class="m">8</span><span class="w"> </span><span class="m">19</span>:43<span class="w"> </span>..
+srwxrwxrwx<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1051</span><span class="w"> </span><span class="m">2051</span><span class="w">    </span><span class="m">0</span><span class="w"> </span>Dec<span class="w">  </span><span class="m">8</span><span class="w"> </span><span class="m">19</span>:43<span class="w"> </span>X0
+</code></pre></div>
 <p><code>X0</code> is a file unix socket, we will bind the <code>X0</code> socket in the next podapp.</p>
 <h3 id="get-the-hermess-pod-home-hermes-volume-location">Get the hermes's pod <code>home-hermes</code> volume location</h3>
-<pre><code class="language-bash">kubectl get pod -l=access_userid=hermes -o jsonpath='{.items[0].spec.volumes[?(@.name==&quot;home-hermes&quot;)].hostPath.path}' -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="o">=</span><span class="nv">access_userid</span><span class="o">=</span>hermes<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[0].spec.volumes[?(@.name==&quot;home-hermes&quot;)].hostPath.path}&#39;</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
 <blockquote>
 <p>Description of this query</p>
 <ul>
@@ -5054,12 +5054,12 @@ srwxrwxrwx 1 1051 2051    0 Dec  8 19:43 X0
 </ul>
 </blockquote>
 <p>We save this value in the <code>PODHOME</code> exported variable, for next usage</p>
-<pre><code class="language-bash">export PODHOME=$(kubectl get pod -l=access_userid=hermes -o jsonpath='{.items[0].spec.volumes[?(@.name==&quot;home-hermes&quot;)].hostPath.path}' -n abcdesktop)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PODHOME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="o">=</span><span class="nv">access_userid</span><span class="o">=</span>hermes<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[0].spec.volumes[?(@.name==&quot;home-hermes&quot;)].hostPath.path}&#39;</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="k">)</span>
+</code></pre></div>
 <p>Check the value with a echo</p>
-<pre><code class="language-bash">echo $PODHOME
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$PODHOME</span>
 /tmp/hermes-conrad
-</code></pre>
+</code></pre></div>
 <h2 id="start-a-new-container-from-ubuntu2004">Start a new container from <code>ubuntu:20.04</code></h2>
 <p>Now we've got the all volumes path and XAUTH_KEY, let's start a new container with mounted volume</p>
 <ul>
@@ -5077,114 +5077,114 @@ srwxrwxrwx 1 1051 2051    0 Dec  8 19:43 X0
 <p>Make sure to use export, otherwise your variables are considered shell variables and might not be accessible to <code>envsubst</code></p>
 </blockquote>
 <p>Create a file <code>podapp.template.yaml</code> </p>
-<pre><code class="language-yaml">apiVersion: v1
-kind: Pod
-metadata:
-  name: podapp
-  namespace: abcdesktop
-spec:
-  volumes:
-  - name: x11socket
-    hostPath:
-      # x11 directory location on host ${PODUID}
-      path: /var/lib/kubelet/pods/${PODUID}/volumes/kubernetes.io~empty-dir/x11socket
-      # this field is optional
-      type: Directory
-  - name: home
-    hostPath:
-      # home directory location on host
-      path: ${PODHOME}
-      # this field is optional
-      type: Directory
-  containers:
-  - name: abccontainer
-    image: ubuntu:20.04
-    command: [&quot;/bin/sleep&quot;]
-    args: [&quot;1d&quot;]
-    volumeMounts:
-    - mountPath: /tmp/.X11-unix
-      name: x11socket
-    - mountPath: /home/hermes
-      name: home
-    env:
-    - name: XAUTH_KEY
-      value: ${XAUTH_KEY}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">podapp</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcdesktop</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x11socket</span>
+<span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># x11 directory location on host ${PODUID}</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/kubelet/pods/${PODUID}/volumes/kubernetes.io~empty-dir/x11socket</span>
+<span class="w">      </span><span class="c1"># this field is optional</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home</span>
+<span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># home directory location on host</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${PODHOME}</span>
+<span class="w">      </span><span class="c1"># this field is optional</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abccontainer</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu:20.04</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/bin/sleep&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;1d&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/.X11-unix</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x11socket</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/hermes</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home</span>
+<span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">XAUTH_KEY</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${XAUTH_KEY}</span>
+</code></pre></div>
 <p>Run the <code>envsubst</code> command to replace <code>${PODUID}</code>, <code>${PODHOME}</code> and <code>${XAUTH_KEY}</code></p>
-<pre><code>envsubst &lt; podapp.template.yaml &gt; podapp.yaml 
-</code></pre>
+<div class="highlight"><pre><span></span><code>envsubst &lt; podapp.template.yaml &gt; podapp.yaml 
+</code></pre></div>
 <p>Dump the <code>podapp.yaml</code> file content, and check that the volumes are set with the new values.</p>
-<pre><code class="language-sh"># cat podapp.yaml 
-</code></pre>
-<pre><code class="language-yaml">apiVersion: v1
-kind: Pod
-metadata:
-  name: podapp
-  namespace: abcdesktop
-spec:
-  volumes:
-  - name: x11socket
-    hostPath:
-      # directory location on host
-      path: /var/lib/kubelet/pods/c6d2f8a7-eb7d-4a25-9a9c-9778ca9e35cf/volumes/kubernetes.io~empty-dir/x11socket
-      # this field is optional
-      type: Directory
-  - name: home
-    hostPath:
-      # directory location on host
-      path: /tmp/hermes-conrad
-      # this field is optional
-      type: Directory
-  containers:
-  - name: abccontainer
-    image: ubuntu:20.04
-    command: /bin/sleep 1d
-    volumeMounts:
-    - mountPath: /tmp/.X11-unix
-      name: x11socket
-    - mountPath: /home/hermes
-      name: home
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># cat podapp.yaml </span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">podapp</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcdesktop</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x11socket</span>
+<span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># directory location on host</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/kubelet/pods/c6d2f8a7-eb7d-4a25-9a9c-9778ca9e35cf/volumes/kubernetes.io~empty-dir/x11socket</span>
+<span class="w">      </span><span class="c1"># this field is optional</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home</span>
+<span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># directory location on host</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/hermes-conrad</span>
+<span class="w">      </span><span class="c1"># this field is optional</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abccontainer</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu:20.04</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bin/sleep 1d</span>
+<span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/.X11-unix</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x11socket</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/hermes</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home</span>
+</code></pre></div>
 <p>Create the application pod </p>
-<pre><code class="language-sh">kubectl apply -f podapp.yaml 
-pod/podapp created
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>podapp.yaml<span class="w"> </span>
+pod/podapp<span class="w"> </span>created
+</code></pre></div>
 <p>Check that your pod <code>podapp</code> is <code>Running</code></p>
-<pre><code class="language-sh">kubectl get pods podapp  -n abcdesktop
-NAME     READY   STATUS    RESTARTS   AGE
-podapp   1/1     Running   0          32s
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>podapp<span class="w">  </span>-n<span class="w"> </span>abcdesktop
+NAME<span class="w">     </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+podapp<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>32s
+</code></pre></div>
 <h2 id="get-a-shell-in-podapp">Get a shell in <code>podapp</code></h2>
 <p>You get a shell command inside the container.</p>
-<pre><code class="language-sh">kubectl exec -it podapp  -n abcdesktop -- bash 
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>podapp<span class="w">  </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>bash<span class="w"> </span>
+</code></pre></div>
 <h3 id="for-release-30-set-the-mit-magic-cookie-1">for release 3.0 set the MIT-MAGIC-COOKIE-1</h3>
-<pre><code class="language-bash">apt-get update &amp;&amp; apt-get install -y xauth
-</code></pre>
-<pre><code class="language-bash">export DISPLAY=:0.0
-echo $XAUTH_KEY
-xauth add $DISPLAY MIT-MAGIC-COOKIE-1 $XAUTH_KEY
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>xauth
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>:0.0
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$XAUTH_KEY</span>
+xauth<span class="w"> </span>add<span class="w"> </span><span class="nv">$DISPLAY</span><span class="w"> </span>MIT-MAGIC-COOKIE-1<span class="w"> </span><span class="nv">$XAUTH_KEY</span>
+</code></pre></div>
 <p>You can read on stdout</p>
-<pre><code>root@podapp:/# export DISPLAY=:0.0
+<div class="highlight"><pre><span></span><code>root@podapp:/# export DISPLAY=:0.0
 root@podapp:/# echo $XAUTH_KEY
 306908f8e4d4768c7595ce5ad53479
 root@podapp:/# xauth add $DISPLAY MIT-MAGIC-COOKIE-1 $XAUTH_KEY
 xauth:  file /root/.Xauthority does not exist
 root@podapp:/#
-</code></pre>
+</code></pre></div>
 <p>The file <code>/root/.Xauthority</code> does not exist, it has been created.</p>
 <h3 id="install-your-x11-applications">Install your X11 applications</h3>
 <p>For example, I choose to install the <code>x11-apps</code> package</p>
 <p>Replace <code>x11-apps</code> by your own application</p>
-<pre><code class="language-bash">apt-get install -y x11-apps
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>x11-apps
+</code></pre></div>
 <h3 id="start-your-x11-application">Start your X11 application</h3>
 <p>To start the X11 application, just run it. Your <code>DISPLAY</code> is set to <code>:0.0</code>,  (for release 3.0, you've already added the <code>MIT-MAGIC-COOKIE-1</code>). </p>
 <p>But remember you a running a container as <code>root</code>, and all commands are running as <code>root</code> inside the container.</p>
 <p>Start <code>xedit</code> </p>
-<pre><code class="language-bash">xedit
-</code></pre>
+<div class="highlight"><pre><span></span><code>xedit
+</code></pre></div>
 <p>Go back to your web browser. </p>
 <p>A new x11 window <code>xedit</code> should be present on your display</p>
 <p><img alt="xedit" src="../img/debug-application-xedit.png" /></p>
@@ -5192,126 +5192,126 @@ root@podapp:/#
 <p>You've get a shell inside a container to run and start any application. 
 You can also install and start any others applications.</p>
 <p>To clean the running pod podapp</p>
-<pre><code class="language-bash">kubectl delete pods podapp -n abcdesktop 
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>podapp<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>
+</code></pre></div>
 <h2 id="start-a-new-container-from-ubuntu2004-as-hermes">Start a new container from <code>ubuntu:20.04</code> as <code>hermes</code></h2>
 <p>To start a new container from <code>ubuntu:20.04</code> as <code>hermes</code>, we have to add the <code>localaccount</code> secret volume to the previous container</p>
 <p>Read the securityContext from the <code>hermes</code> pod </p>
-<pre><code class="language-bash">export PODRUNASUSER=$(kubectl get pods -l=access_userid=hermes -o json  -n abcdesktop | jq -r '.items[0].spec.securityContext.runAsUser')
-export PODRUNASGROUP=$(kubectl get pods -l=access_userid=hermes -o json  -n abcdesktop | jq -r '.items[0].spec.securityContext.runAsGroup')
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PODRUNASUSER</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="o">=</span><span class="nv">access_userid</span><span class="o">=</span>hermes<span class="w"> </span>-o<span class="w"> </span>json<span class="w">  </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.items[0].spec.securityContext.runAsUser&#39;</span><span class="k">)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PODRUNASGROUP</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="o">=</span><span class="nv">access_userid</span><span class="o">=</span>hermes<span class="w"> </span>-o<span class="w"> </span>json<span class="w">  </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.items[0].spec.securityContext.runAsGroup&#39;</span><span class="k">)</span>
+</code></pre></div>
 <p>Check the <code>uidNumber</code> and the <code>gidNumber</code> values</p>
-<pre><code class="language-bash">echo PODRUNASUSER:$PODRUNASUSER PODRUNASGROUP:$PODRUNASGROUP
-PODRUNASUSER:1051 PODRUNASGROUP:2051
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>PODRUNASUSER:<span class="nv">$PODRUNASUSER</span><span class="w"> </span>PODRUNASGROUP:<span class="nv">$PODRUNASGROUP</span>
+PODRUNASUSER:1051<span class="w"> </span>PODRUNASGROUP:2051
+</code></pre></div>
 <p>Create a file <code>hermespodapp.template.yaml</code> </p>
-<pre><code class="language-yaml">apiVersion: v1
-kind: Pod
-metadata:
-  name: hermespodapp
-  namespace: abcdesktop
-spec:
-  securityContext:
-    runAsUser: ${PODRUNASUSER}
-    runAsGroup: ${PODRUNASGROUP}
-  volumes:
-  - name: x11socket
-    hostPath:
-      # x11 directory location on host ${PODUID}
-      path: /var/lib/kubelet/pods/${PODUID}/volumes/kubernetes.io~empty-dir/x11socket
-      # this field is optional
-      type: Directory
-  - name: home
-    hostPath:
-      # home directory location on host
-      path: ${PODHOME}
-      # this field is optional
-      type: Directory
-  - name: localaccount
-    hostPath:
-      # localaccount directory location on host
-      path: /var/lib/kubelet/pods/${PODUID}/volumes/kubernetes.io~secret/auth-localaccount-hermes
-      # this field is optional
-      type: Directory
-  containers:
-  - name: hermescontainer
-    image: ubuntu:20.04
-    command: [&quot;/bin/sleep&quot;]
-    args: [&quot;1d&quot;]
-    volumeMounts:
-    - mountPath: /tmp/.X11-unix
-      name: x11socket
-    - mountPath: /home/hermes
-      name: home
-    - mountPath: /var/secrets/abcdesktop/localaccount
-      name: localaccount
-    env:
-    - name: XAUTH_KEY
-      value: ${XAUTH_KEY}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hermespodapp</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcdesktop</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">securityContext</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runAsUser</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${PODRUNASUSER}</span>
+<span class="w">    </span><span class="nt">runAsGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${PODRUNASGROUP}</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x11socket</span>
+<span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># x11 directory location on host ${PODUID}</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/kubelet/pods/${PODUID}/volumes/kubernetes.io~empty-dir/x11socket</span>
+<span class="w">      </span><span class="c1"># this field is optional</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home</span>
+<span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># home directory location on host</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${PODHOME}</span>
+<span class="w">      </span><span class="c1"># this field is optional</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localaccount</span>
+<span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># localaccount directory location on host</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/kubelet/pods/${PODUID}/volumes/kubernetes.io~secret/auth-localaccount-hermes</span>
+<span class="w">      </span><span class="c1"># this field is optional</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hermescontainer</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu:20.04</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/bin/sleep&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;1d&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/.X11-unix</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x11socket</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/hermes</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/secrets/abcdesktop/localaccount</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localaccount</span>
+<span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">XAUTH_KEY</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${XAUTH_KEY}</span>
+</code></pre></div>
 <p>Create your hermespodapp.yaml file from the previous template</p>
-<pre><code class="language-sh">envsubst &lt; hermespodapp.template.yaml &gt; hermespodapp.yaml 
-</code></pre>
+<div class="highlight"><pre><span></span><code>envsubst<span class="w"> </span>&lt;<span class="w"> </span>hermespodapp.template.yaml<span class="w"> </span>&gt;<span class="w"> </span>hermespodapp.yaml<span class="w"> </span>
+</code></pre></div>
 <p>Look at your <code>hermespodapp.yaml</code></p>
-<pre><code class="language-sh">cat hermespodapp.yaml 
-</code></pre>
-<pre><code class="language-yaml">apiVersion: v1
-kind: Pod
-metadata:
-  name: hermespodapp
-  namespace: abcdesktop
-spec:
-  securityContext:
-    runAsUser: 1051
-    runAsGroup: 2051
-  volumes:
-  - name: x11socket
-    hostPath:
-      # x11 directory location on host c6d2f8a7-eb7d-4a25-9a9c-9778ca9e35cf
-      path: /var/lib/kubelet/pods/c6d2f8a7-eb7d-4a25-9a9c-9778ca9e35cf/volumes/kubernetes.io~empty-dir/x11socket
-      # this field is optional
-      type: Directory
-  - name: home
-    hostPath:
-      # home directory location on host
-      path: /tmp/hermes-conrad
-      # this field is optional
-      type: Directory
-  - name: localaccount
-    hostPath:
-      # localaccount directory location on host
-      path: /var/lib/kubelet/pods/c6d2f8a7-eb7d-4a25-9a9c-9778ca9e35cf/volumes/kubernetes.io~secret/auth-localaccount-hermes
-      # this field is optional
-      type: Directory
-  containers:
-  - name: hermescontainer
-    image: ubuntu:20.04
-    command: [&quot;/bin/sleep&quot;]
-    args: [&quot;1d&quot;]
-    volumeMounts:
-    - mountPath: /tmp/.X11-unix
-      name: x11socket
-    - mountPath: /home/hermes
-      name: home
-    - mountPath: /var/secrets/abcdesktop/localaccount
-      name: localaccount
-    env:
-    - name: XAUTH_KEY
-      value: 306908f8e4d4768c7595ce5ad53479
-</code></pre>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>hermespodapp.yaml<span class="w"> </span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hermespodapp</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abcdesktop</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">securityContext</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runAsUser</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1051</span>
+<span class="w">    </span><span class="nt">runAsGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2051</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x11socket</span>
+<span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># x11 directory location on host c6d2f8a7-eb7d-4a25-9a9c-9778ca9e35cf</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/kubelet/pods/c6d2f8a7-eb7d-4a25-9a9c-9778ca9e35cf/volumes/kubernetes.io~empty-dir/x11socket</span>
+<span class="w">      </span><span class="c1"># this field is optional</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home</span>
+<span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># home directory location on host</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/hermes-conrad</span>
+<span class="w">      </span><span class="c1"># this field is optional</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localaccount</span>
+<span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># localaccount directory location on host</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/kubelet/pods/c6d2f8a7-eb7d-4a25-9a9c-9778ca9e35cf/volumes/kubernetes.io~secret/auth-localaccount-hermes</span>
+<span class="w">      </span><span class="c1"># this field is optional</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hermescontainer</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu:20.04</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/bin/sleep&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;1d&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/.X11-unix</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">x11socket</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/hermes</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/secrets/abcdesktop/localaccount</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localaccount</span>
+<span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">XAUTH_KEY</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">306908f8e4d4768c7595ce5ad53479</span>
+</code></pre></div>
 <p>Create the <code>hermespodapp</code></p>
-<pre><code>kubectl apply -f hermespodapp.yaml 
+<div class="highlight"><pre><span></span><code>kubectl apply -f hermespodapp.yaml 
 pod/hermespodapp created
-</code></pre>
+</code></pre></div>
 <p>To install the x11 application package, we need a root access to the pod/hermespodapp. We use <code>runc</code> to get a rooted shell. </p>
 <p>Read the <code>containerID</code> of the pod <code>hermespodapp</code></p>
-<pre><code>CONTAINER=$(kubectl -n abcdesktop  get pod hermespodapp -o jsonpath=&quot;{.status.containerStatuses[].containerID}&quot; |sed 's/.*\/\///')
-</code></pre>
+<div class="highlight"><pre><span></span><code>CONTAINER=$(kubectl -n abcdesktop  get pod hermespodapp -o jsonpath=&quot;{.status.containerStatuses[].containerID}&quot; |sed &#39;s/.*\/\///&#39;)
+</code></pre></div>
 <p>Get the shell with <code>runc</code> command</p>
-<pre><code>runc --root /run/containerd/runc/k8s.io/ exec -t -u 0 $CONTAINER bash
+<div class="highlight"><pre><span></span><code>runc --root /run/containerd/runc/k8s.io/ exec -t -u 0 $CONTAINER bash
 groups: cannot find name for group ID 2051
 root@hermespodapp:/# 
-</code></pre>
+</code></pre></div>
 <p>This is correct <code>group ID 2051</code> does not exit. Let's patch your file system with <code>hermes</code> credentials </p>
 <ul>
 <li>/etc/passwd</li>
@@ -5319,51 +5319,51 @@ root@hermespodapp:/#
 <li>/etc/shadow</li>
 <li>/etc/gshadow</li>
 </ul>
-<pre><code>rm -f /etc/passwd &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/passwd /etc/passwd
+<div class="highlight"><pre><span></span><code>rm -f /etc/passwd &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/passwd /etc/passwd
 rm -f /etc/group &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/group  /etc/group
 rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shadow /etc/shadow
 rm -f /etc/gshadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/gshadow /etc/gshadow
-</code></pre>
+</code></pre></div>
 <p>Now your files are updated.
 You can exit, and reopen a bash to your container </p>
-<pre><code>root@hermespodapp:/# exit
-</code></pre>
-<pre><code># runc --root /run/containerd/runc/k8s.io/ exec -t -u 0 $CONTAINER bash
+<div class="highlight"><pre><span></span><code>root@hermespodapp:/# exit
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># runc --root /run/containerd/runc/k8s.io/ exec -t -u 0 $CONTAINER bash
 root@hermespodapp:/# 
-</code></pre>
+</code></pre></div>
 <p>The error message does not appear anymore.</p>
 <p>Install your X11 applications as root</p>
-<pre><code class="language-bash">apt-get update &amp;&amp; apt-get install -y x11-apps
-</code></pre>
+<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>x11-apps
+</code></pre></div>
 <p>Quit the root session</p>
-<pre><code class="language-bash">exit
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
+</code></pre></div>
 <h3 id="start-your-x11-application-as-hermes">Start your X11 application as <code>hermes</code></h3>
 <p>Start a new session to the pod <code>hermespodapp</code></p>
-<pre><code class="language-bash">kubectl -n abcdesktop exec -it hermespodapp -- bash 
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>hermespodapp<span class="w"> </span>--<span class="w"> </span>bash<span class="w"> </span>
+</code></pre></div>
 <p>You get a shell prompt as as <code>hermes</code>. Check the <code>hermes</code> homedirectory and id number</p>
-<pre><code class="language-bash">hermes@hermespodapp:/$
-hermes@hermespodapp:/$ cd
-hermes@hermespodapp:~$ pwd
+<div class="highlight"><pre><span></span><code>hermes@hermespodapp:/$
+hermes@hermespodapp:/$<span class="w"> </span><span class="nb">cd</span>
+hermes@hermespodapp:~$<span class="w"> </span><span class="nb">pwd</span>
 /home/hermes
-hermes@hermespodapp:~$ id 
-uid=1051(hermes) gid=2051(hermes) groups=2051(hermes)
-</code></pre>
+hermes@hermespodapp:~$<span class="w"> </span>id<span class="w"> </span>
+<span class="nv">uid</span><span class="o">=</span><span class="m">1051</span><span class="o">(</span>hermes<span class="o">)</span><span class="w"> </span><span class="nv">gid</span><span class="o">=</span><span class="m">2051</span><span class="o">(</span>hermes<span class="o">)</span><span class="w"> </span><span class="nv">groups</span><span class="o">=</span><span class="m">2051</span><span class="o">(</span>hermes<span class="o">)</span>
+</code></pre></div>
 <p>Export the var <code>DISPLAY</code> and start the edit application. You don't need to create the <code>.Xauthority</code> file.
 <code>/home/hermes</code> is already mounted as a volume.</p>
-<pre><code class="language-bash">hermes@hermespodapp:~$ export DISPLAY=:0.0
-hermes@hermespodapp:~$ xedit &amp;
-[1] 699
-</code></pre>
+<div class="highlight"><pre><span></span><code>hermes@hermespodapp:~$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>:0.0
+hermes@hermespodapp:~$<span class="w"> </span>xedit<span class="w"> </span><span class="p">&amp;</span>
+<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="m">699</span>
+</code></pre></div>
 <p>This process is running as <code>hermes</code> :</p>
-<pre><code class="language-bash">hermes@hermespodapp:~$ ps -ef
-UID          PID    PPID  C STIME TTY          TIME CMD
-hermes         1       0  0 15:57 ?        00:00:00 /bin/sleep 1d
-hermes       690       0  0 16:47 pts/0    00:00:00 bash
-hermes       699     690  0 16:48 pts/0    00:00:00 xedit
-hermes       700     690  0 16:49 pts/0    00:00:00 ps -ef
-</code></pre>
+<div class="highlight"><pre><span></span><code>hermes@hermespodapp:~$<span class="w"> </span>ps<span class="w"> </span>-ef
+UID<span class="w">          </span>PID<span class="w">    </span>PPID<span class="w">  </span>C<span class="w"> </span>STIME<span class="w"> </span>TTY<span class="w">          </span>TIME<span class="w"> </span>CMD
+hermes<span class="w">         </span><span class="m">1</span><span class="w">       </span><span class="m">0</span><span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="m">15</span>:57<span class="w"> </span>?<span class="w">        </span><span class="m">00</span>:00:00<span class="w"> </span>/bin/sleep<span class="w"> </span>1d
+hermes<span class="w">       </span><span class="m">690</span><span class="w">       </span><span class="m">0</span><span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="m">16</span>:47<span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>bash
+hermes<span class="w">       </span><span class="m">699</span><span class="w">     </span><span class="m">690</span><span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="m">16</span>:48<span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>xedit
+hermes<span class="w">       </span><span class="m">700</span><span class="w">     </span><span class="m">690</span><span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="m">16</span>:49<span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>ps<span class="w"> </span>-ef
+</code></pre></div>
 <p>Go back to your web browser. </p>
 <p>A new x11 window <code>xedit</code> should be present on your display </p>
 <p><img alt="xedit" src="../img/debug-xedit-hermespodapp.png" /></p>
@@ -5371,8 +5371,8 @@ hermes       700     690  0 16:49 pts/0    00:00:00 ps -ef
 <p>The name of the edit window is the name of your pod <code>(hermespodapp)</code>.</p>
 </blockquote>
 <p>To clean the running pod hermespodapp</p>
-<pre><code class="language-bash">kubectl delete -f hermespodapp.yaml 
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>hermespodapp.yaml<span class="w"> </span>
+</code></pre></div>
 <p>You have created a pod to run an X11 application as a user in LDAP Directory. 
 You get a root shell inside the pod, to patch, update or install other applications.</p>
 

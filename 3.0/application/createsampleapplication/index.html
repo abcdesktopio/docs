@@ -5073,29 +5073,29 @@
 <h2 id="git-clone-application-repository">git clone application repository</h2>
 <p>The abcdesktop application repository is <a href="https://github.com/abcdesktopio/oc.apps">https://github.com/abcdesktopio/oc.apps
 </a></p>
-<pre><code class="language-sh">git clone https://github.com/abcdesktopio/oc.apps.git
-cd oc.apps
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/abcdesktopio/oc.apps.git
+<span class="nb">cd</span><span class="w"> </span>oc.apps
+</code></pre></div>
 <p>And install <code>nodejs</code> packages for <code>oc.apps</code></p>
-<pre><code class="language-sh">npm install
-</code></pre>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install
+</code></pre></div>
 <h2 id="create-a-samplejson-file">Create a sample.json file</h2>
 <p>abcdesktop uses a json file description to build an application.</p>
 <p>Create a <code>sample.json</code> file</p>
-<pre><code class="language-json">{
-  &quot;tag&quot;: &quot;3.0&quot;,
-  &quot;acl&quot;: { &quot;permit&quot;: [ &quot;all&quot; ] },
-  &quot;cat&quot;: &quot;development&quot;,
-  &quot;icon&quot;: &quot;small.svg&quot;,
-  &quot;apkpackage&quot;: &quot;xterm&quot;,
-  &quot;keyword&quot;: &quot;xterm,shell,cmd&quot;,
-  &quot;launch&quot;: &quot;xterm.XTerm&quot;,
-  &quot;name&quot;: &quot;Xterm&quot;,
-  &quot;path&quot;: &quot;/usr/bin/xterm&quot;,
-  &quot;rules&quot;: { &quot;homedir&quot;: { &quot;default&quot;: true } },
-  &quot;template&quot;: &quot;abcdesktopio/oc.template.alpine.minimal&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;tag&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;all&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;development&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;small.svg&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;apkpackage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xterm&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xterm,shell,cmd&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xterm.XTerm&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Xterm&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/xterm&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/oc.template.alpine.minimal&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="make-a-dockerfile-from-the-samplejson-file">make a <code>Dockerfile</code> from the <code>sample.json</code> file</h2>
 <p><code>make.js</code> is a command line for abcdesktop. <code>make.js</code> read a json file and create a <code>Dockerfile</code></p>
 <p>The <code>make.js</code> options are :</p>
@@ -5109,32 +5109,32 @@ npm notice created a lockfile as package-lock.json. You should commit this file.
 + argparse@2.0.1
 added 1 package and audited 1 package in 0.837s
 found 0 vulnerabilities</p>
-<pre><code class="language-bash">node make.js -r 3.0 -d True  -f sample.json
-</code></pre>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>make.js<span class="w"> </span>-r<span class="w"> </span><span class="m">3</span>.0<span class="w"> </span>-d<span class="w"> </span>True<span class="w">  </span>-f<span class="w"> </span>sample.json
+</code></pre></div>
 <p>Your read on stdout.</p>
-<pre><code>Namespace(dockerfile='True', release='3.0', applicationfile='sample.json')
+<div class="highlight"><pre><span></span><code>Namespace(dockerfile=&#39;True&#39;, release=&#39;3.0&#39;, applicationfile=&#39;sample.json&#39;)
 Building image for release=3.0
 Read database json file=sample.json
 Only one file option to force output to dockerfile=True
 opening file sample.json
 applist.json entries: 1
-{ tag: '3.0',
-  acl: { permit: [ 'all' ] },
-  cat: 'development',
-  icon: 'small.svg',
-  apkpackage: 'xterm',
-  keyword: 'xterm,shell,cmd',
-  launch: 'xterm.XTerm',
-  name: 'Xterm',
-  path: '/usr/bin/xterm',
+{ tag: &#39;3.0&#39;,
+  acl: { permit: [ &#39;all&#39; ] },
+  cat: &#39;development&#39;,
+  icon: &#39;small.svg&#39;,
+  apkpackage: &#39;xterm&#39;,
+  keyword: &#39;xterm,shell,cmd&#39;,
+  launch: &#39;xterm.XTerm&#39;,
+  name: &#39;Xterm&#39;,
+  path: &#39;/usr/bin/xterm&#39;,
   rules: { homedir: { default: true } },
-  template: 'abcdesktopio/oc.template.alpine.minimal' }
+  template: &#39;abcdesktopio/oc.template.alpine.minimal&#39; }
 Building xterm.XTerm
-</code></pre>
+</code></pre></div>
 <p>Read the <code>Dockerfile</code></p>
-<pre><code class="language-sh">cat Dockerfile
-</code></pre>
-<pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>Dockerfile
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=3.0
 FROM abcdesktopio/oc.template.alpine.minimal:$TAG
@@ -5166,11 +5166,11 @@ RUN rm -f /etc/shadow &amp;&amp; ln -s /var/secrets/abcdesktop/localaccount/shad
 USER balloon
 CMD [&quot;/composer/appli-docker-entrypoint.sh&quot;]
 WORKDIR /home/balloon
-</code></pre>
+</code></pre></div>
 <h2 id="build-the-abcsample30-from-dockerfile">build the <code>abcsample:3.0</code> from Dockerfile</h2>
-<pre><code class="language-sh">docker build -t abcsample:3.0 .
-</code></pre>
-<pre><code>Sending build context to Docker daemon  44.21MB
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>abcsample:3.0<span class="w"> </span>.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Sending build context to Docker daemon  44.21MB
 Step 1/29 : ARG TAG=3.0
 Step 2/29 : FROM abcdesktopio/oc.template.alpine.minimal:$TAG
  ---&gt; 8528ff0674c7
@@ -5282,71 +5282,71 @@ Removing intermediate container 05b3b17a1c8c
  ---&gt; e96d24e8088e
 Successfully built e96d24e8088e
 Successfully tagged abcsample:3.0
-</code></pre>
+</code></pre></div>
 <h2 id="export-and-import-abcsample30">export and import <code>abcsample:3.0</code></h2>
 <p>abcdesktop is designed to use a private or public image registry. A registry is a mandatory service to manage kubernetes cluster with some nodes.</p>
 <p>In this case, we suppose we don't have a registry, and we use the same host to build and run application. We need to offer the registry service manually, and copy container image.</p>
 <p>Export the image to OCI image format</p>
-<pre><code class="language-sh">docker save abcsample:3.0 -o abcsample.tar
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>save<span class="w"> </span>abcsample:3.0<span class="w"> </span>-o<span class="w"> </span>abcsample.tar
+</code></pre></div>
 <p>Import  abcsample into the namespace <code>k8s.io</code> using <code>ctr</code> </p>
-<pre><code class="language-sh">ctr -n k8s.io images import abcsample.tar
-</code></pre>
-<pre><code>unpacking docker.io/library/abcsample:3.0 (sha256:5ea681ec0e79928c15d9972f0ae3adfc197d55bfd27cd6cde8381a523c8ae8c0)...done
-</code></pre>
+<div class="highlight"><pre><span></span><code>ctr<span class="w"> </span>-n<span class="w"> </span>k8s.io<span class="w"> </span>images<span class="w"> </span>import<span class="w"> </span>abcsample.tar
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>unpacking docker.io/library/abcsample:3.0 (sha256:5ea681ec0e79928c15d9972f0ae3adfc197d55bfd27cd6cde8381a523c8ae8c0)...done
+</code></pre></div>
 <h2 id="put-abcsample30-in-to-abcdesktop">put <code>abcsample:3.0</code> in to abcdesktop</h2>
 <p>Export the abcsample:3.0 image to OCI format</p>
-<pre><code class="language-sh">docker image inspect abcsample:3.0 &gt; abcsample.json
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>image<span class="w"> </span>inspect<span class="w"> </span>abcsample:3.0<span class="w"> </span>&gt;<span class="w"> </span>abcsample.json
+</code></pre></div>
 <p>Import the <code>abcsample.json</code> into abcdesktop endpoint <code>/API/manager/image</code></p>
-<pre><code class="language-sh">curl -X PUT -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @abcsample.json 
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@abcsample.json<span class="w"> </span>
+</code></pre></div>
 <p>Return a json document</p>
-<pre><code class="language-json">[
-  {
-    &quot;home&quot;: null,
-    &quot;cmd&quot;: [
-      &quot;/composer/appli-docker-entrypoint.sh&quot;
-    ],
-    &quot;sha_id&quot;: &quot;sha256:e96d24e8088ead49f0899498a377de88cf6b8b55f042bfe5dee4cfe385d71fe2&quot;,
-    &quot;id&quot;: &quot;abcsample:3.0&quot;,
-    &quot;rules&quot;: {
-      &quot;homedir&quot;: {
-        &quot;default&quot;: true
-      }
-    },
-    &quot;acl&quot;: {
-      &quot;permit&quot;: [
-        &quot;all&quot;
-      ]
-    },
-    &quot;launch&quot;: &quot;xterm.XTerm&quot;,
-    &quot;name&quot;: &quot;Xterm&quot;,
-    &quot;icon&quot;: &quot;small.svg&quot;,
-    &quot;icondata&quot;: &quot;PHN2ZyB2ZXJzaW9uPSIxLjEiIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJncmVlbiIvPjwvc3ZnPgo=&quot;,
-    &quot;keyword&quot;: &quot;xterm,xterm,shell,cmd&quot;,
-    &quot;uniquerunkey&quot;: null,
-    &quot;cat&quot;: &quot;development&quot;,
-    &quot;args&quot;: null,
-    &quot;execmode&quot;: null,
-    &quot;security_opt&quot;: null,
-    &quot;showinview&quot;: null,
-    &quot;displayname&quot;: &quot;Xterm&quot;,
-    &quot;mimetype&quot;: [],
-    &quot;path&quot;: &quot;/usr/bin/xterm&quot;,
-    &quot;desktopfile&quot;: null,
-    &quot;executablefilename&quot;: &quot;xterm&quot;,
-    &quot;usedefaultapplication&quot;: null,
-    &quot;fileextensions&quot;: [],
-    &quot;legacyfileextensions&quot;: [],
-    &quot;host_config&quot;: {},
-    &quot;secrets_requirement&quot;: null,
-    &quot;run_inside_pod&quot;: false,
-    &quot;image_pull_policy&quot;: &quot;IfNotPresent&quot;,
-    &quot;image_pull_secrets&quot;: null
-  }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;home&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;/composer/appli-docker-entrypoint.sh&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;sha_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha256:e96d24e8088ead49f0899498a377de88cf6b8b55f042bfe5dee4cfe385d71fe2&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcsample:3.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;all&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xterm.XTerm&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Xterm&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;small.svg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icondata&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PHN2ZyB2ZXJzaW9uPSIxLjEiIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJncmVlbiIvPjwvc3ZnPgo=&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xterm,xterm,shell,cmd&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;uniquerunkey&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;development&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;execmode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;security_opt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;showinview&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Xterm&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/xterm&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;executablefilename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xterm&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;usedefaultapplication&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;legacyfileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;host_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="nt">&quot;secrets_requirement&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;run_inside_pod&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;image_pull_policy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IfNotPresent&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;image_pull_secrets&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <h2 id="run-the-new-application">Run the new application</h2>
 <p>Open a web browser and go to abcdesktop service url.</p>
 <p>Open a new abcdesktop session.</p>
@@ -5360,27 +5360,27 @@ Successfully tagged abcsample:3.0
 <p>You have created your own abcdesktop application, import the image, and start it. To get more details, look at the <a href="https://github.com/abcdesktopio/oc.apps/blob/main/applist.json"><code>applist.json</code></a> it describe all json applications for abcdesktop.</p>
 <h2 id="rebuild-all-images">Rebuild all images</h2>
 <p>To rebuild all application in <code>applist.json</code>, run <code>node make.js -r 3.0</code></p>
-<pre><code class="language-bash">node make.js -r 3.0
-</code></pre>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>make.js<span class="w"> </span>-r<span class="w"> </span><span class="m">3</span>.0
+</code></pre></div>
 <p>This command has create new '.d' files. </p>
-<pre><code class="language-bash">$ ls *.d
-ls *.d
-alpine-2048.d            calculator.d    drawio.d               flare.d          hyper.d       kturtle.d       octave.d        remotedesktopmanager.d  terminal.d     winefile-wine.d  youtube.d
-apachedirectorystudio.d  chess.d         edge.d                 frozen-bubble.d  impress.d     leocad.d        onlyoffice.d    rhythmbox.d             terminalpod.d  winemine-wine.d
-astromenace.d            chrome.d        elementary.terminal.d  gcompris.d       inkscape.d    librecad.d      openshift.d     robots.d                tetravex.d     winhelp-wine.d
-atom.d                   chromium.d      eog.d                  gedit.d          kalzium.d     mahjongg.d      pinta.d         shotcut.d               thunderbird.d  winscp-wine.d
-base.d                   citrix.d        evince.d               gelemental.d     kdiamond.d    math.d          planner.d       stellarium.d            ubuntu-2048.d  wireshark.d
-beekeeperstudio.d        cloudfoundry.d  evolution.d            geogebra.d       kgeography.d  mathwar.d       postman.d       step.d                  vice.d         writer.d
-blender.d                cntlm.d         file-roller.d          gimagereader.d   kigo.d        minecraft.d     putty-unix.d    stress.d                vlc.d          xedit.d
-bless.d                  corsix-th.d     filelight.d            gimp.d           klickety.d    mines.d         putty-wine.d    sublime-text.d          vmmacos.d      xeyes.d
-blobby.d                 dia.d           filezilla.d            gnumeric.d       klotski.d     nautilus.d      qelectrotech.d  supertux2.d             vmrc.d         xman.d
-brackets.d               doom.d          firefox-esr.d          golly.d          konsole.d     notepad-wine.d  remarkable.d    swell-foop.d            vmubuntu.d     xpad.d
-calc.d                   draw.d          firefox.d              gretl.d          ksquares.d    notepadqq.d     remmina.d       teams.d                 vscode.d       xterm.d
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>*.d
+ls<span class="w"> </span>*.d
+alpine-2048.d<span class="w">            </span>calculator.d<span class="w">    </span>drawio.d<span class="w">               </span>flare.d<span class="w">          </span>hyper.d<span class="w">       </span>kturtle.d<span class="w">       </span>octave.d<span class="w">        </span>remotedesktopmanager.d<span class="w">  </span>terminal.d<span class="w">     </span>winefile-wine.d<span class="w">  </span>youtube.d
+apachedirectorystudio.d<span class="w">  </span>chess.d<span class="w">         </span>edge.d<span class="w">                 </span>frozen-bubble.d<span class="w">  </span>impress.d<span class="w">     </span>leocad.d<span class="w">        </span>onlyoffice.d<span class="w">    </span>rhythmbox.d<span class="w">             </span>terminalpod.d<span class="w">  </span>winemine-wine.d
+astromenace.d<span class="w">            </span>chrome.d<span class="w">        </span>elementary.terminal.d<span class="w">  </span>gcompris.d<span class="w">       </span>inkscape.d<span class="w">    </span>librecad.d<span class="w">      </span>openshift.d<span class="w">     </span>robots.d<span class="w">                </span>tetravex.d<span class="w">     </span>winhelp-wine.d
+atom.d<span class="w">                   </span>chromium.d<span class="w">      </span>eog.d<span class="w">                  </span>gedit.d<span class="w">          </span>kalzium.d<span class="w">     </span>mahjongg.d<span class="w">      </span>pinta.d<span class="w">         </span>shotcut.d<span class="w">               </span>thunderbird.d<span class="w">  </span>winscp-wine.d
+base.d<span class="w">                   </span>citrix.d<span class="w">        </span>evince.d<span class="w">               </span>gelemental.d<span class="w">     </span>kdiamond.d<span class="w">    </span>math.d<span class="w">          </span>planner.d<span class="w">       </span>stellarium.d<span class="w">            </span>ubuntu-2048.d<span class="w">  </span>wireshark.d
+beekeeperstudio.d<span class="w">        </span>cloudfoundry.d<span class="w">  </span>evolution.d<span class="w">            </span>geogebra.d<span class="w">       </span>kgeography.d<span class="w">  </span>mathwar.d<span class="w">       </span>postman.d<span class="w">       </span>step.d<span class="w">                  </span>vice.d<span class="w">         </span>writer.d
+blender.d<span class="w">                </span>cntlm.d<span class="w">         </span>file-roller.d<span class="w">          </span>gimagereader.d<span class="w">   </span>kigo.d<span class="w">        </span>minecraft.d<span class="w">     </span>putty-unix.d<span class="w">    </span>stress.d<span class="w">                </span>vlc.d<span class="w">          </span>xedit.d
+bless.d<span class="w">                  </span>corsix-th.d<span class="w">     </span>filelight.d<span class="w">            </span>gimp.d<span class="w">           </span>klickety.d<span class="w">    </span>mines.d<span class="w">         </span>putty-wine.d<span class="w">    </span>sublime-text.d<span class="w">          </span>vmmacos.d<span class="w">      </span>xeyes.d
+blobby.d<span class="w">                 </span>dia.d<span class="w">           </span>filezilla.d<span class="w">            </span>gnumeric.d<span class="w">       </span>klotski.d<span class="w">     </span>nautilus.d<span class="w">      </span>qelectrotech.d<span class="w">  </span>supertux2.d<span class="w">             </span>vmrc.d<span class="w">         </span>xman.d
+brackets.d<span class="w">               </span>doom.d<span class="w">          </span>firefox-esr.d<span class="w">          </span>golly.d<span class="w">          </span>konsole.d<span class="w">     </span>notepad-wine.d<span class="w">  </span>remarkable.d<span class="w">    </span>swell-foop.d<span class="w">            </span>vmubuntu.d<span class="w">     </span>xpad.d
+calc.d<span class="w">                   </span>draw.d<span class="w">          </span>firefox.d<span class="w">              </span>gretl.d<span class="w">          </span>ksquares.d<span class="w">    </span>notepadqq.d<span class="w">     </span>remmina.d<span class="w">       </span>teams.d<span class="w">                 </span>vscode.d<span class="w">       </span>xterm.d
+</code></pre></div>
 <p>Each <code>.d</code> file is a <code>Dockerfile</code> </p>
 <p>Run <code>make</code> to build all applications (it can take more than 2 hours) </p>
-<pre><code>make
-</code></pre>
+<div class="highlight"><pre><span></span><code>make
+</code></pre></div>
 
 
 

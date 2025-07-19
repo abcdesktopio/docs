@@ -5299,9 +5299,9 @@ You need the set the value of <code>desktop.persistentvolumeclaim</code> or crea
 <p><code>desktop.persistentvolumeclaim</code> is the name of the Persistent Volume Claim if the <code>desktop.homedirectory</code> is set to <code>'persistentVolumeClaim'</code>.
 The PVC (Persistent Volume Claim) must exist.</p>
 <p>Run the <code>kubectl get pvc command</code> to list the persistent volume claim</p>
-<pre><code>NAME                                   STATUS   VOLUME                     CAPACITY   ACCESS MODES   STORAGECLASS           AGE
+<div class="highlight"><pre><span></span><code>NAME                                   STATUS   VOLUME                     CAPACITY   ACCESS MODES   STORAGECLASS           AGE
 abcdesktop-pvc                        Bound    abcdesktop-pv             5Gi        RWO            abcdesktop-standard   170d
-</code></pre>
+</code></pre></div>
 <h2 id="desktopremotehomedirectorytype">desktop.remotehomedirectorytype</h2>
 <p>desktop.remotehomedirectorytype is a list of string. Each string describe if the remount access to a directory is allowed.
 example [ 'cifs', 'webdav' ]</p>
@@ -5318,8 +5318,8 @@ You should only set <code>desktop.allowPrivilegeEscalation</code> to run <code>s
 <p>The default value is a list of string <code>[ '#6EC6F0', '#333333',  '#666666', '#CD3C14', '#4BB4E6', '#50BE87', '#A885D8', '#FFB4E6' ]</code></p>
 <p>The <code>desktop.defaultbackgroundcolors</code> length can contain up to 8 entries. To see the color </p>
 <p>Open the url http://localhost, in your web browser, to start a simple abcdesktop.io container. </p>
-<pre><code>http://localhost
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost
+</code></pre></div>
 <p>You should see the abcdesktop.io home page.</p>
 <p>Press the <code>Connect with Anonymous access, have look</code></p>
 <p>At the right top corner, click on the menu and choose <code>Settings</code>, then click on <code>Screen Colors</code></p>
@@ -5331,13 +5331,13 @@ The type of <code>desktop.imagePullSecret</code> is a string. This option is onl
 <ul>
 <li>Example to build a registry Kubernetes secret named abcdesktopregistrysecret with the docker hub.</li>
 </ul>
-<pre><code>kubectl create secret docker-registry abcdesktopregistrysecret --docker-server=https://index.docker.io/v1/ --docker-username=XXXXXXX --docker-password=YYYYYYYU
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl create secret docker-registry abcdesktopregistrysecret --docker-server=https://index.docker.io/v1/ --docker-username=XXXXXXX --docker-password=YYYYYYYU
+</code></pre></div>
 <ul>
 <li>Example to build a registry Kubernetes secret named abcdesktopregistrysecret with your own privateregistry</li>
 </ul>
-<pre><code>kubectl create secret docker-registry abcdesktopregistrysecret --docker-server=registry.mydomain.local:443 --docker-username=XXXXXXX --docker-password=YYYYYYYU
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl create secret docker-registry abcdesktopregistrysecret --docker-server=registry.mydomain.local:443 --docker-username=XXXXXXX --docker-password=YYYYYYYU
+</code></pre></div>
 <h2 id="desktopimage">desktop.image</h2>
 <p>The <code>desktop.image</code> is the name of the X11 server container
 The default value is <code>abcdesktopio/oc.user.18.04</code></p>
@@ -5363,26 +5363,26 @@ The code call the <code>desktop.initcontainercommand</code> list .</p>
 <h2 id="desktopinitcontainercommand">desktop.initcontainercommand</h2>
 <p>The <code>desktop.initcontainercommand</code> runs the command at init container. The default value is <code>None</code>, the default type is <code>list</code>.</p>
 <p>desktop.initcontainercommand example :</p>
-<pre><code>desktop.initcontainercommand : [ 'sh', '-c', 'chown 4096:4096 /home/balloon' ]
-</code></pre>
+<div class="highlight"><pre><span></span><code>desktop.initcontainercommand : [ &#39;sh&#39;, &#39;-c&#39;, &#39;chown 4096:4096 /home/balloon&#39; ]
+</code></pre></div>
 <p>This option is used when presistent volume data mount a nfs storage. The uid and gid of /home/balloon must be set to the default value of <code>(balloon:balloon) (4096:4096)</code>. </p>
 <h2 id="desktopinitcontainerimage">desktop.initcontainerimage</h2>
 <p>The <code>desktop.initcontainerimage</code> is the name of the init container image. The default value is <code>busybox</code>. </p>
 <h2 id="desktopenvlocal">desktop.envlocal</h2>
 <p><code>desktop.envlocal</code> is a dictionary. <code>desktop.envlocal</code> contains a (key,value) added as environment variables to oc.user.</p>
 <p>The default value is :</p>
-<pre><code>{ 
-        'DISPLAY': ':0.0', 
-        'USER': 'balloon', 
-        'LIBOVERLAY_SCROLLBAR': '0',
-        'WINEARCH': 'win32',
-        'UBUNTU_MENUPROXY': '0',
-        'HOME': '/home/balloon',
-        'LOGNAME': 'balloon',
-        'PULSE_SERVER: '/tmp/.pulse.sock', 
-        'CUPS_SERVER': '/tmp/.cups.sock' 
+<div class="highlight"><pre><span></span><code>{ 
+        &#39;DISPLAY&#39;: &#39;:0.0&#39;, 
+        &#39;USER&#39;: &#39;balloon&#39;, 
+        &#39;LIBOVERLAY_SCROLLBAR&#39;: &#39;0&#39;,
+        &#39;WINEARCH&#39;: &#39;win32&#39;,
+        &#39;UBUNTU_MENUPROXY&#39;: &#39;0&#39;,
+        &#39;HOME&#39;: &#39;/home/balloon&#39;,
+        &#39;LOGNAME&#39;: &#39;balloon&#39;,
+        &#39;PULSE_SERVER: &#39;/tmp/.pulse.sock&#39;, 
+        &#39;CUPS_SERVER&#39;: &#39;/tmp/.cups.sock&#39; 
 }
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>Add <code>'CUPS_SERVER: '/tmp/.cups.sock'</code>  only if <code>desktop.useprintercontainer</code> is True.
 Add <code>'PULSE_SERVER: '/tmp/.pulse.sock'</code> only if <code>desktop.usesoundcontainer</code> is True.</p>
@@ -5391,42 +5391,42 @@ Add <code>'PULSE_SERVER: '/tmp/.pulse.sock'</code> only if <code>desktop.usesoun
 <p><code>desktop.nodeselector</code> is a dictionary. This option permits to assign user pods to nodes.
 It specifies a map of key-value pairs. For the pod to be eligible to run on a node, the node must have each of the indicated key-value pairs as labels (it can have additional labels as well). 
 The most common usage is one key-value pair. </p>
-<pre><code>{ 'disktype': 'ssd' }
-</code></pre>
+<div class="highlight"><pre><span></span><code>{ &#39;disktype&#39;: &#39;ssd&#39; }
+</code></pre></div>
 <h2 id="desktopusername">desktop.username</h2>
 <p><code>desktop.username</code> describes the <a href="../balloon/">balloon</a> user created inside the oc.user container.
 The type of desktop.username is string. The default value is 'balloon'.</p>
 <p>If you change this value, you have to rebuild your own oc.user file
 The script oc.user in Dockerfile oc.user :</p>
-<pre><code>ENV BUSER balloon
+<div class="highlight"><pre><span></span><code>ENV BUSER balloon
 RUN groupadd --gid 4096 $BUSER
 RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups lpadmin,sudo $BUSER
-</code></pre>
+</code></pre></div>
 <p>Read the dedicated page on <a href="../balloon/">balloon</a> to gaet more information about user balloon, uid, and gid.</p>
 <h2 id="desktopuserid">desktop.userid</h2>
 <p><code>desktop.userid</code> describes the <code>uid</code> of the user created inside the oc.user container.
     The type of desktop.userid is integer. The default value is 4096.</p>
 <p>If you change this value, you have to rebuild your own oc.user file
 The script oc.user in Dockerfile oc.user :</p>
-<pre><code>ENV BUSER balloon
+<p><div class="highlight"><pre><span></span><code>ENV BUSER balloon
 RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups lpadmin,sudo $BUSER
-</code></pre>
-<p>Read the dedicated page on <a href="../balloon/">balloon</a> to gaet more information about user balloon, uid, and gid.</p>
+</code></pre></div>
+Read the dedicated page on <a href="../balloon/">balloon</a> to gaet more information about user balloon, uid, and gid.</p>
 <h2 id="desktopgroupid">desktop.groupid</h2>
 <p><code>desktop.groupid</code> describes the <code>gid</code> of the user created inside the oc.user container. The type of desktop.userid is integer. The default value is 4096.</p>
 <p>If you change this value, you have to rebuild your own oc.user file
 The script oc.user in Dockerfile oc.user :</p>
-<pre><code>RUN groupadd --gid 4096 $BUSER
-</code></pre>
+<div class="highlight"><pre><span></span><code>RUN groupadd --gid 4096 $BUSER
+</code></pre></div>
 <p>Read the dedicated page on <a href="../balloon/">balloon</a> to gaet more information about user balloon, uid, and gid.</p>
 <h2 id="desktopuserhomedirectory">desktop.userhomedirectory</h2>
 <p><code>desktop.userhomedirectory</code> describes the <code>homedirectory</code> of the user created inside the oc.user container. The type of <code>desktop.userhomedirectory</code> is string. The default value is <code>/home/balloon</code>.</p>
 <p>If you change this value, you have to rebuild your own oc.user file
 The script oc.user in Dockerfile oc.user :</p>
-<pre><code>ENV BUSER balloon
+<div class="highlight"><pre><span></span><code>ENV BUSER balloon
 RUN groupadd --gid 4096 $BUSER
 RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups lpadmin,sudo $BUSER
-</code></pre>
+</code></pre></div>
 <p>Read the dedicated page on <a href="../balloon/">balloon</a> to gaet more information about user balloon, uid, and gid.</p>
 <h2 id="desktopuselocaltime">desktop.uselocaltime</h2>
 <p>The <code>desktop.uselocaltime</code> is boolean, to use host value of <code>/etc/localtime</code>.
@@ -5457,16 +5457,16 @@ If <code>desktop.uselocaltime</code> is True, this add a volume mapping from hos
 </tbody>
 </table>
 <p>Example</p>
-<pre><code>desktop.policies: { 'rules':
-    { 'volumes': 
-        { 'domainuser':  
-            { 'type': 'cifs', 'name': 'homedirectory', 'volumename': 'homedir' },
-            'Mygroupteam':  { 'type': 'cifs', 'name': 'toto', 'unc': '//192.168.7.101/team', 'volumename': 'team' } 
+<div class="highlight"><pre><span></span><code>desktop.policies: { &#39;rules&#39;:
+    { &#39;volumes&#39;: 
+        { &#39;domainuser&#39;:  
+            { &#39;type&#39;: &#39;cifs&#39;, &#39;name&#39;: &#39;homedirectory&#39;, &#39;volumename&#39;: &#39;homedir&#39; },
+            &#39;Mygroupteam&#39;:  { &#39;type&#39;: &#39;cifs&#39;, &#39;name&#39;: &#39;toto&#39;, &#39;unc&#39;: &#39;//192.168.7.101/team&#39;, &#39;volumename&#39;: &#39;team&#39; } 
             } 
         },
-      'acls' : {},
-      'max_app_counter' : 4  }
-</code></pre>
+      &#39;acls&#39; : {},
+      &#39;max_app_counter&#39; : 4  }
+</code></pre></div>
 <h2 id="desktopapplication_config">desktop.application_config</h2>
 <p>Default application host_config dictionary, maps the dictionary as arguments from docker API 
 <a href="https://docker-py.readthedocs.io/en/stable/api.html#docker.api.container.ContainerApiMixin.create_host_config">create_host_config</a></p>
@@ -5488,7 +5488,7 @@ If this value is set to <code>True</code> the payload data in the JWT Desktop To
 <p>If you CAN NOT add <code>endpoint_pod_names</code> in the coredns configuration, you MUST set <code>desktop.desktopuseinternalfqdn</code> to <code>False</code>.
 This choice is less secure.</p>
 <p>To set <code>desktop.desktopuseinternalfqdn</code> to <code>True</code> value, you have to update the <code>coredns</code> ConfigMap.</p>
-<pre><code>kind: ConfigMap
+<div class="highlight"><pre><span></span><code>kind: ConfigMap
 apiVersion: v1
 metadata:
   name: coredns
@@ -5514,7 +5514,7 @@ data:
         reload
         loadbalance
     }
-</code></pre>
+</code></pre></div>
 
 
 

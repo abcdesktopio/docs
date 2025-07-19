@@ -4994,43 +4994,42 @@
 <p><a href="../abcdesktopio/oc.template.alpine">abcdesktopio/oc.template.alpine</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>alpine <img alt="alpine" src="../icons/alpine.svg" style="height:32px;" /></p>
-<pre><code>NAME=&quot;Alpine Linux&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Alpine Linux&quot;
 ID=alpine
 VERSION_ID=3.17.1
 PRETTY_NAME=&quot;Alpine Linux v3.17&quot;
 HOME_URL=&quot;https://alpinelinux.org/&quot;
 BUG_REPORT_URL=&quot;https://gitlab.alpinelinux.org/alpine/aports/-/issues&quot;
-
-</code></pre>
+</code></pre></div>
 <h2 id="alpine-packages">Alpine packages</h2>
-<pre><code>gnome-boxes sudo
-</code></pre>
+<div class="highlight"><pre><span></span><code>gnome-boxes sudo
+</code></pre></div>
 <h2 id="displayname">Displayname</h2>
-<pre><code>Gnome-boxes
-</code></pre>
+<div class="highlight"><pre><span></span><code>Gnome-boxes
+</code></pre></div>
 <h2 id="path">Path</h2>
-<pre><code>/usr/bin/gnome-boxes
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/bin/gnome-boxes
+</code></pre></div>
 <h2 id="mimetype">Mimetype</h2>
-<pre><code>application-x-cd-image;
-</code></pre>
+<div class="highlight"><pre><span></span><code>application-x-cd-image;
+</code></pre></div>
 <h2 id="acl">ACL</h2>
-<pre><code class="language-json">{
-    &quot;permit&quot;: [
-        &quot;all&quot;
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;all&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="wm_class">WM_CLASS</h2>
-<pre><code>gnome-boxes.Gnome-boxes
-</code></pre>
+<div class="highlight"><pre><span></span><code>gnome-boxes.Gnome-boxes
+</code></pre></div>
 <blockquote>
 <p>The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
 to get the WM_CLASS property of an application, use the command line <code>wmctrl -lx</code></p>
 </blockquote>
 <h2 id="desktopfile">Desktopfile</h2>
-<pre><code>/usr/share/applications/org.gnome.Boxes.desktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/share/applications/org.gnome.Boxes.desktop
+</code></pre></div>
 <blockquote>
 <p>A .desktop file is a simple text file that holds information about a program. It is usually placed in “/usr/share/applications/”.</p>
 </blockquote>
@@ -5038,57 +5037,56 @@ to get the WM_CLASS property of an application, use the command line <code>wmctr
 <blockquote>
 <p>POST run command are run <strong>after</strong> the package install comman</p>
 </blockquote>
-<pre><code>RUN echo &quot;ALL ALL=(ALL:ALL) ALL&quot;&gt;/etc/sudoers.d/all
-</code></pre>
+<div class="highlight"><pre><span></span><code>RUN echo &quot;ALL ALL=(ALL:ALL) ALL&quot;&gt;/etc/sudoers.d/all
+</code></pre></div>
 <h2 id="json-dump">JSON dump</h2>
 <p>json source file boxes.d.3.0.json </p>
-<pre><code class="language-json">{
-    &quot;acl&quot;: {
-        &quot;permit&quot;: [
-            &quot;all&quot;
-        ]
-    },
-    &quot;cat&quot;: &quot;development&quot;,
-    &quot;icon&quot;: &quot;org.gnome.Boxes.svg&quot;,
-    &quot;apkpackage&quot;: &quot;gnome-boxes sudo&quot;,
-    &quot;keyword&quot;: &quot;boxes,vm&quot;,
-    &quot;launch&quot;: &quot;gnome-boxes.Gnome-boxes&quot;,
-    &quot;name&quot;: &quot;boxes&quot;,
-    &quot;displayname&quot;: &quot;Gnome-boxes&quot;,
-    &quot;path&quot;: &quot;/usr/bin/gnome-boxes&quot;,
-    &quot;rules&quot;: {
-        &quot;homedir&quot;: {
-            &quot;default&quot;: true
-        }
-    },
-    &quot;template&quot;: &quot;abcdesktopio/oc.template.alpine&quot;,
-    &quot;desktopfile&quot;: &quot;/usr/share/applications/org.gnome.Boxes.desktop&quot;,
-    &quot;mimetype&quot;: &quot;application-x-cd-image;&quot;,
-    &quot;postruncommands&quot;: [
-        &quot;RUN echo \&quot;ALL ALL=(ALL:ALL) ALL\&quot;&gt;/etc/sudoers.d/all&quot;
-    ],
-    &quot;securitycontext&quot;: {
-        &quot;allowPrivilegeEscalation&quot;: true,
-        &quot;capabilities&quot;: {
-            &quot;add&quot;: [
-                &quot;NET_ADMIN&quot;,
-                &quot;CAP_SYS_ADMIN&quot;
-            ]
-        }
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;all&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;development&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;org.gnome.Boxes.svg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;apkpackage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gnome-boxes sudo&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boxes,vm&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gnome-boxes.Gnome-boxes&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boxes&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Gnome-boxes&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/gnome-boxes&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/oc.template.alpine&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/share/applications/org.gnome.Boxes.desktop&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application-x-cd-image;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;postruncommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;RUN echo \&quot;ALL ALL=(ALL:ALL) ALL\&quot;&gt;/etc/sudoers.d/all&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;securitycontext&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;allowPrivilegeEscalation&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;capabilities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;add&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;NET_ADMIN&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;CAP_SYS_ADMIN&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
 <p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-curl --output boxes.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/boxes.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @boxes.d.3.0.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+curl<span class="w"> </span>--output<span class="w"> </span>boxes.d.3.0.json<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/boxes.d.3.0.json
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@boxes.d.3.0.json
+</code></pre></div>
 <h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
-<pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+<div class="highlight"><pre><span></span><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
 FROM abcdesktopio/oc.template.alpine:$TAG
@@ -5119,29 +5117,27 @@ RUN mkdir -p /var/secrets/abcdesktop/localaccount
 RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
 USER balloon
 CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
-
-</code></pre>
+</code></pre></div>
 <h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
 <h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/boxes.d">Dockerfile for application boxes</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/boxes.d
-</code></pre>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/boxes.d">Dockerfile for application boxes</a>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/boxes.d
+</code></pre></div></p>
 <h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f boxes.d -t boxes .
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">TAG</span><span class="o">=</span><span class="m">3</span>.0<span class="w"> </span>-f<span class="w"> </span>boxes.d<span class="w"> </span>-t<span class="w"> </span>boxes<span class="w"> </span>.
+</code></pre></div>
 <h3 id="install-the-new-image">Install the new image</h3>
 <blockquote>
 <p>If you are using <code>containerd</code> as container runtime, use the ctr command line</p>
 <p>If you are not running this bash command on your abcdesktop node
 Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-docker inspect boxes &gt; boxes.json
-docker image save boxes -o boxes.tar
-ctr -n k8s.io images import boxes.tar
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @boxes.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+docker<span class="w"> </span>inspect<span class="w"> </span>boxes<span class="w"> </span>&gt;<span class="w"> </span>boxes.json
+docker<span class="w"> </span>image<span class="w"> </span>save<span class="w"> </span>boxes<span class="w"> </span>-o<span class="w"> </span>boxes.tar
+ctr<span class="w"> </span>-n<span class="w"> </span>k8s.io<span class="w"> </span>images<span class="w"> </span>import<span class="w"> </span>boxes.tar
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@boxes.json
+</code></pre></div>
 
 
 

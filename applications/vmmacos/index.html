@@ -4939,15 +4939,15 @@
 <h2 id="inherite-from">inherite from</h2>
 <p><a href="../abcdesktop/docker-osx">abcdesktop/docker-osx</a></p>
 <h2 id="acl">ACL</h2>
-<pre><code class="language-json">{
-    &quot;permit&quot;: [
-        &quot;all&quot;
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;all&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="wm_class">WM_CLASS</h2>
-<pre><code>qemu.Qemu-system-x86_64
-</code></pre>
+<div class="highlight"><pre><span></span><code>qemu.Qemu-system-x86_64
+</code></pre></div>
 <blockquote>
 <p>The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
 to get the WM_CLASS property of an application, use the command line <code>wmctrl -lx</code></p>
@@ -4956,57 +4956,56 @@ to get the WM_CLASS property of an application, use the command line <code>wmctr
 <blockquote>
 <p>PRE run command are run <strong>before</strong> the package install command</p>
 </blockquote>
-<pre><code>RUN yes | sudo pacman -S xorg-xauth
-</code></pre>
+<div class="highlight"><pre><span></span><code>RUN yes | sudo pacman -S xorg-xauth
+</code></pre></div>
 <h2 id="json-dump">JSON dump</h2>
 <p>json source file vmmacos.d.3.0.json </p>
-<pre><code class="language-json">{
-    &quot;acl&quot;: {
-        &quot;permit&quot;: [
-            &quot;all&quot;
-        ]
-    },
-    &quot;cat&quot;: &quot;utilities&quot;,
-    &quot;preruncommands&quot;: [
-        &quot;RUN yes | sudo pacman -S xorg-xauth&quot;
-    ],
-    &quot;icon&quot;: &quot;MacOS_logo.svg&quot;,
-    &quot;keyword&quot;: &quot;macos,apple&quot;,
-    &quot;launch&quot;: &quot;qemu.Qemu-system-x86_64&quot;,
-    &quot;name&quot;: &quot;vmmacos&quot;,
-    &quot;rules&quot;: {
-        &quot;homedir&quot;: {
-            &quot;default&quot;: true
-        }
-    },
-    &quot;host_config&quot;: {
-        &quot;devices&quot;: [
-            &quot;/dev/kvm&quot;
-        ],
-        &quot;mem_limit&quot;: &quot;16G&quot;
-    },
-    &quot;template&quot;: &quot;abcdesktop/docker-osx&quot;,
-    &quot;workdir&quot;: &quot;/home/arch/OSX-KVM&quot;,
-    &quot;user&quot;: &quot;arch&quot;,
-    &quot;home&quot;: &quot;/home/arch&quot;,
-    &quot;cmd&quot;: [
-        &quot;/bin/bash&quot;,
-        &quot;-c&quot;,
-        &quot;sudo touch /dev/kvm /dev/snd \&quot;${IMAGE_PATH}\&quot; \&quot;${BOOTDISK}\&quot; \&quot;${ENV}\&quot; 2&gt;/dev/null || true; sudo chown -R $(id -u):$(id -g) /dev/kvm /dev/snd \&quot;${IMAGE_PATH}\&quot; \&quot;${BOOTDISK}\&quot; \&quot;${ENV}\&quot; 2&gt;/dev/null || true     ; [[ \&quot;${NOPICKER}\&quot; == true ]] &amp;&amp; {         sed -i '/^.*InstallMedia.*/d' Launch.sh         &amp;&amp; export BOOTDISK=\&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore-nopicker.qcow2}\&quot;     ; }     || export BOOTDISK=\&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}\&quot;     ; [[ \&quot;${GENERATE_UNIQUE}\&quot; == true ]] &amp;&amp; {         ./Docker-OSX/osx-serial-generator/generate-unique-machine-values.sh             --master-plist-url=\&quot;${MASTER_PLIST_URL}\&quot;             --count 1             --tsv ./serial.tsv             --bootdisks             --width \&quot;${WIDTH:-1920}\&quot; -height \&quot;${HEIGHT:-1080}\&quot;   --output-bootdisk \&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}\&quot;             --output-env \&quot;${ENV:=/env}\&quot; || exit 1 ; }     ; [[ \&quot;${GENERATE_SPECIFIC}\&quot; == true ]] &amp;&amp; {             source \&quot;${ENV:=/env}\&quot; 2&gt;/dev/null             ; ./Docker-OSX/osx-serial-generator/generate-specific-bootdisk.sh --master-plist-url=\&quot;${MASTER_PLIST_URL}\&quot; --model \&quot;${DEVICE_MODEL}\&quot;             --serial \&quot;${SERIAL}\&quot;             --board-serial \&quot;${BOARD_SERIAL}\&quot;             --uuid \&quot;${UUID}\&quot;             --mac-address \&quot;${MAC_ADDRESS}\&quot; --width \&quot;${WIDTH:-1920}\&quot;             --height \&quot;${HEIGHT:-1080}\&quot;             --output-bootdisk \&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}\&quot; || exit 1 ; } ; ./abcdesktop_config.sh ;  ./Launch.sh&quot;
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;all&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;utilities&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;preruncommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;RUN yes | sudo pacman -S xorg-xauth&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MacOS_logo.svg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;macos,apple&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;qemu.Qemu-system-x86_64&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vmmacos&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;host_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;devices&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;/dev/kvm&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;mem_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;16G&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktop/docker-osx&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;workdir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/arch/OSX-KVM&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arch&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;home&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/arch&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;/bin/bash&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;-c&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;sudo touch /dev/kvm /dev/snd \&quot;${IMAGE_PATH}\&quot; \&quot;${BOOTDISK}\&quot; \&quot;${ENV}\&quot; 2&gt;/dev/null || true; sudo chown -R $(id -u):$(id -g) /dev/kvm /dev/snd \&quot;${IMAGE_PATH}\&quot; \&quot;${BOOTDISK}\&quot; \&quot;${ENV}\&quot; 2&gt;/dev/null || true     ; [[ \&quot;${NOPICKER}\&quot; == true ]] &amp;&amp; {         sed -i &#39;/^.*InstallMedia.*/d&#39; Launch.sh         &amp;&amp; export BOOTDISK=\&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore-nopicker.qcow2}\&quot;     ; }     || export BOOTDISK=\&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}\&quot;     ; [[ \&quot;${GENERATE_UNIQUE}\&quot; == true ]] &amp;&amp; {         ./Docker-OSX/osx-serial-generator/generate-unique-machine-values.sh             --master-plist-url=\&quot;${MASTER_PLIST_URL}\&quot;             --count 1             --tsv ./serial.tsv             --bootdisks             --width \&quot;${WIDTH:-1920}\&quot; -height \&quot;${HEIGHT:-1080}\&quot;   --output-bootdisk \&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}\&quot;             --output-env \&quot;${ENV:=/env}\&quot; || exit 1 ; }     ; [[ \&quot;${GENERATE_SPECIFIC}\&quot; == true ]] &amp;&amp; {             source \&quot;${ENV:=/env}\&quot; 2&gt;/dev/null             ; ./Docker-OSX/osx-serial-generator/generate-specific-bootdisk.sh --master-plist-url=\&quot;${MASTER_PLIST_URL}\&quot; --model \&quot;${DEVICE_MODEL}\&quot;             --serial \&quot;${SERIAL}\&quot;             --board-serial \&quot;${BOARD_SERIAL}\&quot;             --uuid \&quot;${UUID}\&quot;             --mac-address \&quot;${MAC_ADDRESS}\&quot; --width \&quot;${WIDTH:-1920}\&quot;             --height \&quot;${HEIGHT:-1080}\&quot;             --output-bootdisk \&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}\&quot; || exit 1 ; } ; ./abcdesktop_config.sh ;  ./Launch.sh&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
 <p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-curl --output vmmacos.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmmacos.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @vmmacos.d.3.0.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+curl<span class="w"> </span>--output<span class="w"> </span>vmmacos.d.3.0.json<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmmacos.d.3.0.json
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@vmmacos.d.3.0.json
+</code></pre></div>
 <h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
-<pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+<div class="highlight"><pre><span></span><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
 FROM abcdesktop/docker-osx:$TAG
@@ -5031,30 +5030,28 @@ USER root
 RUN mkdir -p /var/secrets/abcdesktop/localaccount
 RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
 USER arch
-CMD [ &quot;/bin/bash,-c,sudo touch /dev/kvm /dev/snd &quot;${IMAGE_PATH}&quot; &quot;${BOOTDISK}&quot; &quot;${ENV}&quot; 2&gt;/dev/null || true; sudo chown -R $(id -u):$(id -g) /dev/kvm /dev/snd &quot;${IMAGE_PATH}&quot; &quot;${BOOTDISK}&quot; &quot;${ENV}&quot; 2&gt;/dev/null || true     ; [[ &quot;${NOPICKER}&quot; == true ]] &amp;&amp; {         sed -i '/^.*InstallMedia.*/d' Launch.sh         &amp;&amp; export BOOTDISK=&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore-nopicker.qcow2}&quot;     ; }     || export BOOTDISK=&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}&quot;     ; [[ &quot;${GENERATE_UNIQUE}&quot; == true ]] &amp;&amp; {         ./Docker-OSX/osx-serial-generator/generate-unique-machine-values.sh             --master-plist-url=&quot;${MASTER_PLIST_URL}&quot;             --count 1             --tsv ./serial.tsv             --bootdisks             --width &quot;${WIDTH:-1920}&quot; -height &quot;${HEIGHT:-1080}&quot;   --output-bootdisk &quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}&quot;             --output-env &quot;${ENV:=/env}&quot; || exit 1 ; }     ; [[ &quot;${GENERATE_SPECIFIC}&quot; == true ]] &amp;&amp; {             source &quot;${ENV:=/env}&quot; 2&gt;/dev/null             ; ./Docker-OSX/osx-serial-generator/generate-specific-bootdisk.sh --master-plist-url=&quot;${MASTER_PLIST_URL}&quot; --model &quot;${DEVICE_MODEL}&quot;             --serial &quot;${SERIAL}&quot;             --board-serial &quot;${BOARD_SERIAL}&quot;             --uuid &quot;${UUID}&quot;             --mac-address &quot;${MAC_ADDRESS}&quot; --width &quot;${WIDTH:-1920}&quot;             --height &quot;${HEIGHT:-1080}&quot;             --output-bootdisk &quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}&quot; || exit 1 ; } ; ./abcdesktop_config.sh ;  ./Launch.sh&quot; ]
-
-</code></pre>
+CMD [ &quot;/bin/bash,-c,sudo touch /dev/kvm /dev/snd &quot;${IMAGE_PATH}&quot; &quot;${BOOTDISK}&quot; &quot;${ENV}&quot; 2&gt;/dev/null || true; sudo chown -R $(id -u):$(id -g) /dev/kvm /dev/snd &quot;${IMAGE_PATH}&quot; &quot;${BOOTDISK}&quot; &quot;${ENV}&quot; 2&gt;/dev/null || true     ; [[ &quot;${NOPICKER}&quot; == true ]] &amp;&amp; {         sed -i &#39;/^.*InstallMedia.*/d&#39; Launch.sh         &amp;&amp; export BOOTDISK=&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore-nopicker.qcow2}&quot;     ; }     || export BOOTDISK=&quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}&quot;     ; [[ &quot;${GENERATE_UNIQUE}&quot; == true ]] &amp;&amp; {         ./Docker-OSX/osx-serial-generator/generate-unique-machine-values.sh             --master-plist-url=&quot;${MASTER_PLIST_URL}&quot;             --count 1             --tsv ./serial.tsv             --bootdisks             --width &quot;${WIDTH:-1920}&quot; -height &quot;${HEIGHT:-1080}&quot;   --output-bootdisk &quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}&quot;             --output-env &quot;${ENV:=/env}&quot; || exit 1 ; }     ; [[ &quot;${GENERATE_SPECIFIC}&quot; == true ]] &amp;&amp; {             source &quot;${ENV:=/env}&quot; 2&gt;/dev/null             ; ./Docker-OSX/osx-serial-generator/generate-specific-bootdisk.sh --master-plist-url=&quot;${MASTER_PLIST_URL}&quot; --model &quot;${DEVICE_MODEL}&quot;             --serial &quot;${SERIAL}&quot;             --board-serial &quot;${BOARD_SERIAL}&quot;             --uuid &quot;${UUID}&quot;             --mac-address &quot;${MAC_ADDRESS}&quot; --width &quot;${WIDTH:-1920}&quot;             --height &quot;${HEIGHT:-1080}&quot;             --output-bootdisk &quot;${BOOTDISK:=/home/arch/OSX-KVM/OpenCore/OpenCore.qcow2}&quot; || exit 1 ; } ; ./abcdesktop_config.sh ;  ./Launch.sh&quot; ]
+</code></pre></div>
 <h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
 <h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmmacos.d">Dockerfile for application vmmacos</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmmacos.d
-</code></pre>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmmacos.d">Dockerfile for application vmmacos</a>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/vmmacos.d
+</code></pre></div></p>
 <h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f vmmacos.d -t vmmacos .
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">TAG</span><span class="o">=</span><span class="m">3</span>.0<span class="w"> </span>-f<span class="w"> </span>vmmacos.d<span class="w"> </span>-t<span class="w"> </span>vmmacos<span class="w"> </span>.
+</code></pre></div>
 <h3 id="install-the-new-image">Install the new image</h3>
 <blockquote>
 <p>If you are using <code>containerd</code> as container runtime, use the ctr command line</p>
 <p>If you are not running this bash command on your abcdesktop node
 Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-docker inspect vmmacos &gt; vmmacos.json
-docker image save vmmacos -o vmmacos.tar
-ctr -n k8s.io images import vmmacos.tar
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @vmmacos.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+docker<span class="w"> </span>inspect<span class="w"> </span>vmmacos<span class="w"> </span>&gt;<span class="w"> </span>vmmacos.json
+docker<span class="w"> </span>image<span class="w"> </span>save<span class="w"> </span>vmmacos<span class="w"> </span>-o<span class="w"> </span>vmmacos.tar
+ctr<span class="w"> </span>-n<span class="w"> </span>k8s.io<span class="w"> </span>images<span class="w"> </span>import<span class="w"> </span>vmmacos.tar
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@vmmacos.json
+</code></pre></div>
 
 
 

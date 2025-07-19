@@ -4860,7 +4860,7 @@
 <h2 id="from">from</h2>
 <p>inherit <a href="../oc.template.rockylinux.gtk.9">abcdesktopio/oc.template.rockylinux.gtk.9</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>NAME=&quot;Rocky Linux&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Rocky Linux&quot;
 VERSION=&quot;9.5 (Blue Onyx)&quot;
 ID=&quot;rocky&quot;
 ID_LIKE=&quot;rhel centos fedora&quot;
@@ -4879,10 +4879,9 @@ ROCKY_SUPPORT_PRODUCT=&quot;Rocky-Linux-9&quot;
 ROCKY_SUPPORT_PRODUCT_VERSION=&quot;9.5&quot;
 REDHAT_SUPPORT_PRODUCT=&quot;Rocky Linux&quot;
 REDHAT_SUPPORT_PRODUCT_VERSION=&quot;9.5&quot;
-
-</code></pre>
+</code></pre></div>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code>ARG TAG
+<div class="highlight"><pre><span></span><code>ARG TAG
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}:${TAG} 
 
@@ -4891,8 +4890,7 @@ RUN yum update &amp;&amp; \
      yum install -y --skip-broken libreoffice \
      &amp;&amp; yum -y clean all \
      &amp;&amp; rm -rf /var/cache
-
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>file oc.template.rockylinux.gtk.libreoffice.9.md is created at Tue Jan 28 2025 14:18:17 GMT+0000 (Coordinated Universal Time) by make-docs.js</p>
 </blockquote>

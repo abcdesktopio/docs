@@ -5086,7 +5086,7 @@
 <h2 id="create-a-new-http-router-service-yaml-file">Create a new <code>http-router</code> service yaml file</h2>
 <p>The default install define the <code>http-router</code> service with as <code>nodePort</code> type. We are going to update the <code>http-router</code> service with a <code>LoadBalancer</code> type.</p>
 <p>Create a file named <code>http-router.yaml</code></p>
-<pre><code>kind: Service
+<div class="highlight"><pre><span></span><code>kind: Service
 apiVersion: v1
 metadata:
   name: http-router
@@ -5112,31 +5112,31 @@ spec:
     port: 80
     targetPort: 80
     name: http
-</code></pre>
+</code></pre></div>
 <p>Save your <code>http-router.yaml</code> file</p>
 <p>Delete the previous service <code>http-router</code></p>
-<pre><code>kubectl delete service http-router -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl delete service http-router -n abcdesktop
 service &quot;http-router&quot; deleted
-</code></pre>
+</code></pre></div>
 <p>Create your new <code>service/http-router</code></p>
-<pre><code>kubectl apply -f http-router.yaml -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl apply -f http-router.yaml -n abcdesktop
 service/http-router created
-</code></pre>
+</code></pre></div>
 <p>Wait for few minutes, the <code>EXTERNAL-IP</code> of service <code>http-router</code> stays in <code>Pending</code> state</p>
-<pre><code>kubectl get services http-router -n abcdesktop 
-</code></pre>
-<pre><code>NAME          TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+<div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>NAME          TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 http-router   LoadBalancer   10.245.73.189   &lt;pending&gt;     80:32155/TCP   3s
-</code></pre>
+</code></pre></div>
 <p>Check the EXTERNAL-IP of service <code>http-router</code> again</p>
-<pre><code>kubectl get services http-router -n abcdesktop       
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop       
+</code></pre></div>
 <blockquote>
 <p>Great the service gets <code>157.230.202.250</code> as an <code>EXTERNAL-IP</code></p>
 </blockquote>
-<pre><code>NAME          TYPE           CLUSTER-IP       EXTERNAL-IP       PORT(S)        AGE
+<div class="highlight"><pre><span></span><code>NAME          TYPE           CLUSTER-IP       EXTERNAL-IP       PORT(S)        AGE
 http-router   LoadBalancer   10.245.245.242   157.230.202.250   80:30443/TCP   61s
-</code></pre>
+</code></pre></div>
 <p>You can open a web browser to reach your abcdesktop service with the IP address</p>
 <p><img alt="web browser to reach your abcdesktop service" src="../img/ipadress.png" /></p>
 <p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol</p>
@@ -5147,10 +5147,10 @@ http-router   LoadBalancer   10.245.245.242   157.230.202.250   80:30443/TCP   6
 <h3 id="create-new-record">Create new record</h3>
 <p>We are going to create a new record <code>hello</code> (<code>hello.abcdekstop.pepins.net</code>) to the <code>A</code> address <code>157.230.202.250</code>. I prefer to define low <code>TTL</code> value to fix some changes quickly. </p>
 <p>The IP Address is show by the DigitalOcean network console, it is the same address as the <code>EXTERNAL-IP</code> of your <code>http-router</code> service.</p>
-<pre><code>kubectl get services http-router -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop
 NAME          TYPE           CLUSTER-IP      EXTERNAL-IP       PORT(S)                      AGE
 http-router   LoadBalancer   10.245.143.46   157.230.202.250   443:31196/TCP,80:32043/TCP   16m
-</code></pre>
+</code></pre></div>
 <p><img alt="digital ocean console domain overview" src="../img/createrecord.png" /></p>
 <p>Press <code>Create Record</code> button, to update your zone file with the new record</p>
 <p><img alt="digital ocean console domain overview" src="../img/recorddone.png" /></p>
@@ -5162,13 +5162,13 @@ http-router   LoadBalancer   10.245.143.46   157.230.202.250   443:31196/TCP,80:
 <p>If you already have a X509 certificat with a private and public certified key files for your web site, you can skip this chapter.</p>
 <p>To create you SSL certificat, we are using let's encrypt service. You need your new hostname and your email address</p>
 <p>Define the new variables <code>ABCDESKTOP_PUBLIC_FQDN</code> and <code>USER_EMAIL_ADDRESS</code> </p>
-<pre><code class="language-bash">ABCDESKTOP_PUBLIC_FQDN=hello.digitalocean.pepins.net
-USER_EMAIL_ADDRESS=alex@koumoula.com
-ROUTER_POD_NAME=$(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name}  -n abcdesktop)
-kubectl exec -n abcdesktop -it ${ROUTER_POD_NAME} -- /usr/bin/certbot certonly --webroot -w /var/lib/nginx/html -d ${ABCDESKTOP_PUBLIC_FQDN} -m &quot;${USER_EMAIL_ADDRESS}&quot; --agree-tos -n
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="o">=</span>hello.digitalocean.pepins.net
+<span class="nv">USER_EMAIL_ADDRESS</span><span class="o">=</span>alex@koumoula.com
+<span class="nv">ROUTER_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>router-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w">  </span>-n<span class="w"> </span>abcdesktop<span class="k">)</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">ROUTER_POD_NAME</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>/usr/bin/certbot<span class="w"> </span>certonly<span class="w"> </span>--webroot<span class="w"> </span>-w<span class="w"> </span>/var/lib/nginx/html<span class="w"> </span>-d<span class="w"> </span><span class="si">${</span><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="si">}</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">USER_EMAIL_ADDRESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--agree-tos<span class="w"> </span>-n
+</code></pre></div>
 <p>You should read on stdout</p>
-<pre><code>Saving debug log to /var/log/letsencrypt/letsencrypt.log
+<div class="highlight"><pre><span></span><code>Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Requesting a certificate for hello.digitalocean.pepins.net
 
 Successfully received certificate.
@@ -5182,32 +5182,32 @@ NEXT STEPS:
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 If you like Certbot, please consider supporting our work by:
- * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+ * Donating to ISRG / Let&#39;s Encrypt:   https://letsencrypt.org/donate
  * Donating to EFF:                    https://eff.org/donate-le
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-</code></pre>
+</code></pre></div>
 <p>The files <code>fullchain.pem</code> and <code>privkey.pem</code> are located inside the container. </p>
-<pre><code>Certificate is saved at: /etc/letsencrypt/live/hello.digitalocean.pepins.net/fullchain.pem
+<div class="highlight"><pre><span></span><code>Certificate is saved at: /etc/letsencrypt/live/hello.digitalocean.pepins.net/fullchain.pem
 Key is saved at:         /etc/letsencrypt/live/hello.digitalocean.pepins.net/privkey.pem
-</code></pre>
+</code></pre></div>
 <p>We export the files and create a new secrets. </p>
-<pre><code>kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/$ABCDESKTOP_PUBLIC_FQDN/fullchain.pem &gt; fullchain.pem
+<div class="highlight"><pre><span></span><code>kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/$ABCDESKTOP_PUBLIC_FQDN/fullchain.pem &gt; fullchain.pem
 kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/$ABCDESKTOP_PUBLIC_FQDN/privkey.pem &gt; privkey.pem
-</code></pre>
+</code></pre></div>
 <h2 id="create-a-secret-for-x509-certificat">Create a secret for X509 certificat</h2>
 <p>Create a secret named <code>http-router-certificat</code> with the <code>fullchain.pem</code> and <code>privkey.pem</code> file content</p>
-<pre><code>kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=privkey.pem -n abcdesktop 
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=privkey.pem -n abcdesktop 
+</code></pre></div>
 <p>You secret is created </p>
-<pre><code>secret/http-router-certificat created
-</code></pre>
+<div class="highlight"><pre><span></span><code>secret/http-router-certificat created
+</code></pre></div>
 <h2 id="update-http-router-configmap-to-use-the-new-http-router-certificat-secret">Update <code>http-router</code> ConfigMap to use the new <code>http-router-certificat</code> secret</h2>
 <p>Download <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.1.yaml">abcdesktop-routehttp-config.4.1.yaml</a> file </p>
-<pre><code>wget https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.1.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.1.yaml
+</code></pre></div>
 <p>Open your <code>abcdesktop-routehttp-config.4.1.yaml</code> file, look for the ConfigMap <code>abcdesktop-routehttp-config</code>.</p>
 <p>Remove the comments to enable https and change the value <code>YOUR_SERVER_NAME_AND_DOMAIN</code> by your own value. </p>
-<pre><code> # nginx server config
+<div class="highlight"><pre><span></span><code> # nginx server config
  server {
      ...
 
@@ -5225,22 +5225,22 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
 
      ...
      index index.html index.htm;
-</code></pre>
+</code></pre></div>
 <p>For example</p>
-<pre><code>     listen 443 ssl http2 default_server;
+<div class="highlight"><pre><span></span><code>     listen 443 ssl http2 default_server;
      listen [::]:443 ssl http2 default_server;
      server_name hello.digitalocean.pepins.net;
      ssl_certificate     /etc/nginx/ssl/tls.crt;
      ssl_certificate_key /etc/nginx/ssl/tls.key;
-</code></pre>
+</code></pre></div>
 <p>Apply your new nginx confguration file</p>
-<pre><code>kubectl apply -f routehttp-config-4.1.yaml -n abcdesktop`
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl apply -f routehttp-config-4.1.yaml -n abcdesktop`
+</code></pre></div>
 <h2 id="update-deployment-http-router">Update <code>deployment</code> http-router</h2>
 <p>Update the <code>deployment</code> route to add certificat ssl entry</p>
 <p>The <code>abcdesktop-deployment-routehttps.4.1.yaml</code> file  adds <code>mountPath: /etc/nginx/ssl</code> to <code>secretName: http-router-certificat</code></p>
-<pre><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.1.yaml -n abcdesktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.1.yaml -n abcdesktop
+</code></pre></div>
 <h2 id="reach-your-website-using-httpsprotocol">Reach your website using <code>https</code>protocol</h2>
 <p>You can now connect to your abcdesktop desktop pulic web site using <code>https</code> protocol. </p>
 <p><img alt="reach your website using https" src="../img/hello_https.png" /></p>

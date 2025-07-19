@@ -4860,7 +4860,7 @@
 <h2 id="from">from</h2>
 <p>inherite <a href="../oc.template.ubuntu.gtk">abcdesktopio/oc.template.ubuntu.gtk</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>NAME=&quot;Ubuntu&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Ubuntu&quot;
 VERSION=&quot;20.04.5 LTS (Focal Fossa)&quot;
 ID=ubuntu
 ID_LIKE=debian
@@ -4872,10 +4872,9 @@ BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
 PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
 VERSION_CODENAME=focal
 UBUNTU_CODENAME=focal
-
-</code></pre>
+</code></pre></div>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code># default TAG is dev
+<div class="highlight"><pre><span></span><code># default TAG is dev
 ARG TAG=dev
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}:${TAG}
@@ -4883,18 +4882,16 @@ FROM ${BASE_IMAGE}:${TAG}
 ENV DEBIAN_FRONTEND noninteractive  
 # install help in all languages for gnome
 #RUN apt-get update &amp;&amp; apt-get install -y  --no-install-recommends       \
-#        $(apt-cache search language-pack-gnome | awk '{print $1 }')                \
+#        $(apt-cache search language-pack-gnome | awk &#39;{print $1 }&#39;)                \
 #        &amp;&amp; rm -rf /var/lib/apt/lists/*
 #
 #
 #
 RUN apt-get update &amp;&amp; apt-get install -y  --no-install-recommends                       \
-        $(apt-cache search &quot;language-pack-&quot; | grep -v &quot;gnome&quot; | grep -v &quot;kde&quot; | awk '{print $1 }')      \
+        $(apt-cache search &quot;language-pack-&quot; | grep -v &quot;gnome&quot; | grep -v &quot;kde&quot; | awk &#39;{print $1 }&#39;)      \
         &amp;&amp; apt-get clean                                        \
         &amp;&amp; rm -rf /var/lib/apt/lists/*
-
-
-</code></pre>
+</code></pre></div>
 
 
 

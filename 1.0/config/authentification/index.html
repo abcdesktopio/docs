@@ -4933,12 +4933,12 @@ This update differs depending on the configuration docker mode or kubernetes mod
 <a href="../editconfig/">Update your configuration file and apply the new configuration file</a> section to make change in od.config file for docker, or edit the abcdesktop.yaml file for kubernetes cluster.</p>
 <h2 id="the-dictionary-authmanagers">The dictionary authmanagers</h2>
 <p>The authmanagers is defined as a dictionnary object :</p>
-<pre><code>authmanagers: {
-  'external': { },
-  'explicit': { },
-  'implicit': { }
+<div class="highlight"><pre><span></span><code>authmanagers: {
+  &#39;external&#39;: { },
+  &#39;explicit&#39;: { },
+  &#39;implicit&#39;: { }
 }
-</code></pre>
+</code></pre></div>
 <p>The od.config defines 3 kinds of entries in the <code>authmanagers</code> object :</p>
 <ul>
 <li><code>external</code>: use for OAuth 2.0 Authentification</li>
@@ -4976,12 +4976,12 @@ This update differs depending on the configuration docker mode or kubernetes mod
 </ul>
 <h3 id="change-authmanagers-configuration">Change authmanagers configuration</h3>
 <p>Edit your od.config pyos configuration file, and set the value to the authmanagers dictionnay with empty values for <code>implicit</code>, <code>explicit</code>, and <code>external</code>, as describe :</p>
-<pre><code>authmanagers: {
-  'external': { },
-  'explicit': { },
-  'implicit': { }
+<div class="highlight"><pre><span></span><code>authmanagers: {
+  &#39;external&#39;: { },
+  &#39;explicit&#39;: { },
+  &#39;implicit&#39;: { }
 }
-</code></pre>
+</code></pre></div>
 <p>Save your new od.config file.</p>
 <blockquote>
 <p>The config file <code>od.config</code> has changed and od.py running inside the container should restart. If it doesn't, restart your docker-compose to ake sure that the od.py the your new od.config file.</p>
@@ -5004,95 +5004,95 @@ Read the <a href="../authexplicit/">authmanagers explicit</a> Section.</p>
 Read the <a href="../authexternal/">authmanagers external</a> Section.</p>
 <h2 id="authmanagers-configuration-sample">Authmanagers configuration sample</h2>
 <p>In the <a href="../authimplicit/">authmanagers implicit</a> section, <a href="../authexplicit/">authmanagers explicit</a> section, and <a href="../authexternal/">authmanagers external</a> section, you have learned how to defined the providers. You can set a complete <code>authmanagers</code> dictionnary as described for example :</p>
-<pre><code>authmanagers: {
-  'external': {
-    'providers': {
-      'facebook': { 
-        'displayname': 'Facebook', 
-        'enabled': True,
-        'client_id':     'XXXXXXX', 
-        'client_secret': 'YYYYYYY', 
-        'dialog_url': 'https://www.facebook.com/dialog/oauth?client_id={client_id}&amp;redirect_uri={callback_url}&amp;response_type=code',
-        'auth_url': 'https://graph.facebook.com/v2.3/oauth/access_token?code={code}&amp;redirect_uri={callback_url}&amp;client_id={client_id}&amp;client_secret={client_secret}',
-        'userinfo_url': 'https://graph.facebook.com/v2.6/me?access_token={access_token}&amp;fields=picture.width(400),name',
-        'callback_url': 'https://host.domain.com/API/auth/oauth?manager={manager.name}&amp;provider={name}',
-        'userinfomap': {
-            '*': '*',
-            'picture': 'picture.data.url'
+<div class="highlight"><pre><span></span><code>authmanagers: {
+  &#39;external&#39;: {
+    &#39;providers&#39;: {
+      &#39;facebook&#39;: { 
+        &#39;displayname&#39;: &#39;Facebook&#39;, 
+        &#39;enabled&#39;: True,
+        &#39;client_id&#39;:     &#39;XXXXXXX&#39;, 
+        &#39;client_secret&#39;: &#39;YYYYYYY&#39;, 
+        &#39;dialog_url&#39;: &#39;https://www.facebook.com/dialog/oauth?client_id={client_id}&amp;redirect_uri={callback_url}&amp;response_type=code&#39;,
+        &#39;auth_url&#39;: &#39;https://graph.facebook.com/v2.3/oauth/access_token?code={code}&amp;redirect_uri={callback_url}&amp;client_id={client_id}&amp;client_secret={client_secret}&#39;,
+        &#39;userinfo_url&#39;: &#39;https://graph.facebook.com/v2.6/me?access_token={access_token}&amp;fields=picture.width(400),name&#39;,
+        &#39;callback_url&#39;: &#39;https://host.domain.com/API/auth/oauth?manager={manager.name}&amp;provider={name}&#39;,
+        &#39;userinfomap&#39;: {
+            &#39;*&#39;: &#39;*&#39;,
+            &#39;picture&#39;: &#39;picture.data.url&#39;
         }
       },
-      'orange': {       
-        'displayname': 'Orange', 
-        'enabled': True,
-        'basic_auth': True,
-        'userinfo_auth': True,
-        'client_id':      'AAAAAAAA', 
-        'client_secret':  'BBBBBBBB',
-        'dialog_url': 'https://api.orange.com/oauth/v2/authorize?client_id={client_id}&amp;redirect_uri={callback_url}&amp;scope=openid+profile+offline_access&amp;response_type=code&amp;prompt=login+consent&amp;state={callba
-ck_url}',
-        'auth_url': 'https://api.orange.com/openidconnect/fr/v1/token?code={code}&amp;redirect_uri={callback_url}&amp;grant_type=authorization_code', 
-        'userinfo_url': 'https://api.orange.com/openidconnect/v1/userinfo',
-        'callback_url': 'https://host.domain.com/API/auth/oauth?manager={manager.name}&amp;provider={name}'
+      &#39;orange&#39;: {       
+        &#39;displayname&#39;: &#39;Orange&#39;, 
+        &#39;enabled&#39;: True,
+        &#39;basic_auth&#39;: True,
+        &#39;userinfo_auth&#39;: True,
+        &#39;client_id&#39;:      &#39;AAAAAAAA&#39;, 
+        &#39;client_secret&#39;:  &#39;BBBBBBBB&#39;,
+        &#39;dialog_url&#39;: &#39;https://api.orange.com/oauth/v2/authorize?client_id={client_id}&amp;redirect_uri={callback_url}&amp;scope=openid+profile+offline_access&amp;response_type=code&amp;prompt=login+consent&amp;state={callba
+ck_url}&#39;,
+        &#39;auth_url&#39;: &#39;https://api.orange.com/openidconnect/fr/v1/token?code={code}&amp;redirect_uri={callback_url}&amp;grant_type=authorization_code&#39;, 
+        &#39;userinfo_url&#39;: &#39;https://api.orange.com/openidconnect/v1/userinfo&#39;,
+        &#39;callback_url&#39;: &#39;https://host.domain.com/API/auth/oauth?manager={manager.name}&amp;provider={name}&#39;
       },
-      'mobileorange': { 
-        'displayname': 'Mobile Connect', 
-        'enabled': False,
-        'client_id':     'CCCCCCCC', 
-        'client_secret': 'DDDDDDDD',
-        'basic_auth': True,
-        'dialog_url': 'https://api.orange.com/oauth/v2/authorize?client_id={client_id}&amp;redirect_uri={callback_url}&amp;scope=openid+profile&amp;response_type=code&amp;prompt=login+consent&amp;state=&amp;state={callback_url}'
+      &#39;mobileorange&#39;: { 
+        &#39;displayname&#39;: &#39;Mobile Connect&#39;, 
+        &#39;enabled&#39;: False,
+        &#39;client_id&#39;:     &#39;CCCCCCCC&#39;, 
+        &#39;client_secret&#39;: &#39;DDDDDDDD&#39;,
+        &#39;basic_auth&#39;: True,
+        &#39;dialog_url&#39;: &#39;https://api.orange.com/oauth/v2/authorize?client_id={client_id}&amp;redirect_uri={callback_url}&amp;scope=openid+profile&amp;response_type=code&amp;prompt=login+consent&amp;state=&amp;state={callback_url}&#39;
 ,
-        'auth_url': 'https://api.orange.com/oauth/v2/token?code={code}&amp;redirect_uri={callback_url}&amp;grant_type=authorization_code', 
-        'userinfo_url': 'https://api.orange.com/oauth/v2/authorize',
-        'callback_url': 'https://host.domain.com/API/auth/oauth?manager={manager.name}&amp;provider={name}'
+        &#39;auth_url&#39;: &#39;https://api.orange.com/oauth/v2/token?code={code}&amp;redirect_uri={callback_url}&amp;grant_type=authorization_code&#39;, 
+        &#39;userinfo_url&#39;: &#39;https://api.orange.com/oauth/v2/authorize&#39;,
+        &#39;callback_url&#39;: &#39;https://host.domain.com/API/auth/oauth?manager={manager.name}&amp;provider={name}&#39;
       },
-      'google': { 
-        'displayname': 'Google', 
-        'enabled': True,
-        'client_id':     'EEEEEEEE.apps.googleusercontent.com', 
-        'client_secret': 'FFFFFFFF',
-        'scope': 'https://www.googleapis.com/auth/userinfo.email',
-        'dialog_url': 'https://accounts.google.com/o/oauth2/v2/auth?client_id={client_id}&amp;redirect_uri={callback_url}&amp;response_type=code&amp;scope={scope}',
-        'auth_url': 'https://oauth2.googleapis.com/token?code={code}&amp;grant_type=authorization_code&amp;redirect_uri={callback_url}&amp;scope={scope}&amp;client_id={client_id}&amp;client_secret={client_secret}',
-        'userinfo_url': 'https://openidconnect.googleapis.com/v1/userinfo?access_token={access_token}',
-        'callback_url': 'https://host.domain.com/API/auth/oauth?manager={manager.name}&amp;provider={name}'
+      &#39;google&#39;: { 
+        &#39;displayname&#39;: &#39;Google&#39;, 
+        &#39;enabled&#39;: True,
+        &#39;client_id&#39;:     &#39;EEEEEEEE.apps.googleusercontent.com&#39;, 
+        &#39;client_secret&#39;: &#39;FFFFFFFF&#39;,
+        &#39;scope&#39;: &#39;https://www.googleapis.com/auth/userinfo.email&#39;,
+        &#39;dialog_url&#39;: &#39;https://accounts.google.com/o/oauth2/v2/auth?client_id={client_id}&amp;redirect_uri={callback_url}&amp;response_type=code&amp;scope={scope}&#39;,
+        &#39;auth_url&#39;: &#39;https://oauth2.googleapis.com/token?code={code}&amp;grant_type=authorization_code&amp;redirect_uri={callback_url}&amp;scope={scope}&amp;client_id={client_id}&amp;client_secret={client_secret}&#39;,
+        &#39;userinfo_url&#39;: &#39;https://openidconnect.googleapis.com/v1/userinfo?access_token={access_token}&#39;,
+        &#39;callback_url&#39;: &#39;https://host.domain.com/API/auth/oauth?manager={manager.name}&amp;provider={name}&#39;
       }
     }
   },
-  'explicit': {
-    'show_domains': True,
-    'default_domain': 'AD',
-    'providers': {
-      'AD': { 
-        'config_ref': 'adconfig', 
-        'enabled': True
+  &#39;explicit&#39;: {
+    &#39;show_domains&#39;: True,
+    &#39;default_domain&#39;: &#39;AD&#39;,
+    &#39;providers&#39;: {
+      &#39;AD&#39;: { 
+        &#39;config_ref&#39;: &#39;adconfig&#39;, 
+        &#39;enabled&#39;: True
        }
     }
   },
-  'implicit': {
-    'providers': {
-      'anonymous': {
-        'displayname': 'Anonymous',
-        'caption': 'Have a look !',
-        'userid': 'anonymous',
-        'username': 'Anonymous'
+  &#39;implicit&#39;: {
+    &#39;providers&#39;: {
+      &#39;anonymous&#39;: {
+        &#39;displayname&#39;: &#39;Anonymous&#39;,
+        &#39;caption&#39;: &#39;Have a look !&#39;,
+        &#39;userid&#39;: &#39;anonymous&#39;,
+        &#39;username&#39;: &#39;Anonymous&#39;
       }     
     }
   }}
 
 
-adconfig : { 'AD': {    'default'       : True, 
-                        'ldap_timeout'  : 15,
-                        'ldap_protocol' : 'ldap',
-                        'ldap_basedn'   : 'DC=ad,DC=domain,DC=local',
-                        'ldap_fqdn'     : '_ldap._tcp.ad.domain.local',
-                        'domain'        : 'AD',
-                        'domain_fqdn': 'AD.DOMAIN.LOCAL',
-                             'servers'  : [ '192.168.1.12', '192.168.1.13'  ],
-                        'kerberos_realm': 'AD.DOMAIN.LOCAL',
-                             'query_dcs'    : True
+adconfig : { &#39;AD&#39;: {    &#39;default&#39;       : True, 
+                        &#39;ldap_timeout&#39;  : 15,
+                        &#39;ldap_protocol&#39; : &#39;ldap&#39;,
+                        &#39;ldap_basedn&#39;   : &#39;DC=ad,DC=domain,DC=local&#39;,
+                        &#39;ldap_fqdn&#39;     : &#39;_ldap._tcp.ad.domain.local&#39;,
+                        &#39;domain&#39;        : &#39;AD&#39;,
+                        &#39;domain_fqdn&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
+                             &#39;servers&#39;  : [ &#39;192.168.1.12&#39;, &#39;192.168.1.13&#39;  ],
+                        &#39;kerberos_realm&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
+                             &#39;query_dcs&#39;    : True
 }}
-</code></pre>
+</code></pre></div>
 
 
 

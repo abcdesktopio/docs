@@ -5012,7 +5012,7 @@
 <p><a href="../abcdesktopio/oc.template.ubuntu.gtk.18.04">abcdesktopio/oc.template.ubuntu.gtk.18.04</a></p>
 <h2 id="distribution">Distribution</h2>
 <p>ubuntu <img alt="ubuntu" src="../icons/ubuntu.svg" style="height:32px;" /></p>
-<pre><code>NAME=&quot;Ubuntu&quot;
+<div class="highlight"><pre><span></span><code>NAME=&quot;Ubuntu&quot;
 VERSION=&quot;18.04.6 LTS (Bionic Beaver)&quot;
 ID=ubuntu
 ID_LIKE=debian
@@ -5024,41 +5024,40 @@ BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
 PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
 VERSION_CODENAME=bionic
 UBUNTU_CODENAME=bionic
-
-</code></pre>
+</code></pre></div>
 <h2 id="ubuntu-packages">Ubuntu packages</h2>
-<pre><code>libsecret-1-0 libpcsclite1 x11-utils libjpeg-turbo8
-</code></pre>
+<div class="highlight"><pre><span></span><code>libsecret-1-0 libpcsclite1 x11-utils libjpeg-turbo8
+</code></pre></div>
 <h2 id="licence">Licence</h2>
 <p>** This application is NO FREE. ** You need to build it manually.</p>
 <h2 id="arguments">Arguments</h2>
 <p><code>"-icaroot /opt/Citrix/ICAClient"</code></p>
 <h2 id="displayname">Displayname</h2>
-<pre><code>citrix-client
-</code></pre>
+<div class="highlight"><pre><span></span><code>citrix-client
+</code></pre></div>
 <h2 id="path">Path</h2>
-<pre><code>/opt/Citrix/ICAClient/wfica
-</code></pre>
+<div class="highlight"><pre><span></span><code>/opt/Citrix/ICAClient/wfica
+</code></pre></div>
 <h2 id="mimetype">Mimetype</h2>
-<pre><code>application/x-ica;
-</code></pre>
+<div class="highlight"><pre><span></span><code>application/x-ica;
+</code></pre></div>
 <h2 id="acl">ACL</h2>
-<pre><code class="language-json">{
-    &quot;permit&quot;: [
-        &quot;all&quot;
-    ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;all&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="wm_class">WM_CLASS</h2>
-<pre><code>Wfica.Wfica
-</code></pre>
+<div class="highlight"><pre><span></span><code>Wfica.Wfica
+</code></pre></div>
 <blockquote>
 <p>The WM_CLASS property (of type STRING without control characters) contains two consecutive null-terminated strings. These specify the Instance and Class names to be used by both the client and the window manager for looking up resources for the application or as identifying information.
 to get the WM_CLASS property of an application, use the command line <code>wmctrl -lx</code></p>
 </blockquote>
 <h2 id="desktopfile">Desktopfile</h2>
-<pre><code>/usr/share/applications/wfica.desktop
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/share/applications/wfica.desktop
+</code></pre></div>
 <blockquote>
 <p>A .desktop file is a simple text file that holds information about a program. It is usually placed in “/usr/share/applications/”.</p>
 </blockquote>
@@ -5066,67 +5065,66 @@ to get the WM_CLASS property of an application, use the command line <code>wmctr
 <blockquote>
 <p>POST run command are run <strong>after</strong> the package install comman</p>
 </blockquote>
-<pre><code>COPY icaclientWeb_13.10.0.20_amd64.deb /tmp/icaclient_amd64.deb
+<div class="highlight"><pre><span></span><code>COPY icaclientWeb_13.10.0.20_amd64.deb /tmp/icaclient_amd64.deb
 RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes /tmp/icaclient_amd64.deb &amp;&amp; apt-get clean &amp;&amp; rm /tmp/icaclient_amd64.deb &amp;&amp; rm -rf /var/lib/apt/lists/*
-</code></pre>
+</code></pre></div>
 <h2 id="json-dump">JSON dump</h2>
 <p>json source file citrix.d.3.0.json </p>
-<pre><code class="language-json">{
-    &quot;comment&quot;: &quot;download icaclientWeb from https://www.citrix.com/fr-fr/downloads/citrix-receiver/linux/receiver-for-linux-latest.html&quot;,
-    &quot;acl&quot;: {
-        &quot;permit&quot;: [
-            &quot;all&quot;
-        ]
-    },
-    &quot;cat&quot;: &quot;office&quot;,
-    &quot;postruncommands&quot;: [
-        &quot;COPY icaclientWeb_13.10.0.20_amd64.deb /tmp/icaclient_amd64.deb&quot;,
-        &quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes /tmp/icaclient_amd64.deb &amp;&amp; apt-get clean &amp;&amp; rm /tmp/icaclient_amd64.deb &amp;&amp; rm -rf /var/lib/apt/lists/*&quot;
-    ],
-    &quot;debpackage&quot;: &quot;libsecret-1-0 libpcsclite1 x11-utils libjpeg-turbo8&quot;,
-    &quot;icon&quot;: &quot;icaclient.svg&quot;,
-    &quot;keyword&quot;: &quot;ica,icaclient,&quot;,
-    &quot;launch&quot;: &quot;Wfica.Wfica&quot;,
-    &quot;name&quot;: &quot;citrix&quot;,
-    &quot;displayname&quot;: &quot;citrix-client&quot;,
-    &quot;secrets_requirement&quot;: &quot;citrix&quot;,
-    &quot;args&quot;: &quot;-icaroot /opt/Citrix/ICAClient&quot;,
-    &quot;path&quot;: &quot;/opt/Citrix/ICAClient/wfica&quot;,
-    &quot;template&quot;: &quot;abcdesktopio/oc.template.ubuntu.gtk.18.04&quot;,
-    &quot;mimetype&quot;: &quot;application/x-ica;&quot;,
-    &quot;rules&quot;: {
-        &quot;homedir&quot;: {
-            &quot;default&quot;: true
-        }
-    },
-    &quot;desktopfile&quot;: &quot;/usr/share/applications/wfica.desktop&quot;,
-    &quot;host_config&quot;: {
-        &quot;mem_limit&quot;: &quot;512M&quot;,
-        &quot;shm_size&quot;: &quot;512M&quot;,
-        &quot;pid_mode&quot;: true,
-        &quot;ipc_mode&quot;: &quot;shareable&quot;
-    },
-    &quot;usedefaultapplication&quot;: true,
-    &quot;licence&quot;: &quot;non-free&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;download icaclientWeb from https://www.citrix.com/fr-fr/downloads/citrix-receiver/linux/receiver-for-linux-latest.html&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;all&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;office&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;postruncommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;COPY icaclientWeb_13.10.0.20_amd64.deb /tmp/icaclient_amd64.deb&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;RUN apt-get update &amp;&amp; apt-get install  --no-install-recommends --yes /tmp/icaclient_amd64.deb &amp;&amp; apt-get clean &amp;&amp; rm /tmp/icaclient_amd64.deb &amp;&amp; rm -rf /var/lib/apt/lists/*&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;debpackage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;libsecret-1-0 libpcsclite1 x11-utils libjpeg-turbo8&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;icaclient.svg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ica,icaclient,&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wfica.Wfica&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;citrix&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;citrix-client&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;secrets_requirement&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;citrix&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-icaroot /opt/Citrix/ICAClient&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/Citrix/ICAClient/wfica&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/oc.template.ubuntu.gtk.18.04&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/x-ica;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;homedir&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/share/applications/wfica.desktop&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;host_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;mem_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;512M&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;shm_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;512M&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pid_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ipc_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shareable&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;usedefaultapplication&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;licence&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;non-free&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="install-the-builded-image">Install the builded image</h2>
 <blockquote>
 <p>Replace the <strong>ABCHOST</strong> var set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-curl --output citrix.d.3.0.json https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d.3.0.json
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @citrix.d.3.0.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+curl<span class="w"> </span>--output<span class="w"> </span>citrix.d.3.0.json<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d.3.0.json
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@citrix.d.3.0.json
+</code></pre></div>
 <h2 id="generated-dockerfile-source-code">Generated <code>DockerFile</code> source code</h2>
-<pre><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
+<div class="highlight"><pre><span></span><code># Dynamic DockerFile application file for abcdesktopio generated by abcdesktopio/oc.apps/make.js
 # DO NOT EDIT THIS FILE BY HAND -- YOUR CHANGES WILL BE OVERWRITTEN
 ARG TAG=dev
 FROM abcdesktopio/oc.template.ubuntu.gtk.18.04:$TAG
 USER root
 RUN DEBIAN_FRONTEND=noninteractive apt-get update &amp;&amp; apt-get install -y  --no-install-recommends libsecret-1-0 libpcsclite1 x11-utils libjpeg-turbo8 &amp;&amp; apt-get clean
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+RUN echo &#39;debconf debconf/frontend select Noninteractive&#39; | debconf-set-selections
 LABEL oc.icon=&quot;icaclient.svg&quot;
 LABEL oc.icondata=&quot;PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmVyc2lvbj0iMSI+CiA8cmVjdCBzdHlsZT0ib3BhY2l0eTouMiIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2IiB4PSItNTkiIHk9Ii02MCIgcng9IjI4IiByeT0iMjgiIHRyYW5zZm9ybT0ibWF0cml4KDAsLTEsLTEsMCwwLDApIi8+CiA8cmVjdCBzdHlsZT0iZmlsbDojNGY0ZjRmIiB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHg9Ii01OCIgeT0iLTYwIiByeD0iMjgiIHJ5PSIyOCIgdHJhbnNmb3JtPSJtYXRyaXgoMCwtMSwtMSwwLDAsMCkiLz4KIDxwYXRoIHN0eWxlPSJvcGFjaXR5Oi4yIiBkPSJtMzIgMTFhMiAyIDAgMCAwIC0wLjE5MTQgMC4wMTE3MmMtMTAuOTMzMjI0IDAuMTA0NTM5LTE5LjgwODYgOS4wMzA5Ny0xOS44MDg2IDE5Ljk4ODI4IDAgMTEuMDIyMDA2IDguOTc3OTk0IDIwIDIwIDIwIDEwLjk1NDY3OCAwIDE5Ljg3OTUyNC04Ljg3MTE4IDE5Ljk4ODI4Mi0xOS44MDA3ODJhMiAyIDAgMCAwIDAuMDExNzE4IC0wLjE5OTIxOCAyIDIgMCAwIDAgLTIgLTIgMiAyIDAgMCAwIC0yIDJjMCA4Ljg2MDI0Ni03LjEzOTc1NCAxNi0xNiAxNnMtMTYtNy4xMzk3NTQtMTYtMTYgNy4xMzk3NTQtMTYgMTYtMTZhMiAyIDAgMCAwIDIgLTIgMiAyIDAgMCAwIC0yIC0yem0wIDhhMiAyIDAgMCAwIC0wLjE5MTQgMC4wMDc4Yy02LjUxNTM3NCAwLjEwNDEyNi0xMS44MDg2IDUuNDUzMDUyLTExLjgwODYgMTEuOTkyMiAwIDYuNjAzNzI4IDUuMzk2MjcyIDEyIDEyIDEyIDYuNTM2NDUyIDAgMTEuODc5ODgtNS4yODkxMTIgMTEuOTg4MjgyLTExLjgwMDc4MmEyIDIgMCAwIDAgMC4wMTE3MTggLTAuMTk5MjE4IDIgMiAwIDAgMCAtMiAtMiAyIDIgMCAwIDAgLTIgMmMwIDQuNDQxOTY4LTMuNTU4MDMyIDgtOCA4cy04LTMuNTU4MDMyLTgtOCAzLjU1ODAzMi04IDgtOGEyIDIgMCAwIDAgMiAtMiAyIDIgMCAwIDAgLTIgLTJ6bTAgOGE0IDQgMCAwIDAgLTQgNCA0IDQgMCAwIDAgNCA0IDQgNCAwIDAgMCA0IC00IDQgNCAwIDAgMCAtNCAtNHoiLz4KIDxwYXRoIHN0eWxlPSJmaWxsOiNmZmZmZmYiIGQ9Im0zMiAxMGEyIDIgMCAwIDAgLTAuMTkxNCAwLjAxMTcyYy0xMC45MzMyMjQgMC4xMDQ1MzktMTkuODA4NiA5LjAzMDk3LTE5LjgwODYgMTkuOTg4MjggMCAxMS4wMjIwMDYgOC45Nzc5OTQgMjAgMjAgMjAgMTAuOTU0Njc4IDAgMTkuODc5NTI0LTguODcxMTggMTkuOTg4MjgyLTE5LjgwMDc4MmEyIDIgMCAwIDAgMC4wMTE3MTggLTAuMTk5MjE4IDIgMiAwIDAgMCAtMiAtMiAyIDIgMCAwIDAgLTIgMmMwIDguODYwMjQ2LTcuMTM5NzU0IDE2LTE2IDE2cy0xNi03LjEzOTc1NC0xNi0xNiA3LjEzOTc1NC0xNiAxNi0xNmEyIDIgMCAwIDAgMiAtMiAyIDIgMCAwIDAgLTIgLTJ6bTAgOGEyIDIgMCAwIDAgLTAuMTkxNCAwLjAwNzhjLTYuNTE1Mzc0IDAuMTA0MTI2LTExLjgwODYgNS40NTMwNTItMTEuODA4NiAxMS45OTIyIDAgNi42MDM3MjggNS4zOTYyNzIgMTIgMTIgMTIgNi41MzY0NTIgMCAxMS44Nzk4OC01LjI4OTExMiAxMS45ODgyODItMTEuODAwNzgyYTIgMiAwIDAgMCAwLjAxMTcxOCAtMC4xOTkyMTggMiAyIDAgMCAwIC0yIC0yIDIgMiAwIDAgMCAtMiAyYzAgNC40NDE5NjgtMy41NTgwMzIgOC04IDhzLTgtMy41NTgwMzItOC04IDMuNTU4MDMyLTggOC04YTIgMiAwIDAgMCAyIC0yIDIgMiAwIDAgMCAtMiAtMnptMCA4YTQgNCAwIDAgMCAtNCA0IDQgNCAwIDAgMCA0IDQgNCA0IDAgMCAwIDQgLTQgNCA0IDAgMCAwIC00IC00eiIvPgogPHBhdGggc3R5bGU9Im9wYWNpdHk6LjE7ZmlsbDojZmZmZmZmIiBkPSJtMzIgMmMtMTUuNTEyIDAtMjggMTIuNDg4LTI4IDI4IDAgMC4xMTM0NSAwLjAxMTI4MDUgMC4yMjQxMTMgMC4wMTc1NzgxIDAuMzM1OTM4IDAuMzUxNTQzMi0xNS4yMDE3NTcgMTIuNjkzMTQ5OS0yNy4zMzU5MzggMjcuOTgyNDIxOS0yNy4zMzU5MzhzMjcuNjMwODc5IDEyLjEzNDE4MSAyNy45ODI0MjIgMjcuMzM1OTM4YzAuMDA2Mjk4LTAuMTExODI1IDAuMDE3NTc4LTAuMjIyNDg4IDAuMDE3NTc4LTAuMzM1OTM4IDAtMTUuNTEyLTEyLjQ4OC0yOC0yOC0yOHoiLz4KPC9zdmc+Cg==&quot;
 LABEL oc.keyword=&quot;citrix,ica,icaclient,&quot;
@@ -5158,29 +5156,27 @@ RUN mkdir -p /var/secrets/abcdesktop/localaccount
 RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /var/secrets/abcdesktop/localaccount; rm -f /etc/$f; ln -s /var/secrets/abcdesktop/localaccount/$f /etc/$f; fi; done
 USER balloon
 CMD [ &quot;/composer/appli-docker-entrypoint.sh&quot; ]
-
-</code></pre>
+</code></pre></div>
 <h2 id="rebuild-the-image-manually">Rebuild the image manually</h2>
 <h3 id="download-the-dockerfile-manually">Download the Dockerfile manually</h3>
-<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d">Dockerfile for application citrix</a></p>
-<pre><code class="language-sh">wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d
-</code></pre>
+<p><a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d">Dockerfile for application citrix</a>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/citrix.d
+</code></pre></div></p>
 <h3 id="build-the-dockerfile-to-create-a-container-image">build the <code>Dockerfile</code> to create a container image</h3>
-<pre><code class="language-sh">docker build --build-arg TAG=3.0 -f citrix.d -t citrix .
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">TAG</span><span class="o">=</span><span class="m">3</span>.0<span class="w"> </span>-f<span class="w"> </span>citrix.d<span class="w"> </span>-t<span class="w"> </span>citrix<span class="w"> </span>.
+</code></pre></div>
 <h3 id="install-the-new-image">Install the new image</h3>
 <blockquote>
 <p>If you are using <code>containerd</code> as container runtime, use the ctr command line</p>
 <p>If you are not running this bash command on your abcdesktop node
 Replace the <strong>ABCHOST</strong> variable set to localhost by default to your own server ip address</p>
 </blockquote>
-<pre><code class="language-sh">ABCHOST=localhost
-docker inspect citrix &gt; citrix.json
-docker image save citrix -o citrix.tar
-ctr -n k8s.io images import citrix.tar
-curl -X PUT -H 'Content-Type: text/javascript' http://$ABCHOST:30443/API/manager/image -d @citrix.json
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">ABCHOST</span><span class="o">=</span>localhost
+docker<span class="w"> </span>inspect<span class="w"> </span>citrix<span class="w"> </span>&gt;<span class="w"> </span>citrix.json
+docker<span class="w"> </span>image<span class="w"> </span>save<span class="w"> </span>citrix<span class="w"> </span>-o<span class="w"> </span>citrix.tar
+ctr<span class="w"> </span>-n<span class="w"> </span>k8s.io<span class="w"> </span>images<span class="w"> </span>import<span class="w"> </span>citrix.tar
+curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://<span class="nv">$ABCHOST</span>:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@citrix.json
+</code></pre></div>
 
 
 

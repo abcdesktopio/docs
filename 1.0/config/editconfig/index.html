@@ -4924,24 +4924,24 @@
 </ul>
 <h4 id="download-sample-configuration-file">Download sample configuration file</h4>
 <p>Create a directotry named <code>abcdesktop</code> in your home directory.</p>
-<pre><code>cd
+<div class="highlight"><pre><span></span><code>cd
 mkdir -p abcdesktop
-</code></pre>
+</code></pre></div>
 <p>To edit you configuration file in abcdesktop.io docker mode, download the sample configuration file and save it as <code>od.config</code> where docker-compose.yml file
 is located.</p>
 <p><a href="https://raw.githubusercontent.com/abcdesktopio/pyos/main/od.config.reference">Download sample configuration file od.config</a> then rename the <code>od.config.reference</code> file as <code>od.config</code></p>
 <h3 id="stop-your-docker-compose">Stop your docker-compose</h3>
-<pre><code> docker-compose down
-</code></pre>
+<div class="highlight"><pre><span></span><code> docker-compose down
+</code></pre></div>
 <p>You should read on the standart output</p>
-<pre><code>Removing open_nginx_1     ... done
+<div class="highlight"><pre><span></span><code>Removing open_nginx_1     ... done
 Removing open_pyos_1      ... done
 Removing open_memcached_1 ... done
 Removing open_speedtest_1 ... done
 Removing open_mongodb_1   ... done
 Network netuser is external, skipping
 Network netback is external, skipping
-</code></pre>
+</code></pre></div>
 <h3 id="edit-your-docker-composeyml">Edit your <code>docker-compose.yml</code></h3>
 <p>Edit your <code>docker-compose.yml</code> to add a volumes entry to pyos services</p>
 <blockquote>
@@ -4949,34 +4949,34 @@ Network netback is external, skipping
 My working directory is <code>/home/alex/abcdesktop</code></p>
 </blockquote>
 <p>Add the new entry in volumes    </p>
-<pre><code> volumes:
+<div class="highlight"><pre><span></span><code> volumes:
       - /home/alex/abcdesktop/od.config:/var/pyos/od.config
-</code></pre>
+</code></pre></div>
 <p>For example, the <code>docker-compose.yml</code> contains</p>
-<pre><code>version: '3'
+<div class="highlight"><pre><span></span><code>version: &#39;3&#39;
 services:
   pyos:
     depends_on:
       - memcached
       - mongodb
-    image: 'abcdesktopio/oc.pyos'
+    image: &#39;abcdesktopio/oc.pyos&#39;
     networks:
       - netback
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /home/alex/abcdesktop/od.config:/var/pyos/od.config
   speedtest:
-    image: 'abcdesktopio/oc.speedtest'
+    image: &#39;abcdesktopio/oc.speedtest&#39;
     networks:
       - netuser
   nginx:
     depends_on:
       - memcached
       - pyos
-    image: 'abcdesktopio/oc.nginx'
+    image: &#39;abcdesktopio/oc.nginx&#39;
     ports:
-      - '80:80'
-      - '443:443'
+      - &#39;80:80&#39;
+      - &#39;443:443&#39;
     networks:
       - netuser
       - netback
@@ -4993,38 +4993,38 @@ networks:
     driver: bridge
   netback:
     internal: true
-</code></pre>
+</code></pre></div>
 <h3 id="edit-your-configuration-file">Edit your configuration file</h3>
 <p>Now, it's time to make a change in your od.config file.</p>
 <p>Download the od.config file and save it to your abcdesktop local directory.</p>
 <p>To make change, edit your own <code>od.config</code> file</p>
-<pre><code>vim od.config 
-</code></pre>
+<div class="highlight"><pre><span></span><code>vim od.config 
+</code></pre></div>
 <p>Change the defaultbackgroundcolors in the desktop options.</p>
 <p>Locate the line <code>desktop.defaultbackgroundcolors</code> and update the first entries with the values <code>'#FF0000', '#FFFFFF',  '#0000FF'</code></p>
-<pre><code>desktop.defaultbackgroundcolors : [ '#FF0000', '#FFFFFF',  '#0000FF', '#CD3C14', '#4BB4E6', '#50BE87', '#A885D8', '#FFB4E6' ]
-</code></pre>
+<div class="highlight"><pre><span></span><code>desktop.defaultbackgroundcolors : [ &#39;#FF0000&#39;, &#39;#FFFFFF&#39;,  &#39;#0000FF&#39;, &#39;#CD3C14&#39;, &#39;#4BB4E6&#39;, &#39;#50BE87&#39;, &#39;#A885D8&#39;, &#39;#FFB4E6&#39; ]
+</code></pre></div>
 <p>Save your local oc.config file.</p>
 <p>Run your docker-compose</p>
 <p>To restart your docker-compose, run the command</p>
-<pre><code> docker-compose up
-</code></pre>
+<div class="highlight"><pre><span></span><code> docker-compose up
+</code></pre></div>
 <blockquote>
 <p>When the od.config change, od.py reload this configuration file automatically. </p>
 </blockquote>
 <p>You should read at the standard ouput of docker-compose</p>
-<pre><code>Starting abcdesktop_speedtest_1 ... done
+<div class="highlight"><pre><span></span><code>Starting abcdesktop_speedtest_1 ... done
 Starting abcdesktop_mongodb_1   ... done
 Starting abcdesktop_memcached_1 ... done
 Starting abcdesktop_openldap_1  ... done
 Starting abcdesktop_pyos_1      ... done
 Starting abcdesktop_nginx_1     ... done
 [ lines cut here ]
-</code></pre>
+</code></pre></div>
 <h3 id="check-that-the-new-colors-are-painted-in-front">Check that the new colors are painted in front :</h3>
 <p>Open the url http://localhost, in your web browser, to start a simple abcdesktop.io container. </p>
-<pre><code>http://localhost
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost
+</code></pre></div>
 <p>You should see the abcdesktop.io home page.</p>
 <p>Press the <code>Sign-in Anonymously, have look</code></p>
 <p>At the right top corner, click on the menu and choose <code>Settings</code>, then click on <code>Screen Colors</code></p>

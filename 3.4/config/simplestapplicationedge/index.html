@@ -4968,40 +4968,40 @@
 <ul>
 <li>Create a Dockerfile to install <code>Microsoft Edge</code> application from <code>microsoft-edge</code> package</li>
 </ul>
-<pre><code class="language-Dockerfile">FROM ubuntu
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu</span>
 
-# install curl ca-certificates gnupg
-RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends curl ca-certificates gnupg &amp;&amp; apt-get clean &amp;&amp;  rm -rf /var/lib/apt/lists/*
+<span class="c"># install curl ca-certificates gnupg</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>curl<span class="w"> </span>ca-certificates<span class="w"> </span>gnupg<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">  </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
 
-# add microsoft key
-RUN curl https://packages.microsoft.com/keys/microsoft.asc  | apt-key add -
+<span class="c"># add microsoft key</span>
+<span class="k">RUN</span><span class="w"> </span>curl<span class="w"> </span>https://packages.microsoft.com/keys/microsoft.asc<span class="w">  </span><span class="p">|</span><span class="w"> </span>apt-key<span class="w"> </span>add<span class="w"> </span>-
 
-# add repository packages.microsoft.com/repos/edge
-RUN echo &quot;deb [arch=$(dpkg --print-architecture)] https://packages.microsoft.com/repos/edge stable main&quot; &gt; /etc/apt/sources.list.d/edge.list
+<span class="c"># add repository packages.microsoft.com/repos/edge</span>
+<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2">] https://packages.microsoft.com/repos/edge stable main&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/apt/sources.list.d/edge.list
 
-# install microsoft-edge-stable
-RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends microsoft-edge-stable &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/* 
+<span class="c"># install microsoft-edge-stable</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>microsoft-edge-stable<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*<span class="w"> </span>
 
-# Install package fonts 
-RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends fonts-ubuntu fonts-noto fonts-freefont-ttf xfonts-base xfonts-encodings xfonts-scalable fonts-dejavu-core fonts-deva fonts-droid-fallback ttf-mscorefonts-installer &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
+<span class="c"># Install package fonts </span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>fonts-ubuntu<span class="w"> </span>fonts-noto<span class="w"> </span>fonts-freefont-ttf<span class="w"> </span>xfonts-base<span class="w"> </span>xfonts-encodings<span class="w"> </span>xfonts-scalable<span class="w"> </span>fonts-dejavu-core<span class="w"> </span>fonts-deva<span class="w"> </span>fonts-droid-fallback<span class="w"> </span>ttf-mscorefonts-installer<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
 
-# put some labels
-LABEL oc.keyword=&quot;microsoft,edge,web,browser,internet&quot;
-LABEL oc.cat=&quot;office&quot;
-LABEL oc.desktopfile=&quot;microsoft-edge.desktop&quot;
-LABEL oc.launch=&quot;microsoft-edge.Microsoft-edge&quot;
-LABEL oc.displayname=&quot;Microsoft Edge&quot;
-LABEL oc.mimetype=&quot;application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;&quot;
-LABEL oc.fileextensions=&quot;html;xml;gif&quot;
-LABEL oc.legacyfileextensions=&quot;html;xml&quot;
-# LABEL image_pull_policy=&quot;Always&quot;
+<span class="c"># put some labels</span>
+<span class="k">LABEL</span><span class="w"> </span>oc.keyword<span class="o">=</span><span class="s2">&quot;microsoft,edge,web,browser,internet&quot;</span>
+<span class="k">LABEL</span><span class="w"> </span>oc.cat<span class="o">=</span><span class="s2">&quot;office&quot;</span>
+<span class="k">LABEL</span><span class="w"> </span>oc.desktopfile<span class="o">=</span><span class="s2">&quot;microsoft-edge.desktop&quot;</span>
+<span class="k">LABEL</span><span class="w"> </span>oc.launch<span class="o">=</span><span class="s2">&quot;microsoft-edge.Microsoft-edge&quot;</span>
+<span class="k">LABEL</span><span class="w"> </span>oc.displayname<span class="o">=</span><span class="s2">&quot;Microsoft Edge&quot;</span>
+<span class="k">LABEL</span><span class="w"> </span>oc.mimetype<span class="o">=</span><span class="s2">&quot;application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;&quot;</span>
+<span class="k">LABEL</span><span class="w"> </span>oc.fileextensions<span class="o">=</span><span class="s2">&quot;html;xml;gif&quot;</span>
+<span class="k">LABEL</span><span class="w"> </span>oc.legacyfileextensions<span class="o">=</span><span class="s2">&quot;html;xml&quot;</span>
+<span class="c"># LABEL image_pull_policy=&quot;Always&quot;</span>
 
-# update execute runtime adds the generated files
-RUN mkdir -p /etc/localaccount 
-RUN for f in passwd shadow group gshadow ; do if [ -f /etc/$f ] ; then  cp /etc/$f /etc/localaccount; rm -f /etc/$f; ln -s /etc/localaccount/$f /etc/$f; fi; done
+<span class="c"># update execute runtime adds the generated files</span>
+<span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/localaccount<span class="w"> </span>
+<span class="k">RUN</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span>passwd<span class="w"> </span>shadow<span class="w"> </span>group<span class="w"> </span>gshadow<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>/etc/<span class="nv">$f</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w">  </span>cp<span class="w"> </span>/etc/<span class="nv">$f</span><span class="w"> </span>/etc/localaccount<span class="p">;</span><span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>/etc/<span class="nv">$f</span><span class="p">;</span><span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/localaccount/<span class="nv">$f</span><span class="w"> </span>/etc/<span class="nv">$f</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 
-ENTRYPOINT [ &quot;/usr/bin/microsoft-edge-stable&quot; ]
-</code></pre>
+<span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;/usr/bin/microsoft-edge-stable&quot;</span><span class="w"> </span><span class="p">]</span>
+</code></pre></div>
 <p>Dockerfile description </p>
 <p>This image is based on ubuntu, and install the <code>microsoft-edge-stable</code> package from the repository https://packages.microsoft.com/repos/edge 
 Then we define <code>/usr/bin/microsoft-edge-stable</code> as the ENTRYPOINT.</p>
@@ -5019,9 +5019,9 @@ Then we define <code>/usr/bin/microsoft-edge-stable</code> as the ENTRYPOINT.</p
 <ul>
 <li>Build the image for microsoft-edge application</li>
 </ul>
-<pre><code class="language-bash">REGISTRY=abcdesktopio
-docker build -t $REGISTRY/sampleedge .
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span><span class="nv">$REGISTRY</span>/sampleedge<span class="w"> </span>.
+</code></pre></div>
 <blockquote>
 <p>You should replace the value of <code>REGISTRY=abcdesktopio</code> by your own registry's name.
 If you don't have one, you can use the <code>abcdesktopio/sampleedge</code> as a readonly dockerhub registry.</p>
@@ -5029,89 +5029,89 @@ If you don't have one, you can use the <code>abcdesktopio/sampleedge</code> as a
 <ul>
 <li>Push the image to your registry <em>(only if you have your own registry)</em></li>
 </ul>
-<pre><code class="language-bash">REGISTRY=abcdesktopio
-docker push $REGISTRY/sampleedge
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+docker<span class="w"> </span>push<span class="w"> </span><span class="nv">$REGISTRY</span>/sampleedge
+</code></pre></div>
 <ul>
 <li>Inspect the image to create a json file</li>
 </ul>
-<pre><code class="language-bash">REGISTRY=abcdesktopio
-crictl inspecti $REGISTRY/sampleedge:latest &gt; sampleedge.json
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+crictl<span class="w"> </span>inspecti<span class="w"> </span><span class="nv">$REGISTRY</span>/sampleedge:latest<span class="w"> </span>&gt;<span class="w"> </span>sampleedge.json
+</code></pre></div>
 <ul>
 <li>Send the image to abcdesktop pyos instance</li>
 </ul>
 <p>The commands read the <code>PYOS_POD</code> name, then copy the <code>sampleedge.json</code> file to <code>/tmp</code> of PYOS_POD,
 then send the <code>/tmp/samplexeyes.json</code> to REST API server</p>
-<pre><code class="language-bash">NAMESPACE=abcdesktop
-PYOS_POD_NAME=$(kubectl get pods -l run=pyos-od -o jsonpath={.items..metadata.name} -n &quot;$NAMESPACE&quot; | awk '{print $1}')
-kubectl cp sampleedge.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
-kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/sampleedge.json
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
+<span class="nv">PYOS_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NAMESPACE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+kubectl<span class="w"> </span>cp<span class="w"> </span>sampleedge.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/sampleedge.json
+</code></pre></div>
 <p>The endpoint image returns a json documment </p>
-<pre><code class="language-json">{
-  &quot;cmd&quot;: [
-    &quot;/usr/bin/microsoft-edge-stable&quot;
-  ],
-  &quot;path&quot;: null,
-  &quot;sha_id&quot;: &quot;sha256:3539a48d03e32fcca330bc8997f7bc9d1042ee6da23c659bb86c6a654530ff59&quot;,
-  &quot;id&quot;: &quot;docker.io/abcdesktopio/sampleedge:latest&quot;,
-  &quot;architecture&quot;: null,
-  &quot;os&quot;: null,
-  &quot;rules&quot;: {},
-  &quot;acl&quot;: {
-    &quot;permit&quot;: [
-      &quot;all&quot;
-    ]
-  },
-  &quot;launch&quot;: &quot;microsoft-edge.Microsoft-edge&quot;,
-  &quot;name&quot;: &quot;microsoft-edge-stable&quot;,
-  &quot;icon&quot;: &quot;microsoft-edge-stable&quot;,
-  &quot;icondata&quot;: &quot;PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIwIiB5PSIzMiIgZmlsbD0iYmxhY2siPm1pY3Jvc29mdC1lZGdlLXN0YWJsZTwvdGV4dD48L3N2Zz4=&quot;,
-  &quot;keyword&quot;: &quot;microsoft,edge,web,browser,internet&quot;,
-  &quot;uniquerunkey&quot;: null,
-  &quot;cat&quot;: &quot;office&quot;,
-  &quot;args&quot;: null,
-  &quot;execmode&quot;: null,
-  &quot;showinview&quot;: null,
-  &quot;displayname&quot;: &quot;Microsoft Edge&quot;,
-  &quot;desktopfile&quot;: &quot;microsoft-edge.desktop&quot;,
-  &quot;executeclassname&quot;: null,
-  &quot;executablefilename&quot;: &quot;microsoft-edge-stable&quot;,
-  &quot;usedefaultapplication&quot;: false,
-  &quot;mimetype&quot;: [
-    &quot;application/pdf&quot;,
-    &quot;application/rdf+xml&quot;,
-    &quot;application/rss+xml&quot;,
-    &quot;application/xhtml+xml&quot;,
-    &quot;application/xhtml_xml&quot;,
-    &quot;application/xml&quot;,
-    &quot;image/gif&quot;,
-    &quot;image/jpeg&quot;,
-    &quot;image/png&quot;,
-    &quot;image/webp&quot;,
-    &quot;text/html&quot;,
-    &quot;text/xml&quot;,
-    &quot;x-scheme-handler/http&quot;,
-    &quot;x-scheme-handler/https&quot;
-  ],
-  &quot;fileextensions&quot;: [
-    &quot;html&quot;,
-    &quot;xml&quot;,
-    &quot;gif&quot;
-  ],
-  &quot;legacyfileextensions&quot;: [
-    &quot;html&quot;,
-    &quot;xml&quot;
-  ],
-  &quot;secrets_requirement&quot;: null,
-  &quot;image_pull_policy&quot;: &quot;IfNotPresent&quot;,
-  &quot;image_pull_secrets&quot;: null,
-  &quot;containerengine&quot;: &quot;ephemeral_container&quot;,
-  &quot;securitycontext&quot;: {},
-  &quot;created&quot;: null
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;/usr/bin/microsoft-edge-stable&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;sha_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha256:3539a48d03e32fcca330bc8997f7bc9d1042ee6da23c659bb86c6a654530ff59&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;docker.io/abcdesktopio/sampleedge:latest&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;architecture&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;os&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">  </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;all&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;microsoft-edge.Microsoft-edge&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;microsoft-edge-stable&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;microsoft-edge-stable&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;icondata&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIwIiB5PSIzMiIgZmlsbD0iYmxhY2siPm1pY3Jvc29mdC1lZGdlLXN0YWJsZTwvdGV4dD48L3N2Zz4=&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;microsoft,edge,web,browser,internet&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;uniquerunkey&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;office&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;execmode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;showinview&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft Edge&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;microsoft-edge.desktop&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;executeclassname&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;executablefilename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;microsoft-edge-stable&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;usedefaultapplication&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;application/pdf&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;application/rdf+xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;application/rss+xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;application/xhtml+xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;application/xhtml_xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;image/gif&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;image/jpeg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;image/png&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;image/webp&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;text/html&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;text/xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;x-scheme-handler/http&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;x-scheme-handler/https&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;fileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;html&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;gif&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;legacyfileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;html&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;xml&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;secrets_requirement&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;image_pull_policy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IfNotPresent&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;image_pull_secrets&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;containerengine&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ephemeral_container&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;securitycontext&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">  </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="execute-the-new-application-microsoft-edge">Execute the new application <code>microsoft-edge</code></h2>
 <ul>
 <li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop </li>

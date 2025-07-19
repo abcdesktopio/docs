@@ -5260,15 +5260,15 @@
 <p><code>explicit</code> authentification use a directory service. The bind operation is used to authenticate clients to the directory server, to establish an authorization identity that will be used for subsequent operations processed on that connection.</p>
 <p>The <code>explicit</code> authentification configuration is defined as a dictionnary object and contains an <code>explicit</code> provider. </p>
 <p>For example :</p>
-<pre><code>'explicit': {
-    'show_domains': True,
-    'providers': {
-      'LDAP': { 
-        'config_ref': 'ldapconfig', 
-        'enabled': True
+<div class="highlight"><pre><span></span><code>&#39;explicit&#39;: {
+    &#39;show_domains&#39;: True,
+    &#39;providers&#39;: {
+      &#39;LDAP&#39;: { 
+        &#39;config_ref&#39;: &#39;ldapconfig&#39;, 
+        &#39;enabled&#39;: True
        }
 }
-</code></pre>
+</code></pre></div>
 <p>In this example, <code>ldapconfig</code> dict must have a key <code>LDAP</code></p>
 <table>
 <thead>
@@ -5306,11 +5306,12 @@
 The key name must be set with the same value in providers configuration and <code>config_ref</code>.</p>
 <p>Providers :</p>
 <p>The provider is formated as a dictionnary </p>
-<p><code>{ 'planet': {  
-            'config_ref': 'ldapconfig',  
-            'enabled': True  
-        }
- }</code></p>
+<div class="highlight"><pre><span></span><code>{ &#39;planet&#39;: {  
+           &#39;config_ref&#39;: &#39;ldapconfig&#39;,  
+           &#39;enabled&#39;: True  
+       }
+}
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -5334,15 +5335,15 @@ The key name must be set with the same value in providers configuration and <cod
 </table>
 <p>The ldapconfig is a dictionnary. </p>
 <p>For example :</p>
-<pre><code>ldapconfig : { 'planet': {    'default'       : True, 
-                        'ldap_timeout'  : 15,
-                        'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ 'ldap://192.168.8.195' ],
-                        'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }
+<div class="highlight"><pre><span></span><code>ldapconfig : { &#39;planet&#39;: {    &#39;default&#39;       : True, 
+                        &#39;ldap_timeout&#39;  : 15,
+                        &#39;ldap_basedn&#39;   : &#39;ou=people,dc=planetexpress,dc=com&#39;,
+                        &#39;servers&#39;       : [ &#39;ldap://192.168.8.195&#39; ],
+                        &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;cn=admin,dc=planetexpress,dc=com&#39;, &#39;password&#39;: &#39;GoodNewsEveryone&#39; }
            }}
 
 }
-</code></pre>
+</code></pre></div>
 <h2 id="ldap-configuration-reference">ldap configuration reference</h2>
 <table>
 <thead>
@@ -5851,8 +5852,8 @@ The key name must be set with the same value in providers configuration and <cod
 <h2 id="applications-remainted">Applications remainted</h2>
 <p>Start LibreOffice Writer, and start a new file for your instructor. 
 Type few words for example :</p>
-<pre><code>I like this amazing project abcdesktop.io
-</code></pre>
+<div class="highlight"><pre><span></span><code>I like this amazing project abcdesktop.io
+</code></pre></div>
 <p>Do not save your file and just close your web browser.</p>
 <p>Start your web browser again, and open the same URL <code>http://localhost</code>, and log in with the same account: <code>Turanga Leela</code> as login and <code>leela</code> as password, then click on the <code>Sign in</code> button.</p>
 <p>The application LibreOffice Writer is still running and the greeting message <code>I like this amazing project abcdesktop.io</code></p>

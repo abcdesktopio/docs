@@ -4856,21 +4856,21 @@
 <h3 id="modify-etcrsyslogconf">Modify /etc/rsyslog.conf</h3>
 <p>By default syslog program is configured to log messages received over unix socket files.
 rsyslog configuration file need to be modified to accept messages over UDP.</p>
-<p>Edit /etc/rsyslog.conf file with your prefered linux text editor as sudo ou root:</p>
-<pre><code>sudo vi /etc/rsyslog.conf
-</code></pre>
-<p><img alt="rsyslog_conf_file" src="../img/rsyslog_conf_file.png" /> </p>
-<p>Uncomment the following lines and save file :</p>
-<pre><code>module(load=&quot;imudp&quot;)
+<p>Edit /etc/rsyslog.conf file with your prefered linux text editor as sudo ou root:
+<div class="highlight"><pre><span></span><code>sudo vi /etc/rsyslog.conf
+</code></pre></div>
+<img alt="rsyslog_conf_file" src="../img/rsyslog_conf_file.png" /> </p>
+<p>Uncomment the following lines and save file :
+<div class="highlight"><pre><span></span><code>module(load=&quot;imudp&quot;)
 input(type=&quot;imudp&quot; port=&quot;514&quot;)
-</code></pre>
+</code></pre></div></p>
 <p><img alt="rsyslog_conf_file_modified" src="../img/rsyslog_conf_file_modified.png" /> </p>
 <h4 id="restart-rsyslog">Restart rsyslog</h4>
 <p>Now we have enabled rsyslog over UDP on 514 port in config file, we have to restart rsyslog to take new parameters into account.<br />
-Execute the following command as sudo:</p>
-<pre><code>sudo systemctl restart rsyslog
-</code></pre>
-<p><img alt="restart_rsyslog" src="../img/restart_rsyslog.png" /> </p>
+Execute the following command as sudo:
+<div class="highlight"><pre><span></span><code>sudo systemctl restart rsyslog
+</code></pre></div>
+<img alt="restart_rsyslog" src="../img/restart_rsyslog.png" /> </p>
 
 
 

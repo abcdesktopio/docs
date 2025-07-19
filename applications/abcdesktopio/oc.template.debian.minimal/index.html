@@ -4860,7 +4860,7 @@
 <h2 id="from">from</h2>
 <p>Docker official images <a href="https://hub.docker.com/_/debian">debian:stable-slim</a></p>
 <h2 id="container-distribution-release">Container distribution release</h2>
-<pre><code>PRETTY_NAME=&quot;Debian GNU/Linux 12 (bookworm)&quot;
+<div class="highlight"><pre><span></span><code>PRETTY_NAME=&quot;Debian GNU/Linux 12 (bookworm)&quot;
 NAME=&quot;Debian GNU/Linux&quot;
 VERSION_ID=&quot;12&quot;
 VERSION=&quot;12 (bookworm)&quot;
@@ -4869,11 +4869,9 @@ ID=debian
 HOME_URL=&quot;https://www.debian.org/&quot;
 SUPPORT_URL=&quot;https://www.debian.org/support&quot;
 BUG_REPORT_URL=&quot;https://bugs.debian.org/&quot;
-
-</code></pre>
+</code></pre></div>
 <h2 id="dockerfile-source-code"><code>DockerFile</code> source code</h2>
-<pre><code>
-ARG BASE_IMAGE=ubuntu:20.04
+<div class="highlight"><pre><span></span><code>ARG BASE_IMAGE=ubuntu:20.04
 FROM ${BASE_IMAGE}
 
 MAINTAINER Alexandre DEVELY 
@@ -4883,7 +4881,7 @@ COPY etc/ /etc
 # correct debconf: (TERM is not set, so the dialog frontend is not usable.)
 ENV DEBCONF_FRONTEND noninteractive
 ENV TERM linux
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+RUN echo &#39;debconf debconf/frontend select Noninteractive&#39; | debconf-set-selections
 
 RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends \
      gnupg                              \
@@ -4918,7 +4916,7 @@ RUN cd /composer/node/ocrun      &amp;&amp; npm install
 ##########
 # Next command use $BUSER context
 ENV BUSER balloon
-# RUN adduser --disabled-password --gecos '' $BUSER
+# RUN adduser --disabled-password --gecos &#39;&#39; $BUSER
 # RUN id -u $BUSER &amp;&gt;/dev/null || 
 RUN groupadd --gid 4096 $BUSER
 RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups $BUSER $BUSER
@@ -4927,18 +4925,16 @@ RUN useradd --create-home --shell /bin/bash --uid 4096 -g $BUSER --groups $BUSER
 # PASS=ballon
 # Change password for user balloon
 
-# if --build-arg BUILD_BALLON_PASSWORD=1, set NODE_ENV to 'development' or set to null otherwise.
+# if --build-arg BUILD_BALLON_PASSWORD=1, set NODE_ENV to &#39;development&#39; or set to null otherwise.
 #ENV BALLOON_PASSWORD=${BUILD_BALLOON_PASSWORD:+development}
-# if BUILD_BALLOON_PASSWORD is null, set it to 'abcdesktop' (or leave as is otherwise).
+# if BUILD_BALLOON_PASSWORD is null, set it to &#39;abcdesktop&#39; (or leave as is otherwise).
 #ENV BALLOON_PASSWORD=${BUILD_BALLOON_PASSWORD:-abcdesktop}
 
 RUN echo &quot;balloon:lmdpocpetit&quot; | chpasswd $BUSER
 
 RUN mkdir -p /var/log/desktop &amp;&amp; \
     chown -R $BUSER:$BUSER /home/$BUSER /var/log/desktop
-
-
-</code></pre>
+</code></pre></div>
 <blockquote>
 <p>file oc.template.debian.minimal.md is created at Tue Jan 28 2025 13:53:11 GMT+0000 (Coordinated Universal Time) by make-docs.js</p>
 </blockquote>
