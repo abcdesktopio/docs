@@ -3,8 +3,47 @@
 
 ## abcdesktop workflow (with LDAP Auth)
 
+``` mermaid
+sequenceDiagram
+    Alice->>Router: HTTPS GET /
+    Router->>Website: HTTP GET /
+    destroy Website
+    Website->>Router: HTML Content
+    Router->>Alice: HTML Content
+    Alice->>Router: Login me in (Alice, password)
+    Router->>Pyos: Login me in (Alice, password)
+    Note over Router,Pyos: 1. Authentication
+    Create participant LDAP
+    Pyos->>LDAP: BIND LDAP_SEARCH Alice
+    destroy LDAP
+    LDAP->>Pyos: dn, cn, group
+    Pyos->>Router: User Alice JWT
+    Router->>Alice: User Alice JWT
+    Alice->>Router: Create Desktop (User Alice JWT)
+    Note over Router,Pyos: 2. Create a desktop
+    Router->>Pyos: Create Desktop (User Alice JWT)
+    Pyos->>Pyos: Verify User Alice JWT
+    Create participant Kubernetes
+    Pyos->>Kubernetes: Create Alice POD YAML
+    Kubernetes->>Pyos: POD Created
+    Create participant PodAlice
+    Kubernetes->>PodAlice: Are you Ready ?
+    Pyos->>Pyos: Crypt Pop ip address
+    destroy Kubernetes
+    PodAlice->>Kubernetes: I'm Ready
+    destroy Pyos
+    Pyos->>Router: Desktop Alice JWT
+    Router->>Alice: Desktop Alice JWT
+    Alice->>Router: WebSocket connect(Desktop Alice JWT)
+    Note over Router,PodAlice: 3. Connect websocket to Alive Pod
+    Router->>Router: Verify Alice Desktop JWT
+    Router->>Router: Uncrypt Alice Desktop JWT Pod ip address
+    Router->>PodAlice: WebSocket connect
+    PodAlice->>Router: Connected
+    Router->>Alice: Connected
+    Alice-->PodAlice: Established
+```
 
-![Create POD process](img/createPod.png)
 
 1. User login, get a user JWT
 2. Create a user POD (or a container) and retrieve a Desktop JWT
