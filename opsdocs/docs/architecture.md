@@ -79,7 +79,7 @@ The service infrastructure is based on :
 
 ## Additional projets
 
-- Helm charts (install Helm chart) [helm chart](https://github.com/abcdesktopio/helm)
+- Helm charts (install helm chart) [helm chart](https://artifacthub.io/packages/helm/abcdesktop/abcdesktop)
 
 
 ## Roles summary
