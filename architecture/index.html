@@ -5071,34 +5071,41 @@
 
 <h1 id="architecture-in-docker-mode">Architecture in docker mode</h1>
 <h2 id="abcdesktop-workflow-with-ldap-auth">abcdesktop workflow (with LDAP Auth)</h2>
-<pre class="mermaid"><code>sequenceDiagram
+<pre class="mermaid"><code>---
+config:
+  theme: redux-color
+---
+sequenceDiagram
     actor Alice
     Alice-&gt;&gt;Router: HTTPS GET /
     Router-&gt;&gt;Website: HTTP GET /
     destroy Website
     Website-&gt;&gt;Router: HTML Content
     Router-&gt;&gt;Alice: HTML Content
-    Alice-&gt;&gt;Router: Logime in (Alice, password)
+    Alice-&gt;&gt;Router: Logme in (Alice, password)
     Router-&gt;&gt;Pyos: Logme in (Alice, password)
     Note over Router,Pyos: 1. Authentication
     Create participant LDAP
     Pyos-&gt;&gt;LDAP: BIND LDAP_SEARCH Alice
     destroy LDAP
-    LDAP-&gt;&gt;Pyos: ldap attributs dn, cn, group
+    LDAP-&gt;&gt;Pyos: dn, cn, group
+    Pyos-&gt;&gt;Kubernetes: Create user secrets
+    Kubernetes-&gt;&gt;Pyos: Secrets created
     Pyos-&gt;&gt;Router: User Alice JWT
     Router-&gt;&gt;Alice: User Alice JWT
     Alice-&gt;&gt;Router: Create Desktop (User Alice JWT)
     Note over Router,Pyos: 2. Create a desktop
     Router-&gt;&gt;Pyos: Create Desktop (User Alice JWT)
     Pyos-&gt;&gt;Pyos: Verify User Alice JWT
-    Create participant Kubernetes
     Pyos-&gt;&gt;Kubernetes: Create Alice POD YAML
     Kubernetes-&gt;&gt;Pyos: POD Created
+    Pyos-&gt;&gt;Kubernetes: Is Alice Pod Ready ?
     Create participant PodAlice
     Kubernetes-&gt;&gt;PodAlice: Are you Ready ?
-    Pyos-&gt;&gt;Pyos: Crypt Pop ip address
-    destroy Kubernetes
     PodAlice-&gt;&gt;Kubernetes: I'm Ready
+    destroy Kubernetes
+    Kubernetes-&gt;&gt;Pyos: Alice Pod is Ready
+    Pyos-&gt;&gt;Pyos: Crypt Pop ip address
     destroy Pyos
     Pyos-&gt;&gt;Router: Desktop Alice JWT
     Router-&gt;&gt;Alice: Desktop Alice JWT
@@ -5109,7 +5116,8 @@
     Router-&gt;&gt;PodAlice: WebSocket connect
     PodAlice-&gt;&gt;Router: Connected
     Router-&gt;&gt;Alice: Connected
-    Alice--&gt;PodAlice: Established</code></pre>
+    Alice--&gt;PodAlice: Established
+</code></pre>
 <ol>
 <li>User login, get a user JWT</li>
 <li>Create a user POD and get a Desktop JWT</li>
@@ -5117,7 +5125,7 @@
 <p>User is connecting to his own POD</p>
 <ul>
 <li>All JWT are signed with RSA keys. </li>
-<li>All desktop's JWT payload are encrypted with RSA keys</li>
+<li>All desktop's JWT payload are encrypted with another RSA keys</li>
 </ul>
 </li>
 </ol>
