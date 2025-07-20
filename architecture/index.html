@@ -759,7 +759,7 @@
           <li class="md-nav__item">
   <a href="#router" class="md-nav__link">
     <span class="md-ellipsis">
-      Router
+      router
     </span>
   </a>
   
@@ -768,7 +768,7 @@
           <li class="md-nav__item">
   <a href="#website" class="md-nav__link">
     <span class="md-ellipsis">
-      WebSite
+      website
     </span>
   </a>
   
@@ -5025,7 +5025,7 @@
           <li class="md-nav__item">
   <a href="#router" class="md-nav__link">
     <span class="md-ellipsis">
-      Router
+      router
     </span>
   </a>
   
@@ -5034,7 +5034,7 @@
           <li class="md-nav__item">
   <a href="#website" class="md-nav__link">
     <span class="md-ellipsis">
-      WebSite
+      website
     </span>
   </a>
   
@@ -5198,19 +5198,19 @@ sequenceDiagram
 </ul>
 <blockquote>
 <p>When a new user is authenticated, a dedicated user pod is created.</p>
-<p>When the user starts an application (like LibreOffice for example) a dedicated container is created.</p>
+<p>When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a <code>pod</code> or an <code>ephemeral container</code></p>
 </blockquote>
-<h3 id="router">Router</h3>
+<h3 id="router">router</h3>
 <p><code>router</code> pod act as a <code>http router</code> web server. It routes HTTP requets to <code>user's pods</code>, <code>web site</code>, or <code>pyos</code>.</p>
-<h3 id="website">WebSite</h3>
+<h3 id="website">website</h3>
 <p><code>website</code> pod act as web server and delivers <code>html</code>, <code>javascript</code>, <code>svg</code> files. </p>
 <h3 id="mongo">mongo</h3>
-<p><code>mongo</code> is used by pyos to store user profil informations. 
-The profil informations are :</p>
+<p><code>mongo</code> is used by pyos to store informations. 
+The informations are :</p>
 <ul>
-<li>Login history</li>
-<li>Dock configuration</li>
-<li>Image and background color configuration </li>
+<li>User logins history</li>
+<li>Images and background colors configuration per desktop</li>
+<li>Installed applications </li>
 </ul>
 <h3 id="memcached">memcached</h3>
 <p><code>memcache</code> stores progress text message information during login process. <code>memcache</code> datas are set and get only by the control plane.</p>
