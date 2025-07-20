@@ -22,8 +22,8 @@ sequenceDiagram
     Pyos->>LDAP: BIND LDAP_SEARCH Alice
     destroy LDAP
     LDAP->>Pyos: dn, cn, group
-    Pyos->>Kubernetes: Create user secrets
-    Kubernetes->>Pyos: Secrets created
+    Pyos->>Kubernetes: (option) Create user secrets
+    Kubernetes->>Pyos: (option) Secrets created
     Pyos->>Router: User Alice JWT
     Router->>Alice: User Alice JWT
     Alice->>Router: Create Desktop (User Alice JWT)
@@ -65,13 +65,21 @@ sequenceDiagram
 
 The service infrastructure is based on :
 
-- Router nginx with lua script
-- Website [Nginx container](/core/nginx)
+- Router nginx with lua script [Nginx container](/core/nginx)
+- Website service [webmodules](https://github.com/abcdesktopio/webmodules)
 - Database service [MongoDB](/core/mongodb/)
 - Memcached service [Memcached](/core/memcached/)
-- Pyos Core service (abcdesktop engine) [Pyos](/core/pyos/)
+- Pyos Core service (abcdesktop control plane) [Pyos](/core/pyos/)
+- Pod user [user](/core/user)
 
-The user creates a pod [user](/core/user)
+## Additional services
+
+- Console service (abcdesktop admin console) [Pyos](/core/pyos/)
+- Speedtest service (speedtest service, self-hosted speed test for HTML5) [librespeed](https://github.com/librespeed/speedtest)
+
+## Additional projets
+
+- Helm charts (install Helm chart) [helm chart](https://github.com/abcdesktopio/helm)
 
 
 ## Roles summary
