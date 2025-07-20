@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nginx-ocnginx" class="md-skip">
+        <a href="#nginx-route" class="md-skip">
           Skip to content
         </a>
       
@@ -784,18 +784,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#web-site" class="md-nav__link">
+  <a href="#main-reverse-proxy-routes" class="md-nav__link">
     <span class="md-ellipsis">
-      web site
+      main reverse proxy routes
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#main-reverse-proxy" class="md-nav__link">
+  <a href="#default-desktop-ocuser-tcp-port" class="md-nav__link">
     <span class="md-ellipsis">
-      main reverse proxy
+      default desktop oc.user tcp port
     </span>
   </a>
   
@@ -4926,18 +4926,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#web-site" class="md-nav__link">
+  <a href="#main-reverse-proxy-routes" class="md-nav__link">
     <span class="md-ellipsis">
-      web site
+      main reverse proxy routes
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#main-reverse-proxy" class="md-nav__link">
+  <a href="#default-desktop-ocuser-tcp-port" class="md-nav__link">
     <span class="md-ellipsis">
-      main reverse proxy
+      default desktop oc.user tcp port
     </span>
   </a>
   
@@ -4981,35 +4981,47 @@
   
 
 
-<h1 id="nginx-ocnginx">Nginx oc.nginx</h1>
-<p><img alt="Update oc.nginx" src="https://github.com/abcdesktopio/oc.nginx/workflows/Update%20oc.nginx/badge.svg" /></p>
+<h1 id="nginx-route">Nginx route</h1>
 <p>Nginx is used as a reverse proxy server for HTTP, HTTPS protocols, as well as a load balancer, HTTP cache, and a web server (origin server). </p>
 <h2 id="nginx-routing">Nginx routing</h2>
-<p><img alt="nginx routing" src="../../img/architecture-overview.png" /></p>
+<p>Route image is an <code>openresty</code> http server, based on <code>nginx</code></p>
 <h2 id="nginx-configuration">Nginx Configuration</h2>
 <ul>
-<li>Read the nginx <a href="https://github.com/abcdesktopio/oc.nginx/blob/main/etc/nginx/nginx.conf">nginx.conf</a> configuration file</li>
-<li>Read the nginx <a href="https://github.com/abcdesktopio/oc.nginx/blob/main/etc/nginx/sites-enabled/default">default web site</a> configuration file</li>
-<li>Read the <a href="https://github.com/abcdesktopio/oc.nginx/blob/main/etc/nginx/route.conf">route.conf</a> configuration file, use to route HTTP request </li>
-<li>Read the <a href="https://github.com/abcdesktopio/oc.nginx/blob/main/etc/nginx/proxy.conf">proxy.conf</a> configuration file, use to proxy HTTP request </li>
+<li>The nginx <a href="[https://github.com/abcdesktopio/oc.nginx/blob/main/etc/nginx/nginx.conf](https://github.com/abcdesktopio/route/blob/4.1/etc/nginx/nginx.conf)">nginx.conf</a> configuration file</li>
+<li>The routing table <a href="[https://github.com/abcdesktopio/oc.nginx/blob/main/etc/nginx/route.conf](https://github.com/abcdesktopio/route/blob/4.1/etc/nginx/route.conf)">route.conf</a> configuration file</li>
+<li>The configuration file for HTTP headers  <a href="https://github.com/abcdesktopio/route/blob/4.1/etc/nginx/proxy.conf">proxy.conf</a></li>
 </ul>
-<h3 id="web-site">web site</h3>
-<p>The static files (html, css, js) are stored in the local /var/webModules directory.</p>
-<h3 id="main-reverse-proxy">main reverse proxy</h3>
+<h3 id="main-reverse-proxy-routes">main reverse proxy routes</h3>
 <ul>
-<li>moauth|fauth|gauth|oauth|autologin|API|status are routed to od.py <code>http://$my_proxy:$api_service_tcp_port;</code></li>
-<li>/spawner is routed to nodejs spawner service <code>http://$target:$spawner_service_tcp_port;</code></li>
-<li>/websockify is routed to websocket <code>http://$target:$ws_tcp_bridge_tcp_port/;</code></li>
-<li>/u8_1_11025 is routed to pulseaudio sound service <code>http://$target:$pulseaudio_http_port/listen/source/u8_1_11025.monitor;</code></li>
-<li>/filer is routed to nodejs filer service http://$target:8080 </li>
-<li>/broadcast is routed to nodejs broadcast service <code>http://$target:$broadcast_tcp_port;</code></li>
+<li><code>'/'</code> route to <code>http://website</code> </li>
+<li><code>/API</code> route to <code>http://pyos</code></li>
+<li><code>/terminals</code> route to user pod <code>http://$target:$xterm_tcp_port</code> where <code>$target</code> is the ip address of the pod</li>
+<li><code>/spawner</code> route to user pod <code>http://$target:$spawner_service_tcp_port</code> where <code>$target</code> is the ip address of the pod</li>
+<li><code>/websockify</code> oute to user pod <code>http://$target:$ws_tcp_bridge_tcp_port</code> where <code>$target</code> is the ip address of the pod</li>
+<li><code>/filer</code> route to http user pod service <code>http://$target:$file_service_tcp_port</code> where <code>$target</code> is the ip address of the pod</li>
+<li><code>/printerfiler</code> route to http <code>http://$target:$printerfile_service_tcp_port</code> where <code>$target</code> is the ip address of the pod</li>
+<li><code>/broadcast</code> route to http user pod  <code>http://$target:$broadcast_tcp_port</code> where <code>$target</code> is the ip address of the pod</li>
+<li><code>/sound</code> route to websocket user pod <code>http://$target:$sound_service_tcp_port</code> where <code>$target</code> is the ip address of the pod</li>
 </ul>
+<h3 id="default-desktop-ocuser-tcp-port">default desktop oc.user tcp port</h3>
+<div class="highlight"><pre><span></span><code>  set $pulseaudio_http_port               4714;
+  set $ws_tcp_bridge_tcp_port             6081;
+  set $xterm_tcp_port                     29781;
+  set $printerfile_service_tcp_port       29782;
+  set $file_service_tcp_port              29783;
+  set $broadcast_tcp_port                 29784;
+  set $snaphost_service_tcp_port          29785;
+  set $spawner_service_tcp_port           29786;
+  set $signalling_service_tcp_port        29787; 
+  set $sound_service_tcp_port             29788;
+  set $microphone_service_tcp_port        29789;
+</code></pre></div>
 <h2 id="lua-scripts">LUA scripts</h2>
 <p>The /etc/nginx/get.targetmap.lua read the <code>jwt_token</code> and return the ip address or the pod's fqdn, using the <code>jwt_desktop_signing_public_key</code> and the <code>jwt_desktop_payload_private_key</code></p>
 <p>It uses a targetmap (dict) as first cache level.</p>
-<div class="highlight"><pre><span></span><code>lua_shared_dict targetmap 1m;
+<p><div class="highlight"><pre><span></span><code>lua_shared_dict targetmap 1m;
 </code></pre></div>
-<p>Read the lua script <a href="https://github.com/abcdesktopio/oc.nginx/blob/main/etc/nginx/get.targetmap.lua">get.targetmap.lua</a> to get details jwt token data and payload encryption.</p>
+Read the lua script <a href="https://github.com/abcdesktopio/route/blob/4.1/etc/nginx/get.targetmap.lua">get.targetmap.lua</a> to get details jwt token data and payload encryption.</p>
 
 
 
