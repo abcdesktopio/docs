@@ -1,18 +1,19 @@
-# Nginx route
+# route
 
 Nginx is used as a reverse proxy server for HTTP, HTTPS protocols, as well as a load balancer, HTTP cache, and a web server (origin server). 
 
-## Nginx routing
+## HTTP routing
 
-Route image is an `openresty` http server, based on `nginx`
+The `router` image is an `openresty` http server, based on `nginx` with embeded `lua` engine.
 
-## Nginx Configuration
+
+## route configuration
 
 * The nginx [nginx.conf]([https://github.com/abcdesktopio/oc.nginx/blob/main/etc/nginx/nginx.conf](https://github.com/abcdesktopio/route/blob/4.1/etc/nginx/nginx.conf)) configuration file
 * The routing table [route.conf]([https://github.com/abcdesktopio/oc.nginx/blob/main/etc/nginx/route.conf](https://github.com/abcdesktopio/route/blob/4.1/etc/nginx/route.conf)) configuration file
 * The configuration file for HTTP headers  [proxy.conf](https://github.com/abcdesktopio/route/blob/4.1/etc/nginx/proxy.conf)
 
-### main reverse proxy routes
+### reverse proxy routes
 
 - `'/'` route to `http://website` 
 - `/API` route to `http://pyos`
@@ -25,7 +26,7 @@ Route image is an `openresty` http server, based on `nginx`
 - `/sound` route to websocket user pod `http://$target:$sound_service_tcp_port` where `$target` is the ip address of the pod
 
 
-### default desktop oc.user tcp port 
+### default desktop tcp port 
 
 ```
   set $pulseaudio_http_port               4714;
@@ -43,9 +44,13 @@ Route image is an `openresty` http server, based on `nginx`
 
 ## LUA scripts
 
-The /etc/nginx/get.targetmap.lua read the ```jwt_token``` and return the ip address or the pod's fqdn, using the ```jwt_desktop_signing_public_key``` and the ```jwt_desktop_payload_private_key```
+The script `/etc/nginx/get.targetmap.lua` reads the `jwt_token` and returns the ip address or fqdn of the user's pod.
+To verify the JWT delivery that had been signed by `pyos`, it utilizes the `jwt_desktop_signing_public_key` (rsa public key).
+Then it decrypts the jwt payload with the `jwt_desktop_payload_private_key` to get the ip address of the user pod, and routes the http request to the pod.
 
-It uses a targetmap (dict) as first cache level.
+It uses a targetmap (dict) as first cache level. When a `jwt_token` is decoded the target ip address is added to the `targetmap` cache to reduce cpu usage of the reverse proxy.
+Each entries in `targetmap` cache has a time to live of 600 secondes by default.
+
 
 ```
 lua_shared_dict targetmap 1m;
