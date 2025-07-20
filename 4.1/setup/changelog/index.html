@@ -4902,9 +4902,9 @@
 <ul>
 <li>Fix security issues</li>
 <li>Replace <code>FROM ubuntu</code> by <code>FROM alpine</code> for core components like <code>pyos</code>, <code>openldap</code>, <code>memcache</code>, <code>nginx</code>, and <code>mongodb</code>  </li>
-<li>Add support from external auth provider from od.config (and only from od.config file)</li>
+<li>Add support from external auth provider in od.config (and only from od.config file)</li>
 <li>Support <code>kind: Role</code> to define <code>rbac.authorization.k8s.io</code> if pyos has more than <code>replicats: 1</code>. Remove <code>kind: ClusterRole</code> to reduce <code>pyos-serviceaccount</code> roles.</li>
-<li><code>arm64</code> and <code>amd64</code> for all images ( including applications and alpine image based)</li>
+<li><code>arm64</code> and <code>amd64</code> for all images - including applications and alpine image based</li>
 </ul>
 <h2 id="ocuser-images">oc.user images</h2>
 <p>There is 3 oc.user images, all images are based on <code>ubuntu:24.04</code> </p>
