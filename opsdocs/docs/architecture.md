@@ -98,35 +98,39 @@ The service infrastructure is based on :
 
 > When a new user is authenticated, a dedicated user pod is created.
 > 
-> When the user starts an application (like LibreOffice for example) a dedicated container is created.
+> When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a `pod` or an `ephemeral container`
 
 
-### Router
+### router
 
 `router` pod act as a `http router` web server. It routes HTTP requets to `user's pods`, `web site`, or `pyos`.
 
-### WebSite
+### website
 
 `website` pod act as web server and delivers `html`, `javascript`, `svg` files. 
 
 ### mongo
-`mongo` is used by pyos to store user profil informations. 
-The profil informations are :
 
-- Login history
-- Dock configuration
-- Image and background color configuration 
+`mongo` is used by pyos to store informations. 
+The informations are :
+
+- User logins history
+- Images and background colors configuration per desktop
+- Installed applications 
 
 
 ### memcached
+
 `memcache` stores progress text message information during login process. `memcache` datas are set and get only by the control plane.
 
 
 ### oc.user
+
 [`oc.user`](https://github.com/abcdesktopio/oc.user) is the name of the user's container image. `oc.user` runs the X11 graphical service. `oc.user` is based on ubuntu distribution. 
 
 * The image `abcdesktopio/oc.user.ubuntu:4.1` is based on `ubuntu` distribution `24.04`. Get more details about [oc.user](https://github.com/abcdesktopio/oc.user) image.
 
 
 ### applications
+
 All applications are `ephemeral containers` or `pods`, and share a graphical socket ( `unix` or `tcp` ) with the user's pod. 
