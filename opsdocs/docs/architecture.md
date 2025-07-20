@@ -4,6 +4,10 @@
 ## abcdesktop workflow (with LDAP Auth)
 
 ``` mermaid
+---
+config:
+  theme: redux-color
+---
 sequenceDiagram
     actor Alice
     Alice->>Router: HTTPS GET /
@@ -11,27 +15,30 @@ sequenceDiagram
     destroy Website
     Website->>Router: HTML Content
     Router->>Alice: HTML Content
-    Alice->>Router: Logime in (Alice, password)
+    Alice->>Router: Logme in (Alice, password)
     Router->>Pyos: Logme in (Alice, password)
     Note over Router,Pyos: 1. Authentication
     Create participant LDAP
     Pyos->>LDAP: BIND LDAP_SEARCH Alice
     destroy LDAP
-    LDAP->>Pyos: ldap attributs dn, cn, group
+    LDAP->>Pyos: dn, cn, group
+    Pyos->>Kubernetes: Create user secrets
+    Kubernetes->>Pyos: Secrets created
     Pyos->>Router: User Alice JWT
     Router->>Alice: User Alice JWT
     Alice->>Router: Create Desktop (User Alice JWT)
     Note over Router,Pyos: 2. Create a desktop
     Router->>Pyos: Create Desktop (User Alice JWT)
     Pyos->>Pyos: Verify User Alice JWT
-    Create participant Kubernetes
     Pyos->>Kubernetes: Create Alice POD YAML
     Kubernetes->>Pyos: POD Created
+    Pyos->>Kubernetes: Is Alice Pod Ready ?
     Create participant PodAlice
     Kubernetes->>PodAlice: Are you Ready ?
-    Pyos->>Pyos: Crypt Pop ip address
-    destroy Kubernetes
     PodAlice->>Kubernetes: I'm Ready
+    destroy Kubernetes
+    Kubernetes->>Pyos: Alice Pod is Ready
+    Pyos->>Pyos: Crypt Pop ip address
     destroy Pyos
     Pyos->>Router: Desktop Alice JWT
     Router->>Alice: Desktop Alice JWT
@@ -43,6 +50,7 @@ sequenceDiagram
     PodAlice->>Router: Connected
     Router->>Alice: Connected
     Alice-->PodAlice: Established
+
 ```
 
 
@@ -51,7 +59,7 @@ sequenceDiagram
 3. User is connecting to his own POD
 
 	- All JWT are signed with RSA keys. 
-	- All desktop's JWT payload are encrypted with RSA keys
+	- All desktop's JWT payload are encrypted with another RSA keys
 
 ## Services Infrastructure
 
