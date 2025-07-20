@@ -1,11 +1,10 @@
 # route
 
-Nginx is used as a reverse proxy server for HTTP, HTTPS protocols, as well as a load balancer, HTTP cache, and a web server (origin server). 
+`route` is used as a reverse proxy server for HTTP, HTTPS protocols, as well as a load balancer, HTTP cache. 
 
 ## HTTP routing
 
 The `router` image is an `openresty` http server, based on `nginx` with embeded `lua` engine.
-
 
 ## route configuration
 
