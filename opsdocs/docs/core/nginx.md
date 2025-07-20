@@ -4,7 +4,7 @@
 
 ## HTTP routing
 
-The `router` image is an `openresty` http server, based on `nginx` with embeded `lua` engine.
+The `route` image is an `openresty` http server, based on `nginx` with embeded `lua` engine.
 
 ## route configuration
 
