@@ -67,15 +67,15 @@ The service infrastructure is based on :
 
 - Router nginx with lua script [Nginx container](/core/nginx)
 - Website service [webmodules](https://github.com/abcdesktopio/webmodules)
-- Database service [MongoDB](/core/mongodb/)
-- Memcached service [Memcached](/core/memcached/)
+- Database service (external projet) [MongoDB](/core/mongodb/)
+- Memcached service (external projet) [Memcached](/core/memcached/)
 - Pyos Core service (abcdesktop control plane) [Pyos](/core/pyos/)
 - Pod user [user](/core/user)
 
 ## Additional services
 
 - Console service (abcdesktop admin console) [Pyos](/core/pyos/)
-- Speedtest service (speedtest service, self-hosted speed test for HTML5) [librespeed](https://github.com/librespeed/speedtest)
+- Speedtest service (speedtest service, self-hosted speed test for HTML5, external projet) [librespeed](https://github.com/librespeed/speedtest)
 
 ## Additional projets
 
