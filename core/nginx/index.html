@@ -5020,7 +5020,7 @@
 <p>The script <code>/etc/nginx/get.targetmap.lua</code> reads the <code>jwt_token</code> and returns the ip address or fqdn of the user's pod.
 To verify the JWT delivery that had been signed by <code>pyos</code>, it utilizes the <code>jwt_desktop_signing_public_key</code> (rsa public key).
 Then it decrypts the jwt payload with the <code>jwt_desktop_payload_private_key</code> (another rsa private key) to get the ip address of the user pod, and routes the http request to the pod.</p>
-<p>It uses a targetmap (dict) as first cache level. When a <code>jwt_token</code> is decoded the target ip address is added to the <code>targetmap</code> cache to reduce cpu usage of the reverse proxy.
+<p><code>targetmap</code> (dict) is a first cache level. When a <code>jwt_token</code> is decoded the target ip address is added to the <code>targetmap</code> cache to reduce cpu usage of the reverse proxy.
 Each entries in <code>targetmap</code> cache has a time to live of 600 secondes by default.</p>
 <p><div class="highlight"><pre><span></span><code>lua_shared_dict targetmap 1m;
 </code></pre></div>
