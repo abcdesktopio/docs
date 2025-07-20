@@ -46,7 +46,7 @@ The `router` image is an `openresty` http server, based on `nginx` with embeded 
 
 The script `/etc/nginx/get.targetmap.lua` reads the `jwt_token` and returns the ip address or fqdn of the user's pod.
 To verify the JWT delivery that had been signed by `pyos`, it utilizes the `jwt_desktop_signing_public_key` (rsa public key).
-Then it decrypts the jwt payload with the `jwt_desktop_payload_private_key` to get the ip address of the user pod, and routes the http request to the pod.
+Then it decrypts the jwt payload with the `jwt_desktop_payload_private_key` (another rsa private key) to get the ip address of the user pod, and routes the http request to the pod.
 
 It uses a targetmap (dict) as first cache level. When a `jwt_token` is decoded the target ip address is added to the `targetmap` cache to reduce cpu usage of the reverse proxy.
 Each entries in `targetmap` cache has a time to live of 600 secondes by default.
