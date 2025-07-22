@@ -1,7 +1,43 @@
 # Architecture in docker mode
 
+## Pods 
 
-## abcdesktop workflow (with LDAP Auth)
+This flowchart describes the all abddesktop services
+
+``` mermaid
+---
+config:
+  theme: redux
+---
+flowchart TD
+    R["route"] --> desktop["user1 desktop"] & W["website"] & API["pyos"] & C["console"] & S["speedtest"]
+    API --> mongodb["mongodb"] & kubernetes["kubernetes"] & memcache["memcached"]
+    n1["users"] --> R
+    R@{ shape: proc}
+    desktop@{ shape: procs}
+     R:::Sky
+     desktop:::Ash
+     desktop:::Sky
+     W:::Sky
+     API:::Sky
+     C:::Sky
+     S:::Aqua
+     mongodb:::Aqua
+     kubernetes:::Aqua
+     memcache:::Aqua
+     n1:::Peach
+    classDef Ash stroke-width:1px, stroke-dasharray:none, stroke:#999999, fill:#EEEEEE, color:#000000
+    classDef Aqua stroke-width:1px, stroke-dasharray:none, stroke:#46EDC8, fill:#DEFFF8, color:#378E7A
+    classDef Sky stroke-width:1px, stroke-dasharray:none, stroke:#374D7C, fill:#E2EBFF, color:#374D7C
+    classDef Peach stroke-width:1px, stroke-dasharray:none, stroke:#FBB35A, fill:#FFEFDB, color:#8F632D
+
+```
+
+The project abcdesktop provides container images for `route`, `console`, `website`, `pyos`, and `user`
+
+## Create desktop workflow
+
+This workflow describes the `create desktop` process 
 
 ``` mermaid
 ---
@@ -50,9 +86,7 @@ sequenceDiagram
     PodAlice->>Router: Connected
     Router->>Alice: Connected
     Alice-->PodAlice: Established
-
 ```
-
 
 1. User login, get a user JWT
 2. Create a user POD and get a Desktop JWT
@@ -61,7 +95,7 @@ sequenceDiagram
 	- All JWT are signed with RSA keys. 
 	- All desktop's JWT payload are encrypted with another RSA keys
 
-## Services Infrastructure
+## Services infrastructure
 
 The service infrastructure is based on :
 
@@ -77,7 +111,7 @@ The service infrastructure is based on :
 - Console service (abcdesktop admin console) [Pyos](/core/pyos/)
 - Speedtest service (speedtest service, self-hosted speed test for HTML5, external projet) [librespeed](https://github.com/librespeed/speedtest)
 
-## Additional projets
+## Additional projet
 
 - Helm charts (install helm chart) [helm chart](https://artifacthub.io/packages/helm/abcdesktop/abcdesktop)
 
@@ -97,7 +131,6 @@ The service infrastructure is based on :
 - Start/Stop user's applications as `ephemeral container` or as `pod`
 
 > When a new user is authenticated, a dedicated user pod is created.
-> 
 > When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a `pod` or an `ephemeral container`
 
 
@@ -109,7 +142,7 @@ The service infrastructure is based on :
 
 `website` pod act as web server and delivers `html`, `javascript`, `svg` files. 
 
-### mongo
+### mongo database
 
 `mongo` is used by pyos to store informations. 
 The informations are :
