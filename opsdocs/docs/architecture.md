@@ -2,7 +2,7 @@
 
 ## Pods 
 
-This flowchart describes the all abddesktop services
+This flowchart describes the all abcdesktop services
 
 ``` mermaid
 ---
@@ -10,33 +10,35 @@ config:
   theme: redux
 ---
 flowchart TD
-    R["route"] --> desktop["user1 desktop"] & W["website"] & API["pyos"] & C["console"] & S["speedtest"]
+    route["route"] --> desktop["user1 desktop"] & website["website"] & API["pyos"] & console["console"] & speedtest["speedtest"]
     API --> mongodb["mongodb"] & kubernetes["kubernetes"] & memcache["memcached"]
-    n1["users"] --> R
-    n3["abcdesktop project"]
-    n2["external project"]
-    R@{ shape: proc}
+    n1["users"] --> route
+    route@{ shape: proc}
     desktop@{ shape: procs}
     n1@{ shape: sm-circ}
-    n2@{ shape: rect}
-    n3@{ shape: rect}
-     R:::Sky
+     route:::Sky
      desktop:::Ash
      desktop:::Sky
-     W:::Sky
+     website:::Sky
      API:::Sky
-     C:::Sky
-     S:::Aqua
+     console:::Sky
+     speedtest:::Aqua
      mongodb:::Aqua
      kubernetes:::Aqua
      memcache:::Aqua
-     n1:::Peach
-     n2:::Aqua
-     n3:::Sky
     classDef Ash stroke-width:1px, stroke-dasharray:none, stroke:#999999, fill:#EEEEEE, color:#000000
     classDef Peach stroke-width:1px, stroke-dasharray:none, stroke:#FBB35A, fill:#FFEFDB, color:#8F632D
     classDef Aqua stroke-width:1px, stroke-dasharray:none, stroke:#46EDC8, fill:#DEFFF8, color:#378E7A
     classDef Sky stroke-width:1px, stroke-dasharray:none, stroke:#374D7C, fill:#E2EBFF, color:#374D7C
+    click route "https://github.com/abcdesktopio/route"
+    click desktop "https://github.com/abcdesktopio/oc.user"
+    click website "https://github.com/abcdesktopio/webmodules"
+    click API "https://github.com/abcdesktopio/pyos"
+    click console "https://github.com/abcdesktopio/console"
+    click speedtest "https://github.com/librespeed/speedtest"
+    click mongodb "https://www.mongodb.com/"
+    click kubernetes "https://kubernetes.io/"
+    click memcache "https://www.memcached.org/"
 ```
 
 The project abcdesktop provides container images for `route`, `console`, `website`, `pyos`, and `user`
