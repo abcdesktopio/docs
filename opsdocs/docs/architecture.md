@@ -15,6 +15,7 @@ flowchart TD
     n1["users"] --> R
     R@{ shape: proc}
     desktop@{ shape: procs}
+    n1@{ shape: sm-circ}
      R:::Sky
      desktop:::Ash
      desktop:::Sky
@@ -30,7 +31,6 @@ flowchart TD
     classDef Aqua stroke-width:1px, stroke-dasharray:none, stroke:#46EDC8, fill:#DEFFF8, color:#378E7A
     classDef Sky stroke-width:1px, stroke-dasharray:none, stroke:#374D7C, fill:#E2EBFF, color:#374D7C
     classDef Peach stroke-width:1px, stroke-dasharray:none, stroke:#FBB35A, fill:#FFEFDB, color:#8F632D
-
 ```
 
 The project abcdesktop provides container images for `route`, `console`, `website`, `pyos`, and `user`
