@@ -702,9 +702,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#abcdesktop-workflow-with-ldap-auth" class="md-nav__link">
+  <a href="#pods" class="md-nav__link">
     <span class="md-ellipsis">
-      abcdesktop workflow (with LDAP Auth)
+      Pods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-desktop-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create desktop workflow
     </span>
   </a>
   
@@ -713,7 +722,7 @@
         <li class="md-nav__item">
   <a href="#services-infrastructure" class="md-nav__link">
     <span class="md-ellipsis">
-      Services Infrastructure
+      Services infrastructure
     </span>
   </a>
   
@@ -729,9 +738,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-projets" class="md-nav__link">
+  <a href="#additional-projet" class="md-nav__link">
     <span class="md-ellipsis">
-      Additional projets
+      Additional projet
     </span>
   </a>
   
@@ -775,9 +784,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mongo" class="md-nav__link">
+  <a href="#mongo-database" class="md-nav__link">
     <span class="md-ellipsis">
-      mongo
+      mongo database
     </span>
   </a>
   
@@ -4968,9 +4977,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#abcdesktop-workflow-with-ldap-auth" class="md-nav__link">
+  <a href="#pods" class="md-nav__link">
     <span class="md-ellipsis">
-      abcdesktop workflow (with LDAP Auth)
+      Pods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-desktop-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create desktop workflow
     </span>
   </a>
   
@@ -4979,7 +4997,7 @@
         <li class="md-nav__item">
   <a href="#services-infrastructure" class="md-nav__link">
     <span class="md-ellipsis">
-      Services Infrastructure
+      Services infrastructure
     </span>
   </a>
   
@@ -4995,9 +5013,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-projets" class="md-nav__link">
+  <a href="#additional-projet" class="md-nav__link">
     <span class="md-ellipsis">
-      Additional projets
+      Additional projet
     </span>
   </a>
   
@@ -5041,9 +5059,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mongo" class="md-nav__link">
+  <a href="#mongo-database" class="md-nav__link">
     <span class="md-ellipsis">
-      mongo
+      mongo database
     </span>
   </a>
   
@@ -5106,7 +5124,37 @@
 
 
 <h1 id="architecture-in-docker-mode">Architecture in docker mode</h1>
-<h2 id="abcdesktop-workflow-with-ldap-auth">abcdesktop workflow (with LDAP Auth)</h2>
+<h2 id="pods">Pods</h2>
+<p>This flowchart describes the all abddesktop services</p>
+<pre class="mermaid"><code>---
+config:
+  theme: redux
+---
+flowchart TD
+    R["route"] --&gt; desktop["user1 desktop"] &amp; W["website"] &amp; API["pyos"] &amp; C["console"] &amp; S["speedtest"]
+    API --&gt; mongodb["mongodb"] &amp; kubernetes["kubernetes"] &amp; memcache["memcached"]
+    n1["users"] --&gt; R
+    R@{ shape: proc}
+    desktop@{ shape: procs}
+     R:::Sky
+     desktop:::Ash
+     desktop:::Sky
+     W:::Sky
+     API:::Sky
+     C:::Sky
+     S:::Aqua
+     mongodb:::Aqua
+     kubernetes:::Aqua
+     memcache:::Aqua
+     n1:::Peach
+    classDef Ash stroke-width:1px, stroke-dasharray:none, stroke:#999999, fill:#EEEEEE, color:#000000
+    classDef Aqua stroke-width:1px, stroke-dasharray:none, stroke:#46EDC8, fill:#DEFFF8, color:#378E7A
+    classDef Sky stroke-width:1px, stroke-dasharray:none, stroke:#374D7C, fill:#E2EBFF, color:#374D7C
+    classDef Peach stroke-width:1px, stroke-dasharray:none, stroke:#FBB35A, fill:#FFEFDB, color:#8F632D
+</code></pre>
+<p>The project abcdesktop provides container images for <code>route</code>, <code>console</code>, <code>website</code>, <code>pyos</code>, and <code>user</code></p>
+<h2 id="create-desktop-workflow">Create desktop workflow</h2>
+<p>This workflow describes the <code>create desktop</code> process </p>
 <pre class="mermaid"><code>---
 config:
   theme: redux-color
@@ -5152,8 +5200,7 @@ sequenceDiagram
     Router-&gt;&gt;PodAlice: WebSocket connect
     PodAlice-&gt;&gt;Router: Connected
     Router-&gt;&gt;Alice: Connected
-    Alice--&gt;PodAlice: Established
-</code></pre>
+    Alice--&gt;PodAlice: Established</code></pre>
 <ol>
 <li>User login, get a user JWT</li>
 <li>Create a user POD and get a Desktop JWT</li>
@@ -5165,7 +5212,7 @@ sequenceDiagram
 </ul>
 </li>
 </ol>
-<h2 id="services-infrastructure">Services Infrastructure</h2>
+<h2 id="services-infrastructure">Services infrastructure</h2>
 <p>The service infrastructure is based on :</p>
 <ul>
 <li>Router nginx with lua script <a href="/core/nginx">Nginx container</a></li>
@@ -5180,7 +5227,7 @@ sequenceDiagram
 <li>Console service (abcdesktop admin console) <a href="/core/pyos/">Pyos</a></li>
 <li>Speedtest service (speedtest service, self-hosted speed test for HTML5, external projet) <a href="https://github.com/librespeed/speedtest">librespeed</a></li>
 </ul>
-<h2 id="additional-projets">Additional projets</h2>
+<h2 id="additional-projet">Additional projet</h2>
 <ul>
 <li>Helm charts (install helm chart) <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">helm chart</a></li>
 </ul>
@@ -5197,14 +5244,14 @@ sequenceDiagram
 <li>Start/Stop user's applications as <code>ephemeral container</code> or as <code>pod</code></li>
 </ul>
 <blockquote>
-<p>When a new user is authenticated, a dedicated user pod is created.</p>
-<p>When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a <code>pod</code> or an <code>ephemeral container</code></p>
+<p>When a new user is authenticated, a dedicated user pod is created.
+When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a <code>pod</code> or an <code>ephemeral container</code></p>
 </blockquote>
 <h3 id="router">router</h3>
 <p><code>router</code> pod act as a <code>http router</code> web server. It routes HTTP requets to <code>user's pods</code>, <code>web site</code>, or <code>pyos</code>.</p>
 <h3 id="website">website</h3>
 <p><code>website</code> pod act as web server and delivers <code>html</code>, <code>javascript</code>, <code>svg</code> files. </p>
-<h3 id="mongo">mongo</h3>
+<h3 id="mongo-database">mongo database</h3>
 <p><code>mongo</code> is used by pyos to store informations. 
 The informations are :</p>
 <ul>
