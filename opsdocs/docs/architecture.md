@@ -13,9 +13,13 @@ flowchart TD
     R["route"] --> desktop["user1 desktop"] & W["website"] & API["pyos"] & C["console"] & S["speedtest"]
     API --> mongodb["mongodb"] & kubernetes["kubernetes"] & memcache["memcached"]
     n1["users"] --> R
+    n3["abcdesktop project"]
+    n2["external project"]
     R@{ shape: proc}
     desktop@{ shape: procs}
     n1@{ shape: sm-circ}
+    n2@{ shape: rect}
+    n3@{ shape: rect}
      R:::Sky
      desktop:::Ash
      desktop:::Sky
@@ -27,10 +31,12 @@ flowchart TD
      kubernetes:::Aqua
      memcache:::Aqua
      n1:::Peach
+     n2:::Aqua
+     n3:::Sky
     classDef Ash stroke-width:1px, stroke-dasharray:none, stroke:#999999, fill:#EEEEEE, color:#000000
+    classDef Peach stroke-width:1px, stroke-dasharray:none, stroke:#FBB35A, fill:#FFEFDB, color:#8F632D
     classDef Aqua stroke-width:1px, stroke-dasharray:none, stroke:#46EDC8, fill:#DEFFF8, color:#378E7A
     classDef Sky stroke-width:1px, stroke-dasharray:none, stroke:#374D7C, fill:#E2EBFF, color:#374D7C
-    classDef Peach stroke-width:1px, stroke-dasharray:none, stroke:#FBB35A, fill:#FFEFDB, color:#8F632D
 ```
 
 The project abcdesktop provides container images for `route`, `console`, `website`, `pyos`, and `user`
