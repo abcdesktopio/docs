@@ -44,8 +44,9 @@ abcdesktop.io provides a way to run graphics software securely isolated in a con
 
 ## Quick installation using helm
 
-You can watch the youtube video sample. This video describes the Quick installation process using `helm`.
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop)](https://artifacthub.io/packages/search?repo=abcdesktop)
 
+You can watch the youtube video sample. This video describes the Quick installation process using `helm`.
 
 <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
