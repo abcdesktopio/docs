@@ -100,7 +100,7 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pul
 
 To get more details about the install applications process, please read the [Setup applications guide](https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop_applications/)
 
-Then reload the web page with the desktop of `Philip J. Fry`
+Then you just need to reload the web page with the desktop of `Philip J. Fry`
 New applications are now listed in the dock of `plasmashell`.
 
 ![abcdesktop for fry with applications](../img/abcdesktop-hompage-port30443-login-fry-applications.png)
