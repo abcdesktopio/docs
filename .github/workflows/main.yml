@@ -30,9 +30,9 @@ jobs:
           rm -rf ..?* .[!.]* *
           git clone "https://github.com/abcdesktopio/docs.git" .
 
-      - name: dump env 
+      - name: dump vars 
         run: | 
-          echo ABCDESKTOP_LATEST_RELEASE is {{ env.ABCDESKTOP_LATEST_RELEASE }}
+          echo ABCDESKTOP_LATEST_RELEASE is {{ vars.ABCDESKTOP_LATEST_RELEASE }}
       
       - uses: actions/setup-python@v2
         with:
