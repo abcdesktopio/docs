@@ -35,7 +35,7 @@ jobs:
           python-version: 3.x
       
       - name : install material
-        run: pip install mkdocs-material
+        run: make install
       
       - name: Run Makefile
         run: make docs
