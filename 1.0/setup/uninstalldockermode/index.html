@@ -18,7 +18,7 @@
     
     
       
-        <title>Uninstall abcdesktop.io for non-cluster hosts - www.abcdesktop.io</title>
+        <title>Macro Syntax Error - www.abcdesktop.io</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#uninstall-abcdesktopio-for-non-cluster-hosts" class="md-skip">
+        <a href="#macro-syntax-error" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Uninstall abcdesktop.io for non-cluster hosts
+              Macro Syntax Error
             
           </span>
         </div>
@@ -4799,23 +4799,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#commands-to-uninstall-abcdesktopio" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands to uninstall abcdesktop.io
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -4838,23 +4821,11 @@
   
 
 
-<h1 id="uninstall-abcdesktopio-for-non-cluster-hosts">Uninstall abcdesktop.io for non-cluster hosts</h1>
-<h2 id="commands-to-uninstall-abcdesktopio">Commands to uninstall abcdesktop.io</h2>
-<p>Go to the abcdesktop directory (where the <code>docker-compose.yml</code> is located), and run the bash commands  : </p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;starting abcdesktop uninstall commands&quot;</span>
-docker-compose<span class="w"> </span>-p<span class="w"> </span>abcdesktop<span class="w"> </span>down
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;stop and remove abcdesktop services&quot;</span>
-docker-compose<span class="w"> </span>rm<span class="w"> </span>-s<span class="w"> </span>-v<span class="w"> </span>-f
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove all abcdesktop user container&quot;</span>
-docker<span class="w"> </span>ps<span class="w"> </span>--filter<span class="w"> </span><span class="s2">&quot;label=type=x11server&quot;</span><span class="w"> </span>-q<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>docker<span class="w"> </span>stop
-docker<span class="w"> </span>ps<span class="w"> </span>--filter<span class="w"> </span><span class="s2">&quot;label=type=x11server&quot;</span><span class="w"> </span>-q<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>docker<span class="w"> </span>rm
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove all abcdesktop images&quot;</span>
-docker<span class="w"> </span>images<span class="w"> </span>--filter<span class="o">=</span><span class="nv">reference</span><span class="o">=</span><span class="s1">&#39;abcdesktopio/*:*&#39;</span><span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;{{.Repository}}:{{.Tag}}&quot;</span><span class="w">  </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>docker<span class="w"> </span>rmi
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove all user volumes&quot;</span>
-docker<span class="w"> </span>volume<span class="w"> </span>ls<span class="w"> </span>-f<span class="w"> </span><span class="nv">label</span><span class="o">=</span><span class="nv">type</span><span class="o">=</span>x11server<span class="w"> </span>-q<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>docker<span class="w"> </span>volume<span class="w"> </span>rm
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;abcdesktop is uninstalled&quot;</span>
-</code></pre></div>
-<p>Great, you have uninstalled abcdesktop in non-cluster hosts.</p>
+<h1 id="macro-syntax-error"><em>Macro Syntax Error</em></h1>
+<p><em>File</em>: <code>1.0/setup/uninstalldockermode.md</code></p>
+<p><em>Line 16 in Markdown file:</em> <strong>unexpected '.'</strong>
+<div class="highlight"><pre><span></span><code>docker images --filter=reference=&#39;abcdesktopio/*:*&#39; --format &quot;{{.Repository}}:{{.Tag}}&quot;  | xargs docker rmi
+</code></pre></div></p>
 
 
 
