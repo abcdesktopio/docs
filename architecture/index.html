@@ -5132,7 +5132,7 @@ config:
 ---
 flowchart TD
     route["route"] --&gt; desktop["user1 desktop"] &amp; website["website"] &amp; API["pyos"] &amp; console["console"] &amp; speedtest["speedtest"]
-    API --&gt; mongodb["mongodb"] &amp; kubernetes["kubernetes"] &amp; memcache["memcached"]
+    API --&gt; mongodb["mongodb"] &amp; kubernetes["kubernetes"] &amp; memcache["memcached"] &amp; ldap["ldap"]
     n1["users"] --&gt; route
     route@{ shape: proc}
     desktop@{ shape: procs}
@@ -5147,6 +5147,7 @@ flowchart TD
      mongodb:::Aqua
      kubernetes:::Aqua
      memcache:::Aqua
+     ldap:::Aqua
     classDef Ash stroke-width:1px, stroke-dasharray:none, stroke:#999999, fill:#EEEEEE, color:#000000
     classDef Peach stroke-width:1px, stroke-dasharray:none, stroke:#FBB35A, fill:#FFEFDB, color:#8F632D
     classDef Aqua stroke-width:1px, stroke-dasharray:none, stroke:#46EDC8, fill:#DEFFF8, color:#378E7A
@@ -5159,7 +5160,8 @@ flowchart TD
     click speedtest "https://github.com/librespeed/speedtest"
     click mongodb "https://www.mongodb.com/"
     click kubernetes "https://kubernetes.io/"
-    click memcache "https://www.memcached.org/"</code></pre>
+    click memcache "https://www.memcached.org/"
+    click ldap "https://github.com/rroemhild/docker-test-openldap"</code></pre>
 <p>The project abcdesktop provides container images for <code>route</code>, <code>console</code>, <code>website</code>, <code>pyos</code>, and <code>user</code></p>
 <h2 id="create-desktop-workflow">Create desktop workflow</h2>
 <p>This workflow describes the <code>create desktop</code> process </p>
@@ -5234,6 +5236,7 @@ sequenceDiagram
 <ul>
 <li>Console service (abcdesktop admin console) <a href="/core/pyos/">Pyos</a></li>
 <li>Speedtest service (speedtest service, self-hosted speed test for HTML5, external projet) <a href="https://github.com/librespeed/speedtest">librespeed</a></li>
+<li>LDAP service (for demo, optional) [rroemhild/docker-test-openldap](https://github.com/rroemhild/docker-test-openldap]</li>
 </ul>
 <h2 id="additional-projet">Additional projet</h2>
 <ul>
