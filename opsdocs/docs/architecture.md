@@ -11,7 +11,7 @@ config:
 ---
 flowchart TD
     route["route"] --> desktop["user1 desktop"] & website["website"] & API["pyos"] & console["console"] & speedtest["speedtest"]
-    API --> mongodb["mongodb"] & kubernetes["kubernetes"] & memcache["memcached"]
+    API --> mongodb["mongodb"] & kubernetes["kubernetes"] & memcache["memcached"] & ldap["ldap"]
     n1["users"] --> route
     route@{ shape: proc}
     desktop@{ shape: procs}
@@ -26,6 +26,7 @@ flowchart TD
      mongodb:::Aqua
      kubernetes:::Aqua
      memcache:::Aqua
+     ldap:::Aqua
     classDef Ash stroke-width:1px, stroke-dasharray:none, stroke:#999999, fill:#EEEEEE, color:#000000
     classDef Peach stroke-width:1px, stroke-dasharray:none, stroke:#FBB35A, fill:#FFEFDB, color:#8F632D
     classDef Aqua stroke-width:1px, stroke-dasharray:none, stroke:#46EDC8, fill:#DEFFF8, color:#378E7A
@@ -39,6 +40,7 @@ flowchart TD
     click mongodb "https://www.mongodb.com/"
     click kubernetes "https://kubernetes.io/"
     click memcache "https://www.memcached.org/"
+    click ldap "https://github.com/rroemhild/docker-test-openldap"
 ```
 
 The project abcdesktop provides container images for `route`, `console`, `website`, `pyos`, and `user`
@@ -118,6 +120,8 @@ The service infrastructure is based on :
 
 - Console service (abcdesktop admin console) [Pyos](/core/pyos/)
 - Speedtest service (speedtest service, self-hosted speed test for HTML5, external projet) [librespeed](https://github.com/librespeed/speedtest)
+- LDAP service (for demo, optional) [rroemhild/docker-test-openldap](https://github.com/rroemhild/docker-test-openldap]
+  
 
 ## Additional projet
 
