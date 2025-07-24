@@ -30,7 +30,7 @@ With abcdesktop, you can take advantage of all the power of your Kubernetes clus
 ![abcdesktopuserpodnvidia](img/abcdesktopkubernetesclusterwithnvidiapod.png)
 
 
-## Quick online preview release {{ abcdesktop.latest_release }}
+## Quick online preview lastest release {{ abcdesktop.latest_release }}
 
 You can discover abcdesktop.io desktopless services on the demo website. [https://demo.abcdesktop.io](https://demo.abcdesktop.io) instance is a quick example to illustrate how the abcdesktop.io project works. Your desktopless is ready to run for 10 minutes, and will be terminated by the garbage collector after 10 minutes. It requires an OpenID Connect provider to sign-in like (Google, Facebook, Github). The security policy for Internet network prevents requests from your abcdesktop being allowed. Printer service (using cups) and sound service (using pulseaudio) inside the kubernetes pods are enabled.
 
@@ -43,7 +43,7 @@ abcdesktop.io provides a way to run graphics software securely isolated in a con
 
 ![screenshot-applications](img/abcdesktop-home-release-4.1.png)
 
-## Quick installation using helm
+## Quick installation using helm lastest release {{ abcdesktop.latest_release }}
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop)](https://artifacthub.io/packages/search?repo=abcdesktop)
 
@@ -73,7 +73,7 @@ kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..me
 ## Adopters
 
 Here are some of the organizations we know are using abcdesktop.io.
-If you’re using Abcdesktop and aren’t on this list, please submit a pull request!
+If you’re using abcdesktop and aren’t on this list, please submit a pull request!
 
 
 | Adopters | Name     | Description | Public applications repository |
