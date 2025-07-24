@@ -15,6 +15,9 @@ on:
 permissions:
   contents: write
 
+env: 
+  ABCDESKTOP_LATEST_RELEASE: ${{ vars.ABCDESKTOP_LATEST_RELEASE }}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -29,6 +32,10 @@ jobs:
         run: |
           rm -rf ..?* .[!.]* *
           git clone "https://github.com/abcdesktopio/docs.git" .
+
+      - name: dump vars 
+        run: | 
+          echo var ABCDESKTOP_LATEST_RELEASE is ${{ vars.ABCDESKTOP_LATEST_RELEASE }}
       
       - uses: actions/setup-python@v2
         with:
@@ -38,7 +45,9 @@ jobs:
         run: make install
       
       - name: Run Makefile
-        run: make docs
+        run: |
+          echo env ABCDESKTOP_LATEST_RELEASE is ${{ env.ABCDESKTOP_LATEST_RELEASE }}
+          make docs
       
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
