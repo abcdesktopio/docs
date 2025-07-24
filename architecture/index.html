@@ -5171,7 +5171,7 @@ config:
 ---
 sequenceDiagram
     actor Alice
-    Alice-&gt;&gt;Router: HTTPS GET /
+    Alice-- HTTPS GET / --&gt;&gt;Router: HTTPS GET /
     Router-&gt;&gt;Website: HTTP GET /
     destroy Website
     Website-&gt;&gt;Router: HTML Content
