@@ -14,6 +14,7 @@ abcdesktop.io is a cloud native desktop service built on and for [Kubernetes](ht
 
 abcdeskop.io is an open source and free solution that offers seamless access to secure desktops and applications on any device, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links.
 
+
 This flexible working environment simplifies usage like
 
 - Telecommuting
@@ -29,7 +30,7 @@ With abcdesktop, you can take advantage of all the power of your Kubernetes clus
 ![abcdesktopuserpodnvidia](img/abcdesktopkubernetesclusterwithnvidiapod.png)
 
 
-## Quick online preview
+## Quick online preview release {{ abcdesktop.latest_release }}
 
 You can discover abcdesktop.io desktopless services on the demo website. [https://demo.abcdesktop.io](https://demo.abcdesktop.io) instance is a quick example to illustrate how the abcdesktop.io project works. Your desktopless is ready to run for 10 minutes, and will be terminated by the garbage collector after 10 minutes. It requires an OpenID Connect provider to sign-in like (Google, Facebook, Github). The security policy for Internet network prevents requests from your abcdesktop being allowed. Printer service (using cups) and sound service (using pulseaudio) inside the kubernetes pods are enabled.
 
@@ -56,7 +57,7 @@ Add the `helm` repo and then install it on Linux or macOS or read the step by st
 
 ```
 helm repo add abcdesktop https://abcdesktopio.github.io/helm/
-helm install my-abcdesktop abcdesktop/abcdesktop --version 4.1.1 --create-namespace -n abcdesktop
+helm install my-abcdesktop abcdesktop/abcdesktop --version {{ abcdesktop.latest_release }} --create-namespace -n abcdesktop
 ```
 
 When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)
