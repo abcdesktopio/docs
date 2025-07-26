@@ -5021,11 +5021,12 @@
 </code></pre></div>
 <ul>
 <li><code>auto-scale</code>: Enables cluster auto-scaling on the node pool. </li>
-<li><code>region</code>: The default region is "nyc1" <a href="https://docs.digitalocean.com/platform/regional-availability/">regional availability</a></li>
 <li><code>min-nodes</code>: 3 nodes min for auto-scaling</li>
 <li><code>max-nodes</code>: 5 nodes max for auto-scaling</li>
 <li><code>size</code>: <code>s-4vcpu-8gb</code> gets 4 shared vCPU, 8 GB vRAM, 160 GB Storage </li>
 </ul>
+<p>[option] set the region value 
+- <code>--region=nyc1</code>: The default region is <code>nyc1</code> <a href="https://docs.digitalocean.com/platform/regional-availability/">regional availability</a></p>
 <p>After few minutes, you get a kubernetes cluster ready</p>
 <div class="highlight"><pre><span></span><code>Notice: Cluster is provisioning, waiting for cluster to be running
 ...............................................................
