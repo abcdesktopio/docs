@@ -2150,7 +2150,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Quick application install">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-application-install-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick application install (Windows)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick application install (Windows)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4886,7 +4895,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Quick application install">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-application-install-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick application install (Windows)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick application install (Windows)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4968,6 +4986,15 @@ pod/pull-gimp-abcinst-051fefa55d97338653a58e86ccdd5f1a3e66f7f05017 condition met
 pod/pull-impress-abcinst-f74fed932051c2760b3fd69f4ef475e34ad1a8a49 condition met
 pod/pull-writer-abcinst-cfe1a4f74d19fbe49d86d211f99d005532b6cf7c87 condition met
 pod/pull-xterm-abcinst-0e802cfa8addb4648f843869325f3413d544bb9eae8 condition met
+</code></pre></div>
+<h2 id="quick-application-install-windows">Quick application install (Windows)</h2>
+<blockquote>
+<p>Quick installation can be run on Windows operation system. </p>
+</blockquote>
+<p>Download and execute the <code>pullapps-4.1.ps1</code> script :</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$script</span> <span class="p">=</span> <span class="nb">curl </span><span class="n">https</span><span class="p">://</span><span class="n">raw</span><span class="p">.</span><span class="n">githubusercontent</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">abcdesktopio</span><span class="p">/</span><span class="n">conf</span><span class="p">/</span><span class="n">main</span><span class="p">/</span><span class="n">kubernetes</span><span class="p">/</span><span class="n">pullapps</span><span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">ps1</span> 
+
+<span class="nb">Invoke-Expression</span> <span class="p">$(</span><span class="nv">$script</span><span class="p">.</span><span class="n">Content</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="connect-to-your-abcdesktop">Connect to your abcdesktop</h3>
 <p>The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.</p>
