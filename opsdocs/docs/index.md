@@ -146,6 +146,7 @@ abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 1
 |  3.4     | deprecated | 01/09/2024 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, WebRTC sound support |  Release | 
 |  4.0     | stable     | 01/01/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
 |  4.1     | stable     | 01/06/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
+|  4.2     | stable     | 01/06/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
 
 ## Helm artifacthub report
 
