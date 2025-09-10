@@ -7,6 +7,7 @@ The prominent changes for this release are:
 * Add snapshot features (beta)
 * add themes changes (beta)
 * Refactoring console application with react.js
+* Login page is rendered from `od.config` file, (no need to write css file for a new provider)  
 * `arm64` and `amd64` for all images - including applications and alpine image based
 
 ## oc.user images
