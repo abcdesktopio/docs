@@ -417,9 +417,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-online-preview-lastest-release-412" class="md-nav__link">
+  <a href="#quick-online-preview-lastest-release-420" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick online preview lastest release 4.1.2
+      Quick online preview lastest release 4.2.0
     </span>
   </a>
   
@@ -435,9 +435,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-installation-using-helm-lastest-release-412" class="md-nav__link">
+  <a href="#quick-installation-using-helm-lastest-release-420" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick installation using helm lastest release 4.1.2
+      Quick installation using helm lastest release 4.2.0
     </span>
   </a>
   
@@ -5112,9 +5112,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-online-preview-lastest-release-412" class="md-nav__link">
+  <a href="#quick-online-preview-lastest-release-420" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick online preview lastest release 4.1.2
+      Quick online preview lastest release 4.2.0
     </span>
   </a>
   
@@ -5130,9 +5130,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-installation-using-helm-lastest-release-412" class="md-nav__link">
+  <a href="#quick-installation-using-helm-lastest-release-420" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick installation using helm lastest release 4.1.2
+      Quick installation using helm lastest release 4.2.0
     </span>
   </a>
   
@@ -5270,13 +5270,13 @@
 </ul>
 <p>With abcdesktop, you can take advantage of all the power of your Kubernetes cluster for your virtual workstations. You can distribute user applications as <code>pods</code> or as <code>ephemeral containers</code> on all cluster nodes.</p>
 <p><img alt="abcdesktopuserpodnvidia" src="img/abcdesktopkubernetesclusterwithnvidiapod.png" /></p>
-<h2 id="quick-online-preview-lastest-release-412">Quick online preview lastest release 4.1.2</h2>
+<h2 id="quick-online-preview-lastest-release-420">Quick online preview lastest release 4.2.0</h2>
 <p>You can discover abcdesktop.io desktopless services on the demo website. <a href="https://demo.abcdesktop.io">https://demo.abcdesktop.io</a> instance is a quick example to illustrate how the abcdesktop.io project works. Your desktopless is ready to run for 10 minutes, and will be terminated by the garbage collector after 10 minutes. It requires an OpenID Connect provider to sign-in like (Google, Facebook, Github). The security policy for Internet network prevents requests from your abcdesktop being allowed. Printer service (using cups) and sound service (using pulseaudio) inside the kubernetes pods are enabled.</p>
 <p>To reach the demo website, follow the link <a href="https://demo.abcdesktop.io">https://demo.abcdesktop.io</a></p>
 <h2 id="abcdesktopio-a-container-vdi-service">abcdesktop.io: a container VDI service</h2>
 <p>abcdesktop.io provides a way to run graphics software securely isolated in a container, and use a web browser HTML5 as display device. Because containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.</p>
 <p><img alt="screenshot-applications" src="img/abcdesktop-home-release-4.1.png" /></p>
-<h2 id="quick-installation-using-helm-lastest-release-412">Quick installation using helm lastest release 4.1.2</h2>
+<h2 id="quick-installation-using-helm-lastest-release-420">Quick installation using helm lastest release 4.2.0</h2>
 <p><a href="https://artifacthub.io/packages/search?repo=abcdesktop"><img alt="Artifact Hub" src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop" /></a></p>
 <p>You can watch the youtube video sample. This video describes the Quick installation process using <code>helm</code>.</p>
 <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
@@ -5286,7 +5286,7 @@
 <script async src="https://artifacthub.io/artifacthub-widget.js"></script>
 
 <div class="highlight"><pre><span></span><code>helm repo add abcdesktop https://abcdesktopio.github.io/helm/
-helm install my-abcdesktop abcdesktop/abcdesktop --version 4.1.2 --create-namespace -n abcdesktop
+helm install my-abcdesktop abcdesktop/abcdesktop --version 4.2.0 --create-namespace -n abcdesktop
 </code></pre></div>
 <p>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)</p>
 <div class="highlight"><pre><span></span><code>LOCAL_PORT=30443
