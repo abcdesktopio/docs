@@ -49,7 +49,7 @@ Hang tight while we grab the latest from your chart repositories...
 Update Complete. ⎈Happy Helming!⎈
 % helm install my-abcdesktop abcdesktop/abcdesktop --version 4.2.0 --create-namespace -n abcdesktop
 NAME: my-abcdesktop
-LAST DEPLOYED: Sat Jun 21 12:32:09 2025
+LAST DEPLOYED: Thu Sep 11 16:14:03 2025
 NAMESPACE: abcdesktop
 STATUS: deployed
 REVISION: 1
