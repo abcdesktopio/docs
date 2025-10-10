@@ -5372,7 +5372,7 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
      ssl_certificate_key /etc/nginx/ssl/tls.key;
 </code></pre></div>
 <p>Apply your new nginx confguration file</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop-routehttp-config-4.2.yaml -n abcdesktop`
+<div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop-routehttp-config-4.2.yaml -n abcdesktop
 </code></pre></div>
 <h2 id="update-deployment-http-router">Update <code>deployment</code> http-router</h2>
 <p>Update the <code>deployment</code> route to add certificat ssl entry</p>
