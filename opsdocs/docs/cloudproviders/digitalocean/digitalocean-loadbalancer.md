@@ -257,7 +257,7 @@ For example
 Apply your new nginx confguration file
 
 ```
-kubectl apply -f abcdesktop-routehttp-config-4.2.yaml -n abcdesktop`
+kubectl apply -f abcdesktop-routehttp-config-4.2.yaml -n abcdesktop
 ```
  
 ## Update `deployment` http-router
