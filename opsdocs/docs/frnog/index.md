@@ -12,7 +12,9 @@ Chapters describe documents for the session on Friday, October 24, 2025 [FRnOG 4
 
 ## Video content
 
-- [youtube video link] (https://www.youtube.com/watch?v=dq3bcFu5pr8)
+- Demo abcdesktop frnog 42
+
+<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/dq3bcFu5pr8" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 
 ### Description
