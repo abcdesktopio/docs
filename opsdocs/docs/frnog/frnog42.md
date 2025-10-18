@@ -10,13 +10,12 @@ Chapters describe documents for the session on Friday, October 24, 2025 [FRnOG 4
 
 - format PDF file [download file](abcdesktop-frnog.pdf)
 
-![abcdesktop frnog 42](abcdesktop-frnog.pdf)
-
 ## Video content
 
-<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/watch?v=dq3bcFu5pr8" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+- [youtube video link] (https://www.youtube.com/watch?v=dq3bcFu5pr8)
 
-Description
+
+### Description
 
 - Login credentials (`Philip J. Fry`,`fry`)
 - Create pod desktop, with all containers 
@@ -31,6 +30,3 @@ Description
 - Run `kubectl delete pods fry-qterminal-app-XXXX -n abcdesktop` again in terminal
 - Logoff
 
-Link
-
-- [youtube video link](https://www.youtube.com/watch?v=dq3bcFu5pr8)
