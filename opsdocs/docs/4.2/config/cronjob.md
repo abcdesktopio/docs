@@ -58,11 +58,13 @@ The default values are
   value: '900'
 ```
 
-`EXPIREIN` is the age of the desktop, this value is in seconds.
-If the age of the desktop is more than `EXPIREIN` then a desktop can be deleted or not. The age starts when the desktop is created.
-- If nobody is connected to the desktop and if the age is more than `EXPIREIN`, then the desktop is deleted.
-- If the use is still connected and if the age is more than `EXPIREIN` and if `FORCE` is `true`, then the desktop is deleted.
-- If the use is still connected and if the age is more than `EXPIREIN` and if `FORCE` is `false`, then the desktop is NOT deleted.
+`EXPIREIN` is a value in seconds.
+If the time of the last login on the desktop is more than `EXPIREIN` then a desktop can be deleted or not. 
+The time of the last login starts when the user logs in.
+abcdesktop calcs the duration between the current time and the last login time on the desktop.
+- If the user is NOT connected to the desktop and if the duration time is more than `EXPIREIN`, then the desktop is deleted.
+- If the user is connected and if the duration time is is more than `EXPIREIN` and if `FORCE` is `true`, then the desktop is deleted.
+- If the user is connected and if the duration time is more than `EXPIREIN` and if `FORCE` is `false`, then the desktop is NOT deleted.
 
 ```
 - name: "FORCE'
