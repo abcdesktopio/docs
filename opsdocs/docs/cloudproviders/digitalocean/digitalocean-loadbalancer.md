@@ -152,7 +152,7 @@ Define the new variables `ABCDESKTOP_PUBLIC_FQDN` and `USER_EMAIL_ADDRESS`
 
 ``` bash
 ABCDESKTOP_PUBLIC_FQDN=hello.digitalocean.pepins.net
-USER_EMAIL_ADDRESS=alex@koumoula.com
+USER_EMAIL_ADDRESS=thisisyouremail@domain.com
 ROUTER_POD_NAME=$(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name}  -n abcdesktop)
 kubectl exec -n abcdesktop -it ${ROUTER_POD_NAME} -- /usr/bin/certbot certonly --webroot -w /var/lib/nginx/html -d ${ABCDESKTOP_PUBLIC_FQDN} -m "${USER_EMAIL_ADDRESS}" --agree-tos -n
 ```
