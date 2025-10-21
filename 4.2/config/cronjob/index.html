@@ -5336,7 +5336,7 @@ spec:
 <div class="highlight"><pre><span></span><code>- name: &quot;FORCE&#39;
   value: &#39;false&#39;
 </code></pre></div>
-<p><code>FORCE</code> to delete the user's pod even if the user is connected. By default if a user is connected to his desktop, the <code>garbagecollector</code> keep this desktop running.</p>
+<p><code>FORCE</code> to delete the user's pod even if the user is connected. <code>false</code> is the default value, if a user is connected to his desktop then the <code>garbagecollector</code> keep this desktop running. By setting <code>FORCE</code> to 'true', the desktop will be deleted every time the <code>EXPIREIN</code> value is reached, regardless of the connection status.</p>
 <h2 id="apply-your-cronjob">Apply your <code>cronjob</code></h2>
 <p>Run the <code>kubectl</code> command line to apply your manifest file in you namespace.</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f cronjob.yaml -n abcdesktop
