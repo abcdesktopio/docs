@@ -6,7 +6,7 @@
 
 - read the previous chapter [Deploy abcdesktop on DigitalOcean with Kubernetes](digitalocean) 
 - a DigitalOcean account
-- a domain of you own
+- your own internet domain
 - `doctl` command line interface [doctl cli](https://docs.digitalocean.com/reference/doctl/how-to/install/)
 - `kubectl` command line
 - `wget` command line
