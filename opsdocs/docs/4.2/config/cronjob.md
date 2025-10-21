@@ -58,8 +58,11 @@ The default values are
   value: '900'
 ```
 
-`EXPIREIN` is the value in seconds, to check if a desktop can be deleted or not. The time starts when the desktop is created.
-
+`EXPIREIN` is the age of the desktop, this value is in seconds.
+If the age of the desktop is more than `EXPIREIN` then a desktop can be deleted or not. The age starts when the desktop is created.
+- If nobody is connected to the desktop and if the age is more than `EXPIREIN`, then the desktop is deleted.
+- If the use is still connected and if the age is more than `EXPIREIN` and if `FORCE` is `true`, then the desktop is deleted.
+- If the use is still connected and if the age is more than `EXPIREIN` and if `FORCE` is `false`, then the desktop is NOT deleted.
 
 ```
 - name: "FORCE'
