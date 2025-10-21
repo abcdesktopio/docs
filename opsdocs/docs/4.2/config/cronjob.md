@@ -66,7 +66,7 @@ The default values are
   value: 'false'
 ```
 
-`FORCE` to delete the user's pod even if the user is connected. By default if a user is connected to his desktop, the `garbagecollector` keep this desktop running.
+`FORCE` to delete the user's pod even if the user is connected. `false` is the default value, if a user is connected to his desktop then the `garbagecollector` keep this desktop running. By setting `FORCE` to 'true', the desktop will be deleted every time the `EXPIREIN` value is reached, regardless of the connection status.
 
 
 ## Apply your `cronjob`
