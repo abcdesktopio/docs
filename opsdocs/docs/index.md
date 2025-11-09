@@ -2,13 +2,13 @@
 title: abcdesktop.io cloud native desktop
 summary: cloud container graphical application container desktop
 description: cloud native desktop complete workspace environment accessible from a web browser
-keywords: graphical application container desktopless kubernetes secure desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface byod bring your own device reduce attack surface novnc rdp citrix
+keywords: graphical application container desktopless kubernetes secure desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface byod bring your own device reduce attack surface novnc rdp citrix sovereign
 ---
 
 # abcdesktop.io is a kubernetes VDI service.
 
 
-abcdesktop.io is a cloud native desktop service built on and for [Kubernetes](https://kubernetes.io/). abcdesktop.io is also a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, desktopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface.
+abcdesktop.io is a cloud native desktop service built on and for [Kubernetes](https://kubernetes.io/). abcdesktop.io is also a complete work environment accessible from a simple HTML 5 web browser, without any installation. Like serverless does, desktopless computing allocates desktop resources on demand.  **Each user’s application runs as a container** to reduce attack surface. With abcdesktop take the sovereignty of your virtual desktop.
 
 ![abcdesktopuserpod](img/abcdesktopuserpod.png)
 
