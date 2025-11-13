@@ -35,26 +35,8 @@ This screenshot describes the DigitalOcean control panel. It shows the `Resource
 
 ![digital ocean console overview](img/digitalocean-console.png)
 
-## Check your kubernetes config file 
-
-Run a `kubectl` command line like `kubectl cluster-info` command line to make sure that kubeconfig has been updated by `doctl` command.
-
-``` bash
-kubectl cluster-info 
-```
-
-The kubectl `cluster-info` results
-
-```
-Kubernetes control plane is running at https://83aae84d-cfa9-4a89-ae75-89f0d5078d33.k8s.ondigitalocean.com
-CoreDNS is running at https://83aae84d-cfa9-4a89-ae75-89f0d5078d33.k8s.ondigitalocean.com/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-
-To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-```
-
 
 ## Run the abcdesktop install script 
-
 
 Download and install the latest release automatically
 
