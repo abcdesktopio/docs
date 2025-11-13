@@ -4376,15 +4376,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-your-kubernetes-config-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check your kubernetes config file
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#run-the-abcdesktop-install-script" class="md-nav__link">
     <span class="md-ellipsis">
       Run the abcdesktop install script
@@ -5313,15 +5304,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-your-kubernetes-config-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check your kubernetes config file
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#run-the-abcdesktop-install-script" class="md-nav__link">
     <span class="md-ellipsis">
       Run the abcdesktop install script
@@ -5398,16 +5380,6 @@ ID                                      Name            Region    Version       
 <h2 id="digitalocean-console-overview">DigitalOcean console overview</h2>
 <p>This screenshot describes the DigitalOcean control panel. It shows the <code>Resources</code> of the kubernetes cluster and <code>Nodes</code> informations.</p>
 <p><img alt="digital ocean console overview" src="../img/digitalocean-console.png" /></p>
-<h2 id="check-your-kubernetes-config-file">Check your kubernetes config file</h2>
-<p>Run a <code>kubectl</code> command line like <code>kubectl cluster-info</code> command line to make sure that kubeconfig has been updated by <code>doctl</code> command.</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cluster-info<span class="w"> </span>
-</code></pre></div>
-<p>The kubectl <code>cluster-info</code> results</p>
-<div class="highlight"><pre><span></span><code>Kubernetes control plane is running at https://83aae84d-cfa9-4a89-ae75-89f0d5078d33.k8s.ondigitalocean.com
-CoreDNS is running at https://83aae84d-cfa9-4a89-ae75-89f0d5078d33.k8s.ondigitalocean.com/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-
-To further debug and diagnose cluster problems, use &#39;kubectl cluster-info dump&#39;.
-</code></pre></div>
 <h2 id="run-the-abcdesktop-install-script">Run the abcdesktop install script</h2>
 <p>Download and install the latest release automatically</p>
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.2.sh | bash
