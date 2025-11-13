@@ -13,18 +13,8 @@
 If you don't have a running kubernetes cluster, run the `doctl` command line with the `kubernetes cluster create` to create your cluster.
 
 ```
-doctl kubernetes cluster create --node-pool 'auto-scale=true;size=s-4vcpu-8gb;min-nodes=3;max-nodes=5' myabccluster 
+doctl kubernetes clusters create --size s-4vcpu-8gb myabccluster 
 ```
-
-- `auto-scale`: Enables cluster auto-scaling on the node pool. 
-- `min-nodes`: 3 nodes min for auto-scaling
-- `max-nodes`: 5 nodes max for auto-scaling
-- `size`: `s-4vcpu-8gb` gets 4 shared vCPU, 8 GB vRAM, 160 GB Storage 
-
-
-[option] set the region value 
-- `--region=nyc1`: The default region is `nyc1` [regional availability](https://docs.digitalocean.com/platform/regional-availability/)
-
 
 After few minutes, you get a kubernetes cluster ready
 
@@ -69,10 +59,10 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 Download and install the latest release automatically
 
 ```
-curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.1.sh | bash
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.2.sh | bash
 ```
 
-To get more details about the install process, please read the [Setup guide](https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop/)
+To get more details about the install process, please read the [Setup guide](https://www.abcdesktop.io/4.2/setup/kubernetes_abcdesktop/)
 
 ## Connect to your abcdesktop service 
 
@@ -98,10 +88,10 @@ After image pulling process, you get your first abcdesktop
 Using the previous terminal shell, run the application install script 
 
 ```
-curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.1.sh | bash
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.2.sh | bash
 ```
 
-To get more details about the install applications process, please read the [Setup applications guide](https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop_applications/)
+To get more details about the install applications process, please read the [Setup applications guide](https://www.abcdesktop.io/4.2/setup/kubernetes_abcdesktop_applications/)
 
 Then you just need to reload the web page with the desktop of `Philip J. Fry`
 New applications are now listed in the dock of `plasmashell`.
