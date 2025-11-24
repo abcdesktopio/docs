@@ -21,7 +21,8 @@ If you are using a Microsoft Windows operating system please follow the dedicate
 
 ### Install using kubectl on Linux or macOS operation system
 
-Download and extract the latest release automatically
+Download and extract the latest release automatically. 
+This install script is recommended for `k3s` `minikube` and `kind` 
 
 ```
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.2.sh | bash
