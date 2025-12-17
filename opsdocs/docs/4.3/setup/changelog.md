@@ -15,6 +15,8 @@ The prominent changes for this release are:
   > For example you can add firefox from alpine, and firefox from debian, and firefox from ubuntu, and firefox from rockylinux in the same desktop
 * Add new volumes support in `od.config` file
   * Allow changes for on-premise intregration
+ 
+  Default volumes
   ```python
   'default_volumes': {
     'uinput'  : { 'name': 'uinput',   'hostPath': { 'path': '/dev/uinput', 'type': 'CharDevice' } },
@@ -31,6 +33,10 @@ The prominent changes for this release are:
     'extrausers': { 'name': 'extrausers',  'emptyDir': { 'medium': 'Memory', 'sizeLimit': '1M' } },
     'sudoers': { 'name': 'sudoers',  'emptyDir': { 'medium': 'Memory', 'sizeLimit': '1M' } },
   },
+  ```
+
+  are mounted as
+  ```python
   'default_volumes_mount': {
     'uinput' : { 'name': 'uinput', 'mountPath': '/dev/uinput' },
     'input' :  { 'name': 'input',  'mountPath': '/dev/input'  },
