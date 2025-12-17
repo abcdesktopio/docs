@@ -11,7 +11,8 @@ The prominent changes for this release are:
   * `alpine` (without extrausers support)
   * `debian` (with extrausers support)
   * `ubuntu` (with extrausers support)
-  * `rockylinux` (Red Hat®) (with extrausers support)
+  * `rockylinux` (Red Hat®) (with extrausers support from [libnss-extrausers-rpm](https://github.com/abcdesktopio/libnss-extrausers-rpm))
+  > For example you can add firefox from alpine, and firefox from debian, and firefox from ubuntu, and firefox from rockylinux in the same desktop
 * Add new volumes support in `od.config` file
   * Allow changes for on-premise intregration
   ```python
