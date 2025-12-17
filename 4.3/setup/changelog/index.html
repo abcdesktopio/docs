@@ -5338,7 +5338,9 @@
 </blockquote>
 </li>
 <li>Add new volumes support in <code>od.config</code> file</li>
-<li>Allow changes for on-premise intregration
+<li>Allow changes for on-premise intregration</li>
+</ul>
+<p>Default volumes
   <div class="highlight"><pre><span></span><code><span class="s1">&#39;default_volumes&#39;</span><span class="p">:</span> <span class="p">{</span>
   <span class="s1">&#39;uinput&#39;</span>  <span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;uinput&#39;</span><span class="p">,</span>   <span class="s1">&#39;hostPath&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;/dev/uinput&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;CharDevice&#39;</span> <span class="p">}</span> <span class="p">},</span>
   <span class="s1">&#39;input&#39;</span>   <span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;input&#39;</span><span class="p">,</span>    <span class="s1">&#39;hostPath&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;/dev/input&#39;</span> <span class="p">}</span> <span class="p">},</span>
@@ -5354,7 +5356,9 @@
   <span class="s1">&#39;extrausers&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;extrausers&#39;</span><span class="p">,</span>  <span class="s1">&#39;emptyDir&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="s1">&#39;Memory&#39;</span><span class="p">,</span> <span class="s1">&#39;sizeLimit&#39;</span><span class="p">:</span> <span class="s1">&#39;1M&#39;</span> <span class="p">}</span> <span class="p">},</span>
   <span class="s1">&#39;sudoers&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;sudoers&#39;</span><span class="p">,</span>  <span class="s1">&#39;emptyDir&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="s1">&#39;Memory&#39;</span><span class="p">,</span> <span class="s1">&#39;sizeLimit&#39;</span><span class="p">:</span> <span class="s1">&#39;1M&#39;</span> <span class="p">}</span> <span class="p">},</span>
 <span class="p">},</span>
-<span class="s1">&#39;default_volumes_mount&#39;</span><span class="p">:</span> <span class="p">{</span>
+</code></pre></div></p>
+<p>are mounted as
+  <div class="highlight"><pre><span></span><code><span class="s1">&#39;default_volumes_mount&#39;</span><span class="p">:</span> <span class="p">{</span>
   <span class="s1">&#39;uinput&#39;</span> <span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;uinput&#39;</span><span class="p">,</span> <span class="s1">&#39;mountPath&#39;</span><span class="p">:</span> <span class="s1">&#39;/dev/uinput&#39;</span> <span class="p">},</span>
   <span class="s1">&#39;input&#39;</span> <span class="p">:</span>  <span class="p">{</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;input&#39;</span><span class="p">,</span>  <span class="s1">&#39;mountPath&#39;</span><span class="p">:</span> <span class="s1">&#39;/dev/input&#39;</span>  <span class="p">},</span>
   <span class="s1">&#39;shm&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;shm&#39;</span><span class="p">,</span> <span class="s1">&#39;mountPath&#39;</span> <span class="p">:</span> <span class="s1">&#39;/dev/shm&#39;</span> <span class="p">},</span>
@@ -5369,8 +5373,7 @@
   <span class="s1">&#39;extrausers&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;extrausers&#39;</span><span class="p">,</span>  <span class="s1">&#39;mountPath&#39;</span><span class="p">:</span> <span class="s1">&#39;/var/lib/extrausers&#39;</span> <span class="p">},</span>
   <span class="s1">&#39;sudoers&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;sudoers&#39;</span><span class="p">,</span> <span class="s1">&#39;mountPath&#39;</span><span class="p">:</span> <span class="s1">&#39;/etc/sudoers.d&#39;</span> <span class="p">}</span>
 <span class="p">},</span>
-</code></pre></div></li>
-</ul>
+</code></pre></div></p>
 
 
 
