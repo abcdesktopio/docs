@@ -7,6 +7,7 @@ The prominent changes for this release are:
 * Add replicaset `rs0` support for mongodb
 * Add support of libnss-extrausers for `passwd`, `group` and `shadow` files, for `oc.user` container and for all applications.
   * default `passwd`, `group`, `shadow` and `gshadow` are NOT updated anymore. The new user are provisioned in `/var/lib/extrausers`
+  > No need to define symbolic link to `passwd`, `group`, `shadow` and `gshadow` any more
 * Add support for application for distributions
   * `alpine` (without extrausers support)
   * `debian` (with extrausers support)
