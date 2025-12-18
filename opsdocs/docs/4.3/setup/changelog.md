@@ -19,8 +19,6 @@ The prominent changes for this release are:
   Default volumes
   ```python
   'default_volumes': {
-    'uinput'  : { 'name': 'uinput',   'hostPath': { 'path': '/dev/uinput', 'type': 'CharDevice' } },
-    'input'   : { 'name': 'input',    'hostPath': { 'path': '/dev/input' } },
     'shm': { 'name': 'shm', 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '512Mi' } },
     'run': { 'name': 'run', 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '1M'    } },
     'tmp': { 'name': 'tmp', 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi'   } },
@@ -38,8 +36,6 @@ The prominent changes for this release are:
   are mounted as
   ```python
   'default_volumes_mount': {
-    'uinput' : { 'name': 'uinput', 'mountPath': '/dev/uinput' },
-    'input' :  { 'name': 'input',  'mountPath': '/dev/input'  },
     'shm': { 'name': 'shm', 'mountPath' : '/dev/shm' },
     'run': { 'name': 'run',  'mountPath': '/var/run/desktop' },
     'tmp': { 'name': 'tmp',  'mountPath': '/tmp' },
