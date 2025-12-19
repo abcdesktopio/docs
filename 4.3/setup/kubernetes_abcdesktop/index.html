@@ -2412,15 +2412,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-using-helm-on-linux-or-macos-operation-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install using helm on Linux or macOS operation system
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#installation-with-kubectl" class="md-nav__link">
     <span class="md-ellipsis">
       installation with kubectl
@@ -5559,15 +5550,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-using-helm-on-linux-or-macos-operation-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install using helm on Linux or macOS operation system
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#installation-with-kubectl" class="md-nav__link">
     <span class="md-ellipsis">
       installation with kubectl
@@ -5752,38 +5734,6 @@
 </code></pre></div>
 <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/vEEXVOT30w4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
 
-<h3 id="install-using-helm-on-linux-or-macos-operation-system">Install using helm on Linux or macOS operation system</h3>
-<blockquote>
-<p>Quick installation can be run using helm (version &gt; 3)</p>
-</blockquote>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>abcdesktop<span class="w"> </span>https://abcdesktopio.github.io/helm/
-helm<span class="w"> </span>repo<span class="w"> </span>update<span class="w"> </span>abcdesktop
-helm<span class="w"> </span>install<span class="w"> </span>my-abcdesktop<span class="w"> </span>abcdesktop/abcdesktop<span class="w"> </span>--version<span class="w"> </span><span class="m">4</span>.3.0<span class="w"> </span>--create-namespace<span class="w"> </span>-n<span class="w"> </span>abcdesktop
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>%<span class="w"> </span>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>abcdesktop<span class="w"> </span>https://abcdesktopio.github.io/helm/
-<span class="s2">&quot;abcdesktop&quot;</span><span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>repositories
-%<span class="w"> </span>helm<span class="w"> </span>repo<span class="w"> </span>update<span class="w"> </span>abcdesktop<span class="w">                                  </span>
-Hang<span class="w"> </span>tight<span class="w"> </span><span class="k">while</span><span class="w"> </span>we<span class="w"> </span>grab<span class="w"> </span>the<span class="w"> </span>latest<span class="w"> </span>from<span class="w"> </span>your<span class="w"> </span>chart<span class="w"> </span>repositories...
-...Successfully<span class="w"> </span>got<span class="w"> </span>an<span class="w"> </span>update<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;abcdesktop&quot;</span><span class="w"> </span>chart<span class="w"> </span>repository
-Update<span class="w"> </span>Complete.<span class="w"> </span>⎈Happy<span class="w"> </span>Helming!⎈
-%<span class="w"> </span>helm<span class="w"> </span>install<span class="w"> </span>my-abcdesktop<span class="w"> </span>abcdesktop/abcdesktop<span class="w"> </span>--version<span class="w"> </span><span class="m">4</span>.3.0<span class="w"> </span>--create-namespace<span class="w"> </span>-n<span class="w"> </span>abcdesktop
-NAME:<span class="w"> </span>my-abcdesktop
-LAST<span class="w"> </span>DEPLOYED:<span class="w"> </span>Thu<span class="w"> </span>Sep<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">16</span>:14:03<span class="w"> </span><span class="m">2025</span>
-NAMESPACE:<span class="w"> </span>abcdesktop
-STATUS:<span class="w"> </span>deployed
-REVISION:<span class="w"> </span><span class="m">1</span>
-TEST<span class="w"> </span>SUITE:<span class="w"> </span>None
-</code></pre></div>
-<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
-
-<blockquote>
-<p>To get more details about the helm installation process and options, please read the documentation on <a href="https://github.com/abcdesktopio/helm">helm repository</a></p>
-</blockquote>
-<p>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port <code>30443</code> (for example)</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOCAL_PORT</span><span class="o">=</span><span class="m">30443</span>
-<span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
-kubectl<span class="w"> </span>port-forward<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>router-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span><span class="w"> </span><span class="k">)</span><span class="w"> </span>--address<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LOCAL_PORT</span><span class="si">}</span><span class="s2">:80&quot;</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span><span class="w"> </span>
-</code></pre></div>
 <h3 id="installation-with-kubectl">installation with <code>kubectl</code></h3>
 <blockquote>
 <p>Download and extract the latest release automatically</p>
