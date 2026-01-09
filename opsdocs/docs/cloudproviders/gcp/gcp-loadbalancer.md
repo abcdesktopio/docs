@@ -31,13 +31,6 @@ metadata:
   name: http-router
   labels:
     abcdesktop/role: router-od
-  annotations:
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "80"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
-    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
-    service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
-    service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: "/healthz"
 spec: 
   type: LoadBalancer
   selector:
@@ -275,7 +268,7 @@ The `abcdesktop-deployment-routehttps.4.2.yaml` file  adds `mountPath: /etc/ngin
 kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.2.yaml -n abcdesktop
 ```
 
-## Reach your website using `https`protocol 
+## Reach your website using `https` protocol 
 
 You can now connect to your abcdesktop desktop pulic web site using `https` protocol. 
 
@@ -284,7 +277,4 @@ You can now connect to your abcdesktop desktop pulic web site using `https` prot
 
 The status is secured and we get some informations from the certificate
 
-
 ![reach your website using https](img/cert-viewer.png)
- 
- 
