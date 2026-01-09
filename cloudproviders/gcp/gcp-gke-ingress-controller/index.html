@@ -5877,7 +5877,7 @@ abcdesktop-cert     12m   Active
 <p><img alt="reach your website using https" src="../img/certificate-ok.png" /></p>
 <h2 id="increase-ingress-connection-timeout">Increase ingress connection timeout</h2>
 <p>By default, GCE type ingress has a connection timeout of 30 seconds, in our case, we doesn't want abcdesktop to drop the connection to our desktop every 30 seconds, so we will have to increase timeout.</p>
-<p>Unlike a nginx type ingress, you cannot add annotations to the ingress yaml faile to increase timeout value. You instead need to create a <code>BackendConfig</code> object that you will link to your routing service.</p>
+<p>Unlike a nginx type ingress, you cannot add annotations to the ingress yaml file to increase timeout value. You instead need to create a <code>BackendConfig</code> object that you will link to your routing service.</p>
 <p>First copy the following lines in a <code>backend_config_timeout.yaml</code></p>
 <div class="highlight"><pre><span></span><code>apiVersion: cloud.google.com/v1
 kind: BackendConfig
