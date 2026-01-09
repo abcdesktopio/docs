@@ -7,7 +7,7 @@
 - `kubectl` 
 - `gcloud` command line interface [gcloud cli](https://docs.cloud.google.com/sdk/docs/install-sdk/)
 
-> If you use `gcloud` command line for your first time, run `gcloud auth login` command line to log to toyr GCP account.
+> If you use `gcloud` command line for your first time, run `gcloud auth login` command line to log with your GCP account.
 
 ## Create a Kubernetes cluster using gcloud cli
 
