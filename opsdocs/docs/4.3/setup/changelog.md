@@ -8,6 +8,7 @@ The prominent changes for this release are:
 * Add support of libnss-extrausers for `passwd`, `group` and `shadow` files, for `oc.user` container and for all applications.
   * default `passwd`, `group`, `shadow` and `gshadow` are NOT updated anymore. The new user are provisioned in `/var/lib/extrausers`
   > No need to define symbolic link to `passwd`, `group`, `shadow` and `gshadow` any more
+  > fix the issue `containerd container: mount callback failed on /var/lib/containerd/tmpmounts/containerd-mount1487488778: openat etc/passwd: path escapes from parent`
 * Add support for application for distributions
   * `alpine` (without extrausers support)
   * `debian` (with extrausers support)
