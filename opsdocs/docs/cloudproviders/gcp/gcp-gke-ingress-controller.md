@@ -205,7 +205,7 @@ The status is secured and we get some informations from the certificate
 
 By default, GCE type ingress has a connection timeout of 30 seconds, in our case, we doesn't want abcdesktop to drop the connection to our desktop every 30 seconds, so we will have to increase timeout.
 
-Unlike a nginx type ingress, you cannot add annotations to the ingress yaml faile to increase timeout value. You instead need to create a `BackendConfig` object that you will link to your routing service.
+Unlike a nginx type ingress, you cannot add annotations to the ingress yaml file to increase timeout value. You instead need to create a `BackendConfig` object that you will link to your routing service.
 
 First copy the following lines in a `backend_config_timeout.yaml`
 
