@@ -14,7 +14,7 @@
         <link rel="prev" href="../gcp/">
       
       
-        <link rel="next" href="../../../faq/">
+        <link rel="next" href="../gcp-gke-ingress-controller/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -4581,7 +4581,7 @@
   
   
   <span class="md-ellipsis">
-    Install on Google GCP
+    Install on Google GCP Kubernetes cluster
     
   </span>
   
@@ -4776,9 +4776,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reach-your-website-using-httpsprotocol" class="md-nav__link">
+  <a href="#reach-your-website-using-https-protocol" class="md-nav__link">
     <span class="md-ellipsis">
-      Reach your website using httpsprotocol
+      Reach your website using https protocol
     </span>
   </a>
   
@@ -4788,6 +4788,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gcp-gke-ingress-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expose using a GKE ingress controller
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -5662,9 +5685,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reach-your-website-using-httpsprotocol" class="md-nav__link">
+  <a href="#reach-your-website-using-https-protocol" class="md-nav__link">
     <span class="md-ellipsis">
-      Reach your website using httpsprotocol
+      Reach your website using https protocol
     </span>
   </a>
   
@@ -5715,13 +5738,6 @@ metadata:
   name: http-router
   labels:
     abcdesktop/role: router-od
-  annotations:
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: &quot;80&quot;
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: &quot;http&quot;
-    service.beta.kubernetes.io/do-loadbalancer-protocol: &quot;http&quot;
-    service.beta.kubernetes.io/do-loadbalancer-tls-ports: &quot;443&quot;
-    service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: &quot;true&quot;
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: &quot;/healthz&quot;
 spec: 
   type: LoadBalancer
   selector:
@@ -5867,7 +5883,7 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
 <p>The <code>abcdesktop-deployment-routehttps.4.2.yaml</code> file  adds <code>mountPath: /etc/nginx/ssl</code> to <code>secretName: http-router-certificat</code></p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.2.yaml -n abcdesktop
 </code></pre></div>
-<h2 id="reach-your-website-using-httpsprotocol">Reach your website using <code>https</code>protocol</h2>
+<h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
 <p>You can now connect to your abcdesktop desktop pulic web site using <code>https</code> protocol. </p>
 <p><img alt="reach your website using https" src="../img/https-fqdn.png" /></p>
 <p>The status is secured and we get some informations from the certificate</p>
