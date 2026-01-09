@@ -5490,10 +5490,10 @@
 <li>Add replicaset <code>rs0</code> support for mongodb</li>
 <li>Add support of libnss-extrausers for <code>passwd</code>, <code>group</code> and <code>shadow</code> files, for <code>oc.user</code> container and for all applications.</li>
 <li>default <code>passwd</code>, <code>group</code>, <code>shadow</code> and <code>gshadow</code> are NOT updated anymore. The new user are provisioned in <code>/var/lib/extrausers</code><blockquote>
-<p>No need to define symbolic link to <code>passwd</code>, <code>group</code>, <code>shadow</code> and <code>gshadow</code> any more
-fix the issue <code>containerd container: mount callback failed on /var/lib/containerd/tmpmounts/containerd-mount1487488778: openat etc/passwd: path escapes from parent</code></p>
+<p>No need to define symbolic link to <code>passwd</code>, <code>group</code>, <code>shadow</code> and <code>gshadow</code> any more</p>
 </blockquote>
 </li>
+<li>fix the issue <code>containerd container: mount callback failed on /var/lib/containerd/tmpmounts/containerd-mount1487488778: openat etc/passwd: path escapes from parent</code></li>
 <li>Add support for application for distributions</li>
 <li><code>alpine</code> (without extrausers support)</li>
 <li><code>debian</code> (with extrausers support)</li>
