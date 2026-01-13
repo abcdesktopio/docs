@@ -254,6 +254,8 @@ env:
   value: all
 ``` 
 
+> The `NVIDIA_VISIBLE_DEVICES` is set to set GPU UUID.
+
 Run a debug ephemeral container in `nvidia-pod`
 
 ```
@@ -321,53 +323,6 @@ pod "nvidia-pod" deleted from default namespace
 ## Conclusion
 
 Setting `runtimeClassName: nvidia` on pod manifest allows ephemeral containers to share the pod's GPU.
-
-
-## Apply `runtimeClassName` to abcdesktop config (release >= 4.3 )
-
-
-Get the `od.config` file
-
-If you don't already have the config file `od.config`, run the command line 
-
-```
-kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
-```
-
-- Edit `od.config` and update the dictionary `desktop.pod` to add `'runtimeClassName':'nvidia'` in `spec` and save your od.config file.
-
-```
-desktop.pod : { 
-  # default spec for all containers
-  # can be overwritten on dedicated container spec
-  # value inside mustrache like {{ uidNumber }} is replaced by context run value
-  # for example {{ uidNumber }} is the uid number define in ldap server 
-  'spec' : {
-    'shareProcessNamespace': False,
-    'securityContext': {
-      'supplementalGroups': [ '{{ supplementalGroups }}' ],
-      'runAsUser': '{{ uidNumber }}',
-      'runAsGroup': '{{ gidNumber }}'
-    },
-    'tolerations': [],
-    'runtimeClassName': 'nvidia'
-  },
-  ...
-```
-
-- Update the configmap `abcdesktop-config`
-
-```
-kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
-```
-
-- Restart deployment `pyos-od`
-
-```
-kubectl rollout restart deployment pyos-od -n abcdesktop
-```
-
-- Create a new desktop pod to check the `runtimeClassName`
 
 ## Links
 
