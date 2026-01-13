@@ -5534,15 +5534,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#apply-runtimeclassname-to-abcdesktop-config-release-43" class="md-nav__link">
-    <span class="md-ellipsis">
-      Apply runtimeClassName to abcdesktop config (release &gt;= 4.3 )
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#links" class="md-nav__link">
     <span class="md-ellipsis">
       Links
@@ -5752,6 +5743,9 @@ crw-rw---- 1 root root 226, 128 Jan 12 17:57 renderD128
 - name: NVIDIA_DRIVER_CAPABILITIES
   value: all
 </code></pre></div>
+<blockquote>
+<p>The <code>NVIDIA_VISIBLE_DEVICES</code> is set to set GPU UUID.</p>
+</blockquote>
 <p>Run a debug ephemeral container in <code>nvidia-pod</code></p>
 <div class="highlight"><pre><span></span><code>kubectl debug -it nvidia-pod --image=ubuntu --target=cuda-container --profile=general --custom=custom-profile-nvidia-gpu.yaml -- nvidia-smi -L
 </code></pre></div>
@@ -5802,44 +5796,6 @@ pod &quot;nvidia-pod&quot; deleted from default namespace
 </code></pre></div>
 <h2 id="conclusion">Conclusion</h2>
 <p>Setting <code>runtimeClassName: nvidia</code> on pod manifest allows ephemeral containers to share the pod's GPU.</p>
-<h2 id="apply-runtimeclassname-to-abcdesktop-config-release-43">Apply <code>runtimeClassName</code> to abcdesktop config (release &gt;= 4.3 )</h2>
-<p>Get the <code>od.config</code> file</p>
-<p>If you don't already have the config file <code>od.config</code>, run the command line </p>
-<div class="highlight"><pre><span></span><code>kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath=&#39;{.data.od\.config}&#39; &gt; od.config
-</code></pre></div>
-<ul>
-<li>Edit <code>od.config</code> and update the dictionary <code>desktop.pod</code> to add <code>'runtimeClassName':'nvidia'</code> in <code>spec</code> and save your od.config file.</li>
-</ul>
-<div class="highlight"><pre><span></span><code>desktop.pod : { 
-  # default spec for all containers
-  # can be overwritten on dedicated container spec
-  # value inside mustrache like {{ uidNumber }} is replaced by context run value
-  # for example {{ uidNumber }} is the uid number define in ldap server 
-  &#39;spec&#39; : {
-    &#39;shareProcessNamespace&#39;: False,
-    &#39;securityContext&#39;: {
-      &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ],
-      &#39;runAsUser&#39;: &#39;{{ uidNumber }}&#39;,
-      &#39;runAsGroup&#39;: &#39;{{ gidNumber }}&#39;
-    },
-    &#39;tolerations&#39;: [],
-    &#39;runtimeClassName&#39;: &#39;nvidia&#39;
-  },
-  ...
-</code></pre></div>
-<ul>
-<li>Update the configmap <code>abcdesktop-config</code></li>
-</ul>
-<div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
-</code></pre></div>
-<ul>
-<li>Restart deployment <code>pyos-od</code></li>
-</ul>
-<div class="highlight"><pre><span></span><code>kubectl rollout restart deployment pyos-od -n abcdesktop
-</code></pre></div>
-<ul>
-<li>Create a new desktop pod to check the <code>runtimeClassName</code></li>
-</ul>
 <h2 id="links">Links</h2>
 <ul>
 <li>nvidia gpu-operator/23.6.2</li>
