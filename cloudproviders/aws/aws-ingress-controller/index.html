@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://www.abcdesktop.io/cloudproviders/aws/aws-ingress-controller/">
       
       
+        <link rel="prev" href="../aws-loadbalancer/">
+      
+      
+        <link rel="next" href="../../azure/azure/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Publish your website as a public secured service - www.abcdesktop.io</title>
+        <title>Expose using a nginx ingress controller - www.abcdesktop.io</title>
       
     
     
@@ -105,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Publish your website as a public secured service
+              Expose using a nginx ingress controller
             
           </span>
         </div>
@@ -4190,18 +4194,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -4217,7 +4223,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Cloud providers
@@ -4228,18 +4234,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_1" checked>
         
           
           <label class="md-nav__link" for="__nav_11_1" id="__nav_11_1_label" tabindex="0">
@@ -4255,7 +4263,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11_1">
             <span class="md-nav__icon md-icon"></span>
             AWS
@@ -4289,18 +4297,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_1_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_1_2" checked>
         
           
           <label class="md-nav__link" for="__nav_11_1_2" id="__nav_11_1_2_label" tabindex="0">
@@ -4316,7 +4326,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_11_1_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_11_1_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11_1_2">
             <span class="md-nav__icon md-icon"></span>
             Expose the service
@@ -4341,6 +4351,164 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Expose using a nginx ingress controller
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expose using a nginx ingress controller
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-tags-for-public-subnets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add tags for public subnets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-nginx-ingress-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy nginx ingress controller
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy nginx ingress controller">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-new-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create new record
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable HTTPS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enable HTTPS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-cert-manager-add-on-on-aws-eks-marketplace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Cert Manager add-on on AWS EKS marketplace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-production-ready-tls-certificates-for-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Production-Ready TLS Certificates for nginx
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reach-your-website-using-https-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reach your website using https protocol
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
