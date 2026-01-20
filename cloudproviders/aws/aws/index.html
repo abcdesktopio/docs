@@ -5808,9 +5808,9 @@
 </code></pre></div>
 <h2 id="run-the-abcdesktop-install-script">Run the abcdesktop install script</h2>
 <p>Download and extract the latest release automatically</p>
-<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.1.sh | bash
+<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.3.sh | bash
 </code></pre></div>
-<p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop/">Setup guide</a></p>
+<p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.3/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="connect-to-your-abcdesktop-service">Connect to your abcdesktop service</h2>
 <p>By default install script is listening on a free tcp port <code>:30443</code> and is using a <code>kubectl port-forward</code> command line to reach http web service <code>:80</code></p>
 <p>Open your web browser <code>http://locahost:30443</code></p>
@@ -5821,9 +5821,9 @@
 <p><img alt="abcdesktop for fry" src="../../img/abcdesktop-hompage-port30443-user-fry-logged.png" /></p>
 <h2 id="add-applications-to-your-desktop">Add applications to your desktop</h2>
 <p>Using the previous terminal shell, run the application install script </p>
-<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.1.sh | bash
+<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.3.sh | bash
 </code></pre></div>
-<p>To get more details about the install applications process, please read the <a href="https://www.abcdesktop.io/4.1/setup/kubernetes_abcdesktop_applications/">Setup applications guide</a></p>
+<p>To get more details about the install applications process, please read the <a href="https://www.abcdesktop.io/4.3/setup/kubernetes_abcdesktop_applications/">Setup applications guide</a></p>
 <p>Then reload the web page with the desktop of <code>Philip J. Fry</code>
 New applications are now listed in the dock of <code>plasmashell</code></p>
 <p><img alt="abcdesktop for fry with applications" src="../../img/abcdesktop-hompage-port30443-login-fry-applications.png" /></p>
