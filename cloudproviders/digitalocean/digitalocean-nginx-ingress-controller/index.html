@@ -4359,7 +4359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../aws/aws-ingress-controller/" class="md-nav__link">
+      <a href="../../aws/aws-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -4670,6 +4670,15 @@
   <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-http-router-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update http-router service
     </span>
   </a>
   
@@ -5744,6 +5753,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#update-http-router-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update http-router service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-the-nginx-ingress-controller-using-the-digitaloceans-marketplace" class="md-nav__link">
     <span class="md-ellipsis">
       Install the NGINX Ingress Controller using the digitalocean's marketplace
@@ -5868,6 +5886,46 @@
 <h2 id="overview">Overview</h2>
 <p>In this chapter we are going to, use a <code>nginx-ingress-controller</code> to host your abcdesktop service with a public IP Address, then configure dns zone file to use your own domain name, and activate TLS to secure your service.</p>
 <p><img alt="nginx-ingress-controller" src="../img/abcdesktop-nginx-ingress-controller.png" /></p>
+<h2 id="update-http-router-service">Update http-router service</h2>
+<p>When installing abcdesktop, http-router service type is <code>NodePort</code> by default, in order to expose the service through an ingress controller you will need to change the service type from <code>NodePort</code> to <code>ClusterIP</code>.</p>
+<p>If you perform a get services command you will see the <code>NodePort</code> type</p>
+<div class="highlight"><pre><span></span><code>kubectl get svc http-router -n abcdesktop
+NAME          TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
+http-router   NodePort   10.0.170.21   &lt;none&gt;        80:30443/TCP   5m31s
+</code></pre></div>
+<p>To change it, you will first need to delete the service</p>
+<div class="highlight"><pre><span></span><code>kubectl delete service http-router -n abcdesktop
+service &quot;http-router&quot; deleted
+</code></pre></div>
+<p>Then paste the following lines in a new <code>http-router.yaml</code> file</p>
+<div class="highlight"><pre><span></span><code>kind: Service
+apiVersion: v1
+metadata:
+  name: http-router
+  labels:
+    abcdesktop/role: router-od
+spec:
+  selector:
+    run: router-od
+  ports:
+  - protocol: TCP
+    port: 443
+    targetPort: 443
+    name: https
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    name: http
+</code></pre></div>
+<p>Then Create your new <code>service/http-router</code></p>
+<div class="highlight"><pre><span></span><code>kubectl apply -f http-router.yaml -n abcdesktop
+service/http-router created
+</code></pre></div>
+<p>Now check that the service type is <code>ClusterIP</code></p>
+<div class="highlight"><pre><span></span><code>kubectl get svc http-router -n abcdesktop
+NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+http-router   ClusterIP   10.0.132.230   &lt;none&gt;        443/TCP,80/TCP   5s
+</code></pre></div>
 <h2 id="install-the-nginx-ingress-controller-using-the-digitaloceans-marketplace">Install the NGINX Ingress Controller using the digitalocean's marketplace</h2>
 <p>Navigate to your cluster in the Kubernetes section of the digitalocean's console, then click to the Marketplace tab. In the recommended apps section, select <code>NGINX Ingress Controller</code> and then click Install.</p>
 <p><img alt="nginx-ingress-controller-marketplace" src="../img/nginx-ingress-controller-market.png" /></p>
@@ -5923,7 +5981,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: http-route
+                name: http-router
                 port:
                   number: 80
   ingressClassName: nginx
@@ -5949,7 +6007,7 @@ ingress-abcdesktop   nginx   hello.digitalocean.pepins.net   129.212.134.86   80
 <p>The spec section of the manifest contains a list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend service. The manifest has the following fields:</p>
 <ul>
 <li>
-<p>host specifies the fully qualified domain name of a network host, for example echo.<your-domain-name>.</p>
+<p>host specifies the fully qualified domain name of a network host, for example echo.<code>&lt;your-domain-name&gt;</code>.</p>
 </li>
 <li>
 <p>http contains the list of HTTP selectors pointing to backends.</p>
@@ -5960,8 +6018,6 @@ ingress-abcdesktop   nginx   hello.digitalocean.pepins.net   129.212.134.86   80
 </ul>
 <p>In the example above, the ingress resource tells nginx to route each HTTP request that is using the / prefix for the <code>hello.digitalocean.pepins.net</code> host, to the <code>route</code> backend service running on port 80. In other words, every time you make a call to http://hello.digitalocean.pepins.net/, the request and reply are served by the echo backend service running on port 80.</p>
 <p>You can have multiple ingress controllers per cluster. The ingressClassName field in the manifest differentiates between multiple ingress controllers present in your cluster. Although you can define multiple rules for different hosts and paths in a single ingress resource.</p>
-<p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol.</p>
-<p>As you can see, your website is <code>Not Secured</code>, we are going to add X509 SSL certificate to secure your service.</p>
 <p><img alt="reach your website from your new name" src="../img/hello_http.png" /></p>
 <blockquote>
 <p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol.</p>
@@ -6023,7 +6079,7 @@ orders.acme.cert-manager.io           2025-10-14T12:08:15Z
 </code></pre></div>
 <h3 id="configure-production-ready-tls-certificates-for-nginx">Configure Production-Ready TLS Certificates for nginx</h3>
 <p>You can issue the certificate using an Issuer. Configure a certificate issuers resource for Cert-Manager, which fetches the TLS certificate for nginx to use. The certificate issuer uses the HTTP-01 challenge provider to accomplish this task.</p>
-<p>Create the following manifest, replace <code>&lt;your-valid-email-address&gt;</code> with your own value, and save it as cert-manager-issuer.yaml :</p>
+<p>Create the following manifest, replace <code>&lt;your-valid-email-address&gt;</code> with your own value, and save it as <code>cert-manager-issuer.yaml</code> :</p>
 <div class="highlight"><pre><span></span><code>apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
