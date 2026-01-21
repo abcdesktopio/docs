@@ -45,6 +45,63 @@ You should read on stdout
 
 ```
 
+## Update http-router service
+
+When installing abcdesktop, http-router service type is `NodePort` by default, in order to expose the service through an ingress controller you will need to change the service type from `NodePort` to `ClusterIP`.
+
+If you perform a get services command you will see the `NodePort` type
+
+``` 
+kubectl get svc http-router -n abcdesktop
+NAME          TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
+http-router   NodePort   10.0.170.21   <none>        80:30443/TCP   5m31s
+```
+
+To change it, you will first need to delete the service
+
+```
+kubectl delete service http-router -n abcdesktop
+service "http-router" deleted
+```
+
+Then paste the following lines in a new `http-router.yaml` file
+
+```
+kind: Service
+apiVersion: v1
+metadata:
+  name: http-router
+  labels:
+    abcdesktop/role: router-od
+spec:
+  selector:
+    run: router-od
+  ports:
+  - protocol: TCP
+    port: 443
+    targetPort: 443
+    name: https
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    name: http
+```
+
+Then Create your new `service/http-router`
+
+```
+kubectl apply -f http-router.yaml -n abcdesktop
+service/http-router created
+```
+
+Now check that the service type is `ClusterIP`
+
+```
+kubectl get svc http-router -n abcdesktop
+NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+http-router   ClusterIP   10.0.132.230   <none>        443/TCP,80/TCP   5s
+```
+
 ## Deploy nginx ingress controller
 
 You will now deploy a nginx ingress controller on your cluster using `helm`.
@@ -81,7 +138,6 @@ Now you can run the previous command until you get an `EXTERNAL-IP`
 kubectl get svc ingress-nginx-controller -n ingress-nginx
 NAME                                 TYPE           CLUSTER-IP      EXTERNAL-IP                                                                     PORT(S)                      AGE
 ingress-nginx-controller             LoadBalancer   172.20.87.254   k8s-ingressn-ingressn-dc31c08978-b7ef1bca03cfe45b.elb.us-east-1.amazonaws.com   80:32337/TCP,443:30414/TCP   3m
-
 ```
 
 ### Create new record
@@ -167,12 +223,84 @@ If you go to your Route 53 web console, you should see the record you juste adde
 
 ![aws record added](img/record-added.png)
 
-From your local device, you can open a web browser
+## Configure NGINX Ingress Rules for Backend Services 
+
+In this step, you expose the backend applications to the outside world by telling nginx what host each service maps to. You define a rule in nginx to associate a host to a abcdesktop route backend service.
+
+Create an ingress resource for NGNIX using the abcdesktop service and save it as `abcdesktop_host.yaml`
+You need to update this manifest with your own FQDN, replace `hello.aws.pepins.net` by your own values.
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-abcdesktop
+  namespace: abcdesktop
+spec:
+  rules:
+    - host: hello.aws.pepins.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: http-router
+                port:
+                  number: 80
+  ingressClassName: nginx
+```
+
+Apply the Ingress yaml file
+
+```
+kubectl apply -f abcdesktop_host.yaml -n abcdesktop
+```
+
+You should read
+
+```
+ingress.networking.k8s.io/ingress-abcdesktop created
+```
+
+
+Verify the ingress resources:
+
+```
+kubectl get ingress -n abcdesktop
+```
+
+The output looks similar to the following:
+
+Wait fee seconds while the `ADDRESS` field is empty  
+```
+NAME                 CLASS   HOSTS                           ADDRESS   PORTS   AGE
+ingress-abcdesktop   nginx   hello.aws.pepins.net                      80      24s
+```
+
+When you obtain an `IP ADDRESS`
+
+```
+NAME                 CLASS   HOSTS                           ADDRESS                                                                         PORTS   AGE
+ingress-abcdesktop   nginx   hello.aws.pepins.net            k8s-ingressn-ingressn-dc31c08978-b7ef1bca03cfe45b.elb.us-east-1.amazonaws.com   80      3m13s
+```
+
+
+The spec section of the manifest contains a list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend service. The manifest has the following fields:
+
+- host specifies the fully qualified domain name of a network host, for example echo.`<your-domain-name>`.
+
+- http contains the list of HTTP selectors pointing to backends.
+
+- paths provides a collection of paths that map requests to backends.
+
+In the example above, the ingress resource tells nginx to route each HTTP request that is using the / prefix for the `hello.aws.pepins.net` host, to the `route` backend service running on port 80. In other words, every time you make a call to http://hello.aws.pepins.net/, the request and reply are served by the echo backend service running on port 80.
+
+You can have multiple ingress controllers per cluster. The ingressClassName field in the manifest differentiates between multiple ingress controllers present in your cluster. Although you can define multiple rules for different hosts and paths in a single ingress resource.
 
 ![reach your website from your new name](img/http-dns-connect.png)
 
-
-Web browser doesn't allow usage of websocket without secure protocol. To login you need `https` protocol.
+> Web browser doesn't allow usage of websocket without secure protocol. To login you need `https` protocol.
 
 As you can see, your website is `Not Secured`, we are going to add X509 SSL certificate to secure your service.
 
@@ -249,7 +377,7 @@ orders.acme.cert-manager.io           2026-01-19T10:23:33Z
 
 You can issue the certificate using an Issuer. Configure a certificate issuers resource for Cert-Manager, which fetches the TLS certificate for nginx to use. The certificate issuer uses the HTTP-01 challenge provider to accomplish this task.
 
-Create the following manifest, replace `<your-valid-email-address>` with your own value, and save it as cert-manager-issuer.yaml :
+Create the following manifest, replace `<your-valid-email-address>` with your own value, and save it as `cert-manager-issuer.yaml` :
 
 ```
 apiVersion: cert-manager.io/v1
