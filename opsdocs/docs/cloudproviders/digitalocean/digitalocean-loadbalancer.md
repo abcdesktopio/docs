@@ -213,13 +213,13 @@ secret/http-router-certificat created
 
 ## Update `http-router` ConfigMap to use the new `http-router-certificat` secret
 
-Download [abcdesktop-routehttp-config.4.2.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.2.yaml) file 
+Download [abcdesktop-routehttp-config.4.3.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.3.yaml) file 
 
 ```
-wget https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.2.yaml
+wget https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.3.yaml
 ```
 
-Open your `abcdesktop-routehttp-config.4.2.yaml` file, look for the ConfigMap `abcdesktop-routehttp-config`.
+Open your `abcdesktop-routehttp-config.4.3.yaml` file, look for the ConfigMap `abcdesktop-routehttp-config`.
 
 Remove the comments to enable https and change the value `YOUR_SERVER_NAME_AND_DOMAIN` by your own value. 
 
@@ -257,20 +257,20 @@ For example
 Apply your new nginx confguration file
 
 ```
-kubectl apply -f abcdesktop-routehttp-config.4.2.yaml -n abcdesktop
+kubectl apply -f abcdesktop-routehttp-config.4.3.yaml -n abcdesktop
 ```
  
 ## Update `deployment` http-router
  
 Update the `deployment` route to add certificat ssl entry
 
-The `abcdesktop-deployment-routehttps.4.2.yaml` file  adds `mountPath: /etc/nginx/ssl` to `secretName: http-router-certificat`
+The `abcdesktop-deployment-routehttps.4.3.yaml` file  adds `mountPath: /etc/nginx/ssl` to `secretName: http-router-certificat`
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.2.yaml -n abcdesktop
+kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.3.yaml -n abcdesktop
 ```
 
-## Reach your website using `https`protocol 
+## Reach your website using `https` protocol 
 
 You can now connect to your abcdesktop desktop pulic web site using `https` protocol. 
 
