@@ -4799,9 +4799,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reach-your-website-using-httpsprotocol" class="md-nav__link">
+  <a href="#reach-your-website-using-https-protocol" class="md-nav__link">
     <span class="md-ellipsis">
-      Reach your website using httpsprotocol
+      Reach your website using https protocol
     </span>
   </a>
   
@@ -5869,9 +5869,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reach-your-website-using-httpsprotocol" class="md-nav__link">
+  <a href="#reach-your-website-using-https-protocol" class="md-nav__link">
     <span class="md-ellipsis">
-      Reach your website using httpsprotocol
+      Reach your website using https protocol
     </span>
   </a>
   
@@ -6032,10 +6032,10 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
 <div class="highlight"><pre><span></span><code>secret/http-router-certificat created
 </code></pre></div>
 <h2 id="update-http-router-configmap-to-use-the-new-http-router-certificat-secret">Update <code>http-router</code> ConfigMap to use the new <code>http-router-certificat</code> secret</h2>
-<p>Download <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.2.yaml">abcdesktop-routehttp-config.4.2.yaml</a> file </p>
-<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.2.yaml
+<p>Download <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.3.yaml">abcdesktop-routehttp-config.4.3.yaml</a> file </p>
+<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.3.yaml
 </code></pre></div>
-<p>Open your <code>abcdesktop-routehttp-config.4.2.yaml</code> file, look for the ConfigMap <code>abcdesktop-routehttp-config</code>.</p>
+<p>Open your <code>abcdesktop-routehttp-config.4.3.yaml</code> file, look for the ConfigMap <code>abcdesktop-routehttp-config</code>.</p>
 <p>Remove the comments to enable https and change the value <code>YOUR_SERVER_NAME_AND_DOMAIN</code> by your own value. </p>
 <div class="highlight"><pre><span></span><code> # nginx server config
  server {
@@ -6064,14 +6064,14 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
      ssl_certificate_key /etc/nginx/ssl/tls.key;
 </code></pre></div>
 <p>Apply your new nginx confguration file</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop-routehttp-config.4.2.yaml -n abcdesktop
+<div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop-routehttp-config.4.3.yaml -n abcdesktop
 </code></pre></div>
 <h2 id="update-deployment-http-router">Update <code>deployment</code> http-router</h2>
 <p>Update the <code>deployment</code> route to add certificat ssl entry</p>
-<p>The <code>abcdesktop-deployment-routehttps.4.2.yaml</code> file  adds <code>mountPath: /etc/nginx/ssl</code> to <code>secretName: http-router-certificat</code></p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.2.yaml -n abcdesktop
+<p>The <code>abcdesktop-deployment-routehttps.4.3.yaml</code> file  adds <code>mountPath: /etc/nginx/ssl</code> to <code>secretName: http-router-certificat</code></p>
+<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.3.yaml -n abcdesktop
 </code></pre></div>
-<h2 id="reach-your-website-using-httpsprotocol">Reach your website using <code>https</code>protocol</h2>
+<h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
 <p>You can now connect to your abcdesktop desktop pulic web site using <code>https</code> protocol. </p>
 <p><img alt="reach your website using https" src="../img/hello_https.png" /></p>
 <p>The status is secured and we get some informations from the certificate</p>
