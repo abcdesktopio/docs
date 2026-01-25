@@ -6287,6 +6287,11 @@ fry-06c5f   4/4     Running   0          3m24s
 <p>Check that your file system's permissions are set to your users</p>
 </blockquote>
 <p>The volume <code>hostpath-mntmyproject-fry</code> is also mounted for applications ephemeral containers and pods.</p>
+<ul>
+<li>Start the <code>webshell</code> application in the web interface to list files in <code>/mnt/testmyproject</code>.</li>
+</ul>
+<p>Inside the webshell terminal, run the command <code>ls -la /mnt/testmyproject</code></p>
+<p><img alt="/mnt/testmyproject files" src="../img/list_hostpath_files.png" /></p>
 <blockquote>
 <p>You added a new volume to your pods and your application.</p>
 </blockquote>
