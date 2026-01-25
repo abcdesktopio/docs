@@ -8,9 +8,9 @@ The `route` image is an `openresty` http server, based on `nginx` with embeded `
 
 ## route configuration
 
-* The nginx [nginx.conf]([https://github.com/abcdesktopio/oc.nginx/blob/main/etc/nginx/nginx.conf](https://github.com/abcdesktopio/route/blob/4.1/etc/nginx/nginx.conf)) configuration file
-* The routing table [route.conf]([https://github.com/abcdesktopio/oc.nginx/blob/main/etc/nginx/route.conf](https://github.com/abcdesktopio/route/blob/4.1/etc/nginx/route.conf)) configuration file
-* The configuration file for HTTP headers  [proxy.conf](https://github.com/abcdesktopio/route/blob/4.1/etc/nginx/proxy.conf)
+* The nginx [nginx.conf](https://github.com/abcdesktopio/route/blob/4.3/etc/nginx/nginx.conf) configuration file
+* The routing table [route.conf](https://github.com/abcdesktopio/route/blob/4.3/etc/nginx/route.conf) configuration file
+* The configuration file for HTTP headers  [proxy.conf](https://github.com/abcdesktopio/route/blob/4.3/etc/nginx/proxy.conf)
 
 ### reverse proxy routes
 

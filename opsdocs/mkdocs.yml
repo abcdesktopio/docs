@@ -180,8 +180,14 @@ nav:
 - Cloud providers :
   - AWS :
     - Install on Amazon AWS with Elastic Kubernetes Service: cloudproviders/aws/aws.md 
+    - Expose the service :
+        - Expose using a load balancer: cloudproviders/aws/aws-loadbalancer.md
+        - Expose using a nginx ingress controller: cloudproviders/aws/aws-nginx-ingress-controller.md
   - AZURE : 
     - Install on Microsoft AZURE Kubernetes service: cloudproviders/azure/azure.md
+    - Expose the service :
+        - Expose using a load balancer: cloudproviders/azure/azure-loadbalancer.md
+        - Expose using a nginx ingress controller: cloudproviders/azure/azure-nginx-ingress-controller.md
   - DigitalOcean :
     - Install on DigitalOcean Kubernetes cluster: cloudproviders/digitalocean/digitalocean.md
     - Expose the service :
@@ -192,6 +198,11 @@ nav:
     - Expose the service :
         - Expose using a load balancer: cloudproviders/gcp/gcp-loadbalancer.md
         - Expose using a GKE ingress controller: cloudproviders/gcp/gcp-gke-ingress-controller.md
+  - OVH :
+    - Install on OVHcloud Kubernetes cluster : cloudproviders/ovh/ovh.md
+    - Expose the service :
+        - Expose using a load balancer: cloudproviders/ovh/ovh-loadbalancer.md
+        - Expose using a nginx ingress controller: cloudproviders/ovh/ovh-nginx-ingress-controller.md
 - Issue : 'https://github.com/abcdesktopio/conf/issues'
 - Sessions :
   - FRnOG 42: frnog
