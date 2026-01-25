@@ -201,4 +201,11 @@ A new `Mount` is defined as `/mnt/testmyproject from hostpath-mntmyproject-fry (
 
 The volume `hostpath-mntmyproject-fry` is also mounted for applications ephemeral containers and pods.
 
+- Start the `webshell` application in the web interface to list files in `/mnt/testmyproject`.
+
+Inside the webshell terminal, run the command `ls -la /mnt/testmyproject`
+
+![/mnt/testmyproject files](img/list_hostpath_files.png )
+
+
 > You added a new volume to your pods and your application.
