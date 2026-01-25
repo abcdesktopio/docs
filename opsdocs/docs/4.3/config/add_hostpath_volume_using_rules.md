@@ -162,6 +162,10 @@ fry-06c5f   4/4     Running   0          3m24s
 
 - Describe the `Philip J. Fry` pod, and look for the `Mounts` and `Volumes` entries
 
+```
+kubectl desribe pods fry-06c5f -n abcdesktop
+```
+
 The mount for `hostpath-mntmyproject-fry` is defined to `/mnt/testmyproject`
 
 ```
