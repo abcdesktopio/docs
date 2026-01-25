@@ -6258,6 +6258,8 @@ fry-06c5f   4/4     Running   0          3m24s
 <ul>
 <li>Describe the <code>Philip J. Fry</code> pod, and look for the <code>Mounts</code> and <code>Volumes</code> entries</li>
 </ul>
+<div class="highlight"><pre><span></span><code>kubectl desribe pods fry-06c5f -n abcdesktop
+</code></pre></div>
 <p>The mount for <code>hostpath-mntmyproject-fry</code> is defined to <code>/mnt/testmyproject</code></p>
 <div class="highlight"><pre><span></span><code>    Mounts:
       /etc/sudoers.d from sudoers (rw)
