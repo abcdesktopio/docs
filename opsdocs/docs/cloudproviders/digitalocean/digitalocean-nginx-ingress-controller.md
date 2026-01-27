@@ -365,6 +365,7 @@ You can also add dedicated `nginx.ingress.kubernetes.io` annotations to increase
 Replace `hello.digitalocean.pepins.net` by own FQDN
 
 ```
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-abcdesktop
