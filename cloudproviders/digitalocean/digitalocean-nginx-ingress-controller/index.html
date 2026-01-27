@@ -6509,7 +6509,8 @@ letsencrypt-nginx   True    7s
 <p>Next, configure each nginx ingress resource to use TLS. Open the previous <code>abcdesktop_host.yaml</code> manifest you created previously for the route application, add the <code>annotations</code> and <code>tls</code> sections shown below, and save the <code>abcdesktop_host.yaml</code> file:
 You can also add dedicated <code>nginx.ingress.kubernetes.io</code> annotations to increase default timeout values.
 Replace <code>hello.digitalocean.pepins.net</code> by own FQDN</p>
-<div class="highlight"><pre><span></span><code>kind: Ingress
+<div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: ingress-abcdesktop
   annotations:
