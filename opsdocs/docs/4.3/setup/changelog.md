@@ -6,6 +6,7 @@ The prominent changes for this release are:
 * remove endpoints resources 
 * Migration from mongo:4.4 to mongo:8.0 safe
 * Add replicaset `rs0` support for mongodb
+* Add `tigervncserver 1.16.0`
 * Add support of libnss-extrausers for `passwd`, `group` and `shadow` files, for `oc.user` container and for all applications.
   * default `passwd`, `group`, `shadow` and `gshadow` are NOT updated anymore. The new user are provisioned in `/var/lib/extrausers`
   > No need to define symbolic link to `passwd`, `group`, `shadow` and `gshadow` any more
