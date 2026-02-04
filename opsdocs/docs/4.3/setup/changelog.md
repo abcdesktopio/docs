@@ -5,6 +5,7 @@ The prominent changes for this release are:
 
 * remove endpoints resources 
 * Migration from mongo:4.4 to mongo:8.0 safe
+* mongodb is a statefulset
 * Add replicaset `rs0` support for mongodb
 * Add `tigervncserver 1.16.0`
 * Add support of libnss-extrausers for `passwd`, `group` and `shadow` files, for `oc.user` container and for all applications.
