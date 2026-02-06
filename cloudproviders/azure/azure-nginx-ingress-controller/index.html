@@ -4813,6 +4813,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#see-real-client-ip-address-behind-ingress-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      See real client IP address behind ingress controller
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -6188,6 +6197,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#see-real-client-ip-address-behind-ingress-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      See real client IP address behind ingress controller
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -6510,6 +6528,75 @@ strict-transport-security: max-age=31536000; includeSubDomains
 <p><img alt="reach your website using https" src="../img/hello-https.png" /></p>
 <p>The status is secured and we get some informations from the certificate</p>
 <p><img alt="reach your website using https" src="../img/certificate-ingress-ok.png" /></p>
+<h2 id="see-real-client-ip-address-behind-ingress-controller">See real client IP address behind ingress controller</h2>
+<p>Now that your application is publically exposed, maybe you are wondering about security and traffic inside your cluster.<br />
+For example, the console module of abcdesktop should not be accessible to everyone as it is designed to be an administrator console. That is why when you install abcdesktop there is a pool of permit IPs that is specify in the od.config file.</p>
+<div class="highlight"><pre><span></span><code>ManagerController&#39;: { &#39;permitip&#39;: [ &#39;10.0.0.0/8&#39;, &#39;172.16.0.0/12&#39;, &#39;192.168.0.0/16&#39;, &#39;fd00::/8&#39;, &#39;169.254.0.0/16&#39;, &#39;127.0.0.0/8&#39; ] }
+</code></pre></div>
+<p>By default the configuration only permit private network defined in <a href="https://datatracker.ietf.org/doc/html/rfc1918">rfc1918</a> and <a href="https://datatracker.ietf.org/doc/html/rfc4193">rfc4193</a>. So as your service is publically exposed, none of your visitors should be able to access to console. But when you try, you will actually be able to play with console normally, which is not the expected behaviour.</p>
+<p><img alt="access console ok" src="../../img/access_console.png" /></p>
+<p>And when you check Pyos logs you will see why console behaves like that.</p>
+<div class="highlight"><pre><span></span><code>kubectl get pods -n abcdesktop
+NAME                            READY   STATUS    RESTARTS   AGE
+console-od-5cd84fdd69-zbjxf     1/1     Running   0          11m
+memcached-od-6ccd5b5f67-wwnw8   1/1     Running   0          11m
+mongodb-od-0                    2/2     Running   0          11m
+nginx-od-784885cbd5-b7dqx       1/1     Running   0          11m
+openldap-od-bb485cb4b-2ltm8     1/1     Running   0          11m
+pyos-od-5c5cfdbfc8-t9r9m        1/1     Running   0          11m
+router-od-6b7456b789-dsqdh      1/1     Running   0          11m
+speedtest-od-8686c67749-hncft   1/1     Running   0          11m
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>kubectl exec -it pyos-od-5c5cfdbfc8-t9r9m -n abcdesktop -- bash
+Defaulted container &quot;pyos&quot; out of: pyos, wait-for-mongo (init)
+pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log 
+2026-02-06 16:03:51 abcpool1-node-fa2594 139923622185784 base_controller [DEBUG  ] controllers.manager_controller.ManagerController.apifilter:anonymous 
+2026-02-06 16:03:51 abcpool1-node-fa2594 139923622185784 base_controller [DEBUG  ] controllers.manager_controller.ManagerController.ipfilter:anonymous 
+2026-02-06 16:03:51 abcpool1-node-fa2594 139923622185784 base_controller [DEBUG  ] controllers.manager_controller.ManagerController.ipfilter:anonymous ipsource 10.2.1.0 is permited in network 10.0.0.0/8
+2026-02-06 16:03:51 abcpool1-node-fa2594 139923622185784 manager_controller [DEBUG  ] controllers.manager_controller.ManagerController.handle_desktop_GET:anonymous 
+2026-02-06 16:03:51 abcpool1-node-fa2594 139923622185784 orchestrator [DEBUG  ] oc.od.orchestrator.ODOrchestratorKubernetes.__init__:anonymous load_incluster_config done
+2026-02-06 16:03:51 abcpool1-node-fa2594 139923622185784 od [INFO   ] __main__.trace_response:anonymous /manager/desktop b&#39;[]&#39;
+2026-02-06 16:03:55 abcpool1-node-fa2594 139923627645752 od [INFO   ] __main__.trace_request:anonymous /healthz
+2026-02-06 16:04:05 abcpool1-node-fa2594 139923618954040 od [INFO   ] __main__.trace_request:anonymous /healthz
+2026-02-06 16:04:15 abcpool1-node-fa2594 139923617876792 od [INFO   ] __main__.trace_request:anonymous /healthz
+2026-02-06 16:04:25 abcpool1-node-fa2594 139923621108536 od [INFO   ] __main__.trace_request:anonymous /healthz
+</code></pre></div>
+<p>As you can see on the logs, the source IP address seen by pyos is a private IP address like <code>10.X.X.X</code> (or in the subnet you defined as internal to your cluster) which is in the pool of permit IP addresses.  </p>
+<p>That happens because the nginx ingress controller we set up earlier does not forward the client public IP address and balance the request with its own IP address in the cluster. So Router and Pyos both see the IP address of the ingress controller loadbalancer.</p>
+<p>To fix that, we have to update te configuration of our nginx ingress controller. Please paste the following lines in a <code>patch-ingress.yaml</code> file</p>
+<div class="highlight"><pre><span></span><code>controller:
+  service:
+    externalTrafficPolicy: &quot;Local&quot;
+    annotations:
+      service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: &quot;/healtz&quot;
+  config:
+    use-proxy-protocol: &quot;false&quot;
+    real-ip-header: X-Real-IP
+    proxy-real-ip-cidr: &quot;10.0.0.0/8&quot;
+    compute-full-forwarded-for: &quot;true&quot;
+    use-forwarded-headers: &quot;true&quot;
+    log-format-upstream: &#39;{&quot;time&quot;: &quot;$time_iso8601&quot;, &quot;remote_addr&quot;: &quot;$proxy_protocol_addr&quot;, &quot;x_forwarded_for&quot;: &quot;$proxy_add_x_forwarded_for&quot;, &quot;http_x_forwarded-for&quot;: &quot;$http_x_forwarded_for&quot;, &quot;request_id&quot;: &quot;$req_id&quot;, &quot;remote_user&quot;: &quot;$remote_user&quot;, &quot;bytes_sent&quot;: $bytes_sent, &quot;request_time&quot;: $request_time, &quot;status&quot;: $status, &quot;vhost&quot;: &quot;$host&quot;, &quot;request_proto&quot;: &quot;$server_protocol&quot;, &quot;path&quot;: &quot;$uri&quot;, &quot;request_query&quot;: &quot;$args&quot;, &quot;request_length&quot;: $request_length, &quot;method&quot;: &quot;$request_method&quot;, &quot;http_referrer&quot;: &quot;$http_referer&quot;,  &quot;http_user_agent&quot;: &quot;$http_user_agent&quot; }&#39;
+</code></pre></div>
+<p>Now run the following command to apply it</p>
+<div class="highlight"><pre><span></span><code>helm upgrade ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx -f patch-loadbalancer.yaml
+</code></pre></div>
+<p>You can now retry to connect to console, you should see an error message on the top right</p>
+<p><img alt="access console ok" src="../../img/console_access_denied.png" /></p>
+<p>You can also check the logs of Pyos, you should see your public IP address as source IP</p>
+<div class="highlight"><pre><span></span><code>kubectl exec -it pyos-od-5c5cfdbfc8-t9r9m -n abcdesktop -- bash
+Defaulted container &quot;pyos&quot; out of: pyos, wait-for-mongo (init)
+pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log 
+2026-02-06 16:25:25 abcpool1-node-fa2594 139923622185784 od [INFO   ] __main__.trace_request:anonymous /healthz
+2026-02-06 16:25:35 abcpool1-node-fa2594 139923627645752 od [INFO   ] __main__.trace_request:anonymous /healthz
+2026-02-06 16:25:37 abcpool1-node-fa2594 139923618954040 od [INFO   ] __main__.trace_request:anonymous /manager/healtz
+2026-02-06 16:25:37 abcpool1-node-fa2594 139923618954040 base_controller [DEBUG  ] controllers.manager_controller.ManagerController.apifilter:anonymous 
+2026-02-06 16:25:37 abcpool1-node-fa2594 139923618954040 base_controller [DEBUG  ] controllers.manager_controller.ManagerController.ipfilter:anonymous 
+2026-02-06 16:25:37 abcpool1-node-fa2594 139923618954040 base_controller [INFO   ] controllers.manager_controller.ManagerController.ipfilter:anonymous ipsource &lt;your_public_ip&gt; access is denied, not in network list [IPNetwork(&#39;10.0.0.0/8&#39;), IPNetwork(&#39;172.16.0.0/12&#39;), IPNetwork(&#39;192.168.0.0/16&#39;), IPNetwork(&#39;fd00::/8&#39;), IPNetwork(&#39;169.254.0.0/16&#39;), IPNetwork(&#39;127.0.0.0/8&#39;)]
+2026-02-06 16:25:37 abcpool1-node-fa2594 139923618954040 base_controller [ERROR  ] controllers.manager_controller.ManagerController.raise_http_error_message:anonymous 403.7 - IP address access denied
+2026-02-06 16:25:37 abcpool1-node-fa2594 139923618954040 od [INFO   ] __main__.trace_response:anonymous /manager/healtz b&#39;{&quot;status&quot;: 403, &quot;message&quot;: &quot;403.7 - IP address access denied&quot;}&#39;
+2026-02-06 16:25:45 abcpool1-node-fa2594 139923617876792 od [INFO   ] __main__.trace_request:anonymous /healthz
+2026-02-06 16:25:55 abcpool1-node-fa2594 139923621108536 od [INFO   ] __main__.trace_request:anonymous /healthz
+</code></pre></div>
 
 
 
