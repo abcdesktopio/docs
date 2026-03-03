@@ -12,9 +12,8 @@ The recommended distrubution is `Ubuntu 24.04.2 LTS`
 
 ### MacOS/X
 
-Use Docker Desktop with kubernetes, https://www.docker.com/products/docker-desktop/
+Use [Docker Desktop](https://www.docker.com/products/docker-desktop/) with kubernetes
 
 ### Microsoft Windows
 
-Use Docker Desktop with kubernetes, https://www.docker.com/products/docker-desktop/
-
+Use [Docker Desktop](https://www.docker.com/products/docker-desktop/) with kubernetes
