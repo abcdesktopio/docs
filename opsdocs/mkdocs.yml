@@ -1,0 +1,87 @@
+theme: 
+  name: material
+  highlightjs: true
+  logo: /img/abcdesktop.svg
+  favicon: /img/abcdesktop128x128.ico
+  hljs_languages:
+    - bash
+    - yaml
+    - javascript
+    - python
+  features:
+    - content.action.edit
+    - content.code.copy
+plugins:
+    - search
+extra:
+  abcdesktop:
+    latest_release: !ENV [ABCDESKTOP_LATEST_RELEASE, '4.4']
+  analytics:
+    provider: google
+    property: G-TN9YC7J01Z
+markdown_extensions:
+  - attr_list
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+site_name: abcdesktop.pepins.net
+repo_url: https://github.com/abcdesktopio/newdocs
+repo_name: abcdesktopio/newdocs
+site_url: https://abcdesktop.pepins.net
+edit_uri: 'edit/main/opsdocs/docs'
+nav:
+- Home: index.md
+- Requirements : requirements.md
+- Quick Start :
+  - Install :
+    - Bash script: franck.md
+    - Helm: franck.md
+  - Install Applications:
+    - Overview:  franck.md
+    - List all apps:  franck.md
+    - Console : matteo.md
+  - Uninstall : franck.md
+- Advanced : 
+  - Platform:
+    - AWS: cloudproviders/aws/aws.md
+    - AZURE: cloudproviders/azure.md
+    - Digital Ocean: cloudproviders/digitalocean.md
+    - GCP: cloudproviders/gcp.md
+    - Kind: jf.md
+    - Kubernetes: jf.md 
+    - MiniKube: franck.md
+    - OVH: cloudproviders/ovh.md
+  - Install Applications:
+    - Create your own application: alex.md
+  - Network Policy:
+    - Install : matteo.md
+    - Netpol: matteo.md
+    - Uninstall: matteo.md 
+  - Storage:
+    - PV: matteo.md
+    - PVC: matteo.md
+    - HostPath: matteo.md
+    - Shared Volume: matteo.md
+  - Rules and labels:
+    - Rules: alex.md
+    - Lables: alex.md
+  - Authentication :
+    - OAuth: alex.md
+    - LDAP: alex.md
+    - Anonymous: alex.md
+- Contribute :
+  - Overview: alex.md
+  - Services:
+    - Mongo: franck.md
+    - Console: matteo.md
+    - Pyos: alex.md
+    - Router: alex.md
+    - Website: matteo.md
+  - User Pod:
+    - Graphical: alex.md
+    - Sound: alex.md
+    - Cups: alex.md
+    - Filer: alex.md
+- FAQ: faq.md 
