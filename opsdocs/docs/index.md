@@ -52,7 +52,7 @@ You can watch the youtube video sample. This video describes the Quick installat
 <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 
-Add the `helm` repo and then install it on Linux or macOS or read the step by step installation process [abcdesktop for kubernetes](/4.1/setup/kubernetes_abcdesktop)
+Add the `helm` repo and then install it on Linux or macOS or read the step by step installation process [abcdesktop for kubernetes](install/4.4/helm.md)
 
 <div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="false" data-stars="false" data-responsive="false"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div><script async src="https://artifacthub.io/artifacthub-widget.js"></script>
 
@@ -120,14 +120,14 @@ abcdesktop.io uses many modern web technologies. However these are the minimum v
 
 #### Copy and Paste features
 
-To fully use `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, Chromium or  Microsoft Edge Chromium. The `copy and paste` feature is also supported on Firefox with a [dedicated abcdesktop extension](/common/firefox-extension).
+To fully use `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, Chromium or  Microsoft Edge Chromium. The `copy and paste` feature is also supported on Firefox with a [dedicated abcdesktop extension](common/firefox-extension.md).
 
 | Web browser      | Clipboard sync                 |
 |------------------|-------------------------------------|
 |  Chrome     | Yes, built in support |
 |  Chromium     | Yes, built in support  |
 |  Microsoft Edge Chromium     | Yes, built in support  |
-|  Firefox       | Yes, install the [dedicated abcdesktop extension](/common/firefox-extension)| 
+|  Firefox       | Yes, install the [dedicated abcdesktop extension](common/firefox-extension.md)| 
 |  Safari       | No, the clipboard access is not allowed by the user agent or the platform in the current context, possibly because the user denied permission| 
 
 ### Not supported web browser

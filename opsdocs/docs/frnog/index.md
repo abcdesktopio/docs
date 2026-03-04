@@ -2,7 +2,7 @@
 
 ![FRNOG logo](img/frnog.png)
 
-People interested in security, research, and internet operation in France are gathered by the FRench Network Operators Group ([FRnOG](www.frnog.org)) for information exchange.
+People interested in security, research, and internet operation in France are gathered by the FRench Network Operators Group ([FRnOG](http://www.frnog.org)) for information exchange.
 
 Chapters describe documents for the session on Friday, October 24, 2025 [FRnOG 42](https://www.frnog.org/?page=frnog42)
 

@@ -36,53 +36,68 @@ nav:
 - Requirements : requirements.md
 - Quick Start :
   - Install :
-    - Bash script: franck.md
-    - Helm: franck.md
+    - Bash script: install/4.4/bash.md
+    - Helm: install/4.4/helm.md
   - Install Applications:
-    - Overview:  franck.md
-    - List all apps:  franck.md
-    - Console : matteo.md
-  - Uninstall : franck.md
+    - Overview:  install/4.4/applicationoverview.md
+    - List all apps:  install/4.4/listallapplication.md
+    - Console : install/4.4/applicationwithconsole.md
+  - Uninstall : install/4.4/uninstall.md
 - Advanced : 
   - Platform Cloud:
-    - AWS: cloudproviders/aws/aws.md
-    - AZURE: cloudproviders/azure/azure.md
-    - Digital Ocean: cloudproviders/digitalocean/digitalocean.md
-    - GCP: cloudproviders/gcp/gcp.md
-    - OVH: cloudproviders/ovh/ovh.md
+    - AWS :
+      - Install on Amazon AWS with Elastic Kubernetes Service: cloudproviders/4.4/aws/aws.md
+      - Expose using a load balancer: cloudproviders/4.4/aws/aws-loadbalancer.md
+      - Expose using a nginx ingress controller: cloudproviders/4.4/aws/aws-nginx-ingress-controller.md
+    - AZURE :
+      - Install on Microsoft AZURE Kubernetes service: cloudproviders/4.4/azure/azure.md
+      - Expose using a load balancer: cloudproviders/4.4/azure/azure-loadbalancer.md
+      - Expose using a nginx ingress controller: cloudproviders/4.4/azure/azure-nginx-ingress-controller.md
+    - Digital Ocean :
+      - Install on Digital Ocean Kubernetes cluster: cloudproviders/4.4/digitalocean/digitalocean.md
+      - Expose using a load balancer: cloudproviders/4.4/digitalocean/digitalocean-loadbalancer.md
+      - Expose using a nginx ingress controller: cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller.md
+    - GCP :
+      - Install on Google GCP Kubernetes cluster : cloudproviders/4.4/gcp/gcp.md
+      - Expose using a load balancer: cloudproviders/4.4/gcp/gcp-loadbalancer.md
+      - Expose using a GKE ingress controller: cloudproviders/4.4/gcp/gcp-gke-ingress-controller.md
+    - OVH :
+      - Install on OVHcloud Kubernetes cluster : cloudproviders/4.4/ovh/ovh.md
+      - Expose using a load balancer: cloudproviders/4.4/ovh/ovh-loadbalancer.md
+      - Expose using a nginx ingress controller: cloudproviders/4.4/ovh/ovh-nginx-ingress-controller.md
   - Platform On-Premises:
-      - Kind: jf.md
-      - Kubernetes: jf.md 
-      - MiniKube: franck.md
+    - Kind: advanced/4.4/install/onpremises/kind.md
+    - Kubernetes: advanced/4.4/install/onpremises/kubernetes.md
+    - MiniKube: advanced/4.4/install/onpremises/minikube.md
   - Install Applications:
-    - Create your own application: alex.md
+    - Create your own application: advanced/4.4/createyourownapplication.md
   - Network Policy:
-    - Install : matteo.md
-    - Netpol: matteo.md
-    - Uninstall: matteo.md 
+    - Install : advanced/4.4/networkpolicy/install.md
+    - Netpol: advanced/4.4/networkpolicy/netpol.md
+    - Uninstall: advanced/4.4/networkpolicy/uninstall.md 
   - Storage:
-    - PV: matteo.md
-    - PVC: matteo.md
-    - HostPath: matteo.md
-    - Shared Volume: matteo.md
+    - PV: advanced/4.4/storage/pv.md
+    - PVC: advanced/4.4/storage/pvc.md
+    - HostPath: advanced/4.4/storage/hostpath.md
+    - Shared Volume: advanced/4.4/storage/sharedvolume.md
   - Rules and labels:
-    - Rules: alex.md
-    - Lables: alex.md
+    - Rules: advanced/4.4/rulesandlabels/rules.md
+    - Labels:  advanced/4.4/rulesandlabels/labels.md
   - Authentication :
-    - OAuth: alex.md
-    - LDAP: alex.md
-    - Anonymous: alex.md
+    - OAuth: advanced/4.4/authentication/oauth.md
+    - LDAP: advanced/4.4/authentication/ldap.md
+    - Anonymous: advanced/4.4/authentication/anonymous.md
 - Contribute :
-  - Overview: alex.md
+  - Overview: contribute/overview.md
   - Services:
-    - Mongo: franck.md
-    - Console: matteo.md
-    - Pyos: alex.md
-    - Router: alex.md
-    - Website: matteo.md
+    - Mongo: contribute/4.4/services/mongo.md
+    - Console: contribute/4.4/services/console.md
+    - Pyos: contribute/4.4/services/pyos.md
+    - Router: contribute/4.4/services/router.md
+    - WebModules: contribute/4.4/services/webmodules.md
   - User Pod:
-    - Graphical: alex.md
-    - Sound: alex.md
-    - Cups: alex.md
-    - Filer: alex.md
+    - Graphical: contribute/4.4/userpod/graphical.md
+    - Sound: contribute/4.4/userpod/sound.md
+    - Cups: contribute/4.4/userpod/cups.md
+    - Filer: contribute/4.4/userpod/filer.md
 - FAQ: faq.md 
