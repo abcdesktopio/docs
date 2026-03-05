@@ -11,10 +11,10 @@
         <link rel="canonical" href="https://abcdesktop.pepins.net/advanced/4.4/networkpolicy/install/">
       
       
-        <link rel="prev" href="../../createyourownapplication/">
+        <link rel="prev" href="../netpol/">
       
       
-        <link rel="next" href="../netpol/">
+        <link rel="next" href="../uninstall/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -72,6 +72,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#install" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -1424,37 +1429,6 @@
                 
   
   
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    Install
-    
-  </span>
-  
-
-      </a>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
   
   
     <li class="md-nav__item">
@@ -1469,6 +1443,95 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#apply-the-default-netpol-default-44yaml-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apply the default netpol-default-4.4.yaml file
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Apply the default netpol-default-4.4.yaml file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-the-network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test the network policies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2263,6 +2326,40 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#apply-the-default-netpol-default-44yaml-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apply the default netpol-default-4.4.yaml file
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Apply the default netpol-default-4.4.yaml file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-the-network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test the network policies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2286,9 +2383,52 @@
   
 
 
-  <h1>Install</h1>
-
-<p>matteo</p>
+<h1 id="install">Install</h1>
+<h2 id="apply-the-default-netpol-default-44yaml-file">Apply the default <code>netpol-default-4.4.yaml</code> file</h2>
+<p>To apply the network policies run the command :</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-4.4.yaml<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+</code></pre></div>
+<p>The command returns </p>
+<div class="highlight"><pre><span></span><code>networkpolicy.networking.k8s.io/abcdesktop-rights created
+networkpolicy.networking.k8s.io/memcached-rights created
+networkpolicy.networking.k8s.io/memcached-permits created
+networkpolicy.networking.k8s.io/mongodb-rights created
+networkpolicy.networking.k8s.io/mongodb-permits created
+networkpolicy.networking.k8s.io/console-rights created
+networkpolicy.networking.k8s.io/console-permits created
+networkpolicy.networking.k8s.io/speedtest-rights created
+networkpolicy.networking.k8s.io/speedtest-permits created
+networkpolicy.networking.k8s.io/pyos-rights created
+networkpolicy.networking.k8s.io/pyos-permits created
+networkpolicy.networking.k8s.io/router-rights created
+networkpolicy.networking.k8s.io/router-permits created
+networkpolicy.networking.k8s.io/nginx-rights created
+networkpolicy.networking.k8s.io/nginx-permits created
+networkpolicy.networking.k8s.io/ocapplications-permits created
+networkpolicy.networking.k8s.io/ocuser-rights created
+networkpolicy.networking.k8s.io/ocuser-permits created
+networkpolicy.networking.k8s.io/authentication-permits created
+networkpolicy.networking.k8s.io/ldap-permits created
+networkpolicy.networking.k8s.io/ldap-rights created
+networkpolicy.networking.k8s.io/smtp-permits created
+networkpolicy.networking.k8s.io/https-permits created
+networkpolicy.networking.k8s.io/storage-permits created
+networkpolicy.networking.k8s.io/coredns-permits created
+networkpolicy.networking.k8s.io/apiserver-permits created
+networkpolicy.networking.k8s.io/graylog-permits created
+</code></pre></div>
+<h3 id="test-the-network-policies">Test the network policies</h3>
+<ul>
+<li>Login to your abcdesktop </li>
+<li>Open a webshell and run a curl command. </li>
+</ul>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://pyos.abcdesktop.svc.cluster.local:8000/API/manager/images
+</code></pre></div>
+<p>This http request is denied by the network policy and you should get an error message </p>
+<div class="highlight"><pre><span></span><code>curl: (28) Failed to connect to pyos.abcdesktop.svc.cluster.local port 8000 after 130290 ms: Couldn&#39;t connect to server
+</code></pre></div>
+<p><img alt="http request is denied" src="../../../../img/netpol.denied.http.png" /></p>
+<p>You should get an error message, the user's pod can't reach <code>https://pyos.abcdesktop.svc.cluster.local:8000/API</code>.</p>
 
 
 
