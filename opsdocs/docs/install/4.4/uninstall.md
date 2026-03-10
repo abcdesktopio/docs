@@ -7,7 +7,7 @@ To uninstall abcdesktop, run the `uninstall-4.3.sh` bash script using a curl com
 
 > Quick uninstallation can be run on Linux or macOS operation system. 
 
-Download and extract the uninstall bash script (Linux or macOS):
+Download and run the uninstall bash script (Linux or macOS):
 
 ```bash
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.3.sh | bash
