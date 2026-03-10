@@ -10,10 +10,6 @@ You can run the **Quick installation process** or choose the **Manually installa
 
 > Linux operating system is recommanded to run abcdesktop.io.
 
-## Quick installation (Microsoft Windows)
-
-If you are using a Microsoft Windows operating system please follow the dedicated link below  
-[Quick install for windows](./kubernetes_abcdesktop_windows.md)
 
 ## Quick installation (Linux or macOS)
 
@@ -127,4 +123,9 @@ The quick installation process runs the commands step by step :
 * download and create the default configuration file [od.config](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.4.3)
 
 > This install process doesn't install applications for your desktop, you get a desktop with few applications in your dock
+
+## Quick installation (Microsoft Windows)
+
+If you are using a Microsoft Windows operating system please follow the dedicated link below  
+[Quick install for windows](./kubernetes_abcdesktop_windows.md)
 
