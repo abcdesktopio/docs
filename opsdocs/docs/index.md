@@ -1,4 +1,7 @@
 ---
+hide:
+  - navigation
+  - toc
 title: abcdesktop.io cloud native desktop
 summary: cloud container graphical application container desktop
 description: cloud native desktop complete workspace environment accessible from a web browser
