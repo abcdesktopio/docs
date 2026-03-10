@@ -1,4 +1,4 @@
-# Quick installation abcdesktop.io with a bash script
+# Quick installation with a bash script
 
 ## Requirements
 
