@@ -1,4 +1,5 @@
 theme:
+  custom_dir: static
   name: material
   highlightjs: true
   logo: /img/abcdesktop.svg
@@ -22,9 +23,13 @@ extra:
   analytics:
     provider: google
     property: G-TN9YC7J01Z
+extra_css:
+  - css/custom-admonition.css
 markdown_extensions:
   - attr_list
   - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   - codehilite
   - pymdownx.superfences:
       custom_fences:
