@@ -1,3 +1,11 @@
+---
+tags:
+  - helm
+  - installation
+  - setup
+  - upgrade
+---
+
 # Installation using helm lastest release {{ abcdesktop.latest_release }}
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop)](https://artifacthub.io/packages/search?repo=abcdesktop)
@@ -99,6 +107,8 @@ helm install my-abcdesktop abcdesktop/abcdesktop \
     -n ${NAMESPACE} \
     -f abcdesktop-values.yaml
 ~~~
+
+## Helm upgrade
 
 An installed helm chart can be upgraded (both version and values) using:
 
