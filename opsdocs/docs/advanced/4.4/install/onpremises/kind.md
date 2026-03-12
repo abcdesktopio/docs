@@ -18,5 +18,5 @@ You can run the Quick installation process or choose the Manually installation s
 
 ## Quick installation
 
-* Using [bash script](http://localhost:8010/install/4.4/bash/)
-* Using [helm]( http://localhost:8010/install/4.4/helm/)
+* Using [bash script](http://localhost:8010/install/{{ config.extra.abcdesktop.latest_release }}/bash/)
+* Using [helm]( http://localhost:8010/install/{{ config.extra.abcdesktop.latest_release }}/helm/)
