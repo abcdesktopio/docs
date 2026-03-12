@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#requirements" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1448,6 +1453,19 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Kind
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1459,6 +1477,41 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick installation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2486,6 +2539,32 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick installation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2497,6 +2576,22 @@
               <article class="md-content__inner md-typeset">
                 
                   
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">installation</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">kind</span>
+      
+    
+  </nav>
 
 
   
@@ -2510,13 +2605,31 @@
 
   <h1>Kind</h1>
 
-<p>jf</p>
+<p>Kind is a tool for running local Kubernetes clusters using Docker container “nodes”. Kind was primarily designed for testing Kubernetes itself, but it can be used to deploy Kubernetes applications as well. To install or setup King, refer to the <a href="https://kind.sigs.k8s.io/">Kind documentation</a></p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Kubernetes cluster READY to run</li>
+<li>kubectl command-line tool must be configured to communicate with your cluster.</li>
+<li>openssl and curl command line must be installed too (only for install using kubectl) or helm command.</li>
+</ul>
+<p>You can run the Quick installation process or choose the Manually installation step by step</p>
+<blockquote>
+<p>Linux operating system is recommanded to run abcdesktop.io.</p>
+</blockquote>
+<h2 id="quick-installation">Quick installation</h2>
+<ul>
+<li>Using <a href="http://localhost:8010/install/4.4/bash/">bash script</a></li>
+<li>Using <a href="http://localhost:8010/install/4.4/helm/">helm</a></li>
+</ul>
 
 
 
 
 
 
+
+  
+  
 
 
 
