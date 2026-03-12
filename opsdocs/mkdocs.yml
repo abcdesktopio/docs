@@ -1,4 +1,4 @@
-theme: 
+theme:
   name: material
   highlightjs: true
   logo: /img/abcdesktop.svg
@@ -15,6 +15,7 @@ theme:
     - content.code.copy
 plugins:
     - search
+    - tags
 extra:
   abcdesktop:
     latest_release: !ENV [ABCDESKTOP_LATEST_RELEASE, '4.4']
@@ -23,6 +24,8 @@ extra:
     property: G-TN9YC7J01Z
 markdown_extensions:
   - attr_list
+  - admonition
+  - codehilite
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -45,7 +48,7 @@ nav:
     - List all apps:  install/4.4/listallapplication.md
     - Console : install/4.4/applicationwithconsole.md
   - Uninstall : install/4.4/uninstall.md
-- Advanced : 
+- Advanced :
   - Platform Cloud:
     - AWS :
       - Install on Amazon AWS with Elastic Kubernetes Service: cloudproviders/4.4/aws/aws.md
@@ -76,7 +79,7 @@ nav:
   - Network Policy:
     - Netpol: advanced/4.4/networkpolicy/netpol.md
     - Install : advanced/4.4/networkpolicy/install.md
-    - Uninstall: advanced/4.4/networkpolicy/uninstall.md 
+    - Uninstall: advanced/4.4/networkpolicy/uninstall.md
   - Storage:
     - PV: advanced/4.4/storage/pv.md
     - PVC: advanced/4.4/storage/pvc.md
@@ -102,4 +105,4 @@ nav:
     - Sound: contribute/4.4/userpod/sound.md
     - Cups: contribute/4.4/userpod/cups.md
     - Filer: contribute/4.4/userpod/filer.md
-- FAQ: faq.md 
+- FAQ: faq.md
