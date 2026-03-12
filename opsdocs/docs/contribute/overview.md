@@ -1,5 +1,3 @@
-alex
-
 
 ## Contribute to abcdesktop community
 
@@ -27,7 +25,7 @@ Please note some rules to apply for all contributions:
     quality of features for our community members. We appreciate your understanding and cooperation in adhering to this policy.
 
 
-??? success must "Everything to be deployed must be a docker image"
+??? success must "Everything to be deployed must be a container image"
     to be done
 <!--
     To simplify the management and maintenance of the abcdesktop operating system, we expect that all deployments be performed using Ubuntu packages. By using Ubuntu packages for deployments, you will benefit from several advantages:
@@ -50,7 +48,7 @@ Please note some rules to apply for all contributions:
     various deployment scenarios.
 -->
 
-??? success must "Every docker image must be public"
+??? success must "Every container image must be public"
     to be done
 
 
