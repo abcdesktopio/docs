@@ -25,8 +25,8 @@ Note that clicking on the JSON button will open a modal that allows you to add a
 
 Through this modal window, you can add applications by uploading a JSON file or by copy-pasting directly the JSON raw content in the text area.
 
-![add-json-file](../../img/console_add_json_file.png) 
-![add-raw-json](../../img/console_add_raw_file.png)
+![add-json-file](img) 
+![add-raw-json](img)
 
 Note that the github button will send you directly to the abcdesktop github applications page.
 
@@ -35,10 +35,9 @@ Note that the github button will send you directly to the abcdesktop github appl
 To delete applications one by one you can click on the red trash at the end oh the line on the row where the app you want to delete is located.  
 Or if you want to delete several applications at the same time you can select them and click on the red trash button above the table to delete all the selected applications.
 
-![apps-select](../../img/console_applications_select.png)
+![apps-select](img)
 
 ### Gathering more informations
 
 If you want to get more informations about an application, just click on the name of the app to display the whole json file of the app.
-
-![app-infos](../../img/console_app_infos.png)
+![app-infos](img)
