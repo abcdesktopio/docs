@@ -1,11 +1,10 @@
-
-# Uninstall with a bash script 
+# Uninstall with a bash script
 
 To uninstall abcdesktop, run the `uninstall-4.3.sh` bash script using a curl command.
 
 ## Quick uninstallation abcdesktop (Linux or macOS)
 
-> Quick uninstallation can be run on Linux or macOS operation system. 
+> Quick uninstallation can be run on Linux or macOS operation system.
 
 Download and run the uninstall bash script (Linux or macOS):
 
@@ -13,7 +12,7 @@ Download and run the uninstall bash script (Linux or macOS):
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.3.sh | bash
 ```
 
-You should read on stdout 
+You should read on stdout
 
 ```bash
 abcdesktop uninstall script namespace=abcdesktop
@@ -52,7 +51,7 @@ service "openldap" deleted
 [OK] namespace "abcdesktop" deleted
 ```
 
-Please wait for the output message: 
+Please wait for the output message:
 
 ```
 [OK] namespace "abcdesktop" deleted
@@ -60,7 +59,7 @@ Please wait for the output message:
 
 ## Quick uninstallation abcdesktop (Windows)
 
-If you are using a Windows operating system please click on the link below  
+If you are using a Windows operating system please click on the link below
 [Quick uninstall for windows](./uninstall_kubernetes_windows.md)
 
 Great, you have uninstalled abcdesktop for kubernetes.
