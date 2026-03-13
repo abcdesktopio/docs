@@ -4,10 +4,10 @@
 
 > Quick installation can be run on Linux or macOS operation system. 
 
-Download and run the `pullapps-4.3.sh` script :
+Download and run the `pullapps-{{ abcdesktop.latest_release }}.sh` script :
 
 ```
-curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.3.sh | bash
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-{{ abcdesktop.latest_release }}.sh | bash
 ```
 
 You can watch the youtube video sample. This video describes the application installation process on a fresh kubernetes cluster.
