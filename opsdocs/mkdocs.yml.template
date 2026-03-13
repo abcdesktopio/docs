@@ -1,0 +1,120 @@
+theme:
+  custom_dir: static
+  name: material
+  highlightjs: true
+  logo: /img/abcdesktop.svg
+  favicon: /img/abcdesktop128x128.ico
+  hljs_languages:
+    - bash
+    - yaml
+    - javascript
+    - python
+  features:
+    - navigation.top
+    - navigation.tabs
+    - content.action.edit
+    - content.code.copy
+plugins:
+    - search
+    - tags
+    - macros
+extra:
+  abcdesktop:
+    latest_release: ${ABCDESKTOP_LATEST_RELEASE}
+
+
+  analytics:
+    provider: google
+    property: G-TN9YC7J01Z
+extra_css:
+  - css/custom-admonition.css
+markdown_extensions:
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - codehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+site_name: abcdesktop.pepins.net
+repo_url: https://github.com/abcdesktopio/newdocs
+repo_name: abcdesktopio/newdocs
+site_url: https://abcdesktop.pepins.net
+edit_uri: 'edit/main/opsdocs/docs'
+nav:
+- Home: index.md
+- Requirements : requirements.md
+- Quick Start :
+  - Install :
+    - Bash script: install/${ABCDESKTOP_LATEST_RELEASE}/bash.md
+    - Helm: install/${ABCDESKTOP_LATEST_RELEASE}/helm.md
+  - Install Applications:
+    - Overview:  install/${ABCDESKTOP_LATEST_RELEASE}/applicationoverview.md
+    - List all apps:  install/${ABCDESKTOP_LATEST_RELEASE}/listallapplication.md
+    - Console : install/${ABCDESKTOP_LATEST_RELEASE}/applicationwithconsole.md
+  - Uninstall:
+      - Bash script: uninstall/${ABCDESKTOP_LATEST_RELEASE}/bash.md
+      - Helm: uninstall/${ABCDESKTOP_LATEST_RELEASE}/helm.md
+
+
+- Advanced :
+  - Platform Cloud:
+    - AWS :
+      - Install on Amazon AWS with Elastic Kubernetes Service: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/aws/aws.md
+      - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/aws/aws-loadbalancer.md
+      - Expose using a nginx ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/aws/aws-nginx-ingress-controller.md
+    - AZURE :
+      - Install on Microsoft AZURE Kubernetes service: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/azure/azure.md
+      - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/azure/azure-loadbalancer.md
+      - Expose using a nginx ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/azure/azure-nginx-ingress-controller.md
+    - Digital Ocean :
+      - Install on Digital Ocean Kubernetes cluster: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/digitalocean/digitalocean.md
+      - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/digitalocean/digitalocean-loadbalancer.md
+      - Expose using a nginx ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/digitalocean/digitalocean-nginx-ingress-controller.md
+    - GCP :
+      - Install on Google GCP Kubernetes cluster : cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/gcp/gcp.md
+      - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/gcp/gcp-loadbalancer.md
+      - Expose using a GKE ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/gcp/gcp-gke-ingress-controller.md
+    - OVH :
+      - Install on OVHcloud Kubernetes cluster : cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/ovh/ovh.md
+      - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/ovh/ovh-loadbalancer.md
+      - Expose using a nginx ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/ovh/ovh-nginx-ingress-controller.md
+  - Platform On-Premises:
+    - Kind: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/kind.md
+    - Kubernetes: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/kubernetes.md
+    - MiniKube: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/minikube.md
+  - Install Applications:
+    - Create your own application: advanced/${ABCDESKTOP_LATEST_RELEASE}/createyourownapplication.md
+  - Network Policy:
+    - Netpol: advanced/${ABCDESKTOP_LATEST_RELEASE}/networkpolicy/netpol.md
+    - Install : advanced/${ABCDESKTOP_LATEST_RELEASE}/networkpolicy/install.md
+    - Uninstall: advanced/${ABCDESKTOP_LATEST_RELEASE}/networkpolicy/uninstall.md
+  - Storage:
+    - PV: advanced/${ABCDESKTOP_LATEST_RELEASE}/storage/pv.md
+    - PVC: advanced/${ABCDESKTOP_LATEST_RELEASE}/storage/pvc.md
+    - HostPath: advanced/${ABCDESKTOP_LATEST_RELEASE}/storage/hostpath.md
+    - Shared Volume: advanced/${ABCDESKTOP_LATEST_RELEASE}/storage/sharedvolume.md
+  - Rules and labels:
+    - Rules: advanced/${ABCDESKTOP_LATEST_RELEASE}/rulesandlabels/rules.md
+    - Labels:  advanced/${ABCDESKTOP_LATEST_RELEASE}/rulesandlabels/labels.md
+  - Authentication :
+    - OAuth: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/oauth.md
+    - LDAP: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/ldap.md
+    - Anonymous: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/anonymous.md
+- Contribute :
+  - Overview: contribute/overview.md
+  - Services:
+    - Mongo: contribute/${ABCDESKTOP_LATEST_RELEASE}/services/mongo.md
+    - Console: contribute/${ABCDESKTOP_LATEST_RELEASE}/services/console.md
+    - Pyos: contribute/${ABCDESKTOP_LATEST_RELEASE}/services/pyos.md
+    - Router: contribute/${ABCDESKTOP_LATEST_RELEASE}/services/router.md
+    - WebModules: contribute/${ABCDESKTOP_LATEST_RELEASE}/services/webmodules.md
+  - User Pod:
+    - Graphical: contribute/${ABCDESKTOP_LATEST_RELEASE}/userpod/graphical.md
+    - Sound: contribute/${ABCDESKTOP_LATEST_RELEASE}/userpod/sound.md
+    - Cups: contribute/${ABCDESKTOP_LATEST_RELEASE}/userpod/cups.md
+    - Filer: contribute/${ABCDESKTOP_LATEST_RELEASE}/userpod/filer.md
+- FAQ: faq.md
