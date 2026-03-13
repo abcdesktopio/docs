@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://abcdesktop.pepins.net/install/4.4/helm/">
       
       
+        <link rel="prev" href="../bash/">
+      
+      
+        <link rel="next" href="../applicationoverview/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Installation using helm lastest release 4.3 - abcdesktop.pepins.net</title>
+        <title>Helm - abcdesktop.pepins.net</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installation-using-helm-lastest-release-43" class="md-skip">
+        <a href="#installation-using-helm-lastest-release-44" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installation using helm lastest release 4.3
+              Helm
             
           </span>
         </div>
@@ -226,6 +230,8 @@
   
   
   
+    
+  
   
     
     
@@ -233,11 +239,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../4.3/bash.md" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../bash/" class="md-tabs__link">
           
   
   
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../cloudproviders/4.3/aws/aws.md" class="md-tabs__link">
+        <a href="../../../cloudproviders/4.4/aws/aws/" class="md-tabs__link">
           
   
   
@@ -423,24 +431,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -453,7 +466,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Quick Start
@@ -464,6 +477,8 @@
                 
   
   
+    
+  
   
   
     
@@ -474,11 +489,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -494,7 +509,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             Install
@@ -508,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4.3/bash.md" class="md-nav__link">
+      <a href="../bash/" class="md-nav__link">
         
   
   
@@ -528,10 +543,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../4.3/helm.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Helm
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -542,6 +579,68 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#helm-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Helm options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Helm options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-retrieve-the-default-configuration-file-from-helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Retrieve the default configuration file from helm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-apply-helm-with-your-values-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2 - apply helm with your values file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helm-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Helm upgrade
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -603,7 +702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4.3/applicationoverview.md" class="md-nav__link">
+      <a href="../applicationoverview/" class="md-nav__link">
         
   
   
@@ -626,7 +725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4.3/listallapplication.md" class="md-nav__link">
+      <a href="../listallapplication/" class="md-nav__link">
         
   
   
@@ -649,7 +748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4.3/applicationwithconsole.md" class="md-nav__link">
+      <a href="../applicationwithconsole/" class="md-nav__link">
         
   
   
@@ -721,7 +820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../uninstall/4.3/bash.md" class="md-nav__link">
+      <a href="../../../uninstall/4.4/bash/" class="md-nav__link">
         
   
   
@@ -744,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../uninstall/4.3/helm.md" class="md-nav__link">
+      <a href="../../../uninstall/4.4/helm/" class="md-nav__link">
         
   
   
@@ -905,7 +1004,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/aws/aws.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
         
   
   
@@ -928,7 +1027,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/aws/aws-loadbalancer.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
         
   
   
@@ -951,7 +1050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/aws/aws-nginx-ingress-controller.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1023,7 +1122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/azure/azure.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
         
   
   
@@ -1046,7 +1145,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/azure/azure-loadbalancer.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1069,7 +1168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/azure/azure-nginx-ingress-controller.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1141,7 +1240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/digitalocean/digitalocean.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
         
   
   
@@ -1164,7 +1263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/digitalocean/digitalocean-loadbalancer.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1187,7 +1286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/digitalocean/digitalocean-nginx-ingress-controller.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1259,7 +1358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/gcp/gcp.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
         
   
   
@@ -1282,7 +1381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/gcp/gcp-loadbalancer.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1305,7 +1404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/gcp/gcp-gke-ingress-controller.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1377,7 +1476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/ovh/ovh.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
         
   
   
@@ -1400,7 +1499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/ovh/ovh-loadbalancer.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1423,7 +1522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/ovh/ovh-nginx-ingress-controller.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1503,7 +1602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/install/onpremises/kind.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
         
   
   
@@ -1526,7 +1625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/install/onpremises/kubernetes.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/install/onpremises/kubernetes/" class="md-nav__link">
         
   
   
@@ -1549,7 +1648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/install/onpremises/minikube.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
         
   
   
@@ -1621,7 +1720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/createyourownapplication.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/createyourownapplication/" class="md-nav__link">
         
   
   
@@ -1693,7 +1792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/networkpolicy/netpol.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
         
   
   
@@ -1716,7 +1815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/networkpolicy/install.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
         
   
   
@@ -1739,7 +1838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/networkpolicy/uninstall.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
         
   
   
@@ -1811,7 +1910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/storage/pv.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/pv/" class="md-nav__link">
         
   
   
@@ -1834,7 +1933,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/storage/pvc.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/pvc/" class="md-nav__link">
         
   
   
@@ -1857,7 +1956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/storage/hostpath.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/hostpath/" class="md-nav__link">
         
   
   
@@ -1880,7 +1979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/storage/sharedvolume.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/sharedvolume/" class="md-nav__link">
         
   
   
@@ -1952,7 +2051,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/rulesandlabels/rules.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/rulesandlabels/rules/" class="md-nav__link">
         
   
   
@@ -1975,7 +2074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/rulesandlabels/labels.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/rulesandlabels/labels/" class="md-nav__link">
         
   
   
@@ -2047,7 +2146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/authentication/oauth.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/oauth/" class="md-nav__link">
         
   
   
@@ -2070,7 +2169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/authentication/ldap.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/ldap/" class="md-nav__link">
         
   
   
@@ -2093,7 +2192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/authentication/anonymous.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/anonymous/" class="md-nav__link">
         
   
   
@@ -2236,7 +2335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/services/mongo.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/mongo/" class="md-nav__link">
         
   
   
@@ -2259,7 +2358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/services/console.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/console/" class="md-nav__link">
         
   
   
@@ -2282,7 +2381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/services/pyos.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/pyos/" class="md-nav__link">
         
   
   
@@ -2305,7 +2404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/services/router.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/router/" class="md-nav__link">
         
   
   
@@ -2328,7 +2427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/services/webmodules.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/webmodules/" class="md-nav__link">
         
   
   
@@ -2400,7 +2499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/userpod/graphical.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/graphical/" class="md-nav__link">
         
   
   
@@ -2423,7 +2522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/userpod/sound.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/sound/" class="md-nav__link">
         
   
   
@@ -2446,7 +2545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/userpod/cups.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/cups/" class="md-nav__link">
         
   
   
@@ -2469,7 +2568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/userpod/filer.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/filer/" class="md-nav__link">
         
   
   
@@ -2642,18 +2741,18 @@
   
 
 
-<h1 id="installation-using-helm-lastest-release-43">Installation using helm lastest release 4.3</h1>
+<h1 id="installation-using-helm-lastest-release-44">Installation using helm lastest release 4.4</h1>
 <p><a href="https://artifacthub.io/packages/search?repo=abcdesktop"><img alt="Artifact Hub" src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop" /></a></p>
 <p>You can watch the youtube video sample. This video describes the Quick installation process using <code>helm</code>.</p>
 <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
-<p>Add the <code>helm</code> repo and then install it on Linux or macOS or read the step by step installation process <a href="/4.3/setup/kubernetes_abcdesktop">abcdesktop for kubernetes</a></p>
+<p>Add the <code>helm</code> repo and then install it on Linux or macOS or read the step by step installation process <a href="/4.4/setup/kubernetes_abcdesktop">abcdesktop for kubernetes</a></p>
 <div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="false" data-stars="false" data-responsive="false"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div>
 <script async src="https://artifacthub.io/artifacthub-widget.js"></script>
 
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 helm repo add abcdesktop https://abcdesktopio.github.io/helm/
-helm install my-abcdesktop abcdesktop/abcdesktop --version 4.3 --create-namespace -n ${NAMESPACE}
+helm install my-abcdesktop abcdesktop/abcdesktop --version 4.4 --create-namespace -n ${NAMESPACE}
 </code></pre></div>
 <p>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)</p>
 <div class="highlight"><pre><span></span><code><span class="nv">LOCAL_PORT</span><span class="o">=</span><span class="m">30443</span>
@@ -2717,7 +2816,7 @@ limit, your <em>abcdesktop-values.yaml</em> may look like:</p>
 <h3 id="step-2-apply-helm-with-your-values-file">Step 2 - apply helm with your values file</h3>
 <p>Then apply your configuration:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>my-abcdesktop<span class="w"> </span>abcdesktop/abcdesktop<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.3<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--create-namespace<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-f<span class="w"> </span>abcdesktop-values.yaml
@@ -2725,7 +2824,7 @@ limit, your <em>abcdesktop-values.yaml</em> may look like:</p>
 <h2 id="helm-upgrade">Helm upgrade</h2>
 <p>An installed helm chart can be upgraded (both version and values) using:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>my-abcdesktop<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.3<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-f<span class="w"> </span>abcdesktop-values<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span>
 </code></pre></div>
