@@ -2730,7 +2730,7 @@
 </blockquote>
 <h3 id="install-using-kubectl-on-linux-or-macos-operation-system">Install using kubectl on Linux or macOS operation system</h3>
 <p>Download and extract the latest release automatically</p>
-<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.3.sh | bash
+<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh | bash
 </code></pre></div>
 <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/vEEXVOT30w4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
 
@@ -2752,8 +2752,8 @@ writing RSA key
 [OK] label secret abcdesktopjwtdesktoppayload
 [OK] label secret abcdesktopjwtdesktopsigning
 [OK] label secret abcdesktopjwtusersigning
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.3.yaml
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.3
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.4.yaml
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.4
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
 role.rbac.authorization.k8s.io/pyos-role created
@@ -2823,8 +2823,8 @@ speedtest-od-7fcc9649b4-qllr7   1/1     Running   0          32s
 <ul>
 <li>create the <code>abcdesktop</code> namespace</li>
 <li>build all <code>rsa</code> keys for jwt signing and payload encryption, using openssl command line</li>
-<li>create all <code>service account</code>, <code>services</code>, <code>deployments</code>, <code>secrets</code> and <code>configmaps</code> from the <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.3.yaml">abcdesktop.yaml</a></li>
-<li>download and create the default configuration file <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.4.3">od.config</a></li>
+<li>create all <code>service account</code>, <code>services</code>, <code>deployments</code>, <code>secrets</code> and <code>configmaps</code> from the <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.4.yaml">abcdesktop.yaml</a></li>
+<li>download and create the default configuration file <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.4.4">od.config</a></li>
 </ul>
 <blockquote>
 <p>This install process doesn't install applications for your desktop, you get a desktop with few applications in your dock</p>
