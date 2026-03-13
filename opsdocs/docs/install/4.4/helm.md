@@ -49,7 +49,7 @@ imagePullSecrets: []
 
 console:
   image: ghcr.io/abcdesktopio/console
-  tag: 4.3
+  tag: {{ abcdesktop.latest_release }}
   replicaCount: 1
   resources:
     limits:
@@ -61,7 +61,7 @@ console:
 
 memcached:
   image: ghcr.io/abcdesktopio/oc.memcached
-  tag: 4.3
+  tag: {{ abcdesktop.latest_release }}
   replicaCount: 1
   resources:
     limits:
@@ -85,7 +85,7 @@ limit, your *abcdesktop-values.yaml* may look like:
 
 ~~~yaml
 console:
-  tag: 4.X
+  tag: {{ abcdesktop.latest_release }}
   resources:
     limits:
       cpu: 99999
