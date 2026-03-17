@@ -1,0 +1,57 @@
+{# Backup of toc.html before applying TOC filter changes #}
+
+{#-
+  toc.html is included in two places:
+  1. base.html → sidebar right (md-sidebar--secondary) : we WANT the wizard toolbar
+  2. nav-item.html → sidebar left (active page item)   : we DO NOT want the toolbar
+
+  The variable "toc" is set as a local var only inside nav-item.html.
+  In base.html it is NOT set before the include.
+  We use this to detect the context.
+-#}
+
+{% if page.meta and page.meta.step and toc is not defined %}
+<div class="nav-wizard-toc">
+
+  {% if page.meta.prev %}
+    <a href="{{ page.meta.prev }}" class="nav-wizard-btn" title="{{ page.meta.prev_label }}">&#8249;</a>
+  {% else %}
+    <span class="nav-wizard-btn disabled">&#8249;</span>
+  {% endif %}
+
+  <span class="nav-wizard-progress">
+    Step {{ page.meta.step }} / {{ page.meta.total }}
+  </span>
+
+  {% if page.meta.next %}
+    <a href="{{ page.meta.next }}" class="nav-wizard-btn" title="{{ page.meta.next_label }}">&#8250;</a>
+  {% else %}
+    <span class="nav-wizard-btn disabled">&#8250;</span>
+  {% endif %}
+
+</div>
+{% endif %}
+
+{#- Original TOC -#}
+{% set title = lang.t("toc") %}
+{% if config.mdx_configs.toc and config.mdx_configs.toc.title %}
+  {% set title = config.mdx_configs.toc.title %}
+{% endif %}
+<nav class="md-nav md-nav--secondary" aria-label="{{ title | e }}">
+  {% set toc = page.toc %}
+  {% set first = toc | first %}
+  {% if first and first.level == 1 %}
+    {% set toc = first.children %}
+  {% endif %}
+  {% if toc %}
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      {{ title }}
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      {% for toc_item in toc %}
+        {% include "partials/toc-item.html" %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</nav>
