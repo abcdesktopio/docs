@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://abcdesktop.pepins.net/advanced/4.4/storage/pvc/">
+        <link rel="canonical" href="https://abcdesktop.pepins.net/advanced/4.4/storage/nfs/">
       
       
-        <link rel="prev" href="../pv/">
+        <link rel="prev" href="../../networkpolicy/uninstall/">
       
       
-        <link rel="next" href="../hostpath/">
+        <link rel="next" href="../s3/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -22,7 +22,7 @@
     
     
       
-        <title>PVC - abcdesktop.pepins.net</title>
+        <title>NFS - abcdesktop.pepins.net</title>
       
     
     
@@ -75,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#retain-users-home-directory-using-nfs-storage" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -104,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              PVC
+              NFS
             
           </span>
         </div>
@@ -1820,29 +1825,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../pv/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    PV
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -1852,19 +1834,160 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    NFS
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    PVC
+    NFS
     
   </span>
   
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-a-nfs-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set up a nfs server
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up a nfs server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server install
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bind-users-homedir-to-nfs-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bind user's homedir to nfs server
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bind user&#39;s homedir to nfs server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-nfs-subdir-external-provisioner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install nfs-subdir-external-provisioner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-odconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update od.config
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-if-users-homedir-is-persistent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check if user's homedir is persistent
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    S3
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2559,6 +2682,100 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-a-nfs-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set up a nfs server
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up a nfs server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server install
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bind-users-homedir-to-nfs-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bind user's homedir to nfs server
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bind user&#39;s homedir to nfs server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-nfs-subdir-external-provisioner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install nfs-subdir-external-provisioner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-odconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update od.config
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-if-users-homedir-is-persistent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check if user's homedir is persistent
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2574,7 +2791,7 @@
 
 
   
-    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/storage/pvc.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/storage/nfs.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2582,9 +2799,109 @@
   
 
 
-  <h1>PVC</h1>
+<h1 id="retain-users-home-directory-using-nfs-storage">Retain user's home directory using NFS storage</h1>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>a Kuberenetes cluster with abcdesktop installed</li>
+<li><a href="https://helm.sh/fr/">helm</a> command line</li>
+</ul>
+<p>To make the user's homerdir persistent using nfs, you will need to : 
+- Set up your own nfs server
+- Bind user's homedir to nfs server using <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolume</a> (PV) and <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolumeClaim</a> (PVC)</p>
+<h2 id="set-up-a-nfs-server">Set up a nfs server</h2>
+<h3 id="server-install">Server install</h3>
+<p>On a dedicated machine, please install the following packages</p>
+<div class="highlight"><pre><span></span><code>apt-get install nfs-kernel-server nfs-common
+</code></pre></div>
+<h3 id="server-configuration">Server configuration</h3>
+<p>Once installed, you need to create the folder that you will export</p>
+<div class="highlight"><pre><span></span><code>mkdir /data/abcdesktop_nfs
+chown -R nobody:nogroup /data/abcdesktop_nfs
+</code></pre></div>
+<p>Edit <code>/etc/exports</code> </p>
+<div class="highlight"><pre><span></span><code>vim /etc/exports
+</code></pre></div>
+<p>And add the following line </p>
+<div class="highlight"><pre><span></span><code>/data/abcdesktop_nfs  192.168.7.0/24(rw,sync,no_subtree_check,no_root_squash) # make sure to change 192.168.7.0/24 by your own cluster subnet
+</code></pre></div>
+<p>Finaly, apply the config. </p>
+<div class="highlight"><pre><span></span><code>exportfs -ra
+systemctl restart nfs-kernel-server
+</code></pre></div>
+<p>Check that the config have been applied properly</p>
+<div class="highlight"><pre><span></span><code>exportfs -v
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You should see the line you juste wrote in the config file</p>
+</div>
+<h2 id="bind-users-homedir-to-nfs-server">Bind user's homedir to nfs server</h2>
+<h3 id="install-nfs-subdir-external-provisioner">Install nfs-subdir-external-provisioner</h3>
+<p>First, you have to install a provisonner to your cluster, in this example, we chose nfs-subdir-external-provisioner because of its dynamic subdir creation aspect.</p>
+<p>To install it, run the following command </p>
+<div class="highlight"><pre><span></span><code>inserer ligne de l&#39;historique
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>It is important to set the reclaim policy as Retain to keep our PV alive after PVC deletion</p>
+</div>
+<p>This command will also automatically create the <code>inserer nom</code> StorageClass.</p>
+<p>You can check it by running this command</p>
+<div class="highlight"><pre><span></span><code>kubectl get sc
+</code></pre></div>
+<h3 id="update-odconfig">Update od.config</h3>
+<p>Now, you will need to specify to pyos to bind users homedir to the exported nfs folder. To do so you will need to update the <code>od.config</code> file.</p>
+<p>First, change <code>desktop.homedirectorytype</code> variable from None to 'persistentVolumeClaim.</p>
+<div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
+</code></pre></div>
+<p>Then add these lines to define the persistent volume claim template</p>
+<div class="highlight"><pre><span></span><code>desktop.persistentvolumeclaim: {
+   &#39;metadata&#39;: {
+      &#39;name&#39;: &#39;{{ provider }}-{{ userid }}&#39;,
+      &#39;annotations&#39;: {
+          &#39;nfs.io/username&#39;: &#39;{{ userid }}&#39;
+      }
+   },
+   &#39;spec&#39;: {
+    &#39;storageClassName&#39;: &#39;nom de la classe&#39;,
+    &#39;accessModes&#39;: [ &#39;ReadWriteMany&#39; ],
+    &#39;resources&#39;: {
+       &#39;requests&#39;: {
+          &#39;storage&#39;: &#39;10Gi&#39; } } } }
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here there is no need to specify a persistent volume template to pyos as <code>nfs-subdir-external-provisioner</code> will deal with it automaticaly.</p>
+</div>
+<p>Finaly, tell pyos to delete the persistent volume claim on user's pod delete but to keep the persistent volume as we defined storage class retain policy as <code>Retain</code> earlier. </p>
+<div class="highlight"><pre><span></span><code>desktop.removepersistentvolume: False
+desktop.removepersistentvolumeclaim: True
+</code></pre></div>
+<h2 id="check-if-users-homedir-is-persistent">Check if user's homedir is persistent</h2>
+<p>You can now connect to your abcdesktop and login as a user.</p>
+<p>Once connected you can run the following command to see if the user's homedir system exists</p>
+<div class="highlight"><pre><span></span><code>kubectl describe pod &lt;YOUR-POD-NAME&gt; -n abcdesktop 
+</code></pre></div>
+<p>You should see someting like this in the volumes section</p>
+<div class="highlight"><pre><span></span><code>Volumes:
+  home:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  planet-fry
+    ReadOnly:   false
+</code></pre></div>
+<p>You can also check for PV and PVC inside you cluster</p>
+<div class="highlight"><pre><span></span><code>kubectl get pv,pvc -n abcdesktop
 
-<p>matteo</p>
+NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS        CLAIM                   STORAGECLASS              VOLUMEATTRIBUTESCLASS   REASON   AGE
+persistentvolume/pvc-4b522afd-bf6e-411e-85c3-2a39e1b2c58f   10Gi       RWX            Retain           Bound      abcdesktop/planet-fry   nfs-user-storage-matteo   &lt;unset&gt;                          26m
+
+NAME                               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS              VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/planet-fry   Bound    pvc-8f802cbc-873f-46ab-9d7a-fe266da42387   10Gi       RWX            nfs-user-storage-matteo   &lt;unset&gt;                 22m
+</code></pre></div>
+<p>Now you can create a file in the user's homedir </p>
+<p>INSERER SCREEN</p>
+<p>Then perform a logoff to destroy your pod and recreates it, once reconnected on a new pod, check if the file you previously created is still there, it should appear.</p>
+<p>INSERER SCREEN</p>
 
 
 
