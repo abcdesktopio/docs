@@ -1996,15 +1996,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#update-pyos-role" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update pyos role
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2819,15 +2810,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#update-pyos-role" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update pyos role
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2889,7 +2871,7 @@ chown -R nobody:nogroup /data/abcdesktop_nfs
 <div class="highlight"><pre><span></span><code>vim /etc/exports
 </code></pre></div>
 <p>And add the following line </p>
-<div class="highlight"><pre><span></span><code>/data/abcdesktop_nfs  192.168.7.0/24(rw,sync,no_subtree_check,no_root_squash) # make sure to change 192.168.7.0/24 by your own cluster subnet
+<div class="highlight"><pre><span></span><code>/data/abcdesktop_nfs  192.168.X.X/24(rw,sync,no_subtree_check,no_root_squash) # make sure to change 192.168.X.X/24 by your own cluster subnet
 </code></pre></div>
 <p>Finaly, apply the config. </p>
 <div class="highlight"><pre><span></span><code>exportfs -ra
@@ -2907,7 +2889,7 @@ systemctl restart nfs-kernel-server
 <p>First, you have to install a provisonner to your cluster, in this example, we chose nfs-subdir-external-provisioner because of its dynamic subdir creation aspect.</p>
 <p>Create a <code>nfs-subdur-values.yaml</code> file and paste the following lines to configure the storage class.</p>
 <div class="highlight"><pre><span></span><code>nfs:
-  server: 192.168.7.214   # change it to your server ip
+  server: 192.168.X.X   # change it to your server ip
   path: /data/abcdesktop_nfs
 
 replicaCount: 1
@@ -2942,7 +2924,7 @@ nfs-user-storage-abcdesktop   cluster.local/nfs-subdir-external-provisioner   Re
 </code></pre></div>
 <h3 id="update-odconfig">Update od.config</h3>
 <p>Now, you will need to specify to pyos to bind users homedir to the exported nfs folder. To do so you will need to update the <code>od.config</code> file.</p>
-<p>First, change <code>desktop.homedirectorytype</code> variable from None to 'persistentVolumeClaim.</p>
+<p>First, change <code>desktop.homedirectorytype</code> variable from <code>None</code> to <code>persistentVolumeClaim</code>.</p>
 <div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
 </code></pre></div>
 <p>Then add these lines to define the persistent volume claim template</p>
@@ -2964,15 +2946,11 @@ nfs-user-storage-abcdesktop   cluster.local/nfs-subdir-external-provisioner   Re
 <p class="admonition-title">Note</p>
 <p>Here there is no need to specify a persistent volume template to pyos as <code>nfs-subdir-external-provisioner</code> will deal with it automaticaly.</p>
 </div>
-<p>Finaly, tell pyos to delete the persistent volume claim on user's pod delete but to keep the persistent volume as we defined storage class retain policy as <code>Retain</code> earlier. </p>
+<p>Then, tell pyos to delete the persistent volume claim on user's pod delete but to keep the persistent volume as we defined storage class retain policy as <code>Retain</code> earlier. </p>
 <div class="highlight"><pre><span></span><code>desktop.removepersistentvolume: False
 desktop.removepersistentvolumeclaim: True
 </code></pre></div>
-<h3 id="update-pyos-role">Update pyos role</h3>
-<p>By default, pyos is not authorized to create persistent volumes and persistent volume claims, to fix that, you should run the following command</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/rbac-cluster.yaml -n abcdesktop
-</code></pre></div>
-<p>Then update <code>od.config</code> configmap and restart pyos to apply the changes we made</p>
+<p>Finaly, update <code>od.config</code> configmap and restart pyos to apply the changes we made</p>
 <div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deploy pyos-od -n abcdesktop
 </code></pre></div>
