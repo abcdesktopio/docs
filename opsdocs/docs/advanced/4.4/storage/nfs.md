@@ -95,7 +95,11 @@ serviceAccount:
 Then install `nfs-subdir-external-provisioner` by running the following command 
 
 ```
-helm install nfs-subdir-external-provisioner   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner   --namespace nfs-provisioner   --create-namespace   --values nfs-subdir-values.yaml
+helm install nfs-subdir-external-provisioner \
+  nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
+  --namespace nfs-provisioner \
+  --create-namespace \
+  --values nfs-subdur-values.yaml
 ```
 
 !!! info
