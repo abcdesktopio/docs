@@ -2886,7 +2886,11 @@ systemctl restart nfs-kernel-server
 </div>
 <h2 id="bind-users-homedir-to-nfs-server">Bind user's homedir to nfs server</h2>
 <h3 id="install-nfs-subdir-external-provisioner">Install nfs-subdir-external-provisioner</h3>
-<p>First, you have to install a provisonner to your cluster, in this example, we chose nfs-subdir-external-provisioner because of its dynamic subdir creation aspect.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want more informations about <code>nfs-subdir-external-provisioner</code> please visit <a href="https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner">this page</a></p>
+</div>
+<p>First, you have to install a provisonner to your cluster, in this example, we chose <code>nfs-subdir-external-provisioner</code> because of its dynamic subdir creation aspect.</p>
 <p>Create a <code>nfs-subdur-values.yaml</code> file and paste the following lines to configure the storage class.</p>
 <div class="highlight"><pre><span></span><code>nfs:
   server: 192.168.X.X   # change it to your server ip
