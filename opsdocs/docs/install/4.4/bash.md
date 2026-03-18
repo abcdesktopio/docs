@@ -15,7 +15,7 @@ You can run the **Quick installation process** or choose the **Manually installa
 
 > Quick installation can be run on Linux or macOS operation system, using `kubectl` command
 
-### Install using kubectl on Linux or macOS operation system
+Install using kubectl on Linux or macOS operation system
 
 Download and extract the latest release automatically
 
