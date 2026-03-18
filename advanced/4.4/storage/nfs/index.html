@@ -2887,16 +2887,40 @@ systemctl restart nfs-kernel-server
 <h2 id="bind-users-homedir-to-nfs-server">Bind user's homedir to nfs server</h2>
 <h3 id="install-nfs-subdir-external-provisioner">Install nfs-subdir-external-provisioner</h3>
 <p>First, you have to install a provisonner to your cluster, in this example, we chose nfs-subdir-external-provisioner because of its dynamic subdir creation aspect.</p>
-<p>To install it, run the following command </p>
-<div class="highlight"><pre><span></span><code>inserer ligne de l&#39;historique
+<p>Create a <code>nfs-subdur-values.yaml</code> file and paste the following lines to configure the storage class.</p>
+<div class="highlight"><pre><span></span><code>nfs:
+  server: 192.168.7.214   # change it to your server ip
+  path: /data/abcdesktop_nfs
+
+replicaCount: 1
+
+storageClass:
+  name: nfs-user-storage-abcdesktop
+  defaultClass: false
+  reclaimPolicy: Retain
+  volumeBindingMode: Immediate
+  archiveOnDelete: true         
+  onDelete: retain              
+  pathPattern: &quot;${.PVC.annotations.nfs.io/username}&quot; # Important for dynamic subdir creation
+
+rbac:
+  create: true
+
+serviceAccount:
+  create: true
+  name: nfs-subdir-external-provisioner
+</code></pre></div>
+<p>Then install <code>nfs-subdir-external-provisioner</code> by running the following command </p>
+<div class="highlight"><pre><span></span><code>helm install nfs-subdir-external-provisioner   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner   --namespace nfs-provisioner   --create-namespace   --values nfs-subdir-values.yaml
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>It is important to set the reclaim policy as Retain to keep our PV alive after PVC deletion</p>
 </div>
-<p>This command will also automatically create the <code>inserer nom</code> StorageClass.</p>
-<p>You can check it by running this command</p>
+<p>You can check if the storage class has been created by running this command</p>
 <div class="highlight"><pre><span></span><code>kubectl get sc
+NAME                          PROVISIONER                                     RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+nfs-user-storage-abcdesktop   cluster.local/nfs-subdir-external-provisioner   Retain          Immediate           true                   40h
 </code></pre></div>
 <h3 id="update-odconfig">Update od.config</h3>
 <p>Now, you will need to specify to pyos to bind users homedir to the exported nfs folder. To do so you will need to update the <code>od.config</code> file.</p>
@@ -2912,7 +2936,7 @@ systemctl restart nfs-kernel-server
       }
    },
    &#39;spec&#39;: {
-    &#39;storageClassName&#39;: &#39;nom de la classe&#39;,
+    &#39;storageClassName&#39;: &#39;nfs-user-storage-abcdesktop&#39;,
     &#39;accessModes&#39;: [ &#39;ReadWriteMany&#39; ],
     &#39;resources&#39;: {
        &#39;requests&#39;: {
@@ -2941,16 +2965,31 @@ desktop.removepersistentvolumeclaim: True
 <p>You can also check for PV and PVC inside you cluster</p>
 <div class="highlight"><pre><span></span><code>kubectl get pv,pvc -n abcdesktop
 
-NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS        CLAIM                   STORAGECLASS              VOLUMEATTRIBUTESCLASS   REASON   AGE
-persistentvolume/pvc-4b522afd-bf6e-411e-85c3-2a39e1b2c58f   10Gi       RWX            Retain           Bound      abcdesktop/planet-fry   nfs-user-storage-matteo   &lt;unset&gt;                          26m
+NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS        CLAIM                   STORAGECLASS                   VOLUMEATTRIBUTESCLASS   REASON   AGE
+persistentvolume/pvc-4b522afd-bf6e-411e-85c3-2a39e1b2c58f   10Gi       RWX            Retain           Bound         abcdesktop/planet-fry   nfs-user-storage-abcdesktop    &lt;unset&gt;                          26m
 
-NAME                               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS              VOLUMEATTRIBUTESCLASS   AGE
-persistentvolumeclaim/planet-fry   Bound    pvc-8f802cbc-873f-46ab-9d7a-fe266da42387   10Gi       RWX            nfs-user-storage-matteo   &lt;unset&gt;                 22m
+NAME                               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/planet-fry   Bound    pvc-8f802cbc-873f-46ab-9d7a-fe266da42387   10Gi       RWX            nfs-user-storage-abcdesktop    &lt;unset&gt;                 22m
 </code></pre></div>
 <p>Now you can create a file in the user's homedir </p>
-<p>INSERER SCREEN</p>
-<p>Then perform a logoff to destroy your pod and recreates it, once reconnected on a new pod, check if the file you previously created is still there, it should appear.</p>
-<p>INSERER SCREEN</p>
+<p><img alt="create file on user homedir" src="../../../../img/nfs_create_file_user_homedir.png"/></p>
+<p>You can also check if the user's homedir is present on your nfs server, you should also see that a subdir have been created thanks to <code>nfs-subdir-external-provisioner</code>.</p>
+<div class="highlight"><pre><span></span><code>root@nfs-server_abcdesktop:/data/abcdesktop_nfs# ls
+drwxr-x--- 15 2042 12042 4096 Mar 18 09:11 fry
+
+root@nfs-server_abcdesktop:/data/abcdesktop_nfs# ls -l fry/
+drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Desktop
+drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Documents
+drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Downloads
+drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Music
+drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Pictures
+drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Public
+drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Templates
+-rw-r----- 1 2042 12042    0 Mar 18 09:11 toto.txt
+drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Videos
+</code></pre></div>
+<p>Then perform a logoff to destroy your pod and recreates it, once reconnected on a new pod with the same user, check if the file you previously created is still there, it should appear.</p>
+<p><img alt="check peristent user homedir" src="../../../../img/nfs_check_persistent_homedir.png"/></p>
 
 
 
