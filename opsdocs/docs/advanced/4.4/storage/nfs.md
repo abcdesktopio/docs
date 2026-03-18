@@ -144,6 +144,21 @@ desktop.removepersistentvolume: False
 desktop.removepersistentvolumeclaim: True
 ```
 
+### Update pyos role
+
+By default, pyos is not authorized to create persistent volumes and persistent volume claims, to fix that, you should run the following command
+
+```
+kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/rbac-cluster.yaml -n abcdesktop
+```
+
+Then update `od.config` configmap and restart pyos to apply the changes we made
+
+```
+kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+kubectl rollout restart deploy pyos-od -n abcdesktop
+```
+
 ## Check if user's homedir is persistent
 
 You can now connect to your abcdesktop and login as a user.
