@@ -1996,6 +1996,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#update-pyos-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update pyos role
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2810,6 +2819,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#update-pyos-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update pyos role
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2949,6 +2967,14 @@ nfs-user-storage-abcdesktop   cluster.local/nfs-subdir-external-provisioner   Re
 <p>Finaly, tell pyos to delete the persistent volume claim on user's pod delete but to keep the persistent volume as we defined storage class retain policy as <code>Retain</code> earlier. </p>
 <div class="highlight"><pre><span></span><code>desktop.removepersistentvolume: False
 desktop.removepersistentvolumeclaim: True
+</code></pre></div>
+<h3 id="update-pyos-role">Update pyos role</h3>
+<p>By default, pyos is not authorized to create persistent volumes and persistent volume claims, to fix that, you should run the following command</p>
+<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/rbac-cluster.yaml -n abcdesktop
+</code></pre></div>
+<p>Then update <code>od.config</code> configmap and restart pyos to apply the changes we made</p>
+<div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+kubectl rollout restart deploy pyos-od -n abcdesktop
 </code></pre></div>
 <h2 id="check-if-users-homedir-is-persistent">Check if user's homedir is persistent</h2>
 <p>You can now connect to your abcdesktop and login as a user.</p>
