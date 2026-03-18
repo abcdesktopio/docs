@@ -37,7 +37,7 @@ vim /etc/exports
 And add the following line 
 
 ```
-/data/abcdesktop_nfs  192.168.7.0/24(rw,sync,no_subtree_check,no_root_squash) # make sure to change 192.168.7.0/24 by your own cluster subnet
+/data/abcdesktop_nfs  192.168.X.X/24(rw,sync,no_subtree_check,no_root_squash) # make sure to change 192.168.X.X/24 by your own cluster subnet
 ```
 
 Finaly, apply the config. 
@@ -66,7 +66,7 @@ Create a `nfs-subdur-values.yaml` file and paste the following lines to configur
 
 ```
 nfs:
-  server: 192.168.7.214   # change it to your server ip
+  server: 192.168.X.X   # change it to your server ip
   path: /data/abcdesktop_nfs
 
 replicaCount: 1
@@ -110,7 +110,7 @@ nfs-user-storage-abcdesktop   cluster.local/nfs-subdir-external-provisioner   Re
 
 Now, you will need to specify to pyos to bind users homedir to the exported nfs folder. To do so you will need to update the `od.config` file.
 
-First, change `desktop.homedirectorytype` variable from None to 'persistentVolumeClaim.
+First, change `desktop.homedirectorytype` variable from `None` to `persistentVolumeClaim`.
 
 ```
 desktop.homedirectorytype: 'persistentVolumeClaim'
@@ -137,22 +137,14 @@ desktop.persistentvolumeclaim: {
 !!! note 
     Here there is no need to specify a persistent volume template to pyos as `nfs-subdir-external-provisioner` will deal with it automaticaly.
 
-Finaly, tell pyos to delete the persistent volume claim on user's pod delete but to keep the persistent volume as we defined storage class retain policy as `Retain` earlier. 
+Then, tell pyos to delete the persistent volume claim on user's pod delete but to keep the persistent volume as we defined storage class retain policy as `Retain` earlier. 
 
 ```
 desktop.removepersistentvolume: False
 desktop.removepersistentvolumeclaim: True
 ```
 
-### Update pyos role
-
-By default, pyos is not authorized to create persistent volumes and persistent volume claims, to fix that, you should run the following command
-
-```
-kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/rbac-cluster.yaml -n abcdesktop
-```
-
-Then update `od.config` configmap and restart pyos to apply the changes we made
+Finaly, update `od.config` configmap and restart pyos to apply the changes we made
 
 ```
 kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
