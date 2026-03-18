@@ -6,16 +6,11 @@
 - `kubectl` command-line tool must be configured to communicate with your cluster. 
 - `openssl` and `curl` command line must be installed too (only for install using kubectl). 
 
-You can run the **Quick installation process** or choose the **Manually installation step by step**
-
 > Linux operating system is recommanded to run abcdesktop.io.
-
 
 ## Quick installation (Linux or macOS)
 
 > Quick installation can be run on Linux or macOS operation system, using `kubectl` command
-
-Install using kubectl on Linux or macOS operation system
 
 Download and extract the latest release automatically
 
