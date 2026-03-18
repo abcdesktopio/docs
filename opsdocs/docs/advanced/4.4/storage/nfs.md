@@ -60,7 +60,10 @@ exportfs -v
 
 ### Install nfs-subdir-external-provisioner
 
-First, you have to install a provisonner to your cluster, in this example, we chose nfs-subdir-external-provisioner because of its dynamic subdir creation aspect.
+!!! note 
+    If you want more informations about `nfs-subdir-external-provisioner` please visit [this page](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
+
+First, you have to install a provisonner to your cluster, in this example, we chose `nfs-subdir-external-provisioner` because of its dynamic subdir creation aspect.
 
 Create a `nfs-subdur-values.yaml` file and paste the following lines to configure the storage class.
 
