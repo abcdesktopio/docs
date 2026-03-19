@@ -17,11 +17,7 @@ theme:
 plugins:
     - search
     - tags
-    - macros:
-        module_name: docs/macros/snippets_first   # ← chemin relatif à docs/
 extra:
-  version: "4.4"
-  helm_version: "4.3.2"
   abcdesktop:
     latest_release: ${ABCDESKTOP_LATEST_RELEASE}
 
@@ -31,17 +27,6 @@ extra:
     property: G-TN9YC7J01Z
 extra_css:
   - css/custom-admonition.css
-  - assets/css/getting-started.css
-  - assets/css/wizard.css
-
-extra_javascript:
-  - https://unpkg.com/mermaid@11/dist/mermaid.min.js
-  - assets/js/wizard.js
-
-hooks:
-  - hooks/wizard_profil.py
-  - hooks/wizard_nav.py
-  - hooks/toc_tab_filter.py
 
 markdown_extensions:
   - attr_list
@@ -53,14 +38,6 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg            
-  - pymdownx.snippets:
-      base_path: opsdocs/docs
-      check_paths: true       
 
 site_name: abcdesktop.pepins.net
 repo_url: https://github.com/abcdesktopio/newdocs
@@ -69,7 +46,19 @@ site_url: https://abcdesktop.pepins.net
 edit_uri: 'edit/main/opsdocs/docs'
 nav:
 - Home: index.md
-- Getting Started: getting-started/overview.md
+- Quick Start 2 :
+  - Requirements : quick-start/${ABCDESKTOP_LATEST_RELEASE}/requirements.md
+  - Install :
+    - Script:
+        - Linux/macOS: quick-start/${ABCDESKTOP_LATEST_RELEASE}/script/install.md
+        - Windows: quick-start/${ABCDESKTOP_LATEST_RELEASE}/script/install_windows.md
+    - Helm: quick-start/${ABCDESKTOP_LATEST_RELEASE}/helm/install.md
+  - Uninstall :
+    - Script:
+        - Linux/macOs: quick-start/${ABCDESKTOP_LATEST_RELEASE}/script/uninstall.md
+        - Windows: quick-start/${ABCDESKTOP_LATEST_RELEASE}/script/uninstall_windows.md
+    - Helm: quick-start/${ABCDESKTOP_LATEST_RELEASE}/helm/uninstall.md
+  - Applications: quick-start/${ABCDESKTOP_LATEST_RELEASE}/applications/index.md
 - Requirements : requirements.md
 - Quick Start :
   - Install :
