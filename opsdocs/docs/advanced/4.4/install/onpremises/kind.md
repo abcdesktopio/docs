@@ -8,15 +8,39 @@ Kind is a tool for running local Kubernetes clusters using Docker container “n
 
 ## Requirements
 
-* Kubernetes cluster READY to run
+* `kind` command line
 * kubectl command-line tool must be configured to communicate with your cluster.
 * openssl and curl command line must be installed too (only for install using kubectl) or helm command.
 
-You can run the Quick installation process or choose the Manually installation step by step
+## Create kind cluster
 
-> Linux operating system is recommanded to run abcdesktop.io.
+Run the command line to create 
 
-## Quick installation
+```
+kind create cluster
+```
 
-* Using [bash script](/install/{{ config.extra.abcdesktop.latest_release }}/bash/)
-* Using [helm](/install/{{ config.extra.abcdesktop.latest_release }}/helm/)
+You should read on stdout
+
+```
+Creating cluster "kind" ...
+ ✓ Ensuring node image (kindest/node:v1.34.0) 🖼 
+ ✓ Preparing nodes 📦  
+ ✓ Writing configuration 📜 
+ ✓ Starting control-plane 🕹️ 
+ ✓ Installing CNI 🔌 
+ ✓ Installing StorageClass 💾 
+Set kubectl context to "kind-kind"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-kind
+
+Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/#community 🙂
+```
+
+## Run the install bash script 
+
+```
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh | bash
+```
+
