@@ -1,4 +1,4 @@
-# Architecture in docker mode
+# Architecture overview
 
 ## Pods 
 
