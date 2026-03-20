@@ -2083,9 +2083,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-installation" class="md-nav__link">
+  <a href="#create-kind-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick installation
+      Create kind cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-install-bash-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the install bash script
     </span>
   </a>
   
@@ -3137,9 +3146,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-installation" class="md-nav__link">
+  <a href="#create-kind-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick installation
+      Create kind cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-install-bash-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the install bash script
     </span>
   </a>
   
@@ -3190,19 +3208,32 @@
 <p>Kind is a tool for running local Kubernetes clusters using Docker container “nodes”. Kind was primarily designed for testing Kubernetes itself, but it can be used to deploy Kubernetes applications as well. To install or setup <code>kind</code>, refer to the <a href="https://kind.sigs.k8s.io/">Kind documentation</a></p>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li>Kubernetes cluster READY to run</li>
+<li><code>kind</code> command line</li>
 <li>kubectl command-line tool must be configured to communicate with your cluster.</li>
 <li>openssl and curl command line must be installed too (only for install using kubectl) or helm command.</li>
 </ul>
-<p>You can run the Quick installation process or choose the Manually installation step by step</p>
-<blockquote>
-<p>Linux operating system is recommanded to run abcdesktop.io.</p>
-</blockquote>
-<h2 id="quick-installation">Quick installation</h2>
-<ul>
-<li>Using <a href="/install/{{ config.extra.abcdesktop.latest_release }}/bash/">bash script</a></li>
-<li>Using <a href="/install/{{ config.extra.abcdesktop.latest_release }}/helm/">helm</a></li>
-</ul>
+<h2 id="create-kind-cluster">Create kind cluster</h2>
+<p>Run the command line to create </p>
+<div class="highlight"><pre><span></span><code>kind create cluster
+</code></pre></div>
+<p>You should read on stdout</p>
+<div class="highlight"><pre><span></span><code>Creating cluster &quot;kind&quot; ...
+ ✓ Ensuring node image (kindest/node:v1.34.0) 🖼 
+ ✓ Preparing nodes 📦  
+ ✓ Writing configuration 📜 
+ ✓ Starting control-plane 🕹️ 
+ ✓ Installing CNI 🔌 
+ ✓ Installing StorageClass 💾 
+Set kubectl context to &quot;kind-kind&quot;
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-kind
+
+Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/#community 🙂
+</code></pre></div>
+<h2 id="run-the-install-bash-script">Run the install bash script</h2>
+<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh | bash
+</code></pre></div>
 
 
 
