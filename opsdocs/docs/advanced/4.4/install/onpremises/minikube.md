@@ -1,7 +1,7 @@
 ---
 tags:
   - minikube
-  - install
+  - installation
 ---
 
 
