@@ -173,7 +173,7 @@ The informations are :
 
 [`oc.user`](https://github.com/abcdesktopio/oc.user) is the name of the user's container image. `oc.user` runs the X11 graphical service. `oc.user` is based on ubuntu distribution. 
 
-* The image `abcdesktopio/oc.user.ubuntu:4.1` is based on `ubuntu` distribution `24.04`. Get more details about [oc.user](https://github.com/abcdesktopio/oc.user) image.
+* The image `abcdesktopio/oc.user.ubuntu.24.04:{{ abcdesktop.latest_release }}` is based on `ubuntu` distribution `24.04`. Get more details about [oc.user](https://github.com/abcdesktopio/oc.user) image.
 
 
 ### applications
