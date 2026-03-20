@@ -44,6 +44,8 @@ Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh | bash
 ```
 
+You should read on stdout
+
 ```
 NAME                            READY   STATUS    RESTARTS   AGE
 console-od-c96c4989d-x4256      1/1     Running   0          93s
