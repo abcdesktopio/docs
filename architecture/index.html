@@ -6298,8 +6298,8 @@ config:
 ---
 sequenceDiagram
     actor Alice
-    Alice-- HTTPS GET / --&gt;&gt;Router: HTTPS GET /
-    Router-&gt;&gt;Website: HTTP GET /
+    Alice-&gt;&gt; Router: GET /
+    Router-&gt;&gt;Website: GET /
     destroy Website
     Website-&gt;&gt;Router: HTML Content
     Router-&gt;&gt;Alice: HTML Content
