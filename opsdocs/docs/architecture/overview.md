@@ -91,7 +91,7 @@ sequenceDiagram
     PodAlice->>Kubernetes: I'm Ready
     destroy Kubernetes
     Kubernetes->>Pyos: Alice Pod is Ready
-    Pyos->>Pyos: Crypt Pop ip address
+    Pyos->>Pyos: Crypt Pod's ip address
     destroy Pyos
     Pyos->>Router: Desktop Alice JWT
     Router->>Alice: Desktop Alice JWT
