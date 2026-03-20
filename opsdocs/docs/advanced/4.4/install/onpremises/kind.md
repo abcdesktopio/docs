@@ -44,4 +44,16 @@ Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh | bash
 ```
 
+```
+NAME                            READY   STATUS    RESTARTS   AGE
+console-od-c96c4989d-x4256      1/1     Running   0          93s
+memcached-od-6ccd5b5f67-9gznq   1/1     Running   0          93s
+mongodb-od-0                    2/2     Running   0          93s
+nginx-od-9c5774bdd-z49jq        1/1     Running   0          93s
+openldap-od-bb485cb4b-6d5j7     1/1     Running   0          93s
+pyos-od-5c5cfdbfc8-f852d        1/1     Running   0          93s
+router-od-6b7456b789-rkxfd      1/1     Running   0          93s
+speedtest-od-8686c67749-t4n7j   1/1     Running   0          93s
+```
+
 ## How to connect 
