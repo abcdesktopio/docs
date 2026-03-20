@@ -1,6 +1,6 @@
 # Architecture overview
 
-## Pods 
+## Pods and services
 
 This flowchart describes the all abcdesktop services
 
