@@ -111,16 +111,16 @@ sequenceDiagram
 
 The service infrastructure is based on :
 
-- Router nginx with lua script [Nginx container](/core/nginx)
+- Router nginx with lua script [router](https://github.com/abcdesktopio/router)
 - Website service [webmodules](https://github.com/abcdesktopio/webmodules)
 - Database service (external projet) [MongoDB](/core/mongodb/)
 - Memcached service (external projet) [Memcached](/core/memcached/)
-- Pyos Core service (abcdesktop control plane) [Pyos](/core/pyos/)
-- Pod user [user](/core/user)
+- Pyos Core service (abcdesktop control plane) [pyos](https://github.com/abcdesktopio/pyos)
+- Pod user [user](https://github.com/abcdesktopio/oc.user)
 
 ## Additional services
 
-- Console service (abcdesktop admin console) [Pyos](/core/pyos/)
+- Console service (abcdesktop admin console) [console](https://github.com/abcdesktopio/console)
 - Speedtest service (speedtest service, self-hosted speed test for HTML5, external projet) [librespeed](https://github.com/librespeed/speedtest)
 - LDAP service (for demo, optional) [rroemhild/docker-test-openldap](https://github.com/rroemhild/docker-test-openldap]
   
@@ -137,12 +137,12 @@ The service infrastructure is based on :
 `pyos` is the core abcdesktop service act as a control plane. Pyos is a stateless services, Pyos's roles are :
 
 - Authenticate user on authenticate providers
- - OAuth 2.0 Provider : Google, Facebook, Orange
+ - OpenID Provider
  - LDAP and LDAPS
  - Active Directory
  - Anonymous (no auth)
-- Start/Stop user's Pod in Kubernetes 
-- Start/Stop user's applications as `ephemeral container` or as `pod`
+- Create/Read/Update/Delete user's Pod in Kubernetes 
+- Create/Read/Update/Delete user's applications as `ephemeral container` or as `pod`
 
 > When a new user is authenticated, a dedicated user pod is created.
 > When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a `pod` or an `ephemeral container`
@@ -150,7 +150,7 @@ The service infrastructure is based on :
 
 ### router
 
-`router` pod act as a `http router` web server. It routes HTTP requets to `user's pods`, `web site`, or `pyos`.
+`router` pod act as a `http router` web server. It routes HTTP requets to `user's pods`, `web site`, `pyos`, `console`.
 
 ### website
 
