@@ -44,3 +44,4 @@ Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh | bash
 ```
 
+## How to connect 
