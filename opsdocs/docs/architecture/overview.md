@@ -1,3 +1,8 @@
+---
+tags:
+  - architecture
+---
+
 # Architecture overview
 
 ## Pods and services
