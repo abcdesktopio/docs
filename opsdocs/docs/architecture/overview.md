@@ -45,6 +45,8 @@ flowchart TD
 
 The project abcdesktop provides container images for `route`, `console`, `website`, `pyos`, and `user`
 
+> The projects `kubernetes`, `mongodb`, `memcached`, `speedtest` and `ldap` are not part of the abcdesktop project.
+
 ## Create desktop workflow
 
 This workflow describes the `create desktop` process 
