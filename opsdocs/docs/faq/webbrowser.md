@@ -19,7 +19,7 @@ abcdesktop.io uses many modern web technologies. However these are the minimum v
 
 ## Copy and Paste features
 
-To fully use `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, Chromium or  Microsoft Edge Chromium. The `copy and paste` feature is also supported on Firefox with a [dedicated abcdesktop extension](/common/firefox-extension).
+To fully use `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, Chromium or  Microsoft Edge Chromium. The `copy and paste` feature is also supported on Firefox with a [dedicated abcdesktop extension](firefox-extension.md).
 
 | Web browser      | Clipboard sync                 |
 |------------------|-------------------------------------|
