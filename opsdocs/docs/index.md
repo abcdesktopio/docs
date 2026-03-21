@@ -46,33 +46,6 @@ abcdesktop.io provides a way to run graphics software securely isolated in a con
 
 ![screenshot-applications](img/abcdesktop-home-release-4.1.png)
 
-## Quick installation using helm latest release {{ abcdesktop.latest_release }}
-
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop)](https://artifacthub.io/packages/search?repo=abcdesktop)
-
-You can watch the youtube video sample. This video describes the Quick installation process using `helm`.
-
-<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-
-
-Add the `helm` repo and then install it on Linux or macOS or read the step by step installation process [abcdesktop for kubernetes](install/4.4/helm.md)
-
-<div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="false" data-stars="false" data-responsive="false"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div><script async src="https://artifacthub.io/artifacthub-widget.js"></script>
-
-```
-helm repo add abcdesktop https://abcdesktopio.github.io/helm/
-helm install my-abcdesktop abcdesktop/abcdesktop --version {{ abcdesktop.latest_release }} --create-namespace -n abcdesktop
-```
-
-When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)
-
-```
-LOCAL_PORT=30443
-NAMESPACE=abcdesktop
-kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 "${LOCAL_PORT}:80" -n ${NAMESPACE} 
-```
-
-
 
 ## Adopters
 
@@ -110,17 +83,6 @@ If you’re using abcdesktop and aren’t on this list, please submit a pull req
 - Support Microsoft Windows applications using [Wine](https://www.winehq.org/)
 
 
-
-### Supported web browser HTML
-
-abcdesktop.io uses many modern web technologies. However these are the minimum versions we are currently aware of:
-
-* Chrome 49, 
-* Firefox 58, 
-* Safari 11, 
-* Opera 36,  
-* Microsoft Edge (based on Chromium)
-
 #### Copy and Paste features
 
 To fully use `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, Chromium or  Microsoft Edge Chromium. The `copy and paste` feature is also supported on Firefox with a [dedicated abcdesktop extension](common/firefox-extension.md).
@@ -151,10 +113,6 @@ abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 1
 |  4.0     | stable     | 01/01/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
 |  4.1     | stable     | 01/06/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
 |  4.2     | stable     | 01/06/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
-
-## Helm artifacthub report
-
-<div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="true" data-stars="false" data-responsive="true"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div><script async src="https://artifacthub.io/artifacthub-widget.js"></script>
 
 ## Github repositories ![Github stars](https://img.shields.io/github/stars/abcdesktopio?style=social)
 
