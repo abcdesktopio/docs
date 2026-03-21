@@ -335,17 +335,18 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../faq/" class="md-tabs__link">
-        
-  
-  
     
+    
+      <li class="md-tabs__item">
+        <a href="../../faq/webbrowser/" class="md-tabs__link">
+          
+  
   
   FAQ
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -3196,9 +3197,23 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../faq/" class="md-nav__link">
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -3207,7 +3222,88 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            FAQ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/webbrowser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web browser client
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/ingresscontroller.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ingress controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/applications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3550,7 +3646,7 @@ The informations are :</p>
 <h3 id="ocuser">oc.user</h3>
 <p><a href="https://github.com/abcdesktopio/oc.user"><code>oc.user</code></a> is the name of the user's container image. <code>oc.user</code> runs the X11 graphical service. <code>oc.user</code> is based on ubuntu distribution. </p>
 <ul>
-<li>The image <code>abcdesktopio/oc.user.ubuntu.24.04:{{ abcdesktop.latest_release }}</code> is based on <code>ubuntu</code> distribution <code>24.04</code>. Get more details about <a href="https://github.com/abcdesktopio/oc.user">oc.user</a> image.</li>
+<li>The image <code>abcdesktopio/oc.user.ubuntu.24.04:4.4</code> is based on <code>ubuntu</code> distribution <code>24.04</code>. Get more details about <a href="https://github.com/abcdesktopio/oc.user">oc.user</a> image.</li>
 </ul>
 <h3 id="applications">applications</h3>
 <p>All applications are <code>ephemeral containers</code> or <code>pods</code>, and share a graphical socket ( <code>unix</code> or <code>tcp</code> ) with the user's pod. </p>

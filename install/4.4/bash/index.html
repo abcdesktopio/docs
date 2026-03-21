@@ -335,17 +335,18 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../../faq/" class="md-tabs__link">
-        
-  
-  
     
+    
+      <li class="md-tabs__item">
+        <a href="../../../faq/webbrowser/" class="md-tabs__link">
+          
+  
   
   FAQ
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -3100,9 +3101,23 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../../faq/" class="md-nav__link">
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -3111,7 +3126,88 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            FAQ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/webbrowser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web browser client
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/ingresscontroller.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ingress controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/applications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3208,7 +3304,7 @@
 <p>Quick installation can be run on Linux or macOS operation system, using <code>kubectl</code> command</p>
 </blockquote>
 <p>Download and extract the latest release automatically</p>
-<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh | bash
+<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh | bash
 </code></pre></div>
 <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/vEEXVOT30w4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
 
@@ -3230,8 +3326,8 @@ writing RSA key
 [OK] label secret abcdesktopjwtdesktoppayload
 [OK] label secret abcdesktopjwtdesktopsigning
 [OK] label secret abcdesktopjwtusersigning
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-{{ abcdesktop.latest_release }}.yaml
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.{{ abcdesktop.latest_release }}
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.4.yaml
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.4
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
 role.rbac.authorization.k8s.io/pyos-role created
@@ -3301,8 +3397,8 @@ speedtest-od-7fcc9649b4-qllr7   1/1     Running   0          32s
 <ul>
 <li>create the <code>abcdesktop</code> namespace</li>
 <li>build all <code>rsa</code> keys for jwt signing and payload encryption, using openssl command line</li>
-<li>create all <code>service account</code>, <code>services</code>, <code>deployments</code>, <code>secrets</code> and <code>configmaps</code> from the <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-{{ abcdesktop.latest_release }}.yaml">abcdesktop.yaml</a></li>
-<li>download and create the default configuration file <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.{{ abcdesktop.latest_release }}">od.config</a></li>
+<li>create all <code>service account</code>, <code>services</code>, <code>deployments</code>, <code>secrets</code> and <code>configmaps</code> from the <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.4.yaml">abcdesktop.yaml</a></li>
+<li>download and create the default configuration file <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.4.4">od.config</a></li>
 </ul>
 <blockquote>
 <p>This install process doesn't install applications for your desktop, you get a desktop with few applications in your dock</p>

@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installation-using-helm-lastest-release-abcdesktoplatest_release" class="md-skip">
+        <a href="#installation-using-helm-lastest-release-44" class="md-skip">
           Skip to content
         </a>
       
@@ -335,17 +335,18 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../../faq/" class="md-tabs__link">
-        
-  
-  
     
+    
+      <li class="md-tabs__item">
+        <a href="../../../faq/webbrowser/" class="md-tabs__link">
+          
+  
   
   FAQ
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -3115,9 +3116,23 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../../faq/" class="md-nav__link">
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -3126,7 +3141,88 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            FAQ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/webbrowser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web browser client
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/ingresscontroller.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ingress controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/applications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3251,18 +3347,18 @@
   
 
 
-<h1 id="installation-using-helm-lastest-release-abcdesktoplatest_release">Installation using helm lastest release {{ abcdesktop.latest_release }}</h1>
+<h1 id="installation-using-helm-lastest-release-44">Installation using helm lastest release 4.4</h1>
 <p><a href="https://artifacthub.io/packages/search?repo=abcdesktop"><img alt="Artifact Hub" src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop" /></a></p>
 <p>You can watch the youtube video sample. This video describes the Quick installation process using <code>helm</code>.</p>
 <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
-<p>Add the <code>helm</code> repo and then install it on Linux or macOS or read the step by step installation process <a href="/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop">abcdesktop for kubernetes</a></p>
+<p>Add the <code>helm</code> repo and then install it on Linux or macOS or read the step by step installation process <a href="/4.4/setup/kubernetes_abcdesktop">abcdesktop for kubernetes</a></p>
 <div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="false" data-stars="false" data-responsive="false"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div>
 <script async src="https://artifacthub.io/artifacthub-widget.js"></script>
 
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 helm repo add abcdesktop https://abcdesktopio.github.io/helm/
-helm install my-abcdesktop abcdesktop/abcdesktop --version {{ abcdesktop.latest_release }} --create-namespace -n ${NAMESPACE}
+helm install my-abcdesktop abcdesktop/abcdesktop --version 4.4 --create-namespace -n ${NAMESPACE}
 </code></pre></div>
 <p>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)</p>
 <div class="highlight"><pre><span></span><code><span class="nv">LOCAL_PORT</span><span class="o">=</span><span class="m">30443</span>
@@ -3279,7 +3375,7 @@ kubectl<span class="w"> </span>port-forward<span class="w"> </span><span class="
 
 <span class="nt">console</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/abcdesktopio/console</span>
-<span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">abcdesktop.latest_release</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.4</span>
 <span class="w">  </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">limits</span><span class="p">:</span>
@@ -3291,7 +3387,7 @@ kubectl<span class="w"> </span>port-forward<span class="w"> </span><span class="
 
 <span class="nt">memcached</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/abcdesktopio/oc.memcached</span>
-<span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">abcdesktop.latest_release</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.4</span>
 <span class="w">  </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">limits</span><span class="p">:</span>
@@ -3314,7 +3410,7 @@ kubectl<span class="w"> </span>port-forward<span class="w"> </span><span class="
 <p>If you want to change only the memcached docker image and console image tags and CPU
 limit, your <em>abcdesktop-values.yaml</em> may look like:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">console</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">abcdesktop.latest_release</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.4</span>
 <span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">limits</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">99999</span>
@@ -3326,7 +3422,7 @@ limit, your <em>abcdesktop-values.yaml</em> may look like:</p>
 <h3 id="step-2-apply-helm-with-your-values-file">Step 2 - apply helm with your values file</h3>
 <p>Then apply your configuration:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>my-abcdesktop<span class="w"> </span>abcdesktop/abcdesktop<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--version<span class="w"> </span><span class="o">{{</span><span class="w"> </span>abcdesktop.latest_release<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--create-namespace<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-f<span class="w"> </span>abcdesktop-values.yaml
@@ -3334,7 +3430,7 @@ limit, your <em>abcdesktop-values.yaml</em> may look like:</p>
 <h2 id="helm-upgrade">Helm upgrade</h2>
 <p>An installed helm chart can be upgraded (both version and values) using:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>my-abcdesktop<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--version<span class="w"> </span><span class="o">{{</span><span class="w"> </span>abcdesktop.latest_release<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-f<span class="w"> </span>abcdesktop-values<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span>
 </code></pre></div>
