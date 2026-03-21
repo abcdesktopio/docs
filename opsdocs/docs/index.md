@@ -95,10 +95,6 @@ To fully use `copy and paste` features, from your local device to your abcdeskto
 |  Firefox       | Yes, install the [dedicated abcdesktop extension](common/firefox-extension.md)| 
 |  Safari       | No, the clipboard access is not allowed by the user agent or the platform in the current context, possibly because the user denied permission| 
 
-### Not supported web browser
-
-abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 11.x. If you need a Microsoft web browser use Microsoft Edge. Edge is based on the Chromium open-source project. Chromium forms the basis of Google Chrome, so the new Edge feels very similar to Google Chrome.
-
 
 ## Release history
 
@@ -113,8 +109,3 @@ abcdesktop.io does NOT support Microsoft Internet Explorer from version 1.x to 1
 |  4.0     | stable     | 01/01/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
 |  4.1     | stable     | 01/06/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
 |  4.2     | stable     | 01/06/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
-
-## Github repositories ![Github stars](https://img.shields.io/github/stars/abcdesktopio?style=social)
-
-abcdesktop has 60 repositories available. Follow the code on GitHub [https://github.com/abcdesktopio](https://github.com/abcdesktopio) to get the source code.
-
