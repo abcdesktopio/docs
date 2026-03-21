@@ -127,7 +127,7 @@ The service infrastructure is based on :
 
 - Console service (abcdesktop admin console) [console](https://github.com/abcdesktopio/console)
 - Speedtest service (speedtest service, self-hosted speed test for HTML5, external projet) [librespeed](https://github.com/librespeed/speedtest)
-- LDAP service (for demo, optional) [rroemhild/docker-test-openldap](https://github.com/rroemhild/docker-test-openldap]
+- LDAP service (for demo, optional) [rroemhild/docker-test-openldap](https://github.com/rroemhild/docker-test-openldap)
   
 
 ## Additional projet
