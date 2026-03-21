@@ -468,15 +468,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-installation-using-helm-latest-release-abcdesktoplatest_release" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick installation using helm latest release {{ abcdesktop.latest_release }}
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#adopters" class="md-nav__link">
     <span class="md-ellipsis">
       Adopters
@@ -502,16 +493,7 @@
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#supported-web-browser-html" class="md-nav__link">
-    <span class="md-ellipsis">
-      Supported web browser HTML
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Supported web browser HTML">
+    <nav class="md-nav" aria-label="Applications">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -546,15 +528,6 @@
   <a href="#release-history" class="md-nav__link">
     <span class="md-ellipsis">
       Release history
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#helm-artifacthub-report" class="md-nav__link">
-    <span class="md-ellipsis">
-      Helm artifacthub report
     </span>
   </a>
   
@@ -3249,15 +3222,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-installation-using-helm-latest-release-abcdesktoplatest_release" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick installation using helm latest release {{ abcdesktop.latest_release }}
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#adopters" class="md-nav__link">
     <span class="md-ellipsis">
       Adopters
@@ -3283,16 +3247,7 @@
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#supported-web-browser-html" class="md-nav__link">
-    <span class="md-ellipsis">
-      Supported web browser HTML
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Supported web browser HTML">
+    <nav class="md-nav" aria-label="Applications">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3327,15 +3282,6 @@
   <a href="#release-history" class="md-nav__link">
     <span class="md-ellipsis">
       Release history
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#helm-artifacthub-report" class="md-nav__link">
-    <span class="md-ellipsis">
-      Helm artifacthub report
     </span>
   </a>
   
@@ -3397,23 +3343,6 @@
 <h2 id="abcdesktopio-a-container-vdi-service">abcdesktop.io: a container VDI service</h2>
 <p>abcdesktop.io provides a way to run graphics software securely isolated in a container, and use a web browser HTML5 as display device. Because containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.</p>
 <p><img alt="screenshot-applications" src="img/abcdesktop-home-release-4.1.png" /></p>
-<h2 id="quick-installation-using-helm-latest-release-abcdesktoplatest_release">Quick installation using helm latest release {{ abcdesktop.latest_release }}</h2>
-<p><a href="https://artifacthub.io/packages/search?repo=abcdesktop"><img alt="Artifact Hub" src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop" /></a></p>
-<p>You can watch the youtube video sample. This video describes the Quick installation process using <code>helm</code>.</p>
-<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-
-<p>Add the <code>helm</code> repo and then install it on Linux or macOS or read the step by step installation process <a href="install/4.4/helm/">abcdesktop for kubernetes</a></p>
-<div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="false" data-stars="false" data-responsive="false"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div>
-<script async src="https://artifacthub.io/artifacthub-widget.js"></script>
-
-<div class="highlight"><pre><span></span><code>helm repo add abcdesktop https://abcdesktopio.github.io/helm/
-helm install my-abcdesktop abcdesktop/abcdesktop --version {{ abcdesktop.latest_release }} --create-namespace -n abcdesktop
-</code></pre></div>
-<p>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)</p>
-<div class="highlight"><pre><span></span><code>LOCAL_PORT=30443
-NAMESPACE=abcdesktop
-kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 &quot;${LOCAL_PORT}:80&quot; -n ${NAMESPACE} 
-</code></pre></div>
 <h2 id="adopters">Adopters</h2>
 <p>Here are some of the organizations we know are using abcdesktop.io.
 If you’re using abcdesktop and aren’t on this list, please submit a pull request!</p>
@@ -3463,15 +3392,6 @@ If you’re using abcdesktop and aren’t on this list, please submit a pull req
 <li>Native support GNU/Linux console native support</li>
 <li>Native support GNU/Linux X11 applications native support</li>
 <li>Support Microsoft Windows applications using <a href="https://www.winehq.org/">Wine</a></li>
-</ul>
-<h3 id="supported-web-browser-html">Supported web browser HTML</h3>
-<p>abcdesktop.io uses many modern web technologies. However these are the minimum versions we are currently aware of:</p>
-<ul>
-<li>Chrome 49, </li>
-<li>Firefox 58, </li>
-<li>Safari 11, </li>
-<li>Opera 36,  </li>
-<li>Microsoft Edge (based on Chromium)</li>
 </ul>
 <h4 id="copy-and-paste-features">Copy and Paste features</h4>
 <p>To fully use <code>copy and paste</code> features, from your local device to your abcdesktop (and vice versa), choose <code>Chrome</code>, Chromium or  Microsoft Edge Chromium. The <code>copy and paste</code> feature is also supported on Firefox with a <a href="common/firefox-extension/">dedicated abcdesktop extension</a>.</p>
@@ -3594,10 +3514,6 @@ If you’re using abcdesktop and aren’t on this list, please submit a pull req
 </tr>
 </tbody>
 </table>
-<h2 id="helm-artifacthub-report">Helm artifacthub report</h2>
-<div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="true" data-stars="false" data-responsive="true"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div>
-<script async src="https://artifacthub.io/artifacthub-widget.js"></script>
-
 <h2 id="github-repositories">Github repositories <img alt="Github stars" src="https://img.shields.io/github/stars/abcdesktopio?style=social" /></h2>
 <p>abcdesktop has 60 repositories available. Follow the code on GitHub <a href="https://github.com/abcdesktopio">https://github.com/abcdesktopio</a> to get the source code.</p>
 
