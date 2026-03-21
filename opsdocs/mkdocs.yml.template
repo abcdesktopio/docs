@@ -17,6 +17,7 @@ theme:
 plugins:
     - search
     - tags
+    - macros
 extra:
   abcdesktop:
     latest_release: ${ABCDESKTOP_LATEST_RELEASE}
@@ -131,4 +132,7 @@ nav:
     - Sound: contribute/${ABCDESKTOP_LATEST_RELEASE}/userpod/sound.md
     - Cups: contribute/${ABCDESKTOP_LATEST_RELEASE}/userpod/cups.md
     - Filer: contribute/${ABCDESKTOP_LATEST_RELEASE}/userpod/filer.md
-- FAQ: faq.md
+- FAQ:
+  - Web browser client: faq/webbrowser.md
+  - Ingress controller: faq/ingresscontroller.md
+  - Applications : faq/applications.md
