@@ -469,15 +469,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adopters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Adopters
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#features" class="md-nav__link">
     <span class="md-ellipsis">
       Features
@@ -494,34 +485,10 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Applications">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#copy-and-paste-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      Copy and Paste features
-    </span>
-  </a>
-  
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#release-history" class="md-nav__link">
-    <span class="md-ellipsis">
-      Release history
-    </span>
-  </a>
   
 </li>
       
@@ -3323,15 +3290,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adopters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Adopters
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#features" class="md-nav__link">
     <span class="md-ellipsis">
       Features
@@ -3348,34 +3306,10 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Applications">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#copy-and-paste-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      Copy and Paste features
-    </span>
-  </a>
-  
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#release-history" class="md-nav__link">
-    <span class="md-ellipsis">
-      Release history
-    </span>
-  </a>
   
 </li>
       
@@ -3426,33 +3360,6 @@
 <h2 id="abcdesktopio-a-container-vdi-service">abcdesktop.io: a container VDI service</h2>
 <p>abcdesktop.io provides a way to run graphics software securely isolated in a container, and use a web browser HTML5 as display device. Because containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.</p>
 <p><img alt="screenshot-applications" src="img/abcdesktop-home-release-4.1.png" /></p>
-<h2 id="adopters">Adopters</h2>
-<p>Here are some of the organizations we know are using abcdesktop.io.
-If you’re using abcdesktop and aren’t on this list, please submit a pull request!</p>
-<table>
-<thead>
-<tr>
-<th>Adopters</th>
-<th>Name</th>
-<th>Description</th>
-<th>Public applications repository</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img alt="" src="img/EMBL_logo.svg" /></td>
-<td><a href="https://www.embl.org/">Embl</a></td>
-<td>The European Molecular Biology Laboratory is an intergovernmental organization dedicated to molecular biology research and is supported by 28 member states, one prospect state, and one associate member state</td>
-<td><a href="https://git.embl.de/ysun/abcdesktop-apps/">https://git.embl.de/ysun/abcdesktop-apps/</a></td>
-</tr>
-<tr>
-<td><img alt="" src="img/Orange_logo.svg" /></td>
-<td><a href="https://www.orange.com/">Orange</a></td>
-<td>Telecommunications operator and digital service provider. Orange serves 287 million customers, individuals, professionals, and large companies</td>
-<td>Orange uses common public and private business applications</td>
-</tr>
-</tbody>
-</table>
 <h2 id="features">Features</h2>
 <ul>
 <li>Complete native cloud desktop, workspace environment</li>
@@ -3476,125 +3383,6 @@ If you’re using abcdesktop and aren’t on this list, please submit a pull req
 <li>Native support GNU/Linux X11 applications native support</li>
 <li>Support Microsoft Windows applications using <a href="https://www.winehq.org/">Wine</a></li>
 </ul>
-<h4 id="copy-and-paste-features">Copy and Paste features</h4>
-<p>To fully use <code>copy and paste</code> features, from your local device to your abcdesktop (and vice versa), choose <code>Chrome</code>, Chromium or  Microsoft Edge Chromium. The <code>copy and paste</code> feature is also supported on Firefox with a <a href="common/firefox-extension/">dedicated abcdesktop extension</a>.</p>
-<table>
-<thead>
-<tr>
-<th>Web browser</th>
-<th>Clipboard sync</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Chrome</td>
-<td>Yes, built in support</td>
-</tr>
-<tr>
-<td>Chromium</td>
-<td>Yes, built in support</td>
-</tr>
-<tr>
-<td>Microsoft Edge Chromium</td>
-<td>Yes, built in support</td>
-</tr>
-<tr>
-<td>Firefox</td>
-<td>Yes, install the <a href="common/firefox-extension/">dedicated abcdesktop extension</a></td>
-</tr>
-<tr>
-<td>Safari</td>
-<td>No, the clipboard access is not allowed by the user agent or the platform in the current context, possibly because the user denied permission</td>
-</tr>
-</tbody>
-</table>
-<h2 id="release-history">Release history</h2>
-<table>
-<thead>
-<tr>
-<th>Release</th>
-<th>Status</th>
-<th>Date</th>
-<th>Requirements</th>
-<th>Applications</th>
-<th> Documentation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1.1</td>
-<td>deprecated</td>
-<td>09/15/2021</td>
-<td>dockerd for personnal use and kubernetes</td>
-<td>An application is a docker container</td>
-<td>removed</td>
-</tr>
-<tr>
-<td>2.9</td>
-<td>deprecated</td>
-<td>29/08/2022</td>
-<td>require kubernetes &lt; 1.24 and dockerd as container engine</td>
-<td>An application is a pod or a docker container</td>
-<td>removed</td>
-</tr>
-<tr>
-<td>3.0</td>
-<td>deprecated</td>
-<td>09/03/2022</td>
-<td>kubernetes &gt;= 1.24, all container engine</td>
-<td>An application is a pod or an ephemeral container</td>
-<td>Release</td>
-</tr>
-<tr>
-<td>3.1</td>
-<td>deprecated</td>
-<td>10/03/2023</td>
-<td>kubernetes &gt;= 1.24, all container engine</td>
-<td>An application is a pod or an ephemeral container, change PVC and PV support</td>
-<td>Release</td>
-</tr>
-<tr>
-<td>3.2</td>
-<td>deprecated</td>
-<td>01/02/2024</td>
-<td>kubernetes &gt;= 1.24, all container engine</td>
-<td>An application is a pod or an ephemeral container, WebRTC sound support</td>
-<td>Release</td>
-</tr>
-<tr>
-<td>3.4</td>
-<td>deprecated</td>
-<td>01/09/2024</td>
-<td>kubernetes &gt;= 1.24, all container engine</td>
-<td>An application is a pod or an ephemeral container, WebRTC sound support</td>
-<td>Release</td>
-</tr>
-<tr>
-<td>4.0</td>
-<td>stable</td>
-<td>01/01/2025</td>
-<td>kubernetes &gt;= 1.24, all container engine</td>
-<td>An application is a pod or an ephemeral container, MPEG sound support</td>
-<td>Release</td>
-</tr>
-<tr>
-<td>4.1</td>
-<td>stable</td>
-<td>01/06/2025</td>
-<td>kubernetes &gt;= 1.24, all container engine</td>
-<td>An application is a pod or an ephemeral container, MPEG sound support</td>
-<td>Release</td>
-</tr>
-<tr>
-<td>4.2</td>
-<td>stable</td>
-<td>01/06/2025</td>
-<td>kubernetes &gt;= 1.24, all container engine</td>
-<td>An application is a pod or an ephemeral container, MPEG sound support</td>
-<td>Release</td>
-</tr>
-</tbody>
-</table>
 
 
 
