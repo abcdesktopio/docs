@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://www.abcdesktop.io/4.4/setup/changelog/">
       
       
+        <link rel="prev" href="../../../4.3/setup/uninstall_kubernetes/">
+      
+      
+        <link rel="next" href="../kubernetes_abcdesktop/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Change log from 4.3 to 4.4 - www.abcdesktop.io</title>
+        <title>Change log - www.abcdesktop.io</title>
       
     
     
@@ -105,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Change log from 4.3 to 4.4
+              Change log
             
           </span>
         </div>
@@ -927,18 +931,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -954,7 +960,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Setup guide
@@ -2364,6 +2370,156 @@
   
     <li class="md-nav__item">
       <a href="../../../4.3/setup/uninstall_kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Uninstall abcdesktop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8_10" id="__nav_8_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Release Candidate 4.4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_10">
+            <span class="md-nav__icon md-icon"></span>
+            Release Candidate 4.4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Change log
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes_abcdesktop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup abcdesktop for Kubernetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes_abcdesktop_applications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup applications for abcdesktop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uninstall_kubernetes/" class="md-nav__link">
         
   
   
@@ -5951,9 +6107,24 @@
 <h1 id="change-log-from-43-to-44">Change log from 4.3 to 4.4</h1>
 <p>The prominent changes for this release are:</p>
 <ul>
-<li>use <code>FROM ubuntu:26.04</code></li>
-<li>use plasma6 and fullscreen mode</li>
+<li><code>pyos</code> map roles to pod's labels. each role is added as pod label. Roles are read from user's groups (LDAP, ActiveDirectory or OAuth ) </li>
+<li><code>webmodule</code> new ful screen mode fully inspired from noVNC control bar</li>
+<li><code>console</code> one line install from applist.json file from <code>ABCDESKTOP_APPLICATIONS_LIST_URL</code></li>
+<li><code>abcdesktop.yaml</code> add new configmap with <code>ABCDESKTOP_VERSION</code> and <code>ABCDESKTOP_APPLICATIONS_LIST_URL</code></li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">version-config</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">versionConfig.json</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">{</span>
+<span class="w">      </span><span class="no">&quot;ABCDESKTOP_VERSION&quot;: &quot;4.4&quot;,</span>
+<span class="w">      </span><span class="no">&quot;ABCDESKTOP_APPLICATIONS_LIST_URL&quot;: &quot;https://raw.githubusercontent.com/abcdesktopio/images/refs/heads/main/appLists/appList.4.4.json&quot;</span>
+<span class="w">    </span><span class="no">}</span>
+<span class="nn">---</span>
+</code></pre></div>
 
 
 
