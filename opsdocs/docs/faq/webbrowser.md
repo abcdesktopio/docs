@@ -4,7 +4,7 @@ tags:
   - browser
 ---
 
-# Web Browser
+# FAQ Web Browser
 
 ## Supported web browser HTML
 
