@@ -1,3 +1,9 @@
+---
+tags:
+  - faq
+  - browser
+---
+
 # Web Browser
 
 ## Supported web browser HTML

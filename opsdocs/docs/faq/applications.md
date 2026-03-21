@@ -1,3 +1,9 @@
+---
+tags:
+  - faq
+  - applications
+---
+
 # FAQ applications
 
 ## How to delete all applications ?

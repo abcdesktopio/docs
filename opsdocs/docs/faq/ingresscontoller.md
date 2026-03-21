@@ -1,3 +1,9 @@
+---
+tags:
+  - faq
+  - ingresscontroller
+---
+
 # FAQ Ingress Controller
 
 ## How can I expose my new service with Ingress Controller ?
