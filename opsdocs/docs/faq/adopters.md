@@ -1,4 +1,10 @@
-FAQ Adopter
+---
+tags:
+  - faq
+  - adopter
+---
+
+# FAQ Adopter
 
 ## Who is using abcdesktop.io projets ?
 

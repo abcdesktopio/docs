@@ -46,19 +46,6 @@ abcdesktop.io provides a way to run graphics software securely isolated in a con
 
 ![screenshot-applications](img/abcdesktop-home-release-4.1.png)
 
-
-## Adopters
-
-Here are some of the organizations we know are using abcdesktop.io.
-If you’re using abcdesktop and aren’t on this list, please submit a pull request!
-
-
-| Adopters | Name     | Description | Public applications repository |
-| -------- | -------- | ----------- | ----------------------- |
-| ![](img/EMBL_logo.svg) | [Embl](https://www.embl.org/) | The European Molecular Biology Laboratory is an intergovernmental organization dedicated to molecular biology research and is supported by 28 member states, one prospect state, and one associate member state | [https://git.embl.de/ysun/abcdesktop-apps/](https://git.embl.de/ysun/abcdesktop-apps/)|
-| ![](img/Orange_logo.svg) | [Orange](https://www.orange.com/) | Telecommunications operator and digital service provider. Orange serves 287 million customers, individuals, professionals, and large companies | Orange uses common public and private business applications |
-
-
 ## Features
 
 - Complete native cloud desktop, workspace environment
@@ -81,31 +68,3 @@ If you’re using abcdesktop and aren’t on this list, please submit a pull req
 - Native support GNU/Linux console native support
 - Native support GNU/Linux X11 applications native support
 - Support Microsoft Windows applications using [Wine](https://www.winehq.org/)
-
-
-#### Copy and Paste features
-
-To fully use `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, Chromium or  Microsoft Edge Chromium. The `copy and paste` feature is also supported on Firefox with a [dedicated abcdesktop extension](common/firefox-extension.md).
-
-| Web browser      | Clipboard sync                 |
-|------------------|-------------------------------------|
-|  Chrome     | Yes, built in support |
-|  Chromium     | Yes, built in support  |
-|  Microsoft Edge Chromium     | Yes, built in support  |
-|  Firefox       | Yes, install the [dedicated abcdesktop extension](common/firefox-extension.md)| 
-|  Safari       | No, the clipboard access is not allowed by the user agent or the platform in the current context, possibly because the user denied permission| 
-
-
-## Release history
-
-| Release  | Status     | Date       | Requirements               | Applications | Documentation  |
-|----------|------------|------------|----------------------------|--------------|----------------| 
-|  1.1     | deprecated | 09/15/2021 | dockerd for personnal use and kubernetes | An application is a docker container | removed |
-|  2.9     | deprecated | 29/08/2022 | require kubernetes < 1.24 and dockerd as container engine  | An application is a pod or a docker container | removed | 
-|  3.0     | deprecated | 09/03/2022 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container |  Release | 
-|  3.1     | deprecated | 10/03/2023 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, change PVC and PV support | Release | 
-|  3.2     | deprecated | 01/02/2024 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, WebRTC sound support |  Release | 
-|  3.4     | deprecated | 01/09/2024 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, WebRTC sound support |  Release | 
-|  4.0     | stable     | 01/01/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
-|  4.1     | stable     | 01/06/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
-|  4.2     | stable     | 01/06/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
