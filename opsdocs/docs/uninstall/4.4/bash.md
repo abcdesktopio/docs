@@ -6,7 +6,7 @@ tags:
 
 # Uninstall with a bash script
 
-To uninstall abcdesktop, run the `uninstall-4.3.sh` bash script using a curl command.
+To uninstall abcdesktop, run the `uninstall-{{ abcdesktop.latest_release }}.sh` bash script using a curl command.
 
 ## Quick uninstallation abcdesktop (Linux or macOS)
 
@@ -15,7 +15,7 @@ To uninstall abcdesktop, run the `uninstall-4.3.sh` bash script using a curl com
 Download and run the uninstall bash script (Linux or macOS):
 
 ```bash
-curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.3.sh | bash
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-{{ abcdesktop.latest_release }}.sh | bash
 ```
 
 You should read on stdout
