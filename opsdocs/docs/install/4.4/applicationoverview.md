@@ -1,3 +1,10 @@
+---
+tags:
+  - application
+  - installation
+  - overview
+---
+
 # Applications
 
 
