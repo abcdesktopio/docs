@@ -14,9 +14,11 @@ On the application page, click on the blue + button. You will have two possibili
 #### Add from application store
 
 Through this modal window, you can add application by exploring the application store, click on the app you want to add, its background color should change to indicate that the app has been selected, and finally click on the Add button.  
-Also, as there are quite a few applications, you can use the search bar on the to right corner to help you find the app you are searching for.
 
 ![app-store](../../img/console_app_store_modal.png) 
+
+Also, as there are quite a few applications, you can use the search bar on the to right corner to help you find the app you are searching for.
+
 ![app-store-select](../../img/console_app_store_modal_select.png)
 
 Note that clicking on the JSON button will open a modal that allows you to add applications from JSON file as shown below.
