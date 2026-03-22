@@ -10,7 +10,7 @@ tags:
 
 ## Application description
 
-An application for abcdesktop is a simple [OCI](https://github.com/opencontainers/image-spec) JSON file. A docker inspect command line dumps the JSON file content.
+An application for abcdesktop is a simple [OCI JSON file](https://github.com/opencontainers/image-spec). A docker inspect command line dumps the JSON file content.
 
 ```
   docker inspect $YOUR_IMAGE_NAME 
