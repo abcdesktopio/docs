@@ -10,7 +10,7 @@ tags:
 To access console applications management page, please connect to 
 
 ```
-http://<YOUR_ABCDESKTOP_URL>:<YOUR_PORT>/console#/apps
+http://<YOUR_ABCDESKTOP_URL>:<YOUR_PORT>/console
 ```
 
 ![application-page](../../img/console_applications_1.png)
