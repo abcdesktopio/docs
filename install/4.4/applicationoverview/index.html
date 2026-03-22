@@ -3008,11 +3008,14 @@ LABEL oc.path=&quot;/usr/bin/firefox&quot;
 LABEL oc.type=app
 </code></pre></div>
 <h2 id="install-an-application">Install an application</h2>
-<p>To install an application for abcdesktop, you can 
-- use the default install applications <a href="../bash/">bash script</a>
-- use the <a href="../applicationwithconsole/">Web UI console</a>
-- run a curl command line to PUT the JSON file to API service</p>
-<div class="highlight"><pre><span></span><code>curl 
+<p>To install an application for abcdesktop, you can </p>
+<ul>
+<li>use the default install applications <a href="../bash/">bash script</a></li>
+<li>use the <a href="../applicationwithconsole/">Web UI console</a></li>
+<li>run a <code>curl</code> command line to <code>POST</code> the JSON file <code>file.json</code> to API service</li>
+</ul>
+<div class="highlight"><pre><span></span><code>URL=&quot;http://localhost:30443/API/manager/image&quot;
+curl -X POST -H &#39;Content-Type: text/javascript&#39; &quot;$URL&quot; -d &quot;@file.json&quot; 
 </code></pre></div>
 <h2 id="list-of-build-json-files">List of build JSON files</h2>
 <p>abcdesktop provides some default applications. You will find on the <a href="https://github.com/abcdesktopio/images/tree/main/artifact/4.4">abcdesktop images repository</a> some application examples.</p>
