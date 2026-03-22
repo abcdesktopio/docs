@@ -1,3 +1,11 @@
+---
+tags:
+  - application
+  - installation
+  - bash
+---
+
+
 # Add applications with a bash script
 
 ## Quick application install

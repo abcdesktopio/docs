@@ -1,3 +1,9 @@
+---
+tags:
+  - installation
+  - requirement
+---
+
 # Requirements
 
 ## Prerequisites for setup abcdesktop

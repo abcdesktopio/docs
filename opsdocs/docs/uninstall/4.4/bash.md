@@ -1,3 +1,9 @@
+---
+tags:
+  - uninstall
+  - bash
+---
+
 # Uninstall with a bash script
 
 To uninstall abcdesktop, run the `uninstall-4.3.sh` bash script using a curl command.

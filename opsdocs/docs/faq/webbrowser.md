@@ -17,9 +17,9 @@ abcdesktop.io uses many modern web technologies. However these are the minimum v
 * Microsoft Edge (based on Chromium)
 
 
-## Copy and Paste features
+## How to copy and paste ?
 
-To fully use `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, Chromium or  Microsoft Edge Chromium. The `copy and paste` feature is also supported on Firefox with a [dedicated abcdesktop extension](firefox-extension.md).
+To fully use `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, `Chromium` or  `Microsoft Edge Chromium`. The `copy and paste` feature is also supported on Firefox with a [dedicated abcdesktop extension](firefox-extension.md).
 
 | Web browser      | Clipboard sync                 |
 |------------------|-------------------------------------|
@@ -28,3 +28,6 @@ To fully use `copy and paste` features, from your local device to your abcdeskto
 |  Microsoft Edge Chromium     | Yes, built in support  |
 |  Firefox       | Yes, install the [dedicated abcdesktop extension](/common/firefox-extension)| 
 |  Safari       | No, the clipboard access is not allowed by the user agent or the platform in the current context, possibly because the user denied permission|
+
+> Make sure to use `https` protocol to allow read and write api calls to your clipboard
+ 

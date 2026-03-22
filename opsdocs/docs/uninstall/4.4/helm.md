@@ -1,3 +1,9 @@
+---
+tags:
+  - uninstall
+  - helm
+---
+
 # Uninstall a helm instance
 
 To uninstall abcdesktop instancied by helm only, run the `helm uninstall` command.
