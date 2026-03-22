@@ -2314,24 +2314,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#site" class="md-nav__link">
-    <span class="md-ellipsis">
-      Site
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#printers" class="md-nav__link">
-    <span class="md-ellipsis">
-      Printers
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3149,24 +3131,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#site" class="md-nav__link">
-    <span class="md-ellipsis">
-      Site
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#printers" class="md-nav__link">
-    <span class="md-ellipsis">
-      Printers
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3411,73 +3375,6 @@ The key name must be set as the <a href="https://en.wikipedia.org/wiki/Windows_d
 </table>
 <h2 id="service-account">Service Account</h2>
 <p>The service account is use when od.py starts. It runs query to the Active Directory service to read the subnet and location from the sites in 'CN=Subnets,CN=Sites,CN=Configuration,' + BASE_DN , (for example CN=Subnets,CN=Sites,CN=Configuration,DC=example,DC=com)</p>
-<h2 id="site">Site</h2>
-<p>This features is only available if a service account is defined. Site is used to locate a user from his ip adress. The attributs location and subnet are cached in memory.</p>
-<table>
-<thead>
-<tr>
-<th>Variable name</th>
-<th>Type</th>
-<th>Defautl value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>site_subnetdn</code></td>
-<td>string</td>
-<td><code>CN=Subnets,CN=Sites,CN=Configuration, + config.get('basedn') )</code></td>
-</tr>
-<tr>
-<td><code>site_scope</code></td>
-<td>ldap python</td>
-<td><code>ldap.SCOPE_SUBTREE</code> read <a href="https://www.python-ldap.org/en/latest/reference/ldap.html">Python ldap reference</a> for more details</td>
-</tr>
-<tr>
-<td><code>site_filter</code></td>
-<td>string</td>
-<td><code>(objectClass=subnet)</code></td>
-</tr>
-<tr>
-<td><code>site_attrs</code></td>
-<td>list</td>
-<td><code>['cn', 'siteObject', 'location']</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="printers">Printers</h2>
-<p>This features is only available if a service account is defined. Printers are used to list printer available in the current user's site. The site is identified using the user's ip address. <code>location</code> is the join key to match local printer for the user.</p>
-<table>
-<thead>
-<tr>
-<th>Variable name</th>
-<th>Type</th>
-<th>Defautl value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>printer_printerdn</code></td>
-<td>string</td>
-<td><code>OU=Applications + config.get('basedn')</code></td>
-</tr>
-<tr>
-<td><code>printer_scope</code></td>
-<td>ldap python</td>
-<td><code>ldap.SCOPE_SUBTREE</code> read <a href="https://www.python-ldap.org/en/latest/reference/ldap.html">Python ldap reference</a> for more details</td>
-</tr>
-<tr>
-<td><code>site_filter</code></td>
-<td>string</td>
-<td><code>(objectClass=printQueue)</code></td>
-</tr>
-<tr>
-<td><code>site_attrs</code></td>
-<td>list</td>
-<td><code>[ 'cn', 'uNCName', 'location', 'driverName', 'driverVersion', 'name',  'portName', 'printColor', 'printerName', 'printLanguage', 'printSharename', 'serverName', 'shortServerName', 'url', 'printMediaReady', 'printBinNames',  'printMediaSupported',  'printOrientationsSupported' ]</code></td>
-</tr>
-</tbody>
-</table>
-<p>Great, you have check how the explicit Authentification configuration works.</p>
 
 
 
