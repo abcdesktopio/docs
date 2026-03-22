@@ -104,11 +104,17 @@ nav:
   - Rules and labels:
     - Rules: advanced/${ABCDESKTOP_LATEST_RELEASE}/rulesandlabels/rules.md
     - Labels:  advanced/${ABCDESKTOP_LATEST_RELEASE}/rulesandlabels/labels.md
-  - Authentication :
-    - OAuth: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/oauth.md
-    - LDAP: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/ldap.md
-    - Anonymous: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/anonymous.md
+  - Authentication:
+    - Overview: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/overview.md
+    - External (OpenID): advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authexternal.md
+    - Explicit (Directory):
+      - LDAP: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authexplicit-ldap.md
+      - Active Directory: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authexplicit-activedirectory.md
+      - Meta Directory: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authmetaexplicit.md
+      - Rules: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authentification-rules.md
+    - Implicit (Anonymous): advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/anonymous.md
   - Configuration :
+    - Update Configuration : advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/updateconfiguration.md
     - Garbarge collector: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/garbagecollector.md
     - Share GPU with ephemeral container: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/share_pod_GPU_access_to_ephemeral_container.md
 - Contribute :
