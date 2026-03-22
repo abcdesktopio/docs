@@ -130,31 +130,3 @@ For Active Directory authmanagers, replace the variable name with your own value
 
 The service account is use when od.py starts. It runs query to the Active Directory service to read the subnet and location from the sites in 'CN=Subnets,CN=Sites,CN=Configuration,' + BASE_DN , (for example CN=Subnets,CN=Sites,CN=Configuration,DC=example,DC=com)
 
-
-## Site 
-
-This features is only available if a service account is defined. Site is used to locate a user from his ip adress. The attributs location and subnet are cached in memory.
-   
-| Variable name      | Type | Defautl value                                 |
-|--------------------|------|-----------------------------------------------|
-|  ```site_subnetdn ```   | string | ```CN=Subnets,CN=Sites,CN=Configuration, + config.get('basedn') )```  |
-|  ```site_scope ``` | ldap python | ```ldap.SCOPE_SUBTREE``` read [Python ldap reference](https://www.python-ldap.org/en/latest/reference/ldap.html) for more details |   
-|  ```site_filter ```| string | ```(objectClass=subnet)``` |   
-|  ```site_attrs ```| list | ```['cn', 'siteObject', 'location']``` |                  
-       
-
-## Printers
-
-This features is only available if a service account is defined. Printers are used to list printer available in the current user's site. The site is identified using the user's ip address. ```location``` is the join key to match local printer for the user.
-
-| Variable name      | Type | Defautl value                                 |
-|--------------------|------|-----------------------------------------------|
-|  ```printer_printerdn ```   | string | ```OU=Applications + config.get('basedn')```  |
-|  ```printer_scope ``` | ldap python | ```ldap.SCOPE_SUBTREE``` read [Python ldap reference](https://www.python-ldap.org/en/latest/reference/ldap.html) for more details |   
-|  ```site_filter ```| string | ```(objectClass=printQueue)``` |   
-|  ```site_attrs ```| list | ```[ 'cn', 'uNCName', 'location', 'driverName', 'driverVersion', 'name',  'portName', 'printColor', 'printerName', 'printLanguage', 'printSharename', 'serverName', 'shortServerName', 'url', 'printMediaReady', 'printBinNames',  'printMediaSupported',  'printOrientationsSupported' ]``` | 
-
-
-
-Great, you have check how the explicit Authentification configuration works.
-
