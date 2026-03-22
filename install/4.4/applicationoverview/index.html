@@ -75,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#applications" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -580,6 +585,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -592,6 +612,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#application-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-an-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install an application
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2849,6 +2906,34 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#application-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-an-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install an application
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2872,9 +2957,27 @@
   
 
 
-  <h1>Overview</h1>
-
-<p>franck</p>
+<h1 id="applications">Applications</h1>
+<h2 id="application-description">Application description</h2>
+<p>An application for abcdesktop is a simple <a href="https://github.com/opencontainers/image-spec">OCI</a> JSON file. A docker inspect command line dumps the JSON file content.</p>
+<div class="highlight"><pre><span></span><code>  docker inspect $YOUR_IMAGE_NAME 
+</code></pre></div>
+<p>The image must contains some labels, for example.</p>
+<div class="highlight"><pre><span></span><code>LABEL oc.icon=&quot;firefox.svg&quot;
+LABEL oc.keyword=&quot;firefox,mozilla,internet&quot;
+LABEL oc.cat=&quot;office&quot;
+LABEL oc.launch=&quot;Navigator.Firefox&quot;
+LABEL oc.name=&quot;Firefox&quot;
+LABEL oc.path=&quot;/usr/bin/firefox&quot;
+LABEL oc.type=app
+</code></pre></div>
+<h2 id="install-an-application">Install an application</h2>
+<p>To install an application for abcdesktop, you can 
+- use the install <a href="../bash/">bash script</a>
+- use the <a href="../applicationwithconsole/">Web UI console</a>
+- run a curl command line to PUT the JSON file to API service</p>
+<div class="highlight"><pre><span></span><code>curl 
+</code></pre></div>
 
 
 
