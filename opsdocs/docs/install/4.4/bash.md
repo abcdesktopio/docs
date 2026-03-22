@@ -1,3 +1,10 @@
+---
+tags:
+  - bash
+  - installation
+  - setup
+---
+
 # Quick installation with a bash script
 
 ## Requirements
