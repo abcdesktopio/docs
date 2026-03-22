@@ -24,12 +24,14 @@ LABEL oc.type=app
 ## Install an application 
 
 To install an application for abcdesktop, you can 
+
 - use the default install applications [bash script](bash.md)
 - use the [Web UI console](applicationwithconsole.md)
-- run a curl command line to PUT the JSON file to API service
+- run a `curl` command line to `POST` the JSON file `file.json` to API service
 
 ```
-curl 
+URL="http://localhost:30443/API/manager/image"
+curl -X POST -H 'Content-Type: text/javascript' "$URL" -d "@file.json" 
 ```
 
 ## List of build JSON files 
