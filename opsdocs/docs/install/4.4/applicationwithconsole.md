@@ -1,3 +1,10 @@
+---
+tags:
+  - application
+  - installation
+  - console
+---
+
 # Applications management with console
 
 To access console applications management page, please connect to 
