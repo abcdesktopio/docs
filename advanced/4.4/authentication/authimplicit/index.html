@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://abcdesktop.pepins.net/advanced/4.4/authentication/ldap/">
+        <link rel="canonical" href="https://abcdesktop.pepins.net/advanced/4.4/authentication/authimplicit/">
       
       
-        <link rel="prev" href="../oauth/">
-      
-      
-        <link rel="next" href="../anonymous/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -22,7 +18,7 @@
     
     
       
-        <title>LDAP - abcdesktop.pepins.net</title>
+        <title>Authentification implicit - abcdesktop.pepins.net</title>
       
     
     
@@ -75,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#authentification-implicit" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -104,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              LDAP
+              Authentification implicit
             
           </span>
         </div>
@@ -226,8 +227,6 @@
   
   
   
-    
-  
   
     
     
@@ -235,12 +234,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../../../../architecture/overview/" class="md-tabs__link">
           
   
@@ -745,29 +742,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -780,7 +772,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Advanced
@@ -2069,8 +2061,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2081,11 +2071,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
         
           
           <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
@@ -2101,7 +2091,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_8">
             <span class="md-nav__icon md-icon"></span>
             Authentication
@@ -2115,12 +2105,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../oauth/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    OAuth
+    Overview
     
   </span>
   
@@ -2135,17 +2125,74 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../authexternal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    External (OpenID)
     
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
   
   
   
-    <li class="md-nav__item md-nav__item--active">
+  
+    
+    
+    
+    
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
       
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8_3" id="__nav_3_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Explicit (Directory)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            Explicit (Directory)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authexplicit-ldap/" class="md-nav__link">
         
   
   
@@ -2156,6 +2203,82 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authexplicit-activedirectory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Active Directory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authmetaexplicit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Meta Directory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentification-rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -2169,12 +2292,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../anonymous/" class="md-nav__link">
+      <a href="../anonymous.md" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Anonymous
+    Implicit (Anonymous)
     
   </span>
   
@@ -2241,7 +2364,30 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/garbagecollector.md" class="md-nav__link">
+      <a href="../../configure/updateconfiguration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configure/garbagecollector/" class="md-nav__link">
         
   
   
@@ -2851,6 +2997,25 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#authmanagers-implicit" class="md-nav__link">
+    <span class="md-ellipsis">
+      authmanagers implicit:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2866,7 +3031,7 @@
 
 
   
-    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/authentication/ldap.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/authentication/authimplicit.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2874,9 +3039,89 @@
   
 
 
-  <h1>LDAP</h1>
-
-<p>alex</p>
+<h1 id="authentification-implicit">Authentification <code>implicit</code></h1>
+<h2 id="authmanagers-implicit">authmanagers <code>implicit</code>:</h2>
+<p><code>implicit</code> is the easyest configuration mode, and is used as 'Anonymous' authentification. </p>
+<p>The provider is defined as a dictionnary object and contains an <code>anononymous</code> provider.</p>
+<p><code>anononymous</code> provider always permit authentification, and create a uuid as userid. <code>anononymous</code> provider is used to skip the authentification  process in a demonstration mode.</p>
+<div class="highlight"><pre><span></span><code>&#39;implicit&#39;: {
+    &#39;providers&#39;: {
+      &#39;anonymous&#39;: {
+        &#39;displayname&#39;: &#39;Anonymous&#39;,
+        &#39;caption&#39;: &#39;Have a look !&#39;,
+        &#39;userid&#39;: &#39;anonymous&#39;,
+        &#39;username&#39;: &#39;Anonymous&#39;
+      }     
+    }
+</code></pre></div>
+<p><code>anononymous</code> provider always permit authentification, and create a uuid as userid. </p>
+<p>Set in your configuration file the authmanagers dictionnary as described</p>
+<div class="highlight"><pre><span></span><code>authmanagers: {
+  &#39;external&#39;: { },
+  &#39;explicit&#39;: { },
+  &#39;implicit&#39;: { 
+     &#39;providers&#39;: {
+         &#39;anonymous&#39;: {
+           &#39;displayname&#39;: &#39;Anonymous&#39;,
+           &#39;caption&#39;: &#39;Anonymous&#39;,
+           &#39;userid&#39;: &#39;anonymous&#39;,
+           &#39;username&#39;: &#39;Anonymous&#39;
+      } 
+   }
+}
+</code></pre></div>
+<p><a href="editconfig.md">Update your configuration file and apply the new configuration file</a></p>
+<p>Open a new Web Browser and go to your abcdesktop URL. You should see the login HTML page with the Anonymous button :</p>
+<p><img alt="login page Anonymous" src="img/anonymous.png" /></p>
+<p>Press the <code>Sign-In Anonymously</code> button.</p>
+<p>Then, choose the <code>settings</code> in the menu at the upper right corner </p>
+<p><img alt="Setting menu" src="img/settings.png" /></p>
+<p>Choose the <code>System</code> in the settings control panel.</p>
+<p><img alt="Settings" src="img/systemcontrolpanel.png" /> </p>
+<p>Then choose <code>User containers</code></p>
+<p><img alt="User information" src="img/usercontainer.png" /></p>
+<p>This screen show you the <code>hostname</code>. </p>
+<p>You can read the hostname. In the example the hostname is <code>f097ab7aac57</code>, from the container id.</p>
+<p>Using a shell, run the command docker ps -a  </p>
+<div class="highlight"><pre><span></span><code>docker ps -a
+</code></pre></div>
+<p>Find a running container with the containerid previously  identified.</p>
+<p>In this example the containerid is <code>f097ab7aac57</code></p>
+<div class="highlight"><pre><span></span><code>f097ab7aac57   abcdesktopio/oc.user.18.04   &quot;/composer/docker-en…&quot;   8 minutes ago    Up 8 minutes               4714/tcp, 6081/tcp, 29780-29781/tcp, 29783-29784/tcp, 29786/tcp, 55556-55557/tcp   g-06b686a5-c98d-4889-b73d-3455f692e6c2
+</code></pre></div>
+<p>Run the command <code>docker inspect CONTAINERID</code>, replace the string CONTAINERID with your container id value.</p>
+<blockquote>
+<p>For example <code>docker inspect f097ab7aac57</code></p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>docker inspect f097ab7aac57
+</code></pre></div>
+<p>Locate the <code>Mounts</code> description. User's containers created with an implicit provider anonymous have only one volume type. Anonymous home directory DO NOT USE persistant volume data.
+Explicit and </p>
+<div class="highlight"><pre><span></span><code> &quot;Mounts&quot;: [
+            {
+                &quot;Type&quot;: &quot;volume&quot;,
+                &quot;Name&quot;: &quot;tmp-06b686a5-c98d-4889-b73d-3455f692e6c2&quot;,
+                &quot;Source&quot;: &quot;/var/lib/docker/volumes/tmp-06b686a5-c98d-4889-b73d-3455f692e6c2/_data&quot;,
+                &quot;Destination&quot;: &quot;/tmp&quot;,
+                &quot;Driver&quot;: &quot;local&quot;,
+                &quot;Mode&quot;: &quot;z&quot;,
+                &quot;RW&quot;: true,
+                &quot;Propagation&quot;: &quot;&quot;
+            },
+            {
+                &quot;Type&quot;: &quot;volume&quot;,
+                &quot;Name&quot;: &quot;home-06b686a5-c98d-4889-b73d-3455f692e6c2&quot;,
+                &quot;Source&quot;: &quot;/var/lib/docker/volumes/home-06b686a5-c98d-4889-b73d-3455f692e6c2/_data&quot;,
+                &quot;Destination&quot;: &quot;/home/balloon&quot;,
+                &quot;Driver&quot;: &quot;local&quot;,
+                &quot;Mode&quot;: &quot;z&quot;,
+                &quot;RW&quot;: true,
+                &quot;Propagation&quot;: &quot;&quot;
+            }
+        ],
+</code></pre></div>
+<p>When the anonymous container is removed, <strong>the anonymous home directory is deleted</strong>.</p>
+<p>Great, you have check how the implicit Authentification configuration works.</p>
 
 
 

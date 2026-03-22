@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://abcdesktop.pepins.net/advanced/4.4/authentication/oauth/">
+        <link rel="canonical" href="https://abcdesktop.pepins.net/advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/">
       
       
-        <link rel="prev" href="../../rulesandlabels/labels/">
-      
-      
-        <link rel="next" href="../ldap/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -22,7 +18,7 @@
     
     
       
-        <title>OAuth - abcdesktop.pepins.net</title>
+        <title>Troubleshooting get nvidia GPU access to ephemeral container with CDI enabled - abcdesktop.pepins.net</title>
       
     
     
@@ -75,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#troubleshooting-get-nvidia-gpu-access-to-ephemeral-container-with-cdi-enabled" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -104,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              OAuth
+              Troubleshooting get nvidia GPU access to ephemeral container with CDI enabled
             
           </span>
         </div>
@@ -226,8 +227,6 @@
   
   
   
-    
-  
   
     
     
@@ -235,12 +234,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../../../../architecture/overview/" class="md-tabs__link">
           
   
@@ -745,29 +742,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -780,7 +772,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Advanced
@@ -2069,8 +2061,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2081,11 +2071,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
         
           
           <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
@@ -2101,7 +2091,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_8">
             <span class="md-nav__icon md-icon"></span>
             Authentication
@@ -2112,28 +2102,20 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../authentication/overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    OAuth
+    Overview
     
   </span>
   
 
       </a>
-      
     </li>
   
 
@@ -2146,7 +2128,71 @@
   
   
     <li class="md-nav__item">
-      <a href="../ldap/" class="md-nav__link">
+      <a href="../../authentication/authexternal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    External (OpenID)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8_3" id="__nav_3_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Explicit (Directory)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            Explicit (Directory)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../authentication/authexplicit-ldap/" class="md-nav__link">
         
   
   
@@ -2169,12 +2215,89 @@
   
   
     <li class="md-nav__item">
-      <a href="../anonymous/" class="md-nav__link">
+      <a href="../../authentication/authexplicit-activedirectory/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Anonymous
+    Active Directory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../authentication/authmetaexplicit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Meta Directory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../authentication/authentification-rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../authentication/anonymous.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Implicit (Anonymous)
     
   </span>
   
@@ -2241,7 +2364,30 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/garbagecollector.md" class="md-nav__link">
+      <a href="../updateconfiguration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../garbagecollector/" class="md-nav__link">
         
   
   
@@ -2264,7 +2410,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/share_pod_GPU_access_to_ephemeral_container.md" class="md-nav__link">
+      <a href="../share_pod_GPU_access_to_ephemeral_container.md" class="md-nav__link">
         
   
   
@@ -2851,6 +2997,34 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#apply-runtimeclassname-to-abcdesktop-config-release-43" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apply runtimeClassName to abcdesktop config (release &gt;= 4.3 )
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Links
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2866,7 +3040,7 @@
 
 
   
-    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/authentication/oauth.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2874,9 +3048,119 @@
   
 
 
-  <h1>OAuth</h1>
+<h1 id="troubleshooting-get-nvidia-gpu-access-to-ephemeral-container-with-cdi-enabled">Troubleshooting get nvidia GPU access to ephemeral container with CDI enabled</h1>
+<p>abcdesktop uses <code>ephemeral container</code> or <code>pod</code> as applications. nvidia adds support for <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html">Container Device Interface</a>. </p>
+<h2 id="apply-runtimeclassname-to-abcdesktop-config-release-43">Apply <code>runtimeClassName</code> to abcdesktop config (release &gt;= 4.3 )</h2>
+<p>Get the <code>od.config</code> file</p>
+<p>If you don't already have the config file <code>od.config</code>, run the command line </p>
+<div class="highlight"><pre><span></span><code>kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath=&#39;{.data.od\.config}&#39; &gt; od.config
+</code></pre></div>
+<ul>
+<li>Edit <code>od.config</code> and update the dictionary <code>desktop.pod</code> to add <code>'runtimeClassName':'nvidia'</code> in <code>spec</code> and save your od.config file.</li>
+</ul>
+<div class="highlight"><pre><span></span><code># THIS IS WHERE THE RESOURCES ARE ACTUALLY DEFINED FOR THE POD DESKTOP.
+# Application execute class defined
+executeclasses : {
+    &#39;default&#39;:{
+      &#39;nodeSelector&#39;:None,
+      &#39;description&#39;: &#39;default: up to 4 CPU cores and 8Gi&#39;,
+      &#39;runtimeClassName&#39;: None,
+      &#39;resources&#39;:{
+        &#39;requests&#39;:{&#39;memory&#39;:&#39;576Mi&#39;,&#39;cpu&#39;:&#39;220m&#39;},       
+        &#39;limits&#39;:  {&#39;memory&#39;:&#39;8Gi&#39;,&#39;cpu&#39;:&#39;4000m&#39;}
+      }
+    },
+    &#39;bronze&#39;:{
+      &#39;nodeSelector&#39;:None,
+      &#39;runtimeClassName&#39;: None,
+      &#39;description&#39;: &#39;bronze: up to 2 CPU cores and 8Gi&#39;,
+      &#39;resources&#39;:{
+        &#39;requests&#39;:{&#39;memory&#39;:&#39;576Mi&#39;,&#39;cpu&#39;:&#39;220m&#39;},
+        &#39;limits&#39;:  {&#39;memory&#39;:&#39;8Gi&#39;,&#39;cpu&#39;:&#39;2000m&#39;}
+      }
+    },
+    &#39;silver&#39;:{
+      &#39;nodeSelector&#39;: None,
+      &#39;description&#39;: &#39;silver: 4 CPU cores and 32Gi RAM&#39;,
+      &#39;runtimeClassName&#39;: None,
+      &#39;resources&#39;:{
+        &#39;requests&#39;:{&#39;memory&#39;:&#39;2Gi&#39;,&#39;cpu&#39;:&#39;2000m&#39;},       
+        &#39;limits&#39;:{&#39;memory&#39;:&#39;32Gi&#39;,&#39;cpu&#39;:&#39;4000m&#39;} 
+      }
+    },
+  &#39;gold&#39;:{
+    &#39;nodeSelector&#39;:{&#39;nvidia.com/gpu.present&#39;: &#39;true&#39;},
+    &#39;description&#39;: &#39;gold: 4 CPU cores, 32Gi RAM and 1 GPU&#39;,
+    &#39;runtimeClassName&#39;: &#39;nvidia&#39;,
+    &#39;resources&#39;:{
+      &#39;requests&#39;:{&#39;memory&#39;:&quot;2Gi&quot;,&#39;cpu&#39;:&#39;4000m&#39;},       
+      &#39;limits&#39;:{&#39;memory&#39;:&quot;32Gi&quot;,&#39;cpu&#39;:&#39;4000m&#39;}
+    }
+  },
+  &#39;platinum&#39;:{
+    &#39;nodeSelector&#39;:{&#39;nvidia.com/gpu.present&#39;:&#39;true&#39;},
+    &#39;description&#39;: &#39;platinum: 8 CPU cores, 128G RAM and 1 GPU&#39;,
+    &#39;runtimeClassName&#39;: &#39;nvidia&#39;,
+    &#39;resources&#39;:{
+      &#39;requests&#39;:{&#39;memory&#39;:&#39;4Gi&#39;,&#39;cpu&#39;:&#39;4000m&#39;},       
+      &#39;limits&#39;:{&#39;memory&#39;:&#39;128Gi&#39;,&#39;cpu&#39;:&#39;8000m&#39;} } } }
 
-<p>alex</p>
+# features_permissions
+# read executeclasses and permit a user to set a dedicated class name as desktop features
+# &#39;read&#39; features_permissions is exposed to the frontend
+# &#39;submit&#39; features_permissions can be set to create a desktop
+# 
+desktop.features_permissions : [ &#39;read&#39;, &#39;submit&#39; ]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>desktop.overwrite_environment_variable_for_application : &quot;/composer/overwrite_environment_variable_for_application.sh&quot;
+</code></pre></div>
+<ul>
+<li>Update the configmap <code>abcdesktop-config</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+</code></pre></div>
+<ul>
+<li>Restart deployment <code>pyos-od</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code>kubectl rollout restart deployment pyos-od -n abcdesktop
+</code></pre></div>
+<ul>
+<li>Create a new desktop pod to check the <code>runtimeClassName</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code>kubectl get pods -l type=x11server -n abcdesktop
+NAME        READY   STATUS    RESTARTS   AGE
+fry-02f18   3/3     Running   0          24m
+</code></pre></div>
+<ul>
+<li>Run comand lines into an ephemeral container </li>
+</ul>
+<p>Start an application like <code>firefox</code> on web interface</p>
+<p>Get pod description to read the ephemeral container name</p>
+<div class="highlight"><pre><span></span><code>kubectl describe  pods fry-02f18  -n abcdesktop
+</code></pre></div>
+<p>The name of the ephemeral container is <code>philip-j--fry-firefox-745f9</code></p>
+<div class="highlight"><pre><span></span><code>...
+  Normal  Pulled     26m   kubelet            Container image &quot;ghcr.io/abcdesktopio/firefox.d:4.3&quot; already present on machine
+  Normal  Created    26m   kubelet            Created container: philip-j--fry-firefox-745f9
+  Normal  Started    26m   kubelet            Started container philip-j--fry-firefox-745f9
+</code></pre></div>
+<p>Execute some commands into this ephemeral container <code>philip-j--fry-firefox-745f9</code> to check the GPU</p>
+<div class="highlight"><pre><span></span><code>kubectl exec -it fry-02f18 -c philip-j--fry-firefox-745f9 -n abcdesktop -- nvidia-smi -L
+GPU 0: Quadro M620 (UUID: GPU-b5aebea9-8a25-fb21-631b-7e5da5a60ccb)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>kubectl exec -it fry-02f18 -c philip-j--fry-firefox-745f9 -n abcdesktop -- ls -la /dev/dri
+total 0
+drwxr-xr-x 3 root root      100 janv. 13 15:05 .
+drwxr-xr-x 6 root root      480 janv. 13 15:05 ..
+drwxr-xr-x 2 root root       80 janv. 13 15:05 by-path
+crw-rw-rw- 1 fry  fry  226,   1 janv. 13 15:05 card1
+crw-rw-rw- 1 fry  fry  226, 128 janv. 13 15:05 renderD128
+</code></pre></div>
+<h2 id="links">Links</h2>
+<ul>
+<li>nvidia gpu-operator/23.6.2</li>
+</ul>
+<p><a href="https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/23.6.2/cdi.html#support-for-multi-instance-gpu">https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/23.6.2/cdi.html#support-for-multi-instance-gpu</a> </p>
 
 
 
