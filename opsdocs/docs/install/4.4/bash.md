@@ -5,7 +5,7 @@ tags:
   - setup
 ---
 
-# Quick installation with a bash script
+# Quick installation core services with a bash script
 
 ## Requirements
 
