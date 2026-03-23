@@ -1,10 +1,18 @@
 # Configure the garbage collector
 
+## Garbage collector
+
+The garbage collector remove all user's pods not connected since more than expirein time in seconds.
+To call the garbage collector endpoint run a http request to `/API/manager/garbagecollector`. It takes the parameters `expirein` and `force`.
+
+- `expirein` is a value in seconds
+- `force` is a boolean value `true`, `false`
+
+Calling /API/manager/garbagecollector?expirein=0&force=true will disconnect all user's pods.
+
 ## Create a `cronjob`
 
-
-Call the garbagecollector api
-
+Create a `cronjob` to run the garbagecollector each five minutes :
 
 - Create a yaml manifest file named `cronjob.yaml`
 
