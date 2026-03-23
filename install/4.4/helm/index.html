@@ -3253,6 +3253,9 @@
 
 <h1 id="installation-using-helm">Installation using helm</h1>
 <p><a href="https://artifacthub.io/packages/search?repo=abcdesktop"><img alt="Artifact Hub" src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop" /></a></p>
+<div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="false" data-stars="false" data-responsive="false"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div>
+<script async src="https://artifacthub.io/artifacthub-widget.js"></script>
+
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>kubernetes cluster <code>READY</code> to run</li>
@@ -3260,9 +3263,6 @@
 </ul>
 <h2 id="installation-using-helm-latest-release-44">Installation using helm latest release 4.4</h2>
 <p>Add the <code>helm</code> repo and then install it on Linux or macOS or read the step by step installation process <a href="/4.4/setup/kubernetes_abcdesktop">abcdesktop for kubernetes</a></p>
-<div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="false" data-stars="false" data-responsive="false"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div>
-<script async src="https://artifacthub.io/artifacthub-widget.js"></script>
-
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 helm repo add abcdesktop https://abcdesktopio.github.io/helm/
 helm install my-abcdesktop abcdesktop/abcdesktop --version 4.4 --create-namespace -n ${NAMESPACE}
