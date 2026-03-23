@@ -3285,20 +3285,19 @@ desktop.features_permissions : [ &#39;read&#39;, &#39;submit&#39; ]
 <div class="highlight"><pre><span></span><code>desktop.overwrite_environment_variable_for_application : &quot;/composer/overwrite_environment_variable_for_application.sh&quot;
 </code></pre></div>
 <ul>
-<li>The <code>overwrite_environment_variable_for_application.sh</code> bash script runs into the <code>graphical</code> contaier of the puser`s pod.</li>
+<li>The <code>overwrite_environment_variable_for_application.sh</code> bash script runs into the <code>graphical</code> container of the user`s pod.</li>
 </ul>
 <div class="highlight"><pre><span></span><code>gpu_uuid=$(nvidia-smi --query-gpu=gpu_uuid --format=csv,noheader)
 # NVIDIA_VISIBLE_DEVICES is also know as k8s.device-plugin.nvidia.com/gpu
 # define the variable named k8s.device-plugin.nvidia.com/gpu to the $gpu_uuid value
 NVIDIA_GPU=&quot;{ \&quot;k8s.device-plugin.nvidia.com/gpu\&quot; : \&quot;$gpu_uuid\&quot; }&quot;  
 </code></pre></div>
-<p>It read the <code>gpu uuid</code>, then set the variable NVIGIA_GPU to <code>k8s.device-plugin.nvidia.com/gpu=$gpu_uuid</code></p>
+<p>It reads the <code>gpu uuid</code>, then set the variable <code>NVIGIA_GPU</code> to <code>k8s.device-plugin.nvidia.com/gpu=$gpu_uuid</code></p>
 <p>For example, when you run the <code>overwrite_environment_variable_for_application.sh</code> on a GPU host</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$NVIDIA_GPU</span>
 <span class="o">{</span><span class="w"> </span><span class="s2">&quot;k8s.device-plugin.nvidia.com/gpu&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb&quot;</span><span class="w"> </span><span class="o">}</span>
 </code></pre></div>
-<p>A new application gets the env variable <code>NVIDIA_VISIBLE_DEVICES</code> from the bash script result </p>
-<p>For example the <code>echo $NVIDIA_VISIBLE_DEVICES</code> inside another container return the same <code>GPU-uuid</code></p>
+<p>A new application gets the env variable <code>NVIDIA_VISIBLE_DEVICES</code> from the bash script result. For example the <code>echo $NVIDIA_VISIBLE_DEVICES</code> inside another container return the same <code>GPU-uuid</code></p>
 <div class="highlight"><pre><span></span><code>echo $NVIDIA_VISIBLE_DEVICES
 GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb
 </code></pre></div>
