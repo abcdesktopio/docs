@@ -46,6 +46,7 @@ Sample providers entry using the Google OAuth 2.0 authentification service.
 }
 ```
 
+
 The variable values `client_id` and `client_secret` have been set to obfuscate value 'xxxx'. The `redirect_uri_prefix` contains the FQDN `hostname.domain.local`. This value is referred to your own server FQDN. 
 
 
@@ -59,6 +60,7 @@ The variable values `client_id` and `client_secret` have been set to obfuscate v
 |  `client_id`         | string         | client id                          | `XXX-YYY.apps.googleusercontent.com` |
 |  `client_secret`     | string         | client secret                      | `XXX` |
 |  `scope`             | list of string | scope                              | `[ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ]` |
+|  `userinfo_auth`     | boolean        | enable the OAuth `userinfo` request. The default value is `True`|  `True` |
 |  `userinfo_url`      | string         | dialog URL                         | `https://www.googleapis.com/oauth2/v1/userinfo' |
 |  `redirect_uri_prefix`       | string | redirect URL                       | `https://hostname.domain.local/API/auth/oauth` |
 |  `redirect_uri_querystring`  | string | URL query string                   | `manager=external&provider=google` |
@@ -68,6 +70,11 @@ The variable values `client_id` and `client_secret` have been set to obfuscate v
 
 
 The complete redirect url concats the two values `redirect_uri_prefix` and `redirect_uri_querystring`.
+
+## Read groups and set roles from userinfo
+
+If `userinfo_auth` is `True` abcdesktop tries to read the json content from the `userinfo_url` request.
+If the returned a json dictionary gets the `groups` entry and if the groups is list of string then the roles for the current user are defined with the groups content. All `roles` are set as `labels tags` on the user`s pod.
 
 ## Orange OAuth
 
