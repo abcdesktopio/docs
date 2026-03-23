@@ -34,18 +34,22 @@ To install an application for abcdesktop, you can
 
 - use the default install applications [bash script](bash.md)
 - use the [Web UI console](applicationwithconsole.md)
-- run a `curl` command line to `POST` the JSON file `file.json` to API service
+- run a simple `curl` command line to `POST` the JSON file content to API service
+
+> Update the values `ABCDESKTOP_URL`, `ABCDESKTOP_PORT` and the `file.json` content with your own
 
 ```
-URL="http://localhost:30443/API/manager/image"
+ABCDESKTOP_URL=localhost
+ABCDESKTOP_PORT=30443
+URL="http://$ABCDESKTOP_URL:$ABCDESKTOP_PORT/API/manager/image"
 curl -X POST -H 'Content-Type: text/javascript' "$URL" -d "@file.json" 
 ```
 
-## List of build JSON files 
+## List of default applications 
 
-abcdesktop provides some default applications. You will find on the [abcdesktop images repository](https://github.com/abcdesktopio/images/tree/main/artifact/4.4) some application examples.
+abcdesktop provides some default applications. You will find on the [abcdesktop images repository](https://github.com/abcdesktopio/images/tree/main/artifact/{{ abcdesktop.latest_release }}) some application examples, with the associated `json` and `Dockerfile` file.
 
-## JSON application example
+## JSON application example for firefox application
 
 `firefox.d.4.4.json` file content
 

@@ -53,13 +53,13 @@ abcdesktop.io provides a way to run graphics software securely isolated in a con
 - Access to the user home directory (homeDirectory support in Active Directory)
 - Legacy CIFS FlexVolume using kubernetes driver 
 - All graphical applications run inside containers, as pods or as ephermeral containers
-- Local and remote printing support 
+- Local printing support 
 - Off-line sessions are maintained
-- No need to install applications any more
+- No need to install application on the local device
 - Application update, run latest image on your private registry 
-- Accounting and reporting (Graylog, Prometheus Grafana)
+- Accounting and reporting (Syslog, Graylog, Prometheus and Grafana)
 - Clipboard syncing with https  
-- Sound support with WebRTC signalling and gstreamer webrtcbin
+- Sound support with ffmpeg
 - Nvidia GPU support for applications 
 - Support RFC 2307 to use LDAP as a Network Information Service
 
