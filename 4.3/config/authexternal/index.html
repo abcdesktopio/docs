@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://www.abcdesktop.io/3.0/setup/uninstall_kubernetes/">
+        <link rel="canonical" href="https://www.abcdesktop.io/4.3/config/authexternal/">
       
       
-        <link rel="prev" href="../troubleshooting_core_services/">
+        <link rel="prev" href="../share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/">
       
       
-        <link rel="next" href="../../../setup/kubernetes_networkpolicies/">
+        <link rel="next" href="../../../cloudproviders/aws/aws/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Uninstall abcdesktop - www.abcdesktop.io</title>
+        <title>external - www.abcdesktop.io</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#commands-to-uninstall-abcdesktop-release-30" class="md-skip">
+        <a href="#authentification-external" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Uninstall abcdesktop
+              external
             
           </span>
         </div>
@@ -931,20 +931,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -960,7 +958,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Setup guide
@@ -971,20 +969,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
         
           
           <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
@@ -1000,7 +996,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8_1">
             <span class="md-nav__icon md-icon"></span>
             Release 3.0
@@ -1014,7 +1010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/" class="md-nav__link">
+      <a href="../../../3.0/features/" class="md-nav__link">
         
   
   
@@ -1037,7 +1033,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../requirements/" class="md-nav__link">
+      <a href="../../../3.0/setup/requirements/" class="md-nav__link">
         
   
   
@@ -1060,7 +1056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../k8slinuxinstallation/" class="md-nav__link">
+      <a href="../../../3.0/setup/k8slinuxinstallation/" class="md-nav__link">
         
   
   
@@ -1083,7 +1079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kubernetesmode/" class="md-nav__link">
+      <a href="../../../3.0/setup/kubernetesmode/" class="md-nav__link">
         
   
   
@@ -1106,7 +1102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kubernetes_abcdesktop/" class="md-nav__link">
+      <a href="../../../3.0/setup/kubernetes_abcdesktop/" class="md-nav__link">
         
   
   
@@ -1129,7 +1125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kubernetes_abcdesktop_applications/" class="md-nav__link">
+      <a href="../../../3.0/setup/kubernetes_abcdesktop_applications/" class="md-nav__link">
         
   
   
@@ -1152,7 +1148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kubernetes_abcdesktop_applications/" class="md-nav__link">
+      <a href="../../../3.0/setup/kubernetes_abcdesktop_applications/" class="md-nav__link">
         
   
   
@@ -1175,7 +1171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting_core_services/" class="md-nav__link">
+      <a href="../../../3.0/setup/troubleshooting_core_services/" class="md-nav__link">
         
   
   
@@ -1195,32 +1191,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Uninstall abcdesktop
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../3.0/setup/uninstall_kubernetes/" class="md-nav__link">
         
   
   
@@ -1231,44 +1205,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#quick-uninstallation-abcdesktop-linux-or-macos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick uninstallation abcdesktop (Linux or macOS)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#run-step-by-step-uninstall-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run step by step uninstall commands
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2362,7 +2298,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../4.3/setup/changelog/" class="md-nav__link">
+      <a href="../../setup/changelog/" class="md-nav__link">
         
   
   
@@ -2385,7 +2321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../4.3/setup/kubernetes_abcdesktop/" class="md-nav__link">
+      <a href="../../setup/kubernetes_abcdesktop/" class="md-nav__link">
         
   
   
@@ -2408,7 +2344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../4.3/setup/kubernetes_abcdesktop_applications/" class="md-nav__link">
+      <a href="../../setup/kubernetes_abcdesktop_applications/" class="md-nav__link">
         
   
   
@@ -2431,7 +2367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../4.3/setup/uninstall_kubernetes/" class="md-nav__link">
+      <a href="../../setup/uninstall_kubernetes/" class="md-nav__link">
         
   
   
@@ -2798,7 +2734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../application/createsampleapplication/" class="md-nav__link">
+      <a href="../../../3.0/application/createsampleapplication/" class="md-nav__link">
         
   
   
@@ -2844,7 +2780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../application/applicationruntime_ephemeralcontainer_pod/" class="md-nav__link">
+      <a href="../../../3.0/application/applicationruntime_ephemeralcontainer_pod/" class="md-nav__link">
         
   
   
@@ -2879,18 +2815,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
@@ -2906,7 +2844,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             Configuration Guide
@@ -2958,7 +2896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/editconfig/" class="md-nav__link">
+      <a href="../../../3.0/config/editconfig/" class="md-nav__link">
         
   
   
@@ -3019,7 +2957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/cloudprovider.loadbalancing/" class="md-nav__link">
+      <a href="../../../3.0/config/cloudprovider.loadbalancing/" class="md-nav__link">
         
   
   
@@ -3042,7 +2980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/volumes/" class="md-nav__link">
+      <a href="../../../3.0/config/volumes/" class="md-nav__link">
         
   
   
@@ -3111,7 +3049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/authentification/" class="md-nav__link">
+      <a href="../../../3.0/config/authentification/" class="md-nav__link">
         
   
   
@@ -3172,7 +3110,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/authexplicit/" class="md-nav__link">
+      <a href="../../../3.0/config/authexplicit/" class="md-nav__link">
         
   
   
@@ -3195,7 +3133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/authexplicit-ldap/" class="md-nav__link">
+      <a href="../../../3.0/config/authexplicit-ldap/" class="md-nav__link">
         
   
   
@@ -3218,7 +3156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/authexplicit-activedirectory/" class="md-nav__link">
+      <a href="../../../3.0/config/authexplicit-activedirectory/" class="md-nav__link">
         
   
   
@@ -3249,7 +3187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/authimplicit/" class="md-nav__link">
+      <a href="../../../3.0/config/authimplicit/" class="md-nav__link">
         
   
   
@@ -3272,7 +3210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/authexternal/" class="md-nav__link">
+      <a href="../../../3.0/config/authexternal/" class="md-nav__link">
         
   
   
@@ -3295,7 +3233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/authentification-rules/" class="md-nav__link">
+      <a href="../../../3.0/config/authentification-rules/" class="md-nav__link">
         
   
   
@@ -3326,7 +3264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/desktop.pod/" class="md-nav__link">
+      <a href="../../../3.0/config/desktop.pod/" class="md-nav__link">
         
   
   
@@ -3349,7 +3287,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/volumes/" class="md-nav__link">
+      <a href="../../../3.0/config/volumes/" class="md-nav__link">
         
   
   
@@ -3372,7 +3310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/desktop/" class="md-nav__link">
+      <a href="../../../3.0/config/desktop/" class="md-nav__link">
         
   
   
@@ -3395,7 +3333,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/frontjs/" class="md-nav__link">
+      <a href="../../../3.0/config/frontjs/" class="md-nav__link">
         
   
   
@@ -3418,7 +3356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/language/" class="md-nav__link">
+      <a href="../../../3.0/config/language/" class="md-nav__link">
         
   
   
@@ -3479,7 +3417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/logging/" class="md-nav__link">
+      <a href="../../../3.0/config/logging/" class="md-nav__link">
         
   
   
@@ -3502,7 +3440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/syslog/" class="md-nav__link">
+      <a href="../../../3.0/config/syslog/" class="md-nav__link">
         
   
   
@@ -3571,7 +3509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/networkpolicy/" class="md-nav__link">
+      <a href="../../../3.0/config/networkpolicy/" class="md-nav__link">
         
   
   
@@ -3640,7 +3578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/controllers/" class="md-nav__link">
+      <a href="../../../3.0/config/controllers/" class="md-nav__link">
         
   
   
@@ -3663,7 +3601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/controllers/manager/" class="md-nav__link">
+      <a href="../../../3.0/config/controllers/manager/" class="md-nav__link">
         
   
   
@@ -3732,7 +3670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/webrtc/" class="md-nav__link">
+      <a href="../../../3.0/config/webrtc/" class="md-nav__link">
         
   
   
@@ -3801,7 +3739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/jira/" class="md-nav__link">
+      <a href="../../../3.0/config/jira/" class="md-nav__link">
         
   
   
@@ -4389,18 +4327,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_8" checked>
         
           
           <label class="md-nav__link" for="__nav_10_8" id="__nav_10_8_label" tabindex="0">
@@ -4416,7 +4356,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_10_8">
             <span class="md-nav__icon md-icon"></span>
             Release 4.3
@@ -4430,7 +4370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../4.3/config/cronjob/" class="md-nav__link">
+      <a href="../cronjob/" class="md-nav__link">
         
   
   
@@ -4453,7 +4393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../4.3/config/add_hostpath_volume_using_rules/" class="md-nav__link">
+      <a href="../add_hostpath_volume_using_rules/" class="md-nav__link">
         
   
   
@@ -4476,7 +4416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../4.3/config/networkpolicy/" class="md-nav__link">
+      <a href="../networkpolicy/" class="md-nav__link">
         
   
   
@@ -4499,7 +4439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../4.3/config/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
+      <a href="../share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
         
   
   
@@ -4519,18 +4459,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_8_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_8_5" checked>
         
           
           <label class="md-nav__link" for="__nav_10_8_5" id="__nav_10_8_5_label" tabindex="0">
@@ -4546,7 +4488,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_10_8_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_10_8_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_10_8_5">
             <span class="md-nav__icon md-icon"></span>
             Authentification
@@ -4557,10 +4499,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../4.3/config/authexternal/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    external
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -4571,6 +4535,182 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#library" class="md-nav__link">
+    <span class="md-ellipsis">
+      Library
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authmanagers-external" class="md-nav__link">
+    <span class="md-ellipsis">
+      authmanagers external:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-groups-and-set-roles-from-userinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read groups and set roles from userinfo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orange-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orange OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Orange OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orange-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orange Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#facebook-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facebook OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Facebook OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#facebook-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facebook Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#google-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Google OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#google-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Github OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Github OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github-oauth_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Github OAuth
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keycloack-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keycloack OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Keycloack OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keycloack-oauth_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keycloack OAuth
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -6208,20 +6348,158 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-uninstallation-abcdesktop-linux-or-macos" class="md-nav__link">
+  <a href="#requirements" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick uninstallation abcdesktop (Linux or macOS)
+      Requirements
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#run-step-by-step-uninstall-commands" class="md-nav__link">
+  <a href="#library" class="md-nav__link">
     <span class="md-ellipsis">
-      Run step by step uninstall commands
+      Library
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authmanagers-external" class="md-nav__link">
+    <span class="md-ellipsis">
+      authmanagers external:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-groups-and-set-roles-from-userinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read groups and set roles from userinfo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orange-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orange OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Orange OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orange-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orange Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#facebook-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facebook OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Facebook OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#facebook-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Facebook Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#google-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Google OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#google-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Github OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Github OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github-oauth_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Github OAuth
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keycloack-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keycloack OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Keycloack OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keycloack-oauth_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keycloack OAuth
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -6241,7 +6519,7 @@
 
 
   
-    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/3.0/setup/uninstall_kubernetes.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/4.3/config/authexternal.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -6249,77 +6527,290 @@
   
 
 
-<p>Uninstall abcdesktop for kubernetes</p>
-<h1 id="commands-to-uninstall-abcdesktop-release-30">Commands to uninstall abcdesktop release 3.0</h1>
-<p>To uninstall abcdesktop. Choose run run the <code>uninstall-3.0.sh</code> bash script using a curl or run step by step uninstall commands manually.</p>
-<h2 id="quick-uninstallation-abcdesktop-linux-or-macos">Quick uninstallation abcdesktop (Linux or macOS)</h2>
-<blockquote>
-<p>Quick uninstallation can be run on Linux or macOS operation system. </p>
-</blockquote>
-<p>Download and extract the uninstall bash script (Linux or macOS):</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sL<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-3.0.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+<h1 id="authentification-external">Authentification <code>external</code></h1>
+<h2 id="requirements">Requirements</h2>
+<p>To use <code>external</code> Authentification OAuth 2.0, you need a FQDN and a secured web site with https.</p>
+<h2 id="library">Library</h2>
+<p>abcdesktop uses <a href="https://requests-oauthlib.readthedocs.io/en/latest/oauth2_workflow.html">requests_oauthlib</a> python module. </p>
+<p>Requests-OAuthlib uses the Python Requests and OAuthlib libraries for building OAuth2 clients.</p>
+<h2 id="authmanagers-external">authmanagers <code>external</code>:</h2>
+<p><code>external</code> authentification use OAuth 2.0 authenticaton.</p>
+<p>The <code>external</code> authentification configuration is defined as a dictionary object and contains a list of <code>external</code> provider. </p>
+<p>Sample providers entry using the Google OAuth 2.0 authentification service. </p>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;ex</span><span class="kc">ternal</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="err">&#39;providers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;google&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/google_ico</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Google&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#</span><span class="mi">000000</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;backgrou</span><span class="kc">n</span><span class="err">dcolor&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#FFFFFF&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;scope&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/auth/userinfo.email&#39;,  &#39;openid&#39; ],</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/oauth2/v1/userinfo&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//hostname.domain.local/API/auth/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=google&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//accounts.google.com/o/oauth2/v2/auth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//oauth2.googleapis.com/token&#39;,</span>
+<span class="w">        </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">          </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>You should read on stdout </p>
-<div class="highlight"><pre><span></span><code>starting<span class="w"> </span>abcdesktop<span class="w"> </span>uninstall<span class="w"> </span>commands<span class="w"> </span>start<span class="w"> </span>at<span class="w"> </span><span class="m">1669824908</span><span class="w"> </span>epoch<span class="w"> </span>seconds
-stop<span class="w"> </span>and<span class="w"> </span>remove<span class="w"> </span>abcdesktop<span class="w"> </span>user<span class="w"> </span>pods
-pod<span class="w"> </span><span class="s2">&quot;anonymous-33c30478-5cc0-4e18-b128-735694c98f3c&quot;</span><span class="w"> </span>deleted
-remove<span class="w"> </span>all<span class="w"> </span>services,<span class="w"> </span>pods
-clusterrole.rbac.authorization.k8s.io<span class="w"> </span><span class="s2">&quot;pyos-role&quot;</span><span class="w"> </span>deleted
-clusterrolebinding.rbac.authorization.k8s.io<span class="w"> </span><span class="s2">&quot;pyos-rbac&quot;</span><span class="w"> </span>deleted
-serviceaccount<span class="w"> </span><span class="s2">&quot;pyos-serviceaccount&quot;</span><span class="w"> </span>deleted
-storageclass.storage.k8s.io<span class="w"> </span><span class="s2">&quot;storage-local-abcdesktop&quot;</span><span class="w"> </span>deleted
-configmap<span class="w"> </span><span class="s2">&quot;nginx-config&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;memcached-od&quot;</span><span class="w"> </span>deleted
-secret<span class="w"> </span><span class="s2">&quot;mongodb-secret&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;mongodb-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;nginx-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;speedtest-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;pyos-od&quot;</span><span class="w"> </span>deleted
-endpoints<span class="w"> </span><span class="s2">&quot;desktop&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;desktop&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;memcached&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;mongodb&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;speedtest&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;nginx&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;pyos&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;openldap-od&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;openldap&quot;</span><span class="w"> </span>deleted
-remove<span class="w"> </span>all<span class="w"> </span>secrets
-secret<span class="w"> </span><span class="s2">&quot;abcdesktopjwtdesktoppayload&quot;</span><span class="w"> </span>deleted
-secret<span class="w"> </span><span class="s2">&quot;abcdesktopjwtdesktopsigning&quot;</span><span class="w"> </span>deleted
-secret<span class="w"> </span><span class="s2">&quot;abcdesktopjwtusersigning&quot;</span><span class="w"> </span>deleted
-remove<span class="w"> </span>all<span class="w"> </span>configmaps
-configmap<span class="w"> </span><span class="s2">&quot;abcdesktop-config&quot;</span><span class="w"> </span>deleted
-configmap<span class="w"> </span><span class="s2">&quot;kube-root-ca.crt&quot;</span><span class="w"> </span>deleted
-remove<span class="w"> </span>all<span class="w"> </span>pvc
-No<span class="w"> </span>resources<span class="w"> </span>found
-remove<span class="w"> </span>all<span class="w"> </span>pv
-No<span class="w"> </span>resources<span class="w"> </span>found
-remove<span class="w"> </span>namespace
-namespace<span class="w"> </span><span class="s2">&quot;abcdesktop&quot;</span><span class="w"> </span>deleted
-abcdesktop<span class="w"> </span>is<span class="w"> </span>uninstalled,<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">48</span><span class="w"> </span>seconds
+<p>The variable values <code>client_id</code> and <code>client_secret</code> have been set to obfuscate value 'xxxx'. The <code>redirect_uri_prefix</code> contains the FQDN <code>hostname.domain.local</code>. This value is referred to your own server FQDN. </p>
+<table>
+<thead>
+<tr>
+<th>Variable name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>displayname</code></td>
+<td>string</td>
+<td>Display Name show in Web front</td>
+<td><code>Google</code></td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td>string</td>
+<td>File name ogf the icon file. It must be in <code>svg</code> format</td>
+<td>'img/auth/google_icon.svg'</td>
+</tr>
+<tr>
+<td><code>textcolor</code></td>
+<td>string</td>
+<td>text color for the front login page</td>
+<td>'#000000'</td>
+</tr>
+<tr>
+<td><code>backgroundcolor</code></td>
+<td>string</td>
+<td>background color for the front login page</td>
+<td>'#FFFFFF'</td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td>boolean</td>
+<td>enabled or diabled</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>client_id</code></td>
+<td>string</td>
+<td>client id</td>
+<td><code>XXX-YYY.apps.googleusercontent.com</code></td>
+</tr>
+<tr>
+<td><code>client_secret</code></td>
+<td>string</td>
+<td>client secret</td>
+<td><code>XXX</code></td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td>list of string</td>
+<td>scope</td>
+<td><code>[ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ]</code></td>
+</tr>
+<tr>
+<td><code>userinfo_auth</code></td>
+<td>boolean</td>
+<td>enable the OAuth <code>userinfo</code> request. The default value is <code>True</code></td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>userinfo_url</code></td>
+<td>string</td>
+<td>dialog URL</td>
+<td>`https://www.googleapis.com/oauth2/v1/userinfo'</td>
+</tr>
+<tr>
+<td><code>redirect_uri_prefix</code></td>
+<td>string</td>
+<td>redirect URL</td>
+<td><code>https://hostname.domain.local/API/auth/oauth</code></td>
+</tr>
+<tr>
+<td><code>redirect_uri_querystring</code></td>
+<td>string</td>
+<td>URL query string</td>
+<td><code>manager=external&amp;provider=google</code></td>
+</tr>
+<tr>
+<td><code>authorization_base_url</code></td>
+<td>string</td>
+<td>callback URL</td>
+<td><code>https://accounts.google.com/o/oauth2/v2/auth</code></td>
+</tr>
+<tr>
+<td><code>token_url</code></td>
+<td>string</td>
+<td>token URL</td>
+<td><code>https://oauth2.googleapis.com/token</code></td>
+</tr>
+<tr>
+<td><code>userinfomap</code></td>
+<td>dictionary</td>
+<td>remap key name to another one</td>
+<td><code>{ '*': '*', 'picture': 'picture.data.url' }</code></td>
+</tr>
+</tbody>
+</table>
+<p>The complete redirect url concats the two values <code>redirect_uri_prefix</code> and <code>redirect_uri_querystring</code>.</p>
+<h2 id="read-groups-and-set-roles-from-userinfo">Read groups and set roles from userinfo</h2>
+<p>If <code>userinfo_auth</code> is <code>True</code> abcdesktop tries to read the json content from the <code>userinfo_url</code> request.
+If the returned a json dictionary gets the <code>groups</code> entry and if the groups is list of string then the roles for the current user are defined with the groups content. All <code>roles</code> are set as <code>labels tags</code> on the user`s pod.</p>
+<div class="highlight"><pre><span></span><code>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span> <span class="n">userinfo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">),</span> <span class="nb">list</span> <span class="p">):</span>
+            <span class="k">for</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">userinfo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">roles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">role</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="run-step-by-step-uninstall-commands">Run step by step uninstall commands</h2>
-<p>Run the bash commands from the <code>uninstall-3.0.sh</code> main content : </p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;stop and remove abcdesktop user pods&quot;</span>
-kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>--selector<span class="o">=</span><span class="s2">&quot;type=x11server&quot;</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove all services, pods&quot;</span>
-kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-3.0.yaml<span class="w"> </span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove all secrets&quot;</span>
-kubectl<span class="w"> </span>delete<span class="w"> </span>secrets<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>abcdesktop
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove all configmaps&quot;</span>
-kubectl<span class="w"> </span>delete<span class="w"> </span>cm<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>abcdesktop
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove all pvc&quot;</span>
-kubectl<span class="w"> </span>delete<span class="w"> </span>pvc<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span><span class="m">2</span>&gt;/dev/null
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;remove namespace&quot;</span>
-kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>abcdesktop
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;abcdesktop is uninstalled&quot;</span>
+<p>For example the getuserinfo returns a json like </p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;34567345623452&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mail@yourdomain.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;verified_email&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;picture&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://lh3.googleusercontent.com/x-/xxxxxxxxxxxx&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;hd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;yourdomain.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;admins&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;developers&quot;</span><span class="w"> </span><span class="p">]</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>The last command <code>kubectl delete namespace</code> can take few minutes.</p>
-<p>Please wait for the output message: </p>
-<div class="highlight"><pre><span></span><code>abcdesktop is uninstalled
+<p>Then the user pods gets the labels</p>
+<div class="highlight"><pre><span></span><code>kubectl describe pods user-746b8   -n abcdesktop
 </code></pre></div>
-<p>Great, you have uninstalled abcdesktop for kubernetes.</p>
+<p>The labels list the <code>admins</code> and the <code>developers</code></p>
+<div class="highlight"><pre><span></span><code>Labels:           abcdesktop/role=desktop
+                  admins=true
+                  developers=true
+                  ...
+</code></pre></div>
+<h2 id="orange-oauth">Orange OAuth</h2>
+<p>Orange's OAuth is supported for authentication. This API is based on OpenID Connect, which combines end-user authentication with OAuth2 authorisation. </p>
+<h3 id="orange-application">Orange Application</h3>
+<p>Create your Orange Application and set credentials for Orange Authentification API in the section </p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;ora</span><span class="kc">n</span><span class="err">ge&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">       </span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Ora</span><span class="kc">n</span><span class="err">ge&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/ora</span><span class="kc">n</span><span class="err">ge_ico</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#</span><span class="mi">000000</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;backgrou</span><span class="kc">n</span><span class="err">dcolor&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#FFFFFF&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;basic_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;scope&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ope</span><span class="kc">n</span><span class="err">id&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">orm_</span><span class="kc">f</span><span class="err">illi</span><span class="kc">n</span><span class="err">g&#39;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//hostname.domain.local/API/auth/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=ora</span><span class="kc">n</span><span class="err">ge&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//api.orange.com/openidconnect/fr/v1/authorize&#39;,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//api.orange.com/openidconnect/fr/v1/token&#39;, </span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//api.orange.com/formfilling/fr/v1/userinfo&#39;,</span>
+<span class="w">        </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acl&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+</code></pre></div>
+<h2 id="facebook-oauth">Facebook OAuth</h2>
+<p>Facebook's OAuth is supported for authentication. </p>
+<h3 id="facebook-application">Facebook Application</h3>
+<p>Create your Facebook Application credentials and set the credentials for Facebook Authentification API  </p>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;</span><span class="kc">fa</span><span class="err">cebook&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Facebook&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/</span><span class="kc">fa</span><span class="err">cebook_ico</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#</span><span class="mi">000000</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;backgrou</span><span class="kc">n</span><span class="err">dcolor&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#FFFFFF&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//ocv4.pepins.net/API/auth/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=</span><span class="kc">fa</span><span class="err">cebook&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.facebook.com/dialog/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//graph.facebook.com/v2.6/me?fields=picture.width(400),name&#39;,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//graph.facebook.com/v2.3/oauth/access_token&#39;,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">omap&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="err">&#39;*&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;*&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;pic</span><span class="kc">ture</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;pic</span><span class="kc">ture</span><span class="err">.da</span><span class="kc">ta</span><span class="err">.url&#39;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acl&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+</code></pre></div>
+<p>The <code>userinfomap</code> rename the key of the userinfo json document. It translates the key name <code>picture</code> as the new key name <code>picture.data.url</code>.</p>
+<h2 id="google-oauth">Google OAuth</h2>
+<p>Google's OAuth is supported for authentication. The client_id is the google's OAuth client ID, and the client_secret is the OAuth client secret. </p>
+<h3 id="google-application">Google Application</h3>
+<p>Create your Google credentials and set the correct credentials for Google Authentification API in the section [gauth]</p>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;google&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/google_ico</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Google&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#</span><span class="mi">000000</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;backgrou</span><span class="kc">n</span><span class="err">dcolor&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#FFFFFF&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;scope&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/auth/userinfo.email&#39;,  &#39;openid&#39; ],</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/oauth2/v1/userinfo&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//hostname.domain.local/API/auth/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=google&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//accounts.google.com/o/oauth2/v2/auth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//oauth2.googleapis.com/token&#39;,</span>
+<span class="w">        </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">          </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span><span class="w">    </span>
+</code></pre></div>
+<h2 id="github-oauth">Github OAuth</h2>
+<p>GitHub's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for apps that don't have access to a web browser.</p>
+<h3 id="github-oauth_1">Github OAuth</h3>
+<p>Enable other users to authorize your OAuth App. Create your Github credentials here : <a href="https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps">authorizing-oauth-apps</a> and set the correct credentials for Github Authentification API</p>
+<div class="highlight"><pre><span></span><code><span class="err">&#39;gi</span><span class="kc">t</span><span class="err">hub&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/gi</span><span class="kc">t</span><span class="err">hub_ico</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#</span><span class="mi">000000</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;backgrou</span><span class="kc">n</span><span class="err">dcolor&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#FFFFFF&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Gi</span><span class="kc">t</span><span class="err">hub&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;basic_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;scope&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;read</span><span class="p">:</span><span class="err">user&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//hostname.domain.local/API/auth/oauth&#39;,</span>
+<span class="w">        </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=gi</span><span class="kc">t</span><span class="err">hub&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//github.com/login/oauth/authorize&#39;,</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//github.com/login/oauth/access_token&#39;,</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//api.github.com/user&#39;,</span>
+<span class="w">        </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acl&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">omap&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">&#39;uidNumber&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;id&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+</code></pre></div>
+<h2 id="keycloack-oauth">Keycloack OAuth</h2>
+<p>Keycloack's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for apps that don't have access to a web browser.</p>
+<h3 id="keycloack-oauth_1">Keycloack OAuth</h3>
+<p>Enable other users to authorize your OAuth App. Create your keycloack credentials and set the correct credentials for keycloack Authentification API</p>
+<div class="highlight"><pre><span></span><code>&#39;keycloak&#39;: {
+      &#39;displayname&#39;: &#39;ABC Keycloack&#39;,
+      &#39;enabled&#39;: True,
+      &#39;basic_auth&#39;: True,
+      &#39;userinfo_auth&#39;: True,
+      &#39;scope&#39; : [ &#39;openid&#39;, &#39;roles&#39;, &#39;profile&#39; ],
+      &#39;client_id&#39;: &#39;abcdesktop&#39;,
+      &#39;client_secret&#39;: &#39;xxxx&#39;,
+      &#39;redirect_uri_prefix&#39; : &#39;https://hostname.domain.local/API/auth/oauth&#39;,
+      &#39;redirect_uri_querystring&#39;: &#39;manager=external&amp;provider=keycloak&#39;,
+      &#39;authorization_base_url&#39;: &#39;https://auth.domain.local/realms/abc/protocol/openid-connect/auth&#39;,
+      &#39;token_url&#39;: &#39;https://auth.domain.local/realms/abc/protocol/openid-connect/token&#39;,
+      &#39;userinfo_url&#39;: &#39;https://auth.domain.local/realms/abc/protocol/openid-connect/userinfo&#39;,
+      &#39;revoke_url&#39;: &#39;https://auth.domain.local/realms/abc/protocol/openid-connect/revoke&#39;,
+      &#39;policies&#39;: { &#39;acl&#39;  : { &#39;permit&#39;: [ &#39;all&#39; ] }
+    }
+</code></pre></div>
+<p>Great, you have check how the implicit Authentification configuration works.</p>
 
 
 
