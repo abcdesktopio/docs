@@ -5,9 +5,9 @@
 The garbage collector remove all user's pods not connected since more than expirein time in seconds.
 To call the garbage collector endpoint run a http request to `/API/manager/garbagecollector`. It takes the parameters `expirein` and `force`.
 
-- `expirein` is a value in seconds
-- `force` is a boolean value `true`, `false`
-- `nodename` is the name of the noide where the pod should be deleted. The deafault value is `None`, it means that the garbage collector runs on all nodes of the cluster without restriction.
+- `expirein` is a value in seconds. This parameter is required.
+- `force` is a boolean value `true`, `false`. This parameter is optional. The default value is `False`. If `Force` is `True` the garbage collector doesn't check if the user if connected to his pod or not. 
+- `nodename` is the name of the node where the pod should be deleted. This parameter is optional. The default value is `None`, it means that the garbage collector runs on all nodes of the cluster without any restriction. The `nodename` parameter is usefull if you need to remove user`s pods on a node for a maintenance plan or a `drain kubectl` command.
 
 This endpoint return a JSON list of all delete pods.
 
@@ -66,24 +66,24 @@ The default values are
 - `env:`
 
 ```
-- name: "EXPIREIN'
+- name: 'expirein'
   value: '900'
 ```
 
-`EXPIREIN` is a value in seconds.
-If the time of the last login on the desktop is more than `EXPIREIN` then a desktop can be deleted or not. 
+`expirein` is a value in seconds.
+If the time of the last login on the desktop is more than `expirein` then a desktop can be deleted or not. 
 The time of the last login starts when the user logs in.
 abcdesktop calcs the duration between the current time and the last login time on the desktop.
-- If the user is NOT connected to the desktop and if the duration time is more than `EXPIREIN`, then the desktop is deleted.
-- If the user is connected and if the duration time is is more than `EXPIREIN` and if `FORCE` is `true`, then the desktop is deleted.
-- If the user is connected and if the duration time is more than `EXPIREIN` and if `FORCE` is `false`, then the desktop is NOT deleted.
+- If the user is NOT connected to the desktop and if the duration time is more than `expirein`, then the desktop is deleted.
+- If the user is connected and if the duration time is is more than `expirein` and if `force` is `true`, then the desktop is deleted.
+- If the user is connected and if the duration time is more than `expirein` and if `force` is `false`, then the desktop is NOT deleted.
 
 ```
-- name: "FORCE'
+- name: "force'
   value: 'false'
 ```
 
-`FORCE` to delete the user's pod even if the user is connected. `false` is the default value, if a user is connected to his desktop then the `garbagecollector` keep this desktop running. By setting `FORCE` to `true`, the desktop will be deleted every time the `EXPIREIN` value is reached, regardless of the connection status.
+`force` to delete the user's pod even if the user is connected. `false` is the default value, if a user is connected to his desktop then the `garbagecollector` keep this desktop running. By setting `FORCE` to `true`, the desktop will be deleted every time the `expirein` value is reached, regardless of the connection status.
 
 
 ## Apply your `cronjob`
