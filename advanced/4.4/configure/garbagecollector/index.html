@@ -987,6 +987,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#garbage-collector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Garbage collector
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-a-cronjob" class="md-nav__link">
     <span class="md-ellipsis">
       Create a cronjob
@@ -3261,6 +3270,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#garbage-collector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Garbage collector
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-a-cronjob" class="md-nav__link">
     <span class="md-ellipsis">
       Create a cronjob
@@ -3312,8 +3330,16 @@
 
 
 <h1 id="configure-the-garbage-collector">Configure the garbage collector</h1>
+<h2 id="garbage-collector">Garbage collector</h2>
+<p>The garbage collector remove all user's pods not connected since more than expirein time in seconds.
+To call the garbage collector endpoint run a http request to <code>/API/manager/garbagecollector</code>. It takes the parameters <code>expirein</code> and <code>force</code>.</p>
+<ul>
+<li><code>expirein</code> is a value in seconds</li>
+<li><code>force</code> is a boolean value <code>true</code>, <code>false</code></li>
+</ul>
+<p>Calling /API/manager/garbagecollector?expirein=0&amp;force=true will disconnect all user's pods.</p>
 <h2 id="create-a-cronjob">Create a <code>cronjob</code></h2>
-<p>Call the garbagecollector api</p>
+<p>Create a <code>cronjob</code> to run the garbagecollector each five minutes :</p>
 <ul>
 <li>Create a yaml manifest file named <code>cronjob.yaml</code></li>
 </ul>
