@@ -3352,7 +3352,7 @@
 <h1 id="applications">Applications</h1>
 <h2 id="application-description">Application description</h2>
 <p>An application for abcdesktop is container image. To manage images, abcdesktop uses the <a href="https://github.com/opencontainers/image-spec">OCI JSON file</a>. A docker inspect command line dumps the JSON file content.</p>
-<div class="highlight"><pre><span></span><code>  docker inspect $YOUR_IMAGE_NAME 
+<div class="highlight"><pre><span></span><code>  docker inspect $YOUR_IMAGE_NAME &gt; file.json
 </code></pre></div>
 <p>The image must contains some labels, for example.</p>
 <div class="highlight"><pre><span></span><code>LABEL oc.icon=&quot;firefox.svg&quot;
@@ -3364,11 +3364,11 @@ LABEL oc.path=&quot;/usr/bin/firefox&quot;
 LABEL oc.type=app
 </code></pre></div>
 <h2 id="install-an-application">Install an application</h2>
-<p>To install an application for abcdesktop, you can </p>
+<p>Multiple methods of installing applications have been offered to make deployment easier.</p>
 <ul>
 <li>use the default install applications <a href="bash.md">bash script</a></li>
 <li>use the <a href="../applicationwithconsole/">Admin Web UI console</a></li>
-<li>run a simple <code>curl</code> command line to <code>POST</code> the JSON file content to API service</li>
+<li>run a simple REST request with a <code>curl</code> command line to <code>POST</code> the JSON file content to API service</li>
 </ul>
 <blockquote>
 <p>Update the values <code>ABCDESKTOP_URL</code>, <code>ABCDESKTOP_PORT</code> and the <code>file.json</code> content with your own</p>
