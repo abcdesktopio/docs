@@ -1,7 +1,9 @@
-# How to edit `pyos` core service configuration file 
+# How to edit the abcdesktop configuration file 
 
-The `pyos` core service configuration file name is `od.config` 
+Th abcdesktop configuration file name is `od.config`. 
 This file has the [cherrypy file format](https://docs.cherrypy.dev/en/stable/config.html) 
+When the pyos process starts, it read the `od.config` file.
+If something is wrong, the pyos process hangs. The command line `kubectl logs -l name=pyos-od  -n abcdesktop` write the pyos log on stdout.
 
 
 ## Edit your configuration file 
@@ -29,23 +31,14 @@ Save your local file `od.config`.
 
 ## Apply changes 
 
-To apply changes, you can replace the `abcdesktop-config`
+To apply changes, you have to replace the `abcdesktop-config`, by running the `replace kubectl` command line option. Then `rollout restart`the `pyos` pod. 
 
-```bash
-kubectl delete configmap abcdesktop-config -n abcdesktop
-kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
+```
+kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -
+kubectl rollout restart deployment pyos-od -n abcdesktop
 ```
 
-Or you can also use the replace command `kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f - `
 
-
-
-## Restart pyos pods
-
-```bash
-kubectl delete pods -l run=pyos-od -n abcdesktop
-pod "pyos-od-6fc597d444-qgzhc" deleted
-```
 
 ## Check your changes
 
