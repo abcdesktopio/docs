@@ -13,12 +13,17 @@ The provider is defined as a dictionnary object and contains an ```anononymous``
 'implicit': {
     'providers': {
       'anonymous': {
-        'displayname': 'Anonymous',
+        'displayname': 'Guest',
+        'textcolor': '#000000',
+        'icon': 'img/auth/anonymous_icon.svg',
+        'backgroundcolor': '#FFFFFF',
         'caption': 'Have a look !',
         'userid': 'anonymous',
-        'username': 'Anonymous'
-      }     
+        'username': 'anonymous',
+          'policies': {  'acl'   : { 'permit': [ 'all' ] } }
+      }
     }
+}
 ```
 
 ```anononymous``` provider always permit authentification, and create a uuid as userid. 
@@ -29,15 +34,20 @@ Set in your configuration file the authmanagers dictionnary as described
 authmanagers: {
   'external': { },
   'explicit': { },
-  'implicit': { 
-     'providers': {
-         'anonymous': {
-           'displayname': 'Anonymous',
-           'caption': 'Anonymous',
-           'userid': 'anonymous',
-           'username': 'Anonymous'
-      } 
-   }
+  'implicit': {
+    'providers': {
+      'anonymous': {
+        'displayname': 'Guest',
+        'textcolor': '#000000',
+        'icon': 'img/auth/anonymous_icon.svg',
+        'backgroundcolor': '#FFFFFF',
+        'caption': 'Have a look !',
+        'userid': 'anonymous',
+        'username': 'anonymous',
+          'policies': {  'acl'   : { 'permit': [ 'all' ] } }
+      }
+    }
+  }
 }
 ```
 
