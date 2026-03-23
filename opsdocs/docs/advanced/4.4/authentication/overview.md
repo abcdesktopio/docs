@@ -5,7 +5,7 @@ The authentification configuration is set in the `od.config` file. In this chapt
 This update differs depending on the configuration docker mode or kubernetes mode. 
 
 Read the 
-[Update your configuration file and apply the new configuration file](editconfig.md) section to make change in `od.config` file for kubernetes cluster.
+[Update your configuration file and apply the new configuration file](../configure/updateconfiguration.md) section to make change in `od.config` file for kubernetes cluster.
 
 ## The dictionary authmanagers
 
@@ -22,8 +22,8 @@ authmanagers: {
 The `od.config` defines four kinds of entries in the ```authmanagers``` object :
 
 * `external`: use for OAuth 2.0 Authentification
-* `explicit`: use for LDAP, LDAPS and ActiveDirectory Authentification
-* `metaexplicit`: use  Microsoft Active Directory Trusted relationship, with support of FSP (Foreign Security Principals)
+* `explicit`: use for directory services  `LDAP`, `LDAPS` and `Microsoft Active Directory` authentification
+* `metaexplicit`: use for `Microsoft Active Directory trusted relationships`, with support of FSP (Foreign Security Principals)
 * `implicit`: use for Anonymous Authentification and SSL-client certificat 
 
 ## Related authmanagers 
@@ -41,11 +41,11 @@ The `od.config` defines four kinds of entries in the ```authmanagers``` object :
 
 You should have read the hands-on :
 
-* [Update your configuration file and apply the new configuration file](editconfig.md) section to make change in `od.config` file for kubernetes cluster.
+* [Update your configuration file and apply the new configuration file](../configure/updateconfiguration.md) section to make change in `od.config` file for kubernetes cluster.
 
 ### Change authmanagers configuration
 
-Edit your od.config pyos configuration file, and set the value to the authmanagers dictionary with empty values for `implicit`, `explicit`, and `external`, as describe :
+Edit your `od.config` pyos configuration file, and set the value to the authmanagers dictionary with empty values for `implicit`, `explicit`, and `external`, as describe :
 
 ```
 authmanagers: {
