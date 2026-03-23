@@ -6,7 +6,7 @@ tags:
   - upgrade
 ---
 
-# Installation using helm lastest release {{ abcdesktop.latest_release }}
+# Installation using helm latest release {{ abcdesktop.latest_release }}
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop)](https://artifacthub.io/packages/search?repo=abcdesktop)
 
