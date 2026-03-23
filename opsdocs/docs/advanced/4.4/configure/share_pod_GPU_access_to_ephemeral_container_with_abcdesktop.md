@@ -97,6 +97,16 @@ echo $NVIDIA_GPU
 { "k8s.device-plugin.nvidia.com/gpu" : "GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb" }
 ```
 
+A new application gets the env variable `NVIDIA_VISIBLE_DEVICES` from the bash script result 
+
+For example the `echo $NVIDIA_VISIBLE_DEVICES` inside another container return the same `GPU-uuid`
+
+```
+echo $NVIDIA_VISIBLE_DEVICES
+GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb
+```
+
+
 
 
 
