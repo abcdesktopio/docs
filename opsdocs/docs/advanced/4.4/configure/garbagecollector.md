@@ -8,7 +8,7 @@ To call the garbage collector endpoint run a http request to `/API/manager/garba
 - `expirein` is a value in seconds
 - `force` is a boolean value `true`, `false`
 
-Calling /API/manager/garbagecollector?expirein=0&force=true will disconnect all user's pods.
+Calling `/API/manager/garbagecollector?expirein=0&force=true` will disconnect all user's pods.
 
 ## Create a `cronjob`
 
