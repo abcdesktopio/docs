@@ -2508,6 +2508,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#read-groups-and-set-roles-from-userinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read groups and set roles from userinfo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#orange-oauth" class="md-nav__link">
     <span class="md-ellipsis">
       Orange OAuth
@@ -3384,6 +3393,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#read-groups-and-set-roles-from-userinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read groups and set roles from userinfo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#orange-oauth" class="md-nav__link">
     <span class="md-ellipsis">
       Orange OAuth
@@ -3597,6 +3615,12 @@
 <td><code>[ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ]</code></td>
 </tr>
 <tr>
+<td><code>userinfo_auth</code></td>
+<td>boolean</td>
+<td>enable the OAuth <code>userinfo</code> request. The default value is <code>True</code></td>
+<td><code>True</code></td>
+</tr>
+<tr>
 <td><code>userinfo_url</code></td>
 <td>string</td>
 <td>dialog URL</td>
@@ -3635,6 +3659,9 @@
 </tbody>
 </table>
 <p>The complete redirect url concats the two values <code>redirect_uri_prefix</code> and <code>redirect_uri_querystring</code>.</p>
+<h2 id="read-groups-and-set-roles-from-userinfo">Read groups and set roles from userinfo</h2>
+<p>If <code>userinfo_auth</code> is <code>True</code> abcdesktop tries to read the json content from the <code>userinfo_url</code> request.
+If the returned a json dictionary gets the <code>groups</code> entry and if the groups is list of string then the roles for the current user are defined with the groups content. All <code>roles</code> are set as <code>labels tags</code> on the user`s pod.</p>
 <h2 id="orange-oauth">Orange OAuth</h2>
 <p>Orange's OAuth is supported for authentication. This API is based on OpenID Connect, which combines end-user authentication with OAuth2 authorisation. </p>
 <h3 id="orange-application">Orange Application</h3>
