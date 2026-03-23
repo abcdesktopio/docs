@@ -1,10 +1,12 @@
 # How to edit `pyos` core service configuration file 
 
 The `pyos` core service configuration file name is `od.config` 
+This file has the [cherrypy file format](https://docs.cherrypy.dev/en/stable/config.html) 
+
 
 ## Edit your configuration file 
 
-If the `od.config` file does not exist, download the default [od.config](https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.3.0) file and save it as `od.config` to your abcdesktop local directory.
+If the `od.config` file does not exist, download the default [od.config](https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.{{ abcdesktop.latest_release }}) file and save it as `od.config` to your abcdesktop local directory.
 
 To make change, edit your own `od.config` file
 
