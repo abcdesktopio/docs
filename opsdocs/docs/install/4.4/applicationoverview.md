@@ -13,7 +13,7 @@ tags:
 An application for abcdesktop is container image. To manage images, abcdesktop uses the [OCI JSON file](https://github.com/opencontainers/image-spec). A docker inspect command line dumps the JSON file content.
 
 ```
-  docker inspect $YOUR_IMAGE_NAME 
+  docker inspect $YOUR_IMAGE_NAME > file.json
 ```
 
 The image must contains some labels, for example.
@@ -30,11 +30,11 @@ LABEL oc.type=app
  
 ## Install an application 
 
-To install an application for abcdesktop, you can 
+Multiple methods of installing applications have been offered to make deployment easier.
 
 - use the default install applications [bash script](bash.md)
 - use the [Admin Web UI console](applicationwithconsole.md)
-- run a simple `curl` command line to `POST` the JSON file content to API service
+- run a simple REST request with a `curl` command line to `POST` the JSON file content to API service
 
 > Update the values `ABCDESKTOP_URL`, `ABCDESKTOP_PORT` and the `file.json` content with your own
 
