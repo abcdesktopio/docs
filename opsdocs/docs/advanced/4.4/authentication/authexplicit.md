@@ -53,11 +53,11 @@ If the authmanagers ```explicit``` is enabled. The Web home page insert the new 
 
 ### LDAP authmanagers :
 
-Read the specific chapter on LDAP [LDAP and LDAPS explicit authmanagers](/config/authexplicit-ldap/)
+Read the specific chapter on LDAP [LDAP and LDAPS explicit authmanagers](authexplicit-ldap.md)
 
 ### Microsoft Active Directory authmanagers :
 
-Microsoft Active Directory is implemented as a LDAP Server, start reading the chapter on LDAP [LDAP and LDAPS explicit authmanagers](/config/authexplicit-ldap/), then read the specific chapter for Microsoft Active Director [Microsoft Active Directory explicit authmanagers](/config/authexplicit-ldap/)
+Microsoft Active Directory is implemented as a LDAP Server, start reading the chapter on LDAP [LDAP and LDAPS explicit authmanagers](authexplicit-ldap.md), then read the specific chapter for Microsoft Active Director [Microsoft Active Directory explicit authmanagers](authexplicit-ldap.md)
 
 Great, you have check how the explicit Authentification configuration works.
 
