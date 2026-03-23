@@ -8,7 +8,10 @@ To call the garbage collector endpoint run a http request to `/API/manager/garba
 - `expirein` is a value in seconds
 - `force` is a boolean value `true`, `false`
 
-Calling /API/manager/garbagecollector?expirein=0&force=true will disconnect all user's pods.
+This endpoint return a JSON list of all delete pods.
+
+> Calling `/API/manager/garbagecollector?expirein=0&force=true` will disconnect all user's pods.
+
 
 ## Create a `cronjob`
 
@@ -135,5 +138,6 @@ abcdesktop-cleaner-29350675-hlj8z   0/1     Completed   0          2m9s   10.0.2
 
 
 Great, you add a `garbagecollector` using a kubernetes `cronjob` in your namespace.
-Each five minutes the `garbagecollector` checks if desktop pod have to de deleted.
+
+Each five minutes the `garbagecollector` checks if desktop pod have to be deleted.
 The desktop pod is checked for deletion by the garbage collector every five minutes.

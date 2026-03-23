@@ -29,6 +29,9 @@ extra:
 extra_css:
   - css/custom-admonition.css
 
+extra_javascript:
+  - js/tabbed-toc.js
+
 markdown_extensions:
   - attr_list
   - admonition
@@ -39,6 +42,8 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
 
 site_name: abcdesktop.pepins.net
 repo_url: https://github.com/abcdesktopio/newdocs
@@ -47,18 +52,17 @@ site_url: https://abcdesktop.pepins.net
 edit_uri: 'edit/main/opsdocs/docs'
 nav:
 - Home: index.md
-
 - Quick Start :
   - Requirements : requirements.md
   - Install Core Services:
-    - Bash script: install/${ABCDESKTOP_LATEST_RELEASE}/bash.md
+    - Script: install/${ABCDESKTOP_LATEST_RELEASE}/script.md
     - Helm: install/${ABCDESKTOP_LATEST_RELEASE}/helm.md
   - Install Applications:
     - Overview:  install/${ABCDESKTOP_LATEST_RELEASE}/applicationoverview.md
     - Bash script:  install/${ABCDESKTOP_LATEST_RELEASE}/install-applications-bash.md
     - Console : install/${ABCDESKTOP_LATEST_RELEASE}/applicationwithconsole.md
   - Uninstall:
-      - Bash script: uninstall/${ABCDESKTOP_LATEST_RELEASE}/bash.md
+      - Script: uninstall/${ABCDESKTOP_LATEST_RELEASE}/script.md
       - Helm: uninstall/${ABCDESKTOP_LATEST_RELEASE}/helm.md
 
 - Advanced :

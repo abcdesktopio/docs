@@ -5,7 +5,7 @@
 abcdesktop uses `ephemeral container` or `pod` as applications. nvidia adds support for [Container Device Interface](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html). 
 
 
-## Apply `runtimeClassName` to abcdesktop config (release >= 4.3 )
+## Apply `runtimeClassName` to abcdesktop config
 
 
 Get the `od.config` file
@@ -68,7 +68,7 @@ executeclasses : {
       
 # features_permissions
 # read executeclasses and permit a user to set a dedicated class name as desktop features
-# 'read' features_permissions is exposed to the frontend
+# 'read'   features_permissions is exposed to the frontend
 # 'submit' features_permissions can be set to create a desktop
 # 
 desktop.features_permissions : [ 'read', 'submit' ]
@@ -77,6 +77,37 @@ desktop.features_permissions : [ 'read', 'submit' ]
 ```
 desktop.overwrite_environment_variable_for_application : "/composer/overwrite_environment_variable_for_application.sh"
 ```
+
+
+- The `overwrite_environment_variable_for_application.sh` bash script runs into the `graphical` contaier of the puser`s pod.
+
+```
+gpu_uuid=$(nvidia-smi --query-gpu=gpu_uuid --format=csv,noheader)
+# NVIDIA_VISIBLE_DEVICES is also know as k8s.device-plugin.nvidia.com/gpu
+# define the variable named k8s.device-plugin.nvidia.com/gpu to the $gpu_uuid value
+NVIDIA_GPU="{ \"k8s.device-plugin.nvidia.com/gpu\" : \"$gpu_uuid\" }"  
+```
+
+It read the `gpu uuid`, then set the variable NVIGIA_GPU to `k8s.device-plugin.nvidia.com/gpu=$gpu_uuid`
+
+For example, when you run the `overwrite_environment_variable_for_application.sh` on a GPU host
+
+``` bash
+echo $NVIDIA_GPU
+{ "k8s.device-plugin.nvidia.com/gpu" : "GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb" }
+```
+
+A new application gets the env variable `NVIDIA_VISIBLE_DEVICES` from the bash script result 
+
+For example the `echo $NVIDIA_VISIBLE_DEVICES` inside another container return the same `GPU-uuid`
+
+```
+echo $NVIDIA_VISIBLE_DEVICES
+GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb
+```
+
+
+
 
 
 

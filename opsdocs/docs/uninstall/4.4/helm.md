@@ -3,14 +3,7 @@ tags:
   - uninstall
   - helm
 ---
-
-# Uninstall a helm instance
-
-To uninstall abcdesktop instancied by helm only, run the `helm uninstall` command.
-
-## Quick uninstallation abcdesktop (Linux or macOS)
-
-> Quick uninstallation can be run on Linux or macOS operation system.
+# Uninstallation using helm
 
 ```bash
 NAMESPACE=abcdesktop
