@@ -3302,8 +3302,9 @@ NVIDIA_GPU=&quot;{ \&quot;k8s.device-plugin.nvidia.com/gpu\&quot; : \&quot;$gpu_
 <div class="highlight"><pre><span></span><code>echo $NVIDIA_VISIBLE_DEVICES
 GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb
 </code></pre></div>
-<p>Example of an ephemeral application sharing the same GPU UUID </p>
+<p>Example of an ephemeral application sharing the GPU of the user's pod</p>
 <p><img alt="showoverwrite_environment_variable_for_application" src="../img/showoverwrite_environment_variable_for_application.png" /></p>
+<p>This screenshot shows the <code>$NVIDIA_VISIBLE_DEVICES</code> content and the <code>nvidia-smi</code> command result</p>
 <ul>
 <li>Update the configmap <code>abcdesktop-config</code></li>
 </ul>
