@@ -107,10 +107,11 @@ GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb
 ```
 
 
-Example of an ephemeral application sharing the same GPU UUID 
+Example of an ephemeral application sharing the GPU of the user's pod
 
 ![showoverwrite_environment_variable_for_application](img/showoverwrite_environment_variable_for_application.png)
 
+This screenshot shows the `$NVIDIA_VISIBLE_DEVICES` content and the `nvidia-smi` command result
 
 
 - Update the configmap `abcdesktop-config`
