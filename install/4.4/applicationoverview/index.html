@@ -647,18 +647,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#list-of-build-json-files" class="md-nav__link">
+  <a href="#list-of-default-applications" class="md-nav__link">
     <span class="md-ellipsis">
-      List of build JSON files
+      List of default applications
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#json-application-example" class="md-nav__link">
+  <a href="#json-application-example-for-firefox-application" class="md-nav__link">
     <span class="md-ellipsis">
-      JSON application example
+      JSON application example for firefox application
     </span>
   </a>
   
@@ -3116,18 +3116,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#list-of-build-json-files" class="md-nav__link">
+  <a href="#list-of-default-applications" class="md-nav__link">
     <span class="md-ellipsis">
-      List of build JSON files
+      List of default applications
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#json-application-example" class="md-nav__link">
+  <a href="#json-application-example-for-firefox-application" class="md-nav__link">
     <span class="md-ellipsis">
-      JSON application example
+      JSON application example for firefox application
     </span>
   </a>
   
@@ -3198,14 +3198,19 @@ LABEL oc.type=app
 <ul>
 <li>use the default install applications <a href="../bash/">bash script</a></li>
 <li>use the <a href="../applicationwithconsole/">Web UI console</a></li>
-<li>run a <code>curl</code> command line to <code>POST</code> the JSON file <code>file.json</code> to API service</li>
+<li>run a simple <code>curl</code> command line to <code>POST</code> the JSON file content to API service</li>
 </ul>
-<div class="highlight"><pre><span></span><code>URL=&quot;http://localhost:30443/API/manager/image&quot;
+<blockquote>
+<p>Update the values <code>ABCDESKTOP_URL</code>, <code>ABCDESKTOP_PORT</code> and the <code>file.json</code> content with your own</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>ABCDESKTOP_URL=localhost
+ABCDESKTOP_PORT=30443
+URL=&quot;http://$ABCDESKTOP_URL:$ABCDESKTOP_PORT/API/manager/image&quot;
 curl -X POST -H &#39;Content-Type: text/javascript&#39; &quot;$URL&quot; -d &quot;@file.json&quot; 
 </code></pre></div>
-<h2 id="list-of-build-json-files">List of build JSON files</h2>
-<p>abcdesktop provides some default applications. You will find on the <a href="https://github.com/abcdesktopio/images/tree/main/artifact/4.4">abcdesktop images repository</a> some application examples.</p>
-<h2 id="json-application-example">JSON application example</h2>
+<h2 id="list-of-default-applications">List of default applications</h2>
+<p>abcdesktop provides some default applications. You will find on the <a href="https://github.com/abcdesktopio/images/tree/main/artifact/4.4">abcdesktop images repository</a> some application examples, with the associated <code>json</code> and <code>Dockerfile</code> file.</p>
+<h2 id="json-application-example-for-firefox-application">JSON application example for firefox application</h2>
 <p><code>firefox.d.4.4.json</code> file content</p>
 <div class="highlight"><pre><span></span><code>[
     {
