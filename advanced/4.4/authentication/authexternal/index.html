@@ -2612,6 +2612,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#keycloack-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keycloack OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Keycloack OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keycloack-oauth_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keycloack OAuth
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3497,6 +3521,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#keycloack-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keycloack OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Keycloack OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keycloack-oauth_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keycloack OAuth
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3782,6 +3830,27 @@ If the returned a json dictionary gets the <code>groups</code> entry and if the 
 <span class="w">        </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acl&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
 <span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">omap&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">&#39;uidNumber&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;id&#39;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
+</code></pre></div>
+<h2 id="keycloack-oauth">Keycloack OAuth</h2>
+<p>Keycloack's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for apps that don't have access to a web browser.</p>
+<h3 id="keycloack-oauth_1">Keycloack OAuth</h3>
+<p>Enable other users to authorize your OAuth App. Create your keycloack credentials and set the correct credentials for keycloack Authentification API</p>
+<div class="highlight"><pre><span></span><code>&#39;keycloak&#39;: {
+      &#39;displayname&#39;: &#39;ABC Keycloack&#39;,
+      &#39;enabled&#39;: True,
+      &#39;basic_auth&#39;: True,
+      &#39;userinfo_auth&#39;: True,
+      &#39;scope&#39; : [ &#39;openid&#39;, &#39;roles&#39;, &#39;profile&#39; ],
+      &#39;client_id&#39;: &#39;abcdesktop&#39;,
+      &#39;client_secret&#39;: &#39;xxxx&#39;,
+      &#39;redirect_uri_prefix&#39; : &#39;https://hostname.domain.local/API/auth/oauth&#39;,
+      &#39;redirect_uri_querystring&#39;: &#39;manager=external&amp;provider=keycloak&#39;,
+      &#39;authorization_base_url&#39;: &#39;https://auth.domain.local/realms/abc/protocol/openid-connect/auth&#39;,
+      &#39;token_url&#39;: &#39;https://auth.domain.local/realms/abc/protocol/openid-connect/token&#39;,
+      &#39;userinfo_url&#39;: &#39;https://auth.domain.local/realms/abc/protocol/openid-connect/userinfo&#39;,
+      &#39;revoke_url&#39;: &#39;https://auth.domain.local/realms/abc/protocol/openid-connect/revoke&#39;,
+      &#39;policies&#39;: { &#39;acl&#39;  : { &#39;permit&#39;: [ &#39;all&#39; ] }
+    }
 </code></pre></div>
 <p>Great, you have check how the implicit Authentification configuration works.</p>
 
