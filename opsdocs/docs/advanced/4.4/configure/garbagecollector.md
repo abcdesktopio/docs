@@ -7,6 +7,7 @@ To call the garbage collector endpoint run a http request to `/API/manager/garba
 
 - `expirein` is a value in seconds
 - `force` is a boolean value `true`, `false`
+- `nodename` is the name of the noide where the pod should be deleted. The deafault value is `None`, it means that the garbage collector runs on all nodes of the cluster without restriction.
 
 This endpoint return a JSON list of all delete pods.
 
