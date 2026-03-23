@@ -6,13 +6,16 @@ tags:
   - upgrade
 ---
 
-# Installation using helm latest release {{ abcdesktop.latest_release }}
+# Installation using helm
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop)](https://artifacthub.io/packages/search?repo=abcdesktop)
 
-You can watch the youtube video sample. This video describes the Quick installation process using `helm`.
+## Requirements
 
-<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+- kubernetes cluster `READY` to run
+- `helm` command-line tool must be installed. 
+
+## Installation using helm latest release {{ abcdesktop.latest_release }}
 
 Add the `helm` repo and then install it on Linux or macOS or read the step by step installation process [abcdesktop for kubernetes](/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop)
 
@@ -31,6 +34,13 @@ LOCAL_PORT=30443
 NAMESPACE=abcdesktop
 kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 "${LOCAL_PORT}:80" -n ${NAMESPACE}
 ```
+
+## Video to run the quick installation process 
+
+You can watch the youtube video sample. This video describes the Quick installation process using `helm`.
+
+<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
 
 ## Helm options
 
