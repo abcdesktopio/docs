@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installation-using-helm-latest-release-44" class="md-skip">
+        <a href="#installation-using-helm" class="md-skip">
           Skip to content
         </a>
       
@@ -555,6 +555,33 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-using-helm-latest-release-44" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation using helm latest release 4.4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-to-run-the-quick-installation-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Video to run the quick installation process
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#helm-options" class="md-nav__link">
@@ -3104,6 +3131,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-using-helm-latest-release-44" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation using helm latest release 4.4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-to-run-the-quick-installation-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Video to run the quick installation process
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#helm-options" class="md-nav__link">
     <span class="md-ellipsis">
       Helm options
@@ -3197,11 +3251,14 @@
   
 
 
-<h1 id="installation-using-helm-latest-release-44">Installation using helm latest release 4.4</h1>
+<h1 id="installation-using-helm">Installation using helm</h1>
 <p><a href="https://artifacthub.io/packages/search?repo=abcdesktop"><img alt="Artifact Hub" src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop" /></a></p>
-<p>You can watch the youtube video sample. This video describes the Quick installation process using <code>helm</code>.</p>
-<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>kubernetes cluster <code>READY</code> to run</li>
+<li><code>helm</code> command-line tool must be installed. </li>
+</ul>
+<h2 id="installation-using-helm-latest-release-44">Installation using helm latest release 4.4</h2>
 <p>Add the <code>helm</code> repo and then install it on Linux or macOS or read the step by step installation process <a href="/4.4/setup/kubernetes_abcdesktop">abcdesktop for kubernetes</a></p>
 <div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="false" data-stars="false" data-responsive="false"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div>
 <script async src="https://artifacthub.io/artifacthub-widget.js"></script>
@@ -3215,6 +3272,10 @@ helm install my-abcdesktop abcdesktop/abcdesktop --version 4.4 --create-namespac
 <span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 kubectl<span class="w"> </span>port-forward<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>router-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span><span class="w"> </span><span class="k">)</span><span class="w"> </span>--address<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LOCAL_PORT</span><span class="si">}</span><span class="s2">:80&quot;</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span>
 </code></pre></div>
+<h2 id="video-to-run-the-quick-installation-process">Video to run the quick installation process</h2>
+<p>You can watch the youtube video sample. This video describes the Quick installation process using <code>helm</code>.</p>
+<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
 <h2 id="helm-options">Helm options</h2>
 <p>To modify any default parameters of the helm configuration, follow these steps:</p>
 <h3 id="step-1-retrieve-the-default-configuration-file-from-helm">Step 1: Retrieve the default configuration file from helm</h3>
