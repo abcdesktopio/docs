@@ -3551,7 +3551,7 @@
 <span class="w">        </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <span class="w">          </span><span class="err">&#39;acl&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span><span class="w">     </span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -3662,6 +3662,30 @@
 <h2 id="read-groups-and-set-roles-from-userinfo">Read groups and set roles from userinfo</h2>
 <p>If <code>userinfo_auth</code> is <code>True</code> abcdesktop tries to read the json content from the <code>userinfo_url</code> request.
 If the returned a json dictionary gets the <code>groups</code> entry and if the groups is list of string then the roles for the current user are defined with the groups content. All <code>roles</code> are set as <code>labels tags</code> on the user`s pod.</p>
+<div class="highlight"><pre><span></span><code>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span> <span class="n">userinfo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">),</span> <span class="nb">list</span> <span class="p">):</span>
+            <span class="k">for</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">userinfo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">roles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">role</span><span class="p">)</span>
+</code></pre></div>
+<p>For example the getuserinfo returns a json like </p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;34567345623452&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mail@yourdomain.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;verified_email&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;picture&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://lh3.googleusercontent.com/x-/xxxxxxxxxxxx&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;hd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;yourdomain.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;admins&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;developers&quot;</span><span class="w"> </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Then the user pods gets the labels</p>
+<div class="highlight"><pre><span></span><code>kubectl describe pods user-746b8   -n abcdesktop
+</code></pre></div>
+<p>The labels list the <code>admins</code> and the <code>developers</code></p>
+<div class="highlight"><pre><span></span><code>Labels:           abcdesktop/role=desktop
+                  admins=true
+                  developers=true
+                  ...
+</code></pre></div>
 <h2 id="orange-oauth">Orange OAuth</h2>
 <p>Orange's OAuth is supported for authentication. This API is based on OpenID Connect, which combines end-user authentication with OAuth2 authorisation. </p>
 <h3 id="orange-application">Orange Application</h3>
