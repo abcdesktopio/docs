@@ -234,5 +234,32 @@ Enable other users to authorize your OAuth App. Create your Github credentials h
 ```
 
 
+## Keycloack OAuth
+
+Keycloack's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for apps that don't have access to a web browser.
+
+### Keycloack OAuth
+
+Enable other users to authorize your OAuth App. Create your keycloack credentials and set the correct credentials for keycloack Authentification API
+
+```
+'keycloak': {
+      'displayname': 'ABC Keycloack',
+      'enabled': True,
+      'basic_auth': True,
+      'userinfo_auth': True,
+      'scope' : [ 'openid', 'roles', 'profile' ],
+      'client_id': 'abcdesktop',
+      'client_secret': 'xxxx',
+      'redirect_uri_prefix' : 'https://hostname.domain.local/API/auth/oauth',
+      'redirect_uri_querystring': 'manager=external&provider=keycloak',
+      'authorization_base_url': 'https://auth.domain.local/realms/abc/protocol/openid-connect/auth',
+      'token_url': 'https://auth.domain.local/realms/abc/protocol/openid-connect/token',
+      'userinfo_url': 'https://auth.domain.local/realms/abc/protocol/openid-connect/userinfo',
+      'revoke_url': 'https://auth.domain.local/realms/abc/protocol/openid-connect/revoke',
+      'policies': { 'acl'  : { 'permit': [ 'all' ] }
+    }
+```
+
 Great, you have check how the implicit Authentification configuration works.
 
