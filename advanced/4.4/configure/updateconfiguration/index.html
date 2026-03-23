@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-to-edit-pyos-core-service-configuration-file" class="md-skip">
+        <a href="#how-to-edit-the-abcdesktop-configuration-file" class="md-skip">
           Skip to content
         </a>
       
@@ -985,15 +985,6 @@
   <a href="#apply-changes" class="md-nav__link">
     <span class="md-ellipsis">
       Apply changes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#restart-pyos-pods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Restart pyos pods
     </span>
   </a>
   
@@ -3306,15 +3297,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#restart-pyos-pods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Restart pyos pods
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#check-your-changes" class="md-nav__link">
     <span class="md-ellipsis">
       Check your changes
@@ -3347,9 +3329,11 @@
   
 
 
-<h1 id="how-to-edit-pyos-core-service-configuration-file">How to edit <code>pyos</code> core service configuration file</h1>
-<p>The <code>pyos</code> core service configuration file name is <code>od.config</code> 
-This file has the <a href="https://docs.cherrypy.dev/en/stable/config.html">cherrypy file format</a> </p>
+<h1 id="how-to-edit-the-abcdesktop-configuration-file">How to edit the abcdesktop configuration file</h1>
+<p>Th abcdesktop configuration file name is <code>od.config</code>. 
+This file has the <a href="https://docs.cherrypy.dev/en/stable/config.html">cherrypy file format</a> 
+When the pyos process starts, it read the <code>od.config</code> file.
+If something is wrong, the pyos process hangs. The command line <code>kubectl logs -l name=pyos-od  -n abcdesktop</code> write the pyos log on stdout.</p>
 <h2 id="edit-your-configuration-file">Edit your configuration file</h2>
 <p>If the <code>od.config</code> file does not exist, download the default <a href="https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.4">od.config</a> file and save it as <code>od.config</code> to your abcdesktop local directory.</p>
 <p>To make change, edit your own <code>od.config</code> file</p>
@@ -3362,14 +3346,9 @@ This file has the <a href="https://docs.cherrypy.dev/en/stable/config.html">cher
 </code></pre></div>
 <p>Save your local file <code>od.config</code>.</p>
 <h2 id="apply-changes">Apply changes</h2>
-<p>To apply changes, you can replace the <code>abcdesktop-config</code></p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-n<span class="w"> </span>abcdesktop
-kubectl<span class="w"> </span>create<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>--from-file<span class="o">=</span>od.config<span class="w"> </span>-n<span class="w"> </span>abcdesktop
-</code></pre></div>
-<p>Or you can also use the replace command <code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -</code></p>
-<h2 id="restart-pyos-pods">Restart pyos pods</h2>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
-pod<span class="w"> </span><span class="s2">&quot;pyos-od-6fc597d444-qgzhc&quot;</span><span class="w"> </span>deleted
+<p>To apply changes, you have to replace the <code>abcdesktop-config</code>, by running the <code>replace kubectl</code> command line option. Then <code>rollout restart</code>the <code>pyos</code> pod. </p>
+<div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -
+kubectl rollout restart deployment pyos-od -n abcdesktop
 </code></pre></div>
 <h2 id="check-your-changes">Check your changes</h2>
 <p>To check that the new colours are presents in front, open the url <code>http://localhost:30443</code>, in your web browser, to start a simple abcdesktop.io container. </p>
