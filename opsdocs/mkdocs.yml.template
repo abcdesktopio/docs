@@ -64,6 +64,10 @@ nav:
 - Advanced :
   - Architecture:
     - Overview: architecture/overview.md
+  - Configuration :
+    - Make changes in the configuration file: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/updateconfiguration.md
+    - Run the garbarge collector: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/garbagecollector.md
+    - Share GPU with ephemeral container: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/share_pod_GPU_access_to_ephemeral_container.md
   - Platform :
     - On-Premises:
       - Kind: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/kind.md
@@ -93,6 +97,8 @@ nav:
   - Install Applications:
     - Create your own application: advanced/${ABCDESKTOP_LATEST_RELEASE}/createyourownapplication.md
   - Network:
+    - Multiple network interfaces:
+      - Multus: advanced/${ABCDESKTOP_LATEST_RELEASE}/network/multus.md
     - Network Policy:
       - Netpol: advanced/${ABCDESKTOP_LATEST_RELEASE}/networkpolicy/netpol.md
       - Install : advanced/${ABCDESKTOP_LATEST_RELEASE}/networkpolicy/install.md
@@ -105,7 +111,7 @@ nav:
     - Add hostPath volume using rules: advanced/${ABCDESKTOP_LATEST_RELEASE}/add_hostpath_volume_using_rules.md
   - Rules and labels:
     - Rules: advanced/${ABCDESKTOP_LATEST_RELEASE}/rulesandlabels/rules.md
-    - Labels:  advanced/${ABCDESKTOP_LATEST_RELEASE}/rulesandlabels/labels.md
+    - Labels: advanced/${ABCDESKTOP_LATEST_RELEASE}/rulesandlabels/labels.md
   - Authentication:
     - Overview: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/overview.md
     - External (OpenID): advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authexternal.md
@@ -115,10 +121,6 @@ nav:
       - Meta Directory: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authmetaexplicit.md
       - Rules: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authentification-rules.md
     - Implicit (Anonymous): advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authimplicit.md
-  - Configuration :
-    - Update Configuration : advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/updateconfiguration.md
-    - Garbarge collector: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/garbagecollector.md
-    - Share GPU with ephemeral container: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/share_pod_GPU_access_to_ephemeral_container.md
 - Contribute :
   - Overview: contribute/overview.md
   - Services:
