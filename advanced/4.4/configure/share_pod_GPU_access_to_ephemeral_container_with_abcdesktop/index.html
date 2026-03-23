@@ -3297,6 +3297,11 @@ NVIDIA_GPU=&quot;{ \&quot;k8s.device-plugin.nvidia.com/gpu\&quot; : \&quot;$gpu_
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$NVIDIA_GPU</span>
 <span class="o">{</span><span class="w"> </span><span class="s2">&quot;k8s.device-plugin.nvidia.com/gpu&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb&quot;</span><span class="w"> </span><span class="o">}</span>
 </code></pre></div>
+<p>A new application gets the env variable <code>NVIDIA_VISIBLE_DEVICES</code> from the bash script result </p>
+<p>For example the <code>echo $NVIDIA_VISIBLE_DEVICES</code> inside another container return the same <code>GPU-uuid</code></p>
+<div class="highlight"><pre><span></span><code>echo $NVIDIA_VISIBLE_DEVICES
+GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb
+</code></pre></div>
 <ul>
 <li>Update the configmap <code>abcdesktop-config</code></li>
 </ul>
