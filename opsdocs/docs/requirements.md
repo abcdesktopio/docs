@@ -10,7 +10,7 @@ tags:
 
 * Supported architecture `x86-64` and `arm-64`
 * 20 GB of free space to store sample applications and core container images
-* a Kubernetes cluster ready to run **greater or equal** to 1.28, with `admin` roles 
+* a Kubernetes cluster `READY` to run **greater or equal** to 1.28, with `admin` roles 
 
 ### GNU/Linux
 
