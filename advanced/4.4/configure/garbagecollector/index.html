@@ -3334,9 +3334,9 @@
 <p>The garbage collector remove all user's pods not connected since more than expirein time in seconds.
 To call the garbage collector endpoint run a http request to <code>/API/manager/garbagecollector</code>. It takes the parameters <code>expirein</code> and <code>force</code>.</p>
 <ul>
-<li><code>expirein</code> is a value in seconds</li>
-<li><code>force</code> is a boolean value <code>true</code>, <code>false</code></li>
-<li><code>nodename</code> is the name of the noide where the pod should be deleted. The deafault value is <code>None</code>, it means that the garbage collector runs on all nodes of the cluster without restriction.</li>
+<li><code>expirein</code> is a value in seconds. This parameter is required.</li>
+<li><code>force</code> is a boolean value <code>true</code>, <code>false</code>. This parameter is optional. The default value is <code>False</code>. If <code>Force</code> is <code>True</code> the garbage collector doesn't check if the user if connected to his pod or not. </li>
+<li><code>nodename</code> is the name of the node where the pod should be deleted. This parameter is optional. The default value is <code>None</code>, it means that the garbage collector runs on all nodes of the cluster without any restriction. The <code>nodename</code> parameter is usefull if you need to remove user<code>s pods on a node for a maintenance plan or a</code>drain kubectl` command.</li>
 </ul>
 <p>This endpoint return a JSON list of all delete pods.</p>
 <blockquote>
@@ -3393,20 +3393,20 @@ spec:
 <p><code>env:</code></p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code>- name: &quot;EXPIREIN&#39;
+<div class="highlight"><pre><span></span><code>- name: &#39;expirein&#39;
   value: &#39;900&#39;
 </code></pre></div>
-<p><code>EXPIREIN</code> is a value in seconds.
-If the time of the last login on the desktop is more than <code>EXPIREIN</code> then a desktop can be deleted or not. 
+<p><code>expirein</code> is a value in seconds.
+If the time of the last login on the desktop is more than <code>expirein</code> then a desktop can be deleted or not. 
 The time of the last login starts when the user logs in.
 abcdesktop calcs the duration between the current time and the last login time on the desktop.
-- If the user is NOT connected to the desktop and if the duration time is more than <code>EXPIREIN</code>, then the desktop is deleted.
-- If the user is connected and if the duration time is is more than <code>EXPIREIN</code> and if <code>FORCE</code> is <code>true</code>, then the desktop is deleted.
-- If the user is connected and if the duration time is more than <code>EXPIREIN</code> and if <code>FORCE</code> is <code>false</code>, then the desktop is NOT deleted.</p>
-<div class="highlight"><pre><span></span><code>- name: &quot;FORCE&#39;
+- If the user is NOT connected to the desktop and if the duration time is more than <code>expirein</code>, then the desktop is deleted.
+- If the user is connected and if the duration time is is more than <code>expirein</code> and if <code>force</code> is <code>true</code>, then the desktop is deleted.
+- If the user is connected and if the duration time is more than <code>expirein</code> and if <code>force</code> is <code>false</code>, then the desktop is NOT deleted.</p>
+<div class="highlight"><pre><span></span><code>- name: &quot;force&#39;
   value: &#39;false&#39;
 </code></pre></div>
-<p><code>FORCE</code> to delete the user's pod even if the user is connected. <code>false</code> is the default value, if a user is connected to his desktop then the <code>garbagecollector</code> keep this desktop running. By setting <code>FORCE</code> to <code>true</code>, the desktop will be deleted every time the <code>EXPIREIN</code> value is reached, regardless of the connection status.</p>
+<p><code>force</code> to delete the user's pod even if the user is connected. <code>false</code> is the default value, if a user is connected to his desktop then the <code>garbagecollector</code> keep this desktop running. By setting <code>FORCE</code> to <code>true</code>, the desktop will be deleted every time the <code>expirein</code> value is reached, regardless of the connection status.</p>
 <h2 id="apply-your-cronjob">Apply your <code>cronjob</code></h2>
 <p>Run the <code>kubectl</code> command line to apply your manifest file in you namespace.</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f cronjob.yaml -n abcdesktop
