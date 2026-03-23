@@ -5,9 +5,9 @@ tags:
   - console
 ---
 
-# Applications management with console
+# Applications management with the admin web UI console
 
-To access console applications management page, please connect to 
+To access the admin web UI console, please connect to 
 
 ```
 http://<YOUR_ABCDESKTOP_URL>:<YOUR_PORT>/console
