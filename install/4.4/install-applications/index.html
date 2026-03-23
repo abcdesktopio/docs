@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://abcdesktop.pepins.net/install/4.4/install-applications-bash/">
+        <link rel="canonical" href="https://abcdesktop.pepins.net/install/4.4/install-applications/">
       
       
         <link rel="prev" href="../applicationoverview/">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Bash script - abcdesktop.pepins.net</title>
+        <title>Script - abcdesktop.pepins.net</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#add-applications-with-a-bash-script" class="md-skip">
+        <a href="#add-applications-with-a-script" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Bash script
+              Script
             
           </span>
         </div>
@@ -616,7 +616,7 @@
   
   
   <span class="md-ellipsis">
-    Bash script
+    Script
     
   </span>
   
@@ -629,7 +629,7 @@
   
   
   <span class="md-ellipsis">
-    Bash script
+    Script
     
   </span>
   
@@ -658,10 +658,9 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Quick application install">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#connect-to-your-abcdesktop" class="md-nav__link">
     <span class="md-ellipsis">
       Connect to your abcdesktop
@@ -669,9 +668,22 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#quick-application-install_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick application install
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connect-to-your-abcdesktop_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect to your abcdesktop
+    </span>
+  </a>
   
 </li>
       
@@ -3262,10 +3274,9 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Quick application install">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#connect-to-your-abcdesktop" class="md-nav__link">
     <span class="md-ellipsis">
       Connect to your abcdesktop
@@ -3273,9 +3284,22 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#quick-application-install_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick application install
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connect-to-your-abcdesktop_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect to your abcdesktop
+    </span>
+  </a>
   
 </li>
       
@@ -3317,7 +3341,7 @@
 
 
   
-    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/install/4.4/install-applications-bash.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/install/4.4/install-applications.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -3325,7 +3349,10 @@
   
 
 
-<h1 id="add-applications-with-a-bash-script">Add applications with a bash script</h1>
+<h1 id="add-applications-with-a-script">Add applications with a script</h1>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux or macOS</label><label for="__tabbed_1_2">Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <h2 id="quick-application-install">Quick application install</h2>
 <blockquote>
 <p>Quick installation can be run on Linux or macOS operation system. </p>
@@ -3334,20 +3361,45 @@
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.4.sh | bash
 </code></pre></div>
 <p>You can watch the youtube video sample. This video describes the application installation process on a fresh kubernetes cluster.</p>
-<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/JSIjnNA6kNE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
-
-<h3 id="connect-to-your-abcdesktop">Connect to your abcdesktop</h3>
+<p><div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/JSIjnNA6kNE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div></p>
+<h2 id="connect-to-your-abcdesktop">Connect to your abcdesktop</h2>
 <p>The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.</p>
 <p>Now reconnect to your abcdesktop. </p>
 <p>Open your navigator to http://[your-ip-hostname]:30443/</p>
 <div class="highlight"><pre><span></span><code>http://localhost:30443/
 </code></pre></div>
 <p>The new applications are installed, and ready to run.</p>
-<p><img alt="applications after upload json" src="img/abcdesktop-4-1-loginanonymous-with-applications.png" /></p>
+<p><img alt="applications after upload json" src="../img/abcdesktop-4-1-loginanonymous-with-applications.png" /></p>
 <p>And then you can start new applications like <code>Firefox</code></p>
-<p><img alt="Start Firefix application" src="img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png" /></p>
+<p><img alt="Start Firefix application" src="../img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png" /></p>
 <p>Another example with console admin interface usage</p>
-<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/Dah78eAJykw" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
+<p><div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/Dah78eAJykw" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div></p>
+</div>
+<div class="tabbed-block">
+<h2 id="quick-application-install_1">Quick application install</h2>
+<blockquote>
+<p>Quick installation can be run on Windows operation system. </p>
+</blockquote>
+<p>Download and run the <code>pullapps-4.4.ps1</code> script :</p>
+<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.4.ps1 | bash
+</code></pre></div>
+<p>You can watch the youtube video sample. This video describes the application installation process on a fresh kubernetes cluster.</p>
+<p><div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/JSIjnNA6kNE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div></p>
+<h2 id="connect-to-your-abcdesktop_1">Connect to your abcdesktop</h2>
+<p>The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.</p>
+<p>Now reconnect to your abcdesktop. </p>
+<p>Open your navigator to http://[your-ip-hostname]:30443/</p>
+<div class="highlight"><pre><span></span><code>http://localhost:30443/
+</code></pre></div>
+<p>The new applications are installed, and ready to run.</p>
+<p><img alt="applications after upload json" src="../img/abcdesktop-4-1-loginanonymous-with-applications.png" /></p>
+<p>And then you can start new applications like <code>Firefox</code></p>
+<p><img alt="Start Firefix application" src="../img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png" /></p>
+<p>Another example with console admin interface usage</p>
+<p><div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/Dah78eAJykw" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div></p>
+</div>
+</div>
+</div>
 
 
 
