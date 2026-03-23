@@ -3283,27 +3283,37 @@
 <div class="highlight"><pre><span></span><code>&#39;implicit&#39;: {
     &#39;providers&#39;: {
       &#39;anonymous&#39;: {
-        &#39;displayname&#39;: &#39;Anonymous&#39;,
+        &#39;displayname&#39;: &#39;Guest&#39;,
+        &#39;textcolor&#39;: &#39;#000000&#39;,
+        &#39;icon&#39;: &#39;img/auth/anonymous_icon.svg&#39;,
+        &#39;backgroundcolor&#39;: &#39;#FFFFFF&#39;,
         &#39;caption&#39;: &#39;Have a look !&#39;,
         &#39;userid&#39;: &#39;anonymous&#39;,
-        &#39;username&#39;: &#39;Anonymous&#39;
-      }     
+        &#39;username&#39;: &#39;anonymous&#39;,
+          &#39;policies&#39;: {  &#39;acl&#39;   : { &#39;permit&#39;: [ &#39;all&#39; ] } }
+      }
     }
+}
 </code></pre></div>
 <p><code>anononymous</code> provider always permit authentification, and create a uuid as userid. </p>
 <p>Set in your configuration file the authmanagers dictionnary as described</p>
 <div class="highlight"><pre><span></span><code>authmanagers: {
   &#39;external&#39;: { },
   &#39;explicit&#39;: { },
-  &#39;implicit&#39;: { 
-     &#39;providers&#39;: {
-         &#39;anonymous&#39;: {
-           &#39;displayname&#39;: &#39;Anonymous&#39;,
-           &#39;caption&#39;: &#39;Anonymous&#39;,
-           &#39;userid&#39;: &#39;anonymous&#39;,
-           &#39;username&#39;: &#39;Anonymous&#39;
-      } 
-   }
+  &#39;implicit&#39;: {
+    &#39;providers&#39;: {
+      &#39;anonymous&#39;: {
+        &#39;displayname&#39;: &#39;Guest&#39;,
+        &#39;textcolor&#39;: &#39;#000000&#39;,
+        &#39;icon&#39;: &#39;img/auth/anonymous_icon.svg&#39;,
+        &#39;backgroundcolor&#39;: &#39;#FFFFFF&#39;,
+        &#39;caption&#39;: &#39;Have a look !&#39;,
+        &#39;userid&#39;: &#39;anonymous&#39;,
+        &#39;username&#39;: &#39;anonymous&#39;,
+          &#39;policies&#39;: {  &#39;acl&#39;   : { &#39;permit&#39;: [ &#39;all&#39; ] } }
+      }
+    }
+  }
 }
 </code></pre></div>
 <p><a href="editconfig.md">Update your configuration file and apply the new configuration file</a></p>
