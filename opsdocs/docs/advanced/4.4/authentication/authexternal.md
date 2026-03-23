@@ -41,7 +41,7 @@ Sample providers entry using the Google OAuth 2.0 authentification service.
         'policies': { 
           'acl': { 'permit': [ 'all' ] } 
         }
-      }     
+      }
   }
 }
 ```
@@ -75,6 +75,43 @@ The complete redirect url concats the two values `redirect_uri_prefix` and `redi
 
 If `userinfo_auth` is `True` abcdesktop tries to read the json content from the `userinfo_url` request.
 If the returned a json dictionary gets the `groups` entry and if the groups is list of string then the roles for the current user are defined with the groups content. All `roles` are set as `labels tags` on the user`s pod.
+
+```python
+     if isinstance( userinfo.get('groups'), list ):
+            for role in userinfo.get('groups'):
+                if isinstance(role, str):
+                    roles.append(role)
+```
+
+For example the getuserinfo returns a json like 
+
+```json
+{ 
+    "id": "34567345623452",
+    "email": "mail@yourdomain.com",
+    "verified_email": true,
+    "picture": "https://lh3.googleusercontent.com/x-/xxxxxxxxxxxx",
+    "hd": "yourdomain.com",
+    "groups": [ "admins", "developers" ]
+}
+```
+
+Then the user pods gets the labels
+
+```
+kubectl describe pods user-746b8   -n abcdesktop
+```
+
+The labels list the `admins` and the `developers`
+
+```
+Labels:           abcdesktop/role=desktop
+                  admins=true
+                  developers=true
+                  ...
+```
+
+
 
 ## Orange OAuth
 
