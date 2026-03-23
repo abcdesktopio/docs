@@ -3337,7 +3337,10 @@ To call the garbage collector endpoint run a http request to <code>/API/manager/
 <li><code>expirein</code> is a value in seconds</li>
 <li><code>force</code> is a boolean value <code>true</code>, <code>false</code></li>
 </ul>
+<p>This endpoint return a JSON list of all delete pods.</p>
+<blockquote>
 <p>Calling <code>/API/manager/garbagecollector?expirein=0&amp;force=true</code> will disconnect all user's pods.</p>
+</blockquote>
 <h2 id="create-a-cronjob">Create a <code>cronjob</code></h2>
 <p>Create a <code>cronjob</code> to run the garbagecollector each five minutes :</p>
 <ul>
@@ -3431,8 +3434,8 @@ abcdesktop-cleaner-29350670-c8dtj   0/1     Completed   0          7m9s   10.0.2
 abcdesktop-cleaner-29350675-hlj8z   0/1     Completed   0          2m9s   10.0.2.72    abc3ws03   &lt;none&gt;           &lt;none&gt;
 [...]
 </code></pre></div>
-<p>Great, you add a <code>garbagecollector</code> using a kubernetes <code>cronjob</code> in your namespace.
-Each five minutes the <code>garbagecollector</code> checks if desktop pod have to de deleted.
+<p>Great, you add a <code>garbagecollector</code> using a kubernetes <code>cronjob</code> in your namespace.</p>
+<p>Each five minutes the <code>garbagecollector</code> checks if desktop pod have to be deleted.
 The desktop pod is checked for deletion by the garbage collector every five minutes.</p>
 
 
