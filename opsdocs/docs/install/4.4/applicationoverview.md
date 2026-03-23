@@ -33,7 +33,7 @@ LABEL oc.type=app
 To install an application for abcdesktop, you can 
 
 - use the default install applications [bash script](bash.md)
-- use the [Web UI console](applicationwithconsole.md)
+- use the [Admin Web UI console](applicationwithconsole.md)
 - run a simple `curl` command line to `POST` the JSON file content to API service
 
 > Update the values `ABCDESKTOP_URL`, `ABCDESKTOP_PORT` and the `file.json` content with your own
