@@ -3390,7 +3390,6 @@ helm install my-abcdesktop abcdesktop/abcdesktop --version 4.4 --create-namespac
 </code></pre></div>
 <details class="note">
 <summary>show details</summary>
-</details>
 <div class="highlight"><pre><span></span><code>NAME: my-abcdesktop
 LAST DEPLOYED: Tue Mar 24 14:24:17 2026
 NAMESPACE: abcdesktop
@@ -3415,6 +3414,7 @@ kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..me
 
 Open your web browser to http://localhost:30443
 </code></pre></div>
+</details>
 <p>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)</p>
 <div class="highlight"><pre><span></span><code><span class="nv">LOCAL_PORT</span><span class="o">=</span><span class="m">30443</span>
 <span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
