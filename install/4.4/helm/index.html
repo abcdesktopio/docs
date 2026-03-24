@@ -3389,31 +3389,31 @@ helm repo add abcdesktop https://abcdesktopio.github.io/helm/
 helm install my-abcdesktop abcdesktop/abcdesktop --version 4.4 --create-namespace -n ${NAMESPACE}
 </code></pre></div>
 <div class="codehilite"><pre><span></span><code>???<span class="w"> </span>note<span class="w"> </span>&quot;show<span class="w"> </span>details&quot;
-```
-NAME:<span class="w"> </span>my-abcdesktop
-LAST<span class="w"> </span>DEPLOYED:<span class="w"> </span>Tue<span class="w"> </span>Mar<span class="w"> </span>24<span class="w"> </span>14:24:17<span class="w"> </span>2026
-NAMESPACE:<span class="w"> </span>abcdesktop
-STATUS:<span class="w"> </span>deployed
-REVISION:<span class="w"> </span>1
-TEST<span class="w"> </span>SUITE:<span class="w"> </span>None
-NOTES:
-#<span class="w"> </span>After<span class="w"> </span>installation,<span class="w"> </span>and<span class="w"> </span>wait<span class="w"> </span>for<span class="w"> </span>deployments<span class="w"> </span>and<span class="w"> </span>services
+<span class="w">    </span>```
+<span class="w">    </span>NAME:<span class="w"> </span>my-abcdesktop
+<span class="w">    </span>LAST<span class="w"> </span>DEPLOYED:<span class="w"> </span>Tue<span class="w"> </span>Mar<span class="w"> </span>24<span class="w"> </span>14:24:17<span class="w"> </span>2026
+<span class="w">    </span>NAMESPACE:<span class="w"> </span>abcdesktop
+<span class="w">    </span>STATUS:<span class="w"> </span>deployed
+<span class="w">    </span>REVISION:<span class="w"> </span>1
+<span class="w">    </span>TEST<span class="w"> </span>SUITE:<span class="w"> </span>None
+<span class="w">    </span>NOTES:
+<span class="w">    </span>#<span class="w"> </span>After<span class="w"> </span>installation,<span class="w"> </span>and<span class="w"> </span>wait<span class="w"> </span>for<span class="w"> </span>deployments<span class="w"> </span>and<span class="w"> </span>services
 
-NAMESPACE=abcdesktop
-kubectl<span class="w"> </span>wait<span class="w"> </span>deployment<span class="w"> </span>-n<span class="w"> </span><span class="cp">${</span><span class="n">NAMESPACE</span><span class="cp">}</span><span class="w"> </span>--all<span class="w"> </span>--for<span class="w"> </span>condition=Available=True<span class="w"> </span>--timeout=300s
-kubectl<span class="w"> </span>get<span class="w"> </span>services<span class="w"> </span>-n<span class="w"> </span><span class="cp">${</span><span class="n">NAMESPACE</span><span class="cp">}</span>
+<span class="w">    </span>NAMESPACE=abcdesktop
+<span class="w">    </span>kubectl<span class="w"> </span>wait<span class="w"> </span>deployment<span class="w"> </span>-n<span class="w"> </span><span class="cp">${</span><span class="n">NAMESPACE</span><span class="cp">}</span><span class="w"> </span>--all<span class="w"> </span>--for<span class="w"> </span>condition=Available=True<span class="w"> </span>--timeout=300s
+<span class="w">    </span>kubectl<span class="w"> </span>get<span class="w"> </span>services<span class="w"> </span>-n<span class="w"> </span><span class="cp">${</span><span class="n">NAMESPACE</span><span class="cp">}</span>
 
 
-#<span class="w"> </span>To<span class="w"> </span>connect<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>abcdesktop<span class="w"> </span>using<span class="w"> </span>a<span class="w"> </span>port<span class="w"> </span>forward<span class="w">  </span>
--<span class="w"> </span>port-forwarding<span class="w"> </span>is<span class="w"> </span>only<span class="w"> </span>for<span class="w"> </span>testing
--<span class="w"> </span>change<span class="w"> </span>LOCAL_PORT<span class="w"> </span>if<span class="w"> </span>need<span class="w"> </span>
+<span class="w">    </span>#<span class="w"> </span>To<span class="w"> </span>connect<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>abcdesktop<span class="w"> </span>using<span class="w"> </span>a<span class="w"> </span>port<span class="w"> </span>forward<span class="w">  </span>
+<span class="w">    </span>-<span class="w"> </span>port-forwarding<span class="w"> </span>is<span class="w"> </span>only<span class="w"> </span>for<span class="w"> </span>testing
+<span class="w">    </span>-<span class="w"> </span>change<span class="w"> </span>LOCAL_PORT<span class="w"> </span>if<span class="w"> </span>need<span class="w"> </span>
 
-LOCAL_PORT=30443
-NAMESPACE=abcdesktop
-kubectl<span class="w"> </span>port-forward<span class="w"> </span>$(kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span>run=router-od<span class="w"> </span>-o<span class="w"> </span>jsonpath={.items..metadata.name}<span class="w"> </span>-n<span class="w"> </span><span class="cp">${</span><span class="n">NAMESPACE</span><span class="cp">}</span><span class="w"> </span>)<span class="w"> </span>--address<span class="w"> </span>0.0.0.0<span class="w"> </span>&quot;<span class="cp">${</span><span class="n">LOCAL_PORT</span><span class="cp">}</span>:80&quot;<span class="w"> </span>-n<span class="w"> </span><span class="cp">${</span><span class="n">NAMESPACE</span><span class="cp">}</span>
+<span class="w">    </span>LOCAL_PORT=30443
+<span class="w">    </span>NAMESPACE=abcdesktop
+<span class="w">    </span>kubectl<span class="w"> </span>port-forward<span class="w"> </span>$(kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span>run=router-od<span class="w"> </span>-o<span class="w"> </span>jsonpath={.items..metadata.name}<span class="w"> </span>-n<span class="w"> </span><span class="cp">${</span><span class="n">NAMESPACE</span><span class="cp">}</span><span class="w"> </span>)<span class="w"> </span>--address<span class="w"> </span>0.0.0.0<span class="w"> </span>&quot;<span class="cp">${</span><span class="n">LOCAL_PORT</span><span class="cp">}</span>:80&quot;<span class="w"> </span>-n<span class="w"> </span><span class="cp">${</span><span class="n">NAMESPACE</span><span class="cp">}</span>
 
-Open<span class="w"> </span>your<span class="w"> </span>web<span class="w"> </span>browser<span class="w"> </span>to<span class="w"> </span>http://localhost:30443
-```
+<span class="w">    </span>Open<span class="w"> </span>your<span class="w"> </span>web<span class="w"> </span>browser<span class="w"> </span>to<span class="w"> </span>http://localhost:30443
+<span class="w">    </span>```
 </code></pre></div>
 
 <p>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)</p>
