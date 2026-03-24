@@ -15,7 +15,7 @@ The authmanagers is defined as a dictionary object :
 authmanagers: {
   'external': { },
   'explicit': { },
-  'implicit': { } }
+  'implicit': { }}
 ```
 
 The `od.config` defines four kinds of entries in the ```authmanagers``` object :
