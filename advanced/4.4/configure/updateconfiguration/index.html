@@ -3288,15 +3288,10 @@ If something is wrong, the pyos process hangs. The command line <code>kubectl lo
 <h2 id="edit-your-configuration-file">Edit your configuration file</h2>
 <p>If the <code>od.config</code> file does not exist, extract it from the abcdesktop-config configmap to a local file <code>od.config</code></p>
 <div class="highlight"><pre><span></span><code>kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath=&#39;{.data.od\.config}&#39; &gt; od.config
-````
-
-You get a the new local file `od.config`
-
-
-To make change, edit your own `od.config` file
-
-```bash
-vim od.config 
+</code></pre></div>
+<p>You get a the new local file <code>od.config</code></p>
+<p>To make change, edit your own <code>od.config</code> file</p>
+<div class="highlight"><pre><span></span><code>vim<span class="w"> </span>od.config<span class="w"> </span>
 </code></pre></div>
 <h2 id="make-changes">Make changes</h2>
 <p>Change the <code>defaultbackgroundcolors</code> option in the desktop options.</p>
