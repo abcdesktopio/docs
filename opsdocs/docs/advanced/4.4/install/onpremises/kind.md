@@ -170,6 +170,15 @@ The install bash script forward run the command line
 
 [INFO] http://192.168.7.119:30443/
 ```
+> Open the URL returnes by the install bash script. In this sample `http://192.168.7.119:30443/`
+
+![kind home page](img/kinduserhompage.png)
+
+Your web browser shows the abcdesktop service home page
+
+![kind user connected](img/kinduserconnected.png)
+
+The user `Philip J. Fry` is connected to the abcdesktop service
 
 > Open the URL returnes by the install bash script. In this sample `http://192.168.7.119:30443/`
 
