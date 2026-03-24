@@ -21,7 +21,7 @@ authmanagers: {
 
 The `od.config` defines four kinds of entries in the ```authmanagers``` object :
 
-* `external`: use for OAuth 2.0 Authentification
+* `external`: use for OpenID Connect (Authentification) OAuth 2.0
 * `explicit`: use for directory services  `LDAP`, `LDAPS` and `Microsoft Active Directory` authentification
 * `metaexplicit`: use for `Microsoft Active Directory trusted relationships`, with support of FSP (Foreign Security Principals)
 * `implicit`: use for Anonymous Authentification and SSL-client certificat 
@@ -30,7 +30,7 @@ The `od.config` defines four kinds of entries in the ```authmanagers``` object :
 
 | authmanagers type  | Description  |
 |--------------------|--------------|
-|  [`external`](authexternal.md)| For OAuth 2.0 authentification  |
+|  [`external`](authexternal.md)| For  OpenID Connect OAuth 2.0 authentification  |
 |  [`metaexplicit`](authexplicit.md) | For Microsoft Active Directory Trusted relationship, with support of Foreign Security Principals and Special Identities |
 |  [`explicit`](authexplicit.md) | For LDAP, LDAPS, Active Directory Authentification, and Kerberos authentification  |
 |  [`implicit`](authimplicit.md) | For anonymous authentification, for an always True Authentification, and SSL-client certificat  |
