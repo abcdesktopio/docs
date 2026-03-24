@@ -35,13 +35,14 @@ desktop.defaultbackgroundcolors : [ '#FF0000', '#FFFFFF',  '#0000FF', '#CD3C14',
 
 Save your local file `od.config`.
 
-:   !!! warning
-
-        If you define a dictionary, you must close the `}` on the same last line.
+??? warning "dictionary"
+    ```
+        If you define a dictionary, you must close the `}` on the same last line. for example
         authmanagers: {
           'external': {},
           'explicit': {},
-          'implicit': {} }
+          'implicit': {}}
+    ```
 
 
 ## Apply changes 
