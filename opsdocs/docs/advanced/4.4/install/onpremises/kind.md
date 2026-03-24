@@ -49,9 +49,7 @@ Thanks for using kind! 😊
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh |bash
 ```
 
-
-    ??? note "show details"
-
+??? note "show details"
     ```
     [INFO] abcdesktop install script namespace=abcdesktop
     [OK] kubectl version
@@ -183,5 +181,5 @@ The user `Philip J. Fry` is connected to the abcdesktop service
 
 > Open the URL returnes by the install bash script. In this sample `http://192.168.7.119:30443/`
 
-
 Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.
+
