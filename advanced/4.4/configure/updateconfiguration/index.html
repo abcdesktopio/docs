@@ -3286,9 +3286,17 @@ This file has the <a href="https://docs.cherrypy.dev/en/stable/config.html">cher
 When the pyos process starts, it read the <code>od.config</code> file.
 If something is wrong, the pyos process hangs. The command line <code>kubectl logs -l name=pyos-od  -n abcdesktop</code> write the pyos log on stdout.</p>
 <h2 id="edit-your-configuration-file">Edit your configuration file</h2>
-<p>If the <code>od.config</code> file does not exist, download the default <a href="https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.4">od.config</a> file and save it as <code>od.config</code> to your abcdesktop local directory.</p>
-<p>To make change, edit your own <code>od.config</code> file</p>
-<div class="highlight"><pre><span></span><code>vim<span class="w"> </span>od.config<span class="w"> </span>
+<p>If the <code>od.config</code> file does not exist, extract it from the abcdesktop-config configmap to a local file <code>od.config</code></p>
+<div class="highlight"><pre><span></span><code>kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath=&#39;{.data.od\.config}&#39; &gt; od.config
+````
+
+You get a the new local file `od.config`
+
+
+To make change, edit your own `od.config` file
+
+```bash
+vim od.config 
 </code></pre></div>
 <h2 id="make-changes">Make changes</h2>
 <p>Change the <code>defaultbackgroundcolors</code> option in the desktop options.</p>
@@ -3301,6 +3309,7 @@ If something is wrong, the pyos process hangs. The command line <code>kubectl lo
 <div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deployment pyos-od -n abcdesktop
 </code></pre></div>
+<p>You've done it.</p>
 <h2 id="check-your-changes">Check your changes</h2>
 <p>To check that the new colours are presents in front, open the url <code>http://localhost:30443</code>, in your web browser, to start a simple abcdesktop.io container. </p>
 <div class="highlight"><pre><span></span><code>http://localhost:30443
