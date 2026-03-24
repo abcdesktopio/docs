@@ -48,10 +48,19 @@ Edit your `od.config` pyos configuration file, and set the value to the authmana
 
 ```
 authmanagers: {
-  'external': { },
-  'explicit': { },
-  'implicit': { } }
+  'external': {},
+  'explicit': {},
+  'implicit': {}}
 ```
+
+??? warning "json dictionary"
+    ```
+        If you define a dictionary, you must close the `}` on the same last line. for example
+        authmanagers: {
+          'external': {},
+          'explicit': {},
+          'implicit': {}}
+    ```
 
 To apply changes, you have to replace the `abcdesktop-config`, by running the `replace kubectl` command line option. Then `rollout restart`the `pyos` pod. 
 
