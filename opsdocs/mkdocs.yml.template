@@ -68,38 +68,37 @@ nav:
 - Advanced :
   - Architecture:
     - Overview: architecture/overview.md
+  - Install On-Premises:
+    - Kind: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/kind.md
+    - Kubernetes: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/kubernetes.md
+    - MiniKube: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/minikube.md
+  - Install Cloud:
+    - AWS :
+      - Install on Amazon AWS with Elastic Kubernetes Service: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/aws/aws.md
+      - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/aws/aws-loadbalancer.md
+      - Expose using a nginx ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/aws/aws-nginx-ingress-controller.md
+    - AZURE :
+      - Install on Microsoft AZURE Kubernetes service: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/azure/azure.md
+      - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/azure/azure-loadbalancer.md
+      - Expose using a nginx ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/azure/azure-nginx-ingress-controller.md
+    - Digital Ocean :
+      - Install on Digital Ocean Kubernetes cluster: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/digitalocean/digitalocean.md
+      - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/digitalocean/digitalocean-loadbalancer.md
+      - Expose using a nginx ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/digitalocean/digitalocean-nginx-ingress-controller.md
+    - GCP :
+      - Install on Google GCP Kubernetes cluster : cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/gcp/gcp.md
+      - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/gcp/gcp-loadbalancer.md
+      - Expose using a GKE ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/gcp/gcp-gke-ingress-controller.md
+    - OVH :
+      - Install on OVHcloud Kubernetes cluster : cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/ovh/ovh.md
+      - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/ovh/ovh-loadbalancer.md
+      - Expose using a nginx ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/ovh/ovh-nginx-ingress-controller.md
+  - Install Applications:
+    - Create your own application: advanced/${ABCDESKTOP_LATEST_RELEASE}/createyourownapplication.md
   - Configuration :
     - Make changes in the configuration file: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/updateconfiguration.md
     - Run the garbarge collector: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/garbagecollector.md
     - Share GPU with ephemeral container: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/share_pod_GPU_access_to_ephemeral_container.md
-  - Platform :
-    - On-Premises:
-      - Kind: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/kind.md
-      - Kubernetes: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/kubernetes.md
-      - MiniKube: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/minikube.md
-    - Cloud:
-      - AWS :
-        - Install on Amazon AWS with Elastic Kubernetes Service: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/aws/aws.md
-        - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/aws/aws-loadbalancer.md
-        - Expose using a nginx ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/aws/aws-nginx-ingress-controller.md
-      - AZURE :
-        - Install on Microsoft AZURE Kubernetes service: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/azure/azure.md
-        - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/azure/azure-loadbalancer.md
-        - Expose using a nginx ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/azure/azure-nginx-ingress-controller.md
-      - Digital Ocean :
-        - Install on Digital Ocean Kubernetes cluster: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/digitalocean/digitalocean.md
-        - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/digitalocean/digitalocean-loadbalancer.md
-        - Expose using a nginx ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/digitalocean/digitalocean-nginx-ingress-controller.md
-      - GCP :
-        - Install on Google GCP Kubernetes cluster : cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/gcp/gcp.md
-        - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/gcp/gcp-loadbalancer.md
-        - Expose using a GKE ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/gcp/gcp-gke-ingress-controller.md
-      - OVH :
-        - Install on OVHcloud Kubernetes cluster : cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/ovh/ovh.md
-        - Expose using a load balancer: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/ovh/ovh-loadbalancer.md
-        - Expose using a nginx ingress controller: cloudproviders/${ABCDESKTOP_LATEST_RELEASE}/ovh/ovh-nginx-ingress-controller.md
-  - Install Applications:
-    - Create your own application: advanced/${ABCDESKTOP_LATEST_RELEASE}/createyourownapplication.md
   - Network:
     - Multiple network interfaces:
       - Multus: advanced/${ABCDESKTOP_LATEST_RELEASE}/network/multus.md
