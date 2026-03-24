@@ -11,7 +11,7 @@ Kind is a tool for running local Kubernetes clusters using Docker container “n
 * [kind](https://kind.sigs.k8s.io/docs/user/quick-start) command line installed 
 * [docker](https://docs.docker.com/engine/install) Docker Engine installed. 
 * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command-line tool must be configured to communicate with your cluster.
-* openssl and curl command line must be installed too (only for install using kubectl) or helm command.
+* openssl and curl command line must be installed too (only for install using kubectl).
 
 
 ## Create kind cluster
