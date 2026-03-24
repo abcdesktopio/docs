@@ -8,7 +8,14 @@ If something is wrong, the pyos process hangs. The command line `kubectl logs -l
 
 ## Edit your configuration file 
 
-If the `od.config` file does not exist, download the default [od.config](https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.{{ abcdesktop.latest_release }}) file and save it as `od.config` to your abcdesktop local directory.
+If the `od.config` file does not exist, extract it from the abcdesktop-config configmap to a local file `od.config`
+
+```
+kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
+````
+
+You get a the new local file `od.config`
+
 
 To make change, edit your own `od.config` file
 
@@ -38,7 +45,7 @@ kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  
 kubectl rollout restart deployment pyos-od -n abcdesktop
 ```
 
-
+You've done it.
 
 ## Check your changes
 
