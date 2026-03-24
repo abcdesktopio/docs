@@ -3397,12 +3397,13 @@ spec:
   value: &#39;900&#39;
 </code></pre></div>
 <p><code>expirein</code> is a value in seconds.
-If the time of the last login on the desktop is more than <code>expirein</code> then a desktop can be deleted or not. 
-The time of the last login starts when the user logs in.
-abcdesktop calcs the duration between the current time and the last login time on the desktop.
-- If the user is NOT connected to the desktop and if the duration time is more than <code>expirein</code>, then the desktop is deleted.
-- If the user is connected and if the duration time is is more than <code>expirein</code> and if <code>force</code> is <code>true</code>, then the desktop is deleted.
-- If the user is connected and if the duration time is more than <code>expirein</code> and if <code>force</code> is <code>false</code>, then the desktop is NOT deleted.</p>
+If the time of the last login on the desktop is more than <code>expirein</code> then a desktop can be deleted or not. </p>
+<p>The time of the last login starts when the user logs in. abcdesktop calcs the duration between the current time and the last login time on the desktop.</p>
+<ul>
+<li>If the user is NOT connected to the desktop and if the duration time is more than <code>expirein</code>, then the desktop is deleted.</li>
+<li>If the user is connected and if the duration time is is more than <code>expirein</code> and if <code>force</code> is <code>true</code>, then the desktop is deleted.</li>
+<li>If the user is connected and if the duration time is more than <code>expirein</code> and if <code>force</code> is <code>false</code>, then the desktop is NOT deleted.</li>
+</ul>
 <div class="highlight"><pre><span></span><code>- name: &quot;force&#39;
   value: &#39;false&#39;
 </code></pre></div>
