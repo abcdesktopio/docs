@@ -15,8 +15,7 @@ The authmanagers is defined as a dictionary object :
 authmanagers: {
   'external': { },
   'explicit': { },
-  'implicit': { }
-}
+  'implicit': { } }
 ```
 
 The `od.config` defines four kinds of entries in the ```authmanagers``` object :
@@ -51,11 +50,15 @@ Edit your `od.config` pyos configuration file, and set the value to the authmana
 authmanagers: {
   'external': { },
   'explicit': { },
-  'implicit': { }
-}
+  'implicit': { } }
 ```
 
-Save your new `od.config` file, and restart the pyos pod
+To apply changes, you have to replace the `abcdesktop-config`, by running the `replace kubectl` command line option. Then `rollout restart`the `pyos` pod. 
+
+```
+kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -
+kubectl rollout restart deployment pyos-od -n abcdesktop
+```
 
 
 Start your web browser and open the URL `http://localhost:30443`
