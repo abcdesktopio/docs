@@ -49,9 +49,7 @@ Thanks for using kind! 😊
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh |bash
 ```
 
-
-    ??? note "show details"
-
+??? note "show details"
     ```
       [INFO] abcdesktop install script namespace=abcdesktop
       [OK] kubectl version
