@@ -28,31 +28,32 @@ helm install my-abcdesktop abcdesktop/abcdesktop --version {{ abcdesktop.latest_
 ```
 
 ??? note "show details"
-  ```
-  NAME: my-abcdesktop
-  LAST DEPLOYED: Tue Mar 24 14:24:17 2026
-  NAMESPACE: abcdesktop
-  STATUS: deployed
-  REVISION: 1
-  TEST SUITE: None
-  NOTES:
-  # After installation, and wait for deployments and services
 
-  NAMESPACE=abcdesktop
-  kubectl wait deployment -n ${NAMESPACE} --all --for condition=Available=True --timeout=300s
-  kubectl get services -n ${NAMESPACE}
+    ```
+    NAME: my-abcdesktop
+    LAST DEPLOYED: Tue Mar 24 14:24:17 2026
+    NAMESPACE: abcdesktop
+    STATUS: deployed
+    REVISION: 1
+    TEST SUITE: None
+    NOTES:
+    # After installation, and wait for deployments and services
+
+    NAMESPACE=abcdesktop
+    kubectl wait deployment -n ${NAMESPACE} --all --for condition=Available=True --timeout=300s
+    kubectl get services -n ${NAMESPACE}
 
 
-  # To connect to your abcdesktop using a port forward  
-  - port-forwarding is only for testing
-  - change LOCAL_PORT if need 
+    # To connect to your abcdesktop using a port forward  
+    - port-forwarding is only for testing
+    - change LOCAL_PORT if need 
 
-  LOCAL_PORT=30443
-  NAMESPACE=abcdesktop
-  kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 "${LOCAL_PORT}:80" -n ${NAMESPACE}
+    LOCAL_PORT=30443
+    NAMESPACE=abcdesktop
+    kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 "${LOCAL_PORT}:80" -n ${NAMESPACE}
 
-  Open your web browser to http://localhost:30443
-  ```
+    Open your web browser to http://localhost:30443
+    ```
 
 
 When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)
