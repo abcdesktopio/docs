@@ -3403,6 +3403,7 @@ If the time of the last login on the desktop is more than <code>expirein</code> 
 <li>If the user is NOT connected to the desktop and if the duration time is more than <code>expirein</code>, then the desktop is deleted.</li>
 <li>If the user is connected and if the duration time is is more than <code>expirein</code> and if <code>force</code> is <code>true</code>, then the desktop is deleted.</li>
 <li>If the user is connected and if the duration time is more than <code>expirein</code> and if <code>force</code> is <code>false</code>, then the desktop is NOT deleted.</li>
+<li>Else nothing to do, keep the pod running</li>
 </ul>
 <div class="highlight"><pre><span></span><code>- name: &quot;force&#39;
   value: &#39;false&#39;
