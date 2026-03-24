@@ -25,7 +25,6 @@ kind create cluster --wait 5m
 You should read on stdout
 
 ```
-kind create cluster --wait 5m
 Creating cluster "kind" ...
  ✓ Ensuring node image (kindest/node:v1.35.0) 🖼 
  ✓ Preparing nodes 📦  
