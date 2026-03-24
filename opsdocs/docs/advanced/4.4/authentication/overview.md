@@ -55,7 +55,12 @@ authmanagers: {
 }
 ```
 
-Save your new `od.config` file, and restart the pyos pod
+To apply changes, you have to replace the `abcdesktop-config`, by running the `replace kubectl` command line option. Then `rollout restart`the `pyos` pod. 
+
+```
+kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -
+kubectl rollout restart deployment pyos-od -n abcdesktop
+```
 
 
 Start your web browser and open the URL `http://localhost:30443`
