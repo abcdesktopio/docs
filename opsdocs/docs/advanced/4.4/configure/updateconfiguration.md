@@ -12,7 +12,7 @@ If the `od.config` file does not exist, extract it from the abcdesktop-config co
 
 ```
 kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
-````
+```
 
 You get a the new local file `od.config`
 
