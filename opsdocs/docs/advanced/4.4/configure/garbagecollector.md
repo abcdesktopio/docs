@@ -78,7 +78,8 @@ The time of the last login starts when the user logs in. abcdesktop calcs the du
 - If the user is NOT connected to the desktop and if the duration time is more than `expirein`, then the desktop is deleted.
 - If the user is connected and if the duration time is is more than `expirein` and if `force` is `true`, then the desktop is deleted.
 - If the user is connected and if the duration time is more than `expirein` and if `force` is `false`, then the desktop is NOT deleted.
-
+- Else nothing to do, keep the pod running
+  
 ```
 - name: "force'
   value: 'false'
