@@ -3429,8 +3429,7 @@ This update differs depending on the configuration docker mode or kubernetes mod
 <div class="highlight"><pre><span></span><code>authmanagers: {
   &#39;external&#39;: { },
   &#39;explicit&#39;: { },
-  &#39;implicit&#39;: { }
-}
+  &#39;implicit&#39;: { } }
 </code></pre></div>
 <p>The <code>od.config</code> defines four kinds of entries in the <code>authmanagers</code> object :</p>
 <ul>
@@ -3477,8 +3476,7 @@ This update differs depending on the configuration docker mode or kubernetes mod
 <div class="highlight"><pre><span></span><code>authmanagers: {
   &#39;external&#39;: { },
   &#39;explicit&#39;: { },
-  &#39;implicit&#39;: { }
-}
+  &#39;implicit&#39;: { } }
 </code></pre></div>
 <p>To apply changes, you have to replace the <code>abcdesktop-config</code>, by running the <code>replace kubectl</code> command line option. Then <code>rollout restart</code>the <code>pyos</code> pod. </p>
 <div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -
