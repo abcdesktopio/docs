@@ -3474,10 +3474,19 @@ This update differs depending on the configuration docker mode or kubernetes mod
 <h3 id="change-authmanagers-configuration">Change authmanagers configuration</h3>
 <p>Edit your <code>od.config</code> pyos configuration file, and set the value to the authmanagers dictionary with empty values for <code>implicit</code>, <code>explicit</code>, and <code>external</code>, as describe :</p>
 <div class="highlight"><pre><span></span><code>authmanagers: {
-  &#39;external&#39;: { },
-  &#39;explicit&#39;: { },
-  &#39;implicit&#39;: { } }
+  &#39;external&#39;: {},
+  &#39;explicit&#39;: {},
+  &#39;implicit&#39;: {}}
 </code></pre></div>
+<details class="warning">
+<summary>json dictionary</summary>
+<div class="highlight"><pre><span></span><code>    If you define a dictionary, you must close the `}` on the same last line. for example
+    authmanagers: {
+      &#39;external&#39;: {},
+      &#39;explicit&#39;: {},
+      &#39;implicit&#39;: {}}
+</code></pre></div>
+</details>
 <p>To apply changes, you have to replace the <code>abcdesktop-config</code>, by running the <code>replace kubectl</code> command line option. Then <code>rollout restart</code>the <code>pyos</code> pod. </p>
 <div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deployment pyos-od -n abcdesktop
