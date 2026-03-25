@@ -2,10 +2,10 @@
 
 All auth providers support rules configuration
 
-A rule take some parameters and set label to the auth user.
+A rule takes parameters and set a label to a user session.
 All labels are stored inside the JWT Auth token.
 The labels are use to define a container execution context.
-For example to set a dedicated network for firefox application ( read the how-to ) 
+For example to set a dedicated network for an application (like firefox) or to add a application only for a group of users 
 
 
 ## The rule object
@@ -14,27 +14,27 @@ A rule is a dictionary object with :
 
 * a name (the entry of the rules)
 * one or more conditions
-* and expected boolean value True or False
+* an expected boolean result `True` or `False`
 * a label to set if the conditions are equal to the expected boolean value
 
 
 Example :
 
-To test if the user source IP address is equal to ```8.8.8.1/32```
+To test if the user source IP address is equal to ```192.168.2.3/32```
 
 ```json 
 'rule-home': { 
-	'conditions' : [   { 'network': '8.8.8.1/32', 'expected' : True } ],
+	'conditions' : [   { 'network': '192.168.2.3/32', 'expected' : True } ],
                          'expected' : True,
-                         'label': 'homeipsource' }
+                         'label': 'allowipsource' }
 ```
 
-
+If the source IP Address is equal to `192.168.2.3` then the pods gets then label `allowipsource`
 
                                     
 ### The conditions object
 
-`conditions` is a list of condition. All condition are always tested, as a logical `AND`.
+A `conditions` is a list of condition. All conditions are always tested, as a logical `AND`.
 The result must be equal to the `expected` value.
 
 ####Examples:
@@ -51,7 +51,8 @@ To test if the user source IP address is in the subnet to `80.0.0.0/8` `AND` is 
 	'label': 'shipcrewandnet80'
 }
 ```
-Add the labels 'shipcrewandnet80', if the 'expected' value is `True`
+
+adds the labels 'shipcrewandnet80', if the 'expected' value is `True`
 
 ####Example (TRUE and TRUE) expected FALSE:
 To test if the user source IP address is `NOT` in the subnet to `80.0.0.0/8` `AND` is  `NOT` a `memberOf` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
@@ -83,7 +84,7 @@ To test if the user source IP address is in the subnet to `80.0.0.0/8` `AND` is 
 }
 ```
 
-Add the labels 'noshipcrewandnet80', if the 'expected' value is `True`
+adds the labels 'noshipcrewandnet80', if the 'expected' value is `True`
 
 
 
@@ -104,16 +105,23 @@ Add the labels 'shipcrewandnonet80', if the 'expected' value is `True`
 
 
 
+
 ### The condition value
 
 
 | name           | description                 | example          |
 |----------------|-----------------------------|------------------|
-| boolean        | always true or false        | 'boolean' : 'true' |
-| httpheader     | test a HTTP header value    | 'httpheader': { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36' }  |
-| memberOf       | test if the LDAP user object is member of group      | 'memberOf': [ 'cn=ship_crew,ou=people,dc=planetexpress,dc=com']  |
-| network        | test if the client user IP Address is in a network subnet      | 'network': [ '1.2.3.4/24'] |
-| primarygroupid | test if the LDAP user object has a attibute primaryGroupID and is equal to value    | 'primarygroupid': '513' |
+| `boolean`        | always true or false        | `'boolean' : 'true'` |
+| `existhttpheader` | test if a http header exists | |
+|  `httpheader`     | test a HTTP header value is equal to   | `'httpheader': { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36' }`  |
+|  `memberOf`       | test if the LDAP user object is member of group      | `'memberOf': [ 'cn=ship_crew,ou=people,dc=planetexpress,dc=com']`  |
+| `network`        | test if the client user IP Address is in a network subnet      | `'network': [ '1.2.3.4/24']` |
+| `network-x-forwarded-for` | read the `X-Forwarded-For` http attribut, then test if it is in a network subnet | |
+| `network-x-real-ip` | read the `X-Real-IP` http attribut, then test if it is in a network subnet | |
+| `attribut` | test a HTTP header value is equal to   | `'httpheader': { 'User-Agent': 'Mozilla/5.0`
+| `primarygroupid` | test if the LDAP user object has a attibute primaryGroupID and is equal to value    | `'primarygroupid': '513'` |
+| `asnumber`      | test if a source IP address is in an AS number  | `'asnumber': [ '3215', '12807']` |
+| `geolocation`    | test if a user is geolocalised in a particular region. The geolocation's data comes from the web browser, this can be spoofed | `'geolocation': {'accuracy': 14.884, 'latitude': 48.8555131, 'longitude': 2.3752174 }` | 
 
 
 
@@ -173,11 +181,16 @@ example : if the 'User-Agent' is equal to `'Mozilla/5.0 (Macintosh; Intel Mac OS
 This condition is test if the client source ip address is in a subnet. IPv4 and IPv6 are supported.
 
 ```
-'network': string
+'network': string or list of string
 ```
 
+To read the source IP adress, the service tries to read in order 
 
-example
+- 'X-Forwarded-For' http header
+- 'X-Real-IP' http header
+- 'remoteip' the read socket IP source
+
+For example
 
 To test if the user source IP address is equal to `8.8.8.1/32`
 
@@ -211,10 +224,11 @@ same as
 
 ```json 
 'rule-localnet': { 
-	'conditions' : [   { 'network': '192.168.0.0/24', 'expected' : True } ],
+	'conditions' : [   { 'network': [ '192.168.0.0/24'] , 'expected' : True } ],
                          'expected' : False,
                          'label': 'no192168net' }
 ```
+
 
 ##### IPv4 and IPv6 subnets support
 
@@ -251,7 +265,6 @@ This condition test if the user is a member of a LDAP Distinguished Name.
 ```json
 'memberOf': string
 ```
-
 
 ```json 
  'rule-sample': { 'conditions':  [ 
@@ -294,8 +307,34 @@ However, if the user needed to be seen as a ```Domain Admin for POSIX```, the ``
 The ```Enterprise Admins group```, ```519```, is also used to grant this level in POSIX.
 
 ```json 
-'rule-enterpriseadmin': { 	'conditions':  [ { 'primarygroupid': '519', 'expected' : True } ],
- 							'expected' : True,
- 							'label': 'enterpriseadmin'
+'rule-enterpriseadmin': {
+  'conditions':  [ { 'primarygroupid': '519', 'expected' : True } ],
+					'expected' : True,
+					'label': 'enterpriseadmin'
 }
 ```
+
+#### condition `asnumber`
+
+
+BGP public AS numbers are globally unique identifiers assigned by IANA for routing on the Internet, ranging from 1-64495 (16-bit) and extended to 32-bit for more availability. The public AS numbers have to be unique on the Internet and BGP uses the AS number for its loop prevention mechanism.
+
+```
+'rule-asnumber' : {
+  'conditions' : [ {'asnumber': [ '3215' ] , 'expected':True } ],
+  'expected' : True,
+  'label':'networkorange'
+},
+```
+
+The source IP adress is in the AS number `3215` then the label `networkorange` is set.
+You can build filter for your own AS to allow or denied access.
+
+
+
+
+
+
+
+
+
