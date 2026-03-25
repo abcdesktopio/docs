@@ -182,3 +182,14 @@ The user `Philip J. Fry` is connected to the abcdesktop service
 
 Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.
 
+
+## Uninstall
+
+To uninstall run the kind delete cluster command line
+
+```
+kind delete cluster
+```
+
+
+
