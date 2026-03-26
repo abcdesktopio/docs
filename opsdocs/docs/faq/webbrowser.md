@@ -10,7 +10,7 @@ tags:
 ## How to change the default language ?
 
 abcdesktop reads the your web browser language and starts application and desktop this user's choose.
-The default installed languages are `English`, `French`, 'German`, and `Romanian`. If you need other languages support you have to rebuild the container image with your language.
+The default installed languages are `English`, `French`, `German`, and `Romanian`. If you need other languages support you have to rebuild the container image with your language.
 
 ## Which web browser is supported ?
 
