@@ -3450,11 +3450,11 @@ speedtest-od-7fcc9649b4-n2ldl<span class="w">   </span><span class="m">1</span>/
 <h2 id="step-5-connect-your-local-abcdesktop"><strong>Step 5:</strong> Connect your local abcdesktop</h2>
 <p>Open your navigator to http://[your-ip-hostname]:30443/</p>
 <p>abcdesktop homepage should be available :</p>
-<p><img alt="abcdesktop Anonymous login" src="/fragments/manual/images/kubernetes-setup-login-anonymous.png" /></p>
+<p><img alt="abcdesktop Anonymous login" src="../img/kubernetes-setup-login-anonymous.png" /></p>
 <p>Click on the <strong>Connect with Anonymous</strong> access button. abcdesktop service pyos is creating a new pod.</p>
-<p><img alt="abcdesktop main screen login pending" src="/fragments/manual/images/kubernetes-setup-login-anonymous.pending.png" /></p>
+<p><img alt="abcdesktop main screen login pending" src="../img/kubernetes-setup-login-anonymous.pending.png" /></p>
 <p>Few seconds later, processes are ready to run. You should see the abcdesktop main screen, with no application in the dock.</p>
-<p><img alt="abcdesktop main screen ready" src="/fragments/manual/images/kubernetes-setup-login-anonymous.done.png" /></p>
+<p><img alt="abcdesktop main screen ready" src="../img/kubernetes-setup-login-anonymous.done.png" /></p>
 <p>Also, you can run again the command </p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">type</span><span class="o">=</span>x11server<span class="w"> </span>-n<span class="w"> </span>abcdesktop
 </code></pre></div>
