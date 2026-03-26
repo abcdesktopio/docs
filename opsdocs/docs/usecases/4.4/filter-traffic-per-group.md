@@ -113,7 +113,7 @@ To monitor pods incoming (ingress) and outgoing (egress) traffic in Kubernetes, 
 That is the reason why we need to use `cilium` as network stack for our cluster, so that we can apply [CiliumNetworkPolicies](https://docs.cilium.io/en/stable/network/kubernetes/policy/#ciliumnetworkpolicy). Those are very similar to the standard network policies but provides fuctionalites that are not yet supported, like DNS based rules.  
 
 !!! warning
-    It is important to keep in mind that `CiliumNetworkPolicies` operates on a whitelist basis, that means that once an egress rule is applied, everything that is not clearly indicate as authorized is forbidden.
+    It is important to keep in mind that `CiliumNetworkPolicies` operates on a whitelist basis. That means that once an egress rule is applied, everything that is not clearly indicate as authorized is forbidden.
 
 In our example, we will allow users from the `shipcrew` group to access `Facebook`, and users from the `adminstaff` group to access `Youtube`.
 
@@ -225,6 +225,6 @@ allow-facebook-shipcrew    27h
 allow-youtube-adminstaff   27h
 ```
 
-Your pod should now have access to Facebook and nothing else
+Your pod should now have access to Youtube and nothing else
 
 ![ciliumnetpol-youtube-access](../../img/ciliumNetpol_access_youtube.png)
