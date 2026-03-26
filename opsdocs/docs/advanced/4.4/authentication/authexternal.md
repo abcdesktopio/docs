@@ -45,7 +45,8 @@ Sample providers entry using the Google OAuth 2.0 authentification service.
   }}
 ```
 
-The variable values `client_id` and `client_secret` have been set to obfuscate value 'xxxx'. The `redirect_uri_prefix` contains the FQDN `hostname.domain.local`. This value is referred to your own server FQDN. 
+- The variable values `client_id` and `client_secret` have been set to obfuscate value 'xxxx'.
+- The `redirect_uri_prefix` contains the FQDN `hostname.domain.local`. This value is referred to your own server FQDN. 
 
 
 This create on the frontweb the following design :
@@ -240,17 +241,17 @@ Enable other users to authorize your OAuth App. Create your Github credentials h
 ```
 
 
-## Keycloack OAuth
+## Keycloak OAuth
 
-Keycloack's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for apps that don't have access to a web browser.
+Keycloak's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for apps that don't have access to a web browser.
 
-### Keycloack OAuth
+### Keycloak OAuth
 
-Enable other users to authorize your OAuth App. Create your keycloack credentials and set the correct credentials for keycloack Authentification API
+Enable other users to authorize your OAuth App. Create your keycloack credentials and set the correct credentials for keycloak Authentification API
 
 ```
 'keycloak': {
-      'displayname': 'ABC Keycloack',
+      'displayname': 'ABC Keycloak',
       'enabled': True,
       'basic_auth': True,
       'userinfo_auth': True,

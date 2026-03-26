@@ -193,15 +193,15 @@ Open your navigator to http://[your-ip-hostname]:30443/
 
 abcdesktop homepage should be available :
 
-![abcdesktop Anonymous login](/fragments/manual/images/kubernetes-setup-login-anonymous-3.1.png)
+![abcdesktop Anonymous login](/fragments/manual/images/kubernetes-setup-login-anonymous.png)
 
 Click on the **Connect with Anonymous** access button. abcdesktop service pyos is creating a new pod.
 
-![abcdesktop main screen login pending](/fragments/manual/images/kubernetes-setup-login-anonymous.pending-3.1.png)
+![abcdesktop main screen login pending](/fragments/manual/images/kubernetes-setup-login-anonymous.pending.png)
 
 Few seconds later, processes are ready to run. You should see the abcdesktop main screen, with no application in the dock.
 
-![abcdesktop main screen ready](/fragments/manual/images/kubernetes-setup-login-anonymous.done-4.1.png)
+![abcdesktop main screen ready](/fragments/manual/images/kubernetes-setup-login-anonymous.done.png)
 
 Also, you can run again the command 
 

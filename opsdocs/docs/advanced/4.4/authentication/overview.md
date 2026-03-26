@@ -55,7 +55,7 @@ authmanagers: {
 
 ??? warning "json dictionary"
     ```
-        If you define a dictionary, you must close the `}` on the same last line. for example
+        If you define a dictionary, you must close the `}` on the same last line as the previous one. A simple quick example for authmanagers dictionary.
         authmanagers: {
           'external': {},
           'explicit': {},
