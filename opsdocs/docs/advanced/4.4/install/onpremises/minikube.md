@@ -187,8 +187,7 @@ Great you have installed abcdesktop using kind and your web browser shows the ab
 
 ## Common issues
 
-
-### issue `FailedScheduling 0/1 nodes are available`
+### issue 'FailedScheduling 0/1 nodes are available'
 
 ```
 FailedScheduling 0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod
