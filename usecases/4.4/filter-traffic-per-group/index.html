@@ -3489,7 +3489,7 @@ Labels:         abcdesktop/role=desktop
 That is the reason why we need to use <code>cilium</code> as network stack for our cluster, so that we can apply <a href="https://docs.cilium.io/en/stable/network/kubernetes/policy/#ciliumnetworkpolicy">CiliumNetworkPolicies</a>. Those are very similar to the standard network policies but provides fuctionalites that are not yet supported, like DNS based rules.  </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>It is important to keep in mind that <code>CiliumNetworkPolicies</code> operates on a whitelist basis, that means that once an egress rule is applied, everything that is not clearly indicate as authorized is forbidden.</p>
+<p>It is important to keep in mind that <code>CiliumNetworkPolicies</code> operates on a whitelist basis. That means that once an egress rule is applied, everything that is not clearly indicate as authorized is forbidden.</p>
 </div>
 <p>In our example, we will allow users from the <code>shipcrew</code> group to access <code>Facebook</code>, and users from the <code>adminstaff</code> group to access <code>Youtube</code>.</p>
 <p>First create a file called <code>netpol-allow-facebook-shipcrew.yaml</code> and paste the following content</p>
@@ -3580,7 +3580,7 @@ NAME                       AGE
 allow-facebook-shipcrew    27h
 allow-youtube-adminstaff   27h
 </code></pre></div>
-<p>Your pod should now have access to Facebook and nothing else</p>
+<p>Your pod should now have access to Youtube and nothing else</p>
 <p><img alt="ciliumnetpol-youtube-access" src="../../../img/ciliumNetpol_access_youtube.png" /></p>
 
 
