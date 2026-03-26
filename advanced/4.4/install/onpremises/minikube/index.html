@@ -1042,11 +1042,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
+  <a href="#common-issues" class="md-nav__link">
     <span class="md-ellipsis">
-      Troubleshooting
+      Common issues
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Common issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-failedscheduling-01-nodes-are-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      issue FailedScheduling 0/1 nodes are available
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3260,11 +3275,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
+  <a href="#common-issues" class="md-nav__link">
     <span class="md-ellipsis">
-      Troubleshooting
+      Common issues
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Common issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-failedscheduling-01-nodes-are-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      issue FailedScheduling 0/1 nodes are available
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3472,12 +3502,12 @@ speedtest-od-7d7c95d754-dmt5j   1/1     Running   0          4m38s
 <p>Open the URL returnes by the install bash script. In this sample <code>http://192.168.7.119:30443/</code></p>
 </blockquote>
 <p>Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.</p>
-<h2 id="troubleshooting">Troubleshooting</h2>
-<p>Start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop</p>
-<div class="highlight"><pre><span></span><code>minikube start --cpus 4 --memory 16GB
-</code></pre></div>
-<p>To fix this issue</p>
+<h2 id="common-issues">Common issues</h2>
+<h3 id="issue-failedscheduling-01-nodes-are-available">issue <code>FailedScheduling 0/1 nodes are available</code></h3>
 <div class="highlight"><pre><span></span><code>FailedScheduling 0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod
+</code></pre></div>
+<p>To fix it, start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop</p>
+<div class="highlight"><pre><span></span><code>minikube start --cpus 4 --memory 16GB
 </code></pre></div>
 
 
