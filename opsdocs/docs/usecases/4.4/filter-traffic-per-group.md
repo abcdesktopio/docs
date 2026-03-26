@@ -3,17 +3,59 @@
 ## Prerequisites
 
 - a Kubernetes cluster with abcdesktop installed
-- use [cilium](https://cilium.io/) as network stack for your cluster
+- use [cilium](https://cilium.io/) as network provider for your cluster
 - Any authentication system already configured with abcdesktop, see [authentication section](../authentication/overview.md) for more informations.
 
 !!! note
     In this example, we will use [docker-test-openldap](https://github.com/rroemhild/docker-test-openldap) which is a LDAP service
 
 
-## Understand the problem
+## Use case description
 
 As an organistaion, you may have several departments, such as sales, accounting, IT, etc. And you may want to control access based on department. For exemple, an IT employee shouldn't have access to accounting documents.  
 With abcdesktop, you can meet these kind of needs by creating rules bases on the groups to which users belong.
+
+```mermaid
+---
+config:
+  theme: redux-color
+---
+sequenceDiagram
+    actor Philip
+    Philip->>Router: Logme in (Philip, password)
+    Router->>Pyos: Logme in (Philip, password)
+    Note over Router,Pyos: 1. Authentication
+    Create participant LDAP
+    Pyos->>LDAP: BIND LDAP_SEARCH Philip
+    destroy LDAP
+    LDAP->>Pyos: dn, cn, group=shipcrew
+    Note right of Kubernetes: Cilium Policy
+    Pyos->>Kubernetes: (option) Create user secrets
+    Kubernetes->>Pyos: (option) Secrets created
+    Pyos->>Router: User Philip JWT
+    Router->>Philip: User Philip JWT
+    Philip->>Router: Create Desktop (User Philip JWT)
+    Note over Router,Pyos: 2. Create a desktop
+    Router->>Pyos: Create Desktop (User Philip JWT)
+    Pyos->>Kubernetes: Create Philip POD YAML
+    Kubernetes->>Pyos: POD Created
+    Create participant PodPhilip
+    Note right of PodPhilip: shipcrew=true
+    Kubernetes->>PodPhilip:
+    destroy Kubernetes
+    Kubernetes->>Pyos: Philip Pod is Ready
+    destroy Pyos
+    Pyos->>Router: Desktop Philip JWT
+    Router->>Philip: Desktop Philip JWT
+    Router->>Philip: Connected
+    Create participant Facebook
+    PodPhilip->>Facebook: Access Granted #10004;
+    destroy Facebook
+    Facebook->>PodPhilip: OK
+    Philip-->PodPhilip: Established
+    Create participant Youtube
+    PodPhilip--xYoutube: Drop #10006;
+```
 
 ## How does abcdesktop manage groups
 
@@ -110,7 +152,7 @@ You should see labels `shipcrew=true` for `fry` and `adminstaff=true` for `profe
 ## Create access rules based on groups
 
 To monitor pods incoming (ingress) and outgoing (egress) traffic in Kubernetes, we ordinarily use [NetworkPolicies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). But network policies does not offer the possibility to filter based on FQDNs, you can only filter by IPs. So that means, if the service you want to grant access to has more than one IP, you need to specify all IPs in the filter, it becomes even worse if it has dynamic IPs that are constantly changing.  
-That is the reason why we need to use `cilium` as network stack for our cluster, so that we can apply [CiliumNetworkPolicies](https://docs.cilium.io/en/stable/network/kubernetes/policy/#ciliumnetworkpolicy). Those are very similar to the standard network policies but provides fuctionalites that are not yet supported, like DNS based rules.  
+This is why we use `cilium` as network provider for our cluster, so that we can apply [CiliumNetworkPolicies](https://docs.cilium.io/en/stable/network/kubernetes/policy/#ciliumnetworkpolicy). Those are very similar to the standard network policies but provides fuctionalites that are not yet supported, like DNS based rules.  
 
 !!! warning
     It is important to keep in mind that `CiliumNetworkPolicies` operates on a whitelist basis. That means that once an egress rule is applied, everything that is not clearly indicate as authorized is forbidden.
@@ -228,3 +270,5 @@ allow-youtube-adminstaff   27h
 Your pod should now have access to Youtube and nothing else
 
 ![ciliumnetpol-youtube-access](../../img/ciliumNetpol_access_youtube.png)
+
+Great ! Now you can manage your organization's network access based on user groups.
