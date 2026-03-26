@@ -25,22 +25,27 @@ minikube start
 You should read on stdout
 
 ```
-minikube start
-😄  minikube v1.36.0 sur Ubuntu 24.04
-✨  Choix automatique du pilote docker. Autres choix: none, ssh
-📌  Utilisation du pilote Docker avec le privilège root
-👍  Démarrage du nœud "minikube" primary control-plane dans le cluster "minikube"
-🚜  Extraction de l'image de base v0.0.47...
-🔥  Création de docker container (CPU=2, Memory=7900Mo) ...
-🐳  Préparation de Kubernetes v1.33.1 sur Docker 28.1.1...
-    ▪ Génération des certificats et des clés
-    ▪ Démarrage du plan de contrôle ...
-    ▪ Configuration des règles RBAC ...
-🔗  Configuration de bridge CNI (Container Networking Interface)...
-🔎  Vérification des composants Kubernetes...
-    ▪ Utilisation de l'image gcr.io/k8s-minikube/storage-provisioner:v5
-🌟  Modules activés: storage-provisioner, default-storageclass
-🏄  Terminé ! kubectl est maintenant configuré pour utiliser "minikube" cluster et espace de noms "default" par défaut.
+minikube start --force
+😄  minikube v1.38.1 on Ubuntu 22.04
+❗  minikube skips various validations when --force is supplied; this may lead to unexpected behavior
+✨  Automatically selected the docker driver. Other choices: none, ssh
+🛑  The "docker" driver should not be used with root privileges. If you wish to continue as root, use --force.
+💡  If you are running minikube within a VM, consider using --driver=none:
+📘    https://minikube.sigs.k8s.io/docs/reference/drivers/none/
+❗  Starting v1.39.0, minikube will default to "containerd" container runtime. See #21973 for more info.
+📌  Using Docker driver with root privileges
+👍  Starting "minikube" primary control-plane node in "minikube" cluster
+🚜  Pulling base image v0.0.50 ...
+💾  Downloading Kubernetes v1.35.1 preload ...
+    > preloaded-images-k8s-v18-v1...:  272.45 MiB / 272.45 MiB  100.00% 37.62 M
+    > gcr.io/k8s-minikube/kicbase...:  519.58 MiB / 519.58 MiB  100.00% 25.65 M
+🔥  Creating docker container (CPUs=2, Memory=3900MB) ...
+🐳  Preparing Kubernetes v1.35.1 on Docker 29.2.1 ...
+🔗  Configuring bridge CNI (Container Networking Interface) ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
 
 ## Run the install bash script 
