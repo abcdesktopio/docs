@@ -3076,9 +3076,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#understand-the-problem" class="md-nav__link">
+  <a href="#use-case-description" class="md-nav__link">
     <span class="md-ellipsis">
-      Understand the problem
+      Use case description
     </span>
   </a>
   
@@ -3340,9 +3340,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#understand-the-problem" class="md-nav__link">
+  <a href="#use-case-description" class="md-nav__link">
     <span class="md-ellipsis">
-      Understand the problem
+      Use case description
     </span>
   </a>
   
@@ -3394,16 +3394,55 @@
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
 <li>a Kubernetes cluster with abcdesktop installed</li>
-<li>use <a href="https://cilium.io/">cilium</a> as network stack for your cluster</li>
+<li>use <a href="https://cilium.io/">cilium</a> as network provider for your cluster</li>
 <li>Any authentication system already configured with abcdesktop, see <a href="../authentication/overview.md">authentication section</a> for more informations.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In this example, we will use <a href="https://github.com/rroemhild/docker-test-openldap">docker-test-openldap</a> which is a LDAP service</p>
 </div>
-<h2 id="understand-the-problem">Understand the problem</h2>
+<h2 id="use-case-description">Use case description</h2>
 <p>As an organistaion, you may have several departments, such as sales, accounting, IT, etc. And you may want to control access based on department. For exemple, an IT employee shouldn't have access to accounting documents.<br />
 With abcdesktop, you can meet these kind of needs by creating rules bases on the groups to which users belong.</p>
+<pre class="mermaid"><code>---
+config:
+  theme: redux-color
+---
+sequenceDiagram
+    actor Philip
+    Philip-&gt;&gt;Router: Logme in (Philip, password)
+    Router-&gt;&gt;Pyos: Logme in (Philip, password)
+    Note over Router,Pyos: 1. Authentication
+    Create participant LDAP
+    Pyos-&gt;&gt;LDAP: BIND LDAP_SEARCH Philip
+    destroy LDAP
+    LDAP-&gt;&gt;Pyos: dn, cn, group=shipcrew
+    Note right of Kubernetes: Cilium Policy
+    Pyos-&gt;&gt;Kubernetes: (option) Create user secrets
+    Kubernetes-&gt;&gt;Pyos: (option) Secrets created
+    Pyos-&gt;&gt;Router: User Philip JWT
+    Router-&gt;&gt;Philip: User Philip JWT
+    Philip-&gt;&gt;Router: Create Desktop (User Philip JWT)
+    Note over Router,Pyos: 2. Create a desktop
+    Router-&gt;&gt;Pyos: Create Desktop (User Philip JWT)
+    Pyos-&gt;&gt;Kubernetes: Create Philip POD YAML
+    Kubernetes-&gt;&gt;Pyos: POD Created
+    Create participant PodPhilip
+    Note right of PodPhilip: shipcrew=true
+    Kubernetes-&gt;&gt;PodPhilip:
+    destroy Kubernetes
+    Kubernetes-&gt;&gt;Pyos: Philip Pod is Ready
+    destroy Pyos
+    Pyos-&gt;&gt;Router: Desktop Philip JWT
+    Router-&gt;&gt;Philip: Desktop Philip JWT
+    Router-&gt;&gt;Philip: Connected
+    Create participant Facebook
+    PodPhilip-&gt;&gt;Facebook: Access Granted #10004;
+    destroy Facebook
+    Facebook-&gt;&gt;PodPhilip: OK
+    Philip--&gt;PodPhilip: Established
+    Create participant Youtube
+    PodPhilip--xYoutube: Drop #10006;</code></pre>
 <h2 id="how-does-abcdesktop-manage-groups">How does abcdesktop manage groups</h2>
 <p>Let's assume that the users present your authentication system are already affected to groups. In our example, we have <code>Philip J. Fry</code> a.k.a. <code>fry</code>, and <code>Hubert J. Farnsworth</code> a.k.a. <code>professor</code>, respectively members of <code>ship_crew</code> and <code>admin_staff</code> groups (cf <a href="https://github.com/rroemhild/docker-test-openldap">https://github.com/rroemhild/docker-test-openldap</a>).  </p>
 <p>Once authenticated, abcdesktop control plane reads the user's infos, and will create the user's pod with its groups specified as labels.</p>
@@ -3486,7 +3525,7 @@ Labels:         abcdesktop/role=desktop
 <p>You should see labels <code>shipcrew=true</code> for <code>fry</code> and <code>adminstaff=true</code> for <code>professor</code></p>
 <h2 id="create-access-rules-based-on-groups">Create access rules based on groups</h2>
 <p>To monitor pods incoming (ingress) and outgoing (egress) traffic in Kubernetes, we ordinarily use <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">NetworkPolicies</a>. But network policies does not offer the possibility to filter based on FQDNs, you can only filter by IPs. So that means, if the service you want to grant access to has more than one IP, you need to specify all IPs in the filter, it becomes even worse if it has dynamic IPs that are constantly changing.<br />
-That is the reason why we need to use <code>cilium</code> as network stack for our cluster, so that we can apply <a href="https://docs.cilium.io/en/stable/network/kubernetes/policy/#ciliumnetworkpolicy">CiliumNetworkPolicies</a>. Those are very similar to the standard network policies but provides fuctionalites that are not yet supported, like DNS based rules.  </p>
+This is why we use <code>cilium</code> as network provider for our cluster, so that we can apply <a href="https://docs.cilium.io/en/stable/network/kubernetes/policy/#ciliumnetworkpolicy">CiliumNetworkPolicies</a>. Those are very similar to the standard network policies but provides fuctionalites that are not yet supported, like DNS based rules.  </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>It is important to keep in mind that <code>CiliumNetworkPolicies</code> operates on a whitelist basis. That means that once an egress rule is applied, everything that is not clearly indicate as authorized is forbidden.</p>
@@ -3582,6 +3621,7 @@ allow-youtube-adminstaff   27h
 </code></pre></div>
 <p>Your pod should now have access to Youtube and nothing else</p>
 <p><img alt="ciliumnetpol-youtube-access" src="../../../img/ciliumNetpol_access_youtube.png" /></p>
+<p>Great ! Now you can manage your organization's network access based on user groups.</p>
 
 
 
