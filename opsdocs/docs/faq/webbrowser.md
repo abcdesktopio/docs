@@ -6,7 +6,13 @@ tags:
 
 # FAQ Web Browser
 
-## Supported web browser HTML
+
+## How to change the default language ?
+
+abcdesktop reads the your web browser language and starts application and desktop this user's choose.
+The default installed languages are `English`, `French`, 'German`, and `Romanian`. If you need other languages support you have to rebuild the container image with your language.
+
+## Which web browser is supported ?
 
 abcdesktop.io uses many modern web technologies. However these are the minimum versions we are currently aware of:
 
@@ -17,7 +23,7 @@ abcdesktop.io uses many modern web technologies. However these are the minimum v
 * Microsoft Edge (based on Chromium)
 
 
-## How to copy and paste ?
+## How to do a `copy and paste` ?
 
 To fully use `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, `Chromium` or  `Microsoft Edge Chromium`. The `copy and paste` feature is also supported on Firefox with a [dedicated abcdesktop extension](firefox-extension.md).
 
