@@ -45,7 +45,8 @@ Sample providers entry using the Google OAuth 2.0 authentification service.
   }}
 ```
 
-The variable values `client_id` and `client_secret` have been set to obfuscate value 'xxxx'. The `redirect_uri_prefix` contains the FQDN `hostname.domain.local`. This value is referred to your own server FQDN. 
+- The variable values `client_id` and `client_secret` have been set to obfuscate value 'xxxx'.
+- The `redirect_uri_prefix` contains the FQDN `hostname.domain.local`. This value is referred to your own server FQDN. 
 
 
 This create on the frontweb the following design :
