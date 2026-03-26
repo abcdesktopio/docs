@@ -185,16 +185,18 @@ The user `Philip J. Fry` is connected to the abcdesktop service
 
 Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.
 
-## Troubleshooting
+## Common issues
 
-Start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop
+
+### issue `FailedScheduling 0/1 nodes are available`
+
+```
+FailedScheduling 0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod
+```
+
+To fix it, start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop
 
 ```
 minikube start --cpus 4 --memory 16GB
 ```
 
-To fix this issue
-
-```
-FailedScheduling 0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod
-```
