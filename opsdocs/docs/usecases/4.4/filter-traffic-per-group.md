@@ -4,7 +4,7 @@
 
 - a Kubernetes cluster with abcdesktop installed
 - use [cilium](https://cilium.io/) as network provider for your cluster
-- Any authentication system already configured with abcdesktop, see [authentication section](../authentication/overview.md) for more informations.
+- An authentication provider with groups support (`LDAP`, `ActiveDirectory` or `OAuth`), see [authentication section](../authentication/overview.md) for more details. By default the docker-test-openldap provides groups support.
 
 !!! note
     In this example, we will use [docker-test-openldap](https://github.com/rroemhild/docker-test-openldap) which is a LDAP service
