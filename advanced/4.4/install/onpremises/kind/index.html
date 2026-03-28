@@ -3430,12 +3430,15 @@
 <li><a href="https://kind.sigs.k8s.io/docs/user/quick-start">kind</a> command line installed </li>
 <li><a href="https://docs.docker.com/engine/install">docker</a> Docker Engine installed. </li>
 <li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">kubectl</a> command-line tool must be configured to communicate with your cluster.</li>
-<li>openssl and curl command line must be installed too (only for install using kubectl).</li>
+<li><code>openssl</code> and <code>curl</code> command line must be installed too (only for install using kubectl).</li>
 </ul>
 <h2 id="create-kind-cluster">Create kind cluster</h2>
 <p>Run the command line to create </p>
 <div class="highlight"><pre><span></span><code>kind create cluster --wait 5m
 </code></pre></div>
+<blockquote>
+<p>the <code>--wait 5m</code> wait for control-plane = Ready</p>
+</blockquote>
 <p>You should read on stdout</p>
 <div class="highlight"><pre><span></span><code>Creating cluster &quot;kind&quot; ...
  ✓ Ensuring node image (kindest/node:v1.35.0) 🖼 
