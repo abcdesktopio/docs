@@ -14,7 +14,7 @@ tags:
     Download and extract the uninstall bash script (Linux or macOS):
 
     ```bash
-    curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.4.sh | bash
+    curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.4.sh |bash
     ```
 
     You should read on stdout 
