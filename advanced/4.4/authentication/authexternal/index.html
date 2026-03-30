@@ -3777,6 +3777,9 @@
 </tbody>
 </table>
 <p>The complete redirect url concats the two values <code>redirect_uri_prefix</code> and <code>redirect_uri_querystring</code>.</p>
+<ul>
+<li>The <code>userinfomap</code> overwites all previous values <code>[ 'userid', 'name' ]</code> and also values to build the posix account <code>[ 'cn', 'uid', 'gid', 'uidNumber', 'gidNumber', 'homeDirectory', 'loginShell', 'description', 'groups', 'gecos']</code>.</li>
+</ul>
 <h2 id="read-groups-and-set-roles-from-userinfo">Read groups and set roles from userinfo</h2>
 <p>If <code>userinfo_auth</code> is <code>True</code> abcdesktop tries to read the json content from the <code>userinfo_url</code> request.
 If the returned a json dictionary gets the <code>groups</code> entry and if the groups is list of string then the roles for the current user are defined with the groups content. All <code>roles</code> are set as <code>labels tags</code> on the user`s pod.</p>
