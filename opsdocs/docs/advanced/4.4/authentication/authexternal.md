@@ -78,6 +78,8 @@ List of parameters
 
 The complete redirect url concats the two values `redirect_uri_prefix` and `redirect_uri_querystring`.
 
+- The `userinfomap` overwites all previous values `[ 'userid', 'name' ]` and also values to build the posix account `[ 'cn', 'uid', 'gid', 'uidNumber', 'gidNumber', 'homeDirectory', 'loginShell', 'description', 'groups', 'gecos']`.
+
 ## Read groups and set roles from userinfo
 
 If `userinfo_auth` is `True` abcdesktop tries to read the json content from the `userinfo_url` request.
