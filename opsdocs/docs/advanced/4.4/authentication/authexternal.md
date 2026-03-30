@@ -255,6 +255,9 @@ Enable other users to authorize your OAuth App. Create your keycloack credential
 ```
 'keycloak': {
       'displayname': 'ABC Keycloak',
+      'icon': 'img/auth/keycloak_icon.svg',
+      'textcolor': '#000000',
+      'backgroundcolor': '#FFFFFF',
       'enabled': True,
       'basic_auth': True,
       'userinfo_auth': True,
