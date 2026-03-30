@@ -3777,7 +3777,7 @@
 <tr>
 <td><code>policies</code></td>
 <td>dict</td>
-<td>policies to allow or denied access</td>
+<td>policies to allow or denied access, the default value is <code>{}</code></td>
 <td>{ 'acl' : { 'permit': [ 'all' ] } }</td>
 </tr>
 </tbody>
@@ -3785,7 +3785,6 @@
 <ul>
 <li>The complete redirect url concats the two values <code>redirect_uri_prefix</code> and <code>redirect_uri_querystring</code>.</li>
 <li>The <code>userinfomap</code> overwites all previous values <code>[ 'userid', 'name' ]</code> and also values to build the posix account <code>[ 'cn', 'uid', 'gid', 'uidNumber', 'gidNumber', 'homeDirectory', 'loginShell', 'description', 'groups', 'gecos']</code>.</li>
-<li><code>rules</code> </li>
 </ul>
 <h2 id="read-groups-and-set-roles-from-userinfo">Read groups and set roles from userinfo</h2>
 <p>If <code>userinfo_auth</code> is <code>True</code> abcdesktop tries to read the json content from the <code>userinfo_url</code> request.
