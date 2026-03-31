@@ -3772,12 +3772,6 @@ The key name must be set with the same value in providers configuration and <cod
 <td>True</td>
 </tr>
 <tr>
-<td><code>tls_require_cert</code></td>
-<td>boolean</td>
-<td>The default value is False. <code>tls_require_cert</code>  apply only if ldap server URI starts with <code>ldaps</code>. Allow LDAPS connection if the ldaps server hostname does not match CommonName peer certificate. <strong>In production, set this value to <code>True</code></strong> This will disable the ldap option call : <code>ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)</code></td>
-<td>False</td>
-</tr>
-<tr>
 <td><code>basedn</code></td>
 <td>string</td>
 <td>LDAP Base Distinguished Names</td>
@@ -3786,25 +3780,37 @@ The key name must be set with the same value in providers configuration and <cod
 <tr>
 <td><code>servers</code></td>
 <td>list of string</td>
-<td>list of LDAP servers (IP Adress or FQDN), if entry does not respond, the next one is used.</td>
-<td><code>[ 'ldap://192.168.1.12', 'ldaps://myldap.domain.org' ]</code> IP  Address or FQDN values</td>
+<td>list of LDAP servers (IP address or FQDN), if entry does not respond, the next one is used.</td>
+<td><code>[ 'ldap://192.168.1.12', 'ldaps://myldap.domain.org:636' ]</code> IP  Address or FQDN values</td>
 </tr>
 <tr>
 <td><code>scope</code></td>
 <td>LDAP</td>
 <td>Perform an LDAP search operation, with base as the DN of the entry at which to start the search, <code>scope</code> being one of <code>SCOPE_BASE</code> (to search the object itself), <code>SCOPE_ONELEVEL</code> (to search the object’s immediate children), or <code>SCOPE_SUBTREE</code> (to search the object and all its descendants).</td>
-<td><code>ldap.SCOPE_SUBTREE</code></td>
+<td><code>SCOPE_SUBTREE</code></td>
 </tr>
 <tr>
-<td><code>timeout</code></td>
-<td>integer</td>
-<td>ldap time out in second</td>
+<td><code>auth_type</code></td>
+<td>string</td>
+<td>ldap authentication can be <code>'ANONYMOUS'</code>, <code>'SIMPLE'</code>, <code>'KERBEROS'</code>, <code>'NTLM'</code></td>
+<td><code>'SIMPLE'</code></td>
+</tr>
+<tr>
+<td><code>kerberos_realm</code></td>
+<td>string</td>
+<td>optional realm for kerberos</td>
+<td><code>REALM.MYDOMAIN.COM</code></td>
+</tr>
+<tr>
+<td><code>ldap_connect_timeout</code></td>
+<td> integer</td>
+<td> ldap connect timeout in second, the default value is <code>None</code></td>
 <td>10</td>
 </tr>
 <tr>
 <td><code>exec_timeout</code></td>
 <td>integer</td>
-<td>execute time out in seconds, to obtain ntlm_auth credentials, or cntlm auth credentials, or kerberos auth credentials. the exec timeout is used to run external command line.</td>
+<td>execute time out in seconds, to obtain ntlm_auth credentials, or cntlm auth credentials. The exec timeout is used to run external command line.</td>
 <td>10</td>
 </tr>
 <tr>
@@ -3817,7 +3823,7 @@ The key name must be set with the same value in providers configuration and <cod
 <td><code>attrs</code></td>
 <td>list</td>
 <td>list of default attributs to read in user object. read the <a href="https://tools.ietf.org/html/rfc2798">Definition of the inetOrgPerson LDAP Object Class </a></td>
-<td></td>
+<td>the default value is <code>['objectClass', 'cn', 'sn', 'description', 'givenName', 'jpegPhoto', 'mail', 'ou', 'title', 'uid', 'distinguishedName', 'displayName']</code></td>
 </tr>
 <tr>
 <td><code>filter</code></td>
@@ -3834,8 +3840,20 @@ The key name must be set with the same value in providers configuration and <cod
 <tr>
 <td><code>group_attrs</code></td>
 <td>string</td>
-<td>LDAP filter to find group object</td>
+<td>LDAP filter to find attributs group object</td>
 <td><code>(&amp;(objectClass=Group)(cn=%s))</code></td>
+</tr>
+<tr>
+<td><code>memberof_attribut_name</code></td>
+<td>string</td>
+<td>name of the attribut for group <code>memberOf</code>or <code>'groups'</code></td>
+<td><code>'groups'</code></td>
+</tr>
+<tr>
+<td><code>kerberos_krb5_conf</code></td>
+<td>string</td>
+<td>name of the kerberos config file</td>
+<td><code>/etc/krb5.conf</code></td>
 </tr>
 </tbody>
 </table>
