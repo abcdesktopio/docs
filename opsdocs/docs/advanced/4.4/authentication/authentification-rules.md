@@ -196,9 +196,9 @@ This condition is test if the client source ip address is in a subnet. IPv4 and 
 
 To read the source IP adress, the service tries to read in order 
 
-- 'X-Forwarded-For' http header
-- 'X-Real-IP' http header
-- 'remoteip' the read socket IP source
+- `X-Forwarded-For` http header
+- `X-Real-IP` http header
+- `remoteip` the read socket IP source
 
 For example
 
