@@ -81,23 +81,37 @@ Great you can now add some value to authenticate your users.
 
 ## authmanagers `implicit`:
 
-`implicit` is the easiest configuration mode, and is used to run Anonymous authentification (always True). 
+`implicit` is the easiest configuration mode, and is used to run `Anonymous` authentification (always True). 
+
+
+![auth-overview-implicit](img/auth-overview-implicit.png)
+
 Read the [authmanagers implicit](authimplicit.md) Section.
 
 
 ## authmanagers `explicit`:
 
 `explicit` is defined to use a directory service like LDAP. 
+
+![auth-overview-explicit](img/auth-overview-explicit.png)
+
 Read the [authmanagers explicit](authexplicit.md) Section.
 
 ## authmanagers `metaexplicit`:
 
 `metaexplicit` offers a support to Microsoft Active Directory Trusted relationship, with support of Foreign Security Principals and Special Identities. 
-Read the [authmanagers explicit](authmetaexplicit.md) Section.
+
+![auth-overview-explicit](img/auth-overview-explicit.png)
+
+Read the [authmanagers meta explicit](authmetaexplicit.md) Section.
 
 ## authmanagers `external`:
 
 `external` use external OAuth 2.0 authentication, for example [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2), or [Github OAuth 2.0](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps) 
+
+
+
+
 Read the [authmanagers external](authexternal.md) Section.
 
 
