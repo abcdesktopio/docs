@@ -105,16 +105,19 @@ Read the [authmanagers external](authexternal.md) Section.
         
 In the [authmanagers implicit](authimplicit.md) section, [authmanagers explicit](authexplicit.md) section, and [authmanagers external](authexternal.md) section, you have learned how to defined the providers. 
 
-You can set a complete `authmanagers` dictionary as described with `external`, `explicit` and `implicit`
+You can build an `authmanagers` dictionary as described with `external`, `explicit` and `implicit` at the same time.
 
 ```json
 authmanagers: {
-   'external': {
+  'external': {
     'providers': {
       'google': { 
+        'icon': 'img/auth/google_icon.svg',
         'displayname': 'Google', 
+        'textcolor': '#000000',
+        'backgroundcolor': '#FFFFFF',
         'enabled': True,
-        'client_id': 'xxxx', 
+        'client_id': 'xxxx, 
         'client_secret': 'xxxx',
         'userinfo_auth': True,
         'scope': [ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ],
@@ -123,26 +126,12 @@ authmanagers: {
         'redirect_uri_querystring': 'manager=external&provider=google',
         'authorization_base_url': 'https://accounts.google.com/o/oauth2/v2/auth',
         'token_url': 'https://oauth2.googleapis.com/token',
-        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
-      },
-      'facebook': { 
-        'displayname': 'Facebook', 
-        'enabled': True,
-        'userinfo_auth': True,
-        'client_id': 'xxxx', 
-        'client_secret': 'xxxx', 
-        'redirect_uri_prefix' : 'https://www.mydomain.com/API/auth/oauth',
-        'redirect_uri_querystring': 'manager=external&provider=facebook',
-        'authorization_base_url': 'https://www.facebook.com/dialog/oauth',
-        'userinfo_url': 'https://graph.facebook.com/v2.6/me?fields=picture.width(400),name',
-        'token_url': 'https://graph.facebook.com/v2.3/oauth/access_token',
-        'userinfomap': {
-            '*': '*',
-            'picture': 'picture.data.url'
-        },
-        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
-      },
-      'github': {
+        'policies': {  'acl': { 'permit': [ 'all' ] } }
+     },
+     'github': {
+        'icon': 'img/auth/github_icon.svg',
+        'textcolor': '#000000',
+        'backgroundcolor': '#FFFFFF',
         'displayname': 'Github',
         'enabled': True,
         'basic_auth': True,
@@ -155,8 +144,8 @@ authmanagers: {
         'authorization_base_url': 'https://github.com/login/oauth/authorize',
         'token_url': 'https://github.com/login/oauth/access_token',
         'userinfo_url': 'https://api.github.com/user',
-        'policies': { 'acl'  : { 'permit': [ 'all' ] } }
-      }
+        'policies': { 'acl' : { 'permit': [ 'all' ] } }
+     }
     }
   },
   'explicit': {
@@ -172,13 +161,16 @@ authmanagers: {
   'implicit': {
     'providers': {
       'anonymous': {
-        'displayname': 'Anonymous',
+        'displayname': 'Guest',
+        'textcolor': '#000000',
+        'icon': 'img/auth/anonymous_icon.svg',
+        'backgroundcolor': '#FFFFFF',
         'caption': 'Have a look !',
         'userid': 'anonymous',
         'username': 'Anonymous'
       }     
     }
-  }}
+}}
 
 
 adconfig : { 
