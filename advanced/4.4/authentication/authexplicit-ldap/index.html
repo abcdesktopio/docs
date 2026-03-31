@@ -3707,8 +3707,7 @@
       &#39;LDAP&#39;: { 
         &#39;config_ref&#39;: &#39;ldapconfig&#39;, 
         &#39;enabled&#39;: True
-       }
-}
+       }}}
 </code></pre></div>
 <p>In this example, <code>ldapconfig</code> dict must have a key <code>LDAP</code></p>
 <table>
@@ -3746,7 +3745,7 @@
 <p>The <code>provider</code> authentification configuration is defined as a dictionnary object and must contain a key name.
 The key name must be set with the same value in providers configuration and <code>config_ref</code>.</p>
 <p>Providers :</p>
-<p>The provider is formated as a dictionnary </p>
+<p>The provider is formated as a dictionary </p>
 <div class="highlight"><pre><span></span><code>{ &#39;planet&#39;: {  
            &#39;config_ref&#39;: &#39;ldapconfig&#39;,  
            &#39;enabled&#39;: True  
@@ -3776,14 +3775,13 @@ The key name must be set with the same value in providers configuration and <cod
 </table>
 <p>The ldapconfig is a dictionnary. </p>
 <p>For example :</p>
-<div class="highlight"><pre><span></span><code>ldapconfig : { &#39;planet&#39;: {    &#39;default&#39;       : True, 
-                        &#39;ldap_timeout&#39;  : 15,
-                        &#39;ldap_basedn&#39;   : &#39;ou=people,dc=planetexpress,dc=com&#39;,
-                        &#39;servers&#39;       : [ &#39;ldap://192.168.8.195&#39; ],
-                        &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;cn=admin,dc=planetexpress,dc=com&#39;, &#39;password&#39;: &#39;GoodNewsEveryone&#39; }
-           }}
-
-}
+<div class="highlight"><pre><span></span><code><span class="err">ldapco</span><span class="kc">nf</span><span class="err">ig</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="err">&#39;pla</span><span class="kc">net</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;de</span><span class="kc">fault</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;ldap_</span><span class="kc">t</span><span class="err">imeou</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;ldap_based</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ou=people</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">&#39;servers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ldap</span><span class="p">:</span><span class="c1">//192.168.8.195&#39; ],</span>
+<span class="w">    </span><span class="err">&#39;serviceaccou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;logi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;c</span><span class="kc">n</span><span class="err">=admi</span><span class="kc">n</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;password&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;GoodNewsEveryo</span><span class="kc">ne</span><span class="err">&#39;</span><span class="w"> </span><span class="p">}}}}</span>
 </code></pre></div>
 <h2 id="ldap-configuration-reference">ldap configuration reference</h2>
 <table>
