@@ -3701,13 +3701,30 @@
 <p><code>explicit</code> authentification use a directory service. The bind operation is used to authenticate clients to the directory server, to establish an authorization identity that will be used for subsequent operations processed on that connection.</p>
 <p>The <code>explicit</code> authentification configuration is defined as a dictionnary object and contains an <code>explicit</code> provider. </p>
 <p>For example :</p>
-<div class="highlight"><pre><span></span><code>&#39;explicit&#39;: {
+<div class="highlight"><pre><span></span><code>authmanagers: {
+  &#39;external&#39;: {},
+  &#39;implicit&#39;: {},
+  &#39;explicit&#39;: {
+    &#39;planet&#39;: {
+      &#39;default&#39;: True,
+      &#39;ldap_timeout&#39;: 15,
+      &#39;ldap_protocol&#39;: &#39;ldap&#39;,
+      &#39;ldap_basedn&#39;: &#39;ou=people,dc=planetexpress,dc=com&#39;,
+      &#39;servers&#39;: [ &#39;openldap&#39; ]
+    } 
+  },
+  &#39;implicit&#39;: {}}
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>authmanagers: {
+  &#39;external&#39;: {},
+  &#39;implicit&#39;: {},
+  &#39;explicit&#39;: {
     &#39;show_domains&#39;: True,
     &#39;providers&#39;: {
       &#39;LDAP&#39;: { 
         &#39;config_ref&#39;: &#39;ldapconfig&#39;, 
         &#39;enabled&#39;: True
-       }}}
+       }}}}
 </code></pre></div>
 <p>In this example, <code>ldapconfig</code> dict must have a key <code>LDAP</code></p>
 <table>
@@ -3742,14 +3759,15 @@
 </tbody>
 </table>
 <h3 id="providers-configuration">providers configuration</h3>
-<p>The <code>provider</code> authentification configuration is defined as a dictionnary object and must contain a key name.
+<p>The <code>provider</code> authentification configuration is defined as a dictionary object and must contain a key name.
 The key name must be set with the same value in providers configuration and <code>config_ref</code>.</p>
 <p>Providers :</p>
 <p>The provider is formated as a dictionary </p>
-<div class="highlight"><pre><span></span><code>{ &#39;planet&#39;: {  
-           &#39;config_ref&#39;: &#39;ldapconfig&#39;,  
-           &#39;enabled&#39;: True  
-       }
+<div class="highlight"><pre><span></span><code>{ 
+ &#39;planet&#39;: {  
+   &#39;config_ref&#39;: &#39;ldapconfig&#39;,  
+   &#39;enabled&#39;: True  
+ }
 }
 </code></pre></div>
 <table>
