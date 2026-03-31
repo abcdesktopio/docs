@@ -64,13 +64,13 @@ nav:
   - Uninstall:
       - Script: uninstall/${ABCDESKTOP_LATEST_RELEASE}/script.md
       - Helm: uninstall/${ABCDESKTOP_LATEST_RELEASE}/helm.md
-
 - Advanced :
   - Architecture:
     - Overview: architecture/overview.md
   - Install On-Premises:
     - Kind: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/kind.md
-    - Kubernetes: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/kubernetes.md
+    - Kubernetes using script: install/${ABCDESKTOP_LATEST_RELEASE}/script.md
+    - Kubernetes using helm: install/${ABCDESKTOP_LATEST_RELEASE}/helm.md
     - MiniKube: advanced/${ABCDESKTOP_LATEST_RELEASE}/install/onpremises/minikube.md
   - Install On Cloud:
     - AWS :
@@ -96,34 +96,31 @@ nav:
   - Install Applications:
     - Create your own application: advanced/${ABCDESKTOP_LATEST_RELEASE}/createyourownapplication.md
   - Configuration :
-    - Make changes in the configuration file: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/updateconfiguration.md
+    - Make changes in the abcdesktop configmap: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/updateconfiguration.md
+    - Authentication:
+      - Overview: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/overview.md
+      - External (OpenID): advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authexternal.md
+      - Explicit (Directory service):
+        - LDAP: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authexplicit-ldap.md
+        - Active Directory: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authexplicit-activedirectory.md
+        - Meta Directory: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authmetaexplicit.md
+      - Implicit (Anonymous): advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authimplicit.md
+    - Rules: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authentification-rules.md
+  - Advanced Configuration: 
     - Run the garbarge collector: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/garbagecollector.md
     - Share GPU with ephemeral container: advanced/${ABCDESKTOP_LATEST_RELEASE}/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop.md
-  - Network:
-    - Multiple network interfaces:
-      - Multus: advanced/${ABCDESKTOP_LATEST_RELEASE}/network/multus.md
-    - Network Policy:
-      - Netpol: advanced/${ABCDESKTOP_LATEST_RELEASE}/networkpolicy/netpol.md
-      - Install : advanced/${ABCDESKTOP_LATEST_RELEASE}/networkpolicy/install.md
-      - Uninstall: advanced/${ABCDESKTOP_LATEST_RELEASE}/networkpolicy/uninstall.md
-  - Storage:
-    - NFS: advanced/${ABCDESKTOP_LATEST_RELEASE}/storage/nfs.md
-    - S3: advanced/${ABCDESKTOP_LATEST_RELEASE}/storage/s3.md
-    - HostPath: advanced/${ABCDESKTOP_LATEST_RELEASE}/storage/hostpath.md
-    - Shared Volume: advanced/${ABCDESKTOP_LATEST_RELEASE}/storage/sharedvolume.md
-    - Add hostPath volume using rules: advanced/${ABCDESKTOP_LATEST_RELEASE}/add_hostpath_volume_using_rules.md
-  - Rules and labels:
-    - Rules: advanced/${ABCDESKTOP_LATEST_RELEASE}/rulesandlabels/rules.md
-    - Labels: advanced/${ABCDESKTOP_LATEST_RELEASE}/rulesandlabels/labels.md
-  - Authentication:
-    - Overview: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/overview.md
-    - External (OpenID): advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authexternal.md
-    - Explicit (Directory):
-      - LDAP: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authexplicit-ldap.md
-      - Active Directory: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authexplicit-activedirectory.md
-      - Meta Directory: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authmetaexplicit.md
-      - Rules: advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authentification-rules.md
-    - Implicit (Anonymous): advanced/${ABCDESKTOP_LATEST_RELEASE}/authentication/authimplicit.md
+    - Network:
+      - Multiple network interfaces: tbd.md
+      - Network Policy:
+        - Netpol: advanced/${ABCDESKTOP_LATEST_RELEASE}/networkpolicy/netpol.md
+        - Install : advanced/${ABCDESKTOP_LATEST_RELEASE}/networkpolicy/install.md
+        - Uninstall: advanced/${ABCDESKTOP_LATEST_RELEASE}/networkpolicy/uninstall.md
+    - Storage:
+      - NFS: advanced/${ABCDESKTOP_LATEST_RELEASE}/storage/nfs.md
+      - S3: advanced/${ABCDESKTOP_LATEST_RELEASE}/storage/s3.md
+      - HostPath: advanced/${ABCDESKTOP_LATEST_RELEASE}/storage/hostpath.md
+      - Shared Volume: advanced/${ABCDESKTOP_LATEST_RELEASE}/storage/sharedvolume.md
+      - Add hostPath volume using rules: advanced/${ABCDESKTOP_LATEST_RELEASE}/add_hostpath_volume_using_rules.md
 - Contribute :
   - Overview: contribute/overview.md
   - Services:
@@ -142,6 +139,7 @@ nav:
   - Filter pods traffic based on groups : usecases/${ABCDESKTOP_LATEST_RELEASE}/filter-traffic-per-group.md
 
 - FAQ:
+  - Issue: faq/issue.md
   - Web browser: faq/webbrowser.md
   - Ingress controller: faq/ingresscontroller.md
   - Applications: faq/applications.md
