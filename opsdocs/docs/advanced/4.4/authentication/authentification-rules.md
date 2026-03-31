@@ -255,16 +255,31 @@ You can share the same label `privatenetwork` a separated rule.
 		  'rule-privatenetwork-172': {	'conditions': [ { 'network': '172.16.0.0/12', 'expected' : True } ], 
 		  								'expected': True, 
 		  								'label': 'privatenetwork' },
-		  'Rule-privatenetwork-192': {	'conditions': [ { 'network': '192.168.0.0/16',     'expected' : True } ], 
+		  'rule-privatenetwork-192': {	'conditions': [ { 'network': '192.168.0.0/16',     'expected' : True } ], 
 		  								'expected': True, 
 		  								'label': 'privatenetwork' },
-		  'Rule-privatenetwork-169': {	'conditions': [ { 'network': '169.254.0.0/16',     'expected' : True } ], 
+		  'rule-privatenetwork-169': {	'conditions': [ { 'network': '169.254.0.0/16',     'expected' : True } ], 
 		  								'expected': True, 
 		  								'label': 'privatenetwork' },
 		  'rule-privatenetwork-fe80':{	'conditions': [ { 'network': 'fe80::/10',     'expected' : True } ], 
 		  								'expected': True, 
-		  								'label': 'privatenetwork' } } }					
+		  								'label': 'privatenetwork' } } }
 ```
+
+> Multiple rules can set the same label
+
+You can write the previous rules in one simplest rule
+
+```json
+'policies': {
+  'acl' : {},
+    'rules'	: { 
+      'rule-privatenetwork': {
+        'conditions': [ { 'network': [ '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', '169.254.0.0/16', 'fe80::/10' ], 'expected' : True } ],
+        'expected': True, 
+		'label': 'privatenetwork' } } }
+```
+
  	
 #### condition memberof
 
