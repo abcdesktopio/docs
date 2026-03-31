@@ -106,14 +106,14 @@ ldapconfig: {
 |  `scope`			| LDAP           | Perform an LDAP search operation, with base as the DN of the entry at which to start the search, `scope` being one of `SCOPE_BASE` (to search the object itself), `SCOPE_ONELEVEL` (to search the object’s immediate children), or `SCOPE_SUBTREE` (to search the object and all its descendants). | `SCOPE_SUBTREE` |
 | `auth_type`          | string         | ldap authentication can be `'ANONYMOUS'`, `'SIMPLE'`, `'KERBEROS'`, `'NTLM'` | `'SIMPLE'` | 
 | `kerberos_realm`     | string         | optional realm for kerberos       | `REALM.MYDOMAIN.COM` | 
-| `ldap_connect_timeout` | integer      | ldap connect timeout in second, the default value is `None` | 10 |
+| `ldap_connect_timeout` | integer      | ldap connect timeout in second, the default value is `None` | 3 |
 |  `exec_timeout`      | integer        | execute time out in seconds, to obtain ntlm_auth credentials, or cntlm auth credentials. The exec timeout is used to run external command line.  | 10 |
 |  `users_ou`		     	| string          | Users Organisation Unit | `ou=people,dc=planetexpress,dc=com` |
 |  `attrs`			      | list            | list of default attributs to read in user object. read the [Definition of the inetOrgPerson LDAP Object Class ](https://tools.ietf.org/html/rfc2798) | the default value is `['objectClass', 'cn', 'sn', 'description', 'givenName', 'jpegPhoto', 'mail', 'ou', 'title', 'uid', 'distinguishedName', 'displayName']` |
 |  `filter`        | string             | LDAP filter to find user object  | `(&(objectClass=inetOrgPerson)(cn=%s))` |
 |  `group_filter`  | string             | LDAP filter to find group object | `(&(objectClass=Group)(cn=%s))` |
 |  `group_attrs`  | string              | LDAP filter to find attributs group object | `(&(objectClass=Group)(cn=%s))` |
-| `memberof_attribut_name`| string      | name of the attribut for group `memberOf`or `'groups'` | `'groups'` |
+| `memberof_attribut_name`| string      | name of the attribut for group `'memberOf'`or `'groups'` | `'groups'` |
 | `kerberos_krb5_conf` | string         | name of the kerberos config file | `/etc/krb5.conf` | 
 
 
