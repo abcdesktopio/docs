@@ -17,8 +17,7 @@ For example :
       'LDAP': { 
         'config_ref': 'ldapconfig', 
         'enabled': True
-       }
-}
+       }}}
 ```
 
 In this example, ```ldapconfig``` dict must have a key ```LDAP```
@@ -42,7 +41,7 @@ The key name must be set with the same value in providers configuration and ```c
 
 Providers :
 
-The provider is formated as a dictionnary 
+The provider is formated as a dictionary 
 
  ```
  { 'planet': {  
@@ -63,15 +62,14 @@ The ldapconfig is a dictionnary.
 
 For example :
 
-```
-ldapconfig : { 'planet': {    'default'       : True, 
-                        'ldap_timeout'  : 15,
-                        'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ 'ldap://192.168.8.195' ],
-                        'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }
-           }}
-
-}
+```json
+ldapconfig: {
+  'planet: {
+    'default': True, 
+    'ldap_timeout': 15,
+    'ldap_basedn': 'ou=people,dc=planetexpress,dc=com',
+    'servers': [ 'ldap://192.168.8.195' ],
+    'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }}}}
 ```
 
 ## ldap configuration reference 
