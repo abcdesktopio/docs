@@ -3564,17 +3564,20 @@ kubectl rollout restart deployment pyos-od -n abcdesktop
 There is no <code>authmanagers</code> available.</p>
 <p>Great you can now add some value to authenticate your users.</p>
 <h2 id="authmanagers-implicit">authmanagers <code>implicit</code>:</h2>
-<p><code>implicit</code> is the easiest configuration mode, and is used to run Anonymous authentification (always True). 
-Read the <a href="../authimplicit/">authmanagers implicit</a> Section.</p>
+<p><code>implicit</code> is the easiest configuration mode, and is used to run <code>Anonymous</code> authentification (always True). </p>
+<p><img alt="auth-overview-implicit" src="../img/auth-overview-implicit.png" /></p>
+<p>Read the <a href="../authimplicit/">authmanagers implicit</a> Section.</p>
 <h2 id="authmanagers-explicit">authmanagers <code>explicit</code>:</h2>
-<p><code>explicit</code> is defined to use a directory service like LDAP. 
-Read the <a href="../authexplicit/">authmanagers explicit</a> Section.</p>
+<p><code>explicit</code> is defined to use a directory service like LDAP. </p>
+<p><img alt="auth-overview-explicit" src="../img/auth-overview-explicit.png" /></p>
+<p>Read the <a href="../authexplicit/">authmanagers explicit</a> Section.</p>
 <h2 id="authmanagers-metaexplicit">authmanagers <code>metaexplicit</code>:</h2>
-<p><code>metaexplicit</code> offers a support to Microsoft Active Directory Trusted relationship, with support of Foreign Security Principals and Special Identities. 
-Read the <a href="../authmetaexplicit/">authmanagers explicit</a> Section.</p>
+<p><code>metaexplicit</code> offers a support to Microsoft Active Directory Trusted relationship, with support of Foreign Security Principals and Special Identities. </p>
+<p><img alt="auth-overview-explicit" src="../img/auth-overview-explicit.png" /></p>
+<p>Read the <a href="../authmetaexplicit/">authmanagers meta explicit</a> Section.</p>
 <h2 id="authmanagers-external">authmanagers <code>external</code>:</h2>
-<p><code>external</code> use external OAuth 2.0 authentication, for example <a href="https://developers.google.com/identity/protocols/oauth2">Google OAuth 2.0</a>, or <a href="https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps">Github OAuth 2.0</a> 
-Read the <a href="../authexternal/">authmanagers external</a> Section.</p>
+<p><code>external</code> use external OAuth 2.0 authentication, for example <a href="https://developers.google.com/identity/protocols/oauth2">Google OAuth 2.0</a>, or <a href="https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps">Github OAuth 2.0</a> </p>
+<p>Read the <a href="../authexternal/">authmanagers external</a> Section.</p>
 <h2 id="authmanagers-sample">authmanagers sample</h2>
 <p>In the <a href="../authimplicit/">authmanagers implicit</a> section, <a href="../authexplicit/">authmanagers explicit</a> section, and <a href="../authexternal/">authmanagers external</a> section, you have learned how to defined the providers. </p>
 <p>You can build an <code>authmanagers</code> dictionary as described with <code>external</code>, <code>explicit</code> and <code>implicit</code> at the same time.</p>
