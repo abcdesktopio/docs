@@ -11,14 +11,18 @@ The ```explicit``` authentification configuration is defined as a dictionnary ob
 For example :
 
 ```
-'explicit': {
-    'show_domains': True,
-    'providers': {
-      'LDAP': { 
-        'config_ref': 'ldapconfig', 
-        'enabled': True
-       }
-}
+authmanagers: {
+  'external': {},
+  'explicit': {
+    'planet': {
+      'default': True,
+      'ldap_timeout': 15,
+      'ldap_protocol': 'ldap',
+      'ldap_basedn': 'ou=people,dc=planetexpress,dc=com',
+      'servers': [ 'openldap' ]
+    } 
+  },
+  'implicit': {}}
 ```
 
 In this example, ```ldapconfig``` dict must have a key ```LDAP```
