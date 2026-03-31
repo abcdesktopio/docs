@@ -106,6 +106,7 @@ ldapconfig: {
 |  `scope`			| LDAP           | Perform an LDAP search operation, with base as the DN of the entry at which to start the search, `scope` being one of `SCOPE_BASE` (to search the object itself), `SCOPE_ONELEVEL` (to search the object’s immediate children), or `SCOPE_SUBTREE` (to search the object and all its descendants). | `SCOPE_SUBTREE` |
 | `auth_type`          | string         | ldap authentication can be `'ANONYMOUS'`, `'SIMPLE'`, `'KERBEROS'`, `'NTLM'` | `'SIMPLE'` | 
 | `kerberos_realm`     | string         | optional realm for kerberos       | `REALM.MYDOMAIN.COM` | 
+| `domain`             | string         | name of the domain ONLY to perform NTLM auth | `DOMAIN` |
 | `ldap_connect_timeout` | integer      | ldap connect timeout in second, the default value is `None` | 3 |
 |  `exec_timeout`      | integer        | execute time out in seconds, to obtain ntlm_auth credentials, or cntlm auth credentials. The exec timeout is used to run external command line.  | 10 |
 |  `users_ou`		     	| string          | Users Organisation Unit | `ou=people,dc=planetexpress,dc=com` |
