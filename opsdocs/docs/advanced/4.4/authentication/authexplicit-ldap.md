@@ -13,6 +13,7 @@ For example :
 ```
 authmanagers: {
   'external': {},
+  'implicit': {},
   'explicit': {
     'planet': {
       'default': True,
@@ -23,6 +24,21 @@ authmanagers: {
     } 
   },
   'implicit': {}}
+```
+
+
+
+```
+authmanagers: {
+  'external': {},
+  'implicit': {},
+  'explicit': {
+    'show_domains': True,
+    'providers': {
+      'LDAP': { 
+        'config_ref': 'ldapconfig', 
+        'enabled': True
+       }}}}
 ```
 
 In this example, ```ldapconfig``` dict must have a key ```LDAP```
@@ -39,20 +55,21 @@ In this example, ```ldapconfig``` dict must have a key ```LDAP```
 
 ### providers configuration
 
-The ```provider``` authentification configuration is defined as a dictionnary object and must contain a key name.
+The ```provider``` authentification configuration is defined as a dictionary object and must contain a key name.
 The key name must be set with the same value in providers configuration and ```config_ref```.
 
 
 
 Providers :
 
-The provider is formated as a dictionnary 
+The provider is formated as a dictionary 
 
  ```
- { 'planet': {  
- 			'config_ref': 'ldapconfig',  
- 			'enabled': True  
- 		}
+ { 
+  'planet': {  
+    'config_ref': 'ldapconfig',  
+    'enabled': True  
+  }
  }
  ```
  
@@ -67,15 +84,14 @@ The ldapconfig is a dictionnary.
 
 For example :
 
-```
-ldapconfig : { 'planet': {    'default'       : True, 
-                        'ldap_timeout'  : 15,
-                        'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
-                        'servers'       : [ 'ldap://192.168.8.195' ],
-                        'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }
-           }}
-
-}
+```json
+ldapconfig: {
+  'planet: {
+    'default': True, 
+    'ldap_timeout': 15,
+    'ldap_basedn': 'ou=people,dc=planetexpress,dc=com',
+    'servers': [ 'ldap://192.168.8.195' ],
+    'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }}}}
 ```
 
 ## ldap configuration reference 

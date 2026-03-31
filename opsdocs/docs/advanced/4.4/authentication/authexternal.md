@@ -73,10 +73,13 @@ List of parameters
 |  `redirect_uri_querystring`  | string | URL query string                   | `manager=external&provider=google` |
 |  `authorization_base_url`    | string | callback URL                       | `https://accounts.google.com/o/oauth2/v2/auth` |
 |  `token_url`  			   | string | token URL                          | `https://oauth2.googleapis.com/token` |
-| `userinfomap`                | dictionary | remap key name to another one  | `{ '*': '*', 'picture': 'picture.data.url' } ` | 
+| `userinfomap`                | dictionary | remap key name to another one  | `{ '*': '*', 'picture': 'picture.data.url' } ` |
+| `policies`           | dict | policies to allow or denied access, the default value is `{}`| { 'acl' : { 'permit': [ 'all' ] } } |
 
 
-The complete redirect url concats the two values `redirect_uri_prefix` and `redirect_uri_querystring`.
+- The complete redirect url concats the two values `redirect_uri_prefix` and `redirect_uri_querystring`.
+- The `userinfomap` overwites all previous values `[ 'userid', 'name' ]` and also values to build the posix account `[ 'cn', 'uid', 'gid', 'uidNumber', 'gidNumber', 'homeDirectory', 'loginShell', 'description', 'groups', 'gecos']`.
+
 
 ## Read groups and set roles from userinfo
 
@@ -252,6 +255,9 @@ Enable other users to authorize your OAuth App. Create your keycloack credential
 ```
 'keycloak': {
       'displayname': 'ABC Keycloak',
+      'icon': 'img/auth/keycloak_icon.svg',
+      'textcolor': '#000000',
+      'backgroundcolor': '#FFFFFF',
       'enabled': True,
       'basic_auth': True,
       'userinfo_auth': True,

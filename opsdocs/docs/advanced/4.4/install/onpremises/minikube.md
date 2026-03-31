@@ -25,15 +25,12 @@ minikube start
 You should read on stdout
 
 ```
-minikube start --force
 😄  minikube v1.38.1 on Ubuntu 22.04
 ❗  minikube skips various validations when --force is supplied; this may lead to unexpected behavior
 ✨  Automatically selected the docker driver. Other choices: none, ssh
-🛑  The "docker" driver should not be used with root privileges. If you wish to continue as root, use --force.
 💡  If you are running minikube within a VM, consider using --driver=none:
 📘    https://minikube.sigs.k8s.io/docs/reference/drivers/none/
 ❗  Starting v1.39.0, minikube will default to "containerd" container runtime. See #21973 for more info.
-📌  Using Docker driver with root privileges
 👍  Starting "minikube" primary control-plane node in "minikube" cluster
 🚜  Pulling base image v0.0.50 ...
 💾  Downloading Kubernetes v1.35.1 preload ...
@@ -188,16 +185,17 @@ The user `Philip J. Fry` is connected to the abcdesktop service
 
 Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.
 
-## Troubleshooting
+## Common issues
 
-Start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop
+### issue 'FailedScheduling 0/1 nodes are available'
+
+```
+FailedScheduling 0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod
+```
+
+To fix it, start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop
 
 ```
 minikube start --cpus 4 --memory 16GB
 ```
 
-To fix this issue
-
-```
-FailedScheduling 0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod
-```
