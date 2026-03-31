@@ -100,19 +100,21 @@ ldapconfig: {
 
 | Variable name        | Type		       | Description                        | Example  |
 |----------------------|----------------|------------------------------------|----------|
-|  ```default```       | boolean        | Use this domain as default domain  | True     |
-|  ```tls_require_cert```       | boolean        | The default value is False. ```tls_require_cert```  apply only if ldap server URI starts with ```ldaps```. Allow LDAPS connection if the ldaps server hostname does not match CommonName peer certificate. **In production, set this value to ```True```** This will disable the ldap option call : `ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)` | False     |
-|  ```basedn```   | string         | LDAP Base Distinguished Names    | ```ou=people,dc=planetexpress,dc=com``` |
-|  ```servers```       | list of string | list of LDAP servers (IP Adress or FQDN), if entry does not respond, the next one is used.       | ```[ 'ldap://192.168.1.12', 'ldaps://myldap.domain.org' ]``` IP  Address or FQDN values |
-|  ```scope```			| LDAP           | Perform an LDAP search operation, with base as the DN of the entry at which to start the search, ```scope``` being one of ```SCOPE_BASE``` (to search the object itself), ```SCOPE_ONELEVEL``` (to search the object’s immediate children), or ```SCOPE_SUBTREE``` (to search the object and all its descendants). | ```ldap.SCOPE_SUBTREE``` |
-|  ```timeout```			| integer           | ldap time out in second  | 10 |
-|  ```exec_timeout```  | integer         | execute time out in seconds, to obtain ntlm_auth credentials, or cntlm auth credentials, or kerberos auth credentials. the exec timeout is used to run external command line.  | 10 |
-|  ```users_ou```			| string           | Users Organisation Unit | ```ou=people,dc=planetexpress,dc=com``` |
-|  ```attrs ```			| list            | list of default attributs to read in user object. read the [Definition of the inetOrgPerson LDAP Object Class ](https://tools.ietf.org/html/rfc2798)|  |
-|  ```filter```        | string         | LDAP filter to find user object | ```(&(objectClass=inetOrgPerson)(cn=%s))``` |
-|  ```group_filter```  | string         | LDAP filter to find group object | ```(&(objectClass=Group)(cn=%s))``` |
-|  ```group_attrs```  | string         | LDAP filter to find group object | ```(&(objectClass=Group)(cn=%s))``` |
-
+|  `default`           | boolean        | Use this domain as default domain  | True     |
+|  `basedn`            | string         | LDAP Base Distinguished Names      | `ou=people,dc=planetexpress,dc=com` |
+|  `servers`           | list of string | list of LDAP servers (IP address or FQDN), if entry does not respond, the next one is used.       | `[ 'ldap://192.168.1.12', 'ldaps://myldap.domain.org:636' ]` IP  Address or FQDN values |
+|  `scope`			| LDAP           | Perform an LDAP search operation, with base as the DN of the entry at which to start the search, `scope` being one of `SCOPE_BASE` (to search the object itself), `SCOPE_ONELEVEL` (to search the object’s immediate children), or `SCOPE_SUBTREE` (to search the object and all its descendants). | `SCOPE_SUBTREE` |
+| `auth_type`          | string         | ldap authentication can be `'ANONYMOUS'`, `'SIMPLE'`, `'KERBEROS'`, `'NTLM'` | `'SIMPLE'` | 
+| `kerberos_realm`     | string         | optional realm for kerberos       | `REALM.MYDOMAIN.COM` | 
+| `ldap_connect_timeout` | integer      | ldap connect timeout in second, the default value is `None` | 10 |
+|  `exec_timeout`      | integer        | execute time out in seconds, to obtain ntlm_auth credentials, or cntlm auth credentials. The exec timeout is used to run external command line.  | 10 |
+|  `users_ou`		     	| string          | Users Organisation Unit | `ou=people,dc=planetexpress,dc=com` |
+|  `attrs`			      | list            | list of default attributs to read in user object. read the [Definition of the inetOrgPerson LDAP Object Class ](https://tools.ietf.org/html/rfc2798) | the default value is `['objectClass', 'cn', 'sn', 'description', 'givenName', 'jpegPhoto', 'mail', 'ou', 'title', 'uid', 'distinguishedName', 'displayName']` |
+|  `filter`        | string             | LDAP filter to find user object  | `(&(objectClass=inetOrgPerson)(cn=%s))` |
+|  `group_filter`  | string             | LDAP filter to find group object | `(&(objectClass=Group)(cn=%s))` |
+|  `group_attrs`  | string              | LDAP filter to find attributs group object | `(&(objectClass=Group)(cn=%s))` |
+| `memberof_attribut_name`| string      | name of the attribut for group `memberOf`or `'groups'` | `'groups'` |
+| `kerberos_krb5_conf` | string         | name of the kerberos config file | `/etc/krb5.conf` | 
 
 
 ## The LDAP structure of openldap for testing 
