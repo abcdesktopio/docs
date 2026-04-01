@@ -75,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#executeclasses" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -2135,6 +2140,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Execute classes
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -2147,6 +2167,34 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executeclasses-dictionary" class="md-nav__link">
+    <span class="md-ellipsis">
+      executeclasses dictionary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3341,6 +3389,25 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executeclasses-dictionary" class="md-nav__link">
+    <span class="md-ellipsis">
+      executeclasses dictionary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3364,9 +3431,62 @@
   
 
 
-  <h1>Execute classes</h1>
-
-
+<h1 id="executeclasses">executeclasses</h1>
+<p>The executeclasses defines the resources for the desktop pods and for applications.</p>
+<h2 id="executeclasses-dictionary">executeclasses dictionary</h2>
+<div class="highlight"><pre><span></span><code>executeclasses : {
+  &#39;default&#39;:{
+    &#39;nodeSelector&#39;:None,
+    &#39;description&#39;: &#39;default: up to 4 CPU cores and 8Gi&#39;,
+    &#39;runtimeClassName&#39;: None,
+    &#39;resources&#39;:{
+      &#39;requests&#39;:{&#39;memory&#39;:&quot;576Mi&quot;,&#39;cpu&#39;:&quot;220m&quot;},       
+      &#39;limits&#39;:  {&#39;memory&#39;:&quot;8Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;}
+    }
+  },
+  &#39;bronze&#39;:{
+    &#39;nodeSelector&#39;:None,
+    &#39;runtimeClassName&#39;: None,
+    &#39;description&#39;: &#39;bronze: up to 2 CPU cores and 8Gi&#39;,
+    &#39;resources&#39;:{
+      &#39;requests&#39;:{&#39;memory&#39;:&quot;576Mi&quot;,&#39;cpu&#39;:&quot;220m&quot;},
+      &#39;limits&#39;:  {&#39;memory&#39;:&quot;8Gi&quot;,&#39;cpu&#39;:&quot;2000m&quot;}
+    }
+  },
+  &#39;silver&#39;:{
+    &#39;nodeSelector&#39;: None,
+    &#39;description&#39;: &#39;silver: 4 CPU cores and 32Gi RAM&#39;,
+    &#39;runtimeClassName&#39;: None,
+    &#39;resources&#39;:{
+      &#39;requests&#39;:{&#39;memory&#39;:&quot;2Gi&quot;,&#39;cpu&#39;:&quot;2000m&quot;},       
+      &#39;limits&#39;:{&#39;memory&#39;:&quot;32Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;} 
+    }
+  },
+  &#39;gold&#39;:{
+    # give a gpu to graphical container
+    &#39;containers&#39; : { &#39;graphical&#39;: { &#39;resources&#39;: { &#39;limits&#39;: { &#39;nvidia.com/gpu&#39;:&#39;1&#39; } } } },
+    &#39;nodeSelector&#39;:{&#39;nvidia.com/gpu&#39;: &#39;true&#39;},
+    &#39;description&#39;: &#39;gold: 4 CPU cores, 32Gi RAM and 1 GPU&#39;,
+    &#39;runtimeClassName&#39;: &#39;nvidia&#39;,
+    &#39;resources&#39;:{
+      &#39;requests&#39;:{&#39;memory&#39;:&quot;2Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;},       
+      &#39;limits&#39;:  {&#39;memory&#39;:&quot;32Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;}
+    }
+  },
+  &#39;platinum&#39;:{
+    # give a gpu to graphical container
+    &#39;containers&#39; : { &#39;graphical&#39;: { &#39;resources&#39;: { &#39;limits&#39;: { &#39;nvidia.com/gpu&#39;:&#39;1&#39; } } } },
+    # nodeselector optional 
+    &#39;nodeSelector&#39;:{&#39;nvidia.com/gpu&#39;: &#39;true&#39;},
+    # this appears only on web interface 
+    &#39;description&#39;: &#39;platinum: 8 CPU cores, 128G RAM and 1 GPU&#39;,
+    &#39;runtimeClassName&#39;: &#39;nvidia&#39;,
+    &#39;resources&#39;:{
+      &#39;requests&#39;:{&#39;memory&#39;:&quot;4Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;},       
+      &#39;limits&#39;:{&#39;memory&#39;:&quot;128Gi&quot;,&#39;cpu&#39;:&quot;8000m&quot;} 
+    }
+  }}
+</code></pre></div>
 
 
 
