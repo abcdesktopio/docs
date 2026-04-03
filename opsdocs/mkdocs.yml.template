@@ -12,12 +12,22 @@ theme:
   features:
     - navigation.top
     - navigation.tabs
+    - navigation.instant
     - content.action.edit
     - content.code.copy
 plugins:
     - search
     - tags
     - macros
+    - drawio:
+        tooltips: true
+        edit: true
+        darkmode: true
+        lightbox: true
+        toolbar:
+          zoom: true
+          layers: true
+          pages: true    
 extra:
   abcdesktop:
     latest_release: ${ABCDESKTOP_LATEST_RELEASE}
@@ -31,6 +41,8 @@ extra_css:
 
 extra_javascript:
   - js/tabbed-toc.js
+  - https://viewer.diagrams.net/js/viewer-static.min.js
+  - js/drawio-reload.js  
 
 markdown_extensions:
   - attr_list
