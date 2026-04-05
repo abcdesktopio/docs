@@ -3672,7 +3672,15 @@ There is no <code>authmanagers</code> available.</p>
 <p>Read the <a href="../authexternal/">authmanagers external</a> Section.</p>
 <h2 id="authmanagers-sample">authmanagers sample</h2>
 <p>In the <a href="../authimplicit/">authmanagers implicit</a> section, <a href="../authexplicit/">authmanagers explicit</a> section, and <a href="../authexternal/">authmanagers external</a> section, you have learned how to defined the providers. </p>
-<p>You can build an <code>authmanagers</code> dictionary as described with <code>external</code>, <code>explicit</code> and <code>implicit</code> at the same time.</p>
+<p>At the same time, you can build an <code>authmanagers</code> dictionary as described with all types:</p>
+<ul>
+<li><code>external</code></li>
+<li><code>explicit</code></li>
+<li><code>implicit</code> </li>
+</ul>
+<p>For example, abcdesktop login page, with <code>external</code>, <code>explicit</code> and <code>implicit</code></p>
+<p><img alt="allproviders" src="../img/auth-overview-allproviders.png" /></p>
+<p>This page is generated from the authmanagers configuration</p>
 <div class="highlight"><pre><span></span><code><span class="err">au</span><span class="kc">t</span><span class="err">hma</span><span class="kc">na</span><span class="err">gers</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="err">&#39;ex</span><span class="kc">ternal</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="err">&#39;providers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3682,7 +3690,7 @@ There is no <code>authmanagers</code> available.</p>
 <span class="w">        </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#</span><span class="mi">000000</span><span class="err">&#39;</span><span class="p">,</span>
 <span class="w">        </span><span class="err">&#39;backgrou</span><span class="kc">n</span><span class="err">dcolor&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#FFFFFF&#39;</span><span class="p">,</span>
 <span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
-<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span><span class="w"> </span>
 <span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
 <span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
 <span class="w">        </span><span class="err">&#39;scope&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/auth/userinfo.email&#39;,  &#39;openid&#39; ],</span>
@@ -3733,9 +3741,7 @@ There is no <code>authmanagers</code> available.</p>
 <span class="w">        </span><span class="err">&#39;cap</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Have</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">look</span><span class="w"> </span><span class="err">!&#39;</span><span class="p">,</span>
 <span class="w">        </span><span class="err">&#39;userid&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;a</span><span class="kc">n</span><span class="err">o</span><span class="kc">n</span><span class="err">ymous&#39;</span><span class="p">,</span>
 <span class="w">        </span><span class="err">&#39;user</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;A</span><span class="kc">n</span><span class="err">o</span><span class="kc">n</span><span class="err">ymous&#39;</span>
-<span class="w">      </span><span class="p">}</span><span class="w">     </span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}}</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 
 
 <span class="err">adco</span><span class="kc">nf</span><span class="err">ig</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
@@ -3751,13 +3757,13 @@ There is no <code>authmanagers</code> available.</p>
 <span class="w">      </span><span class="err">&#39;servers&#39;</span><span class="w">    </span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ldap</span><span class="p">:</span><span class="c1">//192.168.7.12&#39; ],</span>
 <span class="w">      </span><span class="err">&#39;kerberos_realm&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;AD.DOMAIN.LOCAL&#39;</span><span class="p">,</span>
 <span class="w">      </span><span class="err">&#39;serviceaccou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;logi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;svcaccou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;password&#39;</span><span class="p">:</span><span class="err">&#39;accou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">     </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">h_pro</span><span class="kc">t</span><span class="err">ocol&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">h_pro</span><span class="kc">t</span><span class="err">ocol&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <span class="w">            </span><span class="err">&#39;</span><span class="kc">ntl</span><span class="err">m&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
 <span class="w">            </span><span class="err">&#39;c</span><span class="kc">ntl</span><span class="err">m&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span><span class="w"> </span>
 <span class="w">            </span><span class="err">&#39;kerberos&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
 <span class="w">            </span><span class="err">&#39;ci</span><span class="kc">tr</span><span class="err">ix&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span><span class="w"> </span>
 <span class="w">            </span><span class="err">&#39;localaccou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">},</span>
-<span class="w">     </span><span class="err">&#39;query_dcs&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="err">&#39;query_dcs&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 
 
