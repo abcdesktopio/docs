@@ -118,7 +118,17 @@ Read the [authmanagers external](authexternal.md) Section.
         
 In the [authmanagers implicit](authimplicit.md) section, [authmanagers explicit](authexplicit.md) section, and [authmanagers external](authexternal.md) section, you have learned how to defined the providers. 
 
-You can build an `authmanagers` dictionary as described with `external`, `explicit` and `implicit` at the same time.
+At the same time, you can build an `authmanagers` dictionary as described with all types:
+
+- `external`
+- `explicit`
+- `implicit` 
+
+For example, abcdesktop login page, with `external`, `explicit` and `implicit`
+
+![allproviders](img/auth-overview-allproviders.png)
+
+This page is generated from the authmanagers configuration
 
 ```json
 authmanagers: {
@@ -130,7 +140,7 @@ authmanagers: {
         'textcolor': '#000000',
         'backgroundcolor': '#FFFFFF',
         'enabled': True,
-        'client_id': 'xxxx, 
+        'client_id': 'xxxx', 
         'client_secret': 'xxxx',
         'userinfo_auth': True,
         'scope': [ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ],
@@ -181,30 +191,28 @@ authmanagers: {
         'caption': 'Have a look !',
         'userid': 'anonymous',
         'username': 'Anonymous'
-      }     
-    }
-}}
+      } } } }
 
 
 adconfig : { 
   'AD': { 
       'default' : True, 
-	  'ldap_timeout': 15,
-	  'ldap_basedn': 'DC=ad,DC=domain,DC=local',
-	  'ldap_fqdn': '_ldap._tcp.ad.domain.local',
-	  'domain': 'AD',
-	  'auth_type': 'KERBEROS',
-	  'domain_fqdn': 'AD.DOMAIN.LOCAL',
-	  'krb5_conf': '/etc/krb5.conf',
-	  'servers'    :  [ 'ldap://192.168.7.12' ],
-	  'kerberos_realm': 'AD.DOMAIN.LOCAL',
-	  'serviceaccount': { 'login': 'svcaccount', 'password':'account' },
-     'auth_protocol' : { 
-     		'ntlm': True, 
-     		'cntlm': False, 
-     		'kerberos': True, 
-     		'citrix': False, 
-     		'localaccount': True },
-     'query_dcs' : False } } }
+      'ldap_timeout': 15,
+      'ldap_basedn': 'DC=ad,DC=domain,DC=local',
+      'ldap_fqdn': '_ldap._tcp.ad.domain.local',
+      'domain': 'AD',
+      'auth_type': 'KERBEROS',
+      'domain_fqdn': 'AD.DOMAIN.LOCAL',
+      'krb5_conf': '/etc/krb5.conf',
+      'servers'    :  [ 'ldap://192.168.7.12' ],
+      'kerberos_realm': 'AD.DOMAIN.LOCAL',
+      'serviceaccount': { 'login': 'svcaccount', 'password':'account' },
+      'auth_protocol' : { 
+            'ntlm': True, 
+            'cntlm': False, 
+            'kerberos': True, 
+            'citrix': False, 
+            'localaccount': True },
+      'query_dcs' : False } }
 ```
 
