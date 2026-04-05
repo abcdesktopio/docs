@@ -142,15 +142,28 @@ The service infrastructure is based on :
 `pyos` is the core abcdesktop service act as a control plane. Pyos is a stateless services, Pyos's roles are :
 
 - Authenticate user on authenticate providers
- - OpenID Provider
- - LDAP and LDAPS
- - Active Directory
- - Anonymous (no auth)
+  - OpenID Provider
+  - LDAP and LDAPS
+  - Active Directory
+  - Anonymous (no auth)
 - Create/Read/Update/Delete user's Pod in Kubernetes 
 - Create/Read/Update/Delete user's applications as `ephemeral container` or as `pod`
 
 > When a new user is authenticated, a dedicated user pod is created.
 > When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a `pod` or an `ephemeral container`
+
+pyos needs `rbac.authorization.k8s.io` roles to `CRUD` the namespaced resources : 
+- 'pods', 'pods/exec', 'pods/ephemeralcontainers', 'pods/log'
+- 'events'
+- 'secrets'
+- 'configmaps'
+- 'persistentvolumeclaims'
+  
+pyos runs as a `ServiceAccount` named pyos-serviceaccount, with `pyos-role.
+Optionaly, you can also add pyos to `CRUD` resources ['persistentvolumes'], in paricular cases. `persistentvolumes` are not namepspaced.
+
+The `Role, `RoleBinding` and `ServiceAccount` are embeded in the abcdesktop.yaml file.
+
 
 
 ### router
