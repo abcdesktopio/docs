@@ -3830,6 +3830,15 @@ sequenceDiagram
 <p>When a new user is authenticated, a dedicated user pod is created.
 When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a <code>pod</code> or an <code>ephemeral container</code></p>
 </blockquote>
+<p>pyos needs <code>rbac.authorization.k8s.io</code> roles to <code>CRUD</code> the namespaced resources : 
+- 'pods', 'pods/exec', 'pods/ephemeralcontainers', 'pods/log'
+- 'events'
+- 'secrets'
+- 'configmaps'
+- 'persistentvolumeclaims'</p>
+<p>pyos runs as a <code>ServiceAccount</code> named pyos-serviceaccount, with <code>pyos-role.
+Optionaly, you can also add pyos to</code>CRUD<code>resources ['persistentvolumes'], in paricular cases.</code>persistentvolumes` are not namepspaced.</p>
+<p>The <code>Role,</code>RoleBinding<code>and</code>ServiceAccount` are embeded in the abcdesktop.yaml file.</p>
 <h3 id="router">router</h3>
 <p><code>router</code> pod act as a <code>http router</code> web server. It routes HTTP requets to <code>user's pods</code>, <code>web site</code>, <code>pyos</code>, <code>console</code>.</p>
 <h3 id="website">website</h3>
