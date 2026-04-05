@@ -107,10 +107,9 @@ Read the [authmanagers meta explicit](authmetaexplicit.md) Section.
 
 ## authmanagers `external`:
 
-`external` use external OAuth 2.0 authentication, for example [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2), or [Github OAuth 2.0](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps) 
+`external` use external OAuth 2.0 authentication, for example [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2), or [Github OAuth 2.0](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps), and so on.
 
-
-
+![auth-overview-external](img/auth-overview-external.png)
 
 Read the [authmanagers external](authexternal.md) Section.
 
