@@ -6,7 +6,7 @@ tags:
 
 # FAQ Adopter
 
-## Who is using abcdesktop.io projets ?
+## Who is using abcdesktop.io projet ?
 
 Here are some of the organizations we know are using abcdesktop.io.
 
