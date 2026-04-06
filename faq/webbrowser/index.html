@@ -3203,15 +3203,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-change-the-default-language" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to change the default language ?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#which-web-browser-is-supported" class="md-nav__link">
     <span class="md-ellipsis">
       Which web browser is supported ?
@@ -3224,6 +3215,15 @@
   <a href="#how-to-do-a-copy-and-paste" class="md-nav__link">
     <span class="md-ellipsis">
       How to do a copy and paste ?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-change-the-default-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to change the default language ?
     </span>
   </a>
   
@@ -3387,15 +3387,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-change-the-default-language" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to change the default language ?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#which-web-browser-is-supported" class="md-nav__link">
     <span class="md-ellipsis">
       Which web browser is supported ?
@@ -3408,6 +3399,15 @@
   <a href="#how-to-do-a-copy-and-paste" class="md-nav__link">
     <span class="md-ellipsis">
       How to do a copy and paste ?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-change-the-default-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to change the default language ?
     </span>
   </a>
   
@@ -3454,9 +3454,6 @@
 
 
 <h1 id="faq-web-browser">FAQ Web Browser</h1>
-<h2 id="how-to-change-the-default-language">How to change the default language ?</h2>
-<p>abcdesktop reads the your web browser language and starts application and desktop this user's choose.
-The default installed languages are <code>English</code>, <code>French</code>, <code>German</code>, and <code>Romanian</code>. If you need other languages support you have to rebuild the container image with your language.</p>
 <h2 id="which-web-browser-is-supported">Which web browser is supported ?</h2>
 <p>abcdesktop.io uses many modern web technologies. However these are the minimum versions we are currently aware of:</p>
 <ul>
@@ -3501,6 +3498,26 @@ The default installed languages are <code>English</code>, <code>French</code>, <
 <blockquote>
 <p>Make sure to use <code>https</code> protocol to allow read and write api calls to your clipboard</p>
 </blockquote>
+<h2 id="how-to-change-the-default-language">How to change the default language ?</h2>
+<p>abcdesktop reads the your web browser language and starts application and desktop this user's choose.
+The default installed languages are <code>English</code>, <code>French</code>, <code>German</code>, and <code>Romanian</code>. If you need other languages support you have to rebuild the container image with your language.</p>
+<p>abcdesktop uses the web browser language property to set the application's language. This list must match with the <code>Accept-Language</code> request HTTP header. If the language is not found, the default value is set to <code>en_US</code>.</p>
+<p>To check the supported language, change your web browser language, and run <code>LibreOffice</code> applications. The language setting uses the web browser value. During this test you can keep the same users session.</p>
+<ul>
+<li>Set the web browser's default language to <code>en_US</code> : <img alt="web browser's default language to en_US" src="../img/language_web_en_US.png" /></li>
+</ul>
+<p>The launch LibreOffice Writer. The menu is set to <code>en_US</code> <img alt="web browser's default language to en_US" src="../img/language_writer_en_US.png" /></p>
+<p>LibreOffice Writer use English/US <code>en_US</code> language.</p>
+<ul>
+<li>Set the web browser's default language to <code>fr_FR</code> :
+<img alt="web browser's default language to fr_FR" src="../img/language_web_fr_FR.png" /></li>
+</ul>
+<blockquote>
+<p>You can keep the same user's session, you do not need to logout.</p>
+</blockquote>
+<p>The launch LibreOffice Writer. The menu is set to <code>fr_FR</code>
+<img alt="web browser's default language to fr_FR" src="../img/language_writer_fr_FR.png" />
+LibreOffice Writer use French <code>fr_FR</code>language.</p>
 
 
 
