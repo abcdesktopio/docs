@@ -1,21 +1,21 @@
-# abcdesktop a simple application `microsoft edge`
+# a simple application `chromium`
 
 ## Requirements
 
 You need to have
 
 - kubernetes cluster ready to run whith abcdesktop.io installed
-- `kubectl` or `microk8s` command-line tool must be configured to communicate with your cluster. 
+- `kubectl` command-line tool must be configured to communicate with your cluster. 
 - `docker` command line must be installed to build the image.
-- your registry
+- your public or private registry
 
 
-## Create a simple application `Microsoft Edge`
+## Create a simple application `chromium`
 
 
-To illustrate a simple application, we will install `Microsoft Edge` inside a container. 
+To illustrate a simple application, we will install `chromium` inside a container. 
 
-* Create a Dockerfile to install `Microsoft Edge` application from `microsoft-edge` package
+* Create a Dockerfile to install `chromium` application from `debian` container image
 
 ```Dockerfile
 FROM debian
@@ -59,7 +59,9 @@ CMD [ "/usr/bin/chromium" ]
 
 Dockerfile description 
 
-This image is based on debian, and install the `chromium` package Then we define `/usr/bin/chromium` as the CMD.
+This image is based on debian, and install the `chromium` package. 
+
+Then we define `/usr/bin/chromium` as the CMD.
 
 * `oc.keyword` label defines keyworks for the search engine
 * `oc.cat` label defines category of the application
@@ -73,7 +75,7 @@ This image is based on debian, and install the `chromium` package Then we define
 * `oc.legacyfileextensions` defines the legacy file extension support by this application
 
 
-* Build the image for microsoft-edge application
+* Build the image for chromium application
 
 ```bash
 REGISTRY=abcdesktopio
@@ -106,7 +108,7 @@ then send the `/tmp/chromium.json` to REST API server
 ```bash
 NAMESPACE=abcdesktop
 PYOS_POD_NAME=$(kubectl get pods -l run=pyos-od -o jsonpath={.items..metadata.name} -n "$NAMESPACE" | awk '{print $1}')
-kubectl cp sampleedge.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
+kubectl cp chromium.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/chromium.json
 ```
 
@@ -181,10 +183,10 @@ The endpoint image returns a json documment
 
 * Look for the new application `chromium ` pushed
 
-![Look for the new application microsoft-edge](img/simplestapplication-lookfor-chromium.png)
+![Look for the new application chromium](img/simplestapplication-lookfor-chromium.png)
 
 * Wait for the pulling process
 
-![application microsoft-edge](img/simplestapplication-chromium-running.png)
+![application chromium](img/simplestapplication-chromium-running.png)
 
 * `chromium ` is running
