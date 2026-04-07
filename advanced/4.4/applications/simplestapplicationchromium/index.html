@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#abcdesktop-a-simple-application-microsoft-edge" class="md-skip">
+        <a href="#a-simple-application-chromium" class="md-skip">
           Skip to content
         </a>
       
@@ -1821,9 +1821,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-a-simple-application-microsoft-edge" class="md-nav__link">
+  <a href="#create-a-simple-application-chromium" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a simple application Microsoft Edge
+      Create a simple application chromium
     </span>
   </a>
   
@@ -3492,9 +3492,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-a-simple-application-microsoft-edge" class="md-nav__link">
+  <a href="#create-a-simple-application-chromium" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a simple application Microsoft Edge
+      Create a simple application chromium
     </span>
   </a>
   
@@ -3533,19 +3533,19 @@
   
 
 
-<h1 id="abcdesktop-a-simple-application-microsoft-edge">abcdesktop a simple application <code>microsoft edge</code></h1>
+<h1 id="a-simple-application-chromium">a simple application <code>chromium</code></h1>
 <h2 id="requirements">Requirements</h2>
 <p>You need to have</p>
 <ul>
 <li>kubernetes cluster ready to run whith abcdesktop.io installed</li>
-<li><code>kubectl</code> or <code>microk8s</code> command-line tool must be configured to communicate with your cluster. </li>
+<li><code>kubectl</code> command-line tool must be configured to communicate with your cluster. </li>
 <li><code>docker</code> command line must be installed to build the image.</li>
-<li>your registry</li>
+<li>your public or private registry</li>
 </ul>
-<h2 id="create-a-simple-application-microsoft-edge">Create a simple application <code>Microsoft Edge</code></h2>
-<p>To illustrate a simple application, we will install <code>Microsoft Edge</code> inside a container. </p>
+<h2 id="create-a-simple-application-chromium">Create a simple application <code>chromium</code></h2>
+<p>To illustrate a simple application, we will install <code>chromium</code> inside a container. </p>
 <ul>
-<li>Create a Dockerfile to install <code>Microsoft Edge</code> application from <code>microsoft-edge</code> package</li>
+<li>Create a Dockerfile to install <code>chromium</code> application from <code>debian</code> container image</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">debian</span>
 <span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;debconf debconf/frontend select Noninteractive&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>debconf-set-selections
@@ -3586,7 +3586,8 @@ SIxNzEuOTEiIGNvbG9yPSIjMDAwMDAwIiBmaWxsPSJ1cmwoI2QpIi8+CiAgPC9nPgogPC9nPgo8L3N2Z
 <span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;/usr/bin/chromium&quot;</span><span class="w"> </span><span class="p">]</span>
 </code></pre></div>
 <p>Dockerfile description </p>
-<p>This image is based on debian, and install the <code>chromium</code> package Then we define <code>/usr/bin/chromium</code> as the CMD.</p>
+<p>This image is based on debian, and install the <code>chromium</code> package. </p>
+<p>Then we define <code>/usr/bin/chromium</code> as the CMD.</p>
 <ul>
 <li><code>oc.keyword</code> label defines keyworks for the search engine</li>
 <li><code>oc.cat</code> label defines category of the application</li>
@@ -3601,7 +3602,7 @@ SIxNzEuOTEiIGNvbG9yPSIjMDAwMDAwIiBmaWxsPSJ1cmwoI2QpIi8+CiAgPC9nPgogPC9nPgo8L3N2Z
 <p><code>oc.legacyfileextensions</code> defines the legacy file extension support by this application</p>
 </li>
 <li>
-<p>Build the image for microsoft-edge application</p>
+<p>Build the image for chromium application</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
@@ -3630,7 +3631,7 @@ docker<span class="w"> </span>inspect<span class="w"> </span><span class="nv">$R
 then send the <code>/tmp/chromium.json</code> to REST API server</p>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 <span class="nv">PYOS_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NAMESPACE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
-kubectl<span class="w"> </span>cp<span class="w"> </span>sampleedge.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
+kubectl<span class="w"> </span>cp<span class="w"> </span>chromium.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/chromium.json
 </code></pre></div>
 <p>The endpoint image returns a json documment </p>
@@ -3700,11 +3701,11 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 <ul>
 <li>Look for the new application <code>chromium</code> pushed</li>
 </ul>
-<p><img alt="Look for the new application microsoft-edge" src="../img/simplestapplication-lookfor-chromium.png" /></p>
+<p><img alt="Look for the new application chromium" src="../img/simplestapplication-lookfor-chromium.png" /></p>
 <ul>
 <li>Wait for the pulling process</li>
 </ul>
-<p><img alt="application microsoft-edge" src="../img/simplestapplication-chromium-running.png" /></p>
+<p><img alt="application chromium" src="../img/simplestapplication-chromium-running.png" /></p>
 <ul>
 <li><code>chromium</code> is running</li>
 </ul>
