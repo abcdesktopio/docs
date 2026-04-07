@@ -2,7 +2,7 @@
 tags:
   - installation
   - requirement
-  - wip
+  - read by JF
 ---
 
 # Requirements
