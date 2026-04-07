@@ -2,16 +2,17 @@
 tags:
   - minikube
   - installation
+  - read by AD
 ---
 
-Minikube is a tool for running local Kubernetes clusters using Docker container “nodes”. Minikube was primarily designed for testing Kubernetes itself, but it can be used to deploy Kubernetes applications as well. To install or setup `minikube`, refer to the [Minikube documentation](https://minikube.sigs.k8s.io/docs/)
+`Minikube` is a tool for running local Kubernetes clusters using Docker container “nodes”. Minikube was primarily designed for testing Kubernetes itself, but it can be used to deploy Kubernetes applications as well. To install or setup `minikube`, refer to the [Minikube documentation](https://minikube.sigs.k8s.io/docs/)
 
 ## Requirements
 
 * [minikube](https://minikube.sigs.k8s.io/docs/start) command line installed 
 * [docker](https://docs.docker.com/engine/install) Docker Engine installed. 
 * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command-line tool must be configured to communicate with your cluster.
-* openssl and curl command line must be installed too (only for install using kubectl) or helm command.
+* openssl and curl command line must be installed too (only for install using kubectl)
 
 
 ## Create minikube cluster
@@ -172,6 +173,7 @@ The install bash script forward the tcp port 30443 to the router pod port tcp 80
 [INFO] http://192.168.7.119:30443/
 ```
 > Open the URL returnes by the install bash script. In this sample `http://192.168.7.119:30443/`
+> Change the ip address `192.168.7.119` with your own
 
 ![kind home page](img/kinduserhompage.png)
 
