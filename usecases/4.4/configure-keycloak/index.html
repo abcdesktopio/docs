@@ -3611,6 +3611,29 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In this example, we will use <a href="https://github.com/rroemhild/docker-test-openldap">docker-test-openldap</a></p>
+<details class="note">
+<summary>show details</summary>
+<p>This image uses standard static groups based on <code>RFC LDAP 4519</code> </p>
+<p>Below is the <code>ship_crew</code> group file</p>
+<div class="highlight"><pre><span></span><code>dn: cn=ship_crew,ou=people,dc=planetexpress,dc=com
+objectclass: Group
+objectclass: top
+groupType: 2147483650
+cn: ship_crew
+member: cn=Philip J. Fry,ou=people,dc=planetexpress,dc=com
+member: cn=Turanga Leela,ou=people,dc=planetexpress,dc=com
+member: cn=Bender Bending Rodriguez,ou=people,dc=planetexpress,dc=com
+</code></pre></div>
+<p>Below is the <code>admin_staff</code> group file</p>
+<div class="highlight"><pre><span></span><code>dn: cn=admin_staff,ou=people,dc=planetexpress,dc=com
+objectclass: Group
+objectclass: top
+groupType: 2147483650
+cn: admin_staff
+member: cn=Hubert J. Farnsworth,ou=people,dc=planetexpress,dc=com
+member: cn=Hermes Conrad,ou=people,dc=planetexpress,dc=com
+</code></pre></div>
+</details>
 </div>
 <h2 id="install">Install</h2>
 <p>There are many ways to install a keycloak server, in this tutorial, we will perform a Kubernetes install on the same cluster hosting our abcdesktop using helm command line.</p>
@@ -3700,10 +3723,10 @@ Go to <code>Mappers</code> tab on the <code>User Federation</code> page and crea
 <summary>show details</summary>
 <p>Go to the <code>Mappers</code> tab and create one mapper for each previously created mapper.</p>
 <p>In our case, we need to create both client sides <code>groups</code> and <code>uid</code> mappers. </p>
-</details>
 <p><img alt="client-group-mapper" src="../img/keycloak-client-groups-mapper.png" />
-  <img alt="client-uid-mapper" src="../img/keycloak-client-uid-mapper.png" />
-  <img alt="client-mappers-added" src="../img/keycloak-client-mappers-added.png" /></p>
+<img alt="client-uid-mapper" src="../img/keycloak-client-uid-mapper.png" />
+<img alt="client-mappers-added" src="../img/keycloak-client-mappers-added.png" /></p>
+</details>
 </div>
 <h2 id="update-odconfig-file">Update od.config file</h2>
 <p>Now you have to tell abcdesktop to use keycloak as an authentication provider. For that, you need to update the <code>od.config</code> file as explained on <a href="https://abcdesktop.pepins.net/advanced/4.4/authentication/authexternal/#keycloak-oauth">this page</a>.  </p>
