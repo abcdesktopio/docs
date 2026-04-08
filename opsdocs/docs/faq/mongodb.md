@@ -1,3 +1,8 @@
+---
+tags:
+  - faq
+  - mongodb
+---
 
 # Mongodb
 
