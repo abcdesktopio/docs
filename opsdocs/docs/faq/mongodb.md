@@ -2,7 +2,7 @@
 # Mongodb
 
 
-## How to increase the `mongodb` number of replicats
+## How to increase the `mongodb` number of `replicats`
 
 - Open your [abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-{{ abcdesktop.latest_release }}.yaml) file and look for the `StatefulSet` mongodb-od
 
