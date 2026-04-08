@@ -192,7 +192,7 @@ persistentvolumeclaim/planet-fry   Bound    pvc-8f802cbc-873f-46ab-9d7a-fe266da4
 
 Now you can create a file in the user's homedir 
 
-![create file on user homedir](../../../img/nfs_create_file_user_homedir.png)
+![create file on user homedir](./img/nfs_create_file_user_homedir.png)
 
 You can also check if the user's homedir is present on your nfs server, you should also see that a subdir have been created thanks to `nfs-subdir-external-provisioner`.
 
@@ -214,4 +214,4 @@ drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Videos
 
 Then perform a logoff to destroy your pod and recreates it, once reconnected on a new pod with the same user, check if the file you previously created is still there, it should appear.
 
-![check peristent user homedir](../../../img/nfs_check_persistent_homedir.png)
+![check peristent user homedir](./img/nfs_check_persistent_homedir.png)
