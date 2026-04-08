@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://abcdesktop.pepins.net/cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/">
+        <link rel="canonical" href="https://abcdesktop.pepins.net/faq/mongodb/">
       
       
-        <link rel="prev" href="../digitalocean/">
+        <link rel="prev" href="../applications/">
       
       
-        <link rel="next" href="../digitalocean-nginx-ingress-controller/">
+        <link rel="next" href="../adopters/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -22,11 +22,11 @@
     
     
       
-        <title>Expose using a load balancer - abcdesktop.pepins.net</title>
+        <title>Mongodb - abcdesktop.pepins.net</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -45,11 +45,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../../css/custom-admonition.css">
+      <link rel="stylesheet" href="../../css/custom-admonition.css">
     
-      <link rel="stylesheet" href="../../../../css/drawio-darkmode.css">
+      <link rel="stylesheet" href="../../css/drawio-darkmode.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#publish-your-website-as-a-public-secured-service" class="md-skip">
+        <a href="#mongodb" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="abcdesktop.pepins.net" class="md-header__button md-logo" aria-label="abcdesktop.pepins.net" data-md-component="logo">
+    <a href="../.." title="abcdesktop.pepins.net" class="md-header__button md-logo" aria-label="abcdesktop.pepins.net" data-md-component="logo">
       
   <img src="/img/abcdesktop.svg" alt="logo">
 
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Expose using a load balancer
+              Mongodb
             
           </span>
         </div>
@@ -196,7 +196,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -217,7 +217,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../requirements/" class="md-tabs__link">
+        <a href="../../requirements/" class="md-tabs__link">
           
   
   
@@ -233,8 +233,6 @@
   
   
   
-    
-  
   
     
     
@@ -242,13 +240,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../../architecture/overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../architecture/overview/" class="md-tabs__link">
           
   
   
@@ -271,7 +267,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../contribute/overview/" class="md-tabs__link">
+        <a href="../../contribute/overview/" class="md-tabs__link">
           
   
   
@@ -291,7 +287,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../usecases/4.4/filter-traffic-per-group/" class="md-tabs__link">
+        <a href="../../usecases/4.4/filter-traffic-per-group/" class="md-tabs__link">
           
   
   
@@ -307,11 +303,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../../faq/issue/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../issue/" class="md-tabs__link">
           
   
   
@@ -345,7 +343,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="abcdesktop.pepins.net" class="md-nav__button md-logo" aria-label="abcdesktop.pepins.net" data-md-component="logo">
+    <a href="../.." title="abcdesktop.pepins.net" class="md-nav__button md-logo" aria-label="abcdesktop.pepins.net" data-md-component="logo">
       
   <img src="/img/abcdesktop.svg" alt="logo">
 
@@ -374,7 +372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -437,7 +435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../requirements/" class="md-nav__link">
+      <a href="../../requirements/" class="md-nav__link">
         
   
   
@@ -501,7 +499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/script/" class="md-nav__link">
+      <a href="../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -524,7 +522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -596,7 +594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/applicationoverview/" class="md-nav__link">
+      <a href="../../install/4.4/applicationoverview/" class="md-nav__link">
         
   
   
@@ -619,7 +617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/install-applications/" class="md-nav__link">
+      <a href="../../install/4.4/install-applications/" class="md-nav__link">
         
   
   
@@ -642,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/applicationwithconsole/" class="md-nav__link">
+      <a href="../../install/4.4/applicationwithconsole/" class="md-nav__link">
         
   
   
@@ -714,7 +712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../uninstall/4.4/script/" class="md-nav__link">
+      <a href="../../uninstall/4.4/script/" class="md-nav__link">
         
   
   
@@ -737,7 +735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../uninstall/4.4/helm/" class="md-nav__link">
+      <a href="../../uninstall/4.4/helm/" class="md-nav__link">
         
   
   
@@ -772,29 +770,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -807,7 +800,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Advanced
@@ -862,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/overview/" class="md-nav__link">
+      <a href="../../architecture/overview/" class="md-nav__link">
         
   
   
@@ -934,7 +927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
+      <a href="../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
         
   
   
@@ -957,7 +950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/script/" class="md-nav__link">
+      <a href="../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -980,7 +973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -1003,7 +996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
+      <a href="../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
         
   
   
@@ -1031,8 +1024,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1043,11 +1034,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
         
           
           <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
@@ -1063,7 +1054,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             Install On Cloud
@@ -1118,7 +1109,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../aws/aws/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
         
   
   
@@ -1141,7 +1132,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../aws/aws-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1164,7 +1155,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../aws/aws-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1236,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure/azure/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
         
   
   
@@ -1259,7 +1250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure/azure-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1282,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure/azure-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1310,8 +1301,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1322,11 +1311,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" >
         
           
           <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
@@ -1342,7 +1331,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_3_3">
             <span class="md-nav__icon md-icon"></span>
             Digital Ocean
@@ -1356,7 +1345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../digitalocean/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
         
   
   
@@ -1376,32 +1365,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Expose using a load balancer
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1412,122 +1379,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Requirements
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-new-http-router-service-yaml-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a new http-router service yaml file
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-your-dns-zone-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update your DNS zone file
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Update your DNS zone file">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-new-record" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create new record
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#obtain-a-certificat" class="md-nav__link">
-    <span class="md-ellipsis">
-      Obtain a certificat
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-secret-for-x509-certificat" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a secret for X509 certificat
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-http-router-configmap-to-use-the-new-http-router-certificat-secret" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update http-router ConfigMap to use the new http-router-certificat secret
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-deployment-http-router" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update deployment http-router
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reach-your-website-using-https-protocol" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reach your website using https protocol
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1540,7 +1391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../digitalocean-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1612,7 +1463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../gcp/gcp/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
         
   
   
@@ -1635,7 +1486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../gcp/gcp-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1658,7 +1509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../gcp/gcp-gke-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1730,7 +1581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ovh/ovh/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
         
   
   
@@ -1753,7 +1604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ovh/ovh-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1776,7 +1627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1856,7 +1707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/simplestapplicationxeyes/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/simplestapplicationxeyes/" class="md-nav__link">
         
   
   
@@ -1879,7 +1730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/simplestapplicationxedit/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/simplestapplicationxedit/" class="md-nav__link">
         
   
   
@@ -1902,7 +1753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/simplestapplicationchromium/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/simplestapplicationchromium/" class="md-nav__link">
         
   
   
@@ -1925,7 +1776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/templateapplication.md" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/templateapplication.md" class="md-nav__link">
         
   
   
@@ -1948,7 +1799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/applicationscripting.md" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/applicationscripting.md" class="md-nav__link">
         
   
   
@@ -2020,7 +1871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/updateconfiguration/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/updateconfiguration/" class="md-nav__link">
         
   
   
@@ -2084,7 +1935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/overview/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/overview/" class="md-nav__link">
         
   
   
@@ -2107,7 +1958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authexternal/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authexternal/" class="md-nav__link">
         
   
   
@@ -2171,7 +2022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authexplicit-ldap/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authexplicit-ldap/" class="md-nav__link">
         
   
   
@@ -2194,7 +2045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authexplicit-activedirectory/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authexplicit-activedirectory/" class="md-nav__link">
         
   
   
@@ -2217,7 +2068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authmetaexplicit/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authmetaexplicit/" class="md-nav__link">
         
   
   
@@ -2248,7 +2099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authimplicit/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authimplicit/" class="md-nav__link">
         
   
   
@@ -2279,7 +2130,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authentification-rules/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authentification-rules/" class="md-nav__link">
         
   
   
@@ -2343,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/overview/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/overview/" class="md-nav__link">
         
   
   
@@ -2366,7 +2217,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/executeclasses/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/executeclasses/" class="md-nav__link">
         
   
   
@@ -2389,7 +2240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/pod/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/pod/" class="md-nav__link">
         
   
   
@@ -2412,7 +2263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/resources/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/resources/" class="md-nav__link">
         
   
   
@@ -2435,7 +2286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/policies/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/policies/" class="md-nav__link">
         
   
   
@@ -2507,7 +2358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/overview.md" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/overview.md" class="md-nav__link">
         
   
   
@@ -2530,7 +2381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/nfs/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/nfs/" class="md-nav__link">
         
   
   
@@ -2553,7 +2404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/s3/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/s3/" class="md-nav__link">
         
   
   
@@ -2576,7 +2427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/hostpath/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/hostpath/" class="md-nav__link">
         
   
   
@@ -2599,7 +2450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/sharedvolume/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/sharedvolume/" class="md-nav__link">
         
   
   
@@ -2622,7 +2473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/add_hostpath_volume_using_rules.md" class="md-nav__link">
+      <a href="../../advanced/4.4/add_hostpath_volume_using_rules.md" class="md-nav__link">
         
   
   
@@ -2653,7 +2504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/garbagecollector/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/garbagecollector/" class="md-nav__link">
         
   
   
@@ -2676,7 +2527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
         
   
   
@@ -2699,7 +2550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/welcome/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/welcome/" class="md-nav__link">
         
   
   
@@ -2812,7 +2663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/controllers/controllers.md" class="md-nav__link">
+      <a href="../../advanced/4.4/controllers/controllers.md" class="md-nav__link">
         
   
   
@@ -2884,7 +2735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
+      <a href="../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
         
   
   
@@ -2907,7 +2758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
+      <a href="../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
         
   
   
@@ -2930,7 +2781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
+      <a href="../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
         
   
   
@@ -3017,7 +2868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/overview/" class="md-nav__link">
+      <a href="../../contribute/overview/" class="md-nav__link">
         
   
   
@@ -3081,7 +2932,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/mongo/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/mongo/" class="md-nav__link">
         
   
   
@@ -3104,7 +2955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/console/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/console/" class="md-nav__link">
         
   
   
@@ -3127,7 +2978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/pyos/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/pyos/" class="md-nav__link">
         
   
   
@@ -3150,7 +3001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/router/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/router/" class="md-nav__link">
         
   
   
@@ -3173,7 +3024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/webmodules/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/webmodules/" class="md-nav__link">
         
   
   
@@ -3245,7 +3096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/graphical/" class="md-nav__link">
+      <a href="../../contribute/4.4/userpod/graphical/" class="md-nav__link">
         
   
   
@@ -3268,7 +3119,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/sound/" class="md-nav__link">
+      <a href="../../contribute/4.4/userpod/sound/" class="md-nav__link">
         
   
   
@@ -3291,7 +3142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/cups/" class="md-nav__link">
+      <a href="../../contribute/4.4/userpod/cups/" class="md-nav__link">
         
   
   
@@ -3314,7 +3165,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/filer/" class="md-nav__link">
+      <a href="../../contribute/4.4/userpod/filer/" class="md-nav__link">
         
   
   
@@ -3393,7 +3244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/filter-traffic-per-group/" class="md-nav__link">
+      <a href="../../usecases/4.4/filter-traffic-per-group/" class="md-nav__link">
         
   
   
@@ -3416,7 +3267,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/configure-keycloak/" class="md-nav__link">
+      <a href="../../usecases/4.4/configure-keycloak/" class="md-nav__link">
         
   
   
@@ -3443,24 +3294,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -3473,7 +3329,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             FAQ
@@ -3487,7 +3343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/issue/" class="md-nav__link">
+      <a href="../issue/" class="md-nav__link">
         
   
   
@@ -3510,7 +3366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/webbrowser/" class="md-nav__link">
+      <a href="../webbrowser/" class="md-nav__link">
         
   
   
@@ -3533,7 +3389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/ingresscontroller/" class="md-nav__link">
+      <a href="../ingresscontroller/" class="md-nav__link">
         
   
   
@@ -3556,7 +3412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/applications/" class="md-nav__link">
+      <a href="../applications/" class="md-nav__link">
         
   
   
@@ -3576,10 +3432,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../../faq/mongodb/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Mongodb
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3590,6 +3468,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-increase-the-mongodb-number-of-replicats" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to increase the mongodb number of replicats
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3602,7 +3509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/adopters/" class="md-nav__link">
+      <a href="../adopters/" class="md-nav__link">
         
   
   
@@ -3625,7 +3532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/release/" class="md-nav__link">
+      <a href="../release/" class="md-nav__link">
         
   
   
@@ -3648,7 +3555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/disable-firefox-connections/" class="md-nav__link">
+      <a href="../disable-firefox-connections/" class="md-nav__link">
         
   
   
@@ -3698,96 +3605,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#how-to-increase-the-mongodb-number-of-replicats" class="md-nav__link">
     <span class="md-ellipsis">
-      Requirements
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-new-http-router-service-yaml-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a new http-router service yaml file
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-your-dns-zone-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update your DNS zone file
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Update your DNS zone file">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-new-record" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create new record
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#obtain-a-certificat" class="md-nav__link">
-    <span class="md-ellipsis">
-      Obtain a certificat
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-secret-for-x509-certificat" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a secret for X509 certificat
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-http-router-configmap-to-use-the-new-http-router-certificat-secret" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update http-router ConfigMap to use the new http-router-certificat secret
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-deployment-http-router" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update deployment http-router
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reach-your-website-using-https-protocol" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reach your website using https protocol
+      How to increase the mongodb number of replicats
     </span>
   </a>
   
@@ -3809,7 +3629,7 @@
 
 
   
-    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/cloudproviders/4.4/digitalocean/digitalocean-loadbalancer.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/faq/mongodb.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -3817,181 +3637,62 @@
   
 
 
-<h1 id="publish-your-website-as-a-public-secured-service">Publish your website as a public secured service</h1>
-<h2 id="requirements">Requirements</h2>
+<h1 id="mongodb">Mongodb</h1>
+<h2 id="how-to-increase-the-mongodb-number-of-replicats">How to increase the <code>mongodb</code> number of replicats</h2>
 <ul>
-<li>read the previous chapter <a href="../digitalocean/">Deploy abcdesktop on DigitalOcean with Kubernetes</a> </li>
-<li>a DigitalOcean account</li>
-<li>your own internet domain</li>
-<li><code>doctl</code> command line interface <a href="https://docs.digitalocean.com/reference/doctl/how-to/install/">doctl cli</a></li>
-<li><code>kubectl</code> command line</li>
-<li><code>wget</code> command line</li>
+<li>Open your <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.4.yaml">abcdesktop.yaml</a> file and look for the <code>StatefulSet</code> mongodb-od</li>
 </ul>
-<h2 id="overview">Overview</h2>
-<p>In this chapter we are going to, use a <code>loadBalancer</code> to host your abcdesktop service with a public IP Address, then configure dns zone file to use your domain name, and activate TLS to secure your service.</p>
-<h2 id="create-a-new-http-router-service-yaml-file">Create a new <code>http-router</code> service yaml file</h2>
-<p>The default install define the <code>http-router</code> service with as <code>nodePort</code> type. We are going to update the <code>http-router</code> service with a <code>LoadBalancer</code> type.</p>
-<p>Create a file named <code>http-router.yaml</code></p>
-<div class="highlight"><pre><span></span><code>kind: Service
-apiVersion: v1
+<div class="highlight"><pre><span></span><code>apiVersion: apps/v1 
+kind: StatefulSet
 metadata:
-  name: http-router
+ name: mongodb-od
+</code></pre></div>
+<ul>
+<li>In the specs of the the <code>StatefulSet</code> mongodb-od, change the number of the <code>replicas</code> </li>
+</ul>
+<div class="highlight"><pre><span></span><code>apiVersion: apps/v1 
+kind: StatefulSet
+metadata:
+  name: mongodb-od
   labels:
-    abcdesktop/role: router-od
-  annotations:
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: &quot;80&quot;
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: &quot;http&quot;
-    service.beta.kubernetes.io/do-loadbalancer-protocol: &quot;http&quot;
-    service.beta.kubernetes.io/do-loadbalancer-tls-ports: &quot;443&quot;
-    service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: &quot;true&quot;
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: &quot;/healthz&quot;
-spec: 
-  type: LoadBalancer
-  selector:
-    run: router-od
-  ports:
-  - protocol: TCP
-    port: 443
-    targetPort: 443
-    name: https
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-    name: http
+    run: mongodb-od
+    type: database
+    abcdesktop/role: mongodb
+    netpol/mongodb: &#39;true&#39;
+spec:
+  serviceName: mongodb
+  replicas: 3
 </code></pre></div>
-<p>Save your <code>http-router.yaml</code> file</p>
-<p>Delete the previous service <code>http-router</code></p>
-<div class="highlight"><pre><span></span><code>kubectl delete service http-router -n abcdesktop
-service &quot;http-router&quot; deleted
+<ul>
+<li>In the <code>name: replica-manager</code>, update the variable <code>REPLICAS</code> with the same value</li>
+</ul>
+<div class="highlight"><pre><span></span><code> env:
+   - name: NAMESPACE
+     valueFrom:
+       fieldRef:
+         fieldPath: metadata.namespace
+   - name: SERVICE
+     value: mongodb
+   - name: STATEFULSET_NAME
+     value: mongodb-od
+   - name: REPLICAS
+     value: &quot;3&quot;
 </code></pre></div>
-<p>Create your new <code>service/http-router</code></p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f http-router.yaml -n abcdesktop
-service/http-router created
+<ul>
+<li>Apply your changes to the abcdesktop namespace </li>
+</ul>
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl apply -f abcdesktop.yaml -n $NAMESPACE
 </code></pre></div>
-<p>Wait for few minutes, the <code>EXTERNAL-IP</code> of service <code>http-router</code> stays in <code>Pending</code> state</p>
-<div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop 
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>NAME          TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-http-router   LoadBalancer   10.245.73.189   &lt;pending&gt;     80:32155/TCP   3s
-</code></pre></div>
-<p>Check the EXTERNAL-IP of service <code>http-router</code> again</p>
-<div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop       
-</code></pre></div>
-<blockquote>
-<p>Great the service gets <code>157.230.202.250</code> as an <code>EXTERNAL-IP</code></p>
-</blockquote>
-<div class="highlight"><pre><span></span><code>NAME          TYPE           CLUSTER-IP       EXTERNAL-IP       PORT(S)        AGE
-http-router   LoadBalancer   10.245.245.242   157.230.202.250   80:30443/TCP   61s
-</code></pre></div>
-<p>You can open a web browser to reach your abcdesktop service with the IP address</p>
-<p><img alt="web browser to reach your abcdesktop service" src="../img/ipadress.png" /></p>
-<p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol</p>
-<h2 id="update-your-dns-zone-file">Update your DNS zone file</h2>
-<p>We will use a <code>FQDN</code> (Fully Qualified Domain Name) to replace the <code>IP Address</code>.</p>
-<p><img alt="digitalocean networking" src="../img/digitalocean-networking.png" /></p>
-<p>This screenshot describes the DigitalOcean network console. It shows the <code>Domain</code> informations, but your can manage your zone file from your own registrar.</p>
-<h3 id="create-new-record">Create new record</h3>
-<p>We are going to create a new record <code>hello</code> (<code>hello.abcdekstop.pepins.net</code>) to the <code>A</code> address <code>157.230.202.250</code>. I prefer to define low <code>TTL</code> value to fix some changes quickly. </p>
-<p>The IP Address is show by the DigitalOcean network console, it is the same address as the <code>EXTERNAL-IP</code> of your <code>http-router</code> service.</p>
-<div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop
-NAME          TYPE           CLUSTER-IP      EXTERNAL-IP       PORT(S)                      AGE
-http-router   LoadBalancer   10.245.143.46   157.230.202.250   443:31196/TCP,80:32043/TCP   16m
-</code></pre></div>
-<p><img alt="digital ocean console domain overview" src="../img/createrecord.png" /></p>
-<p>Press <code>Create Record</code> button, to update your zone file with the new record</p>
-<p><img alt="digital ocean console domain overview" src="../img/recorddone.png" /></p>
-<p>From your local device, you can open a web browser</p>
-<p><img alt="reach your website from your new name" src="../img/hello_http.png" /></p>
-<p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol.</p>
-<p>As you can see, your website is <code>Not Secured</code>, we are going to add X509 SSL certificate to secure your service.</p>
-<h2 id="obtain-a-certificat">Obtain a certificat</h2>
-<p>If you already have a X509 certificat with a private and public certified key files for your web site, you can skip this chapter.</p>
-<p>To create you SSL certificat, we are using let's encrypt service. You need your new hostname and your email address</p>
-<p>Define the new variables <code>ABCDESKTOP_PUBLIC_FQDN</code> and <code>USER_EMAIL_ADDRESS</code> </p>
-<div class="highlight"><pre><span></span><code><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="o">=</span>hello.digitalocean.pepins.net
-<span class="nv">USER_EMAIL_ADDRESS</span><span class="o">=</span>thisisyouremail@domain.com
-<span class="nv">ROUTER_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>router-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w">  </span>-n<span class="w"> </span>abcdesktop<span class="k">)</span>
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">ROUTER_POD_NAME</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>/usr/bin/certbot<span class="w"> </span>certonly<span class="w"> </span>--webroot<span class="w"> </span>-w<span class="w"> </span>/var/lib/nginx/html<span class="w"> </span>-d<span class="w"> </span><span class="si">${</span><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="si">}</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">USER_EMAIL_ADDRESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--agree-tos<span class="w"> </span>-n
+<ul>
+<li>Check the number of <code>replicas</code> </li>
+</ul>
+<div class="highlight"><pre><span></span><code>kubectl get statefulset -l run=mongodb-od -n abcdesktop
 </code></pre></div>
 <p>You should read on stdout</p>
-<div class="highlight"><pre><span></span><code>Saving debug log to /var/log/letsencrypt/letsencrypt.log
-Requesting a certificate for hello.digitalocean.pepins.net
-
-Successfully received certificate.
-Certificate is saved at: /etc/letsencrypt/live/hello.digitalocean.pepins.net/fullchain.pem
-Key is saved at:         /etc/letsencrypt/live/hello.digitalocean.pepins.net/privkey.pem
-This certificate expires on 2025-10-05.
-These files will be updated when the certificate renews.
-
-NEXT STEPS:
-- The certificate will need to be renewed before it expires. Certbot can automatically renew the certificate in the background, but you may need to take steps to enable that functionality. See https://certbot.org/renewal-setup for instructions.
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-If you like Certbot, please consider supporting our work by:
- * Donating to ISRG / Let&#39;s Encrypt:   https://letsencrypt.org/donate
- * Donating to EFF:                    https://eff.org/donate-le
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+<div class="highlight"><pre><span></span><code>NAME         READY   AGE
+mongodb-od   3/3     18h
 </code></pre></div>
-<p>The files <code>fullchain.pem</code> and <code>privkey.pem</code> are located inside the container. </p>
-<div class="highlight"><pre><span></span><code>Certificate is saved at: /etc/letsencrypt/live/hello.digitalocean.pepins.net/fullchain.pem
-Key is saved at:         /etc/letsencrypt/live/hello.digitalocean.pepins.net/privkey.pem
-</code></pre></div>
-<p>We export the files and create a new secrets. </p>
-<div class="highlight"><pre><span></span><code>kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/$ABCDESKTOP_PUBLIC_FQDN/fullchain.pem &gt; fullchain.pem
-kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/$ABCDESKTOP_PUBLIC_FQDN/privkey.pem &gt; privkey.pem
-</code></pre></div>
-<h2 id="create-a-secret-for-x509-certificat">Create a secret for X509 certificat</h2>
-<p>Create a secret named <code>http-router-certificat</code> with the <code>fullchain.pem</code> and <code>privkey.pem</code> file content</p>
-<div class="highlight"><pre><span></span><code>kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=privkey.pem -n abcdesktop 
-</code></pre></div>
-<p>You secret is created </p>
-<div class="highlight"><pre><span></span><code>secret/http-router-certificat created
-</code></pre></div>
-<h2 id="update-http-router-configmap-to-use-the-new-http-router-certificat-secret">Update <code>http-router</code> ConfigMap to use the new <code>http-router-certificat</code> secret</h2>
-<p>Download <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.4.yaml">abcdesktop-routehttp-config.4.4.yaml</a> file </p>
-<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.4.yaml
-</code></pre></div>
-<p>Open your <code>abcdesktop-routehttp-config.4.4.yaml</code> file, look for the ConfigMap <code>abcdesktop-routehttp-config</code>.</p>
-<p>Remove the comments to enable https and change the value <code>YOUR_SERVER_NAME_AND_DOMAIN</code> by your own value. </p>
-<div class="highlight"><pre><span></span><code> # nginx server config
- server {
-     ...
-
-     ######
-     # uncomment this to enable https
-     #
-     listen 443 ssl http2 default_server;
-     listen [::]:443 ssl http2 default_server;
-     server_name YOUR_SERVER_NAME_AND_DOMAIN; # change this too
-     ssl_certificate     /etc/nginx/ssl/tls.crt;
-     ssl_certificate_key /etc/nginx/ssl/tls.key;
-     #
-     # end of https section
-     ######
-
-     ...
-     index index.html index.htm;
-</code></pre></div>
-<p>For example</p>
-<div class="highlight"><pre><span></span><code>     listen 443 ssl http2 default_server;
-     listen [::]:443 ssl http2 default_server;
-     server_name hello.digitalocean.pepins.net;
-     ssl_certificate     /etc/nginx/ssl/tls.crt;
-     ssl_certificate_key /etc/nginx/ssl/tls.key;
-</code></pre></div>
-<p>Apply your new nginx confguration file</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop-routehttp-config.4.4.yaml -n abcdesktop
-</code></pre></div>
-<h2 id="update-deployment-http-router">Update <code>deployment</code> http-router</h2>
-<p>Update the <code>deployment</code> route to add certificat ssl entry</p>
-<p>The <code>abcdesktop-deployment-routehttps.4.4.yaml</code> file  adds <code>mountPath: /etc/nginx/ssl</code> to <code>secretName: http-router-certificat</code></p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.4.yaml -n abcdesktop
-</code></pre></div>
-<h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
-<p>You can now connect to your abcdesktop desktop pulic web site using <code>https</code> protocol. </p>
-<p><img alt="reach your website using https" src="../img/hello_https.png" /></p>
-<p>The status is secured and we get some informations from the certificate</p>
-<p><img alt="reach your website using https" src="../img/certificate_hello.png" /></p>
 
 
 
@@ -4048,16 +3749,16 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
     
     
       
-      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
-        <script src="../../../../js/tabbed-toc.js"></script>
+        <script src="../../js/tabbed-toc.js"></script>
       
         <script src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
       
-        <script src="../../../../js/drawio-reload.js"></script>
+        <script src="../../js/drawio-reload.js"></script>
       
     
   </body>
