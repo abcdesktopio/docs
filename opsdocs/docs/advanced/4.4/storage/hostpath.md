@@ -20,6 +20,13 @@ desktop.hostPathRoot: '/mnt/abcdesktop_volumes'
 
 Kubernetes will automatically create a folder for each of your users if it does not already exists.
 
+Finally, update the configmap and restart pyos by running the commands below 
+
+```
+kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+kubectl rollout restart deploy pyos-od -n abcdesktop
+```
+
 ## Check if user's homedir is persistent
 
 You can now connect to your abcdesktop and login as a user.
@@ -74,4 +81,6 @@ drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Videos
 Then perform a logoff to destroy your pod and recreates it, once reconnected on a new pod with the same user, check if the file you previously created is still there, it should appear.
 
 ![check peristent user homedir](./img/nfs_check_persistent_homedir.png)
+
+Great ! Now you can configure home directory persistency using hostPath !
 
