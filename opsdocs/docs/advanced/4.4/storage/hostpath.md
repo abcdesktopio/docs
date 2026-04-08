@@ -7,7 +7,7 @@
 ## Define hostPath folder and update od.config
 
 On your node, create a folder that will be the mount point for your user's home directories. For example `mnt/abcdesktop_volumes/`.  
-Then you have to edit your `od.config` file. First set `desktop.homedirectorytype` to `'hostPath'` and then add a `desktop.hostPathRoot` whose value will be the path to the mont point you previously created.
+Then you have to edit your `od.config` file. First set `desktop.homedirectorytype` to `'hostPath'` and then add a `desktop.hostPathRoot` whose value will be the path to the mount point you previously created.
 
 ```
 desktop.homedirectorytype: 'hostPath'
@@ -19,6 +19,13 @@ desktop.hostPathRoot: '/mnt/abcdesktop_volumes'
 ```
 
 Kubernetes will automatically create a folder for each of your users if it does not already exists.
+
+Finally, update the configmap and restart pyos by running the commands below 
+
+```
+kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+kubectl rollout restart deploy pyos-od -n abcdesktop
+```
 
 ## Check if user's homedir is persistent
 
@@ -74,4 +81,6 @@ drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Videos
 Then perform a logoff to destroy your pod and recreates it, once reconnected on a new pod with the same user, check if the file you previously created is still there, it should appear.
 
 ![check peristent user homedir](./img/nfs_check_persistent_homedir.png)
+
+Great ! Now you can configure home directory persistency using hostPath !
 
