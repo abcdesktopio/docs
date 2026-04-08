@@ -9,6 +9,34 @@
 !!! note
     In this example, we will use [docker-test-openldap](https://github.com/rroemhild/docker-test-openldap)
 
+    ??? note "show details"
+        This image uses standard static groups based on `RFC LDAP 4519` 
+
+        Below is the `ship_crew` group file
+
+        ```
+        dn: cn=ship_crew,ou=people,dc=planetexpress,dc=com
+        objectclass: Group
+        objectclass: top
+        groupType: 2147483650
+        cn: ship_crew
+        member: cn=Philip J. Fry,ou=people,dc=planetexpress,dc=com
+        member: cn=Turanga Leela,ou=people,dc=planetexpress,dc=com
+        member: cn=Bender Bending Rodriguez,ou=people,dc=planetexpress,dc=com
+        ```
+
+        Below is the `admin_staff` group file
+
+        ```
+        dn: cn=admin_staff,ou=people,dc=planetexpress,dc=com
+        objectclass: Group
+        objectclass: top
+        groupType: 2147483650
+        cn: admin_staff
+        member: cn=Hubert J. Farnsworth,ou=people,dc=planetexpress,dc=com
+        member: cn=Hermes Conrad,ou=people,dc=planetexpress,dc=com
+        ```
+
 
 ## Install
 
@@ -144,9 +172,9 @@ Now go to the `Credentials` tab and you should see your client secret.
 
         In our case, we need to create both client sides `groups` and `uid` mappers. 
 
-      ![client-group-mapper](img/keycloak-client-groups-mapper.png)
-      ![client-uid-mapper](img/keycloak-client-uid-mapper.png)
-      ![client-mappers-added](img/keycloak-client-mappers-added.png)
+        ![client-group-mapper](img/keycloak-client-groups-mapper.png)
+        ![client-uid-mapper](img/keycloak-client-uid-mapper.png)
+        ![client-mappers-added](img/keycloak-client-mappers-added.png)
 
 ## Update od.config file
 

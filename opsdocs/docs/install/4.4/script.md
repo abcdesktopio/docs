@@ -3,6 +3,8 @@ tags:
   - bash
   - installation
   - setup
+  - read by AD
+  - needupdate 
 ---
 # Quick installation core services with a script
 

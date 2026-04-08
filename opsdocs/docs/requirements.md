@@ -2,6 +2,7 @@
 tags:
   - installation
   - requirement
+  - read by JF, AD
 ---
 
 # Requirements
