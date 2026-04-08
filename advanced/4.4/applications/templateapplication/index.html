@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://abcdesktop.pepins.net/advanced/4.4/storage/sharedvolume/">
+        <link rel="canonical" href="https://abcdesktop.pepins.net/advanced/4.4/applications/templateapplication/">
       
       
-        <link rel="prev" href="../hostpath/">
+        <link rel="prev" href="../simplestapplicationchromium/">
       
       
-        <link rel="next" href="../../configure/garbagecollector/">
+        <link rel="next" href="../../configure/updateconfiguration/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Shared Volume - abcdesktop.pepins.net</title>
+        <title>Build a application from template - abcdesktop.pepins.net</title>
       
     
     
@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#build-your-own-application-image-from-template-container-image" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -106,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Shared Volume
+              Build a application from template
             
           </span>
         </div>
@@ -1665,6 +1670,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1675,11 +1682,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
         
           
           <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
@@ -1695,7 +1702,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_4">
             <span class="md-nav__icon md-icon"></span>
             Applications
@@ -1709,7 +1716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/simplestapplicationxeyes/" class="md-nav__link">
+      <a href="../simplestapplicationxeyes/" class="md-nav__link">
         
   
   
@@ -1732,7 +1739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/simplestapplicationxedit/" class="md-nav__link">
+      <a href="../simplestapplicationxedit/" class="md-nav__link">
         
   
   
@@ -1755,7 +1762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/simplestapplicationchromium/" class="md-nav__link">
+      <a href="../simplestapplicationchromium/" class="md-nav__link">
         
   
   
@@ -1775,10 +1782,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../applications/templateapplication/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Build a application from template
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1789,6 +1818,146 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-your-own-application-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build your own application image
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build your own application image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-your-new-image-2048" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build your new image 2048
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push-your-image-to-abcdesktop-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Push your image to abcdesktop service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-your-new-application-2048" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run your new application 2048
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other templates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#templates-for-almalinux" class="md-nav__link">
+    <span class="md-ellipsis">
+      templates for almalinux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-for-alpine" class="md-nav__link">
+    <span class="md-ellipsis">
+      templates for alpine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-for-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      templates for debian
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-for-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      templates for ubuntu
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-for-rockylinux" class="md-nav__link">
+    <span class="md-ellipsis">
+      templates for rockylinux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-with-nvidia-lib-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      template with nvidia lib support
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1801,7 +1970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/templateanotherapplication.md" class="md-nav__link">
+      <a href="../templateanotherapplication.md" class="md-nav__link">
         
   
   
@@ -1829,8 +1998,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1841,11 +2008,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
         
           
           <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
@@ -1861,7 +2028,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
             Configuration
@@ -2318,8 +2485,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2330,11 +2495,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_5" >
         
           
           <label class="md-nav__link" for="__nav_3_5_5" id="__nav_3_5_5_label" tabindex="0">
@@ -2350,7 +2515,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_5_5">
             <span class="md-nav__icon md-icon"></span>
             Storage
@@ -2364,7 +2529,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview.md" class="md-nav__link">
+      <a href="../../storage/overview.md" class="md-nav__link">
         
   
   
@@ -2387,7 +2552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nfs/" class="md-nav__link">
+      <a href="../../storage/nfs/" class="md-nav__link">
         
   
   
@@ -2410,7 +2575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../s3/" class="md-nav__link">
+      <a href="../../storage/s3/" class="md-nav__link">
         
   
   
@@ -2433,7 +2598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hostpath/" class="md-nav__link">
+      <a href="../../storage/hostpath/" class="md-nav__link">
         
   
   
@@ -2453,17 +2618,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../storage/sharedvolume/" class="md-nav__link">
         
   
   
@@ -2474,7 +2632,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -3553,6 +3710,136 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-your-own-application-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build your own application image
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build your own application image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-your-new-image-2048" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build your new image 2048
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push-your-image-to-abcdesktop-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Push your image to abcdesktop service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-your-new-application-2048" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run your new application 2048
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other templates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#templates-for-almalinux" class="md-nav__link">
+    <span class="md-ellipsis">
+      templates for almalinux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-for-alpine" class="md-nav__link">
+    <span class="md-ellipsis">
+      templates for alpine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-for-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      templates for debian
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-for-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      templates for ubuntu
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-for-rockylinux" class="md-nav__link">
+    <span class="md-ellipsis">
+      templates for rockylinux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-with-nvidia-lib-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      template with nvidia lib support
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3568,7 +3855,7 @@
 
 
   
-    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/storage/sharedvolume.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/applications/templateapplication.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -3576,9 +3863,308 @@
   
 
 
-  <h1>Shared Volume</h1>
-
-<p>matteo</p>
+<h1 id="build-your-own-application-image-from-template-container-image">Build your own application image from template container image</h1>
+<p>abcdesktop uses container image format with some labels to describe an application.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>an access to the container public registry or a private container registry</li>
+<li><code>nodejs</code> installed on your host.  </li>
+<li><code>docker</code> command line to build container image</li>
+<li><code>wget</code> command line installed</li>
+</ul>
+<h2 id="build-your-own-application-image">Build your own application image</h2>
+<p>The new image is the game 2048. </p>
+<p>Create a directory named <code>build</code>, and create a directory <code>icons</code> inside build</p>
+<div class="highlight"><pre><span></span><code>mkdir -p build/icons
+cd build
+</code></pre></div>
+<p>To build your own image create first a json file.</p>
+<p>Create a json file named <code>applist.json</code>, inside build directory, and add the content to the json file.</p>
+<div class="highlight"><pre><span></span><code>[
+  {
+    &quot;cat&quot;: &quot;games&quot;,
+    &quot;debpackage&quot;: &quot;2048-qt&quot;,
+    &quot;icon&quot;: &quot;2048_logo.svg&quot;,
+    &quot;keyword&quot;: &quot;2048&quot;,
+    &quot;launch&quot;: &quot;2048-qt.2048-qt&quot;,
+    &quot;name&quot;: &quot;2048&quot;,
+    &quot;displayname&quot;: &quot;2048&quot;,
+    &quot;path&quot;: &quot;/usr/games/2048-qt&quot;,
+    &quot;template&quot;: &quot;ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04&quot;
+  }
+]
+</code></pre></div>
+<p>To fill the data inside the json file :</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>Type</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cat</code></td>
+<td>string</td>
+<td>games</td>
+</tr>
+<tr>
+<td><code>debpackage</code></td>
+<td>string</td>
+<td>2048-qt</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td>string</td>
+<td>2048_logo.svg</td>
+</tr>
+<tr>
+<td><code>keyword</code></td>
+<td>string</td>
+<td>2048</td>
+</tr>
+<tr>
+<td><code>launch</code></td>
+<td>string</td>
+<td>2048-qt.2048-qt</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>2048</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td>string</td>
+<td>/usr/games/2048-qt</td>
+</tr>
+<tr>
+<td><code>template</code></td>
+<td>string</td>
+<td>ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04</td>
+</tr>
+</tbody>
+</table>
+<p>You can read the following help lines, or fill the json missing value by yourself.</p>
+<ul>
+<li><code>cat</code> is the category, choose the most appropriate value in the list : <code>[ 'office', 'games', 'graphics', 'development', 'utilities', 'education' ]</code></li>
+<li><code>debpackage</code> is the name of the 2048 ubuntu package. To find the package name, look at the link <a href="https://packages.ubuntu.com/source/bionic/2048-qt">2048 Ubuntu Package</a>.</li>
+<li><code>icon</code> is the name of the icon. abcdesktop support only <code>svg</code> icon file format. To get the icon file, look at the link <a href="https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg">https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg</a></li>
+<li><code>keyword</code> is a list of the keywords to find the application. Set the value to 2048.</li>
+<li><code>launch</code>  is the X11 Class name of the window. To get this value, we need to run the application on GNU/Linux (read the dedicated chapter below). </li>
+<li><code>name</code> is the name of the application. Set the value to 2048.</li>
+<li><code>path</code> is the binary path to run the application.   </li>
+<li><code>template</code> is the name of the parent image. The default image parent is <code>ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04</code>. You will find the template list in next chapter. </li>
+</ul>
+<h3 id="build-your-new-image-2048">Build your new image 2048</h3>
+<ul>
+<li>Download the icon for your applications</li>
+</ul>
+<div class="highlight"><pre><span></span><code>wget https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg -O icons/2048_logo.svg
+</code></pre></div>
+<ul>
+<li>To build your new image, download the node js files</li>
+</ul>
+<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/refs/heads/4.4/make.js
+wget https://github.com/abcdesktopio/oc.apps/blob/4.4/package.json
+</code></pre></div>
+<p>Run the command npm install command line, to install packages</p>
+<div class="highlight"><pre><span></span><code>npm i
+</code></pre></div>
+<ul>
+<li>Run <code>make.js</code> build a new DockerFile for the 2048 application. Remember, all application images use container images. </li>
+</ul>
+<div class="highlight"><pre><span></span><code>nodejs make.js
+</code></pre></div>
+<p>You should get the output </p>
+<div class="highlight"><pre><span></span><code>Namespace(dockerfile=false, release=&#39;4.4&#39;, applicationfile=&#39;applist.json&#39;)
+Read database json file=applist.json
+opening file applist.json
+applist.json entries: 1
+Creating Dockerfile 2048.d
+</code></pre></div>
+<p>The new file <code>2048.d</code> has been generated :</p>
+<ul>
+<li><code>2048.d</code> is the Dockerfile for your 2048 abcdesktop application</li>
+</ul>
+<p>You can read the content of the Dockerfile <code>2048.d</code>.
+List all labels, and confirm that the icon file is uuencoded format. Uuencoding is a form of binary-to-text encoding.</p>
+<p>Now it's time to build your 2048 app. Run the command <code>docker build</code> command.</p>
+<div class="highlight"><pre><span></span><code>REGISTRY=abcdesktop
+docker build -f 2048.d -t $REGISTRY/2048.d .
+</code></pre></div>
+<p>You should read the output : </p>
+<div class="highlight"><pre><span></span><code>[+] Building 62.3s (8/8) FINISHED                                                                                                                                                           docker:default
+ =&gt; [internal] load build definition from 2048.d                                                                                                                                                      0.0s
+ =&gt; =&gt; transferring dockerfile: 3.49kB                                                                                                                                                                0.0s
+ =&gt; [internal] load metadata for ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04:4.4                                                                                                                0.0s
+ =&gt; [internal] load .dockerignore                                                                                                                                                                     0.0s
+ =&gt; =&gt; transferring context: 2B                                                                                                                                                                       0.0s
+ =&gt; CACHED [1/4] FROM ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04:4.4                                                                                                                           0.0s
+ =&gt; [2/4] RUN echo &#39;debconf debconf/frontend select Noninteractive&#39; | debconf-set-selections                                                                                                          0.3s
+ =&gt; [3/4] RUN DEBIAN_FRONTEND=noninteractive apt-get update &amp;&amp; apt-get install -y  --no-install-recommends 2048-qt &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*                                   59.9s
+ =&gt; [4/4] RUN if [ -x /usr/bin/dbus-launch ]; then chmod g+r,g+w,o+r,o+w /var/lib/dbus ; fi                                                                                                           0.2s 
+ =&gt; exporting to image                                                                                                                                                                                1.8s 
+ =&gt; =&gt; exporting layers                                                                                                                                                                               1.8s 
+ =&gt; =&gt; writing image sha256:7804b6c77950a0f43daa13b7b0901eb4b795f984c6d888ab6ef513573b4d3147                                                                                                          0.0s 
+ =&gt; =&gt; naming to docker.io/abcdesktop/2048.d
+</code></pre></div>
+<ul>
+<li>Push your image to your registry </li>
+</ul>
+<blockquote>
+<p>If you don't have your own registry, you can skip this command but keep using <code>REGISTRY=abcdesktopio</code> </p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
+docker push $REGISTRY/2048.d
+</code></pre></div>
+<ul>
+<li>Create a json file from your container image</li>
+</ul>
+<blockquote>
+<p>If you don't have your own registry, do not skip this command, and keep using <code>REGISTRY=abcdesktopio</code> </p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
+docker inspect $REGISTRY/2048.d &gt; 2048.json
+</code></pre></div>
+<h2 id="push-your-image-to-abcdesktop-service">Push your image to abcdesktop service</h2>
+<ul>
+<li>Send the image to abcdesktop pyos instance</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
+<span class="nv">PYOS_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NAMESPACE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+kubectl<span class="w"> </span>cp<span class="w"> </span><span class="m">2048</span>.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/2048.json
+</code></pre></div>
+<p>This command reads the <code>PYOS_POD</code> name, then copy the <code>2048.json</code> file to <code>/tmp</code> of PYOS_POD, then send the <code>/tmp/2048.json</code> to REST API server. </p>
+<p>The endpoint image returns a json documment </p>
+<div class="highlight"><pre><span></span><code>[
+  {
+    &quot;cmd&quot;: [
+      &quot;/composer/appli-docker-entrypoint.sh&quot;
+    ],
+    &quot;path&quot;: &quot;/usr/games/2048-qt&quot;,
+    &quot;sha_id&quot;: &quot;sha256:7804b6c77950a0f43daa13b7b0901eb4b795f984c6d888ab6ef513573b4d3147&quot;,
+    &quot;id&quot;: &quot;abcdesktop/2048.d:latest&quot;,
+    &quot;architecture&quot;: &quot;amd64&quot;,
+    &quot;os&quot;: &quot;linux&quot;,
+    &quot;rules&quot;: {},
+    &quot;acl&quot;: {
+      &quot;permit&quot;: [
+        &quot;all&quot;
+      ]
+    },
+    &quot;launch&quot;: &quot;2048-qt.2048-qt&quot;,
+    &quot;wm_class&quot;: null,
+    &quot;name&quot;: &quot;2048&quot;,
+    &quot;icon&quot;: &quot;2048_logo.svg&quot;,
+    &quot;icondata&quot;: &quot;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCI+CiAgPHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlZGM1M2YiIHJ5PSI0Ni44MTIiLz4KICA8cGF0aCBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9Ii45NDExOCIgZD0iTTkwLjQ5NCAxODAuMkg0Ni44Njl2LTkuOTI5NWM3LjgyMzgtNy44MjIzIDMwLjQ3NC0yNS40MDkgMjguMTUtMzUuNTMtMy4wNzIxLTkuNjg4OC0xNi41MTYtMy4xMDQxLTE4LjQ5NyAxLjMxNzlsLTkuNjA2LTcuMzRjOS45MDUxLTE1LjI3NyA0MC41NDgtMTMuNTE3IDQxLjQxOCA2LjE2MDguMTM0MTcgMTUuNTUzLTE1LjMyOCAyNS4wOS0yNC4zNDQgMzMuNjY4di41OTUzNmgyNi41MDR6bTU1LjE5Ni0zMC4wOGMuMDYzMSAxNy45MzQtNS4xMTQ2IDMxLjQ4NS0yMy4wMjcgMzEuNi0xOS4wODMtLjAzNTYtMjMuNTYtMTMuNzQzLTIzLjQ5NS0zMS40ODgtLjA2NDktMTcuNzggNC43ODEzLTMxLjU4IDIzLjQ5NS0zMS42MTQgMTguMDY2LjAzMzUgMjIuOTY0IDEzLjg1NCAyMy4wMjcgMzEuNTAyem0tMzMuNzM0LjExMjM2Yy4xMTU1NSA3LjAyNjYuNjc1OTkgMjAuNjE0IDEwLjQ4MyAyMC43MTEgOS43MDUzLjExMTY0IDEwLjUxMy0xNC4zODYgMTAuNTM4LTIwLjgyMy0uMTI2ODMtNi45OTEtLjQ4Nzc5LTIwLjUwMi0xMC40MjYtMjAuNTctMTAuMDk4LS4xODQxMi0xMC41MjggMTMuOTYzLTEwLjU5NSAyMC42ODJ6TTIzMS43MSAxMTguNjFjOC41MjQ1LjA0NTMgMjAuNDUgMy43MjU1IDIwLjQ1OSAxNC44MDMtLjAwOSA4Ljc1OC0zLjY0OTggMTAuNzI5LTEwLjY0IDE0LjU0OCA3LjY5NSA0LjY0NTMgMTIuNTM0IDguMTExMiAxMi42MjMgMTcuMjQxLS4wODkyIDExLjk1Ni0xMS42NTIgMTYuMjcxLTIyLjQ0MyAxNi4zNTEtMTEuMzYzLS4wNzk5LTIyLjU3LTQuMTM0Ni0yMi43NDQtMTYuNTIzLjE3ODk0LTguOTM3NiA1LjQxOTYtMTQuMDAxIDExLjEwMy0xNi44NjEtNi40OTA5LTMuOTgwNi05LjUzMzMtNi4wMzY0LTkuMzczMS0xNC44NC0uMTYwMi0xMC45MDcgMTEuODE3LTE0LjY3MyAyMS4wMTQtMTQuNzE5em0tMTAuNTM0IDQ1LjM0N2MtLjA0MzIgNS42ODM5IDQuNjk2MyA3Ljc0MzYgMTAuNDEgNy42OTU0IDUuNTA0OS4wNDgyIDkuNjcxOS0yLjI0NTMgOS43Mzk5LTcuMTY3NC4wNDc5LTguMjY2Ny05LjczNDQtMTEuODc5LTkuNzM0NC0xMS44NzlzLTEwLjQ1OSAzLjYxMjYtMTAuNDE2IDExLjM1MXptMTAuNDQxLTM0Ljk4MmMtNC43OTc5LS4wNDA5LTkuMTUxMiAxLjAzOTgtOS4xNzM5IDUuNjc3LjAyMjcgNS4zOTk1IDkuMDc3NCA5LjEwNCA5LjA3NzQgOS4xMDRzOC4zMzExLTMuNjU0NCA4LjQ1OTQtOS40ODQ3Yy0uMTkxOC00LjI1MjYtMy44MDg2LTUuMzM3Mi04LjM2MjktNS4yOTYzek0yMDIuMjIgMTcwLjA3aC03Ljc3djEwLjA4OGgtMTEuNTF2LTEwLjA4aC0zMC4wNnYtMTEuMTM3bDI5LjMzMi0zOC44NTNoMTIuMjM4djM5Ljc3Nmg3Ljc3em0tMTkuMjgtMzMuNzIzLTE4LjAzOCAyMy41MTdoMTguMDM4eiIvPgo8L3N2Zz4K&quot;,
+    &quot;keyword&quot;: &quot;2048,2048&quot;,
+    &quot;uniquerunkey&quot;: null,
+    &quot;cat&quot;: &quot;games&quot;,
+    &quot;args&quot;: null,
+    &quot;execmode&quot;: null,
+    &quot;showinview&quot;: null,
+    &quot;displayname&quot;: &quot;2048&quot;,
+    &quot;desktopfile&quot;: null,
+    &quot;executeclassname&quot;: null,
+    &quot;runtimeClassName&quot;: null,
+    &quot;executablefilename&quot;: &quot;2048-qt&quot;,
+    &quot;usedefaultapplication&quot;: false,
+    &quot;mimetype&quot;: [],
+    &quot;fileextensions&quot;: [],
+    &quot;legacyfileextensions&quot;: [],
+    &quot;secrets_requirement&quot;: null,
+    &quot;containerengine&quot;: &quot;ephemeral_container&quot;,
+    &quot;securitycontext&quot;: {},
+    &quot;created&quot;: &quot;2026-04-08T17:02:15.742581671+02:00&quot;
+  }
+]
+</code></pre></div>
+<h2 id="run-your-new-application-2048">Run your new application 2048</h2>
+<p>Return to your abcdesktop website <code>http://localhost:30443</code> and log in as Anonymous.</p>
+<p>At the right corner, write in the search bar the keyword <code>2048</code></p>
+<p><img alt="abcdesktop.io look for 2048 applications" src="../img/application-2048-lookfor.png" /></p>
+<p>Click on the <code>2048</code> icon, and start your first abcdesktop application :</p>
+<p><img alt="abcdesktop.io 2048 is running" src="../img/application-2048-run.png" /></p>
+<p>Now you can spent a lot of time to reach the 2048 score. Have fun !</p>
+<h2 id="other-templates">Other templates</h2>
+<p>As a application is running inside a container, you can run application from multiple distribution at the same time.
+The template repository is <a href="https://github.com/abcdesktopio/oc.template">https://github.com/abcdesktopio/oc.template</a></p>
+<h3 id="templates-for-almalinux">templates for <code>almalinux</code></h3>
+<ul>
+<li>oc.template.almalinux.8</li>
+<li>oc.template.almalinux.9</li>
+<li>oc.template.almalinux.10</li>
+<li>oc.template.almalinux.gtk.8</li>
+<li>oc.template.almalinux.gtk.10</li>
+<li>oc.template.almalinux.gtk.9</li>
+<li>oc.template.almalinux.minimal.9</li>
+<li>oc.template.almalinux.minimal.10</li>
+</ul>
+<h3 id="templates-for-alpine">templates for <code>alpine</code></h3>
+<ul>
+<li>oc.template.alpine.edge</li>
+<li>oc.template.alpine</li>
+<li>oc.template.alpine.wine</li>
+<li>oc.template.alpine.edge.gtk</li>
+<li>oc.template.alpine.edge.gtk.libreoffice</li>
+<li>oc.template.alpine.libreoffice</li>
+<li>oc.template.alpine.3.23</li>
+<li>oc.template.alpine.minimal.3.20</li>
+<li>oc.template.alpine.minimal.3.21</li>
+<li>oc.template.alpine.minimal.3.22</li>
+<li>oc.template.alpine.minimal.3.23</li>
+<li>oc.template.alpine.minimal.edge</li>
+<li>oc.template.alpine.minimal</li>
+</ul>
+<h3 id="templates-for-debian">templates for <code>debian</code></h3>
+<ul>
+<li>oc.template.debian.gtk</li>
+<li>oc.template.debian</li>
+<li>oc.template.debian.minimal</li>
+</ul>
+<h3 id="templates-for-ubuntu">templates for <code>ubuntu</code></h3>
+<ul>
+<li>oc.template.ubuntu.minimal.20.04</li>
+<li>oc.template.ubuntu.minimal.22.04</li>
+<li>oc.template.ubuntu.minimal.24.04</li>
+<li>oc.template.ubuntu.minimal.26.04</li>
+<li>oc.template.ubuntu.gtk.18.04</li>
+<li>oc.template.ubuntu.18.04</li>
+<li>oc.template.ubuntu.minimal.18.04</li>
+<li>oc.template.ubuntu.24.04</li>
+<li>oc.template.ubuntu.20.04</li>
+<li>oc.template.ubuntu.22.04</li>
+<li>oc.template.ubuntu.26.04</li>
+<li>oc.template.ubuntu.wine.mswindow</li>
+<li>oc.template.ubuntu.libreoffice</li>
+<li>oc.template.ubuntu.wine</li>
+<li>oc.template.ubuntu.gtk.java</li>
+<li>oc.template.ubuntu.gtk.24.04</li>
+<li>oc.template.ubuntu.gtk.22.04</li>
+<li>oc.template.ubuntu.gtk.20.04</li>
+<li>oc.template.ubuntu.gtk.26.04</li>
+</ul>
+<h3 id="templates-for-rockylinux">templates for <code>rockylinux</code></h3>
+<ul>
+<li>oc.template.rockylinux.gtk.libreoffice.9</li>
+<li>oc.template.rockylinux.gtk.9</li>
+<li>oc.template.rockylinux.gtk.8</li>
+<li>oc.template.rockylinux.8</li>
+<li>oc.template.rockylinux.9</li>
+<li>oc.template.rockylinux.minimal.8</li>
+<li>oc.template.rockylinux.minimal.9</li>
+</ul>
+<h3 id="template-with-nvidia-lib-support">template with nvidia lib support</h3>
+<ul>
+<li>oc.template.rockylinux.nvidia.8</li>
+<li>oc.template.rockylinux.nvidia.9</li>
+<li>oc.template.ubuntu.nvidia.24.04</li>
+<li>oc.template.ubuntu.nvidia.22.04</li>
+</ul>
+<p>Great it's a good job, you have build your own abcdesktop 2048 application. </p>
 
 
 
