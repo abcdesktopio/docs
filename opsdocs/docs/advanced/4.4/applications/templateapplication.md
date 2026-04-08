@@ -115,7 +115,7 @@ List all labels, and confirm that the icon file is uuencoded format. Uuencoding 
 Now it's time to build your 2048 app. Run the command `docker build` command.
 
 ```
-REGISTRY=abcdesktop
+REGISTRY=abcdesktopio
 docker build -f 2048.d -t $REGISTRY/2048.d .
 ```
 
