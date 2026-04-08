@@ -99,7 +99,10 @@ Read the [authmanagers explicit](authexplicit.md) Section.
 
 ## authmanagers `metaexplicit`:
 
+`metaexplicit` authentication manager allows you to provides security across [multiple domains or forests through domain and forest trust relationships](https://learn.microsoft.com/en-us/entra/identity/domain-services/concepts-forest-trust). `metaexplicit` reads the domain of the current user from another domain or forest, then executes the authentication process to the user's domain. 
+
 `metaexplicit` offers a support to Microsoft Active Directory Trusted relationship, with support of Foreign Security Principals and Special Identities. 
+
 
 ![auth-overview-explicit](img/auth-overview-explicit.png)
 
