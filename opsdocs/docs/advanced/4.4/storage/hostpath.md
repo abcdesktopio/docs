@@ -7,7 +7,7 @@
 ## Define hostPath folder and update od.config
 
 On your node, create a folder that will be the mount point for your user's home directories. For example `mnt/abcdesktop_volumes/`.  
-Then you have to edit your `od.config` file. First set `desktop.homedirectorytype` to `'hostPath'` and then add a `desktop.hostPathRoot` whose value will be the path to the mont point you previously created.
+Then you have to edit your `od.config` file. First set `desktop.homedirectorytype` to `'hostPath'` and then add a `desktop.hostPathRoot` whose value will be the path to the mount point you previously created.
 
 ```
 desktop.homedirectorytype: 'hostPath'
