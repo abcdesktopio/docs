@@ -4,7 +4,7 @@ abcdesktop uses container image format with some labels to describe an applicati
 
 ## Requirements
 
-- an access to the container public registry or a private container registry
+- your own public or private container registry
 - `nodejs` installed on your host.  
 - `docker` command line to build container image
 - `wget` command line installed
