@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://abcdesktop.pepins.net/advanced/4.4/install/onpremises/kubernetes/">
+        <link rel="canonical" href="https://abcdesktop.pepins.net/advanced/4.4/controllers/controllers/">
       
       
+        <link rel="prev" href="../../configure/welcome/">
+      
+      
+        <link rel="next" href="../../networkpolicy/netpol/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -18,11 +22,11 @@
     
     
       
-        <title>Install installation - abcdesktop.pepins.net</title>
+        <title>Configuration - abcdesktop.pepins.net</title>
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -41,11 +45,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../css/custom-admonition.css">
+      <link rel="stylesheet" href="../../../../css/custom-admonition.css">
     
-      <link rel="stylesheet" href="../../../../../css/drawio-darkmode.css">
+      <link rel="stylesheet" href="../../../../css/drawio-darkmode.css">
     
-    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -74,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#install-installation" class="md-skip">
+        <a href="#controllers" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../.." title="abcdesktop.pepins.net" class="md-header__button md-logo" aria-label="abcdesktop.pepins.net" data-md-component="logo">
+    <a href="../../../.." title="abcdesktop.pepins.net" class="md-header__button md-logo" aria-label="abcdesktop.pepins.net" data-md-component="logo">
       
   <img src="/img/abcdesktop.svg" alt="logo">
 
@@ -107,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Install installation
+              Configuration
             
           </span>
         </div>
@@ -192,7 +196,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
   
@@ -213,7 +217,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../requirements/" class="md-tabs__link">
+        <a href="../../../../requirements/" class="md-tabs__link">
           
   
   
@@ -229,6 +233,8 @@
   
   
   
+    
+  
   
     
     
@@ -236,11 +242,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../../../architecture/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../architecture/overview/" class="md-tabs__link">
           
   
   
@@ -263,7 +271,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../contribute/overview/" class="md-tabs__link">
+        <a href="../../../../contribute/overview/" class="md-tabs__link">
           
   
   
@@ -283,7 +291,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../usecases/4.4/filter-traffic-per-group/" class="md-tabs__link">
+        <a href="../../../../usecases/4.4/filter-traffic-per-group/" class="md-tabs__link">
           
   
   
@@ -303,7 +311,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../faq/issue/" class="md-tabs__link">
+        <a href="../../../../faq/issue/" class="md-tabs__link">
           
   
   
@@ -337,7 +345,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../.." title="abcdesktop.pepins.net" class="md-nav__button md-logo" aria-label="abcdesktop.pepins.net" data-md-component="logo">
+    <a href="../../../.." title="abcdesktop.pepins.net" class="md-nav__button md-logo" aria-label="abcdesktop.pepins.net" data-md-component="logo">
       
   <img src="/img/abcdesktop.svg" alt="logo">
 
@@ -366,7 +374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -429,7 +437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../requirements/" class="md-nav__link">
+      <a href="../../../../requirements/" class="md-nav__link">
         
   
   
@@ -493,7 +501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../install/4.4/script/" class="md-nav__link">
+      <a href="../../../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -516,7 +524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -588,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../install/4.4/applicationoverview/" class="md-nav__link">
+      <a href="../../../../install/4.4/applicationoverview/" class="md-nav__link">
         
   
   
@@ -611,7 +619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../install/4.4/install-applications/" class="md-nav__link">
+      <a href="../../../../install/4.4/install-applications/" class="md-nav__link">
         
   
   
@@ -634,7 +642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../install/4.4/applicationwithconsole/" class="md-nav__link">
+      <a href="../../../../install/4.4/applicationwithconsole/" class="md-nav__link">
         
   
   
@@ -706,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../uninstall/4.4/script/" class="md-nav__link">
+      <a href="../../../../uninstall/4.4/script/" class="md-nav__link">
         
   
   
@@ -729,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../uninstall/4.4/helm/" class="md-nav__link">
+      <a href="../../../../uninstall/4.4/helm/" class="md-nav__link">
         
   
   
@@ -764,24 +772,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -794,7 +807,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Advanced
@@ -849,7 +862,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../architecture/overview/" class="md-nav__link">
+      <a href="../../../../architecture/overview/" class="md-nav__link">
         
   
   
@@ -921,7 +934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kind/" class="md-nav__link">
+      <a href="../../install/onpremises/kind/" class="md-nav__link">
         
   
   
@@ -944,7 +957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../install/4.4/script/" class="md-nav__link">
+      <a href="../../../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -967,7 +980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -990,7 +1003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../minikube/" class="md-nav__link">
+      <a href="../../install/onpremises/minikube/" class="md-nav__link">
         
   
   
@@ -1103,7 +1116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
         
   
   
@@ -1126,7 +1139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1149,7 +1162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1221,7 +1234,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
         
   
   
@@ -1244,7 +1257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1267,7 +1280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1339,7 +1352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
         
   
   
@@ -1362,7 +1375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1385,7 +1398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1457,7 +1470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
         
   
   
@@ -1480,7 +1493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1503,7 +1516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1575,7 +1588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
         
   
   
@@ -1598,7 +1611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1621,7 +1634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1701,7 +1714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../applications/simplestapplicationxeyes/" class="md-nav__link">
+      <a href="../../applications/simplestapplicationxeyes/" class="md-nav__link">
         
   
   
@@ -1724,7 +1737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../applications/simplestapplicationxedit/" class="md-nav__link">
+      <a href="../../applications/simplestapplicationxedit/" class="md-nav__link">
         
   
   
@@ -1747,7 +1760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../applications/simplestapplicationchromium/" class="md-nav__link">
+      <a href="../../applications/simplestapplicationchromium/" class="md-nav__link">
         
   
   
@@ -1770,7 +1783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../applications/templateapplication.md" class="md-nav__link">
+      <a href="../../applications/templateapplication.md" class="md-nav__link">
         
   
   
@@ -1793,7 +1806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../applications/applicationscripting.md" class="md-nav__link">
+      <a href="../../applications/applicationscripting.md" class="md-nav__link">
         
   
   
@@ -1865,7 +1878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../configure/updateconfiguration/" class="md-nav__link">
+      <a href="../../configure/updateconfiguration/" class="md-nav__link">
         
   
   
@@ -1929,7 +1942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../authentication/overview/" class="md-nav__link">
+      <a href="../../authentication/overview/" class="md-nav__link">
         
   
   
@@ -1952,7 +1965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../authentication/authexternal/" class="md-nav__link">
+      <a href="../../authentication/authexternal/" class="md-nav__link">
         
   
   
@@ -2016,7 +2029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../authentication/authexplicit-ldap/" class="md-nav__link">
+      <a href="../../authentication/authexplicit-ldap/" class="md-nav__link">
         
   
   
@@ -2039,7 +2052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../authentication/authexplicit-activedirectory/" class="md-nav__link">
+      <a href="../../authentication/authexplicit-activedirectory/" class="md-nav__link">
         
   
   
@@ -2062,7 +2075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../authentication/authmetaexplicit/" class="md-nav__link">
+      <a href="../../authentication/authmetaexplicit/" class="md-nav__link">
         
   
   
@@ -2093,7 +2106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../authentication/authimplicit/" class="md-nav__link">
+      <a href="../../authentication/authimplicit/" class="md-nav__link">
         
   
   
@@ -2124,7 +2137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../authentication/authentification-rules/" class="md-nav__link">
+      <a href="../../authentication/authentification-rules/" class="md-nav__link">
         
   
   
@@ -2188,7 +2201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../desktop/overview/" class="md-nav__link">
+      <a href="../../desktop/overview/" class="md-nav__link">
         
   
   
@@ -2211,7 +2224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../desktop/executeclasses/" class="md-nav__link">
+      <a href="../../desktop/executeclasses/" class="md-nav__link">
         
   
   
@@ -2234,7 +2247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../desktop/pod/" class="md-nav__link">
+      <a href="../../desktop/pod/" class="md-nav__link">
         
   
   
@@ -2257,7 +2270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../desktop/resources/" class="md-nav__link">
+      <a href="../../desktop/resources/" class="md-nav__link">
         
   
   
@@ -2280,7 +2293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../desktop/policies/" class="md-nav__link">
+      <a href="../../desktop/policies/" class="md-nav__link">
         
   
   
@@ -2352,7 +2365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../storage/overview.md" class="md-nav__link">
+      <a href="../../storage/overview.md" class="md-nav__link">
         
   
   
@@ -2375,7 +2388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../storage/nfs/" class="md-nav__link">
+      <a href="../../storage/nfs/" class="md-nav__link">
         
   
   
@@ -2398,7 +2411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../storage/s3/" class="md-nav__link">
+      <a href="../../storage/s3/" class="md-nav__link">
         
   
   
@@ -2421,7 +2434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../storage/hostpath/" class="md-nav__link">
+      <a href="../../storage/hostpath/" class="md-nav__link">
         
   
   
@@ -2444,7 +2457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../storage/sharedvolume/" class="md-nav__link">
+      <a href="../../storage/sharedvolume/" class="md-nav__link">
         
   
   
@@ -2467,7 +2480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../add_hostpath_volume_using_rules.md" class="md-nav__link">
+      <a href="../../add_hostpath_volume_using_rules.md" class="md-nav__link">
         
   
   
@@ -2498,7 +2511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../configure/garbagecollector/" class="md-nav__link">
+      <a href="../../configure/garbagecollector/" class="md-nav__link">
         
   
   
@@ -2521,7 +2534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
+      <a href="../../configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
         
   
   
@@ -2544,7 +2557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../configure/welcome/" class="md-nav__link">
+      <a href="../../configure/welcome/" class="md-nav__link">
         
   
   
@@ -2572,6 +2585,8 @@
                 
   
   
+    
+  
   
   
     
@@ -2582,11 +2597,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
         
           
           <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
@@ -2602,7 +2617,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             Security
@@ -2613,6 +2628,8 @@
                 
   
   
+    
+  
   
   
     
@@ -2623,11 +2640,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_1" checked>
         
           
           <label class="md-nav__link" for="__nav_3_6_1" id="__nav_3_6_1_label" tabindex="0">
@@ -2643,7 +2660,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_6_1">
             <span class="md-nav__icon md-icon"></span>
             Controllers
@@ -2654,10 +2671,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../controllers/controllers/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2668,6 +2707,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#controllers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controllers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Permission
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Access Permission">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-control-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access control filter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curl-http-requests-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      Curl http requests sample
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Curl http requests sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl-http-request-with-x-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Curl http request with X-API-Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-http-request-forbidden" class="md-nav__link">
+    <span class="md-ellipsis">
+      Curl http request forbidden
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2729,7 +2854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../networkpolicy/netpol/" class="md-nav__link">
+      <a href="../../networkpolicy/netpol/" class="md-nav__link">
         
   
   
@@ -2752,7 +2877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../networkpolicy/install/" class="md-nav__link">
+      <a href="../../networkpolicy/install/" class="md-nav__link">
         
   
   
@@ -2775,7 +2900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../networkpolicy/uninstall/" class="md-nav__link">
+      <a href="../../networkpolicy/uninstall/" class="md-nav__link">
         
   
   
@@ -2862,7 +2987,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../contribute/overview/" class="md-nav__link">
+      <a href="../../../../contribute/overview/" class="md-nav__link">
         
   
   
@@ -2926,7 +3051,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../contribute/4.4/services/mongo/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/services/mongo/" class="md-nav__link">
         
   
   
@@ -2949,7 +3074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../contribute/4.4/services/console/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/services/console/" class="md-nav__link">
         
   
   
@@ -2972,7 +3097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../contribute/4.4/services/pyos/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/services/pyos/" class="md-nav__link">
         
   
   
@@ -2995,7 +3120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../contribute/4.4/services/router/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/services/router/" class="md-nav__link">
         
   
   
@@ -3018,7 +3143,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../contribute/4.4/services/webmodules/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/services/webmodules/" class="md-nav__link">
         
   
   
@@ -3090,7 +3215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../contribute/4.4/userpod/graphical/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/userpod/graphical/" class="md-nav__link">
         
   
   
@@ -3113,7 +3238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../contribute/4.4/userpod/sound/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/userpod/sound/" class="md-nav__link">
         
   
   
@@ -3136,7 +3261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../contribute/4.4/userpod/cups/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/userpod/cups/" class="md-nav__link">
         
   
   
@@ -3159,7 +3284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../contribute/4.4/userpod/filer/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/userpod/filer/" class="md-nav__link">
         
   
   
@@ -3238,7 +3363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../usecases/4.4/filter-traffic-per-group/" class="md-nav__link">
+      <a href="../../../../usecases/4.4/filter-traffic-per-group/" class="md-nav__link">
         
   
   
@@ -3261,7 +3386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../usecases/4.4/configure-keycloak/" class="md-nav__link">
+      <a href="../../../../usecases/4.4/configure-keycloak/" class="md-nav__link">
         
   
   
@@ -3332,7 +3457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../faq/issue/" class="md-nav__link">
+      <a href="../../../../faq/issue/" class="md-nav__link">
         
   
   
@@ -3355,7 +3480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../faq/webbrowser/" class="md-nav__link">
+      <a href="../../../../faq/webbrowser/" class="md-nav__link">
         
   
   
@@ -3378,7 +3503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../faq/ingresscontroller/" class="md-nav__link">
+      <a href="../../../../faq/ingresscontroller/" class="md-nav__link">
         
   
   
@@ -3401,7 +3526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../faq/applications/" class="md-nav__link">
+      <a href="../../../../faq/applications/" class="md-nav__link">
         
   
   
@@ -3424,7 +3549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../faq/mongodb/" class="md-nav__link">
+      <a href="../../../../faq/mongodb/" class="md-nav__link">
         
   
   
@@ -3447,7 +3572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../faq/adopters/" class="md-nav__link">
+      <a href="../../../../faq/adopters/" class="md-nav__link">
         
   
   
@@ -3470,7 +3595,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../faq/release/" class="md-nav__link">
+      <a href="../../../../faq/release/" class="md-nav__link">
         
   
   
@@ -3493,7 +3618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../faq/disable-firefox-connections/" class="md-nav__link">
+      <a href="../../../../faq/disable-firefox-connections/" class="md-nav__link">
         
   
   
@@ -3543,47 +3668,68 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#controllers_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Requirements
+      Controllers
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-secure-abcdesktop-jwt-exchange" class="md-nav__link">
+  <a href="#access-permission" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2: Secure abcdesktop JWT exchange
+      Access Permission
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Access Permission">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-control-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access control filter
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-download-and-create-the-abcdesktop-config-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 3: Download and create the abcdesktop config file
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-create-the-abcdesktop-pods-and-services" class="md-nav__link">
+  <a href="#curl-http-requests-sample" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 4: Create the abcdesktop pods and services
+      Curl http requests sample
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Curl http requests sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl-http-request-with-x-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Curl http request with X-API-Key
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-5-connect-your-local-abcdesktop" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#curl-http-request-forbidden" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 5: Connect your local abcdesktop
+      Curl http request forbidden
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3603,7 +3749,7 @@
 
 
   
-    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/install/onpremises/kubernetes.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/controllers/controllers.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -3611,173 +3757,125 @@
   
 
 
-<h1 id="install-installation">Install  installation</h1>
-<h2 id="requirements">Requirements</h2>
+<h1 id="controllers">Controllers</h1>
+<h2 id="controllers_1">Controllers</h2>
+<p>abcdesktop is based on the Model View Controller (usually known as MVC). This MVC is used for developing user interfaces which divides the related program logic into three interconnected elements. This is done to separate internal representations of information from the ways information is presented to and accepted from the user.</p>
+<p>List of all abcdesktop's controllers and the description : </p>
+<table>
+<thead>
+<tr>
+<th>Controller</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AccountingController</code></td>
+<td>accounting data json format</td>
+</tr>
+<tr>
+<td><code>AuthController</code></td>
+<td>authenticate user</td>
+</tr>
+<tr>
+<td><code>ComposerController</code></td>
+<td>CRUD main services (like createDesktop, createApplication)</td>
+</tr>
+<tr>
+<td><code>CoreController</code></td>
+<td>get configuration and user message info</td>
+</tr>
+<tr>
+<td><code>ManagerController</code></td>
+<td>manage service (like add an application, use by console servivce)</td>
+</tr>
+<tr>
+<td><code>UserController</code></td>
+<td>retrieve user information</td>
+</tr>
+</tbody>
+</table>
+<h2 id="access-permission">Access Permission</h2>
+<p>The <code>controllers</code> configuration is a dictionary, and is defined in the pyos's <code>od.config</code> file. </p>
+<div class="highlight"><pre><span></span><code><span class="err">co</span><span class="kc">ntr</span><span class="err">ollers</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;Accou</span><span class="kc">nt</span><span class="err">i</span><span class="kc">n</span><span class="err">gCo</span><span class="kc">ntr</span><span class="err">oller&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">&#39;apikey&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">PCdPNcCa</span><span class="kc">fe</span><span class="err">c</span><span class="mi">4</span><span class="err">lXm</span><span class="mi">3</span><span class="err">M&#39;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">        </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">ip&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">10.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">172.16.0.0</span><span class="err">/</span><span class="mi">12</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">192.168.0.0</span><span class="err">/</span><span class="mi">16</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">d</span><span class="mi">00</span><span class="p">::</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">169.254.0.0</span><span class="err">/</span><span class="mi">16</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">127.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;Ma</span><span class="kc">na</span><span class="err">gerCo</span><span class="kc">ntr</span><span class="err">oller&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">       </span><span class="err">&#39;da</span><span class="kc">ta</span><span class="err">base_acl&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ge</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;pu</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;dele</span><span class="kc">te</span><span class="err">&#39;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">        </span><span class="err">&#39;apikey&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">QDbvjCa</span><span class="kc">fe</span><span class="err">c</span><span class="mi">4</span><span class="err">l&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;KzH</span><span class="mf">23E</span><span class="err">ZjCZS</span><span class="kc">fs</span><span class="err">d</span><span class="mi">9</span><span class="err">&#39;</span><span class="p">],</span>
+<span class="w">        </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">ip&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">10.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">172.16.0.0</span><span class="err">/</span><span class="mi">12</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">192.168.0.0</span><span class="err">/</span><span class="mi">16</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">d</span><span class="mi">00</span><span class="p">::</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">169.254.0.0</span><span class="err">/</span><span class="mi">16</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">127.0.0.0</span><span class="err">/</span><span class="mi">8</span><span class="err">&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;Au</span><span class="kc">t</span><span class="err">hCo</span><span class="kc">ntr</span><span class="err">oller&#39;</span><span class="w"> </span><span class="p">:</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">ip&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;ComposerCo</span><span class="kc">ntr</span><span class="err">oller&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;reques</span><span class="kc">tsall</span><span class="err">owed&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;ge</span><span class="kc">t</span><span class="err">desk</span><span class="kc">t</span><span class="err">opdescrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;CoreCo</span><span class="kc">ntr</span><span class="err">oller&#39;</span><span class="w"> </span><span class="p">:</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">ip&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="err">&#39;UserCo</span><span class="kc">ntr</span><span class="err">oller&#39;</span><span class="w"> </span><span class="p">:</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">ip&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span><span class="w"> </span>
+</code></pre></div>
+<p>By default, <code>AccountingController</code> and <code>ManagerController</code> access are protected by <code>ip source</code> filters or by an <code>apikey</code>.
+The configuration permits private networks defined in <a href="https://tools.ietf.org/html/rfc1918">rfc1918</a> and <a href="https://tools.ietf.org/html/rfc4193">rfc4193</a>. Get more information about the <a href="https://en.wikipedia.org/wiki/Private_network">private network</a>.</p>
+<p>By default, others controllers access is enabled, without any restriction.</p>
+<h3 id="access-control-filter">Access control filter</h3>
+<p>The access control filter configuration is defined in a json dictionary.
+Each dictionary entry use the <code>controller</code> name and with entries <code>permitip</code> and/or <code>apikey</code>.</p>
 <ul>
-<li>kubernetes cluster <code>READY</code> to run</li>
-<li><code>kubectl</code> or <code>minikube</code> command-line tool must be configured to communicate with your cluster. </li>
-<li><code>openssl</code> and <code>curl</code> command line must be installed too (only for install using kubectl). </li>
+<li>The <code>permitip</code> is a list of subnet, for example <code>[ '10.0.0.0/8', '172.16.0.0/12' ]</code>. If <code>permitip</code> is not set or if the <code>controller</code> is not defined, filtering features is disabled.</li>
+<li>The <code>apikey</code> is a list of string, for example <code>[ 'fPCdPSSj8gZri1Ncmg', 'Z9pXCa2y6ccDeBBeeUc4' ]</code>.
+If <code>apikey</code>  is not set or the <code>controller</code> not defined, filtering features is disabled. The http header value is <code>X-API-Key</code></li>
 </ul>
-<p>You can run the <strong>Quick installation process</strong> or choose the <strong>Manually installation step by step</strong></p>
-<blockquote>
-<p>Linux operating system is recommanded to run abcdesktop.io.</p>
-</blockquote>
-<details class="note">
-<summary><strong>Step 1:</strong> Create abcdesktop namespace</summary>
-<p>We will create the abcdesktop namespace and set it as default :</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>abcdesktop
+<p>If the source ip address is denied, the response is a HTTP status is 403 <code>code 403 Forbidden</code></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;status_message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;403 Forbidden&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Request forbidden -- authorization will not help&quot;</span><span class="p">}</span><span class="w"> </span>
 </code></pre></div>
-<p>You should read on the standard output</p>
-<div class="highlight"><pre><span></span><code>namespace/abcdesktop created
+<h2 id="curl-http-requests-sample">Curl http requests sample</h2>
+<h3 id="curl-http-request-with-x-api-key">Curl http request with <code>X-API-Key</code></h3>
+<p>Add the http header <code>X-API-Key: fQDbvjCafec4l</code> to the curl command to list images</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;X-API-Key: fQDbvjCafec4l&#39;</span><span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/images
 </code></pre></div>
-</details>
-<h2 id="step-2-secure-abcdesktop-jwt-exchange"><strong>Step 2:</strong> Secure abcdesktop JWT exchange</h2>
-<p>User JWT is signed. So we need to define a (private, public) RSA keys for signing.
- Desktop JWT is encrypted AND signed. So we need to define a (private, public) RSA keys for signing, and a (private, public) RSA keys to encrypt data.</p>
-<ul>
-<li>The JWT payload is encrypted with the abcdesktop jwt desktop payload private by pyos</li>
-<li>The JWT payload is decrypted with the abcdesktop jwt desktop payload public keys by nginx.</li>
-</ul>
-<blockquote>
-<p>Please use the payload private as private key, and the payload public as private key. 
-Do not publish the public key. This public key must stay private, this is a special case, this is not stupid, it's only a more secure option.</p>
-</blockquote>
-<ul>
-<li>The JSON Web Tokens payload is signed with the abcdesktop jwt desktop signing private keys</li>
-<li>
-<p>The JSON Web Tokens payload is verified with the abcdesktop jwt desktop signing public keys.</p>
-</li>
-<li>
-<p>The JSON Web Tokens user is signed with the abcdesktop jwt user signing private keys by pyos.</p>
-</li>
-<li>The JSON Web Tokens user is verified with the abcdesktop jwt user signing public keys by pyos<blockquote>
-<p>As multiple pods of pyos can run simultaneously, the same private and public keys value are stored into kubernetes secret.</p>
-</blockquote>
-</li>
-</ul>
-<p>The abcdesktop jwt desktop payload public key is read by <code>nginx lua script</code>. The exported the public key need the <code>RSAPublicKey_out</code> option, to use the <code>RSAPublicKey</code> format. The <code>RSAPublicKey</code> format make key file format compatible between <code>python 3.x jwt module</code> and <code>lua jwt lib</code>.</p>
-<p>The following commands will let you create all necessary keys :</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Desktop payload keys (encrypt/decrypt)</span>
-openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>abcdesktop_jwt_desktop_payload_private_key.pem<span class="w"> </span><span class="m">1024</span>
-openssl<span class="w"> </span>rsa<span class="w"> </span>-in<span class="w"> </span>abcdesktop_jwt_desktop_payload_private_key.pem<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-outform<span class="w"> </span>PEM<span class="w"> </span>-pubout<span class="w"> </span>-out<span class="w">  </span>_abcdesktop_jwt_desktop_payload_public_key.pem
-openssl<span class="w"> </span>rsa<span class="w"> </span>-pubin<span class="w"> </span>-in<span class="w"> </span>_abcdesktop_jwt_desktop_payload_public_key.pem<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-RSAPublicKey_out<span class="w"> </span>-out<span class="w"> </span>abcdesktop_jwt_desktop_payload_public_key.pem
-
-<span class="c1"># Desktop signing keys</span>
-openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>abcdesktop_jwt_desktop_signing_private_key.pem<span class="w"> </span><span class="m">1024</span>
-openssl<span class="w"> </span>rsa<span class="w"> </span>-in<span class="w"> </span>abcdesktop_jwt_desktop_signing_private_key.pem<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-outform<span class="w"> </span>PEM<span class="w"> </span>-pubout<span class="w"> </span>-out<span class="w"> </span>abcdesktop_jwt_desktop_signing_public_key.pem
-
-<span class="c1"># User signing keys  </span>
-openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>abcdesktop_jwt_user_signing_private_key.pem<span class="w"> </span><span class="m">1024</span>
-openssl<span class="w"> </span>rsa<span class="w"> </span>-in<span class="w"> </span>abcdesktop_jwt_user_signing_private_key.pem<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-outform<span class="w"> </span>PEM<span class="w"> </span>-pubout<span class="w"> </span>-out<span class="w"> </span>abcdesktop_jwt_user_signing_public_key.pem
+<p>The command returns</p>
+<div class="highlight"><pre><span></span><code><span class="p">{}</span>
 </code></pre></div>
-<p>Then, create the kubernetes secrets from the new key files:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>abcdesktopjwtdesktoppayload<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--from-file<span class="o">=</span>abcdesktop_jwt_desktop_payload_private_key.pem<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--from-file<span class="o">=</span>abcdesktop_jwt_desktop_payload_public_key.pem<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--namespace<span class="o">=</span>abcdesktop
-
-kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>abcdesktopjwtdesktopsigning<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--from-file<span class="o">=</span>abcdesktop_jwt_desktop_signing_private_key.pem<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--from-file<span class="o">=</span>abcdesktop_jwt_desktop_signing_public_key.pem<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--namespace<span class="o">=</span>abcdesktop
-
-kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>abcdesktopjwtusersigning<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--from-file<span class="o">=</span>abcdesktop_jwt_user_signing_private_key.pem<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--from-file<span class="o">=</span>abcdesktop_jwt_user_signing_public_key.pem<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--namespace<span class="o">=</span>abcdesktop
+<p>Add the http header <code>X-API-Key: fQDbvjCafec4l</code> to the curl command to add new application</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;X-API-Key: fQDbvjCafec4l&#39;</span><span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/image<span class="w"> </span>-d@xeyes.d.4.4.json
 </code></pre></div>
-<p>You should read on the standard output :</p>
-<div class="highlight"><pre><span></span><code>secret/abcdesktopjwtdesktoppayload<span class="w"> </span>created
-secret/abcdesktopjwtdesktopsigning<span class="w"> </span>created
-secret/abcdesktopjwtusersigning<span class="w"> </span>created
+<p>The command returns</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="nt">&quot;cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/composer/appli-docker-entrypoint.sh&quot;</span><span class="p">],</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/xeyes&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;sha_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha256:4ed2e110042b80f1634d8f3ae66b793914db813f53cd88811285448602d7540e&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/xeyes.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;acl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;permit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;all&quot;</span><span class="p">]},</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xeyes.XEyes&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xeyes&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;circle_xfce4-eyes.svg&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;keyword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xeyes,eyes&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;uniquerunkey&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;cat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;utilities&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;execmode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;showinview&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xeyes&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;home&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;desktopfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;executeclassname&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;executablefilename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xeyes&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;usedefaultapplication&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;fileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;legacyfileextensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;secrets_requirement&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;containerengine&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ephemeral_container&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;securitycontext&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
 </code></pre></div>
-<p>You can verify secrets creation with the following command :</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>secrets<span class="w"> </span>-n<span class="w"> </span>abcdesktop
+<h3 id="curl-http-request-forbidden">Curl http request forbidden</h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/images
 </code></pre></div>
-<p>You should read on the standard output :</p>
-<div class="highlight"><pre><span></span><code>NAME                          TYPE                                  DATA   AGE
-abcdesktopjwtdesktoppayload   Opaque                                2      68s
-abcdesktopjwtdesktopsigning   Opaque                                2      68s
-abcdesktopjwtusersigning      Opaque                                2      67s
+<p>The command returns</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Request forbidden -- authorization will not help&quot;</span><span class="p">}</span>
 </code></pre></div>
-<h2 id="step-3-download-and-create-the-abcdesktop-config-file"><strong>Step 3:</strong> Download and create the abcdesktop config file</h2>
-<p>Download the od.config file. This is the main configuration file for <code>pyos</code> control plane.</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.<span class="o">{{</span><span class="w"> </span>version<span class="w"> </span><span class="o">}}</span><span class="w"> </span>--output<span class="w"> </span>od.config
-</code></pre></div>
-<p>Create the config map <code>abcdesktop-config</code> in the <code>abcdesktop</code> namespace</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>--from-file<span class="o">=</span>od.config<span class="w"> </span>-n<span class="w"> </span>abcdesktop
-</code></pre></div>
-<p>You should read on sdtout</p>
-<div class="highlight"><pre><span></span><code>configmap/abcdesktop-config<span class="w"> </span>created
-</code></pre></div>
-<h2 id="step-4-create-the-abcdesktop-pods-and-services"><strong>Step 4:</strong> Create the abcdesktop pods and services</h2>
-<p>abcdesktop.yaml file contains declarations for all roles, service account, pods, and services required for abcdesktop.</p>
-<p>Run the command line</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-<span class="o">{{</span><span class="w"> </span>version<span class="w"> </span><span class="o">}}</span>.yaml
-</code></pre></div>
-<p>You should read on the standard output</p>
-<div class="highlight"><pre><span></span><code>role.rbac.authorization.k8s.io/pyos-role<span class="w"> </span>created
-rolebinding.rbac.authorization.k8s.io/pyos-rbac<span class="w"> </span>created
-serviceaccount/pyos-serviceaccount<span class="w"> </span>created
-configmap/configmap-mongodb-scripts<span class="w"> </span>created
-secret/secret-mongodb<span class="w"> </span>created
-deployment.apps/mongodb-od<span class="w"> </span>created
-deployment.apps/memcached-od<span class="w"> </span>created
-deployment.apps/router-od<span class="w"> </span>created
-deployment.apps/nginx-od<span class="w"> </span>created
-deployment.apps/speedtest-od<span class="w"> </span>created
-deployment.apps/pyos-od<span class="w"> </span>created
-deployment.apps/console-od<span class="w"> </span>created
-deployment.apps/openldap-od<span class="w"> </span>created
-endpoints/desktop<span class="w"> </span>created
-service/desktop<span class="w"> </span>created
-service/memcached<span class="w"> </span>created
-service/mongodb<span class="w"> </span>created
-service/speedtest<span class="w"> </span>created
-service/pyos<span class="w"> </span>created
-service/console<span class="w"> </span>created
-service/http-router<span class="w"> </span>created
-service/website<span class="w"> </span>created
-service/openldap<span class="w"> </span>created
-</code></pre></div>
-<p>Once the pods are created, all pods should be in <code>Running</code> status.<br />
-For the first time, please wait for downloading all container images. 
-It can take a while.</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>abcdesktop
-</code></pre></div>
-<p>You should read on the standard output</p>
-<div class="highlight"><pre><span></span><code>NAME<span class="w">                            </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
-console-od-79bf9bf475-cqtj5<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2m18s
-memcached-od-d4b6b6867-djzr6<span class="w">    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2m19s
-mongodb-od-5d996fd57b-gn4hv<span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2m19s
-nginx-od-796c7d7d6b-rk2d5<span class="w">       </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2m19s
-openldap-od-567dcf7bf6-krhpw<span class="w">    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2m18s
-pyos-od-65bdd9d479-5228d<span class="w">        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2m18s
-router-od-7b6dff8dd4-pn587<span class="w">      </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2m19s
-speedtest-od-7fcc9649b4-n2ldl<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2m18s
-</code></pre></div>
-<h2 id="step-5-connect-your-local-abcdesktop"><strong>Step 5:</strong> Connect your local abcdesktop</h2>
-<p>Open your navigator to http://[your-ip-hostname]:30443/</p>
-<p>abcdesktop homepage should be available :</p>
-<p><img alt="abcdesktop Anonymous login" src="../img/kubernetes-setup-login-anonymous.png" /></p>
-<p>Click on the <strong>Connect with Anonymous</strong> access button. abcdesktop service pyos is creating a new pod.</p>
-<p><img alt="abcdesktop main screen login pending" src="../img/kubernetes-setup-login-anonymous.pending.png" /></p>
-<p>Few seconds later, processes are ready to run. You should see the abcdesktop main screen, with no application in the dock.</p>
-<p><img alt="abcdesktop main screen ready" src="../img/kubernetes-setup-login-anonymous.done.png" /></p>
-<p>Also, you can run again the command </p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">type</span><span class="o">=</span>x11server<span class="w"> </span>-n<span class="w"> </span>abcdesktop
-</code></pre></div>
-<p>You should see that the <code>anonymous-XXXXX</code> pod have been created and is <code>Running</code></p>
-<div class="highlight"><pre><span></span><code>NAME<span class="w">              </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
-anonymous-c44fc<span class="w">   </span><span class="m">5</span>/5<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>116s
-</code></pre></div>
-<p>Great you have installed abcdesktop.io.
-You just need a web browser to reach your web workspace. It' now time to add some container applications.
-Read the next chapter to add applications</p>
 
 
 
@@ -3834,16 +3932,16 @@ Read the next chapter to add applications</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
-        <script src="../../../../../js/tabbed-toc.js"></script>
+        <script src="../../../../js/tabbed-toc.js"></script>
       
         <script src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
       
-        <script src="../../../../../js/drawio-reload.js"></script>
+        <script src="../../../../js/drawio-reload.js"></script>
       
     
   </body>
