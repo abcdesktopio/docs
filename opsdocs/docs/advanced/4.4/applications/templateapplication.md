@@ -114,6 +114,8 @@ List all labels, and confirm that the icon file is uuencoded format. Uuencoding 
 
 Now it's time to build your 2048 app. Run the command `docker build` command.
 
+> Replace the value of the REGISTRY with your own if need
+
 ```
 REGISTRY=abcdesktopio
 docker build -f 2048.d -t $REGISTRY/2048.d .
@@ -140,6 +142,7 @@ You should read the output :
 
 - Push your image to your registry 
 
+> Replace the value of the REGISTRY with your own if need.
 > If you don't have your own registry, you can skip this command but keep using `REGISTRY=abcdesktopio` 
 
 ```
@@ -302,7 +305,7 @@ The template repository is [https://github.com/abcdesktopio/oc.template](https:/
 - oc.template.rockylinux.minimal.9
 
 
-### template with nvidia lib support
+### template with `nvidia` lib support
 - oc.template.rockylinux.nvidia.8
 - oc.template.rockylinux.nvidia.9
 - oc.template.ubuntu.nvidia.24.04
