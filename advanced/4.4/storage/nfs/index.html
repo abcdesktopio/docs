@@ -3929,7 +3929,7 @@ NAME                               STATUS   VOLUME                              
 persistentvolumeclaim/planet-fry   Bound    pvc-8f802cbc-873f-46ab-9d7a-fe266da42387   10Gi       RWX            nfs-user-storage-abcdesktop    &lt;unset&gt;                 22m
 </code></pre></div>
 <p>Now you can create a file in the user's homedir </p>
-<p><img alt="create file on user homedir" src="../../../../img/nfs_create_file_user_homedir.png" /></p>
+<p><img alt="create file on user homedir" src="../img/nfs_create_file_user_homedir.png" /></p>
 <p>You can also check if the user's homedir is present on your nfs server, you should also see that a subdir have been created thanks to <code>nfs-subdir-external-provisioner</code>.</p>
 <div class="highlight"><pre><span></span><code>root@nfs-server_abcdesktop:/data/abcdesktop_nfs# ls
 drwxr-x--- 15 2042 12042 4096 Mar 18 09:11 fry
@@ -3946,7 +3946,7 @@ drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Templates
 drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Videos
 </code></pre></div>
 <p>Then perform a logoff to destroy your pod and recreates it, once reconnected on a new pod with the same user, check if the file you previously created is still there, it should appear.</p>
-<p><img alt="check peristent user homedir" src="../../../../img/nfs_check_persistent_homedir.png" /></p>
+<p><img alt="check peristent user homedir" src="../img/nfs_check_persistent_homedir.png" /></p>
 
 
 
