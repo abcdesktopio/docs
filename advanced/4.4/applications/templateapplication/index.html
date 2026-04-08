@@ -3991,6 +3991,9 @@ Creating Dockerfile 2048.d
 <p>You can read the content of the Dockerfile <code>2048.d</code>.
 List all labels, and confirm that the icon file is uuencoded format. Uuencoding is a form of binary-to-text encoding.</p>
 <p>Now it's time to build your 2048 app. Run the command <code>docker build</code> command.</p>
+<blockquote>
+<p>Replace the value of the REGISTRY with your own if need</p>
+</blockquote>
 <div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
 docker build -f 2048.d -t $REGISTRY/2048.d .
 </code></pre></div>
@@ -4014,7 +4017,8 @@ docker build -f 2048.d -t $REGISTRY/2048.d .
 <li>Push your image to your registry </li>
 </ul>
 <blockquote>
-<p>If you don't have your own registry, you can skip this command but keep using <code>REGISTRY=abcdesktopio</code> </p>
+<p>Replace the value of the REGISTRY with your own if need.
+If you don't have your own registry, you can skip this command but keep using <code>REGISTRY=abcdesktopio</code> </p>
 </blockquote>
 <div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
 docker push $REGISTRY/2048.d
@@ -4157,7 +4161,7 @@ The template repository is <a href="https://github.com/abcdesktopio/oc.template"
 <li>oc.template.rockylinux.minimal.8</li>
 <li>oc.template.rockylinux.minimal.9</li>
 </ul>
-<h3 id="template-with-nvidia-lib-support">template with nvidia lib support</h3>
+<h3 id="template-with-nvidia-lib-support">template with <code>nvidia</code> lib support</h3>
 <ul>
 <li>oc.template.rockylinux.nvidia.8</li>
 <li>oc.template.rockylinux.nvidia.9</li>
