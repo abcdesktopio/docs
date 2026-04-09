@@ -16,16 +16,16 @@ tags:
 
 # abcdesktop.io is a kubernetes virtual desktop service [VDI]
 
-abcdesktop.io is a cloud native desktop service built on and for [Kubernetes](https://kubernetes.io/). abcdesktop.io is also a complete work environment accessible from a simple HTML 5 web browser, without any installation **[JFV] on client side**. Like serverless does, desktopless computing allocates desktop resources **[JFV] dynamically **on demand **[JFV] inside the cloud**.  **Each user’s application runs as a container** to reduce attack surface. With abcdesktop take the sovereignty of your virtual desktop.
+abcdesktop.io is a cloud native desktop service built on and for [Kubernetes](https://kubernetes.io/). abcdesktop.io is also a complete work environment accessible from a simple HTML 5 web browser, without any installation on client side. Like serverless does, desktopless computing allocates desktop resources dynamically on demand inside the cloud. Each user’s application runs as a container to reduce attack surface. With abcdesktop take the sovereignty of your virtual desktop.
 
 ![abcdesktopuserpod](img/abcdesktopuserpod.png)
 
-abcdeskop.io is an open source and free solution that offers seamless access to secure desktops and applications on any device, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links **[JFV] for more information**.
+abcdeskop.io is an open source and free solution that offers seamless access to secure desktops and applications on any device, follow the [https://github.com/abcdesktopio](https://github.com/abcdesktopio) links for more information.
 
 
 This flexible working environment simplifies usage like
 
-- **[JFV] Separation between production secure zone and less secured user zone**
+- Separation between production secure zone and less secured user zone, like a bastion does
 - Telecommuting
 - Remote virtual desktop
 - Give temporary access to other contractors or guests
@@ -40,7 +40,7 @@ With abcdesktop, you can take advantage of all the power of your Kubernetes clus
 
 ## Quick online preview latest release {{ abcdesktop.latest_release }}
 
-You can discover abcdesktop.io desktopless services on the demo website. [https://demo.abcdesktop.io](https://demo.abcdesktop.io) instance is a quick example to illustrate how the abcdesktop.io project works. Your desktopless is ready to run **[JFV]up to** 10 minutes, and will be terminated by the garbage collector after 10 minutes. It requires an OpenID Connect provider to sign-in like (Google, Facebook, Github). The security policy for Internet network prevents requests from your abcdesktop being allowed. Printer service (using cups) and sound service (using pulseaudio) inside the kubernetes pods are enabled.
+You can discover abcdesktop.io desktopless services on the demo website. [https://demo.abcdesktop.io](https://demo.abcdesktop.io) instance is a quick example to illustrate how the abcdesktop.io project works. Your desktopless is ready to run up to 10 minutes, and will be terminated by the garbage collector after 10 minutes. It requires an OpenID Connect provider to sign-in like (Google, Facebook, Github). The security policy for Internet network prevents requests from your abcdesktop being allowed. Printer service (using cups) and sound service (using pulseaudio) inside the kubernetes pods are enabled.
 
 To reach the demo website, follow the link [https://demo.abcdesktop.io](https://demo.abcdesktop.io)
 
@@ -48,7 +48,7 @@ To reach the demo website, follow the link [https://demo.abcdesktop.io](https://
 
 **[JFV] --> je suis géné, c'est une reformulation du paragraphe tout en haut.**
 
-abcdesktop.io provides **[JFV] the easiest** way to run graphics software securely isolated in a container, and use a web browser HTML5 as display device. Because containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.
+abcdesktop.io provides the easiest way to run graphics software securely isolated in a container, and use a web browser HTML5 as display device. Because containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.
 
 ![screenshot-applications](img/abcdesktop-home-release-4.1.png)
 
