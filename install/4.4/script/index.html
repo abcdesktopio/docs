@@ -3845,6 +3845,12 @@
       
       
       
+        <span class="md-tag">(JFV) propositions de maj</span>
+      
+    
+      
+      
+      
         <span class="md-tag">bash</span>
       
     
@@ -3894,15 +3900,15 @@
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>kubernetes cluster <code>READY</code> to run</li>
-<li><code>kubectl</code> command-line tool must be configured to communicate with your cluster. </li>
-<li><code>openssl</code> and <code>curl</code> command line must be installed too (only for install using kubectl). </li>
+<li><code>kubectl</code> command-line tool must be configured to communicate with your cluster.</li>
+<li><code>openssl</code> and <code>curl</code> command line must be installed too (only for install using kubectl).</li>
 </ul>
 <h2 id="run-the-install-script">Run the install script</h2>
 <p>Download and extract the latest release automatically</p>
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh |bash
 </code></pre></div>
 <p><div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/vEEXVOT30w4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div></p>
-<p>You can read on stdout </p>
+<p>You can read on stdout</p>
 <details class="note">
 <summary>show details</summary>
 <div class="highlight"><pre><span></span><code>[INFO] abcdesktop install script namespace=abcdesktop
@@ -3989,13 +3995,13 @@ speedtest-od-7fcc9649b4-qllr7   1/1     Running   0          32s
 [INFO] http://localhost:30443/
 </code></pre></div>
 </details>
-<p>The command above downloads the latest release of abcdesktop.io. </p>
+<p>The command above downloads the latest release of abcdesktop.io.</p>
 <p>The quick installation process runs the commands step by step :</p>
 <ul>
 <li>create the <code>abcdesktop</code> namespace</li>
 <li>build all <code>rsa</code> keys for jwt signing and payload encryption, using openssl command line</li>
 <li>create all <code>service account</code>, <code>services</code>, <code>deployments</code>, <code>secrets</code> and <code>configmaps</code> from the <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.4.yaml">abcdesktop.yaml</a></li>
-<li>download and create the default configuration file <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.4.4">od.config</a></li>
+<li>download <strong>[JFV]then</strong> create the default configuration file <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.4.4">od.config</a></li>
 </ul>
 <blockquote>
 <p>This install process doesn't install applications for your desktop, you get a desktop with few applications in your dock</p>
@@ -4132,11 +4138,11 @@ Server Version: v1.28.2
 <p><img alt="follow install step2" src="../img/follow-install-step2.PNG" /></p>
 <p>Once installed, go to "Edit the system environement variables", and click on "Environement variables".</p>
 <p><img alt="go to edit env variables" src="../img/goto-edit-env-variable.PNG" /></p>
-<p>Go to the system variables section and search for <code>Path</code> </p>
+<p>Go to the system variables section and search for <code>Path</code></p>
 <p><img alt="system variables" src="../img/system-variables.PNG" /></p>
 <p>Click on <code>Edit</code> and add a new <code>Path</code>, you have to paste the absolute path to the bin folder of OpenSSL.</p>
 <p><img alt="add env variable" src="../img/add-env-variable.PNG" /></p>
-<p>Now <code>OpenSSL</code> should be correctly installed, you can check it by opening a new PowerShell and run the command </p>
+<p>Now <code>OpenSSL</code> should be correctly installed, you can check it by opening a new PowerShell and run the command</p>
 <div class="highlight"><pre><span></span><code>openssl version
 </code></pre></div>
 <p><img alt="check openssl" src="../img/checking-openssl-correctly-installed.PNG" /></p>
@@ -4231,7 +4237,7 @@ speedtest-od-7fcc9649b4-kxnsn   1/1     Running   0          12s
 [INFO] http://localhost:30443/
 </code></pre></div>
 </details>
-<p>You can open a web browser and go to the http://localhost:30443/ </p>
+<p>You can open a web browser and go to the http://localhost:30443/</p>
 <h2 id="change-the-default-namespace_1">Change the default namespace</h2>
 <p>You may need to replace the default namespace <code>abcdesktop</code> by your own. The <code>install-4.4.ps1</code> PowerShell script allows you to set the new namespace as an option.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">curl </span><span class="n">https</span><span class="p">://</span><span class="n">raw</span><span class="p">.</span><span class="n">githubusercontent</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">abcdesktopio</span><span class="p">/</span><span class="n">conf</span><span class="p">/</span><span class="n">main</span><span class="p">/</span><span class="n">kubernetes</span><span class="p">/</span><span class="n">install</span><span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">4</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-OutFile</span> <span class="n">install</span><span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">4</span><span class="p">.</span><span class="n">ps1</span>
