@@ -3743,6 +3743,8 @@
 <li>an access to the container public registry or a private container registry</li>
 <li><code>nodejs</code> installed on your host.</li>
 <li>Read the previsous chapter <a href="../templateapplication/">template applications</a></li>
+<li><code>docker</code> command installed to build container images</li>
+<li><code>wget</code> command installed to download files</li>
 </ul>
 <h2 id="build-your-own-application-image-for-gimp">Build your own application image for <code>GIMP</code></h2>
 <p>Go into your <code>build</code> directory created in the previsous chapter <a href="../templateapplication/">template applications</a></p>
@@ -3797,7 +3799,7 @@
 &quot;legacyfileextensions&quot;:&quot;dds&quot;,
 &quot;desktopfile&quot;:&quot;gimp.desktop&quot;
 </code></pre></div>
-<p>These entries enable the <code>Open with</code> and <code>Open with Other Application</code> in the file manager application.</p>
+<p>These entries enable the <code>Open with</code> and <code>Open with Other Application</code> in the file manager application. The mimetype database is updated when the user connect (or reconnect) to his desktop. </p>
 <p><img alt="Open with Gimp" src="../img/gimp-openwithgimp.png" /></p>
 <p>and list <code>Recommended Applications</code></p>
 <p><img alt="Open with Gimp" src="../img/gimp-openwithotherapplication.png" /></p>
@@ -3826,21 +3828,25 @@ Creating Dockerfile gimp.d
 docker build -f gimp.d -t $REGISTRY/gimp.d .
 </code></pre></div>
 <p>You should read the output : </p>
-<div class="highlight"><pre><span></span><code>[+] Building 261.5s (8/8) FINISHED                                                                                                                                                         docker:default
+<details class="note">
+<summary>show details</summary>
+<p>```</p>
+</details>
+<p>[+] Building 261.5s (8/8) FINISHED                                                                                                                                                         docker:default
  =&gt; [internal] load build definition from gimp.d                                                                                                                                                     0.0s
  =&gt; =&gt; transferring dockerfile: 31.17kB                                                                                                                                                              0.0s
  =&gt; [internal] load metadata for ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.24.04:4.4                                                                                                               0.6s
  =&gt; [internal] load .dockerignore                                                                                                                                                                    0.0s
  =&gt; =&gt; transferring context: 2B                                                                                                                                                                      0.0s
  =&gt; CACHED [1/4] FROM ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.24.04:4.4@sha256:18db02414a19ac2befb0366084474f32cbf97f7ccefd6af283a189928c6fcc70                                                  0.0s
- =&gt; [2/4] RUN echo &#39;debconf debconf/frontend select Noninteractive&#39; | debconf-set-selections                                                                                                         0.4s
+ =&gt; [2/4] RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections                                                                                                         0.4s
  =&gt; [3/4] RUN DEBIAN_FRONTEND=noninteractive apt-get update &amp;&amp; apt-get install -y gimp dbus-x11 hicolor-icon-theme &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*                                 255.6s
  =&gt; [4/4] RUN if [ -x /usr/bin/dbus-launch ]; then chmod g+r,g+w,o+r,o+w /var/lib/dbus ; fi                                                                                                          0.3s 
  =&gt; exporting to image                                                                                                                                                                               4.5s 
  =&gt; =&gt; exporting layers                                                                                                                                                                              4.5s 
  =&gt; =&gt; writing image sha256:4e59eff5fab51b10b2a78c2c76e7c6d20278326d9e7f0a17bac48bf27285798e                                                                                                         0.0s 
  =&gt; =&gt; naming to docker.io/abcdesktopio/gimp.d
-</code></pre></div>
+    ```</p>
 <ul>
 <li>Push your image to your registry </li>
 </ul>
@@ -3967,7 +3973,7 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 <p>Great, you've installed and are running Gimp application as a container.</p>
 <h2 id="all-other-applications">All other applications</h2>
 <p>All abcdesktop applications are defined in a <code>applist.json</code>. Have a look to the complete <a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/applist.json">applist.json</a> file. abcdesktop applist.json contains description to build all default abcdesktop applications. </p>
-<div class="highlight"><pre><span></span><code>git clone -b  https://github.com/abcdesktopio/oc.apps
+<div class="highlight"><pre><span></span><code>git clone -b 4.4 https://github.com/abcdesktopio/oc.apps
 cd oc.apps
 nodejs make.js
 </code></pre></div>
