@@ -3730,6 +3730,7 @@
   
 
 
+<p><strong>[JFV] Attention, il y a maintenant lce qui sera le plus évident pour l'ajoute d'aplication à l'unité: le mode web via la console</strong></p>
 <h1 id="faq-applications">FAQ applications</h1>
 <h2 id="how-to-delete-all-applications">How to delete all applications ?</h2>
 <p>To delete all applications use the images endpoint, replace <code>localhost:30443</code> by your own datas</p>
@@ -3740,7 +3741,7 @@
 </code></pre></div>
 <h2 id="how-to-add-an-application">How to add an application ?</h2>
 <p>To add an application :
-- get the json file of an application 
+- get the json file of an application
 - push the json file to the abcdesktop's images endpoint</p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.3.0.json
 curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@2048-alpine.d.3.0.json
