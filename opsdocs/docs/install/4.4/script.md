@@ -126,7 +126,7 @@ tags:
     * create the `abcdesktop` namespace
     * build all `rsa` keys for jwt signing and payload encryption, using openssl command line
     * create all `service account`, `services`, `deployments`, `secrets` and `configmaps` from the [abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-{{ abcdesktop.latest_release }}.yaml)
-    * download **[JFV]then** create the default configuration file [od.config](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.{{ abcdesktop.latest_release }})
+    * download then create the default configuration file [od.config](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.{{ abcdesktop.latest_release }})
 
     > This install process doesn't install applications for your desktop, you get a desktop with few applications in your dock
 
@@ -134,17 +134,17 @@ tags:
 
     ## Change the default namespace
 
-    You may need to replace the default namespace `abcdesktop` by your own during the install process. The `install-4.4.sh` bash script allow you to set the new namespace as an option.
+    You may need to replace the default namespace `abcdesktop` by your own during the install process. The `install-{{ abcdesktop.latest_release }}.sh` bash script allow you to set the new namespace as an option.
 
     ```bash
-    wget https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh
-    chmod 755 install-4.4.sh
+    wget https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh
+    chmod 755 install-{{ abcdesktop.latest_release }}.sh
     ```
 
-    Run `install-4.4.sh`
+    Run `install-{{ abcdesktop.latest_release }}.sh`
 
     ```bash
-    ./install-4.4.sh --namespace superdesktop
+    ./install-{{ abcdesktop.latest_release }}.sh --namespace superdesktop
     ```
 
     ??? note "show details"
@@ -308,7 +308,7 @@ tags:
     Download and extract the latest release automatically (Windows):
 
     ```PowerShell
-    $script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.ps1
+    $script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.ps1
 
     Invoke-Expression $($script.Content)
     ```
@@ -334,8 +334,8 @@ tags:
         [OK] label secret abcdesktopjwtdesktoppayload
         [OK] label secret abcdesktopjwtdesktopsigning
         [OK] label secret abcdesktopjwtusersigning
-        [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.4.yaml
-        [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.4
+        [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-{{ abcdesktop.latest_release }}.yaml
+        [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.{{ abcdesktop.latest_release }}
         [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
         [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
         role.rbac.authorization.k8s.io/pyos-role created
@@ -402,16 +402,16 @@ tags:
 
     ## Change the default namespace
 
-    You may need to replace the default namespace `abcdesktop` by your own. The `install-4.4.ps1` PowerShell script allows you to set the new namespace as an option.
+    You may need to replace the default namespace `abcdesktop` by your own. The `install-{{ abcdesktop.latest_release }}.ps1` PowerShell script allows you to set the new namespace as an option.
 
     ```PowerShell
-    curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.ps1 -OutFile install-4.4.ps1
+    curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.ps1 -OutFile install-{{ abcdesktop.latest_release }}.ps1
     ```
 
-    Run `install-4.4.ps1`
+    Run `install-{{ abcdesktop.latest_release }}.ps1`
 
     ```PowerShell
-    .\install-4.3.ps1 --namespace superdesktop
+    .\install-{{ abcdesktop.latest_release }}.ps1 --namespace superdesktop
     ```
 
     You should read on stdout
@@ -435,8 +435,8 @@ tags:
         [OK] label secret abcdesktopjwtdesktoppayload
         [OK] label secret abcdesktopjwtdesktopsigning
         [OK] label secret abcdesktopjwtusersigning
-        [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.4.yaml
-        [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.4
+        [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-{{ abcdesktop.latest_release }}.yaml
+        [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.{{ abcdesktop.latest_release }}
         [OK] updated abcdesktop.yaml file with new namespace superdesktop
         [OK] updated abcdesktop.yaml file with new fqdn superdesktop.svc.cluster.local
         [OK] updated od.config file with new namespace superdesktop
