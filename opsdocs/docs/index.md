@@ -34,7 +34,7 @@ This flexible working environment simplifies usage like
 
 With abcdesktop, you can take advantage of all the power of your Kubernetes cluster for your virtual workstations. You can distribute user applications as `pods` or as `ephemeral containers` on all cluster nodes.
 
-![abcdesktopuserpodnvidia](img/abcdesktopkubernetesclusterwithnvidiapod.png)
+![abcdesktopuserpodnvidia](img/abcdesktopkubernetescluster.png)
 
 
 ## Quick online preview latest release {{ abcdesktop.latest_release }}
