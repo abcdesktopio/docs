@@ -3849,8 +3849,11 @@
 <h2 id="networkpolicy-example">NetworkPolicy example</h2>
 <p>The NetworkPolicy examples describe the network policies for the internal memcached pod and the user's pods.</p>
 <h3 id="networkpolicy-rights-and-permits-for-the-memcached">NetworkPolicy <code>rights</code> and <code>permits</code> for the <code>memcached</code>.</h3>
-<p>The <code>memcached</code> service is listening on TCP port 11211.
-The NetworkPolicy for memcached service <code>rights</code>, named <code>memcached-rights</code>, allows pods with label <code>run: memcached-od</code> to expose the TCP port 11211.</p>
+<p>The <code>memcached</code> service is listening on TCP port 11211.</p>
+<p>The NetworkPolicy for memcached service <code>rights</code>, 
+- named <code>memcached-rights</code>,
+- allows pods with label <code>run: memcached-od</code>
+- to expose the TCP port 11211.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkPolicy</span>
 <span class="nt">metadata</span><span class="p">:</span>
