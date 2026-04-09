@@ -2,7 +2,7 @@
 tags:
   - minikube
   - installation
-  - read by AD
+  - AD
 ---
 
 `Minikube` is a tool for running local Kubernetes clusters using Docker container “nodes”. Minikube was primarily designed for testing Kubernetes itself, but it can be used to deploy Kubernetes applications as well. To install or setup `minikube`, refer to the [Minikube documentation](https://minikube.sigs.k8s.io/docs/)
