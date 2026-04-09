@@ -8,7 +8,7 @@ You need to have a
 - kubernetes cluster ready to run whith abcdesktop.io installed
 - `kubectl` or `microk8s` command-line tool must be configured to communicate with your cluster. 
 - `docker` command line must be installed too.
-- a private or public registry
+- your own public or private container registry
 
 
 ## Create a simple application `xedit`

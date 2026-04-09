@@ -17,7 +17,7 @@ tags:
     curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.4.sh |bash
     ```
 
-    You should read on stdout 
+    You should read on stdout
 
     ??? note "show details"
         ```bash
@@ -57,7 +57,7 @@ tags:
         [OK] namespace "abcdesktop" deleted
         ```
 
-    Please wait for the output message: 
+    Please wait for the output message:
 
     ```
     [OK] namespace "abcdesktop" deleted
@@ -129,12 +129,12 @@ tags:
     Download and extract the uninstall PowerShell script (Windows):
 
     ```PowerShell
-    $script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.4.ps1 
+    $script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.4.ps1
 
     Invoke-Expression $($script.Content)
     ```
 
-    You should read on stdout 
+    You should read on stdout
 
     ??? note "show details"
         ```

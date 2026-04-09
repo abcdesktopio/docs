@@ -7,7 +7,7 @@ You need to have a
 - kubernetes cluster ready to run whith abcdesktop.io installed
 - `kubectl` must be configured to communicate with your cluster. 
 - `docker` command line must be installed too.
-- your own public or private registry
+- your own public or private container registry
 
 
 ## Create a simple application `xeyes`

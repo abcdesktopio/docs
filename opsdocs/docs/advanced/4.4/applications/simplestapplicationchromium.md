@@ -7,7 +7,7 @@ You need to have
 - kubernetes cluster ready to run whith abcdesktop.io installed
 - `kubectl` command-line tool must be configured to communicate with your cluster. 
 - `docker` command line must be installed to build the image.
-- your public or private registry
+- your own public or private container registry
 
 
 ## Create a simple application `chromium`

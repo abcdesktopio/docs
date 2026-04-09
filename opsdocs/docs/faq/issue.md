@@ -1,6 +1,19 @@
-# Issue
+---
+tags:
+- (JFV) propositions de maj
+---
 
-## How to create an issue
+# Issue **[JFV]or feature request**
+
+## How to request a feature ?
+
+To create an feature, please use the `conf` github repository, by following the link [Ask a feature](https://github.com/abcdesktopio/conf/issues)
+
+- Describe what you are expecting
+- Tag it as *feature* in field **type** on the right.
+
+
+## How to report an issue ?
 
 To create an issue, please use the `conf` github repository, by following the link [Create an issue](https://github.com/abcdesktopio/conf/issues)
 
