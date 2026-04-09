@@ -7,6 +7,8 @@ abcdesktop uses container image format with some labels to describe the applicat
 - an access to the container public registry or a private container registry
 - `nodejs` installed on your host.
 - Read the previsous chapter [template applications](templateapplication.md)
+- `docker` command installed to build container images
+- `wget` command installed to download files
 
 
 ## Build your own application image for `GIMP` 
@@ -74,7 +76,7 @@ As you can read, abcdesktop supports `mimetype`, `fileextensions`, `legacyfileex
 ```
 
 
-These entries enable the `Open with` and `Open with Other Application` in the file manager application.
+These entries enable the `Open with` and `Open with Other Application` in the file manager application. The mimetype database is updated when the user connect (or reconnect) to his desktop. 
 
 ![Open with Gimp](img/gimp-openwithgimp.png)
 
@@ -117,7 +119,9 @@ docker build -f gimp.d -t $REGISTRY/gimp.d .
 
 You should read the output : 
 
-```
+
+??? note "show details"
+    ```
 [+] Building 261.5s (8/8) FINISHED                                                                                                                                                         docker:default
  => [internal] load build definition from gimp.d                                                                                                                                                     0.0s
  => => transferring dockerfile: 31.17kB                                                                                                                                                              0.0s
@@ -132,7 +136,7 @@ You should read the output :
  => => exporting layers                                                                                                                                                                              4.5s 
  => => writing image sha256:4e59eff5fab51b10b2a78c2c76e7c6d20278326d9e7f0a17bac48bf27285798e                                                                                                         0.0s 
  => => naming to docker.io/abcdesktopio/gimp.d
-```
+    ```
 
 - Push your image to your registry 
 
@@ -281,7 +285,7 @@ All abcdesktop applications are defined in a `applist.json`. Have a look to the 
 
 
 ```
-git clone -b  https://github.com/abcdesktopio/oc.apps
+git clone -b {{ abcdesktop.latest_release }} https://github.com/abcdesktopio/oc.apps
 cd oc.apps
 nodejs make.js
 ```
