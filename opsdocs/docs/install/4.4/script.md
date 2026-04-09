@@ -3,10 +3,8 @@ tags:
   - bash
   - installation
   - setup
-  - read by AD
-  - needupdate
-  - (JFV) propositions de maj
-
+  - AD
+  - JFV
 ---
 # Quick installation core services with a script
 
