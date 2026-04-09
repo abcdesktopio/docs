@@ -2,6 +2,7 @@
 tags:
   - faq
   - applications
+  - (JFV) propositions de maj
 ---
 
 **[JFV] Attention, il y a maintenant lce qui sera le plus évident pour l'ajoute d'aplication à l'unité: le mode web via la console**

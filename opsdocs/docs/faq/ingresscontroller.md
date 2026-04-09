@@ -5,7 +5,6 @@ tags:
   - (JFV) propositions de maj
 ---
 
-
 **[JFV] Attention, il y a plusieurs ingress controllers (traeffic, nginx et sans doute d'autres encore. Il y a des variations dans le comportement) -> préciser pour lequel cette page s'applique**
 
 # FAQ Ingress Controller
