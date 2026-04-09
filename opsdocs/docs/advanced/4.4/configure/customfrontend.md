@@ -47,10 +47,6 @@ The main entry is `name`, name is the project name:
 rojectNameSplitedStaged'>desktop</span>",
   "colors": [
     {
-      "name": "@x11bgcolor",
-      "value": "#6EC6F0"
-    },
-    {
       "name": "@primary",
       "value": "#474B55"
     },
@@ -256,7 +252,7 @@ Run the docker build command to build the new `oc.nginx:acme` image
 The target image is `abcdesktopio/oc.nginx:acme` you should change it with your own for example `myacme/oc.nginx:acme`
 
 ```bash
-docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE={{ abcdesktop.latest_release }} --build-arg TARGET=dev  -t abcdesktopio/oc.nginx.acme:3.4 -f Dockerfile .
+docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE={{ abcdesktop.latest_release }} --build-arg TARGET=dev  -t abcdesktopio/oc.nginx.acme:{{ abcdesktop.latest_release }} -f Dockerfile .
 ```
 
 ```bash
@@ -264,11 +260,11 @@ docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.ng
  => [internal] load build definition from Dockerfile                                                                                                                   0.0s
  => => transferring dockerfile: 962B                                                                                                                                   0.0s
  => [internal] load metadata for docker.io/library/nginx:latest                                                                                                        0.0s
- => [internal] load metadata for docker.io/abcdesktopio/oc.nginx.builder:3.4                                                                                           0.0s
+ => [internal] load metadata for docker.io/abcdesktopio/oc.nginx.builder:{{ abcdesktop.latest_release }}                                                                                           0.0s
  => [internal] load .dockerignore                                                                                                                                      0.0s
  => => transferring context: 2B                                                                                                                                        0.0s
  => CACHED [stage-1 1/2] FROM docker.io/library/nginx:latest                                                                                                           0.0s
- => CACHED [builder  1/11] FROM docker.io/abcdesktopio/oc.nginx.builder:3.4                                                                                            0.0s
+ => CACHED [builder  1/11] FROM docker.io/abcdesktopio/oc.nginx.builder:{{ abcdesktop.latest_release }}                                                                                            0.0s
  => [internal] load build context                                                                                                                                      0.1s
  => => transferring context: 265.27kB                                                                                                                                  0.1s
  => [builder  2/11] RUN echo current branch is                                                                                                                         0.2s
@@ -285,7 +281,7 @@ docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.ng
  => exporting to image                                                                                                                                                 0.7s 
  => => exporting layers                                                                                                                                                0.7s 
  => => writing image sha256:d7bdbc9f7fafe3282161551e84c5997bb12051bded6405190267863dd73a1698                                                                           0.0s
- => => naming to docker.io/abcdesktopio/oc.nginx.acme:3.4 
+ => => naming to docker.io/abcdesktopio/oc.nginx.acme:{{ abcdesktop.latest_release }} 
 ```
 
 #### update the `abcdesktop.yaml`
