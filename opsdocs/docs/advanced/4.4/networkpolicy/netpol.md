@@ -48,7 +48,11 @@ The NetworkPolicy examples describe the network policies for the internal memcac
 ### NetworkPolicy `rights` and `permits` for the `memcached`.
 
 The `memcached` service is listening on TCP port 11211.
-The NetworkPolicy for memcached service `rights`, named `memcached-rights`, allows pods with label `run: memcached-od` to expose the TCP port 11211.
+
+The NetworkPolicy for memcached service `rights`, 
+- named `memcached-rights`,
+- allows pods with label `run: memcached-od`
+- to expose the TCP port 11211.
 
 
 ```yaml
