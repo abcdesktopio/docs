@@ -47,7 +47,7 @@ To reach the demo website, follow the link [https://demo.abcdesktop.io](https://
 
 Run secure, isolated graphics software directly in your browser with abcdesktop.io. Our containerized approach streams HTML5 visuals without the weight of a traditional OS. This efficiency empowers you to deploy high-density graphical applications on a single node or scale effortlessly across a Kubernetes cluster.
 
-![screenshot-applications](img/abcdesktop-home-release-4.1.png)
+![screenshot-applications](img/abcdesktop-home-release-4.4.png)
 
 ## Features
 
