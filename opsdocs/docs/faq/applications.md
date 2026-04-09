@@ -7,22 +7,11 @@ tags:
 
 **[JFV] Attention, il y a maintenant lce qui sera le plus évident pour l'ajoute d'aplication à l'unité: le mode web via la console**
 
+
+**[JFV] il n'y avait pas un script ou un curl pour installer un tas d'application en une fois ?**
 # FAQ applications
 
-## How to delete all applications ?
 
-
-To delete all applications use the images endpoint, replace `localhost:30443` by your own datas
-
-```bash
-curl -X DELETE -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/images/
-```
-
-It returns a json list of all deleted applications
-
-```json
-["abcdesktopio/2048-alpine.d:3.0", "abcdesktopio/2048-ubuntu.d:3.0", "abcdesktopio/apachedirectorystudio.d:3.0", "abcdesktopio/astromenace.d:3.0", "abcdesktopio/base.d:3.0", "abcdesktopio/beekeeperstudio.d:3.0", "abcdesktopio/blender.d:3.0", "abcdesktopio/bless.d:3.0", "abcdesktopio/blobby.d:3.0", "abcdesktopio/boxes.d:3.0", "abcdesktopio/calculator.d:3.0", "abcdesktopio/chess.d:3.0", "abcdesktopio/chimerax.d:dev", "abcdesktopio/chrome.d:3.0", "abcdesktopio/chromium.d:3.0", "abcdesktopio/citrix.d:3.0", "abcdesktopio/cloudfoundry.d:3.0", "abcdesktopio/cmd.exe.d:3.0", "abcdesktopio/corsix-th.d:3.0", "abcdesktopio/cuda.d:dev"]
-```
 
 ## How to add an application ?
 
@@ -37,6 +26,20 @@ curl -X POST -H 'Content-Type: text/javascript' http://localhost:30443/API/manag
 ```
 
 The first start will pull the 2048 image, so it can take a while.
+
+## How to delete all applications ?
+
+To delete all applications use the images endpoint, replace `localhost:30443` by your own datas
+
+```bash
+curl -X DELETE -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/images/
+```
+
+It returns a json list of all deleted applications
+
+```json
+["abcdesktopio/2048-alpine.d:3.0", "abcdesktopio/2048-ubuntu.d:3.0", "abcdesktopio/apachedirectorystudio.d:3.0", "abcdesktopio/astromenace.d:3.0", "abcdesktopio/base.d:3.0", "abcdesktopio/beekeeperstudio.d:3.0", "abcdesktopio/blender.d:3.0", "abcdesktopio/bless.d:3.0", "abcdesktopio/blobby.d:3.0", "abcdesktopio/boxes.d:3.0", "abcdesktopio/calculator.d:3.0", "abcdesktopio/chess.d:3.0", "abcdesktopio/chimerax.d:dev", "abcdesktopio/chrome.d:3.0", "abcdesktopio/chromium.d:3.0", "abcdesktopio/citrix.d:3.0", "abcdesktopio/cloudfoundry.d:3.0", "abcdesktopio/cmd.exe.d:3.0", "abcdesktopio/corsix-th.d:3.0", "abcdesktopio/cuda.d:dev"]
+```
 
 
 ## How to get the json file of a containerized application ?
