@@ -9,8 +9,7 @@ keywords: graphical application container desktopless kubernetes secure desktop 
 
 
 tags:
-  - (JFV) propositions de maj
-  - (JFV) problèmes doc
+  - JFV, AD
 ---
 
 
@@ -44,11 +43,9 @@ You can discover abcdesktop.io desktopless services on the demo website. [https:
 
 To reach the demo website, follow the link [https://demo.abcdesktop.io](https://demo.abcdesktop.io)
 
-## abcdesktop.io: a container VDI service
+## Run secure, isolated graphics
 
-**[JFV] --> je suis géné, c'est une reformulation du paragraphe tout en haut.**
-
-abcdesktop.io provides the easiest way to run graphics software securely isolated in a container, and use a web browser HTML5 as display device. Because containers are lightweight and run without the extra load of an operating system, you can run many graphical applications on a single kernel or even on a kubernetes cluster.
+Run secure, isolated graphics software directly in your browser with abcdesktop.io. Our containerized approach streams HTML5 visuals without the weight of a traditional OS. This efficiency empowers you to deploy high-density graphical applications on a single node or scale effortlessly across a Kubernetes cluster.
 
 ![screenshot-applications](img/abcdesktop-home-release-4.1.png)
 
