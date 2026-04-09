@@ -3485,18 +3485,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-delete-all-applications" class="md-nav__link">
+  <a href="#how-to-add-an-application" class="md-nav__link">
     <span class="md-ellipsis">
-      How to delete all applications ?
+      How to add an application ?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-add-an-application" class="md-nav__link">
+  <a href="#how-to-delete-all-applications" class="md-nav__link">
     <span class="md-ellipsis">
-      How to add an application ?
+      How to delete all applications ?
     </span>
   </a>
   
@@ -3655,18 +3655,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-delete-all-applications" class="md-nav__link">
+  <a href="#how-to-add-an-application" class="md-nav__link">
     <span class="md-ellipsis">
-      How to delete all applications ?
+      How to add an application ?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-add-an-application" class="md-nav__link">
+  <a href="#how-to-delete-all-applications" class="md-nav__link">
     <span class="md-ellipsis">
-      How to add an application ?
+      How to delete all applications ?
     </span>
   </a>
   
@@ -3737,14 +3737,8 @@
 
 
 <p><strong>[JFV] Attention, il y a maintenant lce qui sera le plus évident pour l'ajoute d'aplication à l'unité: le mode web via la console</strong></p>
+<p><strong>[JFV] il n'y avait pas un script ou un curl pour installer un tas d'application en une fois ?</strong></p>
 <h1 id="faq-applications">FAQ applications</h1>
-<h2 id="how-to-delete-all-applications">How to delete all applications ?</h2>
-<p>To delete all applications use the images endpoint, replace <code>localhost:30443</code> by your own datas</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/images/
-</code></pre></div>
-<p>It returns a json list of all deleted applications</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s2">&quot;abcdesktopio/2048-alpine.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/2048-ubuntu.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/apachedirectorystudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/astromenace.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/base.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/beekeeperstudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blender.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/bless.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blobby.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/boxes.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/calculator.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chess.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chimerax.d:dev&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chrome.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chromium.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/citrix.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cloudfoundry.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cmd.exe.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/corsix-th.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cuda.d:dev&quot;</span><span class="p">]</span>
-</code></pre></div>
 <h2 id="how-to-add-an-application">How to add an application ?</h2>
 <p>To add an application :
 - get the json file of an application
@@ -3753,6 +3747,13 @@
 curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@2048-alpine.d.3.0.json
 </code></pre></div>
 <p>The first start will pull the 2048 image, so it can take a while.</p>
+<h2 id="how-to-delete-all-applications">How to delete all applications ?</h2>
+<p>To delete all applications use the images endpoint, replace <code>localhost:30443</code> by your own datas</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/images/
+</code></pre></div>
+<p>It returns a json list of all deleted applications</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s2">&quot;abcdesktopio/2048-alpine.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/2048-ubuntu.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/apachedirectorystudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/astromenace.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/base.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/beekeeperstudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blender.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/bless.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blobby.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/boxes.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/calculator.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chess.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chimerax.d:dev&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chrome.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chromium.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/citrix.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cloudfoundry.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cmd.exe.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/corsix-th.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cuda.d:dev&quot;</span><span class="p">]</span>
+</code></pre></div>
 <h2 id="how-to-get-the-json-file-of-a-containerized-application">How to get the json file of a containerized application ?</h2>
 <p>To get the json file of a containerized application, you can use <code>docker</code> command or <code>crictl</code> command</p>
 <ul>
