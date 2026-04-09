@@ -2,13 +2,17 @@
 tags:
   - faq
   - ingresscontroller
+  - (JFV) propositions de maj
 ---
+
+
+**[JFV] Attention, il y a plusieurs ingress controllers (traeffic, nginx et sans doute d'autres encore. Il y a des variations dans le comportement) -> préciser pour lequel cette page s'applique**
 
 # FAQ Ingress Controller
 
 ## How can I expose my new service with Ingress Controller ?
 
-A Kubernetes Ingress Controller acts as a reverse proxy. 
+A Kubernetes Ingress Controller acts as a reverse proxy.
 
 In the `Ingress`, define a path to the abcdesktop's nginx service.
 
@@ -67,14 +71,14 @@ Restart the pyos pod
 kubectl delete pods -l run=pyos-od -n abcdesktop
 ```
 
-To get more informations how to 
+To get more informations how to
 [Keepalive in websockets](https://websockets.readthedocs.io/en/stable/topics/timeouts.html)
 
-Timeout is a main feature to preserve from unnecessary network bandwidth. 
+Timeout is a main feature to preserve from unnecessary network bandwidth.
 
 ## How to prevent the connection from closing after 60 seconds of inactivity with an Ingress Controller ?
 
-My desktop is disconnected after 60 seconds of inactivity, and the message *Your abcdesktop session has been disconnected. Please reload this page* appears. 
+My desktop is disconnected after 60 seconds of inactivity, and the message *Your abcdesktop session has been disconnected. Please reload this page* appears.
 
 To prevent the connection from closing after 60 seconds of inactivity through Ingress Controller, make sure the Ingress Controller isn't configured to automatically terminate long connections.
 The default value nginx's ingress controller is 60 seconds.

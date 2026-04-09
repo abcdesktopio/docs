@@ -4,6 +4,8 @@ tags:
   - applications
 ---
 
+**[JFV] Attention, il y a maintenant lce qui sera le plus évident pour l'ajoute d'aplication à l'unité: le mode web via la console**
+
 # FAQ applications
 
 ## How to delete all applications ?
@@ -24,7 +26,7 @@ It returns a json list of all deleted applications
 ## How to add an application ?
 
 To add an application :
-- get the json file of an application 
+- get the json file of an application
 - push the json file to the abcdesktop's images endpoint
 
 
