@@ -1,5 +1,6 @@
 ---
 tags:
+  - install
   - netpol
   - network
   - policy
