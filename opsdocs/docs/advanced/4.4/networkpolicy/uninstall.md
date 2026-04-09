@@ -1,3 +1,12 @@
+---
+tags:
+  - netpol
+  - network
+  - policy
+  - uninstall
+  - AD
+---
+
 # Uninstall
 
 ## Disable the network policies  
@@ -5,7 +14,7 @@
 To disable the network policies, run the kubectl delete command :
 
 ```bash
-kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-4.4.yaml
+kubectl delete -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-{{ abcdesktop.latest_release }}.yaml
 ```
 
 - Login to your abcdesktop 
@@ -20,4 +29,4 @@ You should get a json document as http response
 
 ![http request is allowed](../../../img/netpol.permit.jsondata.png)
 
-You may need to update the [netpol-default.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-4.4.yaml) file with your own values.
+You may need to update the [netpol-default.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-{{ abcdesktop.latest_release }}.yaml) file with your own values.
