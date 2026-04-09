@@ -1,12 +1,20 @@
+---
+tags:
+  - netpol
+  - network
+  - policy
+  - AD
+---
+
 # Install
 
-## Apply the default `netpol-default-4.4.yaml` file
+## Apply the default `netpol-default-{{ abcdesktop.latest_release }}.yaml` file
 
 
 To apply the network policies run the command :
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-4.4.yaml -n abcdesktop
+kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-{{ abcdesktop.latest_release }}.yaml -n abcdesktop
 ```
 
 The command returns 
