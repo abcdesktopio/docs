@@ -1,3 +1,12 @@
+---
+tags:
+  - netpol
+  - network
+  - policy
+  - overview
+  - AD
+---
+
 # Netpol
 
 ## Goals
