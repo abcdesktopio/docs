@@ -4,7 +4,9 @@ tags:
   - installation
   - setup
   - read by AD
-  - needupdate 
+  - needupdate
+  - (JFV) propositions de maj
+
 ---
 # Quick installation core services with a script
 
@@ -15,8 +17,8 @@ tags:
     ## Requirements
 
     - kubernetes cluster `READY` to run
-    - `kubectl` command-line tool must be configured to communicate with your cluster. 
-    - `openssl` and `curl` command line must be installed too (only for install using kubectl). 
+    - `kubectl` command-line tool must be configured to communicate with your cluster.
+    - `openssl` and `curl` command line must be installed too (only for install using kubectl).
 
     ## Run the install script
 
@@ -28,7 +30,7 @@ tags:
 
     <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/vEEXVOT30w4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
 
-    You can read on stdout 
+    You can read on stdout
 
     ??? note "show details"
         ```
@@ -117,14 +119,14 @@ tags:
 
         ```
 
-    The command above downloads the latest release of abcdesktop.io. 
+    The command above downloads the latest release of abcdesktop.io.
 
     The quick installation process runs the commands step by step :
 
     * create the `abcdesktop` namespace
     * build all `rsa` keys for jwt signing and payload encryption, using openssl command line
     * create all `service account`, `services`, `deployments`, `secrets` and `configmaps` from the [abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-{{ abcdesktop.latest_release }}.yaml)
-    * download and create the default configuration file [od.config](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.{{ abcdesktop.latest_release }})
+    * download **[JFV]then** create the default configuration file [od.config](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.{{ abcdesktop.latest_release }})
 
     > This install process doesn't install applications for your desktop, you get a desktop with few applications in your dock
 
@@ -239,7 +241,7 @@ tags:
         ```
 
     You can open a web browser and go to the http://localhost:30443/
-    
+
 === "Windows"
 
     ## Requirements
@@ -285,7 +287,7 @@ tags:
 
         ![go to edit env variables](./img/goto-edit-env-variable.PNG)
 
-        Go to the system variables section and search for `Path` 
+        Go to the system variables section and search for `Path`
 
         ![system variables](./img/system-variables.PNG)
 
@@ -293,7 +295,7 @@ tags:
 
         ![add env variable](./img/add-env-variable.PNG)
 
-        Now `OpenSSL` should be correctly installed, you can check it by opening a new PowerShell and run the command 
+        Now `OpenSSL` should be correctly installed, you can check it by opening a new PowerShell and run the command
 
         ```
         openssl version
@@ -396,7 +398,7 @@ tags:
         [INFO] http://localhost:30443/
         ```
 
-    You can open a web browser and go to the http://localhost:30443/ 
+    You can open a web browser and go to the http://localhost:30443/
 
     ## Change the default namespace
 
