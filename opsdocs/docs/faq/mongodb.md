@@ -67,7 +67,7 @@ helm upgrade --install my-abcdesktop abcdesktop/abcdesktop \
 ```
 where `NAMESPACE` and `my-abcdesktop` are your deployment namespace and instance name.
 
-### With a scripted installation**
+### With a scripted installation
 
 - Open your [abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-{{ abcdesktop.latest_release }}.yaml) file and look for the `StatefulSet` mongodb-od
 
