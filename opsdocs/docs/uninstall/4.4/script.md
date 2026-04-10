@@ -2,6 +2,7 @@
 tags:
   - uninstall
   - bash
+  - read by JFV
 ---
 # Quick uninstall core services with a script
 

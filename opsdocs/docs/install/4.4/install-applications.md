@@ -3,18 +3,20 @@ tags:
   - application
   - installation
   - bash
+  - read by JFV
 ---
+
 # Add applications with a script
 
 === "Linux or macOS"
 
     ## Quick application install
 
-    > Quick installation can be run on Linux or macOS operation system. 
+    > Quick installation can be run on Linux or macOS operation system.
 
     Download and run the `pullapps-{{ abcdesktop.latest_release }}.sh` script :
 
-    ```
+    ```bash
     curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-{{ abcdesktop.latest_release }}.sh | bash
     ```
 
@@ -27,11 +29,11 @@ tags:
 
     The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.
 
-    Now reconnect to your abcdesktop. 
+    Now reconnect to your abcdesktop.
 
     Open your navigator to http://[your-ip-hostname]:30443/
 
-    ```	
+    ```url
     http://localhost:30443/
     ```
 
@@ -51,11 +53,11 @@ tags:
 
     ## Quick application install
 
-    > Quick installation can be run on Windows operation system. 
+    > Quick installation can be run on Windows operation system.
 
     Download and run the `pullapps-{{ abcdesktop.latest_release }}.ps1` script :
 
-    ```
+    ```bash
     curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-{{ abcdesktop.latest_release }}.ps1 | bash
     ```
 
@@ -68,11 +70,11 @@ tags:
 
     The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.
 
-    Now reconnect to your abcdesktop. 
+    Now reconnect to your abcdesktop.
 
     Open your navigator to http://[your-ip-hostname]:30443/
 
-    ```	
+    ```bash
     http://localhost:30443/
     ```
 

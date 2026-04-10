@@ -4,6 +4,8 @@ tags:
   - installation
   - setup
   - upgrade
+  - read by JFV
+
 ---
 
 # Installation using helm
@@ -15,13 +17,13 @@ tags:
 ## Requirements
 
 - kubernetes cluster `READY` to run
-- `helm` command-line tool must be installed. 
+- `helm` command-line tool must be installed.
 
 ## Installation using helm latest release {{ abcdesktop.latest_release }}
 
 Add the `helm` repo and then install it on Linux or macOS or read the step by step installation process [abcdesktop for kubernetes](/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop)
 
-```
+```bash
 NAMESPACE=abcdesktop
 helm repo add abcdesktop https://abcdesktopio.github.io/helm/
 helm install my-abcdesktop abcdesktop/abcdesktop --version {{ abcdesktop.latest_release }} --create-namespace -n ${NAMESPACE}
@@ -29,7 +31,7 @@ helm install my-abcdesktop abcdesktop/abcdesktop --version {{ abcdesktop.latest_
 
 ??? note "show details"
 
-    ```
+    ```bash
     NAME: my-abcdesktop
     LAST DEPLOYED: Tue Mar 24 14:24:17 2026
     NAMESPACE: abcdesktop
@@ -44,9 +46,9 @@ helm install my-abcdesktop abcdesktop/abcdesktop --version {{ abcdesktop.latest_
     kubectl get services -n ${NAMESPACE}
 
 
-    # To connect to your abcdesktop using a port forward  
+    # To connect to your abcdesktop using a port forward
     - port-forwarding is only for testing
-    - change LOCAL_PORT if need 
+    - change LOCAL_PORT if need
 
     LOCAL_PORT=30443
     NAMESPACE=abcdesktop
@@ -64,7 +66,7 @@ NAMESPACE=abcdesktop
 kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 "${LOCAL_PORT}:80" -n ${NAMESPACE}
 ```
 
-## Video to run the quick installation process 
+## Video to run the quick installation process
 
 You can watch the youtube video sample. This video describes the Quick installation process using `helm`.
 

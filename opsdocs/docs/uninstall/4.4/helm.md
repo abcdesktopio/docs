@@ -2,6 +2,7 @@
 tags:
   - uninstall
   - helm
+  - read by JFV
 ---
 # Uninstallation using helm
 
