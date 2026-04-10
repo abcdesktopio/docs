@@ -1,10 +1,9 @@
 ---
 tags:
-- (JFV) propositions de maj
+- read bu JFV
 ---
 
-# Issue **[JFV]or feature request**
-
+# How to request a new feature / report an issue ?
 ## How to request a feature ?
 
 To create an feature, please use the `conf` github repository, by following the link [Ask a feature](https://github.com/abcdesktopio/conf/issues)
