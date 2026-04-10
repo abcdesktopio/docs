@@ -3770,6 +3770,12 @@
         <span class="md-tag">minikube</span>
       
     
+      
+      
+      
+        <span class="md-tag">read by FV</span>
+      
+    
   </nav>
 
 
@@ -3787,14 +3793,14 @@
 <p><code>Minikube</code> is a tool for running local Kubernetes clusters using Docker container “nodes”. Minikube was primarily designed for testing Kubernetes itself, but it can be used to deploy Kubernetes applications as well. To install or setup <code>minikube</code>, refer to the <a href="https://minikube.sigs.k8s.io/docs/">Minikube documentation</a></p>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li><a href="https://minikube.sigs.k8s.io/docs/start">minikube</a> command line installed </li>
-<li><a href="https://docs.docker.com/engine/install">docker</a> Docker Engine installed. </li>
-<li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">kubectl</a> command-line tool must be configured to communicate with your cluster.</li>
+<li><a href="https://minikube.sigs.k8s.io/docs/start">minikube</a> command line installed</li>
+<li><a href="https://docs.docker.com/engine/install">docker</a> Docker Engine installed</li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">kubectl</a> command-line tool must be configured to communicate with your cluster</li>
 <li>openssl and curl command line must be installed too (only for install using kubectl)</li>
 </ul>
 <h2 id="create-minikube-cluster">Create minikube cluster</h2>
-<p>Run the command line to create </p>
-<div class="highlight"><pre><span></span><code>minikube start
+<p>Run the command line to create</p>
+<div class="highlight"><pre><span></span><code>minikube<span class="w"> </span>start
 </code></pre></div>
 <p>You should read on stdout</p>
 <div class="highlight"><pre><span></span><code>😄  minikube v1.38.1 on Ubuntu 22.04
@@ -3817,7 +3823,7 @@
 🏄  Done! kubectl is now configured to use &quot;minikube&quot; cluster and &quot;default&quot; namespace by default
 </code></pre></div>
 <h2 id="run-the-install-bash-script">Run the install bash script</h2>
-<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh |bash
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sL<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh<span class="w"> </span><span class="p">|</span>bash
 </code></pre></div>
 <details class="note">
 <summary>show details</summary>
@@ -3949,10 +3955,10 @@ Change the ip address <code>192.168.7.119</code> with your own</p>
 <p>Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.</p>
 <h2 id="common-issues">Common issues</h2>
 <h3 id="issue-failedscheduling-01-nodes-are-available">issue 'FailedScheduling 0/1 nodes are available'</h3>
-<div class="highlight"><pre><span></span><code>FailedScheduling 0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod
+<div class="highlight"><pre><span></span><code>FailedScheduling<span class="w"> </span><span class="m">0</span>/1<span class="w"> </span>nodes<span class="w"> </span>are<span class="w"> </span>available:<span class="w"> </span><span class="m">1</span><span class="w"> </span>Insufficient<span class="w"> </span>cpu.<span class="w"> </span>preemption:<span class="w"> </span><span class="m">0</span>/1<span class="w"> </span>nodes<span class="w"> </span>are<span class="w"> </span>available:<span class="w"> </span><span class="m">1</span><span class="w"> </span>No<span class="w"> </span>preemption<span class="w"> </span>victims<span class="w"> </span>found<span class="w"> </span><span class="k">for</span><span class="w"> </span>incoming<span class="w"> </span>pod
 </code></pre></div>
 <p>To fix it, start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop</p>
-<div class="highlight"><pre><span></span><code>minikube start --cpus 4 --memory 16GB
+<div class="highlight"><pre><span></span><code>minikube<span class="w"> </span>start<span class="w"> </span>--cpus<span class="w"> </span><span class="m">4</span><span class="w"> </span>--memory<span class="w"> </span>16GB
 </code></pre></div>
 
 
