@@ -18,14 +18,16 @@ To create a new feature, please use the `conf` github repository, by following t
 
 To create an issue, please use the `conf` github repository, by following the link [Create an issue](https://github.com/abcdesktopio/conf/issues)
 
-- [ Requirement ] Add your `od.config` file
+- **Requirement** Add your `od.config` file
+  
   Run the command line to get it
    
   ```bash
-  kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
+  NAMESPACE=abcdesktop
+  kubectl -n $NAMESPACE get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
   ```
   
-- [ Requirement ] Add your `abcdesktop.yaml` file
+- **Requirement** Add your `abcdesktop.yaml` file
 - Describe what you are expecting
 - Describe what you get
 
