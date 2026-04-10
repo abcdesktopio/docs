@@ -2035,7 +2035,7 @@
           <li class="md-nav__item">
   <a href="#build-your-new-image" class="md-nav__link">
     <span class="md-ellipsis">
-      build your new image
+      Build your new image
     </span>
   </a>
   
@@ -2044,7 +2044,7 @@
           <li class="md-nav__item">
   <a href="#update-the-abcdesktopyaml" class="md-nav__link">
     <span class="md-ellipsis">
-      update the abcdesktop.yaml
+      Update the abcdesktop.yaml
     </span>
   </a>
   
@@ -3822,7 +3822,7 @@
           <li class="md-nav__item">
   <a href="#build-your-new-image" class="md-nav__link">
     <span class="md-ellipsis">
-      build your new image
+      Build your new image
     </span>
   </a>
   
@@ -3831,7 +3831,7 @@
           <li class="md-nav__item">
   <a href="#update-the-abcdesktopyaml" class="md-nav__link">
     <span class="md-ellipsis">
-      update the abcdesktop.yaml
+      Update the abcdesktop.yaml
     </span>
   </a>
   
@@ -3870,6 +3870,22 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">question de JFV - intégrer ça aussi au helm</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">read by JFV</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/configure/customfrontend.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -3883,7 +3899,7 @@
 <h1 id="customize-abcdesktop-frontend-thourgh-uijson-file">Customize abcdesktop frontend thourgh ui.json file</h1>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li><code>docker</code> package installed </li>
+<li><code>docker</code> package installed</li>
 </ul>
 <h2 id="create-new-image-for-abcdesktop-ocnginx">Create new image for abcdesktop oc.nginx</h2>
 <h3 id="clone-default-webmodules">Clone default webmodules</h3>
@@ -3996,13 +4012,13 @@ drwxr-xr-x<span class="w">  </span><span class="m">11</span><span class="w"> </s
 <span class="p">}</span>
 </code></pre></div>
 <h5 id="login-progress">Login progress</h5>
-<p>Login progress is embedded in <code>span</code> HTML tags. 
+<p>Login progress is embedded in <code>span</code> HTML tags.
 Each <code>projectNameSplitedStage</code> describes a step during the user's authentification then pod's creation process.</p>
 <ul>
 <li>projectNameSplitedStagea: <code>step 1</code></li>
 <li>projectNameSplitedStageb: <code>step 2</code></li>
 <li>projectNameSplitedStagec: <code>step 3</code></li>
-<li>projectNameSplitedStaged: <code>step 4</code> </li>
+<li>projectNameSplitedStaged: <code>step 4</code></li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;projectNameSplitedStagea&#39;</span><span class="p">&gt;</span>a<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;projectNameSplitedStageb&#39;</span><span class="p">&gt;</span>b<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
@@ -4122,7 +4138,7 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
 <span class="w">  </span><span class="nt">&quot;urlopensourceproject&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.abcdesktop.io/&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
-<h4 id="build-your-new-image">build your new image</h4>
+<h4 id="build-your-new-image">Build your new image</h4>
 <p>Run the docker build command to build the new <code>oc.nginx:acme</code> image</p>
 <p>The target image is <code>abcdesktopio/oc.nginx:acme</code> you should change it with your own for example <code>myacme/oc.nginx:acme</code></p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">NODE_MAJOR</span><span class="o">=</span><span class="m">20</span><span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">BASE_IMAGE</span><span class="o">=</span>abcdesktopio/oc.nginx.builder<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">BASE_IMAGE_RELEASE</span><span class="o">=</span><span class="m">4</span>.4<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">TARGET</span><span class="o">=</span>dev<span class="w">  </span>-t<span class="w"> </span>abcdesktopio/oc.nginx.acme:4.4<span class="w"> </span>-f<span class="w"> </span>Dockerfile<span class="w"> </span>.
@@ -4146,15 +4162,15 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
 <span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w">  </span><span class="m">7</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>make<span class="w"> </span>clean<span class="w">                                                                                                                                     </span><span class="m">0</span>.7s
 <span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w">  </span><span class="m">8</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>make<span class="w"> </span>prod<span class="w">                                                                                                                                      </span><span class="m">9</span>.7s
 <span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w">  </span><span class="m">9</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>./mkversion.sh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cat<span class="w"> </span>version.json<span class="w">                                                                                                             </span><span class="m">0</span>.2s
-<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w"> </span><span class="m">10</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>/myenv/bin/html5validator<span class="w"> </span>index.html<span class="w">                                                                                                           </span><span class="m">2</span>.0s<span class="w"> </span>
-<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w"> </span><span class="m">11</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>make<span class="w"> </span>removebuildtools<span class="w">                                                                                                                          </span><span class="m">0</span>.8s<span class="w"> </span>
-<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>stage-1<span class="w"> </span><span class="m">2</span>/2<span class="o">]</span><span class="w"> </span>COPY<span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/var/webModules<span class="w"> </span>/usr/share/nginx/html<span class="w">                                                                                            </span><span class="m">0</span>.7s<span class="w"> </span>
-<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>to<span class="w"> </span>image<span class="w">                                                                                                                                                 </span><span class="m">0</span>.7s<span class="w"> </span>
-<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>layers<span class="w">                                                                                                                                                </span><span class="m">0</span>.7s<span class="w"> </span>
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w"> </span><span class="m">10</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>/myenv/bin/html5validator<span class="w"> </span>index.html<span class="w">                                                                                                           </span><span class="m">2</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>builder<span class="w"> </span><span class="m">11</span>/11<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>make<span class="w"> </span>removebuildtools<span class="w">                                                                                                                          </span><span class="m">0</span>.8s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>stage-1<span class="w"> </span><span class="m">2</span>/2<span class="o">]</span><span class="w"> </span>COPY<span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/var/webModules<span class="w"> </span>/usr/share/nginx/html<span class="w">                                                                                            </span><span class="m">0</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>to<span class="w"> </span>image<span class="w">                                                                                                                                                 </span><span class="m">0</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>layers<span class="w">                                                                                                                                                </span><span class="m">0</span>.7s
 <span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>writing<span class="w"> </span>image<span class="w"> </span>sha256:d7bdbc9f7fafe3282161551e84c5997bb12051bded6405190267863dd73a1698<span class="w">                                                                           </span><span class="m">0</span>.0s
-<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>naming<span class="w"> </span>to<span class="w"> </span>docker.io/abcdesktopio/oc.nginx.acme:4.4<span class="w"> </span>
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>naming<span class="w"> </span>to<span class="w"> </span>docker.io/abcdesktopio/oc.nginx.acme:4.4
 </code></pre></div>
-<h4 id="update-the-abcdesktopyaml">update the <code>abcdesktop.yaml</code></h4>
+<h4 id="update-the-abcdesktopyaml">Update the <code>abcdesktop.yaml</code></h4>
 <p>To update the <code>abcdesktop.yaml</code> to replace <code>oc.nginx:4.4</code> by your own image <code>oc.nginx.acme:4.4</code></p>
 <ul>
 <li>edit your own <code>abcdesktop.yaml</code> file</li>
@@ -4179,31 +4195,31 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
       [...]
 </code></pre></div>
 <p>apply your abcdesktop.yaml file</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop.yaml
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>role.rbac.authorization.k8s.io/pyos-role unchanged
-rolebinding.rbac.authorization.k8s.io/pyos-rbac unchanged
-serviceaccount/pyos-serviceaccount unchanged
-configmap/configmap-mongodb-scripts unchanged
-secret/secret-mongodb configured
-deployment.apps/mongodb-od configured
-deployment.apps/memcached-od configured
-deployment.apps/router-od configured
-deployment.apps/nginx-od configured
-deployment.apps/speedtest-od configured
-deployment.apps/pyos-od configured
-deployment.apps/console-od configured
-deployment.apps/openldap-od configured
-endpoints/desktop unchanged
-service/desktop unchanged
-service/memcached unchanged
-service/mongodb unchanged
-service/speedtest unchanged
-service/pyos unchanged
-service/console unchanged
-service/http-router unchanged
-service/website unchanged
-service/openldap unchanged
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>abcdesktop.yaml
+
+role.rbac.authorization.k8s.io/pyos-role<span class="w"> </span>unchanged
+rolebinding.rbac.authorization.k8s.io/pyos-rbac<span class="w"> </span>unchanged
+serviceaccount/pyos-serviceaccount<span class="w"> </span>unchanged
+configmap/configmap-mongodb-scripts<span class="w"> </span>unchanged
+secret/secret-mongodb<span class="w"> </span>configured
+deployment.apps/mongodb-od<span class="w"> </span>configured
+deployment.apps/memcached-od<span class="w"> </span>configured
+deployment.apps/router-od<span class="w"> </span>configured
+deployment.apps/nginx-od<span class="w"> </span>configured
+deployment.apps/speedtest-od<span class="w"> </span>configured
+deployment.apps/pyos-od<span class="w"> </span>configured
+deployment.apps/console-od<span class="w"> </span>configured
+deployment.apps/openldap-od<span class="w"> </span>configured
+endpoints/desktop<span class="w"> </span>unchanged
+service/desktop<span class="w"> </span>unchanged
+service/memcached<span class="w"> </span>unchanged
+service/mongodb<span class="w"> </span>unchanged
+service/speedtest<span class="w"> </span>unchanged
+service/pyos<span class="w"> </span>unchanged
+service/console<span class="w"> </span>unchanged
+service/http-router<span class="w"> </span>unchanged
+service/website<span class="w"> </span>unchanged
+service/openldap<span class="w"> </span>unchanged
 </code></pre></div>
 <h3 id="connect-to-your-new-website">Connect to your new website</h3>
 <p>Open your web browser to your abcdesktop website</p>
@@ -4212,7 +4228,7 @@ service/openldap unchanged
 </ul>
 <p><img alt="acme desktop login page" src="../img/acmedesktoploginpage.png" /></p>
 <ul>
-<li>the acmedesktop login process </li>
+<li>the acmedesktop login process</li>
 </ul>
 <p><img alt="acme desktop login process" src="../img/acmedesktoploginprocess.png" /></p>
 <ul>
@@ -4220,7 +4236,7 @@ service/openldap unchanged
 </ul>
 <p><img alt="acme desktop color updated" src="../img/acmedesktopcolorsupdated.png" /></p>
 <ul>
-<li>the acmedesktop logout process </li>
+<li>the acmedesktop logout process</li>
 </ul>
 <p><img alt="acme desktop logout process" src="../img/acmedesktoplogoutpage.png" /></p>
 
@@ -4229,6 +4245,9 @@ service/openldap unchanged
 
 
 
+
+  
+  
 
 
 
