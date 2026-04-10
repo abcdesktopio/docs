@@ -18,7 +18,7 @@
     
     
       
-        <title>Applications - abcdesktop.pepins.net</title>
+        <title>FAQ applications - abcdesktop.pepins.net</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Applications
+              FAQ applications
             
           </span>
         </div>
@@ -3396,18 +3396,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-get-the-json-file-of-a-containerized-application" class="md-nav__link">
+  <a href="#how-to-get-the-application-json-description" class="md-nav__link">
     <span class="md-ellipsis">
-      How to get the json file of a containerized application ?
+      How to get the application json description ?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#my-application-doesnt-start-how-to-get-log-files" class="md-nav__link">
+  <a href="#how-to-get-application-logs" class="md-nav__link">
     <span class="md-ellipsis">
-      My application doesn't start. How to get log files ?
+      How to get application logs ?
     </span>
   </a>
   
@@ -3432,7 +3432,7 @@
       
       
       
-        <span class="md-tag">(JFV) propositions de maj</span>
+        <span class="md-tag">Read by jfv</span>
       
     
       
@@ -3459,8 +3459,6 @@
   
 
 
-<p><strong>[JFV] Attention, il y a maintenant lce qui sera le plus évident pour l'ajoute d'aplication à l'unité: le mode web via la console</strong></p>
-<p><strong>[JFV] il n'y avait pas un script ou un curl pour installer un tas d'application en une fois ?</strong></p>
 <h1 id="faq-applications">FAQ applications</h1>
 <h2 id="how-to-add-an-application">How to add an application ?</h2>
 <p>To add an application :
@@ -3477,7 +3475,7 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
 <p>It returns a json list of all deleted applications</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s2">&quot;abcdesktopio/2048-alpine.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/2048-ubuntu.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/apachedirectorystudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/astromenace.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/base.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/beekeeperstudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blender.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/bless.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blobby.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/boxes.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/calculator.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chess.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chimerax.d:dev&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chrome.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chromium.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/citrix.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cloudfoundry.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cmd.exe.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/corsix-th.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cuda.d:dev&quot;</span><span class="p">]</span>
 </code></pre></div>
-<h2 id="how-to-get-the-json-file-of-a-containerized-application">How to get the json file of a containerized application ?</h2>
+<h2 id="how-to-get-the-application-json-description">How to get the application json description ?</h2>
 <p>To get the json file of a containerized application, you can use <code>docker</code> command or <code>crictl</code> command</p>
 <ul>
 <li><code>docker</code> command</li>
@@ -3489,7 +3487,8 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
 </ul>
 <div class="highlight"><pre><span></span><code>crictl<span class="w"> </span>inspecti<span class="w"> </span>abcdesktopio/2048-alpine.d:3.0<span class="w"> </span>&gt;<span class="w"> </span><span class="m">2048</span>-alpine.json
 </code></pre></div>
-<h2 id="my-application-doesnt-start-how-to-get-log-files">My application doesn't start. How to get log files ?</h2>
+<h2 id="how-to-get-application-logs">How to get application logs ?</h2>
+<p>To get logs if an application doesn't start, you have to:</p>
 <p>Open the <code>webshell</code> and read the logs files.</p>
 <p>The log files are /tmp/lastcmd.log, /tmp/lastcmdenv.log and /tmp/NAME OF THE APPLICATION.log.</p>
 <ul>
