@@ -20,7 +20,7 @@
 - [How to delete all applications ?](/faq/applications/#how-to-delete-all-applications)
 - [How to get application logs ?](/faq/applications/#how-to-get-application-logs)
 
-## Advanced usage
+## Advanced usages
 
   - [How to expose my new service with `nginx ingress controller` ?](/faq/ingresscontroller/#how-to-expose-my-new-service-with-nginx-ingress-controller)
   - [How to increase the mongodb number of replicats ?](/faq/mongodb/#how-to-increase-the-mongodb-number-of-replicats)
