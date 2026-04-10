@@ -8,33 +8,32 @@ Kind is a tool for running local Kubernetes clusters using Docker container “n
 
 ## Requirements
 
-* [kind](https://kind.sigs.k8s.io/docs/user/quick-start) command line installed 
-* [docker](https://docs.docker.com/engine/install) Docker Engine installed. 
-* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command-line tool must be configured to communicate with your cluster.
-* `openssl` and `curl` command line must be installed too (only for install using kubectl).
-
+* [kind](https://kind.sigs.k8s.io/docs/user/quick-start) command line installed
+* [docker](https://docs.docker.com/engine/install) Docker Engine installed
+* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command-line tool must be configured to communicate with your cluster
+* `openssl` and `curl` command line must be installed too (only for install using kubectl)
 
 ## Create kind cluster
 
-Run the command line to create 
+Run the command line to create
 
-```
+```bash
 kind create cluster --wait 5m
 ```
 
 > the `--wait 5m` wait for control-plane = Ready
 
-You should read on stdout
+You should read on stdout:
 
-```
+```log
 Creating cluster "kind" ...
- ✓ Ensuring node image (kindest/node:v1.35.0) 🖼 
- ✓ Preparing nodes 📦  
- ✓ Writing configuration 📜 
- ✓ Starting control-plane 🕹️ 
- ✓ Installing CNI 🔌 
- ✓ Installing StorageClass 💾 
- ✓ Waiting ≤ 5m0s for control-plane = Ready ⏳ 
+ ✓ Ensuring node image (kindest/node:v1.35.0) 🖼
+ ✓ Preparing nodes 📦
+ ✓ Writing configuration 📜
+ ✓ Starting control-plane 🕹️
+ ✓ Installing CNI 🔌
+ ✓ Installing StorageClass 💾
+ ✓ Waiting ≤ 5m0s for control-plane = Ready ⏳
  • Ready after 24s 💚
 Set kubectl context to "kind-kind"
 You can now use your cluster with:
@@ -44,14 +43,14 @@ kubectl cluster-info --context kind-kind
 Thanks for using kind! 😊
 ```
 
-## Run the install bash script 
+## Run the install bash script
 
-```
+```bash
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh |bash
 ```
 
 ??? note "show details"
-    ```
+    ```log
     [INFO] abcdesktop install script namespace=abcdesktop
     [OK] kubectl version
     [OK] openssl version
@@ -159,13 +158,13 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/ins
     [INFO] http://192.168.7.119:30443/
     ```
 
-## How to connect 
+## How to connect ?
 
 The install bash script forward the tcp port 30443 to the router pod port tcp 80
 
 `kubectl port-forward router-od-647b77455d-nk677 --address 0.0.0.0 30443:80 -n abcdesktop`
 
-```
+```log
 [OK] Please open your web browser and connect to
 
 [INFO] http://192.168.7.119:30443/
@@ -184,14 +183,10 @@ The user `Philip J. Fry` is connected to the abcdesktop service
 
 Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.
 
+## Delete cluster
 
-## Uninstall
+To uninstall, run the kind `delete` cluster command line:
 
-To uninstall run the kind delete cluster command line
-
-```
+```bash
 kind delete cluster
 ```
-
-
-

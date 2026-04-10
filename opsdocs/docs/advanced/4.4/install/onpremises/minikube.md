@@ -45,7 +45,6 @@ You should read on stdout
 🌟  Enabled addons: storage-provisioner, default-storageclass
 🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
-
 ## Run the install bash script
 
 ``` bash
@@ -161,7 +160,7 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/ins
     [INFO] http://192.168.7.119:30443/
     ```
 
-## How to connect
+## How to connect ?
 
 The install bash script forward the tcp port 30443 to the router pod port tcp 80
 
@@ -186,6 +185,14 @@ The user `Philip J. Fry` is connected to the abcdesktop service
 > Open the URL returnes by the install bash script. In this sample `http://192.168.7.119:30443/`
 
 Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.
+
+## Delete cluster
+
+To uninstall, run the minikube `delete` cluster command line:
+
+```bash
+minikube delete
+```
 
 ## Common issues
 
