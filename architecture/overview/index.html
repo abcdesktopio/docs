@@ -3890,6 +3890,12 @@
         <span class="md-tag">architecture</span>
       
     
+      
+      
+      
+        <span class="md-tag">read by JFV</span>
+      
+    
   </nav>
 
 
@@ -3940,13 +3946,14 @@ flowchart TD
     click mongodb "https://www.mongodb.com/"
     click kubernetes "https://kubernetes.io/"
     click memcache "https://www.memcached.org/"
-    click ldap "https://github.com/rroemhild/docker-test-openldap"</code></pre>
+    click ldap "https://github.com/rroemhild/docker-test-openldap"
+</code></pre>
 <p>The project abcdesktop provides container images for <code>route</code>, <code>console</code>, <code>website</code>, <code>pyos</code>, and <code>user</code></p>
 <blockquote>
 <p>The projects <code>kubernetes</code>, <code>mongodb</code>, <code>memcached</code>, <code>speedtest</code> and <code>ldap</code> are not part of the abcdesktop project.</p>
 </blockquote>
 <h2 id="create-desktop-workflow">Create desktop workflow</h2>
-<p>This workflow describes the <code>create desktop</code> process </p>
+<p>This workflow describes the <code>create desktop</code> process</p>
 <pre class="mermaid"><code>---
 config:
   theme: redux-color
@@ -3999,7 +4006,7 @@ sequenceDiagram
 <li>
 <p>User is connecting to his own POD</p>
 <ul>
-<li>All JWT are signed with RSA keys. </li>
+<li>All JWT are signed with RSA keys.</li>
 <li>All desktop's JWT payload are encrypted with another RSA keys</li>
 </ul>
 </li>
@@ -4033,14 +4040,14 @@ sequenceDiagram
 <li>LDAP and LDAPS</li>
 <li>Active Directory</li>
 <li>Anonymous (no auth)</li>
-<li>Create/Read/Update/Delete user's Pod in Kubernetes </li>
+<li>Create/Read/Update/Delete user's Pod in Kubernetes</li>
 <li>Create/Read/Update/Delete user's applications as <code>ephemeral container</code> or as <code>pod</code></li>
 </ul>
 <blockquote>
 <p>When a new user is authenticated, a dedicated user pod is created.
 When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a <code>pod</code> or an <code>ephemeral container</code></p>
 </blockquote>
-<p>pyos needs <code>rbac.authorization.k8s.io</code> roles to <code>CRUD</code> the namespaced resources : 
+<p>pyos needs <code>rbac.authorization.k8s.io</code> roles to <code>CRUD</code> the namespaced resources :
 - 'pods', 'pods/exec', 'pods/ephemeralcontainers', 'pods/log'
 - 'events'
 - 'secrets'
@@ -4052,24 +4059,24 @@ Optionaly, you can also add pyos to</code>CRUD<code>resources ['persistentvolume
 <h3 id="router">router</h3>
 <p><code>router</code> pod act as a <code>http router</code> web server. It routes HTTP requets to <code>user's pods</code>, <code>web site</code>, <code>pyos</code>, <code>console</code>.</p>
 <h3 id="website">website</h3>
-<p><code>website</code> pod act as web server and delivers <code>html</code>, <code>javascript</code>, <code>svg</code> files. </p>
+<p><code>website</code> pod act as web server and delivers <code>html</code>, <code>javascript</code>, <code>svg</code> files.</p>
 <h3 id="mongo-database">mongo database</h3>
-<p><code>mongo</code> is used by pyos to store informations. 
+<p><code>mongo</code> is used by pyos to store informations.
 The informations are :</p>
 <ul>
 <li>User logins history</li>
 <li>Images and background colors configuration per desktop</li>
-<li>Installed applications </li>
+<li>Installed applications</li>
 </ul>
 <h3 id="memcached">memcached</h3>
 <p><code>memcache</code> stores progress text message information during login process. <code>memcache</code> datas are set and get only by the control plane.</p>
 <h3 id="ocuser">oc.user</h3>
-<p><a href="https://github.com/abcdesktopio/oc.user"><code>oc.user</code></a> is the name of the user's container image. <code>oc.user</code> runs the X11 graphical service. <code>oc.user</code> is based on ubuntu distribution. </p>
+<p><a href="https://github.com/abcdesktopio/oc.user"><code>oc.user</code></a> is the name of the user's container image. <code>oc.user</code> runs the X11 graphical service. <code>oc.user</code> is based on ubuntu distribution.</p>
 <ul>
 <li>The image <code>abcdesktopio/oc.user.ubuntu.24.04:4.4</code> is based on <code>ubuntu</code> distribution <code>24.04</code>. Get more details about <a href="https://github.com/abcdesktopio/oc.user">oc.user</a> image.</li>
 </ul>
 <h3 id="applications">applications</h3>
-<p>All applications are <code>ephemeral containers</code> or <code>pods</code>, and share a graphical socket ( <code>unix</code> or <code>tcp</code> ) with the user's pod. </p>
+<p>All applications are <code>ephemeral containers</code> or <code>pods</code>, and share a graphical socket ( <code>unix</code> or <code>tcp</code> ) with the user's pod.</p>
 
 
 
