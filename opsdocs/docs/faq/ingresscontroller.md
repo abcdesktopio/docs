@@ -9,7 +9,7 @@ tags:
 
 # FAQ Ingress Controller
 
-## How can I expose my new service with `nginx ingress controller` ?
+## How to expose my new service with `nginx ingress controller` ?
 
 A Kubernetes Ingress Controller acts as a reverse proxy. We describe here how to use the `nginx ingress controller`.
 
