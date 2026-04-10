@@ -3875,13 +3875,19 @@
       
       
       
-        <span class="md-tag">question de JFV - intégrer ça aussi au helm</span>
+        <span class="md-tag">AD</span>
       
     
       
       
       
-        <span class="md-tag">read by JFV</span>
+        <span class="md-tag">JFV</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">question de JFV - intégrer ça aussi au helm -> AD non trop complexe, on fait simple</span>
       
     
   </nav>
@@ -3899,7 +3905,8 @@
 <h1 id="customize-abcdesktop-frontend-thourgh-uijson-file">Customize abcdesktop frontend thourgh ui.json file</h1>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li><code>docker</code> package installed</li>
+<li><code>docker</code> command line installed, to build image</li>
+<li>your own registry to store container images</li>
 </ul>
 <h2 id="create-new-image-for-abcdesktop-ocnginx">Create new image for abcdesktop oc.nginx</h2>
 <h3 id="clone-default-webmodules">Clone default webmodules</h3>
@@ -4140,7 +4147,7 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
 </code></pre></div>
 <h4 id="build-your-new-image">Build your new image</h4>
 <p>Run the docker build command to build the new <code>oc.nginx:acme</code> image</p>
-<p>The target image is <code>abcdesktopio/oc.nginx:acme</code> you should change it with your own for example <code>myacme/oc.nginx:acme</code></p>
+<p>The target image is <code>abcdesktopio/oc.nginx:acme</code> you should change it with your own regitsry for example <code>myacme/oc.nginx:acme</code></p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">NODE_MAJOR</span><span class="o">=</span><span class="m">20</span><span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">BASE_IMAGE</span><span class="o">=</span>abcdesktopio/oc.nginx.builder<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">BASE_IMAGE_RELEASE</span><span class="o">=</span><span class="m">4</span>.4<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">TARGET</span><span class="o">=</span>dev<span class="w">  </span>-t<span class="w"> </span>abcdesktopio/oc.nginx.acme:4.4<span class="w"> </span>-f<span class="w"> </span>Dockerfile<span class="w"> </span>.
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Building<span class="w"> </span><span class="m">16</span>.5s<span class="w"> </span><span class="o">(</span><span class="m">19</span>/19<span class="o">)</span><span class="w"> </span>FINISHED<span class="w">                                                                                                                          </span>docker:default
@@ -4184,7 +4191,8 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
             name: http
       [...]
 </code></pre></div>
-<p>Update the <code>deployement</code> with your new image name <code>abcdesktopio/oc.nginx:acme</code></p>
+<p>Update the <code>deployment</code> with your new image name <code>abcdesktopio/oc.nginx:acme</code>
+and replace the <code>abcdesktopio</code> with your own registry.</p>
 <div class="highlight"><pre><span></span><code>      [...]
       - name: nginx
         imagePullPolicy: Always
@@ -4195,31 +4203,33 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
       [...]
 </code></pre></div>
 <p>apply your abcdesktop.yaml file</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>abcdesktop.yaml
-
-role.rbac.authorization.k8s.io/pyos-role<span class="w"> </span>unchanged
-rolebinding.rbac.authorization.k8s.io/pyos-rbac<span class="w"> </span>unchanged
-serviceaccount/pyos-serviceaccount<span class="w"> </span>unchanged
-configmap/configmap-mongodb-scripts<span class="w"> </span>unchanged
-secret/secret-mongodb<span class="w"> </span>configured
-deployment.apps/mongodb-od<span class="w"> </span>configured
-deployment.apps/memcached-od<span class="w"> </span>configured
-deployment.apps/router-od<span class="w"> </span>configured
-deployment.apps/nginx-od<span class="w"> </span>configured
-deployment.apps/speedtest-od<span class="w"> </span>configured
-deployment.apps/pyos-od<span class="w"> </span>configured
-deployment.apps/console-od<span class="w"> </span>configured
-deployment.apps/openldap-od<span class="w"> </span>configured
-endpoints/desktop<span class="w"> </span>unchanged
-service/desktop<span class="w"> </span>unchanged
-service/memcached<span class="w"> </span>unchanged
-service/mongodb<span class="w"> </span>unchanged
-service/speedtest<span class="w"> </span>unchanged
-service/pyos<span class="w"> </span>unchanged
-service/console<span class="w"> </span>unchanged
-service/http-router<span class="w"> </span>unchanged
-service/website<span class="w"> </span>unchanged
-service/openldap<span class="w"> </span>unchanged
+<div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>abcdesktop.yaml<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
+</code></pre></div>
+<p>You read on stdout </p>
+<div class="highlight"><pre><span></span><code>role.rbac.authorization.k8s.io/pyos-role unchanged
+rolebinding.rbac.authorization.k8s.io/pyos-rbac unchanged
+serviceaccount/pyos-serviceaccount unchanged
+configmap/configmap-mongodb-scripts unchanged
+secret/secret-mongodb configured
+deployment.apps/mongodb-od configured
+deployment.apps/memcached-od configured
+deployment.apps/router-od configured
+deployment.apps/nginx-od configured
+deployment.apps/speedtest-od configured
+deployment.apps/pyos-od configured
+deployment.apps/console-od configured
+deployment.apps/openldap-od configured
+endpoints/desktop unchanged
+service/desktop unchanged
+service/memcached unchanged
+service/mongodb unchanged
+service/speedtest unchanged
+service/pyos unchanged
+service/console unchanged
+service/http-router unchanged
+service/website unchanged
+service/openldap unchanged
 </code></pre></div>
 <h3 id="connect-to-your-new-website">Connect to your new website</h3>
 <p>Open your web browser to your abcdesktop website</p>
