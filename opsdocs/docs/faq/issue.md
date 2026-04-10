@@ -1,13 +1,14 @@
 ---
 tags:
-- (JFV) propositions de maj
+- JFV
+- AD
 ---
 
-# Issue **[JFV]or feature request**
+# Issue or feature request
 
-## How to request a feature ?
+## How to request a new feature ?
 
-To create an feature, please use the `conf` github repository, by following the link [Ask a feature](https://github.com/abcdesktopio/conf/issues)
+To create a new feature, please use the `conf` github repository, by following the link [Ask a feature](https://github.com/abcdesktopio/conf/issues)
 
 - Describe what you are expecting
 - Tag it as *feature* in field **type** on the right.
@@ -17,8 +18,14 @@ To create an feature, please use the `conf` github repository, by following the 
 
 To create an issue, please use the `conf` github repository, by following the link [Create an issue](https://github.com/abcdesktopio/conf/issues)
 
+- [ Requirement ] Add your `od.config` file
+  Run the command line to get it
+   
+  ```bash
+  kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
+  ```
+  
+- [ Requirement ] Add your `abcdesktop.yaml` file
 - Describe what you are expecting
 - Describe what you get
-
-Please, add the `abcdesktop.yaml` and/or `od.config` file if you change it
 
