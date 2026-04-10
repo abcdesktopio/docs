@@ -3768,6 +3768,16 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">read by JFV</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/configure/welcome.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -3782,9 +3792,9 @@
 <h2 id="welcomeinfo">welcomeinfo</h2>
 <h3 id="description">Description</h3>
 <p><code>welcomeinfo</code> permits to display messages on the login page.</p>
-<div class="highlight"><pre><span></span><code>welcomeinfo: { &#39;welcome&#39;: [] }
+<div class="highlight"><pre><span></span><code><span class="err">welcomei</span><span class="kc">nf</span><span class="err">o</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;welcome&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-<p><code>welcomeinfo.welcome</code> is a list of dictonary with </p>
+<p><code>welcomeinfo.welcome</code> is a list of dictonary with</p>
 <ul>
 <li><code>notbefore</code>: date time</li>
 <li><code>notafter</code>: date time</li>
@@ -3792,89 +3802,89 @@
 <li><code>title</code> and <code>information</code> (optional)</li>
 </ul>
 <h3 id="sample">Sample</h3>
-<div class="highlight"><pre><span></span><code># welcomeinfo
-# Show a welcome message to the login page
-welcomeinfo: { 
-  &#39;welcome&#39;: [ 
-   { &#39;notbefore&#39;: &#39;01 Dec 2023 00:00:00 GMT&#39;, 
-      &#39;notafter&#39;:  &#39;01 Dec 2026 00:12:00 GMT&#39;, 
-       &#39;title&#39;: &#39;maintenance mode sample A&#39;, 
-       &#39;information&#39;: &#39;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&#39; 
-    },
-    { &#39;notbefore&#39;: &#39;03 Dec 2023 22:12:00 GMT&#39;, 
-      &#39;notafter&#39;:  &#39;04 Dec 2026 00:12:00 GMT&#39;, 
-      &#39;title&#39;: &#39;maintenance mode sample B&#39;, 
-      &#39;information&#39;: &#39;Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&#39; 
-    } ] }
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="err">welcomei</span><span class="kc">nf</span><span class="err">o</span>
+<span class="err">#</span><span class="w"> </span><span class="err">Show</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">welcome</span><span class="w"> </span><span class="err">message</span><span class="w"> </span><span class="kc">t</span><span class="err">o</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">logi</span><span class="kc">n</span><span class="w"> </span><span class="err">page</span>
+<span class="err">welcomei</span><span class="kc">nf</span><span class="err">o</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="err">&#39;welcome&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">be</span><span class="kc">f</span><span class="err">ore&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">01</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">tafter</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="err">&#39;</span><span class="mi">01</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2026</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">       </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">i</span><span class="kc">tle</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;mai</span><span class="kc">ntenan</span><span class="err">ce</span><span class="w"> </span><span class="err">mode</span><span class="w"> </span><span class="err">sample</span><span class="w"> </span><span class="err">A&#39;</span><span class="p">,</span>
+<span class="w">       </span><span class="err">&#39;i</span><span class="kc">nf</span><span class="err">orma</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Lorem</span><span class="w"> </span><span class="err">ipsum</span><span class="w"> </span><span class="err">dolor</span><span class="w"> </span><span class="err">si</span><span class="kc">t</span><span class="w"> </span><span class="err">ame</span><span class="kc">t</span><span class="p">,</span><span class="w"> </span><span class="err">co</span><span class="kc">nse</span><span class="err">c</span><span class="kc">tetur</span><span class="w"> </span><span class="err">adipisici</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">eli</span><span class="kc">t</span><span class="p">,</span><span class="w"> </span><span class="err">sed</span><span class="w"> </span><span class="err">do</span><span class="w"> </span><span class="err">eiusmod</span><span class="w"> </span><span class="kc">te</span><span class="err">mpor</span><span class="w"> </span><span class="err">i</span><span class="kc">n</span><span class="err">cididu</span><span class="kc">nt</span><span class="w"> </span><span class="err">u</span><span class="kc">t</span><span class="w"> </span><span class="err">labore</span><span class="w"> </span><span class="err">e</span><span class="kc">t</span><span class="w"> </span><span class="err">dolore</span><span class="w"> </span><span class="err">mag</span><span class="kc">na</span><span class="w"> </span><span class="err">aliqua.&#39;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">be</span><span class="kc">f</span><span class="err">ore&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">03</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">tafter</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="err">&#39;</span><span class="mi">04</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2026</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">i</span><span class="kc">tle</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;mai</span><span class="kc">ntenan</span><span class="err">ce</span><span class="w"> </span><span class="err">mode</span><span class="w"> </span><span class="err">sample</span><span class="w"> </span><span class="err">B&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;i</span><span class="kc">nf</span><span class="err">orma</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;U</span><span class="kc">t</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="err">im</span><span class="w"> </span><span class="err">ad</span><span class="w"> </span><span class="err">mi</span><span class="kc">n</span><span class="err">im</span><span class="w"> </span><span class="err">ve</span><span class="kc">n</span><span class="err">iam</span><span class="p">,</span><span class="w"> </span><span class="err">quis</span><span class="w"> </span><span class="kc">n</span><span class="err">os</span><span class="kc">tru</span><span class="err">d</span><span class="w"> </span><span class="err">exerci</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">ullamco</span><span class="w"> </span><span class="err">laboris</span><span class="w"> </span><span class="kc">n</span><span class="err">isi</span><span class="w"> </span><span class="err">u</span><span class="kc">t</span><span class="w"> </span><span class="err">aliquip</span><span class="w"> </span><span class="err">ex</span><span class="w"> </span><span class="err">ea</span><span class="w"> </span><span class="err">commodo</span><span class="w"> </span><span class="err">co</span><span class="kc">nse</span><span class="err">qua</span><span class="kc">t</span><span class="err">.&#39;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>The login page shows the messages :</p>
 <p><img alt="welcome info sample" src="../img/welcomeinfosample.png" /></p>
 <h3 id="script">Script</h3>
 <p><code>welcomeinfo</code> can also load <code>javascript</code> source code, from another uri or from string</p>
 <h4 id="data"><code>data</code></h4>
-<div class="highlight"><pre><span></span><code>welcomeinfo: { 
-  &#39;welcome&#39;: [
-    { 
-      &#39;notbefore&#39;: &#39;01 Dec 2023 00:00:00 GMT&#39;, 
-      &#39;notafter&#39;:  &#39;01 Dec 2026 00:12:00 GMT&#39;, 
-      &#39;script&#39;: {
-        &#39;data&#39;: &#39;console.log(\&#39;hello from welcomeinfo \&#39;);&#39;
-      } 
-    },
-    { &#39;notbefore&#39;: &#39;01 Dec 2023 00:00:00 GMT&#39;, 
-      &#39;notafter&#39;:  &#39;01 Dec 2026 00:12:00 GMT&#39;, 
-       &#39;title&#39;: &#39;maintenance mode sample A&#39;, 
-       &#39;information&#39;: &#39;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&#39; 
-    },
-    { &#39;notbefore&#39;: &#39;03 Dec 2023 22:12:00 GMT&#39;, 
-      &#39;notafter&#39;:  &#39;04 Dec 2026 00:12:00 GMT&#39;, 
-      &#39;title&#39;: &#39;maintenance mode sample B&#39;, 
-      &#39;information&#39;: &#39;Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&#39; 
-    } ] }
+<div class="highlight"><pre><span></span><code><span class="err">welcomei</span><span class="kc">nf</span><span class="err">o</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="err">&#39;welcome&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">be</span><span class="kc">f</span><span class="err">ore&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">01</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">tafter</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="err">&#39;</span><span class="mi">01</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2026</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;scrip</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">&#39;da</span><span class="kc">ta</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;co</span><span class="kc">ns</span><span class="err">ole.log(\&#39;hello</span><span class="w"> </span><span class="kc">fr</span><span class="err">om</span><span class="w"> </span><span class="err">welcomei</span><span class="kc">nf</span><span class="err">o</span><span class="w"> </span><span class="err">\&#39;);&#39;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">be</span><span class="kc">f</span><span class="err">ore&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">01</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">tafter</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="err">&#39;</span><span class="mi">01</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2026</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">       </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">i</span><span class="kc">tle</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;mai</span><span class="kc">ntenan</span><span class="err">ce</span><span class="w"> </span><span class="err">mode</span><span class="w"> </span><span class="err">sample</span><span class="w"> </span><span class="err">A&#39;</span><span class="p">,</span>
+<span class="w">       </span><span class="err">&#39;i</span><span class="kc">nf</span><span class="err">orma</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Lorem</span><span class="w"> </span><span class="err">ipsum</span><span class="w"> </span><span class="err">dolor</span><span class="w"> </span><span class="err">si</span><span class="kc">t</span><span class="w"> </span><span class="err">ame</span><span class="kc">t</span><span class="p">,</span><span class="w"> </span><span class="err">co</span><span class="kc">nse</span><span class="err">c</span><span class="kc">tetur</span><span class="w"> </span><span class="err">adipisici</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">eli</span><span class="kc">t</span><span class="p">,</span><span class="w"> </span><span class="err">sed</span><span class="w"> </span><span class="err">do</span><span class="w"> </span><span class="err">eiusmod</span><span class="w"> </span><span class="kc">te</span><span class="err">mpor</span><span class="w"> </span><span class="err">i</span><span class="kc">n</span><span class="err">cididu</span><span class="kc">nt</span><span class="w"> </span><span class="err">u</span><span class="kc">t</span><span class="w"> </span><span class="err">labore</span><span class="w"> </span><span class="err">e</span><span class="kc">t</span><span class="w"> </span><span class="err">dolore</span><span class="w"> </span><span class="err">mag</span><span class="kc">na</span><span class="w"> </span><span class="err">aliqua.&#39;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">be</span><span class="kc">f</span><span class="err">ore&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">03</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">tafter</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="err">&#39;</span><span class="mi">04</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2026</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">i</span><span class="kc">tle</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;mai</span><span class="kc">ntenan</span><span class="err">ce</span><span class="w"> </span><span class="err">mode</span><span class="w"> </span><span class="err">sample</span><span class="w"> </span><span class="err">B&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;i</span><span class="kc">nf</span><span class="err">orma</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;U</span><span class="kc">t</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="err">im</span><span class="w"> </span><span class="err">ad</span><span class="w"> </span><span class="err">mi</span><span class="kc">n</span><span class="err">im</span><span class="w"> </span><span class="err">ve</span><span class="kc">n</span><span class="err">iam</span><span class="p">,</span><span class="w"> </span><span class="err">quis</span><span class="w"> </span><span class="kc">n</span><span class="err">os</span><span class="kc">tru</span><span class="err">d</span><span class="w"> </span><span class="err">exerci</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">ullamco</span><span class="w"> </span><span class="err">laboris</span><span class="w"> </span><span class="kc">n</span><span class="err">isi</span><span class="w"> </span><span class="err">u</span><span class="kc">t</span><span class="w"> </span><span class="err">aliquip</span><span class="w"> </span><span class="err">ex</span><span class="w"> </span><span class="err">ea</span><span class="w"> </span><span class="err">commodo</span><span class="w"> </span><span class="err">co</span><span class="kc">nse</span><span class="err">qua</span><span class="kc">t</span><span class="err">.&#39;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>On the web browser console you can read</p>
 <p><img alt="welcomeinfo console log" src="../img/welcomeinfolog.png" /></p>
 <h4 id="src-and-async"><code>src</code> and <code>async</code></h4>
-<p><code>src</code> and <code>async</code> are aloso supported by <code>script</code> to load uri ( <code>sync</code>or <code>async</code> ). </p>
-<p>This example loads <code>https://www.googletagmanager.com/gtag/js?id=G-VS25TGNTRZ</code> with <code>async</code> to <code>False</code>, and then loads javascript string source code from </p>
-<div class="highlight"><pre><span></span><code>      window.dataLayer = window.dataLayer || [];\
-      function gtag(){dataLayer.push(arguments);}\
-      gtag(\&#39;js\&#39;, new Date());\
-      gtag(\&#39;config\&#39;, \&#39;G-VS25TGNTRZ\&#39;);
+<p><code>src</code> and <code>async</code> are aloso supported by <code>script</code> to load uri ( <code>sync</code>or <code>async</code> ).</p>
+<p>This example loads <code>https://www.googletagmanager.com/gtag/js?id=G-VS25TGNTRZ</code> with <code>async</code> to <code>False</code>, and then loads javascript string source code from</p>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="err">wi</span><span class="kc">n</span><span class="err">dow.da</span><span class="kc">ta</span><span class="err">Layer</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">wi</span><span class="kc">n</span><span class="err">dow.da</span><span class="kc">ta</span><span class="err">Layer</span><span class="w"> </span><span class="err">||</span><span class="w"> </span><span class="p">[]</span><span class="err">;\</span>
+<span class="w">      </span><span class="kc">fun</span><span class="err">c</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">g</span><span class="kc">ta</span><span class="err">g()</span><span class="p">{</span><span class="err">da</span><span class="kc">ta</span><span class="err">Layer.push(argume</span><span class="kc">nts</span><span class="err">);</span><span class="p">}</span><span class="err">\</span>
+<span class="w">      </span><span class="err">g</span><span class="kc">ta</span><span class="err">g(\&#39;js\&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">ne</span><span class="err">w</span><span class="w"> </span><span class="err">Da</span><span class="kc">te</span><span class="err">());\</span>
+<span class="w">      </span><span class="err">g</span><span class="kc">ta</span><span class="err">g(\&#39;co</span><span class="kc">nf</span><span class="err">ig\&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">\&#39;G</span><span class="mi">-</span><span class="err">VS</span><span class="mi">25</span><span class="err">TGNTRZ\&#39;);</span>
 </code></pre></div>
 <p>A complete example to embed Google Tag Manager</p>
-<div class="highlight"><pre><span></span><code>welcomeinfo: { 
-  &#39;welcome&#39;: [ 
-    { &#39;notbefore&#39;: &#39;04 Dec 2023 00:12:00 GMT&#39;, 
-      &#39;notafter&#39;:  &#39;08 Dec 2026 00:12:00 GMT&#39;, 
-      &#39;script&#39; : {
-        &#39;async&#39;: False,
-        &#39;src&#39;: &#39;https://www.googletagmanager.com/gtag/js?id=G-VS25TGNTRZ&#39;
-      }
-    },
-    { 
-      &#39;notbefore&#39;: &#39;01 Dec 2023 00:00:00 GMT&#39;, 
-      &#39;notafter&#39;:  &#39;01 Dec 2026 00:12:00 GMT&#39;, 
-      &#39;script&#39;: {
-        &#39;data&#39;: &#39;\
-          window.dataLayer = window.dataLayer || [];\
-          function gtag(){dataLayer.push(arguments);}\
-          gtag(\&#39;js\&#39;, new Date());\
-          gtag(\&#39;config\&#39;, \&#39;G-VS25TGNTRZ\&#39;);&#39;
-      } 
-    },
-    { &#39;notbefore&#39;: &#39;01 Dec 2023 00:00:00 GMT&#39;, 
-      &#39;notafter&#39;:  &#39;01 Dec 2026 00:12:00 GMT&#39;, 
-       &#39;title&#39;: &#39;maintenance mode&#39;, 
-       &#39;information&#39;: &#39;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&#39; 
-    },
-    { &#39;notbefore&#39;: &#39;03 Dec 2023 22:12:00 GMT&#39;, 
-      &#39;notafter&#39;:  &#39;04 Dec 2026 00:12:00 GMT&#39;, 
-      &#39;title&#39;: &#39;maintenance mode&#39;, 
-      &#39;information&#39;: &#39;Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&#39; 
-    } ] }
+<p><div class="highlight"><pre><span></span><code><span class="err">welcomei</span><span class="kc">nf</span><span class="err">o</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="err">&#39;welcome&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">be</span><span class="kc">f</span><span class="err">ore&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">04</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">tafter</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="err">&#39;</span><span class="mi">08</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2026</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;scrip</span><span class="kc">t</span><span class="err">&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">&#39;asy</span><span class="kc">n</span><span class="err">c&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span>
+<span class="w">        </span><span class="err">&#39;src&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googletagmanager.com/gtag/js?id=G-VS25TGNTRZ&#39;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">be</span><span class="kc">f</span><span class="err">ore&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">01</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">tafter</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="err">&#39;</span><span class="mi">01</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2026</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;scrip</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">&#39;da</span><span class="kc">ta</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;\</span>
+<span class="w">          </span><span class="err">wi</span><span class="kc">n</span><span class="err">dow.da</span><span class="kc">ta</span><span class="err">Layer</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">wi</span><span class="kc">n</span><span class="err">dow.da</span><span class="kc">ta</span><span class="err">Layer</span><span class="w"> </span><span class="err">||</span><span class="w"> </span><span class="p">[]</span><span class="err">;\</span>
+<span class="w">          </span><span class="kc">fun</span><span class="err">c</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">g</span><span class="kc">ta</span><span class="err">g()</span><span class="p">{</span><span class="err">da</span><span class="kc">ta</span><span class="err">Layer.push(argume</span><span class="kc">nts</span><span class="err">);</span><span class="p">}</span><span class="err">\</span>
+<span class="w">          </span><span class="err">g</span><span class="kc">ta</span><span class="err">g(\&#39;js\&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">ne</span><span class="err">w</span><span class="w"> </span><span class="err">Da</span><span class="kc">te</span><span class="err">());\</span>
+<span class="w">          </span><span class="err">g</span><span class="kc">ta</span><span class="err">g(\&#39;co</span><span class="kc">nf</span><span class="err">ig\&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">\&#39;G</span><span class="mi">-</span><span class="err">VS</span><span class="mi">25</span><span class="err">TGNTRZ\&#39;);&#39;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">be</span><span class="kc">f</span><span class="err">ore&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">01</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">tafter</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="err">&#39;</span><span class="mi">01</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2026</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">       </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">i</span><span class="kc">tle</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;mai</span><span class="kc">ntenan</span><span class="err">ce</span><span class="w"> </span><span class="err">mode&#39;</span><span class="p">,</span>
+<span class="w">       </span><span class="err">&#39;i</span><span class="kc">nf</span><span class="err">orma</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Lorem</span><span class="w"> </span><span class="err">ipsum</span><span class="w"> </span><span class="err">dolor</span><span class="w"> </span><span class="err">si</span><span class="kc">t</span><span class="w"> </span><span class="err">ame</span><span class="kc">t</span><span class="p">,</span><span class="w"> </span><span class="err">co</span><span class="kc">nse</span><span class="err">c</span><span class="kc">tetur</span><span class="w"> </span><span class="err">adipisici</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">eli</span><span class="kc">t</span><span class="p">,</span><span class="w"> </span><span class="err">sed</span><span class="w"> </span><span class="err">do</span><span class="w"> </span><span class="err">eiusmod</span><span class="w"> </span><span class="kc">te</span><span class="err">mpor</span><span class="w"> </span><span class="err">i</span><span class="kc">n</span><span class="err">cididu</span><span class="kc">nt</span><span class="w"> </span><span class="err">u</span><span class="kc">t</span><span class="w"> </span><span class="err">labore</span><span class="w"> </span><span class="err">e</span><span class="kc">t</span><span class="w"> </span><span class="err">dolore</span><span class="w"> </span><span class="err">mag</span><span class="kc">na</span><span class="w"> </span><span class="err">aliqua.&#39;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">be</span><span class="kc">f</span><span class="err">ore&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">03</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="mi">22</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">tafter</span><span class="err">&#39;</span><span class="p">:</span><span class="w">  </span><span class="err">&#39;</span><span class="mi">04</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2026</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">i</span><span class="kc">tle</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;mai</span><span class="kc">ntenan</span><span class="err">ce</span><span class="w"> </span><span class="err">mode&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;i</span><span class="kc">nf</span><span class="err">orma</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;U</span><span class="kc">t</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="err">im</span><span class="w"> </span><span class="err">ad</span><span class="w"> </span><span class="err">mi</span><span class="kc">n</span><span class="err">im</span><span class="w"> </span><span class="err">ve</span><span class="kc">n</span><span class="err">iam</span><span class="p">,</span><span class="w"> </span><span class="err">quis</span><span class="w"> </span><span class="kc">n</span><span class="err">os</span><span class="kc">tru</span><span class="err">d</span><span class="w"> </span><span class="err">exerci</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">ullamco</span><span class="w"> </span><span class="err">laboris</span><span class="w"> </span><span class="kc">n</span><span class="err">isi</span><span class="w"> </span><span class="err">u</span><span class="kc">t</span><span class="w"> </span><span class="err">aliquip</span><span class="w"> </span><span class="err">ex</span><span class="w"> </span><span class="err">ea</span><span class="w"> </span><span class="err">commodo</span><span class="w"> </span><span class="err">co</span><span class="kc">nse</span><span class="err">qua</span><span class="kc">t</span><span class="err">.&#39;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-<p>On the web browser network page you can read the fetch http request to <code>google-analytics.com</code> web site.</p>
+On the web browser network page you can read the fetch http request to <code>google-analytics.com</code> web site.</p>
 <p><img alt="google analytics" src="../img/welcomeinfogoogle.png" /></p>
 <p>Great, you have define welcome info messages to show maintenance informations, and add some javascript source code if need.</p>
 
@@ -3883,6 +3893,9 @@ welcomeinfo: {
 
 
 
+
+  
+  
 
 
 
