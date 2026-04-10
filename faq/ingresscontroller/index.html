@@ -3462,9 +3462,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-can-i-expose-my-new-service-with-ingress-controller" class="md-nav__link">
+  <a href="#how-can-i-expose-my-new-service-with-nginx-ingress-controller" class="md-nav__link">
     <span class="md-ellipsis">
-      How can I expose my new service with Ingress Controller ?
+      How can I expose my new service with nginx ingress controller ?
     </span>
   </a>
   
@@ -3480,9 +3480,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity-with-an-ingress-controller" class="md-nav__link">
+  <a href="#how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity-with-an-nginx-ingress-controller" class="md-nav__link">
     <span class="md-ellipsis">
-      How to prevent the connection from closing after 60 seconds of inactivity with an Ingress Controller ?
+      How to prevent the connection from closing after 60 seconds of inactivity with an nginx ingress controller ?
     </span>
   </a>
   
@@ -3646,9 +3646,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-can-i-expose-my-new-service-with-ingress-controller" class="md-nav__link">
+  <a href="#how-can-i-expose-my-new-service-with-nginx-ingress-controller" class="md-nav__link">
     <span class="md-ellipsis">
-      How can I expose my new service with Ingress Controller ?
+      How can I expose my new service with nginx ingress controller ?
     </span>
   </a>
   
@@ -3664,9 +3664,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity-with-an-ingress-controller" class="md-nav__link">
+  <a href="#how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity-with-an-nginx-ingress-controller" class="md-nav__link">
     <span class="md-ellipsis">
-      How to prevent the connection from closing after 60 seconds of inactivity with an Ingress Controller ?
+      How to prevent the connection from closing after 60 seconds of inactivity with an nginx ingress controller ?
     </span>
   </a>
   
@@ -3706,6 +3706,12 @@
         <span class="md-tag">ingresscontroller</span>
       
     
+      
+      
+      
+        <span class="md-tag">nginx</span>
+      
+    
   </nav>
 
 
@@ -3718,10 +3724,9 @@
   
 
 
-<p><strong>[JFV] Attention, il y a plusieurs ingress controllers (traeffic, nginx et sans doute d'autres encore. Il y a des variations dans le comportement) -&gt; préciser pour lequel cette page s'applique</strong></p>
 <h1 id="faq-ingress-controller">FAQ Ingress Controller</h1>
-<h2 id="how-can-i-expose-my-new-service-with-ingress-controller">How can I expose my new service with Ingress Controller ?</h2>
-<p>A Kubernetes Ingress Controller acts as a reverse proxy.</p>
+<h2 id="how-can-i-expose-my-new-service-with-nginx-ingress-controller">How can I expose my new service with <code>nginx ingress controller</code> ?</h2>
+<p>A Kubernetes Ingress Controller acts as a reverse proxy. We describe here how to use the <code>nginx ingress controller</code>.</p>
 <p>In the <code>Ingress</code>, define a path to the abcdesktop's nginx service.</p>
 <div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -3761,7 +3766,7 @@ spec:
 <p>To get more informations how to
 <a href="https://websockets.readthedocs.io/en/stable/topics/timeouts.html">Keepalive in websockets</a></p>
 <p>Timeout is a main feature to preserve from unnecessary network bandwidth.</p>
-<h2 id="how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity-with-an-ingress-controller">How to prevent the connection from closing after 60 seconds of inactivity with an Ingress Controller ?</h2>
+<h2 id="how-to-prevent-the-connection-from-closing-after-60-seconds-of-inactivity-with-an-nginx-ingress-controller">How to prevent the connection from closing after 60 seconds of inactivity with an nginx ingress controller ?</h2>
 <p>My desktop is disconnected after 60 seconds of inactivity, and the message <em>Your abcdesktop session has been disconnected. Please reload this page</em> appears.</p>
 <p>To prevent the connection from closing after 60 seconds of inactivity through Ingress Controller, make sure the Ingress Controller isn't configured to automatically terminate long connections.
 The default value nginx's ingress controller is 60 seconds.</p>
