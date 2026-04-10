@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#issue-jfvor-feature-request" class="md-skip">
+        <a href="#issue-or-feature-request" class="md-skip">
           Skip to content
         </a>
       
@@ -3416,9 +3416,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-request-a-feature" class="md-nav__link">
+  <a href="#how-to-request-a-new-feature" class="md-nav__link">
     <span class="md-ellipsis">
-      How to request a feature ?
+      How to request a new feature ?
     </span>
   </a>
   
@@ -3637,9 +3637,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-request-a-feature" class="md-nav__link">
+  <a href="#how-to-request-a-new-feature" class="md-nav__link">
     <span class="md-ellipsis">
-      How to request a feature ?
+      How to request a new feature ?
     </span>
   </a>
   
@@ -3673,7 +3673,13 @@
       
       
       
-        <span class="md-tag">(JFV) propositions de maj</span>
+        <span class="md-tag">AD</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">JFV</span>
       
     
   </nav>
@@ -3688,9 +3694,9 @@
   
 
 
-<h1 id="issue-jfvor-feature-request">Issue <strong>[JFV]or feature request</strong></h1>
-<h2 id="how-to-request-a-feature">How to request a feature ?</h2>
-<p>To create an feature, please use the <code>conf</code> github repository, by following the link <a href="https://github.com/abcdesktopio/conf/issues">Ask a feature</a></p>
+<h1 id="issue-or-feature-request">Issue or feature request</h1>
+<h2 id="how-to-request-a-new-feature">How to request a new feature ?</h2>
+<p>To create a new feature, please use the <code>conf</code> github repository, by following the link <a href="https://github.com/abcdesktopio/conf/issues">Ask a feature</a></p>
 <ul>
 <li>Describe what you are expecting</li>
 <li>Tag it as <em>feature</em> in field <strong>type</strong> on the right.</li>
@@ -3698,10 +3704,16 @@
 <h2 id="how-to-report-an-issue">How to report an issue ?</h2>
 <p>To create an issue, please use the <code>conf</code> github repository, by following the link <a href="https://github.com/abcdesktopio/conf/issues">Create an issue</a></p>
 <ul>
+<li>[ Requirement ] Add your <code>od.config</code> file
+  Run the command line to get it</li>
+</ul>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.od\.config}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>od.config
+</code></pre></div>
+<ul>
+<li>[ Requirement ] Add your <code>abcdesktop.yaml</code> file</li>
 <li>Describe what you are expecting</li>
 <li>Describe what you get</li>
 </ul>
-<p>Please, add the <code>abcdesktop.yaml</code> and/or <code>od.config</code> file if you change it</p>
 
 
 
