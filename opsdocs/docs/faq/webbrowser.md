@@ -2,7 +2,8 @@
 tags:
   - faq
   - browser
-  - read by JF
+  - JF
+  - AD
 ---
 
 # FAQ Web Browser
