@@ -3,23 +3,23 @@ tags:
   - minikube
   - installation
   - AD
+  - read by FV
 ---
 
 `Minikube` is a tool for running local Kubernetes clusters using Docker container “nodes”. Minikube was primarily designed for testing Kubernetes itself, but it can be used to deploy Kubernetes applications as well. To install or setup `minikube`, refer to the [Minikube documentation](https://minikube.sigs.k8s.io/docs/)
 
 ## Requirements
 
-* [minikube](https://minikube.sigs.k8s.io/docs/start) command line installed 
-* [docker](https://docs.docker.com/engine/install) Docker Engine installed. 
-* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command-line tool must be configured to communicate with your cluster.
+* [minikube](https://minikube.sigs.k8s.io/docs/start) command line installed
+* [docker](https://docs.docker.com/engine/install) Docker Engine installed
+* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command-line tool must be configured to communicate with your cluster
 * openssl and curl command line must be installed too (only for install using kubectl)
-
 
 ## Create minikube cluster
 
-Run the command line to create 
+Run the command line to create
 
-```
+```bash
 minikube start
 ```
 
@@ -46,14 +46,14 @@ You should read on stdout
 🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
 
-## Run the install bash script 
+## Run the install bash script
 
-```
+``` bash
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh |bash
 ```
 
 ??? note "show details"
-    ```
+    ```logs
     [INFO] abcdesktop install script namespace=abcdesktop
     [OK] kubectl version
     [OK] openssl version
@@ -161,13 +161,13 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/ins
     [INFO] http://192.168.7.119:30443/
     ```
 
-## How to connect 
+## How to connect
 
 The install bash script forward the tcp port 30443 to the router pod port tcp 80
 
 `kubectl port-forward router-od-647b77455d-nk677 --address 0.0.0.0 30443:80 -n abcdesktop`
 
-```
+```logs
 [OK] Please open your web browser and connect to
 
 [INFO] http://192.168.7.119:30443/
@@ -191,13 +191,12 @@ Great you have installed abcdesktop using kind and your web browser shows the ab
 
 ### issue 'FailedScheduling 0/1 nodes are available'
 
-```
+``` bash
 FailedScheduling 0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod
 ```
 
 To fix it, start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop
 
-```
+``` bash
 minikube start --cpus 4 --memory 16GB
 ```
-
