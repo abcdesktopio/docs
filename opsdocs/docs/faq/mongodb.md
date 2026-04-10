@@ -2,14 +2,15 @@
 tags:
   - faq
   - mongodb
-  - (JFV) propositions de maj
+  - JFV
+  - AD
 ---
 
 # Mongodb
 
 ## How to increase the `mongodb` number of `replicats` ?
 
-**[JFV] ### With helm installation
+### With helm installation
 
 To change the replicat number of mongodb using the helm installation, extract the values file from helm if not already done:
 
@@ -66,7 +67,7 @@ helm upgrade --install my-abcdesktop abcdesktop/abcdesktop \
 ```
 where `NAMESPACE` and `my-abcdesktop` are your deployment namespace and instance name.
 
-**[JFV] ### With a scripted installation**
+### With a scripted installation**
 
 - Open your [abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-{{ abcdesktop.latest_release }}.yaml) file and look for the `StatefulSet` mongodb-od
 
@@ -92,6 +93,7 @@ metadata:
     type: database
     abcdesktop/role: mongodb
     netpol/mongodb: 'true'
+    netpol/dns: 'true'
 spec:
   serviceName: mongodb
   replicas: 3
