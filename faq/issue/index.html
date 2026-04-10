@@ -3704,13 +3704,14 @@
 <h2 id="how-to-report-an-issue">How to report an issue ?</h2>
 <p>To create an issue, please use the <code>conf</code> github repository, by following the link <a href="https://github.com/abcdesktopio/conf/issues">Create an issue</a></p>
 <ul>
-<li>[ Requirement ] Add your <code>od.config</code> file
-  Run the command line to get it</li>
+<li><strong>Requirement</strong> Add your <code>od.config</code> file</li>
 </ul>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.od\.config}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>od.config
+<p>Run the command line to get it</p>
+<div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
+kubectl<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.od\.config}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>od.config
 </code></pre></div>
 <ul>
-<li>[ Requirement ] Add your <code>abcdesktop.yaml</code> file</li>
+<li><strong>Requirement</strong> Add your <code>abcdesktop.yaml</code> file</li>
 <li>Describe what you are expecting</li>
 <li>Describe what you get</li>
 </ul>
