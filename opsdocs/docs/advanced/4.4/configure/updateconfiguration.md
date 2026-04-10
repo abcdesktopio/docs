@@ -1,26 +1,30 @@
-# How to edit the abcdesktop configuration file 
+---
+tags:
+- read by JFV
+---
 
-Th abcdesktop configuration file name is `od.config`. 
-This file has the [cherrypy file format](https://docs.cherrypy.dev/en/stable/config.html) 
+
+# How to edit the abcdesktop configuration file
+
+Th abcdesktop configuration file name is `od.config`.
+This file has the [cherrypy file format](https://docs.cherrypy.dev/en/stable/config.html).
 When the pyos process starts, it read the `od.config` file.
 If something is wrong, the pyos process hangs. The command line `kubectl logs -l name=pyos-od  -n abcdesktop` write the pyos log on stdout.
 
-
-## Edit your configuration file 
+## Edit your configuration file
 
 If the `od.config` file does not exist, extract it from the abcdesktop-config configmap to a local file `od.config`
 
-```
+```bash
 kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
 ```
 
 You get a the new local file `od.config`
 
-
-To make change, edit your own `od.config` file
+To make change, edit your own `od.config` file with your favorite file editor:
 
 ```bash
-vim od.config 
+vim od.config
 ```
 
 ## Make changes
@@ -44,12 +48,11 @@ Save your local file `od.config`.
           'implicit': {}}
     ```
 
+## Apply changes
 
-## Apply changes 
+To apply changes, you have to replace the `abcdesktop-config`, by running the `replace kubectl` command line option. Then `rollout restart`the `pyos` pod.
 
-To apply changes, you have to replace the `abcdesktop-config`, by running the `replace kubectl` command line option. Then `rollout restart`the `pyos` pod. 
-
-```
+```bash
 kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deployment pyos-od -n abcdesktop
 ```
@@ -58,9 +61,9 @@ You've done it.
 
 ## Check your changes
 
-To check that the new colours are presents in front, open the url `http://localhost:30443`, in your web browser, to start a simple abcdesktop.io container. 
+To check that the new colours are presents in front, open the url `http://localhost:30443`, in your web browser, to start a simple abcdesktop.io container.
 
-```
+```bash
 http://localhost:30443
 ```
 
@@ -74,5 +77,4 @@ Choose your colour and you should have it as background colour :
 
 ![newbackgroundcolors](img/newbackgroundcolors.png)
 
-Great, you can easily update your configuration file `od.config`. 
-
+Great, you can easily update your configuration file `od.config`.

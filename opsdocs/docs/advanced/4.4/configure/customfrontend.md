@@ -1,19 +1,25 @@
+---
+tags:
+- read by JFV
+- question de JFV - intégrer ça aussi au helm
+---
+
 # Customize abcdesktop frontend thourgh ui.json file
 
-## Requirements 
+## Requirements
 
-* `docker` package installed 
+* `docker` package installed
 
 ## Create new image for abcdesktop oc.nginx
 
-### Clone default webmodules  
+### Clone default webmodules
 
 ```bash
 BRANCH={{ abcdesktop.latest_release }}
 git clone -b $BRANCH https://github.com/abcdesktopio/webModules.git
 ```
 
-### Locate project and ui files 
+### Locate project and ui files
 
 #### Update ui.json file
 
@@ -120,14 +126,14 @@ rojectNameSplitedStaged'>desktop</span>",
 
 ##### Login progress
 
-Login progress is embedded in `span` HTML tags. 
+Login progress is embedded in `span` HTML tags.
 Each `projectNameSplitedStage` describes a step during the user's authentification then pod's creation process.
 
 
 - projectNameSplitedStagea: `step 1`
 - projectNameSplitedStageb: `step 2`
 - projectNameSplitedStagec: `step 3`
-- projectNameSplitedStaged: `step 4` 
+- projectNameSplitedStaged: `step 4`
 
 
 
@@ -245,7 +251,7 @@ Example with new `acmedesktop`
 ```
 
 
-#### build your new image
+#### Build your new image
 
 Run the docker build command to build the new `oc.nginx:acme` image
 
@@ -275,19 +281,18 @@ docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.ng
  => [builder  7/11] RUN make clean                                                                                                                                     0.7s
  => [builder  8/11] RUN make prod                                                                                                                                      9.7s
  => [builder  9/11] RUN ./mkversion.sh && cat version.json                                                                                                             0.2s
- => [builder 10/11] RUN /myenv/bin/html5validator index.html                                                                                                           2.0s 
- => [builder 11/11] RUN make removebuildtools                                                                                                                          0.8s 
- => [stage-1 2/2] COPY --from=builder /var/webModules /usr/share/nginx/html                                                                                            0.7s 
- => exporting to image                                                                                                                                                 0.7s 
- => => exporting layers                                                                                                                                                0.7s 
+ => [builder 10/11] RUN /myenv/bin/html5validator index.html                                                                                                           2.0s
+ => [builder 11/11] RUN make removebuildtools                                                                                                                          0.8s
+ => [stage-1 2/2] COPY --from=builder /var/webModules /usr/share/nginx/html                                                                                            0.7s
+ => exporting to image                                                                                                                                                 0.7s
+ => => exporting layers                                                                                                                                                0.7s
  => => writing image sha256:d7bdbc9f7fafe3282161551e84c5997bb12051bded6405190267863dd73a1698                                                                           0.0s
- => => naming to docker.io/abcdesktopio/oc.nginx.acme:{{ abcdesktop.latest_release }} 
+ => => naming to docker.io/abcdesktopio/oc.nginx.acme:{{ abcdesktop.latest_release }}
 ```
 
-#### update the `abcdesktop.yaml`
+#### Update the `abcdesktop.yaml`
 
 To update the `abcdesktop.yaml` to replace `oc.nginx:{{ abcdesktop.latest_release }}` by your own image `oc.nginx.acme:{{ abcdesktop.latest_release }}`
-
 
 - edit your own `abcdesktop.yaml` file
 
@@ -301,7 +306,6 @@ To update the `abcdesktop.yaml` to replace `oc.nginx:{{ abcdesktop.latest_releas
             name: http
       [...]
 ```
-
 
 Update the `deployement` with your new image name `abcdesktopio/oc.nginx:acme`
 
@@ -318,11 +322,9 @@ Update the `deployement` with your new image name `abcdesktopio/oc.nginx:acme`
 
 apply your abcdesktop.yaml file
 
-```
+```bash
 kubectl apply -f abcdesktop.yaml
-```
 
-```
 role.rbac.authorization.k8s.io/pyos-role unchanged
 rolebinding.rbac.authorization.k8s.io/pyos-rbac unchanged
 serviceaccount/pyos-serviceaccount unchanged
@@ -348,7 +350,7 @@ service/website unchanged
 service/openldap unchanged
 ```
 
-### Connect to your new website 
+### Connect to your new website
 
 Open your web browser to your abcdesktop website
 
@@ -356,7 +358,7 @@ Open your web browser to your abcdesktop website
 
 ![acme desktop login page](img/acmedesktoploginpage.png)
 
-- the acmedesktop login process 
+- the acmedesktop login process
 
 ![acme desktop login process](img/acmedesktoploginprocess.png)
 
@@ -366,9 +368,7 @@ Open your web browser to your abcdesktop website
 ![acme desktop color updated](img/acmedesktopcolorsupdated.png)
 
 
-- the acmedesktop logout process 
+- the acmedesktop logout process
 
 ![acme desktop logout process](img/acmedesktoplogoutpage.png)
-
-
 
