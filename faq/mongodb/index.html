@@ -3514,6 +3514,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="How to increase the mongodb number of replicats ?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#with-helm-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      With helm installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-a-scripted-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      With a scripted installation**
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -3634,6 +3658,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="How to increase the mongodb number of replicats ?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#with-helm-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      With helm installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-a-scripted-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      With a scripted installation**
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -3655,7 +3703,13 @@
       
       
       
-        <span class="md-tag">(JFV) propositions de maj</span>
+        <span class="md-tag">AD</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">JFV</span>
       
     
       
@@ -3684,7 +3738,7 @@
 
 <h1 id="mongodb">Mongodb</h1>
 <h2 id="how-to-increase-the-mongodb-number-of-replicats">How to increase the <code>mongodb</code> number of <code>replicats</code> ?</h2>
-<p>**[JFV] ### With helm installation</p>
+<h3 id="with-helm-installation">With helm installation</h3>
 <p>To change the replicat number of mongodb using the helm installation, extract the values file from helm if not already done:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>show<span class="w"> </span>values<span class="w"> </span>abcdesktop/abcdesktop<span class="w">  </span>&gt;<span class="w"> </span>abcdesktop-values.yaml
 </code></pre></div>
@@ -3732,7 +3786,7 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class=
 <span class="w">    </span>-f<span class="w"> </span>abcdesktop-values.yaml
 </code></pre></div>
 where <code>NAMESPACE</code> and <code>my-abcdesktop</code> are your deployment namespace and instance name.</p>
-<p><strong>[JFV] ### With a scripted installation</strong></p>
+<h3 id="with-a-scripted-installation">With a scripted installation**</h3>
 <ul>
 <li>Open your <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.4.yaml">abcdesktop.yaml</a> file and look for the <code>StatefulSet</code> mongodb-od</li>
 </ul>
@@ -3753,6 +3807,7 @@ where <code>NAMESPACE</code> and <code>my-abcdesktop</code> are your deployment
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">database</span>
 <span class="w">    </span><span class="nt">abcdesktop/role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
 <span class="w">    </span><span class="nt">netpol/mongodb</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
+<span class="w">    </span><span class="nt">netpol/dns</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">serviceName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
 <span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
