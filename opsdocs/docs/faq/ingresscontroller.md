@@ -3,7 +3,8 @@ tags:
   - faq
   - ingresscontroller
   - nginx
-  - (JFV) propositions de maj
+  - JFV
+  - AD
 ---
 
 # FAQ Ingress Controller
