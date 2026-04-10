@@ -39,7 +39,7 @@ To fully use `copy & paste` or `copy and paste` features, from your local device
 abcdesktop reads the your web browser language and starts application and desktop this user's choose.
 The default installed languages are `English`, `French`, `German`, and `Romanian`. If you need other languages support you have to rebuild the container image with your language.
 
-abcdesktop uses the web browser language property to set the application's language. This list must match with the ```Accept-Language``` request HTTP header. If the language is not found, the default value is set to `en_US`.
+abcdesktop uses the web browser language property to set the application's language. This list must match with the `Accept-Language` request HTTP header. If the language is not found, the default value is set to `en_US`.
 
 
 To check the supported language, change your web browser language, and run `LibreOffice` applications. The language setting uses the web browser value. During this test you can keep the same users session.
