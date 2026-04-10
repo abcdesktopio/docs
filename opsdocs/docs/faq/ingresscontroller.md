@@ -2,16 +2,16 @@
 tags:
   - faq
   - ingresscontroller
-  - (JFV) propositions de maj
+  - nginx
+  - JFV
+  - AD
 ---
-
-**[JFV] Attention, il y a plusieurs ingress controllers (traeffic, nginx et sans doute d'autres encore. Il y a des variations dans le comportement) -> préciser pour lequel cette page s'applique**
 
 # FAQ Ingress Controller
 
-## How can I expose my new service with Ingress Controller ?
+## How can I expose my new service with `nginx ingress controller` ?
 
-A Kubernetes Ingress Controller acts as a reverse proxy.
+A Kubernetes Ingress Controller acts as a reverse proxy. We describe here how to use the `nginx ingress controller`.
 
 In the `Ingress`, define a path to the abcdesktop's nginx service.
 
@@ -75,7 +75,7 @@ To get more informations how to
 
 Timeout is a main feature to preserve from unnecessary network bandwidth.
 
-## How to prevent the connection from closing after 60 seconds of inactivity with an Ingress Controller ?
+## How to prevent the connection from closing after 60 seconds of inactivity with an nginx ingress controller ?
 
 My desktop is disconnected after 60 seconds of inactivity, and the message *Your abcdesktop session has been disconnected. Please reload this page* appears.
 

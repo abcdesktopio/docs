@@ -22,7 +22,7 @@ tags:
 
     Download and extract the latest release automatically
 
-    ```
+    ```bash
     curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh |bash
     ```
 

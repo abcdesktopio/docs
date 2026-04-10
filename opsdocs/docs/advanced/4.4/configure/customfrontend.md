@@ -1,14 +1,16 @@
 ---
 tags:
-- read by JFV
-- question de JFV - intégrer ça aussi au helm
+- JFV
+- AD
+- question de JFV - intégrer ça aussi au helm -> AD non trop complexe, on fait simple
 ---
 
 # Customize abcdesktop frontend thourgh ui.json file
 
 ## Requirements
 
-* `docker` package installed
+* `docker` command line installed, to build image
+* your own registry to store container images
 
 ## Create new image for abcdesktop oc.nginx
 
@@ -255,7 +257,7 @@ Example with new `acmedesktop`
 
 Run the docker build command to build the new `oc.nginx:acme` image
 
-The target image is `abcdesktopio/oc.nginx:acme` you should change it with your own for example `myacme/oc.nginx:acme`
+The target image is `abcdesktopio/oc.nginx:acme` you should change it with your own regitsry for example `myacme/oc.nginx:acme`
 
 ```bash
 docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE={{ abcdesktop.latest_release }} --build-arg TARGET=dev  -t abcdesktopio/oc.nginx.acme:{{ abcdesktop.latest_release }} -f Dockerfile .
@@ -307,7 +309,8 @@ To update the `abcdesktop.yaml` to replace `oc.nginx:{{ abcdesktop.latest_releas
       [...]
 ```
 
-Update the `deployement` with your new image name `abcdesktopio/oc.nginx:acme`
+Update the `deployment` with your new image name `abcdesktopio/oc.nginx:acme`
+and replace the `abcdesktopio` with your own registry.
 
 ```
       [...]
@@ -323,8 +326,13 @@ Update the `deployement` with your new image name `abcdesktopio/oc.nginx:acme`
 apply your abcdesktop.yaml file
 
 ```bash
-kubectl apply -f abcdesktop.yaml
+NAMESPACE=abcdesktop
+kubectl apply -f abcdesktop.yaml -n $NAMESPACE
+```
 
+You read on stdout 
+
+```
 role.rbac.authorization.k8s.io/pyos-role unchanged
 rolebinding.rbac.authorization.k8s.io/pyos-rbac unchanged
 serviceaccount/pyos-serviceaccount unchanged
