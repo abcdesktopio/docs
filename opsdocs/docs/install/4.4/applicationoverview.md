@@ -3,6 +3,7 @@ tags:
   - application
   - installation
   - overview
+  - read by JFV
 ---
 
 # Applications
@@ -12,13 +13,13 @@ tags:
 
 An application for abcdesktop is container image. To manage images, abcdesktop uses the [OCI JSON file](https://github.com/opencontainers/image-spec). A docker inspect command line dumps the JSON file content.
 
-```
+```bash
   docker inspect $YOUR_IMAGE_NAME > file.json
 ```
 
 The image must contains some labels, for example.
 
-```
+```Dockerfile
 LABEL oc.icon="firefox.svg"
 LABEL oc.keyword="firefox,mozilla,internet"
 LABEL oc.cat="office"
@@ -27,8 +28,8 @@ LABEL oc.name="Firefox"
 LABEL oc.path="/usr/bin/firefox"
 LABEL oc.type=app
 ```
- 
-## Install an application 
+
+## Install an application
 
 Multiple methods of installing applications have been offered to make deployment easier.
 
@@ -38,14 +39,14 @@ Multiple methods of installing applications have been offered to make deployment
 
 > Update the values `ABCDESKTOP_URL`, `ABCDESKTOP_PORT` and the `file.json` content with your own
 
-```
+```bash
 ABCDESKTOP_URL=localhost
 ABCDESKTOP_PORT=30443
 URL="http://$ABCDESKTOP_URL:$ABCDESKTOP_PORT/API/manager/image"
-curl -X POST -H 'Content-Type: text/javascript' "$URL" -d "@file.json" 
+curl -X POST -H 'Content-Type: text/javascript' "$URL" -d "@file.json"
 ```
 
-## List of default applications 
+## List of default applications
 
 abcdesktop provides some default applications. You will find on the [abcdesktop images repository](https://github.com/abcdesktopio/images/tree/main/artifact/{{ abcdesktop.latest_release }}) some application examples, with the associated `json` and `Dockerfile` file.
 
@@ -53,7 +54,7 @@ abcdesktop provides some default applications. You will find on the [abcdesktop 
 
 `firefox.d.4.4.json` file content
 
-```
+```json
 [
     {
         "Id": "sha256:09895c74c9e5252f3eef74db878cbd6399cd1f26314d46e3f5aa589022e3d26e",
@@ -164,8 +165,3 @@ abcdesktop provides some default applications. You will find on the [abcdesktop 
     }
 ]
 ```
-
-
-
-
-
