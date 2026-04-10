@@ -1011,16 +1011,16 @@
         <li class="md-nav__item">
   <a href="#how-to-connect" class="md-nav__link">
     <span class="md-ellipsis">
-      How to connect
+      How to connect ?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#uninstall" class="md-nav__link">
+  <a href="#delete-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      Uninstall
+      Delete cluster
     </span>
   </a>
   
@@ -3691,16 +3691,16 @@
         <li class="md-nav__item">
   <a href="#how-to-connect" class="md-nav__link">
     <span class="md-ellipsis">
-      How to connect
+      How to connect ?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#uninstall" class="md-nav__link">
+  <a href="#delete-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      Uninstall
+      Delete cluster
     </span>
   </a>
   
@@ -3751,27 +3751,27 @@
 <p>Kind is a tool for running local Kubernetes clusters using Docker container “nodes”. Kind was primarily designed for testing Kubernetes itself, but it can be used to deploy Kubernetes applications as well. To install or setup <code>kind</code>, refer to the <a href="https://kind.sigs.k8s.io/">Kind documentation</a></p>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li><a href="https://kind.sigs.k8s.io/docs/user/quick-start">kind</a> command line installed </li>
-<li><a href="https://docs.docker.com/engine/install">docker</a> Docker Engine installed. </li>
-<li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">kubectl</a> command-line tool must be configured to communicate with your cluster.</li>
-<li><code>openssl</code> and <code>curl</code> command line must be installed too (only for install using kubectl).</li>
+<li><a href="https://kind.sigs.k8s.io/docs/user/quick-start">kind</a> command line installed</li>
+<li><a href="https://docs.docker.com/engine/install">docker</a> Docker Engine installed</li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">kubectl</a> command-line tool must be configured to communicate with your cluster</li>
+<li><code>openssl</code> and <code>curl</code> command line must be installed too (only for install using kubectl)</li>
 </ul>
 <h2 id="create-kind-cluster">Create kind cluster</h2>
-<p>Run the command line to create </p>
-<div class="highlight"><pre><span></span><code>kind create cluster --wait 5m
+<p>Run the command line to create</p>
+<div class="highlight"><pre><span></span><code>kind<span class="w"> </span>create<span class="w"> </span>cluster<span class="w"> </span>--wait<span class="w"> </span>5m
 </code></pre></div>
 <blockquote>
 <p>the <code>--wait 5m</code> wait for control-plane = Ready</p>
 </blockquote>
-<p>You should read on stdout</p>
+<p>You should read on stdout:</p>
 <div class="highlight"><pre><span></span><code>Creating cluster &quot;kind&quot; ...
- ✓ Ensuring node image (kindest/node:v1.35.0) 🖼 
- ✓ Preparing nodes 📦  
- ✓ Writing configuration 📜 
- ✓ Starting control-plane 🕹️ 
- ✓ Installing CNI 🔌 
- ✓ Installing StorageClass 💾 
- ✓ Waiting ≤ 5m0s for control-plane = Ready ⏳ 
+ ✓ Ensuring node image (kindest/node:v1.35.0) 🖼
+ ✓ Preparing nodes 📦
+ ✓ Writing configuration 📜
+ ✓ Starting control-plane 🕹️
+ ✓ Installing CNI 🔌
+ ✓ Installing StorageClass 💾
+ ✓ Waiting ≤ 5m0s for control-plane = Ready ⏳
  • Ready after 24s 💚
 Set kubectl context to &quot;kind-kind&quot;
 You can now use your cluster with:
@@ -3781,7 +3781,7 @@ kubectl cluster-info --context kind-kind
 Thanks for using kind! 😊
 </code></pre></div>
 <h2 id="run-the-install-bash-script">Run the install bash script</h2>
-<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh |bash
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sL<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh<span class="w"> </span><span class="p">|</span>bash
 </code></pre></div>
 <details class="note">
 <summary>show details</summary>
@@ -3892,7 +3892,7 @@ speedtest-od-7d7c95d754-dmt5j   1/1     Running   0          4m38s
 [INFO] http://192.168.7.119:30443/
 </code></pre></div>
 </details>
-<h2 id="how-to-connect">How to connect</h2>
+<h2 id="how-to-connect">How to connect ?</h2>
 <p>The install bash script forward the tcp port 30443 to the router pod port tcp 80</p>
 <p><code>kubectl port-forward router-od-647b77455d-nk677 --address 0.0.0.0 30443:80 -n abcdesktop</code></p>
 <div class="highlight"><pre><span></span><code>[OK] Please open your web browser and connect to
@@ -3910,9 +3910,9 @@ speedtest-od-7d7c95d754-dmt5j   1/1     Running   0          4m38s
 <p>Open the URL returnes by the install bash script. In this sample <code>http://192.168.7.119:30443/</code></p>
 </blockquote>
 <p>Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.</p>
-<h2 id="uninstall">Uninstall</h2>
-<p>To uninstall run the kind delete cluster command line</p>
-<div class="highlight"><pre><span></span><code>kind delete cluster
+<h2 id="delete-cluster">Delete cluster</h2>
+<p>To uninstall, run the kind <code>delete</code> cluster command line:</p>
+<div class="highlight"><pre><span></span><code>kind<span class="w"> </span>delete<span class="w"> </span>cluster
 </code></pre></div>
 
 

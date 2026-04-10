@@ -1080,7 +1080,16 @@
         <li class="md-nav__item">
   <a href="#how-to-connect" class="md-nav__link">
     <span class="md-ellipsis">
-      How to connect
+      How to connect ?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete cluster
     </span>
   </a>
   
@@ -3706,7 +3715,16 @@
         <li class="md-nav__item">
   <a href="#how-to-connect" class="md-nav__link">
     <span class="md-ellipsis">
-      How to connect
+      How to connect ?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete cluster
     </span>
   </a>
   
@@ -3934,7 +3952,7 @@ speedtest-od-7d7c95d754-dmt5j   1/1     Running   0          4m38s
 [INFO] http://192.168.7.119:30443/
 </code></pre></div>
 </details>
-<h2 id="how-to-connect">How to connect</h2>
+<h2 id="how-to-connect">How to connect ?</h2>
 <p>The install bash script forward the tcp port 30443 to the router pod port tcp 80</p>
 <p><code>kubectl port-forward router-od-647b77455d-nk677 --address 0.0.0.0 30443:80 -n abcdesktop</code></p>
 <div class="highlight"><pre><span></span><code>[OK] Please open your web browser and connect to
@@ -3953,6 +3971,10 @@ Change the ip address <code>192.168.7.119</code> with your own</p>
 <p>Open the URL returnes by the install bash script. In this sample <code>http://192.168.7.119:30443/</code></p>
 </blockquote>
 <p>Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.</p>
+<h2 id="delete-cluster">Delete cluster</h2>
+<p>To uninstall, run the minikube <code>delete</code> cluster command line:</p>
+<div class="highlight"><pre><span></span><code>minikube<span class="w"> </span>delete
+</code></pre></div>
 <h2 id="common-issues">Common issues</h2>
 <h3 id="issue-failedscheduling-01-nodes-are-available">issue 'FailedScheduling 0/1 nodes are available'</h3>
 <div class="highlight"><pre><span></span><code>FailedScheduling<span class="w"> </span><span class="m">0</span>/1<span class="w"> </span>nodes<span class="w"> </span>are<span class="w"> </span>available:<span class="w"> </span><span class="m">1</span><span class="w"> </span>Insufficient<span class="w"> </span>cpu.<span class="w"> </span>preemption:<span class="w"> </span><span class="m">0</span>/1<span class="w"> </span>nodes<span class="w"> </span>are<span class="w"> </span>available:<span class="w"> </span><span class="m">1</span><span class="w"> </span>No<span class="w"> </span>preemption<span class="w"> </span>victims<span class="w"> </span>found<span class="w"> </span><span class="k">for</span><span class="w"> </span>incoming<span class="w"> </span>pod
