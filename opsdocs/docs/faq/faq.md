@@ -9,7 +9,7 @@
 
 ## Web Browser
   - [Which web browser is supported ?](/faq/webbrowser/#which-web-browser-is-supported)
-  - [How to do a `copy and paste` ?](/faq/webbrowser/#how-to-do-a-copy-paste)
+  - [How to do a `copy & paste` ?](/faq/webbrowser/#how-to-do-a-copy-paste)
   - [How to change the default language ?](/faq/webbrowser/#how-to-change-the-default-language)
   - [How to disable startup firefox connections ?](/faq/disable-firefox-connections/)
 
