@@ -1,6 +1,7 @@
 ---
 tags:
   - architecture
+  - read by JFV
 ---
 
 # Architecture overview
@@ -46,6 +47,7 @@ flowchart TD
     click kubernetes "https://kubernetes.io/"
     click memcache "https://www.memcached.org/"
     click ldap "https://github.com/rroemhild/docker-test-openldap"
+
 ```
 
 The project abcdesktop provides container images for `route`, `console`, `website`, `pyos`, and `user`
@@ -54,7 +56,7 @@ The project abcdesktop provides container images for `route`, `console`, `websit
 
 ## Create desktop workflow
 
-This workflow describes the `create desktop` process 
+This workflow describes the `create desktop` process
 
 ``` mermaid
 ---
@@ -109,7 +111,7 @@ sequenceDiagram
 2. Create a user POD and get a Desktop JWT
 3. User is connecting to his own POD
 
-	- All JWT are signed with RSA keys. 
+	- All JWT are signed with RSA keys.
 	- All desktop's JWT payload are encrypted with another RSA keys
 
 ## Services infrastructure
@@ -128,7 +130,7 @@ The service infrastructure is based on :
 - Console service (abcdesktop admin console) [console](https://github.com/abcdesktopio/console)
 - Speedtest service (speedtest service, self-hosted speed test for HTML5, external projet) [librespeed](https://github.com/librespeed/speedtest)
 - LDAP service (for demo, optional) [rroemhild/docker-test-openldap](https://github.com/rroemhild/docker-test-openldap)
-  
+
 
 ## Additional projet
 
@@ -146,19 +148,19 @@ The service infrastructure is based on :
   - LDAP and LDAPS
   - Active Directory
   - Anonymous (no auth)
-- Create/Read/Update/Delete user's Pod in Kubernetes 
+- Create/Read/Update/Delete user's Pod in Kubernetes
 - Create/Read/Update/Delete user's applications as `ephemeral container` or as `pod`
 
 > When a new user is authenticated, a dedicated user pod is created.
 > When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a `pod` or an `ephemeral container`
 
-pyos needs `rbac.authorization.k8s.io` roles to `CRUD` the namespaced resources : 
+pyos needs `rbac.authorization.k8s.io` roles to `CRUD` the namespaced resources :
 - 'pods', 'pods/exec', 'pods/ephemeralcontainers', 'pods/log'
 - 'events'
 - 'secrets'
 - 'configmaps'
 - 'persistentvolumeclaims'
-  
+
 pyos runs as a `ServiceAccount` named pyos-serviceaccount, with `pyos-role.
 Optionaly, you can also add pyos to `CRUD` resources ['persistentvolumes'], in paricular cases. `persistentvolumes` are not namepspaced.
 
@@ -172,16 +174,16 @@ The `Role, `RoleBinding` and `ServiceAccount` are embeded in the abcdesktop.yaml
 
 ### website
 
-`website` pod act as web server and delivers `html`, `javascript`, `svg` files. 
+`website` pod act as web server and delivers `html`, `javascript`, `svg` files.
 
 ### mongo database
 
-`mongo` is used by pyos to store informations. 
+`mongo` is used by pyos to store informations.
 The informations are :
 
 - User logins history
 - Images and background colors configuration per desktop
-- Installed applications 
+- Installed applications
 
 
 ### memcached
@@ -191,12 +193,12 @@ The informations are :
 
 ### oc.user
 
-[`oc.user`](https://github.com/abcdesktopio/oc.user) is the name of the user's container image. `oc.user` runs the X11 graphical service. `oc.user` is based on ubuntu distribution. 
+[`oc.user`](https://github.com/abcdesktopio/oc.user) is the name of the user's container image. `oc.user` runs the X11 graphical service. `oc.user` is based on ubuntu distribution.
 
 * The image `abcdesktopio/oc.user.ubuntu.24.04:{{ abcdesktop.latest_release }}` is based on `ubuntu` distribution `24.04`. Get more details about [oc.user](https://github.com/abcdesktopio/oc.user) image.
 
 
 ### applications
 
-All applications are `ephemeral containers` or `pods`, and share a graphical socket ( `unix` or `tcp` ) with the user's pod. 
+All applications are `ephemeral containers` or `pods`, and share a graphical socket ( `unix` or `tcp` ) with the user's pod.
 
