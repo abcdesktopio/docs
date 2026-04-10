@@ -25,7 +25,7 @@ mongo:
   enabled: true
   keysgenerator:
     image: ghcr.io/abcdesktopio/keysgenerator
-    tag: 4.3
+    tag: {{ abcdesktop.latest_release }}
     mongodkeylength: 756
   # data:
   #   initContainerScriptPath: "data/mongo/init-container.sh"
@@ -60,7 +60,7 @@ and apply it:
 ```bash
 NAMESPACE=abcdesktop
 helm upgrade --install my-abcdesktop abcdesktop/abcdesktop \
-    --version 4.4 \
+    --version {{ abcdesktop.latest_release }} \
     --create-namespace \
     -n ${NAMESPACE} \
     -f abcdesktop-values.yaml
