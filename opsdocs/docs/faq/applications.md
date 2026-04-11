@@ -34,21 +34,6 @@ It returns a json list of all deleted applications
 ```json
 ["abcdesktopio/2048-alpine.d:3.0", "abcdesktopio/2048-ubuntu.d:3.0", "abcdesktopio/apachedirectorystudio.d:3.0", "abcdesktopio/astromenace.d:3.0", "abcdesktopio/base.d:3.0", "abcdesktopio/beekeeperstudio.d:3.0", "abcdesktopio/blender.d:3.0", "abcdesktopio/bless.d:3.0", "abcdesktopio/blobby.d:3.0", "abcdesktopio/boxes.d:3.0", "abcdesktopio/calculator.d:3.0", "abcdesktopio/chess.d:3.0", "abcdesktopio/chimerax.d:dev", "abcdesktopio/chrome.d:3.0", "abcdesktopio/chromium.d:3.0", "abcdesktopio/citrix.d:3.0", "abcdesktopio/cloudfoundry.d:3.0", "abcdesktopio/cmd.exe.d:3.0", "abcdesktopio/corsix-th.d:3.0", "abcdesktopio/cuda.d:dev"]
 ```
-## How to get the application json description ?
-
-To get the json file of a containerized application, you can use `docker` command or `crictl` command
-
-- `docker` command
-
-```bash
-docker inspect abcdesktopio/2048-alpine.d:3.0 > 2048-alpine.json
-```
-
-- `crictl` command
-
-``` bash
-crictl inspecti abcdesktopio/2048-alpine.d:3.0 > 2048-alpine.json
-```
 
 ## How to get application logs ?
 
