@@ -86,7 +86,7 @@ To test if the user source IP address is in the subnet to `80.0.0.0/8` `AND` is 
 
 
 ```json 
- 'rule-sample': {
+'rule-sample': {
    'conditions':  [ 
  	 { 'network': '80.0.0.0/8', 'expected' : True },
  	 { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com',  'expected' : False }
@@ -341,7 +341,6 @@ The ```Enterprise Admins group```, ```519```, is also used to grant this level i
 
 #### condition `asnumber`
 
-
 BGP public AS numbers are globally unique identifiers assigned by IANA for routing on the Internet, ranging from 1-64495 (16-bit) and extended to 32-bit for more availability. The public AS numbers have to be unique on the Internet and BGP uses the AS number for its loop prevention mechanism.
 
 ```
@@ -354,12 +353,3 @@ BGP public AS numbers are globally unique identifiers assigned by IANA for routi
 
 The source IP adress is in the AS number `3215` then the label `orangenetwork` is set.
 You can build filter for your own AS to allow or denied access.
-
-
-
-
-
-
-
-
-

@@ -82,5 +82,5 @@ Then perform a logoff to destroy your pod and recreates it, once reconnected on 
 
 ![check peristent user homedir](./img/nfs_check_persistent_homedir.png)
 
-Great ! Now you can configure home directory persistency using hostPath !
+Great ! Now you can configure home directory persistency using hostPath.
 

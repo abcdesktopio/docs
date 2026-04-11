@@ -41,16 +41,13 @@ authmanagers: {
        }}}}
 ```
 
-In this example, ```ldapconfig``` dict must have a key ```LDAP```
+In this example, `ldapconfig` dict must have a key `LDAP`
 
-
-| Variable name      | Type   | Description   |
-|--------------------|--------- |-------------|
-|  ```show_domains```   | boolean   | Permit the domain name to be listed in API getclientdata, the default value is False |
-|  ```default_domain``` | string | not used by ldap, only used by Active Directory  | 
-|  ```providers```      | dictionnary | ```{ 'LDAP': {  'config_ref': 'ldapconfig',  'enabled': True  }}```
-|
-
+| Variable name      | Type     | Description   |
+|--------------------|----------|-------------|
+|  `show_domains`   | boolean   | Permit the domain name to be listed in API getclientdata, the default value is False |
+|  `default_domain` | string    | not used by ldap, only used by Active Directory  | 
+|  `providers`      | dictionnary | `{ 'LDAP': {  'config_ref': 'ldapconfig',  'enabled': True  }}` |
 
 
 ### providers configuration
