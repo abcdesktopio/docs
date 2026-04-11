@@ -3618,7 +3618,7 @@ sequenceDiagram
   }
 }
 </code></pre></div>
-<p>The SSL mutual authentifcation is done on <code>https://your_domain/protectedbyssl</code>. Then the user is proxy passed from <code>https://your_domain/protectedbyssl</code> to <code>$my_node/API/auth/logmein?provider=sslclient</code> </p>
+<p>The SSL mutual authentifcation is done on <code>https://secure.your_domain.com/protectedbyssl</code>. Then the user is proxy passed from <code>https://secure.your_domain.com/protectedbyssl</code> to <code>$my_node/API/auth/logmein?provider=sslclient</code> </p>
 <div class="highlight"><pre><span></span><code>location /protectedbyssl {
    if ($ssl_client_verify != SUCCESS) {return 403 $ssl_client_verify;}
    proxy_set_header AbcdesktopUserCert $ssl_client_escaped_cert;
