@@ -137,16 +137,24 @@ server {
 
 
 ```
-
 auth.logmein : {  
 	'enable' : True,
 	'network_list' : ['0.0.0.0/0'], 
 	'permit_querystring' : False,
 	'http_attribut' : 'ABCDESKTOPUSERCERT' }
 
-
-
-
+authmanagers: {
+  'implicit': {
+     'providers'   : {
+	     'sslclient' : {
+	          'displayname': 'Logmein protected by SSL',
+	          'icon': 'img/auth/sslclient_icon.svg',
+	          'textcolor': '#000000',
+	          'backgroundcolor': '#FFFFFF',
+	          'enabled': True,
+	          'dialog_url' : 'https://secure.your_domain.com/protectedbyssl',
+	          'auth_protocol' : { 'localaccount': True }
+	     } } } }
 ```
 
 
