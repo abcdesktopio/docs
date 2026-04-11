@@ -3571,8 +3571,7 @@
 
 
 <h1 id="logmein-authentication">logmein authentication</h1>
-<p><code>logmein</code> permits to redirect user auth to https website to perform an mutual SSL authentication. 
-In most cases, the user is rediected to a https service, the user is authenticated with his own X509 certificat, then the certificate is forwarded by a http header.  </p>
+<p><code>logmein</code> permits to redirect user auth to https website to perform an mutual SSL authentication. </p>
 <pre class="mermaid"><code>---
 config:
   mirrorActors: false
@@ -3597,13 +3596,12 @@ sequenceDiagram
   pyos -&gt;&gt; user: user JWT
   user -&gt;&gt; pyos: create desktop ( user JWT )
   pyos -&gt;&gt; user: desktop JWT</code></pre>
+<p>In most cases, the user is redirected to a https service, the user is authenticated with his own X509 certificat, then the certificate is forwarded by a http header to <code>pyos</code>. <code>pyos</code> does some security checks and returns a user jwt to the user.</p>
 <ul>
 <li><code>logmein</code> is an <code>implicit</code> provider. </li>
 </ul>
-<p>The user is redirected to <code>dialog_url</code>. For example <code>https://secure.your_domain.com/protectedbyssl</code></p>
-<ul>
-<li>implicit provider configuration</li>
-</ul>
+<p>The user is redirected to <code>dialog_url</code>. For example <code>https://secure.your_domain.com/protectedbyssl</code>. 
+The implicit provider configuration is like this one :</p>
 <div class="highlight"><pre><span></span><code>&#39;implicit&#39;: {
   &#39;providers&#39;   : {
     &#39;sslclient&#39; : {
@@ -3618,7 +3616,7 @@ sequenceDiagram
   }
 }
 </code></pre></div>
-<p>The SSL mutual authentifcation is done on <code>https://secure.your_domain.com/protectedbyssl</code>. Then the user is proxy passed from <code>https://secure.your_domain.com/protectedbyssl</code> to <code>$my_node/API/auth/logmein?provider=sslclient</code> </p>
+<p>The SSL mutual authentifcation is done on 'dialog_url': <code>https://secure.your_domain.com/protectedbyssl</code>. Then the user is proxy passed from <code>https://secure.your_domain.com/protectedbyssl</code> to <code>$my_node/API/auth/logmein?provider=sslclient</code> if the ssl client is verified.</p>
 <div class="highlight"><pre><span></span><code>location /protectedbyssl {
    if ($ssl_client_verify != SUCCESS) {return 403 $ssl_client_verify;}
    proxy_set_header AbcdesktopUserCert $ssl_client_escaped_cert;
@@ -3631,7 +3629,7 @@ sequenceDiagram
 <ul>
 <li>logmein configuration</li>
 </ul>
-<p>The endpoint <code>API/auth/logmein</code> performs security check to garantee that the request comes from authorized network_list, then check if requred the http_attribut name and value. It reads the X509 to get the userid from, then perform an implicit authentication for this userid </p>
+<p>The endpoint <code>API/auth/logmein</code> performs security check to garantee that the request comes from authorized network_list, then check if requred the http_attribut name and value. It reads the X509 to get the userid from, then perform an implicit authentication for this userid.</p>
 <div class="highlight"><pre><span></span><code>auth.logmein : {  
     &#39;enable&#39; : True,
     &#39;network_list&#39; : [&#39;0.0.0.0/0&#39;],
@@ -3675,9 +3673,6 @@ sequenceDiagram
 </tbody>
 </table>
 <p>The <code>oid_list</code> entries are converted from oid dotted string format to ObjectIdentifier [ cryptography.x509.oid.NameOID.USER_ID, cryptography.x509.oid.NameOID.COMMON_NAME ] becomes [ '0.9.2342.19200300.100.1.1' and  '2.5.4.3' ]</p>
-<blockquote>
-<p>todo: check if the '2.5.4.3' is correct for <code>COMMON_NAME</code></p>
-</blockquote>
 <h2 id="nginx-configuration-with-mutual-authentication">nginx configuration with mutual authentication</h2>
 <ul>
 <li>nginx reverse proxy sample</li>
