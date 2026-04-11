@@ -18,7 +18,7 @@ sequenceDiagram
   participant secure as secure
   participant pyos as pyos
   user ->> pyos: implicit auth
-  pyos ->> user: go to secure
+  pyos ->> user: go to secure for that
   user ->> secure: hello 
   secure ->> user: who comes there ?
   Note left of user: I have my certificat
@@ -26,6 +26,8 @@ sequenceDiagram
   secure ->> secure: certificat check
   secure ->> pyos: user with certificat wants to login 
   pyos ->> pyos: security check
+  Note right of pyos: Where the http request comes from ?
+  Note right of pyos: What is this certificat ?
   pyos ->> user: user JWT
   user ->> pyos: create desktop ( user JWT )
   pyos ->> user: desktop JWT
