@@ -56,7 +56,7 @@ The user is redirected to `dialog_url`. For example `https://secure.your_domain.
 }
 ``` 
 
-The SSL mutual authentifcation is done on `https://your_domain/protectedbyssl`. Then the user is proxy passed from `https://your_domain/protectedbyssl` to `$my_node/API/auth/logmein?provider=sslclient` 
+The SSL mutual authentifcation is done on `https://secure.your_domain.com/protectedbyssl`. Then the user is proxy passed from `https://secure.your_domain.com/protectedbyssl` to `$my_node/API/auth/logmein?provider=sslclient` 
 
 ```
 location /protectedbyssl {
