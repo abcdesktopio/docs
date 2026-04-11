@@ -3396,15 +3396,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-get-the-application-json-description" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to get the application json description ?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#how-to-get-application-logs" class="md-nav__link">
     <span class="md-ellipsis">
       How to get application logs ?
@@ -3474,18 +3465,6 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
 </code></pre></div>
 <p>It returns a json list of all deleted applications</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s2">&quot;abcdesktopio/2048-alpine.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/2048-ubuntu.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/apachedirectorystudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/astromenace.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/base.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/beekeeperstudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blender.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/bless.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blobby.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/boxes.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/calculator.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chess.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chimerax.d:dev&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chrome.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chromium.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/citrix.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cloudfoundry.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cmd.exe.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/corsix-th.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cuda.d:dev&quot;</span><span class="p">]</span>
-</code></pre></div>
-<h2 id="how-to-get-the-application-json-description">How to get the application json description ?</h2>
-<p>To get the json file of a containerized application, you can use <code>docker</code> command or <code>crictl</code> command</p>
-<ul>
-<li><code>docker</code> command</li>
-</ul>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>inspect<span class="w"> </span>abcdesktopio/2048-alpine.d:3.0<span class="w"> </span>&gt;<span class="w"> </span><span class="m">2048</span>-alpine.json
-</code></pre></div>
-<ul>
-<li><code>crictl</code> command</li>
-</ul>
-<div class="highlight"><pre><span></span><code>crictl<span class="w"> </span>inspecti<span class="w"> </span>abcdesktopio/2048-alpine.d:3.0<span class="w"> </span>&gt;<span class="w"> </span><span class="m">2048</span>-alpine.json
 </code></pre></div>
 <h2 id="how-to-get-application-logs">How to get application logs ?</h2>
 <p>To get logs if an application doesn't start, you have to:</p>
