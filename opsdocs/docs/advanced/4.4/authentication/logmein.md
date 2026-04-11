@@ -2,9 +2,6 @@
 
 
 `logmein` permits to redirect user auth to https website to perform an mutual SSL authentication. 
-In most cases, the user is rediected to a https service, the user is authenticated with his own X509 certificat, then the certificate is forwarded by a http header.  
-
-
 
 ``` mermaid
 ---
@@ -33,12 +30,14 @@ sequenceDiagram
   pyos ->> user: desktop JWT
 ```
 
+In most cases, the user is redirected to a https service, the user is authenticated with his own X509 certificat, then the certificate is forwarded by a http header to `pyos`. `pyos` does some security checks and returns a user jwt to the user.
+
+
  
 - `logmein` is an `implicit` provider. 
 
-The user is redirected to `dialog_url`. For example `https://secure.your_domain.com/protectedbyssl`
-
-- implicit provider configuration
+The user is redirected to `dialog_url`. For example `https://secure.your_domain.com/protectedbyssl`. 
+The implicit provider configuration is like this one :
 
 ```
 'implicit': {
@@ -56,7 +55,7 @@ The user is redirected to `dialog_url`. For example `https://secure.your_domain.
 }
 ``` 
 
-The SSL mutual authentifcation is done on `https://secure.your_domain.com/protectedbyssl`. Then the user is proxy passed from `https://secure.your_domain.com/protectedbyssl` to `$my_node/API/auth/logmein?provider=sslclient` 
+The SSL mutual authentifcation is done on 'dialog_url': `https://secure.your_domain.com/protectedbyssl`. Then the user is proxy passed from `https://secure.your_domain.com/protectedbyssl` to `$my_node/API/auth/logmein?provider=sslclient` if the ssl client is verified.
 
 ```
 location /protectedbyssl {
@@ -70,7 +69,7 @@ location /protectedbyssl {
 
 - logmein configuration
 
-The endpoint `API/auth/logmein` performs security check to garantee that the request comes from authorized network_list, then check if requred the http_attribut name and value. It reads the X509 to get the userid from, then perform an implicit authentication for this userid 
+The endpoint `API/auth/logmein` performs security check to garantee that the request comes from authorized network_list, then check if requred the http_attribut name and value. It reads the X509 to get the userid from, then perform an implicit authentication for this userid.
 
 ```
 auth.logmein : {  
@@ -92,7 +91,6 @@ auth.logmein : {
 
 The `oid_list` entries are converted from oid dotted string format to ObjectIdentifier [ cryptography.x509.oid.NameOID.USER_ID, cryptography.x509.oid.NameOID.COMMON_NAME ] becomes [ '0.9.2342.19200300.100.1.1' and  '2.5.4.3' ]
 
-> todo: check if the '2.5.4.3' is correct for `COMMON_NAME`
 
 
 
