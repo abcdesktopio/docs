@@ -22,7 +22,7 @@
     
     
       
-        <title>Execute classes - abcdesktop.pepins.net</title>
+        <title>Resources - abcdesktop.pepins.net</title>
       
     
     
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Execute classes
+              Resources
             
           </span>
         </div>
@@ -2176,7 +2176,7 @@
   
   
   <span class="md-ellipsis">
-    Logmein mutual authentication
+    Logmein SSL (mutual authentication)
     
   </span>
   
@@ -2215,7 +2215,7 @@
   
   
   <span class="md-ellipsis">
-    Rules and labels
+    Labels and rules
     
   </span>
   
@@ -2313,7 +2313,7 @@
   
   
   <span class="md-ellipsis">
-    Execute classes
+    Resources
     
   </span>
   
@@ -2326,7 +2326,7 @@
   
   
   <span class="md-ellipsis">
-    Execute classes
+    Resources
     
   </span>
   
@@ -2357,6 +2357,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#define-the-executeclassname-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define the executeclassname value
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Define the executeclassname value">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-executeclassname-by-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set executeclassname by rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#let-user-choose-the-executeclassname" class="md-nav__link">
+    <span class="md-ellipsis">
+      Let user choose the executeclassname
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2379,29 +2412,6 @@
   
   <span class="md-ellipsis">
     Pod
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../resources/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Resources
     
   </span>
   
@@ -3526,6 +3536,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#define-the-executeclassname-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define the executeclassname value
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Define the executeclassname value">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-executeclassname-by-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set executeclassname by rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#let-user-choose-the-executeclassname" class="md-nav__link">
+    <span class="md-ellipsis">
+      Let user choose the executeclassname
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3551,8 +3594,10 @@
 
 
 <h1 id="executeclasses">executeclasses</h1>
-<p>The executeclasses defines the resources for the desktop pods and for applications.</p>
-<h2 id="executeclasses-dictionary">executeclasses dictionary</h2>
+<p>The executeclasses defines the resources for the desktop pods and for applications.
+<code>executeclasses</code> defines how to adjust the resources for your pods either by creating rules or by allowing your users to select from the resources already defined.
+The executeclasses is a dictionary, each entry describes the resources.</p>
+<h2 id="executeclasses-dictionary"><code>executeclasses</code> dictionary</h2>
 <div class="highlight"><pre><span></span><code>executeclasses : {
   &#39;default&#39;:{
     &#39;nodeSelector&#39;:None,
@@ -3606,6 +3651,226 @@
     }
   }}
 </code></pre></div>
+<p>The entry <code>'default'</code> must exist.</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>type</th>
+<th> Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>containers</td>
+<td>dict</td>
+<td>update the container with dict values</td>
+<td>{ <code>'graphical': { 'resources': { 'limits': { 'nvidia.com/gpu':'1' } } } }</code></td>
+</tr>
+<tr>
+<td>nodeSelector</td>
+<td>dict</td>
+<td>update the nodeSelector with dict values</td>
+<td><code>{'nvidia.com/gpu': 'true'}</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>show description in the login page</td>
+<td>'platinum: 8 CPU cores, 128G RAM and 1 GPU'</td>
+</tr>
+<tr>
+<td>runtimeClassName.</td>
+<td>string</td>
+<td>(optional) name of the runtime class</td>
+<td>'nvidia'</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>dict</td>
+<td> pods resources</td>
+<td> <code>{ 'requests' {'memory':"4Gi",'cpu':"4000m"}, 'limits':{'memory':"128Gi",'cpu':"8000m"} }</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="define-the-executeclassname-value">Define the <code>executeclassname</code> value</h2>
+<p>The <code>executeclassname</code> variable  is an entry in the <code>executeclasses</code> dictionary. It defines the <code>resources</code>, <code>nodeSelector</code> and <code>runtimeClassName</code> of a user's pod.
+The <code>executeclassname</code> value is set during the auth process.</p>
+<p>By himself, a user can to choose the <code>executeclassname</code> value from a list, or set the <code>executeclassname</code> value using rules. 
+If the <code>executeclassname</code> is not set the <code>executeclassname</code> is set to the string <code>default</code> and the executeclasses is set to <code>executeclasses['default']</code>.</p>
+<h3 id="set-executeclassname-by-rules">Set <code>executeclassname</code> by rules</h3>
+<p>Update your <code>od.config</code> file to add a new rule. The <code>label</code> of the rule must be <code>executeclassname</code>, and the <code>load</code> will set the value of the <code>executeclassname</code>.</p>
+<div class="highlight"><pre><span></span><code>    &#39;rule-executeclass&#39;: {
+            &#39;conditions&#39; : [ { &#39;memberOf&#39;: &#39;cn=ship_crew,ou=people,dc=planetexpress,dc=com&#39;,   &#39;expected&#39; : True  } ],
+            &#39;expected&#39; : True,
+            &#39;label&#39;:&#39;executeclassname&#39;,
+            &#39;load&#39;: &#39;silver&#39;
+    },
+</code></pre></div>
+<p>If the user is 'memberOf' the group 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' when the label <code>executeclassname</code> is set to the value <code>silver</code>
+A full example of the ldapconfig becomes like this one.</p>
+<div class="highlight"><pre><span></span><code>ldapconfig : {
+    &#39;planet&#39;: {
+            &#39;default&#39;       : True,
+            &#39;ldap_timeout&#39;  : 15,
+            &#39;ldap_protocol&#39; : &#39;ldap&#39;,
+            &#39;ldap_basedn&#39;   : &#39;ou=people,dc=planetexpress,dc=com&#39;,
+            &#39;servers&#39;       : [ &#39;openldap&#39; ],
+            &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;cn=admin,dc=planetexpress,dc=com&#39;, &#39;password&#39;: &#39;GoodNewsEveryone&#39; },
+            &#39;policies&#39;: {
+                    &#39;acls&#39;: None,
+                    &#39;rules&#39; : {
+                            &#39;rule-dummy&#39; : {
+                              &#39;conditions&#39; : [ {&#39;boolean&#39;:True, &#39;expected&#39;:True } ],
+                                                            &#39;expected&#39; : True,
+                                                            &#39;label&#39;:&#39;labeltrue&#39;
+                            },
+                            &#39;rule-ship&#39;: {
+                                    &#39;conditions&#39; : [ { &#39;memberOf&#39;: &#39;cn=ship_crew,ou=people,dc=planetexpress,dc=com&#39;,   &#39;expected&#39; : True  } ],
+                                    &#39;expected&#39; : True,
+                                    &#39;label&#39;:&#39;shipcrew&#39;
+                            },
+                            &#39;rule-executeclass&#39;: {
+                                    &#39;conditions&#39; : [ { &#39;memberOf&#39;: &#39;cn=ship_crew,ou=people,dc=planetexpress,dc=com&#39;,   &#39;expected&#39; : True  } ],
+                                    &#39;expected&#39; : True,
+                                    &#39;label&#39;:&#39;executeclassname&#39;,
+                                    &#39;load&#39;: &#39;silver&#39;
+                            },
+                            &#39;rule-staff&#39;: {
+                                    &#39;conditions&#39; : [ { &#39;memberOf&#39;: &#39;cn=admin_staff,ou=people,dc=planetexpress,dc=com&#39;, &#39;expected&#39; : True  } ],
+                                    &#39;expected&#39; : True,
+                                    &#39;label&#39;: &#39;adminstaff&#39;
+                            }
+                    }
+            } } }
+</code></pre></div>
+<ul>
+<li>Save your new <code>od.config</code> file and reload your abcdesktop config </li>
+</ul>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<p>Go to the abcdesktop url service, and choose a user member of <code>ship_crew</code>. 
+<code>Philip J. Fry</code> is member of <code>ship_crew</code>.</p>
+<p><img alt="login rules sylver" src="../img/login-rules-userinfo-silver.png" /></p>
+<blockquote>
+<p>The pod is created with the requested resources.</p>
+</blockquote>
+<p><img alt="login pod sylver" src="../img/login-rules-pod-silver.png" /></p>
+<ul>
+<li>Get pod description</li>
+</ul>
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl get pods -l type=x11server -n $NAMESPACE
+</code></pre></div>
+<p>You should read on stdout</p>
+<div class="highlight"><pre><span></span><code>NAME             READY   STATUS    RESTARTS   AGE
+fry-f7c42        4/4     Running   0          7s
+</code></pre></div>
+<p>Read the user's pod <code>fry-f7c42</code> description, replace <code>POD_NAME</code> with your own pod.</p>
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+POD_NAME=fry-f7c42
+kubectl describe pods $POD_NAME -n $NAMESPACE
+</code></pre></div>
+<p>A label <code>executeclassname</code> is set to the user's pod</p>
+<div class="highlight"><pre><span></span><code>Labels:           abcdesktop/role=desktop
+                  access_provider=planet
+                  access_providertype=ldap
+                  access_userid=fry
+                  access_username=philip-j.-fry
+                  executeclassname=silver
+                  ...
+</code></pre></div>
+<p>The resources limits and requests are set from the <code>silver</code> executeclass.</p>
+<div class="highlight"><pre><span></span><code>Resources:
+  Limits:
+    cpu:     4
+    memory:  32Gi
+  Requests:
+    cpu:     2
+    memory:  2Gi
+</code></pre></div>
+<ul>
+<li>Read the executeclasse information from the web user interface</li>
+</ul>
+<p>The dialog box <code>settings</code>:<code>user information</code> shows the user's labels </p>
+<p><img alt="login resources sylver" src="../img/login-resource-userinfo-silver.png" /></p>
+<p>The current user chooses <code>silver</code></p>
+<ul>
+<li>Open a webshell to read the environment variables.</li>
+</ul>
+<p><img alt="login resources sylver" src="../img/login-resources-silver-env.png" /></p>
+<p>Inside the pod, the environment variable <code>ABCDESKTOP EXECUTE_CLASSNAME</code> is set to the value <code>silver</code></p>
+<div class="highlight"><pre><span></span><code>echo $ABCDESKTOP EXECUTE_CLASSNAME
+silver
+</code></pre></div>
+<p>Inside the pod, the environment variable <code>ABCDESKTOP EXECUTE_CLASS</code> is set to the selected json value.</p>
+<div class="highlight"><pre><span></span><code>echo $ABCDESKTOP_EXECUTE_CLASS
+{&quot;nodeSelector&quot;: {}, &quot;description&quot;: &quot;silver: 4 CPU cores and 32Gi RAM&quot;, &quot;runtimeClassName&quot;: null, &quot;resources&quot;: {&quot;requests&quot;: {&quot;memory&quot;: &quot;2Gi&quot;, &quot;cpu&quot;: &quot;2000m&quot;}, &quot;limits&quot;: {&quot;memory&quot;: &quot;32Gi&quot;, &quot;cpu&quot;: &quot;4000m&quot;}}}
+</code></pre></div>
+<h3 id="let-user-choose-the-executeclassname">Let user choose the <code>executeclassname</code></h3>
+<p>To permit user to choose the <code>executeclassname</code>, change the option <code>desktop.features_permissions</code> in your abcdesktop config file.
+<code>desktop.features_permissions</code> is a list of string.</p>
+<div class="highlight"><pre><span></span><code># features_permissions
+# read executeclasses and permit a user to set a dedicated class name as desktop features
+# &#39;read&#39; features_permissions is exposed to the frontend
+# &#39;submit&#39; features_permissions can be set to create a desktop
+# 
+desktop.features_permissions : [ &#39;read&#39;, &#39;submit&#39; ]
+</code></pre></div>
+<ul>
+<li>to display the <code>desktop.features_permissions</code> put <code>read</code> into the list</li>
+<li>to let user change the default executeclassname put <code>submit</code> into the list</li>
+</ul>
+<p>This will change the abcdesktop login page, and write the <code>description</code> of each <code>executeclasses</code> entry, with the associated description.</p>
+<p>In this case <code>desktop.features_permissions : [ 'read', 'submit' ]</code></p>
+<p><img alt="login resources" src="../img/login-resources.png" /></p>
+<p>The user can choose on entry in the <code>executeclasses</code> values.</p>
+<p><img alt="login resources sylver" src="../img/login-resources-silver.png" /></p>
+<p>The <code>executeclassname</code> is set with the user's selected entry.</p>
+<p><img alt="login resources sylver" src="../img/login-resources-silver.png" /></p>
+<p>The current user chooses <code>silver</code>.</p>
+<blockquote>
+<p>The pod is created with the requested resources.</p>
+</blockquote>
+<p><img alt="login pod sylver" src="../img/login-rules-pod-silver.png" /></p>
+<ul>
+<li>List the labels of the user's pod.</li>
+</ul>
+<p>A label <code>executeclassname</code> is set to the user's pod</p>
+<div class="highlight"><pre><span></span><code>Labels:           abcdesktop/role=desktop
+                  access_provider=planet
+                  access_providertype=ldap
+                  access_userid=fry
+                  access_username=philip-j.-fry
+                  executeclassname=silver
+                  ...
+</code></pre></div>
+<p>The resources limits and requests are set from the <code>silver</code> executeclass.</p>
+<div class="highlight"><pre><span></span><code>Resources:
+  Limits:
+    cpu:     4
+    memory:  32Gi
+  Requests:
+    cpu:     2
+    memory:  2Gi
+</code></pre></div>
+<p>The dialog box <code>settings</code>:<code>user information</code> shows the user's labels </p>
+<p><img alt="login resources sylver" src="../img/login-resource-userinfo-silver.png" /></p>
+<p>The current user chooses <code>silver</code></p>
+<ul>
+<li>Open a webshell to read the environment variables.</li>
+</ul>
+<p><img alt="login resources sylver" src="../img/login-resources-silver-env.png" /></p>
+<p>Inside the pod, the environment variable <code>ABCDESKTOP EXECUTE_CLASSNAME</code> is set to the value <code>silver</code></p>
+<div class="highlight"><pre><span></span><code>echo $ABCDESKTOP EXECUTE_CLASSNAME
+silver
+</code></pre></div>
+<p>Inside the pod, the environment variable <code>ABCDESKTOP EXECUTE_CLASS</code> is set to the selected json value.</p>
+<div class="highlight"><pre><span></span><code>echo $ABCDESKTOP_EXECUTE_CLASS
+{&quot;nodeSelector&quot;: {}, &quot;description&quot;: &quot;silver: 4 CPU cores and 32Gi RAM&quot;, &quot;runtimeClassName&quot;: null, &quot;resources&quot;: {&quot;requests&quot;: {&quot;memory&quot;: &quot;2Gi&quot;, &quot;cpu&quot;: &quot;2000m&quot;}, &quot;limits&quot;: {&quot;memory&quot;: &quot;32Gi&quot;, &quot;cpu&quot;: &quot;4000m&quot;}}}
+</code></pre></div>
+<p>Great! You can adjust the resources for your pod either by creating rules or by allowing your users to select from the resources already defined in a dictionary.</p>
 
 
 
