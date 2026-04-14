@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#desktoppolicies" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -2346,6 +2351,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Policies
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -2358,6 +2378,76 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      volumes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#volume-type-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      volume type nfs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-type-hostpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      volume type hostPath
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-type-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      volume type pvc
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network" class="md-nav__link">
+    <span class="md-ellipsis">
+      network
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3437,6 +3527,67 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      volumes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#volume-type-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      volume type nfs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-type-hostpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      volume type hostPath
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-type-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      volume type pvc
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network" class="md-nav__link">
+    <span class="md-ellipsis">
+      network
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3460,9 +3611,169 @@
   
 
 
-  <h1>Policies</h1>
-
-
+<h1 id="desktoppolicies">desktop.policies</h1>
+<p><code>desktop.policies</code> defines some rules to add <code>volumes</code> and <code>network</code>.
+Each rules matchs the labels value.</p>
+<p>If a user gets the label <code>'hello'</code>, then <code>volumes['hello']</code>  and <code>network['hello']</code> are applied.</p>
+<ul>
+<li>
+<p><code>volumes</code> are defined to build additional volumes</p>
+<blockquote>
+<ul>
+<li>like mount a nfs shared point for each member of a group</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p><code>network</code> is defined to add networks and run command line</p>
+<blockquote>
+<ul>
+<li>add a new network interface for a pod</li>
+<li>run some commands to update dns entries for a pod ( on create, on delete )</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="volumes">volumes</h2>
+<p><code>volumes</code> is a dictionnay of list of matching labels. 
+Each volume describes the <code>mountPath</code> to be mounted inside the pod, and a dedicated <code>type</code>.</p>
+<p>The type of a volume can be <code>nfs</code>, <code>hostPath</code>, <code>pvc</code> or <code>cifs</code></p>
+<div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="err">&#39;rules&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;volumes&#39;</span><span class="p">:</span><span class="w"> </span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;shipcrew&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span>
+<span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;hos</span><span class="kc">t</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;m</span><span class="kc">nt</span><span class="err">myprojec</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="err">&#39;pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/m</span><span class="kc">nt</span><span class="err">/sharedhos</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="err">&#39;mou</span><span class="kc">nt</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/m</span><span class="kc">nt</span><span class="err">/</span><span class="kc">test</span><span class="err">myprojec</span><span class="kc">t</span><span class="err">&#39;</span>
+<span class="w">         </span><span class="p">}</span><span class="w"> </span>
+<span class="w">        </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>if the user gets <code>shipcrew</code> as label, the add the mount point '/mnt/testmyproject' as a hostPath to '/mnt/sharedhost' in the pod</p>
+</blockquote>
+<h3 id="volume-type-nfs">volume type <code>nfs</code></h3>
+<div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="err">&#39;rules&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;volumes&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">nfs</span><span class="err">isos</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span>
+<span class="w">         </span><span class="p">{</span><span class="w">  </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">nfs</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;isos</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;server&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">192.168.7.112</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/volume</span><span class="mi">1</span><span class="err">/isos</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;mou</span><span class="kc">nt</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/m</span><span class="kc">nt</span><span class="err">/iso&#39;</span>
+<span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+</code></pre></div>
+<blockquote>
+<p>if the user gets <code>nfsisostore</code> as label, the add the mount point '/mnt/iso' in the pod as a nfs mount to <code>192.168.7.112:/volume1/isostore</code></p>
+</blockquote>
+<p>Requirements</p>
+<ul>
+<li><code>type</code>:<code>nfs</code> </li>
+<li><code>name</code> (string) is the name of the volume </li>
+<li><code>mountPath</code> (string) is the mountPath of the volume</li>
+<li><code>server</code> (string) is the nfs server</li>
+<li><code>path</code> (string) is the export </li>
+</ul>
+<p>Option</p>
+<ul>
+<li><code>readOnly</code> (boolean) if the mount should be in ReadOnly </li>
+</ul>
+<h3 id="volume-type-hostpath">volume type <code>hostPath</code></h3>
+<div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="err">&#39;rules&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;volumes&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">&#39;shipcrew&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span>
+<span class="w">         </span><span class="p">{</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;hos</span><span class="kc">t</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;m</span><span class="kc">nt</span><span class="err">myprojec</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/m</span><span class="kc">nt</span><span class="err">/sharedhos</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;mou</span><span class="kc">nt</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/m</span><span class="kc">nt</span><span class="err">/</span><span class="kc">test</span><span class="err">myprojec</span><span class="kc">t</span><span class="err">&#39;</span>
+<span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span>
+<span class="w">     </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+</code></pre></div>
+<p>Requirements</p>
+<ul>
+<li><code>type</code>:<code>hostPath</code> </li>
+<li><code>name</code> (string) is the name of the volume </li>
+<li><code>mountPath</code> (string) is the mountPath of the volume</li>
+<li><code>path</code> (string) is the export nfs value</li>
+</ul>
+<blockquote>
+<p>if the user gets <code>shipcrew</code> as label, the add the mount point '/mnt/testmyproject' as a hostPath to '/mnt/sharedhost' in the pod</p>
+</blockquote>
+<h3 id="volume-type-pvc">volume type <code>pvc</code></h3>
+<div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="err">&#39;rules&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;volumes&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">&#39;</span><span class="kc">nfs</span><span class="err">pvc&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;pvc&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;pvcs</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">&#39;claimName&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;pvc</span><span class="mi">-</span><span class="err">s</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;mou</span><span class="kc">nt</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/m</span><span class="kc">nt</span><span class="err">/</span><span class="kc">ne</span><span class="err">wpvcs</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="w"> </span>
+<span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
+<span class="w">     </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Requirements</p>
+<ul>
+<li><code>type</code>:<code>pvc</code> </li>
+<li><code>name</code> (string) is the name of the volume </li>
+<li><code>mountPath</code> (string) is the mountPath of the volume</li>
+<li><code>claimName</code> (string) is the pvc claim</li>
+</ul>
+<blockquote>
+<p>if the user gets <code>nfspvc</code> as label, the add the mount point '/mnt/newpvcstore' as a pvc named 'pvc-store'</p>
+</blockquote>
+<h2 id="network">network</h2>
+<div class="highlight"><pre><span></span><code>desktop.policies: { 
+  &#39;rules&#39;: { 
+     &#39;network&#39;: { 
+      &#39;shipcrew&#39;:  { 
+        &#39;webhook&#39;: { 
+          &#39;create&#39;:  &#39;curl &quot;http://{{ livedns_fqdn }}:8080/update?secret={{ livedns_secret }}&amp;domain=desktop.yourdomain.net&amp;hostname={{ name }}&amp;addr={{ net2 }}&quot;&#39;,
+          &#39;destroy&#39;: &#39;curl &quot;http://{{ livedns_fqdn }}:8080/update?secret={{ livedns_secret }}&amp;domain=desktop.yourdomain.net&amp;hostname={{ name }}&amp;addr={{ net2 }}&quot;&#39;
+        },
+        &#39;annotations&#39; : { 
+          &#39;k8s.v1.cni.cncf.io/networks&#39;: &#39;[ {&quot;name&quot;:&quot;macvlan-conf-7&quot;} ]&#39; 
+        }
+    }          
+</code></pre></div>
+<blockquote>
+<p>if the user gets <code>shipcrew</code> as labels</p>
+</blockquote>
+<ul>
+<li>execute the bash command line on create pods</li>
+<li>execute the bash command line on delete pods </li>
+<li>add the 'annotations' : <code>{ 'k8s.v1.cni.cncf.io/networks': '[ {"name":"macvlan-conf-7"} ]' }</code> tp the pod </li>
+</ul>
+<p>For the all fileds, the entries <code>{{ VAR }}</code> is replaced by the value of <code>VAL</code>.</p>
+<ul>
+<li>desktop.webhookdict is a dictionary with key/value for <code>webhook</code> configuration</li>
+</ul>
+<div class="highlight"><pre><span></span><code>desktop.webhookdict: {  
+  &#39;fw_ip&#39;: &#39;1.2.3.4&#39;, 
+  &#39;api_key&#39;: &#39;CAFECAFE&#39;, 
+  &#39;livedns_secret&#39;: &#39;ThisISMyDesktop&#39;,
+  &#39;livedns_fqdn&#39;: &#39;ns01desktop.yourdomain.net&#39; }
+</code></pre></div>
+<p>The desktop interfaces are generated during the provisioning process</p>
+<div class="highlight"><pre><span></span><code>{ 
+ &#39;eth0&#39;: {&#39;mac&#39;: &#39;56:c7:eb:dc:c0:b8&#39;, &#39;ips&#39;: &#39;10.244.0.239&#39;  }, 
+ &#39;net1&#39;: {&#39;mac&#39;: &#39;2a:94:43:e0:f4:46&#39;, &#39;ips&#39;: &#39;192.168.9.137&#39; }, 
+ &#39;net2&#39;: {&#39;mac&#39;: &#39;1e:50:5f:b7:85:f6&#39;, &#39;ips&#39;: &#39;194.3.2.1&#39;     }
+}
+</code></pre></div>
+<blockquote>
+<p>Only the <code>ips</code> field replace the value of <code>eth0</code> or <code>net1</code> or <code>net2</code>.
+The number of interface is not limited.</p>
+</blockquote>
+<p>For example, the command line </p>
+<div class="highlight"><pre><span></span><code>curl &quot;http://{{ livedns_fqdn }}:8080/update?secret={{ livedns_secret }}&amp;domain=desktop.yourdomain.net&amp;hostname={{ name }}&amp;addr={{ net2 }}&quot;
+</code></pre></div>
+<p>becomes</p>
+<div class="highlight"><pre><span></span><code>curl &quot;http://ns01desktop.yourdomain.net:8080/update?secret=ThisISMyDesktop&amp;domain=desktop.yourdomain.net&amp;hostname=pod_fry3241&amp;addr=194.3.2.1&quot;
+</code></pre></div>
 
 
 
