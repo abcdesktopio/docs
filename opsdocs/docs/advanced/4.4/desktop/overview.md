@@ -14,4 +14,3 @@ Each container offers a service. For example
 - `printer` is the printer service (cupsd)
 - `sound` is the sound service (pulseaudio)
 - `filer` is the filer service to upload and download file into the user home directory
-
