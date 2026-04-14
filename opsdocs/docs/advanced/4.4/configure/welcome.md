@@ -16,7 +16,7 @@ welcomeinfo: { 'welcome': [] }
 ```
 
 
-`welcomeinfo.welcome` is a list of dictonary with
+`welcomeinfo.welcome` is a list of dictionaries, with the following entries
 
 - `notbefore`: date time
 - `notafter`: date time
@@ -50,7 +50,8 @@ The login page shows the messages :
 
 ### Script
 
-`welcomeinfo` can also load `javascript` source code, from another uri or from string
+`welcomeinfo` can also load `javascript` source code, from another uri or from string.
+The `javascript` code is embedded in the abcdesktop login page.
 
 #### `data`
 
