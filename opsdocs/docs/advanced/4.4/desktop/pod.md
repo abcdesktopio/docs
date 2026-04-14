@@ -9,20 +9,20 @@ This chapter describes how to configure the `desktop.pod` object in the abcdeskt
 
 `desktop.pod` defines how create the user's pod. The mains sections are 
 
-- `spec`: describes the `securityContext` and `shareProcessNamespace` like 
-- `default_volumes` list the available volume in the pod
-- `default_volumes_mount` list default mounted volumes to use by the pod, and how to mount it
+- `spec`: describes the `securityContext` and `shareProcessNamespace`
+- `default_volumes` list the available volumes in the pod
+- `default_volumes_mount` list default mounted volumes to use by the pod
 - `graphical`: describes the graphical service 
-- `spawner`: describes the command service 
-- `broadcast`: describes the broadcast service 
-- `webshell`: describes the remote shell service 
+  - `spawner`: describes the command service (built in `graphical`)
+  - `broadcast`: describes the broadcast service (built in `graphical`)
+  - `webshell`: describes the remote shell service (built in `graphical`)
 - `filer`: describes the file download and upload service
 - `printer`: describes the printer service 
-- `printerfile`: describes the file printer service to download printed virtual file 
+  - `printerfile`: describes the file printer service to download printed file (built in `printer`)
 - `sound`: describes the sound container 
 - `init`: describes the init container 
-- `ephemeral_container`: describes how to start an application as default ephemeral_container
-- `pod_application`: describes how to start an application as pod
+- `ephemeral_container`: describes how to start an application as default an ephemeral container
+- `pod_application`: describes how to start an application as a pod
 
 
 ```
