@@ -1,3 +1,8 @@
+---
+tags:
+- read by JFV
+---
+
 # MongoDB
 
 ## Overview
@@ -20,7 +25,7 @@ The following diagram shows all Kubernetes resources involved in the MongoDB dep
 
 ## MongoDB-related Kubernetes Resources
 
-=== "Secret 'secret-mongodb`"
+=== "Secret `secret-mongodb`"
 
     This `Opaque` secret holds **all credentials** required for MongoDB initialization and access.
 
@@ -125,7 +130,7 @@ The following diagram shows all Kubernetes resources involved in the MongoDB dep
         ```
         ghcr.io/abcdesktopio/mongo:safe8.0
         ```
-        
+
         Custom image based on MongoDB 8.0, hosted on GitHub Container Registry. The `safe` tag indicates a hardened image.
 
 === "Service `mongodb`"
@@ -200,7 +205,7 @@ The connection URL is injected into `pyos` via the `secret-mongodb` secret, key 
 
 ![MongoDB volume mounts](./drawio/mongodb-volumes-mounts.drawio)
 
-!!! warning 
+!!! warning
     ⚠️ **Critical point**: the `data` volume (mounting `/data/db`) is an **`emptyDir`**. This means **MongoDB data is not persisted** across pod restarts. In production, this volume must be replaced with a `PersistentVolumeClaim` (PVC) backed by an appropriate StorageClass.
 
 ---
