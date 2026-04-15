@@ -110,7 +110,7 @@ We will use a `FQDN` (Fully Qualified Domain Name) to replace the `IP Address`.
 
 ![digitalocean networking](img/digitalocean-networking.png)
 
-This screenshot describes the DigitalOcean network console. It shows the `Domain` informations, but your can manage your zone file from your own registrar.
+This screenshot describes the DigitalOcean network console. It shows the `Domain` informations, but you can manage your zone file from your own registrar.
 
 ### Create new record
 
