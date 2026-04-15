@@ -17,7 +17,7 @@ First you will need to configure `gcloud` to set your GCP project as current pro
 gcloud config set project <YOUR_PROJECT_ID>
 ```
 
-Now you can typrune the folllowing command to create your kubernetes cluster
+Run the folllowing command to create your kubernetes cluster
 
 ```
 gcloud container clusters create abcdesktop-gcp-1 --machine-type=custom-4-8192 --zone=us-central1-a --num-nodes=2
