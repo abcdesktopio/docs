@@ -1,3 +1,11 @@
+---
+tags:
+  - gcp
+  - install
+  - AD
+---
+
+
 # Deploy abcdesktop on Google Cloud Provider (GCP) with Kubernetes
 
 ## Requirements
