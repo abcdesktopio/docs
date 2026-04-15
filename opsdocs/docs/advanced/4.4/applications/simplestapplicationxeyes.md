@@ -1,19 +1,24 @@
-# Add an application from scratch
+---
+tags:
+  - Read by JFV
+---
+
+# Build a sample xeyes from scratch
+
+Goal: Add an application from scratch.
 
 ## Requirements
 
-You need to have a 
+You need to have:
 
-- kubernetes cluster ready to run whith abcdesktop.io installed
-- `kubectl` must be configured to communicate with your cluster. 
+- kubernetes cluster ready to run whith abcdesktop.io installed.
+- `kubectl` must be configured to communicate with your cluster.
 - `docker` command line must be installed too.
-- your own public or private container registry
-
+- your own public or private container registry.
 
 ## Create a simple application `xeyes`
 
-
-To illustrate a simple application, we will install `X11/xedit` inside a container. 
+To illustrate a simple application, we will install `X11/xedit` inside a container.
 
 * Create a Dockerfile to install `xeyes ` application from `x11-apps` package
 
@@ -24,7 +29,7 @@ CMD ["/usr/bin/xeyes"]
 ```
 
 This image is based on ubuntu, and install the `x11-apps` package. Then we define `/usr/bin/xeyes` as the CMD.
-> ENTRYPOINT is also supported 
+> ENTRYPOINT is also supported
 
 * Build the image for xedit application
 
@@ -63,7 +68,7 @@ kubectl cp samplexeyes.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/samplexeyes.json
 ```
 
-The endpoint image returns a json documment 
+The endpoint image returns a json documment
 
 ```
 [{"cmd": ["/usr/bin/xeyes"], "path": null, "sha_id": "sha256:f13075e3caceccf5818f9d3b0bdd231b2d800850eb9c81d2906704ec633372c7", "id": "abcdesktopio/samplexeyes:latest", "architecture": "amd64", "os": "linux", "rules": {}, "acl": {"permit": ["all"]}, "launch": "xeyes", "name": "xeyes", "icon": "xeyes", "icondata": "PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIwIiB5PSIzMiIgZmlsbD0iYmxhY2siPnhleWVzPC90ZXh0Pjwvc3ZnPg==", "keyword": null, "uniquerunkey": null, "cat": null, "args": null, "execmode": null, "showinview": null, "displayname": "xeyes", "desktopfile": null, "executeclassname": null, "executablefilename": "xeyes", "usedefaultapplication": false, "mimetype": [], "fileextensions": [], "legacyfileextensions": [], "secrets_requirement": null, "i100  4670  100  1115  100  3555  41296   128k --:--:-- --:--:-- --:--:--  168ke": "ephemeral_container", "securitycontext": {}, "created": "2025-02-03T15:45:36.493950688Z"}]
@@ -72,7 +77,7 @@ The endpoint image returns a json documment
 
 ## Execute the new application `xeyes`
 
-* Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop 
+* Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop
 
 ![login to create a desktop](img/simplestapplication-login-xeyes.png)
 
@@ -80,19 +85,19 @@ The endpoint image returns a json documment
 
 ![Look for the new application xeyes](img/simplestapplication-lookfor-xeyes.png)
 
-* Start the new application `xeyes`, the hourglass appears 
+* Start the new application `xeyes`, the hourglass appears
 
 ![Start the new application xeyes hourglass](img/simplestapplication-xeyes-hourglass.png)
 
-Please wait for the end of the pulling process 
+Please wait for the end of the pulling process
 
 ![Start the new application xeyes](img/simplestapplication-xeyes-started.png)
 
 > The xeyes application is started as a container
 
-## Read the pod's description 
+## Read the pod's description
 
-Get the name of fry's pod 
+Get the name of fry's pod
 
 ```
 kubectl get pods -l type=x11server -n abcdesktop
@@ -171,4 +176,4 @@ Ephemeral Containers:
       /var/run/desktop from run (rw)
 ```
 
-Great you've installed and started a new application for abcdesktop 
+Great you've installed and started a new application for abcdesktop

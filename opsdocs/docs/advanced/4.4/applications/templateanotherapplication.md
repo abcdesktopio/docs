@@ -1,20 +1,25 @@
-# Build your own application image with template
+---
+tags:
+  - Read by JFV
+---
+
+# Build another application from template
+
+Goal: build your own application image with template
 
 abcdesktop uses container image format with some labels to describe the application.
 
 ## Requirements
 
-- an access to the container public registry or a private container registry
+- an access to the container public registry or a private container registry.
 - `nodejs` installed on your host.
-- Read the previsous chapter [template applications](templateapplication.md)
-- `docker` command installed to build container images
-- `wget` command installed to download files
+- Read the previsous chapter [template applications](templateapplication.md).
+- `docker` command installed to build container images.
+- `wget` command installed to download files.
 
+## Build your own application image for `GIMP`
 
-## Build your own application image for `GIMP` 
-
-
-Go into your `build` directory created in the previsous chapter [template applications](templateapplication.md)
+Go into your `build` directory created in the previsous chapter [template applications](templateapplication.md).
 
 The applist.json is an array of application objects. Add a new entry in the array, and fill the value for the new application `gimp`.
 
@@ -57,7 +62,7 @@ New applist.json data, and build your own Gimp abcdesktop.io application.
 * The GIMP icon svg file is avalaible on wikipedia website [The_GIMP_icon_-_gnome.svg](https://upload.wikimedia.org/wikipedia/commons/4/45/The_GIMP_icon_-_gnome.svg)
 * `path` is the binary file to run gimp `/usr/bin/gimp`
 * `installrecommends` : `true` remove the `--no-install-recommends` to the command line to install `apt-get install -y` `$debpackage`
-* `debpackage`: list of package to be installed 
+* `debpackage`: list of package to be installed
 
 
 - Download the Gimp icon svg file
@@ -76,7 +81,7 @@ As you can read, abcdesktop supports `mimetype`, `fileextensions`, `legacyfileex
 ```
 
 
-These entries enable the `Open with` and `Open with Other Application` in the file manager application. The mimetype database is updated when the user connect (or reconnect) to his desktop. 
+These entries enable the `Open with` and `Open with Other Application` in the file manager application. The mimetype database is updated when the user connect (or reconnect) to his desktop.
 
 ![Open with Gimp](img/gimp-openwithgimp.png)
 
@@ -92,7 +97,7 @@ and list `Recommended Applications`
 nodejs make.js
 ```
 
-You should get the output 
+You should get the output
 
 ```
 Namespace(dockerfile=false, release='4.4', applicationfile='applist.json')
@@ -117,7 +122,7 @@ REGISTRY=abcdesktopio
 docker build -f gimp.d -t $REGISTRY/gimp.d .
 ```
 
-You should read the output : 
+You should read the output :
 
 
 ??? note "show details"
@@ -131,17 +136,17 @@ You should read the output :
 	 => CACHED [1/4] FROM ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.24.04:4.4@sha256:18db02414a19ac2befb0366084474f32cbf97f7ccefd6af283a189928c6fcc70                                                  0.0s
 	 => [2/4] RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections                                                                                                         0.4s
 	 => [3/4] RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y gimp dbus-x11 hicolor-icon-theme && apt-get clean && rm -rf /var/lib/apt/lists/*                                 255.6s
-	 => [4/4] RUN if [ -x /usr/bin/dbus-launch ]; then chmod g+r,g+w,o+r,o+w /var/lib/dbus ; fi                                                                                                          0.3s 
-	 => exporting to image                                                                                                                                                                               4.5s 
-	 => => exporting layers                                                                                                                                                                              4.5s 
-	 => => writing image sha256:4e59eff5fab51b10b2a78c2c76e7c6d20278326d9e7f0a17bac48bf27285798e                                                                                                         0.0s 
+	 => [4/4] RUN if [ -x /usr/bin/dbus-launch ]; then chmod g+r,g+w,o+r,o+w /var/lib/dbus ; fi                                                                                                          0.3s
+	 => exporting to image                                                                                                                                                                               4.5s
+	 => => exporting layers                                                                                                                                                                              4.5s
+	 => => writing image sha256:4e59eff5fab51b10b2a78c2c76e7c6d20278326d9e7f0a17bac48bf27285798e                                                                                                         0.0s
 	 => => naming to docker.io/abcdesktopio/gimp.d
     ```
 
-- Push your image to your registry 
+- Push your image to your registry
 
 > Replace the value of the REGISTRY with your own if need.
-> If you don't have your own registry, you can skip this command but keep using `REGISTRY=abcdesktopio` 
+> If you don't have your own registry, you can skip this command but keep using `REGISTRY=abcdesktopio`
 
 ```
 REGISTRY=abcdesktopio
@@ -150,7 +155,7 @@ docker push $REGISTRY/gimp.d
 
 - Create a json file from your container image
 
-> If you don't have your own registry, do not skip this command, and keep using `REGISTRY=abcdesktopio` 
+> If you don't have your own registry, do not skip this command, and keep using `REGISTRY=abcdesktopio`
 
 ```
 REGISTRY=abcdesktopio
@@ -159,7 +164,7 @@ docker inspect $REGISTRY/gimp.d > gimp.json
 
 
 
-## Push your image to abcdesktop service 
+## Push your image to abcdesktop service
 
 * Send the image to abcdesktop pyos instance
 
@@ -171,9 +176,9 @@ kubectl cp gimp.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/gimp.json
 ```
 
-This command reads the `PYOS_POD` name, then copy the `2048.json` file to `/tmp` of PYOS_POD, then send the `/tmp/2048.json` to REST API server. 
+This command reads the `PYOS_POD` name, then copy the `2048.json` file to `/tmp` of PYOS_POD, then send the `/tmp/2048.json` to REST API server.
 
-The endpoint image returns a json documment 
+The endpoint image returns a json documment
 
 ??? note "show details"
     ```
@@ -281,7 +286,7 @@ Great, you've installed and are running Gimp application as a container.
 
 ## All other applications
 
-All abcdesktop applications are defined in a `applist.json`. Have a look to the complete [applist.json](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/applist.json) file. abcdesktop applist.json contains description to build all default abcdesktop applications. 
+All abcdesktop applications are defined in a `applist.json`. Have a look to the complete [applist.json](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/applist.json) file. abcdesktop applist.json contains description to build all default abcdesktop applications.
 
 
 ```

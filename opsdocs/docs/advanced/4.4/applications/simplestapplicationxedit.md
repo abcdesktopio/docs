@@ -1,20 +1,27 @@
-# Add an application `xedit`
+---
+tags:
+  - Read by JFV
+---
+
+# Build a sample xedit with icon from scratch
+
+Goal: Add an application `xedit`.
 
 
 ## Requirements
 
-You need to have a 
+You need to have:
 
-- kubernetes cluster ready to run whith abcdesktop.io installed
-- `kubectl` or `microk8s` command-line tool must be configured to communicate with your cluster. 
+- kubernetes cluster ready to run whith abcdesktop.io installed.
+- `kubectl` or `microk8s` command-line tool must be configured to communicate with your cluster.
 - `docker` command line must be installed too.
-- your own public or private container registry
+- your own public or private container registry.
 
 
 ## Create a simple application `xedit`
 
 
-To illustrate a simple application, we will install `X11/xedit` inside a container. 
+To illustrate a simple application, we will install `X11/xedit` inside a container.
 
 * Create a Dockerfile to install `xedit` application from `x11-apps` package
 
@@ -31,21 +38,21 @@ CMD ["/usr/bin/xedit"]
 ```
 
 > oc.icondata is a base64 encoded content of the file `pencil.svg`
-![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) 
-> to get it  
+![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg)
+> to get it
 >```
 wget https://icons.getbootstrap.com/assets/icons/pencil.svg && base64 -w0 pencil.svg
-```    
+```
 
-Dockerfile description 
+**Dockerfile description**
 
 This image is based on ubuntu, and install the `x11-apps` package. Then we define `/usr/bin/xedit` as the CMD, ENTRYPOINT is also supported.
 
 * `oc.launch` label is the name of the X11 window's `WM_CLASS`
 * `oc.icon` is the name of the icon file
 * `oc.icondata` is a base64 encoded content of the file `pencil.svg`
-![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) to get it  
-`wget https://icons.getbootstrap.com/assets/icons/pencil.svg && base64 -w0 pencil.svg`   
+![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) to get it
+`wget https://icons.getbootstrap.com/assets/icons/pencil.svg && base64 -w0 pencil.svg`
 
 * Build the image for xedit application
 
@@ -84,7 +91,7 @@ kubectl cp samplexeyes.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/samplexedit.json
 ```
 
-The endpoint image returns a json documment 
+The endpoint image returns a json documment
 
 ```json
 [
@@ -134,7 +141,7 @@ The endpoint image returns a json documment
 
 ## Execute the new application `xedit`
 
-* Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop 
+* Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop
 
 ![login to create a desktop](img/simplestapplication-login-xedit.png)
 
@@ -147,7 +154,7 @@ The endpoint image returns a json documment
 
 `xedit` image is pulling
 
-![Start the new application xeyes](img/simplestapplication-xedit-starting.png) 
+![Start the new application xeyes](img/simplestapplication-xedit-starting.png)
 
 `xedit` image is starting
 

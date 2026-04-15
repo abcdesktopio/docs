@@ -1,18 +1,25 @@
-# Build your own application image from template container image
+---
+tags:
+  - Read by JFV
+---
+
+# Build an application from template
+
+Goal: Build your own application image from template container image.
 
 abcdesktop uses container image format with some labels to describe an application.
 
 ## Requirements
 
-- your own public or private container registry
-- `nodejs` installed on your host.  
-- `docker` command line to build container image
-- `wget` command line installed
+- your own public or private container registry.
+- `nodejs` installed on your host.
+- `docker` command line to build container image.
+- `wget` command line installed.
 
 
-## Build your own application image 
+## Build your own application image
 
-The new image is the game 2048. 
+The new image is the game 2048.
 
 Create a directory named `build`, and create a directory `icons` inside build
 
@@ -43,16 +50,16 @@ Create a json file named `applist.json`, inside build directory, and add the con
 
 To fill the data inside the json file :
 
-| name                         | Type     |          Data                 |                                                                             
+| name                         | Type     |          Data                 |
 |------------------------------|--------- |-------------------------------|
-|  `cat`                       | string   | games | 
-|  `debpackage`                | string   | 2048-qt | 
-|  `icon`                      | string   | 2048_logo.svg | 
-|  `keyword`                   | string   | 2048 | 
-|  `launch`                    | string   | 2048-qt.2048-qt | 
-|  `name`                      | string   | 2048| 
+|  `cat`                       | string   | games |
+|  `debpackage`                | string   | 2048-qt |
+|  `icon`                      | string   | 2048_logo.svg |
+|  `keyword`                   | string   | 2048 |
+|  `launch`                    | string   | 2048-qt.2048-qt |
+|  `name`                      | string   | 2048|
 |  `path`                      | string   | /usr/games/2048-qt |
-|  `template`                  | string   | ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04 | 
+|  `template`                  | string   | ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04 |
 
 You can read the following help lines, or fill the json missing value by yourself.
 
@@ -60,10 +67,10 @@ You can read the following help lines, or fill the json missing value by yoursel
 * `debpackage` is the name of the 2048 ubuntu package. To find the package name, look at the link [2048 Ubuntu Package](https://packages.ubuntu.com/source/bionic/2048-qt).
 * `icon` is the name of the icon. abcdesktop support only `svg` icon file format. To get the icon file, look at the link [https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg](https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg)
 * `keyword` is a list of the keywords to find the application. Set the value to 2048.
-* `launch`  is the X11 Class name of the window. To get this value, we need to run the application on GNU/Linux (read the dedicated chapter below). 
+* `launch`  is the X11 Class name of the window. To get this value, we need to run the application on GNU/Linux (read the dedicated chapter below).
 * `name` is the name of the application. Set the value to 2048.
-* `path` is the binary path to run the application.   
-* `template` is the name of the parent image. The default image parent is `ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04`. You will find the template list in next chapter. 
+* `path` is the binary path to run the application.
+* `template` is the name of the parent image. The default image parent is `ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04`. You will find the template list in next chapter.
 
 
 ### Build your new image 2048
@@ -89,13 +96,13 @@ Run the command npm install command line, to install packages
 npm i
 ```
 
-- Run `make.js` build a new DockerFile for the 2048 application. Remember, all application images use container images. 
+- Run `make.js` build a new DockerFile for the 2048 application. Remember, all application images use container images.
 
 ```
 nodejs make.js
 ```
 
-You should get the output 
+You should get the output
 
 ```
 Namespace(dockerfile=false, release='4.4', applicationfile='applist.json')
@@ -121,7 +128,7 @@ REGISTRY=abcdesktopio
 docker build -f 2048.d -t $REGISTRY/2048.d .
 ```
 
-You should read the output : 
+You should read the output :
 
 ```
 [+] Building 62.3s (8/8) FINISHED                                                                                                                                                           docker:default
@@ -133,17 +140,17 @@ You should read the output :
  => CACHED [1/4] FROM ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04:4.4                                                                                                                           0.0s
  => [2/4] RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections                                                                                                          0.3s
  => [3/4] RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y  --no-install-recommends 2048-qt && apt-get clean && rm -rf /var/lib/apt/lists/*                                   59.9s
- => [4/4] RUN if [ -x /usr/bin/dbus-launch ]; then chmod g+r,g+w,o+r,o+w /var/lib/dbus ; fi                                                                                                           0.2s 
- => exporting to image                                                                                                                                                                                1.8s 
- => => exporting layers                                                                                                                                                                               1.8s 
- => => writing image sha256:7804b6c77950a0f43daa13b7b0901eb4b795f984c6d888ab6ef513573b4d3147                                                                                                          0.0s 
+ => [4/4] RUN if [ -x /usr/bin/dbus-launch ]; then chmod g+r,g+w,o+r,o+w /var/lib/dbus ; fi                                                                                                           0.2s
+ => exporting to image                                                                                                                                                                                1.8s
+ => => exporting layers                                                                                                                                                                               1.8s
+ => => writing image sha256:7804b6c77950a0f43daa13b7b0901eb4b795f984c6d888ab6ef513573b4d3147                                                                                                          0.0s
  => => naming to docker.io/abcdesktop/2048.d
 ```
 
-- Push your image to your registry 
+- Push your image to your registry
 
 > Replace the value of the REGISTRY with your own if need.
-> If you don't have your own registry, you can skip this command but keep using `REGISTRY=abcdesktopio` 
+> If you don't have your own registry, you can skip this command but keep using `REGISTRY=abcdesktopio`
 
 ```
 REGISTRY=abcdesktopio
@@ -152,7 +159,7 @@ docker push $REGISTRY/2048.d
 
 - Create a json file from your container image
 
-> If you don't have your own registry, do not skip this command, and keep using `REGISTRY=abcdesktopio` 
+> If you don't have your own registry, do not skip this command, and keep using `REGISTRY=abcdesktopio`
 
 ```
 REGISTRY=abcdesktopio
@@ -160,7 +167,7 @@ docker inspect $REGISTRY/2048.d > 2048.json
 ```
 
 
-## Push your image to abcdesktop service 
+## Push your image to abcdesktop service
 
 * Send the image to abcdesktop pyos instance
 
@@ -172,9 +179,9 @@ kubectl cp 2048.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/2048.json
 ```
 
-This command reads the `PYOS_POD` name, then copy the `2048.json` file to `/tmp` of PYOS_POD, then send the `/tmp/2048.json` to REST API server. 
+This command reads the `PYOS_POD` name, then copy the `2048.json` file to `/tmp` of PYOS_POD, then send the `/tmp/2048.json` to REST API server.
 
-The endpoint image returns a json documment 
+The endpoint image returns a json documment
 
 ```
 [
@@ -312,7 +319,7 @@ The template repository is [https://github.com/abcdesktopio/oc.template](https:/
 - oc.template.ubuntu.nvidia.22.04
 
 
-Great it's a good job, you have build your own abcdesktop 2048 application. 
+Great it's a good job, you have build your own abcdesktop 2048 application.
 
 
 

@@ -1,27 +1,33 @@
-# a simple application `chromium`
+---
+tags:
+  - Read by JFV
+---
+
+# Build a simple application `chromium` from scratch
+
+Goal: Add an application `chromium`.
 
 ## Requirements
 
-You need to have
+You need to have:
 
-- kubernetes cluster ready to run whith abcdesktop.io installed
-- `kubectl` command-line tool must be configured to communicate with your cluster. 
+- kubernetes cluster ready to run whith abcdesktop.io installed.
+- `kubectl` command-line tool must be configured to communicate with your cluster.
 - `docker` command line must be installed to build the image.
-- your own public or private container registry
+- your own public or private container registry.
 
 
 ## Create a simple application `chromium`
 
-
-To illustrate a simple application, we will install `chromium` inside a container. 
+To illustrate a simple application, we will install `chromium` inside a container.
 
 * Create a Dockerfile to install `chromium` application from `debian` container image
 
 ```Dockerfile
 FROM debian
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-ENV DEBIAN_FRONTEND=noninteractive 
-RUN apt-get update && apt-get install -y chromium && apt-get clean && rm -rf /var/lib/apt/lists/* 
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y chromium && apt-get clean && rm -rf /var/lib/apt/lists/*
 # End of install package
 LABEL oc.icon="circle_chromium.svg"
 LABEL oc.icondata="PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiA8ZGVmcz4KICA8bGluZWF
@@ -57,16 +63,16 @@ LABEL oc.legacyfileextensions="html;xml"
 CMD [ "/usr/bin/chromium" ]
 ```
 
-Dockerfile description 
+**Dockerfile description**
 
-This image is based on debian, and install the `chromium` package. 
+This image is based on debian, and install the `chromium` package.
 
 Then we define `/usr/bin/chromium` as the CMD.
 
 * `oc.keyword` label defines keyworks for the search engine
 * `oc.cat` label defines category of the application
 * `oc.desktopfile` label defines the name of the `.desktop` file chromium-browser.desktop` in `/usr/share/applications` directory
-* `oc.launch` label is the name of the X11 window's `WM_CLASS`. The value is `chromium.Chromium` 
+* `oc.launch` label is the name of the X11 window's `WM_CLASS`. The value is `chromium.Chromium`
 * `oc.icon` is the name of the icon file
 * `oc.icondata` is a base64 encoded content of the chromium.svg
 * `oc.displayname` defines the string to display the name of the application
@@ -112,7 +118,7 @@ kubectl cp chromium.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/chromium.json
 ```
 
-The endpoint image returns a json documment 
+The endpoint image returns a json documment
 
 ```json
 [
@@ -177,7 +183,7 @@ The endpoint image returns a json documment
 
 ## Execute the new application `chromium`
 
-* Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop 
+* Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop
 
 ![login to create a desktop](img/simplestapplication-login-chromium.png)
 
