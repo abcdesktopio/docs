@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#build-your-own-application-image-from-template-container-image" class="md-skip">
+        <a href="#build-an-application-from-template" class="md-skip">
           Skip to content
         </a>
       
@@ -3737,6 +3737,16 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">Read by JFV</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/applications/templateapplication.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -3747,17 +3757,18 @@
   
 
 
-<h1 id="build-your-own-application-image-from-template-container-image">Build your own application image from template container image</h1>
+<h1 id="build-an-application-from-template">Build an application from template</h1>
+<p>Goal: Build your own application image from template container image.</p>
 <p>abcdesktop uses container image format with some labels to describe an application.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li>your own public or private container registry</li>
-<li><code>nodejs</code> installed on your host.  </li>
-<li><code>docker</code> command line to build container image</li>
-<li><code>wget</code> command line installed</li>
+<li>your own public or private container registry.</li>
+<li><code>nodejs</code> installed on your host.</li>
+<li><code>docker</code> command line to build container image.</li>
+<li><code>wget</code> command line installed.</li>
 </ul>
 <h2 id="build-your-own-application-image">Build your own application image</h2>
-<p>The new image is the game 2048. </p>
+<p>The new image is the game 2048.</p>
 <p>Create a directory named <code>build</code>, and create a directory <code>icons</code> inside build</p>
 <div class="highlight"><pre><span></span><code>mkdir -p build/icons
 cd build
@@ -3836,10 +3847,10 @@ cd build
 <li><code>debpackage</code> is the name of the 2048 ubuntu package. To find the package name, look at the link <a href="https://packages.ubuntu.com/source/bionic/2048-qt">2048 Ubuntu Package</a>.</li>
 <li><code>icon</code> is the name of the icon. abcdesktop support only <code>svg</code> icon file format. To get the icon file, look at the link <a href="https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg">https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg</a></li>
 <li><code>keyword</code> is a list of the keywords to find the application. Set the value to 2048.</li>
-<li><code>launch</code>  is the X11 Class name of the window. To get this value, we need to run the application on GNU/Linux (read the dedicated chapter below). </li>
+<li><code>launch</code>  is the X11 Class name of the window. To get this value, we need to run the application on GNU/Linux (read the dedicated chapter below).</li>
 <li><code>name</code> is the name of the application. Set the value to 2048.</li>
-<li><code>path</code> is the binary path to run the application.   </li>
-<li><code>template</code> is the name of the parent image. The default image parent is <code>ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04</code>. You will find the template list in next chapter. </li>
+<li><code>path</code> is the binary path to run the application.</li>
+<li><code>template</code> is the name of the parent image. The default image parent is <code>ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04</code>. You will find the template list in next chapter.</li>
 </ul>
 <h3 id="build-your-new-image-2048">Build your new image 2048</h3>
 <ul>
@@ -3857,11 +3868,11 @@ wget https://github.com/abcdesktopio/oc.apps/blob/4.4/package.json
 <div class="highlight"><pre><span></span><code>npm i
 </code></pre></div>
 <ul>
-<li>Run <code>make.js</code> build a new DockerFile for the 2048 application. Remember, all application images use container images. </li>
+<li>Run <code>make.js</code> build a new DockerFile for the 2048 application. Remember, all application images use container images.</li>
 </ul>
 <div class="highlight"><pre><span></span><code>nodejs make.js
 </code></pre></div>
-<p>You should get the output </p>
+<p>You should get the output</p>
 <div class="highlight"><pre><span></span><code>Namespace(dockerfile=false, release=&#39;4.4&#39;, applicationfile=&#39;applist.json&#39;)
 Read database json file=applist.json
 opening file applist.json
@@ -3881,7 +3892,7 @@ List all labels, and confirm that the icon file is uuencoded format. Uuencoding 
 <div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
 docker build -f 2048.d -t $REGISTRY/2048.d .
 </code></pre></div>
-<p>You should read the output : </p>
+<p>You should read the output :</p>
 <div class="highlight"><pre><span></span><code>[+] Building 62.3s (8/8) FINISHED                                                                                                                                                           docker:default
  =&gt; [internal] load build definition from 2048.d                                                                                                                                                      0.0s
  =&gt; =&gt; transferring dockerfile: 3.49kB                                                                                                                                                                0.0s
@@ -3891,18 +3902,18 @@ docker build -f 2048.d -t $REGISTRY/2048.d .
  =&gt; CACHED [1/4] FROM ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04:4.4                                                                                                                           0.0s
  =&gt; [2/4] RUN echo &#39;debconf debconf/frontend select Noninteractive&#39; | debconf-set-selections                                                                                                          0.3s
  =&gt; [3/4] RUN DEBIAN_FRONTEND=noninteractive apt-get update &amp;&amp; apt-get install -y  --no-install-recommends 2048-qt &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*                                   59.9s
- =&gt; [4/4] RUN if [ -x /usr/bin/dbus-launch ]; then chmod g+r,g+w,o+r,o+w /var/lib/dbus ; fi                                                                                                           0.2s 
- =&gt; exporting to image                                                                                                                                                                                1.8s 
- =&gt; =&gt; exporting layers                                                                                                                                                                               1.8s 
- =&gt; =&gt; writing image sha256:7804b6c77950a0f43daa13b7b0901eb4b795f984c6d888ab6ef513573b4d3147                                                                                                          0.0s 
+ =&gt; [4/4] RUN if [ -x /usr/bin/dbus-launch ]; then chmod g+r,g+w,o+r,o+w /var/lib/dbus ; fi                                                                                                           0.2s
+ =&gt; exporting to image                                                                                                                                                                                1.8s
+ =&gt; =&gt; exporting layers                                                                                                                                                                               1.8s
+ =&gt; =&gt; writing image sha256:7804b6c77950a0f43daa13b7b0901eb4b795f984c6d888ab6ef513573b4d3147                                                                                                          0.0s
  =&gt; =&gt; naming to docker.io/abcdesktop/2048.d
 </code></pre></div>
 <ul>
-<li>Push your image to your registry </li>
+<li>Push your image to your registry</li>
 </ul>
 <blockquote>
 <p>Replace the value of the REGISTRY with your own if need.
-If you don't have your own registry, you can skip this command but keep using <code>REGISTRY=abcdesktopio</code> </p>
+If you don't have your own registry, you can skip this command but keep using <code>REGISTRY=abcdesktopio</code></p>
 </blockquote>
 <div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
 docker push $REGISTRY/2048.d
@@ -3911,7 +3922,7 @@ docker push $REGISTRY/2048.d
 <li>Create a json file from your container image</li>
 </ul>
 <blockquote>
-<p>If you don't have your own registry, do not skip this command, and keep using <code>REGISTRY=abcdesktopio</code> </p>
+<p>If you don't have your own registry, do not skip this command, and keep using <code>REGISTRY=abcdesktopio</code></p>
 </blockquote>
 <div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
 docker inspect $REGISTRY/2048.d &gt; 2048.json
@@ -3925,8 +3936,8 @@ docker inspect $REGISTRY/2048.d &gt; 2048.json
 kubectl<span class="w"> </span>cp<span class="w"> </span><span class="m">2048</span>.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/2048.json
 </code></pre></div>
-<p>This command reads the <code>PYOS_POD</code> name, then copy the <code>2048.json</code> file to <code>/tmp</code> of PYOS_POD, then send the <code>/tmp/2048.json</code> to REST API server. </p>
-<p>The endpoint image returns a json documment </p>
+<p>This command reads the <code>PYOS_POD</code> name, then copy the <code>2048.json</code> file to <code>/tmp</code> of PYOS_POD, then send the <code>/tmp/2048.json</code> to REST API server.</p>
+<p>The endpoint image returns a json documment</p>
 <div class="highlight"><pre><span></span><code>[
   {
     &quot;cmd&quot;: [
@@ -4052,13 +4063,16 @@ The template repository is <a href="https://github.com/abcdesktopio/oc.template"
 <li>oc.template.ubuntu.nvidia.24.04</li>
 <li>oc.template.ubuntu.nvidia.22.04</li>
 </ul>
-<p>Great it's a good job, you have build your own abcdesktop 2048 application. </p>
+<p>Great it's a good job, you have build your own abcdesktop 2048 application.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

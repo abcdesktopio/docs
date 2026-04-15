@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#add-an-application-xedit" class="md-skip">
+        <a href="#build-a-sample-xedit-with-icon-from-scratch" class="md-skip">
           Skip to content
         </a>
       
@@ -3551,6 +3551,16 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">Read by JFV</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/applications/simplestapplicationxedit.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -3561,17 +3571,18 @@
   
 
 
-<h1 id="add-an-application-xedit">Add an application <code>xedit</code></h1>
+<h1 id="build-a-sample-xedit-with-icon-from-scratch">Build a sample xedit with icon from scratch</h1>
+<p>Goal: Add an application <code>xedit</code>.</p>
 <h2 id="requirements">Requirements</h2>
-<p>You need to have a </p>
+<p>You need to have:</p>
 <ul>
-<li>kubernetes cluster ready to run whith abcdesktop.io installed</li>
-<li><code>kubectl</code> or <code>microk8s</code> command-line tool must be configured to communicate with your cluster. </li>
+<li>kubernetes cluster ready to run whith abcdesktop.io installed.</li>
+<li><code>kubectl</code> or <code>microk8s</code> command-line tool must be configured to communicate with your cluster.</li>
 <li><code>docker</code> command line must be installed too.</li>
-<li>your own public or private container registry</li>
+<li>your own public or private container registry.</li>
 </ul>
 <h2 id="create-a-simple-application-xedit">Create a simple application <code>xedit</code></h2>
-<p>To illustrate a simple application, we will install <code>X11/xedit</code> inside a container. </p>
+<p>To illustrate a simple application, we will install <code>X11/xedit</code> inside a container.</p>
 <ul>
 <li>Create a Dockerfile to install <code>xedit</code> application from <code>x11-apps</code> package</li>
 </ul>
@@ -3587,19 +3598,19 @@ wNkEuNS41IDAgMCAxIDUgMTIuNVYxMmgtLjVhLjUuNSAwIDAgMS0uNS0uNVYxMWgtLjVhLjUuNSAwIDA
 </code></pre></div>
 <blockquote>
 <p>oc.icondata is a base64 encoded content of the file <code>pencil.svg</code>
-<img alt="pencil.svg" src="https://icons.getbootstrap.com/assets/icons/pencil.svg" /> 
-to get it<br />
+<img alt="pencil.svg" src="https://icons.getbootstrap.com/assets/icons/pencil.svg" />
+to get it
 ```
 wget https://icons.getbootstrap.com/assets/icons/pencil.svg &amp;&amp; base64 -w0 pencil.svg
-<div class="highlight"><pre><span></span><code>Dockerfile description 
+<div class="highlight"><pre><span></span><code>**Dockerfile description**
 
 This image is based on ubuntu, and install the `x11-apps` package. Then we define `/usr/bin/xedit` as the CMD, ENTRYPOINT is also supported.
 
 * `oc.launch` label is the name of the X11 window&#39;s `WM_CLASS`
 * `oc.icon` is the name of the icon file
 * `oc.icondata` is a base64 encoded content of the file `pencil.svg`
-![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) to get it  
-`wget https://icons.getbootstrap.com/assets/icons/pencil.svg &amp;&amp; base64 -w0 pencil.svg`   
+![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) to get it
+`wget https://icons.getbootstrap.com/assets/icons/pencil.svg &amp;&amp; base64 -w0 pencil.svg`
 
 * Build the image for xedit application
 
@@ -3632,7 +3643,7 @@ then send the <code>/tmp/samplexeyes.json</code> to REST API server</p>
 kubectl<span class="w"> </span>cp<span class="w"> </span>samplexeyes.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/samplexedit.json
 </code></pre></div>
-<p>The endpoint image returns a json documment </p>
+<p>The endpoint image returns a json documment</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
 <span class="w">  </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -3678,7 +3689,7 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 </code></pre></div>
 <h2 id="execute-the-new-application-xedit">Execute the new application <code>xedit</code></h2>
 <ul>
-<li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop </li>
+<li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop</li>
 </ul>
 <p><img alt="login to create a desktop" src="../img/simplestapplication-login-xedit.png" /></p>
 <ul>
@@ -3689,7 +3700,7 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 <li>Start the new application <code>xedit</code></li>
 </ul>
 <p><code>xedit</code> image is pulling</p>
-<p><img alt="Start the new application xeyes" src="../img/simplestapplication-xedit-starting.png" /> </p>
+<p><img alt="Start the new application xeyes" src="../img/simplestapplication-xedit-starting.png" /></p>
 <p><code>xedit</code> image is starting</p>
 <p><img alt="Start the new application xeyes" src="../img/simplestapplication-xedit-started.png" /></p>
 <p><code>xedit</code> image is started</p>
@@ -3700,6 +3711,9 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 
 
 
+
+  
+  
 
 
 

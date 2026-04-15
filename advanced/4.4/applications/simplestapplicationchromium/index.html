@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#a-simple-application-chromium" class="md-skip">
+        <a href="#build-a-simple-application-chromium-from-scratch" class="md-skip">
           Skip to content
         </a>
       
@@ -3551,6 +3551,16 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">Read by JFV</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/applications/simplestapplicationchromium.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -3561,24 +3571,25 @@
   
 
 
-<h1 id="a-simple-application-chromium">a simple application <code>chromium</code></h1>
+<h1 id="build-a-simple-application-chromium-from-scratch">Build a simple application <code>chromium</code> from scratch</h1>
+<p>Goal: Add an application <code>chromium</code>.</p>
 <h2 id="requirements">Requirements</h2>
-<p>You need to have</p>
+<p>You need to have:</p>
 <ul>
-<li>kubernetes cluster ready to run whith abcdesktop.io installed</li>
-<li><code>kubectl</code> command-line tool must be configured to communicate with your cluster. </li>
+<li>kubernetes cluster ready to run whith abcdesktop.io installed.</li>
+<li><code>kubectl</code> command-line tool must be configured to communicate with your cluster.</li>
 <li><code>docker</code> command line must be installed to build the image.</li>
-<li>your own public or private container registry</li>
+<li>your own public or private container registry.</li>
 </ul>
 <h2 id="create-a-simple-application-chromium">Create a simple application <code>chromium</code></h2>
-<p>To illustrate a simple application, we will install <code>chromium</code> inside a container. </p>
+<p>To illustrate a simple application, we will install <code>chromium</code> inside a container.</p>
 <ul>
 <li>Create a Dockerfile to install <code>chromium</code> application from <code>debian</code> container image</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">debian</span>
 <span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;debconf debconf/frontend select Noninteractive&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>debconf-set-selections
-<span class="k">ENV</span><span class="w"> </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive<span class="w"> </span>
-<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>chromium<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*<span class="w"> </span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>chromium<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
 <span class="c"># End of install package</span>
 <span class="k">LABEL</span><span class="w"> </span>oc.icon<span class="o">=</span><span class="s2">&quot;circle_chromium.svg&quot;</span>
 <span class="k">LABEL</span><span class="w"> </span>oc.icondata<span class="o">=</span><span class="s2">&quot;PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiA8ZGVmcz4KICA8bGluZWF</span>
@@ -3613,14 +3624,14 @@ SIxNzEuOTEiIGNvbG9yPSIjMDAwMDAwIiBmaWxsPSJ1cmwoI2QpIi8+CiAgPC9nPgogPC9nPgo8L3N2Z
 
 <span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;/usr/bin/chromium&quot;</span><span class="w"> </span><span class="p">]</span>
 </code></pre></div>
-<p>Dockerfile description </p>
-<p>This image is based on debian, and install the <code>chromium</code> package. </p>
+<p><strong>Dockerfile description</strong></p>
+<p>This image is based on debian, and install the <code>chromium</code> package.</p>
 <p>Then we define <code>/usr/bin/chromium</code> as the CMD.</p>
 <ul>
 <li><code>oc.keyword</code> label defines keyworks for the search engine</li>
 <li><code>oc.cat</code> label defines category of the application</li>
 <li><code>oc.desktopfile</code> label defines the name of the <code>.desktop</code> file chromium-browser.desktop<code>in</code>/usr/share/applications` directory</li>
-<li><code>oc.launch</code> label is the name of the X11 window's <code>WM_CLASS</code>. The value is <code>chromium.Chromium</code> </li>
+<li><code>oc.launch</code> label is the name of the X11 window's <code>WM_CLASS</code>. The value is <code>chromium.Chromium</code></li>
 <li><code>oc.icon</code> is the name of the icon file</li>
 <li><code>oc.icondata</code> is a base64 encoded content of the chromium.svg</li>
 <li><code>oc.displayname</code> defines the string to display the name of the application</li>
@@ -3662,7 +3673,7 @@ then send the <code>/tmp/chromium.json</code> to REST API server</p>
 kubectl<span class="w"> </span>cp<span class="w"> </span>chromium.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/chromium.json
 </code></pre></div>
-<p>The endpoint image returns a json documment </p>
+<p>The endpoint image returns a json documment</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
 <span class="w">  </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -3723,7 +3734,7 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 </code></pre></div>
 <h2 id="execute-the-new-application-chromium">Execute the new application <code>chromium</code></h2>
 <ul>
-<li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop </li>
+<li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop</li>
 </ul>
 <p><img alt="login to create a desktop" src="../img/simplestapplication-login-chromium.png" /></p>
 <ul>
@@ -3743,6 +3754,9 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 
 
 
+
+  
+  
 
 
 

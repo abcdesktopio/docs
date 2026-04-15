@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#add-an-application-from-scratch" class="md-skip">
+        <a href="#build-a-sample-xeyes-from-scratch" class="md-skip">
           Skip to content
         </a>
       
@@ -3569,6 +3569,16 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">Read by JFV</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/applications/simplestapplicationxeyes.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -3579,17 +3589,18 @@
   
 
 
-<h1 id="add-an-application-from-scratch">Add an application from scratch</h1>
+<h1 id="build-a-sample-xeyes-from-scratch">Build a sample xeyes from scratch</h1>
+<p>Goal: Add an application from scratch.</p>
 <h2 id="requirements">Requirements</h2>
-<p>You need to have a </p>
+<p>You need to have:</p>
 <ul>
-<li>kubernetes cluster ready to run whith abcdesktop.io installed</li>
-<li><code>kubectl</code> must be configured to communicate with your cluster. </li>
+<li>kubernetes cluster ready to run whith abcdesktop.io installed.</li>
+<li><code>kubectl</code> must be configured to communicate with your cluster.</li>
 <li><code>docker</code> command line must be installed too.</li>
-<li>your own public or private container registry</li>
+<li>your own public or private container registry.</li>
 </ul>
 <h2 id="create-a-simple-application-xeyes">Create a simple application <code>xeyes</code></h2>
-<p>To illustrate a simple application, we will install <code>X11/xedit</code> inside a container. </p>
+<p>To illustrate a simple application, we will install <code>X11/xedit</code> inside a container.</p>
 <ul>
 <li>Create a Dockerfile to install <code>xeyes</code> application from <code>x11-apps</code> package</li>
 </ul>
@@ -3599,7 +3610,7 @@
 </code></pre></div>
 <p>This image is based on ubuntu, and install the <code>x11-apps</code> package. Then we define <code>/usr/bin/xeyes</code> as the CMD.</p>
 <blockquote>
-<p>ENTRYPOINT is also supported </p>
+<p>ENTRYPOINT is also supported</p>
 </blockquote>
 <ul>
 <li>Build the image for xedit application</li>
@@ -3633,12 +3644,12 @@ then send the <code>/tmp/samplexeyes.json</code> to REST API server</p>
 kubectl<span class="w"> </span>cp<span class="w"> </span>samplexeyes.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/samplexeyes.json
 </code></pre></div>
-<p>The endpoint image returns a json documment </p>
+<p>The endpoint image returns a json documment</p>
 <div class="highlight"><pre><span></span><code>[{&quot;cmd&quot;: [&quot;/usr/bin/xeyes&quot;], &quot;path&quot;: null, &quot;sha_id&quot;: &quot;sha256:f13075e3caceccf5818f9d3b0bdd231b2d800850eb9c81d2906704ec633372c7&quot;, &quot;id&quot;: &quot;abcdesktopio/samplexeyes:latest&quot;, &quot;architecture&quot;: &quot;amd64&quot;, &quot;os&quot;: &quot;linux&quot;, &quot;rules&quot;: {}, &quot;acl&quot;: {&quot;permit&quot;: [&quot;all&quot;]}, &quot;launch&quot;: &quot;xeyes&quot;, &quot;name&quot;: &quot;xeyes&quot;, &quot;icon&quot;: &quot;xeyes&quot;, &quot;icondata&quot;: &quot;PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIwIiB5PSIzMiIgZmlsbD0iYmxhY2siPnhleWVzPC90ZXh0Pjwvc3ZnPg==&quot;, &quot;keyword&quot;: null, &quot;uniquerunkey&quot;: null, &quot;cat&quot;: null, &quot;args&quot;: null, &quot;execmode&quot;: null, &quot;showinview&quot;: null, &quot;displayname&quot;: &quot;xeyes&quot;, &quot;desktopfile&quot;: null, &quot;executeclassname&quot;: null, &quot;executablefilename&quot;: &quot;xeyes&quot;, &quot;usedefaultapplication&quot;: false, &quot;mimetype&quot;: [], &quot;fileextensions&quot;: [], &quot;legacyfileextensions&quot;: [], &quot;secrets_requirement&quot;: null, &quot;i100  4670  100  1115  100  3555  41296   128k --:--:-- --:--:-- --:--:--  168ke&quot;: &quot;ephemeral_container&quot;, &quot;securitycontext&quot;: {}, &quot;created&quot;: &quot;2025-02-03T15:45:36.493950688Z&quot;}]
 </code></pre></div>
 <h2 id="execute-the-new-application-xeyes">Execute the new application <code>xeyes</code></h2>
 <ul>
-<li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop </li>
+<li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop</li>
 </ul>
 <p><img alt="login to create a desktop" src="../img/simplestapplication-login-xeyes.png" /></p>
 <ul>
@@ -3646,16 +3657,16 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 </ul>
 <p><img alt="Look for the new application xeyes" src="../img/simplestapplication-lookfor-xeyes.png" /></p>
 <ul>
-<li>Start the new application <code>xeyes</code>, the hourglass appears </li>
+<li>Start the new application <code>xeyes</code>, the hourglass appears</li>
 </ul>
 <p><img alt="Start the new application xeyes hourglass" src="../img/simplestapplication-xeyes-hourglass.png" /></p>
-<p>Please wait for the end of the pulling process </p>
+<p>Please wait for the end of the pulling process</p>
 <p><img alt="Start the new application xeyes" src="../img/simplestapplication-xeyes-started.png" /></p>
 <blockquote>
 <p>The xeyes application is started as a container</p>
 </blockquote>
 <h2 id="read-the-pods-description">Read the pod's description</h2>
-<p>Get the name of fry's pod </p>
+<p>Get the name of fry's pod</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -l type=x11server -n abcdesktop
 NAME        READY   STATUS    RESTARTS   AGE
 fry-3f4d7   4/4     Running   0          104s
@@ -3725,13 +3736,16 @@ fry-3f4d7   4/4     Running   0          104s
       /var/run/dbus from rundbus (rw)
       /var/run/desktop from run (rw)
 </code></pre></div>
-<p>Great you've installed and started a new application for abcdesktop </p>
+<p>Great you've installed and started a new application for abcdesktop</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

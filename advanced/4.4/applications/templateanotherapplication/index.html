@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#build-your-own-application-image-with-template" class="md-skip">
+        <a href="#build-another-application-from-template" class="md-skip">
           Skip to content
         </a>
       
@@ -3587,6 +3587,16 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">Read by JFV</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/newdocs/edit/main/opsdocs/docs/advanced/4.4/applications/templateanotherapplication.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -3597,18 +3607,19 @@
   
 
 
-<h1 id="build-your-own-application-image-with-template">Build your own application image with template</h1>
+<h1 id="build-another-application-from-template">Build another application from template</h1>
+<p>Goal: build your own application image with template</p>
 <p>abcdesktop uses container image format with some labels to describe the application.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li>an access to the container public registry or a private container registry</li>
+<li>an access to the container public registry or a private container registry.</li>
 <li><code>nodejs</code> installed on your host.</li>
-<li>Read the previsous chapter <a href="../templateapplication/">template applications</a></li>
-<li><code>docker</code> command installed to build container images</li>
-<li><code>wget</code> command installed to download files</li>
+<li>Read the previsous chapter <a href="../templateapplication/">template applications</a>.</li>
+<li><code>docker</code> command installed to build container images.</li>
+<li><code>wget</code> command installed to download files.</li>
 </ul>
 <h2 id="build-your-own-application-image-for-gimp">Build your own application image for <code>GIMP</code></h2>
-<p>Go into your <code>build</code> directory created in the previsous chapter <a href="../templateapplication/">template applications</a></p>
+<p>Go into your <code>build</code> directory created in the previsous chapter <a href="../templateapplication/">template applications</a>.</p>
 <p>The applist.json is an array of application objects. Add a new entry in the array, and fill the value for the new application <code>gimp</code>.</p>
 <p>New applist.json data, and build your own Gimp abcdesktop.io application.</p>
 <div class="highlight"><pre><span></span><code>[
@@ -3646,7 +3657,7 @@
 <li><code>path</code> is the binary file to run gimp <code>/usr/bin/gimp</code></li>
 <li><code>installrecommends</code> : <code>true</code> remove the <code>--no-install-recommends</code> to the command line to install <code>apt-get install -y</code> <code>$debpackage</code></li>
 <li>
-<p><code>debpackage</code>: list of package to be installed </p>
+<p><code>debpackage</code>: list of package to be installed</p>
 </li>
 <li>
 <p>Download the Gimp icon svg file</p>
@@ -3660,7 +3671,7 @@
 &quot;legacyfileextensions&quot;:&quot;dds&quot;,
 &quot;desktopfile&quot;:&quot;gimp.desktop&quot;
 </code></pre></div>
-<p>These entries enable the <code>Open with</code> and <code>Open with Other Application</code> in the file manager application. The mimetype database is updated when the user connect (or reconnect) to his desktop. </p>
+<p>These entries enable the <code>Open with</code> and <code>Open with Other Application</code> in the file manager application. The mimetype database is updated when the user connect (or reconnect) to his desktop.</p>
 <p><img alt="Open with Gimp" src="../img/gimp-openwithgimp.png" /></p>
 <p>and list <code>Recommended Applications</code></p>
 <p><img alt="Open with Gimp" src="../img/gimp-openwithotherapplication.png" /></p>
@@ -3669,7 +3680,7 @@
 </ul>
 <div class="highlight"><pre><span></span><code>nodejs make.js
 </code></pre></div>
-<p>You should get the output </p>
+<p>You should get the output</p>
 <div class="highlight"><pre><span></span><code>Namespace(dockerfile=false, release=&#39;4.4&#39;, applicationfile=&#39;applist.json&#39;)
 Read database json file=applist.json
 opening file applist.json
@@ -3688,7 +3699,7 @@ Creating Dockerfile gimp.d
 <div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
 docker build -f gimp.d -t $REGISTRY/gimp.d .
 </code></pre></div>
-<p>You should read the output : </p>
+<p>You should read the output :</p>
 <details class="note">
 <summary>show details</summary>
 <div class="highlight"><pre><span></span><code>[+] Building 261.5s (8/8) FINISHED                                                                                                                                                         docker:default
@@ -3700,19 +3711,19 @@ docker build -f gimp.d -t $REGISTRY/gimp.d .
  =&gt; CACHED [1/4] FROM ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.24.04:4.4@sha256:18db02414a19ac2befb0366084474f32cbf97f7ccefd6af283a189928c6fcc70                                                  0.0s
  =&gt; [2/4] RUN echo &#39;debconf debconf/frontend select Noninteractive&#39; | debconf-set-selections                                                                                                         0.4s
  =&gt; [3/4] RUN DEBIAN_FRONTEND=noninteractive apt-get update &amp;&amp; apt-get install -y gimp dbus-x11 hicolor-icon-theme &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*                                 255.6s
- =&gt; [4/4] RUN if [ -x /usr/bin/dbus-launch ]; then chmod g+r,g+w,o+r,o+w /var/lib/dbus ; fi                                                                                                          0.3s 
- =&gt; exporting to image                                                                                                                                                                               4.5s 
- =&gt; =&gt; exporting layers                                                                                                                                                                              4.5s 
- =&gt; =&gt; writing image sha256:4e59eff5fab51b10b2a78c2c76e7c6d20278326d9e7f0a17bac48bf27285798e                                                                                                         0.0s 
+ =&gt; [4/4] RUN if [ -x /usr/bin/dbus-launch ]; then chmod g+r,g+w,o+r,o+w /var/lib/dbus ; fi                                                                                                          0.3s
+ =&gt; exporting to image                                                                                                                                                                               4.5s
+ =&gt; =&gt; exporting layers                                                                                                                                                                              4.5s
+ =&gt; =&gt; writing image sha256:4e59eff5fab51b10b2a78c2c76e7c6d20278326d9e7f0a17bac48bf27285798e                                                                                                         0.0s
  =&gt; =&gt; naming to docker.io/abcdesktopio/gimp.d
 </code></pre></div>
 </details>
 <ul>
-<li>Push your image to your registry </li>
+<li>Push your image to your registry</li>
 </ul>
 <blockquote>
 <p>Replace the value of the REGISTRY with your own if need.
-If you don't have your own registry, you can skip this command but keep using <code>REGISTRY=abcdesktopio</code> </p>
+If you don't have your own registry, you can skip this command but keep using <code>REGISTRY=abcdesktopio</code></p>
 </blockquote>
 <div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
 docker push $REGISTRY/gimp.d
@@ -3721,7 +3732,7 @@ docker push $REGISTRY/gimp.d
 <li>Create a json file from your container image</li>
 </ul>
 <blockquote>
-<p>If you don't have your own registry, do not skip this command, and keep using <code>REGISTRY=abcdesktopio</code> </p>
+<p>If you don't have your own registry, do not skip this command, and keep using <code>REGISTRY=abcdesktopio</code></p>
 </blockquote>
 <div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
 docker inspect $REGISTRY/gimp.d &gt; gimp.json
@@ -3735,8 +3746,8 @@ docker inspect $REGISTRY/gimp.d &gt; gimp.json
 kubectl<span class="w"> </span>cp<span class="w"> </span>gimp.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/gimp.json
 </code></pre></div>
-<p>This command reads the <code>PYOS_POD</code> name, then copy the <code>2048.json</code> file to <code>/tmp</code> of PYOS_POD, then send the <code>/tmp/2048.json</code> to REST API server. </p>
-<p>The endpoint image returns a json documment </p>
+<p>This command reads the <code>PYOS_POD</code> name, then copy the <code>2048.json</code> file to <code>/tmp</code> of PYOS_POD, then send the <code>/tmp/2048.json</code> to REST API server.</p>
+<p>The endpoint image returns a json documment</p>
 <details class="note">
 <summary>show details</summary>
 <div class="highlight"><pre><span></span><code>    [
@@ -3831,7 +3842,7 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 <p><img alt="abcdesktop.io gimp is running" src="../img/application-gimp-run.png" /></p>
 <p>Great, you've installed and are running Gimp application as a container.</p>
 <h2 id="all-other-applications">All other applications</h2>
-<p>All abcdesktop applications are defined in a <code>applist.json</code>. Have a look to the complete <a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/applist.json">applist.json</a> file. abcdesktop applist.json contains description to build all default abcdesktop applications. </p>
+<p>All abcdesktop applications are defined in a <code>applist.json</code>. Have a look to the complete <a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/applist.json">applist.json</a> file. abcdesktop applist.json contains description to build all default abcdesktop applications.</p>
 <div class="highlight"><pre><span></span><code>git clone -b 4.4 https://github.com/abcdesktopio/oc.apps
 cd oc.apps
 nodejs make.js
@@ -3843,6 +3854,9 @@ nodejs make.js
 
 
 
+
+  
+  
 
 
 
