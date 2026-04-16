@@ -359,7 +359,7 @@ The ACME issuer configuration has the following fields:
 - server: URL used to access the ACME server’s directory endpoint.
 - privateKeySecretRef: Kubernetes secret to store the automatically generated ACME account private key.
 
-The ingress resources use the HTTP-01 challenge.
+The Issuer resources use the HTTP-01 challenge.
 
 ```
 NAMESPACE=abcdesktop
