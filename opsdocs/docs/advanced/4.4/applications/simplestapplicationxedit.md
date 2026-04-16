@@ -81,13 +81,13 @@ docker inspect $REGISTRY/samplexedit > samplexedit.json
 
 * Send the image to abcdesktop pyos instance
 
-The command read the `PYOS_POD` name, then copy the `samplexeyes.json` file to `/tmp` of PYOS_POD,
-then send the `/tmp/samplexeyes.json` to REST API server
+The command read the `PYOS_POD` name, then copy the `sample.json` file to `/tmp` of PYOS_POD,
+then send the `/tmp/samplexedit.json` to REST API server
 
 ```bash
 NAMESPACE=abcdesktop
 PYOS_POD_NAME=$(kubectl get pods -l run=pyos-od -o jsonpath={.items..metadata.name} -n "$NAMESPACE" | awk '{print $1}')
-kubectl cp samplexeyes.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
+kubectl cp samplexedit.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/samplexedit.json
 ```
 
@@ -147,18 +147,18 @@ The endpoint image returns a json documment
 
 * Look for the new application `xedit` pushed
 
-![Look for the new application xeyes](img/simplestapplication-lookfor-xedit.png)
+![Look for the new application xedit](img/simplestapplication-lookfor-xedit.png)
 
 * Start the new application `xedit`
 
 
 `xedit` image is pulling
 
-![Start the new application xeyes](img/simplestapplication-xedit-starting.png)
+![Start the new application xedit](img/simplestapplication-xedit-starting.png)
 
 `xedit` image is starting
 
-![Start the new application xeyes](img/simplestapplication-xedit-started.png)
+![Start the new application xedit](img/simplestapplication-xedit-started.png)
 
 `xedit` image is started
 
