@@ -21,6 +21,7 @@ tags:
 - `doctl` command line interface [doctl cli](https://docs.digitalocean.com/reference/doctl/how-to/install/)
 - `kubectl` command line
 - `wget` command line
+- `helm` command line
 
 ### To get more informations
 
@@ -101,47 +102,36 @@ NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 http-router   ClusterIP   10.0.132.230   <none>        443/TCP,80/TCP   5s
 ```
 
-## Install the NGINX Ingress Controller using the digitalocean's marketplace
+## Deploy nginx ingress controller
 
-Navigate to your cluster in the Kubernetes section of the digitalocean's console, then click to the Marketplace tab. In the recommended apps section, select `NGINX Ingress Controller` and then click Install.
+You will now deploy a nginx ingress controller on your cluster using `helm`.
 
-![nginx-ingress-controller-marketplace](img/nginx-ingress-controller-market.png)
-
-When installed, the app appears in the History of Installed 1-Click Apps section of the tab.
-
-![nginx-ingress-controller-installing](img/nginx-ingress-controller-installing.png)
-
-Verify if the `NGINX Ingress` pods are up and running:
+First, run the following command to add the nginx ingress controller repository : 
 
 ```
-kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && helm repo update
 ```
 
-The output looks similar to the following
+Then install it on your cluster 
 
 ```
-NAMESPACE       NAME                                        READY   STATUS    RESTARTS   AGE
-ingress-nginx   ingress-nginx-controller-84b84685c5-2zvnz   1/1     Running   0          63s
-ingress-nginx   ingress-nginx-controller-84b84685c5-vr9nl   1/1     Running   0          63s
+helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace
 ```
 
-
-Installing the `NGINX Ingress Controller` 1-Click App also creates a load balancer that you can see in the Resources tab of your cluster.
-
-Run the following command to get the ID of the load balancer:
+Once the installation process completed, you can check that the service has been createed by running this command : 
 
 ```
-doctl compute load-balancer list --format IP,ID,Name,Status
+kubectl get svc ingress-nginx-controller -n ingress-nginx
+NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)                      AGE
+ingress-nginx-controller   LoadBalancer   10.3.74.197   <pending>     80:32649/TCP,443:32195/TCP   12s
 ```
 
-The output looks similar to the following:
+Now wait a few minutes until you get an `EXTERNAL-IP` 
 
 ```
-IP                ID                                      Name                                Status
-129.212.134.86    39b2f24c-1a0e-46b6-9421-a3f033b168d7    a2744cf144c7d4d978c3fe7af00042fd    active
+NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)                      AGE
+ingress-nginx-controller   LoadBalancer   10.3.74.197   129.212.134.86   80:32649/TCP,443:32195/TCP   4m34s
 ```
-
-Keep in mind the IP Address of your `load-balancer`. In my case, the load-balancer gets the IP Address `129.212.134.86`
 
 
 ## Update your DNS zone file 
@@ -564,7 +554,7 @@ controller:
 Now run the following command to apply it
 
 ```
-helm upgrade ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx -f patch-loadbalancer.yaml
+helm upgrade ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx -f patch-ingress.yaml
 ```
 
 You can now retry to connect to console, you should see an error message on the top right
