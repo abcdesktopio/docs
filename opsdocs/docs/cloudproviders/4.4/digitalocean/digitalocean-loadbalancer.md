@@ -124,6 +124,11 @@ The IP Address is show by the DigitalOcean network console, it is the same addre
 
 ```
 kubectl get services http-router -n abcdesktop
+```
+
+You should read on stdout
+
+```
 NAME          TYPE           CLUSTER-IP      EXTERNAL-IP       PORT(S)                      AGE
 http-router   LoadBalancer   10.245.143.46   157.230.202.250   443:31196/TCP,80:32043/TCP   16m
 ```
