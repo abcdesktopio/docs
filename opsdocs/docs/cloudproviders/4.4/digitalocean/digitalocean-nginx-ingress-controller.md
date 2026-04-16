@@ -180,7 +180,8 @@ spec:
 Apply the Ingress yaml file
 
 ```
-kubectl apply -f abcdesktop_host.yaml -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl apply -f abcdesktop_host.yaml -n $NAMESPACE
 ```
 
 You should read
@@ -193,7 +194,8 @@ ingress.networking.k8s.io/ingress-abcdesktop created
 Verify the ingress resources:
 
 ```
-kubectl get ingress -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl get ingress -n $NAMESPACE
 ```
 
 The output looks similar to the following:
