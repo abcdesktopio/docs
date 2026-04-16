@@ -6,6 +6,7 @@ tags:
   - ingress
   - controller
   - AD
+  - FS
 ---
 
 # Publish your website as a public secured service
@@ -39,6 +40,9 @@ If you perform a get services command you will see the `NodePort` type
 
 ``` 
 kubectl get svc http-router -n abcdesktop
+```
+You should read on stdout
+```
 NAME          TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
 http-router   NodePort   10.0.170.21   <none>        80:30443/TCP   5m31s
 ```
@@ -47,6 +51,9 @@ To change it, you will first need to delete the service
 
 ```
 kubectl delete service http-router -n abcdesktop
+```
+You should read on stdout
+```
 service "http-router" deleted
 ```
 
@@ -84,6 +91,9 @@ Now check that the service type is `ClusterIP`
 
 ```
 kubectl get svc http-router -n abcdesktop
+```
+You should read on stdout
+```
 NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 http-router   ClusterIP   10.0.132.230   <none>        443/TCP,80/TCP   5s
 ```
