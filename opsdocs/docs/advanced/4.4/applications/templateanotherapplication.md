@@ -176,7 +176,7 @@ kubectl cp gimp.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/gimp.json
 ```
 
-This command reads the `PYOS_POD` name, then copy the `2048.json` file to `/tmp` of PYOS_POD, then send the `/tmp/2048.json` to REST API server.
+This command reads the `PYOS_POD` name, then copy the `gimp.json` file to `/tmp` of PYOS_POD, then send the `/tmp/gimp.json` to REST API server.
 
 The endpoint image returns a json documment
 
