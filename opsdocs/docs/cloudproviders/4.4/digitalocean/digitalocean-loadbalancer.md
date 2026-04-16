@@ -261,7 +261,8 @@ For example
 Apply your new nginx confguration file
 
 ```
-kubectl apply -f abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl apply -f abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml -n $NAMESPACE
 ```
  
 ## Update `deployment` http-router
@@ -271,7 +272,8 @@ Update the `deployment` route to add certificat ssl entry
 The `abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml` file  adds `mountPath: /etc/nginx/ssl` to `secretName: http-router-certificat`
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml -n $NAMESPACE
 ```
 
 ## Reach your website using `https` protocol 
