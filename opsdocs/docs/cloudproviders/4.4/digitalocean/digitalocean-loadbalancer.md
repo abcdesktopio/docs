@@ -76,6 +76,9 @@ Create your new `service/http-router`
 ```
 NAMESPACE=abcdesktop
 kubectl apply -f http-router.yaml -n $NAMESPACE
+```
+You should read on stdout
+```
 service/http-router created
 ```
 
