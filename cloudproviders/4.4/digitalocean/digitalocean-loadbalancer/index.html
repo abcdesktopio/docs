@@ -3778,10 +3778,12 @@ kubectl delete service http-router -n $NAMESPACE
 service &quot;http-router&quot; deleted
 </code></pre></div>
 <p>Create your new <code>service/http-router</code></p>
-<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+<p><div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl apply -f http-router.yaml -n $NAMESPACE
-service/http-router created
 </code></pre></div>
+You should read on stdout
+<div class="highlight"><pre><span></span><code>service/http-router created
+</code></pre></div></p>
 <p>Wait for few minutes, the <code>EXTERNAL-IP</code> of service <code>http-router</code> stays in <code>Pending</code> state</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl get services http-router -n $NAMESPACE 
