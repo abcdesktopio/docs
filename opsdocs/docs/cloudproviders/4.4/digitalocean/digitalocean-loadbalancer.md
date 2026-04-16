@@ -58,21 +58,24 @@ Save your `http-router.yaml` file
 Delete the previous service `http-router`
 
 ```
-kubectl delete service http-router -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl delete service http-router -n $NAMESPACE
 service "http-router" deleted
 ```
 
 Create your new `service/http-router`
 
 ```
-kubectl apply -f http-router.yaml -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl apply -f http-router.yaml -n $NAMESPACE
 service/http-router created
 ```
 
 Wait for few minutes, the `EXTERNAL-IP` of service `http-router` stays in `Pending` state
 
 ```
-kubectl get services http-router -n abcdesktop 
+NAMESPACE=abcdesktop
+kubectl get services http-router -n $NAMESPACE 
 ```
 
 ```
@@ -93,13 +96,14 @@ NAME          TYPE           CLUSTER-IP       EXTERNAL-IP       PORT(S)        A
 http-router   LoadBalancer   10.245.245.242   157.230.202.250   80:30443/TCP   61s
 ```
 
-You can open a web browser to reach your abcdesktop service with the IP address
 
+You can open a web browser to reach your abcdesktop service with your own ip address
+> Replace `157.230.202.250` by your own ip address
 
 ![web browser to reach your abcdesktop service](img/ipadress.png)
 
 
-Web browser doesn't allow usage of websocket without secure protocol. To login you need `https` protocol
+If your web browser doesn't allow usage of websocket without secure protocol, you will need to use `https` protocol.
 
 
 ## Update your DNS zone file 
