@@ -3784,7 +3784,9 @@ http-router   LoadBalancer   10.245.245.242   157.230.202.250   80:30443/TCP   6
 <p>We are going to create a new record <code>hello</code> (<code>hello.abcdekstop.pepins.net</code>) to the <code>A</code> address <code>157.230.202.250</code>. I prefer to define low <code>TTL</code> value to fix some changes quickly. </p>
 <p>The IP Address is show by the DigitalOcean network console, it is the same address as the <code>EXTERNAL-IP</code> of your <code>http-router</code> service.</p>
 <div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop
-NAME          TYPE           CLUSTER-IP      EXTERNAL-IP       PORT(S)                      AGE
+</code></pre></div>
+<p>You should read on stdout</p>
+<div class="highlight"><pre><span></span><code>NAME          TYPE           CLUSTER-IP      EXTERNAL-IP       PORT(S)                      AGE
 http-router   LoadBalancer   10.245.143.46   157.230.202.250   443:31196/TCP,80:32043/TCP   16m
 </code></pre></div>
 <p><img alt="digital ocean console domain overview" src="../img/createrecord.png" /></p>
