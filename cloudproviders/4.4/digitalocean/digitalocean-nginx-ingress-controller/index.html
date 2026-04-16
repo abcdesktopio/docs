@@ -3780,6 +3780,12 @@
       
       
       
+        <span class="md-tag">FS</span>
+      
+    
+      
+      
+      
         <span class="md-tag">controller</span>
       
     
@@ -3839,14 +3845,18 @@
 <h2 id="update-http-router-service">Update http-router service</h2>
 <p>When installing abcdesktop, http-router service type is <code>NodePort</code> by default, in order to expose the service through an ingress controller you will need to change the service type from <code>NodePort</code> to <code>ClusterIP</code>.</p>
 <p>If you perform a get services command you will see the <code>NodePort</code> type</p>
-<div class="highlight"><pre><span></span><code>kubectl get svc http-router -n abcdesktop
-NAME          TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
+<p><div class="highlight"><pre><span></span><code>kubectl get svc http-router -n abcdesktop
+</code></pre></div>
+You should read on stdout
+<div class="highlight"><pre><span></span><code>NAME          TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
 http-router   NodePort   10.0.170.21   &lt;none&gt;        80:30443/TCP   5m31s
-</code></pre></div>
+</code></pre></div></p>
 <p>To change it, you will first need to delete the service</p>
-<div class="highlight"><pre><span></span><code>kubectl delete service http-router -n abcdesktop
-service &quot;http-router&quot; deleted
+<p><div class="highlight"><pre><span></span><code>kubectl delete service http-router -n abcdesktop
 </code></pre></div>
+You should read on stdout
+<div class="highlight"><pre><span></span><code>service &quot;http-router&quot; deleted
+</code></pre></div></p>
 <p>Then paste the following lines in a new <code>http-router.yaml</code> file</p>
 <div class="highlight"><pre><span></span><code>kind: Service
 apiVersion: v1
@@ -3872,10 +3882,12 @@ spec:
 service/http-router created
 </code></pre></div>
 <p>Now check that the service type is <code>ClusterIP</code></p>
-<div class="highlight"><pre><span></span><code>kubectl get svc http-router -n abcdesktop
-NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
-http-router   ClusterIP   10.0.132.230   &lt;none&gt;        443/TCP,80/TCP   5s
+<p><div class="highlight"><pre><span></span><code>kubectl get svc http-router -n abcdesktop
 </code></pre></div>
+You should read on stdout
+<div class="highlight"><pre><span></span><code>NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+http-router   ClusterIP   10.0.132.230   &lt;none&gt;        443/TCP,80/TCP   5s
+</code></pre></div></p>
 <h2 id="install-the-nginx-ingress-controller-using-the-digitaloceans-marketplace">Install the NGINX Ingress Controller using the digitalocean's marketplace</h2>
 <p>Navigate to your cluster in the Kubernetes section of the digitalocean's console, then click to the Marketplace tab. In the recommended apps section, select <code>NGINX Ingress Controller</code> and then click Install.</p>
 <p><img alt="nginx-ingress-controller-marketplace" src="../img/nginx-ingress-controller-market.png" /></p>
