@@ -4,6 +4,7 @@ tags:
   - digitalocean
   - loadbalancer
   - AD
+  - FS
 ---
 
 # Publish your website as a public secured service
@@ -68,6 +69,9 @@ Delete the previous service `http-router`
 ```
 NAMESPACE=abcdesktop
 kubectl delete service http-router -n $NAMESPACE
+```
+You should read on stdout
+```
 service "http-router" deleted
 ```
 
