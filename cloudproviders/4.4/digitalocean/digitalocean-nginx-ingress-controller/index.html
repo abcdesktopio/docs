@@ -1493,9 +1493,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-the-nginx-ingress-controller-using-the-digitaloceans-marketplace" class="md-nav__link">
+  <a href="#deploy-nginx-ingress-controller" class="md-nav__link">
     <span class="md-ellipsis">
-      Install the NGINX Ingress Controller using the digitalocean's marketplace
+      Deploy nginx ingress controller
     </span>
   </a>
   
@@ -3663,9 +3663,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-the-nginx-ingress-controller-using-the-digitaloceans-marketplace" class="md-nav__link">
+  <a href="#deploy-nginx-ingress-controller" class="md-nav__link">
     <span class="md-ellipsis">
-      Install the NGINX Ingress Controller using the digitalocean's marketplace
+      Deploy nginx ingress controller
     </span>
   </a>
   
@@ -3834,6 +3834,7 @@
 <li><code>doctl</code> command line interface <a href="https://docs.digitalocean.com/reference/doctl/how-to/install/">doctl cli</a></li>
 <li><code>kubectl</code> command line</li>
 <li><code>wget</code> command line</li>
+<li><code>helm</code> command line</li>
 </ul>
 <h3 id="to-get-more-informations">To get more informations</h3>
 <ul>
@@ -3890,28 +3891,23 @@ You should read on stdout
 <div class="highlight"><pre><span></span><code>NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 http-router   ClusterIP   10.0.132.230   &lt;none&gt;        443/TCP,80/TCP   5s
 </code></pre></div></p>
-<h2 id="install-the-nginx-ingress-controller-using-the-digitaloceans-marketplace">Install the NGINX Ingress Controller using the digitalocean's marketplace</h2>
-<p>Navigate to your cluster in the Kubernetes section of the digitalocean's console, then click to the Marketplace tab. In the recommended apps section, select <code>NGINX Ingress Controller</code> and then click Install.</p>
-<p><img alt="nginx-ingress-controller-marketplace" src="../img/nginx-ingress-controller-market.png" /></p>
-<p>When installed, the app appears in the History of Installed 1-Click Apps section of the tab.</p>
-<p><img alt="nginx-ingress-controller-installing" src="../img/nginx-ingress-controller-installing.png" /></p>
-<p>Verify if the <code>NGINX Ingress</code> pods are up and running:</p>
-<div class="highlight"><pre><span></span><code>kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx
+<h2 id="deploy-nginx-ingress-controller">Deploy nginx ingress controller</h2>
+<p>You will now deploy a nginx ingress controller on your cluster using <code>helm</code>.</p>
+<p>First, run the following command to add the nginx ingress controller repository : </p>
+<div class="highlight"><pre><span></span><code>helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx &amp;&amp; helm repo update
 </code></pre></div>
-<p>The output looks similar to the following</p>
-<div class="highlight"><pre><span></span><code>NAMESPACE       NAME                                        READY   STATUS    RESTARTS   AGE
-ingress-nginx   ingress-nginx-controller-84b84685c5-2zvnz   1/1     Running   0          63s
-ingress-nginx   ingress-nginx-controller-84b84685c5-vr9nl   1/1     Running   0          63s
+<p>Then install it on your cluster </p>
+<div class="highlight"><pre><span></span><code>helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace
 </code></pre></div>
-<p>Installing the <code>NGINX Ingress Controller</code> 1-Click App also creates a load balancer that you can see in the Resources tab of your cluster.</p>
-<p>Run the following command to get the ID of the load balancer:</p>
-<div class="highlight"><pre><span></span><code>doctl compute load-balancer list --format IP,ID,Name,Status
+<p>Once the installation process completed, you can check that the service has been createed by running this command : </p>
+<div class="highlight"><pre><span></span><code>kubectl get svc ingress-nginx-controller -n ingress-nginx
+NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)                      AGE
+ingress-nginx-controller   LoadBalancer   10.3.74.197   &lt;pending&gt;     80:32649/TCP,443:32195/TCP   12s
 </code></pre></div>
-<p>The output looks similar to the following:</p>
-<div class="highlight"><pre><span></span><code>IP                ID                                      Name                                Status
-129.212.134.86    39b2f24c-1a0e-46b6-9421-a3f033b168d7    a2744cf144c7d4d978c3fe7af00042fd    active
+<p>Now wait a few minutes until you get an <code>EXTERNAL-IP</code> </p>
+<div class="highlight"><pre><span></span><code>NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)                      AGE
+ingress-nginx-controller   LoadBalancer   10.3.74.197   129.212.134.86   80:32649/TCP,443:32195/TCP   4m34s
 </code></pre></div>
-<p>Keep in mind the IP Address of your <code>load-balancer</code>. In my case, the load-balancer gets the IP Address <code>129.212.134.86</code></p>
 <h2 id="update-your-dns-zone-file">Update your DNS zone file</h2>
 <p>We will associate your <code>FQDN</code> (Fully Qualified Domain Name) to the load-balancer's IP Address.</p>
 <p><img alt="digitalocean networking" src="../img/digitalocean-networking.png" /></p>
@@ -4209,7 +4205,7 @@ pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log
     log-format-upstream: &#39;{&quot;time&quot;: &quot;$time_iso8601&quot;, &quot;remote_addr&quot;: &quot;$proxy_protocol_addr&quot;, &quot;x_forwarded_for&quot;: &quot;$proxy_add_x_forwarded_for&quot;, &quot;http_x_forwarded-for&quot;: &quot;$http_x_forwarded_for&quot;, &quot;request_id&quot;: &quot;$req_id&quot;, &quot;remote_user&quot;: &quot;$remote_user&quot;, &quot;bytes_sent&quot;: $bytes_sent, &quot;request_time&quot;: $request_time, &quot;status&quot;: $status, &quot;vhost&quot;: &quot;$host&quot;, &quot;request_proto&quot;: &quot;$server_protocol&quot;, &quot;path&quot;: &quot;$uri&quot;, &quot;request_query&quot;: &quot;$args&quot;, &quot;request_length&quot;: $request_length, &quot;method&quot;: &quot;$request_method&quot;, &quot;http_referrer&quot;: &quot;$http_referer&quot;,  &quot;http_user_agent&quot;: &quot;$http_user_agent&quot; }&#39;
 </code></pre></div>
 <p>Now run the following command to apply it</p>
-<div class="highlight"><pre><span></span><code>helm upgrade ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx -f patch-loadbalancer.yaml
+<div class="highlight"><pre><span></span><code>helm upgrade ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx -f patch-ingress.yaml
 </code></pre></div>
 <p>You can now retry to connect to console, you should see an error message on the top right</p>
 <p><img alt="access console ok" src="../../img/console_access_denied.png" /></p>
