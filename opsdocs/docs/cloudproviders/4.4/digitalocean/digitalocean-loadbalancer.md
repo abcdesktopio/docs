@@ -2,7 +2,7 @@
 tags:
   - install
   - digitalocean
-  - loadBalancer
+  - loadbalancer
   - AD
 ---
 
