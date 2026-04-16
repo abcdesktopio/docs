@@ -4015,13 +4015,15 @@ spec:
 <li>privateKeySecretRef: Kubernetes secret to store the automatically generated ACME account private key.</li>
 </ul>
 <p>The ingress resources use the HTTP-01 challenge.</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f cert-manager-issuer.yaml -n abcdesktop
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl apply -f cert-manager-issuer.yaml -n $NAMESPACE
 </code></pre></div>
 <p>The output looks similar to the following</p>
 <div class="highlight"><pre><span></span><code>issuer.cert-manager.io/letsencrypt-nginx created
 </code></pre></div>
 <p>Verify that the Issuer resource is created:</p>
-<div class="highlight"><pre><span></span><code>kubectl get issuer -n abcdesktop         
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl get issuer -n $NAMESPACE         
 </code></pre></div>
 <p>The output looks similar to the following</p>
 <div class="highlight"><pre><span></span><code>NAME                READY   AGE
@@ -4063,12 +4065,14 @@ spec:
 <div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop_host.yaml -n abcdesktop
 </code></pre></div>
 <p>After a few minutes, check the state of the ingress object:</p>
-<div class="highlight"><pre><span></span><code>kubectl get ingress -n  abcdesktop
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl get ingress -n $NAMESPACE
 NAME                 CLASS   HOSTS                           ADDRESS          PORTS     AGE
 ingress-abcdesktop   nginx   hello.digitalocean.pepins.net   129.212.134.86   80, 443   31m
 </code></pre></div>
 <p>Check that the certificate resource is created</p>
-<div class="highlight"><pre><span></span><code>kubectl get certificates -n abcdesktop
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl get certificates -n $NAMESPACE
 </code></pre></div>
 <p>The output looks similar to the following</p>
 <div class="highlight"><pre><span></span><code>NAME                     READY   SECRET                   AGE
@@ -4105,8 +4109,11 @@ For example, the console module of abcdesktop should not be accessible to everyo
 <p>By default the configuration only permit private network defined in <a href="https://datatracker.ietf.org/doc/html/rfc1918">rfc1918</a> and <a href="https://datatracker.ietf.org/doc/html/rfc4193">rfc4193</a>. So as your service is publically exposed, none of your visitors should be able to access to console. But when you try, you will actually be able to play with console normally, which is not the expected behaviour.</p>
 <p><img alt="access console ok" src="../../img/access_console.png" /></p>
 <p>And when you check Pyos logs you will see why console behaves like that.</p>
-<div class="highlight"><pre><span></span><code>kubectl get pods -n abcdesktop
-NAME                            READY   STATUS    RESTARTS   AGE
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl get pods -n $NAMESPACE
+</code></pre></div>
+<p>You should read on stdout </p>
+<div class="highlight"><pre><span></span><code>NAME                            READY   STATUS    RESTARTS   AGE
 console-od-5cd84fdd69-zbjxf     1/1     Running   0          11m
 memcached-od-6ccd5b5f67-wwnw8   1/1     Running   0          11m
 mongodb-od-0                    2/2     Running   0          11m
@@ -4116,8 +4123,11 @@ pyos-od-5c5cfdbfc8-t9r9m        1/1     Running   0          11m
 router-od-6b7456b789-dsqdh      1/1     Running   0          11m
 speedtest-od-8686c67749-hncft   1/1     Running   0          11m
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>kubectl exec -it pyos-od-5c5cfdbfc8-t9r9m -n abcdesktop -- bash
-Defaulted container &quot;pyos&quot; out of: pyos, wait-for-mongo (init)
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl exec -it pyos-od-5c5cfdbfc8-t9r9m -n $NAMESPACE -- tail logs/trace.log
+</code></pre></div>
+<p>You should read on stdout</p>
+<div class="highlight"><pre><span></span><code>Defaulted container &quot;pyos&quot; out of: pyos, wait-for-mongo (init)
 pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log 
 2026-02-06 16:03:51 abcpool1-node-fa2594 139923622185784 base_controller [DEBUG  ] controllers.manager_controller.ManagerController.apifilter:anonymous 
 2026-02-06 16:03:51 abcpool1-node-fa2594 139923622185784 base_controller [DEBUG  ] controllers.manager_controller.ManagerController.ipfilter:anonymous 
@@ -4130,8 +4140,8 @@ pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log
 2026-02-06 16:04:15 abcpool1-node-fa2594 139923617876792 od [INFO   ] __main__.trace_request:anonymous /healthz
 2026-02-06 16:04:25 abcpool1-node-fa2594 139923621108536 od [INFO   ] __main__.trace_request:anonymous /healthz
 </code></pre></div>
-<p>As you can see on the logs, the source IP address seen by pyos is a private IP address like <code>10.X.X.X</code> (or in the subnet you defined as internal to your cluster) which is in the pool of permit IP addresses.  </p>
-<p>That happens because the nginx ingress controller we set up earlier does not forward the client public IP address and balance the request with its own IP address in the cluster. So Router and Pyos both see the IP address of the ingress controller loadbalancer.</p>
+<p>As you can see in the log file <code>logs/trace.log</code>, the source IP address seen by pyos is a private IP address like <code>10.X.X.X</code> (or in the subnet you defined as internal to your cluster) which is in the pool of permit ip addresses.  </p>
+<p>That happens because the nginx ingress controller we set up earlier does not forward the client public IP address and balance the request with its own IP address in the cluster. So Router and Pyos both see the ip address of the ingress controller loadbalancer.</p>
 <p>To fix that, we have to update te configuration of our nginx ingress controller. Please paste the following lines in a <code>patch-ingress.yaml</code> file</p>
 <div class="highlight"><pre><span></span><code>controller:
   service:
@@ -4149,9 +4159,12 @@ pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log
 </code></pre></div>
 <p>You can now retry to connect to console, you should see an error message on the top right</p>
 <p><img alt="access console ok" src="../../img/console_access_denied.png" /></p>
-<p>You can also check the logs of Pyos, you should see your public IP address as source IP</p>
-<div class="highlight"><pre><span></span><code>kubectl exec -it pyos-od-5c5cfdbfc8-t9r9m -n abcdesktop -- bash
-Defaulted container &quot;pyos&quot; out of: pyos, wait-for-mongo (init)
+<p>You can also check the logs of <code>pyos</code>, you should see your public ip address as source IP</p>
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl exec -it pyos-od-5c5cfdbfc8-t9r9m -n $NAMESPACE -- tail logs/trace.log
+</code></pre></div>
+<p>You should read on stdout</p>
+<div class="highlight"><pre><span></span><code>Defaulted container &quot;pyos&quot; out of: pyos, wait-for-mongo (init)
 pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log 
 2026-02-06 16:25:25 abcpool1-node-fa2594 139923622185784 od [INFO   ] __main__.trace_request:anonymous /healthz
 2026-02-06 16:25:35 abcpool1-node-fa2594 139923627645752 od [INFO   ] __main__.trace_request:anonymous /healthz
