@@ -4068,7 +4068,7 @@ spec:
 <li>server: URL used to access the ACME server’s directory endpoint.</li>
 <li>privateKeySecretRef: Kubernetes secret to store the automatically generated ACME account private key.</li>
 </ul>
-<p>The ingress resources use the HTTP-01 challenge.</p>
+<p>The Issuer resources use the HTTP-01 challenge.</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl apply -f cert-manager-issuer.yaml -n $NAMESPACE
 </code></pre></div>
