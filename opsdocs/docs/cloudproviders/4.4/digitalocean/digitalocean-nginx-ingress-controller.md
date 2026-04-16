@@ -88,7 +88,7 @@ When installed, the app appears in the History of Installed 1-Click Apps section
 
 ![nginx-ingress-controller-installing](img/nginx-ingress-controller-installing.png)
 
-Verify if the `NGINX Ingress` Pods are up and running:
+Verify if the `NGINX Ingress` pods are up and running:
 
 ```
 kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx
