@@ -3878,9 +3878,11 @@ spec:
     name: http
 </code></pre></div>
 <p>Then Create your new <code>service/http-router</code></p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f http-router.yaml -n abcdesktop
-service/http-router created
+<p><div class="highlight"><pre><span></span><code>kubectl apply -f http-router.yaml -n abcdesktop
 </code></pre></div>
+You should read on stdout
+<div class="highlight"><pre><span></span><code>service/http-router created
+</code></pre></div></p>
 <p>Now check that the service type is <code>ClusterIP</code></p>
 <p><div class="highlight"><pre><span></span><code>kubectl get svc http-router -n abcdesktop
 </code></pre></div>
