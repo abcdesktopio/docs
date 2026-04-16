@@ -3870,12 +3870,14 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
      ssl_certificate_key /etc/nginx/ssl/tls.key;
 </code></pre></div>
 <p>Apply your new nginx confguration file</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop-routehttp-config.4.4.yaml -n abcdesktop
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl apply -f abcdesktop-routehttp-config.4.4.yaml -n $NAMESPACE
 </code></pre></div>
 <h2 id="update-deployment-http-router">Update <code>deployment</code> http-router</h2>
 <p>Update the <code>deployment</code> route to add certificat ssl entry</p>
 <p>The <code>abcdesktop-deployment-routehttps.4.4.yaml</code> file  adds <code>mountPath: /etc/nginx/ssl</code> to <code>secretName: http-router-certificat</code></p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.4.yaml -n abcdesktop
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.4.yaml -n $NAMESPACE
 </code></pre></div>
 <h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
 <p>You can now connect to your abcdesktop desktop pulic web site using <code>https</code> protocol. </p>
