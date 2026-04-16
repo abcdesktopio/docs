@@ -87,7 +87,7 @@ wget https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg -O icons/
 
 ```
 wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/refs/heads/4.4/make.js
-wget https://github.com/abcdesktopio/oc.apps/blob/4.4/package.json
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/refs/heads/4.4/package.json
 ```
 
 Run the command npm install command line, to install packages
