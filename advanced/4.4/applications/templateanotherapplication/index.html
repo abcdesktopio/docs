@@ -3746,7 +3746,7 @@ docker inspect $REGISTRY/gimp.d &gt; gimp.json
 kubectl<span class="w"> </span>cp<span class="w"> </span>gimp.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/gimp.json
 </code></pre></div>
-<p>This command reads the <code>PYOS_POD</code> name, then copy the <code>2048.json</code> file to <code>/tmp</code> of PYOS_POD, then send the <code>/tmp/2048.json</code> to REST API server.</p>
+<p>This command reads the <code>PYOS_POD</code> name, then copy the <code>gimp.json</code> file to <code>/tmp</code> of PYOS_POD, then send the <code>/tmp/gimp.json</code> to REST API server.</p>
 <p>The endpoint image returns a json documment</p>
 <details class="note">
 <summary>show details</summary>
