@@ -54,7 +54,7 @@ flowchart TD
 The project abcdesktop provides container images for `route`, `console`, `website`, `pyos`, and `user`
 
 The projects `kubernetes`, `mongodb`, `memcached`, `speedtest` and `ldap` are not part of the abcdesktop project.
-Items on this page (kubernetes, mongodb, memcached, speedtest and ldap) refer to third party products or projects that provide functionality required by abcdesktop.io. The abcdesktop project authors aren't responsible for those third-party products or projects. 
+Items on this page refer to third party products or projects that provide functionality required by abcdesktop.io. The abcdesktop project authors aren't responsible for those third-party products or projects. 
 
 ## Create desktop workflow
 
@@ -122,8 +122,8 @@ The service infrastructure is based on :
 
 - Router nginx with lua script [router](https://github.com/abcdesktopio/router)
 - Website service [webmodules](https://github.com/abcdesktopio/webmodules)
-- Database service (external projet) [MongoDB](/core/mongodb/)
-- Memcached service (external projet) [Memcached](/core/memcached/)
+- Database service (third party products) [MongoDB](/core/mongodb/)
+- Memcached service (third party projet) [Memcached](/core/memcached/)
 - Pyos Core service (abcdesktop control plane) [pyos](https://github.com/abcdesktopio/pyos)
 - Pod user [user](https://github.com/abcdesktopio/oc.user)
 
