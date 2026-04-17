@@ -1,6 +1,7 @@
 ---
 tags:
   - install
+  - cloud
   - digitalocean
   - AD
 ---
