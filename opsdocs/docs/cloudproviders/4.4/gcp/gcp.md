@@ -3,6 +3,7 @@ tags:
   - gcp
   - install
   - AD
+  - cloud
 ---
 
 
