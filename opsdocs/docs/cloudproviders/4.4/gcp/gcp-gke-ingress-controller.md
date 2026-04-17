@@ -51,7 +51,8 @@ spec:
                   number: 80
 ```
 
-As mentionned in the [GKE ingress documentation](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/load-balance-ingress), you cannot specify a GKE ingress using `spec.ingressClassName`, you must use the `kubernetes.io/ingress.class` annotation. We are using the gce class to deploy an external Application Load Balancer.
+
+We are using the `kubernetes.io/ingress.class` class to deploy an external application load balancer.
 
 Apply the Ingress yaml file
 
@@ -141,7 +142,8 @@ spec:
 Then apply it to the cluster.
 
 ```
-kubectl apply -f abcdesktop_managed_certificate.yaml -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl apply -f abcdesktop_managed_certificate.yaml -n $NAMESPACE
 ```
 
 Now, you will have modify the previously created ingress file, and  specify the managed certificate the ingress will use, in the annotations section.
