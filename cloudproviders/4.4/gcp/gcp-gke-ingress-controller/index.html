@@ -3707,7 +3707,7 @@ metadata:
   name: ingress-abcdesktop
   namespace: abcdesktop
   annotations:
-    kubernetes.io/ingress.class: &quot;gce&quot;
+    spec.ingressClassName: &quot;gce&quot;
 spec:
   rules:
     - host: hello.ingress.gcp.pepins.net
@@ -3721,7 +3721,7 @@ spec:
                 port:
                   number: 80
 </code></pre></div>
-<p>We are using the <code>kubernetes.io/ingress.class</code> class to deploy an external application load balancer.</p>
+<p>We are using the <code>spec.ingressClassName</code> class to deploy an external application load balancer.</p>
 <p>Apply the Ingress yaml file</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl apply -f abcdesktop_host.yaml -n $NAMESPACE
@@ -3783,7 +3783,7 @@ metadata:
   name: ingress-abcdesktop
   namespace: abcdesktop
   annotations:
-    kubernetes.io/ingress.class: &quot;gce&quot;
+    spec.ingressClassName: &quot;gce&quot;
     networking.gke.io/managed-certificates: &quot;abcdesktop-cert&quot;
 spec:
   rules:
@@ -3799,16 +3799,21 @@ spec:
                   number: 80                         
 </code></pre></div>
 <p>Then apply it to the cluster to start the certificate generation.</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop_host.yaml -n abcdesktop
+<div class="highlight"><pre><span></span><code>NAMESCAPE=abcdesktop
+kubectl apply -f abcdesktop_host.yaml -n $NAMESPACE
 </code></pre></div>
 <p>You can check that the provisioning started by running the following command</p>
-<div class="highlight"><pre><span></span><code>kubectl get managedcertificate -n abcdesktop
-NAME                AGE   STATUS
+<div class="highlight"><pre><span></span><code>NAMESCAPE=abcdesktop
+kubectl get managedcertificate -n $NAMESPACE
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>NAME                AGE   STATUS
 abcdesktop-cert     30s   Provisioning
 </code></pre></div>
 <p>After a few minutes, between 10 and 15, you will see that the status will change from <code>Provisioning</code> to <code>Active</code>.</p>
-<div class="highlight"><pre><span></span><code>kubectl get managedcertificate -n abcdesktop
-NAME                AGE   STATUS
+<div class="highlight"><pre><span></span><code>NAMESCAPE=abcdesktop
+kubectl get managedcertificate  -n $NAMESPACE
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>NAME                AGE   STATUS
 abcdesktop-cert     12m   Active
 </code></pre></div>
 <h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
