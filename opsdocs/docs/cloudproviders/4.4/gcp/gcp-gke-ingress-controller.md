@@ -36,7 +36,7 @@ metadata:
   name: ingress-abcdesktop
   namespace: abcdesktop
   annotations:
-    kubernetes.io/ingress.class: "gce"
+    spec.ingressClassName: "gce"
 spec:
   rules:
     - host: hello.ingress.gcp.pepins.net
@@ -52,7 +52,7 @@ spec:
 ```
 
 
-We are using the `kubernetes.io/ingress.class` class to deploy an external application load balancer.
+We are using the `spec.ingressClassName` class to deploy an external application load balancer.
 
 Apply the Ingress yaml file
 
@@ -156,7 +156,7 @@ metadata:
   name: ingress-abcdesktop
   namespace: abcdesktop
   annotations:
-    kubernetes.io/ingress.class: "gce"
+    spec.ingressClassName: "gce"
     networking.gke.io/managed-certificates: "abcdesktop-cert"
 spec:
   rules:
@@ -175,13 +175,18 @@ spec:
 Then apply it to the cluster to start the certificate generation.
 
 ```
-kubectl apply -f abcdesktop_host.yaml -n abcdesktop
+NAMESCAPE=abcdesktop
+kubectl apply -f abcdesktop_host.yaml -n $NAMESPACE
 ```
 
 You can check that the provisioning started by running the following command
 
 ```
-kubectl get managedcertificate -n abcdesktop
+NAMESCAPE=abcdesktop
+kubectl get managedcertificate -n $NAMESPACE
+```
+
+```
 NAME                AGE   STATUS
 abcdesktop-cert     30s   Provisioning
 ```
@@ -189,7 +194,11 @@ abcdesktop-cert     30s   Provisioning
 After a few minutes, between 10 and 15, you will see that the status will change from `Provisioning` to `Active`.
 
 ```
-kubectl get managedcertificate -n abcdesktop
+NAMESCAPE=abcdesktop
+kubectl get managedcertificate  -n $NAMESPACE
+```
+
+```
 NAME                AGE   STATUS
 abcdesktop-cert     12m   Active
 ```
