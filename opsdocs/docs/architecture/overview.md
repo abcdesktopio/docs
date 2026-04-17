@@ -53,7 +53,8 @@ flowchart TD
 
 The project abcdesktop provides container images for `route`, `console`, `website`, `pyos`, and `user`
 
-> The projects `kubernetes`, `mongodb`, `memcached`, `speedtest` and `ldap` are not part of the abcdesktop project.
+The projects `kubernetes`, `mongodb`, `memcached`, `speedtest` and `ldap` are not part of the abcdesktop project.
+Items on this page (kubernetes, mongodb, memcached, speedtest and ldap) refer to third party products or projects that provide functionality required by abcdesktop.io. The abcdesktop project authors aren't responsible for those third-party products or projects. 
 
 ## Create desktop workflow
 
