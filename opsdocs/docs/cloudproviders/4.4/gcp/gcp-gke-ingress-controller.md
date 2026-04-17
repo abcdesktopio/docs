@@ -18,7 +18,6 @@ tags:
 - a domain of you own hosted on GCP
 - `gcloud` command line interface [gcloud cli](https://docs.cloud.google.com/sdk/docs/install-sdk/)
 - `kubectl` command line
-- `wget` command line
 
 ### To get more informations
 
