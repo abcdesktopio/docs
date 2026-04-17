@@ -1,16 +1,15 @@
-# Add hostPath volume using rules
+# Shared Volumes
 
 
-Users may need to access shared files. If you can't create `persistent volumes` on your cluster, this page describe how to access a shared '/mnt/myproject' hostPath using `rules`
+Users may need to access shared files. If you can't create `persistent volumes` on your cluster, this page describe how to access a shared '/mnt/shared_data' hostPath using `rules`
 
 
 ## Check your rules in `authmanagers` `ldapconfig`
 
-
-The `ldapconfig` for demo ldap server add few default rules. To get more information about the ldap server read the [docker-test-openldap](https://github.com/abcdesktopio/docker-test-openldap) web page.
+!!! note
+    The `ldapconfig` for demo ldap server add few default rules. To get more information about the ldap server read the [docker-test-openldap](https://github.com/abcdesktopio/docker-test-openldap) web page.
 
 The user `Philip J. Fry` is member of the group `ship_crew`.
-
 
 Detail of `ship_crew` group `cn=ship_crew,ou=people,dc=planetexpress,dc=com`
 
@@ -73,23 +72,9 @@ Start your web brower and login in as `Philip J. Fry` to you abcdesktop web serv
 When `Philip J. Fry` is logged in, `Philip J. Fry` gets the labels `labeltrue` and `shipcrew`.
 
 
-## Define a volume policy when a label is set
-
-
-To define a policy, we need to update the `desktop.policies` dictionary.
-
-
-### Extract the `abcdesktop-config` configmap description to a local file
-
-```
-kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
-```
-
-You get a the new local file `od.config`
-
+## Define volume using `hostPath`
 
 ### Update `od.config` file
-
 
 Add `rules` to the `desktop.policies` dictionary
 
@@ -101,7 +86,7 @@ desktop.policies: {
         'type': 'hostPath', 
         'name': 'mntmyproject', 
         'path': '/mnt',
-        'mountPath': '/mnt/testmyproject'
+        'mountPath': '/mnt/shared_data'
       }
     },
     'network': {}                                
@@ -109,11 +94,9 @@ desktop.policies: {
   'acls' : {} }
 ```
 
-In this case, the `type` is set to `hostPath`. Others types are supported like [ `cifs`, `nfs`, `pvc` ]
-
 > On your worker node, make sure that the `/mnt` directory exists.
 
-This policy adds a new volume `mntmyproject` defined as a `hostPath` to the users's pod and mount it as `/mnt/testmyproject`.
+This policy adds a new volume `mntmyproject` defined as a `hostPath` to the users's pod and mount it as `/mnt/shared_data`.
 
 
 Save your `od.config` file
@@ -166,14 +149,14 @@ fry-06c5f   4/4     Running   0          3m24s
 kubectl desribe pods fry-06c5f -n abcdesktop
 ```
 
-The mount for `hostpath-mntmyproject-fry` is defined to `/mnt/testmyproject`
+The mount for `hostpath-mntmyproject-fry` is defined to `/mnt/shared_data`
 
 ```
     Mounts:
       /etc/sudoers.d from sudoers (rw)
       /home/fry from home (rw)
       /home/fry/.cache from cache (rw)
-      /mnt/testmyproject from hostpath-mntmyproject-fry (rw)
+      /mnt/shared_data from hostpath-mntmyproject-fry (rw)
       /run/user/ from runuser (rw)
       /tmp from tmp (rw)
       /tmp/.X11-unix from x11socket (rw)
@@ -195,17 +178,20 @@ The volume `hostpath-mntmyproject-fry` is defined as
 ```
 
 
-A new `Mount` is defined as `/mnt/testmyproject from hostpath-mntmyproject-fry (rw)` and a new volume hostpath-mntmyproject-fry is defined as `HostPath` to the `Path` `/mnt`
+A new `Mount` is defined as `/mnt/shared_data from hostpath-mntmyproject-fry (rw)` and a new volume hostpath-mntmyproject-fry is defined as `HostPath` to the `Path` `/mnt`
 
 > Check that your file system's permissions are set to your users
 
 The volume `hostpath-mntmyproject-fry` is also mounted for applications ephemeral containers and pods.
 
-- Start the `webshell` application in the web interface to list files in `/mnt/testmyproject`.
+- Start the `webshell` application in the web interface
 
-Inside the webshell terminal, run the command `ls -la /mnt/testmyproject`
+- Now create a file inside the `/mnt/shared_data` folder, for example `hello.txt`
 
-![/mnt/testmyproject files](img/list_hostpath_files.png )
+![/mnt/shared_data files](img/fry-shared-data.png )
 
+## Start a new desktop as `Turanga Leela`
 
-> You added a new volume to your pods and your application.
+Now start a desktop as `Turanga Leela`. As a member of the `shipcrew` group, you should see the file you created with `Philip J. Fry`.
+
+![shared_data with leela](img/leela-shared-data.png)
