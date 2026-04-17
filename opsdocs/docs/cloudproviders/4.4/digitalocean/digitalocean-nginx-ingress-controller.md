@@ -2,6 +2,7 @@
 tags:
   - install
   - digitalocean
+  - cloud
   - nginx
   - ingress
   - controller
