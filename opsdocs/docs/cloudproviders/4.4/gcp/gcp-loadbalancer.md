@@ -298,6 +298,13 @@ NAMESPACE=abcdesktop
 kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml -n $NAMESPACE
 ```
 
+You should read on stdout 
+
+```
+deployment.apps/router-od configured
+```
+
+
 ## Reach your website using `https` protocol 
 
 You can now connect to your abcdesktop desktop pulic web site using `https` protocol. 
