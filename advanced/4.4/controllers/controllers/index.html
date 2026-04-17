@@ -2837,6 +2837,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#requests-through-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requests through console
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Requests through console">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deal-with-console-and-x-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deal with console and X-API-KEY
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3571,6 +3595,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#requests-through-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requests through console
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Requests through console">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deal-with-console-and-x-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deal with console and X-API-KEY
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3714,6 +3762,14 @@ If <code>apikey</code>  is not set or the <code>controller</code> not defined, f
 <p>The command returns</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Request forbidden -- authorization will not help&quot;</span><span class="p">}</span>
 </code></pre></div>
+<h2 id="requests-through-console">Requests through console</h2>
+<h3 id="deal-with-console-and-x-api-key">Deal with console and <code>X-API-KEY</code></h3>
+<p>As we saw above, when an <code>apikey</code> is specified, the request sent to pyos requires the <code>X-API-KEY</code> header with the <code>apikey</code> string. But what about console ? When you try to connect to console, a popup will apear asking you to enter the <code>ManagerController apikey</code>. </p>
+<p><img alt="api-key-popup" src="../img/api-key-modal.png" /></p>
+<p>If you try to close it whthout entering the <code>apikey</code> or entering a bad one. The popup will reapear utill you enter a good <code>apikey</code>. You will also see an error message on the top right corner.</p>
+<p><img alt="api-key-error" src="../img/api-key-error.png" /></p>
+<p>Once a good <code>apikey</code> is set. It will eb stored in your browser <code>LocalStorage</code> so you don't have to enter it again every time you connect to console.</p>
+<!-- ![api-key-local-storage]() -->
 
 
 
