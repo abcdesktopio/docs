@@ -103,6 +103,45 @@ After image pulling process, you get your first abcdesktop
 ![abcdesktop for fry](../img/abcdesktop-hompage-port30443-user-fry-logged.png)
 
 
+### Resource issue
+
+If this resource issue occurs
+
+```
+Unprocessable Entity {"kind":"Status","apiVersion":"v1","metadata":{},"status":"Failure","message":"Pod \"fry-38b04\" is invalid: [spec.resources.requests[cpu]: Invalid value: \"1\": must be greater than or equal to aggregate container requests of 1500m, spec.resources.requests[memory]: Invalid value: \"576Mi\": must be greater than or equal to aggregate container requests of 6Gi]","reason":"Invalid","details":{"name":"fry-38b04","kind":"Pod","causes":[{"reason":"FieldValueInvalid","message":"Invalid value: \"1\": must be greater than or equal to aggregate container requests of 1500m","field":"spec.resources.requests[cpu]"},{"reason":"FieldValueInvalid","message":"Invalid value: \"576Mi\": must be greater than or equal to aggregate container requests of 6Gi","field":"spec.resources.requests[memory]"}]},"code":422}
+```
+
+- Update the `od.config`, add comment the `executeclasses` `default` entry
+
+```
+executeclasses : {
+  'default':{
+    'nodeSelector': { 'cloud.google.com/compute-class': 'Scale-Out' },
+    'description': 'default: up to 4 CPU cores and 8Gi',
+    'runtimeClassName': None,
+    'resources':{
+      # 'requests':{'memory':"576Mi",'cpu':"1000m"},
+      # 'limits':  {'memory':"8Gi",'cpu':"2000m"}
+    }
+  },
+```
+
+- Restart `pyos-od` deployment to reload the `abcdesktop-config`
+
+```
+NAMESPACE=abcdesktop
+kubectl create -n $NAMESPACE configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+kubectl rollout restart deployment pyos-od -n $NAMESPACE
+```
+
+
+
+
+
+
+
+
+
 ## Add applications to your desktop
 
 
