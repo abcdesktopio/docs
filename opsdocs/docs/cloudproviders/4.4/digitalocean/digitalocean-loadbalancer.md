@@ -3,6 +3,7 @@ tags:
   - install
   - digitalocean
   - loadbalancer
+  - cloud
   - AD
   - FS
 ---
