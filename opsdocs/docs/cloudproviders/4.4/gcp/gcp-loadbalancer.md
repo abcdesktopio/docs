@@ -61,21 +61,29 @@ Save your `http-router.yaml` file
 Delete the previous service `http-router`
 
 ```
-kubectl delete service http-router -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl delete service http-router -n $NAMESPACE
 service "http-router" deleted
 ```
 
 Create your new `service/http-router`
 
 ```
-kubectl apply -f http-router.yaml -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl apply -f http-router.yaml -n $NAMESPACE
+```
+
+You should read on stdout
+
+```
 service/http-router created
 ```
 
 Wait for few minutes, the `EXTERNAL-IP` of service `http-router` stays in `Pending` state
 
 ```
-kubectl get services http-router -n abcdesktop 
+NAMESPACE=abcdesktop
+kubectl get services http-router -n $NAMESPACE 
 ```
 
 ```
@@ -86,7 +94,8 @@ http-router   LoadBalancer   34.118.231.121   <pending>     443:31089/TCP,80:320
 Check the EXTERNAL-IP of service `http-router` again
 
 ```
-kubectl get services http-router -n abcdesktop       
+NAMESPACE=abcdesktop
+kubectl get services http-router -n $NAMESPACE       
 ```
 
 > Great the service gets `34.59.246.150` as an `EXTERNAL-IP`
@@ -123,7 +132,13 @@ We are going to create a new record `hello.loadbalancer` (`hello.loadbalancer.gc
 The IP Address is show by the GCP network console, it is the same address as the `EXTERNAL-IP` of your `http-router` service.
 
 ```
-kubectl get services http-router -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl get services http-router -n $NAMESPACE
+```
+
+returns a `EXTERNAL-IP`
+
+```
 NAME          TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                      AGE
 http-router   LoadBalancer   34.118.231.121   34.59.246.150   443:31089/TCP,80:32012/TCP   33s
 ```
@@ -157,10 +172,11 @@ Define the new variables `ABCDESKTOP_PUBLIC_FQDN` and `USER_EMAIL_ADDRESS`
 
 
 ``` bash
+NAMESPACE=abcdesktop
 ABCDESKTOP_PUBLIC_FQDN=hello.loadbalancer.gcp.pepins.net
 USER_EMAIL_ADDRESS=thisisyouremail@domain.com
 ROUTER_POD_NAME=$(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name}  -n abcdesktop)
-kubectl exec -n abcdesktop -it ${ROUTER_POD_NAME} -- /usr/bin/certbot certonly --webroot -w /var/lib/nginx/html -d ${ABCDESKTOP_PUBLIC_FQDN} -m "${USER_EMAIL_ADDRESS}" --agree-tos -n
+kubectl exec -n $NAMESPACE -it ${ROUTER_POD_NAME} -- /usr/bin/certbot certonly --webroot -w /var/lib/nginx/html -d ${ABCDESKTOP_PUBLIC_FQDN} -m "${USER_EMAIL_ADDRESS}" --agree-tos -n
 ```
 
 You should read on stdout
@@ -209,7 +225,8 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
 Create a secret named `http-router-certificat` with the `fullchain.pem` and `privkey.pem` file content
 
 ```
-kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=privkey.pem -n abcdesktop 
+NAMESPACE=abcdesktop
+kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=privkey.pem -n $NAMESPACE 
 ```
 
 You secret is created 
@@ -265,7 +282,8 @@ For example
 Apply your new nginx confguration file
 
 ```
-kubectl apply -f abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl apply -f abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml -n $NAMESPACE
 ```
  
 ## Update `deployment` http-router
@@ -275,7 +293,8 @@ Update the `deployment` route to add certificat ssl entry
 The `abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml` file  adds `mountPath: /etc/nginx/ssl` to `secretName: http-router-certificat`
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml -n $NAMESPACE
 ```
 
 ## Reach your website using `https` protocol 
