@@ -3705,7 +3705,6 @@ You need to update this manifest with your own FQDN, replace <code>hello.ingress
 kind: Ingress
 metadata:
   name: ingress-abcdesktop
-  namespace: abcdesktop
   annotations:
     spec.ingressClassName: &quot;gce&quot;
 spec:
@@ -3767,7 +3766,6 @@ ingress-abcdesktop   &lt;none&gt;   hello.ingress.gcp.pepins.net   35.190.86.108
 kind: ManagedCertificate
 metadata:
   name: abcdesktop-cert
-  namespace: abcdesktop
 spec:
   domains:
     - hello.ingress.gcp.pepins.net
@@ -3781,7 +3779,6 @@ kubectl apply -f abcdesktop_managed_certificate.yaml -n $NAMESPACE
 kind: Ingress
 metadata:
   name: ingress-abcdesktop
-  namespace: abcdesktop
   annotations:
     spec.ingressClassName: &quot;gce&quot;
     networking.gke.io/managed-certificates: &quot;abcdesktop-cert&quot;
@@ -3829,28 +3826,25 @@ abcdesktop-cert     12m   Active
 kind: BackendConfig
 metadata:
   name: long-timeout-backend
-  namespace: abcdesktop
 spec:
   timeoutSec: 1800
 </code></pre></div>
 <p>Apply it to the cluster</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f backend_config_timeout.yaml -n abcdesktop
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl apply -f backend_config_timeout.yaml -n $NAMESPACE
 </code></pre></div>
-<p>Then you need to create a service that will use this config, copy the following lines in a <code>http_router_increased_timeout.yaml</code></p>
-<div class="highlight"><pre><span></span><code>apiVersion: v1
-kind: Service
+<p>Then you need to update the <code>http-router</code> service to use this <code>long-timeout-backend</code> config, copy the following lines in a <code>http-router.yaml</code> file.</p>
+<div class="highlight"><pre><span></span><code>kind: Service
+apiVersion: v1
 metadata:
-  name: http-router-proxy
-  namespace: abcdesktop
+  name: http-router
   labels:
-    abcdesktop/role: router-proxy
+    abcdesktop/role: router-od
   annotations:
-    cloud.google.com/backend-config: &#39;{&quot;ports&quot;: {&quot;80&quot;:&quot;long-timeout-backend&quot;}}&#39;
+    cloud.google.com/backend-config: &#39;{&quot;ports&quot;: {&quot;80&quot;:&quot;long-timeout-backend&quot;,&quot;443&quot;:&quot;long-timeout-backend&quot;}}&#39;
 spec:
-  type: NodePort
   selector:
     run: router-od
-  ports:
   ports:
   - protocol: TCP
     port: 443
@@ -3861,16 +3855,11 @@ spec:
     targetPort: 80
     name: http
 </code></pre></div>
-<p>This new service has the same logic that the existing http-router service but uses the backend config we just created.<br />
-Apply it to the cluster</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f http_router_increased_timeout.yaml -n abcdesktop
-</code></pre></div>
-<p>Finally update your ingress yaml file to link it to the service we just created.</p>
-<div class="highlight"><pre><span></span><code>backend:
-  service:
-    name: http-router-proxy 
-    port:
-      number: 80
+<ul>
+<li>Apply it to the cluster</li>
+</ul>
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl apply -f http_router.yaml -n $NAMESPACE
 </code></pre></div>
 <p>Now wait a few minutes for GCE to apply the new configuration and reconnect to your desktop, the connection shouldn't drop after 30 seconds anymore.</p>
 <blockquote>
