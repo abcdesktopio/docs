@@ -34,7 +34,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-abcdesktop
-  namespace: abcdesktop
   annotations:
     spec.ingressClassName: "gce"
 spec:
@@ -133,7 +132,6 @@ apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
   name: abcdesktop-cert
-  namespace: abcdesktop
 spec:
   domains:
     - hello.ingress.gcp.pepins.net
@@ -154,7 +152,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-abcdesktop
-  namespace: abcdesktop
   annotations:
     spec.ingressClassName: "gce"
     networking.gke.io/managed-certificates: "abcdesktop-cert"
@@ -227,7 +224,6 @@ apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
   name: long-timeout-backend
-  namespace: abcdesktop
 spec:
   timeoutSec: 1800
 ```
@@ -235,26 +231,24 @@ spec:
 Apply it to the cluster
 
 ```
-kubectl apply -f backend_config_timeout.yaml -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl apply -f backend_config_timeout.yaml -n $NAMESPACE
 ```
 
-Then you need to create a service that will use this config, copy the following lines in a `http_router_increased_timeout.yaml`
+Then you need to update the `http-router` service to use this `long-timeout-backend` config, copy the following lines in a `http-router.yaml` file.
 
 ```
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
-  name: http-router-proxy
-  namespace: abcdesktop
+  name: http-router
   labels:
-    abcdesktop/role: router-proxy
+    abcdesktop/role: router-od
   annotations:
-    cloud.google.com/backend-config: '{"ports": {"80":"long-timeout-backend"}}'
+    cloud.google.com/backend-config: '{"ports": {"80":"long-timeout-backend","443":"long-timeout-backend"}}'
 spec:
-  type: NodePort
   selector:
     run: router-od
-  ports:
   ports:
   - protocol: TCP
     port: 443
@@ -266,21 +260,11 @@ spec:
     name: http
 ```
 
-This new service has the same logic that the existing http-router service but uses the backend config we just created.  
-Apply it to the cluster
+- Apply it to the cluster
 
 ```
-kubectl apply -f http_router_increased_timeout.yaml -n abcdesktop
-```
-
-Finally update your ingress yaml file to link it to the service we just created.
-
-```
-backend:
-  service:
-    name: http-router-proxy 
-    port:
-      number: 80
+NAMESPACE=abcdesktop
+kubectl apply -f http_router.yaml -n $NAMESPACE
 ```
 
 Now wait a few minutes for GCE to apply the new configuration and reconnect to your desktop, the connection shouldn't drop after 30 seconds anymore.
