@@ -1,5 +1,6 @@
 ---
 tags:
+  - cloud
   - gcp
   - load balancer
   - AD
