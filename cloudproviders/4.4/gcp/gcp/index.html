@@ -1565,6 +1565,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Connect to your abcdesktop service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource issue
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3536,6 +3551,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Connect to your abcdesktop service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource issue
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3657,6 +3687,31 @@ abcdesktop-gcp-1  us-central1-a  1.33.5-gke.1308000  34.172.78.248  custom-4-819
 <p><img alt="abcdesktop login as fry" src="../../img/abcdesktop-hompage-port30443-login-fry.png" /></p>
 <p>After image pulling process, you get your first abcdesktop </p>
 <p><img alt="abcdesktop for fry" src="../../img/abcdesktop-hompage-port30443-user-fry-logged.png" /></p>
+<h3 id="resource-issue">Resource issue</h3>
+<p>If this resource issue occurs</p>
+<div class="highlight"><pre><span></span><code>Unprocessable Entity {&quot;kind&quot;:&quot;Status&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;metadata&quot;:{},&quot;status&quot;:&quot;Failure&quot;,&quot;message&quot;:&quot;Pod \&quot;fry-38b04\&quot; is invalid: [spec.resources.requests[cpu]: Invalid value: \&quot;1\&quot;: must be greater than or equal to aggregate container requests of 1500m, spec.resources.requests[memory]: Invalid value: \&quot;576Mi\&quot;: must be greater than or equal to aggregate container requests of 6Gi]&quot;,&quot;reason&quot;:&quot;Invalid&quot;,&quot;details&quot;:{&quot;name&quot;:&quot;fry-38b04&quot;,&quot;kind&quot;:&quot;Pod&quot;,&quot;causes&quot;:[{&quot;reason&quot;:&quot;FieldValueInvalid&quot;,&quot;message&quot;:&quot;Invalid value: \&quot;1\&quot;: must be greater than or equal to aggregate container requests of 1500m&quot;,&quot;field&quot;:&quot;spec.resources.requests[cpu]&quot;},{&quot;reason&quot;:&quot;FieldValueInvalid&quot;,&quot;message&quot;:&quot;Invalid value: \&quot;576Mi\&quot;: must be greater than or equal to aggregate container requests of 6Gi&quot;,&quot;field&quot;:&quot;spec.resources.requests[memory]&quot;}]},&quot;code&quot;:422}
+</code></pre></div>
+<ul>
+<li>Update the <code>od.config</code>, add comment the <code>executeclasses</code> <code>default</code> entry</li>
+</ul>
+<div class="highlight"><pre><span></span><code>executeclasses : {
+  &#39;default&#39;:{
+    &#39;nodeSelector&#39;: { &#39;cloud.google.com/compute-class&#39;: &#39;Scale-Out&#39; },
+    &#39;description&#39;: &#39;default: up to 4 CPU cores and 8Gi&#39;,
+    &#39;runtimeClassName&#39;: None,
+    &#39;resources&#39;:{
+      # &#39;requests&#39;:{&#39;memory&#39;:&quot;576Mi&quot;,&#39;cpu&#39;:&quot;1000m&quot;},
+      # &#39;limits&#39;:  {&#39;memory&#39;:&quot;8Gi&quot;,&#39;cpu&#39;:&quot;2000m&quot;}
+    }
+  },
+</code></pre></div>
+<ul>
+<li>Restart <code>pyos-od</code> deployment to reload the <code>abcdesktop-config</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl create -n $NAMESPACE configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+kubectl rollout restart deployment pyos-od -n $NAMESPACE
+</code></pre></div>
 <h2 id="add-applications-to-your-desktop">Add applications to your desktop</h2>
 <p>Using the previous terminal shell, run the application install script </p>
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.4.sh | bash
