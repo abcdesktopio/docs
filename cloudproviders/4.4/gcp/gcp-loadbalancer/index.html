@@ -3720,21 +3720,27 @@ spec:
 </code></pre></div>
 <p>Save your <code>http-router.yaml</code> file</p>
 <p>Delete the previous service <code>http-router</code></p>
-<div class="highlight"><pre><span></span><code>kubectl delete service http-router -n abcdesktop
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl delete service http-router -n $NAMESPACE
 service &quot;http-router&quot; deleted
 </code></pre></div>
 <p>Create your new <code>service/http-router</code></p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f http-router.yaml -n abcdesktop
-service/http-router created
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl apply -f http-router.yaml -n $NAMESPACE
+</code></pre></div>
+<p>You should read on stdout</p>
+<div class="highlight"><pre><span></span><code>service/http-router created
 </code></pre></div>
 <p>Wait for few minutes, the <code>EXTERNAL-IP</code> of service <code>http-router</code> stays in <code>Pending</code> state</p>
-<div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop 
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl get services http-router -n $NAMESPACE 
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>NAME          TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
 http-router   LoadBalancer   34.118.231.121   &lt;pending&gt;     443:31089/TCP,80:32012/TCP   4s
 </code></pre></div>
 <p>Check the EXTERNAL-IP of service <code>http-router</code> again</p>
-<div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop       
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl get services http-router -n $NAMESPACE       
 </code></pre></div>
 <blockquote>
 <p>Great the service gets <code>34.59.246.150</code> as an <code>EXTERNAL-IP</code></p>
@@ -3753,8 +3759,11 @@ If you want more informations about Cloud DNS, you can check the <a href="https:
 <h3 id="create-new-record">Create new record</h3>
 <p>We are going to create a new record <code>hello.loadbalancer</code> (<code>hello.loadbalancer.gcp.pepins.net</code>) to the <code>A</code> address <code>34.59.246.150</code>. I prefer to define low <code>TTL</code> value to fix some changes quickly. </p>
 <p>The IP Address is show by the GCP network console, it is the same address as the <code>EXTERNAL-IP</code> of your <code>http-router</code> service.</p>
-<div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop
-NAME          TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                      AGE
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl get services http-router -n $NAMESPACE
+</code></pre></div>
+<p>returns a <code>EXTERNAL-IP</code></p>
+<div class="highlight"><pre><span></span><code>NAME          TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                      AGE
 http-router   LoadBalancer   34.118.231.121   34.59.246.150   443:31089/TCP,80:32012/TCP   33s
 </code></pre></div>
 <p>Press <code>Add Standard</code> button, to update your zone file with the new record</p>
@@ -3769,10 +3778,11 @@ http-router   LoadBalancer   34.118.231.121   34.59.246.150   443:31089/TCP,80:3
 <p>If you already have a X509 certificat with a private and public certified key files for your web site, you can skip this chapter.</p>
 <p>To create you SSL certificat, we are using let's encrypt service. You need your new hostname and your email address</p>
 <p>Define the new variables <code>ABCDESKTOP_PUBLIC_FQDN</code> and <code>USER_EMAIL_ADDRESS</code> </p>
-<div class="highlight"><pre><span></span><code><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="o">=</span>hello.loadbalancer.gcp.pepins.net
+<div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
+<span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="o">=</span>hello.loadbalancer.gcp.pepins.net
 <span class="nv">USER_EMAIL_ADDRESS</span><span class="o">=</span>thisisyouremail@domain.com
 <span class="nv">ROUTER_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>router-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w">  </span>-n<span class="w"> </span>abcdesktop<span class="k">)</span>
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">ROUTER_POD_NAME</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>/usr/bin/certbot<span class="w"> </span>certonly<span class="w"> </span>--webroot<span class="w"> </span>-w<span class="w"> </span>/var/lib/nginx/html<span class="w"> </span>-d<span class="w"> </span><span class="si">${</span><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="si">}</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">USER_EMAIL_ADDRESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--agree-tos<span class="w"> </span>-n
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">ROUTER_POD_NAME</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>/usr/bin/certbot<span class="w"> </span>certonly<span class="w"> </span>--webroot<span class="w"> </span>-w<span class="w"> </span>/var/lib/nginx/html<span class="w"> </span>-d<span class="w"> </span><span class="si">${</span><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="si">}</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">USER_EMAIL_ADDRESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--agree-tos<span class="w"> </span>-n
 </code></pre></div>
 <p>You should read on stdout</p>
 <div class="highlight"><pre><span></span><code>Saving debug log to /var/log/letsencrypt/letsencrypt.log
@@ -3804,7 +3814,8 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
 </code></pre></div>
 <h2 id="create-a-secret-for-x509-certificat">Create a secret for X509 certificat</h2>
 <p>Create a secret named <code>http-router-certificat</code> with the <code>fullchain.pem</code> and <code>privkey.pem</code> file content</p>
-<div class="highlight"><pre><span></span><code>kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=privkey.pem -n abcdesktop 
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=privkey.pem -n $NAMESPACE 
 </code></pre></div>
 <p>You secret is created </p>
 <div class="highlight"><pre><span></span><code>secret/http-router-certificat created
@@ -3842,12 +3853,14 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
      ssl_certificate_key /etc/nginx/ssl/tls.key;
 </code></pre></div>
 <p>Apply your new nginx confguration file</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop-routehttp-config.4.4.yaml -n abcdesktop
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl apply -f abcdesktop-routehttp-config.4.4.yaml -n $NAMESPACE
 </code></pre></div>
 <h2 id="update-deployment-http-router">Update <code>deployment</code> http-router</h2>
 <p>Update the <code>deployment</code> route to add certificat ssl entry</p>
 <p>The <code>abcdesktop-deployment-routehttps.4.4.yaml</code> file  adds <code>mountPath: /etc/nginx/ssl</code> to <code>secretName: http-router-certificat</code></p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.4.yaml -n abcdesktop
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.4.yaml -n $NAMESPACE
 </code></pre></div>
 <h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
 <p>You can now connect to your abcdesktop desktop pulic web site using <code>https</code> protocol. </p>
