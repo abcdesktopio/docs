@@ -124,3 +124,31 @@ This section outlines the guidelines for contributing to the Documentation of ab
 
 ??? success must  "Contributions must be done throws merge requests"
     This ensures that all changes are reviewed and approved by the maintainers before being merged into the main branch. This helps maintain the quality and consistency of the documentation.
+
+### Markdown instructions
+
+
+
+####  Graphical
+
+- Use `mermaid` or `drawio` if you can, text format is always better than binary.
+- If you can't put the original file as the same name but with other extension to allow changes for others 
+
+#### NAMESPACEE for command line
+
+Use `NAMESPACE` as a variable
+
+```
+NAMESPACE=abcdesktop
+kubectl apply -f http-router.yaml -n abcdesktop
+```
+
+Do not set the abcdesktop namespace as the namepsace in `kubectl` command line
+
+```
+kubectl apply -f http-router.yaml -n abcdesktop
+```
+
+
+
+
