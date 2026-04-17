@@ -134,7 +134,7 @@ This section outlines the guidelines for contributing to the Documentation of ab
 - Use `mermaid` or `drawio` if you can, text format is always better than binary.
 - If you can't put the original file as the same name but with other extension to allow changes for others 
 
-#### NAMESPACEE for command line
+#### NAMESPACE for command line
 
 Use `NAMESPACE` as a variable
 
