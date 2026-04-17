@@ -253,7 +253,7 @@ metadata:
   labels:
     abcdesktop/role: router-od
   annotations:
-    cloud.google.com/backend-config: '{"ports": {"80":"long-timeout-backend","443":"long-timeout-backend"}}'
+    cloud.google.com/backend-config: '{"ports":{"80":"long-timeout-backend"}}'
 spec:
   selector:
     run: router-od
