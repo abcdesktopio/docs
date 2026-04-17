@@ -128,3 +128,18 @@ The command returns
 {"status": 403, "message": "Request forbidden -- authorization will not help"}
 ```
  
+## Requests through console
+
+### Deal with console and `X-API-KEY`
+
+As we saw above, when an `apikey` is specified, the request sent to pyos requires the `X-API-KEY` header with the `apikey` string. But what about console ? When you try to connect to console, a popup will apear asking you to enter the `ManagerController apikey`. 
+
+![api-key-popup](./img/api-key-modal.png)
+
+If you try to close it whthout entering the `apikey` or entering a bad one. The popup will reapear utill you enter a good `apikey`. You will also see an error message on the top right corner.
+
+![api-key-error](./img/api-key-error.png)
+
+Once a good `apikey` is set. It will eb stored in your browser `LocalStorage` so you don't have to enter it again every time you connect to console.
+
+<!-- ![api-key-local-storage]() -->
