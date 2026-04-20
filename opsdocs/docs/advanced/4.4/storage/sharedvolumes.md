@@ -1,5 +1,11 @@
-# Shared Volumes
+---
+tags:
+  - storage
+  - pvc
+  - hostpath
+---
 
+# Shared Volumes
 
 Users may need to access shared files. If you can't create `persistent volumes` on your cluster, this page describe how to access a shared '/mnt/shared_data' hostPath using `rules`
 
@@ -106,7 +112,8 @@ Save your `od.config` file
 Replace the previous configmap
 
 ```
-kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+NAMESPACE=abcdesktop
+kubectl create -n $NAMESPACE configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n $NAMESPACE -f -
 ```
 
 Expected output 
@@ -118,7 +125,8 @@ configmap/abcdesktop-config replaced
 Restart pyos to apply the new config map
 
 ```
-kubectl rollout restart deployment pyos-od -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl rollout restart deployment pyos-od -n $NAMESPACE
 ```
 
 Expected output 
@@ -130,7 +138,7 @@ deployment.apps/pyos-od restarted
 Your new config is ready to use 
 
 
-## Restart a new desktop as `Philip J. Fry`
+### Restart a new desktop as `Philip J. Fry`
  
 
 - Create a new desktop for `Philip J. Fry`
@@ -138,7 +146,8 @@ Your new config is ready to use
 
 
 ```
-kubectl get pods -l type=x11server -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl get pods -l type=x11server -n $NAMESPACE
 NAME        READY   STATUS    RESTARTS   AGE
 fry-06c5f   4/4     Running   0          3m24s
 ```
@@ -146,7 +155,8 @@ fry-06c5f   4/4     Running   0          3m24s
 - Describe the `Philip J. Fry` pod, and look for the `Mounts` and `Volumes` entries
 
 ```
-kubectl desribe pods fry-06c5f -n abcdesktop
+NAMESPACE=abcdesktop
+kubectl desribe pods fry-06c5f -n $NAMESPACE
 ```
 
 The mount for `hostpath-mntmyproject-fry` is defined to `/mnt/shared_data`
@@ -190,8 +200,221 @@ The volume `hostpath-mntmyproject-fry` is also mounted for applications ephemera
 
 ![/mnt/shared_data files](img/fry-shared-data.png )
 
-## Start a new desktop as `Turanga Leela`
+### Start a new desktop as `Turanga Leela`
 
 Now start a desktop as `Turanga Leela`. As a member of the `shipcrew` group, you should see the file you created with `Philip J. Fry`.
 
 ![shared_data with leela](img/leela-shared-data.png)
+
+
+## Define volume using `pvc` bounded on nfs server
+
+!!! note
+    For this part of the tutorial, you should have a NFS server already configured. If not please follow the first chapter of [this tutorial](http://abcdesktop.pepins.net/advanced/4.4/storage/nfs/#set-up-a-nfs-server).
+
+### Create nfs type `PersistentVolume` 
+
+To begin with, you will have to create a nfs type `PersistentVolume` that will be bound to your nfs server.  
+
+Here is an example of yaml file that describes a nfs type `PersistentVolume`. Let's call it `nfs-pv-shared-data-abcdesktop.yaml`
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: shared-shipcrew-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  claimRef:     # Define here claimName and namespace for bounding your PVC
+    name: shared-shipcrew-pvc  
+    namespace: abcdesktop     # You can replace it by your abcdesktop namespace if different
+  nfs:
+    path: /data/nfs_share/shared_data_shipcrew
+    server: X.X.X.X     # Here goes your nfs server IP address
+```
+
+Then apply by running this command : 
+
+```
+kubectl apply -f nfs-pv-shared-data-abcdesktop.yaml
+```
+
+### Create `PersistentVolumeClaim`
+
+Now that our `PersistentVolume` is created and linked to our nfs server. We now have to created a `PersistentVolumeClaim` that we will bien to the previously created `shared-shipcrew-pv` `PersistentVolume`.
+
+Paste the following lines to a `nfs-pvc-shared-data-abcdesktop.yaml` file
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:      # This matches the claimRef field of the PV yaml file
+  name: shared-shipcrew-pvc
+  namespace: abcdesktop     # Or your abcdesktop namespace if different
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: ""
+  volumeName: shared-shipcrew-pv      # Name of your persistent volume
+```
+
+!!! warning
+    It is very important to set accessModes to `ReadWriteMany`, otherwise you won't be able to mount several user pods on the same PVC, so the shared data aspect does not make sense anymore.
+
+Then apply it by running the following command
+
+```
+NAMESPACE=abcdesktop
+kubectl apply -f nfs-pvc-shared-data-abcdesktop.yaml -n $NAMESPACE
+```
+
+You can check if both of the PV and PVC have been correctly bounded
+
+```
+NAMESPACE=abcdesktop
+kubectl get pvc -n $NAMESPACE
+NAME                  STATUS   VOLUME               CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+shared-shipcrew-pvc   Bound    shared-shipcrew-pv   1Gi        RWX                           <unset>                 67m
+```
+
+```
+kubectl get pv
+NAME                 CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                            STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+shared-shipcrew-pv   1Gi        RWX            Retain           Bound    abcdesktop/shared-shipcrew-pvc                  <unset>                          3h11m
+```
+
+### Update `od.config` file
+
+Add `rules` to the `desktop.policies` dictionary
+
+```
+desktop.policies: {
+  'rules': {
+    'volumes': {
+      'shipcrew': {
+        'type': 'pvc',
+        'name': 'shared-shipcrew-pvc',
+        'claimName': 'shared-shipcrew-pvc',
+        'mountPath': '/mnt/shared_data_pvc'
+      }
+    },
+    'network': {}
+  },
+  'acls' : {} }
+```
+
+> On your worker node, make sure that the `/mnt` directory exists.
+
+This policy adds a new volume `shared-shipcrew-pvc` defined as a `pvc` to the users's pod and mount it as `/mnt/shared_data_pvc`.
+
+
+Save your `od.config` file
+
+### Apply the new config file 
+
+Replace the previous configmap
+
+```
+NAMESPACE=abcdesktop
+kubectl create -n $NAMESPACE configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n $NAMESPACE -f -
+```
+
+Expected output 
+
+```
+configmap/abcdesktop-config replaced
+```
+
+Restart pyos to apply the new config map
+
+```
+NAMESPACE=abcdesktop
+kubectl rollout restart deployment pyos-od -n $NAMESPACE
+```
+
+Expected output 
+
+```
+deployment.apps/pyos-od restarted
+```
+
+Your new config is ready to use 
+
+
+### Restart a new desktop as `Philip J. Fry`
+ 
+
+- Create a new desktop for `Philip J. Fry`
+- Get the name of the `Philip J. Fry` pod
+
+
+```
+NAMESPACE=abcdesktop
+kubectl get pods -l type=x11server -n $NAMESPACE
+NAME        READY   STATUS    RESTARTS   AGE
+fry-06c5f   4/4     Running   0          3m24s
+```
+
+- Describe the `Philip J. Fry` pod, and look for the `Mounts` and `Volumes` entries
+
+```
+kubectl desribe pods fry-06c5f -n abcdesktop
+```
+
+The mount for `pvc-shared-shipcrew-pvc-fry` is defined to `/mnt/shared_data_pvc`
+
+```
+    Mounts:
+      /etc/sudoers.d from sudoers (rw)
+      /home/fry from home (rw)
+      /home/fry/.cache from cache (rw)
+      /mnt/shared_data_pvc from pvc-shared-shipcrew-pvc-fry (rw)
+      /run/user/ from runuser (rw)
+      /tmp from tmp (rw)
+      /tmp/.X11-unix from x11socket (rw)
+      /tmp/.cupsd from cupsdsocket (rw)
+      /var/lib/extrausers from extrausers (rw)
+      /var/log/desktop from log (rw)
+      /var/run/dbus from rundbus (rw)
+      /var/run/desktop from run (rw)
+      /var/secrets/abcdesktop/vnc from auth-vnc-fry (rw)
+```
+
+The volume `pvc-shared-shipcrew-pvc-fry` is defined as
+
+```
+  pvc-shared-shipcrew-pvc-fry:
+    Type:        PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:   shared-shipcrew-pvc
+    ReadOnly:    false
+```
+
+
+A new `Mount` is defined as `/mnt/shared_data_pvc from pvc-shared-shipcrew-pvc-fry (rw)` and a new volume pvc-shared-shipcrew-pvc-fry is defined as `HostPath` to the `Path` `/mnt`
+
+> Check that your file system's permissions are set to your users
+
+The volume `pvc-shared-shipcrew-pvc-fry` is also mounted for applications ephemeral containers and pods.
+
+- Start the `webshell` application in the web interface
+
+- Now create a file inside the `/mnt/shared_data_pvc` folder, for example `hello.txt`
+
+![/mnt/shared_data_pvc files](img/fry-shared-data-pvc.png)
+
+### Start a new desktop as `Turanga Leela`
+
+Now start a desktop as `Turanga Leela`. As a member of the `shipcrew` group, you should see the file you created with `Philip J. Fry`.
+
+![shared_data_pvc with leela](img/leela-shared-data-pvc.png)
+
+!!! info
+    Note that you should be able to see `hello.txt` on your NFS server too.
