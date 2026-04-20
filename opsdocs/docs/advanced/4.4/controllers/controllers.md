@@ -140,6 +140,6 @@ If you try to close it whthout entering the `apikey` or entering a bad one. The 
 
 ![api-key-error](./img/api-key-error.png)
 
-Once a good `apikey` is set. It will eb stored in your browser `LocalStorage` so you don't have to enter it again every time you connect to console.
+Once a good `apikey` is set. It will be stored in your browser 's `LocalStorage` so you don't have to enter it again every time you connect to console.
 
-<!-- ![api-key-local-storage]() -->
+![api-key-local-storage](./img/api-key-localstorage.png)
