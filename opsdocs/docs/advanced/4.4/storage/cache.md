@@ -59,4 +59,40 @@ Volumes:
     Medium:     Memory
     SizeLimit:  8Gi
 [...]
-```    
+```
+
+
+### update sound contianer for `.config` usage
+
+The s-sound container need to read the `$HOME/.config/pulse/cookie` file.
+If we decide to put the `.config` as `emptyDir` volume, we need to add this volume to the sound container description.
+
+- update your `desktop.pod` dictionary to add the `config` volume into the volume list `'volumes': [ 'extrausers', 'tmp', 'config', 'log' ]`
+
+```
+'sound': { 
+    'volumes': [ 'extrausers', 'tmp', 'config', 'log' ],
+    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.4',
+    'imagePullPolicy': 'Always',
+    'enable': True,
+    'tcpport': 29788,
+    'acl':  { 'permit': [ 'all' ] },
+  },
+``` 
+
+After a login, you can check that the s-sound container mounts `.config` as `$HOME/.config` :
+
+```
+NAMESPACE=abcdesktop
+kubectl  describe pods fry-c33ed  -n $NAMESPACE
+```
+
+You should read for the `s-sound` container the `Mounts`
+
+```
+    Mounts:
+      /home/fry/.config from config (rw)
+      /tmp from tmp (rw)
+      /var/lib/extrausers from extrausers (rw)
+      /var/log/desktop from log (rw)
+```
