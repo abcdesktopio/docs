@@ -2542,6 +2542,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Overwritten user homedirectory directory entries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-sound-contianer-for-config-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      update sound contianer for .config usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -3455,6 +3470,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Overwritten user homedirectory directory entries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-sound-contianer-for-config-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      update sound contianer for .config usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -3545,6 +3575,32 @@ desktop.directorytomemory: { &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory
     Medium:     Memory
     SizeLimit:  8Gi
 [...]
+</code></pre></div>
+<h3 id="update-sound-contianer-for-config-usage">update sound contianer for <code>.config</code> usage</h3>
+<p>The s-sound container need to read the <code>$HOME/.config/pulse/cookie</code> file.
+If we decide to put the <code>.config</code> as <code>emptyDir</code> volume, we need to add this volume to the sound container description.</p>
+<ul>
+<li>update your <code>desktop.pod</code> dictionary to add the <code>config</code> volume into the volume list <code>'volumes': [ 'extrausers', 'tmp', 'config', 'log' ]</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code>&#39;sound&#39;: { 
+    &#39;volumes&#39;: [ &#39;extrausers&#39;, &#39;tmp&#39;, &#39;config&#39;, &#39;log&#39; ],
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.4&#39;,
+    &#39;imagePullPolicy&#39;: &#39;Always&#39;,
+    &#39;enable&#39;: True,
+    &#39;tcpport&#39;: 29788,
+    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
+  },
+</code></pre></div>
+<p>After a login, you can check that the s-sound container mounts <code>.config</code> as <code>$HOME/.config</code> :</p>
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl  describe pods fry-c33ed  -n $NAMESPACE
+</code></pre></div>
+<p>You should read for the <code>s-sound</code> container the <code>Mounts</code></p>
+<div class="highlight"><pre><span></span><code>    Mounts:
+      /home/fry/.config from config (rw)
+      /tmp from tmp (rw)
+      /var/lib/extrausers from extrausers (rw)
+      /var/log/desktop from log (rw)
 </code></pre></div>
 
 
