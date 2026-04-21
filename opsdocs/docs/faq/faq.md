@@ -24,3 +24,4 @@
 
 - [How to expose my new service with `nginx ingress controller` ?](/faq/ingresscontroller/#how-to-expose-my-new-service-with-nginx-ingress-controller)
 - [How to increase the mongodb number of replicats ?](/faq/mongodb/#how-to-increase-the-mongodb-number-of-replicats)
+- [How to add a reverse proxy in frontof abcdesktop ?](/faq/add-reverseproxy-infrontof-abcdesktop)
