@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://abcdesktop.pepins.net/install/4.4/script/">
       
       
+        <link rel="prev" href="../../../advanced/4.4/install/onpremises/kind/">
+      
+      
+        <link rel="next" href="../helm/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Quick installation core services with a script - abcdesktop.pepins.net</title>
+        <title>Script - abcdesktop.pepins.net</title>
       
     
     
@@ -107,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Quick installation core services with a script
+              Script
             
           </span>
         </div>
@@ -229,6 +233,8 @@
   
   
   
+    
+  
   
     
     
@@ -236,10 +242,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../../architecture/overview/" class="md-tabs__link">
           
   
@@ -283,7 +291,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../usecases/4.3/filter-traffic-per-group.md" class="md-tabs__link">
+        <a href="../../../usecases/4.4/filter-traffic-per-group/" class="md-tabs__link">
           
   
   
@@ -489,10 +497,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../4.3/script.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Script
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -503,6 +533,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-install-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the install script
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-the-default-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change the default namespace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-install-script_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the install script
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-the-default-namespace_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change the default namespace
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -515,7 +619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4.3/helm.md" class="md-nav__link">
+      <a href="../helm/" class="md-nav__link">
         
   
   
@@ -587,7 +691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4.3/applicationoverview.md" class="md-nav__link">
+      <a href="../applicationoverview/" class="md-nav__link">
         
   
   
@@ -610,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4.3/install-applications.md" class="md-nav__link">
+      <a href="../install-applications/" class="md-nav__link">
         
   
   
@@ -633,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4.3/applicationwithconsole.md" class="md-nav__link">
+      <a href="../applicationwithconsole/" class="md-nav__link">
         
   
   
@@ -705,7 +809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../uninstall/4.3/script.md" class="md-nav__link">
+      <a href="../../../uninstall/4.4/script/" class="md-nav__link">
         
   
   
@@ -728,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../uninstall/4.3/helm.md" class="md-nav__link">
+      <a href="../../../uninstall/4.4/helm/" class="md-nav__link">
         
   
   
@@ -763,24 +867,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -793,7 +902,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Advanced
@@ -876,6 +985,8 @@
                 
   
   
+    
+  
   
   
     
@@ -886,11 +997,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
         
           
           <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
@@ -906,7 +1017,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             Install On-Premises
@@ -920,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/install/onpremises/kind.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
         
   
   
@@ -940,15 +1051,134 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../4.3/script.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Script
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    Kubernetes using script
+    Script
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-install-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the install script
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-the-default-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change the default namespace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-install-script_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the install script
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-the-default-namespace_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change the default namespace
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm
     
   </span>
   
@@ -966,30 +1196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4.3/helm.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Kubernetes using helm
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../advanced/4.3/install/onpremises/minikube.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
         
   
   
@@ -1102,7 +1309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/aws/aws.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
         
   
   
@@ -1125,7 +1332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/aws/aws-loadbalancer.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1148,7 +1355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/aws/aws-nginx-ingress-controller.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1220,7 +1427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/azure/azure.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
         
   
   
@@ -1243,7 +1450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/azure/azure-loadbalancer.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1266,7 +1473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/azure/azure-nginx-ingress-controller.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1338,7 +1545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/digitalocean/digitalocean.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
         
   
   
@@ -1361,7 +1568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/digitalocean/digitalocean-loadbalancer.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1384,7 +1591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/digitalocean/digitalocean-nginx-ingress-controller.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1456,7 +1663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/gcp/gcp.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
         
   
   
@@ -1479,7 +1686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/gcp/gcp-loadbalancer.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1502,7 +1709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/gcp/gcp-gke-ingress-controller.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1574,7 +1781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/ovh/ovh.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
         
   
   
@@ -1597,7 +1804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/ovh/ovh-loadbalancer.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1620,7 +1827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cloudproviders/4.3/ovh/ovh-nginx-ingress-controller.md" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1700,7 +1907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/applications/simplestapplicationxeyes.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/simplestapplicationxeyes/" class="md-nav__link">
         
   
   
@@ -1723,7 +1930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/applications/simplestapplicationxedit.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/simplestapplicationxedit/" class="md-nav__link">
         
   
   
@@ -1746,7 +1953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/applications/simplestapplicationchromium.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/simplestapplicationchromium/" class="md-nav__link">
         
   
   
@@ -1769,7 +1976,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/applications/templateapplication.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/templateapplication/" class="md-nav__link">
         
   
   
@@ -1792,7 +1999,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/applications/templateanotherapplication.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/templateanotherapplication/" class="md-nav__link">
         
   
   
@@ -1864,7 +2071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/configure/updateconfiguration.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/updateconfiguration/" class="md-nav__link">
         
   
   
@@ -1928,7 +2135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/authentication/overview.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/overview/" class="md-nav__link">
         
   
   
@@ -1951,7 +2158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/authentication/authexternal.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authexternal/" class="md-nav__link">
         
   
   
@@ -2015,7 +2222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/authentication/authexplicit-ldap.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authexplicit-ldap/" class="md-nav__link">
         
   
   
@@ -2038,7 +2245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/authentication/authexplicit-activedirectory.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authexplicit-activedirectory/" class="md-nav__link">
         
   
   
@@ -2061,7 +2268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/authentication/authmetaexplicit.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authmetaexplicit/" class="md-nav__link">
         
   
   
@@ -2133,7 +2340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/authentication/authimplicit.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authimplicit/" class="md-nav__link">
         
   
   
@@ -2156,7 +2363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/authentication/logmein.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/logmein/" class="md-nav__link">
         
   
   
@@ -2195,7 +2402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/authentication/authentification-rules.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authentification-rules/" class="md-nav__link">
         
   
   
@@ -2259,7 +2466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/desktop/overview.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/desktop/overview/" class="md-nav__link">
         
   
   
@@ -2282,7 +2489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/desktop/executeclasses.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/desktop/executeclasses/" class="md-nav__link">
         
   
   
@@ -2305,7 +2512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/desktop/pod.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/desktop/pod/" class="md-nav__link">
         
   
   
@@ -2328,7 +2535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/desktop/policies.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/desktop/policies/" class="md-nav__link">
         
   
   
@@ -2400,7 +2607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/storage/overview.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/overview.md" class="md-nav__link">
         
   
   
@@ -2423,7 +2630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/storage/nfs.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/nfs/" class="md-nav__link">
         
   
   
@@ -2446,7 +2653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/storage/hostpath.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/hostpath/" class="md-nav__link">
         
   
   
@@ -2469,7 +2676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/storage/cache.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/cache/" class="md-nav__link">
         
   
   
@@ -2492,7 +2699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/storage/sharedvolumes.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/sharedvolumes/" class="md-nav__link">
         
   
   
@@ -2523,7 +2730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/configure/garbagecollector.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/garbagecollector/" class="md-nav__link">
         
   
   
@@ -2546,7 +2753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
         
   
   
@@ -2569,7 +2776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/configure/welcome.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/welcome/" class="md-nav__link">
         
   
   
@@ -2592,7 +2799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/configure/customfrontend.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/customfrontend/" class="md-nav__link">
         
   
   
@@ -2705,7 +2912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/controllers/controllers.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/controllers/controllers/" class="md-nav__link">
         
   
   
@@ -2777,7 +2984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/networkpolicy/netpol.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
         
   
   
@@ -2800,7 +3007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/networkpolicy/install.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
         
   
   
@@ -2823,7 +3030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/4.3/networkpolicy/uninstall.md" class="md-nav__link">
+      <a href="../../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
         
   
   
@@ -2974,7 +3181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/services/mongo.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/mongo/" class="md-nav__link">
         
   
   
@@ -2997,7 +3204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/services/console.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/console/" class="md-nav__link">
         
   
   
@@ -3020,7 +3227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/services/pyos.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/pyos/" class="md-nav__link">
         
   
   
@@ -3043,7 +3250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/services/router.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/router/" class="md-nav__link">
         
   
   
@@ -3066,7 +3273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/services/webmodules.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/webmodules/" class="md-nav__link">
         
   
   
@@ -3138,7 +3345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/userpod/graphical.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/graphical/" class="md-nav__link">
         
   
   
@@ -3161,7 +3368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/userpod/sound.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/sound/" class="md-nav__link">
         
   
   
@@ -3184,7 +3391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/userpod/cups.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/cups/" class="md-nav__link">
         
   
   
@@ -3207,7 +3414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contribute/4.3/userpod/filer.md" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/filer/" class="md-nav__link">
         
   
   
@@ -3286,7 +3493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../usecases/4.3/filter-traffic-per-group.md" class="md-nav__link">
+      <a href="../../../usecases/4.4/filter-traffic-per-group/" class="md-nav__link">
         
   
   
@@ -3309,7 +3516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../usecases/4.3/configure-keycloak.md" class="md-nav__link">
+      <a href="../../../usecases/4.4/configure-keycloak/" class="md-nav__link">
         
   
   
@@ -3507,7 +3714,7 @@
 </ul>
 <h2 id="run-the-install-script">Run the install script</h2>
 <p>Download and extract the latest release automatically</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sL<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.3.sh<span class="w"> </span><span class="p">|</span>bash
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sL<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh<span class="w"> </span><span class="p">|</span>bash
 </code></pre></div>
 <blockquote>
 <p>This video show how to install abcdesktop on a fresh <code>READY</code> kubernetes cluster using the bash script </p>
@@ -3533,8 +3740,8 @@ writing RSA key
 [OK] label secret abcdesktopjwtdesktoppayload
 [OK] label secret abcdesktopjwtdesktopsigning
 [OK] label secret abcdesktopjwtusersigning
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.3.yaml
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.3
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.4.yaml
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.4
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
 role.rbac.authorization.k8s.io/pyos-role created
@@ -3605,20 +3812,20 @@ speedtest-od-7fcc9649b4-qllr7   1/1     Running   0          32s
 <ul>
 <li>create the <code>abcdesktop</code> namespace</li>
 <li>build all <code>rsa</code> keys for jwt signing and payload encryption, using openssl command line</li>
-<li>create all <code>service account</code>, <code>services</code>, <code>deployments</code>, <code>secrets</code> and <code>configmaps</code> from the <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.3.yaml">abcdesktop.yaml</a></li>
-<li>download then create the default configuration file <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.4.3">od.config</a></li>
+<li>create all <code>service account</code>, <code>services</code>, <code>deployments</code>, <code>secrets</code> and <code>configmaps</code> from the <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.4.yaml">abcdesktop.yaml</a></li>
+<li>download then create the default configuration file <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/reference/od.config.4.4">od.config</a></li>
 </ul>
 <blockquote>
 <p>This install process doesn't install applications for your desktop, you get a desktop with few applications in your dock</p>
 </blockquote>
 <p>You can open a web browser and go to the http://localhost:30443/</p>
 <h2 id="change-the-default-namespace">Change the default namespace</h2>
-<p>You may need to replace the default namespace <code>abcdesktop</code> by your own during the install process. The <code>install-4.3.sh</code> bash script allow you to set the new namespace as an option.</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.3.sh
-chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>install-4.3.sh
+<p>You may need to replace the default namespace <code>abcdesktop</code> by your own during the install process. The <code>install-4.4.sh</code> bash script allow you to set the new namespace as an option.</p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh
+chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>install-4.4.sh
 </code></pre></div>
-<p>Run <code>install-4.3.sh</code></p>
-<div class="highlight"><pre><span></span><code>./install-4.3.sh<span class="w"> </span>--namespace<span class="w"> </span>superdesktop
+<p>Run <code>install-4.4.sh</code></p>
+<div class="highlight"><pre><span></span><code>./install-4.4.sh<span class="w"> </span>--namespace<span class="w"> </span>superdesktop
 </code></pre></div>
 <details class="note">
 <summary>show details</summary>
@@ -3754,7 +3961,7 @@ Server Version: v1.28.2
 </details>
 <h2 id="run-the-install-script_1">Run the install script</h2>
 <p>Download and extract the latest release automatically (Windows):</p>
-<div class="highlight"><pre><span></span><code><span class="nv">$script</span> <span class="p">=</span> <span class="nb">curl </span><span class="n">https</span><span class="p">://</span><span class="n">raw</span><span class="p">.</span><span class="n">githubusercontent</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">abcdesktopio</span><span class="p">/</span><span class="n">conf</span><span class="p">/</span><span class="n">main</span><span class="p">/</span><span class="n">kubernetes</span><span class="p">/</span><span class="n">install</span><span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">3</span><span class="p">.</span><span class="n">ps1</span>
+<div class="highlight"><pre><span></span><code><span class="nv">$script</span> <span class="p">=</span> <span class="nb">curl </span><span class="n">https</span><span class="p">://</span><span class="n">raw</span><span class="p">.</span><span class="n">githubusercontent</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">abcdesktopio</span><span class="p">/</span><span class="n">conf</span><span class="p">/</span><span class="n">main</span><span class="p">/</span><span class="n">kubernetes</span><span class="p">/</span><span class="n">install</span><span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">4</span><span class="p">.</span><span class="n">ps1</span>
 
 <span class="nb">Invoke-Expression</span> <span class="p">$(</span><span class="nv">$script</span><span class="p">.</span><span class="n">Content</span><span class="p">)</span>
 </code></pre></div>
@@ -3778,8 +3985,8 @@ writing RSA key
 [OK] label secret abcdesktopjwtdesktoppayload
 [OK] label secret abcdesktopjwtdesktopsigning
 [OK] label secret abcdesktopjwtusersigning
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.3.yaml
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.3
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.4.yaml
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.4
 [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
 role.rbac.authorization.k8s.io/pyos-role created
@@ -3844,11 +4051,11 @@ speedtest-od-7fcc9649b4-kxnsn   1/1     Running   0          12s
 </details>
 <p>You can open a web browser and go to the http://localhost:30443/</p>
 <h2 id="change-the-default-namespace_1">Change the default namespace</h2>
-<p>You may need to replace the default namespace <code>abcdesktop</code> by your own. The <code>install-4.3.ps1</code> PowerShell script allows you to set the new namespace as an option.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">curl </span><span class="n">https</span><span class="p">://</span><span class="n">raw</span><span class="p">.</span><span class="n">githubusercontent</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">abcdesktopio</span><span class="p">/</span><span class="n">conf</span><span class="p">/</span><span class="n">main</span><span class="p">/</span><span class="n">kubernetes</span><span class="p">/</span><span class="n">install</span><span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">3</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-OutFile</span> <span class="n">install</span><span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">3</span><span class="p">.</span><span class="n">ps1</span>
+<p>You may need to replace the default namespace <code>abcdesktop</code> by your own. The <code>install-4.4.ps1</code> PowerShell script allows you to set the new namespace as an option.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">curl </span><span class="n">https</span><span class="p">://</span><span class="n">raw</span><span class="p">.</span><span class="n">githubusercontent</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">abcdesktopio</span><span class="p">/</span><span class="n">conf</span><span class="p">/</span><span class="n">main</span><span class="p">/</span><span class="n">kubernetes</span><span class="p">/</span><span class="n">install</span><span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">4</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-OutFile</span> <span class="n">install</span><span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">4</span><span class="p">.</span><span class="n">ps1</span>
 </code></pre></div>
-<p>Run <code>install-4.3.ps1</code></p>
-<div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">install</span><span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">3</span><span class="p">.</span><span class="n">ps1</span> <span class="p">-</span><span class="n">-namespace</span> <span class="n">superdesktop</span>
+<p>Run <code>install-4.4.ps1</code></p>
+<div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">install</span><span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">4</span><span class="p">.</span><span class="n">ps1</span> <span class="p">-</span><span class="n">-namespace</span> <span class="n">superdesktop</span>
 </code></pre></div>
 <p>You should read on stdout</p>
 <details class="note">
@@ -3870,8 +4077,8 @@ writing RSA key
 [OK] label secret abcdesktopjwtdesktoppayload
 [OK] label secret abcdesktopjwtdesktopsigning
 [OK] label secret abcdesktopjwtusersigning
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.3.yaml
-[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.3
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.4.yaml
+[OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.4
 [OK] updated abcdesktop.yaml file with new namespace superdesktop
 [OK] updated abcdesktop.yaml file with new fqdn superdesktop.svc.cluster.local
 [OK] updated od.config file with new namespace superdesktop
