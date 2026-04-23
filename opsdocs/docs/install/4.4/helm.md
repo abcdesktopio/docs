@@ -20,7 +20,13 @@ tags:
 - kubernetes cluster `READY` to run
 - `helm` command-line tool must be installed.
 
+
+
 ## Installation using helm latest release {{ abcdesktop.latest_release }}
+
+- Video
+![install using helm](https://github.com/abcdesktopio/helm/releases/download/abcdesktop-{{ abcdesktop.helm_latest_release }}/install-using-helm.gif)
+
 
 Add the `helm` repo and then install it on Linux or macOS or read the step by step installation process [abcdesktop for kubernetes](/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop)
 
