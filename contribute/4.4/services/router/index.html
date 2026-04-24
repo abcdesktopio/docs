@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#route-openresty-http-router" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -3057,6 +3062,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3069,6 +3089,331 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-analysis-gettargetmaplua" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed Analysis: get.targetmap.lua
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Analysis: get.targetmap.lua">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#role" class="md-nav__link">
+    <span class="md-ellipsis">
+      Role
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Walkthrough
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Walkthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-token-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Token Extraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-response-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Response Helper
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-rsa-decryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. RSA Decryption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cache-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Cache Lookup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-jwt-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. JWT Verification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-payload-decryption-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Payload Decryption &amp; Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-target-assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Target Assignment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-routing-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint Routing Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoint Routing Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyos-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      PyOS Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utility-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utility Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nginxconf-main-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      nginx.conf - Main Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sites-enabledroutehttpconf-server-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      sites-enabled/routehttp.conf - Server Block
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxyconf-standard-proxy-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      proxy.conf - Standard Proxy Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsconf-websocket-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      ws.conf - WebSocket Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Images
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-image-ubuntu-jammy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Image (Ubuntu Jammy)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alpine-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alpine Image
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Considerations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-the-container-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rebuild the container images
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3387,6 +3732,322 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-analysis-gettargetmaplua" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed Analysis: get.targetmap.lua
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Analysis: get.targetmap.lua">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#role" class="md-nav__link">
+    <span class="md-ellipsis">
+      Role
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Walkthrough
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Walkthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-token-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Token Extraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-response-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Response Helper
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-rsa-decryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. RSA Decryption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cache-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Cache Lookup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-jwt-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. JWT Verification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-payload-decryption-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Payload Decryption &amp; Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-target-assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Target Assignment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-routing-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint Routing Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoint Routing Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyos-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      PyOS Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utility-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utility Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nginxconf-main-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      nginx.conf - Main Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sites-enabledroutehttpconf-server-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      sites-enabled/routehttp.conf - Server Block
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxyconf-standard-proxy-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      proxy.conf - Standard Proxy Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wsconf-websocket-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      ws.conf - WebSocket Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Images
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-image-ubuntu-jammy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Image (Ubuntu Jammy)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alpine-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alpine Image
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Considerations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-the-container-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rebuild the container images
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3410,9 +4071,440 @@
   
 
 
-  <h1>Router</h1>
+<h1 id="route-openresty-http-router">Route - OpenResty HTTP Router</h1>
+<h2 id="project-specification">Project Specification</h2>
+<h3 id="purpose">Purpose</h3>
+<p><code>route</code> is an OpenResty-based HTTP reverse proxy designed for the abcdesktop platform. It provides secure, JWT-authenticated routing to user desktop containers running in Kubernetes.</p>
+<hr />
+<h2 id="architecture-overview">Architecture Overview</h2>
+<div class="highlight"><pre><span></span><code>┌─────────────────┐
+│   Client        │
+│   (Browser)     │
+└────────┬────────┘
+         │ HTTP Request + JWT
+         ▼
+┌─────────────────────────────────────────────────────────┐
+│                    route (OpenResty)                    │
+│  ┌───────────────────────────────────────────────────┐  │
+│  │  get.targetmap.lua                                │  │
+│  │  - Extract JWT from request                       │  │
+│  │  - Verify JWT signature                           │  │
+│  │  - RSA Decrypt payload to get target hostname     │  │
+│  │  - Cache result in shared dict (10 min)           │  │
+│  └───────────────────────────────────────────────────┘  │
+└────────┬────────────────────────────────────────────────┘
+         │ $target variable resolved
+         ▼
+┌─────────────────────────────────────────────────────────┐
+│     Pods (Kubernetes)                                   │
+│     ┌──────────────────────┐                            │
+│     │      Desktop Pod     │                            │
+│     │  service TCP port    │                            │
+│     └──────────────────────┘                            │
+└─────────────────────────────────────────────────────────┘
+</code></pre></div>
+<hr />
+<h2 id="detailed-analysis-gettargetmaplua">Detailed Analysis: <code>get.targetmap.lua</code></h2>
+<h3 id="role">Role</h3>
+<p>This Lua script is the core authentication and routing engine. It executes during the <code>rewrite</code> phase for protected endpoints and resolves the <code>$target</code> nginx variable used in <code>proxy_pass</code> directives.</p>
+<h3 id="execution-flow">Execution Flow</h3>
+<div class="highlight"><pre><span></span><code>1. Extract JWT token from request
+         │
+         ▼
+2. Check targetmap cache
+   ┌──────────────┐
+   │ Cache Hit?   │──Yes──→ Set $target → Continue request
+   └──────────────┘
+         │ No
+         ▼
+3. Read public key from env or cache
+         │
+         ▼
+4. Verify JWT signature
+         │
+         ▼
+5. Decrypt payload.hash using dedicated RSA private key
+         │
+         ▼
+6. Cache result in targetmap (TTL: min(exp-now, 600s))
+         │
+         ▼
+7. Set $target = decrypted hostname
+</code></pre></div>
+<h3 id="code-walkthrough">Code Walkthrough</h3>
+<h4 id="1-token-extraction">1. Token Extraction</h4>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">jwt_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ngx</span><span class="p">.</span><span class="py">var</span><span class="p">.</span><span class="py">jwt_token</span>
+</code></pre></div>
+<p>The token is sourced from:
+- Query parameter: <code>?jwt_token=xxx</code>
+- Header: <code>Authorization: Bearer &lt;token&gt;</code>
+- Header: <code>AbcAuthorization: &lt;token&gt;</code></p>
+<p>The <code>no_bearer()</code> function strips the "Bearer " prefix if present.</p>
+<h4 id="2-response-helper">2. Response Helper</h4>
+<div class="highlight"><pre><span></span><code><span class="kr">function</span><span class="w"> </span><span class="nf">ngxexitresponse</span><span class="p">(</span><span class="nv">status</span><span class="p">,</span><span class="w"> </span><span class="nv">msg</span><span class="p">)</span>
+<span class="w">    </span><span class="nv">ngx</span><span class="p">.</span><span class="py">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">status</span>
+<span class="w">    </span><span class="nv">ngx</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nv">ngx</span><span class="p">.</span><span class="py">ERR</span><span class="p">,</span><span class="w"> </span><span class="nv">msg</span><span class="p">)</span>
+<span class="w">    </span><span class="nv">ngx</span><span class="p">.</span><span class="nf">say</span><span class="p">(</span><span class="nv">msg</span><span class="p">)</span>
+<span class="w">    </span><span class="nv">ngx</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="nv">ngx</span><span class="p">.</span><span class="py">HTTP_OK</span><span class="p">)</span>
+<span class="kr">end</span>
+</code></pre></div>
+<p>Returns HTTP error responses with logging. Uses <code>ngx.exit(ngx.HTTP_OK)</code> after setting <code>ngx.status</code> to properly interrupt execution.</p>
+<h4 id="3-rsa-decryption">3. RSA Decryption</h4>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">msg</span><span class="p">,</span><span class="w"> </span><span class="nv">private_key</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">rsa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s2">&quot;resty.rsa&quot;</span>
+<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">priv</span><span class="p">,</span><span class="w"> </span><span class="nv">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">rsa</span><span class="p">:</span><span class="nf">new</span><span class="p">({</span><span class="w"> </span><span class="nv">private_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">private_key</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">crypto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ngx</span><span class="p">.</span><span class="nf">decode_base64</span><span class="p">(</span><span class="nv">msg</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">decrypted</span><span class="p">,</span><span class="w"> </span><span class="nv">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">priv</span><span class="p">:</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">crypto</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nv">decrypted</span>
+<span class="kr">end</span>
+</code></pre></div>
+<p>The JWT payload contains a <code>hash</code> field that is:
+1. Base64-encoded
+2. RSA-encrypted with the server's public key
+3. Contains the target pod hostname</p>
+<h4 id="4-cache-lookup">4. Cache Lookup</h4>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ngx</span><span class="p">.</span><span class="py">shared</span><span class="p">.</span><span class="py">targetmap</span><span class="p">:</span><span class="nf">get</span><span class="p">(</span><span class="nv">jwt_token</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>targetmap</code> shared dictionary (8MB) caches resolved targets to avoid repeated JWT processing.</p>
+<h4 id="5-jwt-verification">5. JWT Verification</h4>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">jwt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s2">&quot;resty.jwt&quot;</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">jwt_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ngx</span><span class="p">.</span><span class="py">shared</span><span class="p">.</span><span class="py">rsakeymap</span><span class="p">:</span><span class="nf">get</span><span class="p">(</span><span class="s1">&#39;jwt_desktop_signing_public_key&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="ow">or</span><span class="w"> </span><span class="nf">readfile</span><span class="p">(</span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">&quot;JWT_DESKTOP_SIGNING_PUBLIC_KEY&quot;</span><span class="p">))</span>
 
-<p>alex</p>
+<span class="kd">local</span><span class="w"> </span><span class="nv">jwt_obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">jwt</span><span class="p">:</span><span class="nf">verify</span><span class="p">(</span><span class="nv">jwt_secret</span><span class="p">,</span><span class="w"> </span><span class="nv">jwt_token</span><span class="p">)</span>
+</code></pre></div>
+<p>Verifies the JWT signature using the configured RSA public key.</p>
+<h4 id="6-payload-decryption-caching">6. Payload Decryption &amp; Caching</h4>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">private_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ngx</span><span class="p">.</span><span class="py">shared</span><span class="p">.</span><span class="py">rsakeymap</span><span class="p">:</span><span class="nf">get</span><span class="p">(</span><span class="s1">&#39;jwt_desktop_payload_private_key&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="ow">or</span><span class="w"> </span><span class="nf">readfile</span><span class="p">(</span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">&quot;JWT_DESKTOP_PAYLOAD_PRIVATE_KEY&quot;</span><span class="p">))</span>
+
+<span class="nv">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">payload</span><span class="p">.</span><span class="py">hash</span><span class="p">,</span><span class="w"> </span><span class="nv">private_key</span><span class="p">)</span>
+
+<span class="c1">-- Cache with TTL</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">expire_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">payload</span><span class="p">.</span><span class="py">exp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">ngx</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">expire_value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">600</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">expire_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">600</span><span class="w"> </span><span class="kr">end</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">expire_value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kr">then</span>
+<span class="w">    </span><span class="nv">ngx</span><span class="p">.</span><span class="py">shared</span><span class="p">.</span><span class="py">targetmap</span><span class="p">:</span><span class="nf">set</span><span class="p">(</span><span class="nv">jwt_token</span><span class="p">,</span><span class="w"> </span><span class="nv">target</span><span class="p">,</span><span class="w"> </span><span class="nv">expire_value</span><span class="p">)</span>
+<span class="kr">end</span>
+</code></pre></div>
+<p><strong>Cache TTL Logic:</strong></p>
+<ul>
+<li>Uses JWT <code>exp</code> claim for expiration</li>
+<li>Capped at 600 seconds (10 minutes) maximum</li>
+<li>Minimum 1 second required to cache</li>
+<li>Prevents caching of expired/invalid tokens</li>
+</ul>
+<h4 id="7-target-assignment">7. Target Assignment</h4>
+<div class="highlight"><pre><span></span><code><span class="nv">ngx</span><span class="p">.</span><span class="py">var</span><span class="p">.</span><span class="py">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">target</span>
+</code></pre></div>
+<p>Sets the nginx variable used by <code>proxy_pass http://$target:$port/</code></p>
+<hr />
+<h2 id="endpoint-routing-table">Endpoint Routing Table</h2>
+<h3 id="service-endpoints">Service Endpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Service Variable</th>
+<th>Default Port</th>
+<th>Protocol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/spawner</code></td>
+<td><code>$spawner_service_tcp_port</code></td>
+<td>29786</td>
+<td>HTTP</td>
+</tr>
+<tr>
+<td><code>/terminals</code></td>
+<td><code>$xterm_tcp_port</code></td>
+<td>29781</td>
+<td>WebSocket</td>
+</tr>
+<tr>
+<td><code>/terminals/{id}/size</code></td>
+<td><code>$xterm_tcp_port</code></td>
+<td>29781</td>
+<td>HTTP</td>
+</tr>
+<tr>
+<td><code>/filer</code></td>
+<td><code>$file_service_tcp_port</code></td>
+<td>29783</td>
+<td>HTTP (8GB max)</td>
+</tr>
+<tr>
+<td><code>/printerfiler</code></td>
+<td><code>$printerfile_service_tcp_port</code></td>
+<td>29782</td>
+<td>HTTP</td>
+</tr>
+<tr>
+<td><code>/websockify</code></td>
+<td><code>$ws_tcp_bridge_tcp_port</code></td>
+<td>6081</td>
+<td>WebSocket</td>
+</tr>
+<tr>
+<td><code>/signalling</code></td>
+<td><code>$signalling_service_tcp_port</code></td>
+<td>29787</td>
+<td>WebSocket</td>
+</tr>
+<tr>
+<td><code>/broadcast</code></td>
+<td><code>$broadcast_tcp_port</code></td>
+<td>29784</td>
+<td>WebSocket</td>
+</tr>
+<tr>
+<td><code>/sound</code></td>
+<td><code>$sound_service_tcp_port</code></td>
+<td>29788</td>
+<td>WebSocket</td>
+</tr>
+<tr>
+<td><code>/microphone</code></td>
+<td><code>$microphone_service_tcp_port</code></td>
+<td>29789</td>
+<td>WebSocket</td>
+</tr>
+<tr>
+<td><code>/gamepad</code></td>
+<td><code>$gamepad_service_tcp_port</code></td>
+<td>29790</td>
+<td>WebSocket</td>
+</tr>
+<tr>
+<td><code>/snapshot</code></td>
+<td><code>$snapshot_service_tcp_port</code></td>
+<td>29785</td>
+<td>HTTP</td>
+</tr>
+<tr>
+<td><code>/console</code></td>
+<td><code>console</code> upstream</td>
+<td>-</td>
+<td>HTTP</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pyos-endpoints">PyOS Endpoints</h3>
+<p>Pattern: <code>/(moauth|fauth|gauth|oauth|autologin|API|status)</code></p>
+<ul>
+<li>Backend: <code>http://$pyos_fqdn:$pyos_service_port</code></li>
+<li>Timeout: 360 seconds (supports long-running operations like image pulls)</li>
+</ul>
+<h3 id="utility-endpoints">Utility Endpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/healthz</code></td>
+<td>Health check, returns "OK"</td>
+</tr>
+<tr>
+<td><code>/node</code></td>
+<td>Returns <code>NODE_NAME</code> environment variable</td>
+</tr>
+<tr>
+<td><code>/.well-known/*</code></td>
+<td>Let's Encrypt ACME challenges</td>
+</tr>
+<tr>
+<td><code>/speedtest</code></td>
+<td>Raw data throughput testing (no gzip)</td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>Default website content</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="configuration-files">Configuration Files</h2>
+<h3 id="nginxconf-main-configuration"><code>nginx.conf</code> - Main Configuration</h3>
+<p><strong>Key directives:</strong></p>
+<ul>
+<li><code>worker_processes auto</code> - Scales to available CPUs</li>
+<li><code>daemon off</code> - Required for container foreground execution</li>
+<li>
+<p><code>env</code> directives - Exposes environment variables to nginx</p>
+</li>
+<li>
+<p><strong>Lua shared dictionaries:</strong></p>
+</li>
+<li><code>rsakeymap</code> (1MB) - RSA key content cache</li>
+<li><code>rsafilenamekeymap</code> (1MB) - Key filename mappings</li>
+<li><code>targetmap</code> (8MB) - JWT → target resolution cache</li>
+</ul>
+<p><strong>Security settings:</strong></p>
+<ul>
+<li><code>server_tokens off</code> - Hides nginx version</li>
+<li><code>more_clear_headers Server</code> - Removes Server header</li>
+<li><code>TLS 1.2+</code> with strong cipher suite</li>
+</ul>
+<h3 id="sites-enabledroutehttpconf-server-block"><code>sites-enabled/routehttp.conf</code> - Server Block</h3>
+<p><strong>Initialization:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nv">init_by_lua_block</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">pyos_fqdn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">&quot;PYOS_FQDN&quot;</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s2">&quot;pyos&quot;</span>
+<span class="w">  </span><span class="nv">pyos_service_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">&quot;PYOS_SERVICE_PORT&quot;</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s2">&quot;8000&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Service port variables:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="nv">$ws_tcp_bridge_tcp_port</span><span class="w">             </span><span class="mi">6081</span><span class="p">;</span>
+<span class="k">set</span><span class="w"> </span><span class="nv">$xterm_tcp_port</span><span class="w">                     </span><span class="mi">29781</span><span class="p">;</span>
+<span class="k">set</span><span class="w"> </span><span class="nv">$file_service_tcp_port</span><span class="w">              </span><span class="mi">29783</span><span class="p">;</span>
+<span class="c1"># ... etc</span>
+</code></pre></div>
+<p><strong>Listening:</strong></p>
+<ul>
+<li>Port 80 (HTTP)</li>
+<li>Port 443 (HTTPS, commented out by default)</li>
+</ul>
+<h3 id="proxyconf-standard-proxy-headers"><code>proxy.conf</code> - Standard Proxy Headers</h3>
+<div class="highlight"><pre><span></span><code><span class="k">proxy_set_header</span><span class="w"> </span><span class="s">User-Agent</span><span class="w">            </span><span class="nv">$http_user_agent</span><span class="p">;</span>
+<span class="k">proxy_set_header</span><span class="w"> </span><span class="s">Origin</span><span class="w">                </span><span class="nv">$http_origin</span><span class="p">;</span>
+<span class="k">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w">             </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="k">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w">       </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="k">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Host</span><span class="w">      </span><span class="nv">$server_name</span><span class="p">;</span>
+<span class="k">proxy_set_header</span><span class="w"> </span><span class="s">Accept-Language</span><span class="w">       </span><span class="nv">$http_accept_language</span><span class="p">;</span>
+<span class="k">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w">                  </span><span class="nv">$host</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="wsconf-websocket-configuration"><code>ws.conf</code> - WebSocket Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="k">sendfile</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="k">tcp_nopush</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="k">proxy_buffering</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="k">proxy_http_version</span><span class="w"> </span><span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
+<span class="k">proxy_set_header</span><span class="w"> </span><span class="s">Upgrade</span><span class="w"> </span><span class="nv">$http_upgrade</span><span class="p">;</span>
+<span class="k">proxy_set_header</span><span class="w"> </span><span class="s">Connection</span><span class="w"> </span><span class="s">&quot;upgrade&quot;</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h2 id="docker-images">Docker Images</h2>
+<h3 id="default-image-ubuntu-jammy">Default Image (Ubuntu Jammy)</h3>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">openresty/openresty:jammy</span>
+</code></pre></div>
+<p><strong>Packages installed:</strong></p>
+<ul>
+<li>lua-resty-jwt</li>
+<li>lua-resty-string</li>
+<li>lua-cjson</li>
+<li>lua-resty-rsa</li>
+<li>lua-resty-dns</li>
+</ul>
+<h3 id="alpine-image">Alpine Image</h3>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">openresty/openresty:alpine</span>
+</code></pre></div>
+<p><strong>Additional tools:</strong></p>
+<ul>
+<li>certbot (Let's Encrypt)</li>
+</ul>
+<p><strong>Build approach:</strong></p>
+<ul>
+<li>Installs build dependencies, compiles LuaRocks packages, removes build tools</li>
+</ul>
+<hr />
+<h2 id="environment-variables">Environment Variables</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NODE_NAME</code></td>
+<td>No</td>
+<td>-</td>
+<td>Node identifier for <code>/node</code> endpoint</td>
+</tr>
+<tr>
+<td><code>JWT_DESKTOP_PAYLOAD_PRIVATE_KEY</code></td>
+<td>Yes</td>
+<td>-</td>
+<td>Path to RSA private key for payload decryption</td>
+</tr>
+<tr>
+<td><code>JWT_DESKTOP_SIGNING_PUBLIC_KEY</code></td>
+<td>Yes</td>
+<td>-</td>
+<td>Path to RSA public key for signature verification</td>
+</tr>
+<tr>
+<td><code>PYOS_SERVICE_PORT</code></td>
+<td>No</td>
+<td>8000</td>
+<td>PyOS backend port</td>
+</tr>
+<tr>
+<td><code>PYOS_FQDN</code></td>
+<td>No</td>
+<td><code>pyos</code></td>
+<td>PyOS backend hostname</td>
+</tr>
+<tr>
+<td><code>NAMESERVER_RESOLVER</code></td>
+<td>No</td>
+<td>From <code>/etc/resolv.conf</code></td>
+<td>DNS resolver for nginx</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="security-considerations">Security Considerations</h2>
+<ol>
+<li><strong>JWT Validation Chain</strong></li>
+<li>Signature verification with RSA public key</li>
+<li>Payload decryption with RSA private key</li>
+<li>
+<p>Expiration validation via cache TTL</p>
+</li>
+<li>
+<p><strong>Information Disclosure Prevention</strong></p>
+</li>
+<li>Server version hidden</li>
+<li>
+<p>Error messages logged but minimal in response</p>
+</li>
+<li>
+<p><strong>Resource Limits</strong></p>
+</li>
+<li>Upload limits: 8MB (spawner), 8GB (filer)</li>
+<li>Cache TTL capped at 10 minutes</li>
+<li>
+<p>Shared dictionary sizes bounded</p>
+</li>
+<li>
+<p><strong>WebSocket Security</strong></p>
+</li>
+<li>Proper Upgrade/Connection headers</li>
+<li>Buffering disabled for real-time communication</li>
+</ol>
+<hr />
+<h2 id="logging">Logging</h2>
+<ul>
+<li><strong>Access log:</strong> <code>/var/log/nginx/access.log</code></li>
+<li><strong>Error log:</strong> <code>/var/log/nginx/error.log</code></li>
+<li><strong>JWT errors:</strong> Logged at <code>ngx.ERR</code> level</li>
+<li><strong>Cache hits:</strong> Logged at <code>ngx.NOTICE</code> level with TTL and target</li>
+</ul>
+<h2 id="rebuild-the-container-images">Rebuild the container images</h2>
+<ul>
+<li>from <code>openresty/openresty</code> alpine</li>
+</ul>
+<div class="highlight"><pre><span></span><code>REPO=abcdesdesktop
+docker build -t $REPO/router:4.4 -f Dockerfile.alpine --build-arg BASE_IMAGE_RELEASE=alpine --build-arg BASE_IMAGE=openresty/openresty .
+</code></pre></div>
 
 
 
