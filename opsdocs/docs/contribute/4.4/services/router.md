@@ -362,8 +362,8 @@ FROM openresty/openresty:alpine
 - from `openresty/openresty` alpine
   
 ```
-git clone -b https://github.com/abcdesktopio/route.git route
+git clone -b {{ abcdesktop.latest_release }} https://github.com/abcdesktopio/route.git
 cd route
 REPO=abcdesdesktop
-docker build -t $REPO/route:4.4 -f Dockerfile.alpine --build-arg BASE_IMAGE_RELEASE=alpine --build-arg BASE_IMAGE=openresty/openresty .
+docker build -t $REPO/route:{{ abcdesktop.latest_release }} -f Dockerfile.alpine --build-arg BASE_IMAGE_RELEASE=alpine --build-arg BASE_IMAGE=openresty/openresty .
 ```
