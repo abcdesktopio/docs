@@ -3271,7 +3271,7 @@
           <li class="md-nav__item">
   <a href="#pyos-endpoints" class="md-nav__link">
     <span class="md-ellipsis">
-      PyOS Endpoints
+      pyos Endpoints
     </span>
   </a>
   
@@ -3907,7 +3907,7 @@
           <li class="md-nav__item">
   <a href="#pyos-endpoints" class="md-nav__link">
     <span class="md-ellipsis">
-      PyOS Endpoints
+      pyos Endpoints
     </span>
   </a>
   
@@ -4291,11 +4291,12 @@
 </tr>
 </tbody>
 </table>
-<h3 id="pyos-endpoints">PyOS Endpoints</h3>
-<p>Pattern: <code>/(moauth|fauth|gauth|oauth|autologin|API|status)</code></p>
+<h3 id="pyos-endpoints">pyos Endpoints</h3>
+<p>Pattern proxy_pass backend: <code>http://$pyos_fqdn:$pyos_service_port</code>:</p>
 <ul>
-<li>Backend: <code>http://$pyos_fqdn:$pyos_service_port</code></li>
-<li>Timeout: 360 seconds (supports long-running operations like image pulls)</li>
+<li><code>/API/manager/image</code> with client_max_body_size 16m;</li>
+<li><code>/API/composer/launchdesktop</code> with proxy_read_timeout 600s;</li>
+<li><code>/API</code> </li>
 </ul>
 <h3 id="utility-endpoints">Utility Endpoints</h3>
 <table>
