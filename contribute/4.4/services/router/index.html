@@ -4502,8 +4502,10 @@
 <ul>
 <li>from <code>openresty/openresty</code> alpine</li>
 </ul>
-<div class="highlight"><pre><span></span><code>REPO=abcdesdesktop
-docker build -t $REPO/router:4.4 -f Dockerfile.alpine --build-arg BASE_IMAGE_RELEASE=alpine --build-arg BASE_IMAGE=openresty/openresty .
+<div class="highlight"><pre><span></span><code>git clone -b https://github.com/abcdesktopio/route.git route
+cd route
+REPO=abcdesdesktop
+docker build -t $REPO/route:4.4 -f Dockerfile.alpine --build-arg BASE_IMAGE_RELEASE=alpine --build-arg BASE_IMAGE=openresty/openresty .
 </code></pre></div>
 
 
