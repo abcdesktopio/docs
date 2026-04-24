@@ -3402,6 +3402,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#disable-cilium-cni-exclusive-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disable Cilium CNI Exclusive Mode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-networkattachementdefinition" class="md-nav__link">
     <span class="md-ellipsis">
       Create NetworkAttachementDefinition
@@ -3502,6 +3511,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#disable-cilium-cni-exclusive-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disable Cilium CNI Exclusive Mode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-networkattachementdefinition" class="md-nav__link">
     <span class="md-ellipsis">
       Create NetworkAttachementDefinition
@@ -3578,6 +3596,7 @@
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>a Kubernetes cluster with abcdesktop installed</li>
+<li><a href="https://docs.cilium.io/en/stable/installation/cli-download/#">cilium-cli</a></li>
 <li><a href="https://github.com/k8snetworkplumbingwg/multus-cni">multus CNI</a> installed on your cluster</li>
 <li>VLAN-tagged interfaces configured on your host nodes</li>
 </ul>
@@ -3612,6 +3631,11 @@ member: cn=Hermes Conrad,ou=people,dc=planetexpress,dc=com
 </code></pre></div>
 </details>
 </div>
+<h2 id="disable-cilium-cni-exclusive-mode">Disable Cilium CNI Exclusive Mode</h2>
+<p>By default, when Cilium is installed in a Kubernetes cluster, it operates in exclusive CNI mode, meaning it is the only plugin managing pod networking.</p>
+<p>Before installing Multus, this behavior must be disabled to allow multiple CNI plugins to coexist. You can disable Cilium’s exclusive mode by running the following command:</p>
+<div class="highlight"><pre><span></span><code>cilium config set cni-exclusive false
+</code></pre></div>
 <h2 id="create-networkattachementdefinition">Create <code>NetworkAttachementDefinition</code></h2>
 <p>A <code>NetworkAttachmentDefinition</code> is a Kubernetes custom resource that describes how Multus should attach an additional network interface to a pod. You must create one for each VLAN you want to expose to user pods.</p>
 <p>In this example, we configure a macvlan interface bound to VLAN ID 200 (<code>eno1.200</code>). Adapt the <code>master</code> nterface, subnet, IP range, and gateway to match your network topology.</p>
@@ -3775,6 +3799,7 @@ net1: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;POD_NAME&gt;<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>route<span class="w"> </span>-n
 </code></pre></div>
 <p>Public internet traffic should route via <code>net1</code>, while traffic destined for private RFC 1918 ranges should remain on <code>eth0</code>.</p>
+<p>Great ! You can now configure user pods with multiple interfaces and VLANs !</p>
 
 
 
