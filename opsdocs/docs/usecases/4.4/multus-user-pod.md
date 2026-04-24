@@ -10,6 +10,7 @@ tags:
 ## Requirements
 
 - a Kubernetes cluster with abcdesktop installed
+- [cilium-cli](https://docs.cilium.io/en/stable/installation/cli-download/#)
 - [multus CNI](https://github.com/k8snetworkplumbingwg/multus-cni) installed on your cluster
 - VLAN-tagged interfaces configured on your host nodes
 
@@ -46,6 +47,16 @@ tags:
         member: cn=Hubert J. Farnsworth,ou=people,dc=planetexpress,dc=com
         member: cn=Hermes Conrad,ou=people,dc=planetexpress,dc=com
         ```
+
+## Disable Cilium CNI Exclusive Mode
+
+By default, when Cilium is installed in a Kubernetes cluster, it operates in exclusive CNI mode, meaning it is the only plugin managing pod networking.
+
+Before installing Multus, this behavior must be disabled to allow multiple CNI plugins to coexist. You can disable Cilium’s exclusive mode by running the following command:
+
+```
+cilium config set cni-exclusive false
+```
 
 ## Create `NetworkAttachementDefinition`
 
@@ -216,3 +227,5 @@ kubectl exec -it <POD_NAME> -n abcdesktop -- route -n
 ```
 
 Public internet traffic should route via `net1`, while traffic destined for private RFC 1918 ranges should remain on `eth0`.
+
+Great ! You can now configure user pods with multiple interfaces and VLANs !
