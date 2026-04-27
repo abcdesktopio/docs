@@ -223,7 +223,7 @@ These values are stored on `window` and consumed throughout the application.
  
 The image uses a **multi-stage build**:
  
-1. **Builder stage** (`ubuntu:22.04` by default):
+1. **Builder stage** (`ubuntu:latest` by default):
    - Installs Node.js 20 via the NodeSource repository
    - Copies the `app/` directory
    - Runs `npm install` and `npm run build` (Vite production build)
@@ -237,7 +237,7 @@ The image uses a **multi-stage build**:
 | Argument | Default | Description |
 |----------|---------|-------------|
 | `BASE_IMAGE` | `ubuntu` | Base OS image for the builder stage |
-| `TAG` | `22.04` | Tag of the base OS image |
+| `TAG` | `latest` | Tag of the base OS image |
  
 ### Supported Platforms
  
