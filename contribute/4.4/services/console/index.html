@@ -4292,7 +4292,7 @@ cpuPercent = (ΔcpuNano / 1e9) / (Δtime_sec × cpuLimit) × 100
 <h3 id="build-process">Build Process</h3>
 <p>The image uses a <strong>multi-stage build</strong>:</p>
 <ol>
-<li><strong>Builder stage</strong> (<code>ubuntu:22.04</code> by default):</li>
+<li><strong>Builder stage</strong> (<code>ubuntu:latest</code> by default):</li>
 <li>Installs Node.js 20 via the NodeSource repository</li>
 <li>Copies the <code>app/</code> directory</li>
 <li>Runs <code>npm install</code> and <code>npm run build</code> (Vite production build)</li>
@@ -4319,7 +4319,7 @@ cpuPercent = (ΔcpuNano / 1e9) / (Δtime_sec × cpuLimit) × 100
 </tr>
 <tr>
 <td><code>TAG</code></td>
-<td><code>22.04</code></td>
+<td><code>latest</code></td>
 <td>Tag of the base OS image</td>
 </tr>
 </tbody>
