@@ -3437,6 +3437,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#add-ipv6-support-optionnal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add IPv6 support (optionnal)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Add IPv6 support (optionnal)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-the-networkattachmentdefinition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update the NetworkAttachmentDefinition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-dual-stack-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify dual-stack connectivity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3543,6 +3576,39 @@
       Create a new user
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-ipv6-support-optionnal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add IPv6 support (optionnal)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Add IPv6 support (optionnal)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-the-networkattachmentdefinition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update the NetworkAttachmentDefinition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-dual-stack-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify dual-stack connectivity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3800,6 +3866,145 @@ net1: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
 </code></pre></div>
 <p>Public internet traffic should route via <code>net1</code>, while traffic destined for private RFC 1918 ranges should remain on <code>eth0</code>.</p>
 <p><img alt="multus-and-cilium-network-schematic" src="../img/multus_and_cilium_kubernetes.drawio.png" /></p>
+<h2 id="add-ipv6-support-optionnal">Add IPv6 support (optionnal)</h2>
+<p>This section extends the previous configuration to provide dual-stack connectivity on <code>net1</code>, giving each user pod both an IPv4 and a globally routable IPv6 address on the VLAN.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This configuration only affects <code>net1</code> — the secondary VLAN interface managed by Multus. Cilium continues to manage <code>eth0</code> for internal cluster traffic and does not require any changes.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Before updating the <code>NetworkAttachmentDefinition</code>, ensure the following conditions are met on your infrastructure:</p>
+<ul>
+<li>
+<p><strong>On the host node</strong>, the VLAN interface must have an IPv6 address and a default IPv6 route:
+<div class="highlight"><pre><span></span><code><span class="c1"># Verify that an IPv6 address is present on the VLAN interface</span>
+ip<span class="w"> </span>-6<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>dev<span class="w"> </span>eth0.200
+
+<span class="c1"># Verify that a default IPv6 route exists via the VLAN gateway</span>
+ip<span class="w"> </span>-6<span class="w"> </span>route<span class="w"> </span>show<span class="w"> </span>dev<span class="w"> </span>eth0.200
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>IPv6 forwarding</strong> must be enabled on the host:
+<div class="highlight"><pre><span></span><code>sysctl<span class="w"> </span>net.ipv6.conf.all.forwarding
+<span class="c1"># Must return 1 — if not:</span>
+sysctl<span class="w"> </span>-w<span class="w"> </span>net.ipv6.conf.all.forwarding<span class="o">=</span><span class="m">1</span>
+</code></pre></div></p>
+</li>
+</ul>
+</div>
+<h3 id="update-the-networkattachmentdefinition">Update the <code>NetworkAttachmentDefinition</code></h3>
+<p>The dual-stack configuration requires two changes compared to the IPv4-only version: the <code>cniVersion</code> must be bumped to <code>0.3.1</code> to support the <code>ranges</code> format, and an IPv6 address pool must be added alongside the existing IPv4 pool.</p>
+<p>Please update the <code>macvlan-conf-1.yaml</code> as below.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;k8s.cni.cncf.io/v1&quot;</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkAttachmentDefinition</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">macvlan-conf-1</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;{</span>
+<span class="w">    </span><span class="s">&quot;cniVersion&quot;:</span><span class="nv"> </span><span class="s">&quot;0.3.1&quot;,</span>
+<span class="w">    </span><span class="s">&quot;type&quot;:</span><span class="nv"> </span><span class="s">&quot;macvlan&quot;,</span>
+<span class="w">    </span><span class="s">&quot;master&quot;:</span><span class="nv"> </span><span class="s">&quot;eth0.200&quot;,</span>
+<span class="w">    </span><span class="s">&quot;mode&quot;:</span><span class="nv"> </span><span class="s">&quot;bridge&quot;,</span>
+<span class="w">    </span><span class="s">&quot;ipam&quot;:</span><span class="nv"> </span><span class="s">{</span>
+<span class="w">      </span><span class="s">&quot;type&quot;:</span><span class="nv"> </span><span class="s">&quot;host-local&quot;,</span>
+<span class="w">      </span><span class="s">&quot;ranges&quot;:</span><span class="nv"> </span><span class="s">[</span>
+<span class="w">        </span><span class="s">[{</span>
+<span class="w">          </span><span class="s">&quot;subnet&quot;:</span><span class="nv">     </span><span class="s">&quot;203.0.113.0/24&quot;,</span>
+<span class="w">          </span><span class="s">&quot;rangeStart&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.10&quot;,</span>
+<span class="w">          </span><span class="s">&quot;rangeEnd&quot;:</span><span class="nv">   </span><span class="s">&quot;203.0.113.50&quot;,</span>
+<span class="w">          </span><span class="s">&quot;gateway&quot;:</span><span class="nv">    </span><span class="s">&quot;203.0.113.1&quot;</span>
+<span class="w">        </span><span class="s">}],</span>
+<span class="w">        </span><span class="s">[{</span>
+<span class="w">          </span><span class="s">&quot;subnet&quot;:</span><span class="nv">     </span><span class="s">&quot;2001:db8:200::/64&quot;,</span>
+<span class="w">          </span><span class="s">&quot;rangeStart&quot;:</span><span class="nv"> </span><span class="s">&quot;2001:db8:200::10&quot;,</span>
+<span class="w">          </span><span class="s">&quot;rangeEnd&quot;:</span><span class="nv">   </span><span class="s">&quot;2001:db8:200::ff&quot;,</span>
+<span class="w">          </span><span class="s">&quot;gateway&quot;:</span><span class="nv">    </span><span class="s">&quot;2001:db8:200::1&quot;</span>
+<span class="w">        </span><span class="s">}]</span>
+<span class="w">      </span><span class="s">],</span>
+<span class="w">      </span><span class="s">&quot;routes&quot;:</span><span class="nv"> </span><span class="s">[</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;1.0.0.0/8&quot;,</span><span class="nv">    </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;2.0.0.0/7&quot;,</span><span class="nv">    </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;4.0.0.0/6&quot;,</span><span class="nv">    </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;8.0.0.0/5&quot;,</span><span class="nv">    </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;16.0.0.0/4&quot;,</span><span class="nv">   </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;32.0.0.0/3&quot;,</span><span class="nv">   </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;64.0.0.0/2&quot;,</span><span class="nv">   </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;128.0.0.0/3&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;160.0.0.0/5&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;168.0.0.0/6&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;172.0.0.0/12&quot;,</span><span class="nv"> </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;172.32.0.0/11&quot;,&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;172.64.0.0/10&quot;,&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;172.128.0.0/9&quot;,&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;173.0.0.0/8&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;174.0.0.0/7&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;176.0.0.0/4&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;192.0.0.0/9&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;192.128.0.0/11&quot;,&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;192.160.0.0/13&quot;,&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;192.169.0.0/16&quot;,&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;192.170.0.0/15&quot;,&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;192.172.0.0/14&quot;,&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;192.176.0.0/12&quot;,&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;192.192.0.0/10&quot;,&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;193.0.0.0/8&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;194.0.0.0/7&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;196.0.0.0/6&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;200.0.0.0/5&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;208.0.0.0/4&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;224.0.0.0/3&quot;,</span><span class="nv">  </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;203.0.113.1&quot;</span><span class="nv"> </span><span class="s">},</span>
+<span class="w">        </span><span class="s">{</span><span class="nv"> </span><span class="s">&quot;dst&quot;:</span><span class="nv"> </span><span class="s">&quot;::/0&quot;,</span><span class="nv">         </span><span class="s">&quot;gw&quot;:</span><span class="nv"> </span><span class="s">&quot;2001:db8:200::1&quot;</span><span class="nv"> </span><span class="s">}</span>
+<span class="w">      </span><span class="s">]</span>
+<span class="w">    </span><span class="s">}</span>
+<span class="w">  </span><span class="s">}&#39;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In IPv4, private ranges (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>) are scattered throughout the public address space, making it necessary to enumerate all public prefixes explicitly to avoid routing private traffic through the VLAN gateway.</p>
+<p>In IPv6, public addresses (<code>2000::/3</code>), private ULA addresses (<code>fc00::/7</code>), and link-local addresses (<code>fe80::/10</code>) occupy completely separate, non-overlapping blocks. A single <code>::/0</code> default route on <code>net1</code> is therefore sufficient — the kernel will never forward link-local traffic regardless of the routing table, and ULA traffic has no reachable gateway on the public internet.</p>
+</div>
+<p>Then apply the updated ressource : </p>
+<div class="highlight"><pre><span></span><code>NAMEPSACE=abcdesktop
+kubectl apply -f macvlan-conf-1.yaml -n $NAMESPACE
+</code></pre></div>
+<h3 id="verify-dual-stack-connectivity">Verify dual-stack connectivity</h3>
+<p>Recreate a user pod and inspect the <code>net1</code> interface:
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;POD_NAME&gt;<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>ifconfig
+</code></pre></div></p>
+<p>You should see something like this :</p>
+<div class="highlight"><pre><span></span><code>kubectl exec -it fry-21d8e -n abcdesktop -- ifconfig
+Defaulted container &quot;x-graphical&quot; out of: x-graphical, s-sound, f-filer, i-init (init)
+eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 10.0.0.229  netmask 255.255.255.255  broadcast 0.0.0.0
+        inet6 fe80::7c7b:bbff:feb6:dee4  prefixlen 64 copeid 0x20&lt;link&gt;
+        ether 7e:7b:bb:b6:de:e4  txqueuelen 1000  (Ethernet)
+        RX packets 8154  bytes 612938 (612.9 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 10983  bytes 7049351 (7.0 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 50  bytes 3721 (3.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 50  bytes 3721 (3.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+net1: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 203.0.113.13  netmask 255.255.255.0  broadcast 203.0.113.255
+        inet6 fe80::74b8:89ff:ee8d:4bc3  prefixlen 64  scopeid 0x20&lt;link&gt;
+        inet6 2001:db8:200::11  prefixlen 64  scopeid 0x0&lt;global&gt;
+        ether 76:b8:8d:9d:4b:d3  txqueuelen 1000  (Ethernet)
+        RX packets 56  bytes 3542 (3.5 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 56  bytes 4324 (4.3 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</code></pre></div>
+<p>As you can see, the <code>net1</code> interface has now a global IPv6 address (GUA) which in our cas is <code>2001:db8:200::11</code>.</p>
 <p>Great ! You can now configure user pods with multiple interfaces and VLANs !</p>
 
 
