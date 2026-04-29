@@ -3966,12 +3966,13 @@ sysctl<span class="w"> </span>-w<span class="w"> </span>net.ipv6.conf.all.forwar
 <p>In IPv6, public addresses (<code>2000::/3</code>), private ULA addresses (<code>fc00::/7</code>), and link-local addresses (<code>fe80::/10</code>) occupy completely separate, non-overlapping blocks. A single <code>::/0</code> default route on <code>net1</code> is therefore sufficient — the kernel will never forward link-local traffic regardless of the routing table, and ULA traffic has no reachable gateway on the public internet.</p>
 </div>
 <p>Then apply the updated ressource : </p>
-<div class="highlight"><pre><span></span><code>NAMEPSACE=abcdesktop
-kubectl apply -f macvlan-conf-1.yaml -n $NAMESPACE
+<div class="highlight"><pre><span></span><code><span class="nv">NAMEPSACE</span><span class="o">=</span>abcdesktop
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>macvlan-conf-1.yaml<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 </code></pre></div>
 <h3 id="verify-dual-stack-connectivity">Verify dual-stack connectivity</h3>
 <p>Recreate a user pod and inspect the <code>net1</code> interface:
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;POD_NAME&gt;<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>ifconfig
+<div class="highlight"><pre><span></span><code><span class="nv">NAMEPSACE</span><span class="o">=</span>abcdesktop
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;POD_NAME&gt;<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>--<span class="w"> </span>ifconfig
 </code></pre></div></p>
 <p>You should see something like this :</p>
 <div class="highlight"><pre><span></span><code>kubectl exec -it fry-21d8e -n abcdesktop -- ifconfig
@@ -4004,7 +4005,7 @@ net1: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
         TX packets 56  bytes 4324 (4.3 KB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 </code></pre></div>
-<p>As you can see, the <code>net1</code> interface has now a global IPv6 address (GUA) which in our cas is <code>2001:db8:200::11</code>.</p>
+<p>As you can see, the <code>net1</code> interface has now a global IPv6 address (GUA) which in our case is <code>2001:db8:200::11</code>.</p>
 <p>Great ! You can now configure user pods with multiple interfaces and VLANs !</p>
 
 
