@@ -230,4 +230,156 @@ Public internet traffic should route via `net1`, while traffic destined for priv
 
 ![multus-and-cilium-network-schematic](img/multus_and_cilium_kubernetes.drawio.png)
 
+## Add IPv6 support (optionnal)
+
+This section extends the previous configuration to provide dual-stack connectivity on `net1`, giving each user pod both an IPv4 and a globally routable IPv6 address on the VLAN.
+
+!!! note 
+    This configuration only affects `net1` — the secondary VLAN interface managed by Multus. Cilium continues to manage `eth0` for internal cluster traffic and does not require any changes.
+
+!!! warning
+    Before updating the `NetworkAttachmentDefinition`, ensure the following conditions are met on your infrastructure:
+
+    - **On the host node**, the VLAN interface must have an IPv6 address and a default IPv6 route:
+    ```bash
+    # Verify that an IPv6 address is present on the VLAN interface
+    ip -6 addr show dev eth0.200
+
+    # Verify that a default IPv6 route exists via the VLAN gateway
+    ip -6 route show dev eth0.200
+    ```
+
+    - **IPv6 forwarding** must be enabled on the host:
+    ```bash
+    sysctl net.ipv6.conf.all.forwarding
+    # Must return 1 — if not:
+    sysctl -w net.ipv6.conf.all.forwarding=1
+    ```
+
+### Update the `NetworkAttachmentDefinition`
+
+The dual-stack configuration requires two changes compared to the IPv4-only version: the `cniVersion` must be bumped to `0.3.1` to support the `ranges` format, and an IPv6 address pool must be added alongside the existing IPv4 pool.
+
+Please update the `macvlan-conf-1.yaml` as below.
+
+```yaml
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: macvlan-conf-1
+spec:
+  config: '{
+    "cniVersion": "0.3.1",
+    "type": "macvlan",
+    "master": "eth0.200",
+    "mode": "bridge",
+    "ipam": {
+      "type": "host-local",
+      "ranges": [
+        [{
+          "subnet":     "203.0.113.0/24",
+          "rangeStart": "203.0.113.10",
+          "rangeEnd":   "203.0.113.50",
+          "gateway":    "203.0.113.1"
+        }],
+        [{
+          "subnet":     "2001:db8:200::/64",
+          "rangeStart": "2001:db8:200::10",
+          "rangeEnd":   "2001:db8:200::ff",
+          "gateway":    "2001:db8:200::1"
+        }]
+      ],
+      "routes": [
+        { "dst": "1.0.0.0/8",    "gw": "203.0.113.1" },
+        { "dst": "2.0.0.0/7",    "gw": "203.0.113.1" },
+        { "dst": "4.0.0.0/6",    "gw": "203.0.113.1" },
+        { "dst": "8.0.0.0/5",    "gw": "203.0.113.1" },
+        { "dst": "16.0.0.0/4",   "gw": "203.0.113.1" },
+        { "dst": "32.0.0.0/3",   "gw": "203.0.113.1" },
+        { "dst": "64.0.0.0/2",   "gw": "203.0.113.1" },
+        { "dst": "128.0.0.0/3",  "gw": "203.0.113.1" },
+        { "dst": "160.0.0.0/5",  "gw": "203.0.113.1" },
+        { "dst": "168.0.0.0/6",  "gw": "203.0.113.1" },
+        { "dst": "172.0.0.0/12", "gw": "203.0.113.1" },
+        { "dst": "172.32.0.0/11","gw": "203.0.113.1" },
+        { "dst": "172.64.0.0/10","gw": "203.0.113.1" },
+        { "dst": "172.128.0.0/9","gw": "203.0.113.1" },
+        { "dst": "173.0.0.0/8",  "gw": "203.0.113.1" },
+        { "dst": "174.0.0.0/7",  "gw": "203.0.113.1" },
+        { "dst": "176.0.0.0/4",  "gw": "203.0.113.1" },
+        { "dst": "192.0.0.0/9",  "gw": "203.0.113.1" },
+        { "dst": "192.128.0.0/11","gw": "203.0.113.1" },
+        { "dst": "192.160.0.0/13","gw": "203.0.113.1" },
+        { "dst": "192.169.0.0/16","gw": "203.0.113.1" },
+        { "dst": "192.170.0.0/15","gw": "203.0.113.1" },
+        { "dst": "192.172.0.0/14","gw": "203.0.113.1" },
+        { "dst": "192.176.0.0/12","gw": "203.0.113.1" },
+        { "dst": "192.192.0.0/10","gw": "203.0.113.1" },
+        { "dst": "193.0.0.0/8",  "gw": "203.0.113.1" },
+        { "dst": "194.0.0.0/7",  "gw": "203.0.113.1" },
+        { "dst": "196.0.0.0/6",  "gw": "203.0.113.1" },
+        { "dst": "200.0.0.0/5",  "gw": "203.0.113.1" },
+        { "dst": "208.0.0.0/4",  "gw": "203.0.113.1" },
+        { "dst": "224.0.0.0/3",  "gw": "203.0.113.1" },
+        { "dst": "::/0",         "gw": "2001:db8:200::1" }
+      ]
+    }
+  }'
+```
+
+!!! note 
+    In IPv4, private ranges (`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) are scattered throughout the public address space, making it necessary to enumerate all public prefixes explicitly to avoid routing private traffic through the VLAN gateway.
+
+    In IPv6, public addresses (`2000::/3`), private ULA addresses (`fc00::/7`), and link-local addresses (`fe80::/10`) occupy completely separate, non-overlapping blocks. A single `::/0` default route on `net1` is therefore sufficient — the kernel will never forward link-local traffic regardless of the routing table, and ULA traffic has no reachable gateway on the public internet.
+
+Then apply the updated ressource : 
+
+```
+NAMEPSACE=abcdesktop
+kubectl apply -f macvlan-conf-1.yaml -n $NAMESPACE
+```
+
+### Verify dual-stack connectivity
+
+Recreate a user pod and inspect the `net1` interface:
+```bash
+kubectl exec -it <POD_NAME> -n abcdesktop -- ifconfig
+```
+
+You should see something like this :
+
+```
+kubectl exec -it fry-21d8e -n abcdesktop -- ifconfig
+Defaulted container "x-graphical" out of: x-graphical, s-sound, f-filer, i-init (init)
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.0.0.229  netmask 255.255.255.255  broadcast 0.0.0.0
+        inet6 fe80::7c7b:bbff:feb6:dee4  prefixlen 64 copeid 0x20<link>
+        ether 7e:7b:bb:b6:de:e4  txqueuelen 1000  (Ethernet)
+        RX packets 8154  bytes 612938 (612.9 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 10983  bytes 7049351 (7.0 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 50  bytes 3721 (3.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 50  bytes 3721 (3.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+net1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 203.0.113.13  netmask 255.255.255.0  broadcast 203.0.113.255
+        inet6 fe80::74b8:89ff:ee8d:4bc3  prefixlen 64  scopeid 0x20<link>
+        inet6 2001:db8:200::11  prefixlen 64  scopeid 0x0<global>
+        ether 76:b8:8d:9d:4b:d3  txqueuelen 1000  (Ethernet)
+        RX packets 56  bytes 3542 (3.5 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 56  bytes 4324 (4.3 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+
+As you can see, the `net1` interface has now a global IPv6 address (GUA) which in our cas is `2001:db8:200::11`.
+
 Great ! You can now configure user pods with multiple interfaces and VLANs !
