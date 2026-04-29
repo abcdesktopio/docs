@@ -334,7 +334,7 @@ spec:
 
 Then apply the updated ressource : 
 
-```
+```bash
 NAMEPSACE=abcdesktop
 kubectl apply -f macvlan-conf-1.yaml -n $NAMESPACE
 ```
@@ -343,7 +343,8 @@ kubectl apply -f macvlan-conf-1.yaml -n $NAMESPACE
 
 Recreate a user pod and inspect the `net1` interface:
 ```bash
-kubectl exec -it <POD_NAME> -n abcdesktop -- ifconfig
+NAMEPSACE=abcdesktop
+kubectl exec -it <POD_NAME> -n $NAMESPACE -- ifconfig
 ```
 
 You should see something like this :
@@ -380,6 +381,6 @@ net1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
-As you can see, the `net1` interface has now a global IPv6 address (GUA) which in our cas is `2001:db8:200::11`.
+As you can see, the `net1` interface has now a global IPv6 address (GUA) which in our case is `2001:db8:200::11`.
 
 Great ! You can now configure user pods with multiple interfaces and VLANs !
