@@ -1,12 +1,13 @@
 ---
 tags:
-- read by JFV
+- update
+- config
 ---
 
 
 # How to edit the abcdesktop configuration file
 
-Th abcdesktop configuration file name is `od.config`.
+The abcdesktop configuration file name is `od.config`.
 This file has the [cherrypy file format](https://docs.cherrypy.dev/en/stable/config.html).
 When the pyos process starts, it read the `od.config` file.
 If something is wrong, the pyos process hangs. The command line `kubectl logs -l name=pyos-od  -n abcdesktop` write the pyos log on stdout.
