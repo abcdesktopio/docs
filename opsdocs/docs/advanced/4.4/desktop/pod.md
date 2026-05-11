@@ -62,7 +62,7 @@ desktop.pod : {
   # graphical is the main abcdesktop container it include x11 service 
   'graphical' : {
     'volumes': [ 'x11socket', 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
-    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.3' },
+    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:{{ abcdesktop.latest_release }}' },
     'imagePullPolicy':  'Always',
     'enable': True,
     'acl':  { 'permit': [ 'all' ] },
@@ -107,7 +107,7 @@ desktop.pod : {
   # printer is a cupsd service 
   'printer' : { 
     'volumes': [ 'tmp' ],
-    'image': 'ghcr.io/abcdesktopio/oc.cupsd:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.cupsd:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'IfNotPresent',
     'enable': True,
     'tcpport': 681,
@@ -126,7 +126,7 @@ desktop.pod : {
   # filer provide upload and download files features
   'filer' : { 
     'volumes': [ 'tmp', 'home', 'log'  ],
-    'image': 'ghcr.io/abcdesktopio/oc.filer:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.filer:{{ abcdesktop.latest_release }}',
     'imagePullPolicy':  'Always',
     'enable': True,
     'tcpport': 29783,
@@ -136,7 +136,7 @@ desktop.pod : {
   # sound is a pulseaudio service instance
   'sound': { 
     'volumes': [ 'tmp', 'home', 'log' ],
-    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'Always',
     'enable': True,
     'tcpport': 29788,
@@ -258,7 +258,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
 ```
 'graphical' : {
     'volumes': [ 'x11socket', 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
-    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.3' },
+    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:{{ abcdesktop.latest_release }}' },
     'imagePullPolicy':  'Always',
     'enable': True,
     'acl':  { 'permit': [ 'all' ] },
@@ -335,7 +335,7 @@ Additionnal services are running inside the graphical service.
 ```
 'printer' : { 
     'volumes': [ 'tmp' ],
-    'image': 'ghcr.io/abcdesktopio/oc.cupsd:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.cupsd:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'IfNotPresent',
     'enable': True,
     'tcpport': 681,
@@ -370,7 +370,7 @@ The printer container is the printer service, to print file as `pdf` and downloa
 ```
 'filer' : { 
     'volumes': [ 'tmp', 'home', 'log' ],
-    'image': 'ghcr.io/abcdesktopio/oc.filer:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.filer:{{ abcdesktop.latest_release }}',
     'imagePullPolicy':  'Always',
     'enable': True,
     'tcpport': 29783,
@@ -396,7 +396,7 @@ The filer container is the filer service, upload and download files and director
 ```
 'sound': { 
     'volumes': [ 'tmp', 'home', 'log' ],
-    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'Always',
     'enable': True,
     'tcpport': 29788,
@@ -481,7 +481,7 @@ desktop.pod : {
   # graphical is the main abcdesktop container it include x11 service 
   'graphical' : {
     'volumes': [ 'sudoers', 'x11socket', 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
-    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.3' },
+    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:{{ abcdesktop.latest_release }}' },
     'imagePullPolicy':  'Always',
     'enable': True,
     'acl':  { 'permit': [ 'all' ] },
@@ -526,7 +526,7 @@ desktop.pod : {
   # printer is a cupsd service 
   'printer' : { 
     'volumes': [ 'tmp' ],
-    'image': 'ghcr.io/abcdesktopio/oc.cupsd:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.cupsd:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'IfNotPresent',
     'enable': True,
     'tcpport': 681,
@@ -545,7 +545,7 @@ desktop.pod : {
   # filer provide upload and download files features
   'filer' : { 
     'volumes': [ 'tmp', 'home', 'log'  ],
-    'image': 'ghcr.io/abcdesktopio/oc.filer:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.filer:{{ abcdesktop.latest_release }}',
     'imagePullPolicy':  'Always',
     'enable': True,
     'tcpport': 29783,
@@ -555,7 +555,7 @@ desktop.pod : {
   # sound is a pulseaudio service instance
   'sound': { 
     'volumes': [ 'sudoers', 'tmp', 'home', 'log' ],
-    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'Always',
     'enable': True,
     'tcpport': 29788,
