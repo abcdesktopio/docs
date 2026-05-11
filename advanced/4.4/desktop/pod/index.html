@@ -2452,6 +2452,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#define-environment-variables-in-the-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      define environment variables in the desktop
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3647,6 +3656,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#define-environment-variables-in-the-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      define environment variables in the desktop
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3672,7 +3690,7 @@
 
 
 <h1 id="desktop-configuration-desktoppod">Desktop configuration <code>desktop.pod</code></h1>
-<p>This chapter describes how to configure the <code>desktop.pod</code> object in the abcdesktop config file.</p>
+<p>This chapter describes how to configure the <code>desktop.pod</code> and <code>desktop.envlocal</code> objects in the abcdesktop config file.</p>
 <h2 id="main-entries-in-the-desktoppod-dictionary">main entries in the <code>desktop.pod</code> dictionary</h2>
 <p><code>desktop.pod</code> defines how create the user's pod. The mains sections are </p>
 <ul>
@@ -4231,6 +4249,23 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
     },
     &#39;tolerations&#39;: [],
     &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] }  }  }
+</code></pre></div>
+<h2 id="define-environment-variables-in-the-desktop">define environment variables in the desktop</h2>
+<p><code>desktop.envlocal</code> defines the environment variables in the desktop. 
+The <code>desktop.envlocal</code> is a dictionary, the key is the name of the variable, and the value the value of the variable. 
+Only static variables are defined here, dynamics values are set by python code in pyos.</p>
+<div class="highlight"><pre><span></span><code># Add default environment vars 
+# desktop.envlocal is a dictionary. 
+# desktop.envlocal contains a (key,value) added by default as environment variables to oc.user.
+desktop.envlocal :  { 
+  &#39;X11LISTEN&#39;:&#39;tcp&#39;, 
+  &#39;WEBSOCKIFY_HEARTBEAT&#39;:&#39;30&#39;,
+  &#39;DISABLE_REMOTEIP_FILTERING&#39;: &#39;enabled&#39;,
+  &#39;ABCDESKTOP_DESKTOPTHEME&#39;: &#39;ubuntu&#39;,
+  &#39;XDG_RUNTIME_DIR&#39;: &#39;/tmp/runtime&#39;,
+  &#39;ABCDESKTOP_FORCE_OVERWRITE_PLASMA_CONFIG&#39;: &#39;true&#39;,
+  &#39;DISABLE_RTKIT&#39;: &#39;y&#39;
+ }
 </code></pre></div>
 
 
