@@ -4267,14 +4267,19 @@ desktop.envlocal :  {
  }
 </code></pre></div>
 <ul>
-<li>Run a command inside a desktop pod to list the variable and get the value of one of them</li>
+<li>
+<p>Run a command inside a desktop pod to list the variable and get the value of one of them</p>
+</li>
+<li>
+<p>Look for a desktop pod, to run shell commands </p>
+</li>
 </ul>
-<p>Look for a desktop pod </p>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">type</span><span class="o">=</span>x11server<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 NAME<span class="w">          </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
 leela-debe1<span class="w">   </span><span class="m">3</span>/3<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>27s
 </code></pre></div>
+<p>The pod name is <code>leela-debe1</code></p>
 <ul>
 <li>List the variables content</li>
 </ul>
