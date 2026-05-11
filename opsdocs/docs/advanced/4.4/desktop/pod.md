@@ -638,7 +638,7 @@ desktop.envlocal :  {
 
 - Run a command inside a desktop pod to list the variable and get the value of one of them
 
-Look for a desktop pod 
+- Look for a desktop pod, to run shell commands 
 
 ```bash
 NAMESPACE=abcdesktop
@@ -646,6 +646,8 @@ kubectl get pods -l type=x11server -n $NAMESPACE
 NAME          READY   STATUS    RESTARTS   AGE
 leela-debe1   3/3     Running   0          27s
 ```
+
+The pod name is `leela-debe1`
 
 - List the variables content
 
