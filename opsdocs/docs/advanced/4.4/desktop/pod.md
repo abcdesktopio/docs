@@ -2,7 +2,7 @@
 
 # Desktop configuration `desktop.pod`
 
-This chapter describes how to configure the `desktop.pod` object in the abcdesktop config file.
+This chapter describes how to configure the `desktop.pod` and `desktop.envlocal` objects in the abcdesktop config file.
 
 
 ## main entries in the `desktop.pod` dictionary
@@ -612,6 +612,31 @@ desktop.pod : {
     'tolerations': [],
     'acl':  { 'permit': [ 'all' ] }  }  }
 ```
+
+
+## define environment variables in the desktop
+
+`desktop.envlocal` defines the environment variables in the desktop. 
+The `desktop.envlocal` is a dictionary, the key is the name of the variable, and the value the value of the variable. 
+Only static variables are defined here, dynamics values are set by python code in pyos.
+
+```
+# Add default environment vars 
+# desktop.envlocal is a dictionary. 
+# desktop.envlocal contains a (key,value) added by default as environment variables to oc.user.
+desktop.envlocal :  { 
+  'X11LISTEN':'tcp', 
+  'WEBSOCKIFY_HEARTBEAT':'30',
+  'DISABLE_REMOTEIP_FILTERING': 'enabled',
+  'ABCDESKTOP_DESKTOPTHEME': 'ubuntu',
+  'XDG_RUNTIME_DIR': '/tmp/runtime',
+  'ABCDESKTOP_FORCE_OVERWRITE_PLASMA_CONFIG': 'true',
+  'DISABLE_RTKIT': 'y'
+ }
+```
+
+
+
 
 
 
