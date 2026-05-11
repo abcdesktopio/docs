@@ -628,13 +628,53 @@ desktop.envlocal :  {
   'X11LISTEN':'tcp', 
   'WEBSOCKIFY_HEARTBEAT':'30',
   'DISABLE_REMOTEIP_FILTERING': 'enabled',
-  'ABCDESKTOP_DESKTOPTHEME': 'ubuntu',
   'XDG_RUNTIME_DIR': '/tmp/runtime',
   'ABCDESKTOP_FORCE_OVERWRITE_PLASMA_CONFIG': 'true',
   'DISABLE_RTKIT': 'y'
  }
 ```
 
+
+
+- Run a command inside a desktop pod to list the variable and get the value of one of them
+
+Look for a desktop pod 
+
+```bash
+NAMESPACE=abcdesktop
+kubectl get pods -l type=x11server -n $NAMESPACE
+NAME          READY   STATUS    RESTARTS   AGE
+leela-debe1   3/3     Running   0          27s
+```
+
+- List the variables content
+
+```bash
+NAMESPACE=abcdesktop
+kubectl exec -it leela-debe1 -n $NAMESPACE -- bash -c 'env'
+Defaulted container "x-graphical" out of: x-graphical, s-sound, f-filer, i-init (init)
+PYOS_PORT_8000_TCP_ADDR=10.111.133.176
+NVIDIA_VISIBLE_DEVICES=all
+KUBERNETES_SERVICE_PORT_HTTPS=443
+OPENLDAP_PORT_636_TCP_PORT=636
+ABCDESKTOP_LABEL_shipcrew=true
+KUBERNETES_SERVICE_PORT=443
+MEMCACHED_SERVICE_HOST=10.106.34.163
+ABCDESKTOP_EXECUTE_CLASSNAME=default
+...
+```
+
+
+- Get the value of the variable
+
+```bash
+NAMESPACE=abcdesktop
+kubectl exec -it leela-debe1 -n $NAMESPACE -- bash -c 'echo $WEBSOCKIFY_HEARTBEAT'
+Defaulted container "x-graphical" out of: x-graphical, s-sound, f-filer, i-init (init)
+30
+```
+
+You can confirm that the `WEBSOCKIFY_HEARTBEAT` is set to `30`
 
 
 
