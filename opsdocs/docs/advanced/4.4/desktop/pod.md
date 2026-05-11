@@ -2,7 +2,7 @@
 
 # Desktop configuration `desktop.pod`
 
-This chapter describes how to configure the `desktop.pod` object in the abcdesktop config file.
+This chapter describes how to configure the `desktop.pod` and `desktop.envlocal` objects in the abcdesktop config file.
 
 
 ## main entries in the `desktop.pod` dictionary
@@ -62,7 +62,7 @@ desktop.pod : {
   # graphical is the main abcdesktop container it include x11 service 
   'graphical' : {
     'volumes': [ 'x11socket', 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
-    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.3' },
+    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:{{ abcdesktop.latest_release }}' },
     'imagePullPolicy':  'Always',
     'enable': True,
     'acl':  { 'permit': [ 'all' ] },
@@ -107,7 +107,7 @@ desktop.pod : {
   # printer is a cupsd service 
   'printer' : { 
     'volumes': [ 'tmp' ],
-    'image': 'ghcr.io/abcdesktopio/oc.cupsd:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.cupsd:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'IfNotPresent',
     'enable': True,
     'tcpport': 681,
@@ -126,7 +126,7 @@ desktop.pod : {
   # filer provide upload and download files features
   'filer' : { 
     'volumes': [ 'tmp', 'home', 'log'  ],
-    'image': 'ghcr.io/abcdesktopio/oc.filer:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.filer:{{ abcdesktop.latest_release }}',
     'imagePullPolicy':  'Always',
     'enable': True,
     'tcpport': 29783,
@@ -136,7 +136,7 @@ desktop.pod : {
   # sound is a pulseaudio service instance
   'sound': { 
     'volumes': [ 'tmp', 'home', 'log' ],
-    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'Always',
     'enable': True,
     'tcpport': 29788,
@@ -258,7 +258,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
 ```
 'graphical' : {
     'volumes': [ 'x11socket', 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
-    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.3' },
+    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:{{ abcdesktop.latest_release }}' },
     'imagePullPolicy':  'Always',
     'enable': True,
     'acl':  { 'permit': [ 'all' ] },
@@ -335,7 +335,7 @@ Additionnal services are running inside the graphical service.
 ```
 'printer' : { 
     'volumes': [ 'tmp' ],
-    'image': 'ghcr.io/abcdesktopio/oc.cupsd:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.cupsd:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'IfNotPresent',
     'enable': True,
     'tcpport': 681,
@@ -370,7 +370,7 @@ The printer container is the printer service, to print file as `pdf` and downloa
 ```
 'filer' : { 
     'volumes': [ 'tmp', 'home', 'log' ],
-    'image': 'ghcr.io/abcdesktopio/oc.filer:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.filer:{{ abcdesktop.latest_release }}',
     'imagePullPolicy':  'Always',
     'enable': True,
     'tcpport': 29783,
@@ -396,7 +396,7 @@ The filer container is the filer service, upload and download files and director
 ```
 'sound': { 
     'volumes': [ 'tmp', 'home', 'log' ],
-    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'Always',
     'enable': True,
     'tcpport': 29788,
@@ -481,7 +481,7 @@ desktop.pod : {
   # graphical is the main abcdesktop container it include x11 service 
   'graphical' : {
     'volumes': [ 'sudoers', 'x11socket', 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
-    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.3' },
+    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:{{ abcdesktop.latest_release }}' },
     'imagePullPolicy':  'Always',
     'enable': True,
     'acl':  { 'permit': [ 'all' ] },
@@ -526,7 +526,7 @@ desktop.pod : {
   # printer is a cupsd service 
   'printer' : { 
     'volumes': [ 'tmp' ],
-    'image': 'ghcr.io/abcdesktopio/oc.cupsd:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.cupsd:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'IfNotPresent',
     'enable': True,
     'tcpport': 681,
@@ -545,7 +545,7 @@ desktop.pod : {
   # filer provide upload and download files features
   'filer' : { 
     'volumes': [ 'tmp', 'home', 'log'  ],
-    'image': 'ghcr.io/abcdesktopio/oc.filer:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.filer:{{ abcdesktop.latest_release }}',
     'imagePullPolicy':  'Always',
     'enable': True,
     'tcpport': 29783,
@@ -555,7 +555,7 @@ desktop.pod : {
   # sound is a pulseaudio service instance
   'sound': { 
     'volumes': [ 'sudoers', 'tmp', 'home', 'log' ],
-    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.3',
+    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'Always',
     'enable': True,
     'tcpport': 29788,
@@ -612,6 +612,73 @@ desktop.pod : {
     'tolerations': [],
     'acl':  { 'permit': [ 'all' ] }  }  }
 ```
+
+
+## define environment variables in the desktop
+
+`desktop.envlocal` defines the environment variables in the desktop. 
+The `desktop.envlocal` is a dictionary, the key is the name of the variable, and the value the value of the variable. 
+Only static variables are defined here, dynamics values are set by python code in pyos.
+
+```
+# Add default environment vars 
+# desktop.envlocal is a dictionary. 
+# desktop.envlocal contains a (key,value) added by default as environment variables to oc.user.
+desktop.envlocal :  { 
+  'X11LISTEN':'tcp', 
+  'WEBSOCKIFY_HEARTBEAT':'30',
+  'DISABLE_REMOTEIP_FILTERING': 'enabled',
+  'XDG_RUNTIME_DIR': '/tmp/runtime',
+  'ABCDESKTOP_FORCE_OVERWRITE_PLASMA_CONFIG': 'true',
+  'DISABLE_RTKIT': 'y'
+ }
+```
+
+
+
+- Run a command inside a desktop pod to list the variable and get the value of one of them
+
+- Look for a desktop pod, to run shell commands 
+
+```bash
+NAMESPACE=abcdesktop
+kubectl get pods -l type=x11server -n $NAMESPACE
+NAME          READY   STATUS    RESTARTS   AGE
+leela-debe1   3/3     Running   0          27s
+```
+
+The pod name is `leela-debe1`
+
+- List the variables content
+
+```bash
+NAMESPACE=abcdesktop
+kubectl exec -it leela-debe1 -n $NAMESPACE -- bash -c 'env'
+Defaulted container "x-graphical" out of: x-graphical, s-sound, f-filer, i-init (init)
+PYOS_PORT_8000_TCP_ADDR=10.111.133.176
+NVIDIA_VISIBLE_DEVICES=all
+KUBERNETES_SERVICE_PORT_HTTPS=443
+OPENLDAP_PORT_636_TCP_PORT=636
+ABCDESKTOP_LABEL_shipcrew=true
+KUBERNETES_SERVICE_PORT=443
+MEMCACHED_SERVICE_HOST=10.106.34.163
+ABCDESKTOP_EXECUTE_CLASSNAME=default
+...
+```
+
+
+- Get the value of the variable
+
+```bash
+NAMESPACE=abcdesktop
+kubectl exec -it leela-debe1 -n $NAMESPACE -- bash -c 'echo $WEBSOCKIFY_HEARTBEAT'
+Defaulted container "x-graphical" out of: x-graphical, s-sound, f-filer, i-init (init)
+30
+```
+
+You can confirm that the `WEBSOCKIFY_HEARTBEAT` is set to `30`
+
+
 
 
 

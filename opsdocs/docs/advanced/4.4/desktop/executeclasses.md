@@ -68,10 +68,10 @@ The entry `'default'` must exist.
 
 | key                | type    | Description  | Values | 
 |--------------------|---------|--------------|--------|
-| containers         | dict    | update the container with dict values |  { `'graphical': { 'resources': { 'limits': { 'nvidia.com/gpu':'1' } } } }` |
+| containers         | dict    | update the container with dict values | `{ 'graphical': { 'resources': { 'limits': { 'nvidia.com/gpu':'1' } } } }` |
 | nodeSelector       | dict    | update the nodeSelector with dict values  | `{'nvidia.com/gpu': 'true'}` |
 | description        | string  | show description in the login page|  'platinum: 8 CPU cores, 128G RAM and 1 GPU' |
-| runtimeClassName.  | string  | (optional) name of the runtime class | 'nvidia'|
+| runtimeClassName.  | string  | (optional) name of the runtime class | `nvidia` |
 | resources          | dict    | pods resources | `{ 'requests' {'memory':"4Gi",'cpu':"4000m"}, 'limits':{'memory':"128Gi",'cpu':"8000m"} }` |
 
 
