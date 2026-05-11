@@ -4261,12 +4261,45 @@ desktop.envlocal :  {
   &#39;X11LISTEN&#39;:&#39;tcp&#39;, 
   &#39;WEBSOCKIFY_HEARTBEAT&#39;:&#39;30&#39;,
   &#39;DISABLE_REMOTEIP_FILTERING&#39;: &#39;enabled&#39;,
-  &#39;ABCDESKTOP_DESKTOPTHEME&#39;: &#39;ubuntu&#39;,
   &#39;XDG_RUNTIME_DIR&#39;: &#39;/tmp/runtime&#39;,
   &#39;ABCDESKTOP_FORCE_OVERWRITE_PLASMA_CONFIG&#39;: &#39;true&#39;,
   &#39;DISABLE_RTKIT&#39;: &#39;y&#39;
  }
 </code></pre></div>
+<ul>
+<li>Run a command inside a desktop pod to list the variable and get the value of one of them</li>
+</ul>
+<p>Look for a desktop pod </p>
+<div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">type</span><span class="o">=</span>x11server<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
+NAME<span class="w">          </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+leela-debe1<span class="w">   </span><span class="m">3</span>/3<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>27s
+</code></pre></div>
+<ul>
+<li>List the variables content</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>leela-debe1<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>--<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;env&#39;</span>
+Defaulted<span class="w"> </span>container<span class="w"> </span><span class="s2">&quot;x-graphical&quot;</span><span class="w"> </span>out<span class="w"> </span>of:<span class="w"> </span>x-graphical,<span class="w"> </span>s-sound,<span class="w"> </span>f-filer,<span class="w"> </span>i-init<span class="w"> </span><span class="o">(</span>init<span class="o">)</span>
+<span class="nv">PYOS_PORT_8000_TCP_ADDR</span><span class="o">=</span><span class="m">10</span>.111.133.176
+<span class="nv">NVIDIA_VISIBLE_DEVICES</span><span class="o">=</span>all
+<span class="nv">KUBERNETES_SERVICE_PORT_HTTPS</span><span class="o">=</span><span class="m">443</span>
+<span class="nv">OPENLDAP_PORT_636_TCP_PORT</span><span class="o">=</span><span class="m">636</span>
+<span class="nv">ABCDESKTOP_LABEL_shipcrew</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">KUBERNETES_SERVICE_PORT</span><span class="o">=</span><span class="m">443</span>
+<span class="nv">MEMCACHED_SERVICE_HOST</span><span class="o">=</span><span class="m">10</span>.106.34.163
+<span class="nv">ABCDESKTOP_EXECUTE_CLASSNAME</span><span class="o">=</span>default
+...
+</code></pre></div>
+<ul>
+<li>Get the value of the variable</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>leela-debe1<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>--<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo $WEBSOCKIFY_HEARTBEAT&#39;</span>
+Defaulted<span class="w"> </span>container<span class="w"> </span><span class="s2">&quot;x-graphical&quot;</span><span class="w"> </span>out<span class="w"> </span>of:<span class="w"> </span>x-graphical,<span class="w"> </span>s-sound,<span class="w"> </span>f-filer,<span class="w"> </span>i-init<span class="w"> </span><span class="o">(</span>init<span class="o">)</span>
+<span class="m">30</span>
+</code></pre></div>
+<p>You can confirm that the <code>WEBSOCKIFY_HEARTBEAT</code> is set to <code>30</code></p>
 
 
 
