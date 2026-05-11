@@ -3745,7 +3745,7 @@
   # graphical is the main abcdesktop container it include x11 service 
   &#39;graphical&#39; : {
     &#39;volumes&#39;: [ &#39;x11socket&#39;, &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39; ],
-    &#39;image&#39;: { &#39;default&#39;: &#39;ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.3&#39; },
+    &#39;image&#39;: { &#39;default&#39;: &#39;ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.4&#39; },
     &#39;imagePullPolicy&#39;:  &#39;Always&#39;,
     &#39;enable&#39;: True,
     &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
@@ -3790,7 +3790,7 @@
   # printer is a cupsd service 
   &#39;printer&#39; : { 
     &#39;volumes&#39;: [ &#39;tmp&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.cupsd:4.3&#39;,
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.cupsd:4.4&#39;,
     &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
     &#39;enable&#39;: True,
     &#39;tcpport&#39;: 681,
@@ -3809,7 +3809,7 @@
   # filer provide upload and download files features
   &#39;filer&#39; : { 
     &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39;  ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.filer:4.3&#39;,
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.filer:4.4&#39;,
     &#39;imagePullPolicy&#39;:  &#39;Always&#39;,
     &#39;enable&#39;: True,
     &#39;tcpport&#39;: 29783,
@@ -3819,7 +3819,7 @@
   # sound is a pulseaudio service instance
   &#39;sound&#39;: { 
     &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.3&#39;,
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.4&#39;,
     &#39;imagePullPolicy&#39;: &#39;Always&#39;,
     &#39;enable&#39;: True,
     &#39;tcpport&#39;: 29788,
@@ -3923,7 +3923,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
 <h2 id="graphical-container"><code>graphical</code> container</h2>
 <div class="highlight"><pre><span></span><code>&#39;graphical&#39; : {
     &#39;volumes&#39;: [ &#39;x11socket&#39;, &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39; ],
-    &#39;image&#39;: { &#39;default&#39;: &#39;ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.3&#39; },
+    &#39;image&#39;: { &#39;default&#39;: &#39;ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.4&#39; },
     &#39;imagePullPolicy&#39;:  &#39;Always&#39;,
     &#39;enable&#39;: True,
     &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
@@ -3993,7 +3993,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
 <h2 id="printer-container"><code>printer</code> container</h2>
 <div class="highlight"><pre><span></span><code>&#39;printer&#39; : { 
     &#39;volumes&#39;: [ &#39;tmp&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.cupsd:4.3&#39;,
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.cupsd:4.4&#39;,
     &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
     &#39;enable&#39;: True,
     &#39;tcpport&#39;: 681,
@@ -4023,7 +4023,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
 <h2 id="filer-container"><code>filer</code> container</h2>
 <div class="highlight"><pre><span></span><code>&#39;filer&#39; : { 
     &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.filer:4.3&#39;,
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.filer:4.4&#39;,
     &#39;imagePullPolicy&#39;:  &#39;Always&#39;,
     &#39;enable&#39;: True,
     &#39;tcpport&#39;: 29783,
@@ -4042,7 +4042,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
 <h2 id="sound-container"><code>sound</code> container</h2>
 <div class="highlight"><pre><span></span><code>&#39;sound&#39;: { 
     &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.3&#39;,
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.4&#39;,
     &#39;imagePullPolicy&#39;: &#39;Always&#39;,
     &#39;enable&#39;: True,
     &#39;tcpport&#39;: 29788,
@@ -4119,7 +4119,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
   # graphical is the main abcdesktop container it include x11 service 
   &#39;graphical&#39; : {
     &#39;volumes&#39;: [ &#39;sudoers&#39;, &#39;x11socket&#39;, &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39; ],
-    &#39;image&#39;: { &#39;default&#39;: &#39;ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.3&#39; },
+    &#39;image&#39;: { &#39;default&#39;: &#39;ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.4&#39; },
     &#39;imagePullPolicy&#39;:  &#39;Always&#39;,
     &#39;enable&#39;: True,
     &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
@@ -4164,7 +4164,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
   # printer is a cupsd service 
   &#39;printer&#39; : { 
     &#39;volumes&#39;: [ &#39;tmp&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.cupsd:4.3&#39;,
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.cupsd:4.4&#39;,
     &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
     &#39;enable&#39;: True,
     &#39;tcpport&#39;: 681,
@@ -4183,7 +4183,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
   # filer provide upload and download files features
   &#39;filer&#39; : { 
     &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39;  ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.filer:4.3&#39;,
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.filer:4.4&#39;,
     &#39;imagePullPolicy&#39;:  &#39;Always&#39;,
     &#39;enable&#39;: True,
     &#39;tcpport&#39;: 29783,
@@ -4193,7 +4193,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
   # sound is a pulseaudio service instance
   &#39;sound&#39;: { 
     &#39;volumes&#39;: [ &#39;sudoers&#39;, &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.3&#39;,
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.4&#39;,
     &#39;imagePullPolicy&#39;: &#39;Always&#39;,
     &#39;enable&#39;: True,
     &#39;tcpport&#39;: 29788,
