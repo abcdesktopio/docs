@@ -1,7 +1,7 @@
 ---
 tags:
-  - Read by JFV
-  - Read by MB
+  - application
+  - chromium 
 ---
 
 # Build a simple application `chromium` from scratch

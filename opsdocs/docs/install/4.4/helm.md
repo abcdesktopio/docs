@@ -4,9 +4,6 @@ tags:
   - installation
   - setup
   - upgrade
-  - JFV
-  - AD
-
 ---
 
 # Installation using helm

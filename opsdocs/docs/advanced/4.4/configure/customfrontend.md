@@ -1,8 +1,6 @@
 ---
 tags:
-- JFV
-- AD
-- question de JFV - intégrer ça aussi au helm -> AD non trop complexe, on fait simple
+  - customize
 ---
 
 # Customize abcdesktop frontend thourgh ui.json file

@@ -3,8 +3,6 @@ tags:
   - bash
   - installation
   - setup
-  - AD
-  - JFV
 ---
 # Quick installation core services with a script
 

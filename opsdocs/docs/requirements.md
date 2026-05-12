@@ -2,8 +2,6 @@
 tags:
   - installation
   - requirement
-  - JFV
-  - AD
 ---
 
 # Requirements

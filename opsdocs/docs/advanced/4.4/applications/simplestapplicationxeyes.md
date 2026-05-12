@@ -1,7 +1,6 @@
 ---
 tags:
-  - Read by JFV
-  - Read by MB
+  - application
 ---
 
 # Build a sample xeyes from scratch

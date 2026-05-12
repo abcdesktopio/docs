@@ -2,8 +2,6 @@
 tags:
   - uninstall
   - bash
-  - JFV
-  - AD
 ---
 # Quick uninstall core services with a script
 

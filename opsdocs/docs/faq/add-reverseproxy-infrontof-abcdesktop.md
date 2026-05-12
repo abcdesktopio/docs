@@ -1,13 +1,10 @@
 # How to add a reverse proxy in front of abcdesktop
 
-This chapter describe host to add a reverse proxy in front of abcdesktop. 
-- One chapter describes the `nginx` configuration in front of abcdesktop
-- One chapter describes the `haproxy` configuration in front of abcdesktop
+This chapter describe host to add a reverse proxy in front of abcdesktop. The chapter describes the `nginx` configuration in front of abcdesktop
 
-For both of them, you need to update `od.config` file to set the `default_host_url` as your `external url` 
+First of all, you need to update `od.config` file to set the `default_host_url` as your `external url` 
 
 ## Edit your configuration file
-
 
 In this example, the `external url` is `https://abcdesktop.domain.com`
 
@@ -49,13 +46,10 @@ kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  
 kubectl rollout restart deployment pyos-od -n abcdesktop
 ```
 
-
 Great, now we can create the configuration for the reverse proxy of your choice, `nginx` or `haproxy`.
 
 
-## Create your reverse proxy 
-
-
+## Create your reverse proxy
 
 ### Add `nginx` as a reverse proxy in front of abcdesktop
 
@@ -123,13 +117,13 @@ add_header X-Frame-Options "SAMEORIGIN";
 # broadcast websocket 
 # if more than one device is connected to the same pod
 # also use to send internal message 
-location /broadcast {
-	include ws.conf;
+location /broadcast { 
+  include ws.conf;
 }
 
 # printer websocket
 location /printer {
-   include ws.conf;
+  include ws.conf;
 }
 
 # terminal websocket (bash)
@@ -175,7 +169,3 @@ location / {
    include proxy.conf;
 }
 ```
-
-
-
-### Add `haproxy` as a reverse proxy in front of abcdesktop

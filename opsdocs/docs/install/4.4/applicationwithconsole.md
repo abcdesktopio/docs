@@ -3,7 +3,6 @@ tags:
   - application
   - installation
   - console
-  - read by JFV
 ---
 
 # Applications management with the admin web UI console
