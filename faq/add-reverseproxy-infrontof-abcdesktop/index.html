@@ -3477,15 +3477,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#add-haproxy-as-a-reverse-proxy-in-front-of-abcdesktop" class="md-nav__link">
-    <span class="md-ellipsis">
-      Add haproxy as a reverse proxy in front of abcdesktop
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -3516,10 +3507,8 @@
 
 
 <h1 id="how-to-add-a-reverse-proxy-in-front-of-abcdesktop">How to add a reverse proxy in front of abcdesktop</h1>
-<p>This chapter describe host to add a reverse proxy in front of abcdesktop. 
-- One chapter describes the <code>nginx</code> configuration in front of abcdesktop
-- One chapter describes the <code>haproxy</code> configuration in front of abcdesktop</p>
-<p>For both of them, you need to update <code>od.config</code> file to set the <code>default_host_url</code> as your <code>external url</code> </p>
+<p>This chapter describe host to add a reverse proxy in front of abcdesktop. The chapter describes the <code>nginx</code> configuration in front of abcdesktop</p>
+<p>First of all, you need to update <code>od.config</code> file to set the <code>default_host_url</code> as your <code>external url</code> </p>
 <h2 id="edit-your-configuration-file">Edit your configuration file</h2>
 <p>In this example, the <code>external url</code> is <code>https://abcdesktop.domain.com</code></p>
 <div class="highlight"><pre><span></span><code># DEFAULT HOST URL 
@@ -3609,13 +3598,13 @@ add_header X-Frame-Options &quot;SAMEORIGIN&quot;;
 # broadcast websocket 
 # if more than one device is connected to the same pod
 # also use to send internal message 
-location /broadcast {
-    include ws.conf;
+location /broadcast { 
+  include ws.conf;
 }
 
 # printer websocket
 location /printer {
-   include ws.conf;
+  include ws.conf;
 }
 
 # terminal websocket (bash)
@@ -3661,7 +3650,6 @@ location / {
    include proxy.conf;
 }
 </code></pre></div>
-<h3 id="add-haproxy-as-a-reverse-proxy-in-front-of-abcdesktop">Add <code>haproxy</code> as a reverse proxy in front of abcdesktop</h3>
 
 
 
