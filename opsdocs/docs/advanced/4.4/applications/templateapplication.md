@@ -1,7 +1,7 @@
 ---
 tags:
-  - Read by JFV
-  - Read by MB
+  - application 
+  - template
 ---
 
 # Build an application from template

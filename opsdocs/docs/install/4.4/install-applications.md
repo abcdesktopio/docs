@@ -3,7 +3,6 @@ tags:
   - application
   - installation
   - bash
-  - read by JFV
 ---
 
 # Add applications with a script

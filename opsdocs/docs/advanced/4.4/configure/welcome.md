@@ -1,6 +1,6 @@
 ---
 tags:
-- read by JFV
+  - config
 ---
 
 # Welcome

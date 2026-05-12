@@ -2,8 +2,6 @@
 tags:
   - faq
   - mongodb
-  - JFV
-  - AD
 ---
 
 # Mongodb

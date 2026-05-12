@@ -4,9 +4,6 @@ tags:
   - installation
   - setup
   - upgrade
-  - JFV
-  - AD
-
 ---
 
 # Installation using helm
@@ -20,14 +17,18 @@ tags:
 - kubernetes cluster `READY` to run
 - `helm` command-line tool must be installed.
 
+
+
 ## Installation using helm latest release {{ abcdesktop.latest_release }}
+
+![install using helm](https://github.com/abcdesktopio/helm/releases/download/abcdesktop-{{ abcdesktop.helm_latest_release }}/install-using-helm.gif)
 
 Add the `helm` repo and then install it on Linux or macOS or read the step by step installation process [abcdesktop for kubernetes](/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop)
 
 ```bash
 NAMESPACE=abcdesktop
 helm repo add abcdesktop https://abcdesktopio.github.io/helm/
-helm install my-abcdesktop abcdesktop/abcdesktop --version {{ abcdesktop.latest_release }} --create-namespace -n ${NAMESPACE}
+helm install my-abcdesktop abcdesktop/abcdesktop --version 4.4.1 --create-namespace -n ${NAMESPACE}
 ```
 
 ??? note "show details"
@@ -71,7 +72,7 @@ kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..me
 
 You can watch the youtube video sample. This video describes the Quick installation process using `helm`.
 
-<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/86RLis48U0I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+<div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/QQTWRf5Vf8g" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 
 ## Helm options

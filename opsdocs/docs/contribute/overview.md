@@ -146,7 +146,7 @@ Use `NAMESPACE` as a variable
 
 ```
 NAMESPACE=abcdesktop
-kubectl apply -f http-router.yaml -n abcdesktop
+kubectl apply -f http-router.yaml -n $NAMESPACE
 ```
 
 Do not set the abcdesktop namespace as the namepsace in `kubectl` command line

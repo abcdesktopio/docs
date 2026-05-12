@@ -3,7 +3,6 @@ tags:
   - application
   - installation
   - overview
-  - read by JFV
 ---
 
 # Applications

@@ -10,8 +10,6 @@ keywords: graphical application container desktopless kubernetes secure desktop 
 
 tags:
   - home
-  - JFV
-  - AD
 ---
 
 

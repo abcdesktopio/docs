@@ -29,4 +29,5 @@ docs: build-mkdocs
 	mkdocs build -f opsdocs/mkdocs.yml
 
 serve: build-mkdocs
-	mkdocs serve -a 0.0.0.0:8080 -f opsdocs/mkdocs.yml
+	export ABCDESKTOP_LATEST_RELEASE=4.4
+	mkdocs serve -a 0.0.0.0:8080 -f opsdocs/mkdocs.yml.template

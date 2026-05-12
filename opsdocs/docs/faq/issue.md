@@ -1,12 +1,5 @@
 ---
 tags:
-- read bu JFV
----
-
-# How to request a new feature / report an issue ?
-
-- JFV
-- AD
 ---
 
 ## How to request a new feature ?

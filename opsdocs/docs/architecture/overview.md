@@ -1,8 +1,6 @@
 ---
 tags:
   - architecture
-  - JFV
-  - AD
 ---
 
 # Architecture overview
