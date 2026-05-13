@@ -4040,10 +4040,12 @@
 
 <h1 id="dockerfile-and-runtime-architecture-specification">Dockerfile and Runtime Architecture Specification</h1>
 <h2 id="1-system-purpose">1. System Purpose</h2>
-<p>The image implements a PulseAudio streaming sidecar with two websocket services:
-1. Speaker relay: reads encoded audio from a FIFO and broadcasts to websocket clients.
-2. Microphone relay: receives websocket payloads and writes to a FIFO consumed by PulseAudio module-pipe-source.
-3. Supervisor manages lifecycle of PulseAudio and relay processes.</p>
+<p>The image implements a PulseAudio streaming sidecar with two websocket services:</p>
+<ol>
+<li>Speaker relay: reads encoded audio from a FIFO and broadcasts to websocket clients.</li>
+<li>Microphone relay: receives websocket payloads and writes to a FIFO consumed by PulseAudio module-pipe-source.</li>
+<li>Supervisor manages lifecycle of PulseAudio and relay processes.</li>
+</ol>
 <hr />
 <h2 id="2-build-specification">2. Build Specification</h2>
 <h3 id="21-base-image-and-reproducibility">2.1 Base Image and Reproducibility</h3>
@@ -4058,21 +4060,25 @@
 - PULSELOGNAME=pulse
 - PULSEUSER=pulse
 - PULSEGROUP=pulse</p>
-<p>Provisioning:
-1. Creates group pulse with GID 104.
-2. Creates user pulse with UID 102.
-3. User supplementary groups are set via --groups 104.
-4. Runtime user is pulse.</p>
+<p>Provisioning:</p>
+<ol>
+<li>Creates group pulse with GID 104.</li>
+<li>Creates user pulse with UID 102.</li>
+<li>User supplementary groups are set via --groups 104.</li>
+<li>Runtime user is pulse.</li>
+</ol>
 <h3 id="23-os-package-layer">2.3 OS Package Layer</h3>
-<p>Debconf noninteractive mode is configured and these packages are installed:
-- ca-certificates
-- pulseaudio
-- pulseaudio-utils
-- supervisor
-- libnss-extrausers
-- ffmpeg
-- gnupg
-- curl</p>
+<p>Debconf noninteractive mode is configured and these packages are installed:</p>
+<ul>
+<li>ca-certificates</li>
+<li>pulseaudio</li>
+<li>pulseaudio-utils</li>
+<li>supervisor</li>
+<li>libnss-extrausers</li>
+<li>ffmpeg</li>
+<li>gnupg</li>
+<li>curl</li>
+</ul>
 <h3 id="24-nodejs-layer">2.4 Node.js Layer</h3>
 <ul>
 <li>NODE_MAJOR=20.</li>
@@ -4086,20 +4092,24 @@
 2. composer -&gt; /composer
 3. etc/nsswitch.conf -&gt; /etc/nsswitch.conf</p>
 <h3 id="26-node-dependency-installation">2.6 Node Dependency Installation</h3>
-<p>Dependency strategy now uses lockfiles and npm ci:
-1. /composer/node/websocket-relay.speaker: npm ci --omit=dev
-2. /composer/node/websocket-relay.microphone: npm ci --omit=dev</p>
+<p>Dependency strategy now uses lockfiles and npm ci:</p>
+<ol>
+<li>/composer/node/websocket-relay.speaker: npm ci --omit=dev</li>
+<li>/composer/node/websocket-relay.microphone: npm ci --omit=dev</li>
+</ol>
 <p>Required lockfiles are present in both relay directories.</p>
 <h3 id="27-runtime-filesystem-preparation">2.7 Runtime Filesystem Preparation</h3>
-<p>Dockerfile prepares these paths:
-- /var/run/dbus
-- /var/log/desktop
-- /var/run/desktop
-- /var/run/local
-- /var/log/local
-- /var/lib/dbus/machine-id
-- /etc/pulse/abcdesktopcookie
-- /container</p>
+<p>Dockerfile prepares these paths:</p>
+<ul>
+<li>/var/run/dbus</li>
+<li>/var/log/desktop</li>
+<li>/var/run/desktop</li>
+<li>/var/run/local</li>
+<li>/var/log/local</li>
+<li>/var/lib/dbus/machine-id</li>
+<li>/etc/pulse/abcdesktopcookie</li>
+<li>/container</li>
+</ul>
 <p>Current mode setup uses 666 for directories and selected files.</p>
 <h3 id="28-entrypoint-and-port-contract">2.8 Entrypoint and Port Contract</h3>
 <ul>
@@ -4111,28 +4121,32 @@
 <hr />
 <h2 id="3-runtime-topology-and-control-plane">3. Runtime Topology and Control Plane</h2>
 <h3 id="31-entrypoint-behavior">3.1 Entrypoint Behavior</h3>
-<p>At startup, docker-entrypoint.sh:
-1. Sets ABCDESKTOP_LOG_DIR and ABCDESKTOP_RUN_DIR defaults.
-2. Logs id, environment, home listing, and /etc/pulse listing.
-3. Resolves CONTAINER_IP_ADDR from POD_IP or hostname -i.
-4. Rewrites /etc/pulse/abcdesktopcookie from PULSEAUDIO_COOKIE if provided.
-5. Exports WEBRELAY_INTERNAL_TCP_PORT=29780.
-6. Creates FIFO /container/speaker.
-7. Starts supervisord in foreground with /etc/supervisord.conf.</p>
+<p>At startup, docker-entrypoint.sh:</p>
+<ol>
+<li>Sets ABCDESKTOP_LOG_DIR and ABCDESKTOP_RUN_DIR defaults.</li>
+<li>Logs id, environment, home listing, and /etc/pulse listing.</li>
+<li>Resolves CONTAINER_IP_ADDR from POD_IP or hostname -i.</li>
+<li>Rewrites /etc/pulse/abcdesktopcookie from PULSEAUDIO_COOKIE if provided.</li>
+<li>Exports WEBRELAY_INTERNAL_TCP_PORT=29780.</li>
+<li>Creates FIFO /container/speaker.</li>
+<li>Starts supervisord in foreground with /etc/supervisord.conf.</li>
+</ol>
 <h3 id="32-supervisor-programs">3.2 Supervisor Programs</h3>
-<p>From include pattern /etc/supervisor/conf.d/*.conf:
-1. pulseaudio
-   - command: /composer/pulseaudio.sh
-   - autostart: true
-2. websocket-relay.speaker
-   - command: node /composer/node/websocket-relay.speaker/websocket-relay.js /container/speaker 29788
-   - autostart: true
-3. websocket-relay.microphone
-   - command: node /composer/node/websocket-relay.microphone/websocket-relay.js /container/microphone 29789
-   - autostart: true
-4. ffmpeg.speaker
-   - command: /composer/ffmpeg.speaker.sh
-   - autostart: false</p>
+<p>From include pattern /etc/supervisor/conf.d/*.conf:</p>
+<ol>
+<li>pulseaudio</li>
+<li>command: /composer/pulseaudio.sh</li>
+<li>autostart: true</li>
+<li>websocket-relay.speaker</li>
+<li>command: node /composer/node/websocket-relay.speaker/websocket-relay.js /container/speaker 29788</li>
+<li>autostart: true</li>
+<li>websocket-relay.microphone</li>
+<li>command: node /composer/node/websocket-relay.microphone/websocket-relay.js /container/microphone 29789</li>
+<li>autostart: true</li>
+<li>ffmpeg.speaker</li>
+<li>command: /composer/ffmpeg.speaker.sh</li>
+<li>autostart: false</li>
+</ol>
 <hr />
 <h2 id="4-dataflow-specification">4. Dataflow Specification</h2>
 <h3 id="41-speaker-data-path">4.1 Speaker Data Path</h3>
