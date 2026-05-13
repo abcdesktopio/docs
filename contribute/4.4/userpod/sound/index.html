@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#dockerfile-and-runtime-architecture-specification" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -3221,6 +3226,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Sound
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3233,6 +3253,280 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-system-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. System Purpose
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-build-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Build Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Build Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-base-image-and-reproducibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Base Image and Reproducibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-identity-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Identity Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-os-package-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 OS Package Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-nodejs-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Node.js Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-source-and-config-copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Source and Config Copy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-node-dependency-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Node Dependency Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-runtime-filesystem-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 Runtime Filesystem Preparation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-entrypoint-and-port-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8 Entrypoint and Port Contract
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-runtime-topology-and-control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Runtime Topology and Control Plane
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Runtime Topology and Control Plane">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-entrypoint-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Entrypoint Behavior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-supervisor-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Supervisor Programs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-dataflow-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Dataflow Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Dataflow Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-speaker-data-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Speaker Data Path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-microphone-data-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Microphone Data Path
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-script-level-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Script-Level Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Script-Level Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-composerpulseaudiosh" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 composer/pulseaudio.sh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-composerffmpegspeakersh" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 composer/ffmpeg.speaker.sh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-speaker-relay-node-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Speaker Relay Node Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-microphone-relay-node-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Microphone Relay Node Service
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-interface-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Interface Contracts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Interface Contracts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-runtime-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Runtime Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-network-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Network Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-filesystem-and-ipc-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Filesystem and IPC Interface
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3456,6 +3750,271 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-system-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. System Purpose
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-build-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Build Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Build Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-base-image-and-reproducibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Base Image and Reproducibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-identity-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Identity Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-os-package-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 OS Package Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-nodejs-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Node.js Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-source-and-config-copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Source and Config Copy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-node-dependency-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Node Dependency Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-runtime-filesystem-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 Runtime Filesystem Preparation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-entrypoint-and-port-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8 Entrypoint and Port Contract
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-runtime-topology-and-control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Runtime Topology and Control Plane
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Runtime Topology and Control Plane">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-entrypoint-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Entrypoint Behavior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-supervisor-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Supervisor Programs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-dataflow-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Dataflow Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Dataflow Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-speaker-data-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Speaker Data Path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-microphone-data-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Microphone Data Path
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-script-level-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Script-Level Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Script-Level Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-composerpulseaudiosh" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 composer/pulseaudio.sh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-composerffmpegspeakersh" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 composer/ffmpeg.speaker.sh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-speaker-relay-node-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Speaker Relay Node Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-microphone-relay-node-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Microphone Relay Node Service
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-interface-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Interface Contracts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Interface Contracts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-runtime-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Runtime Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-network-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Network Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-filesystem-and-ipc-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Filesystem and IPC Interface
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3479,9 +4038,180 @@
   
 
 
-  <h1>Sound</h1>
-
-<p>alex</p>
+<h1 id="dockerfile-and-runtime-architecture-specification">Dockerfile and Runtime Architecture Specification</h1>
+<h2 id="1-system-purpose">1. System Purpose</h2>
+<p>The image implements a PulseAudio streaming sidecar with two websocket services:
+1. Speaker relay: reads encoded audio from a FIFO and broadcasts to websocket clients.
+2. Microphone relay: receives websocket payloads and writes to a FIFO consumed by PulseAudio module-pipe-source.
+3. Supervisor manages lifecycle of PulseAudio and relay processes.</p>
+<hr />
+<h2 id="2-build-specification">2. Build Specification</h2>
+<h3 id="21-base-image-and-reproducibility">2.1 Base Image and Reproducibility</h3>
+<ul>
+<li>Base image: ubuntu:24.04.</li>
+<li>This is pinned by tag, but not by digest.</li>
+</ul>
+<h3 id="22-identity-model">2.2 Identity Model</h3>
+<p>Configured variables:
+- PULSEUID=102
+- PULSEGID=104
+- PULSELOGNAME=pulse
+- PULSEUSER=pulse
+- PULSEGROUP=pulse</p>
+<p>Provisioning:
+1. Creates group pulse with GID 104.
+2. Creates user pulse with UID 102.
+3. User supplementary groups are set via --groups 104.
+4. Runtime user is pulse.</p>
+<h3 id="23-os-package-layer">2.3 OS Package Layer</h3>
+<p>Debconf noninteractive mode is configured and these packages are installed:
+- ca-certificates
+- pulseaudio
+- pulseaudio-utils
+- supervisor
+- libnss-extrausers
+- ffmpeg
+- gnupg
+- curl</p>
+<h3 id="24-nodejs-layer">2.4 Node.js Layer</h3>
+<ul>
+<li>NODE_MAJOR=20.</li>
+<li>NodeSource repository is configured.</li>
+<li>nodejs package is installed.</li>
+<li>npm is globally upgraded.</li>
+</ul>
+<h3 id="25-source-and-config-copy">2.5 Source and Config Copy</h3>
+<p>Build copies:
+1. etc -&gt; /etc
+2. composer -&gt; /composer
+3. etc/nsswitch.conf -&gt; /etc/nsswitch.conf</p>
+<h3 id="26-node-dependency-installation">2.6 Node Dependency Installation</h3>
+<p>Dependency strategy now uses lockfiles and npm ci:
+1. /composer/node/websocket-relay.speaker: npm ci --omit=dev
+2. /composer/node/websocket-relay.microphone: npm ci --omit=dev</p>
+<p>Required lockfiles are present in both relay directories.</p>
+<h3 id="27-runtime-filesystem-preparation">2.7 Runtime Filesystem Preparation</h3>
+<p>Dockerfile prepares these paths:
+- /var/run/dbus
+- /var/log/desktop
+- /var/run/desktop
+- /var/run/local
+- /var/log/local
+- /var/lib/dbus/machine-id
+- /etc/pulse/abcdesktopcookie
+- /container</p>
+<p>Current mode setup uses 666 for directories and selected files.</p>
+<h3 id="28-entrypoint-and-port-contract">2.8 Entrypoint and Port Contract</h3>
+<ul>
+<li>ENV PULSE_SERVER=/tmp/.pulse.sock</li>
+<li>CMD /docker-entrypoint.sh</li>
+<li>USER pulse</li>
+<li>EXPOSE 29788 29789</li>
+</ul>
+<hr />
+<h2 id="3-runtime-topology-and-control-plane">3. Runtime Topology and Control Plane</h2>
+<h3 id="31-entrypoint-behavior">3.1 Entrypoint Behavior</h3>
+<p>At startup, docker-entrypoint.sh:
+1. Sets ABCDESKTOP_LOG_DIR and ABCDESKTOP_RUN_DIR defaults.
+2. Logs id, environment, home listing, and /etc/pulse listing.
+3. Resolves CONTAINER_IP_ADDR from POD_IP or hostname -i.
+4. Rewrites /etc/pulse/abcdesktopcookie from PULSEAUDIO_COOKIE if provided.
+5. Exports WEBRELAY_INTERNAL_TCP_PORT=29780.
+6. Creates FIFO /container/speaker.
+7. Starts supervisord in foreground with /etc/supervisord.conf.</p>
+<h3 id="32-supervisor-programs">3.2 Supervisor Programs</h3>
+<p>From include pattern /etc/supervisor/conf.d/*.conf:
+1. pulseaudio
+   - command: /composer/pulseaudio.sh
+   - autostart: true
+2. websocket-relay.speaker
+   - command: node /composer/node/websocket-relay.speaker/websocket-relay.js /container/speaker 29788
+   - autostart: true
+3. websocket-relay.microphone
+   - command: node /composer/node/websocket-relay.microphone/websocket-relay.js /container/microphone 29789
+   - autostart: true
+4. ffmpeg.speaker
+   - command: /composer/ffmpeg.speaker.sh
+   - autostart: false</p>
+<hr />
+<h2 id="4-dataflow-specification">4. Dataflow Specification</h2>
+<h3 id="41-speaker-data-path">4.1 Speaker Data Path</h3>
+<ol>
+<li>ffmpeg.speaker.sh captures PulseAudio source speaker.monitor.</li>
+<li>ffmpeg outputs MPEG-TS/MP2 stream redirected into /container/speaker.</li>
+<li>websocket-relay.speaker reads /container/speaker.</li>
+<li>websocket server on 29788 broadcasts chunks to all connected clients.</li>
+</ol>
+<p>Control behavior:
+1. On first client, relay requests Supervisor startProcess("ffmpeg.speaker").
+2. On last client disconnect, relay requests stopProcess("ffmpeg").</p>
+<h3 id="42-microphone-data-path">4.2 Microphone Data Path</h3>
+<ol>
+<li>websocket-relay.microphone listens on 29789.</li>
+<li>On first client, it opens a write stream to /container/microphone.</li>
+<li>Incoming websocket messages are written to /container/microphone.</li>
+<li>PulseAudio module-pipe-source (configured in PulseAudio config) consumes FIFO data as virtual microphone source.</li>
+</ol>
+<hr />
+<h2 id="5-script-level-specification">5. Script-Level Specification</h2>
+<h3 id="51-composerpulseaudiosh">5.1 composer/pulseaudio.sh</h3>
+<ul>
+<li>Executes pulseaudio with module-native-protocol-tcp.</li>
+<li>listen address uses CONTAINER_IP_ADDR.</li>
+<li>auth-cookie uses /etc/pulse/abcdesktopcookie.</li>
+</ul>
+<h3 id="52-composerffmpegspeakersh">5.2 composer/ffmpeg.speaker.sh</h3>
+<p>Purpose:
+1. Read audio from speaker.monitor.
+2. Encode audio as MP2 inside MPEG-TS.
+3. Stream to /container/speaker FIFO.</p>
+<p>Important runtime inputs:
+- PULSE_SERVER (default /tmp/.pulse.sock)
+- POD_IP optional (for CONTAINER_IP_ADDR)
+- WEBRELAY_INTERNAL_TCP_PORT metadata variable</p>
+<p>FFmpeg main characteristics:
+- sample rate 44100
+- mono channel
+- bitrate 128k
+- mpegts output</p>
+<h3 id="53-speaker-relay-node-service">5.3 Speaker Relay Node Service</h3>
+<p>File: composer/node/websocket-relay.speaker/websocket-relay.js</p>
+<p>Behavior:
+1. Creates websocket server on configured host:port.
+2. Opens read stream from FIFO.
+3. Broadcasts FIFO chunks to connected clients.
+4. Starts ffmpeg.speaker on first client.
+5. Requests stop of process named ffmpeg when count returns to zero.</p>
+<h3 id="54-microphone-relay-node-service">5.4 Microphone Relay Node Service</h3>
+<p>File: composer/node/websocket-relay.microphone/websocket-relay.js</p>
+<p>Behavior:
+1. Creates websocket server on configured host:port.
+2. On first connection opens write stream to FIFO.
+3. Writes websocket payloads to FIFO.
+4. Closes FIFO stream when last client disconnects.
+5. Includes documentation note for PulseAudio module-pipe-source contract.</p>
+<hr />
+<h2 id="6-interface-contracts">6. Interface Contracts</h2>
+<h3 id="61-runtime-environment-variables">6.1 Runtime Environment Variables</h3>
+<p>Used variables:
+- PULSEAUDIO_COOKIE
+- POD_IP
+- ABCDESKTOP_LOG_DIR
+- ABCDESKTOP_RUN_DIR
+- CONTAINER_IP_ADDR
+- WEBRELAY_INTERNAL_TCP_PORT
+- PULSE_SERVER</p>
+<h3 id="62-network-interface">6.2 Network Interface</h3>
+<ul>
+<li>29788/tcp: speaker websocket relay</li>
+<li>29789/tcp: microphone websocket relay</li>
+</ul>
+<h3 id="63-filesystem-and-ipc-interface">6.3 Filesystem and IPC Interface</h3>
+<ul>
+<li>/container/speaker: FIFO producer/consumer path for speaker stream</li>
+<li>/container/microphone: FIFO ingestion path for microphone stream</li>
+<li>/var/run/desktop/supervisor.sock: Supervisor RPC socket</li>
+</ul>
 
 
 
