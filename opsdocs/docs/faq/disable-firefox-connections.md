@@ -1,6 +1,6 @@
 ---
 tags:
-- read by jfv
+- firefox
 ---
 
 # How to disable Mozilla Firefox automatic connections at startup
