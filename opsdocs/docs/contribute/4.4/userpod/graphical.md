@@ -1,4 +1,4 @@
-# Dockerfile and Runtime Architecture Specification for the `grahical` service from Dockerfile.ubuntu
+# Dockerfile and Runtime Architecture Specification
 
 ## 1. Purpose and Scope
 
