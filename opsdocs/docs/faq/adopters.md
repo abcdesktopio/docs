@@ -2,7 +2,6 @@
 tags:
   - faq
   - adopter
-  - read by JF
 ---
 
 # FAQ Adopter
