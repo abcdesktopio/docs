@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#dockerfile-and-runtime-architecture-specification-for-the-grahical-service-from-dockerfileubuntu" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -3198,6 +3203,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Graphical
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3210,6 +3230,268 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-purpose-and-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Purpose and Scope
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-build-interface-input-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Build Interface (Input Contract)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Build Interface (Input Contract)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-global-build-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Global build arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-builder-stage-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Builder-stage arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-final-stage-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Final-stage argument
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-detailed-specification-of-stage-1-ubuntu_node_modules_builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Detailed Specification of Stage 1: ubuntu_node_modules_builder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Detailed Specification of Stage 1: ubuntu_node_modules_builder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-base-and-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Base and shell
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-toolchain-and-native-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Toolchain and native prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-nodejs-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Node.js installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-composer-source-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Composer source import
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-node-dependency-installation-by-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Node dependency installation by service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-ocrun-variants-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 ocrun variants generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-builder-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.7 Builder output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-detailed-specification-of-stage-2-final-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Detailed Specification of Stage 2 (Final Image)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Detailed Specification of Stage 2 (Final Image)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-system-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 System initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-tigervnc-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 TigerVNC installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-core-runtime-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Core runtime packages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-builder-artifact-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Builder artifact import
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-kde-plasma-and-hardening-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 KDE Plasma and hardening mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-notifications-fonts-and-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 Notifications, fonts, and themes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-nodejs-runtime-in-final-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.7 Node.js runtime in final image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-runtime-resources-and-application-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.8 Runtime resources and application hardening
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49-execution-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.9 Execution contract
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#410-network-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.10 Network contract
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-runtime-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Runtime Contract
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3456,6 +3738,259 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-purpose-and-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Purpose and Scope
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-build-interface-input-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Build Interface (Input Contract)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Build Interface (Input Contract)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-global-build-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Global build arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-builder-stage-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Builder-stage arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-final-stage-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Final-stage argument
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-detailed-specification-of-stage-1-ubuntu_node_modules_builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Detailed Specification of Stage 1: ubuntu_node_modules_builder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Detailed Specification of Stage 1: ubuntu_node_modules_builder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-base-and-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Base and shell
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-toolchain-and-native-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Toolchain and native prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-nodejs-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Node.js installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-composer-source-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Composer source import
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-node-dependency-installation-by-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Node dependency installation by service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-ocrun-variants-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 ocrun variants generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-builder-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.7 Builder output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-detailed-specification-of-stage-2-final-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Detailed Specification of Stage 2 (Final Image)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Detailed Specification of Stage 2 (Final Image)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-system-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 System initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-tigervnc-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 TigerVNC installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-core-runtime-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Core runtime packages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-builder-artifact-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Builder artifact import
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-kde-plasma-and-hardening-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 KDE Plasma and hardening mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-notifications-fonts-and-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 Notifications, fonts, and themes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-nodejs-runtime-in-final-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.7 Node.js runtime in final image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-runtime-resources-and-application-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.8 Runtime resources and application hardening
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49-execution-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.9 Execution contract
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#410-network-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.10 Network contract
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-runtime-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Runtime Contract
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3479,9 +4014,202 @@
   
 
 
-  <h1>Graphical</h1>
-
-<p>alex</p>
+<h1 id="dockerfile-and-runtime-architecture-specification-for-the-grahical-service-from-dockerfileubuntu">Dockerfile and Runtime Architecture Specification for the <code>grahical</code> service from Dockerfile.ubuntu</h1>
+<h2 id="1-purpose-and-scope">1. Purpose and Scope</h2>
+<p>The file <a href="https://github.com/abcdesktopio/oc.user/blob/4.4/Dockerfile.ubuntu">Dockerfile.ubuntu</a> builds an Ubuntu-based remote desktop runtime image for the abcdesktop ecosystem, including:</p>
+<ul>
+<li>Node.js services (under /composer/node),</li>
+<li>VNC server and WebSocket bridge components,</li>
+<li>audio, printing, and X11 session utilities,</li>
+<li>optional hardening behavior (TARGET_MODE=hardening).</li>
+</ul>
+<p>The build uses a two-stage (multi-stage) architecture:</p>
+<ol>
+<li>ubuntu_node_modules_builder: prepares Node dependencies and composer assets.</li>
+<li>final stage: assembles the OS, desktop stack, themes, and runtime components.</li>
+</ol>
+<hr />
+<h2 id="2-build-interface-input-contract">2. Build Interface (Input Contract)</h2>
+<h3 id="21-global-build-arguments">2.1 Global build arguments</h3>
+<p>Declared before the first FROM:</p>
+<ul>
+<li>TARGETPLATFORM</li>
+<li>BUILDPLATFORM</li>
+<li>TAG</li>
+<li>BASE_IMAGE (default: ubuntu)</li>
+<li>BASE_IMAGE_RELEASE (default: 24.04)</li>
+</ul>
+<h3 id="22-builder-stage-arguments">2.2 Builder-stage arguments</h3>
+<ul>
+<li>TARGET_MODE</li>
+<li>TARGET_PRUNE</li>
+</ul>
+<p>Exported as environment variables:</p>
+<ul>
+<li>ENV TARGET_MODE=$TARGET_MODE</li>
+<li>ENV TARGET_PRUNE=$TARGET_PRUNE</li>
+<li>ENV NODE_MAJOR=20</li>
+</ul>
+<h3 id="23-final-stage-argument">2.3 Final-stage argument</h3>
+<ul>
+<li>TARGET_MODE</li>
+</ul>
+<p>Exported as environment variables:</p>
+<ul>
+<li>TARGET_MODE</li>
+<li>NODE_MAJOR=20</li>
+</ul>
+<hr />
+<h2 id="3-detailed-specification-of-stage-1-ubuntu_node_modules_builder">3. Detailed Specification of Stage 1: ubuntu_node_modules_builder</h2>
+<h3 id="31-base-and-shell">3.1 Base and shell</h3>
+<ul>
+<li>Base image: ${BASE_IMAGE}:${BASE_IMAGE_RELEASE}</li>
+<li>Shell: bash (SHELL ["/bin/bash", "-c"])</li>
+</ul>
+<h3 id="32-toolchain-and-native-prerequisites">3.2 Toolchain and native prerequisites</h3>
+<p>Installs build dependencies:</p>
+<ul>
+<li>gcc, g++, make</li>
+<li>libx11-dev, libxmu-dev, libimlib2-dev</li>
+<li>ca-certificates, git, curl, gnupg, dpkg</li>
+</ul>
+<p>Purpose: allow compilation of native Node modules (via node-gyp).</p>
+<h3 id="33-nodejs-installation">3.3 Node.js installation</h3>
+<ul>
+<li>Adds NodeSource repository for NODE_MAJOR=20.</li>
+<li>Installs nodejs.</li>
+<li>Updates npm globally.</li>
+<li>Installs node-gyp globally.</li>
+</ul>
+<h3 id="34-composer-source-import">3.4 Composer source import</h3>
+<ul>
+<li>COPY composer /composer</li>
+</ul>
+<p>The builder then works in /composer/node subdirectories.</p>
+<h3 id="35-node-dependency-installation-by-service">3.5 Node dependency installation by service</h3>
+<p>Processed services:</p>
+<ul>
+<li>/composer/node/wait-port</li>
+<li>/composer/node/broadcast-service</li>
+<li>/composer/node/ocrun (repository cloned from run-service)</li>
+<li>/composer/node/ocdownload</li>
+<li>/composer/node/occall</li>
+<li>/composer/node/spawner-service/lib_spawner/colorflow (repository cloned)</li>
+<li>/composer/node/spawner-service</li>
+<li>/composer/node/xterm.js (except in hardening mode)</li>
+</ul>
+<p>TARGET_PRUNE behavior:</p>
+<ul>
+<li>empty: generally performs full npm install,</li>
+<li>defined: generally uses npm install --omit=dev.</li>
+</ul>
+<p>Implementation note: the condition in the ocrun block is inverted versus other blocks.</p>
+<h3 id="36-ocrun-variants-generation">3.6 ocrun variants generation</h3>
+<p>The build creates two script variants:</p>
+<ul>
+<li>ocrun.builtin.js (builtin mode)</li>
+<li>ocrun.frontendjs.js (frontendjs mode)</li>
+</ul>
+<p>This is done by copying then patching DEFAULT_EXECMODE with sed.</p>
+<h3 id="37-builder-output">3.7 Builder output</h3>
+<p>Main artifact: enriched /composer tree.</p>
+<ul>
+<li>includes installed Node dependencies,</li>
+<li>includes composer/version.json.</li>
+</ul>
+<hr />
+<h2 id="4-detailed-specification-of-stage-2-final-image">4. Detailed Specification of Stage 2 (Final Image)</h2>
+<h3 id="41-system-initialization">4.1 System initialization</h3>
+<ul>
+<li>COPY etc /etc</li>
+<li>apt-get upgrade -y</li>
+<li>base packages: ca-certificates, curl, gnupg, net-tools, bash</li>
+<li>locales setup: locales, language-pack-en, language-pack-fr, language-pack-de, then locale-gen</li>
+</ul>
+<h3 id="42-tigervnc-installation">4.2 TigerVNC installation</h3>
+<ul>
+<li>TIGERVNC_RELEASE=1.16.0</li>
+<li>Builds dynamic .deb URL using:</li>
+<li>Ubuntu release (DISTRIB_RELEASE),</li>
+<li>architecture (dpkg --print-architecture).</li>
+<li>Downloads and installs through apt-get install /tmp/tigervncserver.deb.</li>
+</ul>
+<h3 id="43-core-runtime-packages">4.3 Core runtime packages</h3>
+<p>Installs base runtime services:</p>
+<ul>
+<li>supervision and utilities: supervisor, websockify, desktop-file-utils, xdg-user-dirs</li>
+<li>auth/session: xauth, dbus-x11</li>
+<li>audio/printing: pulseaudio-utils, pavumeter, cups-client</li>
+<li>X11/desktop: x11-utils, x11-apps, xdg-utils, kwin-x11</li>
+<li>infra/security related: krb5-user, libnss-extrausers</li>
+</ul>
+<h3 id="44-builder-artifact-import">4.4 Builder artifact import</h3>
+<ul>
+<li>COPY --from=ubuntu_node_modules_builder /composer /composer</li>
+</ul>
+<h3 id="45-kde-plasma-and-hardening-mode">4.5 KDE Plasma and hardening mode</h3>
+<p>Installs Plasma packages:</p>
+<ul>
+<li>plasma-desktop, plasma-workspace, plasma-workspace-data,</li>
+<li>systemsettings, KDE QML modules.</li>
+</ul>
+<p>In hardening mode:</p>
+<ul>
+<li>targeted removal based on dpkg -L libkf5su5 piped to /composer/rmfol.sh</li>
+<li>targeted removal based on dpkg -L sudo piped to /composer/rmfol.sh</li>
+</ul>
+<h3 id="46-notifications-fonts-and-themes">4.6 Notifications, fonts, and themes</h3>
+<ul>
+<li>notifications: libnotificationmanager1, libnotify-bin, libnotify4</li>
+<li>fonts: adds fonts/Selawik.tar, installs fontconfig, fonts-noto, xfonts-base, refreshes cache</li>
+<li>local themes: copies usr/share/themes/Windows-10 and usr/share/aurorae</li>
+<li>remote themes: clones and installs Win11-icon-theme and Win11OS-kde</li>
+<li>wallpaper copy into /composer/wallpapers</li>
+<li>installs Breeze GTK integration</li>
+</ul>
+<h3 id="47-nodejs-runtime-in-final-image">4.7 Node.js runtime in final image</h3>
+<p>Node.js is installed again in the final image (NodeSource, NODE_MAJOR=20).</p>
+<h3 id="48-runtime-resources-and-application-hardening">4.8 Runtime resources and application hardening</h3>
+<ul>
+<li>adds ALSA sounds (usr/share/sounds/alsa)</li>
+<li>creates /var/log/desktop and /var/run/desktop</li>
+<li>removes xterm supervisor config in hardening mode</li>
+<li>writes build date to /etc/build.date</li>
+<li>in non-hardening mode installs qterminal and vim-gtk3</li>
+<li>removes mimeinfo.cache</li>
+</ul>
+<h3 id="49-execution-contract">4.9 Execution contract</h3>
+<ul>
+<li>GPU environment variables:</li>
+<li>NVIDIA_VISIBLE_DEVICES=all</li>
+<li>NVIDIA_DRIVER_CAPABILITIES=all</li>
+<li>default command:</li>
+<li>CMD [ "/composer/docker-entrypoint.sh" ]</li>
+</ul>
+<h3 id="410-network-contract">4.10 Network contract</h3>
+<p>Exposed ports:</p>
+<ul>
+<li>6081</li>
+<li>29781</li>
+<li>29784</li>
+<li>29786</li>
+</ul>
+<hr />
+<h2 id="5-runtime-contract">5. Runtime Contract</h2>
+<p>At runtime, the image assumes:</p>
+<ul>
+<li>startup through /composer/docker-entrypoint.sh,</li>
+<li>service orchestration via Supervisor (config copied from etc),</li>
+<li>writable log/run directories,</li>
+<li>environment compatible with remote desktop operation (VNC/WebSocket/X11).</li>
+</ul>
+<p>Hardening-mode behavior:</p>
+<ul>
+<li>no xterm.conf Supervisor entry,</li>
+<li>targeted removal of selected admin/elevation-related file trees,</li>
+<li>no qterminal/vim installation.</li>
+</ul>
+<hr />
 
 
 
