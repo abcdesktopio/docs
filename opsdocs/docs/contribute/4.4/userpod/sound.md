@@ -136,6 +136,7 @@ From include pattern /etc/supervisor/conf.d/*.conf:
 4. websocket server on 29788 broadcasts chunks to all connected clients.
 
 Control behavior:
+
 1. On first client, relay requests Supervisor startProcess("ffmpeg.speaker").
 2. On last client disconnect, relay requests stopProcess("ffmpeg").
 
@@ -159,16 +160,19 @@ Control behavior:
 ### 5.2 composer/ffmpeg.speaker.sh
 
 Purpose:
+
 1. Read audio from speaker.monitor.
 2. Encode audio as MP2 inside MPEG-TS.
 3. Stream to /container/speaker FIFO.
 
 Important runtime inputs:
+
 - PULSE_SERVER (default /tmp/.pulse.sock)
 - POD_IP optional (for CONTAINER_IP_ADDR)
 - WEBRELAY_INTERNAL_TCP_PORT metadata variable
 
 FFmpeg main characteristics:
+
 - sample rate 44100
 - mono channel
 - bitrate 128k
@@ -179,6 +183,7 @@ FFmpeg main characteristics:
 File: composer/node/websocket-relay.speaker/websocket-relay.js
 
 Behavior:
+
 1. Creates websocket server on configured host:port.
 2. Opens read stream from FIFO.
 3. Broadcasts FIFO chunks to connected clients.
@@ -190,6 +195,7 @@ Behavior:
 File: composer/node/websocket-relay.microphone/websocket-relay.js
 
 Behavior:
+
 1. Creates websocket server on configured host:port.
 2. On first connection opens write stream to FIFO.
 3. Writes websocket payloads to FIFO.
@@ -203,6 +209,7 @@ Behavior:
 ### 6.1 Runtime Environment Variables
 
 Used variables:
+
 - PULSEAUDIO_COOKIE
 - POD_IP
 - ABCDESKTOP_LOG_DIR
