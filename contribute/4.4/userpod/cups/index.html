@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#dockerfile-and-runtime-architecture-specification" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -3244,6 +3249,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Cups
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3256,6 +3276,304 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-scope-and-intent" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Scope and Intent
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-base-image-and-global-build-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Base Image and Global Build Inputs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Base Image and Global Build Inputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-base-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Base image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-build-argument-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Build argument contract
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-external-source-dependencies-build-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. External Source Dependencies (Build-Time)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-dependency-installation-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Dependency Installation Behavior
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Dependency Installation Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-node-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Node dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-system-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 System dependencies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-files-injected-from-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Files Injected from Repository
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Files Injected from Repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-entrypoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Entrypoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-configuration-tree-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Configuration tree override
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-build-time-filesystem-and-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Build-Time Filesystem and Permissions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-runtime-entrypoint-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Runtime Entrypoint Contract
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-supervisor-process-topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Supervisor Process Topology
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Supervisor Process Topology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-process-cupsd" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 Process: cupsd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-process-printer-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 Process: printer-service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-process-printerfile-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 Process: printerfile-service
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-cups-and-cups-pdf-runtime-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. CUPS and CUPS-PDF Runtime Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. CUPS and CUPS-PDF Runtime Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-cupsd-listening-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 cupsd listening behavior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-access-control-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 Access control model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-pdf-output-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.3 PDF output contract
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-network-interface-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Network Interface Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-environment-variable-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Environment Variable Matrix
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Environment Variable Matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-build-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.1 Build-time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-runtime-input-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.2 Runtime input variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-runtime-computedexported-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.3 Runtime computed/exported variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-service-level-variables-via-supervisor" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.4 Service-level variables via supervisor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3456,6 +3774,295 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-scope-and-intent" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Scope and Intent
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-base-image-and-global-build-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Base Image and Global Build Inputs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Base Image and Global Build Inputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-base-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Base image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-build-argument-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Build argument contract
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-external-source-dependencies-build-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. External Source Dependencies (Build-Time)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-dependency-installation-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Dependency Installation Behavior
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Dependency Installation Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-node-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Node dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-system-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 System dependencies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-files-injected-from-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Files Injected from Repository
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Files Injected from Repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-entrypoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Entrypoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-configuration-tree-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Configuration tree override
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-build-time-filesystem-and-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Build-Time Filesystem and Permissions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-runtime-entrypoint-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Runtime Entrypoint Contract
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-supervisor-process-topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Supervisor Process Topology
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Supervisor Process Topology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-process-cupsd" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 Process: cupsd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-process-printer-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 Process: printer-service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-process-printerfile-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 Process: printerfile-service
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-cups-and-cups-pdf-runtime-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. CUPS and CUPS-PDF Runtime Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. CUPS and CUPS-PDF Runtime Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-cupsd-listening-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 cupsd listening behavior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-access-control-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 Access control model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-pdf-output-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.3 PDF output contract
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-network-interface-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Network Interface Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-environment-variable-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Environment Variable Matrix
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Environment Variable Matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-build-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.1 Build-time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-runtime-input-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.2 Runtime input variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-runtime-computedexported-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.3 Runtime computed/exported variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-service-level-variables-via-supervisor" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.4 Service-level variables via supervisor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3479,9 +4086,232 @@
   
 
 
-  <h1>Cups</h1>
-
-<p>alex</p>
+<h1 id="dockerfile-and-runtime-architecture-specification">Dockerfile and Runtime Architecture Specification</h1>
+<h2 id="1-scope-and-intent">1. Scope and Intent</h2>
+<p>This document is the normative specification of the container image produced by this repository Dockerfile.</p>
+<p>Image purpose:
+- Provide a CUPS-based printing runtime for abcdesktop.
+- Bundle and run two Node.js services used by the printing workflow.
+- Run all runtime processes under supervisor.</p>
+<p>Design style:
+- Single-stage image.
+- Runtime is process-supervised multi-service (not a one-process image).
+- Configuration-heavy image where repository-provided /etc content defines behavior.</p>
+<h2 id="2-base-image-and-global-build-inputs">2. Base Image and Global Build Inputs</h2>
+<h3 id="21-base-image">2.1 Base image</h3>
+<ul>
+<li>Base image: node:20</li>
+</ul>
+<p>Implications:
+- Node.js runtime is available for printer-service and file-service.
+- Debian/apt package management is available.</p>
+<h3 id="22-build-argument-contract">2.2 Build argument contract</h3>
+<ul>
+<li>ARG BRANCH=4.4</li>
+<li>ENV BRANCH=$BRANCH</li>
+</ul>
+<p>Meaning:
+- BRANCH selects which branch is cloned for external service repositories.
+- If BRANCH is not provided, branch 4.4 is used.</p>
+<p>Example build:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">BRANCH</span><span class="o">=</span><span class="m">4</span>.4<span class="w"> </span>-t<span class="w"> </span>oc.cupsd:4.4<span class="w"> </span>.
+</code></pre></div>
+<h2 id="3-external-source-dependencies-build-time">3. External Source Dependencies (Build-Time)</h2>
+<p>The Dockerfile clones source code at build time from:</p>
+<ul>
+<li>https://github.com/abcdesktopio/file-service.git into /composer/node/file-service</li>
+<li>https://github.com/abcdesktopio/printer-service.git into /composer/node/printer-service</li>
+</ul>
+<p>Branch selection:
+- Both repositories are cloned with -b $BRANCH.</p>
+<p>Reproducibility note:
+- Because clones are branch-based (not commit-pinned), resulting images can vary over time for the same Dockerfile and BRANCH value.</p>
+<h2 id="4-dependency-installation-behavior">4. Dependency Installation Behavior</h2>
+<h3 id="41-node-dependencies">4.1 Node dependencies</h3>
+<p>For each cloned Node service:
+- Working directory is set to service directory.
+- npm install --save-prod is executed.</p>
+<p>Behavioral implications:
+- Production dependencies are installed.
+- Exact dependency graph may change over time unless lockfiles in cloned repos are stable and honored.</p>
+<h3 id="42-system-dependencies">4.2 System dependencies</h3>
+<p>The image installs two groups of apt packages.</p>
+<p>Font and rendering group:
+- fonts-recommended
+- xfonts-base
+- xfonts-encodings
+- xfonts-utils
+- xfonts-100dpi
+- xfonts-75dpi
+- libfontconfig
+- libfreetype6
+- fonts-freefont-ttf
+- fonts-croscore
+- fonts-dejavu-core
+- fonts-horai-umefont
+- fonts-noto
+- fonts-opendyslexic
+- fonts-roboto
+- fonts-roboto-hinted
+- fonts-sil-mondulkiri
+- fonts-unfonts-core
+- fonts-wqy-microhei</p>
+<p>Printing and supervision group:
+- supervisor
+- smbclient
+- cups-pdf
+- cups</p>
+<p>Cleanup behavior:
+- apt cache is cleaned after install.
+- /var/lib/apt/lists is removed to reduce layer size.</p>
+<h2 id="5-files-injected-from-repository">5. Files Injected from Repository</h2>
+<h3 id="51-entrypoint">5.1 Entrypoint</h3>
+<ul>
+<li>docker-entrypoint.sh is copied to /docker-entrypoint.sh</li>
+</ul>
+<h3 id="52-configuration-tree-override">5.2 Configuration tree override</h3>
+<ul>
+<li>Entire local etc directory is copied into /etc in the image.</li>
+</ul>
+<p>This includes at minimum:
+- /etc/supervisord.conf
+- /etc/supervisor/conf.d/<em>.conf
+- /etc/cups/</em></p>
+<p>Operational meaning:
+- Container runtime behavior is strongly defined by repository config files.
+- Upstream defaults from the base image may be overridden by this repository content.</p>
+<h2 id="6-build-time-filesystem-and-permissions">6. Build-Time Filesystem and Permissions</h2>
+<p>Directories explicitly created:
+- /var/log/desktop
+- /var/run/desktop
+- /composer/run</p>
+<p>Additional metadata file:
+- /etc/build.date (contains output of date captured at build time)</p>
+<p>Ownership adjustments:
+- chown -R lp:root /etc/cups/ppd /etc/cups/printers.conf</p>
+<p>Group membership change:
+- root is added to lpadmin group.</p>
+<h2 id="7-runtime-entrypoint-contract">7. Runtime Entrypoint Contract</h2>
+<p>Default command:</p>
+<div class="highlight"><pre><span></span><code>/docker-entrypoint.sh
+</code></pre></div>
+<p>Entrypoint runtime sequence:</p>
+<ol>
+<li>Export KUBERNETES_SERVICE_HOST.</li>
+<li>Compute CONTAINER_IP_ADDR as:</li>
+<li>POD_IP when provided, otherwise</li>
+<li>output of hostname -i.</li>
+<li>Rewrite /etc/cups/cupsd.conf:</li>
+<li>replace localhost:631 with ${CONTAINER_IP_ADDR}:631.</li>
+<li>Normalize DISABLE_REMOTEIP_FILTERING:</li>
+<li>default is disabled when empty.</li>
+<li>only literal enabled is preserved.</li>
+<li>Export file-service restrictions:</li>
+<li>ACCEPTFILE=false</li>
+<li>ACCEPTLISTFILE=false</li>
+<li>ACCEPTDELETEFILE=false</li>
+<li>Start supervisor in foreground:</li>
+<li>/usr/bin/supervisord --pidfile /var/run/desktop/supervisord.pid --nodaemon --configuration /etc/supervisord.conf</li>
+</ol>
+<p>Runtime side effect:
+- cupsd.conf is mutated at container startup, so CUPS listen address is runtime-dependent.</p>
+<h2 id="8-supervisor-process-topology">8. Supervisor Process Topology</h2>
+<p>Supervisor master config:
+- /etc/supervisord.conf</p>
+<p>Included program configs:
+- /etc/supervisor/conf.d/cupsd.conf
+- /etc/supervisor/conf.d/printer-service.conf
+- /etc/supervisor/conf.d/printerfile-service.conf</p>
+<h3 id="81-process-cupsd">8.1 Process: cupsd</h3>
+<ul>
+<li>Command: /usr/sbin/cupsd -c /etc/cups/cupsd.conf -f</li>
+<li>User: root</li>
+<li>Autostart: true</li>
+<li>Autorestart: true</li>
+<li>Start priority: 10</li>
+</ul>
+<h3 id="82-process-printer-service">8.2 Process: printer-service</h3>
+<ul>
+<li>Command: node /composer/node/printer-service/printer-service.js</li>
+<li>User: nobody</li>
+<li>Autostart: true</li>
+<li>Autorestart: true</li>
+<li>Start priority: 90</li>
+<li>Environment:</li>
+<li>WATCHDIR=/var/spool/cups-pdf/ANONYMOUS</li>
+<li>CONTAINER_IP_ADDR from entrypoint export</li>
+<li>DISABLE_REMOTEIP_FILTERING from entrypoint export</li>
+<li>BROADCAST_SERVICE_TCP_PORT=29784</li>
+</ul>
+<h3 id="83-process-printerfile-service">8.3 Process: printerfile-service</h3>
+<ul>
+<li>Command: node /composer/node/file-service/file-service.js</li>
+<li>User: nobody</li>
+<li>Autostart: true</li>
+<li>Autorestart: true</li>
+<li>Start priority: 10</li>
+<li>Environment:</li>
+<li>HOME=/var/spool/cups-pdf/ANONYMOUS</li>
+<li>LOGNAME=nobody</li>
+<li>DISABLE_REMOTEIP_FILTERING from entrypoint export</li>
+<li>CONTAINER_IP_ADDR from entrypoint export</li>
+<li>FILE_SERVICE_TCP_PORT=29782</li>
+</ul>
+<h2 id="9-cups-and-cups-pdf-runtime-specification">9. CUPS and CUPS-PDF Runtime Specification</h2>
+<h3 id="91-cupsd-listening-behavior">9.1 cupsd listening behavior</h3>
+<p>Configured initially in /etc/cups/cupsd.conf:
+- Listen localhost:631
+- Listen /tmp/.cups.sock</p>
+<p>After entrypoint rewrite:
+- Listen <CONTAINER_IP_ADDR>:631
+- Listen /tmp/.cups.sock</p>
+<h3 id="92-access-control-model">9.2 Access control model</h3>
+<p>From /etc/cups/cupsd.conf and /etc/cups/cups-files.conf:
+- SystemGroup is lpadmin.
+- Administrative operations require authenticated @SYSTEM users.
+- Root and admin locations allow local/network-permitted access according to config rules.</p>
+<h3 id="93-pdf-output-contract">9.3 PDF output contract</h3>
+<p>From /etc/cups/cups-pdf.conf:
+- Out /var/spool/cups-pdf/ANONYMOUS
+- AnonDirName /var/spool/cups-pdf/ANONYMOUS
+- AnonUser nobody
+- Grp lpadmin</p>
+<p>Service integration contract:
+- printer-service watches /var/spool/cups-pdf/ANONYMOUS.
+- printerfile-service uses same path as HOME.</p>
+<h2 id="10-network-interface-specification">10. Network Interface Specification</h2>
+<p>Dockerfile exposed ports:
+- 631/tcp: CUPS endpoint
+- 29782/tcp: printerfile-service endpoint</p>
+<p>Not exposed by Dockerfile but used internally by service config:
+- 29784/tcp: printer-service broadcast service port variable</p>
+<h2 id="11-environment-variable-matrix">11. Environment Variable Matrix</h2>
+<h3 id="111-build-time">11.1 Build-time</h3>
+<ul>
+<li>BRANCH: selects Git branch for cloned service repos.</li>
+</ul>
+<h3 id="112-runtime-input-variables">11.2 Runtime input variables</h3>
+<ul>
+<li>POD_IP: preferred container IP source.</li>
+<li>KUBERNETES_SERVICE_HOST: exported if present.</li>
+<li>DISABLE_REMOTEIP_FILTERING: accepted values effectively enabled or disabled.</li>
+</ul>
+<h3 id="113-runtime-computedexported-variables">11.3 Runtime computed/exported variables</h3>
+<ul>
+<li>CONTAINER_IP_ADDR: computed from POD_IP or hostname -i.</li>
+<li>DISABLE_REMOTEIP_FILTERING: normalized by entrypoint.</li>
+<li>ACCEPTFILE=false</li>
+<li>ACCEPTLISTFILE=false</li>
+<li>ACCEPTDELETEFILE=false</li>
+</ul>
+<h3 id="114-service-level-variables-via-supervisor">11.4 Service-level variables via supervisor</h3>
+<ul>
+<li>WATCHDIR=/var/spool/cups-pdf/ANONYMOUS</li>
+<li>BROADCAST_SERVICE_TCP_PORT=29784</li>
+<li>FILE_SERVICE_TCP_PORT=29782</li>
+<li>HOME=/var/spool/cups-pdf/ANONYMOUS</li>
+<li>LOGNAME=nobody</li>
+</ul>
 
 
 
