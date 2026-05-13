@@ -3,6 +3,7 @@
 ## 1. System Purpose
 
 The image implements a PulseAudio streaming sidecar with two websocket services:
+
 1. Speaker relay: reads encoded audio from a FIFO and broadcasts to websocket clients.
 2. Microphone relay: receives websocket payloads and writes to a FIFO consumed by PulseAudio module-pipe-source.
 3. Supervisor manages lifecycle of PulseAudio and relay processes.
@@ -26,6 +27,7 @@ Configured variables:
 - PULSEGROUP=pulse
 
 Provisioning:
+
 1. Creates group pulse with GID 104.
 2. Creates user pulse with UID 102.
 3. User supplementary groups are set via --groups 104.
@@ -34,6 +36,7 @@ Provisioning:
 ### 2.3 OS Package Layer
 
 Debconf noninteractive mode is configured and these packages are installed:
+
 - ca-certificates
 - pulseaudio
 - pulseaudio-utils
@@ -60,6 +63,7 @@ Build copies:
 ### 2.6 Node Dependency Installation
 
 Dependency strategy now uses lockfiles and npm ci:
+
 1. /composer/node/websocket-relay.speaker: npm ci --omit=dev
 2. /composer/node/websocket-relay.microphone: npm ci --omit=dev
 
@@ -68,6 +72,7 @@ Required lockfiles are present in both relay directories.
 ### 2.7 Runtime Filesystem Preparation
 
 Dockerfile prepares these paths:
+
 - /var/run/dbus
 - /var/log/desktop
 - /var/run/desktop
@@ -93,6 +98,7 @@ Current mode setup uses 666 for directories and selected files.
 ### 3.1 Entrypoint Behavior
 
 At startup, docker-entrypoint.sh:
+
 1. Sets ABCDESKTOP_LOG_DIR and ABCDESKTOP_RUN_DIR defaults.
 2. Logs id, environment, home listing, and /etc/pulse listing.
 3. Resolves CONTAINER_IP_ADDR from POD_IP or hostname -i.
@@ -104,6 +110,7 @@ At startup, docker-entrypoint.sh:
 ### 3.2 Supervisor Programs
 
 From include pattern /etc/supervisor/conf.d/*.conf:
+
 1. pulseaudio
    - command: /composer/pulseaudio.sh
    - autostart: true
