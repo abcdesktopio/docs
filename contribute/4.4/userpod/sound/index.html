@@ -4156,9 +4156,11 @@
 <li>websocket-relay.speaker reads /container/speaker.</li>
 <li>websocket server on 29788 broadcasts chunks to all connected clients.</li>
 </ol>
-<p>Control behavior:
-1. On first client, relay requests Supervisor startProcess("ffmpeg.speaker").
-2. On last client disconnect, relay requests stopProcess("ffmpeg").</p>
+<p>Control behavior:</p>
+<ol>
+<li>On first client, relay requests Supervisor startProcess("ffmpeg.speaker").</li>
+<li>On last client disconnect, relay requests stopProcess("ffmpeg").</li>
+</ol>
 <h3 id="42-microphone-data-path">4.2 Microphone Data Path</h3>
 <ol>
 <li>websocket-relay.microphone listens on 29789.</li>
@@ -4175,46 +4177,58 @@
 <li>auth-cookie uses /etc/pulse/abcdesktopcookie.</li>
 </ul>
 <h3 id="52-composerffmpegspeakersh">5.2 composer/ffmpeg.speaker.sh</h3>
-<p>Purpose:
-1. Read audio from speaker.monitor.
-2. Encode audio as MP2 inside MPEG-TS.
-3. Stream to /container/speaker FIFO.</p>
-<p>Important runtime inputs:
-- PULSE_SERVER (default /tmp/.pulse.sock)
-- POD_IP optional (for CONTAINER_IP_ADDR)
-- WEBRELAY_INTERNAL_TCP_PORT metadata variable</p>
-<p>FFmpeg main characteristics:
-- sample rate 44100
-- mono channel
-- bitrate 128k
-- mpegts output</p>
+<p>Purpose:</p>
+<ol>
+<li>Read audio from speaker.monitor.</li>
+<li>Encode audio as MP2 inside MPEG-TS.</li>
+<li>Stream to /container/speaker FIFO.</li>
+</ol>
+<p>Important runtime inputs:</p>
+<ul>
+<li>PULSE_SERVER (default /tmp/.pulse.sock)</li>
+<li>POD_IP optional (for CONTAINER_IP_ADDR)</li>
+<li>WEBRELAY_INTERNAL_TCP_PORT metadata variable</li>
+</ul>
+<p>FFmpeg main characteristics:</p>
+<ul>
+<li>sample rate 44100</li>
+<li>mono channel</li>
+<li>bitrate 128k</li>
+<li>mpegts output</li>
+</ul>
 <h3 id="53-speaker-relay-node-service">5.3 Speaker Relay Node Service</h3>
 <p>File: composer/node/websocket-relay.speaker/websocket-relay.js</p>
-<p>Behavior:
-1. Creates websocket server on configured host:port.
-2. Opens read stream from FIFO.
-3. Broadcasts FIFO chunks to connected clients.
-4. Starts ffmpeg.speaker on first client.
-5. Requests stop of process named ffmpeg when count returns to zero.</p>
+<p>Behavior:</p>
+<ol>
+<li>Creates websocket server on configured host:port.</li>
+<li>Opens read stream from FIFO.</li>
+<li>Broadcasts FIFO chunks to connected clients.</li>
+<li>Starts ffmpeg.speaker on first client.</li>
+<li>Requests stop of process named ffmpeg when count returns to zero.</li>
+</ol>
 <h3 id="54-microphone-relay-node-service">5.4 Microphone Relay Node Service</h3>
 <p>File: composer/node/websocket-relay.microphone/websocket-relay.js</p>
-<p>Behavior:
-1. Creates websocket server on configured host:port.
-2. On first connection opens write stream to FIFO.
-3. Writes websocket payloads to FIFO.
-4. Closes FIFO stream when last client disconnects.
-5. Includes documentation note for PulseAudio module-pipe-source contract.</p>
+<p>Behavior:</p>
+<ol>
+<li>Creates websocket server on configured host:port.</li>
+<li>On first connection opens write stream to FIFO.</li>
+<li>Writes websocket payloads to FIFO.</li>
+<li>Closes FIFO stream when last client disconnects.</li>
+<li>Includes documentation note for PulseAudio module-pipe-source contract.</li>
+</ol>
 <hr />
 <h2 id="6-interface-contracts">6. Interface Contracts</h2>
 <h3 id="61-runtime-environment-variables">6.1 Runtime Environment Variables</h3>
-<p>Used variables:
-- PULSEAUDIO_COOKIE
-- POD_IP
-- ABCDESKTOP_LOG_DIR
-- ABCDESKTOP_RUN_DIR
-- CONTAINER_IP_ADDR
-- WEBRELAY_INTERNAL_TCP_PORT
-- PULSE_SERVER</p>
+<p>Used variables:</p>
+<ul>
+<li>PULSEAUDIO_COOKIE</li>
+<li>POD_IP</li>
+<li>ABCDESKTOP_LOG_DIR</li>
+<li>ABCDESKTOP_RUN_DIR</li>
+<li>CONTAINER_IP_ADDR</li>
+<li>WEBRELAY_INTERNAL_TCP_PORT</li>
+<li>PULSE_SERVER</li>
+</ul>
 <h3 id="62-network-interface">6.2 Network Interface</h3>
 <ul>
 <li>29788/tcp: speaker websocket relay</li>
