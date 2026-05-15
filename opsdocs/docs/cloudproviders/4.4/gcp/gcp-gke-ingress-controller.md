@@ -4,7 +4,6 @@ tags:
   - gcp
   - ingress
   - timeout
-  - AD
 ---
 
 
