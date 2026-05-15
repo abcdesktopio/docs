@@ -4,8 +4,6 @@ tags:
   - digitalocean
   - loadbalancer
   - cloud
-  - AD
-  - FS
 ---
 
 # Publish your website as a public secured service
