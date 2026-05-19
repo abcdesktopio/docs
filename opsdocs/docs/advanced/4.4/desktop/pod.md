@@ -313,7 +313,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
   - `supplementalGroups`: [ '{{ supplementalGroups }}' ] replaced by ldap or default values
   - `runAsUser`: '{{ uidNumber }}' replaced by ldap or default values
   - `runAsGroup`: '{{ gidNumber }}' replaced by ldap or default values
-  - `runAsNonRoot`: boolean [pod-security-standards](pod-security-standards)
+  - `runAsNonRoot`: boolean [pod-security-standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
 - `tcpport` is the main tcp port for the container 
 - `secrets_requirement` is a list of secret to mount inside this container. By default the graphical contaienr mounts the secrets 'abcdesktop/vnc' and 'abcdesktop/kerberos'. If the 'abcdesktop/kerberos' doesn't exist, the secret is not added.
 - `waitfor_services` : list of supervisor service to wait [ 'xserver', 'novnc', 'spawner-service', 'plasmashell' ], the services must be started.

@@ -278,16 +278,17 @@ An implementation conforming to this Dockerfile must:
 
 ## Relevant Repository Files
 
-* [Dockerfile](Dockerfile)
-* [docker-entrypoint.sh](docker-entrypoint.sh)
-* [README.md](README.md)
-* [etc/supervisord.conf](etc/supervisord.conf)
-* [etc/supervisor/conf.d/cupsd.conf](etc/supervisor/conf.d/cupsd.conf)
-* [etc/supervisor/conf.d/printer-service.conf](etc/supervisor/conf.d/printer-service.conf)
-* [etc/supervisor/conf.d/printerfile-service.conf](etc/supervisor/conf.d/printerfile-service.conf)
-* [etc/cups/cupsd.conf](etc/cups/cupsd.conf)
-* [etc/cups/cups-files.conf](etc/cups/cups-files.conf)
-* [etc/cups/cups-pdf.conf](etc/cups/cups-pdf.conf)
+Source [oc.cupsd](https://github.com/abcdesktopio/oc.cupsd/tree/{{ abcdesktop.latest_release }})
+
+* [Dockerfile](https://github.com/abcdesktopio/oc.cupsd/blob/{{ abcdesktop.latest_release }}/Dockerfile)
+* [docker-entrypoint.sh](https://github.com/abcdesktopio/oc.cupsd/blob/{{ abcdesktop.latest_release }}/docker-entrypoint.sh)
+* [etc/supervisord.conf](https://github.com/abcdesktopio/oc.cupsd/blob/{{ abcdesktop.latest_release }}/etc/supervisord.conf)
+* [etc/supervisor/conf.d/cupsd.conf](https://github.com/abcdesktopio/oc.cupsd/blob/{{ abcdesktop.latest_release }}/etc/supervisor/conf.d/cupsd.conf)
+* [etc/supervisor/conf.d/printer-service.conf](https://github.com/abcdesktopio/oc.cupsd/blob/{{ abcdesktop.latest_release }}/etc/supervisor/conf.d/printer-service.conf)
+* [etc/supervisor/conf.d/printerfile-service.conf](https://github.com/abcdesktopio/oc.cupsd/blob/{{ abcdesktop.latest_release }}/etc/supervisor/conf.d/printerfile-service.conf)
+* [etc/cups/cupsd.conf](https://github.com/abcdesktopio/oc.cupsd/blob/{{ abcdesktop.latest_release }}/etc/cups/cupsd.conf)
+* [etc/cups/cups-files.conf](https://github.com/abcdesktopio/oc.cupsd/blob/{{ abcdesktop.latest_release }}/etc/cups/cups-files.conf)
+* [etc/cups/cups-pdf.conf](https://github.com/abcdesktopio/oc.cupsd/blob/{{ abcdesktop.latest_release }}/etc/cups/cups-pdf.conf)
 
 =======
 # Dockerfile and Runtime Architecture Specification
@@ -318,7 +319,7 @@ Implications:
 
 ### 2.2 Build argument contract
 
-- ARG BRANCH=4.4
+- ARG BRANCH={{ abcdesktop.latest_release }}
 - ENV BRANCH=$BRANCH
 
 Meaning:
@@ -328,7 +329,7 @@ Meaning:
 Example build:
 
 ```bash
-docker build --build-arg BRANCH=4.4 -t oc.cupsd:4.4 .
+docker build --build-arg BRANCH={{ abcdesktop.latest_release }} -t oc.cupsd:{{ abcdesktop.latest_release }} .
 ```
 
 ## 3. External Source Dependencies (Build-Time)
