@@ -32,7 +32,7 @@ LABEL oc.type=app
 
 Multiple methods of installing applications have been offered to make deployment easier.
 
-- use the default install applications [bash script](bash.md)
+- use the default install applications [bash script](script.md)
 - use the [Admin Web UI console](applicationwithconsole.md)
 - run a simple REST request with a `curl` command line to `POST` the JSON file content to API service
 

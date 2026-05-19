@@ -287,11 +287,11 @@ I like this amazing project abcdesktop.io
 Do not save your file and just close your web browser.
 
 
-Start your web browser again, and open the same URL ```http://localhost```, and log in with the same account: ```Turanga Leela``` as login and ```leela``` as password, then click on the ```Sign in``` button.
+Start your web browser again, and open the previous URL, then log in with the same account: ```Turanga Leela``` as login and ```leela``` as password, click on the ```Sign in``` button.
 
 The application LibreOffice Writer is still running and the greeting message ```I like this amazing project abcdesktop.io```
 
-![](img/auth_provider_ldap_session_remained.png)
+![session remained](img/auth_provider_ldap_session_remained.png)
 
 > All applications are maintained. 
 
