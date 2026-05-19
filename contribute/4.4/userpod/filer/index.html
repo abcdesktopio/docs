@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#file-service-implementation-specification" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -3267,6 +3272,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Filer
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3279,6 +3299,313 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Scope
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-runtime-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Runtime Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Runtime Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-process-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Process model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-router-mounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Router mounting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-middleware-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Middleware chain
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configuration-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Configuration Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Configuration Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Environment variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-toggle-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Toggle interpretation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-security-and-path-confinement-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Security and Path Confinement Model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Security and Path Confinement Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-intended-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Intended boundary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-path-normalization-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Path normalization rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-path-safety-predicate" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Path safety predicate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-data-and-io-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Data and I/O Behavior
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Data and I/O Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-upload-buffering" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Upload buffering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-file-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 File streaming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-zip-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Zip generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-directory-listing-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Directory listing sort
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-api-contract-implementation-accurate" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. API Contract (Implementation Accurate)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. API Contract (Implementation Accurate)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 GET /
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-get-directorylist" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 GET /directory/list
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-post" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 POST /
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 DELETE /
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-fallback-route" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 Fallback route
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-validation-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Validation Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-error-contract-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Error Contract Matrix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-operational-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Operational Characteristics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Operational Characteristics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 Logging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-test-derived-behavioral-expectations" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Test-Derived Behavioral Expectations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3456,6 +3783,304 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Scope
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-runtime-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Runtime Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Runtime Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-process-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Process model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-router-mounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Router mounting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-middleware-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Middleware chain
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configuration-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Configuration Specification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Configuration Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Environment variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-toggle-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Toggle interpretation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-security-and-path-confinement-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Security and Path Confinement Model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Security and Path Confinement Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-intended-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Intended boundary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-path-normalization-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Path normalization rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-path-safety-predicate" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Path safety predicate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-data-and-io-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Data and I/O Behavior
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Data and I/O Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-upload-buffering" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Upload buffering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-file-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 File streaming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-zip-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Zip generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-directory-listing-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Directory listing sort
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-api-contract-implementation-accurate" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. API Contract (Implementation Accurate)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. API Contract (Implementation Accurate)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 GET /
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-get-directorylist" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 GET /directory/list
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-post" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 POST /
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 DELETE /
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-fallback-route" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 Fallback route
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-validation-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Validation Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-error-contract-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Error Contract Matrix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-operational-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Operational Characteristics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Operational Characteristics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 Logging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-test-derived-behavioral-expectations" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Test-Derived Behavioral Expectations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3479,9 +4104,232 @@
   
 
 
-  <h1>Filer</h1>
-
-<p>alex</p>
+<h1 id="file-service-implementation-specification">File Service Implementation Specification</h1>
+<h2 id="1-scope">1. Scope</h2>
+<p>This document specifies the runtime behavior of the file service implemented in <a href="file-service.js">file-service.js</a>. It is an implementation-driven specification (what the service does now), not an aspirational API design.</p>
+<p>Primary capabilities:
+- Upload a file to a path under the user home directory.
+- Download a file.
+- Download a directory as a generated zip stream.
+- List files in a directory.
+- Delete a file.</p>
+<h2 id="2-runtime-architecture">2. Runtime Architecture</h2>
+<h3 id="21-process-model">2.1 Process model</h3>
+<ul>
+<li>Single Node.js process, Express app and router initialization in <a href="file-service.js#L162">file-service.js</a>.</li>
+<li>Service bind is delegated to external helper <code>listenDaemonOnContainerIpAddr</code> in <a href="file-service.js#L24">file-service.js</a> and <a href="file-service.js#L533">file-service.js</a>.</li>
+<li>All uncaught exceptions are logged but do not trigger explicit shutdown logic in <a href="file-service.js#L529">file-service.js</a>.</li>
+</ul>
+<h3 id="22-router-mounting">2.2 Router mounting</h3>
+<ul>
+<li>Router is mounted under a regex prefix in <a href="file-service.js#L527">file-service.js</a>:</li>
+<li>/filer</li>
+<li>/printerfiler</li>
+<li>Therefore, route path <code>/</code> in router effectively maps to <code>/filer</code> and <code>/printerfiler</code> at runtime.</li>
+</ul>
+<h3 id="23-middleware-chain">2.3 Middleware chain</h3>
+<p>Global middleware in order:
+1. <code>helmet()</code> security headers in <a href="file-service.js#L165">file-service.js</a>.
+2. <code>express.json()</code> body parser in <a href="file-service.js#L167">file-service.js</a>.
+3. Request logger in <a href="file-service.js#L168">file-service.js</a>.</p>
+<p>Route-specific validation middleware comes from <a href="middlewares.js">middlewares.js</a>:
+- Query validator for <code>file</code>: <a href="middlewares.js#L15">middlewares.js</a>.
+- Body validator for <code>file</code>: <a href="middlewares.js#L25">middlewares.js</a>.
+- Query validator for <code>directory</code>: <a href="middlewares.js#L35">middlewares.js</a>.
+- Multipart uploaded file structural validator: <a href="middlewares.js#L45">middlewares.js</a>.</p>
+<p>Error handling:
+- Per-route async exceptions are wrapped by <code>express-async-handler</code>.
+- Global error handler returns 500 with fixed payload in <a href="file-service.js#L520">file-service.js</a>.</p>
+<h2 id="3-configuration-specification">3. Configuration Specification</h2>
+<h3 id="31-environment-variables">3.1 Environment variables</h3>
+<ul>
+<li>Root directory: <code>HOME</code> read in <a href="file-service.js#L39">file-service.js</a>.</li>
+<li>Listen port: <code>FILE_SERVICE_TCP_PORT</code> fallback 29783 in <a href="file-service.js#L40">file-service.js</a>.</li>
+<li>Feature toggles:</li>
+<li><code>SENDFILE</code> in <a href="file-service.js#L41">file-service.js</a>.</li>
+<li><code>ACCEPTFILE</code> in <a href="file-service.js#L42">file-service.js</a>.</li>
+<li><code>ACCEPTLISTFILE</code> in <a href="file-service.js#L43">file-service.js</a>.</li>
+<li><code>ACCEPTDELETEFILE</code> in <a href="file-service.js#L44">file-service.js</a>.</li>
+</ul>
+<h3 id="32-toggle-interpretation">3.2 Toggle interpretation</h3>
+<p><code>is_allow_var</code> in <a href="file-service.js#L58">file-service.js</a> maps values as follows:
+- Deny when value (case-insensitive) is one of: 0, false, disable, disabled.
+- Allow otherwise, including undefined.</p>
+<p>Default behavior: all features enabled unless explicitly disabled.</p>
+<h2 id="4-security-and-path-confinement-model">4. Security and Path Confinement Model</h2>
+<h3 id="41-intended-boundary">4.1 Intended boundary</h3>
+<p>All filesystem operations are intended to stay under <code>HOME</code> using:
+- <code>checkSafePath</code> in <a href="file-service.js#L87">file-service.js</a>.
+- <code>normalize_tildpath</code> in <a href="file-service.js#L67">file-service.js</a>.</p>
+<h3 id="42-path-normalization-rules">4.2 Path normalization rules</h3>
+<p><code>normalize_tildpath</code> behavior:
+- Expands leading <code>~</code> to <code>HOME</code>.
+- Applies <code>path.normalize</code>.
+- If parsed directory is outside <code>HOME</code>, prepends <code>HOME</code> and normalizes again.</p>
+<h3 id="43-path-safety-predicate">4.3 Path safety predicate</h3>
+<p><code>checkSafePath</code> behavior:
+- Expands leading <code>~</code> to <code>HOME</code>.
+- Normalizes path.
+- Parses normalized path and returns true when either:
+  - parsed directory starts with <code>HOME</code>, or
+  - original currentPath exactly equals <code>HOME</code>.</p>
+<h2 id="5-data-and-io-behavior">5. Data and I/O Behavior</h2>
+<h3 id="51-upload-buffering">5.1 Upload buffering</h3>
+<ul>
+<li>Multer is configured with in-memory storage in <a href="file-service.js#L33">file-service.js</a>.</li>
+<li>Uploaded file content is fully resident in RAM before write.</li>
+</ul>
+<h3 id="52-file-streaming">5.2 File streaming</h3>
+<ul>
+<li>File download uses stream pipeline in <a href="file-service.js#L234">file-service.js</a>.</li>
+<li>Zip download uses JSZip node stream in <a href="file-service.js#L256">file-service.js</a>.</li>
+</ul>
+<h3 id="53-zip-generation">5.3 Zip generation</h3>
+<ul>
+<li>Recursive traversal implemented by <code>generateZipTree</code> in <a href="file-service.js#L141">file-service.js</a>.</li>
+<li>Folder names are split on <code>/</code> (non-portable if run outside POSIX path semantics).</li>
+<li>Read errors are logged and swallowed inside recursion; operation continues.</li>
+</ul>
+<h3 id="54-directory-listing-sort">5.4 Directory listing sort</h3>
+<ul>
+<li>Directory list is sorted ascending by modification time in <a href="file-service.js#L117">file-service.js</a>.</li>
+<li>If file stat fails, file gets synthetic time 0 and likely appears first.</li>
+</ul>
+<h2 id="6-api-contract-implementation-accurate">6. API Contract (Implementation Accurate)</h2>
+<p>Base route prefix: /filer and /printerfiler.</p>
+<h3 id="61-get">6.1 GET /</h3>
+<p>Resolved endpoints:
+- GET /filer
+- GET /printerfiler</p>
+<p>Purpose:
+- Download a file, or if path is a directory, download a generated zip.</p>
+<p>Input:
+- Query parameter <code>file</code> required, non-empty string validated by middleware.</p>
+<p>Flow:
+1. Check <code>SENDFILE</code> toggle.
+2. Validate path via <code>checkSafePath</code>.
+3. Normalize path.
+4. Check existence.
+5. If file: stream bytes.
+6. If directory: generate zip recursively and stream zip.</p>
+<p>Responses:
+- 200: binary stream (file bytes or zip bytes).
+- 400: feature disabled or unsafe path.
+- 404: path not found.
+- 422: validator errors when query is missing/invalid.
+- 500: unhandled runtime exception.</p>
+<p>Headers on directory download:
+- Content-Disposition: attachment; filename="<normalized-path>.zip"
+- Content-Type: application/zip</p>
+<p>Implementation references:
+- <a href="file-service.js#L206">file-service.js</a></p>
+<h3 id="62-get-directorylist">6.2 GET /directory/list</h3>
+<p>Resolved endpoints:
+- GET /filer/directory/list
+- GET /printerfiler/directory/list</p>
+<p>Purpose:
+- Return sorted file names of a directory.</p>
+<p>Input:
+- Query parameter <code>directory</code> required, non-empty string.</p>
+<p>Flow:
+1. Check <code>ACCEPTLISTFILE</code> toggle.
+2. Validate safe path.
+3. Normalize path.
+4. Check existence and directory type.
+5. Return sorted names.</p>
+<p>Responses:
+- 200: JSON array of filenames.
+- 400: feature disabled or unsafe path.
+- 404: path not found or path not a directory.
+- 422: validator errors when query is missing/invalid.
+- 500: unhandled runtime exception.</p>
+<p>Implementation references:
+- <a href="file-service.js#L286">file-service.js</a></p>
+<h3 id="63-post">6.3 POST /</h3>
+<p>Resolved endpoints:
+- POST /filer
+- POST /printerfiler</p>
+<p>Purpose:
+- Upload multipart file field named <code>file</code> and save under HOME boundary.</p>
+<p>Input:
+- Multipart field <code>file</code> required.
+- Optional body field <code>fullPath</code>:
+  - If absent/empty, destination path is original uploaded filename.
+  - If provided, destination is that value.</p>
+<p>Flow:
+1. Parse multipart to memory.
+2. Validate uploaded file object shape.
+3. Check <code>ACCEPTFILE</code> toggle.
+4. Normalize destination path.
+5. Validate safe path.
+6. Ensure destination directory exists (create recursively).
+7. Write file bytes.</p>
+<p>Responses:
+- 200: <code>{ "code": 200, "data": "ok" }</code>
+- 400: feature disabled (note payload still says code 403).
+- 403: unsafe path in default ret object.
+- 422: missing/invalid multipart <code>file</code> field.
+- 500: unhandled runtime exception.</p>
+<p>Implementation references:
+- <a href="file-service.js#L364">file-service.js</a></p>
+<h3 id="64-delete">6.4 DELETE /</h3>
+<p>Resolved endpoints:
+- DELETE /filer
+- DELETE /printerfiler</p>
+<p>Purpose:
+- Delete a file path under HOME.</p>
+<p>Input:
+- JSON body field <code>file</code> required, non-empty string.</p>
+<p>Flow:
+1. Validate body.
+2. Check <code>ACCEPTDELETEFILE</code> toggle.
+3. Validate safe path.
+4. Normalize path.
+5. If exists, unlink.</p>
+<p>Responses:
+- 200: <code>{ "code": 200, "data": "ok" }</code>
+- 400: feature disabled or unsafe path.
+- 404: file not found.
+- 422: missing/invalid body.
+- 500: unhandled runtime exception.</p>
+<p>Implementation references:
+- <a href="file-service.js#L475">file-service.js</a></p>
+<h3 id="65-fallback-route">6.5 Fallback route</h3>
+<ul>
+<li>Any unmatched route under mounted prefixes returns:</li>
+<li><code>{ "code": 404, "data": "Can not &lt;METHOD&gt; &lt;PATH&gt;" }</code></li>
+<li>Implementation at <a href="file-service.js#L509">file-service.js</a>.</li>
+</ul>
+<h2 id="7-validation-specification">7. Validation Specification</h2>
+<p>Validation source: <a href="middlewares.js">middlewares.js</a>.</p>
+<p>Rules:
+- Query <code>file</code>: required, string, not empty.
+- Body <code>file</code>: required, string, not empty.
+- Query <code>directory</code>: required, string, not empty.
+- Multipart upload: <code>req.file</code> must exist and include <code>originalname</code> string and <code>buffer</code> Buffer.</p>
+<p>Error format examples:
+- Express-validator based 422 shape with <code>errors</code> array.
+- Upload structural validation also returns 422 with <code>errors</code> array.</p>
+<h2 id="8-error-contract-matrix">8. Error Contract Matrix</h2>
+<p>Matrix:
+- Validation failure: 422
+- Unsafe path: 400 + Path Server Error
+- Feature disabled: 400 + Forbidden payload code 403
+- Missing resource: 404
+- Unmatched path: 404
+- Unhandled error: 500</p>
+<h2 id="9-operational-characteristics">9. Operational Characteristics</h2>
+<h3 id="91-logging">9.1 Logging</h3>
+<ul>
+<li>Logs include method/path, paths, and internal errors.</li>
+<li>Sensitive absolute paths may appear in logs.</li>
+</ul>
+<h2 id="10-test-derived-behavioral-expectations">10. Test-Derived Behavioral Expectations</h2>
+<p>From <a href="__test__/file-service.test.js"><strong>test</strong>/file-service.test.js</a>:
+- Upload requires multipart <code>file</code> and supports <code>fullPath</code> with <code>~</code> expansion.
+- Download rejects paths outside HOME.
+- List endpoint returns 400 for unsafe traversal attempts.
+- Delete returns 200 on first success and 404 on second attempt.</p>
 
 
 
