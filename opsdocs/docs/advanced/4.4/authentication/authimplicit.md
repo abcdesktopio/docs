@@ -49,7 +49,7 @@ authmanagers: {
   }}
 ```
 
-[Update your configuration file and apply the new configuration file](editconfig.md)
+[Update your configuration file and apply the new configuration file](../configure/updateconfiguration.md)
 
 Open a new Web Browser and go to your abcdesktop URL. You should see the login HTML page with the Anonymous button :
 
