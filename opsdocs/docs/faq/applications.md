@@ -2,7 +2,6 @@
 tags:
   - faq
   - applications
-  - Read by jfv
 ---
 
 # FAQ applications

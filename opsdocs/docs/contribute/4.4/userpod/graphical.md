@@ -14,7 +14,6 @@ The build uses a two-stage (multi-stage) architecture:
 1. ubuntu_node_modules_builder: prepares Node dependencies and composer assets.
 2. final stage: assembles the OS, desktop stack, themes, and runtime components.
 
----
 
 ## 2. Build Interface (Input Contract)
 
@@ -48,7 +47,6 @@ Exported as environment variables:
 - TARGET_MODE
 - NODE_MAJOR=20
 
----
 
 ## 3. Detailed Specification of Stage 1: ubuntu_node_modules_builder
 
@@ -116,7 +114,7 @@ Main artifact: enriched /composer tree.
 - includes installed Node dependencies,
 - includes composer/version.json.
 
----
+
 
 ## 4. Detailed Specification of Stage 2 (Final Image)
 
@@ -201,7 +199,7 @@ Exposed ports:
 - 29786
 
 
----
+
 
 ## 5. Runtime Contract
 
@@ -218,7 +216,6 @@ Hardening-mode behavior:
 - targeted removal of selected admin/elevation-related file trees,
 - no qterminal/vim installation.
 
----
 
 ## 6. External Dependencies and Supply Chain
 
@@ -234,7 +231,7 @@ Impact:
 - sensitivity to network/service availability,
 - need for pinning and checksum strategy for strict production requirements.
 
----
+
 
 ## 7. Security and Compliance Analysis
 
@@ -254,7 +251,7 @@ Impact:
    - downloaded .deb not validated with explicit checksum,
    - git clones not signature-verified.
 
----
+
 
 ## 8. Build Performance and Image Footprint
 
@@ -270,7 +267,7 @@ Consequences:
 - large final image,
 - cache usage can be improved.
 
----
+
 
 ## 9. Architecture Recommendations (Expert Level)
 
@@ -298,7 +295,7 @@ Consequences:
 - evaluate non-root runtime where compatible with the graphics stack.
 
 
----
+
 
 ## 10. Example Build Commands
 
@@ -317,8 +314,5 @@ docker build \
   .
 ```
 
----
 
-## 12. Conclusion
 
-[Dockerfile.ubuntu](Dockerfile.ubuntu) implements a rich, operational remote desktop image suitable for abcdesktop workflows. The design is practical and complete.

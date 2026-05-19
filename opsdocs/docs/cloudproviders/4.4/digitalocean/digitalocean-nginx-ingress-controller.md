@@ -6,8 +6,6 @@ tags:
   - nginx
   - ingress
   - controller
-  - AD
-  - FS
 ---
 
 # Publish your website as a public secured service

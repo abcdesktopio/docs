@@ -1,7 +1,7 @@
 ---
 tags:
-  - JF
-  - AD
+  - history
+  - release
 ---
 
 # What's new in the release ?

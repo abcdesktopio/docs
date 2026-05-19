@@ -3,7 +3,6 @@ tags:
   - install
   - cloud
   - digitalocean
-  - AD
 ---
 
 # Deploy abcdesktop on DigitalOcean with Kubernetes
