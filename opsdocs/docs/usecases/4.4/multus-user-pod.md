@@ -228,7 +228,7 @@ kubectl exec -it <POD_NAME> -n abcdesktop -- route -n
 
 Public internet traffic should route via `net1`, while traffic destined for private RFC 1918 ranges should remain on `eth0`.
 
-![multus-and-cilium-network-schematic](./img/multus_and_cilium_kubernetes.drawio.png)
+![](img/multus_and_cilium_kubernetes.drawio.png)
 
 ## Add IPv6 support (optionnal)
 
