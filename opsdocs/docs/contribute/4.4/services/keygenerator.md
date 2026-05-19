@@ -10,7 +10,7 @@ Keygenerator is a helper Docker image that provides tools to generate SSL public
 
 In the Helm chart, the `keysgenerator` image is utilized by `jobs` to generate keys by executing the following command:
 
-``` yaml
+``` bash
 openssl genrsa -out abcdesktop_jwt_desktop_payload_private_key.pem {{ .Values.keysgenerator.jwtdesktoppayloadkeylength }} && \
 openssl rsa -in abcdesktop_jwt_desktop_payload_private_key.pem -outform PEM -pubout -out  _abcdesktop_jwt_desktop_payload_public_key.pem && \
 openssl rsa -pubin -in _abcdesktop_jwt_desktop_payload_public_key.pem -RSAPublicKey_out -out abcdesktop_jwt_desktop_payload_public_key.pem && \
