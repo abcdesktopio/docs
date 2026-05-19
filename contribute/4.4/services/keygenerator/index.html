@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-syntax-error" class="md-skip">
+        <a href="#keysgenerator" class="md-skip">
           Skip to content
         </a>
       
@@ -3061,6 +3061,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Keygenerator
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3072,6 +3085,34 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3530,6 +3571,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3552,11 +3610,32 @@
   
 
 
-<h1 id="macro-syntax-error"><em>Macro Syntax Error</em></h1>
-<p><em>File</em>: <code>contribute/4.4/services/keygenerator.md</code></p>
-<p><em>Line 10 in Markdown file:</em> <strong>unexpected '.'</strong>
-<div class="highlight"><pre><span></span><code>openssl genrsa -out abcdesktop_jwt_desktop_payload_private_key.pem {{ .Values.keysgenerator.jwtdesktoppayloadkeylength }} &amp;&amp; \
-</code></pre></div></p>
+<h1 id="keysgenerator">keysgenerator</h1>
+<p>Keygenerator is a helper Docker image that provides tools to generate SSL public/private key pairs and store them in Kubernetes secrets when they don't already exist. This functionality is used to create self-signed certificates for internal communication between different services or pods within abcdesktop.</p>
+<h2 id="usage">Usage</h2>
+<p>In the Helm chart, the <code>keysgenerator</code> image is utilized by <code>jobs</code> to generate keys by executing the following command:</p>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">openssl genrsa -out abcdesktop_jwt_desktop_payload_private_key.pem {{ .Values.keysgenerator.jwtdesktoppayloadkeylength }} &amp;&amp; \</span>
+<span class="l l-Scalar l-Scalar-Plain">openssl rsa -in abcdesktop_jwt_desktop_payload_private_key.pem -outform PEM -pubout -out  _abcdesktop_jwt_desktop_payload_public_key.pem &amp;&amp; \</span>
+<span class="l l-Scalar l-Scalar-Plain">openssl rsa -pubin -in _abcdesktop_jwt_desktop_payload_public_key.pem -RSAPublicKey_out -out abcdesktop_jwt_desktop_payload_public_key.pem &amp;&amp; \</span>
+<span class="l l-Scalar l-Scalar-Plain">if ! kubectl get secret abcdesktopjwtdesktoppayload --namespace={{ .Release.Namespace }} &gt;/dev/null 2&gt;&amp;1;</span>
+<span class="l l-Scalar l-Scalar-Plain">then</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">if ! kubectl create secret generic abcdesktopjwtdesktoppayload --from-file=abcdesktop_jwt_desktop_payload_private_key.pem --from-file=abcdesktop_jwt_desktop_payload_public_key.pem --namespace={{ .Release.Namespace }};</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">then</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;Failed to create secret&quot;</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">exit 1</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">fi</span>
+<span class="l l-Scalar l-Scalar-Plain">else</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;Secret already exists&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">exit 0</span>
+<span class="l l-Scalar l-Scalar-Plain">fi</span>
+</code></pre></div>
+<p>The following jobs are executed once during Helm chart installation or upgrade. If the target secret already exists, it will not be recreated. Otherwise, it will be created with newly generated public/private key pairs:</p>
+<ul>
+<li>generate-jwtdesktoppayload-keys</li>
+<li>generate-jwtdesktopsigning-keys</li>
+<li>generate-jwtusersigning-keys</li>
+<li>generate-mongod-keyfile</li>
+</ul>
 
 
 
