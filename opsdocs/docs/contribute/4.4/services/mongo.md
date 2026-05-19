@@ -11,7 +11,7 @@ In abcdesktop, MongoDB serves as the **primary database** for the control plane 
 
 MongoDB is deployed as a **ReplicaSet** (name: `rs0`), with **authentication enabled** and inter-member communication secured by a **keyfile**.
 
-![abcdesktop architecture](./drawio/abcdesktop-architecture.drawio)
+![](./drawio/abcdesktop-architecture.drawio)
 
 ---
 
@@ -19,7 +19,7 @@ MongoDB is deployed as a **ReplicaSet** (name: `rs0`), with **authentication ena
 
 The following diagram shows all Kubernetes resources involved in the MongoDB deployment:
 
-![Mongodb statefuleset overview](./drawio/mongodb-statefulset-overview.drawio)
+![](./drawio/mongodb-statefulset-overview.drawio)
 
 ---
 
@@ -43,7 +43,7 @@ The following diagram shows all Kubernetes resources involved in the MongoDB dep
 
     The secret is mounted inside the MongoDB pod with the following path mapping:
 
-    ![Secret MongoDB mounts](./drawio/secret-mongodb-mounts.drawio)
+    ![](./drawio/secret-mongodb-mounts.drawio)
 
 === "ConfigMap `configmap-mongodb-scripts`"
 
@@ -150,13 +150,13 @@ The following diagram shows all Kubernetes resources involved in the MongoDB dep
 
 ## MongoDB Startup Sequence
 
-![MongoDB startup flow](./drawio/mongodb-startup.drawio)
+![](./drawio/mongodb-startup.drawio)
 
 ---
 
 ## Security and Authentication
 
-![MongoDB authentication](./drawio/mongodb-authentication.drawio)
+![](./drawio/mongodb-authentication.drawio)
 
 **Security model summary:**
 
@@ -203,7 +203,7 @@ The connection URL is injected into `pyos` via the `secret-mongodb` secret, key 
 
 ## Volumes and Data Persistence
 
-![MongoDB volume mounts](./drawio/mongodb-volumes-mounts.drawio)
+![](./drawio/mongodb-volumes-mounts.drawio)
 
 !!! warning
     ⚠️ **Critical point**: the `data` volume (mounting `/data/db`) is an **`emptyDir`**. This means **MongoDB data is not persisted** across pod restarts. In production, this volume must be replaced with a `PersistentVolumeClaim` (PVC) backed by an appropriate StorageClass.
