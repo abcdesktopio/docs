@@ -120,8 +120,8 @@ The service infrastructure is based on :
 
 - Router nginx with lua script [router](https://github.com/abcdesktopio/router)
 - Website service [webmodules](https://github.com/abcdesktopio/webmodules)
-- Database service (third party products) [MongoDB](/core/mongodb/)
-- Memcached service (third party projet) [Memcached](/core/memcached/)
+- Database service (third party products) [MongoDB](https://github.com/abcdesktopio/mongo)
+- Memcached service (third party projet) [Memcached](https://github.com/abcdesktopio/oc.memcached)
 - Pyos Core service (abcdesktop control plane) [pyos](https://github.com/abcdesktopio/pyos)
 - Pod user [user](https://github.com/abcdesktopio/oc.user)
 
@@ -195,7 +195,7 @@ The informations are :
 
 [`oc.user`](https://github.com/abcdesktopio/oc.user) is the name of the user's container image. `oc.user` runs the X11 graphical service. `oc.user` is based on ubuntu distribution.
 
-* The image `abcdesktopio/oc.user.ubuntu.24.04:{{ abcdesktop.latest_release }}` is based on `ubuntu` distribution `24.04`. Get more details about [oc.user](https://github.com/abcdesktopio/oc.user) image.
+* The image `abcdesktopio/oc.user.ubuntu:{{ abcdesktop.latest_release }}` is based on `ubuntu` distribution `24.04`. Get more details about [oc.user](https://github.com/abcdesktopio/oc.user) image.
 
 
 ### applications
