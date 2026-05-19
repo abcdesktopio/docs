@@ -23,7 +23,7 @@ tags:
 
 ![install using helm](https://github.com/abcdesktopio/helm/releases/download/abcdesktop-{{ abcdesktop.helm_latest_release }}/install-using-helm.gif)
 
-Add the `helm` repo and then install it on Linux or macOS or read the step by step installation process [abcdesktop for kubernetes](/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop)
+- Add the `helm` repo and then install it
 
 ```bash
 NAMESPACE=abcdesktop
@@ -60,7 +60,7 @@ helm install my-abcdesktop abcdesktop/abcdesktop --version 4.4.1 --create-namesp
     ```
 
 
-When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)
+- When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)
 
 ```bash
 LOCAL_PORT=30443
