@@ -1,3 +1,7 @@
+---
+render_macros: true
+---
+
 # keysgenerator
 
 Keygenerator is a helper Docker image that provides tools to generate SSL public/private key pairs and store them in Kubernetes secrets when they don't already exist. This functionality is used to create self-signed certificates for internal communication between different services or pods within abcdesktop.
