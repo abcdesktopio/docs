@@ -3860,7 +3860,9 @@
 </ul>
 <h2 id="installation-using-helm-latest-release-44">Installation using helm latest release 4.4</h2>
 <p><img alt="install using helm" src="https://github.com/abcdesktopio/helm/releases/download/abcdesktop-4.4.8/install-using-helm.gif" /></p>
-<p>Add the <code>helm</code> repo and then install it on Linux or macOS or read the step by step installation process <a href="/4.4/setup/kubernetes_abcdesktop">abcdesktop for kubernetes</a></p>
+<ul>
+<li>Add the <code>helm</code> repo and then install it</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>abcdesktop<span class="w"> </span>https://abcdesktopio.github.io/helm/
 helm<span class="w"> </span>install<span class="w"> </span>my-abcdesktop<span class="w"> </span>abcdesktop/abcdesktop<span class="w"> </span>--version<span class="w"> </span><span class="m">4</span>.4.1<span class="w"> </span>--create-namespace<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span>
@@ -3892,7 +3894,9 @@ kubectl<span class="w"> </span>port-forward<span class="w"> </span><span class="
 Open<span class="w"> </span>your<span class="w"> </span>web<span class="w"> </span>browser<span class="w"> </span>to<span class="w"> </span>http://localhost:30443
 </code></pre></div>
 </details>
-<p>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)</p>
+<ul>
+<li>When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="nv">LOCAL_PORT</span><span class="o">=</span><span class="m">30443</span>
 <span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 kubectl<span class="w"> </span>port-forward<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>router-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span><span class="w"> </span><span class="k">)</span><span class="w"> </span>--address<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LOCAL_PORT</span><span class="si">}</span><span class="s2">:80&quot;</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span>
