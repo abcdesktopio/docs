@@ -41,7 +41,7 @@ The request `path: /` is proxyfied to service named nginx in abcdesktop namespac
 
 My desktop is disconnected after 60 seconds of inactivity, and the message *"Your abcdesktop session has been disconnected. Please reload this page"* appears.
 
-![abcdesktop session has been disconnected](img/abcdesktopsessionhasbeendisconnected.png)
+![abcdesktop session has been disconnected](../img/abcdesktopsessionhasbeendisconnected.png)
 
 The message `Your abcdesktop session has been disconnected. Please reload this page` appears when the `websockify` websocket is disconnected.
 
