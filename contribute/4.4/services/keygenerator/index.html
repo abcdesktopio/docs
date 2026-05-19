@@ -3614,20 +3614,20 @@
 <p>Keygenerator is a helper Docker image that provides tools to generate SSL public/private key pairs and store them in Kubernetes secrets when they don't already exist. This functionality is used to create self-signed certificates for internal communication between different services or pods within abcdesktop.</p>
 <h2 id="usage">Usage</h2>
 <p>In the Helm chart, the <code>keysgenerator</code> image is utilized by <code>jobs</code> to generate keys by executing the following command:</p>
-<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">openssl genrsa -out abcdesktop_jwt_desktop_payload_private_key.pem {{ .Values.keysgenerator.jwtdesktoppayloadkeylength }} &amp;&amp; \</span>
-<span class="l l-Scalar l-Scalar-Plain">openssl rsa -in abcdesktop_jwt_desktop_payload_private_key.pem -outform PEM -pubout -out  _abcdesktop_jwt_desktop_payload_public_key.pem &amp;&amp; \</span>
-<span class="l l-Scalar l-Scalar-Plain">openssl rsa -pubin -in _abcdesktop_jwt_desktop_payload_public_key.pem -RSAPublicKey_out -out abcdesktop_jwt_desktop_payload_public_key.pem &amp;&amp; \</span>
-<span class="l l-Scalar l-Scalar-Plain">if ! kubectl get secret abcdesktopjwtdesktoppayload --namespace={{ .Release.Namespace }} &gt;/dev/null 2&gt;&amp;1;</span>
-<span class="l l-Scalar l-Scalar-Plain">then</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">if ! kubectl create secret generic abcdesktopjwtdesktoppayload --from-file=abcdesktop_jwt_desktop_payload_private_key.pem --from-file=abcdesktop_jwt_desktop_payload_public_key.pem --namespace={{ .Release.Namespace }};</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">then</span>
-<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;Failed to create secret&quot;</span>
-<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">exit 1</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">fi</span>
-<span class="l l-Scalar l-Scalar-Plain">else</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;Secret already exists&quot;</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">exit 0</span>
-<span class="l l-Scalar l-Scalar-Plain">fi</span>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>abcdesktop_jwt_desktop_payload_private_key.pem<span class="w"> </span><span class="o">{{</span><span class="w"> </span>.Values.keysgenerator.jwtdesktoppayloadkeylength<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+openssl<span class="w"> </span>rsa<span class="w"> </span>-in<span class="w"> </span>abcdesktop_jwt_desktop_payload_private_key.pem<span class="w"> </span>-outform<span class="w"> </span>PEM<span class="w"> </span>-pubout<span class="w"> </span>-out<span class="w">  </span>_abcdesktop_jwt_desktop_payload_public_key.pem<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+openssl<span class="w"> </span>rsa<span class="w"> </span>-pubin<span class="w"> </span>-in<span class="w"> </span>_abcdesktop_jwt_desktop_payload_public_key.pem<span class="w"> </span>-RSAPublicKey_out<span class="w"> </span>-out<span class="w"> </span>abcdesktop_jwt_desktop_payload_public_key.pem<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>abcdesktopjwtdesktoppayload<span class="w"> </span>--namespace<span class="o">={{</span><span class="w"> </span>.Release.Namespace<span class="w"> </span><span class="o">}}</span><span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span>
+<span class="k">then</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>abcdesktopjwtdesktoppayload<span class="w"> </span>--from-file<span class="o">=</span>abcdesktop_jwt_desktop_payload_private_key.pem<span class="w"> </span>--from-file<span class="o">=</span>abcdesktop_jwt_desktop_payload_public_key.pem<span class="w"> </span>--namespace<span class="o">={{</span><span class="w"> </span>.Release.Namespace<span class="w"> </span><span class="o">}}</span><span class="p">;</span>
+<span class="w">    </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to create secret&quot;</span>
+<span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Secret already exists&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+<span class="k">fi</span>
 </code></pre></div>
 <p>The following jobs are executed once during Helm chart installation or upgrade. If the target secret already exists, it will not be recreated. Otherwise, it will be created with newly generated public/private key pairs:</p>
 <ul>
