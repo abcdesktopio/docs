@@ -13,7 +13,7 @@ tags:
 ---
 
 
-# abcdesktop.io is a kubernetes virtual desktop service [VDI]
+# abcdesktop.io is a kubernetes virtual desktop service
 
 abcdesktop.io is a cloud native desktop service built on and for [Kubernetes](https://kubernetes.io/). abcdesktop.io is also a complete work environment accessible from a simple HTML 5 web browser, without any installation on client side. Like serverless does, desktopless computing allocates desktop resources dynamically on demand inside the cloud. Each user’s application runs as a container to reduce attack surface. With abcdesktop take the sovereignty of your virtual desktop.
 
