@@ -113,7 +113,7 @@ ldapconfig: {
 |  `group_attrs`  | string              | LDAP filter to find attributs group object | `(&(objectClass=Group)(cn=%s))` |
 | `memberof_attribut_name`| string      | name of the attribut for group `'memberOf'`or `'groups'` | `'groups'` |
 | `kerberos_krb5_conf` | string         | name of the kerberos config file | `/etc/krb5.conf` | 
-[ `reduce_roles_for_jwt`| string or None | define the role in user's JWT | `'cn'`, `'raw'` or `None` |   
+| `reduce_roles_for_jwt`| string or None | define the role in user's JWT | `'cn'`, `'raw'` or `None` |   
 
 
 ## The LDAP structure of openldap for testing 
