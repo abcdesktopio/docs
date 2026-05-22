@@ -3741,22 +3741,6 @@ The key name must be set as the <a href="https://en.wikipedia.org/wiki/Windows_d
 </tr>
 </tbody>
 </table>
-<p>The adconfig is a dictionnary. For example :</p>
-<div class="highlight"><pre><span></span><code>adconfig : { &#39;AD&#39;: {   &#39;default&#39;       : True, 
-                       &#39;ldap_timeout&#39;  : 15,
-                       &#39;ldap_protocol&#39; : &#39;ldap&#39;,
-                       &#39;ldap_basedn&#39;   : &#39;DC=ad,DC=domain,DC=local&#39;,
-                       &#39;ldap_fqdn&#39;     : &#39;_ldap._tcp.ad.domain.local&#39;,
-                       &#39;domain&#39;        : &#39;AD&#39;,
-                       &#39;domain_fqdn&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
-                       &#39;servers&#39;    : [ &#39;192.168.7.12&#39; ],
-                        &#39;kerberos_realm&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
-                        &#39;query_dcs&#39; : True,
-                        &#39;wins_servers&#39;  : [ &#39;192.168.1.12&#39; ],
-                        &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;SVCACCOUNT&#39;, &#39;password&#39;: &#39;SVCACCOUNTPASSWORD&#39; }
-     }
-}
-</code></pre></div>
 <p>If this example, the Microsoft Active Directory value are set to :</p>
 <table>
 <thead>
@@ -3776,6 +3760,26 @@ The key name must be set as the <a href="https://en.wikipedia.org/wiki/Windows_d
 </tr>
 </tbody>
 </table>
+<p>The adconfig is a dictionnary. For example :</p>
+<div class="highlight"><pre><span></span><code>adconfig : { 
+  &#39;AD&#39;: {   
+       &#39;default&#39;: True,
+       &#39;reduce_roles_for_jwt&#39;: &#39;cn&#39;,
+       &#39;ldap_timeout&#39;: 5,
+       &#39;ldap_connect_timeout&#39;: 2,
+       &#39;ldap_basedn&#39;: &#39;DC=ad,DC=domain,DC=local&#39;,
+       &#39;ldap_fqdn&#39;: &#39;_ldap._tcp.ad.domain.local&#39;,
+       &#39;domain&#39;: &#39;AD&#39;,
+       &#39;domain_fqdn&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
+       &#39;kerberos_realm&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
+       &#39;auth_type&#39;: &#39;NTLM&#39;,
+       &#39;krb5_conf&#39;: &#39;/etc/krb5.conf&#39;,
+       &#39;users_ou&#39;: &#39;DC=ad,DC=domain,DC=local&#39;,
+       &#39;auth_protocol&#39; : { &#39;ntlm&#39;: False, &#39;cntlm&#39;: False, &#39;kerberos&#39; : True, &#39;ldif&#39;: False },
+       &#39;servers&#39;: [ &#39;ldaps://srv1.domain.local&#39;, &#39;ldaps://srv2.domain.local&#39;,&#39;ldaps://srv3.domain.local&#39; ]
+       # &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;SVCACCOUNT&#39;, &#39;password&#39;: &#39;SVCACCOUNTPASSWORD&#39; } 
+} }
+</code></pre></div>
 <p>For Active Directory authmanagers, replace the variable name with your own value.</p>
 <table>
 <thead>
@@ -3823,67 +3827,24 @@ The key name must be set as the <a href="https://en.wikipedia.org/wiki/Windows_d
 <td>Replace kerberos_realm wih your kerberos realm (in UPPER CASE)</td>
 <td><code>AD.DOMAIN.LOCAL</code></td>
 </tr>
-</tbody>
-</table>
-<p>The <code>explicit</code> authentification is support <code>LDAP</code> and <code>LDAPS</code> bind.</p>
-<p>The Microsoft Active Directory value are set to :</p>
-<table>
-<thead>
 <tr>
-<th>Variable name</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>USERDOMAIN</code></td>
-<td><code>AD</code></td>
-</tr>
-<tr>
-<td><code>USERDNSDOMAIN</code></td>
-<td><code>AD.DOMAIN.LOCAL</code></td>
-</tr>
-</tbody>
-</table>
-<p>For Active Directory authmanagers, replace the variable name with your own value.</p>
-<table>
-<thead>
-<tr>
-<th>Variable name</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ldap_basedn</code></td>
-<td>Replace ldap_basedn with your LDAP Base Distinguished Names</td>
-<td><code>DC=ad,DC=domain,DC=local</code></td>
-</tr>
-<tr>
-<td><code>ldap_fqdn</code></td>
-<td>Replace ldap_fqdn with the _ldap._tcp fqdn</td>
-<td><code>_ldap._tcp.ad.domain.local</code></td>
-</tr>
-<tr>
-<td><code>domain_fqdn</code></td>
-<td>Replace domain_fqdn with domain FQDN value</td>
-<td><code>AD.DOMAIN.LOCAL</code></td>
+<td><code>reduce_roles_for_jwt</code></td>
+<td>string or None</td>
+<td>define the role in user's JWT</td>
+<td><code>'cn'</code>, <code>'raw'</code> or <code>None</code></td>
 </tr>
 <tr>
 <td><code>servers</code></td>
-<td>Replace servers with list of the Active Director servers</td>
-<td><code>[ '192.168.1.12', '192.168.1.13' ]</code></td>
-</tr>
-<tr>
-<td><code>kerberos_realm</code></td>
-<td>Replace kerberos_realm wih your kerberos realm (in UPPER CASE)</td>
-<td><code>AD.DOMAIN.LOCAL</code></td>
+<td>list</td>
+<td>list of servers</td>
+<td><code>[ 'ldaps://srv1.domain.local', 'ldap://192.168.1.2']</code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="service-account">Service Account</h2>
-<p>The service account is use when od.py starts. It runs query to the Active Directory service to read the subnet and location from the sites in 'CN=Subnets,CN=Sites,CN=Configuration,' + BASE_DN , (for example CN=Subnets,CN=Sites,CN=Configuration,DC=example,DC=com)</p>
+<div class="highlight"><pre><span></span><code>  &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;SVCACCOUNT&#39;, &#39;password&#39;: &#39;SVCACCOUNTPASSWORD&#39; }
+</code></pre></div>
+<p><code>serviceaccount</code>is optionnal, it allow ro run query to the Active Directory service to read the subnet and location from the sites in <code>'CN=Subnets,CN=Sites,CN=Configuration,' + BASE_DN</code> , (for example CN=Subnets,CN=Sites,CN=Configuration,DC=example,DC=com)</p>
 
 
 
