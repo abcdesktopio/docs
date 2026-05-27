@@ -5,6 +5,7 @@
 pyos is the backend control plane for abcdesktop. It exposes a CherryPy HTTP API used to authenticate users, create/resume/remove cloud desktops, launch applications in those desktops, manage user desktops, and perform operator actions.
 
 At runtime, pyos sits between:
+
 - Clients (web frontend and admin tools)
 - Identity providers (OAuth2, LDAP/AD, anonymous, prelogin/logmein flows)
 - Infrastructure services (Kubernetes, MongoDB, Memcached, DNS helpers)
@@ -100,6 +101,7 @@ Examples:
 ### 5.1 Authentication model
 
 Authentication is pluggable via manager/provider config. Supported patterns include:
+
 - External OAuth2
 - Explicit LDAP/Active Directory
 - Implicit/anonymous
@@ -110,6 +112,7 @@ JWT is used for user and desktop tokens with configurable key files and expirati
 ### 5.2 Controller security controls
 
 `BaseController` provides:
+
 - Required environment checks for authenticated routes (`validate_env`).
 - IP ban checks and login ban checks (fail2ban service integration).
 - API-key checks (`X-API-Key` / `X-Api-Key`) for protected admin routes.
@@ -166,6 +169,7 @@ Settings init is ordered to satisfy dependencies. For example:
 `ODServices` centralizes all long-lived service objects and starts/stops dependent threads.
 
 Initialized services include:
+
 - `datastore`: Mongo client wrapper
 - `sharecache`: Memcached wrapper
 - `messageinfo`: progress/notification manager
@@ -193,6 +197,7 @@ This section summarizes route domains and key capabilities.
 ### 8.1 Auth controller (`/API/auth/*`)
 
 Primary responsibilities:
+
 - Return auth configuration for clients.
 - Login/logout/disconnect/token refresh.
 - OAuth callback flow and redirect page rendering.
@@ -201,12 +206,14 @@ Primary responsibilities:
 - Label query and secret building utility route.
 
 Notable security behaviors:
+
 - Enforces spoofing checks and fail2ban interactions.
 - Optional prelogin verification path before credential auth.
 
 ### 8.2 Composer controller (`/API/composer/*`)
 
 Primary responsibilities:
+
 - Launch/resume desktop sessions.
 - Run applications in user desktop context.
 - List application/container states.
@@ -218,6 +225,7 @@ This is the main user session orchestration API domain.
 ### 8.3 Manager controller (`/API/manager/*`)
 
 Primary responsibilities:
+
 - Operational/admin endpoints:
   - health, echo HTTP, app list rebuild
   - AD site cache update
@@ -283,6 +291,7 @@ Two image definitions are provided for different trade-offs.
 ### 13.2 System packages
 
 Installs:
+
 - Python runtime and virtualenv toolchain
 - Build/dev dependencies for Python extensions and auth libs
 - Kerberos/SASL/LDAP/GSS support packages
@@ -308,6 +317,7 @@ This image is designed to support NTLM/SSO-related features.
 ### 13.6 ASN database build
 
 Inside venv:
+
 - Download latest v4/v6 rib archive.
 - Convert to `ipasn_db.dat`.
 - Remove intermediate archive.
@@ -323,6 +333,7 @@ Removes build-time development packages and runs autoremove/cleanup.
 - Starts with `/docker-entrypoint.sh`.
 
 `docker-entrypoint.sh` behavior:
+
 - `cd /var/pyos`
 - `source bin/activate`
 - run `./od.py`
@@ -330,6 +341,7 @@ Removes build-time development packages and runs autoremove/cleanup.
 ### 13.9 Operational profile
 
 Best when you need:
+
 - Maximum auth compatibility (Kerberos/LDAP/NTLM stack)
 - Production-like enterprise integration features
 
@@ -410,11 +422,13 @@ Primary runtime entrypoint:
 - `od.py`
 
 Container definitions:
+
 - `Dockerfile.ubuntu`
 - `Dockerfile.alpine`
 - `docker-entrypoint.sh`
 
 Key architecture modules reviewed:
+
 - `oc/od/settings.py`
 - `oc/od/services.py`
 - `oc/od/base_controller.py`
