@@ -4675,10 +4675,12 @@
 <h1 id="pyos-abcdesktop-control-plane-full-documentation-and-specification">pyos (abcdesktop control plane) - Full Documentation and Specification</h1>
 <h2 id="1-executive-summary">1. Executive summary</h2>
 <p>pyos is the backend control plane for abcdesktop. It exposes a CherryPy HTTP API used to authenticate users, create/resume/remove cloud desktops, launch applications in those desktops, manage user desktops, and perform operator actions.</p>
-<p>At runtime, pyos sits between:
-- Clients (web frontend and admin tools)
-- Identity providers (OAuth2, LDAP/AD, anonymous, prelogin/logmein flows)
-- Infrastructure services (Kubernetes, MongoDB, Memcached, DNS helpers)</p>
+<p>At runtime, pyos sits between:</p>
+<ul>
+<li>Clients (web frontend and admin tools)</li>
+<li>Identity providers (OAuth2, LDAP/AD, anonymous, prelogin/logmein flows)</li>
+<li>Infrastructure services (Kubernetes, MongoDB, Memcached, DNS helpers)</li>
+</ul>
 <p>The main service process is started by <code>od.py</code> and mounts API endpoints under <code>/API</code>.</p>
 <h2 id="2-scope-and-responsibility">2. Scope and responsibility</h2>
 <h3 id="21-what-pyos-does">2.1 What pyos does</h3>
@@ -4757,19 +4759,23 @@
 - <code>ManagerController</code> -&gt; <code>/API/manager/*</code></p>
 <h2 id="5-security-and-trust-model">5. Security and trust model</h2>
 <h3 id="51-authentication-model">5.1 Authentication model</h3>
-<p>Authentication is pluggable via manager/provider config. Supported patterns include:
-- External OAuth2
-- Explicit LDAP/Active Directory
-- Implicit/anonymous
-- Optional prelogin/logmein flows</p>
+<p>Authentication is pluggable via manager/provider config. Supported patterns include:</p>
+<ul>
+<li>External OAuth2</li>
+<li>Explicit LDAP/Active Directory</li>
+<li>Implicit/anonymous</li>
+<li>Optional prelogin/logmein flows</li>
+</ul>
 <p>JWT is used for user and desktop tokens with configurable key files and expiration.</p>
 <h3 id="52-controller-security-controls">5.2 Controller security controls</h3>
-<p><code>BaseController</code> provides:
-- Required environment checks for authenticated routes (<code>validate_env</code>).
-- IP ban checks and login ban checks (fail2ban service integration).
-- API-key checks (<code>X-API-Key</code> / <code>X-Api-Key</code>) for protected admin routes.
-- IP/CIDR filtering (<code>permitip</code> lists).
-- Per-method request allow/deny gates (<code>requestsallowed</code>).</p>
+<p><code>BaseController</code> provides:</p>
+<ul>
+<li>Required environment checks for authenticated routes (<code>validate_env</code>).</li>
+<li>IP ban checks and login ban checks (fail2ban service integration).</li>
+<li>API-key checks (<code>X-API-Key</code> / <code>X-Api-Key</code>) for protected admin routes.</li>
+<li>IP/CIDR filtering (<code>permitip</code> lists).</li>
+<li>Per-method request allow/deny gates (<code>requestsallowed</code>).</li>
+</ul>
 <h3 id="53-proxy-header-spoofing-protection">5.3 Proxy header spoofing protection</h3>
 <p><code>X-Forwarded-For</code> is validated against <code>trusted_proxy_cidr</code>. If proxy hops in header are not trusted and header is present, request can be treated as spoofed and source is failed/banned.</p>
 <h3 id="54-sensitive-data-logging-controls">5.4 Sensitive data logging controls</h3>
@@ -4810,55 +4816,65 @@
 - host URL setup before websocket routing checks</p>
 <h2 id="7-service-container-specification-odservices">7. Service container specification (ODServices)</h2>
 <p><code>ODServices</code> centralizes all long-lived service objects and starts/stops dependent threads.</p>
-<p>Initialized services include:
-- <code>datastore</code>: Mongo client wrapper
-- <code>sharecache</code>: Memcached wrapper
-- <code>messageinfo</code>: progress/notification manager
-- <code>auth</code>: authentication tool bound into CherryPy
-- <code>accounting</code>: accounting counters
-- <code>internaldns</code>: optional internal DNS helper
-- <code>jwtdesktop</code>: desktop JWT helper
-- <code>keymanager</code>: desktop key operations
-- <code>locator</code>: public and AD-site-aware geolocation helper
-- <code>prelogin</code>, <code>logmein</code>
-- <code>fail2ban</code>
-- <code>asnumber</code>: ASN DB lookup (<code>ipasn_db.dat</code>)
-- <code>authorized_keys</code>
-- <code>apps</code>: application catalog/cache and watcher
-- <code>kuberneteswatcher</code></p>
+<p>Initialized services include:</p>
+<ul>
+<li><code>datastore</code>: Mongo client wrapper</li>
+<li><code>sharecache</code>: Memcached wrapper</li>
+<li><code>messageinfo</code>: progress/notification manager</li>
+<li><code>auth</code>: authentication tool bound into CherryPy</li>
+<li><code>accounting</code>: accounting counters</li>
+<li><code>internaldns</code>: optional internal DNS helper</li>
+<li><code>jwtdesktop</code>: desktop JWT helper</li>
+<li><code>keymanager</code>: desktop key operations</li>
+<li><code>locator</code>: public and AD-site-aware geolocation helper</li>
+<li><code>prelogin</code>, <code>logmein</code></li>
+<li><code>fail2ban</code></li>
+<li><code>asnumber</code>: ASN DB lookup (<code>ipasn_db.dat</code>)</li>
+<li><code>authorized_keys</code></li>
+<li><code>apps</code>: application catalog/cache and watcher</li>
+<li><code>kuberneteswatcher</code></li>
+</ul>
 <p>Threaded runtime behaviors:
 - On start: Mongo watcher and Kubernetes watcher start (if initialized).
 - On stop: both are stopped with guarded error handling.</p>
 <h2 id="8-api-surface-controller-domains">8. API surface (controller domains)</h2>
 <p>This section summarizes route domains and key capabilities.</p>
 <h3 id="81-auth-controller-apiauth">8.1 Auth controller (<code>/API/auth/*</code>)</h3>
-<p>Primary responsibilities:
-- Return auth configuration for clients.
-- Login/logout/disconnect/token refresh.
-- OAuth callback flow and redirect page rendering.
-- Prelogin and logmein support.
-- Authorized key export route.
-- Label query and secret building utility route.</p>
-<p>Notable security behaviors:
-- Enforces spoofing checks and fail2ban interactions.
-- Optional prelogin verification path before credential auth.</p>
+<p>Primary responsibilities:</p>
+<ul>
+<li>Return auth configuration for clients.</li>
+<li>Login/logout/disconnect/token refresh.</li>
+<li>OAuth callback flow and redirect page rendering.</li>
+<li>Prelogin and logmein support.</li>
+<li>Authorized key export route.</li>
+<li>Label query and secret building utility route.</li>
+</ul>
+<p>Notable security behaviors:</p>
+<ul>
+<li>Enforces spoofing checks and fail2ban interactions.</li>
+<li>Optional prelogin verification path before credential auth.</li>
+</ul>
 <h3 id="82-composer-controller-apicomposer">8.2 Composer controller (<code>/API/composer/*</code>)</h3>
-<p>Primary responsibilities:
-- Launch/resume desktop sessions.
-- Run applications in user desktop context.
-- List application/container states.
-- Fetch logs and env, stop/remove containers.
-- List secrets and return desktop description metadata.</p>
+<p>Primary responsibilities:</p>
+<ul>
+<li>Launch/resume desktop sessions.</li>
+<li>Run applications in user desktop context.</li>
+<li>List application/container states.</li>
+<li>Fetch logs and env, stop/remove containers.</li>
+<li>List secrets and return desktop description metadata.</li>
+</ul>
 <p>This is the main user session orchestration API domain.</p>
 <h3 id="83-manager-controller-apimanager">8.3 Manager controller (<code>/API/manager/*</code>)</h3>
-<p>Primary responsibilities:
-- Operational/admin endpoints:
-  - health, echo HTTP, app list rebuild
-  - AD site cache update
-  - garbage collection
-  - datastore CRUD-like routes
-  - desktop/image/ban management routes
-  - dry-run desktop path</p>
+<p>Primary responsibilities:</p>
+<ul>
+<li>Operational/admin endpoints:</li>
+<li>health, echo HTTP, app list rebuild</li>
+<li>AD site cache update</li>
+<li>garbage collection</li>
+<li>datastore CRUD-like routes</li>
+<li>desktop/image/ban management routes</li>
+<li>dry-run desktop path</li>
+</ul>
 <p>This domain is protected by API-key and/or CIDR policies as configured.</p>
 <h3 id="84-other-controllers">8.4 Other controllers</h3>
 <ul>
@@ -4908,11 +4924,13 @@
 <li>Shell switched to bash for <code>source</code> command usage.</li>
 </ul>
 <h3 id="132-system-packages">13.2 System packages</h3>
-<p>Installs:
-- Python runtime and virtualenv toolchain
-- Build/dev dependencies for Python extensions and auth libs
-- Kerberos/SASL/LDAP/GSS support packages
-- Utility tools (<code>curl</code>, <code>wget</code>, <code>cntlm</code>, ldap tools)</p>
+<p>Installs:</p>
+<ul>
+<li>Python runtime and virtualenv toolchain</li>
+<li>Build/dev dependencies for Python extensions and auth libs</li>
+<li>Kerberos/SASL/LDAP/GSS support packages</li>
+<li>Utility tools (<code>curl</code>, <code>wget</code>, <code>cntlm</code>, ldap tools)</li>
+</ul>
 <h3 id="133-geo-databases">13.3 Geo databases</h3>
 <p>Downloads GeoLite2 ASN and City MMDB files into <code>/usr/share/geolite2</code>.</p>
 <h3 id="134-ntlm-support">13.4 NTLM support</h3>
@@ -4926,10 +4944,12 @@
 <li>Activates venv and installs Python requirements.</li>
 </ul>
 <h3 id="136-asn-database-build">13.6 ASN database build</h3>
-<p>Inside venv:
-- Download latest v4/v6 rib archive.
-- Convert to <code>ipasn_db.dat</code>.
-- Remove intermediate archive.</p>
+<p>Inside venv:</p>
+<ul>
+<li>Download latest v4/v6 rib archive.</li>
+<li>Convert to <code>ipasn_db.dat</code>.</li>
+<li>Remove intermediate archive.</li>
+</ul>
 <h3 id="137-slim-down-phase">13.7 Slim-down phase</h3>
 <p>Removes build-time development packages and runs autoremove/cleanup.</p>
 <h3 id="138-runtime-command">13.8 Runtime command</h3>
@@ -4938,14 +4958,18 @@
 <li>Ensures <code>/var/pyos/logs</code> exists.</li>
 <li>Starts with <code>/docker-entrypoint.sh</code>.</li>
 </ul>
-<p><code>docker-entrypoint.sh</code> behavior:
-- <code>cd /var/pyos</code>
-- <code>source bin/activate</code>
-- run <code>./od.py</code></p>
+<p><code>docker-entrypoint.sh</code> behavior:</p>
+<ul>
+<li><code>cd /var/pyos</code></li>
+<li><code>source bin/activate</code></li>
+<li>run <code>./od.py</code></li>
+</ul>
 <h3 id="139-operational-profile">13.9 Operational profile</h3>
-<p>Best when you need:
-- Maximum auth compatibility (Kerberos/LDAP/NTLM stack)
-- Production-like enterprise integration features</p>
+<p>Best when you need:</p>
+<ul>
+<li>Maximum auth compatibility (Kerberos/LDAP/NTLM stack)</li>
+<li>Production-like enterprise integration features</li>
+</ul>
 <hr />
 <h2 id="14-dockerfilealpine-deep-specification">14. Dockerfile.alpine deep specification</h2>
 <h3 id="141-base">14.1 Base</h3>
@@ -5013,17 +5037,21 @@
 <h2 id="18-source-files-used-for-this-specification">18. Source files used for this specification</h2>
 <p>Primary runtime entrypoint:
 - <code>od.py</code></p>
-<p>Container definitions:
-- <code>Dockerfile.ubuntu</code>
-- <code>Dockerfile.alpine</code>
-- <code>docker-entrypoint.sh</code></p>
-<p>Key architecture modules reviewed:
-- <code>oc/od/settings.py</code>
-- <code>oc/od/services.py</code>
-- <code>oc/od/base_controller.py</code>
-- <code>oc/od/composer.py</code>
-- <code>oc/od/orchestrator.py</code>
-- selected controller files under <code>controllers/</code></p>
+<p>Container definitions:</p>
+<ul>
+<li><code>Dockerfile.ubuntu</code></li>
+<li><code>Dockerfile.alpine</code></li>
+<li><code>docker-entrypoint.sh</code></li>
+</ul>
+<p>Key architecture modules reviewed:</p>
+<ul>
+<li><code>oc/od/settings.py</code></li>
+<li><code>oc/od/services.py</code></li>
+<li><code>oc/od/base_controller.py</code></li>
+<li><code>oc/od/composer.py</code></li>
+<li><code>oc/od/orchestrator.py</code></li>
+<li>selected controller files under <code>controllers/</code></li>
+</ul>
 
 
 
