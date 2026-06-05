@@ -2192,6 +2192,54 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#linkedin-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinkedIn OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LinkedIn OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linkedin-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinkedIn Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discord-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discord OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Discord OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discord-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discord Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#keycloak-oauth" class="md-nav__link">
     <span class="md-ellipsis">
       Keycloak OAuth
@@ -3861,6 +3909,54 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#linkedin-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinkedIn OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LinkedIn OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linkedin-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinkedIn Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discord-oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discord OAuth
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Discord OAuth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discord-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discord Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#keycloak-oauth" class="md-nav__link">
     <span class="md-ellipsis">
       Keycloak OAuth
@@ -4184,29 +4280,74 @@ If the returned a json dictionary gets the <code>groups</code> entry and if the 
 <span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">omap&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">&#39;uidNumber&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;id&#39;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 </code></pre></div>
+<h2 id="linkedin-oauth">LinkedIn OAuth</h2>
+<p>LinkedIn's OAuth is supported for authentication.</p>
+<h3 id="linkedin-application">LinkedIn Application</h3>
+<p>Create your LinkedIn Application and set credentials for LinkedIn Authentification API in the section </p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;li</span><span class="kc">n</span><span class="err">kedi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Li</span><span class="kc">n</span><span class="err">kedI</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;whi</span><span class="kc">te</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;backgrou</span><span class="kc">n</span><span class="err">dcolor&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#</span><span class="mf">527e</span><span class="err">db&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/li</span><span class="kc">n</span><span class="err">kedi</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;i</span><span class="kc">n</span><span class="err">clude_clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;scope&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;ope</span><span class="kc">n</span><span class="err">id&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;pro</span><span class="kc">f</span><span class="err">ile&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;email&#39;</span><span class="p">],</span>
+<span class="w">            </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//hostname.domain.local/API/auth/oauth&#39;,</span>
+<span class="w">            </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=li</span><span class="kc">n</span><span class="err">kedi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.linkedin.com/oauth/v2/authorization&#39;,</span>
+<span class="w">            </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.linkedin.com/oauth/v2/accessToken&#39;,</span>
+<span class="w">            </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//api.linkedin.com/v2/userinfo&#39;</span>
+<span class="w">            </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acl&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+</code></pre></div>
+<h2 id="discord-oauth">Discord OAuth</h2>
+<p>Discord's OAuth is supported for authentication.</p>
+<h3 id="discord-application">Discord Application</h3>
+<p>Create your Discord Application and set credentials for Discord Authentification API in the section </p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;discord&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Discord&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;whi</span><span class="kc">te</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;backgrou</span><span class="kc">n</span><span class="err">dcolor&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#</span><span class="mf">6e17e7</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/discord.svg&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;scope&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;ide</span><span class="kc">nt</span><span class="err">i</span><span class="kc">f</span><span class="err">y&#39;</span><span class="p">],</span>
+<span class="w">            </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//hostname.domain.local/API/auth/oauth&#39;,</span>
+<span class="w">            </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=discord&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//discord.com/oauth2/authorize&#39;,</span>
+<span class="w">            </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//discord.com/api/oauth2/token&#39;,</span>
+<span class="w">            </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//discord.com/api/users/@me&#39;</span>
+<span class="w">            </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acl&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+</code></pre></div>
 <h2 id="keycloak-oauth">Keycloak OAuth</h2>
 <p>Keycloak's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for apps that don't have access to a web browser.</p>
 <h3 id="keycloak-oauth_1">Keycloak OAuth</h3>
 <p>Enable other users to authorize your OAuth App. Create your keycloack credentials and set the correct credentials for keycloak Authentification API</p>
-<div class="highlight"><pre><span></span><code>&#39;keycloak&#39;: {
-      &#39;displayname&#39;: &#39;ABC Keycloak&#39;,
-      &#39;icon&#39;: &#39;img/auth/keycloak_icon.svg&#39;,
-      &#39;textcolor&#39;: &#39;#000000&#39;,
-      &#39;backgroundcolor&#39;: &#39;#FFFFFF&#39;,
-      &#39;enabled&#39;: True,
-      &#39;basic_auth&#39;: True,
-      &#39;userinfo_auth&#39;: True,
-      &#39;scope&#39; : [ &#39;openid&#39;, &#39;roles&#39;, &#39;profile&#39; ],
-      &#39;client_id&#39;: &#39;abcdesktop&#39;,
-      &#39;client_secret&#39;: &#39;xxxx&#39;,
-      &#39;redirect_uri_prefix&#39; : &#39;https://hostname.domain.local/API/auth/oauth&#39;,
-      &#39;redirect_uri_querystring&#39;: &#39;manager=external&amp;provider=keycloak&#39;,
-      &#39;authorization_base_url&#39;: &#39;https://auth.domain.local/realms/abc/protocol/openid-connect/auth&#39;,
-      &#39;token_url&#39;: &#39;https://auth.domain.local/realms/abc/protocol/openid-connect/token&#39;,
-      &#39;userinfo_url&#39;: &#39;https://auth.domain.local/realms/abc/protocol/openid-connect/userinfo&#39;,
-      &#39;revoke_url&#39;: &#39;https://auth.domain.local/realms/abc/protocol/openid-connect/revoke&#39;,
-      &#39;policies&#39;: { &#39;acl&#39;  : { &#39;permit&#39;: [ &#39;all&#39; ] }
-    }
+<div class="highlight"><pre><span></span><code><span class="err">&#39;keycloak&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ABC</span><span class="w"> </span><span class="err">Keycloak&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/keycloak_ico</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#</span><span class="mi">000000</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;backgrou</span><span class="kc">n</span><span class="err">dcolor&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#FFFFFF&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;basic_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;scope&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ope</span><span class="kc">n</span><span class="err">id&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;roles&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;pro</span><span class="kc">f</span><span class="err">ile&#39;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">      </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;abcdesk</span><span class="kc">t</span><span class="err">op&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_pre</span><span class="kc">f</span><span class="err">ix&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//hostname.domain.local/API/auth/oauth&#39;,</span>
+<span class="w">      </span><span class="err">&#39;redirec</span><span class="kc">t</span><span class="err">_uri_querys</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ma</span><span class="kc">na</span><span class="err">ger=ex</span><span class="kc">ternal</span><span class="err">&amp;provider=keycloak&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="err">&#39;au</span><span class="kc">t</span><span class="err">horiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_base_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//auth.domain.local/realms/abc/protocol/openid-connect/auth&#39;,</span>
+<span class="w">      </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">oke</span><span class="kc">n</span><span class="err">_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//auth.domain.local/realms/abc/protocol/openid-connect/token&#39;,</span>
+<span class="w">      </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//auth.domain.local/realms/abc/protocol/openid-connect/userinfo&#39;,</span>
+<span class="w">      </span><span class="err">&#39;revoke_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//auth.domain.local/realms/abc/protocol/openid-connect/revoke&#39;,</span>
+<span class="w">      </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acl&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 </code></pre></div>
 <p>Great, you have check how the implicit Authentification configuration works.</p>
 
