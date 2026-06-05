@@ -243,6 +243,60 @@ Enable other users to authorize your OAuth App. Create your Github credentials h
       }
 ```
 
+## LinkedIn OAuth
+
+LinkedIn's OAuth is supported for authentication.
+
+### LinkedIn Application
+Create your LinkedIn Application and set credentials for LinkedIn Authentification API in the section 
+
+```json
+ 'linkedin': {
+            'displayname': 'LinkedIn',
+            'textcolor': 'white',
+            'backgroundcolor': '#527edb',
+            'icon': 'img/auth/linkedin.svg',
+            'enabled': True,
+            'userinfo_auth': True,
+            'include_client_id': True,
+            'scope': ['openid', 'profile', 'email'],
+            'client_id': 'xxxx',
+            'client_secret': 'xxxx',
+            'redirect_uri_prefix': 'https://hostname.domain.local/API/auth/oauth',
+            'redirect_uri_querystring': 'manager=external&provider=linkedin',
+            'authorization_base_url': 'https://www.linkedin.com/oauth/v2/authorization',
+            'token_url': 'https://www.linkedin.com/oauth/v2/accessToken',
+            'userinfo_url': 'https://api.linkedin.com/v2/userinfo'
+            'policies': { 'acl'  : { 'permit': [ 'all' ] } }
+          }
+```
+
+## Discord OAuth
+
+Discord's OAuth is supported for authentication.
+
+### Discord Application
+Create your Discord Application and set credentials for Discord Authentification API in the section 
+
+```json
+ 'discord': {
+            'displayname': 'Discord',
+            'textcolor': 'white',
+            'backgroundcolor': '#6e17e7',
+            'icon': 'img/auth/discord.svg',
+            'enabled': True,
+            'userinfo_auth': True,
+            'scope': ['identify'],
+            'client_id': 'xxxx',
+            'client_secret': 'xxxx',
+            'redirect_uri_prefix': 'https://hostname.domain.local/API/auth/oauth',
+            'redirect_uri_querystring': 'manager=external&provider=discord',
+            'authorization_base_url': 'https://discord.com/oauth2/authorize',
+            'token_url': 'https://discord.com/api/oauth2/token',
+            'userinfo_url': 'https://discord.com/api/users/@me'
+            'policies': { 'acl'  : { 'permit': [ 'all' ] } }
+        }
+```
 
 ## Keycloak OAuth
 
@@ -252,7 +306,7 @@ Keycloak's OAuth implementation supports the standard authorization code grant t
 
 Enable other users to authorize your OAuth App. Create your keycloack credentials and set the correct credentials for keycloak Authentification API
 
-```
+```json
 'keycloak': {
       'displayname': 'ABC Keycloak',
       'icon': 'img/auth/keycloak_icon.svg',
@@ -270,7 +324,7 @@ Enable other users to authorize your OAuth App. Create your keycloack credential
       'token_url': 'https://auth.domain.local/realms/abc/protocol/openid-connect/token',
       'userinfo_url': 'https://auth.domain.local/realms/abc/protocol/openid-connect/userinfo',
       'revoke_url': 'https://auth.domain.local/realms/abc/protocol/openid-connect/revoke',
-      'policies': { 'acl'  : { 'permit': [ 'all' ] }
+      'policies': { 'acl'  : { 'permit': [ 'all' ] } }
     }
 ```
 
