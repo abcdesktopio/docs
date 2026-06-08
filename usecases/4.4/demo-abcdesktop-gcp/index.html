@@ -1,0 +1,5326 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.abcdesktop.io/usecases/4.4/demo-abcdesktop-gcp/">
+      
+      
+        <link rel="prev" href="../multus-user-pod/">
+      
+      
+        <link rel="next" href="../../../faq/faq/">
+      
+      
+      <link rel="icon" href="/img/abcdesktop128x128.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Repoduce abcdesktop demo platform on GCP - www.abcdesktop.io</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom-admonition.css">
+    
+      <link rel="stylesheet" href="../../../css/drawio-darkmode.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-TN9YC7J01Z"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-TN9YC7J01Z",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-TN9YC7J01Z",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reproduce-abcdesktop-demo-platform-on-gcp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+      
+  <img src="/img/abcdesktop.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            www.abcdesktop.io
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Repoduce abcdesktop demo platform on GCP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/abcdesktopio/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    abcdesktopio/docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../requirements/" class="md-tabs__link">
+          
+  
+  
+  Quick Start
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../architecture/overview/" class="md-tabs__link">
+          
+  
+  
+  Advanced
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../contribute/overview/" class="md-tabs__link">
+          
+  
+  
+  Contribute
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../filter-traffic-per-group/" class="md-tabs__link">
+          
+  
+  
+  Use cases
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../faq/faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://old.abcdesktop.com/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Previous docs
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+      
+  <img src="/img/abcdesktop.svg" alt="logo">
+
+    </a>
+    www.abcdesktop.io
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/abcdesktopio/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    abcdesktopio/docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Quick Start
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requirements
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Install Core
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Install Core
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../install/4.4/script/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Script
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../install/4.4/helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Install Applications
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Install Applications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../install/4.4/applicationoverview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../install/4.4/install-applications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Script
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../install/4.4/applicationwithconsole/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Console
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Uninstall
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Uninstall
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../uninstall/4.4/script/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Script
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../uninstall/4.4/helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Install On-Premises
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Install On-Premises
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kind
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../install/4.4/script/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Script
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../install/4.4/helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MiniKube
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Install On Cloud
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Install On Cloud
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AWS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            AWS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install on Amazon AWS with Elastic Kubernetes Service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expose using a load balancer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expose using a nginx ingress controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AZURE
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            AZURE
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install on Microsoft AZURE Kubernetes service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expose using a load balancer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expose using a nginx ingress controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Digital Ocean
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Digital Ocean
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install on Digital Ocean Kubernetes cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expose using a load balancer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expose using a nginx ingress controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    GCP
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            GCP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install on Google GCP Kubernetes cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expose using a load balancer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expose using a GKE ingress controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_5" id="__nav_3_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    OVH
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            OVH
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install on OVHcloud Kubernetes cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expose using a load balancer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expose using a nginx ingress controller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Applications
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Applications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/applications/simplestapplicationxeyes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Build a sample xeyes from scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/applications/simplestapplicationxedit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Build a sample xedit with icon from scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/applications/simplestapplicationchromium/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Build a sample chromium from scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/applications/templateapplication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Build an application from template
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/applications/templateanotherapplication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Build another application from template
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/configure/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/configure/updateconfiguration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Make changes in the abcdesktop configmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_3" id="__nav_3_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Authentication
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Authentication
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/authentication/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/authentication/authexternal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    External (OpenID)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_3_3" id="__nav_3_5_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Explicit (Directory service)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_5_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Explicit (Directory service)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/authentication/authexplicit-ldap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LDAP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/authentication/authexplicit-activedirectory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Active Directory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/authentication/authmetaexplicit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Meta Directory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_3_4" id="__nav_3_5_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Implicit
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_5_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Implicit
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/authentication/authimplicit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Anonymous
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/authentication/logmein/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logmein SSL mutual authentication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/authentication/authentification-rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Labels and rules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_5" id="__nav_3_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Desktop
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Desktop
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/desktop/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/desktop/executeclasses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/desktop/pod/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pod
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/desktop/policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_6" id="__nav_3_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Storage
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Storage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/storage/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/storage/nfs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    NFS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/storage/hostpath/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HostPath
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/storage/cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cached Home subdirectories
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/storage/sharedvolumes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shared Volume
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/configure/garbagecollector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Run the garbarge collector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Share GPU with ephemeral container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/configure/welcome/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome information
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/configure/customfrontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customize frontend
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/configure/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6_1" id="__nav_3_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Controllers
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            Controllers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/controllers/controllers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6_2" id="__nav_3_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Network Policy
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            Network Policy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Netpol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Uninstall
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contribute
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contribute
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Services
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/4.4/services/keygenerator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Keygenerator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/4.4/services/mongo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mongo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/4.4/services/console/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Console
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/4.4/services/pyos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pyos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/4.4/services/router/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/4.4/services/webmodules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    WebModules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    User Pod
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            User Pod
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/4.4/userpod/graphical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graphical
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/4.4/userpod/sound/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sound
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/4.4/userpod/cups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/4.4/userpod/filer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Use cases
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Use cases
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../filter-traffic-per-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filter pods traffic based on groups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configure-keycloak/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Keycloak configuration based on LDAP with group support
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multus-user-pod/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Add multiple networks interfaces to user pods using VLANs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Repoduce abcdesktop demo platform on GCP
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Repoduce abcdesktop demo platform on GCP
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-kubernetes-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a Kubernetes cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a Kubernetes cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-gcloud-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure gcloud cli
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-the-cluster-with-gcloud-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying the cluster with gcloud cli
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-abcdesktop-install-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the abcdesktop install script
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expose-your-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expose your service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apply-network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apply network policies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-a-garbage-collector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add a garbage collector
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-a-persistenvolumeclaim-for-mongo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add a PersistenVolumeClaim for mongo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-external-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add external providers
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://old.abcdesktop.com/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Previous docs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-kubernetes-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a Kubernetes cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a Kubernetes cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-gcloud-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure gcloud cli
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-the-cluster-with-gcloud-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying the cluster with gcloud cli
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-abcdesktop-install-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the abcdesktop install script
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expose-your-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expose your service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apply-network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apply network policies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-a-garbage-collector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add a garbage collector
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-a-persistenvolumeclaim-for-mongo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add a PersistenVolumeClaim for mongo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-external-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add external providers
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/usecases/4.4/demo-abcdesktop-gcp.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="reproduce-abcdesktop-demo-platform-on-gcp">Reproduce abcdesktop demo platform on GCP</h1>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li><code>kubectl</code> command line</li>
+<li>a Google cloud account</li>
+<li><code>gcloud</code> command line interface <a href="https://docs.cloud.google.com/sdk/docs/install-sdk/">gcloud cli</a></li>
+</ul>
+<h2 id="create-a-kubernetes-cluster">Create a Kubernetes cluster</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>set up a <a href="https://docs.cloud.google.com/vpc/docs?hl=fr">VPC</a></li>
+<li>create 2 internal ranges, one for the subnet and one for the pods, before creating your cluster's subnet. See <a href="https://docs.cloud.google.com/vpc/docs/create-use-internal-ranges">this documentation</a> for more information</li>
+<li>create a NAT gateway for the region you will deploy your cluster, check <a href="https://docs.cloud.google.com/nat/docs?hl=fr">Cloud NAT documentation</a> for more inforation</li>
+</ul>
+<h3 id="configure-gcloud-cli">Configure gcloud cli</h3>
+<p>First you will need to authenticate to your GCP account though the following command.</p>
+<div class="highlight"><pre><span></span><code>gcloud auth login
+</code></pre></div>
+<p>Then you will need to configure <code>gcloud</code> to set your GCP project as current project by running the following command.</p>
+<div class="highlight"><pre><span></span><code>gcloud config set project &lt;YOUR_PROJECT_ID&gt;
+</code></pre></div>
+<h3 id="deploying-the-cluster-with-gcloud-cli">Deploying the cluster with gcloud cli</h3>
+<p>After that you can deploy your Kubenetes cluster by running the following command.</p>
+<div class="highlight"><pre><span></span><code>gcloud beta container \
+    --project \
+&quot;ino-abcdesktop-prd&quot; clusters create &quot;abcdesktop-demo-cluster&quot; \
+    --region \
+&quot;europe-west9&quot; \
+    --no-enable-basic-auth \
+    --cluster-version \
+&quot;1.35.3-gke.1389000&quot; \
+    --release-channel \
+&quot;regular&quot; \
+    --machine-type \
+&quot;n4-standard-4&quot; \
+    --image-type \
+&quot;COS_CONTAINERD&quot; \
+    --disk-type \
+&quot;hyperdisk-balanced&quot; \
+    --disk-size \
+&quot;100&quot; \
+    --metadata \
+disable-legacy-endpoints=true \
+    --service-account \
+&quot;default&quot; \
+    --scopes \
+&quot;https://www.googleapis.com/auth/devstorage.read_only&quot;,&quot;https://www.googleapis.com/auth/logging.write&quot;,&quot;https://www.googleapis.com/auth/monitoring&quot;,&quot;https://www.googleapis.com/auth/service.management.readonly&quot;,&quot;https://www.googleapis.com/auth/servicecontrol&quot;,&quot;https://www.googleapis.com/auth/trace.append&quot; \
+    --max-pods-per-node \
+&quot;110&quot; \
+    --num-nodes \
+&quot;6&quot; \
+    --logging=SYSTEM,WORKLOAD \
+    --monitoring=SYSTEM,STORAGE,HPA,POD,DAEMONSET,DEPLOYMENT,STATEFULSET,CADVISOR,KUBELET,DCGM,JOBSET \
+    --enable-private-nodes \
+    --enable-ip-alias \
+    --network \
+&quot;projects/ino-abcdesktop-prd/global/networks/vpc-demo-abcdesktop-network&quot; \
+    --subnetwork \
+&quot;projects/ino-abcdesktop-prd/regions/europe-west9/subnetworks/gke-abcdesktop-demo-cluster-subnet-a91bbd71&quot; \
+    --enable-intra-node-visibility \
+    --default-max-pods-per-node \
+&quot;110&quot; \
+    --enable-autoscaling \
+    --min-nodes \
+&quot;0&quot; \
+    --max-nodes \
+&quot;6&quot; \
+    --location-policy \
+&quot;BALANCED&quot; \
+    --enable-ip-access \
+    --enable-authorized-networks-on-private-endpoint \
+    --security-posture=standard \
+    --workload-vulnerability-scanning=disabled \
+    --enable-dataplane-v2 \
+    --enable-dataplane-v2-metrics \
+    --enable-dataplane-v2-flow-observability \
+    --no-enable-google-cloud-access \
+    --addons \
+HorizontalPodAutoscaling,HttpLoadBalancing,NodeLocalDNS,GcePersistentDiskCsiDriver \
+    --enable-autoupgrade \
+    --enable-autorepair \
+    --max-surge-upgrade \
+1 \
+    --max-unavailable-upgrade \
+0 \
+    --binauthz-evaluation-mode=DISABLED \
+    --enable-managed-prometheus \
+    --enable-shielded-nodes \
+    --shielded-integrity-monitoring \
+    --shielded-secure-boot \
+    --node-locations \
+&quot;europe-west9-b&quot;,&quot;europe-west9-a&quot;,&quot;europe-west9-c&quot;
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The configurations in the command above are the recommended ones but you can change those if you need. Just make sure to have : 
+- secure boot enabled
+- private nodes enabled 
+- dataplane V2 enabled</p>
+</div>
+<p>Finally click on the <code>Connect</code> button and paste the given command into your terminal</p>
+<h2 id="run-the-abcdesktop-install-script">Run the abcdesktop install script</h2>
+<p>Download and install the latest release automatically</p>
+<div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh | bash
+</code></pre></div>
+<p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop/">Setup guide</a></p>
+<h2 id="expose-your-service">Expose your service</h2>
+<p>Now you can expose publicly your abcdesktop if you want. To proceed please follow the dedicated chapter <a href="https://www.abcdesktop.io/4.4/gcp/gcp-gke-ingress-controller/">here</a></p>
+<h2 id="apply-network-policies">Apply network policies</h2>
+<p>To reinforce security inside your cluster, you can apply abcdesktop network policies by running the following command.</p>
+<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-4.4.yaml -n abcdesktop
+</code></pre></div>
+<p>If you want more information about abcdesktop network policies, please refer to our <a href="https://www.abcdesktop.io/advanced/4.4/networkpolicy/netpol/">netpol documentation</a></p>
+<h2 id="add-a-garbage-collector">Add a garbage collector</h2>
+<p>In order to avoid your cluster being full to capacity, you can add a garbage collector to remove unused pods after 15 minutes. </p>
+<p>Please follow the dedicated chapter on garbage collector <a href="https://www.abcdesktop.io/advanced/4.4/configure/garbagecollector/">configuration</a></p>
+<h2 id="add-a-persistenvolumeclaim-for-mongo">Add a <code>PersistenVolumeClaim</code> for mongo</h2>
+<p>This measure prevents your platform to delete all desktop applications in case of mongo pods restart. </p>
+<p>First you need to update mongo <code>StatefulSet</code> to add a <code>PersistenVolumeClaim</code> in  <code>abcdesktop.yaml</code> file :</p>
+<div class="highlight"><pre><span></span><code><span class="err">apiVersio</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="err">apps/v</span><span class="mi">1</span>
+<span class="err">ki</span><span class="kc">n</span><span class="err">d</span><span class="p">:</span><span class="w"> </span><span class="err">S</span><span class="kc">tateful</span><span class="err">Se</span><span class="kc">t</span>
+<span class="err">me</span><span class="kc">ta</span><span class="err">da</span><span class="kc">ta</span><span class="p">:</span>
+<span class="w">  </span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="err">mo</span><span class="kc">n</span><span class="err">godb</span><span class="mi">-</span><span class="err">od</span>
+<span class="p">[</span><span class="err">........</span><span class="p">]</span>
+<span class="err">#</span><span class="w"> </span><span class="mi">---</span><span class="w"> </span><span class="err">No</span><span class="kc">n</span><span class="mi">-</span><span class="err">persis</span><span class="kc">tent</span><span class="w"> </span><span class="err">volume</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">Mo</span><span class="kc">n</span><span class="err">goDB</span><span class="w"> </span><span class="err">da</span><span class="kc">ta</span>
+<span class="w">    </span><span class="mi">-</span><span class="w"> </span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="err">da</span><span class="kc">ta</span>
+<span class="w">    </span><span class="err">persis</span><span class="kc">tent</span><span class="err">VolumeClaim</span><span class="p">:</span>
+<span class="w">      </span><span class="err">claimName</span><span class="p">:</span><span class="w"> </span><span class="err">pvc</span><span class="mi">-</span><span class="err">mo</span><span class="kc">n</span><span class="err">go</span>
+</code></pre></div>
+<p>Then create a <code>PersistentVolumeClaim</code> file, let's call it <code>pvc-mongo.yaml</code> :</p>
+<div class="highlight"><pre><span></span><code><span class="err">apiVersio</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="err">v</span><span class="mi">1</span>
+<span class="err">ki</span><span class="kc">n</span><span class="err">d</span><span class="p">:</span><span class="w"> </span><span class="err">Persis</span><span class="kc">tent</span><span class="err">VolumeClaim</span>
+<span class="err">me</span><span class="kc">ta</span><span class="err">da</span><span class="kc">ta</span><span class="p">:</span>
+<span class="w">  </span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="err">pvc</span><span class="mi">-</span><span class="err">mo</span><span class="kc">n</span><span class="err">go</span>
+<span class="err">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="err">s</span><span class="kc">t</span><span class="err">orageClassName</span><span class="p">:</span><span class="w"> </span><span class="err">dy</span><span class="kc">na</span><span class="err">mic</span><span class="mi">-</span><span class="err">rwo</span>
+<span class="w">  </span><span class="err">accessModes</span><span class="p">:</span>
+<span class="w">    </span><span class="mi">-</span><span class="w"> </span><span class="err">ReadWri</span><span class="kc">te</span><span class="err">O</span><span class="kc">n</span><span class="err">ce</span>
+<span class="w">  </span><span class="err">resources</span><span class="p">:</span>
+<span class="w">    </span><span class="err">reques</span><span class="kc">ts</span><span class="p">:</span>
+<span class="w">      </span><span class="err">s</span><span class="kc">t</span><span class="err">orage</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="err">Gi</span>
+</code></pre></div>
+<p>Finally apply it to the cluster</p>
+<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
+kubectl create -f pvc-mongo.yaml -n $NAMSPACE
+</code></pre></div>
+<h2 id="add-external-providers">Add external providers</h2>
+<p>You may want users to properly authenticate to your demo platform. To proceed, you will need to remove default LDAP authentication and anonymous authentication.</p>
+<p>Edit <code>od.config</code> file and go to the <code>AUTH SECTION</code> and empty all dictionaries inside authmanager.</p>
+<div class="highlight"><pre><span></span><code>authmanagers: {
+  &#39;external&#39;: {},
+   &#39;metaexplicit&#39;: {},
+   &#39;explicit&#39;: {},
+   &#39;implicit&#39;: {} }
+</code></pre></div>
+<p>Now you cannot authenticate anymore, so you need to add external providers using Oauth2.0 protocol. To proceed, please follow our documentation on <a href="https://www.abcdesktop.io/advanced/4.4/authentication/authexternal/">how to add external authentication providers to abcdesktop</a></p>
+<details class="note">
+<summary><code>od.config</code> example file</summary>
+<div class="highlight"><pre><span></span><code># od.config
+# abcdesktop Configuration File
+#
+# This file is a cherrypy config file
+# Global config is stored in the cherrypy.config dict
+# Syntax must be Python builtin ConfigParser
+#
+# To create your own config file :
+# update this file, then
+# run the kubectl create configmap command :
+#
+# to delete previous abcdesktop-config configmap
+# kubectl delete configmap abcdesktop-config -n abcdesktop
+#
+# to create a abcdesktop-config configmap
+# kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
+#
+# same commands in one line
+# kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
+#
+# to restart pyos 
+# quick and dirty
+# kubectl delete pods -l run=pyos-od -n abcdesktop
+# or rollout 
+# kubectl rollout restart deployment pyos-od -n abcdesktop
+#
+# to detect non-ASCII characters in file 
+# perl -ne &#39;if (/[^[:ascii:]]/) { print $. . &quot;: &quot; . $_ }&#39; od.config
+#######
+
+
+# data 
+[global]
+
+# abcdesktop is the default namespace
+# pyos read the environment variable POD_NAMESPACE
+# in most case, you don&#39;t need to override the environment variable POD_NAMESPACE
+# namespace: &#39;abcdesktop&#39;
+
+# DEFAULT HOST URL 
+# public host url of the service
+# change this with your URL or
+# set the external URL service if you use a reverse proxy
+# default_host_url : &#39;https://external.domain.org&#39;
+default_host_url : &#39;http://localhost&#39;
+# END OF DEFAULT HOST URL
+
+
+# THREAD_POOL
+# the default server.thread_pool is 10
+# increase this value to add more cherrypy threads
+# server.thread_pool: 16
+# END OF THREAD_POOL
+
+
+# WEBSOCKETROUTING
+# describe which url is returned by od.py to reach the WebSocket server 
+# the more secured value is default_host_url
+# websocketrouting: permit value are [&#39;bridge&#39;, &#39;default_host_url&#39;, &#39;host&#39;,&#39;http_origin&#39;]
+# websocketrouting describe how the web browser can establish web socket to the user container
+#
+# the default websocketrouting value is http_origin
+# default_host_url :    the default_host_url value is used as the wss or ws connect
+# host :                use the hostname in the requested url
+# http_origin :         use the hostname set in the recievied http Header request
+#                       this is less secure than default_host_url
+#                       but it always works
+# bridge :              use if the user&#39;s container need to bridge the host&#39;s ethernet interface
+#                       bridge is only used if user container can bind a local network (level 2)
+#                       this value is experimental and is not yet avalaible
+websocketrouting: &#39;http_origin&#39;
+# END OF WEBSOCKETROUTING
+
+
+# BIND_SECTION
+#
+# od.py need an ip address and tcp port to listen 
+# ip addr to listen is set by default to 0.0.0.0  
+# this option is only used if you run od.py without a docker container
+# this option is only used for developers
+# if you run abcdesktop.io in a container, 
+# the common usage, keep the default value to 0.0.0.0
+server.socket_host: &#39;0.0.0.0&#39; 
+# TCP PORT 
+# the default tcp port to listen is 8000
+# this tcp port is used by nginx to forward HTTP request to od.py
+# if you change the default TCP port value, you have to change it to the nginx config file
+server.socket_port: 8000
+#
+# END OF BIND_SECTION
+
+#
+# EXTERNAL IP ADDRESS SECTION
+# THIS IS NOT THE BINDING IP ADDR
+# server.geolocation_ipaddr is only used to locate the external ip of the service
+# server.geolocation_ipaddr is used by geoip and Active Directory site subnet queries
+# the default value is a dummy value &#39;127.0.0.1&#39;
+# change this value to help geoip to locate your service or for Active Directory site and subnet query 
+server.geolocation_ipaddr: &#39;127.0.0.1&#39;
+# END OF EXTERNAL IP ADDRESS SECTION
+
+# JWT SECTION #
+#
+# JWT Token for /API URL
+# exp : time in seconds, None for unlimited
+jwt_token_user : {
+&#39;exp&#39;: 360,
+&#39;jwtuserprivatekeyfile&#39;: &#39;/config.usersigning/abcdesktop_jwt_user_signing_private_key.pem&#39;,
+&#39;jwtuserpublickeyfile&#39; : &#39;/config.usersigning/abcdesktop_jwt_user_signing_public_key.pem&#39; }
+#
+# JWT RSA SIGNING ANS PAYLOAD KEYS
+# od.py use two RSA keys to sign jwt and encrypt payload&#39;s jwt  
+# Use OpenSSL to generate the RSA Keys
+#
+# command to build rsa kay pairs for jwt payload 
+# 512 bits is a small value, change here if need
+# &gt;openssl genrsa  -out abcdesktop_jwt_desktop_payload_private_key.pem 512
+# &gt;openssl rsa     -in  abcdesktop_jwt_desktop_payload_private_key.pem -outform PEM -pubout -out  _abcdesktop_jwt_desktop_payload_public_key.pem
+# &gt;openssl rsa -pubin -in _abcdesktop_jwt_desktop_payload_public_key.pem -RSAPublicKey_out -out abcdesktop_jwt_desktop_payload_public_key.pem
+#
+# command build rsa kay pairs for jwt signing 
+# &gt;openssl genrsa -out abcdesktop_jwt_desktop_signing_private_key.pem 1024
+# &gt;openssl rsa     -in abcdesktop_jwt_desktop_signing_private_key.pem -outform PEM -pubout -out abcdesktop_jwt_desktop_signing_public_key.pem
+#
+# ! IMPORTANT 
+# ! the same key files are used by nginx 
+# ! you have to copy the key file to nginx container image
+#
+jwt_token_desktop : {
+&#39;exp&#39;: 420,
+&#39;jwtdesktopprivatekeyfile&#39;:     &#39;/config.signing/abcdesktop_jwt_desktop_signing_private_key.pem&#39;,
+&#39;jwtdesktoppublickeyfile&#39; :     &#39;/config.signing/abcdesktop_jwt_desktop_signing_public_key.pem&#39;,
+&#39;payloaddesktoppublickeyfile&#39; : &#39;/config.payload/abcdesktop_jwt_desktop_payload_public_key.pem&#39; }
+# END OF JWT SECTION #
+
+# CONTROLLERS SECTION #
+#
+controllers: { &#39;ManagerController&#39;: { &#39;apikey&#39;: [ &#39;demoabcdesktop&#39; ], &#39;permitip&#39;: [ &#39;161.105.208.3/32&#39;, &#39;10.0.0.0/8&#39;, &#39;172.16.0.0/12&#39;, &#39;192.168.0.0/16&#39;, &#39;fd00::/8&#39;, &#39;169.254.0.0/16&#39;, &#39;127.0.0.0/8&#39; ] },
+            &#39;AccountingController&#39;: { &#39;apikey&#39;: [ &#39;demo&#39; ], &#39;permitip&#39;: [  &#39;10.0.0.0/8&#39;, &#39;172.16.0.0/12&#39;, &#39;192.168.0.0/16&#39;, &#39;fd00::/8&#39;, &#39;169.254.0.0/16&#39;, &#39;127.0.0.0/8&#39; ] },
+            &#39;StoreController&#39;:   { &#39;wrapped_key&#39;: {} },
+            &#39;ComposerController&#39; : { &#39;requestsallowed&#39; : { &#39;getdesktopdescription&#39;: False } },
+            &#39;DesktopController&#39; :  { &#39;requestsallowed&#39; : { &#39;dns&#39;: False }, &#39;permitip&#39;: [  &#39;10.0.0.0/8&#39;, &#39;172.16.0.0/12&#39;, &#39;192.168.0.0/16&#39;, &#39;fd00::/8&#39;, &#39;169.254.0.0/16&#39;, &#39;127.0.0.0/8&#39; ] } } 
+# END OF CONTROLLERS SECTION #
+
+### AUTH SECTION ###
+# Complete AUTH Sample dictionnary
+# The authmanagers is defined as a dictionnary object :
+#
+#
+# authmanagers: {
+#  &#39;external&#39;: { },
+#  &#39;explicit&#39;: { },
+#  &#39;implicit&#39;: { }
+# }
+# The od.config defines 3 kinds of entries in the authmanagers object :
+# external: use for OAuth 2.0 Authentification
+# explicit: use for LDAP, LDAPS and ActiveDirectory Authentification
+# implicit: use for Anonymous Authentification
+#
+# external: use for OAuth 2.0 Authentification
+# &#39;external&#39;: {
+#    &#39;providers&#39;: {
+#      &#39;google&#39;: { 
+#        &#39;displayname&#39;: &#39;Google&#39;, 
+#    &#39;textcolor&#39;: &#39;#000000&#39;,
+#    &#39;backgroundcolor&#39;: &#39;#FFFFFF&#39;,
+#    &#39;icon&#39;: &#39;img/auth/google_icon.svg&#39;,
+#        &#39;enabled&#39;: True,
+#        &#39;client_id&#39;: &#39;YYYYYY&#39;, 
+#        &#39;client_secret&#39;: &#39;XXXXXX&#39;,
+#        &#39;scope&#39;: &#39;https://www.googleapis.com/auth/userinfo.email&#39;,
+#        &#39;dialog_url&#39;: &#39;https://accounts.google.com/o/oauth2/v2/auth?client_id={client_id}&amp;redirect_uri={callback_url}&amp;response_type=code&amp;scope={scope}&#39;,
+#        &#39;auth_url&#39;: &#39;https://oauth2.googleapis.com/token?code={code}&amp;grant_type=authorization_code&amp;redirect_uri={callback_url}&amp;scope={scope}&amp;client_id={client_id}&amp;client_secret={client_secret}&#39;,
+#        &#39;userinfo_url&#39;: &#39;https://openidconnect.googleapis.com/v1/userinfo?access_token={access_token}&#39;,
+#        &#39;callback_url&#39;: &#39;https://FQDN/API/auth/oauth?manager={manager.name}&amp;provider={name}&#39;
+#      }
+#    }
+#
+# explicit: use for LDAP, LDAPS and ActiveDirectory Authentification
+#
+# &#39;explicit&#39;: {
+#    &#39;show_domains&#39;: True,
+#    &#39;providers&#39;: {
+#      &#39;LDAP&#39;: { 
+#        &#39;config_ref&#39;: &#39;ldapconfig&#39;, 
+#        &#39;enabled&#39;: True
+#       }
+# }}
+# ldapconfig : { &#39;planet&#39;: {    
+#                        &#39;default&#39;       : True, 
+#                        &#39;ldap_timeout&#39;  : 15,
+#                        &#39;ldap_protocol&#39; : &#39;ldap&#39;,
+#                        &#39;ldap_basedn&#39;   : &#39;ou=people,dc=planetexpress,dc=com&#39;,
+#                        &#39;servers&#39;       : [ &#39;192.168.1.69&#39; ],
+#                        &#39;secure&#39;        : False
+# }}
+#
+# explicit with ActiveDirectory Authentification
+# &#39;explicit&#39;: {
+#    &#39;show_domains&#39;: True,
+#    &#39;providers&#39;: {
+#      &#39;AD&#39;: { 
+#        &#39;config_ref&#39;: &#39;adconfig&#39;, 
+#        &#39;enabled&#39;: True
+#       }
+# }
+# adconfig : { &#39;AD&#39;: {  &#39;default&#39;       : True, 
+#                       &#39;ldap_timeout&#39;  : 15,
+#                       &#39;ldap_protocol&#39; : &#39;ldap&#39;,
+#                       &#39;ldap_basedn&#39;   : &#39;DC=ad,DC=domain,DC=local&#39;,
+#                       &#39;ldap_fqdn&#39;     : &#39;_ldap._tcp.ad.domain.local&#39;,
+#                       &#39;domain&#39;        : &#39;AD&#39;,
+#                       &#39;domain_fqdn&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
+#                       &#39;servers&#39;    : [ &#39;192.168.7.12&#39; ],
+#                       &#39;kerberos_realm&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
+#                       &#39;query_dcs&#39; : False
+#     }
+# }
+#
+# implicit: use for Anonymous Authentification
+# &#39;implicit&#39;: {
+#    &#39;providers&#39;: {
+#      &#39;anonymous&#39;: {
+#        &#39;displayname&#39;: &#39;Anonymous&#39;,
+#        &#39;caption&#39;: &#39;Have a look !&#39;,
+#        &#39;userid&#39;: &#39;anonymous&#39;,
+#        &#39;username&#39;: &#39;Anonymous&#39;
+#      }     
+#    }
+# }
+authmanagers: {
+&#39;external&#39;: {
+    &#39;providers&#39;: {
+        &#39;google&#39;: { 
+            &#39;icon&#39;: &#39;img/auth/google_icon.svg&#39;,
+            &#39;displayname&#39;: &#39;Google&#39;, 
+            &#39;textcolor&#39;: &#39;#000000&#39;,
+            &#39;backgroundcolor&#39;: &#39;#FFFFFF&#39;,
+            &#39;enabled&#39;: True,
+            &#39;client_id&#39;: &#39;XXXXXXXXXXXX&#39;, 
+            &#39;client_secret&#39;: &#39;YYYYYYYYYYY&#39;,
+            &#39;userinfo_auth&#39;: True,
+            &#39;scope&#39;: [ &#39;https://www.googleapis.com/auth/userinfo.email&#39;,  &#39;openid&#39; ],
+            &#39;userinfo_url&#39;: &#39;https://www.googleapis.com/oauth2/v1/userinfo&#39;,
+            &#39;redirect_uri_prefix&#39; : &#39;https://demo.gcp.abcdesktop.com/API/auth/oauth&#39;,
+            &#39;redirect_uri_querystring&#39;: &#39;manager=external&amp;provider=google&#39;,
+            &#39;authorization_base_url&#39;: &#39;https://accounts.google.com/o/oauth2/v2/auth&#39;,
+            &#39;token_url&#39;: &#39;https://oauth2.googleapis.com/token&#39;
+        },
+    &#39;orange&#39;: {       
+            &#39;displayname&#39;: &#39;Orange&#39;, 
+            &#39;icon&#39;: &#39;img/auth/orange_icon.svg&#39;,
+            &#39;textcolor&#39;: &#39;#000000&#39;,
+            &#39;backgroundcolor&#39;: &#39;#FFFFFF&#39;,
+            &#39;enabled&#39;: True,
+            &#39;basic_auth&#39;: True,
+            &#39;userinfo_auth&#39;: True,
+            &#39;scope&#39; : [ &#39;openid&#39;, &#39;form_filling&#39; ],
+            &#39;client_id&#39;: &#39;XXXXXXXXXXXX&#39;,
+            &#39;client_secret&#39;: &#39;YYYYYYYYYYY&#39;,
+            &#39;redirect_uri_prefix&#39; : &#39;https://demo.gcp.abcdesktop.com/API/auth/oauth&#39;,
+            &#39;redirect_uri_querystring&#39;: &#39;manager=external&amp;provider=orange&#39;,
+            &#39;authorization_base_url&#39;: &#39;https://api.orange.com/openidconnect/fr/v1/authorize&#39;,
+            &#39;token_url&#39;: &#39;https://api.orange.com/openidconnect/fr/v1/token&#39;, 
+            &#39;userinfo_url&#39;: &#39;https://api.orange.com/formfilling/fr/v1/userinfo&#39;
+        },
+    &#39;github&#39;: {
+            &#39;icon&#39;: &#39;img/auth/github_icon.svg&#39;,
+            &#39;textcolor&#39;: &#39;#000000&#39;,
+            &#39;backgroundcolor&#39;: &#39;#FFFFFF&#39;,
+            &#39;displayname&#39;: &#39;Github&#39;,
+            &#39;enabled&#39;: True,
+            &#39;basic_auth&#39;: True,
+            &#39;userinfo_auth&#39;: True,
+            &#39;scope&#39; : [ &#39;read:user&#39; ], 
+            &#39;client_id&#39;: &#39;XXXXXXXXXXXX&#39;,
+            &#39;client_secret&#39;: &#39;YYYYYYYYYYY&#39;,
+            &#39;redirect_uri_prefix&#39; : &#39;https://demo.gcp.abcdesktop.com/API/auth/oauth&#39;,
+            &#39;redirect_uri_querystring&#39;: &#39;manager=external&amp;provider=github&#39;,
+            &#39;authorization_base_url&#39;: &#39;https://github.com/login/oauth/authorize&#39;,
+            &#39;token_url&#39;: &#39;https://github.com/login/oauth/access_token&#39;,
+            &#39;userinfo_url&#39;: &#39;https://api.github.com/user&#39;,
+        },
+    &#39;linkedin&#39;: {
+            &#39;displayname&#39;: &#39;LinkedIn&#39;,
+            &#39;textcolor&#39;: &#39;white&#39;,
+            &#39;backgroundcolor&#39;: &#39;#527edb&#39;,
+            &#39;icon&#39;: &#39;img/auth/linkedin.svg&#39;,
+            &#39;enabled&#39;: True,
+            &#39;userinfo_auth&#39;: True,
+            &#39;include_client_id&#39;: True,
+            &#39;scope&#39;: [&#39;openid&#39;, &#39;profile&#39;, &#39;email&#39;],
+            &#39;client_id&#39;: &#39;XXXXXXXXXXXX&#39;,
+            &#39;client_secret&#39;: &#39;YYYYYYYYYYY&#39;,
+            &#39;redirect_uri_prefix&#39;: &#39;https://demo.gcp.abcdesktop.com/API/auth/oauth&#39;,
+            &#39;redirect_uri_querystring&#39;: &#39;manager=external&amp;provider=linkedin&#39;,
+            &#39;authorization_base_url&#39;: &#39;https://www.linkedin.com/oauth/v2/authorization&#39;,
+            &#39;token_url&#39;: &#39;https://www.linkedin.com/oauth/v2/accessToken&#39;,
+            &#39;userinfo_url&#39;: &#39;https://api.linkedin.com/v2/userinfo&#39;
+        },
+        &#39;discord&#39;: {
+            &#39;displayname&#39;: &#39;Discord&#39;,
+            &#39;textcolor&#39;: &#39;white&#39;,
+            &#39;backgroundcolor&#39;: &#39;#6e17e7&#39;,
+            &#39;icon&#39;: &#39;img/auth/discord.svg&#39;,
+            &#39;enabled&#39;: True,
+            &#39;userinfo_auth&#39;: True,
+            &#39;scope&#39;: [&#39;identify&#39;],
+            &#39;client_id&#39;: &#39;XXXXXXXXXXXX&#39;,
+            &#39;client_secret&#39;: &#39;YYYYYYYYYYY&#39;,
+            &#39;redirect_uri_prefix&#39;: &#39;https://demo.gcp.abcdesktop.com/API/auth/oauth&#39;,
+            &#39;redirect_uri_querystring&#39;: &#39;manager=external&amp;provider=discord&#39;,
+            &#39;authorization_base_url&#39;: &#39;https://discord.com/oauth2/authorize&#39;,
+            &#39;token_url&#39;: &#39;https://discord.com/api/oauth2/token&#39;,
+            &#39;userinfo_url&#39;: &#39;https://discord.com/api/users/@me&#39;
+        }
+    }
+},
+&#39;metaexplicit&#39;: {},
+&#39;explicit&#39;: {},
+&#39;implicit&#39;: {} }
+#
+#&#39;spotify&#39;: {
+#            &#39;displayname&#39;: &#39;Spotify&#39;,
+#            &#39;textcolor&#39;: &#39;black&#39;,
+#            &#39;backgroundcolor&#39;: &#39;#32c832&#39;,
+#            &#39;icon&#39;: &#39;img/auth/spotify.svg&#39;,
+#            &#39;enabled&#39;: True,
+#            &#39;userinfo_auth&#39;: True,
+#            &#39;scope&#39;: [&#39;user-read-email&#39;],
+#            &#39;client_id&#39;: &#39;XXXXXXXXXXXX&#39;,
+#            &#39;client_secret&#39;: &#39;YYYYYYYYYYY&#39;,
+#            &#39;redirect_uri_prefix&#39;: &#39;https://demo.gcp.abcdesktop.com/API/auth/oauth&#39;,
+#            &#39;redirect_uri_querystring&#39;: &#39;manager=external&amp;provider=spotify&#39;,
+#            &#39;authorization_base_url&#39;: &#39;https://accounts.spotify.com/authorize&#39;,
+#            &#39;token_url&#39;: &#39;https://accounts.spotify.com/api/token&#39;,
+#            &#39;userinfo_url&#39;: &#39;https://api.spotify.com/v1/me&#39;
+#
+#  &#39;metaexplicit&#39;: {}, 
+#  &#39;explicit&#39;: {
+#    &#39;show_domains&#39;: True,
+#    &#39;providers&#39;   : { 
+#   &#39;planet&#39;: { 
+#       &#39;config_ref&#39;: &#39;ldapconfig&#39;,  
+#       &#39;enabled&#39;: True } 
+#   }
+#  },
+#  &#39;implicit&#39;: {
+#    &#39;providers&#39;   : {
+#        &#39;anonymous&#39;: {
+#          &#39;displayname&#39;: &#39;Anonymous&#39;,
+#          &#39;textcolor&#39;: &#39;black&#39;,
+#          &#39;backgroundcolor&#39;: &#39;#FFFFFF&#39;,
+#          &#39;icon&#39;: &#39;img/auth/anonymous_icon.svg&#39;,
+#          &#39;caption&#39;: &#39;Have a look !&#39;,
+#          &#39;userid&#39;: &#39;anonymous&#39;,
+#          &#39;username&#39;: &#39;Anonymous&#39;,
+#          &#39;policies&#39;: { 
+#            &#39;acl&#39;   : { &#39;permit&#39;: [ &#39;all&#39; ] },
+#            &#39;rules&#39; : { 
+#              &#39;rule-net-home&#39;: {  
+#                &#39;conditions&#39; : [ { &#39;network&#39;: &#39;10.0.0.0/8&#39;, &#39;expected&#39; : True } ],
+#                &#39;expected&#39;   : True,
+#                &#39;label&#39;      : &#39;tennetwork&#39;
+#              }
+#            }
+#          }
+#        }
+#  } } }
+# Note serviceaccount is optional
+#ldapconfig : {
+#        &#39;planet&#39;: {
+#               &#39;default&#39;       : True,
+#                &#39;ldap_timeout&#39;  : 15,
+#                &#39;ldap_protocol&#39; : &#39;ldap&#39;,
+#                &#39;ldap_basedn&#39;   : &#39;ou=people,dc=planetexpress,dc=com&#39;,
+#                &#39;servers&#39;       : [ &#39;openldap&#39; ],
+#                &#39;secure&#39;        : False,
+#                &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;cn=admin,dc=planetexpress,dc=com&#39;, &#39;password&#39;: &#39;GoodNewsEveryone&#39; },
+#                &#39;policies&#39;: {
+#                        &#39;acls&#39;: None,
+#                        &#39;rules&#39; : {
+#               &#39;rule-dummy&#39; : {
+#                   &#39;conditions&#39; : [ {&#39;boolean&#39;:True, &#39;expected&#39;:True } ],
+#                                        &#39;expected&#39; : True,
+#                                        &#39;label&#39;:&#39;labeltrue&#39;
+#               },
+#                                &#39;rule-ship&#39;: {
+#                                        &#39;conditions&#39; : [ { &#39;memberOf&#39;: &#39;cn=ship_crew,ou=people,dc=planetexpress,dc=com&#39;,   &#39;expected&#39; : True  } ],
+#                                        &#39;expected&#39; : True,
+#                                        &#39;label&#39;:&#39;shipcrew&#39;
+#                                },
+#                                &#39;rule-test&#39;: {
+#                                        &#39;conditions&#39; : [ { &#39;memberOf&#39;: &#39;cn=admin_staff,ou=people,dc=planetexpress,dc=com&#39;, &#39;expected&#39; : True  } ],
+#                                        &#39;expected&#39; : True,
+#                                        &#39;label&#39;: &#39;adminstaff&#39;
+#                                }
+#                        }
+#                } } }
+
+# For external provider only 
+# OAuthLib params
+# source https://oauthlib.readthedocs.io/en/latest/oauth2/security.html
+#
+# OAuthLib will raise an InsecureTransportError if you attempt to use OAuth2 over HTTP, rather than HTTPS. 
+# Setting this environment variable will prevent this error from being raised. 
+# This is mostly useful for local testing, or automated tests.
+# If you set the OAUTHLIB_INSECURE_TRANSPORT environment variable, it will not check for secure HTTPS, 
+# and allow the OAuth dance to continue whether or not it is secure. 
+# Disabling this check is intended only for development, not for production 
+# in production, you must configure secure HTTPS to make sure communication happen securely.
+OAUTHLIB_INSECURE_TRANSPORT: True
+#
+# Prevent &quot;Scope has changed&quot; warning 
+# requests_oauthlib library this generates a Warning, rather than an Exception
+# If a user only approved read only scope but the code is now using different scope.
+# when a scope mismatch occurs, user must be prompted to reauthorize via oauth.
+# Fix request user authorization from a Microsoft account
+# you can (and probably should) set OAUTHLIB_RELAX_TOKEN_SCOPE when running in production.
+OAUTHLIB_RELAX_TOKEN_SCOPE: True
+
+# END OF AUTH SECTION
+
+
+
+### FAIL2BAN SECTION ###
+#
+fail2ban : {      &#39;enable&#39; : False,
+                &#39;banexpireafterseconds&#39;: 600,
+                &#39;failsbeforeban&#39; : 5,
+                &#39;protectednetworks&#39; :  [&#39;192.168.1.0/24&#39;] }
+# END OF FAIL2BAN SECTION
+
+### LOGMEIN PRELOGON SECTION ###
+#
+auth.logmein : {  &#39;enable&#39; : False,
+                &#39;network_list&#39; : [&#39;0.0.0.0/0&#39;],
+                &#39;permit_querystring&#39; : True,
+                &#39;http_attribut&#39; : &#39;ABCDESKTOPUSERCERT&#39; }
+
+auth.prelogin : { &#39;enable&#39; : False,
+                &#39;url&#39; : &#39;https://FQHN/index.session.mustache.html&#39;,
+                &#39;network_list&#39; : [&#39;0.0.0.0/0&#39;],
+                &#39;http_attribut &#39; : &#39;abcuserid&#39;,
+                &#39;http_attribut_to_force_auth_prelogin&#39;:  &#39;MUST_USE_PRELOGIN&#39; }
+# END OF LOGMEIN PRELOGON SECTION
+
+
+
+# MEMCACHE SECTION
+# memcache server
+# describe how od.py can reach the memcached server
+# memcacheserver is the name (FQDN) of the memcached server
+# memcacheserver default value is None
+# memcacheserver SHOULD BE SET TO None
+# od.py build the default :
+#       in standalone mode the build value is &#39;memcached&#39;
+#       in kubernetes mode the build value is &#39;memcached.abcdesktop.svc.cluster.local&#39;
+# change it if you need or if you have to run od.py in developer env
+# memcacheserver: &#39;localhost&#39;
+# memcacheserver: &#39;memcached&#39;
+# memcacheserver: &#39;memcached.abcdesktop.svc.cluster.local&#39;
+#
+#
+# memcachedport is the tcp port of the memcached server
+# the default value is 11211
+# memcachedport: 11211
+# END OF MEMCACHE SECTION
+
+# MONGO SECTION
+# mongodb url
+# describe how od.py can reach the mongodb server
+# mongodburi is the URI name of the mongodb server
+# the same var name mongodbserver support connection string URI format 
+# read https://docs.mongodb.com/manual/reference/connection-string/#mongodb-uri 
+# the format is:
+# mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]
+# mongodburl SHOULD BE SET TO None
+# od.py build the default :
+#     in standalone mode the build value is &#39;mongodb://mongodb:27017&#39;
+#     in kubernetes mode the build value is &#39;mongodb://mongodb.abcdesktop.svc.cluster.local:27017&#39;
+# change it if you need or if you have to run od.py in developer env 
+# mongodburl: None
+# mongodburl: &#39;mongodb://localhost:27017&#39;
+# mongodburl: &#39;mongodb://pyos:Az4MeYWUjZDg4Zjhk@mongodb.abcdesktop.svc.cluster.local:32017&#39;
+# mongodburl: &#39;mongodb://mongodb.abcdesktop.svc.cluster.local:32017&#39;
+# END OF MONGO SECTION
+
+
+# LANGUAGE SECTION
+# list of default supported language on oc.user images
+# this option is used for filter request.headers.get(&#39;Accept-Language&#39;) 
+# user container image MUST have the supported language packages installed
+# else the default fallback language is en_US 
+# by default abcdesktop oc.user image embeded languages support [ &#39;German&#39;, &#39;English&#39;, &#39;French&#39; ]
+# de_* - German - GERMANY (DE) (de_DE)
+# en_* - English - UNITED KINGDOM (GB) (en_GB) - UNITED STATES OF AMERICA (US) (en_US)
+# fr_* - French - FRANCE (FR) (fr_FR)
+# to add new supported languages update oc.user&#39;s Dockerfile commands 
+# repository https://github.com/abcdesktopio/oc.user
+#
+# RUN apt-get update &amp;&amp; \
+#     apt-get install -y --no-install-recommends locales language-pack-en language-pack-fr language-pack-de &amp;&amp; \
+#     locale-gen &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
+# 
+# 
+language : [  &#39;de_AT&#39;, &#39;de_BE&#39;, &#39;de_CH&#39;, &#39;de_DE&#39;, &#39;de_LI&#39;, &#39;de_LU&#39;, &#39;en_AG&#39;, &#39;en_AU&#39;, &#39;en_BW&#39;, &#39;en_CA&#39;, &#39;en_DK&#39;, &#39;en_GB&#39;, &#39;en_HK&#39;, &#39;en_IE&#39;, &#39;en_IN&#39;, &#39;en_NG&#39;, &#39;en_NZ&#39;, &#39;en_PH&#39;, &#39;en_SG&#39;, &#39;en_US&#39;, &#39;en_ZA&#39;, &#39;en_ZM&#39;, &#39;en_ZW&#39;,  &#39;fr_BE&#39;, &#39;fr_CA&#39;, &#39;fr_CH&#39;, &#39;fr_FR&#39;, &#39;fr_LU&#39; ]
+# END OF LANGUAGE SECTION
+
+
+# WebRTC configuration 
+# webrtc.rtc_constraints
+# webrtc.rtc_constraints: { &#39;video&#39;: False, &#39;audio&#39;: True }
+# For both video and audio, its value is either a boolean or an object. 
+# define if &#39;audio&#39; should be send using the user&#39;s microphone, the default value is True 
+# keep in mind that a user can refuse local microphone access
+# define if &#39;video&#39; should be send using the user&#39;s webcam, the default value is False 
+# keep in mind that a user can refuse local camera access
+#
+# This value is used by navigator.mediaDevices.getUserMedia(rtc_constraints)
+# https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+#
+webrtc.rtc_constraints: { &#39;video&#39;: False, &#39;audio&#39;: True }
+
+# END OF WebRTC SECTION
+
+# K8S TIMEOUT 
+# Kubernetes timeout
+# default timeout to bound a persistentVolumeClaim
+K8S_BOUND_PVC_TIMEOUT_SECONDS: 60
+K8S_BOUND_PVC_MAX_EVENT: 5
+# default timeout to create a pod
+# include time to pull users images
+# this can take a while to pull all pod&#39;s user images
+# 300 = 5 * 60
+K8S_CREATE_POD_TIMEOUT_SECONDS: 300
+# default timeout to create an ephemeral container
+# include time to pull image
+K8S_CREATE_EPHEMERALCONTAINER_TIMEOUT_SECONDS: 120
+# END OF K8S TIMEOUT
+
+
+
+
+#
+# THIS IS WHERE THE RESOURCES ARE ACTUALLY DEFINED FOR THE POD DESKTOP.
+# Application execute class defined
+# You can add kubernetes values to this dict, values are copy to the pod&#39;s spec 
+executeclasses : {
+&#39;default&#39;:{
+    &#39;nodeSelector&#39;:None,
+    &#39;description&#39;: &#39;default: up to 4 CPU cores and 8Gi&#39;,
+    &#39;runtimeClassName&#39;: None,
+    &#39;resources&#39;:{
+    &#39;requests&#39;:{&#39;memory&#39;:&quot;4Gi&quot;,&#39;cpu&#39;:&quot;1000m&quot;},
+    &#39;limits&#39;:  {&#39;memory&#39;:&quot;8Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;}
+    },
+    &#39;containers&#39;: {
+    &#39;graphical&#39;: { &#39;resources&#39;: { &#39;requests&#39;:{&#39;memory&#39;:&quot;256Mi&quot;,&#39;cpu&#39;:&quot;200m&quot;}, &#39;limits&#39;:  {&#39;memory&#39;:&quot;4Gi&quot;,   &#39;cpu&#39;:&quot;1000m&quot; }} },
+    &#39;sound&#39;:     { &#39;resources&#39;: { &#39;requests&#39;:{&#39;memory&#39;:&quot;64Mi&quot;,&#39;cpu&#39;:&quot;200m&quot;},  &#39;limits&#39;:  {&#39;memory&#39;:&quot;256Mi&quot;, &#39;cpu&#39;:&quot;400m&quot;  }} },
+    &#39;filer&#39;:     { &#39;resources&#39;: { &#39;requests&#39;:{&#39;memory&#39;:&quot;64Mi&quot;,&#39;cpu&#39;:&quot;200m&quot;},  &#39;limits&#39;:  {&#39;memory&#39;:&quot;256Mi&quot;, &#39;cpu&#39;:&quot;300m&quot;  }} },
+    &#39;printer&#39;:   { &#39;resources&#39;: { &#39;requests&#39;:{&#39;memory&#39;:&quot;64Mi&quot;, &#39;cpu&#39;:&quot;200m&quot;}, &#39;limits&#39;:  {&#39;memory&#39;:&quot;256Mi&quot;, &#39;cpu&#39;:&quot;300m&quot;  }} }
+    }
+},
+&#39;bronze&#39;:{
+    &#39;nodeSelector&#39;:None,
+    &#39;runtimeClassName&#39;: None,
+    &#39;description&#39;: &#39;bronze: up to 2 CPU cores and 8Gi&#39;,
+    &#39;resources&#39;:{
+    &#39;requests&#39;:{&#39;memory&#39;:&quot;576Mi&quot;,&#39;cpu&#39;:&quot;220m&quot;},
+    &#39;limits&#39;:  {&#39;memory&#39;:&quot;8Gi&quot;,&#39;cpu&#39;:&quot;2000m&quot;}
+    }
+},
+&#39;silver&#39;:{
+    &#39;nodeSelector&#39;: None,
+    &#39;description&#39;: &#39;silver: 4 CPU cores and 32Gi RAM&#39;,
+    &#39;runtimeClassName&#39;: None,
+    &#39;resources&#39;:{
+    &#39;requests&#39;:{&#39;memory&#39;:&quot;2Gi&quot;,&#39;cpu&#39;:&quot;2000m&quot;}, 
+    &#39;limits&#39;:{&#39;memory&#39;:&quot;32Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;}
+    }
+},
+&#39;gold&#39;:{
+    # to give a gpu to graphical container, add &#39;containers&#39; entry
+    &#39;containers&#39; : { &#39;graphical&#39;: { &#39;resources&#39;: { &#39;limits&#39;: { &#39;nvidia.com/gpu&#39;:&#39;1&#39; } } } },
+    &#39;nodeSelector&#39;:{&#39;nvidia.com/gpu.present&#39;: &#39;true&#39;},
+    &#39;description&#39;: &#39;gold: 4 CPU cores, 32Gi RAM and 1 GPU&#39;,
+    &#39;runtimeClassName&#39;: &#39;nvidia&#39;,
+    &#39;resources&#39;:{
+    &#39;requests&#39;:{&#39;memory&#39;:&quot;2Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;}, 
+    &#39;limits&#39;:  {&#39;memory&#39;:&quot;32Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;}
+    }
+},
+&#39;platinum&#39;:{
+    # to give a gpu to graphical container, add &#39;containers&#39; entry
+    &#39;containers&#39; : { &#39;graphical&#39;: { &#39;resources&#39;: { &#39;limits&#39;: { &#39;nvidia.com/gpu&#39;:&#39;1&#39; } } } },
+    # nodeselector optional 
+    &#39;nodeSelector&#39;:{&#39;nvidia.com/gpu.present&#39;: &#39;true&#39;},
+    # this appears only on web interface
+    &#39;description&#39;: &#39;platinum: 8 CPU cores, 128G RAM and 1 GPU&#39;,
+    &#39;runtimeClassName&#39;: &#39;nvidia&#39;,
+    &#39;resources&#39;:{
+    &#39;requests&#39;:{&#39;memory&#39;:&quot;4Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;},
+    &#39;limits&#39;:{&#39;memory&#39;:&quot;128Gi&quot;,&#39;cpu&#39;:&quot;8000m&quot;} } } }
+
+# features_permissions
+# read executeclasses and permit a user to set a dedicated class name as desktop features
+# &#39;read&#39; features_permissions is exposed to the frontend
+# &#39;submit&#39; features_permissions can be set to create a desktop
+# uncomment this section to allow frontweb resources user&#39;s choice 
+# desktop.features_permissions : [ &#39;read&#39;, &#39;submit&#39; ]
+
+# choose theme
+# desktop.theme: [ &#39;auto&#39;, &#39;linux&#39;, &#39;macosx&#39;, &#39;windows&#39; ]
+# if &#39;auto&#39; read the http header User-Agent to set the theme value
+# if None use default value from bash script, no change  
+desktop.theme: &#39;auto&#39;
+
+# define the pulseaudiosocketpath
+# become the env var PULSE_SERVER
+desktop.pulseaudiosocketpath: &#39;/tmp/.pulse.sock&#39;
+
+
+desktop.pod : { 
+# default spec for all containers
+# can be overwritten on dedicated container spec
+# value inside mustrache like {{ uidNumber }} is replaced by context run value
+# for example {{ uidNumber }} is the uid number define in ldap server 
+&#39;spec&#39; : {
+    &#39;shareProcessNamespace&#39;: False,
+    &#39;shareProcessMemory&#39;: True,
+    &#39;securityContext&#39;: {
+    &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ],
+    &#39;runAsUser&#39;: &#39;{{ uidNumber }}&#39;,
+    &#39;runAsGroup&#39;: &#39;{{ gidNumber }}&#39;
+    },
+    &#39;tolerations&#39;: []
+},
+&#39;default_volumes&#39;: {
+    &#39;shm&#39;: { &#39;name&#39;: &#39;shm&#39;, &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;2Gi&#39; } },
+    &#39;run&#39;: { &#39;name&#39;: &#39;run&#39;, &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;1Mi&#39;    } },
+    &#39;tmp&#39;: { &#39;name&#39;: &#39;tmp&#39;, &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Gi&#39;   } },
+    &#39;log&#39;: { &#39;name&#39;: &#39;log&#39;, &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Gi&#39;   } },
+    &#39;rundbus&#39;: { &#39;name&#39;: &#39;rundbus&#39;,  &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Mi&#39; } },
+    &#39;runuser&#39;: { &#39;name&#39;: &#39;runuser&#39;,  &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Mi&#39; } },
+    &#39;x11socket&#39;: { &#39;name&#39;: &#39;x11socket&#39;,  &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;1Ki&#39; } },
+    &#39;sudoers&#39;: { &#39;name&#39;: &#39;sudoers&#39;,  &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;1Mi&#39; } }
+},
+&#39;default_volumes_mount&#39;: {
+    &#39;shm&#39;: { &#39;name&#39;: &#39;shm&#39;, &#39;mountPath&#39; : &#39;/dev/shm&#39; },
+    &#39;run&#39;: { &#39;name&#39;: &#39;run&#39;,  &#39;mountPath&#39;: &#39;/var/run/desktop&#39; },
+    &#39;tmp&#39;: { &#39;name&#39;: &#39;tmp&#39;,  &#39;mountPath&#39;: &#39;/tmp&#39; },
+    &#39;log&#39;: { &#39;name&#39;: &#39;log&#39;,  &#39;mountPath&#39;: &#39;/var/log/desktop&#39; },
+    &#39;rundbus&#39;: { &#39;name&#39;: &#39;rundbus&#39;,  &#39;mountPath&#39;: &#39;/var/run/dbus&#39; },
+    &#39;runuser&#39;: { &#39;name&#39;: &#39;runuser&#39;,  &#39;mountPath&#39;: &#39;/run/user/&#39; },
+    &#39;x11socket&#39;: { &#39;name&#39;: &#39;x11socket&#39;,  &#39;mountPath&#39;: &#39;/tmp/.X11-unix&#39; },
+    &#39;sudoers&#39;: { &#39;name&#39;: &#39;sudoers&#39;, &#39;mountPath&#39;: &#39;/etc/sudoers.d&#39; }
+},
+# graphical is the main abcdesktop container 
+# include x11 service 
+&#39;graphical&#39; : {
+    &#39;image&#39;: { &#39;default&#39;: &#39;ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.4&#39; },
+    &#39;volumes&#39;: [ &#39;sudoers&#39;, &#39;x11socket&#39;, &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39;, &#39;shm&#39; ],
+    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
+    &#39;enable&#39;: True,
+    &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] },
+    &#39;waitportbin&#39; : &#39;/composer/node/wait-port/node_modules/.bin/wait-port&#39;,
+    &#39;securityContext&#39;: {
+    &#39;readOnlyRootFilesystem&#39;: False, 
+    &#39;allowPrivilegeEscalation&#39;: True,
+    &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ],
+    &#39;runAsUser&#39;: &#39;{{ uidNumber }}&#39;,
+    &#39;runAsGroup&#39;: &#39;{{ gidNumber }}&#39;,
+    &#39;runAsNonRoot&#39;: True 
+    },
+    &#39;tcpport&#39;: 6081,
+    &#39;secrets_requirement&#39; : [ &#39;abcdesktop/vnc&#39;, &#39;abcdesktop/kerberos&#39;],
+    &#39;waitfor_services&#39; : [ &#39;xserver&#39;, &#39;novnc&#39;, &#39;spawner-service&#39;, &#39;plasmashell&#39; ],
+    &#39;waitfor_processes&#39; : [ &#39;kwin_x11&#39;, &#39;plasmashell&#39; ], 
+    &#39;waitfor_listeningservices&#39;: [ &#39;graphical&#39;, &#39;spawner&#39; ]
+},
+# spawner core service to configure desktop
+# run inside graphical container  
+&#39;spawner&#39; : { 
+    &#39;enable&#39;: True,
+    &#39;tcpport&#39;: 29786,
+    &#39;waitportbin&#39; : &#39;/composer/node/wait-port/node_modules/.bin/wait-port&#39;,
+    &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] } 
+},
+# broadcast core service for notification
+# run inside graphical container  
+&#39;broadcast&#39; : { 
+    &#39;enable&#39;: True,
+    &#39;tcpport&#39;: 29784,
+    &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] } 
+},
+# webshell is no a container, just a service 
+# run inside graphical container  
+# usefull to debug application and troubleshooting
+&#39;webshell&#39; : { 
+    &#39;enable&#39;: True,
+    &#39;tcpport&#39;: 29781,
+    &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] } 
+},
+# container printer
+# printer is a cupsd service 
+&#39;printer&#39; : { 
+    &#39;volumes&#39;: [ &#39;tmp&#39; ],
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.cupsd:4.4&#39;,
+    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
+    &#39;enable&#39;: False,
+    &#39;tcpport&#39;: 681,
+    &#39;securityContext&#39;: { &#39;runAsUser&#39;: 0, &#39;runAsGroup&#39;: 0 },
+    &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] } 
+},
+# allow to download file in the printer queue
+# use to print file from the web browser
+# printerfile is no a container, just a service 
+&#39;printerfile&#39; : { 
+    &#39;enable&#39;: True,
+    &#39;tcpport&#39;: 29782,
+    &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] } 
+},
+# container filer
+# filer provide upload and download files features
+&#39;filer&#39; : { 
+    &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39; ],
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.filer:4.4&#39;,
+    &#39;imagePullPolicy&#39;:  &#39;IfNotPresent&#39;,
+    &#39;enable&#39;: True,
+    &#39;tcpport&#39;: 29783,
+    &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] }
+},
+# container sound
+# sound is a pulseaudio service instance
+&#39;sound&#39;: { 
+    &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39;, &#39;shm&#39; ],
+    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.4&#39;,
+    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
+    &#39;enable&#39;: True,
+    &#39;tcpport&#39;: 29788,
+    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] }
+},
+# container init
+# a simple busybox to chowner and chmod of homedir
+# by defaul homedir belongs to root
+# replace  
+# &#39;command&#39;:  [ &#39;sh&#39;, &#39;-c&#39;, &#39;chmod 750 ~ &amp;&amp; chown {{ uidNumber }}:{{ gidNumber }} ~&#39; ] 
+# if you disable sudo command into to your user pods, and remove &#39;sudoers&#39; volume
+#
+&#39;init&#39;: { 
+    &#39;volumes&#39;: [ &#39;sudoers&#39;, &#39;tmp&#39;, &#39;home&#39; ],
+    &#39;image&#39;: &#39;busybox&#39;,
+    &#39;enable&#39;: True,
+    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
+    &#39;securityContext&#39;: { &#39;runAsUser&#39;: 0 },
+    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
+    &#39;command&#39;:  [ 
+    &#39;sh&#39;, 
+    &#39;-c&#39;,
+    &#39;echo &quot;$LOGNAME ALL=(ALL:ALL) ALL&quot; &gt; /etc/sudoers.d/$LOGNAME &amp;&amp; \
+    chmod 440 /etc/sudoers.d/* &amp;&amp; \
+    chown 0:0 /etc/sudoers.d/* &amp;&amp; \
+    chmod 755 /etc/sudoers.d &amp;&amp; \ 
+    chown 0:0 /etc/sudoers.d &amp;&amp; \
+    chmod 750 ~ &amp;&amp; \
+    chown {{ uidNumber }}:{{ gidNumber }} ~&#39; ] 
+},
+#
+# application can run as ephemeral_container or as pod_application
+# - ephemeral_container is linked to graphical_container
+# - pod_application run as pod
+#
+&#39;ephemeral_container&#39;: {
+    &#39;enable&#39;: True,
+    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
+    &#39;volumes&#39;: [ &#39;sudoers&#39;, &#39;x11socket&#39;, &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39;, &#39;shm&#39; ],
+    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
+    &#39;securityContext&#39;: { 
+        &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ],
+        &#39;readOnlyRootFilesystem&#39;: False, 
+        &#39;allowPrivilegeEscalation&#39;: True, 
+        &#39;runAsUser&#39;:&#39;{{ uidNumber }}&#39;,
+        &#39;runAsGroup&#39;:&#39;{{ gidNumber }}&#39;
+    }
+},
+&#39;pod_application&#39; : {
+    &#39;enable&#39;: True,
+    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
+    &#39;volumes&#39;: [ &#39;sudoers&#39;, &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39; ],
+    # &#39;imagePullSecrets&#39;: [ { &#39;name&#39;: name_of_secret } ]
+    &#39;securityContext&#39;: {
+        &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ] ,
+        &#39;readOnlyRootFilesystem&#39;: False,
+        &#39;allowPrivilegeEscalation&#39;: True,
+        &#39;runAsUser&#39;:&#39;{{ uidNumber }}&#39;,
+        &#39;runAsGroup&#39;:&#39;{{ gidNumber }}&#39;
+    },
+    &#39;tolerations&#39;: [],
+    &#39;acl&#39;: {&#39;permit&#39;:[&#39;all&#39;] } } }
+
+desktop.policies: { &#39;rules&#39;: { } }
+
+#
+# desktop.homedirectorytype define how to create user&#39;s homedirectory 
+#
+# if desktop.homedirectorytype is set to None, the homedirectory volume is an empty dir 
+# { &#39;name&#39;: volume_home_name, &#39;emptyDir&#39;: {} }
+#
+# if desktop.homedirectorytype is set to &#39;hostPath&#39;, the homedirectory volume is a hostpath 
+# and read the desktop.hostPathRoot value
+# { name&#39;:volume_home_name, &#39;hostPath&#39;: { &#39;path&#39;: desktop.hostPathRoot + &#39;/&#39; + subpath_name, &#39;type&#39;:&#39;DirectoryOrCreate&#39; }  }
+#
+# if desktop.homedirectorytype is set to &#39;persistentVolumeClaim&#39;, the homedirectory volume is a &#39;persistentVolumeClaim&#39; 
+# and read the desktop.persistentvolumeclaim value
+# read https://www.abcdesktopio.io/3.1/config/persistentvolumes/ to get more informations about pv and pvc 
+#
+# values can be :
+# desktop.homedirectorytype: None  # use a empty dir 
+# desktop.homedirectorytype: &#39;persistentVolumeClaim&#39; 
+# desktop.homedirectorytype: &#39;hostPath&#39;
+desktop.homedirectorytype: None  # use a empty dir 
+
+
+#
+# desktop.hostPathRoot set the hostPath root directory
+# desktop.hostPathRoot is read only if desktop.homedirectorytype: &#39;hostPath&#39;
+# the user&#39;s home directory is located in host &#39;/tmp&#39; directory
+# desktop.hostPathRoot: &#39;/tmp&#39;
+
+#
+# for desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
+# if desktop.homedirectorytype is set to persistentVolumeClaim
+# replace mystorageclass by your own storageClassName
+# 
+# desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
+# 
+# desktop.persistentvolume: {
+#            &#39;metadata&#39;: { &#39;name&#39;: &#39;{{ provider }}-{{ userid }}-{{ uuid }}&#39; },
+#            &#39;spec&#39;: {
+#            &#39;storageClassName&#39;: &#39;nfs-csi&#39;,
+#            &#39;mountOptions&#39;: [
+#              &#39;nfsvers=3&#39;
+#            ],
+#            &#39;capacity&#39;: {
+#              &#39;storage&#39;: &#39;10Gi&#39;
+#            },
+#            &#39;accessModes&#39;: [ &#39;ReadWriteOnce&#39; ],
+#            &#39;csi&#39;: {
+#              &#39;driver&#39;: &#39;nfs.csi.k8s.io&#39;,
+#              &#39;readOnly&#39;: False,
+#              &#39;volumeHandle&#39;: &#39;192.168.7.101#volume1#homedir#{{ userid }}&#39;,
+#              &#39;volumeAttributes&#39;: {
+#                  &#39;server&#39;: &#39;192.168.7.101&#39;,
+#                  &#39;share&#39;: &#39;/volume1/homedir/{{ userid }}&#39;
+#              } } } }
+# desktop.persistentvolumeclaim: {
+#            &#39;metadata&#39;: {
+#                &#39;name&#39;: &#39;{{ provider }}-{{ userid }}-{{ uuid }}&#39;,
+#            },
+#            &#39;spec&#39;: {
+#              &#39;volumeName&#39;: &#39;{{ provider }}-{{ userid }}-{{ uuid }}&#39;,
+#              &#39;storageClassName&#39;: &#39;nfs-csi&#39;,
+#              &#39;resources&#39;: { 
+#                &#39;requests&#39;: { 
+#                  &#39;storage&#39;: &#39;1Gi&#39;
+#                } 
+#            },
+#            &#39;accessModes&#39;: [ &#39;ReadWriteOnce&#39; ] } }
+#
+
+#
+# only if you need to append a path to mounthomevolume
+# the defaut value is &#39;&#39;
+# it can be appendpathtomounthomevolume: &#39;..&#39;
+# the path is always normalized 
+# source code
+# user_homedirectory = os.path.join( self.get_user_homedirectory(authinfo, userinfo), oc.od.settings.desktop.get(&#39;appendpathtomounthomevolume&#39;,&#39;&#39;) )
+# user_homedirectory = os.path.normpath( user_homedirectory )
+desktop.appendpathtomounthomevolume: &#39;&#39;
+#
+
+
+#
+# Cache home directory entries
+# 
+# To reduce I/O to the storage backend, or to prevent abcdesktop to rewrite data in &#39;.config&#39; user directory
+# you can defined entries in the desktop.directorytomemoryemptydir option.
+# 
+# The volumes are an an emptyDir (a temporary directory that shares a pod&#39;s lifetime) of Memory with a SizeLimit to 8Gi, by default.
+# desktop.directorytomemoryemptydir: [ &#39;.cache&#39;, &#39;.config&#39; ]
+# desktop.directorytomemory: { &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Gi&#39; } }
+# Mounts:
+#  /home/fry/.cache from cache (rw)
+#  /home/fry/.config from config (rw)
+#   
+# Volumes:
+#   cache:
+#     Type:       EmptyDir (a temporary directory that shares a pod&#39;s lifetime)
+#     Medium:     Memory
+#     SizeLimit:  8Gi
+#   config:
+#     Type:       EmptyDir (a temporary directory that shares a pod&#39;s lifetime)
+#     Medium:     Memory
+#     SizeLimit:  8Gi
+#
+# the default value is desktop.directorytomemoryemptydir: []
+# 
+
+#
+# desktop.nodeselector
+# This option permits to assign user pods to nodes
+#
+# - dict : 
+# description: It specifies a map of key-value pairs. 
+# For the pod to be eligible to run on a node, the node must have each of the indicated key-value pairs as labels  (it can have additional labels as well). 
+# The most common usage is one key-value pair.
+# On the cluster set label to node 
+# kubectl label node YOURNODE abcdesktoprole=worker
+# for example 
+# desktop.nodeselector : { &#39;abcdesktoprole&#39;: &#39;worker&#39; }
+desktop.nodeselector: {}
+
+#
+# ClusterRole must be bind to pyos-service account to permit list cluster nodes
+# ClusterRole is defined on https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/rbac-cluster.yaml
+# use ClusterRoleBinding and ClusterRole
+# if pyos-service account does NOT have ClusterRole image pulling is not guarantee
+#
+# the default service account role is RoleBinding 
+# set at https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/rbac-role.yaml
+#
+
+
+#
+# /composer/overwrite_environment_variable_for_application.sh
+# This script is hosted by the pod in the graphical container.
+# overwrite_environment_variable_for_application.sh must return a list of dict 
+# Then a application starts ( it can be &#39;ephemeral_container&#39; or &#39;pod_application&#39; ), 
+# if desktop.overwrite_environment_variable_for_application is set to a string, 
+# then pyos execute the script and expect for a list of dict ( json formatted )
+#  ./overwrite_environment_variable_for_application.sh
+# [ { &quot;SAMPLE_ENV_VAR_NAME&quot; : &quot;samplevalue&quot; } ]
+# It adds or overwrite the variables to the env var list
+# The defautl value for desktop.overwrite_environment_variable_for_application is None
+#
+# You need to enable this to share the same nvidia GPU UUID from the pods to ephemeral container  
+# 
+# desktop.overwrite_environment_variable_for_application : &quot;/composer/overwrite_environment_variable_for_application.sh&quot;
+
+# Add default environment vars 
+# desktop.envlocal is a dictionary. 
+# desktop.envlocal contains a (key,value) added by default as environment variables to oc.user.
+# Only static variables are defined here.
+# Dynamics values are set by python code 
+# 
+desktop.envlocal: { &#39;WEBSOCKIFY_HEARTBEAT&#39;:&#39;30&#39;, &#39;LIBOVERLAY_SCROLLBAR&#39;:&#39;0&#39;, &#39;X11LISTEN&#39;:&#39;tcp&#39;, &#39;XDG_RUNTIME_DIR&#39;: &#39;/tmp/runtime&#39;, &#39;DISABLE_RTKIT&#39;: &#39;y&#39;, &#39;ABCDESKTOP_FORCE_OVERWRITE_PLASMA_CONFIG&#39;: &#39;true&#39; }
+
+# 
+# to update session timeout 
+# change WEBSOCKIFY_HEARTBEAT 
+# use &#39;WEBSOCKIFY_HEARTBEAT&#39;:&#39;30&#39; 
+# the new WEBSOCKIFY_HEARTBEAT the value is in second
+# if you can&#39;t update the proxy-read-timeout and proxy-send-timeout
+# read https://github.com/abcdesktopio/oc.pyos/issues/2 to get more details
+# desktop.envlocal: { &#39;LIBOVERLAY_SCROLLBAR&#39;:&#39;0&#39;, &#39;UBUNTU_MENUPROXY&#39;:&#39;0&#39;, &#39;X11LISTEN&#39;:&#39;tcp&#39;, &#39;WEBSOCKIFY_HEARTBEAT&#39;:&#39;30&#39; }
+
+# 
+# for demo or kiosk mode
+# remove all files in user&#39;s home directory
+# add [&#39;lifecycle&#39;] = {   &#39;preStop&#39;: { &#39;exec&#39;: { &#39;command&#39;: [ &quot;/bin/bash&quot;, &quot;-c&quot;, &quot;rm -rf ~/{*,.*}&quot; ] } } 
+# to the graphical container
+desktop.removehomedirectory : False
+
+# remove persistent volume default value 
+desktop.removepersistentvolume: False
+
+# remove persistent volume claim default value 
+desktop.removepersistentvolumeclaim: False
+
+
+#
+# desktop default generic user like guest
+#
+# if auth manager can&#39;t get uid number or gid number
+# This is a default posix account 
+# when anonymous user is selected or if the OpenID provider doesn&#39;t provide this information
+#
+# balloon is the default generic user name.
+desktop.username : &#39;balloon&#39;
+# default user id of desktop.username
+desktop.userid : 4096
+# default group id of desktop.username
+desktop.groupid : 4096
+# default home directory of desktop.username
+desktop.userhomedirectory : &#39;/home/balloon&#39;
+# default password if provider is implicit or external
+desktop.userpasswd : &#39;lmdpocpetit&#39;
+# END OF DESKTOP OPTIONS
+
+
+
+# 
+# default dock config
+# dock option describes which default application are show by default
+# dock option is a dictionary
+# &#39;terminal&#39;    :  Terminal application
+# terminal&#39;: {
+#    &#39;args&#39;: &#39;&#39;,
+#    &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] },
+#    &#39;name&#39;: u&#39;TerminalBuiltin&#39;,
+#    &#39;keyword&#39;: u&#39;terminal,shell,bash,builtin,pantheon&#39;,
+#    &#39;launch&#39;: u&#39;qterminal.qterminal&#39;,
+#    &#39;displayname&#39;: u&#39;Terminal Builtin&#39;,
+#    &#39;execmode&#39;: u&#39;builtin&#39;,
+#    &#39;cat&#39;: u&#39;utilities,development&#39;,
+#    &#39;id&#39;: u&#39;terminalbuiltin.d&#39;,
+#    &#39;hideindock&#39;: True,
+#    &#39;icon&#39;: u&#39;pantheon-terminal-builtin-icons.svg&#39;
+#  },
+#
+# &#39;webshell&#39;    :  HTML 5, terminal application based on xterm.js
+# The values are parsed by javascript front  
+# 
+dock : {  
+&#39;webshell&#39;: { 
+    &#39;name&#39;: u&#39;WebShell&#39;,
+    &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] },
+    &#39;keyword&#39;: u&#39;terminal,shell,webshell,bash,cmd&#39;,
+    &#39;showinview&#39;: u&#39;dock&#39;,
+    &#39;launch&#39;: u&#39;frontendjs.webshell&#39;,
+    &#39;displayname&#39;: u&#39;Web Shell&#39;,
+    &#39;execmode&#39;: u&#39;frontendjs&#39;,
+    &#39;cat&#39;: u&#39;utilities,development&#39;,
+    &#39;id&#39;: u&#39;webshell.d&#39;,
+    &#39;icon&#39;: u&#39;webshell.svg&#39; } }
+
+
+# FRONT START OPTIONS 
+
+# welcomeinfo
+# Show a welcome message to front for maintenance or whatever 
+# welcomeinfo: { 
+#  &#39;welcome&#39;: [ 
+#    { &#39;notbefore&#39;: &#39;04 Dec 2023 00:12:00 GMT&#39;, 
+#      &#39;notafter&#39;:  &#39;08 Dec 2023 00:12:00 GMT&#39;, 
+#      &#39;title&#39;: &#39;Platform scheduled maintenance&#39;, 
+#      &#39;information&#39;: &#39;Scheduled service maintenance from 04 Dec 2023 00:12:00 GMT to 08 Dec 2023 00:12:00 GMT.&#39; 
+#    } ] }
+
+welcomeinfo: {
+&#39;welcome&#39;: [
+    { &#39;notbefore&#39;: &#39;04 Dec 2023 00:12:00 GMT&#39;,
+    &#39;notafter&#39;:  &#39;08 Dec 2050 00:12:00 GMT&#39;,
+    &#39;script&#39; : {
+        &#39;async&#39;: True,
+        &#39;src&#39;: &#39;https://www.googletagmanager.com/gtag/js?id=G-VS25TGNTRZ&#39;
+    }
+    },
+    { &#39;notbefore&#39;: &#39;01 Dec 2023 00:00:00 GMT&#39;,
+    &#39;notafter&#39;:  &#39;01 Dec 2050 00:12:00 GMT&#39;,
+    &#39;script&#39;: {
+        &#39;data&#39;: &#39;window.dataLayer = window.dataLayer || []; \
+                function gtag() { dataLayer.push(arguments); }\
+                gtag(\&#39;js\&#39;, new Date());\
+                gtag(\&#39;config\&#39;, \&#39;G-VS25TGNTRZ\&#39;); &#39;
+    }
+    },
+    { &#39;notbefore&#39;: &#39;01 Dec 2023 00:12:00 GMT&#39;,
+    &#39;notafter&#39;:  &#39;01 Dec 2050 00:12:00 GMT&#39;,
+    &#39;title&#39;: &#39;Information&#39;,
+    &#39;information&#39;: &#39;The desktops are removed after 15 minutes of use&#39;
+    } ] }
+
+
+
+
+# front zoom value 
+# set &lt;number&gt; values
+# default is 1 render element at its normal size.
+# use document.body.style.zoom non-standard zoom CSS property can be used to control the magnification level of an element.
+# zoom has not been implemented by Firefox
+# desktop.zoom: 1.1;
+# desktop.zoom: 0.7;
+desktop.zoom : 1
+
+# front.menuconfig is a dictionary to show or hide menu entries 
+# at the to rignt corner 
+# in front js
+# &#39;grabmouse&#39;: False,
+front.menuconfig  : { &#39;settings&#39;: True, &#39;appstore&#39;: True, &#39;screenshot&#39;:True, &#39;download&#39;: True, &#39;logout&#39;: True, &#39;disconnect&#39;: True }
+
+# show a notification when image takes time to create 
+# like pulling, pulled, 
+# this does not include the top bar status, but only notifications popup 
+front.imagenotification : { &#39;ephemeral_container&#39; : False, &#39;pod_application&#39; : False }
+
+#
+# desktop.defaultbackgroundcolors
+# list of string color 
+# example [ &#39;#6EC6F0&#39;, &#39;#333333&#39; ]
+# The desktop.defaultbackgroundcolors allow you to change the desktop default background color.
+# The default value is a list of string 
+# [ &#39;#6EC6F0&#39;, &#39;#333333&#39;, &#39;#666666&#39;, &#39;#CD3C14&#39;, &#39;#4BB4E6&#39;, &#39;#50BE87&#39;, &#39;#A885D8&#39;, &#39;#FFB4E6&#39; ]
+# The desktop.defaultbackgroundcolors length can contain up to 8 entries. 
+desktop.defaultbackgroundcolors : [ &#39;#6EC6F0&#39;, &#39;#333333&#39;, &#39;#666666&#39;, &#39;#CD3C14&#39;, &#39;#4BB4E6&#39;, &#39;#50BE87&#39;, &#39;#A885D8&#39;, &#39;#FFB4E6&#39; ]
+
+# tips info
+# display a custom network information page
+tipsinfo : { &#39;networkmap&#39;: False }
+
+# FRONT END OPTIONS 
+
+
+
+#
+# GEOLOCATION Geolocation
+# params used for https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+# An optional object including the following parameters:
+# 
+# maximumAge A positive long value indicating the maximum age in milliseconds of a possible cached position that is acceptable to return. If set to 0, it means that the device cannot use a cached position and must attempt to retrieve the real current position. If set to Infinity the device must return a cached position regardless of its age. Default: 0.
+# timeout A positive long value representing the maximum length of time (in milliseconds) the device is allowed to take in order to return a position. The default value is Infinity, meaning that getCurrentPosition() won&#39;t return until the position is available.
+# enableHighAccuracy A boolean value that indicates the application would like to receive the best possible results. If true and if the device is able to provide a more accurate position, it will do so. Note that this can result in slower response times or increased power consumption (with a GPS chip on a mobile device for example). On the other hand, if false, the device can take the liberty to save resources by responding more quickly and/or using less power. Default: false.
+# geolocation : { &#39;enableHighAccuracy&#39;: True, &#39;timeout&#39;: 5000, &#39;maximumAge&#39;: 0 }
+# GEOLOCATION END OPTIONS
+
+#
+# LOGGING SECTION
+# The logging configuration is a dictionnary object. 
+# The logging configuration describes where and how log message information have to been send.
+# The syslog and graylog protocol messaging are supported too.
+# The default features for each handlers are :
+# handler Features
+# stdout log message using a StreamHandler to the stream: ext://sys.stdout formatted as standard
+# stderr log message using a StreamHandler to the stream: ext://sys.stderr formatted as standard
+# trace  log message using a RotatingFileHandler to the file logs/trace.log formatted as standard 
+# cherrypy_access log message using a RotatingFileHandler to the file logs/access.log formatted as access
+# 
+# Sub modules used by od.py can log information too.
+# 
+# Sub module Default Values
+# docker.utils.config    { &#39;level&#39;: &#39;INFO&#39; },
+# urllib3.connectionpool { &#39;level&#39;: &#39;ERROR&#39;},
+#         
+# logging configuration 
+# come from https://docs.python.org/3.8/library/logging.config.html
+# you need to double %% to escape %
+# 
+# graylog https://github.com/severb/graypy
+# use handler class name as
+# graypy.GELFUDPHandler - UDP log forwarding
+# graypy.GELFTCPHandler - TCP log forwarding
+# graypy.GELFTLSHandler - TCP log forwarding with TLS support
+# graypy.GELFHTTPHandler - HTTP log forwarding
+# graypy.GELFRabbitHandler - RabbitMQ log forwarding
+#
+# type socket.SOCK_DGRAM and socket.SOCK_STREAM
+# socket.SOCK_STREAM &lt;SocketKind.SOCK_STREAM: 1&gt;
+# socket.SOCK_DGRAM &lt;SocketKind.SOCK_DGRAM: 2&gt;
+#
+# Add entry in &#39;handlers&#39; send log to syslog or graylog
+# in &#39;handlers&#39;: {
+#      &#39;gelftcp&#39;: {
+#        &#39;class&#39;: &#39;graypy.GELFTCPHandler&#39;,
+#        &#39;filters&#39;: [ &#39;odcontext&#39; ],
+#        &#39;level&#39;: &#39;INFO&#39;,
+#        &#39;port&#39;: &#39;12201&#39;,
+#        &#39;host&#39;: &#39;192.168.1.6&#39;
+#      },
+#      &#39;syslog&#39;: {
+#        &#39;class&#39;: &#39;logging.handlers.SysLogHandler&#39;,
+#        &#39;filters&#39;: [ &#39;odcontext&#39; ],
+#        &#39;level&#39;: &#39;INFO&#39;,
+#        &#39;formatter&#39;: &#39;syslog&#39;,
+#        &#39;socktype&#39;: socket.SOCK_STREAM,
+#        &#39;address&#39;: [ &#39;192.168.1.7&#39;, 5140 ]
+#      }, 
+#      ... }
+
+logging: {
+    &quot;version&quot;: 1,
+    &quot;disable_existing_loggers&quot;: False,
+    &#39;formatters&#39;: {
+    &#39;access&#39;: {
+        &#39;format&#39;: &#39;%%(message)s - user: %%(userid)s&#39;,
+        &#39;datefmt&#39;: &#39;%%Y-%%m-%%d %%H:%%M:%%S&#39;
+    },
+    &#39;standard&#39;: {
+        &#39;format&#39;: &#39;%%(asctime)s %%(nodename)s %%(thread)d %%(module)s [%%(levelname)-7s] %%(name)s.%%(funcName)s:%%(userid)s %%(message)s&#39;,
+        &#39;datefmt&#39;: &#39;%%Y-%%m-%%d %%H:%%M:%%S&#39;
+    },
+    &#39;syslog&#39;: {
+        &#39;format&#39;: &#39;%%(asctime)s %%(nodename)s %%(thread)s %%(levelname)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s&#39;,
+        &#39;datefmt&#39;: &#39;%%Y-%%m-%%d %%H:%%M:%%S&#39;
+    },
+    &#39;graylog&#39;: {
+        &#39;format&#39;: &#39;%%(levelname)s %%(nodename)s %%(thread)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s&#39;
+    }
+    },
+    &#39;filters&#39;: {
+    &#39;odcontext&#39;: {
+        &#39;()&#39;: &#39;oc.logging.OdContextFilter&#39;
+    }
+    },
+    &#39;handlers&#39;: {
+    &#39;stdout&#39;: {
+        &#39;class&#39;: &#39;logging.StreamHandler&#39;,
+        &#39;filters&#39;: [ &#39;odcontext&#39; ],
+        &#39;level&#39;: &#39;DEBUG&#39;,
+        &#39;formatter&#39;: &#39;standard&#39;,
+        &#39;stream&#39;: &#39;ext://sys.stdout&#39;
+    },
+    &#39;stderr&#39;: {
+        &#39;class&#39;: &#39;logging.StreamHandler&#39;,
+        &#39;filters&#39;: [ &#39;odcontext&#39; ],
+        &#39;level&#39;: &#39;ERROR&#39;,
+        &#39;formatter&#39;: &#39;standard&#39;,
+        &#39;stream&#39;: &#39;ext://sys.stderr&#39;
+    },
+    &#39;trace&#39;: {
+        &#39;class&#39;: &#39;logging.handlers.RotatingFileHandler&#39;,
+        &#39;level&#39;: &#39;DEBUG&#39;,
+        &#39;filters&#39;: [ &#39;odcontext&#39; ],
+        &#39;formatter&#39;: &#39;standard&#39;,
+        &#39;filename&#39;: &#39;logs/trace.log&#39;,
+        &#39;maxBytes&#39;: 10485760,
+        &#39;backupCount&#39;: 20,
+        &#39;encoding&#39;: &#39;utf8&#39;,
+        &#39;mode&#39;: &#39;w&#39;
+    },
+    &#39;cherrypy_access&#39;: {
+        &#39;class&#39;: &#39;logging.handlers.RotatingFileHandler&#39;,
+        &#39;filters&#39;: [ &#39;odcontext&#39; ],
+        &#39;formatter&#39;: &#39;access&#39;,
+        &#39;filename&#39;: &#39;logs/access.log&#39;,
+        &#39;maxBytes&#39;: 10485760,
+        &#39;backupCount&#39;: 20,
+        &#39;encoding&#39;: &#39;utf8&#39;
+    }
+    },
+    &#39;loggers&#39;: {
+    # dedicated python modules 
+    &#39;urllib3.connectionpool&#39;: {
+        &#39;level&#39;: &#39;ERROR&#39;,
+    },
+    &#39;kubernetes&#39;: {
+        &#39;handlers&#39;: [ &#39;stderr&#39;, &#39;stdout&#39;,  &#39;trace&#39; ],
+        &#39;level&#39;: &#39;ERROR&#39;,
+        &#39;propagate&#39;: False
+    },
+    &#39;cherrypy.access&#39;: {
+        &#39;handlers&#39;: [ &#39;cherrypy_access&#39; ],
+        &#39;level&#39;: &#39;INFO&#39;,
+        &#39;propagate&#39;: False
+    },
+    &#39;requests_oauthlib&#39; : {
+        &#39;handlers&#39;: [ &#39;stderr&#39;, &#39;stdout&#39;,  &#39;trace&#39; ],
+        &#39;level&#39;: &#39;ERROR&#39;,
+        &#39;propagate&#39;: False
+    },
+    &#39;cherrypy&#39; : {
+        &#39;handlers&#39;: [ &#39;stderr&#39;, &#39;stdout&#39;,  &#39;trace&#39; ],
+        &#39;level&#39;: &#39;ERROR&#39;,
+    }
+    },
+    &#39;root&#39;: {
+    # put the level to &#39;DEBUG&#39;, each handler fix the level value
+    &#39;level&#39;: &#39;DEBUG&#39;,
+    &#39;handlers&#39;: [ &#39;stderr&#39;, &#39;stdout&#39;,  &#39;trace&#39; ]
+    }}
+</code></pre></div>
+</details>
+<p>Great ! Now you have your own abcdesktop demo platform running on GCP !</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="../../../js/tabbed-toc.js"></script>
+      
+        <script src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+      
+        <script src="../../../js/drawio-reload.js"></script>
+      
+    
+  </body>
+</html>
