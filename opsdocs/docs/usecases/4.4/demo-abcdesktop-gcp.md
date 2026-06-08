@@ -1,4 +1,4 @@
-# Reproduce abcdesktop demo platform on GCP
+# deploy the abcdesktop demo platform on GCP
 
 ## Requirements
 
@@ -7,6 +7,8 @@
 - `gcloud` command line interface [gcloud cli](https://docs.cloud.google.com/sdk/docs/install-sdk/)
 
 ## Create a Kubernetes cluster 
+
+This documentation describes how to create the `https://demo.gcp.abcdesktop.com` service on `Google Cloud plateform`
 
 ### Prerequisites
 
