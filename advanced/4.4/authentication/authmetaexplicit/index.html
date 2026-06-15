@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#authentification-metaexplicit-for-microsoft-active-directory-services-with-trust-relationships" class="md-skip">
+        <a href="#authentication-metaexplicit-for-microsoft-active-directory-with-trust-relationships" class="md-skip">
           Skip to content
         </a>
       
@@ -2174,35 +2174,35 @@
         <li class="md-nav__item">
   <a href="#authmanagers-metaexplicit-object" class="md-nav__link">
     <span class="md-ellipsis">
-      authmanagers metaexplicit object
+      authmanagers metaexplicit Object
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="authmanagers metaexplicit object">
+    <nav class="md-nav" aria-label="authmanagers metaexplicit Object">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#metadirectory-provider-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      metadirectory provider configuration
+      metadirectory Provider Configuration
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#complete-example-with-a-metadirectory-provider-and-active-directory-user-domain" class="md-nav__link">
+  <a href="#complete-example-with-a-metadirectory-provider-and-active-directory-user-domains" class="md-nav__link">
     <span class="md-ellipsis">
-      Complete example with a metadirectory provider and active directory user domain
+      Complete Example with a metadirectory Provider and Active Directory User Domains
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#metadirectorysupport" class="md-nav__link">
+  <a href="#metadirectory-support" class="md-nav__link">
     <span class="md-ellipsis">
-      metadirectorysupport
+      metadirectory Support
     </span>
   </a>
   
@@ -3642,35 +3642,35 @@
         <li class="md-nav__item">
   <a href="#authmanagers-metaexplicit-object" class="md-nav__link">
     <span class="md-ellipsis">
-      authmanagers metaexplicit object
+      authmanagers metaexplicit Object
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="authmanagers metaexplicit object">
+    <nav class="md-nav" aria-label="authmanagers metaexplicit Object">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#metadirectory-provider-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      metadirectory provider configuration
+      metadirectory Provider Configuration
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#complete-example-with-a-metadirectory-provider-and-active-directory-user-domain" class="md-nav__link">
+  <a href="#complete-example-with-a-metadirectory-provider-and-active-directory-user-domains" class="md-nav__link">
     <span class="md-ellipsis">
-      Complete example with a metadirectory provider and active directory user domain
+      Complete Example with a metadirectory Provider and Active Directory User Domains
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#metadirectorysupport" class="md-nav__link">
+  <a href="#metadirectory-support" class="md-nav__link">
     <span class="md-ellipsis">
-      metadirectorysupport
+      metadirectory Support
     </span>
   </a>
   
@@ -3705,10 +3705,10 @@
   
 
 
-<h1 id="authentification-metaexplicit-for-microsoft-active-directory-services-with-trust-relationships">Authentification <code>metaexplicit</code> for Microsoft Active Directory services with trust relationships</h1>
-<h2 id="authmanagers-metaexplicit-object">authmanagers <code>metaexplicit</code> object</h2>
-<p>The <code>metaexplicit</code> authentification manager contains only one provider.
-The provider must be defined as <code>metadirectory</code>.</p>
+<h1 id="authentication-metaexplicit-for-microsoft-active-directory-with-trust-relationships">Authentication <code>metaexplicit</code> for Microsoft Active Directory with Trust Relationships</h1>
+<h2 id="authmanagers-metaexplicit-object">authmanagers <code>metaexplicit</code> Object</h2>
+<p>The <code>metaexplicit</code> authentication manager contains exactly one provider.
+The provider must be defined with the name <code>metadirectory</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="err">&#39;me</span><span class="kc">tae</span><span class="err">xplici</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="err">&#39;providers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="err">&#39;me</span><span class="kc">ta</span><span class="err">direc</span><span class="kc">t</span><span class="err">ory&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
@@ -3733,11 +3733,11 @@ The provider must be defined as <code>metadirectory</code>.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="metadirectory-provider-configuration"><code>metadirectory</code> provider configuration</h3>
-<p>The <code>metadirectory</code> provider is defined as a dictionnary object and must contain key name.
-The key name must be set as the name of a dictionaryin the <code>config_ref</code>.</p>
-<p>A <code>metadirectory</code> provider must contain a ldap attribut to describe the original DOMAIN and sAMaccountName.
-The ldap attribut is defined as <code>join_key_ldapattribut</code>.</p>
+<h3 id="metadirectory-provider-configuration"><code>metadirectory</code> Provider Configuration</h3>
+<p>The <code>metadirectory</code> provider is defined as a dictionary object and must contain a key name.
+The key name must match the name of the dictionary referenced by <code>config_ref</code>.</p>
+<p>A <code>metadirectory</code> provider requires an LDAP attribute to identify the original domain and <code>sAMAccountName</code>.
+This LDAP attribute is specified using <code>join_key_ldapattribut</code>.</p>
 <div class="highlight"><pre><span></span><code>coporateconfig : { &#39;metadirectory&#39;: {  
                     &#39;domain&#39;        : &#39;CORPORATE&#39;,
                     &#39;ldap_basedn&#39;   : &#39;DC=foo,DC=corporate,DC=local&#39;,
@@ -3752,19 +3752,19 @@ The ldap attribut is defined as <code>join_key_ldapattribut</code>.</p>
                     &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;svcaccount&#39;, &#39;password&#39;:&#39;superpass&#39; }
                  } } 
 </code></pre></div>
-<p>Pyos binds the metadirectory ldap server with serviceaccount credentials
-Pyos read the ldap attribut <code>description</code> value to get the user's trusted domain.</p>
-<p>For example :
+<p>Pyos binds to the metadirectory LDAP server using the service account credentials, then reads the LDAP attribute <code>description</code> to determine the user's trusted domain.</p>
+<p>For example:
 <div class="highlight"><pre><span></span><code><span class="na">description</span><span class="p">:</span><span class="w"> </span><span class="s">AD\john</span>
 </code></pre></div></p>
-<p>Then pyos look for provider <code>AD</code> configuration and process authentification on domain <code>AD</code></p>
-<p>The <code>metadirectory</code> accounts can be disabled. 
-The ldap attribut <code>userAccountControl</code> is not read on metaDirectory provider. The account can have the bit <code>UF_ACCOUNT_DISABLE</code> set or not.</p>
-<p>A service account must defined for a <code>metadirectory</code> provider. The service account is used to bind the metadirectory.</p>
-<h3 id="complete-example-with-a-metadirectory-provider-and-active-directory-user-domain">Complete example with a <code>metadirectory</code> provider and active directory user domain</h3>
-<p>The user's domain mane is AD.
-The meta domain name is CORPORATE.
-The meta domain use a dedicated attribut <code>join_key_ldapattribut</code></p>
+<p>Pyos then looks up the <code>AD</code> provider configuration and performs authentication against the <code>AD</code> domain.</p>
+<p>Accounts in the <code>metadirectory</code> can be in any state.
+The LDAP attribute <code>userAccountControl</code> is not read for metadirectory providers. The <code>UF_ACCOUNT_DISABLE</code> bit is not evaluated.</p>
+<p>A service account must be defined for every <code>metadirectory</code> provider. The service account is used to bind to the metadirectory.</p>
+<h3 id="complete-example-with-a-metadirectory-provider-and-active-directory-user-domains">Complete Example with a <code>metadirectory</code> Provider and Active Directory User Domains</h3>
+<p>In this example:
+- The user's domain name is <code>AD</code>.
+- The meta domain name is <code>CORPORATE</code>.
+- The meta domain uses a dedicated attribute specified by <code>join_key_ldapattribut</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="err">au</span><span class="kc">t</span><span class="err">hma</span><span class="kc">na</span><span class="err">gers</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="err">#</span>
 <span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">ne</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">me</span><span class="kc">ta</span><span class="w"> </span><span class="err">explici</span><span class="kc">t</span><span class="w"> </span><span class="err">ma</span><span class="kc">na</span><span class="err">ger</span>
@@ -3832,14 +3832,15 @@ The meta domain use a dedicated attribut <code>join_key_ldapattribut</code></p>
 <span class="w">                      </span><span class="err">&#39;servers&#39;</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ldap</span><span class="p">:</span><span class="c1">//192.168.10.12&#39; ],</span>
 <span class="w">                      </span><span class="err">&#39;kerberos_realm&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;AD.SUPER.LOCAL&#39;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-<h3 id="metadirectorysupport"><code>metadirectory</code>support</h3>
-<p><code>metadirectory</code> support the foreign security principal (FSP) to query security principal in the trusted external forest. These objects are created in the foreign security principals container of the domain.
-<code>metadirectory</code> support <code>isMemberOf</code> on foreign security principal. </p>
-<p>The user's <code>SID</code> of domain  'AD' or 'ANOTHER' is NOT read.
-A new ldap bind is done using the trusted domain on metadirectory provider and not unsing the service account.</p>
-<p>The ldap query is build :
-( "search_base={q.basedn}, search_scope={q.scope}, search_filter={filter}" )</p>
-<p>To get more information about foreign security principal (FSP), read :</p>
+<h3 id="metadirectory-support"><code>metadirectory</code> Support</h3>
+<p>The <code>metadirectory</code> provider supports Foreign Security Principals (FSPs) to query security principals in trusted external forests. These objects are created in the Foreign Security Principals container of the domain.
+The <code>metadirectory</code> provider supports <code>isMemberOf</code> lookups on foreign security principals.</p>
+<p>The user's SID from the <code>AD</code> or <code>ANOTHER</code> domain is NOT read directly.
+A new LDAP bind is performed against the trusted domain on the metadirectory provider rather than using the service account.</p>
+<p>The LDAP query is constructed as:
+<div class="highlight"><pre><span></span><code>( &quot;search_base={q.basedn}, search_scope={q.scope}, search_filter={filter}&quot; )
+</code></pre></div></p>
+<p>For more information about Foreign Security Principals, refer to:</p>
 <ul>
 <li>
 <p><a href="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/5aa09c90-c5db-4e97-98d0-b7cdd6bc1bfe">Foreign Security Principals Container</a></p>

@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#make-users-home-direcotry-persistent-using-hostpath" class="md-skip">
+        <a href="#make-users-home-directory-persistent-using-hostpath" class="md-skip">
           Skip to content
         </a>
       
@@ -2573,9 +2573,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-if-users-homedir-is-persistent" class="md-nav__link">
+  <a href="#check-if-users-home-directory-is-persistent" class="md-nav__link">
     <span class="md-ellipsis">
-      Check if user's homedir is persistent
+      Check if user's home directory is persistent
     </span>
   </a>
   
@@ -3641,9 +3641,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-if-users-homedir-is-persistent" class="md-nav__link">
+  <a href="#check-if-users-home-directory-is-persistent" class="md-nav__link">
     <span class="md-ellipsis">
-      Check if user's homedir is persistent
+      Check if user's home directory is persistent
     </span>
   </a>
   
@@ -3673,14 +3673,14 @@
   
 
 
-<h1 id="make-users-home-direcotry-persistent-using-hostpath">Make user's home direcotry persistent using hostPath</h1>
+<h1 id="make-users-home-directory-persistent-using-hostpath">Make user's home directory persistent using hostPath</h1>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li>a Kuberenetes cluster with abcdesktop installed</li>
+<li>a Kubernetes cluster with abcdesktop installed</li>
 </ul>
 <h2 id="define-hostpath-folder-and-update-odconfig">Define hostPath folder and update od.config</h2>
-<p>On your node, create a folder that will be the mount point for your user's home directories. For example <code>mnt/abcdesktop_volumes/</code>.<br />
-Then you have to edit your <code>od.config</code> file. First set <code>desktop.homedirectorytype</code> to <code>'hostPath'</code> and then add a <code>desktop.hostPathRoot</code> whose value will be the path to the mount point you previously created.</p>
+<p>On your node, create a directory that will serve as the mount point for user home directories — for example, <code>/mnt/abcdesktop_volumes/</code>.
+Then edit your <code>od.config</code> file. First, set <code>desktop.homedirectorytype</code> to <code>'hostPath'</code> and add a <code>desktop.hostPathRoot</code> entry whose value is the path to the mount point you created.</p>
 <div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;hostPath&#39;
 
 #
@@ -3688,34 +3688,34 @@ Then you have to edit your <code>od.config</code> file. First set <code>desktop.
 # desktop.hostPathRoot is read only if desktop.homedirectorytype: &#39;hostPath&#39;
 desktop.hostPathRoot: &#39;/mnt/abcdesktop_volumes&#39;
 </code></pre></div>
-<p>Kubernetes will automatically create a folder for each of your users if it does not already exists.</p>
-<p>Finally, update the configmap and restart pyos by running the commands below </p>
+<p>Kubernetes will automatically create a directory for each user if one does not already exist.</p>
+<p>Finally, update the ConfigMap and restart pyos by running the following commands:</p>
 <div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deploy pyos-od -n abcdesktop
 </code></pre></div>
-<h2 id="check-if-users-homedir-is-persistent">Check if user's homedir is persistent</h2>
-<p>You can now connect to your abcdesktop and login as a user.</p>
-<p>Once connected you can run the following command to see if the user's homedir system exists</p>
+<h2 id="check-if-users-home-directory-is-persistent">Check if user's home directory is persistent</h2>
+<p>You can now connect to abcdesktop and log in as a user.</p>
+<p>Once connected, run the following command to verify that the user's home directory is correctly configured:</p>
 <div class="highlight"><pre><span></span><code>kubectl describe pod &lt;YOUR-POD-NAME&gt; -n abcdesktop 
 </code></pre></div>
-<p>You should see someting like this in the volumes section</p>
+<p>You should see something like the following in the volumes section:</p>
 <div class="highlight"><pre><span></span><code>Volumes:
   home:
     Type:          HostPath (bare host directory volume)
     Path:          /mnt/abcdesktop_volumes/fry
     HostPathType:  DirectoryOrCreate
 </code></pre></div>
-<p>You can also check on your host if a directory has been created</p>
+<p>You can also verify on the host node that the directory has been created:</p>
 <div class="highlight"><pre><span></span><code>ls -la /mnt/abcdesktop_volumes/
 total 20
 drwxr-xr-x  5 root root  4096 Apr  7 16:44 .
 drwxr-xr-x 14 root root  4096 Apr  7 11:39 ..
 drwxr-x--- 15 2042 12042 4096 Apr  8 11:21 fry
 </code></pre></div>
-<p>By the way, the id of that folder's owner should be your user's id.</p>
-<p>Now you can create a file in the user's homedir </p>
+<p>The numeric UID of the directory owner should match your user's UID.</p>
+<p>Now create a file in the user's home directory:</p>
 <p><img alt="create file on user homedir" src="../img/nfs_create_file_user_homedir.png" /></p>
-<p>You can check if the file is present on your host.</p>
+<p>Verify that the file is present on the host node:</p>
 <div class="highlight"><pre><span></span><code>ls -la /mnt/abcdesktop_volumes/fry
 drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Desktop
 drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Documents
@@ -3727,9 +3727,9 @@ drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Templates
 -rw-r----- 1 2042 12042    0 Mar 18 09:11 toto.txt
 drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Videos
 </code></pre></div>
-<p>Then perform a logoff to destroy your pod and recreates it, once reconnected on a new pod with the same user, check if the file you previously created is still there, it should appear.</p>
+<p>Then log off to destroy the pod and allow it to be recreated. Once reconnected on a new pod with the same user, verify that the file you previously created is still present.</p>
 <p><img alt="check peristent user homedir" src="../img/nfs_check_persistent_homedir.png" /></p>
-<p>Great ! Now you can configure home directory persistency using hostPath.</p>
+<p>Home directory persistence using hostPath is now configured.</p>
 
 
 

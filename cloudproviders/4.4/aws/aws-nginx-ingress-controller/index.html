@@ -3870,9 +3870,9 @@
 <li><code>helm</code> command line</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>In this chapter we are going to, use a <code>nginx-ingress-controller</code> to host your abcdesktop service with a public IP Address, then configure dns zone file to use your own domain name, and activate TLS to secure your service.</p>
+<p>In this chapter, we will use a <code>nginx-ingress-controller</code> to host your abcdesktop service with a public IP address, then configure the DNS zone file to use your own domain name, and enable TLS to secure your service.</p>
 <h2 id="add-tags-for-public-subnets">Add tags for public subnets</h2>
-<p>By default, when creating your VPC, the public subnets does not have the <code>kubernetes.io/role/elb=1</code> tag, but this tag is mandatory in order to expose our service using a nginx ingress controller with AWS. Actually, AWS scans your VPC, searching for the subnets with this percise tag to place the ingress controller.  </p>
+<p>By default, when creating your VPC, the public subnets do not have the <code>kubernetes.io/role/elb=1</code> tag. However, this tag is mandatory in order to expose your service using an NGINX Ingress Controller with AWS. AWS scans your VPC, searching for subnets with this precise tag to place the ingress controller.  </p>
 <p>To do so, run the following command</p>
 <div class="highlight"><pre><span></span><code>aws ec2 create-tags --resources &lt;your_public_subnets_ids&gt; --tags Key=kubernetes.io/role/elb,Value=1
 </code></pre></div>
@@ -3891,7 +3891,7 @@
 +---------------------------+--------------+
 </code></pre></div>
 <h2 id="update-http-router-service">Update http-router service</h2>
-<p>When installing abcdesktop, http-router service type is <code>NodePort</code> by default, in order to expose the service through an ingress controller you will need to change the service type from <code>NodePort</code> to <code>ClusterIP</code>.</p>
+<p>When installing abcdesktop, the <code>http-router</code> service type is <code>NodePort</code> by default. In order to expose the service through an ingress controller, you will need to change the service type from <code>NodePort</code> to <code>ClusterIP</code>.</p>
 <p>If you perform a get services command you will see the <code>NodePort</code> type</p>
 <div class="highlight"><pre><span></span><code>kubectl get svc http-router -n abcdesktop
 NAME          TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
@@ -3938,12 +3938,12 @@ http-router   ClusterIP   10.0.132.230   &lt;none&gt;        443/TCP,80/TCP   5s
 <p>Then install it on your cluster </p>
 <div class="highlight"><pre><span></span><code>helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace
 </code></pre></div>
-<p>Once the installation process completed, you can check that the service has been createed by running this command : </p>
+<p>Once installed, you can verify that the service has been created by running this command:</p>
 <div class="highlight"><pre><span></span><code>kubectl get svc ingress-nginx-controller -n ingress-nginx
 NAME                                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
 ingress-nginx-controller             LoadBalancer   172.20.87.254   &lt;pending&gt;     80:32337/TCP,443:30414/TCP   34s
 </code></pre></div>
-<p>You will see that <code>EXTERNAL-IP</code> is <code>&lt;pending&gt;</code> forever, it is totally noraml because by default the controller is considering your service as internal, to make it public you should add annotations by running the following command</p>
+<p>You will see that <code>EXTERNAL-IP</code> is <code>&lt;pending&gt;</code> for an extended period. This is completely normal because, by default, the controller treats your service as internal. To make it public, you should add annotations by running the following command:</p>
 <div class="highlight"><pre><span></span><code>kubectl annotate svc ingress-nginx-controller -n ingress-nginx service.beta.kubernetes.io/aws-load-balancer-scheme=internet-facing service.beta.kubernetes.io/aws-load-balancer-type=nlb --overwrite
 </code></pre></div>
 <p>Now you can run the previous command until you get an <code>EXTERNAL-IP</code> </p>
@@ -4004,11 +4004,11 @@ ingress-nginx-controller             LoadBalancer   172.20.87.254   k8s-ingressn
     }
 }
 </code></pre></div>
-<p>If you go to your Route 53 web console, you should see the record you juste added</p>
+<p>If you go to your Route 53 web console, you should see the record you just added</p>
 <p><img alt="aws record added" src="../img/record-added.png" /></p>
 <h2 id="configure-nginx-ingress-rules-for-backend-services">Configure NGINX Ingress Rules for Backend Services</h2>
 <p>In this step, you expose the backend applications to the outside world by telling nginx what host each service maps to. You define a rule in nginx to associate a host to a abcdesktop route backend service.</p>
-<p>Create an ingress resource for NGNIX using the abcdesktop service and save it as <code>abcdesktop_host.yaml</code>
+<p>Create an ingress resource for NGINX using the abcdesktop service and save it as <code>abcdesktop_host.yaml</code>.
 You need to update this manifest with your own FQDN, replace <code>hello.aws.pepins.net</code> by your own values.</p>
 <div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -4039,7 +4039,7 @@ spec:
 <div class="highlight"><pre><span></span><code>kubectl get ingress -n abcdesktop
 </code></pre></div>
 <p>The output looks similar to the following:</p>
-<p>Wait fee seconds while the <code>ADDRESS</code> field is empty<br />
+<p>Wait a few seconds while the <code>ADDRESS</code> field is empty
 <div class="highlight"><pre><span></span><code>NAME                 CLASS   HOSTS                           ADDRESS   PORTS   AGE
 ingress-abcdesktop   nginx   hello.aws.pepins.net                      80      24s
 </code></pre></div></p>
@@ -4059,18 +4059,18 @@ ingress-abcdesktop   nginx   hello.aws.pepins.net            k8s-ingressn-ingres
 <p>paths provides a collection of paths that map requests to backends.</p>
 </li>
 </ul>
-<p>In the example above, the ingress resource tells nginx to route each HTTP request that is using the / prefix for the <code>hello.aws.pepins.net</code> host, to the <code>route</code> backend service running on port 80. In other words, every time you make a call to http://hello.aws.pepins.net/, the request and reply are served by the echo backend service running on port 80.</p>
-<p>You can have multiple ingress controllers per cluster. The ingressClassName field in the manifest differentiates between multiple ingress controllers present in your cluster. Although you can define multiple rules for different hosts and paths in a single ingress resource.</p>
+<p>In the example above, the ingress resource instructs NGINX to route each HTTP request using the <code>/</code> prefix for the <code>hello.aws.pepins.net</code> host to the <code>route</code> backend service running on port 80. In other words, every request to <code>http://hello.aws.pepins.net/</code> is served by the <code>http-router</code> backend service on port 80.</p>
+<p>You can have multiple ingress controllers per cluster. The <code>ingressClassName</code> field in the manifest differentiates between them. You can also define multiple rules for different hosts and paths within a single ingress resource.</p>
 <p><img alt="reach your website from your new name" src="../img/http-dns-connect.png" /></p>
 <blockquote>
-<p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol.</p>
+<p>Web browser doesn't allow usage of websocket without a secure protocol. To log in, you need to use <code>https</code> protocol.</p>
 </blockquote>
 <p>As you can see, your website is <code>Not Secured</code>, we are going to add X509 SSL certificate to secure your service.</p>
 <h2 id="enable-https">Enable HTTPS</h2>
 <h3 id="install-cert-manager-add-on-on-aws-eks-marketplace">Install Cert Manager add-on on AWS EKS marketplace</h3>
 <p>Navigate to the Add-ons section of your cluster on the AWS console, then click on <code>Get more add-ons</code> and install Cert Manager.</p>
 <p><img alt="cert manager" src="../img/cert-manager.png" /></p>
-<p>Once intalled, you can inspect the Kubernetes ressources created by Cert Manager :</p>
+<p>Once installed, you can inspect the Kubernetes resources created by Cert Manager:</p>
 <div class="highlight"><pre><span></span><code>kubectl get all -n cert-manager
 </code></pre></div>
 <p>The output looks similar to the following</p>
@@ -4215,16 +4215,16 @@ strict-transport-security: max-age=31536000; includeSubDomains
 ...
 </code></pre></div>
 <h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
-<p>You can now connect to your abcdesktop desktop pulic web site using <code>https</code> protocol. </p>
+<p>You can now connect to your public abcdesktop website using <code>https</code> protocol.</p>
 <p><img alt="reach your website using https" src="../img/https-dns-connect.png" /></p>
-<p>The status is secured and we get some informations from the certificate</p>
+<p>The status is secured and we get some information from the certificate</p>
 <p><img alt="reach your website using https" src="../img/certificate-ingress-ok.png" /></p>
 <h2 id="see-real-client-ip-address-behind-ingress-controller">See real client IP address behind ingress controller</h2>
-<p>Now that your application is publically exposed, maybe you are wondering about security and traffic inside your cluster.<br />
-For example, the console module of abcdesktop should not be accessible to everyone as it is designed to be an administrator console. That is why when you install abcdesktop there is a pool of permit IPs that is specify in the od.config file.</p>
+<p>Now that your application is publicly exposed, you may be wondering about security and traffic inside your cluster.<br />
+For example, the console module of abcdesktop should not be accessible to everyone, as it is designed to be an administrator console. That is why, when you install abcdesktop, there is a pool of permitted IP addresses specified in the <code>od.config</code> file.</p>
 <div class="highlight"><pre><span></span><code>ManagerController&#39;: { &#39;permitip&#39;: [ &#39;10.0.0.0/8&#39;, &#39;172.16.0.0/12&#39;, &#39;192.168.0.0/16&#39;, &#39;fd00::/8&#39;, &#39;169.254.0.0/16&#39;, &#39;127.0.0.0/8&#39; ] }
 </code></pre></div>
-<p>By default the configuration only permit private network defined in <a href="https://datatracker.ietf.org/doc/html/rfc1918">rfc1918</a> and <a href="https://datatracker.ietf.org/doc/html/rfc4193">rfc4193</a>. So as your service is publically exposed, none of your visitors should be able to access to console. But when you try, you will actually be able to play with console normally, which is not the expected behaviour.</p>
+<p>By default, the configuration only permits private networks as defined in <a href="https://datatracker.ietf.org/doc/html/rfc1918">RFC 1918</a> and <a href="https://datatracker.ietf.org/doc/html/rfc4193">RFC 4193</a>. Because your service is publicly exposed, none of your visitors should be able to access the console. However, you may find that you can access the console normally, which is not the expected behavior.</p>
 <p><img alt="access console ok" src="../../img/access_console.png" /></p>
 <p>And when you check Pyos logs you will see why console behaves like that.</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -n abcdesktop
@@ -4252,9 +4252,9 @@ pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log
 2026-02-06 16:04:15 abcpool1-node-fa2594 139923617876792 od [INFO   ] __main__.trace_request:anonymous /healthz
 2026-02-06 16:04:25 abcpool1-node-fa2594 139923621108536 od [INFO   ] __main__.trace_request:anonymous /healthz
 </code></pre></div>
-<p>As you can see on the logs, the source IP address seen by pyos is a private IP address like <code>10.X.X.X</code> (or in the subnet you defined as internal to your cluster) which is in the pool of permit IP addresses.  </p>
-<p>That happens because the nginx ingress controller we set up earlier does not forward the client public IP address and balance the request with its own IP address in the cluster. So Router and Pyos both see the IP address of the ingress controller loadbalancer.</p>
-<p>To fix that, we have to update te configuration of our nginx ingress controller. Please paste the following lines in a <code>patch-ingress.yaml</code> file</p>
+<p>As you can see in the logs, the source IP address seen by Pyos is a private IP address such as <code>10.X.X.X</code> (within the subnet defined as internal to your cluster), which falls within the pool of permitted IP addresses.  </p>
+<p>That happens because the NGINX Ingress Controller we set up earlier does not forward the client's public IP address; instead, it balances requests using its own cluster IP address. As a result, both Router and Pyos see the IP address of the ingress controller load balancer.</p>
+<p>To fix that, we have to update the configuration of our NGINX Ingress Controller. Paste the following lines in a <code>patch-ingress.yaml</code> file:</p>
 <div class="highlight"><pre><span></span><code>controller:
   service:
     externalTrafficPolicy: &quot;Local&quot;

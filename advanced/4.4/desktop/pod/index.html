@@ -3802,7 +3802,7 @@
 <h1 id="desktop-configuration-desktoppod">Desktop configuration <code>desktop.pod</code></h1>
 <p>This chapter describes how to configure the <code>desktop.pod</code> and <code>desktop.envlocal</code> objects in the abcdesktop config file.</p>
 <h2 id="main-entries-in-the-desktoppod-dictionary">main entries in the <code>desktop.pod</code> dictionary</h2>
-<p><code>desktop.pod</code> defines how create the user's pod. The mains sections are </p>
+<p><code>desktop.pod</code> defines how to create the user's pod. The main sections are </p>
 <ul>
 <li><code>spec</code>: describes the <code>securityContext</code> and <code>shareProcessNamespace</code></li>
 <li><code>default_volumes</code> list the available volumes in the pod</li>
@@ -3988,18 +3988,17 @@
     &#39;tolerations&#39;: []
 }
 </code></pre></div>
-<p><code>spec</code> describes the specification as kubernetes pod does. </p>
+<p><code>spec</code> describes the pod specification, following the standard Kubernetes pod specification format.</p>
 <ul>
-<li><code>imagePullSecrets</code>: a list of secret dict <code>{ 'name': name_of_secret }</code> to pull images. In most cases the secret are defined to pull images on a private registry <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">pull-image-private-registry</a></li>
-<li><code>shareProcessNamespace</code>: <code>boolean</code> to share process between ephemeral containers and graphical container. When process namespace sharing is enabled, processes in a container are visible to all other containers in the same pod. <a href="https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/">share-process-namespace</a></li>
-<li><code>securityContext</code>: defines privilege and access control settings for the desktop pod. Values <code>{{ supplementalGroups }}</code> <code>{{ uidNumber }}</code> <code>{{ gidNumber }}</code> are replaced by ldap or default values during the create desktop process. <a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Configure a Security Context for a Pod or Container</a></li>
+<li><code>imagePullSecrets</code>: a list of secret references in the form <code>{ 'name': name_of_secret }</code> used to pull images. In most cases, these secrets are configured to pull images from a private registry. See <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">pull-image-private-registry</a></li>
+<li><code>shareProcessNamespace</code>: a boolean that enables process namespace sharing between ephemeral containers and the graphical container. When process namespace sharing is enabled, processes in a container are visible to all other containers in the same pod. See <a href="https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/">share-process-namespace</a></li>
+<li><code>securityContext</code>: defines privilege and access control settings for the desktop pod. The values <code>{{ supplementalGroups }}</code>, <code>{{ uidNumber }}</code>, and <code>{{ gidNumber }}</code> are substituted with LDAP-provided or default values during the desktop creation process. See <a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Configure a Security Context for a Pod or Container</a></li>
 <li><code>tolerations</code>: <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">Tolerations allow the scheduler to schedule pods with matching taints.</a></li>
 </ul>
 <h2 id="default_volumes-and-default_volumes_mount"><code>default_volumes</code> and <code>default_volumes_mount</code></h2>
-<p><code>default_volumes</code> describes volumes created for the desktop pod. All kubernetes type of volumes are supported <a href="https://kubernetes.io/docs/concepts/storage/volumes/">Types of volumes</a>
-By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customise your own volume as kubernetes does.</p>
+<p><code>default_volumes</code> describes the volumes created for the desktop pod. All Kubernetes volume types are supported. See <a href="https://kubernetes.io/docs/concepts/storage/volumes/">Types of volumes</a>. By default, abcdesktop creates <code>emptyDir</code> volumes on the <code>Memory</code> medium, but you can customize volumes using any Kubernetes-supported volume type.</p>
 <blockquote>
-<p>The volumes permit to mount the root file system of the <code>graphical</code>container in <strong>read only</strong></p>
+<p>These volumes allow the root filesystem of the <code>graphical</code> container to be mounted as <strong>read-only</strong>.</p>
 </blockquote>
 <div class="highlight"><pre><span></span><code> &#39;default_volumes&#39;: {
     &#39;shm&#39;:        { &#39;name&#39;: &#39;shm&#39;,        &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;512Mi&#39; } },
@@ -4011,7 +4010,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
     &#39;x11socket&#39;:  { &#39;name&#39;: &#39;x11socket&#39;,  &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;1Ki&#39;   } }
   },
 </code></pre></div>
-<p><code>default_volumes_mount</code> describes the mount point for the previous <code>default_volumes</code> created</p>
+<p><code>default_volumes_mount</code> describes the mount points for the volumes defined in <code>default_volumes</code>.</p>
 <div class="highlight"><pre><span></span><code>  &#39;default_volumes_mount&#39;: {
     &#39;shm&#39;:        { &#39;name&#39;: &#39;shm&#39;,        &#39;mountPath&#39;: &#39;/dev/shm&#39; },
     &#39;run&#39;:        { &#39;name&#39;: &#39;run&#39;,        &#39;mountPath&#39;: &#39;/var/run/desktop&#39; },
@@ -4023,12 +4022,12 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
   }
 </code></pre></div>
 <ul>
-<li>the <code>shm</code> volume is shared between ephemeral container applications and the graphical pod, if an application need to share memory with the X11 server. Some application require to allocate share memory.</li>
-<li>the <code>run</code> volume is dedicated volume for the graphical pod. In most cases it contains pid files.</li>
-<li>the <code>tmp</code> volume is shared between ephemeral container applications and the graphical pod</li>
-<li>the <code>log</code> volume is shared between ephemeral container applications and the containers pod. In most cases it contains log files.</li>
-<li>the <code>rundbus</code> and <code>runuser</code> are defined for dbus sharing</li>
-<li>the <code>x11socket</code> is a dedicated volume for the X11 unix socket</li>
+<li>The <code>shm</code> volume is shared between ephemeral container applications and the graphical pod. Applications that require shared memory access with the X11 server use this volume.</li>
+<li>The <code>run</code> volume is a dedicated volume for the graphical pod and typically contains PID files.</li>
+<li>The <code>tmp</code> volume is shared between ephemeral container applications and the graphical pod.</li>
+<li>The <code>log</code> volume is shared between ephemeral container applications and the pod containers. It typically contains log files.</li>
+<li>The <code>rundbus</code> and <code>runuser</code> volumes are used for D-Bus socket sharing.</li>
+<li>The <code>x11socket</code> volume is dedicated to the X11 Unix domain socket.</li>
 </ul>
 <h2 id="graphical-container"><code>graphical</code> container</h2>
 <div class="highlight"><pre><span></span><code>&#39;graphical&#39; : {
@@ -4076,25 +4075,25 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
   }
 </code></pre></div>
 <ul>
-<li><code>volumes</code> is the list of mounted volume for this container</li>
+<li><code>volumes</code> is the list of mounted volumes for this container</li>
 <li><code>image</code> is the name of the image for this container</li>
-<li><code>imagePullPolicy</code> is the image Pull Policy</li>
-<li><code>enable</code> is a boolean to enable of disable this container</li>
-<li><code>acl</code> is a dictonary to allow or disallow this container</li>
-<li><code>securityContext</code> the security context defines privilege and access control settings for the graphical container. </li>
-<li><code>allowPrivilegeEscalation</code>: Controls whether a process can gain more privileges than its parent process. </li>
-<li><code>readOnlyRootFilesystem</code>: Mounts the container's root filesystem as read-only. <a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">securityContext</a></li>
-<li><code>supplementalGroups</code>: [ '{{ supplementalGroups }}' ] replaced by ldap or default values</li>
-<li><code>runAsUser</code>: '{{ uidNumber }}' replaced by ldap or default values</li>
-<li><code>runAsGroup</code>: '{{ gidNumber }}' replaced by ldap or default values</li>
-<li><code>runAsNonRoot</code>: boolean <a href="https://kubernetes.io/docs/concepts/security/pod-security-standards/">pod-security-standards</a></li>
-<li><code>tcpport</code> is the main tcp port for the container </li>
-<li><code>secrets_requirement</code> is a list of secret to mount inside this container. By default the graphical contaienr mounts the secrets 'abcdesktop/vnc' and 'abcdesktop/kerberos'. If the 'abcdesktop/kerberos' doesn't exist, the secret is not added.</li>
-<li><code>waitfor_services</code> : list of supervisor service to wait [ 'xserver', 'novnc', 'spawner-service', 'plasmashell' ], the services must be started.</li>
-<li><code>waitfor_processes</code>: list of process to wait [ 'kwin_x11', 'plasmashell', 'kactivitymanagerd'  ], the process must be started.</li>
-<li><code>waitfor_listeningservices</code>: list of services to wait for listening on tcp port.</li>
+<li><code>imagePullPolicy</code> is the image pull policy</li>
+<li><code>enable</code> is a boolean to enable or disable this container</li>
+<li><code>acl</code> is a dictionary that controls access to this container</li>
+<li><code>securityContext</code> defines privilege and access control settings for the graphical container.</li>
+<li><code>allowPrivilegeEscalation</code>: Controls whether a process can gain more privileges than its parent process.</li>
+<li><code>readOnlyRootFilesystem</code>: Mounts the container's root filesystem as read-only. See <a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">securityContext</a></li>
+<li><code>supplementalGroups</code>: <code>[ '{{ supplementalGroups }}' ]</code> substituted with LDAP-provided or default values</li>
+<li><code>runAsUser</code>: <code>'{{ uidNumber }}'</code> substituted with LDAP-provided or default values</li>
+<li><code>runAsGroup</code>: <code>'{{ gidNumber }}'</code> substituted with LDAP-provided or default values</li>
+<li><code>runAsNonRoot</code>: boolean. See <a href="https://kubernetes.io/docs/concepts/security/pod-security-standards/">pod-security-standards</a></li>
+<li><code>tcpport</code> is the primary TCP port for the container</li>
+<li><code>secrets_requirement</code> is a list of Kubernetes secrets to mount inside this container. By default, the graphical container mounts the secrets <code>abcdesktop/vnc</code> and <code>abcdesktop/kerberos</code>. If the <code>abcdesktop/kerberos</code> secret does not exist, it is silently omitted.</li>
+<li><code>waitfor_services</code>: a list of supervisor-managed services that must be started before the container is considered ready, e.g., <code>[ 'xserver', 'novnc', 'spawner-service', 'plasmashell' ]</code>.</li>
+<li><code>waitfor_processes</code>: a list of processes that must be running before the container is considered ready, e.g., <code>[ 'kwin_x11', 'plasmashell', 'kactivitymanagerd' ]</code>.</li>
+<li><code>waitfor_listeningservices</code>: a list of services that must be actively listening on their TCP ports before the container is considered ready.</li>
 </ul>
-<p>Additionnal services are running inside the graphical service.</p>
+<p>The following additional services run inside the graphical container.</p>
 <ul>
 <li><code>spawner</code> describes the spawner service.</li>
 <li><code>broadcast</code> describes the broadcast service  </li>
@@ -4120,15 +4119,15 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
     &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
 },
 </code></pre></div>
-<p>The printer container is the printer service, to print file as <code>pdf</code> and download files from the virtual printer queue.</p>
+<p>The printer container provides the print service, enabling files to be printed as PDF and downloaded from the virtual printer queue.</p>
 <ul>
-<li><code>volumes</code> is the list of mounted volume for this container</li>
+<li><code>volumes</code> is the list of mounted volumes for this container</li>
 <li><code>image</code> is the name of the image for this container</li>
-<li><code>imagePullPolicy</code> is the image Pull Policy</li>
-<li><code>enable</code> is a boolean to enable of disable this container</li>
-<li><code>tcpport</code> is the main tcp port for the container</li>
-<li><code>securityContext</code>: cups service must run as <code>root</code> user <code>{ 'runAsUser': 0, 'runAsGroup': 0 }</code></li>
-<li><code>acl</code> is a dictonary to allow or disallow this container</li>
+<li><code>imagePullPolicy</code> is the image pull policy</li>
+<li><code>enable</code> is a boolean to enable or disable this container</li>
+<li><code>tcpport</code> is the primary TCP port for the container</li>
+<li><code>securityContext</code>: the cups service must run as the <code>root</code> user: <code>{ 'runAsUser': 0, 'runAsGroup': 0 }</code></li>
+<li><code>acl</code> is a dictionary that controls access to this container</li>
 </ul>
 <h2 id="filer-container"><code>filer</code> container</h2>
 <div class="highlight"><pre><span></span><code>&#39;filer&#39; : { 
@@ -4140,14 +4139,14 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
     &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] }
     },
 </code></pre></div>
-<p>The filer container is the filer service, upload and download files and directories.</p>
+<p>The filer container provides file transfer capabilities, allowing users to upload and download files and directories.</p>
 <ul>
-<li><code>volumes</code> is the list of mounted volume for this container</li>
+<li><code>volumes</code> is the list of mounted volumes for this container</li>
 <li><code>image</code> is the name of the image for this container</li>
-<li><code>imagePullPolicy</code> is the image Pull Policy</li>
-<li><code>enable</code> is a boolean to enable of disable this container</li>
-<li><code>tcpport</code> is the main tcp port for the container</li>
-<li><code>acl</code> is a dictonary to allow or disallow this container</li>
+<li><code>imagePullPolicy</code> is the image pull policy</li>
+<li><code>enable</code> is a boolean to enable or disable this container</li>
+<li><code>tcpport</code> is the primary TCP port for the container</li>
+<li><code>acl</code> is a dictionary that controls access to this container</li>
 </ul>
 <h2 id="sound-container"><code>sound</code> container</h2>
 <div class="highlight"><pre><span></span><code>&#39;sound&#39;: { 
@@ -4159,14 +4158,14 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
     &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] },
   },
 </code></pre></div>
-<p>The sound container is the sound service, sound and microphone. </p>
+<p>The sound container provides audio input and output services, including sound playback and microphone capture.</p>
 <ul>
-<li><code>volumes</code> is the list of mounted volume for this container</li>
+<li><code>volumes</code> is the list of mounted volumes for this container</li>
 <li><code>image</code> is the name of the image for this container</li>
-<li><code>imagePullPolicy</code> is the image Pull Policy</li>
-<li><code>enable</code> is a boolean to enable of disable this container</li>
-<li><code>tcpport</code> is the main tcp port for the container</li>
-<li><code>acl</code> is a dictonary to allow or disallow this container</li>
+<li><code>imagePullPolicy</code> is the image pull policy</li>
+<li><code>enable</code> is a boolean to enable or disable this container</li>
+<li><code>tcpport</code> is the primary TCP port for the container</li>
+<li><code>acl</code> is a dictionary that controls access to this container</li>
 </ul>
 <h2 id="init-container"><code>init</code> container</h2>
 <div class="highlight"><pre><span></span><code>&#39;init&#39;: { 
@@ -4183,13 +4182,13 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
   },
 </code></pre></div>
 <ul>
-<li><code>volumes</code> is the list of mounted volume for this container</li>
+<li><code>volumes</code> is the list of mounted volumes for this container</li>
 <li><code>image</code> is the name of the image for this container</li>
-<li><code>imagePullPolicy</code> is the image Pull Policy</li>
-<li><code>enable</code> is a boolean to enable of disable this container</li>
-<li><code>securityContext</code>: init container must run as <code>root</code> user <code>{ 'runAsUser': 0 }</code></li>
-<li><code>acl</code> is a dictonary to allow or disallow this container</li>
-<li><code>command</code> init shell command line to run <code>[ 'sh', '-c', 'chmod 750 ~ &amp;&amp; chown {{ uidNumber }}:{{ gidNumber }} ~' ]</code></li>
+<li><code>imagePullPolicy</code> is the image pull policy</li>
+<li><code>enable</code> is a boolean to enable or disable this container</li>
+<li><code>securityContext</code>: the init container must run as the <code>root</code> user: <code>{ 'runAsUser': 0 }</code></li>
+<li><code>acl</code> is a dictionary that controls access to this container</li>
+<li><code>command</code> is the shell command executed at initialization: <code>[ 'sh', '-c', 'chmod 750 ~ &amp;&amp; chown {{ uidNumber }}:{{ gidNumber }} ~' ]</code></li>
 </ul>
 <h2 id="desktoppod-with-sudo-command">desktop.pod with <code>sudo</code> command</h2>
 <div class="highlight"><pre><span></span><code>desktop.pod : { 
@@ -4361,9 +4360,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
     &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] }  }  }
 </code></pre></div>
 <h2 id="define-environment-variables-in-the-desktop">define environment variables in the desktop</h2>
-<p><code>desktop.envlocal</code> defines the environment variables in the desktop. 
-The <code>desktop.envlocal</code> is a dictionary, the key is the name of the variable, and the value the value of the variable. 
-Only static variables are defined here, dynamics values are set by python code in pyos.</p>
+<p><code>desktop.envlocal</code> defines the environment variables injected into the desktop containers. It is a dictionary where each key is an environment variable name and the corresponding value is the variable's value. Only static variables are defined here; dynamic values are set programmatically by pyos at runtime.</p>
 <div class="highlight"><pre><span></span><code># Add default environment vars 
 # desktop.envlocal is a dictionary. 
 # desktop.envlocal contains a (key,value) added by default as environment variables to oc.user.
@@ -4381,7 +4378,7 @@ desktop.envlocal :  {
 <p>Run a command inside a desktop pod to list the variable and get the value of one of them</p>
 </li>
 <li>
-<p>Look for a desktop pod, to run shell commands </p>
+<p>Identify an active desktop pod to run shell commands against.</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
@@ -4391,7 +4388,7 @@ leela-debe1<span class="w">   </span><span class="m">3</span>/3<span class="w"> 
 </code></pre></div>
 <p>The pod name is <code>leela-debe1</code></p>
 <ul>
-<li>List the variables content</li>
+<li>List the environment variables:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>leela-debe1<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>--<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;env&#39;</span>

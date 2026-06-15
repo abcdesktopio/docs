@@ -968,9 +968,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-projet" class="md-nav__link">
+  <a href="#additional-projects" class="md-nav__link">
     <span class="md-ellipsis">
-      Additional projet
+      Additional Projects
     </span>
   </a>
   
@@ -3753,9 +3753,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-projet" class="md-nav__link">
+  <a href="#additional-projects" class="md-nav__link">
     <span class="md-ellipsis">
-      Additional projet
+      Additional Projects
     </span>
   </a>
   
@@ -3875,7 +3875,7 @@
 
 <h1 id="architecture-overview">Architecture overview</h1>
 <h2 id="pods-and-services">Pods and services</h2>
-<p>This flowchart describes the all abcdesktop services</p>
+<p>This flowchart describes all abcdesktop services</p>
 <pre class="mermaid"><code>---
 config:
   theme: redux
@@ -3915,7 +3915,7 @@ flowchart TD
 </code></pre>
 <p>The project abcdesktop provides container images for <code>route</code>, <code>console</code>, <code>website</code>, <code>pyos</code>, and <code>user</code></p>
 <p>The projects <code>kubernetes</code>, <code>mongodb</code>, <code>memcached</code>, <code>speedtest</code> and <code>ldap</code> are not part of the abcdesktop project.
-Items on this page refer to third party products or projects that provide functionality required by abcdesktop.io. The abcdesktop project authors aren't responsible for those third-party products or projects. </p>
+Items on this page refer to third-party products or projects that provide functionality required by abcdesktop.io. The abcdesktop project authors are not responsible for those third-party products or projects.</p>
 <h2 id="create-desktop-workflow">Create desktop workflow</h2>
 <p>This workflow describes the <code>create desktop</code> process</p>
 <pre class="mermaid"><code>---
@@ -3965,39 +3965,39 @@ sequenceDiagram
     Router-&gt;&gt;Alice: Connected
     Alice--&gt;PodAlice: Established</code></pre>
 <ol>
-<li>User login, get a user JWT</li>
-<li>Create a user POD and get a Desktop JWT</li>
+<li>The user logs in and receives a user JWT.</li>
+<li>A user pod is created and a Desktop JWT is issued.</li>
 <li>
-<p>User is connecting to his own POD</p>
+<p>The user connects to their own pod.</p>
 <ul>
-<li>All JWT are signed with RSA keys.</li>
-<li>All desktop's JWT payload are encrypted with another RSA keys</li>
+<li>All JWTs are signed with RSA keys.</li>
+<li>All desktop JWT payloads are encrypted with a separate RSA key pair.</li>
 </ul>
 </li>
 </ol>
 <h2 id="services-infrastructure">Services infrastructure</h2>
-<p>The service infrastructure is based on :</p>
+<p>The service infrastructure is based on:</p>
 <ul>
-<li>Router nginx with lua script <a href="https://github.com/abcdesktopio/router">router</a></li>
+<li>Router (nginx with Lua scripting) <a href="https://github.com/abcdesktopio/router">router</a></li>
 <li>Website service <a href="https://github.com/abcdesktopio/webmodules">webmodules</a></li>
-<li>Database service (third party products) <a href="https://github.com/abcdesktopio/mongo">MongoDB</a></li>
-<li>Memcached service (third party projet) <a href="https://github.com/abcdesktopio/oc.memcached">Memcached</a></li>
-<li>Pyos Core service (abcdesktop control plane) <a href="https://github.com/abcdesktopio/pyos">pyos</a></li>
-<li>Pod user <a href="https://github.com/abcdesktopio/oc.user">user</a></li>
+<li>Database service (third-party product) <a href="https://github.com/abcdesktopio/mongo">MongoDB</a></li>
+<li>Memcached service (third-party project) <a href="https://github.com/abcdesktopio/oc.memcached">Memcached</a></li>
+<li>pyos Core service (abcdesktop control plane) <a href="https://github.com/abcdesktopio/pyos">pyos</a></li>
+<li>User pod <a href="https://github.com/abcdesktopio/oc.user">user</a></li>
 </ul>
 <h2 id="additional-services">Additional services</h2>
 <ul>
 <li>Console service (abcdesktop admin console) <a href="https://github.com/abcdesktopio/console">console</a></li>
-<li>Speedtest service (speedtest service, self-hosted speed test for HTML5, third party projet) <a href="https://github.com/librespeed/speedtest">librespeed</a></li>
-<li>LDAP service (optional, third party projet) <a href="https://github.com/rroemhild/docker-test-openldap">rroemhild/docker-test-openldap</a></li>
+<li>Speedtest service (self-hosted HTML5 speed test, third-party project) <a href="https://github.com/librespeed/speedtest">librespeed</a></li>
+<li>LDAP service (optional, third-party project) <a href="https://github.com/rroemhild/docker-test-openldap">rroemhild/docker-test-openldap</a></li>
 </ul>
-<h2 id="additional-projet">Additional projet</h2>
+<h2 id="additional-projects">Additional Projects</h2>
 <ul>
 <li>Helm charts (install helm chart) <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">helm chart</a></li>
 </ul>
 <h2 id="roles-summary">Roles summary</h2>
 <h3 id="pyos">pyos</h3>
-<p><code>pyos</code> is the core abcdesktop service act as a control plane. Pyos is a stateless services, Pyos's roles are :</p>
+<p><code>pyos</code> is the core abcdesktop service and acts as a control plane. <code>pyos</code> is a stateless service; its roles are:</p>
 <ul>
 <li>Authenticate user on authenticate providers</li>
 <li>OpenID Provider</li>
@@ -4011,33 +4011,33 @@ sequenceDiagram
 <p>When a new user is authenticated, a dedicated user pod is created.
 When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a <code>pod</code> or an <code>ephemeral container</code></p>
 </blockquote>
-<p>pyos needs <code>rbac.authorization.k8s.io</code> roles to <code>CRUD</code> the namespaced resources :
+<p>pyos requires <code>rbac.authorization.k8s.io</code> roles to perform <code>CRUD</code> operations on the following namespaced resources:
 - 'pods', 'pods/exec', 'pods/ephemeralcontainers', 'pods/log'
 - 'events'
 - 'secrets'
 - 'configmaps'
 - 'persistentvolumeclaims'</p>
-<p>pyos runs as a <code>ServiceAccount</code> named pyos-serviceaccount, with <code>pyos-role.
-Optionaly, you can also add pyos to</code>CRUD<code>resources ['persistentvolumes'], in paricular cases.</code>persistentvolumes` are not namepspaced.</p>
-<p>The <code>Role,</code>RoleBinding<code>and</code>ServiceAccount` are embeded in the abcdesktop.yaml file.</p>
+<p>pyos runs as a <code>ServiceAccount</code> named <code>pyos-serviceaccount</code>, with <code>pyos-role</code>.
+Optionally, you can also grant pyos <code>CRUD</code> access to <code>['persistentvolumes']</code> resources in particular cases. Note that <code>persistentvolumes</code> are not namespaced.</p>
+<p>The <code>Role</code>, <code>RoleBinding</code>, and <code>ServiceAccount</code> are embedded in the <code>abcdesktop.yaml</code> file.</p>
 <h3 id="router">router</h3>
-<p><code>router</code> pod act as a <code>http router</code> web server. It routes HTTP requets to <code>user's pods</code>, <code>web site</code>, <code>pyos</code>, <code>console</code>.</p>
+<p>The <code>router</code> pod acts as an HTTP routing web server. It routes HTTP requests to user pods, the <code>website</code> service, <code>pyos</code>, and <code>console</code>.</p>
 <h3 id="website">website</h3>
-<p><code>website</code> pod act as web server and delivers <code>html</code>, <code>javascript</code>, <code>svg</code> files.</p>
+<p>The <code>website</code> pod acts as a web server and delivers HTML, JavaScript, and SVG files.</p>
 <h3 id="mongo-database">mongo database</h3>
-<p><code>mongo</code> is used by pyos to store informations.
-The informations are :</p>
+<p><code>mongo</code> is used by <code>pyos</code> to store persistent information.
+The stored data includes:</p>
 <ul>
-<li>User logins history</li>
-<li>Images and background colors configuration per desktop</li>
+<li>User login history</li>
+<li>Image and background color configuration per desktop</li>
 <li>Installed applications</li>
 </ul>
 <h3 id="memcached">memcached</h3>
-<p><code>memcache</code> stores progress text message information during login process. <code>memcache</code> datas are set and get only by the control plane.</p>
+<p><code>memcache</code> stores progress message text during the login process. Cache data is written and read exclusively by the control plane.</p>
 <h3 id="ocuser">oc.user</h3>
-<p><a href="https://github.com/abcdesktopio/oc.user"><code>oc.user</code></a> is the name of the user's container image. <code>oc.user</code> runs the X11 graphical service. <code>oc.user</code> is based on ubuntu distribution.</p>
+<p><a href="https://github.com/abcdesktopio/oc.user"><code>oc.user</code></a> is the name of the user's container image. <code>oc.user</code> runs the X11 graphical service. <code>oc.user</code> is based on the Ubuntu distribution.</p>
 <ul>
-<li>The image <code>abcdesktopio/oc.user.ubuntu:4.4</code> is based on <code>ubuntu</code> distribution <code>24.04</code>. Get more details about <a href="https://github.com/abcdesktopio/oc.user">oc.user</a> image.</li>
+<li>The image <code>abcdesktopio/oc.user.ubuntu:4.4</code> is based on Ubuntu <code>24.04</code>. For more details, see the <a href="https://github.com/abcdesktopio/oc.user">oc.user</a> image repository.</li>
 </ul>
 <h3 id="applications">applications</h3>
 <p>All applications are <code>ephemeral containers</code> or <code>pods</code>, and share a graphical socket ( <code>unix</code> or <code>tcp</code> ) with the user's pod.</p>

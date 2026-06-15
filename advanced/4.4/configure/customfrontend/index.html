@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#customize-abcdesktop-frontend-thourgh-uijson-file" class="md-skip">
+        <a href="#customize-the-abcdesktop-frontend-through-the-uijson-file" class="md-skip">
           Skip to content
         </a>
       
@@ -3861,7 +3861,7 @@
   
 
 
-<h1 id="customize-abcdesktop-frontend-thourgh-uijson-file">Customize abcdesktop frontend thourgh ui.json file</h1>
+<h1 id="customize-the-abcdesktop-frontend-through-the-uijson-file">Customize the abcdesktop Frontend Through the ui.json File</h1>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li><code>docker</code> command line installed, to build image</li>
@@ -3979,7 +3979,7 @@ drwxr-xr-x<span class="w">  </span><span class="m">11</span><span class="w"> </s
 </code></pre></div>
 <h5 id="login-progress">Login progress</h5>
 <p>Login progress is embedded in <code>span</code> HTML tags.
-Each <code>projectNameSplitedStage</code> describes a step during the user's authentification then pod's creation process.</p>
+Each <code>projectNameSplitedStage</code> describes a step during the user's authentication and pod creation process.</p>
 <ul>
 <li>projectNameSplitedStagea: <code>step 1</code></li>
 <li>projectNameSplitedStageb: <code>step 2</code></li>
@@ -4007,7 +4007,7 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
 <td>#474B55</td>
 </tr>
 <tr>
-<td>@secondatry</td>
+<td>@secondary</td>
 <td>#2D2D2D</td>
 <td>#2D2D2D</td>
 </tr>
@@ -4106,7 +4106,7 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
 </code></pre></div>
 <h4 id="build-your-new-image">Build your new image</h4>
 <p>Run the docker build command to build the new <code>oc.nginx:acme</code> image</p>
-<p>The target image is <code>abcdesktopio/oc.nginx:acme</code> you should change it with your own regitsry for example <code>myacme/oc.nginx:acme</code></p>
+<p>The target image is <code>abcdesktopio/oc.nginx:acme</code>. You should replace this with your own registry, for example <code>myacme/oc.nginx:acme</code>.</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">NODE_MAJOR</span><span class="o">=</span><span class="m">20</span><span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">BASE_IMAGE</span><span class="o">=</span>abcdesktopio/oc.nginx.builder<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">BASE_IMAGE_RELEASE</span><span class="o">=</span><span class="m">4</span>.4<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">TARGET</span><span class="o">=</span>dev<span class="w">  </span>-t<span class="w"> </span>abcdesktopio/oc.nginx.acme:4.4<span class="w"> </span>-f<span class="w"> </span>Dockerfile<span class="w"> </span>.
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Building<span class="w"> </span><span class="m">16</span>.5s<span class="w"> </span><span class="o">(</span><span class="m">19</span>/19<span class="o">)</span><span class="w"> </span>FINISHED<span class="w">                                                                                                                          </span>docker:default
@@ -4150,8 +4150,7 @@ Each <code>projectNameSplitedStage</code> describes a step during the user's aut
             name: http
       [...]
 </code></pre></div>
-<p>Update the <code>deployment</code> with your new image name <code>abcdesktopio/oc.nginx:acme</code>
-and replace the <code>abcdesktopio</code> with your own registry.</p>
+<p>Update the <code>deployment</code> with your new image name <code>abcdesktopio/oc.nginx:acme</code> and replace <code>abcdesktopio</code> with your own registry.</p>
 <div class="highlight"><pre><span></span><code>      [...]
       - name: nginx
         imagePullPolicy: Always

@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#authentification-implicit" class="md-skip">
+        <a href="#authentication-implicit" class="md-skip">
           Skip to content
         </a>
       
@@ -2246,7 +2246,7 @@
         <li class="md-nav__item">
   <a href="#authmanagers-implicit" class="md-nav__link">
     <span class="md-ellipsis">
-      authmanagers implicit:
+      authmanagers implicit
     </span>
   </a>
   
@@ -3609,7 +3609,7 @@
         <li class="md-nav__item">
   <a href="#authmanagers-implicit" class="md-nav__link">
     <span class="md-ellipsis">
-      authmanagers implicit:
+      authmanagers implicit
     </span>
   </a>
   
@@ -3639,11 +3639,11 @@
   
 
 
-<h1 id="authentification-implicit">Authentification <code>implicit</code></h1>
-<h2 id="authmanagers-implicit">authmanagers <code>implicit</code>:</h2>
-<p><code>implicit</code> is the easyest configuration mode, and is used as 'Anonymous' authentification. </p>
-<p>The provider is defined as a dictionnary object and contains an <code>anononymous</code> provider.</p>
-<p><code>anononymous</code> provider always permit authentification, and create a uuid as userid. <code>anononymous</code> provider is used to skip the authentification  process in a demonstration mode.</p>
+<h1 id="authentication-implicit">Authentication <code>implicit</code></h1>
+<h2 id="authmanagers-implicit">authmanagers <code>implicit</code></h2>
+<p>The <code>implicit</code> provider is the simplest configuration mode and is used for anonymous (always-allow) authentication.</p>
+<p>The provider is defined as a dictionary object and contains an <code>anonymous</code> provider.</p>
+<p>The <code>anonymous</code> provider always permits authentication and generates a UUID as the user ID. It is used to bypass the authentication process in demonstration mode.</p>
 <div class="highlight"><pre><span></span><code>&#39;implicit&#39;: {
     &#39;providers&#39;: {
       &#39;anonymous&#39;: {
@@ -3658,8 +3658,8 @@
       }
     }}
 </code></pre></div>
-<p><code>anononymous</code> provider always permit authentification, and create a uuid as userid. </p>
-<p>Set in your configuration file the authmanagers dictionnary as described</p>
+<p>The <code>anonymous</code> provider always permits authentication and generates a UUID as the user ID.</p>
+<p>Set the <code>authmanagers</code> dictionary in your configuration file as follows:</p>
 <div class="highlight"><pre><span></span><code>authmanagers: {
   &#39;external&#39;: {},
   &#39;explicit&#39;: {},
@@ -3679,24 +3679,24 @@
   }}
 </code></pre></div>
 <p><a href="../../configure/updateconfiguration/">Update your configuration file and apply the new configuration file</a></p>
-<p>Open a new Web Browser and go to your abcdesktop URL. You should see the login HTML page with the Anonymous button :</p>
+<p>Open a new web browser and navigate to your abcdesktop URL. You should see the login page with the Anonymous button:</p>
 <p><img alt="login page Anonymous" src="../img/anonymous.png" /></p>
-<p>Press the <code>Sign-In Anonymously</code> button.</p>
-<p>You get a desktop as <code>anonymous</code> user. The current user is <code>anonymous</code></p>
-<p>List all your pod desktop</p>
+<p>Click the <code>Sign-In Anonymously</code> button.</p>
+<p>You will receive a desktop session as the <code>anonymous</code> user.</p>
+<p>List all your desktop pods:</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -l type=x11server -n abcdesktop
 NAME              READY   STATUS    RESTARTS   AGE
 anonymous-3806b   3/3     Running   0          9m22s
 </code></pre></div>
-<p>In this case the nameof my pod is <code>anonymous-3806b</code> </p>
-<p>Run a bash script into </p>
+<p>In this example, the pod name is <code>anonymous-3806b</code>.</p>
+<p>Run a bash shell inside the pod:</p>
 <div class="highlight"><pre><span></span><code>kubectl exec -it anonymous-3806b -n abcdesktop -- bash
 Defaulted container &quot;x-graphical&quot; out of: x-graphical, s-sound, f-filer, i-init (init)
 anonymous@abcdesktop:~$ id
 uid=4096(anonymous) gid=4096(anonymous) groups=4096(anonymous)
 </code></pre></div>
-<p>You are <code>anonymous</code> with <code>uid=4096</code> and <code>gid=4096</code> </p>
-<p>Great, you have check how the implicit Authentification configuration works.</p>
+<p>The session runs as the <code>anonymous</code> user with <code>uid=4096</code> and <code>gid=4096</code>.</p>
+<p>You have successfully verified how the implicit authentication configuration works.</p>
 
 
 

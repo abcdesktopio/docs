@@ -3703,10 +3703,10 @@
 
 <h1 id="install">Install</h1>
 <h2 id="apply-the-default-netpol-default-44yaml-file">Apply the default <code>netpol-default-4.4.yaml</code> file</h2>
-<p>To apply the network policies run the command :</p>
+<p>To apply the network policies, run the following command:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-4.4.yaml<span class="w"> </span>-n<span class="w"> </span>abcdesktop
 </code></pre></div>
-<p>The command returns </p>
+<p>The command returns:</p>
 <div class="highlight"><pre><span></span><code>networkpolicy.networking.k8s.io/abcdesktop-rights created
 networkpolicy.networking.k8s.io/memcached-rights created
 networkpolicy.networking.k8s.io/memcached-permits created
@@ -3742,11 +3742,11 @@ networkpolicy.networking.k8s.io/graylog-permits created
 </ul>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://pyos.abcdesktop.svc.cluster.local:8000/API/manager/images
 </code></pre></div>
-<p>This http request is denied by the network policy and you should get an error message </p>
+<p>This HTTP request is denied by the network policy and you should receive an error message:</p>
 <div class="highlight"><pre><span></span><code>curl: (28) Failed to connect to pyos.abcdesktop.svc.cluster.local port 8000 after 130290 ms: Couldn&#39;t connect to server
 </code></pre></div>
 <p><img alt="http request is denied" src="../../../../img/netpol.denied.http.png" /></p>
-<p>You should get an error message, the user's pod can't reach <code>https://pyos.abcdesktop.svc.cluster.local:8000/API</code>.</p>
+<p>You should receive an error message indicating that the user's pod cannot reach <code>https://pyos.abcdesktop.svc.cluster.local:8000/API</code>.</p>
 
 
 

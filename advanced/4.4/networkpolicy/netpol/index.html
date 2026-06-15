@@ -3808,13 +3808,13 @@
 </li>
 </ul>
 <h2 id="networkpolicy-description">NetworkPolicy description</h2>
-<p>There are two sorts of isolation defined in abcdesktop : the NetworkPolicy  <code>rights</code> and the NetworkPolicy <code>permits</code>.</p>
+<p>abcdesktop defines two types of isolation: the NetworkPolicy <code>rights</code> and the NetworkPolicy <code>permits</code>.</p>
 <ul>
 <li>
-<p>The NetworkPolicy <code>rights</code> contains <code>egress</code> and <code>ingress</code> for pod selected by tag. <code>rights</code> means access (ingress) to this pod and access (egress) from this pod. To define ip filter for user's pod, you need to set egress NetworkPolicy.</p>
+<p>The NetworkPolicy <code>rights</code> contains <code>egress</code> and <code>ingress</code> rules for pods selected by label. <code>rights</code> controls access to a pod (ingress) and from a pod (egress). To define IP filters for user pods, you must configure egress NetworkPolicy rules.</p>
 </li>
 <li>
-<p>The NetworkPolicy <code>permits</code> contains <code>egress</code> to a pod selected by tag. The NetworkPolicy <code>permits</code> means permit access to this pod.</p>
+<p>The NetworkPolicy <code>permits</code> contains <code>egress</code> rules targeting a pod selected by label. The NetworkPolicy <code>permits</code> grants permitted access to that pod.</p>
 </li>
 </ul>
 <h2 id="networkpolicy-example">NetworkPolicy example</h2>
@@ -3851,7 +3851,7 @@
 <span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">netpol/metrics</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
 </code></pre></div>
-<p>The NetworkPolicy for memcached service <code>permits</code>, named <code>memcached-permits</code>, allows all pods with label <code>netpol/memcached: 'true'</code> to reach the TCP port 11211 to pods with label <code>run: memcached-od</code>.</p>
+<p>The NetworkPolicy for memcached service <code>permits</code>, named <code>memcached-permits</code>, allows all pods with the label <code>netpol/memcached: 'true'</code> to reach TCP port 11211 on pods with the label <code>run: memcached-od</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkPolicy</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -3887,12 +3887,12 @@
 <li>29786</li>
 </ul>
 <p>The network policy for ocuser's pods <code>rights</code> is named <code>ocuser-rights</code>. It allows pods with label <code>type: 'x11server'</code> to expose the previous TCP ports.</p>
-<p>The <code>egress</code> network policy allows : </p>
+<p>The <code>egress</code> network policy allows:</p>
 <ul>
-<li>dns queries to kube-dns</li>
-<li>http to any web site</li>
-<li>https to any web site</li>
-<li>kerberos auth to any kdc</li>
+<li>DNS queries to kube-dns</li>
+<li>HTTP to any web site</li>
+<li>HTTPS to any web site</li>
+<li>Kerberos authentication to any KDC</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkPolicy</span>
@@ -3960,7 +3960,7 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
 <span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">88</span>
 </code></pre></div>
-<p>The network policy for ocuser's pods <code>permits</code> is named <code>ocuser-permits</code>. It allows pods with label <code>netpol/ocuser: 'true'</code> to reach the user's pods services.</p>
+<p>The network policy for ocuser's pods <code>permits</code> is named <code>ocuser-permits</code>. It allows pods with the label <code>netpol/ocuser: 'true'</code> to reach the user pod services.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkPolicy</span>
 <span class="nt">metadata</span><span class="p">:</span>

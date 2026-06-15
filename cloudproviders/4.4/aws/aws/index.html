@@ -3774,16 +3774,16 @@
 </blockquote>
 </li>
 <li>
-<p>Define the environnement variables <code>AWS_ACCESS_KEY_ID</code> <code>AWS_SECRET_ACCESS_KEY</code> <code>AWS_SESSION_TOKEN</code> You can retrieve credentials as often as needed from your AWS access portal. </p>
+<p>Define the environment variables <code>AWS_ACCESS_KEY_ID</code>, <code>AWS_SECRET_ACCESS_KEY</code>, and <code>AWS_SESSION_TOKEN</code>. You can retrieve credentials as needed from your AWS access portal.</p>
 </li>
 </ul>
 <h2 id="eks-console-overview">EKS console overview</h2>
-<p>This screenshot describes the Amazon Elastic Kubernetes Service console. It shows the <code>Cluster</code> and <code>Networking</code> informations.</p>
+<p>This screenshot describes the Amazon Elastic Kubernetes Service console. It shows the <code>Cluster</code> and <code>Networking</code> information.</p>
 <p><img alt="aws eks console overview" src="../img/aws-eks-console.png" /></p>
 <h2 id="check-your-caller-identity">Check your caller-identity</h2>
 <div class="highlight"><pre><span></span><code>aws sts get-caller-identity
 </code></pre></div>
-<p>I'm using a <code>SandboxAdministratorAccess</code> but you can choose others  </p>
+<p>This example uses <code>SandboxAdministratorAccess</code>, but you can use any role with sufficient permissions.</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
 <span class="o">{</span>
 <span class="w">    </span><span class="s2">&quot;UserId&quot;</span>:<span class="w"> </span><span class="s2">&quot;XXXXXXXXXXXXXXXXXXX:user.namee@domain.org&quot;</span>,
@@ -3792,7 +3792,7 @@
 <span class="o">}</span>
 </code></pre></div>
 <h2 id="find-your-clusters-name">Find your cluster's name</h2>
-<p>I use <code>eu-north-1</code> as my region value</p>
+<p>This example uses <code>eu-north-1</code> as the region value.</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>eks<span class="w"> </span>list-clusters<span class="w"> </span>--region<span class="w"> </span>eu-north-1
 <span class="o">{</span>
 <span class="w">    </span><span class="s2">&quot;clusters&quot;</span>:<span class="w"> </span><span class="o">[</span>
@@ -3807,7 +3807,7 @@
 <p>In this example </p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>eks<span class="w"> </span>update-kubeconfig<span class="w"> </span>--region<span class="w"> </span>eu-north-1<span class="w"> </span>--name<span class="w"> </span>scrumptious-dance-potato
 </code></pre></div>
-<p>Run a <code>kubectl</code> command line like <code>kubectl cluster-info</code> command line to make sure that kubeconfig is defined  </p>
+<p>Run a command such as <code>kubectl cluster-info</code> to verify that your kubeconfig is correctly configured.</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cluster-info<span class="w"> </span>
 </code></pre></div>
 <h2 id="run-the-abcdesktop-install-script">Run the abcdesktop install script</h2>
@@ -3816,8 +3816,8 @@
 </code></pre></div>
 <p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="connect-to-your-abcdesktop-service">Connect to your abcdesktop service</h2>
-<p>By default install script is listening on a free tcp port <code>:30443</code> and is using a <code>kubectl port-forward</code> command line to reach http web service <code>:80</code></p>
-<p>Open your web browser <code>http://locahost:30443</code></p>
+<p>By default, the install script exposes the service on a free TCP port <code>:30443</code> using a <code>kubectl port-forward</code> command to forward traffic to the HTTP service on port <code>:80</code>.</p>
+<p>Open your web browser and navigate to <code>http://localhost:30443</code>.</p>
 <p><img alt="abcdesktop login" src="../../img/abcdesktop-hompage-port30443.png" /></p>
 <p>Login as user <code>Philip J. Fry</code> with the password <code>fry</code></p>
 <p><img alt="abcdesktop login as fry" src="../../img/abcdesktop-hompage-port30443-login-fry.png" /></p>
@@ -3837,7 +3837,7 @@ New applications are now listed in the dock of <code>plasmashell</code></p>
 </blockquote>
 <p>Go to <code>https://mylocation.org</code> website to check where your pod is running.</p>
 <p><img alt="abcdesktop for fry with applications" src="../img/abcdesktop-firefox-aws-north-1.png" /></p>
-<p>In my case for the region <code>north-1</code>, the desktop is located near <code>Stockholm</code> city in <code>Sweeden</code>.</p>
+<p>In this example, for the <code>eu-north-1</code> region, the desktop is located near <code>Stockholm</code> in <code>Sweden</code>.</p>
 
 
 

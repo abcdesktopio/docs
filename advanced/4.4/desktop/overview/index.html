@@ -3638,19 +3638,18 @@
 
 
 <h1 id="desktoppod">desktop.pod</h1>
-<p>abcdesktop defines a user desktop as a pod (a group of containers). This is a main features of abcdesktop.
-Each container offers a service. For example </p>
+<p>abcdesktop represents each user desktop as a Kubernetes pod — a group of containers. This is a core feature of abcdesktop. Each container provides a dedicated service. For example:</p>
 <ul>
 <li><code>printer</code> is a container. <code>printer</code> service runs inside the user pod, it can be started or not. </li>
 <li><code>graphical</code> is a container. <code>graphical</code> service runs inside the user pod.</li>
 </ul>
 <h2 id="containers-in-the-user-pod">containers in the user pod</h2>
 <ul>
-<li><code>init</code> contains init command for user pod</li>
+<li><code>init</code> runs the initialization commands for the user pod</li>
 <li><code>graphical</code> is the user graphical service (X11 and VNC)</li>
 <li><code>printer</code> is the printer service (cupsd)</li>
-<li><code>sound</code> is the sound service (pulseaudio)</li>
-<li><code>filer</code> is the filer service to upload and download file into the user home directory</li>
+<li><code>sound</code> is the sound service (PulseAudio)</li>
+<li><code>filer</code> is the file transfer service for uploading and downloading files to and from the user's home directory</li>
 </ul>
 
 

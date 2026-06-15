@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#authentification-external" class="md-skip">
+        <a href="#authentication-external" class="md-skip">
           Skip to content
         </a>
       
@@ -2080,16 +2080,16 @@
         <li class="md-nav__item">
   <a href="#authmanagers-external" class="md-nav__link">
     <span class="md-ellipsis">
-      authmanagers external:
+      authmanagers external
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#read-groups-and-set-roles-from-userinfo" class="md-nav__link">
+  <a href="#reading-groups-and-setting-roles-from-userinfo" class="md-nav__link">
     <span class="md-ellipsis">
-      Read groups and set roles from userinfo
+      Reading Groups and Setting Roles from userinfo
     </span>
   </a>
   
@@ -3820,16 +3820,16 @@
         <li class="md-nav__item">
   <a href="#authmanagers-external" class="md-nav__link">
     <span class="md-ellipsis">
-      authmanagers external:
+      authmanagers external
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#read-groups-and-set-roles-from-userinfo" class="md-nav__link">
+  <a href="#reading-groups-and-setting-roles-from-userinfo" class="md-nav__link">
     <span class="md-ellipsis">
-      Read groups and set roles from userinfo
+      Reading Groups and Setting Roles from userinfo
     </span>
   </a>
   
@@ -4027,16 +4027,16 @@
   
 
 
-<h1 id="authentification-external">Authentification <code>external</code></h1>
+<h1 id="authentication-external">Authentication <code>external</code></h1>
 <h2 id="requirements">Requirements</h2>
-<p>To use <code>external</code> Authentification OAuth 2.0, you need a FQDN and a secured web site with https.</p>
+<p>To use the <code>external</code> authentication provider with OAuth 2.0, you need an FQDN and a secured website with HTTPS.</p>
 <h2 id="library">Library</h2>
-<p>abcdesktop uses <a href="https://requests-oauthlib.readthedocs.io/en/latest/oauth2_workflow.html">requests_oauthlib</a> python module. </p>
-<p>Requests-OAuthlib uses the Python Requests and OAuthlib libraries for building OAuth2 clients.</p>
-<h2 id="authmanagers-external">authmanagers <code>external</code>:</h2>
-<p><code>external</code> authentification use OAuth 2.0 authenticaton.</p>
-<p>The <code>external</code> authentification configuration is defined as a dictionary object and contains a list of <code>external</code> provider. </p>
-<p>Sample providers entry using the Google OAuth 2.0 authentification service. </p>
+<p>abcdesktop uses the <a href="https://requests-oauthlib.readthedocs.io/en/latest/oauth2_workflow.html">requests_oauthlib</a> Python module.</p>
+<p>Requests-OAuthlib uses the Python Requests and OAuthlib libraries for building OAuth 2.0 clients.</p>
+<h2 id="authmanagers-external">authmanagers <code>external</code></h2>
+<p>The <code>external</code> authentication provider uses OAuth 2.0 authentication.</p>
+<p>The <code>external</code> authentication configuration is defined as a dictionary object and contains a list of <code>external</code> providers.</p>
+<p>Sample provider entry using the Google OAuth 2.0 authentication service:</p>
 <div class="highlight"><pre><span></span><code><span class="err">&#39;ex</span><span class="kc">ternal</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="err">&#39;providers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="err">&#39;google&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
@@ -4061,12 +4061,12 @@
 <span class="w">  </span><span class="p">}}</span>
 </code></pre></div>
 <ul>
-<li>The variable values <code>client_id</code> and <code>client_secret</code> have been set to obfuscate value 'xxxx'.</li>
-<li>The <code>redirect_uri_prefix</code> contains the FQDN <code>hostname.domain.local</code>. This value is referred to your own server FQDN. </li>
+<li>The values of <code>client_id</code> and <code>client_secret</code> have been set to the placeholder value <code>'xxxx'</code>.</li>
+<li>The <code>redirect_uri_prefix</code> contains the FQDN <code>hostname.domain.local</code>. Replace this with your own server's FQDN.</li>
 </ul>
-<p>This create on the frontweb the following design :</p>
+<p>This configuration generates the following login area on the web front end:</p>
 <p><img alt="externalarea_description.png" src="../img/externalarea_description.png" /></p>
-<p>List of parameters</p>
+<p>Parameter reference:</p>
 <table>
 <thead>
 <tr>
@@ -4080,114 +4080,113 @@
 <tr>
 <td><code>displayname</code></td>
 <td>string</td>
-<td>Display Name show in Web front</td>
+<td>Display name shown on the web front end</td>
 <td><code>Google</code></td>
 </tr>
 <tr>
 <td><code>icon</code></td>
 <td>string</td>
-<td>File name ogf the icon file. It must be in <code>svg</code> format</td>
-<td>'img/auth/google_icon.svg'</td>
+<td>Path to the icon file. Must be in <code>svg</code> format.</td>
+<td><code>'img/auth/google_icon.svg'</code></td>
 </tr>
 <tr>
 <td><code>textcolor</code></td>
 <td>string</td>
-<td>text color for the front login page</td>
-<td>'#000000'</td>
+<td>Text color for the front-end login page</td>
+<td><code>'#000000'</code></td>
 </tr>
 <tr>
 <td><code>backgroundcolor</code></td>
 <td>string</td>
-<td>background color for the front login page</td>
-<td>'#FFFFFF'</td>
+<td>Background color for the front-end login page</td>
+<td><code>'#FFFFFF'</code></td>
 </tr>
 <tr>
 <td><code>enabled</code></td>
 <td>boolean</td>
-<td>enabled or diabled</td>
+<td>Enables or disables the provider</td>
 <td><code>True</code></td>
 </tr>
 <tr>
 <td><code>client_id</code></td>
 <td>string</td>
-<td>client id</td>
+<td>OAuth 2.0 client ID</td>
 <td><code>XXX-YYY.apps.googleusercontent.com</code></td>
 </tr>
 <tr>
 <td><code>client_secret</code></td>
 <td>string</td>
-<td>client secret</td>
+<td>OAuth 2.0 client secret</td>
 <td><code>XXX</code></td>
 </tr>
 <tr>
 <td><code>scope</code></td>
 <td>list of string</td>
-<td>scope</td>
+<td>OAuth 2.0 scopes to request</td>
 <td><code>[ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ]</code></td>
 </tr>
 <tr>
 <td><code>userinfo_auth</code></td>
 <td>boolean</td>
-<td>enable the OAuth <code>userinfo</code> request. The default value is <code>True</code></td>
+<td>Enables the OAuth <code>userinfo</code> request. The default value is <code>True</code>.</td>
 <td><code>True</code></td>
 </tr>
 <tr>
 <td><code>userinfo_url</code></td>
 <td>string</td>
-<td>dialog URL</td>
-<td>`https://www.googleapis.com/oauth2/v1/userinfo'</td>
+<td>URL of the userinfo endpoint</td>
+<td><code>'https://www.googleapis.com/oauth2/v1/userinfo'</code></td>
 </tr>
 <tr>
 <td><code>redirect_uri_prefix</code></td>
 <td>string</td>
-<td>redirect URL</td>
-<td><code>https://hostname.domain.local/API/auth/oauth</code></td>
+<td>Base URL for the redirect URI</td>
+<td><code>'https://hostname.domain.local/API/auth/oauth'</code></td>
 </tr>
 <tr>
 <td><code>redirect_uri_querystring</code></td>
 <td>string</td>
-<td>URL query string</td>
-<td><code>manager=external&amp;provider=google</code></td>
+<td>Query string appended to the redirect URI</td>
+<td><code>'manager=external&amp;provider=google'</code></td>
 </tr>
 <tr>
 <td><code>authorization_base_url</code></td>
 <td>string</td>
-<td>callback URL</td>
-<td><code>https://accounts.google.com/o/oauth2/v2/auth</code></td>
+<td>OAuth 2.0 authorization endpoint</td>
+<td><code>'https://accounts.google.com/o/oauth2/v2/auth'</code></td>
 </tr>
 <tr>
 <td><code>token_url</code></td>
 <td>string</td>
-<td>token URL</td>
-<td><code>https://oauth2.googleapis.com/token</code></td>
+<td>OAuth 2.0 token endpoint</td>
+<td><code>'https://oauth2.googleapis.com/token'</code></td>
 </tr>
 <tr>
 <td><code>userinfomap</code></td>
 <td>dictionary</td>
-<td>remap key name to another one</td>
+<td>Remaps keys in the userinfo JSON response to new key names</td>
 <td><code>{ '*': '*', 'picture': 'picture.data.url' }</code></td>
 </tr>
 <tr>
 <td><code>policies</code></td>
 <td>dict</td>
-<td>policies to allow or denied access, the default value is <code>{}</code></td>
-<td>{ 'acl' : { 'permit': [ 'all' ] } }</td>
+<td>Access control policies. The default value is <code>{}</code>.</td>
+<td><code>{ 'acl' : { 'permit': [ 'all' ] } }</code></td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>The complete redirect url concats the two values <code>redirect_uri_prefix</code> and <code>redirect_uri_querystring</code>.</li>
-<li>The <code>userinfomap</code> overwites all previous values <code>[ 'userid', 'name' ]</code> and also values to build the posix account <code>[ 'cn', 'uid', 'gid', 'uidNumber', 'gidNumber', 'homeDirectory', 'loginShell', 'description', 'groups', 'gecos']</code>.</li>
+<li>The complete redirect URL is constructed by concatenating <code>redirect_uri_prefix</code> and <code>redirect_uri_querystring</code>.</li>
+<li>The <code>userinfomap</code> overwrites the values for all fields listed in <code>[ 'userid', 'name' ]</code> and also the fields used to build the POSIX account: <code>[ 'cn', 'uid', 'gid', 'uidNumber', 'gidNumber', 'homeDirectory', 'loginShell', 'description', 'groups', 'gecos']</code>.</li>
 </ul>
-<h2 id="read-groups-and-set-roles-from-userinfo">Read groups and set roles from userinfo</h2>
-<p>If <code>userinfo_auth</code> is <code>True</code> abcdesktop tries to read the json content from the <code>userinfo_url</code> request.
-If the returned a json dictionary gets the <code>groups</code> entry and if the groups is list of string then the roles for the current user are defined with the groups content. All <code>roles</code> are set as <code>labels tags</code> on the user`s pod.</p>
+<h2 id="reading-groups-and-setting-roles-from-userinfo">Reading Groups and Setting Roles from userinfo</h2>
+<p>If <code>userinfo_auth</code> is <code>True</code>, abcdesktop attempts to read the JSON content from the <code>userinfo_url</code> endpoint. If the returned JSON dictionary contains a <code>groups</code> key whose value is a list of strings, the roles for the current user are set from that list. All roles are applied as label tags on the user's pod.</p>
 <div class="highlight"><pre><span></span><code>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span> <span class="n">userinfo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">),</span> <span class="nb">list</span> <span class="p">):</span>
             <span class="k">for</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">userinfo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;groups&#39;</span><span class="p">):</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
                     <span class="n">roles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">role</span><span class="p">)</span>
 </code></pre></div>
-<p>For example the getuserinfo returns a json like </p>
+<p>For example, if the userinfo endpoint returns the following JSON:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>
 <span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;34567345623452&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mail@yourdomain.com&quot;</span><span class="p">,</span>
@@ -4197,19 +4196,19 @@ If the returned a json dictionary gets the <code>groups</code> entry and if the 
 <span class="w">    </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;admins&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;developers&quot;</span><span class="w"> </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Then the user pods gets the labels</p>
+<p>The user pod receives the following labels:</p>
 <div class="highlight"><pre><span></span><code>kubectl describe pods user-746b8   -n abcdesktop
 </code></pre></div>
-<p>The labels list the <code>admins</code> and the <code>developers</code></p>
+<p>The labels include <code>admins</code> and <code>developers</code>:</p>
 <div class="highlight"><pre><span></span><code>Labels:           abcdesktop/role=desktop
                   admins=true
                   developers=true
                   ...
 </code></pre></div>
 <h2 id="orange-oauth">Orange OAuth</h2>
-<p>Orange's OAuth is supported for authentication. This API is based on OpenID Connect, which combines end-user authentication with OAuth2 authorisation. </p>
+<p>Orange's OAuth is supported for authentication. This API is based on OpenID Connect, which combines end-user authentication with OAuth 2.0 authorization.</p>
 <h3 id="orange-application">Orange Application</h3>
-<p>Create your Orange Application and set credentials for Orange Authentification API in the section </p>
+<p>Create your Orange Application and set credentials for the Orange authentication API:</p>
 <div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;ora</span><span class="kc">n</span><span class="err">ge&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">       </span>
 <span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Ora</span><span class="kc">n</span><span class="err">ge&#39;</span><span class="p">,</span><span class="w"> </span>
 <span class="w">        </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/ora</span><span class="kc">n</span><span class="err">ge_ico</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
@@ -4230,9 +4229,9 @@ If the returned a json dictionary gets the <code>groups</code> entry and if the 
 <span class="w">      </span><span class="p">},</span>
 </code></pre></div>
 <h2 id="facebook-oauth">Facebook OAuth</h2>
-<p>Facebook's OAuth is supported for authentication. </p>
+<p>Facebook's OAuth is supported for authentication.</p>
 <h3 id="facebook-application">Facebook Application</h3>
-<p>Create your Facebook Application credentials and set the credentials for Facebook Authentification API  </p>
+<p>Create your Facebook Application credentials and set them for the Facebook authentication API:</p>
 <div class="highlight"><pre><span></span><code><span class="err">&#39;</span><span class="kc">fa</span><span class="err">cebook&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Facebook&#39;</span><span class="p">,</span><span class="w"> </span>
 <span class="w">        </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/</span><span class="kc">fa</span><span class="err">cebook_ico</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
@@ -4254,11 +4253,11 @@ If the returned a json dictionary gets the <code>groups</code> entry and if the 
 <span class="w">        </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acl&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 </code></pre></div>
-<p>The <code>userinfomap</code> rename the key of the userinfo json document. It translates the key name <code>picture</code> as the new key name <code>picture.data.url</code>.</p>
+<p>The <code>userinfomap</code> renames keys in the userinfo JSON document. In this example, it maps the key <code>picture</code> to the new key name <code>picture.data.url</code>.</p>
 <h2 id="google-oauth">Google OAuth</h2>
-<p>Google's OAuth is supported for authentication. The client_id is the google's OAuth client ID, and the client_secret is the OAuth client secret. </p>
+<p>Google's OAuth is supported for authentication. The <code>client_id</code> is the Google OAuth client ID, and <code>client_secret</code> is the OAuth client secret.</p>
 <h3 id="google-application">Google Application</h3>
-<p>Create your Google credentials and set the correct credentials for Google Authentification API in the section [gauth]</p>
+<p>Create your Google credentials and configure the Google authentication API:</p>
 <div class="highlight"><pre><span></span><code><span class="err">&#39;google&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <span class="w">        </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/google_ico</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
 <span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Google&#39;</span><span class="p">,</span><span class="w"> </span>
@@ -4280,9 +4279,9 @@ If the returned a json dictionary gets the <code>groups</code> entry and if the 
 <span class="w">      </span><span class="p">}</span><span class="w">    </span>
 </code></pre></div>
 <h2 id="github-oauth">Github OAuth</h2>
-<p>GitHub's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for apps that don't have access to a web browser.</p>
+<p>GitHub's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for applications that do not have access to a web browser.</p>
 <h3 id="github-oauth_1">Github OAuth</h3>
-<p>Enable other users to authorize your OAuth App. Create your Github credentials here : <a href="https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps">authorizing-oauth-apps</a> and set the correct credentials for Github Authentification API</p>
+<p>Enable other users to authorize your OAuth App. Create your GitHub credentials at <a href="https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps">authorizing-oauth-apps</a> and configure the GitHub authentication API:</p>
 <div class="highlight"><pre><span></span><code><span class="err">&#39;gi</span><span class="kc">t</span><span class="err">hub&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/gi</span><span class="kc">t</span><span class="err">hub_ico</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
 <span class="w">        </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#</span><span class="mi">000000</span><span class="err">&#39;</span><span class="p">,</span>
@@ -4306,7 +4305,7 @@ If the returned a json dictionary gets the <code>groups</code> entry and if the 
 <h2 id="linkedin-oauth">LinkedIn OAuth</h2>
 <p>LinkedIn's OAuth is supported for authentication.</p>
 <h3 id="linkedin-application">LinkedIn Application</h3>
-<p>Create your LinkedIn Application and set credentials for LinkedIn Authentification API in the section </p>
+<p>Create your LinkedIn Application and set credentials for the LinkedIn authentication API:</p>
 <div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;li</span><span class="kc">n</span><span class="err">kedi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Li</span><span class="kc">n</span><span class="err">kedI</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
 <span class="w">            </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;whi</span><span class="kc">te</span><span class="err">&#39;</span><span class="p">,</span>
@@ -4329,7 +4328,7 @@ If the returned a json dictionary gets the <code>groups</code> entry and if the 
 <h2 id="discord-oauth">Discord OAuth</h2>
 <p>Discord's OAuth is supported for authentication.</p>
 <h3 id="discord-application">Discord Application</h3>
-<p>Create your Discord Application and set credentials for Discord Authentification API in the section </p>
+<p>Create your Discord Application and set credentials for the Discord authentication API:</p>
 <div class="highlight"><pre><span></span><code><span class="w"> </span><span class="err">&#39;discord&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Discord&#39;</span><span class="p">,</span>
 <span class="w">            </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;whi</span><span class="kc">te</span><span class="err">&#39;</span><span class="p">,</span>
@@ -4349,9 +4348,9 @@ If the returned a json dictionary gets the <code>groups</code> entry and if the 
 <span class="w">        </span><span class="p">}</span>
 </code></pre></div>
 <h2 id="keycloak-oauth">Keycloak OAuth</h2>
-<p>Keycloak's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for apps that don't have access to a web browser.</p>
+<p>Keycloak's OAuth implementation supports the standard authorization code grant type and the OAuth 2.0 Device Authorization Grant for applications that do not have access to a web browser.</p>
 <h3 id="keycloak-oauth_1">Keycloak OAuth</h3>
-<p>Enable other users to authorize your OAuth App. Create your keycloack credentials and set the correct credentials for keycloak Authentification API</p>
+<p>Enable other users to authorize your OAuth App. Create your Keycloak credentials and configure the Keycloak authentication API:</p>
 <div class="highlight"><pre><span></span><code><span class="err">&#39;keycloak&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ABC</span><span class="w"> </span><span class="err">Keycloak&#39;</span><span class="p">,</span>
 <span class="w">      </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/keycloak_ico</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
@@ -4372,7 +4371,7 @@ If the returned a json dictionary gets the <code>groups</code> entry and if the 
 <span class="w">      </span><span class="err">&#39;policies&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;acl&#39;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;permi</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;all&#39;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-<p>Great, you have check how the implicit Authentification configuration works.</p>
+<p>You have successfully reviewed how the external OAuth 2.0 authentication configuration works.</p>
 
 
 

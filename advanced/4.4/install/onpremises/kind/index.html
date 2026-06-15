@@ -3719,20 +3719,20 @@
 
   <h1>Kind</h1>
 
-<p>Kind is a tool for running local Kubernetes clusters using Docker container “nodes”. Kind was primarily designed for testing Kubernetes itself, but it can be used to deploy Kubernetes applications as well. To install or setup <code>kind</code>, refer to the <a href="https://kind.sigs.k8s.io/">Kind documentation</a></p>
+<p>Kind is a tool for running local Kubernetes clusters using Docker container "nodes". Kind was primarily designed for testing Kubernetes itself, but it can also be used to deploy Kubernetes applications. To install or set up <code>kind</code>, refer to the <a href="https://kind.sigs.k8s.io/">Kind documentation</a>.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li><a href="https://kind.sigs.k8s.io/docs/user/quick-start">kind</a> command line installed</li>
+<li><a href="https://kind.sigs.k8s.io/docs/user/quick-start">kind</a> command-line tool installed</li>
 <li><a href="https://docs.docker.com/engine/install">docker</a> Docker Engine installed</li>
-<li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">kubectl</a> command-line tool must be configured to communicate with your cluster</li>
-<li><code>openssl</code> and <code>curl</code> command line must be installed too (only for install using kubectl)</li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">kubectl</a> command-line tool configured to communicate with your cluster</li>
+<li><code>openssl</code> and <code>curl</code> command-line tools installed (required only when installing via kubectl)</li>
 </ul>
 <h2 id="create-kind-cluster">Create kind cluster</h2>
-<p>Run the command line to create</p>
+<p>Run the following command to create the cluster:</p>
 <div class="highlight"><pre><span></span><code>kind<span class="w"> </span>create<span class="w"> </span>cluster<span class="w"> </span>--wait<span class="w"> </span>5m
 </code></pre></div>
 <blockquote>
-<p>the <code>--wait 5m</code> wait for control-plane = Ready</p>
+<p>The <code>--wait 5m</code> flag waits until the control plane is <code>Ready</code>.</p>
 </blockquote>
 <p>You should read on stdout:</p>
 <div class="highlight"><pre><span></span><code>Creating cluster &quot;kind&quot; ...
@@ -3864,25 +3864,25 @@ speedtest-od-7d7c95d754-dmt5j   1/1     Running   0          4m38s
 </code></pre></div>
 </details>
 <h2 id="how-to-connect">How to connect ?</h2>
-<p>The install bash script forward the tcp port 30443 to the router pod port tcp 80</p>
+<p>The install bash script forwards TCP port 30443 to the router pod's TCP port 80</p>
 <p><code>kubectl port-forward router-od-647b77455d-nk677 --address 0.0.0.0 30443:80 -n abcdesktop</code></p>
 <div class="highlight"><pre><span></span><code>[OK] Please open your web browser and connect to
 
 [INFO] http://192.168.7.119:30443/
 </code></pre></div>
 <blockquote>
-<p>Open the URL returnes by the install bash script. In this sample <code>http://192.168.7.119:30443/</code></p>
+<p>Open the URL returned by the install bash script. In this sample <code>http://192.168.7.119:30443/</code></p>
 </blockquote>
 <p><img alt="kind home page" src="../img/kinduserhompage.png" /></p>
 <p>Your web browser shows the abcdesktop service home page</p>
 <p><img alt="kind user connected" src="../img/kinduserconnected.png" /></p>
 <p>The user <code>Philip J. Fry</code> is connected to the abcdesktop service</p>
 <blockquote>
-<p>Open the URL returnes by the install bash script. In this sample <code>http://192.168.7.119:30443/</code></p>
+<p>Open the URL returned by the install bash script. In this sample <code>http://192.168.7.119:30443/</code></p>
 </blockquote>
-<p>Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.</p>
+<p>Great, you have installed abcdesktop using Kind and your web browser shows the abcdesktop service.</p>
 <h2 id="delete-cluster">Delete cluster</h2>
-<p>To uninstall, run the kind <code>delete</code> cluster command line:</p>
+<p>To uninstall, run the <code>kind delete cluster</code> command:</p>
 <div class="highlight"><pre><span></span><code>kind<span class="w"> </span>delete<span class="w"> </span>cluster
 </code></pre></div>
 

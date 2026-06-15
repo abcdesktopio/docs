@@ -3688,19 +3688,19 @@
 
 
 <h1 id="build-a-simple-application-chromium-from-scratch">Build a simple application <code>chromium</code> from scratch</h1>
-<p>Goal: Add an application <code>chromium</code>.</p>
+<p>Goal: Build and register a fully labeled <code>chromium</code> application container with an abcdesktop.io instance.</p>
 <h2 id="requirements">Requirements</h2>
 <p>You need to have:</p>
 <ul>
-<li>kubernetes cluster ready to run whith abcdesktop.io installed.</li>
-<li><code>kubectl</code> command-line tool must be configured to communicate with your cluster.</li>
-<li><code>docker</code> command line must be installed to build the image.</li>
-<li>your own public or private container registry.</li>
+<li>A Kubernetes cluster with abcdesktop.io installed and running.</li>
+<li><code>kubectl</code> configured to communicate with your cluster.</li>
+<li><code>docker</code> command-line tool installed to build the image.</li>
+<li>Your own public or private container registry.</li>
 </ul>
 <h2 id="create-a-simple-application-chromium">Create a simple application <code>chromium</code></h2>
-<p>To illustrate a simple application, we will install <code>chromium</code> inside a container.</p>
+<p>To illustrate how to package a web browser as an abcdesktop.io application, we will install <code>chromium</code> inside a container image.</p>
 <ul>
-<li>Create a Dockerfile to install <code>chromium</code> application from <code>debian</code> container image</li>
+<li>Create a Dockerfile to install the <code>chromium</code> application from a <code>debian</code> base image</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">debian</span>
 <span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;debconf debconf/frontend select Noninteractive&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>debconf-set-selections
@@ -3741,8 +3741,7 @@ SIxNzEuOTEiIGNvbG9yPSIjMDAwMDAwIiBmaWxsPSJ1cmwoI2QpIi8+CiAgPC9nPgogPC9nPgo8L3N2Z
 <span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;/usr/bin/chromium&quot;</span><span class="w"> </span><span class="p">]</span>
 </code></pre></div>
 <p><strong>Dockerfile description</strong></p>
-<p>This image is based on debian, and install the <code>chromium</code> package.</p>
-<p>Then we define <code>/usr/bin/chromium</code> as the CMD.</p>
+<p>This image is based on Debian and installs the <code>chromium</code> package. The default command is set to <code>/usr/bin/chromium</code> via the <code>CMD</code> instruction.</p>
 <ul>
 <li><code>oc.keyword</code> label defines keyworks for the search engine</li>
 <li><code>oc.cat</code> label defines category of the application</li>
@@ -3757,15 +3756,15 @@ SIxNzEuOTEiIGNvbG9yPSIjMDAwMDAwIiBmaWxsPSJ1cmwoI2QpIi8+CiAgPC9nPgogPC9nPgo8L3N2Z
 <p><code>oc.legacyfileextensions</code> defines the legacy file extension support by this application</p>
 </li>
 <li>
-<p>Build the image for chromium application</p>
+<p>Build the image for the chromium application</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
 docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span><span class="nv">$REGISTRY</span>/chromium<span class="w"> </span>.
 </code></pre></div>
 <blockquote>
-<p>You should replace the value of <code>REGISTRY=abcdesktopio</code> by your own registry's name.
-If you don't have one, you can use the <code>abcdesktopio/chromium</code> as a readonly dockerhub registry.</p>
+<p>Replace the value of <code>REGISTRY=abcdesktopio</code> with your own registry name.
+If you do not have one, you can use <code>abcdesktopio/chromium</code> as a read-only Docker Hub registry.</p>
 </blockquote>
 <ul>
 <li>Push the image to your registry <em>(only if you have your own registry)</em></li>
@@ -3774,22 +3773,21 @@ If you don't have one, you can use the <code>abcdesktopio/chromium</code> as a r
 docker<span class="w"> </span>push<span class="w"> </span><span class="nv">$REGISTRY</span>/chromium
 </code></pre></div>
 <ul>
-<li>Inspect the image to create a json file</li>
+<li>Inspect the image to create a JSON file</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
 docker<span class="w"> </span>inspect<span class="w"> </span><span class="nv">$REGISTRY</span>/chromium<span class="w"> </span>&gt;<span class="w"> </span>chromium.json
 </code></pre></div>
 <ul>
-<li>Send the image to abcdesktop pyos instance</li>
+<li>Send the image to the abcdesktop pyos instance</li>
 </ul>
-<p>The commands read the <code>PYOS_POD</code> name, then copy the <code>chromium.json</code> file to <code>/tmp</code> of PYOS_POD,
-then send the <code>/tmp/chromium.json</code> to REST API server</p>
+<p>The following commands retrieve the <code>PYOS_POD</code> name, copy the <code>chromium.json</code> file to the <code>/tmp</code> directory inside the pyos pod, and submit the file to the REST API server.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 <span class="nv">PYOS_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NAMESPACE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
 kubectl<span class="w"> </span>cp<span class="w"> </span>chromium.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/chromium.json
 </code></pre></div>
-<p>The endpoint image returns a json documment</p>
+<p>The image endpoint returns a JSON document</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
 <span class="w">  </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -3850,11 +3848,11 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 </code></pre></div>
 <h2 id="execute-the-new-application-chromium">Execute the new application <code>chromium</code></h2>
 <ul>
-<li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop</li>
+<li>Open your web browser, navigate to your abcdesktop URL, and log in to create a desktop</li>
 </ul>
 <p><img alt="login to create a desktop" src="../img/simplestapplication-login-chromium.png" /></p>
 <ul>
-<li>Look for the new application <code>chromium</code> pushed</li>
+<li>Search for the newly registered <code>chromium</code> application</li>
 </ul>
 <p><img alt="Look for the new application chromium" src="../img/simplestapplication-lookfor-chromium.png" /></p>
 <ul>

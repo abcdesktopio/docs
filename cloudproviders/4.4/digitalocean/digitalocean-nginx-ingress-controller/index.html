@@ -3945,7 +3945,7 @@
 <li>read the digital ocean chapter <a href="https://docs.digitalocean.com/products/kubernetes/getting-started/operational-readiness/install-nginx-ingress-controller/">install-nginx-ingress-controller</a></li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>In this chapter we are going to, use a <code>nginx-ingress-controller</code> to host your abcdesktop service with a public IP Address, then configure dns zone file to use your own domain name, and activate TLS to secure your service.</p>
+<p>In this chapter, you will use an NGINX ingress controller to expose your abcdesktop service with a public IP address, configure your DNS zone file to use your own domain name, and enable TLS to secure the service.</p>
 <p><img alt="nginx-ingress-controller" src="../img/abcdesktop-nginx-ingress-controller.png" /></p>
 <h2 id="update-http-router-service">Update http-router service</h2>
 <p>When installing abcdesktop, http-router service type is <code>NodePort</code> by default, in order to expose the service through an ingress controller you will need to change the service type from <code>NodePort</code> to <code>ClusterIP</code>.</p>
@@ -4003,7 +4003,7 @@ http-router   ClusterIP   10.0.132.230   &lt;none&gt;        443/TCP,80/TCP   5s
 <p>Then install it on your cluster </p>
 <div class="highlight"><pre><span></span><code>helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace
 </code></pre></div>
-<p>Once the installation process completed, you can check that the service has been createed by running this command : </p>
+<p>Once the installation process has completed, you can verify that the service was created by running this command:</p>
 <div class="highlight"><pre><span></span><code>kubectl get svc ingress-nginx-controller -n ingress-nginx
 NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)                      AGE
 ingress-nginx-controller   LoadBalancer   10.3.74.197   &lt;pending&gt;     80:32649/TCP,443:32195/TCP   12s
@@ -4015,7 +4015,7 @@ ingress-nginx-controller   LoadBalancer   10.3.74.197   129.212.134.86   80:3264
 <h2 id="update-your-dns-zone-file">Update your DNS zone file</h2>
 <p>We will associate your <code>FQDN</code> (Fully Qualified Domain Name) to the load-balancer's IP Address.</p>
 <p><img alt="digitalocean networking" src="../img/digitalocean-networking.png" /></p>
-<p>This screenshot describes the DigitalOcean network console. It shows the <code>Domain</code> informations, but you can manage your own zone file from your own registrar.</p>
+<p>This screenshot shows the DigitalOcean network console, displaying the <strong>Domain</strong> configuration. You can also manage your zone file directly through your domain registrar.</p>
 <h3 id="create-new-record">Create new record</h3>
 <p>In this example, we are going to create a new record <code>hello</code> (<code>hello.digitalocean.pepins.net</code>) to the <code>A</code> address <code>129.212.134.86</code>. This IP Address is the <code>load-balancer</code> IP Address.</p>
 <blockquote>
@@ -4028,9 +4028,8 @@ You need to replace the hostname, the domain name and the IP Address with your o
 <p><img alt="digital ocean console domain overview" src="../img/createrecordingress.png" /></p>
 <p>Press <code>Create Record</code> button, to update your zone file with the new record.</p>
 <h2 id="configure-nginx-ingress-rules-for-backend-services">Configure NGINX Ingress Rules for Backend Services</h2>
-<p>In this step, you expose the backend applications to the outside world by telling nginx what host each service maps to. You define a rule in nginx to associate a host to a abcdesktop route backend service.</p>
-<p>Create an ingress resource for NGNIX using the abcdesktop service and save it as <code>abcdesktop_host.yaml</code>
-You need to update this manifest with your own FQDN, replace <code>hello.digitalocean.pepins.net</code> by your own values.</p>
+<p>In this step, you expose the backend applications to the outside world by telling nginx what host each service maps to. You define a rule in NGINX to associate a host with an abcdesktop route backend service.</p>
+<p>Create an ingress resource for NGINX using the abcdesktop service and save it as <code>abcdesktop_host.yaml</code>. Update this manifest with your own FQDN by replacing <code>hello.digitalocean.pepins.net</code> with your own values.</p>
 <div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -4062,7 +4061,7 @@ kubectl apply -f abcdesktop_host.yaml -n $NAMESPACE
 kubectl get ingress -n $NAMESPACE
 </code></pre></div>
 <p>The output looks similar to the following:</p>
-<p>Wait fee seconds while the <code>ADDRESS</code> field is empty<br />
+<p>Wait a few seconds while the <code>ADDRESS</code> field is being populated
 <div class="highlight"><pre><span></span><code>NAME                 CLASS   HOSTS                           ADDRESS   PORTS   AGE
 ingress-abcdesktop   nginx   hello.digitalocean.pepins.net             80      24s
 </code></pre></div></p>
@@ -4251,7 +4250,7 @@ strict-transport-security: max-age=31536000; includeSubDomains
 ...
 </code></pre></div>
 <h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
-<p>You can now connect to your abcdesktop desktop pulic web site using <code>https</code> protocol. </p>
+<p>You can now connect to your abcdesktop public website using the <code>https</code> protocol.</p>
 <p><img alt="reach your website using https" src="../img/hello_https.png" /></p>
 <p>The status is secured and we get some informations from the certificate</p>
 <p><img alt="reach your website using https" src="../img/certificate_hello.png" /></p>
@@ -4296,7 +4295,7 @@ pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log
 </code></pre></div>
 <p>As you can see in the log file <code>logs/trace.log</code>, the source IP address seen by pyos is a private IP address like <code>10.X.X.X</code> (or in the subnet you defined as internal to your cluster) which is in the pool of permit ip addresses.  </p>
 <p>That happens because the nginx ingress controller we set up earlier does not forward the client public IP address and balance the request with its own IP address in the cluster. So Router and Pyos both see the ip address of the ingress controller loadbalancer.</p>
-<p>To fix that, we have to update te configuration of our nginx ingress controller. Please paste the following lines in a <code>patch-ingress.yaml</code> file</p>
+<p>To fix this, update the configuration of your NGINX ingress controller by pasting the following lines into a <code>patch-ingress.yaml</code> file:</p>
 <div class="highlight"><pre><span></span><code>controller:
   service:
     externalTrafficPolicy: &quot;Local&quot;

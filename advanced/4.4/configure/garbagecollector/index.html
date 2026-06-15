@@ -3691,19 +3691,19 @@
 
 <h1 id="configure-the-garbage-collector">Configure the garbage collector</h1>
 <h2 id="garbage-collector">Garbage collector</h2>
-<p>The garbage collector remove all user's pods not connected since more than expirein time in seconds.
-To call the garbage collector endpoint run a http request to <code>/API/manager/garbagecollector</code>. It takes the parameters <code>expirein</code> and <code>force</code>.</p>
+<p>The garbage collector removes all user pods that have not been connected for longer than the <code>expirein</code> duration (in seconds).
+To call the garbage collector endpoint, run an HTTP request to <code>/API/manager/garbagecollector</code>. It accepts the parameters <code>expirein</code> and <code>force</code>.</p>
 <ul>
 <li><code>expirein</code> is a value in seconds. This parameter is required.</li>
 <li><code>force</code> is a boolean value <code>true</code>, <code>false</code>. This parameter is optional. The default value is <code>False</code>. If <code>Force</code> is <code>True</code> the garbage collector doesn't check if the user if connected to his pod or not. </li>
-<li><code>nodename</code> is the name of the node where the pod should be deleted. This parameter is optional. The default value is <code>None</code>, it means that the garbage collector runs on all nodes of the cluster without any restriction. The <code>nodename</code> parameter is usefull if you need to remove user<code>s pods on a node for a maintenance plan or a</code>drain kubectl` command.</li>
+<li><code>nodename</code> is the name of the node where the pod should be deleted. This parameter is optional. The default value is <code>None</code>, meaning the garbage collector runs on all nodes of the cluster without restriction. The <code>nodename</code> parameter is useful if you need to remove user pods on a specific node for a maintenance plan or a <code>kubectl drain</code> command.</li>
 </ul>
-<p>This endpoint return a JSON list of all delete pods.</p>
+<p>This endpoint returns a JSON list of all deleted pods.</p>
 <blockquote>
 <p>Calling <code>/API/manager/garbagecollector?expirein=0&amp;force=true</code> will disconnect all user's pods.</p>
 </blockquote>
 <h2 id="create-a-cronjob">Create a <code>cronjob</code></h2>
-<p>Create a <code>cronjob</code> to run the garbagecollector each five minutes :</p>
+<p>Create a <code>cronjob</code> to run the garbage collector every five minutes:</p>
 <ul>
 <li>Create a yaml manifest file named <code>cronjob.yaml</code></li>
 </ul>
@@ -3770,15 +3770,15 @@ If the time of the last login on the desktop is more than <code>expirein</code> 
 </code></pre></div>
 <p><code>force</code> to delete the user's pod even if the user is connected. <code>false</code> is the default value, if a user is connected to his desktop then the <code>garbagecollector</code> keep this desktop running. By setting <code>FORCE</code> to <code>true</code>, the desktop will be deleted every time the <code>expirein</code> value is reached, regardless of the connection status.</p>
 <h2 id="apply-your-cronjob">Apply your <code>cronjob</code></h2>
-<p>Run the <code>kubectl</code> command line to apply your manifest file in you namespace.</p>
+<p>Run the <code>kubectl</code> command to apply your manifest file in your namespace.</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f cronjob.yaml -n abcdesktop
 </code></pre></div>
 <p>The output looks similar to the following:</p>
 <div class="highlight"><pre><span></span><code>cronjob.batch/abcdesktop-cleaner configured
 </code></pre></div>
 <h2 id="check-the-jobs-status">Check the jobs status</h2>
-<p>After few minutes, you can check the job status </p>
-<p>Run the <code>kubectl</code> command line to get your jobs in you namespace.</p>
+<p>After a few minutes, you can check the job status.</p>
+<p>Run the <code>kubectl</code> command to list jobs in your namespace.</p>
 <div class="highlight"><pre><span></span><code>kubectl get jobs -n abcdesktop
 </code></pre></div>
 <p>The output looks similar to the following:</p>
@@ -3787,7 +3787,7 @@ abcdesktop-cleaner-29350635   Complete   1/1           5s         13m
 abcdesktop-cleaner-29350640   Complete   1/1           5s         8m56s
 abcdesktop-cleaner-29350645   Complete   1/1           5s         3m56s
 </code></pre></div>
-<p>You can also get your pods in your namespace</p>
+<p>You can also list pods in your namespace:</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -n abcdesktop
 </code></pre></div>
 <p>The output looks similar to the following:</p>
@@ -3797,9 +3797,8 @@ abcdesktop-cleaner-29350670-c8dtj   0/1     Completed   0          7m9s   10.0.2
 abcdesktop-cleaner-29350675-hlj8z   0/1     Completed   0          2m9s   10.0.2.72    abc3ws03   &lt;none&gt;           &lt;none&gt;
 [...]
 </code></pre></div>
-<p>Great, you add a <code>garbagecollector</code> using a kubernetes <code>cronjob</code> in your namespace.</p>
-<p>Each five minutes the <code>garbagecollector</code> checks if desktop pod have to be deleted.
-The desktop pod is checked for deletion by the garbage collector every five minutes.</p>
+<p>You have successfully configured the <code>garbagecollector</code> as a Kubernetes <code>CronJob</code> in your namespace.</p>
+<p>Every five minutes, the garbage collector checks whether any desktop pods should be deleted.</p>
 
 
 

@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#troubleshooting-get-nvidia-gpu-access-to-ephemeral-container-with-cdi-enabled" class="md-skip">
+        <a href="#troubleshooting-nvidia-gpu-access-to-ephemeral-containers-with-cdi-enabled" class="md-skip">
           Skip to content
         </a>
       
@@ -3653,8 +3653,8 @@
   
 
 
-<h1 id="troubleshooting-get-nvidia-gpu-access-to-ephemeral-container-with-cdi-enabled">Troubleshooting get nvidia GPU access to ephemeral container with CDI enabled</h1>
-<p>abcdesktop uses <code>ephemeral container</code> or <code>pod</code> as applications. nvidia adds support for <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html">Container Device Interface</a>. </p>
+<h1 id="troubleshooting-nvidia-gpu-access-to-ephemeral-containers-with-cdi-enabled">Troubleshooting NVIDIA GPU Access to Ephemeral Containers with CDI Enabled</h1>
+<p>abcdesktop uses <code>ephemeral container</code> or <code>pod</code> as applications. NVIDIA adds support for <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html">Container Device Interface</a>. </p>
 <h2 id="apply-runtimeclassname-to-abcdesktop-config">Apply <code>runtimeClassName</code> to abcdesktop config</h2>
 <p>Get the <code>od.config</code> file</p>
 <p>If you don't already have the config file <code>od.config</code>, run the command line </p>
@@ -3727,7 +3727,7 @@ desktop.features_permissions : [ &#39;read&#39;, &#39;submit&#39; ]
 # define the variable named k8s.device-plugin.nvidia.com/gpu to the $gpu_uuid value
 NVIDIA_GPU=&quot;{ \&quot;k8s.device-plugin.nvidia.com/gpu\&quot; : \&quot;$gpu_uuid\&quot; }&quot;  
 </code></pre></div>
-<p>It reads the <code>gpu uuid</code>, then set the variable <code>NVIGIA_GPU</code> to <code>k8s.device-plugin.nvidia.com/gpu=$gpu_uuid</code></p>
+<p>It reads the GPU UUID, then sets the variable <code>NVIDIA_GPU</code> to <code>k8s.device-plugin.nvidia.com/gpu=$gpu_uuid</code>.</p>
 <p>For example, when you run the <code>overwrite_environment_variable_for_application.sh</code> on a GPU host</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$NVIDIA_GPU</span>
 <span class="o">{</span><span class="w"> </span><span class="s2">&quot;k8s.device-plugin.nvidia.com/gpu&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb&quot;</span><span class="w"> </span><span class="o">}</span>

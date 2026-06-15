@@ -3757,11 +3757,11 @@
 <blockquote>
 <p>Options and features are set by default.</p>
 </blockquote>
-<p>In this example the kubernetes cluster is named <code>abcdesktop-ovh-1</code>.
-This screenshot describes the OVHcloud Kubernetes service console.</p>
+<p>In this example, the Kubernetes cluster is named <code>abcdesktop-ovh-1</code>.
+This screenshot shows the OVHcloud Kubernetes service console.</p>
 <p><img alt="ovh console overview" src="../img/ovh-console.png" /></p>
 <h2 id="create-your-kubernetes-config">Create your kubernetes config</h2>
-<p>As there is no command line tool that allows us to connect our local machine to the cluster. You will have to manually copy the kubeconfig file.</p>
+<p>As there is no command-line tool that allows you to connect your local machine to the cluster, you must manually copy the kubeconfig file.</p>
 <p>Go to your cluster on the OVHcloud console</p>
 <p><img alt="ovh cluster overview" src="../img/ovh-console.png" /></p>
 <p>Then click on <code>Copy kubeconfig</code> and paste its content in a new <code>ovh-kubeconfig.yaml</code>, it should look like this</p>
@@ -3789,7 +3789,7 @@ users:
 <div class="highlight"><pre><span></span><code>cp ovh-kubeconfig.yaml /home/$USER/.kube/config
 </code></pre></div>
 <h2 id="get-your-kubernetes-cluster-informations">Get your kubernetes cluster informations</h2>
-<p>Run the <code>kubectl cluster-info</code> command line, to confirm that <code>kubectl</code> command can communicate whith your azur cluster</p>
+<p>Run the <code>kubectl cluster-info</code> command line to confirm that the <code>kubectl</code> command can communicate with your OVHcloud cluster.</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cluster-info
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Kubernetes<span class="w"> </span>control<span class="w"> </span>plane<span class="w"> </span>is<span class="w"> </span>running<span class="w"> </span>at<span class="w"> </span>https://1vet26.c1.waw1.k8s.ovh.net
@@ -3805,11 +3805,11 @@ To<span class="w"> </span>further<span class="w"> </span>debug<span class="w"> <
 <p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="connect-to-your-abcdesktop-service">Connect to your abcdesktop service</h2>
 <p>By default install script is listening on a free tcp port <code>:30443</code> and is using a <code>kubectl port-forward</code> command line to reach http web service <code>:80</code></p>
-<p>Open your web browser <code>http://locahost:30443</code></p>
+<p>Open your web browser to <code>http://localhost:30443</code></p>
 <p><img alt="abcdesktop login" src="../../img/abcdesktop-hompage-port30443.png" /></p>
 <p>Login as user <code>Philip J. Fry</code> with the password <code>fry</code></p>
 <p><img alt="abcdesktop login as fry" src="../../img/abcdesktop-hompage-port30443-login-fry.png" /></p>
-<p>After image pulling process, you get your first abcdesktop </p>
+<p>After the image-pulling process completes, you get your first abcdesktop session</p>
 <p><img alt="abcdesktop for fry" src="../../img/abcdesktop-hompage-port30443-user-fry-logged.png" /></p>
 <h2 id="add-applications-to-your-desktop">Add applications to your desktop</h2>
 <p>Using the previous terminal shell, run the application install script </p>

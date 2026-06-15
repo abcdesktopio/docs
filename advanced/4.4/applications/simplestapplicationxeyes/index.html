@@ -1811,9 +1811,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#read-the-pods-description" class="md-nav__link">
+  <a href="#read-the-pod-description" class="md-nav__link">
     <span class="md-ellipsis">
-      Read the pod's description
+      Read the pod description
     </span>
   </a>
   
@@ -3657,9 +3657,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#read-the-pods-description" class="md-nav__link">
+  <a href="#read-the-pod-description" class="md-nav__link">
     <span class="md-ellipsis">
-      Read the pod's description
+      Read the pod description
     </span>
   </a>
   
@@ -3700,37 +3700,37 @@
 
 
 <h1 id="build-a-sample-xeyes-from-scratch">Build a sample xeyes from scratch</h1>
-<p>Goal: Add an application from scratch.</p>
+<p>Goal: Build and register a new X11 application container (<code>xeyes</code>) with an abcdesktop.io instance from scratch.</p>
 <h2 id="requirements">Requirements</h2>
 <p>You need to have:</p>
 <ul>
-<li>kubernetes cluster ready to run whith abcdesktop.io installed.</li>
-<li><code>kubectl</code> must be configured to communicate with your cluster.</li>
-<li><code>docker</code> command line must be installed too.</li>
-<li>your own public or private container registry.</li>
+<li>A Kubernetes cluster with abcdesktop.io installed and running.</li>
+<li><code>kubectl</code> configured to communicate with your cluster.</li>
+<li><code>docker</code> command-line tool installed.</li>
+<li>Your own public or private container registry.</li>
 </ul>
 <h2 id="create-a-simple-application-xeyes">Create a simple application <code>xeyes</code></h2>
-<p>To illustrate a simple application, we will install <code>X11/xedit</code> inside a container.</p>
+<p>To illustrate a minimal application integration, we will install <code>xeyes</code> from the <code>x11-apps</code> package inside a container image.</p>
 <ul>
-<li>Create a Dockerfile to install <code>xeyes</code> application from <code>x11-apps</code> package</li>
+<li>Create a Dockerfile to install the <code>xeyes</code> application from the <code>x11-apps</code> package</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu</span>
 <span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>x11-apps<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>clean
 <span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/bin/xeyes&quot;</span><span class="p">]</span>
 </code></pre></div>
-<p>This image is based on ubuntu, and install the <code>x11-apps</code> package. Then we define <code>/usr/bin/xeyes</code> as the CMD.</p>
+<p>This image is based on Ubuntu and installs the <code>x11-apps</code> package. The default command is set to <code>/usr/bin/xeyes</code> via the <code>CMD</code> instruction.</p>
 <blockquote>
-<p>ENTRYPOINT is also supported</p>
+<p><code>ENTRYPOINT</code> is also supported.</p>
 </blockquote>
 <ul>
-<li>Build the image for xedit application</li>
+<li>Build the image for the xeyes application</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
 docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexeyes<span class="w"> </span>.
 </code></pre></div>
 <blockquote>
-<p>You should replace the value of <code>REGISTRY=abcdesktopio</code> by your own registry's name.
-If you don't have one, you can use the <code>abcdesktopio/samplexeyes</code> as a readonly dockerhub registry.</p>
+<p>Replace the value of <code>REGISTRY=abcdesktopio</code> with your own registry name.
+If you do not have one, you can use <code>abcdesktopio/samplexeyes</code> as a read-only Docker Hub registry.</p>
 </blockquote>
 <ul>
 <li>Push the image to your registry <em>(only if you have one registry)</em></li>
@@ -3739,52 +3739,51 @@ If you don't have one, you can use the <code>abcdesktopio/samplexeyes</code> as 
 docker<span class="w"> </span>push<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexeyes
 </code></pre></div>
 <ul>
-<li>Inspect the image to create a json file</li>
+<li>Inspect the image to create a JSON file</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
 docker<span class="w"> </span>inspect<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexeyes:latest<span class="w"> </span>&gt;<span class="w"> </span>samplexeyes.json
 </code></pre></div>
 <ul>
-<li>Send the image to abcdesktop pyos instance</li>
+<li>Send the image to the abcdesktop pyos instance</li>
 </ul>
-<p>The commands read the <code>PYOS_POD</code> name, then copy the <code>samplexeyes.json</code> file to <code>/tmp</code> of PYOS_POD,
-then send the <code>/tmp/samplexeyes.json</code> to REST API server</p>
+<p>The following commands retrieve the <code>PYOS_POD</code> name, copy the <code>samplexeyes.json</code> file to the <code>/tmp</code> directory inside the pyos pod, and submit the file to the REST API server.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 <span class="nv">PYOS_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NAMESPACE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
 kubectl<span class="w"> </span>cp<span class="w"> </span>samplexeyes.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/samplexeyes.json
 </code></pre></div>
-<p>The endpoint image returns a json documment</p>
+<p>The image endpoint returns a JSON document</p>
 <div class="highlight"><pre><span></span><code>[{&quot;cmd&quot;: [&quot;/usr/bin/xeyes&quot;], &quot;path&quot;: null, &quot;sha_id&quot;: &quot;sha256:f13075e3caceccf5818f9d3b0bdd231b2d800850eb9c81d2906704ec633372c7&quot;, &quot;id&quot;: &quot;abcdesktopio/samplexeyes:latest&quot;, &quot;architecture&quot;: &quot;amd64&quot;, &quot;os&quot;: &quot;linux&quot;, &quot;rules&quot;: {}, &quot;acl&quot;: {&quot;permit&quot;: [&quot;all&quot;]}, &quot;launch&quot;: &quot;xeyes&quot;, &quot;name&quot;: &quot;xeyes&quot;, &quot;icon&quot;: &quot;xeyes&quot;, &quot;icondata&quot;: &quot;PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIwIiB5PSIzMiIgZmlsbD0iYmxhY2siPnhleWVzPC90ZXh0Pjwvc3ZnPg==&quot;, &quot;keyword&quot;: null, &quot;uniquerunkey&quot;: null, &quot;cat&quot;: null, &quot;args&quot;: null, &quot;execmode&quot;: null, &quot;showinview&quot;: null, &quot;displayname&quot;: &quot;xeyes&quot;, &quot;desktopfile&quot;: null, &quot;executeclassname&quot;: null, &quot;executablefilename&quot;: &quot;xeyes&quot;, &quot;usedefaultapplication&quot;: false, &quot;mimetype&quot;: [], &quot;fileextensions&quot;: [], &quot;legacyfileextensions&quot;: [], &quot;secrets_requirement&quot;: null, &quot;i100  4670  100  1115  100  3555  41296   128k --:--:-- --:--:-- --:--:--  168ke&quot;: &quot;ephemeral_container&quot;, &quot;securitycontext&quot;: {}, &quot;created&quot;: &quot;2025-02-03T15:45:36.493950688Z&quot;}]
 </code></pre></div>
 <h2 id="execute-the-new-application-xeyes">Execute the new application <code>xeyes</code></h2>
 <ul>
-<li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop</li>
+<li>Open your web browser, navigate to your abcdesktop URL, and log in to create a desktop</li>
 </ul>
 <p><img alt="login to create a desktop" src="../img/simplestapplication-login-xeyes.png" /></p>
 <ul>
-<li>Look for the new application <code>xeyes</code> pushed</li>
+<li>Search for the newly registered <code>xeyes</code> application</li>
 </ul>
 <p><img alt="Look for the new application xeyes" src="../img/simplestapplication-lookfor-xeyes.png" /></p>
 <ul>
-<li>Start the new application <code>xeyes</code>, the hourglass appears</li>
+<li>Launch the <code>xeyes</code> application — an hourglass indicator will appear while the container image is being pulled</li>
 </ul>
 <p><img alt="Start the new application xeyes hourglass" src="../img/simplestapplication-xeyes-hourglass.png" /></p>
-<p>Please wait for the end of the pulling process</p>
+<p>Wait for the image pull to complete.</p>
 <p><img alt="Start the new application xeyes" src="../img/simplestapplication-xeyes-started.png" /></p>
 <blockquote>
-<p>The xeyes application is started as a container</p>
+<p>The xeyes application is running as an ephemeral container inside the user pod.</p>
 </blockquote>
-<h2 id="read-the-pods-description">Read the pod's description</h2>
-<p>Get the name of fry's pod</p>
+<h2 id="read-the-pod-description">Read the pod description</h2>
+<p>Retrieve the name of the user's pod:</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -l type=x11server -n abcdesktop
 NAME        READY   STATUS    RESTARTS   AGE
 fry-3f4d7   4/4     Running   0          104s
 </code></pre></div>
-<p>Get the fry's pod description</p>
+<p>Retrieve the pod description:</p>
 <div class="highlight"><pre><span></span><code>kubectl describe pods fry-3f4d7 -n abcdesktop
 </code></pre></div>
-<p>The <code>Ephemeral Containers</code> contains the <code>xeyes</code> application</p>
+<p>The <code>Ephemeral Containers</code> section lists the running <code>xeyes</code> application container:</p>
 <div class="highlight"><pre><span></span><code>Ephemeral Containers:
   philip-j--fry-xeyes-7a308:
     Container ID:  containerd://13df5fd38966a9cc10d1c2c1a4dc4b4e816100cfa17b1062b5ecf09f6a69e5b0
@@ -3846,7 +3845,7 @@ fry-3f4d7   4/4     Running   0          104s
       /var/run/dbus from rundbus (rw)
       /var/run/desktop from run (rw)
 </code></pre></div>
-<p>Great you've installed and started a new application for abcdesktop</p>
+<p>You have successfully installed and started a new application for abcdesktop.io.</p>
 
 
 

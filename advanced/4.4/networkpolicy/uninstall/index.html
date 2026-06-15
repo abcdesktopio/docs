@@ -3673,7 +3673,7 @@
 
 <h1 id="uninstall">Uninstall</h1>
 <h2 id="disable-the-network-policies">Disable the network policies</h2>
-<p>To disable the network policies, run the kubectl delete command :</p>
+<p>To disable the network policies, run the following <code>kubectl delete</code> command:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-4.4.yaml
 </code></pre></div>
 <ul>
@@ -3682,9 +3682,9 @@
 </ul>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://pyos.abcdesktop.svc.cluster.local:8000/API/manager/images
 </code></pre></div>
-<p>You should get a json document as http response</p>
+<p>You should receive a JSON document as the HTTP response.</p>
 <p><img alt="http request is allowed" src="../../../../img/netpol.permit.jsondata.png" /></p>
-<p>You may need to update the <a href="https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-4.4.yaml">netpol-default.yaml</a> file with your own values.</p>
+<p>You may need to update the <a href="https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-4.4.yaml">netpol-default.yaml</a> file to match your own environment values.</p>
 
 
 

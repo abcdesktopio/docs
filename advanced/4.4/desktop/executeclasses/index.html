@@ -3704,9 +3704,7 @@
 
 
 <h1 id="executeclasses">executeclasses</h1>
-<p>The executeclasses defines the resources for the desktop pods and for applications.
-<code>executeclasses</code> defines how to adjust the resources for your pods either by creating rules or by allowing your users to select from the resources already defined.
-The executeclasses is a dictionary, each entry describes the resources.</p>
+<p>The <code>executeclasses</code> configuration defines resource profiles for desktop pods and application containers. It allows you to control resource allocation either by defining static rules or by letting users select from a predefined set of profiles. The <code>executeclasses</code> value is a dictionary; each entry describes a resource profile.</p>
 <h2 id="executeclasses-dictionary"><code>executeclasses</code> dictionary</h2>
 <div class="highlight"><pre><span></span><code>executeclasses : {
   &#39;default&#39;:{
@@ -3761,7 +3759,7 @@ The executeclasses is a dictionary, each entry describes the resources.</p>
     }
   }}
 </code></pre></div>
-<p>The entry <code>'default'</code> must exist.</p>
+<p>The <code>'default'</code> entry is mandatory and must always be present.</p>
 <table>
 <thead>
 <tr>
@@ -3775,40 +3773,38 @@ The executeclasses is a dictionary, each entry describes the resources.</p>
 <tr>
 <td>containers</td>
 <td>dict</td>
-<td>update the container with dict values</td>
+<td>Merge additional per-container configuration (e.g., resource limits)</td>
 <td><code>{ 'graphical': { 'resources': { 'limits': { 'nvidia.com/gpu':'1' } } } }</code></td>
 </tr>
 <tr>
 <td>nodeSelector</td>
 <td>dict</td>
-<td>update the nodeSelector with dict values</td>
+<td>Merge additional node selector constraints</td>
 <td><code>{'nvidia.com/gpu': 'true'}</code></td>
 </tr>
 <tr>
 <td>description</td>
 <td>string</td>
-<td>show description in the login page</td>
-<td>'platinum: 8 CPU cores, 128G RAM and 1 GPU'</td>
+<td>Display text shown on the login page</td>
+<td><code>'platinum: 8 CPU cores, 128G RAM and 1 GPU'</code></td>
 </tr>
 <tr>
-<td>runtimeClassName.</td>
+<td>runtimeClassName</td>
 <td>string</td>
-<td>(optional) name of the runtime class</td>
+<td>(Optional) Name of the Kubernetes runtime class</td>
 <td><code>nvidia</code></td>
 </tr>
 <tr>
 <td>resources</td>
 <td>dict</td>
-<td> pods resources</td>
-<td> <code>{ 'requests' {'memory':"4Gi",'cpu':"4000m"}, 'limits':{'memory':"128Gi",'cpu':"8000m"} }</code></td>
+<td>Pod resource requests and limits</td>
+<td><code>{ 'requests': {'memory':"4Gi",'cpu':"4000m"}, 'limits':{'memory':"128Gi",'cpu':"8000m"} }</code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="define-the-executeclassname-value">Define the <code>executeclassname</code> value</h2>
-<p>The <code>executeclassname</code> variable  is an entry in the <code>executeclasses</code> dictionary. It defines the <code>resources</code>, <code>nodeSelector</code> and <code>runtimeClassName</code> of a user's pod.
-The <code>executeclassname</code> value is set during the auth process.</p>
-<p>By himself, a user can to choose the <code>executeclassname</code> value from a list, or set the <code>executeclassname</code> value using rules. 
-If the <code>executeclassname</code> is not set the <code>executeclassname</code> is set to the string <code>default</code> and the executeclasses is set to <code>executeclasses['default']</code>.</p>
+<p>The <code>executeclassname</code> variable is an entry key in the <code>executeclasses</code> dictionary. It determines the <code>resources</code>, <code>nodeSelector</code>, and <code>runtimeClassName</code> applied to a user's pod. The <code>executeclassname</code> value is resolved during the authentication process.</p>
+<p>A user can choose the <code>executeclassname</code> value from a predefined list, or it can be assigned automatically via rules. If <code>executeclassname</code> is not set, it defaults to the string <code>'default'</code>, and the corresponding entry <code>executeclasses['default']</code> is used.</p>
 <h3 id="set-executeclassname-by-rules">Set <code>executeclassname</code> by rules</h3>
 <p>Update your <code>od.config</code> file to add a new rule. The <code>label</code> of the rule must be <code>executeclassname</code>, and the <code>load</code> will set the value of the <code>executeclassname</code>.</p>
 <div class="highlight"><pre><span></span><code>    &#39;rule-executeclass&#39;: {
@@ -3818,8 +3814,7 @@ If the <code>executeclassname</code> is not set the <code>executeclassname</code
             &#39;load&#39;: &#39;silver&#39;
     },
 </code></pre></div>
-<p>If the user is 'memberOf' the group 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' when the label <code>executeclassname</code> is set to the value <code>silver</code>
-A full example of the ldapconfig becomes like this one.</p>
+<p>If the user is a member of the group <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code>, the label <code>executeclassname</code> is set to the value <code>silver</code>. A complete example of the <code>ldapconfig</code> is shown below.</p>
 <div class="highlight"><pre><span></span><code>ldapconfig : {
     &#39;planet&#39;: {
             &#39;default&#39;       : True,
@@ -3856,12 +3851,11 @@ A full example of the ldapconfig becomes like this one.</p>
             } } }
 </code></pre></div>
 <ul>
-<li>Save your new <code>od.config</code> file and reload your abcdesktop config </li>
+<li>Save the updated <code>od.config</code> file and reload the abcdesktop configuration.</li>
 </ul>
 <div class="highlight"><pre><span></span><code>
 </code></pre></div>
-<p>Go to the abcdesktop url service, and choose a user member of <code>ship_crew</code>. 
-<code>Philip J. Fry</code> is member of <code>ship_crew</code>.</p>
+<p>Navigate to the abcdesktop service URL and sign in as a user who is a member of <code>ship_crew</code>. <code>Philip J. Fry</code> is a member of <code>ship_crew</code>.</p>
 <p><img alt="login rules sylver" src="../img/login-rules-userinfo-silver.png" /></p>
 <blockquote>
 <p>The pod is created with the requested resources.</p>
@@ -3877,12 +3871,12 @@ kubectl get pods -l type=x11server -n $NAMESPACE
 <div class="highlight"><pre><span></span><code>NAME             READY   STATUS    RESTARTS   AGE
 fry-f7c42        4/4     Running   0          7s
 </code></pre></div>
-<p>Read the user's pod <code>fry-f7c42</code> description, replace <code>POD_NAME</code> with your own pod.</p>
+<p>Inspect the user pod named <code>fry-f7c42</code>; replace <code>POD_NAME</code> with your actual pod name.</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 POD_NAME=fry-f7c42
 kubectl describe pods $POD_NAME -n $NAMESPACE
 </code></pre></div>
-<p>A label <code>executeclassname</code> is set to the user's pod</p>
+<p>A label <code>executeclassname</code> is applied to the user's pod:</p>
 <div class="highlight"><pre><span></span><code>Labels:           abcdesktop/role=desktop
                   access_provider=planet
                   access_providertype=ldap
@@ -3891,7 +3885,7 @@ kubectl describe pods $POD_NAME -n $NAMESPACE
                   executeclassname=silver
                   ...
 </code></pre></div>
-<p>The resources limits and requests are set from the <code>silver</code> executeclass.</p>
+<p>The resource limits and requests are derived from the <code>silver</code> execute class.</p>
 <div class="highlight"><pre><span></span><code>Resources:
   Limits:
     cpu:     4
@@ -3947,7 +3941,7 @@ desktop.features_permissions : [ &#39;read&#39;, &#39;submit&#39; ]
 <ul>
 <li>List the labels of the user's pod.</li>
 </ul>
-<p>A label <code>executeclassname</code> is set to the user's pod</p>
+<p>A label <code>executeclassname</code> is applied to the user's pod:</p>
 <div class="highlight"><pre><span></span><code>Labels:           abcdesktop/role=desktop
                   access_provider=planet
                   access_providertype=ldap
@@ -3956,7 +3950,7 @@ desktop.features_permissions : [ &#39;read&#39;, &#39;submit&#39; ]
                   executeclassname=silver
                   ...
 </code></pre></div>
-<p>The resources limits and requests are set from the <code>silver</code> executeclass.</p>
+<p>The resource limits and requests are derived from the <code>silver</code> execute class.</p>
 <div class="highlight"><pre><span></span><code>Resources:
   Limits:
     cpu:     4

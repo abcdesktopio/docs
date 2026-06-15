@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#authentification-explicit-for-microsoft-active-directory-services" class="md-skip">
+        <a href="#authentication-explicit-for-microsoft-active-directory-services" class="md-skip">
           Skip to content
         </a>
       
@@ -2151,17 +2151,17 @@
         <li class="md-nav__item">
   <a href="#authmanagers-explicit-object" class="md-nav__link">
     <span class="md-ellipsis">
-      authmanagers explicit object
+      authmanagers explicit Object
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="authmanagers explicit object">
+    <nav class="md-nav" aria-label="authmanagers explicit Object">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#providers-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      providers configuration
+      Providers Configuration
     </span>
   </a>
   
@@ -3633,17 +3633,17 @@
         <li class="md-nav__item">
   <a href="#authmanagers-explicit-object" class="md-nav__link">
     <span class="md-ellipsis">
-      authmanagers explicit object
+      authmanagers explicit Object
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="authmanagers explicit object">
+    <nav class="md-nav" aria-label="authmanagers explicit Object">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#providers-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      providers configuration
+      Providers Configuration
     </span>
   </a>
   
@@ -3687,10 +3687,10 @@
   
 
 
-<h1 id="authentification-explicit-for-microsoft-active-directory-services">Authentification <code>explicit</code> for Microsoft Active Directory services</h1>
-<h2 id="authmanagers-explicit-object">authmanagers <code>explicit</code> object</h2>
-<p>The <code>explicit</code> authentification configuration is defined as a dictionnary object and contains an <code>explicit</code> provider. </p>
-<p>For example :</p>
+<h1 id="authentication-explicit-for-microsoft-active-directory-services">Authentication <code>explicit</code> for Microsoft Active Directory Services</h1>
+<h2 id="authmanagers-explicit-object">authmanagers <code>explicit</code> Object</h2>
+<p>The <code>explicit</code> authentication configuration is defined as a dictionary object and contains an <code>explicit</code> provider.</p>
+<p>For example:</p>
 <div class="highlight"><pre><span></span><code>&#39;explicit&#39;: {
     &#39;show_domains&#39;: True,
     &#39;default_domain&#39;: &#39;AD&#39;,
@@ -3713,16 +3713,16 @@
 <tr>
 <td><code>show_domains</code></td>
 <td>boolean</td>
-<td>Permit the domain name to be listed in API getclientdata, the default value is False</td>
+<td>Controls whether the domain name is listed in the API <code>getclientdata</code> response. The default value is <code>False</code>.</td>
 </tr>
 <tr>
 <td><code>default_domain</code></td>
 <td>string</td>
-<td>Default domain name prefix if the user format does not containthe domain prefix like DOMAIN\USER. If the user login value is USER, the login is prefixed with the  default_domain\USER</td>
+<td>The default domain name prefix applied when the user's login format does not include a domain prefix (e.g., <code>DOMAIN\USER</code>). If the user logs in as <code>USER</code>, the login is prefixed as <code>default_domain\USER</code>.</td>
 </tr>
 <tr>
 <td><code>providers</code></td>
-<td>dictionnary</td>
+<td>dictionary</td>
 <td><code>{ 'AD': {  'config_ref': 'adconfig',  'enabled': True  }}</code></td>
 </tr>
 <tr>
@@ -3732,11 +3732,11 @@
 </tr>
 </tbody>
 </table>
-<h3 id="providers-configuration">providers configuration</h3>
-<p>The <code>provider</code> authentification configuration is defined as a dictionnary object and must contain a key name.
-The key name must be set as the <a href="https://en.wikipedia.org/wiki/Windows_domain"><code>USERDOMAIN</code></a> and defined in the <code>config_ref</code> with the exact same value.</p>
-<p>Providers :</p>
-<p>The provider is formated as a dictionnary </p>
+<h3 id="providers-configuration">Providers Configuration</h3>
+<p>The <code>provider</code> authentication configuration is defined as a dictionary object and must contain a key name.
+The key name must match the <a href="https://en.wikipedia.org/wiki/Windows_domain"><code>USERDOMAIN</code></a> value and must be set to the exact same value in the <code>config_ref</code> dictionary.</p>
+<p>Providers:</p>
+<p>The provider is formatted as a dictionary:</p>
 <div class="highlight"><pre><span></span><code>{ &#39;AD&#39;: {  
            &#39;config_ref&#39;: &#39;adconfig&#39;,  
            &#39;enabled&#39;: True  
@@ -3755,16 +3755,16 @@ The key name must be set as the <a href="https://en.wikipedia.org/wiki/Windows_d
 <tr>
 <td>config_ref</td>
 <td>string</td>
-<td>For increased legibility, the <code>USERDOMAIN</code> configuration is defined in a dedicated dictionnary used the key:value <code>'config_ref': 'adconfig'</code>, where <code>key</code> is <code>config_ref</code> and <code>value</code> is the dictionnay variable name.</td>
+<td>For increased readability, the <code>USERDOMAIN</code> configuration is defined in a dedicated dictionary using the key-value pair <code>'config_ref': 'adconfig'</code>, where the key is <code>config_ref</code> and the value is the name of the dictionary variable.</td>
 </tr>
 <tr>
 <td>enable</td>
 <td>boolean</td>
-<td>enable or disable the domain entry</td>
+<td>Enables or disables the domain entry.</td>
 </tr>
 </tbody>
 </table>
-<p>If this example, the Microsoft Active Directory value are set to :</p>
+<p>In this example, the Microsoft Active Directory values are set as follows:</p>
 <table>
 <thead>
 <tr>
@@ -3783,7 +3783,7 @@ The key name must be set as the <a href="https://en.wikipedia.org/wiki/Windows_d
 </tr>
 </tbody>
 </table>
-<p>The adconfig is a dictionnary. For example :</p>
+<p>The <code>adconfig</code> is a dictionary. For example:</p>
 <div class="highlight"><pre><span></span><code>adconfig : { 
   &#39;AD&#39;: {   
        &#39;default&#39;: True,
@@ -3803,7 +3803,7 @@ The key name must be set as the <a href="https://en.wikipedia.org/wiki/Windows_d
        # &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;SVCACCOUNT&#39;, &#39;password&#39;: &#39;SVCACCOUNTPASSWORD&#39; } 
 } }
 </code></pre></div>
-<p>For Active Directory authmanagers, replace the variable name with your own value.</p>
+<p>Replace each variable value with your own Active Directory environment settings.</p>
 <table>
 <thead>
 <tr>
@@ -3817,49 +3817,49 @@ The key name must be set as the <a href="https://en.wikipedia.org/wiki/Windows_d
 <tr>
 <td><code>default</code></td>
 <td>boolean</td>
-<td>Use this domain as default domain</td>
+<td>Use this domain as the default domain</td>
 <td>True</td>
 </tr>
 <tr>
 <td><code>ldap_basedn</code></td>
 <td>string</td>
-<td>LDAP Base Distinguished Names</td>
+<td>LDAP Base Distinguished Name</td>
 <td><code>DC=ad,DC=domain,DC=local</code></td>
 </tr>
 <tr>
 <td><code>ldap_fqdn</code></td>
 <td>string</td>
-<td>_ldap._tcp.Domain_Name</td>
+<td>LDAP SRV record for the domain</td>
 <td><code>_ldap._tcp.ad.domain.local</code></td>
 </tr>
 <tr>
 <td><code>domain_fqdn</code></td>
 <td>string</td>
-<td>domain FQDN (also know as Domain_Name)</td>
+<td>Domain fully qualified domain name (FQDN)</td>
 <td><code>AD.DOMAIN.LOCAL</code></td>
 </tr>
 <tr>
 <td><code>servers</code></td>
 <td>list of string</td>
-<td>list of the Active Director servers</td>
+<td>List of Active Directory server addresses</td>
 <td><code>[ '192.168.1.12', '192.168.1.13' ]</code></td>
 </tr>
 <tr>
 <td><code>kerberos_realm</code></td>
 <td>string</td>
-<td>Replace kerberos_realm wih your kerberos realm (in UPPER CASE)</td>
+<td>Kerberos realm name (must be in UPPER CASE)</td>
 <td><code>AD.DOMAIN.LOCAL</code></td>
 </tr>
 <tr>
 <td><code>reduce_roles_for_jwt</code></td>
 <td>string or None</td>
-<td>define the role in user's JWT</td>
+<td>Defines the role representation in the user's JWT</td>
 <td><code>'cn'</code>, <code>'raw'</code> or <code>None</code></td>
 </tr>
 <tr>
 <td><code>servers</code></td>
 <td>list</td>
-<td>list of servers</td>
+<td>List of LDAP server URIs</td>
 <td><code>[ 'ldaps://srv1.domain.local', 'ldap://192.168.1.2']</code></td>
 </tr>
 </tbody>
@@ -3867,7 +3867,7 @@ The key name must be set as the <a href="https://en.wikipedia.org/wiki/Windows_d
 <h2 id="service-account">Service Account</h2>
 <div class="highlight"><pre><span></span><code>  &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;SVCACCOUNT&#39;, &#39;password&#39;: &#39;SVCACCOUNTPASSWORD&#39; }
 </code></pre></div>
-<p><code>serviceaccount</code>is optionnal, it allow ro run query to the Active Directory service to read the subnet and location from the sites in <code>'CN=Subnets,CN=Sites,CN=Configuration,' + BASE_DN</code> , (for example CN=Subnets,CN=Sites,CN=Configuration,DC=example,DC=com)</p>
+<p><code>serviceaccount</code> is optional. When configured, it allows pyos to query the Active Directory service to read subnet and location information from the sites container at <code>'CN=Subnets,CN=Sites,CN=Configuration,' + BASE_DN</code> (for example, <code>CN=Subnets,CN=Sites,CN=Configuration,DC=example,DC=com</code>).</p>
 
 
 

@@ -3757,7 +3757,7 @@
 <li><code>doctl</code> command line interface <a href="https://docs.digitalocean.com/reference/doctl/how-to/install/">doctl cli</a></li>
 </ul>
 <blockquote>
-<p>If you <code>doctl</code> command line for your first time, run <code>doctl auth</code> command line for use with your DigitalOcean account using tokens that you generate in the control panel at <a href="https://cloud.digitalocean.com/account/api/tokens">https://cloud.digitalocean.com/account/api/tokens</a>.</p>
+<p>If you are using the <code>doctl</code> command line for the first time, run the <code>doctl auth</code> command to authenticate with your DigitalOcean account using tokens that you generate in the control panel at <a href="https://cloud.digitalocean.com/account/api/tokens">https://cloud.digitalocean.com/account/api/tokens</a>.</p>
 </blockquote>
 <h2 id="create-a-doks-digitalocean-kubernetes-cluster">Create a <code>DOKS</code> DigitalOcean Kubernetes cluster</h2>
 <p>If you don't have a running kubernetes cluster, run the <code>doctl</code> command line with the <code>kubernetes cluster create</code> to create your cluster.</p>
@@ -3773,7 +3773,7 @@ ID                                      Name            Region    Version       
 83aae84d-cfa9-4a89-ae75-89f0d5078d33    myabccluster    nyc1      1.33.1-do.0    false           running    myabccluster-default-pool
 </code></pre></div>
 <h2 id="digitalocean-console-overview">DigitalOcean console overview</h2>
-<p>This screenshot describes the DigitalOcean control panel. It shows the <code>Resources</code> of the kubernetes cluster and <code>Nodes</code> informations.</p>
+<p>This screenshot shows the DigitalOcean control panel, displaying the <strong>Resources</strong> of the Kubernetes cluster and <strong>Nodes</strong> information.</p>
 <p><img alt="digital ocean console overview" src="../img/digitalocean-console.png" /></p>
 <h2 id="run-the-abcdesktop-install-script">Run the abcdesktop install script</h2>
 <p>Download and install the latest release automatically</p>
@@ -3782,18 +3782,18 @@ ID                                      Name            Region    Version       
 <p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="connect-to-your-abcdesktop-service">Connect to your abcdesktop service</h2>
 <p>By default install script is listening on a free tcp port <code>:30443</code> and is using a <code>kubectl port-forward</code> command line to reach http web service <code>:80</code></p>
-<p>Open your web browser <code>http://locahost:30443</code></p>
+<p>Open your web browser to <code>http://localhost:30443</code></p>
 <p><img alt="abcdesktop login" src="../../img/abcdesktop-hompage-port30443.png" /></p>
 <p>Login as user <code>Philip J. Fry</code> with the password <code>fry</code></p>
 <p><img alt="abcdesktop login as fry" src="../../img/abcdesktop-hompage-port30443-login-fry.png" /></p>
-<p>After image pulling process, you get your first abcdesktop </p>
+<p>After the image-pulling process completes, you get your first abcdesktop session</p>
 <p><img alt="abcdesktop for fry" src="../../img/abcdesktop-hompage-port30443-user-fry-logged.png" /></p>
 <h2 id="add-applications-to-your-desktop">Add applications to your desktop</h2>
 <p>Using the previous terminal shell, run the application install script </p>
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.4.sh | bash
 </code></pre></div>
 <p>To get more details about the install applications process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop_applications/">Setup applications guide</a></p>
-<p>Then you just need to reload the web page with the desktop of <code>Philip J. Fry</code>
+<p>Reload the web page to refresh the desktop of <code>Philip J. Fry</code>.
 New applications are now listed in the dock of <code>plasmashell</code>.</p>
 <p><img alt="abcdesktop for fry with applications" src="../../img/abcdesktop-hompage-port30443-login-fry-applications.png" /></p>
 <p>Start Firefox application</p>

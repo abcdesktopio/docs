@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deploy-abcdesktop-on-azure-with-microsoft-azure-kubernetes-services" class="md-skip">
+        <a href="#deploy-abcdesktop-on-azure-with-microsoft-azure-kubernetes-service" class="md-skip">
           Skip to content
         </a>
       
@@ -1317,7 +1317,7 @@
         <li class="md-nav__item">
   <a href="#azure-console-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      AZURE console overview
+      Azure console overview
     </span>
   </a>
   
@@ -1333,9 +1333,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#set-your-subscription-to-your-azur-account" class="md-nav__link">
+  <a href="#set-your-subscription-for-your-azure-account" class="md-nav__link">
     <span class="md-ellipsis">
-      Set your subscription to your azur account
+      Set your subscription for your Azure account
     </span>
   </a>
   
@@ -3688,7 +3688,7 @@
         <li class="md-nav__item">
   <a href="#azure-console-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      AZURE console overview
+      Azure console overview
     </span>
   </a>
   
@@ -3704,9 +3704,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#set-your-subscription-to-your-azur-account" class="md-nav__link">
+  <a href="#set-your-subscription-for-your-azure-account" class="md-nav__link">
     <span class="md-ellipsis">
-      Set your subscription to your azur account
+      Set your subscription for your Azure account
     </span>
   </a>
   
@@ -3781,28 +3781,28 @@
   
 
 
-<h1 id="deploy-abcdesktop-on-azure-with-microsoft-azure-kubernetes-services">Deploy abcdesktop on AZURE with Microsoft AZURE Kubernetes services</h1>
+<h1 id="deploy-abcdesktop-on-azure-with-microsoft-azure-kubernetes-service">Deploy abcdesktop on Azure with Microsoft Azure Kubernetes Service</h1>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li><code>az</code> command line interface <a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest">azure-cli</a> installed.</li>
 <li>you need your <code>Azure Subscription Name</code>, your <code>Username</code> and <code>Password</code></li>
-<li>A running AZURE Kubernetes service cluster <code>ready</code> and running. </li>
+<li>A running Azure Kubernetes Service cluster that is <code>ready</code> and running.</li>
 </ul>
-<h2 id="azure-console-overview">AZURE console overview</h2>
-<p>Create a new <code>AZURE Kubernetes service</code>. </p>
+<h2 id="azure-console-overview">Azure console overview</h2>
+<p>Create a new Azure Kubernetes Service cluster.</p>
 <p><img alt="azure console kubernetes create cluster" src="../img/azure-aks-create-kubernetes-cluster.png" /></p>
 <blockquote>
 <p>Options and features are set by default.</p>
 </blockquote>
-<p>In this example the kubernetes cluster is named <code>abcdesktopkubernetescluster</code>.
-This screenshot describes the AZURE Kubernetes Service console. It shows the <code>Nodes pools</code> and <code>Networking</code> informations.</p>
+<p>In this example, the Kubernetes cluster is named <code>abcdesktopkubernetescluster</code>.
+This screenshot shows the Azure Kubernetes Service console, displaying the <strong>Node pools</strong> and <strong>Networking</strong> configuration.</p>
 <p><img alt="azure console overview" src="../img/azure-aks-console.png" /></p>
 <h2 id="check-your-caller-identity">Check your caller-identity</h2>
 <p>If you don't have already done it, use the <code>az login</code> command line</p>
 <div class="highlight"><pre><span></span><code>az login
 </code></pre></div>
-<p>The next steps are running on your web browser with your own credentials.  </p>
-<h2 id="set-your-subscription-to-your-azur-account">Set your <code>subscription</code> to your azur account</h2>
+<p>The remaining steps complete in your web browser using your own credentials.</p>
+<h2 id="set-your-subscription-for-your-azure-account">Set your subscription for your Azure account</h2>
 <div class="highlight"><pre><span></span><code>az<span class="w"> </span>account<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--subscription<span class="w"> </span>XXXXXX-YYYYY-ZZZZZ-AAAA-BBBBBBBBBB
 </code></pre></div>
 <h2 id="create-your-kubernetes-config">Create your kubernetes config</h2>
@@ -3816,7 +3816,7 @@ This screenshot describes the AZURE Kubernetes Service console. It shows the <co
 <div class="highlight"><pre><span></span><code>az<span class="w"> </span>aks<span class="w"> </span>get-credentials<span class="w"> </span>--resource-group<span class="w"> </span>abcdesktop<span class="w"> </span>--name<span class="w"> </span>abcdesktopkubernetescluster<span class="w"> </span>--overwrite-existing
 </code></pre></div>
 <h2 id="get-your-kubernetes-cluster-informations">Get your kubernetes cluster informations</h2>
-<p>Run the <code>kubectl cluster-info</code> command line, to confirm that <code>kubectl</code> command can communicate whith your azur cluster</p>
+<p>Run the <code>kubectl cluster-info</code> command line to confirm that the <code>kubectl</code> command can communicate with your Azure cluster.</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cluster-info
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Kubernetes<span class="w"> </span>control<span class="w"> </span>plane<span class="w"> </span>is<span class="w"> </span>running<span class="w"> </span>at<span class="w"> </span>https://abcdesktopkubernetescluster-dns-rm7w2mot.hcp.northeurope.azmk8s.io:443
@@ -3832,11 +3832,11 @@ To<span class="w"> </span>further<span class="w"> </span>debug<span class="w"> <
 <p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="connect-to-your-abcdesktop-service">Connect to your abcdesktop service</h2>
 <p>By default install script is listening on a free tcp port <code>:30443</code> and is using a <code>kubectl port-forward</code> command line to reach http web service <code>:80</code></p>
-<p>Open your web browser <code>http://locahost:30443</code></p>
+<p>Open your web browser to <code>http://localhost:30443</code></p>
 <p><img alt="abcdesktop login" src="../../img/abcdesktop-hompage-port30443.png" /></p>
 <p>Login as user <code>Philip J. Fry</code> with the password <code>fry</code></p>
 <p><img alt="abcdesktop login as fry" src="../../img/abcdesktop-hompage-port30443-login-fry.png" /></p>
-<p>After image pulling process, you get your first abcdesktop </p>
+<p>After the image-pulling process completes, you get your first abcdesktop session</p>
 <p><img alt="abcdesktop for fry" src="../../img/abcdesktop-hompage-port30443-user-fry-logged.png" /></p>
 <h2 id="add-applications-to-your-desktop">Add applications to your desktop</h2>
 <p>Using the previous terminal shell, run the application install script </p>

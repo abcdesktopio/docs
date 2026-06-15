@@ -2588,9 +2588,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#update-sound-contianer-for-config-usage" class="md-nav__link">
+  <a href="#update-the-sound-container-for-config-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      update sound contianer for .config usage
+      Update the sound container for .config usage
     </span>
   </a>
   
@@ -3630,9 +3630,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#update-sound-contianer-for-config-usage" class="md-nav__link">
+  <a href="#update-the-sound-container-for-config-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      update sound contianer for .config usage
+      Update the sound container for .config usage
     </span>
   </a>
   
@@ -3697,12 +3697,12 @@
 
 <h1 id="overwritten-user-home-directory-entries">Overwritten user home directory entries</h1>
 <h2 id="overwritten-user-homedirectory-directory-entries">Overwritten user homedirectory directory entries</h2>
-<p>To reduce I/O to the storage backend, you can defined entries in the <code>desktop.directorytomemoryemptydir</code> option, and overwrite users sub directories.</p>
+<p>To reduce I/O to the storage backend, you can define entries in the <code>desktop.directorytomemoryemptydir</code> option to overwrite specific user subdirectories.</p>
 <div class="highlight"><pre><span></span><code>desktop.directorytomemoryemptydir: [ &#39;.cache&#39;, &#39;.local&#39;, &#39;.config&#39; ]
 desktop.directorytomemory: { &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Gi&#39; } }
 </code></pre></div>
 <p>The default <code>desktop.directorytomemory</code> is a dictionary set to <code>{ 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi' } }</code></p>
-<p>The <code>desktop.directorytomemory</code> dictionnary is the same for all <code>desktop.directorytomemoryemptydir</code> entries.</p>
+<p>The <code>desktop.directorytomemory</code> dictionary is the same for all <code>desktop.directorytomemoryemptydir</code> entries.</p>
 <p>A <code>kubectl describe pod</code> command line shows the volume for each <code>desktop.directorytomemoryemptydir</code> in this case <code>[ '.cache', '.local', '.config' ]</code></p>
 <p>The mounted volumes show that each entries <code>/home/fry/.cache</code>, <code>/home/fry/.config</code>, <code>/home/fry/.local</code> are overwritten.</p>
 <div class="highlight"><pre><span></span><code>Mounts:
@@ -3732,9 +3732,9 @@ desktop.directorytomemory: { &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory
     SizeLimit:  8Gi
 [...]
 </code></pre></div>
-<h3 id="update-sound-contianer-for-config-usage">update sound contianer for <code>.config</code> usage</h3>
-<p>The s-sound container need to read the <code>$HOME/.config/pulse/cookie</code> file.
-If we decide to put the <code>.config</code> as <code>emptyDir</code> volume, we need to add this volume to the sound container description.</p>
+<h3 id="update-the-sound-container-for-config-usage">Update the sound container for <code>.config</code> usage</h3>
+<p>The <code>s-sound</code> container needs to read the <code>$HOME/.config/pulse/cookie</code> file.
+If you choose to use <code>.config</code> as an <code>emptyDir</code> volume, you need to add this volume to the sound container description.</p>
 <ul>
 <li>update your <code>desktop.pod</code> dictionary to add the <code>config</code> volume into the volume list <code>'volumes': [ 'extrausers', 'tmp', 'config', 'log' ]</code></li>
 </ul>

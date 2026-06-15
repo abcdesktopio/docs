@@ -1126,7 +1126,7 @@
           <li class="md-nav__item">
   <a href="#issue-failedscheduling-01-nodes-are-available" class="md-nav__link">
     <span class="md-ellipsis">
-      issue 'FailedScheduling 0/1 nodes are available'
+      Issue: FailedScheduling 0/1 nodes are available
     </span>
   </a>
   
@@ -3714,7 +3714,7 @@
           <li class="md-nav__item">
   <a href="#issue-failedscheduling-01-nodes-are-available" class="md-nav__link">
     <span class="md-ellipsis">
-      issue 'FailedScheduling 0/1 nodes are available'
+      Issue: FailedScheduling 0/1 nodes are available
     </span>
   </a>
   
@@ -3767,16 +3767,16 @@
 
   <h1>MiniKube</h1>
 
-<p><code>Minikube</code> is a tool for running local Kubernetes clusters using Docker container “nodes”. Minikube was primarily designed for testing Kubernetes itself, but it can be used to deploy Kubernetes applications as well. To install or setup <code>minikube</code>, refer to the <a href="https://minikube.sigs.k8s.io/docs/">Minikube documentation</a></p>
+<p><code>Minikube</code> is a tool for running local Kubernetes clusters using Docker container "nodes". Minikube was primarily designed for testing Kubernetes itself, but it can also be used to deploy Kubernetes applications. To install or set up <code>minikube</code>, refer to the <a href="https://minikube.sigs.k8s.io/docs/">Minikube documentation</a>.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li><a href="https://minikube.sigs.k8s.io/docs/start">minikube</a> command line installed</li>
+<li><a href="https://minikube.sigs.k8s.io/docs/start">minikube</a> command-line tool installed</li>
 <li><a href="https://docs.docker.com/engine/install">docker</a> Docker Engine installed</li>
-<li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">kubectl</a> command-line tool must be configured to communicate with your cluster</li>
-<li>openssl and curl command line must be installed too (only for install using kubectl)</li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">kubectl</a> command-line tool configured to communicate with your cluster</li>
+<li><code>openssl</code> and <code>curl</code> command-line tools installed (required only when installing via kubectl)</li>
 </ul>
 <h2 id="create-minikube-cluster">Create minikube cluster</h2>
-<p>Run the command line to create</p>
+<p>Run the following command to create the cluster:</p>
 <div class="highlight"><pre><span></span><code>minikube<span class="w"> </span>start
 </code></pre></div>
 <p>You should read on stdout</p>
@@ -3912,33 +3912,33 @@ speedtest-od-7d7c95d754-dmt5j   1/1     Running   0          4m38s
 </code></pre></div>
 </details>
 <h2 id="how-to-connect">How to connect ?</h2>
-<p>The install bash script forward the tcp port 30443 to the router pod port tcp 80</p>
+<p>The install bash script forwards TCP port 30443 to the router pod's TCP port 80</p>
 <p><code>kubectl port-forward router-od-647b77455d-nk677 --address 0.0.0.0 30443:80 -n abcdesktop</code></p>
 <div class="highlight"><pre><span></span><code>[OK] Please open your web browser and connect to
 
 [INFO] http://192.168.7.119:30443/
 </code></pre></div>
 <blockquote>
-<p>Open the URL returnes by the install bash script. In this sample <code>http://192.168.7.119:30443/</code>
-Change the ip address <code>192.168.7.119</code> with your own</p>
+<p>Open the URL returned by the install bash script. In this sample <code>http://192.168.7.119:30443/</code>
+Change the IP address <code>192.168.7.119</code> with your own</p>
 </blockquote>
 <p><img alt="kind home page" src="../img/kinduserhompage.png" /></p>
 <p>Your web browser shows the abcdesktop service home page</p>
 <p><img alt="kind user connected" src="../img/kinduserconnected.png" /></p>
 <p>The user <code>Philip J. Fry</code> is connected to the abcdesktop service</p>
 <blockquote>
-<p>Open the URL returnes by the install bash script. In this sample <code>http://192.168.7.119:30443/</code></p>
+<p>Open the URL returned by the install bash script. In this sample <code>http://192.168.7.119:30443/</code></p>
 </blockquote>
-<p>Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.</p>
+<p>Great, you have installed abcdesktop using Minikube and your web browser shows the abcdesktop service.</p>
 <h2 id="delete-cluster">Delete cluster</h2>
-<p>To uninstall, run the minikube <code>delete</code> cluster command line:</p>
+<p>To uninstall, run the <code>minikube delete</code> command:</p>
 <div class="highlight"><pre><span></span><code>minikube<span class="w"> </span>delete
 </code></pre></div>
 <h2 id="common-issues">Common issues</h2>
-<h3 id="issue-failedscheduling-01-nodes-are-available">issue 'FailedScheduling 0/1 nodes are available'</h3>
+<h3 id="issue-failedscheduling-01-nodes-are-available">Issue: <code>FailedScheduling 0/1 nodes are available</code></h3>
 <div class="highlight"><pre><span></span><code>FailedScheduling<span class="w"> </span><span class="m">0</span>/1<span class="w"> </span>nodes<span class="w"> </span>are<span class="w"> </span>available:<span class="w"> </span><span class="m">1</span><span class="w"> </span>Insufficient<span class="w"> </span>cpu.<span class="w"> </span>preemption:<span class="w"> </span><span class="m">0</span>/1<span class="w"> </span>nodes<span class="w"> </span>are<span class="w"> </span>available:<span class="w"> </span><span class="m">1</span><span class="w"> </span>No<span class="w"> </span>preemption<span class="w"> </span>victims<span class="w"> </span>found<span class="w"> </span><span class="k">for</span><span class="w"> </span>incoming<span class="w"> </span>pod
 </code></pre></div>
-<p>To fix it, start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop</p>
+<p>To resolve this issue, start Minikube with sufficient CPU and memory resources to run all abcdesktop pods and the user's desktop.</p>
 <div class="highlight"><pre><span></span><code>minikube<span class="w"> </span>start<span class="w"> </span>--cpus<span class="w"> </span><span class="m">4</span><span class="w"> </span>--memory<span class="w"> </span>16GB
 </code></pre></div>
 

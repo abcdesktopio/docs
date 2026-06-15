@@ -3724,20 +3724,20 @@
 
 
 <h1 id="build-another-application-from-template">Build another application from template</h1>
-<p>Goal: build your own application image with template</p>
+<p>Goal: Build a second custom abcdesktop.io application image (GIMP) by extending the <code>applist.json</code> from the previous chapter.</p>
 <p>abcdesktop uses container image format with some labels to describe the application.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li>an access to the container public registry or a private container registry.</li>
+<li>Access to a public or private container registry.</li>
 <li><code>nodejs</code> installed on your host.</li>
-<li>Read the previsous chapter <a href="../templateapplication/">template applications</a>.</li>
-<li><code>docker</code> command installed to build container images.</li>
-<li><code>wget</code> command installed to download files.</li>
+<li>Completion of the previous chapter: <a href="../templateapplication/">template applications</a>.</li>
+<li><code>docker</code> command-line tool installed to build container images.</li>
+<li><code>wget</code> command-line tool installed to download files.</li>
 </ul>
 <h2 id="build-your-own-application-image-for-gimp">Build your own application image for <code>GIMP</code></h2>
-<p>Go into your <code>build</code> directory created in the previsous chapter <a href="../templateapplication/">template applications</a>.</p>
-<p>The applist.json is an array of application objects. Add a new entry in the array, and fill the value for the new application <code>gimp</code>.</p>
-<p>New applist.json data, and build your own Gimp abcdesktop.io application.</p>
+<p>Navigate to the <code>build</code> directory created in the previous chapter: <a href="../templateapplication/">template applications</a>.</p>
+<p>The <code>applist.json</code> file is an array of application descriptor objects. Add a new entry to the array and populate the fields for the <code>gimp</code> application.</p>
+<p>Updated <code>applist.json</code> content for building the GIMP abcdesktop.io application:</p>
 <div class="highlight"><pre><span></span><code>[
   {
     &quot;cat&quot;: &quot;games&quot;,
@@ -3769,11 +3769,11 @@
 ]
 </code></pre></div>
 <ul>
-<li>The GIMP icon svg file is avalaible on wikipedia website <a href="https://upload.wikimedia.org/wikipedia/commons/4/45/The_GIMP_icon_-_gnome.svg">The_GIMP_icon_-_gnome.svg</a></li>
+<li>The GIMP SVG icon file is available on the Wikimedia website: <a href="https://upload.wikimedia.org/wikipedia/commons/4/45/The_GIMP_icon_-_gnome.svg">The_GIMP_icon_-_gnome.svg</a></li>
 <li><code>path</code> is the binary file to run gimp <code>/usr/bin/gimp</code></li>
-<li><code>installrecommends</code> : <code>true</code> remove the <code>--no-install-recommends</code> to the command line to install <code>apt-get install -y</code> <code>$debpackage</code></li>
+<li><code>installrecommends</code>: when set to <code>true</code>, removes the <code>--no-install-recommends</code> flag from the <code>apt-get install -y $debpackage</code> command, allowing recommended packages to be installed</li>
 <li>
-<p><code>debpackage</code>: list of package to be installed</p>
+<p><code>debpackage</code>: space-separated list of packages to install</p>
 </li>
 <li>
 <p>Download the Gimp icon svg file</p>
@@ -3781,22 +3781,22 @@
 </ul>
 <div class="highlight"><pre><span></span><code>wget https://upload.wikimedia.org/wikipedia/commons/4/45/The_GIMP_icon_-_gnome.svg -O icons/gimp.svg
 </code></pre></div>
-<p>As you can read, abcdesktop supports <code>mimetype</code>, <code>fileextensions</code>, <code>legacyfileextensions</code> and <code>desktopfile</code> entries.</p>
+<p>As shown above, abcdesktop.io supports the <code>mimetype</code>, <code>fileextensions</code>, <code>legacyfileextensions</code>, and <code>desktopfile</code> fields.</p>
 <div class="highlight"><pre><span></span><code>&quot;mimetype&quot;: &quot;image/bmp;image/g3fax;image/gif;image/x-fits;image/x-pcx;image/x-portable-anymap;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-psd;image/x-sgi;image/x-tga;image/x-xbitmap;image/x-xwindowdump;image/x-xcf;image/x-compressed-xcf;image/x-gimp-gbr;image/x-gimp-pat;image/x-gimp-gih;image/jpeg;image/x-psp;image/png;image/x-icon;image/x-xpixmap;image/x-wmf;image/jp2;image/jpeg2000;image/jpx;image/x-xcursor;&quot;,
 &quot;fileextensions&quot;: &quot;dds&quot;,
 &quot;legacyfileextensions&quot;:&quot;dds&quot;,
 &quot;desktopfile&quot;:&quot;gimp.desktop&quot;
 </code></pre></div>
-<p>These entries enable the <code>Open with</code> and <code>Open with Other Application</code> in the file manager application. The mimetype database is updated when the user connect (or reconnect) to his desktop.</p>
+<p>These fields enable the <strong>Open with</strong> and <strong>Open with Other Application</strong> options in the file manager. The MIME type database is updated each time a user connects or reconnects to their desktop.</p>
 <p><img alt="Open with Gimp" src="../img/gimp-openwithgimp.png" /></p>
 <p>and list <code>Recommended Applications</code></p>
 <p><img alt="Open with Gimp" src="../img/gimp-openwithotherapplication.png" /></p>
 <ul>
-<li>Build your new application</li>
+<li>Build your new GIMP application image</li>
 </ul>
 <div class="highlight"><pre><span></span><code>nodejs make.js
 </code></pre></div>
-<p>You should get the output</p>
+<p>The expected output is:</p>
 <div class="highlight"><pre><span></span><code>Namespace(dockerfile=false, release=&#39;4.4&#39;, applicationfile=&#39;applist.json&#39;)
 Read database json file=applist.json
 opening file applist.json
@@ -3805,17 +3805,17 @@ Creating Dockerfile 2048.d
 Creating Dockerfile gimp.d
 </code></pre></div>
 <blockquote>
-<p>make.js creates the Dockerfile files <code>2048.d</code> and <code>gimp.d</code></p>
+<p><code>make.js</code> generates the Dockerfile files <code>2048.d</code> and <code>gimp.d</code>.</p>
 </blockquote>
-<p><code>2048.d</code> is already build in the previous chapter, we only need to build the <code>gimp.d</code> image.</p>
-<p>You can read the content of the Dockerfile <code>gimp.d</code>. Now it's time to build your Gimp app. Run the command <code>docker build</code> command.</p>
+<p>The <code>2048.d</code> image was already built in the previous chapter; only the <code>gimp.d</code> image needs to be built here.</p>
+<p>Review the content of the generated <code>gimp.d</code> Dockerfile, then build the GIMP application image using the <code>docker build</code> command.</p>
 <blockquote>
-<p>Replace the value of the REGISTRY with your own if need</p>
+<p>Replace the value of <code>REGISTRY</code> with your own registry name if needed.</p>
 </blockquote>
 <div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
 docker build -f gimp.d -t $REGISTRY/gimp.d .
 </code></pre></div>
-<p>You should read the output :</p>
+<p>The expected output is:</p>
 <details class="note">
 <summary>show details</summary>
 <div class="highlight"><pre><span></span><code>[+] Building 261.5s (8/8) FINISHED                                                                                                                                                         docker:default
@@ -3838,32 +3838,32 @@ docker build -f gimp.d -t $REGISTRY/gimp.d .
 <li>Push your image to your registry</li>
 </ul>
 <blockquote>
-<p>Replace the value of the REGISTRY with your own if need.
-If you don't have your own registry, you can skip this command but keep using <code>REGISTRY=abcdesktopio</code></p>
+<p>Replace the value of <code>REGISTRY</code> with your own registry name if needed.
+If you do not have your own registry, you can skip this step but keep <code>REGISTRY=abcdesktopio</code>.</p>
 </blockquote>
 <div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
 docker push $REGISTRY/gimp.d
 </code></pre></div>
 <ul>
-<li>Create a json file from your container image</li>
+<li>Create a JSON file from your container image</li>
 </ul>
 <blockquote>
-<p>If you don't have your own registry, do not skip this command, and keep using <code>REGISTRY=abcdesktopio</code></p>
+<p>If you do not have your own registry, do not skip this step. Keep <code>REGISTRY=abcdesktopio</code>.</p>
 </blockquote>
 <div class="highlight"><pre><span></span><code>REGISTRY=abcdesktopio
 docker inspect $REGISTRY/gimp.d &gt; gimp.json
 </code></pre></div>
 <h2 id="push-your-image-to-abcdesktop-service">Push your image to abcdesktop service</h2>
 <ul>
-<li>Send the image to abcdesktop pyos instance</li>
+<li>Send the image metadata to the abcdesktop pyos instance</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 <span class="nv">PYOS_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NAMESPACE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
 kubectl<span class="w"> </span>cp<span class="w"> </span>gimp.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/gimp.json
 </code></pre></div>
-<p>This command reads the <code>PYOS_POD</code> name, then copy the <code>gimp.json</code> file to <code>/tmp</code> of PYOS_POD, then send the <code>/tmp/gimp.json</code> to REST API server.</p>
-<p>The endpoint image returns a json documment</p>
+<p>These commands retrieve the <code>PYOS_POD</code> name, copy the <code>gimp.json</code> file to the <code>/tmp</code> directory inside the pyos pod, and submit the file to the REST API server.</p>
+<p>The image endpoint returns a JSON document</p>
 <details class="note">
 <summary>show details</summary>
 <div class="highlight"><pre><span></span><code>    [
@@ -3949,21 +3949,21 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 </code></pre></div>
 </details>
 <h2 id="run-gimp-application">Run gimp application</h2>
-<p>Return to your abcdesktop website <code>http://localhost:30443</code> and log in as Anonymous.</p>
-<p>At the right corner, write in the search bar the keyword <code>gimp</code></p>
+<p>Return to your abcdesktop website at <code>http://localhost:30443</code> and log in as Anonymous.</p>
+<p>In the search bar at the top-right corner, type the keyword <code>gimp</code>.</p>
 <p><img alt="abcdesktop.io look for gimp applications" src="../img/application-gimp-lookfor.png" /></p>
-<p>Wait for the pulling process to be completed</p>
+<p>Wait for the container image pull to complete.</p>
 <p><img alt="abcdesktop.io look for gimp applications" src="../img/application-gimp-waitfor.png" /></p>
-<p>Click on the <code>gimp</code> icon, and start your application :</p>
+<p>Click the <code>gimp</code> icon to launch the application:</p>
 <p><img alt="abcdesktop.io gimp is running" src="../img/application-gimp-run.png" /></p>
-<p>Great, you've installed and are running Gimp application as a container.</p>
+<p>You have successfully installed GIMP and are running it as an abcdesktop.io container application.</p>
 <h2 id="all-other-applications">All other applications</h2>
-<p>All abcdesktop applications are defined in a <code>applist.json</code>. Have a look to the complete <a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/applist.json">applist.json</a> file. abcdesktop applist.json contains description to build all default abcdesktop applications.</p>
+<p>All abcdesktop.io applications are defined in an <code>applist.json</code> file. Refer to the complete <a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/applist.json">applist.json</a> for reference. This file contains the descriptors used to build all default abcdesktop.io application images.</p>
 <div class="highlight"><pre><span></span><code>git clone -b 4.4 https://github.com/abcdesktopio/oc.apps
 cd oc.apps
 nodejs make.js
 </code></pre></div>
-<p>Then you have to push your images to your registry and push the json files to your own abcdesktop instance.</p>
+<p>After building, push your images to your registry and submit the JSON files to your abcdesktop.io instance.</p>
 
 
 

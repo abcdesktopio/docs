@@ -2541,13 +2541,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#set-up-a-nfs-server" class="md-nav__link">
+  <a href="#set-up-an-nfs-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Set up a nfs server
+      Set up an NFS server
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Set up a nfs server">
+    <nav class="md-nav" aria-label="Set up an NFS server">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3689,13 +3689,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#set-up-a-nfs-server" class="md-nav__link">
+  <a href="#set-up-an-nfs-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Set up a nfs server
+      Set up an NFS server
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Set up a nfs server">
+    <nav class="md-nav" aria-label="Set up an NFS server">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3790,13 +3790,13 @@
 <h1 id="retain-users-home-directory-using-nfs-storage">Retain user's home directory using NFS storage</h1>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li>a Kuberenetes cluster with abcdesktop installed</li>
+<li>a Kubernetes cluster with abcdesktop installed</li>
 <li><a href="https://helm.sh/fr/">helm</a> command line</li>
 </ul>
-<p>To make the user's homerdir persistent using nfs, you will need to : 
-- Set up your own nfs server
-- Bind user's homedir to nfs server using <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolume</a> (PV) and <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolumeClaim</a> (PVC)</p>
-<h2 id="set-up-a-nfs-server">Set up a nfs server</h2>
+<p>To make the user's home directory persistent using NFS, you will need to:
+- Set up your own NFS server
+- Bind user's home directories to the NFS server using <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolume</a> (PV) and <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolumeClaim</a> (PVC)</p>
+<h2 id="set-up-an-nfs-server">Set up an NFS server</h2>
 <h3 id="server-install">Server install</h3>
 <p>On a dedicated machine, please install the following packages</p>
 <div class="highlight"><pre><span></span><code>apt-get install nfs-kernel-server nfs-common
@@ -3809,28 +3809,28 @@ chown -R nobody:nogroup /data/abcdesktop_nfs
 <p>Edit <code>/etc/exports</code> </p>
 <div class="highlight"><pre><span></span><code>vim /etc/exports
 </code></pre></div>
-<p>And add the following line </p>
+<p>Add the following line:</p>
 <div class="highlight"><pre><span></span><code>/data/abcdesktop_nfs  192.168.X.X/24(rw,sync,no_subtree_check,no_root_squash) # make sure to change 192.168.X.X/24 by your own cluster subnet
 </code></pre></div>
-<p>Finaly, apply the config. </p>
+<p>Finally, apply the configuration.</p>
 <div class="highlight"><pre><span></span><code>exportfs -ra
 systemctl restart nfs-kernel-server
 </code></pre></div>
-<p>Check that the config have been applied properly</p>
+<p>Verify that the configuration has been applied correctly:</p>
 <div class="highlight"><pre><span></span><code>exportfs -v
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You should see the line you juste wrote in the config file</p>
+<p>You should see the line you just added to the configuration file.</p>
 </div>
 <h2 id="bind-users-homedir-to-nfs-server">Bind user's homedir to nfs server</h2>
 <h3 id="install-nfs-subdir-external-provisioner">Install nfs-subdir-external-provisioner</h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you want more informations about <code>nfs-subdir-external-provisioner</code> please visit <a href="https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner">this page</a></p>
+<p>If you want more information about <code>nfs-subdir-external-provisioner</code> please visit <a href="https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner">this page</a></p>
 </div>
-<p>First, you have to install a provisonner to your cluster, in this example, we chose <code>nfs-subdir-external-provisioner</code> because of its dynamic subdir creation aspect.</p>
-<p>Create a <code>nfs-subdur-values.yaml</code> file and paste the following lines to configure the storage class.</p>
+<p>First, install a provisioner in your cluster. This example uses <code>nfs-subdir-external-provisioner</code> for its dynamic subdirectory creation capability.</p>
+<p>Create a <code>nfs-subdir-values.yaml</code> file and paste the following lines to configure the storage class.</p>
 <div class="highlight"><pre><span></span><code>nfs:
   server: 192.168.X.X   # change it to your server ip
   path: /data/abcdesktop_nfs
@@ -3853,7 +3853,7 @@ serviceAccount:
   create: true
   name: nfs-subdir-external-provisioner
 </code></pre></div>
-<p>Then install <code>nfs-subdir-external-provisioner</code> by running the following command </p>
+<p>Then install <code>nfs-subdir-external-provisioner</code> by running the following command:</p>
 <div class="highlight"><pre><span></span><code>helm install nfs-subdir-external-provisioner \
   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
   --namespace nfs-provisioner \
@@ -3862,19 +3862,19 @@ serviceAccount:
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>It is important to set the reclaim policy as Retain to keep our PV alive after PVC deletion</p>
+<p>It is important to set the reclaim policy to <code>Retain</code> to preserve the PV after PVC deletion.</p>
 </div>
-<p>You can check if the storage class has been created by running this command</p>
+<p>You can verify that the storage class has been created by running the following command:</p>
 <div class="highlight"><pre><span></span><code>kubectl get sc
 NAME                          PROVISIONER                                     RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
 nfs-user-storage-abcdesktop   cluster.local/nfs-subdir-external-provisioner   Retain          Immediate           true                   40h
 </code></pre></div>
 <h3 id="update-odconfig">Update od.config</h3>
-<p>Now, you will need to specify to pyos to bind users homedir to the exported nfs folder. To do so you will need to update the <code>od.config</code> file.</p>
+<p>Now, you need to configure pyos to bind user home directories to the exported NFS folder by updating the <code>od.config</code> file.</p>
 <p>First, change <code>desktop.homedirectorytype</code> variable from <code>None</code> to <code>persistentVolumeClaim</code>.</p>
 <div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
 </code></pre></div>
-<p>Then add these lines to define the persistent volume claim template</p>
+<p>Then add the following lines to define the PersistentVolumeClaim template:</p>
 <div class="highlight"><pre><span></span><code>desktop.persistentvolumeclaim: {
    &#39;metadata&#39;: {
       &#39;name&#39;: &#39;{{ provider }}-{{ userid }}&#39;,
@@ -3891,29 +3891,29 @@ nfs-user-storage-abcdesktop   cluster.local/nfs-subdir-external-provisioner   Re
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Here there is no need to specify a persistent volume template to pyos as <code>nfs-subdir-external-provisioner</code> will deal with it automaticaly.</p>
+<p>There is no need to specify a PersistentVolume template for pyos, as <code>nfs-subdir-external-provisioner</code> handles it automatically.</p>
 </div>
-<p>Then, tell pyos to delete the persistent volume claim on user's pod delete but to keep the persistent volume as we defined storage class retain policy as <code>Retain</code> earlier. </p>
+<p>Then, configure pyos to delete the PersistentVolumeClaim when a user's pod is deleted, while retaining the PersistentVolume consistent with the <code>Retain</code> reclaim policy defined for the storage class.</p>
 <div class="highlight"><pre><span></span><code>desktop.removepersistentvolume: False
 desktop.removepersistentvolumeclaim: True
 </code></pre></div>
-<p>Finaly, update <code>od.config</code> configmap and restart pyos to apply the changes we made</p>
+<p>Finally, update the <code>od.config</code> ConfigMap and restart pyos to apply the changes.</p>
 <div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deploy pyos-od -n abcdesktop
 </code></pre></div>
 <h2 id="check-if-users-homedir-is-persistent">Check if user's homedir is persistent</h2>
-<p>You can now connect to your abcdesktop and login as a user.</p>
-<p>Once connected you can run the following command to see if the user's homedir system exists</p>
+<p>You can now connect to abcdesktop and log in as a user.</p>
+<p>Once connected, run the following command to verify that the user's home directory is correctly configured:</p>
 <div class="highlight"><pre><span></span><code>kubectl describe pod &lt;YOUR-POD-NAME&gt; -n abcdesktop 
 </code></pre></div>
-<p>You should see someting like this in the volumes section</p>
+<p>You should see something like the following in the volumes section:</p>
 <div class="highlight"><pre><span></span><code>Volumes:
   home:
     Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
     ClaimName:  planet-fry
     ReadOnly:   false
 </code></pre></div>
-<p>You can also check for PV and PVC inside you cluster</p>
+<p>You can also verify the PV and PVC within your cluster:</p>
 <div class="highlight"><pre><span></span><code>kubectl get pv,pvc -n abcdesktop
 
 NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS        CLAIM                   STORAGECLASS                   VOLUMEATTRIBUTESCLASS   REASON   AGE
@@ -3922,9 +3922,9 @@ persistentvolume/pvc-4b522afd-bf6e-411e-85c3-2a39e1b2c58f   10Gi       RWX      
 NAME                               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                   VOLUMEATTRIBUTESCLASS   AGE
 persistentvolumeclaim/planet-fry   Bound    pvc-8f802cbc-873f-46ab-9d7a-fe266da42387   10Gi       RWX            nfs-user-storage-abcdesktop    &lt;unset&gt;                 22m
 </code></pre></div>
-<p>Now you can create a file in the user's homedir </p>
+<p>Now create a file in the user's home directory:</p>
 <p><img alt="create file on user homedir" src="../img/nfs_create_file_user_homedir.png" /></p>
-<p>You can also check if the user's homedir is present on your nfs server, you should also see that a subdir have been created thanks to <code>nfs-subdir-external-provisioner</code>.</p>
+<p>You can also verify that the user's home directory is present on your NFS server and that a subdirectory has been created by <code>nfs-subdir-external-provisioner</code>.</p>
 <div class="highlight"><pre><span></span><code>root@nfs-server_abcdesktop:/data/abcdesktop_nfs# ls
 drwxr-x--- 15 2042 12042 4096 Mar 18 09:11 fry
 
@@ -3939,7 +3939,7 @@ drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Templates
 -rw-r----- 1 2042 12042    0 Mar 18 09:11 toto.txt
 drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Videos
 </code></pre></div>
-<p>Then perform a logoff to destroy your pod and recreates it, once reconnected on a new pod with the same user, check if the file you previously created is still there, it should appear.</p>
+<p>Then log off to destroy the pod and allow it to be recreated. Once reconnected on a new pod with the same user, verify that the file you previously created is still present.</p>
 <p><img alt="check peristent user homedir" src="../img/nfs_check_persistent_homedir.png" /></p>
 
 

@@ -3708,14 +3708,14 @@
 <h1 id="how-to-edit-the-abcdesktop-configuration-file">How to edit the abcdesktop configuration file</h1>
 <p>The abcdesktop configuration file name is <code>od.config</code>.
 This file has the <a href="https://docs.cherrypy.dev/en/stable/config.html">cherrypy file format</a>.
-When the pyos process starts, it read the <code>od.config</code> file.
-If something is wrong, the pyos process hangs. The command line <code>kubectl logs -l name=pyos-od  -n abcdesktop</code> write the pyos log on stdout.</p>
+When the pyos process starts, it reads the <code>od.config</code> file.
+If something is wrong, the pyos process hangs. The command line <code>kubectl logs -l name=pyos-od  -n abcdesktop</code> writes the pyos log to stdout.</p>
 <h2 id="edit-your-configuration-file">Edit your configuration file</h2>
 <p>If the <code>od.config</code> file does not exist, extract it from the abcdesktop-config configmap to a local file <code>od.config</code></p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.od\.config}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>od.config
 </code></pre></div>
-<p>You get a the new local file <code>od.config</code></p>
-<p>To make change, edit your own <code>od.config</code> file with your favorite file editor:</p>
+<p>You will get a new local file <code>od.config</code>.</p>
+<p>To make changes, edit your own <code>od.config</code> file with your preferred file editor:</p>
 <div class="highlight"><pre><span></span><code>vim<span class="w"> </span>od.config
 </code></pre></div>
 <h2 id="make-changes">Make changes</h2>
@@ -3738,7 +3738,7 @@ If something is wrong, the pyos process hangs. The command line <code>kubectl lo
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>--from-file<span class="o">=</span>od.config<span class="w">  </span>-o<span class="w"> </span>yaml<span class="w"> </span>--dry-run<span class="w"> </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>replace<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-f<span class="w"> </span>-
 kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment<span class="w"> </span>pyos-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
 </code></pre></div>
-<p>You've done it.</p>
+<p>The configuration has been applied successfully.</p>
 <h2 id="check-your-changes">Check your changes</h2>
 <p>To check that the new colours are presents in front, open the url <code>http://localhost:30443</code>, in your web browser, to start a simple abcdesktop.io container.</p>
 <div class="highlight"><pre><span></span><code>http://localhost:30443
@@ -3748,7 +3748,7 @@ kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class
 <p>At the right top corner, click on the menu and choose <code>Settings</code>, then click on <code>Screen Colors</code></p>
 <p>Choose your colour and you should have it as background colour :</p>
 <p><img alt="newbackgroundcolors" src="../img/newbackgroundcolors.png" /></p>
-<p>Great, you can easily update your configuration file <code>od.config</code>.</p>
+<p>You can now update the abcdesktop configuration file <code>od.config</code> at any time using this procedure.</p>
 
 
 

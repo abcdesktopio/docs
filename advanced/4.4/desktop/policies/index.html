@@ -3722,32 +3722,22 @@
 
 
 <h1 id="desktoppolicies">desktop.policies</h1>
-<p><code>desktop.policies</code> defines some rules to add <code>volumes</code> and <code>network</code>.
-Each rules matchs the labels value.</p>
-<p>If a user gets the label <code>'hello'</code>, then <code>volumes['hello']</code>  and <code>network['hello']</code> are applied.</p>
+<p>The <code>desktop.policies</code> configuration defines rules for attaching additional <code>volumes</code> and <code>network</code> interfaces to user pods. Each rule matches a label value.</p>
+<p>If a user is assigned the label <code>'hello'</code>, then <code>volumes['hello']</code> and <code>network['hello']</code> are applied to that user's pod.</p>
 <ul>
+<li><code>volumes</code> defines additional volumes to be mounted in the pod</li>
 <li>
-<p><code>volumes</code> are defined to build additional volumes</p>
-<blockquote>
-<ul>
-<li>like mount a nfs shared point for each member of a group</li>
-</ul>
-</blockquote>
+<p>for example, mounting an NFS share for all members of a group</p>
 </li>
 <li>
-<p><code>network</code> is defined to add networks and run command line</p>
-<blockquote>
-<ul>
-<li>add a new network interface for a pod</li>
-<li>run some commands to update dns entries for a pod ( on create, on delete )</li>
-</ul>
-</blockquote>
+<p><code>network</code> defines additional network interfaces and command hooks for a pod</p>
 </li>
+<li>add a new network interface to a pod</li>
+<li>run commands to update DNS entries for a pod (on creation or deletion)</li>
 </ul>
 <h2 id="volumes">volumes</h2>
-<p><code>volumes</code> is a dictionnay of list of matching labels. 
-Each volume describes the <code>mountPath</code> to be mounted inside the pod, and a dedicated <code>type</code>.</p>
-<p>The type of a volume can be <code>nfs</code>, <code>hostPath</code>, <code>pvc</code> or <code>cifs</code></p>
+<p><code>volumes</code> is a dictionary of label-keyed lists. Each entry describes the <code>mountPath</code> to be mounted inside the pod and the volume <code>type</code>.</p>
+<p>Supported volume types are <code>nfs</code>, <code>hostPath</code>, <code>pvc</code>, and <code>cifs</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <span class="w">  </span><span class="err">&#39;rules&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <span class="w">    </span><span class="err">&#39;volumes&#39;</span><span class="p">:</span><span class="w"> </span>
@@ -3760,7 +3750,7 @@ Each volume describes the <code>mountPath</code> to be mounted inside the pod, a
 <span class="w">        </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <blockquote>
-<p>if the user gets <code>shipcrew</code> as label, the add the mount point '/mnt/testmyproject' as a hostPath to '/mnt/sharedhost' in the pod</p>
+<p>If the user is assigned the <code>shipcrew</code> label, the mount point <code>/mnt/testmyproject</code> is added as a <code>hostPath</code> volume mapped to <code>/mnt/sharedhost</code> in the pod.</p>
 </blockquote>
 <h3 id="volume-type-nfs">volume type <code>nfs</code></h3>
 <div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
@@ -3776,15 +3766,15 @@ Each volume describes the <code>mountPath</code> to be mounted inside the pod, a
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
 </code></pre></div>
 <blockquote>
-<p>if the user gets <code>nfsisostore</code> as label, the add the mount point '/mnt/iso' in the pod as a nfs mount to <code>192.168.7.112:/volume1/isostore</code></p>
+<p>If the user is assigned the <code>nfsisostore</code> label, the mount point <code>/mnt/iso</code> is added to the pod as an NFS mount targeting <code>192.168.7.112:/volume1/isostore</code>.</p>
 </blockquote>
 <p>Requirements</p>
 <ul>
 <li><code>type</code>:<code>nfs</code> </li>
 <li><code>name</code> (string) is the name of the volume </li>
 <li><code>mountPath</code> (string) is the mountPath of the volume</li>
-<li><code>server</code> (string) is the nfs server</li>
-<li><code>path</code> (string) is the export </li>
+<li><code>server</code> (string) is the NFS server hostname or IP address</li>
+<li><code>path</code> (string) is the NFS export path on the server</li>
 </ul>
 <p>Option</p>
 <ul>
@@ -3808,10 +3798,10 @@ Each volume describes the <code>mountPath</code> to be mounted inside the pod, a
 <li><code>type</code>:<code>hostPath</code> </li>
 <li><code>name</code> (string) is the name of the volume </li>
 <li><code>mountPath</code> (string) is the mountPath of the volume</li>
-<li><code>path</code> (string) is the export nfs value</li>
+<li><code>path</code> (string) is the absolute path on the host node</li>
 </ul>
 <blockquote>
-<p>if the user gets <code>shipcrew</code> as label, the add the mount point '/mnt/testmyproject' as a hostPath to '/mnt/sharedhost' in the pod</p>
+<p>If the user is assigned the <code>shipcrew</code> label, the mount point <code>/mnt/testmyproject</code> is added to the pod as a <code>hostPath</code> volume mapped to <code>/mnt/sharedhost</code>.</p>
 </blockquote>
 <h3 id="volume-type-pvc">volume type <code>pvc</code></h3>
 <div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
@@ -3830,10 +3820,10 @@ Each volume describes the <code>mountPath</code> to be mounted inside the pod, a
 <li><code>type</code>:<code>pvc</code> </li>
 <li><code>name</code> (string) is the name of the volume </li>
 <li><code>mountPath</code> (string) is the mountPath of the volume</li>
-<li><code>claimName</code> (string) is the pvc claim</li>
+<li><code>claimName</code> (string) is the PersistentVolumeClaim name</li>
 </ul>
 <blockquote>
-<p>if the user gets <code>nfspvc</code> as label, the add the mount point '/mnt/newpvcstore' as a pvc named 'pvc-store'</p>
+<p>If the user is assigned the <code>nfspvc</code> label, the mount point <code>/mnt/newpvcstore</code> is added to the pod using the PVC named <code>pvc-store</code>.</p>
 </blockquote>
 <h2 id="network">network</h2>
 <div class="highlight"><pre><span></span><code>desktop.policies: { 
@@ -3850,14 +3840,14 @@ Each volume describes the <code>mountPath</code> to be mounted inside the pod, a
     }          
 </code></pre></div>
 <blockquote>
-<p>if the user gets <code>shipcrew</code> as labels</p>
+<p>If the user is assigned the <code>shipcrew</code> label:</p>
 </blockquote>
 <ul>
-<li>execute the bash command line on create pods</li>
-<li>execute the bash command line on delete pods </li>
-<li>add the 'annotations' : <code>{ 'k8s.v1.cni.cncf.io/networks': '[ {"name":"macvlan-conf-7"} ]' }</code> tp the pod </li>
+<li>The webhook <code>create</code> command is executed when the pod is created.</li>
+<li>The webhook <code>destroy</code> command is executed when the pod is deleted.</li>
+<li>The <code>annotations</code> dictionary is merged into the pod's metadata annotations.</li>
 </ul>
-<p>For the all fileds, the entries <code>{{ VAR }}</code> is replaced by the value of <code>VAL</code>.</p>
+<p>For all fields, template entries in the form <code>{{ VAR }}</code> are replaced with the corresponding runtime value.</p>
 <ul>
 <li>desktop.webhookdict is a dictionary with key/value for <code>webhook</code> configuration</li>
 </ul>

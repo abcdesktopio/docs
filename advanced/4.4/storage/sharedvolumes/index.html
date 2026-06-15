@@ -3900,7 +3900,7 @@
 
 
 <h1 id="shared-volumes">Shared Volumes</h1>
-<p>Users may need to access shared files. If you can't create <code>persistent volumes</code> on your cluster, this page describe how to access a shared '/mnt/shared_data' hostPath using <code>rules</code></p>
+<p>Users may need to access shared files. If you cannot create <code>PersistentVolumes</code> on your cluster, this page describes how to access a shared <code>/mnt/shared_data</code> hostPath using <code>rules</code>.</p>
 <h2 id="check-your-rules-in-authmanagers-ldapconfig">Check your rules in <code>authmanagers</code> <code>ldapconfig</code></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -4000,7 +4000,7 @@
 <blockquote>
 <p>On your worker node, make sure that the <code>/mnt</code> directory exists.</p>
 </blockquote>
-<p>This policy adds a new volume <code>mntmyproject</code> defined as a <code>hostPath</code> to the users's pod and mount it as <code>/mnt/shared_data</code>.</p>
+<p>This policy adds a new volume <code>mntmyproject</code> defined as a <code>hostPath</code> to the user's pod and mounts it as <code>/mnt/shared_data</code>.</p>
 <p>Save your <code>od.config</code> file</p>
 <h3 id="apply-the-new-config-file">Apply the new config file</h3>
 <p>Replace the previous configmap</p>
@@ -4076,7 +4076,7 @@ kubectl desribe pods fry-06c5f -n $NAMESPACE
 <h2 id="define-volume-using-pvc-bounded-on-nfs-server">Define volume using <code>pvc</code> bounded on nfs server</h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For this part of the tutorial, you should have a NFS server already configured. If not please follow the first chapter of <a href="http://abcdesktop.pepins.net/advanced/4.4/storage/nfs/#set-up-a-nfs-server">this tutorial</a>.</p>
+<p>For this part of the tutorial, you should have an NFS server already configured. If not, please follow the first chapter of <a href="http://abcdesktop.pepins.net/advanced/4.4/storage/nfs/#set-up-a-nfs-server">this tutorial</a>.</p>
 </div>
 <h3 id="create-nfs-type-persistentvolume">Create nfs type <code>PersistentVolume</code></h3>
 <p>To begin with, you will have to create a nfs type <code>PersistentVolume</code> that will be bound to your nfs server.  </p>
@@ -4103,7 +4103,7 @@ kubectl desribe pods fry-06c5f -n $NAMESPACE
 <div class="highlight"><pre><span></span><code>kubectl apply -f nfs-pv-shared-data-abcdesktop.yaml
 </code></pre></div>
 <h3 id="create-persistentvolumeclaim">Create <code>PersistentVolumeClaim</code></h3>
-<p>Now that our <code>PersistentVolume</code> is created and linked to our nfs server. We now have to created a <code>PersistentVolumeClaim</code> that we will bien to the previously created <code>shared-shipcrew-pv</code> <code>PersistentVolume</code>.</p>
+<p>Now that the <code>PersistentVolume</code> is created and linked to the NFS server, you need to create a <code>PersistentVolumeClaim</code> that will be bound to the previously created <code>shared-shipcrew-pv</code> <code>PersistentVolume</code>.</p>
 <p>Paste the following lines to a <code>nfs-pvc-shared-data-abcdesktop.yaml</code> file</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
@@ -4156,7 +4156,7 @@ shared-shipcrew-pv   1Gi        RWX            Retain           Bound    abcdesk
 <blockquote>
 <p>On your worker node, make sure that the <code>/mnt</code> directory exists.</p>
 </blockquote>
-<p>This policy adds a new volume <code>shared-shipcrew-pvc</code> defined as a <code>pvc</code> to the users's pod and mount it as <code>/mnt/shared_data_pvc</code>.</p>
+<p>This policy adds a new volume <code>shared-shipcrew-pvc</code> defined as a <code>pvc</code> to the user's pod and mounts it as <code>/mnt/shared_data_pvc</code>.</p>
 <p>Save your <code>od.config</code> file</p>
 <h3 id="apply-the-new-config-file_1">Apply the new config file</h3>
 <p>Replace the previous configmap</p>
@@ -4211,7 +4211,7 @@ fry-06c5f   4/4     Running   0          3m24s
     ClaimName:   shared-shipcrew-pvc
     ReadOnly:    false
 </code></pre></div>
-<p>A new <code>Mount</code> is defined as <code>/mnt/shared_data_pvc from pvc-shared-shipcrew-pvc-fry (rw)</code> and a new volume pvc-shared-shipcrew-pvc-fry is defined as <code>HostPath</code> to the <code>Path</code> <code>/mnt</code></p>
+<p>A new <code>Mount</code> is defined as <code>/mnt/shared_data_pvc from pvc-shared-shipcrew-pvc-fry (rw)</code> and the volume <code>pvc-shared-shipcrew-pvc-fry</code> is defined as a <code>PersistentVolumeClaim</code> referencing <code>shared-shipcrew-pvc</code>.</p>
 <blockquote>
 <p>Check that your file system's permissions are set to your users</p>
 </blockquote>

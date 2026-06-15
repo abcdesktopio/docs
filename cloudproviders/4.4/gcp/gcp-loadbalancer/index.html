@@ -1616,18 +1616,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#obtain-a-certificat" class="md-nav__link">
+  <a href="#obtain-a-certificate" class="md-nav__link">
     <span class="md-ellipsis">
-      Obtain a certificat
+      Obtain a Certificate
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-a-secret-for-x509-certificat" class="md-nav__link">
+  <a href="#create-a-secret-for-the-x509-certificate" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a secret for X509 certificat
+      Create a Secret for the X.509 Certificate
     </span>
   </a>
   
@@ -3743,18 +3743,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#obtain-a-certificat" class="md-nav__link">
+  <a href="#obtain-a-certificate" class="md-nav__link">
     <span class="md-ellipsis">
-      Obtain a certificat
+      Obtain a Certificate
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-a-secret-for-x509-certificat" class="md-nav__link">
+  <a href="#create-a-secret-for-the-x509-certificate" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a secret for X509 certificat
+      Create a Secret for the X.509 Certificate
     </span>
   </a>
   
@@ -3850,9 +3850,9 @@
 <li><code>wget</code> command line</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>In this chapter we are going to, use a <code>loadBalancer</code> to host your abcdesktop service with a public IP Address, then configure dns zone file to use your domain name, and activate TLS to secure your service.</p>
+<p>In this chapter, we will use a <code>loadBalancer</code> to host your abcdesktop service with a public IP address, then configure the DNS zone file to use your domain name, and enable TLS to secure your service.</p>
 <h2 id="create-a-new-http-router-service-yaml-file">Create a new <code>http-router</code> service yaml file</h2>
-<p>The default install define the <code>http-router</code> service with as <code>nodePort</code> type. We are going to update the <code>http-router</code> service with a <code>LoadBalancer</code> type.</p>
+<p>The default install configures the <code>http-router</code> service as a <code>nodePort</code> type. We are going to update the <code>http-router</code> service to use a <code>LoadBalancer</code> type.</p>
 <p>Create a file named <code>http-router.yaml</code></p>
 <div class="highlight"><pre><span></span><code>kind: Service
 apiVersion: v1
@@ -3906,14 +3906,14 @@ http-router   LoadBalancer   34.118.231.121   34.59.246.150   443:31089/TCP,80:3
 </code></pre></div>
 <p>You can open a web browser to reach your abcdesktop service with the IP address</p>
 <p><img alt="web browser to reach your abcdesktop service" src="../img/external-ip.png" /></p>
-<p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol</p>
+<p>Web browser doesn't allow usage of websocket without a secure protocol. To log in, you need to use <code>https</code> protocol.</p>
 <h2 id="update-your-dns-zone-file">Update your DNS zone file</h2>
-<p>We will use a <code>FQDN</code> (Fully Qualified Domain Name) to replace the <code>IP Address</code>.</p>
+<p>We will use a <code>FQDN</code> (Fully Qualified Domain Name) to replace the IP address.</p>
 <p><img alt="gcp networking" src="../img/cloud-dns.png" /></p>
-<p>This screenshot describes the GCP network console. It shows the <code>Domain</code> informations, but your can manage your zone file from your own registrar.
-If you want more informations about Cloud DNS, you can check the <a href="https://docs.cloud.google.com/dns/docs/tutorials/create-domain-tutorial">documentation</a></p>
+<p>This screenshot describes the GCP network console. It shows the <code>Domain</code> information. You can also manage your zone file from your own registrar.
+For more information about Cloud DNS, see the <a href="https://docs.cloud.google.com/dns/docs/tutorials/create-domain-tutorial">documentation</a>.</p>
 <h3 id="create-new-record">Create new record</h3>
-<p>We are going to create a new record <code>hello.loadbalancer</code> (<code>hello.loadbalancer.gcp.pepins.net</code>) to the <code>A</code> address <code>34.59.246.150</code>. I prefer to define low <code>TTL</code> value to fix some changes quickly. </p>
+<p>We are going to create a new record <code>hello.loadbalancer</code> (<code>hello.loadbalancer.gcp.pepins.net</code>) pointing to the <code>A</code> address <code>34.59.246.150</code>. Setting a low <code>TTL</code> value is recommended to allow faster propagation of changes.</p>
 <p>The IP Address is show by the GCP network console, it is the same address as the <code>EXTERNAL-IP</code> of your <code>http-router</code> service.</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl get services http-router -n $NAMESPACE
@@ -3928,11 +3928,11 @@ http-router   LoadBalancer   34.118.231.121   34.59.246.150   443:31089/TCP,80:3
 <p><img alt="record created" src="../img/record-created.png" /></p>
 <p>From your local device, you can open a web browser</p>
 <p><img alt="reach your website from your new name" src="../img/http-fqdn.png" /></p>
-<p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol.</p>
-<p>As you can see, your website is <code>Not Secured</code>, we are going to add X509 SSL certificate to secure your service.</p>
-<h2 id="obtain-a-certificat">Obtain a certificat</h2>
-<p>If you already have a X509 certificat with a private and public certified key files for your web site, you can skip this chapter.</p>
-<p>To create you SSL certificat, we are using let's encrypt service. You need your new hostname and your email address</p>
+<p>Web browser doesn't allow usage of websocket without a secure protocol. To log in, you need to use <code>https</code> protocol.</p>
+<p>As you can see, your website is <code>Not Secured</code>. We are going to add an X.509 SSL certificate to secure your service.</p>
+<h2 id="obtain-a-certificate">Obtain a Certificate</h2>
+<p>If you already have an X.509 certificate with private and public key files for your website, you can skip this section.</p>
+<p>To create an SSL certificate, this guide uses the Let's Encrypt service. You will need your hostname and your email address.</p>
 <p>Define the new variables <code>ABCDESKTOP_PUBLIC_FQDN</code> and <code>USER_EMAIL_ADDRESS</code> </p>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 <span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="o">=</span>hello.loadbalancer.gcp.pepins.net
@@ -3969,12 +3969,12 @@ Key is saved at:         /etc/letsencrypt/live/hello.loadbalancer.gcp.pepins.net
 kubectl exec -n $NAMESPACE -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/$ABCDESKTOP_PUBLIC_FQDN/fullchain.pem &gt; fullchain.pem
 kubectl exec -n $NAMESPACE -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/$ABCDESKTOP_PUBLIC_FQDN/privkey.pem &gt; privkey.pem
 </code></pre></div>
-<h2 id="create-a-secret-for-x509-certificat">Create a secret for X509 certificat</h2>
+<h2 id="create-a-secret-for-the-x509-certificate">Create a Secret for the X.509 Certificate</h2>
 <p>Create a secret named <code>http-router-certificat</code> with the <code>fullchain.pem</code> and <code>privkey.pem</code> file content</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=privkey.pem -n $NAMESPACE 
 </code></pre></div>
-<p>You secret is created </p>
+<p>Your secret is created</p>
 <div class="highlight"><pre><span></span><code>secret/http-router-certificat created
 </code></pre></div>
 <h2 id="update-http-router-configmap-to-use-the-new-http-router-certificat-secret">Update <code>http-router</code> ConfigMap to use the new <code>http-router-certificat</code> secret</h2>
@@ -4009,12 +4009,12 @@ kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=priv
      ssl_certificate     /etc/nginx/ssl/tls.crt;
      ssl_certificate_key /etc/nginx/ssl/tls.key;
 </code></pre></div>
-<p>Apply your new nginx confguration file</p>
+<p>Apply your new nginx configuration file</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl apply -f abcdesktop-routehttp-config.4.4.yaml -n $NAMESPACE
 </code></pre></div>
 <h2 id="update-deployment-http-router">Update <code>deployment</code> http-router</h2>
-<p>Update the <code>deployment</code> route to add certificat ssl entry</p>
+<p>Update the <code>deployment</code> route to add the SSL certificate entry</p>
 <p>The <code>abcdesktop-deployment-routehttps.4.4.yaml</code> file  adds <code>mountPath: /etc/nginx/ssl</code> to <code>secretName: http-router-certificat</code></p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.4.yaml -n $NAMESPACE
@@ -4023,9 +4023,9 @@ kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/
 <div class="highlight"><pre><span></span><code>deployment.apps/router-od configured
 </code></pre></div>
 <h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
-<p>You can now connect to your abcdesktop desktop pulic web site using <code>https</code> protocol. </p>
+<p>You can now connect to your public abcdesktop website using <code>https</code> protocol.</p>
 <p><img alt="reach your website using https" src="../img/https-fqdn.png" /></p>
-<p>The status is secured and we get some informations from the certificate</p>
+<p>The status is secured and we get some information from the certificate</p>
 <p><img alt="reach your website using https" src="../img/cert-viewer.png" /></p>
 
 

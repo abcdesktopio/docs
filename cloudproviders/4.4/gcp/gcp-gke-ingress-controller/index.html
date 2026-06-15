@@ -1598,9 +1598,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#to-get-more-informations" class="md-nav__link">
+  <a href="#for-more-information" class="md-nav__link">
     <span class="md-ellipsis">
-      To get more informations
+      For More Information
     </span>
   </a>
   
@@ -3714,9 +3714,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#to-get-more-informations" class="md-nav__link">
+  <a href="#for-more-information" class="md-nav__link">
     <span class="md-ellipsis">
-      To get more informations
+      For More Information
     </span>
   </a>
   
@@ -3866,24 +3866,24 @@
 <h1 id="publish-your-website-as-a-public-secured-service">Publish your website as a public secured service</h1>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li>read the previous chapter <a href="../gcp/">deploy abcdesktop on GCP with Kubernetes</a> </li>
+<li>read the previous chapter <a href="../gcp/">Deploy abcdesktop on GCP with Kubernetes</a> </li>
 <li>a GCP account</li>
-<li>a domain of you own hosted on GCP</li>
+<li>your own domain hosted on GCP</li>
 <li><code>gcloud</code> command line interface <a href="https://docs.cloud.google.com/sdk/docs/install-sdk/">gcloud cli</a></li>
 <li><code>kubectl</code> command line</li>
 </ul>
-<h3 id="to-get-more-informations">To get more informations</h3>
+<h3 id="for-more-information">For More Information</h3>
 <ul>
 <li>read the google cloud chapter <a href="https://docs.cloud.google.com/kubernetes-engine/docs/concepts/ingress-xlb">install-gke-ingress-controller</a></li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>In this chapter we are going to, use a <code>gke-ingress-controller</code> to host your abcdesktop service with a public IP Address, then configure dns zone file to use your own domain name, and activate TLS to secure your service.</p>
+<p>In this chapter, we will use a <code>gke-ingress-controller</code> to host your abcdesktop service with a public IP address, then configure the DNS zone file to use your own domain name, and enable TLS to secure your service.</p>
 <h2 id="set-up-the-gke-ingress-controller">Set up the GKE Ingress controller</h2>
-<p>In this example we will use the GKE built-in ingress controller. Before starting you may first need to check if the <code>HttpLoadBalancing</code> add-on is enabled on your cluster.<br />
+<p>In this example, we will use the GKE built-in ingress controller. Before starting, check whether the <code>HttpLoadBalancing</code> add-on is enabled on your cluster.
 Go to your cluster page on the GCP console, then <code>Networking</code>, you should see <code>HttpLoadBalancing</code> as enabled, if not enable it and save your changes.</p>
 <p><img alt="httploadbalancing enabled" src="../img/httploadbalancing-enabled.png" /></p>
-<p>Create an ingress resource for GKE using the abcdesktop service and save it as <code>abcdesktop_host.yaml</code>
-You need to update this manifest with your own FQDN, replace <code>hello.ingress.gcp.pepins.net</code> by your own values.</p>
+<p>Create an ingress resource for GKE using the abcdesktop service and save it as <code>abcdesktop_host.yaml</code>.
+Update this manifest with your own FQDN, replacing <code>hello.ingress.gcp.pepins.net</code> with your own value.</p>
 <div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -3916,7 +3916,7 @@ kubectl apply -f abcdesktop_host.yaml -n $NAMESPACE
 kubectl get ingress -n $NAMESPACE
 </code></pre></div>
 <p>The output looks similar to the following:</p>
-<p>Wait fee seconds while the <code>ADDRESS</code> field is empty<br />
+<p>Wait a few seconds while the <code>ADDRESS</code> field is empty
 <div class="highlight"><pre><span></span><code>NAME                 CLASS    HOSTS                          ADDRESS   PORTS   AGE
 ingress-abcdesktop   &lt;none&gt;   hello.ingress.gcp.pepins.net             80      4s
 </code></pre></div></p>
@@ -3924,13 +3924,13 @@ ingress-abcdesktop   &lt;none&gt;   hello.ingress.gcp.pepins.net             80 
 <div class="highlight"><pre><span></span><code>NAME                 CLASS    HOSTS                          ADDRESS         PORTS   AGE
 ingress-abcdesktop   &lt;none&gt;   hello.ingress.gcp.pepins.net   35.190.86.108   80      3m14s
 </code></pre></div>
-<p>In the example above, the ingress resource tells gce to route each HTTP request that is using the / prefix for the <code>hello.ingress.gcp.pepins.net</code> host, to the <code>route</code> backend service running on port 80. In other words, every time you make a call to http://hello.ingress.gcp.pepins.net/, the request and reply are served by the echo backend service running on port 80.</p>
+<p>In the example above, the ingress resource instructs GCE to route each HTTP request using the <code>/</code> prefix for the <code>hello.ingress.gcp.pepins.net</code> host to the <code>http-router</code> backend service running on port 80. In other words, every request to <code>http://hello.ingress.gcp.pepins.net/</code> is served by the <code>http-router</code> backend service on port 80.</p>
 <h2 id="update-your-dns-zone-file">Update your DNS zone file</h2>
-<p>We will associate your <code>FQDN</code> (Fully Qualified Domain Name) to the load-balancer's IP Address.</p>
+<p>We will associate your <code>FQDN</code> (Fully Qualified Domain Name) with the load balancer's IP address.</p>
 <p><img alt="cloud dne" src="../img/cloud-dns.png" /></p>
-<p>This screenshot describes the GCP network console. It shows the <code>Domain</code> informations, but you can manage your own zone file from your own registrar.</p>
+<p>This screenshot describes the GCP network console. It shows the <code>Domain</code> information. You can also manage your zone file from your own registrar.</p>
 <h3 id="create-new-record">Create new record</h3>
-<p>In this example, we are going to create a new record <code>hello.ingress</code> (<code>hello.ingress.gcp.pepins.net</code>) to the <code>A</code> address <code>35.190.86.108</code>. This IP Address is the <code>load-balancer</code> IP Address.</p>
+<p>In this example, we are going to create a new record <code>hello.ingress</code> (<code>hello.ingress.gcp.pepins.net</code>) pointing to the <code>A</code> address <code>35.190.86.108</code>. This IP address is the load balancer IP address.</p>
 <p>Press <code>Add Standard</code> button, to update your zone file with the new record</p>
 <p><img alt="gcp console add record" src="../img/add-fqdn-ingress.png" /></p>
 <p>Then you should see your record on your domain page </p>
@@ -3938,12 +3938,12 @@ ingress-abcdesktop   &lt;none&gt;   hello.ingress.gcp.pepins.net   35.190.86.108
 <p>From your local device, you can open a web browser</p>
 <p><img alt="reach your website from your new name" src="../img/connect-ingress-http.png" /></p>
 <blockquote>
-<p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol.</p>
+<p>Web browser doesn't allow usage of websocket without a secure protocol. To log in, you need to use <code>https</code> protocol.</p>
 </blockquote>
-<p>As you can see, your website is <code>Not Secured</code>, we are going to add X509 SSL certificate to secure your service.</p>
+<p>As you can see, your website is <code>Not Secured</code>. We are going to add an X.509 SSL certificate to secure your service.</p>
 <h2 id="enable-https">Enable HTTPS</h2>
 <h3 id="configure-google-managed-ssl-certificates">Configure Google-managed SSL certificates</h3>
-<p>To enable HTTPS on our exposed service, we will use Google-managed SSL certificates as it is natively embedded in GCP and works well with a GKE ingress controller.</p>
+<p>To enable HTTPS on our exposed service, we will use Google-managed SSL certificates, which are natively integrated in GCP and work seamlessly with a GKE ingress controller.</p>
 <p>First you will create a <code>ManagedCertificate</code> object, copy the following lines in a <code>abcdesktop_managed_certificate.yaml</code> file.</p>
 <div class="highlight"><pre><span></span><code>apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
@@ -3957,7 +3957,7 @@ spec:
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl apply -f abcdesktop_managed_certificate.yaml -n $NAMESPACE
 </code></pre></div>
-<p>Now, you will have modify the previously created ingress file, and  specify the managed certificate the ingress will use, in the annotations section.</p>
+<p>Now, you will need to modify the previously created ingress file and specify the managed certificate the ingress will use in the <code>annotations</code> section.</p>
 <div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -3997,13 +3997,13 @@ kubectl get managedcertificate  -n $NAMESPACE
 abcdesktop-cert     12m   Active
 </code></pre></div>
 <h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
-<p>You can now connect to your abcdesktop desktop pulic web site using <code>https</code> protocol. </p>
+<p>You can now connect to your public abcdesktop website using <code>https</code> protocol.</p>
 <p><img alt="reach your website using https" src="../img/connect-ingress-https.png" /></p>
-<p>The status is secured and we get some informations from the certificate</p>
+<p>The status is secured and we get some information from the certificate</p>
 <p><img alt="reach your website using https" src="../img/certificate-ok.png" /></p>
 <h2 id="increase-ingress-connection-timeout">Increase ingress connection timeout</h2>
-<p>By default, GCE type ingress has a connection timeout of 30 seconds, in our case, we doesn't want abcdesktop to drop the connection to our desktop every 30 seconds, so we will have to increase timeout.</p>
-<p>Unlike a nginx type ingress, you cannot add annotations to the ingress yaml file to increase timeout value. You instead need to create a <code>BackendConfig</code> object that you will link to your routing service.</p>
+<p>By default, a GCE type ingress has a connection timeout of 30 seconds. For abcdesktop, we do not want the connection to the desktop to be dropped every 30 seconds, so we will need to increase the timeout.</p>
+<p>Unlike an NGINX type ingress, you cannot add annotations to the ingress YAML file to increase the timeout value. Instead, you must create a <code>BackendConfig</code> object and link it to your routing service.</p>
 <p>First copy the following lines in a <code>backend_config_timeout.yaml</code></p>
 <div class="highlight"><pre><span></span><code>apiVersion: cloud.google.com/v1
 kind: BackendConfig
@@ -4044,9 +4044,9 @@ spec:
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl apply -f http_router.yaml -n $NAMESPACE
 </code></pre></div>
-<p>Now wait a few minutes for GCE to apply the new configuration and reconnect to your desktop, the connection shouldn't drop after 30 seconds anymore.</p>
+<p>Now wait a few minutes for GCE to apply the new configuration. After reconnecting to your desktop, the connection should no longer drop after 30 seconds.</p>
 <blockquote>
-<p>NB : By using this method with GKE ingress controller, the reverse proxy does forward the client source IP to your cluster, so there is no additional manipulations to do for that.</p>
+<p><strong>Note:</strong> By using this method with the GKE ingress controller, the reverse proxy forwards the client's source IP to your cluster, so no additional configuration is required for that purpose.</p>
 </blockquote>
 
 

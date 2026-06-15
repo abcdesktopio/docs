@@ -1553,7 +1553,7 @@
         <li class="md-nav__item">
   <a href="#create-a-kubernetes-cluster-using-gcloud-cli" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a Kubernetes cluster using gcloud cli
+      Create a Kubernetes Cluster Using gcloud CLI
     </span>
   </a>
   
@@ -1562,7 +1562,7 @@
         <li class="md-nav__item">
   <a href="#create-a-kubernetes-cluster-using-google-cloud-console" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a Kubernetes cluster using Google Cloud Console
+      Create a Kubernetes Cluster Using Google Cloud Console
     </span>
   </a>
   
@@ -3676,7 +3676,7 @@
         <li class="md-nav__item">
   <a href="#create-a-kubernetes-cluster-using-gcloud-cli" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a Kubernetes cluster using gcloud cli
+      Create a Kubernetes Cluster Using gcloud CLI
     </span>
   </a>
   
@@ -3685,7 +3685,7 @@
         <li class="md-nav__item">
   <a href="#create-a-kubernetes-cluster-using-google-cloud-console" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a Kubernetes cluster using Google Cloud Console
+      Create a Kubernetes Cluster Using Google Cloud Console
     </span>
   </a>
   
@@ -3794,13 +3794,13 @@
 <li><code>gcloud</code> command line interface <a href="https://docs.cloud.google.com/sdk/docs/install-sdk/">gcloud cli</a></li>
 </ul>
 <blockquote>
-<p>If you use <code>gcloud</code> command line for your first time, run <code>gcloud auth login</code> command line to log with your GCP account.</p>
+<p>If you use the <code>gcloud</code> command line for the first time, run <code>gcloud auth login</code> to authenticate with your GCP account.</p>
 </blockquote>
-<h2 id="create-a-kubernetes-cluster-using-gcloud-cli">Create a Kubernetes cluster using gcloud cli</h2>
-<p>First you will need to configure <code>gcloud</code> to set your GCP project as current project by running the following command.</p>
+<h2 id="create-a-kubernetes-cluster-using-gcloud-cli">Create a Kubernetes Cluster Using gcloud CLI</h2>
+<p>First, configure <code>gcloud</code> to set your GCP project as the current project by running the following command.</p>
 <div class="highlight"><pre><span></span><code>gcloud config set project &lt;YOUR_PROJECT_ID&gt;
 </code></pre></div>
-<p>Run the folllowing command to create your kubernetes cluster</p>
+<p>Run the following command to create your Kubernetes cluster:</p>
 <div class="highlight"><pre><span></span><code>gcloud container clusters create abcdesktop-gcp-1 --machine-type=custom-4-8192 --zone=us-central1-a --num-nodes=2
 </code></pre></div>
 <p>If you want more details about the command parameters go the <a href="https://docs.cloud.google.com/sdk/gcloud/reference/container/clusters/create">gcloud container clusters create documentation</a></p>
@@ -3813,8 +3813,8 @@ kubeconfig entry generated for abcdesktop-gcp-1.
 NAME              LOCATION       MASTER_VERSION      MASTER_IP      MACHINE_TYPE   NODE_VERSION        NUM_NODES  STATUS   STACK_TYPE
 abcdesktop-gcp-1  us-central1-a  1.33.5-gke.1308000  34.172.78.248  custom-4-8192  1.33.5-gke.1308000  2          RUNNING  IPV4
 </code></pre></div>
-<h2 id="create-a-kubernetes-cluster-using-google-cloud-console">Create a Kubernetes cluster using Google Cloud Console</h2>
-<p>If you don't have a running kubernetes cluster, connect to your GCP console interface and search for <code>Create a Kubernetes Cluster</code>.</p>
+<h2 id="create-a-kubernetes-cluster-using-google-cloud-console">Create a Kubernetes Cluster Using Google Cloud Console</h2>
+<p>If you do not have a running Kubernetes cluster, connect to your GCP console and search for <code>Create a Kubernetes Cluster</code>.</p>
 <p><img alt="gcp console overview" src="../img/gcp-console-overview.png" /></p>
 <p>You will arrive on the GCP Kubernetes cluster application main page, then click on <code>Create cluster</code> and follow the step as shown below.</p>
 <p><img alt="gcp kubernetes app page" src="../img/kube-cluster-page.png" />
@@ -3825,10 +3825,10 @@ abcdesktop-gcp-1  us-central1-a  1.33.5-gke.1308000  34.172.78.248  custom-4-819
 <img alt="cluster setup step 4" src="../img/kube-setup-step-4.png" /></p>
 <p>Now wait a few minutes for your cluster to be ready.</p>
 <p><img alt="cluster ready" src="../img/cluster-created.png" /></p>
-<p>Once your cluster ready, you will need to link the cluster to your local machine in order to drive it. To do so, you will first need to install the <code>gke-gcloud-auth-plugin</code> by running the following command</p>
+<p>Once your cluster is ready, you will need to link it to your local machine in order to manage it. To do so, first install the <code>gke-gcloud-auth-plugin</code> by running the following command:</p>
 <div class="highlight"><pre><span></span><code>gcloud components install gke-gcloud-auth-plugin
 </code></pre></div>
-<p>Then click on the <code>Connect</code> button and paste the given command into your terminal</p>
+<p>Then click on the <code>Connect</code> button and paste the provided command into your terminal.</p>
 <p><img alt="link command" src="../img/gcloud-command.png" /></p>
 <h2 id="run-the-abcdesktop-install-script">Run the abcdesktop install script</h2>
 <p>Download and install the latest release automatically</p>
@@ -3836,8 +3836,8 @@ abcdesktop-gcp-1  us-central1-a  1.33.5-gke.1308000  34.172.78.248  custom-4-819
 </code></pre></div>
 <p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="connect-to-your-abcdesktop-service">Connect to your abcdesktop service</h2>
-<p>By default install script is listening on a free tcp port <code>:30443</code> and is using a <code>kubectl port-forward</code> command line to reach http web service <code>:80</code></p>
-<p>Open your web browser <code>http://locahost:30443</code></p>
+<p>By default, the install script exposes the service on a free TCP port <code>:30443</code> using a <code>kubectl port-forward</code> command to forward traffic to the HTTP service on port <code>:80</code>.</p>
+<p>Open your web browser and navigate to <code>http://localhost:30443</code>.</p>
 <p><img alt="abcdesktop login" src="../../img/abcdesktop-hompage-port30443.png" /></p>
 <p>Login as user <code>Philip J. Fry</code> with the password <code>fry</code></p>
 <p><img alt="abcdesktop login as fry" src="../../img/abcdesktop-hompage-port30443-login-fry.png" /></p>
@@ -3873,14 +3873,14 @@ kubectl rollout restart deployment pyos-od -n $NAMESPACE
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.4.sh | bash
 </code></pre></div>
 <p>To get more details about the install applications process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop_applications/">Setup applications guide</a></p>
-<p>Then you just need to reload the web page with the desktop of <code>Philip J. Fry</code>
+<p>Then reload the web page showing the desktop of <code>Philip J. Fry</code>.
 New applications are now listed in the dock of <code>plasmashell</code>.</p>
 <p><img alt="abcdesktop for fry with applications" src="../../img/abcdesktop-hompage-port30443-login-fry-applications.png" /></p>
 <p>Start Firefox application</p>
 <blockquote>
 <p>The first run may involve waiting for the image pulling process to finish</p>
 </blockquote>
-<p>Go to <code>https://mylocation.org</code> website to check where your pod is running.  In my case for the region <code>Iowa</code>, the desktop is located near <code>Council Bluffs</code> city in <code>United States</code>. </p>
+<p>In this example, for the <code>Iowa</code> region, the desktop is located near <code>Council Bluffs</code> in the <code>United States</code>.</p>
 <p><img alt="abcdesktop location" src="../img/abcdesktop-location.png" /></p>
 
 

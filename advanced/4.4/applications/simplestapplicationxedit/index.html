@@ -3682,19 +3682,19 @@
 
 
 <h1 id="build-a-sample-xedit-with-icon-from-scratch">Build a sample xedit with icon from scratch</h1>
-<p>Goal: Add an application <code>xedit</code>.</p>
+<p>Goal: Build and register a new X11 application container (<code>xedit</code>) with a custom icon in an abcdesktop.io instance.</p>
 <h2 id="requirements">Requirements</h2>
 <p>You need to have:</p>
 <ul>
-<li>kubernetes cluster ready to run whith abcdesktop.io installed.</li>
-<li><code>kubectl</code> or <code>microk8s</code> command-line tool must be configured to communicate with your cluster.</li>
-<li><code>docker</code> command line must be installed too.</li>
-<li>your own public or private container registry.</li>
+<li>A Kubernetes cluster with abcdesktop.io installed and running.</li>
+<li><code>kubectl</code> or <code>microk8s</code> configured to communicate with your cluster.</li>
+<li><code>docker</code> command-line tool installed.</li>
+<li>Your own public or private container registry.</li>
 </ul>
 <h2 id="create-a-simple-application-xedit">Create a simple application <code>xedit</code></h2>
-<p>To illustrate a simple application, we will install <code>X11/xedit</code> inside a container.</p>
+<p>To illustrate a simple application integration, we will install <code>xedit</code> from the <code>x11-apps</code> package inside a container image.</p>
 <ul>
-<li>Create a Dockerfile to install <code>xedit</code> application from <code>x11-apps</code> package</li>
+<li>Create a Dockerfile to install the <code>xedit</code> application from the <code>x11-apps</code> package</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu</span>
 <span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>x11-apps<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>clean
@@ -3714,7 +3714,7 @@ to get it
 wget https://icons.getbootstrap.com/assets/icons/pencil.svg &amp;&amp; base64 -w0 pencil.svg
 <div class="highlight"><pre><span></span><code>**Dockerfile description**
 
-This image is based on ubuntu, and install the `x11-apps` package. Then we define `/usr/bin/xedit` as the CMD, ENTRYPOINT is also supported.
+This image is based on Ubuntu and installs the `x11-apps` package. The default command is set to `/usr/bin/xedit` via the `CMD` instruction. `ENTRYPOINT` is also supported.
 
 * `oc.launch` label is the name of the X11 window&#39;s `WM_CLASS`
 * `oc.icon` is the name of the icon file
@@ -3722,14 +3722,14 @@ This image is based on ubuntu, and install the `x11-apps` package. Then we defin
 ![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) to get it
 `wget https://icons.getbootstrap.com/assets/icons/pencil.svg &amp;&amp; base64 -w0 pencil.svg`
 
-* Build the image for xedit application
+* Build the image for the xedit application
 
 ```bash
 REGISTRY=abcdesktopio
 docker build -t $REGISTRY/samplexedit .
 </code></pre></div></p>
-<p>You should replace the value of <code>REGISTRY=abcdesktopio</code> by your own registry's name.
-If you don't have one, you can use the <code>abcdesktopio/samplexedit</code> as a readonly dockerhub registry.</p>
+<p>Replace the value of <code>REGISTRY=abcdesktopio</code> with your own registry name.
+If you do not have one, you can use <code>abcdesktopio/samplexedit</code> as a read-only Docker Hub registry.</p>
 </blockquote>
 <ul>
 <li>Push the image to your registry <em>(only if you have your own registry)</em></li>
@@ -3738,22 +3738,21 @@ If you don't have one, you can use the <code>abcdesktopio/samplexedit</code> as 
 docker<span class="w"> </span>push<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexedit
 </code></pre></div>
 <ul>
-<li>Inspect the image to create a json file</li>
+<li>Inspect the image to create a JSON file</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
 docker<span class="w"> </span>inspect<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexedit<span class="w"> </span>&gt;<span class="w"> </span>samplexedit.json
 </code></pre></div>
 <ul>
-<li>Send the image to abcdesktop pyos instance</li>
+<li>Send the image to the abcdesktop pyos instance</li>
 </ul>
-<p>The command read the <code>PYOS_POD</code> name, then copy the <code>sample.json</code> file to <code>/tmp</code> of PYOS_POD,
-then send the <code>/tmp/samplexedit.json</code> to REST API server</p>
+<p>The following commands retrieve the <code>PYOS_POD</code> name, copy the <code>samplexedit.json</code> file to the <code>/tmp</code> directory inside the pyos pod, and submit the file to the REST API server.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 <span class="nv">PYOS_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NAMESPACE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
 kubectl<span class="w"> </span>cp<span class="w"> </span>samplexedit.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>--<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:8000/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@/tmp/samplexedit.json
 </code></pre></div>
-<p>The endpoint image returns a json documment</p>
+<p>The image endpoint returns a JSON document</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
 <span class="w">  </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -3799,22 +3798,22 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 </code></pre></div>
 <h2 id="execute-the-new-application-xedit">Execute the new application <code>xedit</code></h2>
 <ul>
-<li>Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop</li>
+<li>Open your web browser, navigate to your abcdesktop URL, and log in to create a desktop</li>
 </ul>
 <p><img alt="login to create a desktop" src="../img/simplestapplication-login-xedit.png" /></p>
 <ul>
-<li>Look for the new application <code>xedit</code> pushed</li>
+<li>Search for the newly registered <code>xedit</code> application</li>
 </ul>
 <p><img alt="Look for the new application xedit" src="../img/simplestapplication-lookfor-xedit.png" /></p>
 <ul>
-<li>Start the new application <code>xedit</code></li>
+<li>Launch the <code>xedit</code> application</li>
 </ul>
-<p><code>xedit</code> image is pulling</p>
+<p>The <code>xedit</code> container image is being pulled.</p>
 <p><img alt="Start the new application xedit" src="../img/simplestapplication-xedit-starting.png" /></p>
-<p><code>xedit</code> image is starting</p>
+<p>The <code>xedit</code> container image is starting.</p>
 <p><img alt="Start the new application xedit" src="../img/simplestapplication-xedit-started.png" /></p>
-<p><code>xedit</code> image is started</p>
-<p>Great, you have installed a new application <code>xedit</code> as a container with a dedicated icon.</p>
+<p>The <code>xedit</code> application is running.</p>
+<p>You have successfully installed the <code>xedit</code> application as a container with a custom icon.</p>
 
 
 
