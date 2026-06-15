@@ -21,9 +21,9 @@ kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.co
 
 This file has the [cherrypy file format](https://docs.cherrypy.dev/en/stable/config.html).
 
-When the pyos process starts, it read the `od.config` file.
+When the pyos process starts, it reads the `od.config` file.
 
-If something is wrong, the pyos process hangs. The command line `kubectl logs -l name=pyos-od  -n abcdesktop` write the pyos log on stdout.
+If something is wrong, the pyos process hangs. The command line `kubectl logs -l name=pyos-od  -n abcdesktop` writes the pyos log to stdout.
 
 
 ## [global]
@@ -129,7 +129,7 @@ K8S_CREATE_EPHEMERALCONTAINER_TIMEOUT_SECONDS: 5
 
 Define the RSA keys to sign and encrypt payload.
 
-There are two king of `JWT`
+There are two kinds of `JWT`:
 
 - `jwt_token_user` User JWT is signed. So we need to define a (private, public) RSA keys for signing. 
 - `jwt_token_desktop` Desktop JWT is encrypted AND signed. So we need to define a (private, public) RSA keys for signing, and a (private, public) RSA keys to encrypt data.
@@ -158,8 +158,8 @@ jwt_token_desktop : {
 * The JWT payload is encrypted with the abcdesktop jwt desktop payload private by pyos
 * The JWT payload is decrypted with the abcdesktop jwt desktop payload public keys by nginx.
 
-> Please use the payload private as private key, and the payload public as private key. 
-> Do not publish the public key. This public key must stay private, this is a special case, this is not stupid, it's only a more secure option.
+> Use the payload private key as the encryption key, and keep the payload public key private as well.
+> Do not publish the payload public key. This key must remain private — this is a deliberate security design choice, not a mistake.
 
 * The JSON Web Tokens payload is signed with the abcdesktop jwt desktop signing private keys
 * The JSON Web Tokens payload is verified with the abcdesktop jwt desktop signing public keys.
@@ -169,7 +169,7 @@ jwt_token_desktop : {
 
 > As multiple pods of pyos can run simultaneously, the same private and public keys value are stored into kubernetes secret.
 
-The abcdesktop jwt desktop payload public key is read by the route container. The exported the public key need the `RSAPublicKey_out` option, to use the `RSAPublicKey` format. The `RSAPublicKey` format make key file format compatible between `python 3.x jwt module` and `lua jwt lib`.
+The abcdesktop JWT desktop payload public key is read by the route container. When exporting the public key, the `RSAPublicKey_out` option must be used to produce the `RSAPublicKey` format. The `RSAPublicKey` format ensures compatibility between the `python 3.x jwt module` and the `lua jwt lib`.
 
 
 The following commands will let you create all necessary keys :

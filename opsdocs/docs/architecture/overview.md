@@ -7,7 +7,7 @@ tags:
 
 ## Pods and services
 
-This flowchart describes the all abcdesktop services
+This flowchart describes all abcdesktop services
 
 ``` mermaid
 ---
@@ -52,7 +52,7 @@ flowchart TD
 The project abcdesktop provides container images for `route`, `console`, `website`, `pyos`, and `user`
 
 The projects `kubernetes`, `mongodb`, `memcached`, `speedtest` and `ldap` are not part of the abcdesktop project.
-Items on this page refer to third party products or projects that provide functionality required by abcdesktop.io. The abcdesktop project authors aren't responsible for those third-party products or projects. 
+Items on this page refer to third-party products or projects that provide functionality required by abcdesktop.io. The abcdesktop project authors are not responsible for those third-party products or projects.
 
 ## Create desktop workflow
 
@@ -107,32 +107,32 @@ sequenceDiagram
     Alice-->PodAlice: Established
 ```
 
-1. User login, get a user JWT
-2. Create a user POD and get a Desktop JWT
-3. User is connecting to his own POD
+1. The user logs in and receives a user JWT.
+2. A user pod is created and a Desktop JWT is issued.
+3. The user connects to their own pod.
 
-	- All JWT are signed with RSA keys.
-	- All desktop's JWT payload are encrypted with another RSA keys
+	- All JWTs are signed with RSA keys.
+	- All desktop JWT payloads are encrypted with a separate RSA key pair.
 
 ## Services infrastructure
 
-The service infrastructure is based on :
+The service infrastructure is based on:
 
-- Router nginx with lua script [router](https://github.com/abcdesktopio/router)
+- Router (nginx with Lua scripting) [router](https://github.com/abcdesktopio/router)
 - Website service [webmodules](https://github.com/abcdesktopio/webmodules)
-- Database service (third party products) [MongoDB](https://github.com/abcdesktopio/mongo)
-- Memcached service (third party projet) [Memcached](https://github.com/abcdesktopio/oc.memcached)
-- Pyos Core service (abcdesktop control plane) [pyos](https://github.com/abcdesktopio/pyos)
-- Pod user [user](https://github.com/abcdesktopio/oc.user)
+- Database service (third-party product) [MongoDB](https://github.com/abcdesktopio/mongo)
+- Memcached service (third-party project) [Memcached](https://github.com/abcdesktopio/oc.memcached)
+- pyos Core service (abcdesktop control plane) [pyos](https://github.com/abcdesktopio/pyos)
+- User pod [user](https://github.com/abcdesktopio/oc.user)
 
 ## Additional services
 
 - Console service (abcdesktop admin console) [console](https://github.com/abcdesktopio/console)
-- Speedtest service (speedtest service, self-hosted speed test for HTML5, third party projet) [librespeed](https://github.com/librespeed/speedtest)
-- LDAP service (optional, third party projet) [rroemhild/docker-test-openldap](https://github.com/rroemhild/docker-test-openldap)
+- Speedtest service (self-hosted HTML5 speed test, third-party project) [librespeed](https://github.com/librespeed/speedtest)
+- LDAP service (optional, third-party project) [rroemhild/docker-test-openldap](https://github.com/rroemhild/docker-test-openldap)
 
 
-## Additional projet
+## Additional Projects
 
 - Helm charts (install helm chart) [helm chart](https://artifacthub.io/packages/helm/abcdesktop/abcdesktop)
 
@@ -141,7 +141,7 @@ The service infrastructure is based on :
 
 ### pyos
 
-`pyos` is the core abcdesktop service act as a control plane. Pyos is a stateless services, Pyos's roles are :
+`pyos` is the core abcdesktop service and acts as a control plane. `pyos` is a stateless service; its roles are:
 
 - Authenticate user on authenticate providers
   - OpenID Provider
@@ -154,48 +154,48 @@ The service infrastructure is based on :
 > When a new user is authenticated, a dedicated user pod is created.
 > When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a `pod` or an `ephemeral container`
 
-pyos needs `rbac.authorization.k8s.io` roles to `CRUD` the namespaced resources :
+pyos requires `rbac.authorization.k8s.io` roles to perform `CRUD` operations on the following namespaced resources:
 - 'pods', 'pods/exec', 'pods/ephemeralcontainers', 'pods/log'
 - 'events'
 - 'secrets'
 - 'configmaps'
 - 'persistentvolumeclaims'
 
-pyos runs as a `ServiceAccount` named pyos-serviceaccount, with `pyos-role.
-Optionaly, you can also add pyos to `CRUD` resources ['persistentvolumes'], in paricular cases. `persistentvolumes` are not namepspaced.
+pyos runs as a `ServiceAccount` named `pyos-serviceaccount`, with `pyos-role`.
+Optionally, you can also grant pyos `CRUD` access to `['persistentvolumes']` resources in particular cases. Note that `persistentvolumes` are not namespaced.
 
-The `Role, `RoleBinding` and `ServiceAccount` are embeded in the abcdesktop.yaml file.
+The `Role`, `RoleBinding`, and `ServiceAccount` are embedded in the `abcdesktop.yaml` file.
 
 
 
 ### router
 
-`router` pod act as a `http router` web server. It routes HTTP requets to `user's pods`, `web site`, `pyos`, `console`.
+The `router` pod acts as an HTTP routing web server. It routes HTTP requests to user pods, the `website` service, `pyos`, and `console`.
 
 ### website
 
-`website` pod act as web server and delivers `html`, `javascript`, `svg` files.
+The `website` pod acts as a web server and delivers HTML, JavaScript, and SVG files.
 
 ### mongo database
 
-`mongo` is used by pyos to store informations.
-The informations are :
+`mongo` is used by `pyos` to store persistent information.
+The stored data includes:
 
-- User logins history
-- Images and background colors configuration per desktop
+- User login history
+- Image and background color configuration per desktop
 - Installed applications
 
 
 ### memcached
 
-`memcache` stores progress text message information during login process. `memcache` datas are set and get only by the control plane.
+`memcache` stores progress message text during the login process. Cache data is written and read exclusively by the control plane.
 
 
 ### oc.user
 
-[`oc.user`](https://github.com/abcdesktopio/oc.user) is the name of the user's container image. `oc.user` runs the X11 graphical service. `oc.user` is based on ubuntu distribution.
+[`oc.user`](https://github.com/abcdesktopio/oc.user) is the name of the user's container image. `oc.user` runs the X11 graphical service. `oc.user` is based on the Ubuntu distribution.
 
-* The image `abcdesktopio/oc.user.ubuntu:{{ abcdesktop.latest_release }}` is based on `ubuntu` distribution `24.04`. Get more details about [oc.user](https://github.com/abcdesktopio/oc.user) image.
+* The image `abcdesktopio/oc.user.ubuntu:{{ abcdesktop.latest_release }}` is based on Ubuntu `24.04`. For more details, see the [oc.user](https://github.com/abcdesktopio/oc.user) image repository.
 
 
 ### applications

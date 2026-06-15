@@ -3,7 +3,7 @@ tags:
   - customize
 ---
 
-# Customize abcdesktop frontend thourgh ui.json file
+# Customize the abcdesktop Frontend Through the ui.json File
 
 ## Requirements
 
@@ -127,7 +127,7 @@ rojectNameSplitedStaged'>desktop</span>",
 ##### Login progress
 
 Login progress is embedded in `span` HTML tags.
-Each `projectNameSplitedStage` describes a step during the user's authentification then pod's creation process.
+Each `projectNameSplitedStage` describes a step during the user's authentication and pod creation process.
 
 
 - projectNameSplitedStagea: `step 1`
@@ -150,7 +150,7 @@ Each `projectNameSplitedStage` describes a step during the user's authentificati
 | entry          | default value  | example   |
 |----------------|----------------|-----------|
 | @primary       | #474B55        | #474B55   |
-| @secondatry    | #2D2D2D        | #2D2D2D   |
+| @secondary     | #2D2D2D        | #2D2D2D   |
 | @tertiary      | #6EC6F0        | #6EC6F0   |
 
 
@@ -255,7 +255,7 @@ Example with new `acmedesktop`
 
 Run the docker build command to build the new `oc.nginx:acme` image
 
-The target image is `abcdesktopio/oc.nginx:acme` you should change it with your own regitsry for example `myacme/oc.nginx:acme`
+The target image is `abcdesktopio/oc.nginx:acme`. You should replace this with your own registry, for example `myacme/oc.nginx:acme`.
 
 ```bash
 docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE={{ abcdesktop.latest_release }} --build-arg TARGET=dev  -t abcdesktopio/oc.nginx.acme:{{ abcdesktop.latest_release }} -f Dockerfile .
@@ -307,8 +307,7 @@ To update the `abcdesktop.yaml` to replace `oc.nginx:{{ abcdesktop.latest_releas
       [...]
 ```
 
-Update the `deployment` with your new image name `abcdesktopio/oc.nginx:acme`
-and replace the `abcdesktopio` with your own registry.
+Update the `deployment` with your new image name `abcdesktopio/oc.nginx:acme` and replace `abcdesktopio` with your own registry.
 
 ```
       [...]

@@ -1,10 +1,9 @@
+# Authentication `metaexplicit` for Microsoft Active Directory with Trust Relationships
 
-# Authentification `metaexplicit` for Microsoft Active Directory services with trust relationships 
+## authmanagers `metaexplicit` Object
 
-## authmanagers `metaexplicit` object
-
-The `metaexplicit` authentification manager contains only one provider.
-The provider must be defined as `metadirectory`.
+The `metaexplicit` authentication manager contains exactly one provider.
+The provider must be defined with the name `metadirectory`.
 
 ``` json
 'metaexplicit': {
@@ -20,13 +19,13 @@ The provider must be defined as `metadirectory`.
 |--------------------|------------ |-------------|
 |  `providers`   | dictionary | `{ 'metadirectory': {  'config_ref': 'coporateconfig',  'enabled': True  }}` |
 
-### `metadirectory` provider configuration
+### `metadirectory` Provider Configuration
 
-The `metadirectory` provider is defined as a dictionnary object and must contain key name.
-The key name must be set as the name of a dictionaryin the `config_ref`.
+The `metadirectory` provider is defined as a dictionary object and must contain a key name.
+The key name must match the name of the dictionary referenced by `config_ref`.
 
-A `metadirectory` provider must contain a ldap attribut to describe the original DOMAIN and sAMaccountName.
-The ldap attribut is defined as `join_key_ldapattribut`.
+A `metadirectory` provider requires an LDAP attribute to identify the original domain and `sAMAccountName`.
+This LDAP attribute is specified using `join_key_ldapattribut`.
 
 ```
 coporateconfig : { 'metadirectory': {  
@@ -44,26 +43,26 @@ coporateconfig : { 'metadirectory': {
                  } } 
 ```
 
-Pyos binds the metadirectory ldap server with serviceaccount credentials
-Pyos read the ldap attribut `description` value to get the user's trusted domain.
+Pyos binds to the metadirectory LDAP server using the service account credentials, then reads the LDAP attribute `description` to determine the user's trusted domain.
 
-For example :
+For example:
 ``` ldif
 description: AD\john
 ```
 
-Then pyos look for provider `AD` configuration and process authentification on domain `AD`
+Pyos then looks up the `AD` provider configuration and performs authentication against the `AD` domain.
 
-The `metadirectory` accounts can be disabled. 
-The ldap attribut `userAccountControl` is not read on metaDirectory provider. The account can have the bit `UF_ACCOUNT_DISABLE` set or not.
+Accounts in the `metadirectory` can be in any state.
+The LDAP attribute `userAccountControl` is not read for metadirectory providers. The `UF_ACCOUNT_DISABLE` bit is not evaluated.
 
-A service account must defined for a `metadirectory` provider. The service account is used to bind the metadirectory.
+A service account must be defined for every `metadirectory` provider. The service account is used to bind to the metadirectory.
 
-### Complete example with a `metadirectory` provider and active directory user domain
+### Complete Example with a `metadirectory` Provider and Active Directory User Domains
 
-The user's domain mane is AD.
-The meta domain name is CORPORATE.
-The meta domain use a dedicated attribut `join_key_ldapattribut`
+In this example:
+- The user's domain name is `AD`.
+- The meta domain name is `CORPORATE`.
+- The meta domain uses a dedicated attribute specified by `join_key_ldapattribut`.
 
 ``` json
 authmanagers: {
@@ -134,20 +133,21 @@ anotherconfig : { 'ANOTHER': {
                       'kerberos_realm': 'AD.SUPER.LOCAL' } }
 ```
 
-### `metadirectory`support
+### `metadirectory` Support
 
-`metadirectory` support the foreign security principal (FSP) to query security principal in the trusted external forest. These objects are created in the foreign security principals container of the domain.
-`metadirectory` support `isMemberOf` on foreign security principal. 
+The `metadirectory` provider supports Foreign Security Principals (FSPs) to query security principals in trusted external forests. These objects are created in the Foreign Security Principals container of the domain.
+The `metadirectory` provider supports `isMemberOf` lookups on foreign security principals.
 
-The user's `SID` of domain  'AD' or 'ANOTHER' is NOT read.
-A new ldap bind is done using the trusted domain on metadirectory provider and not unsing the service account.
+The user's SID from the `AD` or `ANOTHER` domain is NOT read directly.
+A new LDAP bind is performed against the trusted domain on the metadirectory provider rather than using the service account.
 
-The ldap query is build :
+The LDAP query is constructed as:
+```
 ( "search_base={q.basedn}, search_scope={q.scope}, search_filter={filter}" )
+```
 
-To get more information about foreign security principal (FSP), read :
+For more information about Foreign Security Principals, refer to:
 
 - [Foreign Security Principals Container](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/5aa09c90-c5db-4e97-98d0-b7cdd6bc1bfe)
 
 - [Active Directory: Foreign Security Principals and Special Identities](https://social.technet.microsoft.com/wiki/contents/articles/51367.active-directory-foreign-security-principals-and-special-identities.aspx)
-

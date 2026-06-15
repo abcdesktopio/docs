@@ -6,32 +6,32 @@ tags:
 
 # Build an application from template
 
-Goal: Build your own application image from template container image.
+Goal: Build a custom abcdesktop.io application image by extending an existing template container image.
 
 abcdesktop uses container image format with some labels to describe an application.
 
 ## Requirements
 
-- your own public or private container registry.
+- Your own public or private container registry.
 - `nodejs` installed on your host.
-- `docker` command line to build container image.
-- `wget` command line installed.
+- `docker` command-line tool installed to build container images.
+- `wget` command-line tool installed.
 
 
 ## Build your own application image
 
-The new image is the game 2048.
+In this example, the new application image packages the `2048` game.
 
-Create a directory named `build`, and create a directory `icons` inside build
+Create a directory named `build`, and create a directory `icons` inside it:
 
 ```
 mkdir -p build/icons
 cd build
 ```
 
-To build your own image create first a json file.
+To build your own image, first create a JSON descriptor file.
 
-Create a json file named `applist.json`, inside build directory, and add the content to the json file.
+Create a file named `applist.json` inside the `build` directory with the following content:
 
 ```
 [
@@ -49,7 +49,7 @@ Create a json file named `applist.json`, inside build directory, and add the con
 ]
 ```
 
-To fill the data inside the json file :
+The table below describes each field in the JSON application descriptor:
 
 | name                         | Type     |          Data                 |
 |------------------------------|--------- |-------------------------------|
@@ -62,28 +62,28 @@ To fill the data inside the json file :
 |  `path`                      | string   | /usr/games/2048-qt |
 |  `template`                  | string   | ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04 |
 
-You can read the following help lines, or fill the json missing value by yourself.
+The following descriptions explain how to determine the correct value for each field:
 
-* `cat` is the category, choose the most appropriate value in the list : `[ 'office', 'games', 'graphics', 'development', 'utilities', 'education' ]`
-* `debpackage` is the name of the 2048 ubuntu package. To find the package name, look at the link [2048 Ubuntu Package](https://packages.ubuntu.com/source/bionic/2048-qt).
-* `icon` is the name of the icon. abcdesktop support only `svg` icon file format. To get the icon file, look at the link [https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg](https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg)
-* `keyword` is a list of the keywords to find the application. Set the value to 2048.
-* `launch`  is the X11 Class name of the window. To get this value, we need to run the application on GNU/Linux (read the dedicated chapter below).
-* `name` is the name of the application. Set the value to 2048.
-* `path` is the binary path to run the application.
-* `template` is the name of the parent image. The default image parent is `ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04`. You will find the template list in next chapter.
+* `cat` is the application category. Choose the most appropriate value from the following list: `[ 'office', 'games', 'graphics', 'development', 'utilities', 'education' ]`
+* `debpackage` is the name of the Ubuntu package to install. To look up the package name, refer to [2048 Ubuntu Package](https://packages.ubuntu.com/source/bionic/2048-qt).
+* `icon` is the name of the icon file. abcdesktop.io supports only the `svg` icon format. Download the icon from [https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg](https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg).
+* `keyword` is a comma-separated list of search keywords for the application. Set the value to `2048`.
+* `launch` is the X11 `WM_CLASS` name of the application window. To determine this value, run the application on a GNU/Linux system and inspect its window class.
+* `name` is the application name. Set the value to `2048`.
+* `path` is the absolute path to the application binary.
+* `template` is the name of the parent base image. The default parent image is `ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04`. Available templates are listed in the next section.
 
 
 ### Build your new image 2048
 
 
-- Download the icon for your applications
+- Download the application icon
 
 ```
 wget https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg -O icons/2048_logo.svg
 ```
 
-- To build your new image, download the node js files
+- Download the Node.js build scripts
 
 
 ```
@@ -91,19 +91,19 @@ wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/refs/heads/4.4/make.
 wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/refs/heads/4.4/package.json
 ```
 
-Run the command npm install command line, to install packages
+Run `npm install` to install the required packages:
 
 ```
 npm i
 ```
 
-- Run `make.js` build a new DockerFile for the 2048 application. Remember, all application images use container images.
+- Run `make.js` to generate a Dockerfile for the 2048 application. All abcdesktop.io application images are built from container images.
 
 ```
 nodejs make.js
 ```
 
-You should get the output
+The expected output is:
 
 ```
 Namespace(dockerfile=false, release='4.4', applicationfile='applist.json')
@@ -113,23 +113,22 @@ applist.json entries: 1
 Creating Dockerfile 2048.d
 ```
 
-The new file `2048.d` has been generated :
+The following file has been generated:
 
-- `2048.d` is the Dockerfile for your 2048 abcdesktop application
+- `2048.d` — the generated Dockerfile for the 2048 abcdesktop.io application
 
-You can read the content of the Dockerfile `2048.d`.
-List all labels, and confirm that the icon file is uuencoded format. Uuencoding is a form of binary-to-text encoding.
+Inspect the content of `2048.d`. Verify that all labels are present and that the icon data is base64-encoded (a form of binary-to-text encoding).
 
-Now it's time to build your 2048 app. Run the command `docker build` command.
+Build the 2048 application image using the `docker build` command.
 
-> Replace the value of the REGISTRY with your own if need
+> Replace the value of `REGISTRY` with your own registry name if needed.
 
 ```
 REGISTRY=abcdesktopio
 docker build -f 2048.d -t $REGISTRY/2048.d .
 ```
 
-You should read the output :
+The expected output is:
 
 ```
 [+] Building 62.3s (8/8) FINISHED                                                                                                                                                           docker:default
@@ -150,17 +149,17 @@ You should read the output :
 
 - Push your image to your registry
 
-> Replace the value of the REGISTRY with your own if need.
-> If you don't have your own registry, you can skip this command but keep using `REGISTRY=abcdesktopio`
+> Replace the value of `REGISTRY` with your own registry name if needed.
+> If you do not have your own registry, you can skip this step but keep `REGISTRY=abcdesktopio`.
 
 ```
 REGISTRY=abcdesktopio
 docker push $REGISTRY/2048.d
 ```
 
-- Create a json file from your container image
+- Create a JSON file from your container image
 
-> If you don't have your own registry, do not skip this command, and keep using `REGISTRY=abcdesktopio`
+> If you do not have your own registry, do not skip this step. Keep `REGISTRY=abcdesktopio`.
 
 ```
 REGISTRY=abcdesktopio
@@ -170,7 +169,7 @@ docker inspect $REGISTRY/2048.d > 2048.json
 
 ## Push your image to abcdesktop service
 
-* Send the image to abcdesktop pyos instance
+* Send the image metadata to the abcdesktop pyos instance
 
 
 ```bash
@@ -180,9 +179,9 @@ kubectl cp 2048.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/2048.json
 ```
 
-This command reads the `PYOS_POD` name, then copy the `2048.json` file to `/tmp` of PYOS_POD, then send the `/tmp/2048.json` to REST API server.
+These commands retrieve the `PYOS_POD` name, copy the `2048.json` file to the `/tmp` directory inside the pyos pod, and submit the file to the REST API server.
 
-The endpoint image returns a json documment
+The image endpoint returns a JSON document
 
 ```
 [
@@ -233,22 +232,22 @@ The endpoint image returns a json documment
 
 ## Run your new application 2048
 
-Return to your abcdesktop website `http://localhost:30443` and log in as Anonymous.
+Return to your abcdesktop website at `http://localhost:30443` and log in as Anonymous.
 
-At the right corner, write in the search bar the keyword `2048`
+In the search bar at the top-right corner, type the keyword `2048`.
 
 ![abcdesktop.io look for 2048 applications](img/application-2048-lookfor.png)
 
-Click on the `2048` icon, and start your first abcdesktop application :
+Click the `2048` icon to launch the application:
 
 ![abcdesktop.io 2048 is running](img/application-2048-run.png)
 
-Now you can spent a lot of time to reach the 2048 score. Have fun !
+Now you can spend time trying to reach the 2048 score. Have fun!
 
 ## Other templates
 
-As a application is running inside a container, you can run application from multiple distribution at the same time.
-The template repository is [https://github.com/abcdesktopio/oc.template](https://github.com/abcdesktopio/oc.template)
+Because each application runs inside its own container, you can run applications from multiple Linux distributions simultaneously.
+The template repository is available at [https://github.com/abcdesktopio/oc.template](https://github.com/abcdesktopio/oc.template).
 
 ### templates for `almalinux`
 - oc.template.almalinux.8
@@ -313,14 +312,14 @@ The template repository is [https://github.com/abcdesktopio/oc.template](https:/
 - oc.template.rockylinux.minimal.9
 
 
-### template with `nvidia` lib support
+### Templates with `nvidia` library support
 - oc.template.rockylinux.nvidia.8
 - oc.template.rockylinux.nvidia.9
 - oc.template.ubuntu.nvidia.24.04
 - oc.template.ubuntu.nvidia.22.04
 
 
-Great it's a good job, you have build your own abcdesktop 2048 application.
+You have successfully built your own abcdesktop.io 2048 application.
 
 
 

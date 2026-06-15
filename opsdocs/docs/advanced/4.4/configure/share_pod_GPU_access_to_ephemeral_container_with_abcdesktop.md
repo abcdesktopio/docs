@@ -1,8 +1,8 @@
 
-# Troubleshooting get nvidia GPU access to ephemeral container with CDI enabled
+# Troubleshooting NVIDIA GPU Access to Ephemeral Containers with CDI Enabled
 
 
-abcdesktop uses `ephemeral container` or `pod` as applications. nvidia adds support for [Container Device Interface](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html). 
+abcdesktop uses `ephemeral container` or `pod` as applications. NVIDIA adds support for [Container Device Interface](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html). 
 
 
 ## Apply `runtimeClassName` to abcdesktop config
@@ -88,7 +88,7 @@ gpu_uuid=$(nvidia-smi --query-gpu=gpu_uuid --format=csv,noheader)
 NVIDIA_GPU="{ \"k8s.device-plugin.nvidia.com/gpu\" : \"$gpu_uuid\" }"  
 ```
 
-It reads the `gpu uuid`, then set the variable `NVIGIA_GPU` to `k8s.device-plugin.nvidia.com/gpu=$gpu_uuid`
+It reads the GPU UUID, then sets the variable `NVIDIA_GPU` to `k8s.device-plugin.nvidia.com/gpu=$gpu_uuid`.
 
 For example, when you run the `overwrite_environment_variable_for_application.sh` on a GPU host
 

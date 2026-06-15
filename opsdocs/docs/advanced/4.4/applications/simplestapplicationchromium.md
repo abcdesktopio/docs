@@ -6,23 +6,23 @@ tags:
 
 # Build a simple application `chromium` from scratch
 
-Goal: Add an application `chromium`.
+Goal: Build and register a fully labeled `chromium` application container with an abcdesktop.io instance.
 
 ## Requirements
 
 You need to have:
 
-- kubernetes cluster ready to run whith abcdesktop.io installed.
-- `kubectl` command-line tool must be configured to communicate with your cluster.
-- `docker` command line must be installed to build the image.
-- your own public or private container registry.
+- A Kubernetes cluster with abcdesktop.io installed and running.
+- `kubectl` configured to communicate with your cluster.
+- `docker` command-line tool installed to build the image.
+- Your own public or private container registry.
 
 
 ## Create a simple application `chromium`
 
-To illustrate a simple application, we will install `chromium` inside a container.
+To illustrate how to package a web browser as an abcdesktop.io application, we will install `chromium` inside a container image.
 
-* Create a Dockerfile to install `chromium` application from `debian` container image
+* Create a Dockerfile to install the `chromium` application from a `debian` base image
 
 ```Dockerfile
 FROM debian
@@ -66,9 +66,7 @@ CMD [ "/usr/bin/chromium" ]
 
 **Dockerfile description**
 
-This image is based on debian, and install the `chromium` package.
-
-Then we define `/usr/bin/chromium` as the CMD.
+This image is based on Debian and installs the `chromium` package. The default command is set to `/usr/bin/chromium` via the `CMD` instruction.
 
 * `oc.keyword` label defines keyworks for the search engine
 * `oc.cat` label defines category of the application
@@ -82,15 +80,15 @@ Then we define `/usr/bin/chromium` as the CMD.
 * `oc.legacyfileextensions` defines the legacy file extension support by this application
 
 
-* Build the image for chromium application
+* Build the image for the chromium application
 
 ```bash
 REGISTRY=abcdesktopio
 docker build -t $REGISTRY/chromium .
 ```
 
-> You should replace the value of `REGISTRY=abcdesktopio` by your own registry's name.
-If you don't have one, you can use the `abcdesktopio/chromium` as a readonly dockerhub registry.
+> Replace the value of `REGISTRY=abcdesktopio` with your own registry name.
+> If you do not have one, you can use `abcdesktopio/chromium` as a read-only Docker Hub registry.
 
 
 * Push the image to your registry *(only if you have your own registry)*
@@ -100,17 +98,16 @@ REGISTRY=abcdesktopio
 docker push $REGISTRY/chromium
 ```
 
-* Inspect the image to create a json file
+* Inspect the image to create a JSON file
 
 ```bash
 REGISTRY=abcdesktopio
 docker inspect $REGISTRY/chromium > chromium.json
 ```
 
-* Send the image to abcdesktop pyos instance
+* Send the image to the abcdesktop pyos instance
 
-The commands read the `PYOS_POD` name, then copy the `chromium.json` file to `/tmp` of PYOS_POD,
-then send the `/tmp/chromium.json` to REST API server
+The following commands retrieve the `PYOS_POD` name, copy the `chromium.json` file to the `/tmp` directory inside the pyos pod, and submit the file to the REST API server.
 
 ```bash
 NAMESPACE=abcdesktop
@@ -119,7 +116,7 @@ kubectl cp chromium.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/chromium.json
 ```
 
-The endpoint image returns a json documment
+The image endpoint returns a JSON document
 
 ```json
 [
@@ -184,11 +181,11 @@ The endpoint image returns a json documment
 
 ## Execute the new application `chromium`
 
-* Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop
+* Open your web browser, navigate to your abcdesktop URL, and log in to create a desktop
 
 ![login to create a desktop](img/simplestapplication-login-chromium.png)
 
-* Look for the new application `chromium ` pushed
+* Search for the newly registered `chromium` application
 
 ![Look for the new application chromium](img/simplestapplication-lookfor-chromium.png)
 
@@ -196,4 +193,4 @@ The endpoint image returns a json documment
 
 ![application chromium](img/simplestapplication-chromium-running.png)
 
-* `chromium ` is running
+* `chromium` is running

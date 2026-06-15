@@ -1,13 +1,12 @@
+# Authentication `implicit`
 
-# Authentification ```implicit```
+## authmanagers `implicit`
 
-## authmanagers ```implicit```:
+The `implicit` provider is the simplest configuration mode and is used for anonymous (always-allow) authentication.
 
-```implicit``` is the easyest configuration mode, and is used as 'Anonymous' authentification. 
+The provider is defined as a dictionary object and contains an `anonymous` provider.
 
-The provider is defined as a dictionnary object and contains an ```anononymous``` provider.
-
-```anononymous``` provider always permit authentification, and create a uuid as userid. ```anononymous``` provider is used to skip the authentification  process in a demonstration mode.
+The `anonymous` provider always permits authentication and generates a UUID as the user ID. It is used to bypass the authentication process in demonstration mode.
 
 ```
 'implicit': {
@@ -25,9 +24,9 @@ The provider is defined as a dictionnary object and contains an ```anononymous``
     }}
 ```
 
-```anononymous``` provider always permit authentification, and create a uuid as userid. 
+The `anonymous` provider always permits authentication and generates a UUID as the user ID.
 
-Set in your configuration file the authmanagers dictionnary as described
+Set the `authmanagers` dictionary in your configuration file as follows:
 
 ```
 authmanagers: {
@@ -51,15 +50,15 @@ authmanagers: {
 
 [Update your configuration file and apply the new configuration file](../configure/updateconfiguration.md)
 
-Open a new Web Browser and go to your abcdesktop URL. You should see the login HTML page with the Anonymous button :
+Open a new web browser and navigate to your abcdesktop URL. You should see the login page with the Anonymous button:
 
 ![login page Anonymous](img/anonymous.png)
 
-Press the ```Sign-In Anonymously``` button.
+Click the `Sign-In Anonymously` button.
 
-You get a desktop as `anonymous` user. The current user is `anonymous`
+You will receive a desktop session as the `anonymous` user.
 
-List all your pod desktop
+List all your desktop pods:
 
 ```
 kubectl get pods -l type=x11server -n abcdesktop
@@ -67,9 +66,9 @@ NAME              READY   STATUS    RESTARTS   AGE
 anonymous-3806b   3/3     Running   0          9m22s
 ```
 
-In this case the nameof my pod is `anonymous-3806b` 
+In this example, the pod name is `anonymous-3806b`.
 
-Run a bash script into 
+Run a bash shell inside the pod:
 
 ```
 kubectl exec -it anonymous-3806b -n abcdesktop -- bash
@@ -78,8 +77,7 @@ anonymous@abcdesktop:~$ id
 uid=4096(anonymous) gid=4096(anonymous) groups=4096(anonymous)
 ```
 
-You are `anonymous` with `uid=4096` and `gid=4096` 
+The session runs as the `anonymous` user with `uid=4096` and `gid=4096`.
 
 
-Great, you have check how the implicit Authentification configuration works.
-
+You have successfully verified how the implicit authentication configuration works.

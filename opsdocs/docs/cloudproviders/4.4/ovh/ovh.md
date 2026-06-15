@@ -14,14 +14,14 @@ Create a new `Kubernetes cluster`.
 
 > Options and features are set by default.
 
-In this example the kubernetes cluster is named `abcdesktop-ovh-1`.
-This screenshot describes the OVHcloud Kubernetes service console.
+In this example, the Kubernetes cluster is named `abcdesktop-ovh-1`.
+This screenshot shows the OVHcloud Kubernetes service console.
 
 ![ovh console overview](img/ovh-console.png)
 
 ## Create your kubernetes config 
 
-As there is no command line tool that allows us to connect our local machine to the cluster. You will have to manually copy the kubeconfig file.
+As there is no command-line tool that allows you to connect your local machine to the cluster, you must manually copy the kubeconfig file.
 
 Go to your cluster on the OVHcloud console
 
@@ -59,7 +59,7 @@ cp ovh-kubeconfig.yaml /home/$USER/.kube/config
 
 ## Get your kubernetes cluster informations
 
-Run the `kubectl cluster-info` command line, to confirm that `kubectl` command can communicate whith your azur cluster
+Run the `kubectl cluster-info` command line to confirm that the `kubectl` command can communicate with your OVHcloud cluster.
 
 ``` bash
 kubectl cluster-info
@@ -89,7 +89,7 @@ To get more details about the install process, please read the [Setup guide](htt
 
 By default install script is listening on a free tcp port `:30443` and is using a `kubectl port-forward` command line to reach http web service `:80`
 
-Open your web browser `http://locahost:30443`
+Open your web browser to `http://localhost:30443`
 
 ![abcdesktop login](../img/abcdesktop-hompage-port30443.png)
 
@@ -98,7 +98,7 @@ Login as user `Philip J. Fry` with the password `fry`
 
 ![abcdesktop login as fry](../img/abcdesktop-hompage-port30443-login-fry.png)
  
-After image pulling process, you get your first abcdesktop 
+After the image-pulling process completes, you get your first abcdesktop session
 
 ![abcdesktop for fry](../img/abcdesktop-hompage-port30443-user-fry-logged.png)
 

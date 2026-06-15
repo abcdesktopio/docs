@@ -3,10 +3,10 @@
 
 Please note some rules to apply for all contributions:
 
-??? success must "Everything must be in github"
-    To ensure consistency, collaboration, and easy access for our community members working on abcdesktop, all projects related to feature development must be hosted within github. By keeping everything under one roof, we can:
+??? success must "Everything must be in GitHub"
+    To ensure consistency, collaboration, and easy access for our community members working on abcdesktop, all projects related to feature development must be hosted within GitHub. By keeping everything under one roof, we can:
 
-    1. Facilitate collaboration among developers: By hosting all feature development projects in a centralized location like Github, it becomes easier for team members and contributors to
+    1. Facilitate collaboration among developers: By hosting all feature development projects in a centralized location like GitHub, it becomes easier for team members and contributors to
     work together on various aspects of the features. This promotes efficient communication and faster problem-solving.
     2. Keep things organized: Having all features development projects in one place makes it simpler to navigate and manage our Git repositories. This helps maintain a clean and
     well-structured codebase that is easier for both newcomers and experienced developers to work with.
@@ -59,13 +59,13 @@ Please note some rules to apply for all contributions:
 
     1. Enhanced Collaboration and Sharing: By making all Docker images used by abcdesktop public, developers can easily share their work with others in the community. This encourages collaboration, as others can use, modify, and contribute back to these open-source projects.
     2. Increased Transparency: When Docker images are open-source, users have full visibility into what they're deploying. This transparency allows for more informed decisions regarding security and compatibility with existing systems.
-    3. Security Vulnerabilities Mitigation: Public Docker images often receive scrutiny from a larger community of developers. By making all images public, you increase the likelihood that any potential security vulnerabilities will be discovered and addresse
+4. Security Vulnerabilities Mitigation: Public Docker images often receive scrutiny from a larger community of developers. By making all images public, you increase the likelihood that any potential security vulnerabilities will be discovered and addressed
     4. Improved Reusability: By using public Docker images, developers can leverage best practices and industry-standard configurations that have been tested by others. This can help improve the quality and reliability of deployed applications.
     5. Compliance with Open Source Philosophy: Many organizations embrace open source philosophies. Making all Docker images used by a Helm public aligns with these values, fostering an atmosphere of collaboration, innovation, and shared knowledge.
     6. Accelerated Development Cycle: By using established and well-documented public Docker images, developers can focus more on their application logic rather than spending time on setting up infrastructure and configuring base images. This accelerates the development cycle and reduces time to market.
 
-??? success should "Every feature should be in Github abcdesktop organisation"
-    To facilitate collaboration and ensure efficient development of abcdesktop features, we recommend that all abcdesktop feature projects be hosted in the abcdesktop Github organisation for working on individual tasks and features. By hosting all feature projects within the abcdesktop Github organisation, you will benefit from several advantages:
+??? success should "Every feature should be in the GitHub abcdesktop organization"
+    To facilitate collaboration and ensure efficient development of abcdesktop features, we recommend that all abcdesktop feature projects be hosted in the abcdesktop GitHub organization for working on individual tasks and features. By hosting all feature projects within the abcdesktop GitHub organization, you will benefit from several advantages:
 
     1. Collaboration: The Github group allows multiple developers to work together on a single project simultaneously, enabling efficient collaboration and reducing redundant effort.
     2. Version Control: Github provides version control for all projects, allowing developers to track changes made to the codebase and easily revert to previous versions if necessary.
@@ -73,14 +73,14 @@ Please note some rules to apply for all contributions:
     4. Merge Requests: The Github group facilitates the creation of merge requests for code changes, allowing developers to easily propose their changes and collaborate on improvements
     with other team members.
     5. Code Reviews: The Github group allows for code reviews of submitted changes, ensuring that all code adheres to our coding standards and best practices.
-    6. Accessibility: By hosting all feature projects within the YourDev Github group, we ensure that all developers have access to the latest code and can contribute effectively to the
+    6. Accessibility: By hosting all feature projects within the abcdesktop GitHub organization, we ensure that all developers have access to the latest code and can contribute effectively to the
     project.
     7. Documentation: The Github group allows for clear documentation of each project, including README files, CONTRIBUTING guides, and other relevant information.
-    8. Integration with Other Tools: The Github group integrates seamlessly with other tools commonly used by developers, such as Jenkins, Travis CI, and Docker, enabling efficient
+    8. Integration with Other Tools: The GitHub organization integrates seamlessly with other tools commonly used by developers, such as Jenkins, Travis CI, and Docker, enabling efficient
     Continuous Integration (CI) and Continuous Deployment (CD).
 
     By following this recommendation, we encourage developers to collaborate effectively, reduce redundancy, and streamline the development process for abcdesktop feature projects. We
-    believe that by using Github as our primary platform for managing feature projects, we can ensure a high-quality experience for all users of the abcdesktop operating system.
+    believe that by using GitHub as our primary platform for managing feature projects, we can ensure a high-quality experience for all users of the abcdesktop operating system.
 
 ??? success could "Feature can be done with any programming language"
     1. Flexibility in Development: Allowing developers to use any programming language for features within Docker images provides flexibility and encourages innovation. Developers can choose the tools they are most comfortable with, leading to more efficient development processes.
@@ -91,8 +91,8 @@ Please note some rules to apply for all contributions:
     6. Reduced Learning Curve: Allowing for multiple programming languages means that developers do not have to learn a new language just to contribute to a project. This reduced learning curve makes it easier for newcomers to join the project and contributes to a more active developer community.
     7. Avoiding Vendor Lock-In: By supporting multiple programming languages, you avoid vendor lock-in, as developers are not tied to a specific language or technology stack. This flexibility allows projects to adapt to changing needs and market trends without having to completely rewrite their codebase.
 
-??? success must "Every bug report or support request must be done throws Github ticketing"
-    1. Centralized Management: By using the single platform GitHub for all bug reports and support requests, it becomes easier to manage and track these issues in one place. This centralization makes it simpler for developers to address problems quickly and maintain the quality of their project.
+??? success must "Every bug report or support request must be filed through GitHub's ticketing system"
+    1. Centralized Management: By using GitHub as a single platform for all bug reports and support requests, it becomes easier to manage and track these issues in one place. This centralization makes it simpler for developers to address problems quickly and maintain the quality of their project.
     2. Increased Visibility: With a public ticketing system, other community members can view and contribute to discussions related to bug reports and support requests. This increased visibility helps foster collaboration and ensures that the most effective solutions are found.
     3. Improved Organization: A centralized ticketing system allows for better organization of issues, making it easier to prioritize and manage tasks based on their severity, impact, or dependencies. This improved organization can lead to more efficient resolution times.
     4. Transparency and Accountability: Public ticketings foster transparency by making the entire process of resolving issues visible to the community. This accountability ensures that developers are responsive to user needs and address issues in a timely manner.

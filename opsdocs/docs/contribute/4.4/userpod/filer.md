@@ -22,7 +22,7 @@ Primary capabilities:
 
 ### 2.2 Router mounting
 
-- Router is mounted under a regex prefix in in `file-service.js`:
+- Router is mounted under a regex prefix in `file-service.js`:
   - /filer
   - /printerfiler
 - Therefore, route path `/` in router effectively maps to `/filer` and `/printerfiler` at runtime.

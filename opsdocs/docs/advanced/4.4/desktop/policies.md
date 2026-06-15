@@ -1,24 +1,22 @@
 # desktop.policies
 
 
-`desktop.policies` defines some rules to add `volumes` and `network`.
-Each rules matchs the labels value.
+The `desktop.policies` configuration defines rules for attaching additional `volumes` and `network` interfaces to user pods. Each rule matches a label value.
 
-If a user gets the label `'hello'`, then `volumes['hello']`  and `network['hello']` are applied.
+If a user is assigned the label `'hello'`, then `volumes['hello']` and `network['hello']` are applied to that user's pod.
 
-- `volumes` are defined to build additional volumes
-> - like mount a nfs shared point for each member of a group
+- `volumes` defines additional volumes to be mounted in the pod
+  - for example, mounting an NFS share for all members of a group
   
-- `network` is defined to add networks and run command line
-> - add a new network interface for a pod
-> - run some commands to update dns entries for a pod ( on create, on delete )
+- `network` defines additional network interfaces and command hooks for a pod
+  - add a new network interface to a pod
+  - run commands to update DNS entries for a pod (on creation or deletion)
 
 ## volumes
 
-`volumes` is a dictionnay of list of matching labels. 
-Each volume describes the `mountPath` to be mounted inside the pod, and a dedicated `type`.
+`volumes` is a dictionary of label-keyed lists. Each entry describes the `mountPath` to be mounted inside the pod and the volume `type`.
 
-The type of a volume can be `nfs`, `hostPath`, `pvc` or `cifs`
+Supported volume types are `nfs`, `hostPath`, `pvc`, and `cifs`.
 
 ```json
 desktop.policies: { 
@@ -33,7 +31,7 @@ desktop.policies: {
         ] } } }
 ```
 
-> if the user gets `shipcrew` as label, the add the mount point '/mnt/testmyproject' as a hostPath to '/mnt/sharedhost' in the pod
+> If the user is assigned the `shipcrew` label, the mount point `/mnt/testmyproject` is added as a `hostPath` volume mapped to `/mnt/sharedhost` in the pod.
 
 ### volume type `nfs`
 
@@ -51,15 +49,15 @@ desktop.policies: {
     } } } 
 ```
 
-> if the user gets `nfsisostore` as label, the add the mount point '/mnt/iso' in the pod as a nfs mount to `192.168.7.112:/volume1/isostore`
+> If the user is assigned the `nfsisostore` label, the mount point `/mnt/iso` is added to the pod as an NFS mount targeting `192.168.7.112:/volume1/isostore`.
 
 Requirements
 
 - `type`:`nfs` 
 - `name` (string) is the name of the volume 
 - `mountPath` (string) is the mountPath of the volume
-- `server` (string) is the nfs server
-- `path` (string) is the export 
+- `server` (string) is the NFS server hostname or IP address
+- `path` (string) is the NFS export path on the server
 
 
 Option
@@ -89,10 +87,10 @@ Requirements
 - `type`:`hostPath` 
 - `name` (string) is the name of the volume 
 - `mountPath` (string) is the mountPath of the volume
-- `path` (string) is the export nfs value
+- `path` (string) is the absolute path on the host node
 
 
-> if the user gets `shipcrew` as label, the add the mount point '/mnt/testmyproject' as a hostPath to '/mnt/sharedhost' in the pod
+> If the user is assigned the `shipcrew` label, the mount point `/mnt/testmyproject` is added to the pod as a `hostPath` volume mapped to `/mnt/sharedhost`.
 
 ### volume type `pvc`
 
@@ -114,9 +112,9 @@ Requirements
 - `type`:`pvc` 
 - `name` (string) is the name of the volume 
 - `mountPath` (string) is the mountPath of the volume
-- `claimName ` (string) is the pvc claim
+- `claimName` (string) is the PersistentVolumeClaim name
 
-> if the user gets `nfspvc` as label, the add the mount point '/mnt/newpvcstore' as a pvc named 'pvc-store'
+> If the user is assigned the `nfspvc` label, the mount point `/mnt/newpvcstore` is added to the pod using the PVC named `pvc-store`.
 
 
 
@@ -139,13 +137,13 @@ desktop.policies: {
 ```
 
 
-> if the user gets `shipcrew` as labels
+> If the user is assigned the `shipcrew` label:
 
-- execute the bash command line on create pods
-- execute the bash command line on delete pods 
-- add the 'annotations' : `{ 'k8s.v1.cni.cncf.io/networks': '[ {"name":"macvlan-conf-7"} ]' }` tp the pod 
+- The webhook `create` command is executed when the pod is created.
+- The webhook `destroy` command is executed when the pod is deleted.
+- The `annotations` dictionary is merged into the pod's metadata annotations.
  
-For the all fileds, the entries `{{ VAR }}` is replaced by the value of `VAL`.
+For all fields, template entries in the form `{{ VAR }}` are replaced with the corresponding runtime value.
 
 
 

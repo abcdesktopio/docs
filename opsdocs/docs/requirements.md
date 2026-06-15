@@ -6,20 +6,20 @@ tags:
 
 # Requirements
 
-## Prerequisites for setup abcdesktop
+## Prerequisites for Setting Up abcdesktop
 
-* Supported architectures `x86-64` and `arm-64`
-* 20 GB of free space to store sample applications and core container images
-* a Kubernetes cluster `READY` to run **greater or equal** to 1.28, with `admin` roles 
+* Supported architectures: `x86-64` and `arm-64`
+* At least 20 GB of free disk space to store sample applications and core container images
+* A Kubernetes cluster in the `READY` state, running version **1.28 or later**, with `admin` privileges
 
 ### GNU/Linux
 
-The recommended distrubution is `Ubuntu 24.04.2 LTS`
+The recommended distribution is `Ubuntu 24.04.2 LTS`.
 
-### MacOS/X
+### macOS
 
-Use [Docker Desktop](https://www.docker.com/products/docker-desktop/) with kubernetes
+Use [Docker Desktop](https://www.docker.com/products/docker-desktop/) with the built-in Kubernetes integration enabled.
 
 ### Microsoft Windows
 
-Use [Docker Desktop](https://www.docker.com/products/docker-desktop/) with kubernetes
+Use [Docker Desktop](https://www.docker.com/products/docker-desktop/) with the built-in Kubernetes integration enabled.

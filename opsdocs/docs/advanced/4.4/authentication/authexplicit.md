@@ -1,19 +1,16 @@
+# Authentication `explicit`
 
-# Authentification ```explicit```
-
-## authmanagers ```explicit```:
-
-
-```explicit``` authentification use a directory service. The bind operation is used to authenticate clients to the directory server, to establish an authorization identity that will be used for subsequent operations processed on that connection.
-
-The ```explicit``` authentification configuration is defined as a dictionnary object and contains an ```explicit``` provider. 
-
-The ```explicit``` authentification support the directory services ```ldap```, ```ldaps```, and ```Microsoft Active Directory```.
+## authmanagers `explicit`
 
 
-Configuration sample for ```Microsoft Active Directory```
+The `explicit` authentication provider uses a directory service. The LDAP bind operation authenticates clients to the directory server and establishes an authorization identity that is used for all subsequent operations on that connection.
 
-For example :
+The `explicit` authentication configuration is defined as a dictionary object and contains an `explicit` provider.
+
+The `explicit` authentication provider supports the directory services `ldap`, `ldaps`, and `Microsoft Active Directory`.
+
+
+Configuration example for Microsoft Active Directory:
 
 ```
 'explicit': {
@@ -44,20 +41,19 @@ adconfig : { 'AD': {   'default'       : True,
 }
 ```
 
-### Home page authentification
+### Home Page Authentication
 
-If the authmanagers ```explicit``` is enabled. The Web home page insert the new input values ```Login``` and ```Password``` to authenticate this user.
+When the `explicit` authentication manager is enabled, the web home page displays `Login` and `Password` input fields to authenticate users.
 
 ![auth-provider-explicit](img/auth-provider-explicit.png)
 
 
-### LDAP authmanagers :
+### LDAP Authentication Manager
 
-Read the specific chapter on LDAP [LDAP and LDAPS explicit authmanagers](authexplicit-ldap.md)
+Read the specific chapter on LDAP: [LDAP and LDAPS explicit authmanagers](authexplicit-ldap.md)
 
-### Microsoft Active Directory authmanagers :
+### Microsoft Active Directory Authentication Manager
 
-Microsoft Active Directory is implemented as a LDAP Server, start reading the chapter on LDAP [LDAP and LDAPS explicit authmanagers](authexplicit-ldap.md), then read the specific chapter for Microsoft Active Director [Microsoft Active Directory explicit authmanagers](authexplicit-ldap.md)
+Microsoft Active Directory is implemented as an LDAP server. Start by reading the chapter on LDAP at [LDAP and LDAPS explicit authmanagers](authexplicit-ldap.md), then read the specific chapter for Microsoft Active Directory at [Microsoft Active Directory explicit authmanagers](authexplicit-activedirectory.md).
 
-Great, you have check how the explicit Authentification configuration works.
-
+You have successfully reviewed how the explicit authentication configuration works.

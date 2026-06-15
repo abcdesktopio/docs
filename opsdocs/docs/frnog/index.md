@@ -2,15 +2,15 @@
 
 ![FRNOG logo](img/frnog.png)
 
-People interested in security, research, and internet operation in France are gathered by the FRench Network Operators Group ([FRnOG](http://www.frnog.org)) for information exchange.
+The FRench Network Operators Group ([FRnOG](http://www.frnog.org)) brings together people interested in security, research, and Internet operations in France for information exchange.
 
-Chapters describe documents for the session on Friday, October 24, 2025 [FRnOG 42](https://www.frnog.org/?page=frnog42)
+This page provides materials from the session held on Friday, October 24, 2025 at [FRnOG 42](https://www.frnog.org/?page=frnog42).
 
-## Slides content
+## Slide Content
 
-- format PDF file [download file](abcdesktop-frnog.pdf)
+- PDF format [download file](abcdesktop-frnog.pdf)
 
-## Video content
+## Video Content
 
 - Demo abcdesktop frnog 42
 
@@ -20,14 +20,14 @@ Chapters describe documents for the session on Friday, October 24, 2025 [FRnOG 4
 ### Description
 
 - Login credentials (`Philip J. Fry`,`fry`)
-- Create pod desktop, with all containers 
-- Start terminal application 
+- Create a pod desktop with all containers
+- Start the terminal application
 - Run `kubectl get pods -n abcdesktop`
   - Show current user pod for `fry`
-- Start Firefox application
-  - look for video on `http://culturepub.fr` web site
-- Start Qterminal application as Pod 
-	- Start `top` command, to show process 
+- Start the Firefox application
+  - Browse for a video on the `http://culturepub.fr` website
+- Start the Qterminal application as a pod
+	- Run the `top` command to show processes
 - Run `kubectl get pods -n abcdesktop` again in terminal
 - Run `kubectl delete pods fry-qterminal-app-XXXX -n abcdesktop` again in terminal
 - Logoff

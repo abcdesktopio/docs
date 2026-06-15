@@ -7,7 +7,7 @@ tags:
 
 # Shared Volumes
 
-Users may need to access shared files. If you can't create `persistent volumes` on your cluster, this page describe how to access a shared '/mnt/shared_data' hostPath using `rules`
+Users may need to access shared files. If you cannot create `PersistentVolumes` on your cluster, this page describes how to access a shared `/mnt/shared_data` hostPath using `rules`.
 
 
 ## Check your rules in `authmanagers` `ldapconfig`
@@ -102,7 +102,7 @@ desktop.policies: {
 
 > On your worker node, make sure that the `/mnt` directory exists.
 
-This policy adds a new volume `mntmyproject` defined as a `hostPath` to the users's pod and mount it as `/mnt/shared_data`.
+This policy adds a new volume `mntmyproject` defined as a `hostPath` to the user's pod and mounts it as `/mnt/shared_data`.
 
 
 Save your `od.config` file
@@ -210,7 +210,7 @@ Now start a desktop as `Turanga Leela`. As a member of the `shipcrew` group, you
 ## Define volume using `pvc` bounded on nfs server
 
 !!! note
-    For this part of the tutorial, you should have a NFS server already configured. If not please follow the first chapter of [this tutorial](http://abcdesktop.pepins.net/advanced/4.4/storage/nfs/#set-up-a-nfs-server).
+    For this part of the tutorial, you should have an NFS server already configured. If not, please follow the first chapter of [this tutorial](http://abcdesktop.pepins.net/advanced/4.4/storage/nfs/#set-up-a-nfs-server).
 
 ### Create nfs type `PersistentVolume` 
 
@@ -246,7 +246,7 @@ kubectl apply -f nfs-pv-shared-data-abcdesktop.yaml
 
 ### Create `PersistentVolumeClaim`
 
-Now that our `PersistentVolume` is created and linked to our nfs server. We now have to created a `PersistentVolumeClaim` that we will bien to the previously created `shared-shipcrew-pv` `PersistentVolume`.
+Now that the `PersistentVolume` is created and linked to the NFS server, you need to create a `PersistentVolumeClaim` that will be bound to the previously created `shared-shipcrew-pv` `PersistentVolume`.
 
 Paste the following lines to a `nfs-pvc-shared-data-abcdesktop.yaml` file
 
@@ -313,7 +313,7 @@ desktop.policies: {
 
 > On your worker node, make sure that the `/mnt` directory exists.
 
-This policy adds a new volume `shared-shipcrew-pvc` defined as a `pvc` to the users's pod and mount it as `/mnt/shared_data_pvc`.
+This policy adds a new volume `shared-shipcrew-pvc` defined as a `pvc` to the user's pod and mounts it as `/mnt/shared_data_pvc`.
 
 
 Save your `od.config` file
@@ -398,7 +398,7 @@ The volume `pvc-shared-shipcrew-pvc-fry` is defined as
 ```
 
 
-A new `Mount` is defined as `/mnt/shared_data_pvc from pvc-shared-shipcrew-pvc-fry (rw)` and a new volume pvc-shared-shipcrew-pvc-fry is defined as `HostPath` to the `Path` `/mnt`
+A new `Mount` is defined as `/mnt/shared_data_pvc from pvc-shared-shipcrew-pvc-fry (rw)` and the volume `pvc-shared-shipcrew-pvc-fry` is defined as a `PersistentVolumeClaim` referencing `shared-shipcrew-pvc`.
 
 > Check that your file system's permissions are set to your users
 

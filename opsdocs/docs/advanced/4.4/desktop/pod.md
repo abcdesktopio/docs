@@ -7,7 +7,7 @@ This chapter describes how to configure the `desktop.pod` and `desktop.envlocal`
 
 ## main entries in the `desktop.pod` dictionary
 
-`desktop.pod` defines how create the user's pod. The mains sections are 
+`desktop.pod` defines how to create the user's pod. The main sections are 
 
 - `spec`: describes the `securityContext` and `shareProcessNamespace`
 - `default_volumes` list the available volumes in the pod
@@ -199,11 +199,11 @@ desktop.pod : {
 }
 ```
 
-`spec` describes the specification as kubernetes pod does. 
+`spec` describes the pod specification, following the standard Kubernetes pod specification format.
 
-- `imagePullSecrets`: a list of secret dict `{ 'name': name_of_secret }` to pull images. In most cases the secret are defined to pull images on a private registry [pull-image-private-registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
-- `shareProcessNamespace`: `boolean` to share process between ephemeral containers and graphical container. When process namespace sharing is enabled, processes in a container are visible to all other containers in the same pod. [share-process-namespace](https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/)
-- `securityContext`: defines privilege and access control settings for the desktop pod. Values `{{ supplementalGroups }}` `{{ uidNumber }}` `{{ gidNumber }}` are replaced by ldap or default values during the create desktop process. [Configure a Security Context for a Pod or Container](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
+- `imagePullSecrets`: a list of secret references in the form `{ 'name': name_of_secret }` used to pull images. In most cases, these secrets are configured to pull images from a private registry. See [pull-image-private-registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
+- `shareProcessNamespace`: a boolean that enables process namespace sharing between ephemeral containers and the graphical container. When process namespace sharing is enabled, processes in a container are visible to all other containers in the same pod. See [share-process-namespace](https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/)
+- `securityContext`: defines privilege and access control settings for the desktop pod. The values `{{ supplementalGroups }}`, `{{ uidNumber }}`, and `{{ gidNumber }}` are substituted with LDAP-provided or default values during the desktop creation process. See [Configure a Security Context for a Pod or Container](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
 - `tolerations`: [Tolerations allow the scheduler to schedule pods with matching taints.](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 
 
@@ -212,11 +212,10 @@ desktop.pod : {
 
 ## `default_volumes` and `default_volumes_mount`
 
-`default_volumes` describes volumes created for the desktop pod. All kubernetes type of volumes are supported [Types of volumes](https://kubernetes.io/docs/concepts/storage/volumes/)
-By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customise your own volume as kubernetes does.
+`default_volumes` describes the volumes created for the desktop pod. All Kubernetes volume types are supported. See [Types of volumes](https://kubernetes.io/docs/concepts/storage/volumes/). By default, abcdesktop creates `emptyDir` volumes on the `Memory` medium, but you can customize volumes using any Kubernetes-supported volume type.
 
 
-> The volumes permit to mount the root file system of the `graphical`container in **read only**
+> These volumes allow the root filesystem of the `graphical` container to be mounted as **read-only**.
 
 ```
  'default_volumes': {
@@ -231,7 +230,7 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
 ```
 
 
-`default_volumes_mount` describes the mount point for the previous `default_volumes` created
+`default_volumes_mount` describes the mount points for the volumes defined in `default_volumes`.
 
 ```
   'default_volumes_mount': {
@@ -245,12 +244,12 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
   }
 ```
 
-- the `shm` volume is shared between ephemeral container applications and the graphical pod, if an application need to share memory with the X11 server. Some application require to allocate share memory.
-- the `run` volume is dedicated volume for the graphical pod. In most cases it contains pid files.
-- the `tmp` volume is shared between ephemeral container applications and the graphical pod
-- the `log` volume is shared between ephemeral container applications and the containers pod. In most cases it contains log files.
-- the `rundbus` and `runuser` are defined for dbus sharing
-- the `x11socket` is a dedicated volume for the X11 unix socket
+- The `shm` volume is shared between ephemeral container applications and the graphical pod. Applications that require shared memory access with the X11 server use this volume.
+- The `run` volume is a dedicated volume for the graphical pod and typically contains PID files.
+- The `tmp` volume is shared between ephemeral container applications and the graphical pod.
+- The `log` volume is shared between ephemeral container applications and the pod containers. It typically contains log files.
+- The `rundbus` and `runuser` volumes are used for D-Bus socket sharing.
+- The `x11socket` volume is dedicated to the X11 Unix domain socket.
 
 
 ## `graphical` container
@@ -302,26 +301,26 @@ By default abcdesktop creates 'emptyDir' on medium 'Memory', but you can customi
 ```
 
 
-- `volumes` is the list of mounted volume for this container
+- `volumes` is the list of mounted volumes for this container
 - `image` is the name of the image for this container
-- `imagePullPolicy` is the image Pull Policy
-- `enable` is a boolean to enable of disable this container
-- `acl` is a dictonary to allow or disallow this container
-- `securityContext` the security context defines privilege and access control settings for the graphical container. 
-  - `allowPrivilegeEscalation`: Controls whether a process can gain more privileges than its parent process. 
-  - `readOnlyRootFilesystem`: Mounts the container's root filesystem as read-only. [securityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
-  - `supplementalGroups`: [ '{{ supplementalGroups }}' ] replaced by ldap or default values
-  - `runAsUser`: '{{ uidNumber }}' replaced by ldap or default values
-  - `runAsGroup`: '{{ gidNumber }}' replaced by ldap or default values
-  - `runAsNonRoot`: boolean [pod-security-standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
-- `tcpport` is the main tcp port for the container 
-- `secrets_requirement` is a list of secret to mount inside this container. By default the graphical contaienr mounts the secrets 'abcdesktop/vnc' and 'abcdesktop/kerberos'. If the 'abcdesktop/kerberos' doesn't exist, the secret is not added.
-- `waitfor_services` : list of supervisor service to wait [ 'xserver', 'novnc', 'spawner-service', 'plasmashell' ], the services must be started.
-- `waitfor_processes`: list of process to wait [ 'kwin_x11', 'plasmashell', 'kactivitymanagerd'  ], the process must be started.
-- `waitfor_listeningservices`: list of services to wait for listening on tcp port.
+- `imagePullPolicy` is the image pull policy
+- `enable` is a boolean to enable or disable this container
+- `acl` is a dictionary that controls access to this container
+- `securityContext` defines privilege and access control settings for the graphical container.
+  - `allowPrivilegeEscalation`: Controls whether a process can gain more privileges than its parent process.
+  - `readOnlyRootFilesystem`: Mounts the container's root filesystem as read-only. See [securityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
+  - `supplementalGroups`: `[ '{{ supplementalGroups }}' ]` substituted with LDAP-provided or default values
+  - `runAsUser`: `'{{ uidNumber }}'` substituted with LDAP-provided or default values
+  - `runAsGroup`: `'{{ gidNumber }}'` substituted with LDAP-provided or default values
+  - `runAsNonRoot`: boolean. See [pod-security-standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
+- `tcpport` is the primary TCP port for the container
+- `secrets_requirement` is a list of Kubernetes secrets to mount inside this container. By default, the graphical container mounts the secrets `abcdesktop/vnc` and `abcdesktop/kerberos`. If the `abcdesktop/kerberos` secret does not exist, it is silently omitted.
+- `waitfor_services`: a list of supervisor-managed services that must be started before the container is considered ready, e.g., `[ 'xserver', 'novnc', 'spawner-service', 'plasmashell' ]`.
+- `waitfor_processes`: a list of processes that must be running before the container is considered ready, e.g., `[ 'kwin_x11', 'plasmashell', 'kactivitymanagerd' ]`.
+- `waitfor_listeningservices`: a list of services that must be actively listening on their TCP ports before the container is considered ready.
 
 
-Additionnal services are running inside the graphical service.
+The following additional services run inside the graphical container.
 
 - `spawner` describes the spawner service.
 - `broadcast` describes the broadcast service  
@@ -353,15 +352,15 @@ Additionnal services are running inside the graphical service.
 },
 ```
 
-The printer container is the printer service, to print file as `pdf` and download files from the virtual printer queue.
+The printer container provides the print service, enabling files to be printed as PDF and downloaded from the virtual printer queue.
 
-- `volumes` is the list of mounted volume for this container
+- `volumes` is the list of mounted volumes for this container
 - `image` is the name of the image for this container
-- `imagePullPolicy` is the image Pull Policy
-- `enable` is a boolean to enable of disable this container
-- `tcpport` is the main tcp port for the container
-- `securityContext`: cups service must run as `root` user `{ 'runAsUser': 0, 'runAsGroup': 0 }`
-- `acl` is a dictonary to allow or disallow this container
+- `imagePullPolicy` is the image pull policy
+- `enable` is a boolean to enable or disable this container
+- `tcpport` is the primary TCP port for the container
+- `securityContext`: the cups service must run as the `root` user: `{ 'runAsUser': 0, 'runAsGroup': 0 }`
+- `acl` is a dictionary that controls access to this container
 
 
 
@@ -378,14 +377,14 @@ The printer container is the printer service, to print file as `pdf` and downloa
     },
 ```
 
-The filer container is the filer service, upload and download files and directories.
+The filer container provides file transfer capabilities, allowing users to upload and download files and directories.
 
-- `volumes` is the list of mounted volume for this container
+- `volumes` is the list of mounted volumes for this container
 - `image` is the name of the image for this container
-- `imagePullPolicy` is the image Pull Policy
-- `enable` is a boolean to enable of disable this container
-- `tcpport` is the main tcp port for the container
-- `acl` is a dictonary to allow or disallow this container
+- `imagePullPolicy` is the image pull policy
+- `enable` is a boolean to enable or disable this container
+- `tcpport` is the primary TCP port for the container
+- `acl` is a dictionary that controls access to this container
 
 
 
@@ -404,14 +403,14 @@ The filer container is the filer service, upload and download files and director
   },
 ```
 
-The sound container is the sound service, sound and microphone. 
+The sound container provides audio input and output services, including sound playback and microphone capture.
 
-- `volumes` is the list of mounted volume for this container
+- `volumes` is the list of mounted volumes for this container
 - `image` is the name of the image for this container
-- `imagePullPolicy` is the image Pull Policy
-- `enable` is a boolean to enable of disable this container
-- `tcpport` is the main tcp port for the container
-- `acl` is a dictonary to allow or disallow this container
+- `imagePullPolicy` is the image pull policy
+- `enable` is a boolean to enable or disable this container
+- `tcpport` is the primary TCP port for the container
+- `acl` is a dictionary that controls access to this container
 
 
 ## `init` container
@@ -432,13 +431,13 @@ The sound container is the sound service, sound and microphone.
   },
 ```
 
-- `volumes` is the list of mounted volume for this container
+- `volumes` is the list of mounted volumes for this container
 - `image` is the name of the image for this container
-- `imagePullPolicy` is the image Pull Policy
-- `enable` is a boolean to enable of disable this container
-- `securityContext`: init container must run as `root` user `{ 'runAsUser': 0 }`
-- `acl` is a dictonary to allow or disallow this container
-- `command` init shell command line to run `[ 'sh', '-c', 'chmod 750 ~ && chown {{ uidNumber }}:{{ gidNumber }} ~' ] `
+- `imagePullPolicy` is the image pull policy
+- `enable` is a boolean to enable or disable this container
+- `securityContext`: the init container must run as the `root` user: `{ 'runAsUser': 0 }`
+- `acl` is a dictionary that controls access to this container
+- `command` is the shell command executed at initialization: `[ 'sh', '-c', 'chmod 750 ~ && chown {{ uidNumber }}:{{ gidNumber }} ~' ]`
 
 
 ## desktop.pod with `sudo` command
@@ -616,9 +615,7 @@ desktop.pod : {
 
 ## define environment variables in the desktop
 
-`desktop.envlocal` defines the environment variables in the desktop. 
-The `desktop.envlocal` is a dictionary, the key is the name of the variable, and the value the value of the variable. 
-Only static variables are defined here, dynamics values are set by python code in pyos.
+`desktop.envlocal` defines the environment variables injected into the desktop containers. It is a dictionary where each key is an environment variable name and the corresponding value is the variable's value. Only static variables are defined here; dynamic values are set programmatically by pyos at runtime.
 
 ```
 # Add default environment vars 
@@ -638,7 +635,7 @@ desktop.envlocal :  {
 
 - Run a command inside a desktop pod to list the variable and get the value of one of them
 
-- Look for a desktop pod, to run shell commands 
+- Identify an active desktop pod to run shell commands against.
 
 ```bash
 NAMESPACE=abcdesktop
@@ -649,7 +646,7 @@ leela-debe1   3/3     Running   0          27s
 
 The pod name is `leela-debe1`
 
-- List the variables content
+- List the environment variables:
 
 ```bash
 NAMESPACE=abcdesktop

@@ -1,27 +1,27 @@
 # docs
 
-## To get more informations
+## For More Information
 
-Please, read the public documentation web site:
+Refer to the public documentation website:
 * [https://abcdesktopio.github.io/](https://abcdesktopio.github.io/)
 * [https://www.abcdesktop.io/](https://www.abcdesktop.io/)
 
-## abcdesktopio documentation files markup language
+## Documentation Markup Language
 
-abcdesktop use mkdocs
+The abcdesktop.io documentation is built with [MkDocs](https://www.mkdocs.org/). Clone the repository including all submodules with the following command:
 
 ```
 git clone --recurse-submodules https://github.com/abcdesktopio/docs
 ```
 
-To run the documentation website
+To build and serve the documentation website, run:
 
 ```
 make install
 make docs
 ```
 
-To test your local changes
+To preview your local changes, install the Python dependencies and start the development server:
 
 ```
 pip3 install -r requirements.txt
@@ -29,7 +29,7 @@ mkdocs serve
 # open your browser: http://127.0.0.1:8000
 ```
 
-or
+Alternatively, from within the `docs` directory:
 
 ```
 cd docs

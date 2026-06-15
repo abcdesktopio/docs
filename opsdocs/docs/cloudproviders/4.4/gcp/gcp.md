@@ -16,17 +16,17 @@ tags:
 - `kubectl` 
 - `gcloud` command line interface [gcloud cli](https://docs.cloud.google.com/sdk/docs/install-sdk/)
 
-> If you use `gcloud` command line for your first time, run `gcloud auth login` command line to log with your GCP account.
+> If you use the `gcloud` command line for the first time, run `gcloud auth login` to authenticate with your GCP account.
 
-## Create a Kubernetes cluster using gcloud cli
+## Create a Kubernetes Cluster Using gcloud CLI
 
-First you will need to configure `gcloud` to set your GCP project as current project by running the following command.
+First, configure `gcloud` to set your GCP project as the current project by running the following command.
 
 ```
 gcloud config set project <YOUR_PROJECT_ID>
 ```
 
-Run the folllowing command to create your kubernetes cluster
+Run the following command to create your Kubernetes cluster:
 
 ```
 gcloud container clusters create abcdesktop-gcp-1 --machine-type=custom-4-8192 --zone=us-central1-a --num-nodes=2
@@ -46,9 +46,9 @@ NAME              LOCATION       MASTER_VERSION      MASTER_IP      MACHINE_TYPE
 abcdesktop-gcp-1  us-central1-a  1.33.5-gke.1308000  34.172.78.248  custom-4-8192  1.33.5-gke.1308000  2          RUNNING  IPV4
 ```
 
-## Create a Kubernetes cluster using Google Cloud Console
+## Create a Kubernetes Cluster Using Google Cloud Console
 
-If you don't have a running kubernetes cluster, connect to your GCP console interface and search for `Create a Kubernetes Cluster`.
+If you do not have a running Kubernetes cluster, connect to your GCP console and search for `Create a Kubernetes Cluster`.
 
 ![gcp console overview](img/gcp-console-overview.png)
 
@@ -65,13 +65,13 @@ Now wait a few minutes for your cluster to be ready.
 
 ![cluster ready](img/cluster-created.png)
 
-Once your cluster ready, you will need to link the cluster to your local machine in order to drive it. To do so, you will first need to install the `gke-gcloud-auth-plugin` by running the following command
+Once your cluster is ready, you will need to link it to your local machine in order to manage it. To do so, first install the `gke-gcloud-auth-plugin` by running the following command:
 
 ```
 gcloud components install gke-gcloud-auth-plugin
 ```
 
-Then click on the `Connect` button and paste the given command into your terminal
+Then click on the `Connect` button and paste the provided command into your terminal.
 
 ![link command](img/gcloud-command.png)
 
@@ -87,9 +87,9 @@ To get more details about the install process, please read the [Setup guide](htt
 
 ## Connect to your abcdesktop service 
 
-By default install script is listening on a free tcp port `:30443` and is using a `kubectl port-forward` command line to reach http web service `:80`
+By default, the install script exposes the service on a free TCP port `:30443` using a `kubectl port-forward` command to forward traffic to the HTTP service on port `:80`.
 
-Open your web browser `http://locahost:30443`
+Open your web browser and navigate to `http://localhost:30443`.
 
 ![abcdesktop login](../img/abcdesktop-hompage-port30443.png)
 
@@ -153,7 +153,7 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pul
 
 To get more details about the install applications process, please read the [Setup applications guide](https://www.abcdesktop.io/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop_applications/)
 
-Then you just need to reload the web page with the desktop of `Philip J. Fry`
+Then reload the web page showing the desktop of `Philip J. Fry`.
 New applications are now listed in the dock of `plasmashell`.
 
 ![abcdesktop for fry with applications](../img/abcdesktop-hompage-port30443-login-fry-applications.png)
@@ -162,7 +162,7 @@ Start Firefox application
 
 > The first run may involve waiting for the image pulling process to finish
 
-Go to `https://mylocation.org` website to check where your pod is running.  In my case for the region `Iowa`, the desktop is located near `Council Bluffs` city in `United States`. 
+In this example, for the `Iowa` region, the desktop is located near `Council Bluffs` in the `United States`.
 
 
 ![abcdesktop location](img/abcdesktop-location.png)

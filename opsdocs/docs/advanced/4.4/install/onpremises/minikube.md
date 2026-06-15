@@ -4,18 +4,18 @@ tags:
   - installation
 ---
 
-`Minikube` is a tool for running local Kubernetes clusters using Docker container “nodes”. Minikube was primarily designed for testing Kubernetes itself, but it can be used to deploy Kubernetes applications as well. To install or setup `minikube`, refer to the [Minikube documentation](https://minikube.sigs.k8s.io/docs/)
+`Minikube` is a tool for running local Kubernetes clusters using Docker container "nodes". Minikube was primarily designed for testing Kubernetes itself, but it can also be used to deploy Kubernetes applications. To install or set up `minikube`, refer to the [Minikube documentation](https://minikube.sigs.k8s.io/docs/).
 
 ## Requirements
 
-* [minikube](https://minikube.sigs.k8s.io/docs/start) command line installed
+* [minikube](https://minikube.sigs.k8s.io/docs/start) command-line tool installed
 * [docker](https://docs.docker.com/engine/install) Docker Engine installed
-* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command-line tool must be configured to communicate with your cluster
-* openssl and curl command line must be installed too (only for install using kubectl)
+* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command-line tool configured to communicate with your cluster
+* `openssl` and `curl` command-line tools installed (required only when installing via kubectl)
 
 ## Create minikube cluster
 
-Run the command line to create
+Run the following command to create the cluster:
 
 ```bash
 minikube start
@@ -160,7 +160,7 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/ins
 
 ## How to connect ?
 
-The install bash script forward the tcp port 30443 to the router pod port tcp 80
+The install bash script forwards TCP port 30443 to the router pod's TCP port 80
 
 `kubectl port-forward router-od-647b77455d-nk677 --address 0.0.0.0 30443:80 -n abcdesktop`
 
@@ -169,8 +169,8 @@ The install bash script forward the tcp port 30443 to the router pod port tcp 80
 
 [INFO] http://192.168.7.119:30443/
 ```
-> Open the URL returnes by the install bash script. In this sample `http://192.168.7.119:30443/`
-> Change the ip address `192.168.7.119` with your own
+> Open the URL returned by the install bash script. In this sample `http://192.168.7.119:30443/`
+> Change the IP address `192.168.7.119` with your own
 
 ![kind home page](img/kinduserhompage.png)
 
@@ -180,13 +180,13 @@ Your web browser shows the abcdesktop service home page
 
 The user `Philip J. Fry` is connected to the abcdesktop service
 
-> Open the URL returnes by the install bash script. In this sample `http://192.168.7.119:30443/`
+> Open the URL returned by the install bash script. In this sample `http://192.168.7.119:30443/`
 
-Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.
+Great, you have installed abcdesktop using Minikube and your web browser shows the abcdesktop service.
 
 ## Delete cluster
 
-To uninstall, run the minikube `delete` cluster command line:
+To uninstall, run the `minikube delete` command:
 
 ```bash
 minikube delete
@@ -194,13 +194,13 @@ minikube delete
 
 ## Common issues
 
-### issue 'FailedScheduling 0/1 nodes are available'
+### Issue: `FailedScheduling 0/1 nodes are available`
 
 ``` bash
 FailedScheduling 0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod
 ```
 
-To fix it, start minikube with enough cpu and memory resources to start all abcdesktop's pods and the user's desktop
+To resolve this issue, start Minikube with sufficient CPU and memory resources to run all abcdesktop pods and the user's desktop.
 
 ``` bash
 minikube start --cpus 4 --memory 16GB

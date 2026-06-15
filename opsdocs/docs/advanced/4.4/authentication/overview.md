@@ -1,15 +1,16 @@
-# Authentification overview
+# Authentication Overview
 
-## Configuration file
-The authentification configuration is set in the `od.config` file. In this chapter you will need to update the `od.config` configuration file. 
-This update differs depending on the configuration docker mode or kubernetes mode. 
+## Configuration File
 
-Read the 
-[Update your configuration file and apply the new configuration file](../configure/updateconfiguration.md) section to make change in `od.config` file for kubernetes cluster.
+The authentication configuration is set in the `od.config` file. This chapter requires you to update the `od.config` configuration file.
+The update procedure differs depending on whether you are running in Docker mode or Kubernetes mode.
 
-## The dictionary authmanagers
+Read the
+[Update your configuration file and apply the new configuration file](../configure/updateconfiguration.md) section to learn how to apply changes to the `od.config` file in a Kubernetes cluster.
 
-The authmanagers is defined as a dictionary object :
+## The authmanagers Dictionary
+
+The `authmanagers` object is defined as a dictionary:
 
 ```
 authmanagers: {
@@ -18,33 +19,33 @@ authmanagers: {
   'implicit': {}}
 ```
 
-The `od.config` defines four kinds of entries in the ```authmanagers``` object :
+The `od.config` file defines four types of entries in the `authmanagers` object:
 
-* `external`: use for OpenID Connect (Authentification) OAuth 2.0
-* `explicit`: use for directory services  `LDAP`, `LDAPS` and `Microsoft Active Directory` authentification
-* `metaexplicit`: use for `Microsoft Active Directory trusted relationships`, with support of FSP (Foreign Security Principals)
-* `implicit`: use for Anonymous Authentification and SSL-client certificat 
+* `external`: Used for OpenID Connect (OAuth 2.0) authentication
+* `explicit`: Used for directory service authentication with `LDAP`, `LDAPS`, and `Microsoft Active Directory`
+* `metaexplicit`: Used for `Microsoft Active Directory` trusted relationships, with support for FSP (Foreign Security Principals)
+* `implicit`: Used for anonymous authentication and SSL client certificate authentication
 
-## Related authmanagers 
+## Related authmanagers
 
 | authmanagers type  | Description  |
 |--------------------|--------------|
-|  [`external`](authexternal.md)| For  OpenID Connect OAuth 2.0 authentification  |
-|  [`metaexplicit`](authexplicit.md) | For Microsoft Active Directory Trusted relationship, with support of Foreign Security Principals and Special Identities |
-|  [`explicit`](authexplicit.md) | For LDAP, LDAPS, Active Directory Authentification, and Kerberos authentification  |
-|  [`implicit`](authimplicit.md) | For anonymous authentification, for an always True Authentification, and SSL-client certificat  |
+|  [`external`](authexternal.md)| For OpenID Connect OAuth 2.0 authentication |
+|  [`metaexplicit`](authexplicit.md) | For Microsoft Active Directory trusted relationships, with support for Foreign Security Principals and Special Identities |
+|  [`explicit`](authexplicit.md) | For LDAP, LDAPS, Active Directory, and Kerberos authentication |
+|  [`implicit`](authimplicit.md) | For anonymous authentication, always-allow authentication, and SSL client certificate authentication |
 
 ## Hands-on
 
 ### Requirements
 
-You should have read the hands-on :
+You should have read:
 
-* [Update your configuration file and apply the new configuration file](../configure/updateconfiguration.md) section to make change in `od.config` file for kubernetes cluster.
+* [Update your configuration file and apply the new configuration file](../configure/updateconfiguration.md) — to learn how to apply changes to the `od.config` file in a Kubernetes cluster.
 
-### Change authmanagers configuration
+### Changing the authmanagers Configuration
 
-Edit your `od.config` pyos configuration file, and set the value to the authmanagers dictionary with empty values for `implicit`, `explicit`, and `external`, as describe :
+Edit your `od.config` pyos configuration file and set the `authmanagers` dictionary with empty values for `implicit`, `explicit`, and `external`:
 
 ```
 authmanagers: {
@@ -62,7 +63,7 @@ authmanagers: {
           'implicit': {}}
     ```
 
-To apply changes, you have to replace the `abcdesktop-config`, by running the `replace kubectl` command line option. Then `rollout restart`the `pyos` pod. 
+To apply changes, replace the `abcdesktop-config` ConfigMap by running the `kubectl replace` command, then restart the `pyos` deployment:
 
 ```
 kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -
@@ -70,68 +71,67 @@ kubectl rollout restart deployment pyos-od -n abcdesktop
 ```
 
 
-Start your web browser and open the URL `http://localhost:30443`
+Open your web browser and navigate to `http://localhost:30443`:
 
 ![authmanangers no provider](img/auth-no-provider.png)
 
-The Web home page should only show the title abcdesktop.io.
-There is no `authmanagers` available.
+The web home page displays only the abcdesktop.io title with no authentication providers available.
 
-Great you can now add some value to authenticate your users.
+You can now configure authentication providers for your users.
 
-## authmanagers `implicit`:
+## authmanagers `implicit`
 
-`implicit` is the easiest configuration mode, and is used to run `Anonymous` authentification (always True). 
+`implicit` is the simplest configuration mode and is used for anonymous (always-allow) authentication.
 
 
 ![auth-overview-implicit](img/auth-overview-implicit.png)
 
-Read the [authmanagers implicit](authimplicit.md) Section.
+Read the [authmanagers implicit](authimplicit.md) section.
 
 
-## authmanagers `explicit`:
+## authmanagers `explicit`
 
-`explicit` is defined to use a directory service like LDAP. 
-
-![auth-overview-explicit](img/auth-overview-explicit.png)
-
-Read the [authmanagers explicit](authexplicit.md) Section.
-
-## authmanagers `metaexplicit`:
-
-`metaexplicit` authentication manager allows you to provides security across [multiple domains or forests through domain and forest trust relationships](https://learn.microsoft.com/en-us/entra/identity/domain-services/concepts-forest-trust). `metaexplicit` reads the domain of the current user from another domain or forest, then executes the authentication process to the user's domain. 
-
-`metaexplicit` offers a support to Microsoft Active Directory Trusted relationship, with support of Foreign Security Principals and Special Identities. 
-
+`explicit` is configured to use a directory service such as LDAP.
 
 ![auth-overview-explicit](img/auth-overview-explicit.png)
 
-Read the [authmanagers meta explicit](authmetaexplicit.md) Section.
+Read the [authmanagers explicit](authexplicit.md) section.
 
-## authmanagers `external`:
+## authmanagers `metaexplicit`
 
-`external` use external OAuth 2.0 authentication, for example [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2), or [Github OAuth 2.0](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps), and so on.
+The `metaexplicit` authentication manager provides security across [multiple domains or forests through domain and forest trust relationships](https://learn.microsoft.com/en-us/entra/identity/domain-services/concepts-forest-trust). It reads the domain of the current user from another domain or forest, then performs the authentication process against the user's home domain.
+
+`metaexplicit` supports Microsoft Active Directory trusted relationships, including Foreign Security Principals and Special Identities.
+
+
+![auth-overview-explicit](img/auth-overview-explicit.png)
+
+Read the [authmanagers meta explicit](authmetaexplicit.md) section.
+
+## authmanagers `external`
+
+`external` uses external OAuth 2.0 authentication services, such as [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2), [GitHub OAuth 2.0](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps), and others.
 
 ![auth-overview-external](img/auth-overview-external.png)
 
-Read the [authmanagers external](authexternal.md) Section.
+Read the [authmanagers external](authexternal.md) section.
 
 
-## authmanagers sample
+## authmanagers Sample Configuration
         
-In the [authmanagers implicit](authimplicit.md) section, [authmanagers explicit](authexplicit.md) section, and [authmanagers external](authexternal.md) section, you have learned how to defined the providers. 
+After reading the [authmanagers implicit](authimplicit.md), [authmanagers explicit](authexplicit.md), and [authmanagers external](authexternal.md) sections, you will know how to define providers for each type.
 
-At the same time, you can build an `authmanagers` dictionary as described with all types:
+You can combine all provider types into a single `authmanagers` dictionary:
 
 - `external`
 - `explicit`
 - `implicit` 
 
-For example, abcdesktop login page, with `external`, `explicit` and `implicit`
+For example, an abcdesktop login page with `external`, `explicit`, and `implicit` providers:
 
 ![allproviders](img/auth-overview-allproviders.png)
 
-This page is generated from the authmanagers configuration
+This page is generated from the following `authmanagers` configuration:
 
 ```json
 authmanagers: {
@@ -218,4 +218,3 @@ adconfig : {
             'localaccount': True },
       'query_dcs' : False } }
 ```
-

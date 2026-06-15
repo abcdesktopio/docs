@@ -134,10 +134,10 @@ GET /API/manager/healtz
 X-API-KEY: <admin-api-key>
 ```
  
-The key must be configured on the `pyos` side, in `od.config` file. If no `apikey` is specified, then **API KEY modal** will not apear and the user will be free to use console.
+The key must be configured on the `pyos` side, in `od.config` file. If no `apikey` is specified, the **API Key modal** will not appear and the user will be free to use the console.
 
 !!! note 
-    More informations on API KEY on [this page](https://abcdesktop.pepins.net/advanced/4.4/controllers/controllers/#access-control-filter)
+    More information on the API key is available on [this page](https://abcdesktop.pepins.net/advanced/4.4/controllers/controllers/#access-control-filter)
  
 ---
  

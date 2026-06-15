@@ -5,22 +5,22 @@ tags:
 
 # Build a sample xeyes from scratch
 
-Goal: Add an application from scratch.
+Goal: Build and register a new X11 application container (`xeyes`) with an abcdesktop.io instance from scratch.
 
 ## Requirements
 
 You need to have:
 
-- kubernetes cluster ready to run whith abcdesktop.io installed.
-- `kubectl` must be configured to communicate with your cluster.
-- `docker` command line must be installed too.
-- your own public or private container registry.
+- A Kubernetes cluster with abcdesktop.io installed and running.
+- `kubectl` configured to communicate with your cluster.
+- `docker` command-line tool installed.
+- Your own public or private container registry.
 
 ## Create a simple application `xeyes`
 
-To illustrate a simple application, we will install `X11/xedit` inside a container.
+To illustrate a minimal application integration, we will install `xeyes` from the `x11-apps` package inside a container image.
 
-* Create a Dockerfile to install `xeyes ` application from `x11-apps` package
+* Create a Dockerfile to install the `xeyes` application from the `x11-apps` package
 
 ```Dockerfile
 FROM ubuntu
@@ -28,18 +28,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends x11-apps && apt
 CMD ["/usr/bin/xeyes"]
 ```
 
-This image is based on ubuntu, and install the `x11-apps` package. Then we define `/usr/bin/xeyes` as the CMD.
-> ENTRYPOINT is also supported
+This image is based on Ubuntu and installs the `x11-apps` package. The default command is set to `/usr/bin/xeyes` via the `CMD` instruction.
+> `ENTRYPOINT` is also supported.
 
-* Build the image for xedit application
+* Build the image for the xeyes application
 
 ```bash
 REGISTRY=abcdesktopio
 docker build -t $REGISTRY/samplexeyes .
 ```
 
-> You should replace the value of `REGISTRY=abcdesktopio` by your own registry's name.
-If you don't have one, you can use the `abcdesktopio/samplexeyes ` as a readonly dockerhub registry.
+> Replace the value of `REGISTRY=abcdesktopio` with your own registry name.
+> If you do not have one, you can use `abcdesktopio/samplexeyes` as a read-only Docker Hub registry.
 
 
 * Push the image to your registry *(only if you have one registry)*
@@ -49,17 +49,16 @@ REGISTRY=abcdesktopio
 docker push $REGISTRY/samplexeyes
 ```
 
-* Inspect the image to create a json file
+* Inspect the image to create a JSON file
 
 ```bash
 REGISTRY=abcdesktopio
 docker inspect $REGISTRY/samplexeyes:latest > samplexeyes.json
 ```
 
-* Send the image to abcdesktop pyos instance
+* Send the image to the abcdesktop pyos instance
 
-The commands read the `PYOS_POD` name, then copy the `samplexeyes.json` file to `/tmp` of PYOS_POD,
-then send the `/tmp/samplexeyes.json` to REST API server
+The following commands retrieve the `PYOS_POD` name, copy the `samplexeyes.json` file to the `/tmp` directory inside the pyos pod, and submit the file to the REST API server.
 
 ```bash
 NAMESPACE=abcdesktop
@@ -68,7 +67,7 @@ kubectl cp samplexeyes.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/samplexeyes.json
 ```
 
-The endpoint image returns a json documment
+The image endpoint returns a JSON document
 
 ```
 [{"cmd": ["/usr/bin/xeyes"], "path": null, "sha_id": "sha256:f13075e3caceccf5818f9d3b0bdd231b2d800850eb9c81d2906704ec633372c7", "id": "abcdesktopio/samplexeyes:latest", "architecture": "amd64", "os": "linux", "rules": {}, "acl": {"permit": ["all"]}, "launch": "xeyes", "name": "xeyes", "icon": "xeyes", "icondata": "PHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIwIiB5PSIzMiIgZmlsbD0iYmxhY2siPnhleWVzPC90ZXh0Pjwvc3ZnPg==", "keyword": null, "uniquerunkey": null, "cat": null, "args": null, "execmode": null, "showinview": null, "displayname": "xeyes", "desktopfile": null, "executeclassname": null, "executablefilename": "xeyes", "usedefaultapplication": false, "mimetype": [], "fileextensions": [], "legacyfileextensions": [], "secrets_requirement": null, "i100  4670  100  1115  100  3555  41296   128k --:--:-- --:--:-- --:--:--  168ke": "ephemeral_container", "securitycontext": {}, "created": "2025-02-03T15:45:36.493950688Z"}]
@@ -77,27 +76,27 @@ The endpoint image returns a json documment
 
 ## Execute the new application `xeyes`
 
-* Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop
+* Open your web browser, navigate to your abcdesktop URL, and log in to create a desktop
 
 ![login to create a desktop](img/simplestapplication-login-xeyes.png)
 
-* Look for the new application `xeyes` pushed
+* Search for the newly registered `xeyes` application
 
 ![Look for the new application xeyes](img/simplestapplication-lookfor-xeyes.png)
 
-* Start the new application `xeyes`, the hourglass appears
+* Launch the `xeyes` application — an hourglass indicator will appear while the container image is being pulled
 
 ![Start the new application xeyes hourglass](img/simplestapplication-xeyes-hourglass.png)
 
-Please wait for the end of the pulling process
+Wait for the image pull to complete.
 
 ![Start the new application xeyes](img/simplestapplication-xeyes-started.png)
 
-> The xeyes application is started as a container
+> The xeyes application is running as an ephemeral container inside the user pod.
 
-## Read the pod's description
+## Read the pod description
 
-Get the name of fry's pod
+Retrieve the name of the user's pod:
 
 ```
 kubectl get pods -l type=x11server -n abcdesktop
@@ -105,13 +104,13 @@ NAME        READY   STATUS    RESTARTS   AGE
 fry-3f4d7   4/4     Running   0          104s
 ```
 
-Get the fry's pod description
+Retrieve the pod description:
 
 ```
 kubectl describe pods fry-3f4d7 -n abcdesktop
 ```
 
-The `Ephemeral Containers` contains the `xeyes` application
+The `Ephemeral Containers` section lists the running `xeyes` application container:
 
 ```
 Ephemeral Containers:
@@ -176,4 +175,4 @@ Ephemeral Containers:
       /var/run/desktop from run (rw)
 ```
 
-Great you've installed and started a new application for abcdesktop
+You have successfully installed and started a new application for abcdesktop.io.

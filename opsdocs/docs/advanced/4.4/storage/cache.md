@@ -12,7 +12,7 @@ tags:
 ## Overwritten user homedirectory directory entries
 
 
-To reduce I/O to the storage backend, you can defined entries in the `desktop.directorytomemoryemptydir` option, and overwrite users sub directories.
+To reduce I/O to the storage backend, you can define entries in the `desktop.directorytomemoryemptydir` option to overwrite specific user subdirectories.
 
 ```
 desktop.directorytomemoryemptydir: [ '.cache', '.local', '.config' ]
@@ -21,7 +21,7 @@ desktop.directorytomemory: { 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi
 
 The default `desktop.directorytomemory` is a dictionary set to `{ 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi' } }`
 
-The `desktop.directorytomemory` dictionnary is the same for all `desktop.directorytomemoryemptydir` entries.
+The `desktop.directorytomemory` dictionary is the same for all `desktop.directorytomemoryemptydir` entries.
 
 A `kubectl describe pod` command line shows the volume for each `desktop.directorytomemoryemptydir` in this case `[ '.cache', '.local', '.config' ]`
  
@@ -62,10 +62,10 @@ Volumes:
 ```
 
 
-### update sound contianer for `.config` usage
+### Update the sound container for `.config` usage
 
-The s-sound container need to read the `$HOME/.config/pulse/cookie` file.
-If we decide to put the `.config` as `emptyDir` volume, we need to add this volume to the sound container description.
+The `s-sound` container needs to read the `$HOME/.config/pulse/cookie` file.
+If you choose to use `.config` as an `emptyDir` volume, you need to add this volume to the sound container description.
 
 - update your `desktop.pod` dictionary to add the `config` volume into the volume list `'volumes': [ 'extrausers', 'tmp', 'config', 'log' ]`
 

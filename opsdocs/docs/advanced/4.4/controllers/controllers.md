@@ -2,18 +2,18 @@
 
 ## Controllers
 
-abcdesktop is based on the Model View Controller (usually known as MVC). This MVC is used for developing user interfaces which divides the related program logic into three interconnected elements. This is done to separate internal representations of information from the ways information is presented to and accepted from the user.
+abcdesktop is built on the Model-View-Controller (MVC) pattern. MVC separates an application's logic into three interconnected components, decoupling the internal representation of data from how that data is presented to and received from the user.
 
-List of all abcdesktop's controllers and the description : 
+The following table lists all abcdesktop controllers and their descriptions:
 
 | Controller               |  Description   |
 |--------------------------|--------------- |
-|`AccountingController`    | accounting data json format |
-|`AuthController`       	| authenticate user  |
-|`ComposerController` 		| CRUD main services (like createDesktop, createApplication)|
-|`CoreController`			| get configuration and user message info |
-|`ManagerController` 		| manage service (like add an application, use by console servivce)  |
-|`UserController`			| retrieve user information |
+|`AccountingController`    | Accounting data in JSON format |
+|`AuthController`          | Authenticate users |
+|`ComposerController`      | CRUD operations for core services (e.g., `createDesktop`, `createApplication`) |
+|`CoreController`          | Retrieve configuration and user message information |
+|`ManagerController`       | Manage services (e.g., adding an application); used by the console service |
+|`UserController`          | Retrieve user information |
 
 
 ## Access Permission
@@ -38,21 +38,18 @@ controllers : {
 } 
 ```
 
-By default, `AccountingController` and `ManagerController` access are protected by `ip source` filters or by an `apikey`.
-The configuration permits private networks defined in [rfc1918](https://tools.ietf.org/html/rfc1918) and [rfc4193](https://tools.ietf.org/html/rfc4193). Get more information about the [private network](https://en.wikipedia.org/wiki/Private_network).
+By default, access to `AccountingController` and `ManagerController` is protected by IP source filters or by an `apikey`. The default configuration permits connections from private network ranges defined in [RFC 1918](https://tools.ietf.org/html/rfc1918) and [RFC 4193](https://tools.ietf.org/html/rfc4193). For more information, see [Private network](https://en.wikipedia.org/wiki/Private_network).
 
-By default, others controllers access is enabled, without any restriction.
+By default, all other controllers are accessible without restriction.
 
 ### Access control filter 
 
-The access control filter configuration is defined in a json dictionary.
-Each dictionary entry use the `controller` name and with entries `permitip` and/or `apikey`.
+The access control filter configuration is defined as a JSON dictionary. Each dictionary entry uses the controller name as its key and accepts the sub-entries `permitip` and/or `apikey`.
 
-- The `permitip` is a list of subnet, for example `[ '10.0.0.0/8', '172.16.0.0/12' ]`. If `permitip` is not set or if the `controller` is not defined, filtering features is disabled.
-- The `apikey` is a list of string, for example `[ 'fPCdPSSj8gZri1Ncmg', 'Z9pXCa2y6ccDeBBeeUc4' ]`.
-If `apikey`  is not set or the ```controller``` not defined, filtering features is disabled. The http header value is `X-API-Key`
+- The `permitip` value is a list of subnets, for example `[ '10.0.0.0/8', '172.16.0.0/12' ]`. If `permitip` is not set, or if the controller is not defined in the configuration, IP-based filtering is disabled.
+- The `apikey` value is a list of strings, for example `[ 'fPCdPSSj8gZri1Ncmg', 'Z9pXCa2y6ccDeBBeeUc4' ]`. If `apikey` is not set, or the controller is not defined, API key filtering is disabled. The HTTP header used to pass the key is `X-API-Key`.
 
-If the source ip address is denied, the response is a HTTP status is 403 `code 403 Forbidden`
+If the source IP address is denied, the HTTP response status is `403 Forbidden`:
 	
 ```json
 {"status": 403, "status_message": "403 Forbidden", "message": "Request forbidden -- authorization will not help"} 
@@ -132,14 +129,14 @@ The command returns
 
 ### Deal with console and `X-API-KEY`
 
-As we saw above, when an `apikey` is specified, the request sent to pyos requires the `X-API-KEY` header with the `apikey` string. But what about console ? When you try to connect to console, a popup will apear asking you to enter the `ManagerController apikey`. 
+As described above, when an `apikey` is configured, requests sent to pyos must include the `X-API-KEY` header containing the `apikey` string. When you connect to the console, a popup will appear prompting you to enter the `ManagerController apikey`.
 
 ![api-key-popup](./img/api-key-modal.png)
 
-If you try to close it whthout entering the `apikey` or entering a bad one. The popup will reapear utill you enter a good `apikey`. You will also see an error message on the top right corner.
+If you close the popup without entering a valid `apikey`, or if you enter an incorrect one, the popup will reappear until a correct `apikey` is provided. An error message is also displayed in the top-right corner.
 
 ![api-key-error](./img/api-key-error.png)
 
-Once a good `apikey` is set. It will be stored in your browser 's `LocalStorage` so you don't have to enter it again every time you connect to console.
+Once a valid `apikey` is entered, it is stored in your browser's `LocalStorage` so that you do not need to re-enter it each time you connect to the console.
 
 ![api-key-local-storage](./img/api-key-localstorage.png)

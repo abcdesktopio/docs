@@ -6,12 +6,12 @@
 - create an EKS `Amazon Elastic Kubernetes Service` and a VPC with a NAT gateway
 > You need a **NAT gateway** to pull images from your nodes to `ghcr.io` public registry. If your kubernetes nodes can't reach `ghcr.io`, you pod will stay in ImagePullBackOff.
 
-- Define the environnement variables `AWS_ACCESS_KEY_ID` `AWS_SECRET_ACCESS_KEY` `AWS_SESSION_TOKEN` You can retrieve credentials as often as needed from your AWS access portal. 
+- Define the environment variables `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_SESSION_TOKEN`. You can retrieve credentials as needed from your AWS access portal.
 
 
 ## EKS console overview
 
-This screenshot describes the Amazon Elastic Kubernetes Service console. It shows the `Cluster` and `Networking` informations.
+This screenshot describes the Amazon Elastic Kubernetes Service console. It shows the `Cluster` and `Networking` information.
 
 ![aws eks console overview](img/aws-eks-console.png)
 
@@ -22,7 +22,7 @@ This screenshot describes the Amazon Elastic Kubernetes Service console. It show
 aws sts get-caller-identity
 ```
 
-I'm using a `SandboxAdministratorAccess` but you can choose others  
+This example uses `SandboxAdministratorAccess`, but you can use any role with sufficient permissions.
 
 ``` bash
 $ aws sts get-caller-identity
@@ -35,7 +35,7 @@ $ aws sts get-caller-identity
 
 ## Find your cluster's name
 
-I use `eu-north-1` as my region value
+This example uses `eu-north-1` as the region value.
 
 ``` bash
 aws eks list-clusters --region eu-north-1
@@ -60,7 +60,7 @@ In this example
 aws eks update-kubeconfig --region eu-north-1 --name scrumptious-dance-potato
 ```
 
-Run a `kubectl` command line like `kubectl cluster-info` command line to make sure that kubeconfig is defined  
+Run a command such as `kubectl cluster-info` to verify that your kubeconfig is correctly configured.
 
 ``` bash
 kubectl cluster-info 
@@ -80,9 +80,9 @@ To get more details about the install process, please read the [Setup guide](htt
 
 ## Connect to your abcdesktop service 
 
-By default install script is listening on a free tcp port `:30443` and is using a `kubectl port-forward` command line to reach http web service `:80`
+By default, the install script exposes the service on a free TCP port `:30443` using a `kubectl port-forward` command to forward traffic to the HTTP service on port `:80`.
 
-Open your web browser `http://locahost:30443`
+Open your web browser and navigate to `http://localhost:30443`.
 
 ![abcdesktop login](../img/abcdesktop-hompage-port30443.png)
 
@@ -122,7 +122,7 @@ Go to `https://mylocation.org` website to check where your pod is running.
 
 ![abcdesktop for fry with applications](img/abcdesktop-firefox-aws-north-1.png)
 
-In my case for the region `north-1`, the desktop is located near `Stockholm` city in `Sweeden`.
+In this example, for the `eu-north-1` region, the desktop is located near `Stockholm` in `Sweden`.
 
 
 

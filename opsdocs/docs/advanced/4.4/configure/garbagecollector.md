@@ -2,21 +2,21 @@
 
 ## Garbage collector
 
-The garbage collector remove all user's pods not connected since more than expirein time in seconds.
-To call the garbage collector endpoint run a http request to `/API/manager/garbagecollector`. It takes the parameters `expirein` and `force`.
+The garbage collector removes all user pods that have not been connected for longer than the `expirein` duration (in seconds).
+To call the garbage collector endpoint, run an HTTP request to `/API/manager/garbagecollector`. It accepts the parameters `expirein` and `force`.
 
 - `expirein` is a value in seconds. This parameter is required.
 - `force` is a boolean value `true`, `false`. This parameter is optional. The default value is `False`. If `Force` is `True` the garbage collector doesn't check if the user if connected to his pod or not. 
-- `nodename` is the name of the node where the pod should be deleted. This parameter is optional. The default value is `None`, it means that the garbage collector runs on all nodes of the cluster without any restriction. The `nodename` parameter is usefull if you need to remove user`s pods on a node for a maintenance plan or a `drain kubectl` command.
+- `nodename` is the name of the node where the pod should be deleted. This parameter is optional. The default value is `None`, meaning the garbage collector runs on all nodes of the cluster without restriction. The `nodename` parameter is useful if you need to remove user pods on a specific node for a maintenance plan or a `kubectl drain` command.
 
-This endpoint return a JSON list of all delete pods.
+This endpoint returns a JSON list of all deleted pods.
 
 > Calling `/API/manager/garbagecollector?expirein=0&force=true` will disconnect all user's pods.
 
 
 ## Create a `cronjob`
 
-Create a `cronjob` to run the garbagecollector each five minutes :
+Create a `cronjob` to run the garbage collector every five minutes:
 
 - Create a yaml manifest file named `cronjob.yaml`
 
@@ -90,7 +90,7 @@ The time of the last login starts when the user logs in. abcdesktop calcs the du
 
 ## Apply your `cronjob`
 
-Run the `kubectl` command line to apply your manifest file in you namespace.
+Run the `kubectl` command to apply your manifest file in your namespace.
 
 ```
 kubectl apply -f cronjob.yaml -n abcdesktop
@@ -105,9 +105,9 @@ cronjob.batch/abcdesktop-cleaner configured
 
 ## Check the jobs status
 
-After few minutes, you can check the job status 
+After a few minutes, you can check the job status.
 
-Run the `kubectl` command line to get your jobs in you namespace.
+Run the `kubectl` command to list jobs in your namespace.
 
 
 ```
@@ -123,7 +123,7 @@ abcdesktop-cleaner-29350640   Complete   1/1           5s         8m56s
 abcdesktop-cleaner-29350645   Complete   1/1           5s         3m56s
 ```
 
-You can also get your pods in your namespace
+You can also list pods in your namespace:
 
 ```
 kubectl get pods -n abcdesktop
@@ -140,7 +140,6 @@ abcdesktop-cleaner-29350675-hlj8z   0/1     Completed   0          2m9s   10.0.2
 ```
 
 
-Great, you add a `garbagecollector` using a kubernetes `cronjob` in your namespace.
+You have successfully configured the `garbagecollector` as a Kubernetes `CronJob` in your namespace.
 
-Each five minutes the `garbagecollector` checks if desktop pod have to be deleted.
-The desktop pod is checked for deletion by the garbage collector every five minutes.
+Every five minutes, the garbage collector checks whether any desktop pods should be deleted.

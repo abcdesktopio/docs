@@ -1,31 +1,31 @@
-# Authentication rules configuration
+# Authentication Rules Configuration
 
-All authentication providers support rules configuration
+All authentication providers support rules configuration.
 
-A rule takes parameters and set a label to the user's pod and to the user's jwt.
+A rule takes parameters and sets labels on the user's pod and on the user's JWT token.
 
- - All labels are stored inside the JWT user token.
- - All labels are set to the user's pods
+- All labels are stored inside the JWT user token.
+- All labels are applied to the user's pods.
 
-The labels are use to define a container execution context, and next usage, like 
+Labels are used to define a container execution context for subsequent operations, such as:
 
-- allow an application only for members of a group
-- apply some network policies 
-
-
-## The rule object
-
-A rule is a dictionary object with :
-
-* a name (the entry of the rules)
-* one or more conditions
-* an expected boolean result `True` or `False`
-* a label to set if the conditions are equal to the expected boolean value
+- Allowing an application only to members of a specific group
+- Applying network policies
 
 
-Example :
+## The Rule Object
 
-To test if the user source IP address is equal to ```192.168.2.3/32```
+A rule is a dictionary object with:
+
+* A name (the key of the rule entry)
+* One or more conditions
+* An expected boolean result of `True` or `False`
+* A label to apply when the conditions evaluate to the expected boolean value
+
+
+**Example:**
+
+To test whether the user's source IP address equals `192.168.2.3/32`:
 
 ```json 
 'rule-home': { 
@@ -34,19 +34,18 @@ To test if the user source IP address is equal to ```192.168.2.3/32```
                          'label': 'allowipsource' }
 ```
 
-If the source IP address is equal to `192.168.2.3` then the pods gets then label `allowipsource`
+If the source IP address equals `192.168.2.3`, the pod receives the label `allowipsource`.
 
                                     
-### The conditions object
+### The Conditions Object
 
-The `conditions` are a list of condition. All conditions are always tested, as a logical `AND` operator.
-The result must be equal to the `expected` value.
+The `conditions` field is a list of individual condition objects. All conditions are always evaluated, functioning as a logical `AND` operator. The combined result must equal the `expected` value.
 
-####Examples:
+#### Examples
 
-####Example (`True` and `True`) expected `True`:
+#### Example: (`True` AND `True`) expected `True`
 
-To test if the user source ip address is in the subnet to `80.0.0.0/8` `and` is `memberOf` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
+To test whether the user's source IP address is in the subnet `80.0.0.0/8` **and** the user is a `memberOf` the LDAP group DN `cn=ship_crew,ou=people,dc=planetexpress,dc=com`:
 
 
 ```json 
@@ -59,11 +58,11 @@ To test if the user source ip address is in the subnet to `80.0.0.0/8` `and` is 
   'label': 'shipcrewandnet80' }
 ```
 
-This rule adds the labels 'shipcrewandnet80', if the 'expected' value is `True`
+This rule applies the label `shipcrewandnet80` when the `expected` value is `True`.
 
-####Example (`True` and `True`) expected `False`:
+#### Example: (`True` AND `True`) expected `False`
 
-To test if the user source IP address is `NOT` in the subnet to `80.0.0.0/8` `AND` is  `NOT` a `memberOf` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
+To test whether the user's source IP address is **NOT** in the subnet `80.0.0.0/8` **AND** the user is **NOT** a `memberOf` the LDAP group DN `cn=ship_crew,ou=people,dc=planetexpress,dc=com`:
 
 
 ```json 
@@ -76,13 +75,12 @@ To test if the user source IP address is `NOT` in the subnet to `80.0.0.0/8` `AN
    'label': 'noshipcrewandnet80' }
 ```
 
-Add the labels 'noshipcrewandnonet80', if the 'expected' value is `False`
+Applies the label `noshipcrewandnonet80` when the `expected` value is `False`.
 
 
+#### Example: (`True` AND `False`) expected `True`
 
-####Example (`True` and `False`) expected `True`:
-
-To test if the user source IP address is in the subnet to `80.0.0.0/8` `AND` is  `NOT` a `memberOf` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
+To test whether the user's source IP address is in the subnet `80.0.0.0/8` **AND** the user is **NOT** a `memberOf` the LDAP group DN `cn=ship_crew,ou=people,dc=planetexpress,dc=com`:
 
 
 ```json 
@@ -95,13 +93,12 @@ To test if the user source IP address is in the subnet to `80.0.0.0/8` `AND` is 
    'label': 'noshipcrewandnet80' }
 ```
 
-adds the labels 'noshipcrewandnet80', if the 'expected' value is `True`
+Applies the label `noshipcrewandnet80` when the `expected` value is `True`.
 
 
+#### Example: (`False` AND `True`) expected `True`
 
-####Example (`False` and `True`) expected `True`:
-
-To test if the user's source IP address is `NOT` in the subnet to `80.0.0.0/8` `AND` is a `memberOf` ldap group DN 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' 
+To test whether the user's source IP address is **NOT** in the subnet `80.0.0.0/8` **AND** the user is a `memberOf` the LDAP group DN `cn=ship_crew,ou=people,dc=planetexpress,dc=com`:
 
 
 ```json 
@@ -114,40 +111,38 @@ To test if the user's source IP address is `NOT` in the subnet to `80.0.0.0/8` `
   'label': 'shipcrewandnonet80' }
 ```
 
-Add the labels 'shipcrewandnonet80', if the 'expected' value is `True`
+Applies the label `shipcrewandnonet80` when the `expected` value is `True`.
 
 
 
 
-### The condition value
+### Condition Value Reference
 
 
-| name              | description                 | example          |
+| Name              | Description                 | Example          |
 |-------------------|-----------------------------|------------------|
-| `boolean`         | always true or false        | `'boolean' : 'true'` |
-| `existhttpheader` | test if a http header exists | |
-| `httpheader`      | test a HTTP header value is equal to   | `'httpheader': { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36' }`  |
-|  `memberOf`       | test if the LDAP user object is member of group      | `'memberOf': [ 'cn=ship_crew,ou=people,dc=planetexpress,dc=com']`  |
-| `network`         | test if the client user IP Address is in a network subnet      | `'network': [ '1.2.3.4/24']` |
-| `network-x-forwarded-for` | read the `X-Forwarded-For` http attribut, then test if it is in a network subnet | |
-| `network-x-real-ip` | read the `X-Real-IP` http attribut, then test if it is in a network subnet | |
-| `attribut`        | test a HTTP header value is equal to   | `'httpheader': { 'User-Agent': 'Mozilla/5.0`
-| `primarygroupid`  | test if the LDAP user object has a attibute primaryGroupID and is equal to value    | `'primarygroupid': '513'` |
-| `asnumber`        | test if a source IP address is in an AS number  | `'asnumber': [ '3215', '12807']` |
-| `geolocation`     | test if a user is geolocalised in a particular region. The geolocation's data comes from the web browser, this can be spoofed | `'geolocation': {'accuracy': 14.884, 'latitude': 48.8555131, 'longitude': 2.3752174 }` | 
+| `boolean`         | Always evaluates to true or false | `'boolean' : 'true'` |
+| `existhttpheader` | Tests whether an HTTP header exists | |
+| `httpheader`      | Tests whether an HTTP header value equals a given string | `'httpheader': { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36' }`  |
+|  `memberOf`       | Tests whether the LDAP user object is a member of a group | `'memberOf': [ 'cn=ship_crew,ou=people,dc=planetexpress,dc=com']`  |
+| `network`         | Tests whether the client IP address falls within a network subnet | `'network': [ '1.2.3.4/24']` |
+| `network-x-forwarded-for` | Reads the `X-Forwarded-For` HTTP attribute, then tests whether the value falls within a network subnet | |
+| `network-x-real-ip` | Reads the `X-Real-IP` HTTP attribute, then tests whether the value falls within a network subnet | |
+| `attribut`        | Tests whether an HTTP header value equals a given string | `'httpheader': { 'User-Agent': 'Mozilla/5.0`
+| `primarygroupid`  | Tests whether the LDAP user object has a `primaryGroupID` attribute equal to a specified value | `'primarygroupid': '513'` |
+| `asnumber`        | Tests whether the source IP address belongs to a given BGP AS number | `'asnumber': [ '3215', '12807']` |
+| `geolocation`     | Tests whether the user is geolocated in a specific region. Geolocation data comes from the web browser and can be spoofed | `'geolocation': {'accuracy': 14.884, 'latitude': 48.8555131, 'longitude': 2.3752174 }` |
 
 
+#### Condition: `boolean`
 
-#### condition boolean
-
-This condition is a dummy condition.  
-The usage forces a label or to disable a test.
+This is a trivial condition used to unconditionally force a label or to disable a test entirely.
 
 ```
 'boolean': boolean
 ```
 
-The common usage is 
+A common usage pattern is to always evaluate to `True`:
 
 ```json
 'rule-dummy': {
@@ -156,7 +151,7 @@ The common usage is
   'label': 'dummy' }
 ```
 
-or always `False`
+Or to always evaluate to `False`:
 
 
 ```json
@@ -167,16 +162,15 @@ or always `False`
 ```
 
  
-#### condition httpheader 
+#### Condition: `httpheader`
 
-
-This condition is test if a HTTP Header value is equal to a string. 
+This condition tests whether an HTTP header value equals a specific string.
 
 ```
 'httpheader': dict
 ```
 
-example : if the 'User-Agent' is equal to `'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36' then add the label 'chromemaxosx112'`
+Example: if the `User-Agent` header equals `Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36`, apply the label `chromemaxosx112`:
 
 ```json
 'rule-httpheader': { 
@@ -186,23 +180,23 @@ example : if the 'User-Agent' is equal to `'Mozilla/5.0 (Macintosh; Intel Mac OS
 ```
 
 
-#### condition network
+#### Condition: `network`
 
-This condition is test if the client source ip address is in a subnet. IPv4 and IPv6 are supported.
+This condition tests whether the client's source IP address falls within a given subnet. Both IPv4 and IPv6 are supported.
 
 ```
 'network': string or list of string, each string must be a subnet ipv4 or ipv6
 ```
 
-To read the source IP adress, the service tries to read in order 
+To determine the source IP address, the service reads the following headers in order:
 
-- `X-Forwarded-For` http header
-- `X-Real-IP` http header
-- `remoteip` the read socket IP source
+- `X-Forwarded-For` HTTP header
+- `X-Real-IP` HTTP header
+- `remoteip` — the raw socket IP source
 
-For example
+**Examples:**
 
-To test if the user source IP address is equal to `8.8.8.1/32`
+To test whether the user's source IP address equals `8.8.8.1/32`:
 
 ```json 
 'rule-home': { 
@@ -211,7 +205,7 @@ To test if the user source IP address is equal to `8.8.8.1/32`
     'label': 'homeipsource' }
 ```
 
-To test if the user source IP address is in the subnet `10.0.0.0/8`
+To test whether the user's source IP address is in the subnet `10.0.0.0/8`:
 
 ```json 
 'rule-localnet': { 
@@ -221,7 +215,7 @@ To test if the user source IP address is in the subnet `10.0.0.0/8`
 ```
 
 
-To test if the user source IP address is NOT in the subnet `192.168.0.0/24`
+To test whether the user's source IP address is NOT in the subnet `192.168.0.0/24`:
 
 ```json 
 'rule-localnet': { 
@@ -230,7 +224,7 @@ To test if the user source IP address is NOT in the subnet `192.168.0.0/24`
   'label': 'no192168net' }
 ```
 
-same as 
+Which is equivalent to:
 
 ```json 
 'rule-localnet': { 
@@ -240,10 +234,9 @@ same as
 ```
 
 
-##### IPv4 and IPv6 subnets support
+##### IPv4 and IPv6 Subnet Support
 
-To support private ip addresses subnet in the [rfc 1918](https://tools.ietf.org/html/rfc1918) and [rfc 3927](https://tools.ietf.org/html/rfc3927), write separated rules. Both IPv4 and IPv6 addresses are supported. 
-You can share the same label `privatenetwork` a separated rule. 
+To cover private IP address ranges defined in [RFC 1918](https://tools.ietf.org/html/rfc1918) and [RFC 3927](https://tools.ietf.org/html/rfc3927), define separate rules for each subnet. Both IPv4 and IPv6 addresses are supported. Multiple rules can assign the same label, such as `privatenetwork`.
 
 ```json
 'policies': {
@@ -266,9 +259,9 @@ You can share the same label `privatenetwork` a separated rule.
 		  								'label': 'privatenetwork' } } }
 ```
 
-> Multiple rules can set the same label
+> Multiple rules can set the same label.
 
-You can write the previous rules in one simplest rule
+The above rules can be simplified into a single rule using a list of subnets:
 
 ```json
 'policies': {
@@ -281,9 +274,9 @@ You can write the previous rules in one simplest rule
 ```
 
  	
-#### condition memberof
+#### Condition: `memberof`
 
-This condition test if the user is a member of a LDAP `Distinguished Name`. 
+This condition tests whether the user is a member of an LDAP Distinguished Name.
 
 ```json
 'memberOf': string
@@ -299,16 +292,15 @@ This condition test if the user is a member of a LDAP `Distinguished Name`.
 
 
 
-#### condition primarygroupid
+#### Condition: `primarygroupid`
 
-This test is only used with Microsoft Active Directory.
-`primarygroupid` test if the user attibute primaryGroupID is equal to a string.
+This condition is used exclusively with Microsoft Active Directory. It tests whether the user's `primaryGroupID` attribute equals a specified string value.
 
 ```json
 'primarygroupid': string
 ```
 
-To check is a user is memberof a `DOMAIN\USER` the primary group id is `513`
+To verify that a user is a member of the `DOMAIN\Domain Users` group, the primary group ID is `513`:
 
 ```json 
 'rule-domainuser': {
@@ -318,7 +310,7 @@ To check is a user is memberof a `DOMAIN\USER` the primary group id is `513`
 }
 ```
 
-However, if the user needed to be seen as a ```Domain Admin for POSIX```, the ```PrimaryGroupID``` is ```512```, the RID for that group. 
+If the user must be identified as a `Domain Admin for POSIX`, the `PrimaryGroupID` is `512`, which is the RID for that group:
 
 
 ```json 
@@ -329,7 +321,7 @@ However, if the user needed to be seen as a ```Domain Admin for POSIX```, the ``
 }
 ```
 
-The ```Enterprise Admins group```, ```519```, is also used to grant this level in POSIX.
+The `Enterprise Admins` group uses the ID `519` and is also used to grant this level of access in POSIX environments:
 
 ```json 
 'rule-enterpriseadmin': {
@@ -339,9 +331,9 @@ The ```Enterprise Admins group```, ```519```, is also used to grant this level i
 }
 ```
 
-#### condition `asnumber`
+#### Condition: `asnumber`
 
-BGP public AS numbers are globally unique identifiers assigned by IANA for routing on the Internet, ranging from 1-64495 (16-bit) and extended to 32-bit for more availability. The public AS numbers have to be unique on the Internet and BGP uses the AS number for its loop prevention mechanism.
+BGP public AS numbers are globally unique identifiers assigned by IANA for Internet routing, ranging from 1 to 64495 (16-bit) and extended to 32-bit for greater availability. Public AS numbers must be unique on the Internet, and BGP uses the AS number as its loop-prevention mechanism.
 
 ```
 'rule-asnumber' : {
@@ -351,5 +343,4 @@ BGP public AS numbers are globally unique identifiers assigned by IANA for routi
 }
 ```
 
-The source IP adress is in the AS number `3215` then the label `orangenetwork` is set.
-You can build filter for your own AS to allow or denied access.
+If the source IP address belongs to AS number `3215`, the label `orangenetwork` is applied. You can build filters for your own AS number to allow or deny access.

@@ -12,13 +12,13 @@ tags:
 ## Apply the default `netpol-default-{{ abcdesktop.latest_release }}.yaml` file
 
 
-To apply the network policies run the command :
+To apply the network policies, run the following command:
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-{{ abcdesktop.latest_release }}.yaml -n abcdesktop
 ```
 
-The command returns 
+The command returns:
 
 ```
 networkpolicy.networking.k8s.io/abcdesktop-rights created
@@ -60,7 +60,7 @@ networkpolicy.networking.k8s.io/graylog-permits created
 curl http://pyos.abcdesktop.svc.cluster.local:8000/API/manager/images
 ```
 
-This http request is denied by the network policy and you should get an error message 
+This HTTP request is denied by the network policy and you should receive an error message:
 
 ```
 curl: (28) Failed to connect to pyos.abcdesktop.svc.cluster.local port 8000 after 130290 ms: Couldn't connect to server
@@ -69,4 +69,4 @@ curl: (28) Failed to connect to pyos.abcdesktop.svc.cluster.local port 8000 afte
 
 ![http request is denied](../../../img/netpol.denied.http.png)
 
-You should get an error message, the user's pod can't reach `https://pyos.abcdesktop.svc.cluster.local:8000/API`.
+You should receive an error message indicating that the user's pod cannot reach `https://pyos.abcdesktop.svc.cluster.local:8000/API`.

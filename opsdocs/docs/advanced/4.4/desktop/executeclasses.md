@@ -1,8 +1,6 @@
 # executeclasses 
 
-The executeclasses defines the resources for the desktop pods and for applications.
-`executeclasses` defines how to adjust the resources for your pods either by creating rules or by allowing your users to select from the resources already defined.
-The executeclasses is a dictionary, each entry describes the resources.
+The `executeclasses` configuration defines resource profiles for desktop pods and application containers. It allows you to control resource allocation either by defining static rules or by letting users select from a predefined set of profiles. The `executeclasses` value is a dictionary; each entry describes a resource profile.
 
 
 ## `executeclasses` dictionary
@@ -62,27 +60,25 @@ executeclasses : {
   }}
 ```
   
-The entry `'default'` must exist.
+The `'default'` entry is mandatory and must always be present.
 
 
 
 | key                | type    | Description  | Values | 
 |--------------------|---------|--------------|--------|
-| containers         | dict    | update the container with dict values | `{ 'graphical': { 'resources': { 'limits': { 'nvidia.com/gpu':'1' } } } }` |
-| nodeSelector       | dict    | update the nodeSelector with dict values  | `{'nvidia.com/gpu': 'true'}` |
-| description        | string  | show description in the login page|  'platinum: 8 CPU cores, 128G RAM and 1 GPU' |
-| runtimeClassName.  | string  | (optional) name of the runtime class | `nvidia` |
-| resources          | dict    | pods resources | `{ 'requests' {'memory':"4Gi",'cpu':"4000m"}, 'limits':{'memory':"128Gi",'cpu':"8000m"} }` |
+| containers         | dict    | Merge additional per-container configuration (e.g., resource limits) | `{ 'graphical': { 'resources': { 'limits': { 'nvidia.com/gpu':'1' } } } }` |
+| nodeSelector       | dict    | Merge additional node selector constraints | `{'nvidia.com/gpu': 'true'}` |
+| description        | string  | Display text shown on the login page | `'platinum: 8 CPU cores, 128G RAM and 1 GPU'` |
+| runtimeClassName   | string  | (Optional) Name of the Kubernetes runtime class | `nvidia` |
+| resources          | dict    | Pod resource requests and limits | `{ 'requests': {'memory':"4Gi",'cpu':"4000m"}, 'limits':{'memory':"128Gi",'cpu':"8000m"} }` |
 
 
 
 ## Define the `executeclassname` value
 
-The `executeclassname` variable  is an entry in the `executeclasses` dictionary. It defines the `resources`, `nodeSelector` and `runtimeClassName` of a user's pod.
-The `executeclassname` value is set during the auth process.
+The `executeclassname` variable is an entry key in the `executeclasses` dictionary. It determines the `resources`, `nodeSelector`, and `runtimeClassName` applied to a user's pod. The `executeclassname` value is resolved during the authentication process.
 
-By himself, a user can to choose the `executeclassname` value from a list, or set the `executeclassname` value using rules. 
-If the `executeclassname` is not set the `executeclassname` is set to the string `default` and the executeclasses is set to `executeclasses['default']`.
+A user can choose the `executeclassname` value from a predefined list, or it can be assigned automatically via rules. If `executeclassname` is not set, it defaults to the string `'default'`, and the corresponding entry `executeclasses['default']` is used.
 
 
 ### Set `executeclassname` by rules
@@ -98,8 +94,7 @@ Update your `od.config` file to add a new rule. The `label` of the rule must be 
     },
 ```
 
-If the user is 'memberOf' the group 'cn=ship_crew,ou=people,dc=planetexpress,dc=com' when the label `executeclassname` is set to the value `silver`
-A full example of the ldapconfig becomes like this one.
+If the user is a member of the group `cn=ship_crew,ou=people,dc=planetexpress,dc=com`, the label `executeclassname` is set to the value `silver`. A complete example of the `ldapconfig` is shown below.
 
 ```
 ldapconfig : {
@@ -138,14 +133,13 @@ ldapconfig : {
             } } }
 ```
 
-- Save your new `od.config` file and reload your abcdesktop config 
+- Save the updated `od.config` file and reload the abcdesktop configuration.
 
 ```
 
 ```
 
-Go to the abcdesktop url service, and choose a user member of `ship_crew`. 
-`Philip J. Fry` is member of `ship_crew`.
+Navigate to the abcdesktop service URL and sign in as a user who is a member of `ship_crew`. `Philip J. Fry` is a member of `ship_crew`.
 
 ![login rules sylver](img/login-rules-userinfo-silver.png)
 
@@ -167,7 +161,7 @@ NAME             READY   STATUS    RESTARTS   AGE
 fry-f7c42        4/4     Running   0          7s
 ```
 
-Read the user's pod `fry-f7c42` description, replace `POD_NAME` with your own pod.
+Inspect the user pod named `fry-f7c42`; replace `POD_NAME` with your actual pod name.
 
 ```
 NAMESPACE=abcdesktop
@@ -175,7 +169,7 @@ POD_NAME=fry-f7c42
 kubectl describe pods $POD_NAME -n $NAMESPACE
 ```
 
-A label `executeclassname` is set to the user's pod
+A label `executeclassname` is applied to the user's pod:
 
 ```
 Labels:           abcdesktop/role=desktop
@@ -187,7 +181,7 @@ Labels:           abcdesktop/role=desktop
                   ...
 ```
 
-The resources limits and requests are set from the `silver` executeclass.
+The resource limits and requests are derived from the `silver` execute class.
 
 ```
 Resources:
@@ -271,7 +265,7 @@ The current user chooses `silver`.
 
 - List the labels of the user's pod.
 
-A label `executeclassname` is set to the user's pod
+A label `executeclassname` is applied to the user's pod:
 
 ```
 Labels:           abcdesktop/role=desktop
@@ -283,7 +277,7 @@ Labels:           abcdesktop/role=desktop
                   ...
 ```
 
-The resources limits and requests are set from the `silver` executeclass.
+The resource limits and requests are derived from the `silver` execute class.
 
 ```
 Resources:

@@ -1,14 +1,13 @@
+# Authentication `explicit` for LDAP Directory Services
 
-# Authentification ```explicit``` for LDAP Directory Services
+## authmanagers `explicit` Object
 
-## authmanagers ```explicit``` object
+The `explicit` authentication provider uses a directory service. The LDAP bind operation authenticates clients to the directory server and establishes an authorization identity that is used for all subsequent operations on that connection.
 
-```explicit``` authentification use a directory service. The bind operation is used to authenticate clients to the directory server, to establish an authorization identity that will be used for subsequent operations processed on that connection.
-
-The ```explicit``` authentification configuration is defined as a dictionnary object and contains an ```explicit``` provider. 
+The `explicit` authentication configuration is defined as a dictionary object and contains an `explicit` provider.
 
 
-For example :
+For example:
 
 ```
 authmanagers: {
@@ -41,25 +40,25 @@ authmanagers: {
        }}}}
 ```
 
-In this example, `ldapconfig` dict must have a key `LDAP`
+In this example, the `ldapconfig` dictionary must contain the key `LDAP`.
 
 | Variable name      | Type     | Description   |
 |--------------------|----------|-------------|
-|  `show_domains`   | boolean   | Permit the domain name to be listed in API getclientdata, the default value is False |
-|  `default_domain` | string    | not used by ldap, only used by Active Directory  | 
-|  `providers`      | dictionnary | `{ 'LDAP': {  'config_ref': 'ldapconfig',  'enabled': True  }}` |
+|  `show_domains`   | boolean   | Controls whether the domain name is listed in the API `getclientdata` response. The default value is `False`. |
+|  `default_domain` | string    | Not used by LDAP; only used by Active Directory. | 
+|  `providers`      | dictionary | `{ 'LDAP': {  'config_ref': 'ldapconfig',  'enabled': True  }}` |
 
 
-### providers configuration
+### Providers Configuration
 
-The ```provider``` authentification configuration is defined as a dictionary object and must contain a key name.
-The key name must be set with the same value in providers configuration and ```config_ref```.
+The `provider` authentication configuration is defined as a dictionary object and must contain a key name.
+The key name must match the value used in both the providers configuration and the `config_ref` field.
 
 
 
-Providers :
+Providers:
 
-The provider is formated as a dictionary 
+The provider is formatted as a dictionary:
 
  ```
  { 
@@ -73,13 +72,13 @@ The provider is formated as a dictionary
 
 | Variable name      | Type   | Description   |
 |--------------------|--------- |-------------|
-| config_ref         | string   |  For increased legibility, the ```USERDOMAIN``` configuration is defined in a dedicated dictionnary used the key:value ```'config_ref': 'adconfig'```, where ```key``` is ```config_ref``` and ```value``` is the dictionnay variable name.           |
-| enable             | boolean  | enable or disable the domain entry            |
+| config_ref         | string   | For increased readability, the domain configuration is defined in a dedicated dictionary using the key-value pair `'config_ref': 'ldapconfig'`, where the key is `config_ref` and the value is the name of the dictionary variable. |
+| enable             | boolean  | Enables or disables the domain entry. |
 
 
-The ldapconfig is a dictionnary. 
+The `ldapconfig` is a dictionary.
 
-For example :
+For example:
 
 ```json
 ldapconfig: {
@@ -91,49 +90,49 @@ ldapconfig: {
     'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' }}}}
 ```
 
-## ldap configuration reference 
+## LDAP Configuration Reference
 
 
 
 | Variable name        | Type		       | Description                        | Example  |
 |----------------------|----------------|------------------------------------|----------|
-|  `default`           | boolean        | Use this domain as default domain  | True     |
-|  `basedn`            | string         | LDAP Base Distinguished Names      | `ou=people,dc=planetexpress,dc=com` |
-|  `servers`           | list of string | list of LDAP servers (IP address or FQDN), if entry does not respond, the next one is used.       | `[ 'ldap://192.168.1.12', 'ldaps://myldap.domain.org:636' ]` IP  Address or FQDN values |
-|  `scope`			| LDAP           | Perform an LDAP search operation, with base as the DN of the entry at which to start the search, `scope` being one of `SCOPE_BASE` (to search the object itself), `SCOPE_ONELEVEL` (to search the object’s immediate children), or `SCOPE_SUBTREE` (to search the object and all its descendants). | `SCOPE_SUBTREE` |
-| `auth_type`          | string         | ldap authentication can be `'ANONYMOUS'`, `'SIMPLE'`, `'KERBEROS'`, `'NTLM'` | `'SIMPLE'` | 
-| `kerberos_realm`     | string         | optional realm for kerberos       | `REALM.MYDOMAIN.COM` | 
-| `domain`             | string         | name of the domain ONLY to perform NTLM auth | `DOMAIN` |
-| `ldap_connect_timeout` | integer      | ldap connect timeout in second, the default value is `None` | 3 |
-|  `exec_timeout`      | integer        | execute time out in seconds, to obtain ntlm_auth credentials, or cntlm auth credentials. The exec timeout is used to run external command line.  | 10 |
-|  `users_ou`		     	| string          | Users Organisation Unit | `ou=people,dc=planetexpress,dc=com` |
-|  `attrs`			      | list            | list of default attributs to read in user object. read the [Definition of the inetOrgPerson LDAP Object Class ](https://tools.ietf.org/html/rfc2798) | the default value is `['objectClass', 'cn', 'sn', 'description', 'givenName', 'jpegPhoto', 'mail', 'ou', 'title', 'uid', 'distinguishedName', 'displayName']` |
-|  `filter`        | string             | LDAP filter to find user object  | `(&(objectClass=inetOrgPerson)(cn=%s))` |
-|  `group_filter`  | string             | LDAP filter to find group object | `(&(objectClass=Group)(cn=%s))` |
-|  `group_attrs`  | string              | LDAP filter to find attributs group object | `(&(objectClass=Group)(cn=%s))` |
-| `memberof_attribut_name`| string      | name of the attribut for group `'memberOf'`or `'groups'` | `'groups'` |
-| `kerberos_krb5_conf` | string         | name of the kerberos config file | `/etc/krb5.conf` | 
-| `reduce_roles_for_jwt`| string or None | define the role in user's JWT | `'cn'`, `'raw'` or `None` |   
+|  `default`           | boolean        | Use this domain as the default domain | True     |
+|  `basedn`            | string         | LDAP Base Distinguished Name       | `ou=people,dc=planetexpress,dc=com` |
+|  `servers`           | list of string | List of LDAP server addresses (IP address or FQDN). If a server does not respond, the next one in the list is tried. | `[ 'ldap://192.168.1.12', 'ldaps://myldap.domain.org:636' ]` |
+|  `scope`			| LDAP           | Defines the scope of the LDAP search operation. `base` is the DN of the entry at which to start the search, and `scope` is one of `SCOPE_BASE` (search the object itself), `SCOPE_ONELEVEL` (search the object's immediate children), or `SCOPE_SUBTREE` (search the object and all its descendants). | `SCOPE_SUBTREE` |
+| `auth_type`          | string         | LDAP authentication type. Supported values are `'ANONYMOUS'`, `'SIMPLE'`, `'KERBEROS'`, and `'NTLM'`. | `'SIMPLE'` | 
+| `kerberos_realm`     | string         | Optional Kerberos realm name       | `REALM.MYDOMAIN.COM` | 
+| `domain`             | string         | Domain name used exclusively for NTLM authentication | `DOMAIN` |
+| `ldap_connect_timeout` | integer      | LDAP connection timeout in seconds. The default value is `None`. | 3 |
+|  `exec_timeout`      | integer        | Execution timeout in seconds for obtaining NTLM or CNTLM credentials. This timeout applies when running external command-line tools.  | 10 |
+|  `users_ou`		     	| string          | Users Organization Unit | `ou=people,dc=planetexpress,dc=com` |
+|  `attrs`			      | list            | List of default attributes to read from the user object. See the [inetOrgPerson LDAP Object Class definition](https://tools.ietf.org/html/rfc2798). | Default: `['objectClass', 'cn', 'sn', 'description', 'givenName', 'jpegPhoto', 'mail', 'ou', 'title', 'uid', 'distinguishedName', 'displayName']` |
+|  `filter`        | string             | LDAP filter used to locate the user object  | `(&(objectClass=inetOrgPerson)(cn=%s))` |
+|  `group_filter`  | string             | LDAP filter used to locate group objects | `(&(objectClass=Group)(cn=%s))` |
+|  `group_attrs`  | string              | LDAP filter used to locate group object attributes | `(&(objectClass=Group)(cn=%s))` |
+| `memberof_attribut_name`| string      | Name of the attribute used for group membership: `'memberOf'` or `'groups'` | `'groups'` |
+| `kerberos_krb5_conf` | string         | Path to the Kerberos configuration file | `/etc/krb5.conf` | 
+| `reduce_roles_for_jwt`| string or None | Defines the role representation in the user's JWT | `'cn'`, `'raw'` or `None` |   
 
 
-## The LDAP structure of openldap for testing 
+## OpenLDAP Test Structure
 
-The authmanagers ```explicit``` is enabled. The Web home page insert the new input values ```Login``` and ```Password``` to authenticate this user.
+When the `explicit` authentication manager is enabled, the web home page displays `Login` and `Password` input fields to authenticate users.
 
 ![auth-provider-explicit](img/auth-provider-explicit-ldap.png)
 
 ### BaseDN
-The ```basedn``` is ```dc=planetexpress,dc=com```
+The `basedn` is `dc=planetexpress,dc=com`.
 
-### admin account
-The admin account is described as
+### Admin Account
+The admin account is defined as:
 
 | Admin            | Secret           |
 | ---------------- | ---------------- |
 | cn=admin,dc=planetexpress,dc=com | GoodNewsEveryone |
 
-### OU Users
-* The User Orgnanistation Unit is ```ou=people,dc=planetexpress,dc=com```
+### Users OU
+* The Users Organization Unit is `ou=people,dc=planetexpress,dc=com`.
 
 ### Users
 
@@ -249,13 +248,13 @@ The admin account is described as
 | member           | cn=Bender Bending Rodríguez,ou=people,dc=planetexpress,dc=com |
 
 
-## Insert the user credentials
+## Entering User Credentials
 
-Start your web browser and open the URL ```http://localhost```
+Start your web browser and open the URL `http://localhost`.
 
-The Web home page contains the new input values ```Login``` and ```Password``` to authenticate this user.
+The web home page displays `Login` and `Password` input fields to authenticate users.
 
-You can use for example on user of the list above.
+You can use any user from the list above. For example:
 
 | Credentials        | Value            |
 | ---------------- | ---------------- |
@@ -264,37 +263,35 @@ You can use for example on user of the list above.
 
 ![auth-provider-explicit](img/auth-provider-explicit-ldap.png)
 
-Insert the login credentials :
+Enter the login credentials:
 
-```Turanga Leela``` as login and ```leela``` as password, then click on the ```Sign in``` button.
+`Turanga Leela` as the login and `leela` as the password, then click the `Sign in` button.
 
 ![auth-provider-explicit-ldap-login-user-done](img/auth-provider-explicit-ldap-login-user-done.png)
 
-Look at the top of the sreen. The user name is ```Turanga Leela```: 
+The user name `Turanga Leela` is displayed at the top of the screen:
 ![auth-provider-explicit-ldap-login-user-turanga](img/auth-provider-explicit-ldap-login-user-turanga.png)
 
 
 
 
-## Applications remainted
+## Session Persistence
 
-Start LibreOffice Writer, and start a new file for your instructor. 
-Type few words for example :
+Start LibreOffice Writer and create a new document. Type a few words, for example:
 
 ```
 I like this amazing project abcdesktop.io
 ```
 
-Do not save your file and just close your web browser.
+Do not save the file. Simply close your web browser.
 
 
-Start your web browser again, and open the previous URL, then log in with the same account: ```Turanga Leela``` as login and ```leela``` as password, click on the ```Sign in``` button.
+Reopen your web browser, navigate to the same URL, and log in again with the same credentials: `Turanga Leela` as the login and `leela` as the password. Click the `Sign in` button.
 
-The application LibreOffice Writer is still running and the greeting message ```I like this amazing project abcdesktop.io```
+LibreOffice Writer is still running, and the text `I like this amazing project abcdesktop.io` is still present.
 
 ![session remained](img/auth_provider_ldap_session_remained.png)
 
-> All applications are maintained. 
+> All applications are preserved across sessions.
 
-Great, you have check how the explicit Authentification configuration works, install an openldap directory service, and check that all sessions are maintained. 
-
+You have successfully verified how the explicit authentication configuration works, deployed an OpenLDAP directory service, and confirmed that all user sessions are maintained.

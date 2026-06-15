@@ -14,12 +14,12 @@
 
 ## Overview
 
-In this chapter we are going to, use a `loadBalancer` to host your abcdesktop service with a public IP Address, then configure dns zone file to use your domain name, and activate TLS to secure your service.
+In this chapter, we will use a `loadBalancer` to host your abcdesktop service with a public IP address, then configure the DNS zone file to use your domain name, and enable TLS to secure your service.
  
 
 ## Add tags for public subnets
 
-By default, when creating your VPC, the public subnets does not have the `kubernetes.io/role/elb=1` tag, but this tag is mandatory in order to expose our service using a load balancer with AWS. Actually, AWS scans your VPC, searching for the subnets with this percise tag to place the load balancers.  
+By default, when creating your VPC, the public subnets do not have the `kubernetes.io/role/elb=1` tag. However, this tag is mandatory in order to expose your service using a load balancer with AWS. AWS scans your VPC, searching for subnets with this precise tag to place the load balancers.  
 
 To do so, run the following command
 
@@ -128,18 +128,18 @@ You can open a web browser to reach your abcdesktop service with the given URL
 ![web browser to reach your abcdesktop service](img/loadbalancer-connect.png)
 
 
-Web browser doesn't allow usage of websocket without secure protocol. To login you need `https` protocol
+Web browser doesn't allow usage of websocket without a secure protocol. To log in, you need to use `https` protocol. 
 
 
 ## Update your DNS zone file 
 
 
-We will use a `FQDN` (Fully Qualified Domain Name) to replace the `IP Address`.
+We will use a `FQDN` (Fully Qualified Domain Name) to replace the IP address.
 
 
 ![aws networking](img/aws-networking.png)
 
-This screenshot describes the AWS network console Route 53. It shows the `Domain` informations, but your can manage your zone file from your own registrar.
+This screenshot describes the AWS network console Route 53. It shows the `Domain` information. You can also manage your zone file from your own registrar.
 
 ### Create new record
 
@@ -220,7 +220,7 @@ You should read something like this
 }
 ```
 
-If you go to your Route 53 web console, you should see the record you juste added
+If you go to your Route 53 web console, you should see the record you just added
 
 ![aws record added](img/record-added.png)
 
@@ -229,17 +229,17 @@ From your local device, you can open a web browser
 ![reach your website from your new name](img/http-dns-connect.png)
 
 
-Web browser doesn't allow usage of websocket without secure protocol. To login you need `https` protocol.
+Web browser doesn't allow usage of websocket without a secure protocol. To log in, you need to use `https` protocol.
 
-As you can see, your website is `Not Secured`, we are going to add X509 SSL certificate to secure your service.
+As you can see, your website is `Not Secured`. We are going to add an X.509 SSL certificate to secure your service.
 
 
 
-## Obtain a certificat 
+## Obtain a Certificate
 
-If you already have a X509 certificat with a private and public certified key files for your web site, you can skip this chapter.
+If you already have an X.509 certificate with private and public key files for your website, you can skip this section.
 
-To create you SSL certificat, we are using let's encrypt service. You need your new hostname and your email address
+To create an SSL certificate, this guide uses the Let's Encrypt service. You will need your hostname and your email address.
 
 Define the new variables `ABCDESKTOP_PUBLIC_FQDN` and `USER_EMAIL_ADDRESS` 
 
@@ -291,7 +291,7 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
 ```
 
 
-## Create a secret for X509 certificat
+## Create a Secret for the X.509 Certificate
 
 
 Create a secret named `http-router-certificat` with the `fullchain.pem` and `privkey.pem` file content
@@ -300,7 +300,7 @@ Create a secret named `http-router-certificat` with the `fullchain.pem` and `pri
 kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=privkey.pem -n abcdesktop 
 ```
 
-You secret is created 
+Your secret is created
 
 ```
 secret/http-router-certificat created
@@ -350,7 +350,7 @@ For example
      ssl_certificate_key /etc/nginx/ssl/tls.key;
 ```
 
-Apply your new nginx confguration file
+Apply your new nginx configuration file
 
 ```
 kubectl apply -f abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml -n abcdesktop
@@ -358,7 +358,7 @@ kubectl apply -f abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yam
  
 ## Update `deployment` http-router
  
-Update the `deployment` route to add certificat ssl entry
+Update the `deployment` route to add the SSL certificate entry
 
 The `abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml` file  adds `mountPath: /etc/nginx/ssl` to `secretName: http-router-certificat`
 
@@ -368,14 +368,11 @@ kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/
 
 ## Reach your website using `https` protocol 
 
-You can now connect to your abcdesktop desktop pulic web site using `https` protocol. 
+You can now connect to your public abcdesktop website using `https` protocol.
 
 ![reach your website using https](img/https-dns-connect.png)
 
 
-The status is secured and we get some informations from the certificate
-
-
-![certificate infos](img/certificate-ok.png)
+The status is secured and we get some information from the certificate
  
  

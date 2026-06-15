@@ -5,25 +5,25 @@ tags:
 
 # Build a sample xedit with icon from scratch
 
-Goal: Add an application `xedit`.
+Goal: Build and register a new X11 application container (`xedit`) with a custom icon in an abcdesktop.io instance.
 
 
 ## Requirements
 
 You need to have:
 
-- kubernetes cluster ready to run whith abcdesktop.io installed.
-- `kubectl` or `microk8s` command-line tool must be configured to communicate with your cluster.
-- `docker` command line must be installed too.
-- your own public or private container registry.
+- A Kubernetes cluster with abcdesktop.io installed and running.
+- `kubectl` or `microk8s` configured to communicate with your cluster.
+- `docker` command-line tool installed.
+- Your own public or private container registry.
 
 
 ## Create a simple application `xedit`
 
 
-To illustrate a simple application, we will install `X11/xedit` inside a container.
+To illustrate a simple application integration, we will install `xedit` from the `x11-apps` package inside a container image.
 
-* Create a Dockerfile to install `xedit` application from `x11-apps` package
+* Create a Dockerfile to install the `xedit` application from the `x11-apps` package
 
 ```Dockerfile
 FROM ubuntu
@@ -46,7 +46,7 @@ wget https://icons.getbootstrap.com/assets/icons/pencil.svg && base64 -w0 pencil
 
 **Dockerfile description**
 
-This image is based on ubuntu, and install the `x11-apps` package. Then we define `/usr/bin/xedit` as the CMD, ENTRYPOINT is also supported.
+This image is based on Ubuntu and installs the `x11-apps` package. The default command is set to `/usr/bin/xedit` via the `CMD` instruction. `ENTRYPOINT` is also supported.
 
 * `oc.launch` label is the name of the X11 window's `WM_CLASS`
 * `oc.icon` is the name of the icon file
@@ -54,15 +54,15 @@ This image is based on ubuntu, and install the `x11-apps` package. Then we defin
 ![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) to get it
 `wget https://icons.getbootstrap.com/assets/icons/pencil.svg && base64 -w0 pencil.svg`
 
-* Build the image for xedit application
+* Build the image for the xedit application
 
 ```bash
 REGISTRY=abcdesktopio
 docker build -t $REGISTRY/samplexedit .
 ```
 
-> You should replace the value of `REGISTRY=abcdesktopio` by your own registry's name.
-If you don't have one, you can use the `abcdesktopio/samplexedit` as a readonly dockerhub registry.
+> Replace the value of `REGISTRY=abcdesktopio` with your own registry name.
+> If you do not have one, you can use `abcdesktopio/samplexedit` as a read-only Docker Hub registry.
 
 
 * Push the image to your registry *(only if you have your own registry)*
@@ -72,17 +72,16 @@ REGISTRY=abcdesktopio
 docker push $REGISTRY/samplexedit
 ```
 
-* Inspect the image to create a json file
+* Inspect the image to create a JSON file
 
 ```bash
 REGISTRY=abcdesktopio
 docker inspect $REGISTRY/samplexedit > samplexedit.json
 ```
 
-* Send the image to abcdesktop pyos instance
+* Send the image to the abcdesktop pyos instance
 
-The command read the `PYOS_POD` name, then copy the `sample.json` file to `/tmp` of PYOS_POD,
-then send the `/tmp/samplexedit.json` to REST API server
+The following commands retrieve the `PYOS_POD` name, copy the `samplexedit.json` file to the `/tmp` directory inside the pyos pod, and submit the file to the REST API server.
 
 ```bash
 NAMESPACE=abcdesktop
@@ -91,7 +90,7 @@ kubectl cp samplexedit.json $PYOS_POD_NAME:/tmp -n $NAMESPACE
 kubectl exec -i $PYOS_POD_NAME -n abcdesktop -- curl -X POST -H 'Content-Type: text/javascript' http://localhost:8000/API/manager/image -d @/tmp/samplexedit.json
 ```
 
-The endpoint image returns a json documment
+The image endpoint returns a JSON document
 
 ```json
 [
@@ -141,27 +140,26 @@ The endpoint image returns a json documment
 
 ## Execute the new application `xedit`
 
-* Open your web browser, and to go your own abcdesktop url, and do a login to create a desktop
+* Open your web browser, navigate to your abcdesktop URL, and log in to create a desktop
 
 ![login to create a desktop](img/simplestapplication-login-xedit.png)
 
-* Look for the new application `xedit` pushed
+* Search for the newly registered `xedit` application
 
 ![Look for the new application xedit](img/simplestapplication-lookfor-xedit.png)
 
-* Start the new application `xedit`
+* Launch the `xedit` application
 
-
-`xedit` image is pulling
+The `xedit` container image is being pulled.
 
 ![Start the new application xedit](img/simplestapplication-xedit-starting.png)
 
-`xedit` image is starting
+The `xedit` container image is starting.
 
 ![Start the new application xedit](img/simplestapplication-xedit-started.png)
 
-`xedit` image is started
+The `xedit` application is running.
 
 
-Great, you have installed a new application `xedit` as a container with a dedicated icon.
+You have successfully installed the `xedit` application as a container with a custom icon.
 

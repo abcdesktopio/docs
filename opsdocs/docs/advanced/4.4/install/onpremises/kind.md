@@ -4,24 +4,24 @@ tags:
   - installation
 ---
 
-Kind is a tool for running local Kubernetes clusters using Docker container “nodes”. Kind was primarily designed for testing Kubernetes itself, but it can be used to deploy Kubernetes applications as well. To install or setup `kind`, refer to the [Kind documentation](https://kind.sigs.k8s.io/)
+Kind is a tool for running local Kubernetes clusters using Docker container "nodes". Kind was primarily designed for testing Kubernetes itself, but it can also be used to deploy Kubernetes applications. To install or set up `kind`, refer to the [Kind documentation](https://kind.sigs.k8s.io/).
 
 ## Requirements
 
-* [kind](https://kind.sigs.k8s.io/docs/user/quick-start) command line installed
+* [kind](https://kind.sigs.k8s.io/docs/user/quick-start) command-line tool installed
 * [docker](https://docs.docker.com/engine/install) Docker Engine installed
-* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command-line tool must be configured to communicate with your cluster
-* `openssl` and `curl` command line must be installed too (only for install using kubectl)
+* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command-line tool configured to communicate with your cluster
+* `openssl` and `curl` command-line tools installed (required only when installing via kubectl)
 
 ## Create kind cluster
 
-Run the command line to create
+Run the following command to create the cluster:
 
 ```bash
 kind create cluster --wait 5m
 ```
 
-> the `--wait 5m` wait for control-plane = Ready
+> The `--wait 5m` flag waits until the control plane is `Ready`.
 
 You should read on stdout:
 
@@ -160,7 +160,7 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/ins
 
 ## How to connect ?
 
-The install bash script forward the tcp port 30443 to the router pod port tcp 80
+The install bash script forwards TCP port 30443 to the router pod's TCP port 80
 
 `kubectl port-forward router-od-647b77455d-nk677 --address 0.0.0.0 30443:80 -n abcdesktop`
 
@@ -169,7 +169,7 @@ The install bash script forward the tcp port 30443 to the router pod port tcp 80
 
 [INFO] http://192.168.7.119:30443/
 ```
-> Open the URL returnes by the install bash script. In this sample `http://192.168.7.119:30443/`
+> Open the URL returned by the install bash script. In this sample `http://192.168.7.119:30443/`
 
 ![kind home page](img/kinduserhompage.png)
 
@@ -179,13 +179,13 @@ Your web browser shows the abcdesktop service home page
 
 The user `Philip J. Fry` is connected to the abcdesktop service
 
-> Open the URL returnes by the install bash script. In this sample `http://192.168.7.119:30443/`
+> Open the URL returned by the install bash script. In this sample `http://192.168.7.119:30443/`
 
-Great you have installed abcdesktop using kind and your web browser shows the abcdesktop service.
+Great, you have installed abcdesktop using Kind and your web browser shows the abcdesktop service.
 
 ## Delete cluster
 
-To uninstall, run the kind `delete` cluster command line:
+To uninstall, run the `kind delete cluster` command:
 
 ```bash
 kind delete cluster

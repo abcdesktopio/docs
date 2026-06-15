@@ -22,7 +22,7 @@ tags:
 
 ## Overview
 
-In this chapter we are going to, use a `loadBalancer` to host your abcdesktop service with a public IP Address, then configure dns zone file to use your domain name, and activate TLS to secure your service.
+In this chapter, you will use a `LoadBalancer` service to expose your abcdesktop instance with a public IP address, configure your DNS zone file to use your domain name, and enable TLS to secure the service.
  
 
 ## Create a new `http-router` service yaml file
@@ -128,13 +128,13 @@ We will use a `FQDN` (Fully Qualified Domain Name) to replace the `IP Address`.
 
 ![digitalocean networking](img/digitalocean-networking.png)
 
-This screenshot describes the DigitalOcean network console. It shows the `Domain` informations, but you can manage your zone file from your own registrar.
+This screenshot shows the DigitalOcean network console, displaying the **Domain** configuration. You can also manage your zone file directly through your domain registrar.
 
 ### Create new record
 
-We are going to create a new record `hello` (`hello.abcdekstop.pepins.net`) to the `A` address `157.230.202.250`. I prefer to define low `TTL` value to fix some changes quickly. 
+Create a new `A` record named `hello` (e.g., `hello.abcdesktop.pepins.net`) pointing to `157.230.202.250`. Set a low `TTL` value to allow DNS changes to propagate quickly.
 
-The IP Address is show by the DigitalOcean network console, it is the same address as the `EXTERNAL-IP` of your `http-router` service.
+The IP address is shown in the DigitalOcean network console and corresponds to the `EXTERNAL-IP` of your `http-router` service.
 
 ```
 kubectl get services http-router -n abcdesktop
@@ -164,11 +164,11 @@ As you can see, your website is `Not Secured`, we are going to add X509 SSL cert
 
 
 
-## Obtain a certificat 
+## Obtain a Certificate
 
-If you already have a X509 certificat with a private and public certified key files for your web site, you can skip this chapter.
+If you already have an X.509 certificate with private and public key files for your website, you can skip this chapter.
 
-To create you SSL certificat, we are using let's encrypt service. You need your new hostname and your email address
+To obtain an SSL certificate, this guide uses the Let's Encrypt service. You will need your new hostname and your email address.
 
 Define the new variables `ABCDESKTOP_PUBLIC_FQDN` and `USER_EMAIL_ADDRESS` 
 
@@ -209,7 +209,7 @@ Certificate is saved at: /etc/letsencrypt/live/hello.digitalocean.pepins.net/ful
 Key is saved at:         /etc/letsencrypt/live/hello.digitalocean.pepins.net/privkey.pem
 ```
 
-We export the files and create a new secrets. 
+Export the certificate files and create a new Kubernetes secret.
 
 
 ```
@@ -218,16 +218,15 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
 ```
 
 
-## Create a secret for X509 certificat
+## Create a Secret for the X.509 Certificate
 
-
-Create a secret named `http-router-certificat` with the `fullchain.pem` and `privkey.pem` file content
+Create a Kubernetes secret named `http-router-certificat` using the `fullchain.pem` and `privkey.pem` file contents.
 
 ```
 kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=privkey.pem -n abcdesktop 
 ```
 
-You secret is created 
+The secret has been created.
 
 ```
 secret/http-router-certificat created
@@ -277,7 +276,7 @@ For example
      ssl_certificate_key /etc/nginx/ssl/tls.key;
 ```
 
-Apply your new nginx confguration file
+Apply your new NGINX configuration file
 
 ```
 NAMESPACE=abcdesktop
@@ -286,7 +285,7 @@ kubectl apply -f abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yam
  
 ## Update `deployment` http-router
  
-Update the `deployment` route to add certificat ssl entry
+Update the `deployment` route to add the SSL certificate entry.
 
 The `abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml` file  adds `mountPath: /etc/nginx/ssl` to `secretName: http-router-certificat`
 
@@ -297,7 +296,7 @@ kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/
 
 ## Reach your website using `https` protocol 
 
-You can now connect to your abcdesktop desktop pulic web site using `https` protocol. 
+You can now connect to your abcdesktop public website using the `https` protocol.
 
 ![reach your website using https](img/hello_https.png)
 

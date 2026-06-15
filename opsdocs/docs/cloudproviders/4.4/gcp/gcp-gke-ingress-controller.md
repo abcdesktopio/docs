@@ -12,29 +12,29 @@ tags:
 ## Requirements
 
 
-- read the previous chapter [deploy abcdesktop on GCP with Kubernetes](gcp.md) 
+- read the previous chapter [Deploy abcdesktop on GCP with Kubernetes](gcp.md) 
 - a GCP account
-- a domain of you own hosted on GCP
+- your own domain hosted on GCP
 - `gcloud` command line interface [gcloud cli](https://docs.cloud.google.com/sdk/docs/install-sdk/)
 - `kubectl` command line
 
-### To get more informations
+### For More Information
 
 - read the google cloud chapter [install-gke-ingress-controller](https://docs.cloud.google.com/kubernetes-engine/docs/concepts/ingress-xlb)
 
 ## Overview
 
-In this chapter we are going to, use a `gke-ingress-controller` to host your abcdesktop service with a public IP Address, then configure dns zone file to use your own domain name, and activate TLS to secure your service.
+In this chapter, we will use a `gke-ingress-controller` to host your abcdesktop service with a public IP address, then configure the DNS zone file to use your own domain name, and enable TLS to secure your service.
 
 ## Set up the GKE Ingress controller
 
-In this example we will use the GKE built-in ingress controller. Before starting you may first need to check if the `HttpLoadBalancing` add-on is enabled on your cluster.  
+In this example, we will use the GKE built-in ingress controller. Before starting, check whether the `HttpLoadBalancing` add-on is enabled on your cluster.
 Go to your cluster page on the GCP console, then `Networking`, you should see `HttpLoadBalancing` as enabled, if not enable it and save your changes.
 
 ![httploadbalancing enabled](img/httploadbalancing-enabled.png)
 
-Create an ingress resource for GKE using the abcdesktop service and save it as `abcdesktop_host.yaml`
-You need to update this manifest with your own FQDN, replace `hello.ingress.gcp.pepins.net` by your own values.
+Create an ingress resource for GKE using the abcdesktop service and save it as `abcdesktop_host.yaml`.
+Update this manifest with your own FQDN, replacing `hello.ingress.gcp.pepins.net` with your own value.
 
 ```
 apiVersion: networking.k8s.io/v1
@@ -83,7 +83,7 @@ kubectl get ingress -n $NAMESPACE
 
 The output looks similar to the following:
 
-Wait fee seconds while the `ADDRESS` field is empty  
+Wait a few seconds while the `ADDRESS` field is empty
 ```
 NAME                 CLASS    HOSTS                          ADDRESS   PORTS   AGE
 ingress-abcdesktop   <none>   hello.ingress.gcp.pepins.net             80      4s
@@ -96,19 +96,19 @@ NAME                 CLASS    HOSTS                          ADDRESS         POR
 ingress-abcdesktop   <none>   hello.ingress.gcp.pepins.net   35.190.86.108   80      3m14s
 ```
 
-In the example above, the ingress resource tells gce to route each HTTP request that is using the / prefix for the `hello.ingress.gcp.pepins.net` host, to the `route` backend service running on port 80. In other words, every time you make a call to http://hello.ingress.gcp.pepins.net/, the request and reply are served by the echo backend service running on port 80.
+In the example above, the ingress resource instructs GCE to route each HTTP request using the `/` prefix for the `hello.ingress.gcp.pepins.net` host to the `http-router` backend service running on port 80. In other words, every request to `http://hello.ingress.gcp.pepins.net/` is served by the `http-router` backend service on port 80.
 
 ## Update your DNS zone file 
 
-We will associate your `FQDN` (Fully Qualified Domain Name) to the load-balancer's IP Address.
+We will associate your `FQDN` (Fully Qualified Domain Name) with the load balancer's IP address.
 
 ![cloud dne](img/cloud-dns.png)
 
-This screenshot describes the GCP network console. It shows the `Domain` informations, but you can manage your own zone file from your own registrar.
+This screenshot describes the GCP network console. It shows the `Domain` information. You can also manage your zone file from your own registrar.
 
 ### Create new record
 
-In this example, we are going to create a new record `hello.ingress` (`hello.ingress.gcp.pepins.net`) to the `A` address `35.190.86.108`. This IP Address is the `load-balancer` IP Address.
+In this example, we are going to create a new record `hello.ingress` (`hello.ingress.gcp.pepins.net`) pointing to the `A` address `35.190.86.108`. This IP address is the load balancer IP address.
 
 Press `Add Standard` button, to update your zone file with the new record
 
@@ -122,15 +122,15 @@ From your local device, you can open a web browser
 
 ![reach your website from your new name](img/connect-ingress-http.png)
 
-> Web browser doesn't allow usage of websocket without secure protocol. To login you need `https` protocol.
+> Web browser doesn't allow usage of websocket without a secure protocol. To log in, you need to use `https` protocol.
 
-As you can see, your website is `Not Secured`, we are going to add X509 SSL certificate to secure your service.
+As you can see, your website is `Not Secured`. We are going to add an X.509 SSL certificate to secure your service.
 
 ## Enable HTTPS
 
 ### Configure Google-managed SSL certificates
 
-To enable HTTPS on our exposed service, we will use Google-managed SSL certificates as it is natively embedded in GCP and works well with a GKE ingress controller.
+To enable HTTPS on our exposed service, we will use Google-managed SSL certificates, which are natively integrated in GCP and work seamlessly with a GKE ingress controller.
 
 First you will create a `ManagedCertificate` object, copy the following lines in a `abcdesktop_managed_certificate.yaml` file.
 
@@ -151,7 +151,7 @@ NAMESPACE=abcdesktop
 kubectl apply -f abcdesktop_managed_certificate.yaml -n $NAMESPACE
 ```
 
-Now, you will have modify the previously created ingress file, and  specify the managed certificate the ingress will use, in the annotations section.
+Now, you will need to modify the previously created ingress file and specify the managed certificate the ingress will use in the `annotations` section.
 
 
 ```
@@ -209,20 +209,20 @@ abcdesktop-cert     12m   Active
 
 ## Reach your website using `https` protocol 
 
-You can now connect to your abcdesktop desktop pulic web site using `https` protocol. 
+You can now connect to your public abcdesktop website using `https` protocol.
 
 ![reach your website using https](img/connect-ingress-https.png)
 
-The status is secured and we get some informations from the certificate
+The status is secured and we get some information from the certificate
 
 ![reach your website using https](img/certificate-ok.png)
 
 
 ## Increase ingress connection timeout
 
-By default, GCE type ingress has a connection timeout of 30 seconds, in our case, we doesn't want abcdesktop to drop the connection to our desktop every 30 seconds, so we will have to increase timeout.
+By default, a GCE type ingress has a connection timeout of 30 seconds. For abcdesktop, we do not want the connection to the desktop to be dropped every 30 seconds, so we will need to increase the timeout.
 
-Unlike a nginx type ingress, you cannot add annotations to the ingress yaml file to increase timeout value. You instead need to create a `BackendConfig` object that you will link to your routing service.
+Unlike an NGINX type ingress, you cannot add annotations to the ingress YAML file to increase the timeout value. Instead, you must create a `BackendConfig` object and link it to your routing service.
 
 First copy the following lines in a `backend_config_timeout.yaml`
 
@@ -274,7 +274,7 @@ NAMESPACE=abcdesktop
 kubectl apply -f http_router.yaml -n $NAMESPACE
 ```
 
-Now wait a few minutes for GCE to apply the new configuration and reconnect to your desktop, the connection shouldn't drop after 30 seconds anymore.
+Now wait a few minutes for GCE to apply the new configuration. After reconnecting to your desktop, the connection should no longer drop after 30 seconds.
 
 
-> NB : By using this method with GKE ingress controller, the reverse proxy does forward the client source IP to your cluster, so there is no additional manipulations to do for that.
+> **Note:** By using this method with the GKE ingress controller, the reverse proxy forwards the client's source IP to your cluster, so no additional configuration is required for that purpose.

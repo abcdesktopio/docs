@@ -1,4 +1,4 @@
-# Specification for the `grahical` service from Dockerfile.ubuntu
+# Specification for the `graphical` service from Dockerfile.ubuntu
 
 ## 1. Purpose and Scope
 

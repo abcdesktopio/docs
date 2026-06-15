@@ -1,22 +1,22 @@
-# Deploy abcdesktop on AZURE with Microsoft AZURE Kubernetes services
+# Deploy abcdesktop on Azure with Microsoft Azure Kubernetes Service
 
 
 ## Requirements
 
 - `az` command line interface [azure-cli](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) installed.
 - you need your `Azure Subscription Name`, your `Username` and `Password`
-- A running AZURE Kubernetes service cluster `ready` and running. 
+- A running Azure Kubernetes Service cluster that is `ready` and running.
 
-## AZURE console overview
+## Azure console overview
 
-Create a new `AZURE Kubernetes service`. 
+Create a new Azure Kubernetes Service cluster.
 
 ![azure console kubernetes create cluster](img/azure-aks-create-kubernetes-cluster.png)
 
 > Options and features are set by default.
 
-In this example the kubernetes cluster is named `abcdesktopkubernetescluster`.
-This screenshot describes the AZURE Kubernetes Service console. It shows the `Nodes pools` and `Networking` informations.
+In this example, the Kubernetes cluster is named `abcdesktopkubernetescluster`.
+This screenshot shows the Azure Kubernetes Service console, displaying the **Node pools** and **Networking** configuration.
 
 ![azure console overview](img/azure-aks-console.png)
 
@@ -29,10 +29,10 @@ If you don't have already done it, use the `az login` command line
 az login
 ```
 
-The next steps are running on your web browser with your own credentials.  
+The remaining steps complete in your web browser using your own credentials.
 
 
-## Set your `subscription` to your azur account 
+## Set your subscription for your Azure account
 
 
 ``` bash
@@ -56,7 +56,7 @@ az aks get-credentials --resource-group abcdesktop --name abcdesktopkubernetescl
 
 ## Get your kubernetes cluster informations
 
-Run the `kubectl cluster-info` command line, to confirm that `kubectl` command can communicate whith your azur cluster
+Run the `kubectl cluster-info` command line to confirm that the `kubectl` command can communicate with your Azure cluster.
 
 ``` bash
 kubectl cluster-info
@@ -86,7 +86,7 @@ To get more details about the install process, please read the [Setup guide](htt
 
 By default install script is listening on a free tcp port `:30443` and is using a `kubectl port-forward` command line to reach http web service `:80`
 
-Open your web browser `http://locahost:30443`
+Open your web browser to `http://localhost:30443`
 
 ![abcdesktop login](../img/abcdesktop-hompage-port30443.png)
 
@@ -95,7 +95,7 @@ Login as user `Philip J. Fry` with the password `fry`
 
 ![abcdesktop login as fry](../img/abcdesktop-hompage-port30443-login-fry.png)
  
-After image pulling process, you get your first abcdesktop 
+After the image-pulling process completes, you get your first abcdesktop session
 
 ![abcdesktop for fry](../img/abcdesktop-hompage-port30443-user-fry-logged.png)
 

@@ -84,7 +84,7 @@ On the web browser console you can read
 
 #### `src` and `async`
 
-`src` and `async` are aloso supported by `script` to load uri ( `sync`or `async` ).
+`src` and `async` are also supported by `script` to load a URI (`sync` or `async`).
 
 This example loads `https://www.googletagmanager.com/gtag/js?id=G-VS25TGNTRZ` with `async` to `False`, and then loads javascript string source code from
 
@@ -133,4 +133,4 @@ On the web browser network page you can read the fetch http request to `google-a
 
 ![google analytics](img/welcomeinfogoogle.png)
 
-Great, you have define welcome info messages to show maintenance informations, and add some javascript source code if need.
+You have now defined welcome info messages to display maintenance information and optionally inject JavaScript source code into the login page.

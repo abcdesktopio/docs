@@ -32,13 +32,13 @@ tags:
 ## NetworkPolicy description
 
 
-There are two sorts of isolation defined in abcdesktop : the NetworkPolicy  `rights` and the NetworkPolicy `permits`.
+abcdesktop defines two types of isolation: the NetworkPolicy `rights` and the NetworkPolicy `permits`.
 
 
-- The NetworkPolicy `rights` contains `egress` and `ingress` for pod selected by tag. `rights` means access (ingress) to this pod and access (egress) from this pod. To define ip filter for user's pod, you need to set egress NetworkPolicy.
+- The NetworkPolicy `rights` contains `egress` and `ingress` rules for pods selected by label. `rights` controls access to a pod (ingress) and from a pod (egress). To define IP filters for user pods, you must configure egress NetworkPolicy rules.
 
 
-- The NetworkPolicy `permits` contains `egress` to a pod selected by tag. The NetworkPolicy `permits` means permit access to this pod.
+- The NetworkPolicy `permits` contains `egress` rules targeting a pod selected by label. The NetworkPolicy `permits` grants permitted access to that pod.
 
 
 ## NetworkPolicy example
@@ -84,7 +84,7 @@ spec:
 ```
 
 
-The NetworkPolicy for memcached service `permits`, named `memcached-permits`, allows all pods with label `netpol/memcached: 'true'` to reach the TCP port 11211 to pods with label `run: memcached-od`.
+The NetworkPolicy for memcached service `permits`, named `memcached-permits`, allows all pods with the label `netpol/memcached: 'true'` to reach TCP port 11211 on pods with the label `run: memcached-od`.
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -127,12 +127,12 @@ The `ocuser` pod is listening on TCP ports :
 
 The network policy for ocuser's pods `rights` is named `ocuser-rights`. It allows pods with label `type: 'x11server'` to expose the previous TCP ports.
 
-The `egress` network policy allows : 
+The `egress` network policy allows:
 
-- dns queries to kube-dns
-- http to any web site
-- https to any web site
-- kerberos auth to any kdc
+- DNS queries to kube-dns
+- HTTP to any web site
+- HTTPS to any web site
+- Kerberos authentication to any KDC
 
 
 ```yaml
@@ -204,7 +204,7 @@ spec:
 ```      
 
 
-The network policy for ocuser's pods `permits ` is named `ocuser-permits`. It allows pods with label `netpol/ocuser: 'true'` to reach the user's pods services.
+The network policy for ocuser's pods `permits` is named `ocuser-permits`. It allows pods with the label `netpol/ocuser: 'true'` to reach the user pod services.
 
 ```yaml
 apiVersion: networking.k8s.io/v1

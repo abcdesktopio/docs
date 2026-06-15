@@ -9,8 +9,8 @@ tags:
 
 The abcdesktop configuration file name is `od.config`.
 This file has the [cherrypy file format](https://docs.cherrypy.dev/en/stable/config.html).
-When the pyos process starts, it read the `od.config` file.
-If something is wrong, the pyos process hangs. The command line `kubectl logs -l name=pyos-od  -n abcdesktop` write the pyos log on stdout.
+When the pyos process starts, it reads the `od.config` file.
+If something is wrong, the pyos process hangs. The command line `kubectl logs -l name=pyos-od  -n abcdesktop` writes the pyos log to stdout.
 
 ## Edit your configuration file
 
@@ -20,9 +20,9 @@ If the `od.config` file does not exist, extract it from the abcdesktop-config co
 kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
 ```
 
-You get a the new local file `od.config`
+You will get a new local file `od.config`.
 
-To make change, edit your own `od.config` file with your favorite file editor:
+To make changes, edit your own `od.config` file with your preferred file editor:
 
 ```bash
 vim od.config
@@ -58,7 +58,7 @@ kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  
 kubectl rollout restart deployment pyos-od -n abcdesktop
 ```
 
-You've done it.
+The configuration has been applied successfully.
 
 ## Check your changes
 
@@ -78,4 +78,4 @@ Choose your colour and you should have it as background colour :
 
 ![newbackgroundcolors](img/newbackgroundcolors.png)
 
-Great, you can easily update your configuration file `od.config`.
+You can now update the abcdesktop configuration file `od.config` at any time using this procedure.

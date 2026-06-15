@@ -1,17 +1,17 @@
-# Install  installation 
+# Installation
 
 ## Requirements
 
-- kubernetes cluster `READY` to run
-- `kubectl` or `minikube` command-line tool must be configured to communicate with your cluster. 
-- `openssl` and `curl` command line must be installed too (only for install using kubectl). 
+- Kubernetes cluster in `READY` state
+- `kubectl` or `minikube` command-line tool configured to communicate with your cluster
+- `openssl` and `curl` command-line tools installed (required only when installing via kubectl)
 
-You can run the **Quick installation process** or choose the **Manually installation step by step**
+You can run the **Quick installation process** or perform the **Manual installation step by step**.
 
-> Linux operating system is recommanded to run abcdesktop.io.
+> A Linux operating system is recommended to run abcdesktop.io.
 
 ??? Note "**Step 1:** Create abcdesktop namespace"
-    We will create the abcdesktop namespace and set it as default :
+    Create the `abcdesktop` namespace:
 
     ``` shell
     kubectl create namespace abcdesktop
@@ -25,23 +25,21 @@ You can run the **Quick installation process** or choose the **Manually installa
 
 ## **Step 2:** Secure abcdesktop JWT exchange
 
-User JWT is signed. So we need to define a (private, public) RSA keys for signing.
- Desktop JWT is encrypted AND signed. So we need to define a (private, public) RSA keys for signing, and a (private, public) RSA keys to encrypt data.
+The user JWT is signed, so a (private, public) RSA key pair is required for signing. The desktop JWT is both encrypted and signed, so a (private, public) RSA key pair is required for signing and a separate (private, public) RSA key pair is required to encrypt data.
 
-* The JWT payload is encrypted with the abcdesktop jwt desktop payload private by pyos
-* The JWT payload is decrypted with the abcdesktop jwt desktop payload public keys by nginx.
+* The JWT payload is encrypted with the abcdesktop jwt desktop payload private key by pyos.
+* The JWT payload is decrypted with the abcdesktop jwt desktop payload public key by nginx.
 
-> Please use the payload private as private key, and the payload public as private key. 
-> Do not publish the public key. This public key must stay private, this is a special case, this is not stupid, it's only a more secure option.
+> Use the payload private key as the encryption private key, and keep the payload public key private as well. Do not distribute this public key — it must remain private. This is a deliberate security design choice.
 
-* The JSON Web Tokens payload is signed with the abcdesktop jwt desktop signing private keys
-* The JSON Web Tokens payload is verified with the abcdesktop jwt desktop signing public keys.
+* The JSON Web Token payload is signed with the abcdesktop jwt desktop signing private key.
+* The JSON Web Token payload is verified with the abcdesktop jwt desktop signing public key.
 
-* The JSON Web Tokens user is signed with the abcdesktop jwt user signing private keys by pyos.
-* The JSON Web Tokens user is verified with the abcdesktop jwt user signing public keys by pyos
-> As multiple pods of pyos can run simultaneously, the same private and public keys value are stored into kubernetes secret.
+* The JSON Web Token user token is signed with the abcdesktop jwt user signing private key by pyos.
+* The JSON Web Token user token is verified with the abcdesktop jwt user signing public key by pyos.
+> Since multiple pods of pyos can run simultaneously, the same private and public key values are stored in a Kubernetes secret.
 
-The abcdesktop jwt desktop payload public key is read by `nginx lua script`. The exported the public key need the `RSAPublicKey_out` option, to use the `RSAPublicKey` format. The `RSAPublicKey` format make key file format compatible between `python 3.x jwt module` and `lua jwt lib`.
+The abcdesktop jwt desktop payload public key is read by the `nginx lua script`. Exporting the public key requires the `RSAPublicKey_out` option to use the `RSAPublicKey` format. The `RSAPublicKey` format makes the key file format compatible between the `python 3.x jwt module` and the `lua jwt lib`.
 
 
 The following commands will let you create all necessary keys :
@@ -121,7 +119,7 @@ Create the config map `abcdesktop-config` in the `abcdesktop` namespace
 kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 ```
 
-You should read on sdtout
+You should read on stdout
 
 ``` shell
 configmap/abcdesktop-config created
@@ -129,7 +127,7 @@ configmap/abcdesktop-config created
 
 ## **Step 4:** Create the abcdesktop pods and services
 
-abcdesktop.yaml file contains declarations for all roles, service account, pods, and services required for abcdesktop.
+The abcdesktop.yaml file contains declarations for all roles, service accounts, pods, and services required by abcdesktop.
 
 Run the command line
 
@@ -165,9 +163,8 @@ service/website created
 service/openldap created
 ```
 
-Once the pods are created, all pods should be in `Running` status.  
-For the first time, please wait for downloading all container images. 
-It can take a while.
+Once the pods are created, all pods should reach `Running` status.
+On the first installation, wait for all container images to finish downloading — this may take several minutes.
 
 ``` shell
 kubectl get pods -n abcdesktop
@@ -189,7 +186,7 @@ speedtest-od-7fcc9649b4-n2ldl   1/1     Running   0          2m18s
 
 ## **Step 5:** Connect your local abcdesktop
 
-Open your navigator to http://[your-ip-hostname]:30443/
+Open your browser and navigate to http://[your-ip-hostname]:30443/
 
 abcdesktop homepage should be available :
 
@@ -199,7 +196,7 @@ Click on the **Connect with Anonymous** access button. abcdesktop service pyos i
 
 ![abcdesktop main screen login pending](img/kubernetes-setup-login-anonymous.pending.png)
 
-Few seconds later, processes are ready to run. You should see the abcdesktop main screen, with no application in the dock.
+A few seconds later, all processes are ready to run. You should see the abcdesktop main screen, with no applications in the dock.
 
 ![abcdesktop main screen ready](img/kubernetes-setup-login-anonymous.done.png)
 
@@ -216,6 +213,6 @@ NAME              READY   STATUS    RESTARTS   AGE
 anonymous-c44fc   5/5     Running   0          116s
 ```
 
-Great you have installed abcdesktop.io.
-You just need a web browser to reach your web workspace. It' now time to add some container applications.
-Read the next chapter to add applications
+You have successfully installed abcdesktop.io.
+You only need a web browser to access your web workspace. It's now time to add some container applications.
+Read the next chapter to add applications.

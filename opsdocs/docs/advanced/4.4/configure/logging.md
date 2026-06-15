@@ -1,8 +1,8 @@
 
-# Logging configuration in od.config
+# Logging Configuration in od.config
 
 
-The `logging` configuration is a dictionnary object. The logging configuration describes where and how log message information have to been send.
+The `logging` configuration is a dictionary object. The logging configuration specifies where and how log messages are sent.
 
 `logging` dictionary uses the python logging module [logging module](https://docs.python.org/3.8/library/logging.config.html)
 
@@ -40,7 +40,7 @@ If the line is over `max_log_body_size` the string `[truncated]` cuts the end of
 
 The `syslog` and `graylog` protocol messaging are supported too.
 
-The default features for each handlers are : 
+The default features for each handler are: 
 
 
 | handler              | Features   |

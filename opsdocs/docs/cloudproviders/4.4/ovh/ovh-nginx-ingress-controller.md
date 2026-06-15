@@ -16,7 +16,7 @@
 
 ## Overview
 
-In this chapter we are going to, use a `nginx-ingress-controller` to host your abcdesktop service with a public IP Address, then configure dns zone file to use your own domain name, and activate TLS to secure your service.
+In this chapter, you will use an NGINX ingress controller to expose your abcdesktop service with a public IP address, configure your DNS zone file to use your own domain name, and enable TLS to secure the service.
 
 ## Update http-router service
 
@@ -91,7 +91,7 @@ Then install it on your cluster
 helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace
 ```
 
-Once the installation process completed, you can check that the service has been createed by running this command : 
+Once the installation process has completed, you can verify that the service was created by running this command:
 
 ```
 kubectl get svc ingress-nginx-controller -n ingress-nginx
@@ -118,10 +118,9 @@ Press `Add` button, to update your zone file with the new record
 
 ## Configure NGINX Ingress Rules for Backend Services 
 
-In this step, you expose the backend applications to the outside world by telling nginx what host each service maps to. You define a rule in nginx to associate a host to a abcdesktop route backend service.
+In this step, you expose the backend applications to the outside world by telling nginx what host each service maps to. You define a rule in NGINX to associate a host with an abcdesktop route backend service.
 
-Create an ingress resource for NGNIX using the abcdesktop service and save it as `abcdesktop_host.yaml`
-You need to update this manifest with your own FQDN, replace `hello.ovhcloud.pepins.net` by your own values.
+Create an ingress resource for NGINX using the abcdesktop service and save it as `abcdesktop_host.yaml`. Update this manifest with your own FQDN by replacing `hello.ovhcloud.pepins.net` with your own values.
 
 ```
 apiVersion: networking.k8s.io/v1
@@ -165,7 +164,7 @@ kubectl get ingress -n abcdesktop
 
 The output looks similar to the following:
 
-Wait fee seconds while the `ADDRESS` field is empty  
+Wait a few seconds while the `ADDRESS` field is being populated
 ```
 NAME                 CLASS   HOSTS                    ADDRESS   PORTS   AGE
 ingress-abcdesktop   nginx   hello.ovhcloud.pepins.net             80      5s
@@ -199,7 +198,7 @@ As you can see, your website is `Not Secured`, we are going to add X509 SSL cert
 
 ## Enable HTTPS
 
-### Deploy Cert Manager on our AKS cluster
+### Deploy Cert Manager on your OVHcloud Kubernetes cluster
 
 As we previously did for the nginx ingress controller, we are going to use `helm` to install cert manager on our cluster.
 
@@ -219,7 +218,7 @@ helm install \
   --set crds.enabled=true
 ```
 
-Once intalled, you can inspect the Kubernetes ressources created by Cert Manager :
+Once installed, you can inspect the Kubernetes resources created by Cert Manager:
 
 ```
 kubectl get all -n cert-manager
@@ -417,11 +416,11 @@ strict-transport-security: max-age=31536000; includeSubDomains
 
 ## Reach your website using `https` protocol 
 
-You can now connect to your abcdesktop desktop pulic web site using `https` protocol. 
+You can now connect to your abcdesktop public website using the `https` protocol.
 
 ![reach your website using https](img/hello_https.png)
 
-The status is secured and we get some informations from the certificate
+The connection is secured and you can inspect the certificate details.
 
 ![reach your website using https](img/certificate-ingress-ok.png)
 
@@ -474,7 +473,7 @@ As you can see on the logs, the source IP address seen by pyos is a private IP a
 
 That happens because the nginx ingress controller we set up earlier does not forward the client public IP address and balance the request with its own IP address in the cluster. So Router and Pyos both see the IP address of the ingress controller loadbalancer.
 
-To fix that, we have to update te configuration of our nginx ingress controller. Please paste the following lines in a `patch-ingress.yaml` file
+To fix this, update the configuration of your NGINX ingress controller by pasting the following lines into a `patch-ingress.yaml` file:
 
 ```
 controller:

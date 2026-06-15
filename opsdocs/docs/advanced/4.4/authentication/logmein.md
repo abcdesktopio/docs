@@ -1,7 +1,7 @@
-# logmein authentication
+# logmein Authentication
 
 
-`logmein` permits to redirect user auth to https website to perform an mutual SSL authentication. 
+`logmein` redirects users to an HTTPS website to perform mutual SSL (mTLS) authentication.
 
 ``` mermaid
 ---
@@ -30,14 +30,14 @@ sequenceDiagram
   pyos ->> user: desktop JWT
 ```
 
-In most cases, the user is redirected to a https service, the user is authenticated with his own X509 certificat, then the certificate is forwarded by a http header to `pyos`. `pyos` does some security checks and returns a user jwt to the user.
+In the typical flow, the user is redirected to an HTTPS service, authenticated using their X.509 certificate, and the certificate is then forwarded via an HTTP header to `pyos`. `pyos` performs security checks and returns a user JWT to the client.
 
 
  
-- `logmein` is an `implicit` provider. 
+- `logmein` is an `implicit` provider.
 
-The user is redirected to `dialog_url`. For example `https://secure.your_domain.com/protectedbyssl`. 
-The implicit provider configuration is like this one :
+The user is redirected to `dialog_url`. For example, `https://secure.your_domain.com/protectedbyssl`.
+The implicit provider configuration looks like this:
 
 ```
 'implicit': {
@@ -55,7 +55,7 @@ The implicit provider configuration is like this one :
 }
 ``` 
 
-The SSL mutual authentifcation is done on 'dialog_url': `https://secure.your_domain.com/protectedbyssl`. Then the user is proxy passed from `https://secure.your_domain.com/protectedbyssl` to `$my_node/API/auth/logmein?provider=sslclient` if the ssl client is verified.
+Mutual SSL authentication is performed at `dialog_url`: `https://secure.your_domain.com/protectedbyssl`. The user is then proxy-passed from `https://secure.your_domain.com/protectedbyssl` to `$my_node/API/auth/logmein?provider=sslclient` if the SSL client certificate is verified.
 
 ```
 location /protectedbyssl {
@@ -65,11 +65,11 @@ location /protectedbyssl {
 }
 ```
 
-> the server requests client's certificate in CertificateRequest message, so that the connection can be mutually authenticated
+> The server requests the client's certificate in a `CertificateRequest` message, enabling mutual TLS authentication.
 
 - logmein configuration
 
-The endpoint `API/auth/logmein` performs security check to garantee that the request comes from authorized network_list, then check if requred the http_attribut name and value. It reads the X509 to get the userid from, then perform an implicit authentication for this userid.
+The endpoint `API/auth/logmein` performs security checks to guarantee that the request originates from an authorized network in `network_list`. If configured, it also validates the required HTTP attribute name and value. It reads the X.509 certificate to extract the user ID, then performs implicit authentication for that user ID.
 
 ```
 auth.logmein : {  
@@ -82,21 +82,21 @@ auth.logmein : {
 
 | Variable name       | Type     | Description   |
 |---------------------|----------|-------------|
-| `enable `           | boolean  | enable or disable the logmein feature, default value is `False` |
-| `network_list`      | list     | list of subnet allow to query the `logmein` endpoint  | 
-| `permit_querystring`| boolean  | allow to pass the `userid` as querystring parameter, the default value is `False` |
-| `oid_list`          | list     | list of string to read the user_id, the default values are `[ cryptography.x509.oid.NameOID.USER_ID, cryptography.x509.oid.NameOID.COMMON_NAME ]` |
-| `http_attribut`     | string   | (optional) name of the HTTP header, if set then the value of the header must be an X509 certificat | 
+| `enable `           | boolean  | Enables or disables the logmein feature. The default value is `False`. |
+| `network_list`      | list     | List of subnets authorized to query the `logmein` endpoint. | 
+| `permit_querystring`| boolean  | Allows passing the `userid` as a query string parameter. The default value is `False`. |
+| `oid_list`          | list     | List of OID strings used to read the user ID from the X.509 certificate. The default values are `[ cryptography.x509.oid.NameOID.USER_ID, cryptography.x509.oid.NameOID.COMMON_NAME ]`. |
+| `http_attribut`     | string   | (Optional) Name of the HTTP header. If set, the value of this header must be a PEM-encoded X.509 certificate. | 
 
 
-The `oid_list` entries are converted from oid dotted string format to ObjectIdentifier [ cryptography.x509.oid.NameOID.USER_ID, cryptography.x509.oid.NameOID.COMMON_NAME ] becomes [ '0.9.2342.19200300.100.1.1' and  '2.5.4.3' ]
+The `oid_list` entries are converted from OID dotted-string format to `ObjectIdentifier` objects. For example, `[ cryptography.x509.oid.NameOID.USER_ID, cryptography.x509.oid.NameOID.COMMON_NAME ]` becomes `[ '0.9.2342.19200300.100.1.1', '2.5.4.3' ]`.
 
 
 
 
-## nginx configuration with mutual authentication
+## nginx Configuration with Mutual Authentication
 
-- nginx reverse proxy sample
+- nginx reverse proxy sample:
 
 ```
 server {
@@ -154,9 +154,3 @@ authmanagers: {
 	          'auth_protocol' : { 'localaccount': True }
 	     } } } }
 ```
-
-
-
-
-
-
