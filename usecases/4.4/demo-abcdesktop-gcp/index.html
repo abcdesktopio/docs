@@ -3968,7 +3968,7 @@ HorizontalPodAutoscaling,HttpLoadBalancing,NodeLocalDNS,GcePersistentDiskCsiDriv
 </code></pre></div>
 <p>Finally apply it to the cluster</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
-kubectl create -f pvc-mongo.yaml -n $NAMSPACE
+kubectl create -f pvc-mongo.yaml -n $NAMESPACE
 </code></pre></div>
 <h2 id="add-external-providers">Add external providers</h2>
 <p>You may want users to properly authenticate to your demo platform. To proceed, you will need to remove default LDAP authentication and anonymous authentication.</p>
