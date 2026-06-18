@@ -19,10 +19,10 @@ graph TD
     User["User (browser)"] -->|HTTPS| GKE_Ingress["GKE Ingress\n(google-managed certificate)"]
     GKE_Ingress --> Router["http-router service\n(nginx)"]
     Router --> PyOS["pyos-od\n(abcdesktop orchestrator)"]
+    Router --> UserPod["User pod\n(graphical apps)"]
     PyOS --> MongoDB["mongodb-od\n(PersistentVolumeClaim)"]
-    PyOS --> UserPod["User pod\n(graphical apps)"]
     CronJob["CronJob: garbage collector\n(every 15 min)"] --> PyOS
-    PyOS --> OAuth["External OAuth 2.0 provider\n(Google / GitHub / Facebook)"]
+    PyOS --> OAuth["External OAuth 2.0 Provider\n(Google / GitHub / Facebook)"]
 ```
 
 ## Components
