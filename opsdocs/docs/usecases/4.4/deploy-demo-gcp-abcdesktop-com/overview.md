@@ -21,7 +21,6 @@ graph TD
     Router --> PyOS["pyos-od\n(abcdesktop orchestrator)"]
     Router --> UserPod["User pod\n(graphical apps)"]
     PyOS --> MongoDB["mongodb-od\n(PersistentVolumeClaim)"]
-    CronJob["CronJob: garbage collector\n(every 15 min)"] --> PyOS
     PyOS --> OAuth["External OAuth 2.0 Provider\n(Google / GitHub / Facebook)"]
 ```
 
