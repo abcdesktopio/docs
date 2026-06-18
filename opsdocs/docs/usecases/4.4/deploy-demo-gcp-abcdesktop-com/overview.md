@@ -22,7 +22,7 @@ graph TD
     PyOS --> MongoDB["mongodb-od\n(PersistentVolumeClaim)"]
     PyOS --> UserPod["User pod\n(graphical apps)"]
     CronJob["CronJob: garbage collector\n(every 15 min)"] --> PyOS
-    UserPod --> OAuth["External OAuth 2.0 provider\n(Google / GitHub / Facebook)"]
+    PyOS --> OAuth["External OAuth 2.0 provider\n(Google / GitHub / Facebook)"]
 ```
 
 ## Components
