@@ -21,7 +21,7 @@ graph TD
     Router --> PyOS["pyos-od\n(abcdesktop orchestrator)"]
     Router --> UserPod["User pod\n(graphical apps)"]
     PyOS --> MongoDB["mongodb-od\n(PersistentVolumeClaim)"]
-    PyOS --> OAuth["External OAuth 2.0 Provider\n(Google / GitHub / Facebook)"]
+    PyOS --> OAuth["External OAuth 2.0 Provider\n(Google / GitHub / Meta)"]
 ```
 
 ## Components
