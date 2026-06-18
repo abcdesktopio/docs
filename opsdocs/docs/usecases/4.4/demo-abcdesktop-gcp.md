@@ -182,7 +182,7 @@ Finally apply it to the cluster
 
 ```
 NAMESPACE=abcdesktop
-kubectl create -f pvc-mongo.yaml -n $NAMSPACE
+kubectl create -f pvc-mongo.yaml -n $NAMESPACE
 ```
 
 ## Add external providers
