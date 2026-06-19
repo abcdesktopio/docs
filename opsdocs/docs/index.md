@@ -5,7 +5,7 @@ hide:
 title: abcdesktop.io cloud native desktop
 summary: cloud container graphical application container desktop
 description: cloud native desktop complete workspace environment accessible from a web browser
-keywords: graphical application container desktopless kubernetes secure desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface byod bring your own device reduce attack surface novnc rdp citrix sovereign
+keywords: graphical application container desktopless kubernetes secure desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface byod bring your own device reduce attack surface novnc rdp citrix sovereign remote browser isolation RBI
 
 
 tags:
@@ -24,10 +24,10 @@ abcdeskop.io is an open source and free solution that offers seamless access to 
 
 This flexible working environment simplifies usage like
 
-- Separation between production secure zone and less secured user zone, like a bastion does
-- Telecommuting
 - Remote virtual desktop
-- Remote browser isolation, and more remote ephemeral browser application (Firefox, Chrome, Chromium, Edge)
+- Remote browser isolation (RBI), and remote ephemeral browser application (Firefox, Chrome, Chromium, Edge)
+- Separation between production secure zone and less secured user zone, like a bastion or a reverse isolation does
+- Telecommuting
 - Give temporary access to other contractors or guests
 - Training
 - BYOD, Bring Your Own Device
