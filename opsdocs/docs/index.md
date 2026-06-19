@@ -27,6 +27,7 @@ This flexible working environment simplifies usage like
 - Separation between production secure zone and less secured user zone, like a bastion does
 - Telecommuting
 - Remote virtual desktop
+- Remote browser isolation, and more remote ephemeral browser application (Firefox, Chrome, Chromium, Edge)
 - Give temporary access to other contractors or guests
 - Training
 - BYOD, Bring Your Own Device
