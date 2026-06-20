@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configure-the-garbage-collector" class="md-skip">
+        <a href="#garbage-collector-configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -2630,36 +2630,69 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#garbage-collector" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Garbage collector
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-a-cronjob" class="md-nav__link">
+  <a href="#api-parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a cronjob
+      API Parameters
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#apply-your-cronjob" class="md-nav__link">
+  <a href="#deploying-the-garbage-collector-as-a-kubernetes-cronjob" class="md-nav__link">
     <span class="md-ellipsis">
-      Apply your cronjob
+      Deploying the Garbage Collector as a Kubernetes CronJob
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploying the Garbage Collector as a Kubernetes CronJob">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletion-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deletion Logic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applying-the-cronjob" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applying the CronJob
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-the-jobs-status" class="md-nav__link">
+  <a href="#monitoring-cronjob-execution" class="md-nav__link">
     <span class="md-ellipsis">
-      Check the jobs status
+      Monitoring CronJob Execution
     </span>
   </a>
   
@@ -3725,36 +3758,69 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#garbage-collector" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Garbage collector
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-a-cronjob" class="md-nav__link">
+  <a href="#api-parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a cronjob
+      API Parameters
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#apply-your-cronjob" class="md-nav__link">
+  <a href="#deploying-the-garbage-collector-as-a-kubernetes-cronjob" class="md-nav__link">
     <span class="md-ellipsis">
-      Apply your cronjob
+      Deploying the Garbage Collector as a Kubernetes CronJob
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploying the Garbage Collector as a Kubernetes CronJob">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletion-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deletion Logic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applying-the-cronjob" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applying the CronJob
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-the-jobs-status" class="md-nav__link">
+  <a href="#monitoring-cronjob-execution" class="md-nav__link">
     <span class="md-ellipsis">
-      Check the jobs status
+      Monitoring CronJob Execution
     </span>
   </a>
   
@@ -3784,24 +3850,51 @@
   
 
 
-<h1 id="configure-the-garbage-collector">Configure the garbage collector</h1>
-<h2 id="garbage-collector">Garbage collector</h2>
-<p>The garbage collector removes all user pods that have not been connected for longer than the <code>expirein</code> duration (in seconds).
-To call the garbage collector endpoint, run an HTTP request to <code>/API/manager/garbagecollector</code>. It accepts the parameters <code>expirein</code> and <code>force</code>.</p>
-<ul>
-<li><code>expirein</code> is a value in seconds. This parameter is required.</li>
-<li><code>force</code> is a boolean value <code>true</code>, <code>false</code>. This parameter is optional. The default value is <code>False</code>. If <code>Force</code> is <code>True</code> the garbage collector doesn't check if the user if connected to his pod or not. </li>
-<li><code>nodename</code> is the name of the node where the pod should be deleted. This parameter is optional. The default value is <code>None</code>, meaning the garbage collector runs on all nodes of the cluster without restriction. The <code>nodename</code> parameter is useful if you need to remove user pods on a specific node for a maintenance plan or a <code>kubectl drain</code> command.</li>
-</ul>
-<p>This endpoint returns a JSON list of all deleted pods.</p>
+<h1 id="garbage-collector-configuration">Garbage Collector Configuration</h1>
+<h2 id="overview">Overview</h2>
+<p>The garbage collector is a maintenance service that terminates user desktop pods that have been idle for longer than a configurable duration. It is invoked via an HTTP request to the <code>pyos</code> API endpoint <code>/API/manager/garbagecollector</code>.</p>
+<h2 id="api-parameters">API Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expirein</code></td>
+<td>integer (seconds)</td>
+<td>Yes</td>
+<td>—</td>
+<td>Sessions idle for longer than this duration are candidates for deletion.</td>
+</tr>
+<tr>
+<td><code>force</code></td>
+<td>boolean</td>
+<td>No</td>
+<td><code>False</code></td>
+<td>If <code>True</code>, deletes sessions regardless of current connection status. If <code>False</code>, active sessions are preserved.</td>
+</tr>
+<tr>
+<td><code>nodename</code></td>
+<td>string</td>
+<td>No</td>
+<td><code>None</code></td>
+<td>Restricts deletion to pods running on the specified node. Useful during node maintenance or <code>kubectl drain</code> operations.</td>
+</tr>
+</tbody>
+</table>
+<p>The endpoint returns a JSON array listing all deleted pod names.</p>
 <blockquote>
-<p>Calling <code>/API/manager/garbagecollector?expirein=0&amp;force=true</code> will disconnect all user's pods.</p>
+<p><strong>Warning:</strong> Calling <code>/API/manager/garbagecollector?expirein=0&amp;force=true</code> immediately terminates <strong>all</strong> active user sessions.</p>
 </blockquote>
-<h2 id="create-a-cronjob">Create a <code>cronjob</code></h2>
-<p>Create a <code>cronjob</code> to run the garbage collector every five minutes:</p>
-<ul>
-<li>Create a yaml manifest file named <code>cronjob.yaml</code></li>
-</ul>
+<h2 id="deploying-the-garbage-collector-as-a-kubernetes-cronjob">Deploying the Garbage Collector as a Kubernetes CronJob</h2>
+<p>The recommended deployment pattern is a Kubernetes <code>CronJob</code> that invokes the garbage collector API on a scheduled interval.</p>
+<p>Create a file named <code>cronjob.yaml</code>:</p>
 <div class="highlight"><pre><span></span><code>apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -3839,61 +3932,72 @@ spec:
           restartPolicy: OnFailure
           dnsPolicy: ClusterFirst
 </code></pre></div>
-<p>The default values are  </p>
+<h3 id="default-values">Default Values</h3>
 <ul>
-<li>
-<p><code>schedule</code>: <code>*/5 * * * *</code> to run each five minutes</p>
-</li>
-<li>
-<p><code>env:</code></p>
-</li>
+<li><strong>Schedule:</strong> <code>*/5 * * * *</code> — runs every five minutes.</li>
+<li><strong><code>expirein</code>:</strong> <code>900</code> seconds (15 minutes) — sessions idle for longer than 900 seconds are candidates for deletion.</li>
+<li><strong><code>force</code>:</strong> <code>false</code> — active sessions are never deleted.</li>
 </ul>
-<div class="highlight"><pre><span></span><code>- name: &#39;expirein&#39;
-  value: &#39;900&#39;
-</code></pre></div>
-<p><code>expirein</code> is a value in seconds.
-If the time of the last login on the desktop is more than <code>expirein</code> then a desktop can be deleted or not. </p>
-<p>The time of the last login starts when the user logs in. abcdesktop calcs the duration between the current time and the last login time on the desktop.</p>
-<ul>
-<li>If the user is NOT connected to the desktop and if the duration time is more than <code>expirein</code>, then the desktop is deleted.</li>
-<li>If the user is connected and if the duration time is is more than <code>expirein</code> and if <code>force</code> is <code>true</code>, then the desktop is deleted.</li>
-<li>If the user is connected and if the duration time is more than <code>expirein</code> and if <code>force</code> is <code>false</code>, then the desktop is NOT deleted.</li>
-<li>Else nothing to do, keep the pod running</li>
-</ul>
-<div class="highlight"><pre><span></span><code>- name: &quot;force&#39;
-  value: &#39;false&#39;
-</code></pre></div>
-<p><code>force</code> to delete the user's pod even if the user is connected. <code>false</code> is the default value, if a user is connected to his desktop then the <code>garbagecollector</code> keep this desktop running. By setting <code>FORCE</code> to <code>true</code>, the desktop will be deleted every time the <code>expirein</code> value is reached, regardless of the connection status.</p>
-<h2 id="apply-your-cronjob">Apply your <code>cronjob</code></h2>
-<p>Run the <code>kubectl</code> command to apply your manifest file in your namespace.</p>
+<h3 id="deletion-logic">Deletion Logic</h3>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th><code>force</code></th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User is not connected AND idle time &gt; <code>expirein</code></td>
+<td>any</td>
+<td>Pod is deleted</td>
+</tr>
+<tr>
+<td>User is connected AND idle time &gt; <code>expirein</code></td>
+<td><code>true</code></td>
+<td>Pod is deleted</td>
+</tr>
+<tr>
+<td>User is connected AND idle time &gt; <code>expirein</code></td>
+<td><code>false</code></td>
+<td>Pod is preserved</td>
+</tr>
+<tr>
+<td>Idle time ≤ <code>expirein</code></td>
+<td>any</td>
+<td>No action</td>
+</tr>
+</tbody>
+</table>
+<h2 id="applying-the-cronjob">Applying the CronJob</h2>
+<p>Deploy the CronJob to your namespace:</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f cronjob.yaml -n abcdesktop
 </code></pre></div>
-<p>The output looks similar to the following:</p>
+<p>Expected output:</p>
 <div class="highlight"><pre><span></span><code>cronjob.batch/abcdesktop-cleaner configured
 </code></pre></div>
-<h2 id="check-the-jobs-status">Check the jobs status</h2>
-<p>After a few minutes, you can check the job status.</p>
-<p>Run the <code>kubectl</code> command to list jobs in your namespace.</p>
+<h2 id="monitoring-cronjob-execution">Monitoring CronJob Execution</h2>
+<p>After a few minutes, verify the job execution history:</p>
 <div class="highlight"><pre><span></span><code>kubectl get jobs -n abcdesktop
 </code></pre></div>
-<p>The output looks similar to the following:</p>
+<p>Expected output:</p>
 <div class="highlight"><pre><span></span><code>NAME                          STATUS     COMPLETIONS   DURATION   AGE
 abcdesktop-cleaner-29350635   Complete   1/1           5s         13m
 abcdesktop-cleaner-29350640   Complete   1/1           5s         8m56s
 abcdesktop-cleaner-29350645   Complete   1/1           5s         3m56s
 </code></pre></div>
-<p>You can also list pods in your namespace:</p>
+<p>List completed cleaner pods:</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -n abcdesktop
 </code></pre></div>
-<p>The output looks similar to the following:</p>
+<p>Expected output:</p>
 <div class="highlight"><pre><span></span><code>NAME                                READY   STATUS      RESTARTS   AGE    IP           NODE       NOMINATED NODE   READINESS GATES
 abcdesktop-cleaner-29350665-lnk6g   0/1     Completed   0          12m    10.0.2.199   abc3ws03   &lt;none&gt;           &lt;none&gt;
 abcdesktop-cleaner-29350670-c8dtj   0/1     Completed   0          7m9s   10.0.2.252   abc3ws03   &lt;none&gt;           &lt;none&gt;
 abcdesktop-cleaner-29350675-hlj8z   0/1     Completed   0          2m9s   10.0.2.72    abc3ws03   &lt;none&gt;           &lt;none&gt;
 [...]
 </code></pre></div>
-<p>You have successfully configured the <code>garbagecollector</code> as a Kubernetes <code>CronJob</code> in your namespace.</p>
-<p>Every five minutes, the garbage collector checks whether any desktop pods should be deleted.</p>
+<p>The garbage collector CronJob is now running every five minutes and automatically reclaiming idle desktop pod resources.</p>
 
 
 

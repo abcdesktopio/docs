@@ -3729,7 +3729,7 @@
 
 
 <h1 id="keysgenerator">keysgenerator</h1>
-<p>Keygenerator is a helper Docker image that provides tools to generate SSL public/private key pairs and store them in Kubernetes secrets when they don't already exist. This functionality is used to create self-signed certificates for internal communication between different services or pods within abcdesktop.</p>
+<p>Keygenerator is a helper Docker image that provides tooling to generate SSL public/private key pairs and store them in Kubernetes Secrets when they do not already exist. This functionality is used to create self-signed certificates that secure internal communication between services and pods within the abcdesktop cluster.</p>
 <h2 id="usage">Usage</h2>
 <p>In the Helm chart, the <code>keysgenerator</code> image is utilized by <code>jobs</code> to generate keys by executing the following command:</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>abcdesktop_jwt_desktop_payload_private_key.pem<span class="w"> </span><span class="o">{{</span><span class="w"> </span>.Values.keysgenerator.jwtdesktoppayloadkeylength<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
@@ -3747,7 +3747,7 @@ openssl<span class="w"> </span>rsa<span class="w"> </span>-pubin<span class="w">
 <span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
 <span class="k">fi</span>
 </code></pre></div>
-<p>The following jobs are executed once during Helm chart installation or upgrade. If the target secret already exists, it will not be recreated. Otherwise, it will be created with newly generated public/private key pairs:</p>
+<p>The following Kubernetes Jobs run once during Helm chart installation or upgrade. If the target Secret already exists, it is not recreated. Otherwise, the Job creates the Secret with a newly generated public/private key pair:</p>
 <ul>
 <li>generate-jwtdesktoppayload-keys</li>
 <li>generate-jwtdesktopsigning-keys</li>

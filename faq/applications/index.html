@@ -18,7 +18,7 @@
     
     
       
-        <title>FAQ applications - www.abcdesktop.io</title>
+        <title>FAQ: Applications - www.abcdesktop.io</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FAQ applications
+              FAQ: Applications
             
           </span>
         </div>
@@ -3632,27 +3632,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-add-an-application" class="md-nav__link">
+  <a href="#how-do-i-add-an-application" class="md-nav__link">
     <span class="md-ellipsis">
-      How to add an application ?
+      How do I add an application?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-delete-all-applications" class="md-nav__link">
+  <a href="#how-do-i-delete-all-applications" class="md-nav__link">
     <span class="md-ellipsis">
-      How to delete all applications ?
+      How do I delete all applications?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-get-application-logs" class="md-nav__link">
+  <a href="#how-do-i-retrieve-application-logs" class="md-nav__link">
     <span class="md-ellipsis">
-      How to get application logs ?
+      How do I retrieve application logs?
     </span>
   </a>
   
@@ -3698,31 +3698,50 @@
   
 
 
-<h1 id="faq-applications">FAQ applications</h1>
-<h2 id="how-to-add-an-application">How to add an application ?</h2>
-<p>To add an application :
-- get the json file of an application
-- push the json file to the abcdesktop's images endpoint</p>
+<h1 id="faq-applications">FAQ: Applications</h1>
+<h2 id="how-do-i-add-an-application">How do I add an application?</h2>
+<p>To add an application to abcdesktop.io:</p>
+<ol>
+<li>Download the application's OCI image descriptor JSON file.</li>
+<li>POST the JSON file to the abcdesktop.io image management API endpoint.</li>
+</ol>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.3.0.json
 curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@2048-alpine.d.3.0.json
 </code></pre></div>
-<p>The first start will pull the 2048 image, so it can take a while.</p>
-<h2 id="how-to-delete-all-applications">How to delete all applications ?</h2>
-<p>To delete all applications use the images endpoint, replace <code>localhost:30443</code> by your own datas</p>
+<blockquote>
+<p>The first launch pulls the container image from the registry. Depending on image size and network bandwidth, this may take several minutes.</p>
+</blockquote>
+<h2 id="how-do-i-delete-all-applications">How do I delete all applications?</h2>
+<p>To remove all registered applications, send a DELETE request to the images API endpoint. Replace <code>localhost:30443</code> with your deployment URL.</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: text/javascript&#39;</span><span class="w"> </span>http://localhost:30443/API/manager/images/
 </code></pre></div>
-<p>It returns a json list of all deleted applications</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s2">&quot;abcdesktopio/2048-alpine.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/2048-ubuntu.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/apachedirectorystudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/astromenace.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/base.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/beekeeperstudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blender.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/bless.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blobby.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/boxes.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/calculator.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chess.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chimerax.d:dev&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chrome.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chromium.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/citrix.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cloudfoundry.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cmd.exe.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/corsix-th.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/cuda.d:dev&quot;</span><span class="p">]</span>
+<p>The response is a JSON array listing all deleted application image identifiers:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s2">&quot;abcdesktopio/2048-alpine.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/2048-ubuntu.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/apachedirectorystudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/astromenace.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/base.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/beekeeperstudio.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blender.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/bless.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/blobby.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/boxes.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/calculator.d:3.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abcdesktopio/chess.d:3.0&quot;</span><span class="p">]</span>
 </code></pre></div>
-<h2 id="how-to-get-application-logs">How to get application logs ?</h2>
-<p>To get logs if an application doesn't start, you have to:</p>
-<p>Open the <code>webshell</code> and read the logs files.</p>
-<p>The log files are /tmp/lastcmd.log, /tmp/lastcmdenv.log and /tmp/NAME OF THE APPLICATION.log.</p>
-<ul>
-<li><code>/tmp/lastcmd.log</code> the init command log file created by /composer/appli-docker-entrypoint.sh</li>
-<li><code>/tmp/lastcmdenv.log</code> the last environment variables file</li>
-<li><code>/tmp/NAME OF THE APPLICATION.log</code> the command log file for the application</li>
-</ul>
+<h2 id="how-do-i-retrieve-application-logs">How do I retrieve application logs?</h2>
+<p>If an application fails to start, open the abcdesktop.io web shell and inspect the log files:</p>
+<table>
+<thead>
+<tr>
+<th>Log File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/tmp/lastcmd.log</code></td>
+<td>Initialization command log generated by <code>/composer/appli-docker-entrypoint.sh</code></td>
+</tr>
+<tr>
+<td><code>/tmp/lastcmdenv.log</code></td>
+<td>Environment variable snapshot at last launch</td>
+</tr>
+<tr>
+<td><code>/tmp/&lt;APPLICATION_NAME&gt;.log</code></td>
+<td>Application-specific command output log</td>
+</tr>
+</tbody>
+</table>
 
 
 

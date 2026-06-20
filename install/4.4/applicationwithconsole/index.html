@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#applications-management-with-the-admin-web-ui-console" class="md-skip">
+        <a href="#managing-applications-with-the-admin-web-ui-console" class="md-skip">
           Skip to content
         </a>
       
@@ -715,46 +715,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#add-application" class="md-nav__link">
+  <a href="#adding-an-application" class="md-nav__link">
     <span class="md-ellipsis">
-      Add application
+      Adding an Application
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Add application">
+    <nav class="md-nav" aria-label="Adding an Application">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#add-from-application-store" class="md-nav__link">
+  <a href="#adding-from-the-application-store" class="md-nav__link">
     <span class="md-ellipsis">
-      Add from application store
+      Adding from the Application Store
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#add-from-json-file" class="md-nav__link">
+  <a href="#adding-from-a-json-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Add from JSON file
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#remove-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      Remove application
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gathering-more-informations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Gathering more informations
+      Adding from a JSON File
     </span>
   </a>
   
@@ -762,6 +744,24 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#removing-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removing Applications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-application-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Application Details
+    </span>
+  </a>
   
 </li>
       
@@ -3738,46 +3738,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#add-application" class="md-nav__link">
+  <a href="#adding-an-application" class="md-nav__link">
     <span class="md-ellipsis">
-      Add application
+      Adding an Application
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Add application">
+    <nav class="md-nav" aria-label="Adding an Application">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#add-from-application-store" class="md-nav__link">
+  <a href="#adding-from-the-application-store" class="md-nav__link">
     <span class="md-ellipsis">
-      Add from application store
+      Adding from the Application Store
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#add-from-json-file" class="md-nav__link">
+  <a href="#adding-from-a-json-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Add from JSON file
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#remove-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      Remove application
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gathering-more-informations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Gathering more informations
+      Adding from a JSON File
     </span>
   </a>
   
@@ -3785,6 +3767,24 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#removing-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removing Applications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-application-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Application Details
+    </span>
+  </a>
   
 </li>
       
@@ -3834,34 +3834,38 @@
   
 
 
-<h1 id="applications-management-with-the-admin-web-ui-console">Applications management with the admin web UI console</h1>
-<p>To access the admin web UI console, please connect to</p>
+<h1 id="managing-applications-with-the-admin-web-ui-console">Managing Applications with the Admin Web UI Console</h1>
+<p>To access the abcdesktop.io administration console, navigate to:</p>
 <div class="highlight"><pre><span></span><code>http://&lt;YOUR_ABCDESKTOP_URL&gt;:&lt;YOUR_PORT&gt;/console
 </code></pre></div>
 <p><img alt="application-page" src="../../../img/console_applications_1.png" /></p>
-<h2 id="add-application">Add application</h2>
-<p>On the application page, click on the blue + button. You will have two possibilities :</p>
+<h2 id="adding-an-application">Adding an Application</h2>
+<p>On the Applications page, click the blue <strong>+</strong> button. Two options are available:</p>
 <ul>
-<li>Add from the applications store</li>
-<li>Add from JSON file</li>
+<li><strong>Add from the application store</strong> — Browse and select applications from the curated store.</li>
+<li><strong>Add from a JSON file</strong> — Import an application using an OCI image descriptor JSON file.</li>
 </ul>
-<h4 id="add-from-application-store">Add from application store</h4>
-<p>Through this modal window, you can add application by exploring the application store, click on the app you want to add, its background color should change to indicate that the app has been selected, and finally click on the Add button.</p>
+<h3 id="adding-from-the-application-store">Adding from the Application Store</h3>
+<p>In the application store modal, browse the available applications. Click an application to select it — the background color changes to indicate selection. Then click the <strong>Add</strong> button to import the selected application into your abcdesktop.io instance.</p>
 <p><img alt="app-store" src="../../../img/console_app_store_modal.png" /></p>
-<p>Also, as there are quite a few applications, you can use the search bar on the to right corner to help you find the app you are searching for.</p>
+<p>Use the search bar in the top-right corner to filter applications by name.</p>
 <p><img alt="app-store-select" src="../../../img/console_app_store_modal_select.png" /></p>
-<p>Note that clicking on the JSON button will open a modal that allows you to add applications from JSON file as shown below.</p>
-<h4 id="add-from-json-file">Add from JSON file</h4>
-<p>Through this modal window, you can add applications by uploading a JSON file or by copy-pasting directly the JSON raw content in the text area.</p>
+<blockquote>
+<p>Clicking the <strong>JSON</strong> button opens the JSON import modal, allowing you to add applications from a JSON descriptor file.</p>
+</blockquote>
+<h3 id="adding-from-a-json-file">Adding from a JSON File</h3>
+<p>In the JSON import modal, either upload a JSON descriptor file or paste the raw JSON content directly into the text area.</p>
 <p><img alt="add-json-file" src="../../../img/console_add_json_file.png" />
 <img alt="add-raw-json" src="../../../img/console_add_raw_file.png" /></p>
-<p>Note that the github button will send you directly to the abcdesktop github applications page.</p>
-<h3 id="remove-application">Remove application</h3>
-<p>To remove installed applications one by one, you can click on the red trash at the end oh the line on the row where the app you want to delete is located.
-Or if you want to delete several applications at the same time you can select them and click on the red trash button above the table to delete all the selected applications.</p>
+<blockquote>
+<p>Clicking the <strong>GitHub</strong> button opens the abcdesktop.io application repository on GitHub, where you can find additional application descriptor files.</p>
+</blockquote>
+<h2 id="removing-applications">Removing Applications</h2>
+<p>To remove a single application, click the red <strong>trash</strong> icon at the end of the corresponding row in the application table.</p>
+<p>To remove multiple applications simultaneously, select the checkboxes for each application you want to delete, then click the red <strong>trash</strong> button above the table.</p>
 <p><img alt="apps-select" src="../../../img/console_applications_select.png" /></p>
-<h3 id="gathering-more-informations">Gathering more informations</h3>
-<p>If you want to get more informations about an application, just click on the name of the app to display the whole json file of the app.</p>
+<h2 id="viewing-application-details">Viewing Application Details</h2>
+<p>To inspect the full OCI metadata for an application, click the application name in the table. The complete JSON descriptor is displayed in a modal window.</p>
 <p><img alt="app-infos" src="../../../img/console_app_infos.png" /></p>
 
 

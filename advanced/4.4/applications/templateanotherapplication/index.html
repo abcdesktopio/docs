@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#build-another-application-from-template" class="md-skip">
+        <a href="#build-another-application-from-a-template" class="md-skip">
           Skip to content
         </a>
       
@@ -3818,9 +3818,9 @@
   
 
 
-<h1 id="build-another-application-from-template">Build another application from template</h1>
+<h1 id="build-another-application-from-a-template">Build another application from a template</h1>
 <p>Goal: Build a second custom abcdesktop.io application image (GIMP) by extending the <code>applist.json</code> from the previous chapter.</p>
-<p>abcdesktop uses container image format with some labels to describe the application.</p>
+<p>abcdesktop.io uses the container image format with metadata labels to describe each application.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>Access to a public or private container registry.</li>
@@ -3831,7 +3831,7 @@
 </ul>
 <h2 id="build-your-own-application-image-for-gimp">Build your own application image for <code>GIMP</code></h2>
 <p>Navigate to the <code>build</code> directory created in the previous chapter: <a href="../templateapplication/">template applications</a>.</p>
-<p>The <code>applist.json</code> file is an array of application descriptor objects. Add a new entry to the array and populate the fields for the <code>gimp</code> application.</p>
+<p>The <code>applist.json</code> file is an array of application descriptor objects. Add a new entry to the array and populate the required fields for the <code>gimp</code> application.</p>
 <p>Updated <code>applist.json</code> content for building the GIMP abcdesktop.io application:</p>
 <div class="highlight"><pre><span></span><code>[
   {
@@ -3871,7 +3871,7 @@
 <p><code>debpackage</code>: space-separated list of packages to install</p>
 </li>
 <li>
-<p>Download the Gimp icon svg file</p>
+<p>Download the GIMP icon SVG file</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code>wget https://upload.wikimedia.org/wikipedia/commons/4/45/The_GIMP_icon_-_gnome.svg -O icons/gimp.svg
@@ -3902,7 +3902,7 @@ Creating Dockerfile gimp.d
 <blockquote>
 <p><code>make.js</code> generates the Dockerfile files <code>2048.d</code> and <code>gimp.d</code>.</p>
 </blockquote>
-<p>The <code>2048.d</code> image was already built in the previous chapter; only the <code>gimp.d</code> image needs to be built here.</p>
+<p>The <code>2048.d</code> image was already built in the previous chapter; only the <code>gimp.d</code> image must be built at this stage.</p>
 <p>Review the content of the generated <code>gimp.d</code> Dockerfile, then build the GIMP application image using the <code>docker build</code> command.</p>
 <blockquote>
 <p>Replace the value of <code>REGISTRY</code> with your own registry name if needed.</p>
@@ -4047,13 +4047,13 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 <p>Return to your abcdesktop website at <code>http://localhost:30443</code> and log in as Anonymous.</p>
 <p>In the search bar at the top-right corner, type the keyword <code>gimp</code>.</p>
 <p><img alt="abcdesktop.io look for gimp applications" src="../img/application-gimp-lookfor.png" /></p>
-<p>Wait for the container image pull to complete.</p>
+<p>Wait for the container image pull to complete before proceeding.</p>
 <p><img alt="abcdesktop.io look for gimp applications" src="../img/application-gimp-waitfor.png" /></p>
 <p>Click the <code>gimp</code> icon to launch the application:</p>
 <p><img alt="abcdesktop.io gimp is running" src="../img/application-gimp-run.png" /></p>
-<p>You have successfully installed GIMP and are running it as an abcdesktop.io container application.</p>
+<p>You have successfully built, registered, and launched GIMP as an abcdesktop.io container application.</p>
 <h2 id="all-other-applications">All other applications</h2>
-<p>All abcdesktop.io applications are defined in an <code>applist.json</code> file. Refer to the complete <a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/applist.json">applist.json</a> for reference. This file contains the descriptors used to build all default abcdesktop.io application images.</p>
+<p>All abcdesktop.io applications are defined in an <code>applist.json</code> file. Refer to the complete <a href="https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/applist.json">applist.json</a> for reference. This file contains the descriptors used to build all default abcdesktop.io application images and serves as a comprehensive reference for available fields and their values.</p>
 <div class="highlight"><pre><span></span><code>git clone -b 4.4 https://github.com/abcdesktopio/oc.apps
 cd oc.apps
 nodejs make.js

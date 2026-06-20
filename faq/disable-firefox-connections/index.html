@@ -18,7 +18,7 @@
     
     
       
-        <title>How to disable Mozilla Firefox automatic connections at startup - www.abcdesktop.io</title>
+        <title>How to Disable Mozilla Firefox Automatic Connections at Startup - www.abcdesktop.io</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How to disable Mozilla Firefox automatic connections at startup
+              How to Disable Mozilla Firefox Automatic Connections at Startup
             
           </span>
         </div>
@@ -3676,11 +3676,11 @@
         <li class="md-nav__item">
   <a href="#disable-startup-connections" class="md-nav__link">
     <span class="md-ellipsis">
-      Disable startup connections
+      Disable Startup Connections
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Disable startup connections">
+    <nav class="md-nav" aria-label="Disable Startup Connections">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3776,44 +3776,42 @@
   
 
 
-<h1 id="how-to-disable-mozilla-firefox-automatic-connections-at-startup">How to disable Mozilla Firefox automatic connections at startup</h1>
+<h1 id="how-to-disable-mozilla-firefox-automatic-connections-at-startup">How to Disable Mozilla Firefox Automatic Connections at Startup</h1>
 <h2 id="usage-of-policiesjson">Usage of policies.json</h2>
-<p>You can specifiy firefox policies in a file called <code>policies.json</code>, you may have to create it as it is noy present by default.</p>
-<p>Path to <code>policies.json</code> depending on your OS (you may have to create directories of the paths):</p>
+<p>You can specify Firefox policies in a file called <code>policies.json</code>. You may need to create this file, as it is not present by default.</p>
+<p>Path to <code>policies.json</code> depending on your OS (you may need to create intermediate directories):</p>
 <ul>
-<li>Windows : <code>C:\Program Files\Mozilla Firefox\distribution\policies.json</code></li>
-<li>Linux : <code>/usr/lib/firefox/distribution/policies.json</code></li>
-<li>MacOS : <code>/Applications/Firefox.app/Contents/Resources/distribution/policies.json</code></li>
+<li>Windows: <code>C:\Program Files\Mozilla Firefox\distribution\policies.json</code></li>
+<li>Linux: <code>/usr/lib/firefox/distribution/policies.json</code></li>
+<li>macOS: <code>/Applications/Firefox.app/Contents/Resources/distribution/policies.json</code></li>
 </ul>
-<p>You can find all the policies templates, according to your firefox version, on the mozilla github page : <a href="https://github.com/mozilla/policy-templates/releases">https://github.com/mozilla/policy-templates/releases</a></p>
+<p>You can find all policy templates for your Firefox version on the Mozilla GitHub page: <a href="https://github.com/mozilla/policy-templates/releases">https://github.com/mozilla/policy-templates/releases</a></p>
 <h2 id="usage-of-autoconfigjs-and-firefoxcfg">Usage of autoconfig.js and firefox.cfg</h2>
-<p>Some preferences cannot be set through the <code>policies.json</code> file, such as disable normandy, because of firefox restrictions. But we can bypass it by creating a JS file called <code>autoconfig.js</code> and a config file called <code>firefox.cfg</code>.</p>
-<p><code>autoconfig.js</code> is used to load and execute <code>firefox.cfg</code>.</p>
+<p>Some preferences cannot be set through the <code>policies.json</code> file — for example, disabling Normandy — due to Firefox restrictions. These can instead be configured by creating a JavaScript file called <code>autoconfig.js</code> and a configuration file called <code>firefox.cfg</code>.</p>
+<p><code>autoconfig.js</code> is responsible for loading and executing <code>firefox.cfg</code> at startup.</p>
 <h3 id="autoconfigjs">autoconfig.js</h3>
 <div class="highlight"><pre><span></span><code><span class="c1">// Setup config file</span>
 <span class="nx">pref</span><span class="p">(</span><span class="s2">&quot;general.config.filename&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;firefox.cfg&quot;</span><span class="p">);</span>
 <span class="nx">pref</span><span class="p">(</span><span class="s2">&quot;general.config.obscure_value&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
 </code></pre></div>
-<p>Path to <code>autoconfig.js</code> depending on your OS (you may have to create directories of the paths):</p>
+<p>Path to <code>autoconfig.js</code> depending on your OS (you may need to create intermediate directories):</p>
 <ul>
-<li>Windows : <code>C:\Program Files\Mozilla Firefox\defaults\pref\autoconfig.js</code></li>
-<li>Linux : <code>/usr/lib/firefox/defaults/pref/autoconfig.js</code></li>
-<li>MacOS : <code>/Applications/Firefox.app/Contents/Resources/defaults/pref/autoconfig.js</code></li>
+<li>Windows: <code>C:\Program Files\Mozilla Firefox\defaults\pref\autoconfig.js</code></li>
+<li>Linux: <code>/usr/lib/firefox/defaults/pref/autoconfig.js</code></li>
+<li>macOS: <code>/Applications/Firefox.app/Contents/Resources/defaults/pref/autoconfig.js</code></li>
 </ul>
-<p>The locked preferences are specified in the <code>firefox.cfg</code> file.
-Path to <code>firefox.cfg</code> depending on your OS (you may have to create directories of the paths):</p>
+<p>Locked preferences are specified in the <code>firefox.cfg</code> file. Path to <code>firefox.cfg</code> depending on your OS:</p>
 <ul>
-<li>Windows : <code>C:\Program Files\Mozilla Firefox\firefox.cfg</code></li>
-<li>Linux : <code>/usr/lib/firefox/firefox.cfg</code></li>
-<li>MacOS : <code>/Applications/Firefox.app/Contents/Resources/firefox.cfg</code></li>
+<li>Windows: <code>C:\Program Files\Mozilla Firefox\firefox.cfg</code></li>
+<li>Linux: <code>/usr/lib/firefox/firefox.cfg</code></li>
+<li>macOS: <code>/Applications/Firefox.app/Contents/Resources/firefox.cfg</code></li>
 </ul>
 <h2 id="usage-of-proxypac-file">Usage of proxy.pac file</h2>
-<p>Despite all the efforts to disable automatic connections via <code>policies.json</code> and <code>firefox.cfg</code> files, there where still a few connections that seems to be not possible to disable.
-To bypass this phenomena, we will create a file named <code>proxy.pac</code> that will block access to the remaining URLs by redirecting them to an unreachable proxy.</p>
-<p>Save <code>proxy.pac</code> on your machine and keep in mind the path to your file.</p>
-<p>Once done, you should add the following line to the <code>Proxy</code> policy inside your <code>policies.json</code> file :
+<p>Despite all efforts to disable automatic connections via <code>policies.json</code> and <code>firefox.cfg</code>, a small number of connections may remain that cannot be disabled through policy settings alone. To work around this behavior, create a file named <code>proxy.pac</code> that blocks access to the remaining URLs by redirecting them to an unreachable proxy.</p>
+<p>Save <code>proxy.pac</code> to your machine and note the file path.</p>
+<p>Once saved, add the following line to the <code>Proxy</code> policy inside your <code>policies.json</code> file:
 <code>"AutoConfigURL": "file:///path/to/your/proxy.pac"</code></p>
-<h2 id="disable-startup-connections">Disable startup connections</h2>
+<h2 id="disable-startup-connections">Disable Startup Connections</h2>
 <h3 id="policiesjson">policies.json</h3>
 <table>
 <thead>
@@ -3841,7 +3839,7 @@ To bypass this phenomena, we will create a file named <code>proxy.pac</code> tha
 </tr>
 <tr>
 <td><code>https://accounts.firefox.com</code></td>
-<td><code>"browser.startup.homepage_override.mstone": "ignore"</code><br>(also disable news page)</td>
+<td><code>"browser.startup.homepage_override.mstone": "ignore"</code><br>(also disables the news page)</td>
 </tr>
 <tr>
 <td><code>https://shavar.services.mozilla.com</code></td>
@@ -3857,7 +3855,7 @@ To bypass this phenomena, we will create a file named <code>proxy.pac</code> tha
 </tr>
 <tr>
 <td><code>https://incoming.telemetry.mozilla.org</code><br><code>https://www.mozilla.org</code></td>
-<td>Set <code>"DisableTelemetry"</code> policy to true</td>
+<td>Set <code>"DisableTelemetry"</code> policy to <code>true</code></td>
 </tr>
 </tbody>
 </table>

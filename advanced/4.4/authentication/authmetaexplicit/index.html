@@ -3802,8 +3802,7 @@
 
 <h1 id="authentication-metaexplicit-for-microsoft-active-directory-with-trust-relationships">Authentication <code>metaexplicit</code> for Microsoft Active Directory with Trust Relationships</h1>
 <h2 id="authmanagers-metaexplicit-object">authmanagers <code>metaexplicit</code> Object</h2>
-<p>The <code>metaexplicit</code> authentication manager contains exactly one provider.
-The provider must be defined with the name <code>metadirectory</code>.</p>
+<p>The <code>metaexplicit</code> authentication manager supports exactly one provider entry. This provider must be defined with the reserved name <code>metadirectory</code> and is responsible for resolving the user's home domain before delegating credential validation to the appropriate Active Directory explicit provider.</p>
 <div class="highlight"><pre><span></span><code><span class="err">&#39;me</span><span class="kc">tae</span><span class="err">xplici</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="err">&#39;providers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="err">&#39;me</span><span class="kc">ta</span><span class="err">direc</span><span class="kc">t</span><span class="err">ory&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
@@ -3829,10 +3828,8 @@ The provider must be defined with the name <code>metadirectory</code>.</p>
 </tbody>
 </table>
 <h3 id="metadirectory-provider-configuration"><code>metadirectory</code> Provider Configuration</h3>
-<p>The <code>metadirectory</code> provider is defined as a dictionary object and must contain a key name.
-The key name must match the name of the dictionary referenced by <code>config_ref</code>.</p>
-<p>A <code>metadirectory</code> provider requires an LDAP attribute to identify the original domain and <code>sAMAccountName</code>.
-This LDAP attribute is specified using <code>join_key_ldapattribut</code>.</p>
+<p>The <code>metadirectory</code> provider is defined as a dictionary object whose key name must match the value of <code>config_ref</code>. The referenced configuration block provides the LDAP connection parameters for the metadirectory forest.</p>
+<p>A <code>metadirectory</code> provider requires a dedicated LDAP attribute to map each user account to its originating domain and <code>sAMAccountName</code>. This attribute is specified using the <code>join_key_ldapattribut</code> key.</p>
 <div class="highlight"><pre><span></span><code>coporateconfig : { &#39;metadirectory&#39;: {  
                     &#39;domain&#39;        : &#39;CORPORATE&#39;,
                     &#39;ldap_basedn&#39;   : &#39;DC=foo,DC=corporate,DC=local&#39;,
@@ -3847,14 +3844,13 @@ This LDAP attribute is specified using <code>join_key_ldapattribut</code>.</p>
                     &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;svcaccount&#39;, &#39;password&#39;:&#39;superpass&#39; }
                  } } 
 </code></pre></div>
-<p>Pyos binds to the metadirectory LDAP server using the service account credentials, then reads the LDAP attribute <code>description</code> to determine the user's trusted domain.</p>
+<p>Pyos binds to the metadirectory LDAP server using the service account credentials and reads the LDAP attribute specified by <code>join_key_ldapattribut</code> (in this example, <code>description</code>) to determine the user's trusted home domain. It then locates the matching explicit provider configuration and delegates authentication to that domain.</p>
 <p>For example:
 <div class="highlight"><pre><span></span><code><span class="na">description</span><span class="p">:</span><span class="w"> </span><span class="s">AD\john</span>
 </code></pre></div></p>
 <p>Pyos then looks up the <code>AD</code> provider configuration and performs authentication against the <code>AD</code> domain.</p>
-<p>Accounts in the <code>metadirectory</code> can be in any state.
-The LDAP attribute <code>userAccountControl</code> is not read for metadirectory providers. The <code>UF_ACCOUNT_DISABLE</code> bit is not evaluated.</p>
-<p>A service account must be defined for every <code>metadirectory</code> provider. The service account is used to bind to the metadirectory.</p>
+<p>Accounts in the <code>metadirectory</code> can exist in any account state. The LDAP attribute <code>userAccountControl</code> is not read for metadirectory provider lookups, and the <code>UF_ACCOUNT_DISABLE</code> flag is not evaluated. Account enablement enforcement is delegated to the target explicit provider.</p>
+<p>A service account must be defined for every <code>metadirectory</code> provider. This account is used to bind to the metadirectory LDAP server and perform the domain-resolution attribute lookup.</p>
 <h3 id="complete-example-with-a-metadirectory-provider-and-active-directory-user-domains">Complete Example with a <code>metadirectory</code> Provider and Active Directory User Domains</h3>
 <p>In this example:
 - The user's domain name is <code>AD</code>.
@@ -3928,10 +3924,9 @@ The LDAP attribute <code>userAccountControl</code> is not read for metadirectory
 <span class="w">                      </span><span class="err">&#39;kerberos_realm&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;AD.SUPER.LOCAL&#39;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <h3 id="metadirectory-support"><code>metadirectory</code> Support</h3>
-<p>The <code>metadirectory</code> provider supports Foreign Security Principals (FSPs) to query security principals in trusted external forests. These objects are created in the Foreign Security Principals container of the domain.
+<p>The <code>metadirectory</code> provider supports Foreign Security Principals (FSPs), enabling it to query security principals residing in trusted external forests. These objects are stored in the Foreign Security Principals container of the local domain.
 The <code>metadirectory</code> provider supports <code>isMemberOf</code> lookups on foreign security principals.</p>
-<p>The user's SID from the <code>AD</code> or <code>ANOTHER</code> domain is NOT read directly.
-A new LDAP bind is performed against the trusted domain on the metadirectory provider rather than using the service account.</p>
+<p>The user's SID from the <code>AD</code> or <code>ANOTHER</code> domain is not read directly from the metadirectory. Instead, a new LDAP bind is performed against the user's trusted home domain rather than reusing the service account credentials.</p>
 <p>The LDAP query is constructed as:
 <div class="highlight"><pre><span></span><code>( &quot;search_base={q.basedn}, search_scope={q.scope}, search_filter={filter}&quot; )
 </code></pre></div></p>

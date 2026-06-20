@@ -4287,7 +4287,7 @@
 <hr />
 <h2 id="pages">Pages</h2>
 <h3 id="desktops-page">Desktops Page (<code>/</code>)</h3>
-<p>The default landing page. Lists all active user desktop pods in the abcdesktop cluster.</p>
+<p>The default landing page, which lists all active user desktop pods in the abcdesktop cluster.</p>
 <p><strong>Features:</strong>
 - List all desktops with name, status, pod IP, node, and creation timestamp
 - Delete a single desktop via the red trash icon on its row
@@ -4300,7 +4300,7 @@
   - <strong>Containers &amp; Pods</strong> – running containers and application pods
   - <strong>Resources Usage</strong> – live CPU % and RAM (MB) charts, polled every 5 seconds</p>
 <h3 id="applications-page-apps">Applications Page (<code>/apps</code>)</h3>
-<p>Manages the application images (Docker-based apps) available in the abcdesktop session.</p>
+<p>Manages the application images (Docker-based apps) available in the abcdesktop platform.</p>
 <p><strong>Features:</strong>
 - List installed applications with icon, name, and short ID
 - View full application JSON descriptor by clicking the app name
@@ -4310,13 +4310,13 @@
 - Delete a single application via the trash icon
 - Bulk-delete by selecting multiple rows</p>
 <h3 id="ban-ip-page-banip">Ban IP Page (<code>/banIp</code>)</h3>
-<p>Manages IP address bans.</p>
+<p>Manages IP address bans. IP bans prevent connections from specific IPv4 addresses from reaching the platform.</p>
 <p><strong>Features:</strong>
 - List currently banned IPs with ban date and TTL in seconds
 - Add a ban by entering an IPv4 address (<code>X.X.X.X</code> format)
 - Remove a ban (unban) via the trash icon</p>
 <h3 id="ban-login-page-banlogin">Ban Login Page (<code>/banLogin</code>)</h3>
-<p>Manages user login bans.</p>
+<p>Manages user login bans. Login bans prevent specific usernames from authenticating, regardless of the source IP address.</p>
 <p><strong>Features:</strong>
 - List currently banned logins with ban date and TTL in seconds
 - Add a ban by entering a username
@@ -4328,10 +4328,10 @@
 <div class="highlight"><pre><span></span><code>GET /API/manager/healtz
 X-API-KEY: &lt;admin-api-key&gt;
 </code></pre></div>
-<p>The key must be configured on the <code>pyos</code> side, in <code>od.config</code> file. If no <code>apikey</code> is specified, the <strong>API Key modal</strong> will not appear and the user will be free to use the console.</p>
+<p>The key must be configured on the <code>pyos</code> side in the <code>od.config</code> file. If no <code>apikey</code> is specified, the <strong>API Key modal</strong> does not appear and the administrator has unrestricted access to the console.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>More information on the API key is available on <a href="https://abcdesktop.pepins.net/advanced/4.4/controllers/controllers/#access-control-filter">this page</a></p>
+<p>More information on the API key is available on <a href="https://www.abcdesktop.io/advanced/4.4/controllers/controllers/#access-control-filter">this page</a></p>
 </div>
 <hr />
 <h2 id="pyos-api-endpoints-used">pyos API Endpoints Used</h2>

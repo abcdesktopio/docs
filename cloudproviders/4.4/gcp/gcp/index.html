@@ -3889,17 +3889,17 @@
 <li><code>gcloud</code> command line interface <a href="https://docs.cloud.google.com/sdk/docs/install-sdk/">gcloud cli</a></li>
 </ul>
 <blockquote>
-<p>If you use the <code>gcloud</code> command line for the first time, run <code>gcloud auth login</code> to authenticate with your GCP account.</p>
+<p>If you are using the <code>gcloud</code> command line for the first time, run <code>gcloud auth login</code> to authenticate with your GCP account.</p>
 </blockquote>
 <h2 id="create-a-kubernetes-cluster-using-gcloud-cli">Create a Kubernetes Cluster Using gcloud CLI</h2>
-<p>First, configure <code>gcloud</code> to set your GCP project as the current project by running the following command.</p>
+<p>First, configure <code>gcloud</code> to set your GCP project as the current project:</p>
 <div class="highlight"><pre><span></span><code>gcloud config set project &lt;YOUR_PROJECT_ID&gt;
 </code></pre></div>
 <p>Run the following command to create your Kubernetes cluster:</p>
 <div class="highlight"><pre><span></span><code>gcloud container clusters create abcdesktop-gcp-1 --machine-type=custom-4-8192 --zone=us-central1-a --num-nodes=2
 </code></pre></div>
-<p>If you want more details about the command parameters go the <a href="https://docs.cloud.google.com/sdk/gcloud/reference/container/clusters/create">gcloud container clusters create documentation</a></p>
-<p>After a few minutes, you get a kubernetes cluster ready</p>
+<p>For more details about the command parameters, see the <a href="https://docs.cloud.google.com/sdk/gcloud/reference/container/clusters/create">gcloud container clusters create documentation</a>.</p>
+<p>After a few minutes, the Kubernetes cluster is ready:</p>
 <div class="highlight"><pre><span></span><code>Note: Your Pod address range (`--cluster-ipv4-cidr`) can accommodate at most 1008 node(s).
 Creating cluster abcdesktop-gcp-1 in us-central1-a... Cluster is being health-checked (Kubernetes Control Plane is healthy)...done.                                                                                                                                              
 Created [https://container.googleapis.com/v1/projects/project-3104fb45-bad0-46b7-b2b/zones/us-central1-a/clusters/abcdesktop-gcp-1].
@@ -3909,41 +3909,41 @@ NAME              LOCATION       MASTER_VERSION      MASTER_IP      MACHINE_TYPE
 abcdesktop-gcp-1  us-central1-a  1.33.5-gke.1308000  34.172.78.248  custom-4-8192  1.33.5-gke.1308000  2          RUNNING  IPV4
 </code></pre></div>
 <h2 id="create-a-kubernetes-cluster-using-google-cloud-console">Create a Kubernetes Cluster Using Google Cloud Console</h2>
-<p>If you do not have a running Kubernetes cluster, connect to your GCP console and search for <code>Create a Kubernetes Cluster</code>.</p>
+<p>If you do not have a running Kubernetes cluster, connect to your GCP console and search for <strong>Create a Kubernetes Cluster</strong>.</p>
 <p><img alt="gcp console overview" src="../img/gcp-console-overview.png" /></p>
-<p>You will arrive on the GCP Kubernetes cluster application main page, then click on <code>Create cluster</code> and follow the step as shown below.</p>
+<p>Navigate to the GCP Kubernetes cluster application main page, click <strong>Create cluster</strong>, and follow the steps shown below.</p>
 <p><img alt="gcp kubernetes app page" src="../img/kube-cluster-page.png" />
 <img alt="cluster setup step 1" src="../img/kube-setup-step-1.png" />
 <img alt="cluster setup step 2" src="../img/kube-setup-step-2.png" />
 <img alt="cluster setup step 3-1" src="../img/kube-setup-step-3-1.png" />
 <img alt="cluster setup step 3-2" src="../img/kube-setup-step-3-2.png" />
 <img alt="cluster setup step 4" src="../img/kube-setup-step-4.png" /></p>
-<p>Now wait a few minutes for your cluster to be ready.</p>
+<p>Wait a few minutes for your cluster to be ready.</p>
 <p><img alt="cluster ready" src="../img/cluster-created.png" /></p>
-<p>Once your cluster is ready, you will need to link it to your local machine in order to manage it. To do so, first install the <code>gke-gcloud-auth-plugin</code> by running the following command:</p>
+<p>Once your cluster is ready, link it to your local machine to manage it remotely. Install the <code>gke-gcloud-auth-plugin</code> by running the following command:</p>
 <div class="highlight"><pre><span></span><code>gcloud components install gke-gcloud-auth-plugin
 </code></pre></div>
-<p>Then click on the <code>Connect</code> button and paste the provided command into your terminal.</p>
+<p>Click the <strong>Connect</strong> button and paste the provided command into your terminal.</p>
 <p><img alt="link command" src="../img/gcloud-command.png" /></p>
 <h2 id="run-the-abcdesktop-install-script">Run the abcdesktop install script</h2>
-<p>Download and install the latest release automatically</p>
+<p>Download and install the latest release automatically:</p>
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh | bash
 </code></pre></div>
 <p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="connect-to-your-abcdesktop-service">Connect to your abcdesktop service</h2>
-<p>By default, the install script exposes the service on a free TCP port <code>:30443</code> using a <code>kubectl port-forward</code> command to forward traffic to the HTTP service on port <code>:80</code>.</p>
-<p>Open your web browser and navigate to <code>http://localhost:30443</code>.</p>
+<p>By default, the install script listens on a free TCP port <code>:30443</code> and uses a <code>kubectl port-forward</code> command to forward traffic to the HTTP service on port <code>:80</code>.</p>
+<p>Open a web browser and navigate to <code>http://localhost:30443</code>.</p>
 <p><img alt="abcdesktop login" src="../../img/abcdesktop-hompage-port30443.png" /></p>
-<p>Login as user <code>Philip J. Fry</code> with the password <code>fry</code></p>
+<p>Log in as user <code>Philip J. Fry</code> with the password <code>fry</code>.</p>
 <p><img alt="abcdesktop login as fry" src="../../img/abcdesktop-hompage-port30443-login-fry.png" /></p>
-<p>After image pulling process, you get your first abcdesktop </p>
+<p>After the image-pulling process completes, you get your first abcdesktop session.</p>
 <p><img alt="abcdesktop for fry" src="../../img/abcdesktop-hompage-port30443-user-fry-logged.png" /></p>
 <h3 id="resource-issue">Resource issue</h3>
-<p>If this resource issue occurs</p>
+<p>If the following resource error occurs:</p>
 <div class="highlight"><pre><span></span><code>Unprocessable Entity {&quot;kind&quot;:&quot;Status&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;metadata&quot;:{},&quot;status&quot;:&quot;Failure&quot;,&quot;message&quot;:&quot;Pod \&quot;fry-38b04\&quot; is invalid: [spec.resources.requests[cpu]: Invalid value: \&quot;1\&quot;: must be greater than or equal to aggregate container requests of 1500m, spec.resources.requests[memory]: Invalid value: \&quot;576Mi\&quot;: must be greater than or equal to aggregate container requests of 6Gi]&quot;,&quot;reason&quot;:&quot;Invalid&quot;,&quot;details&quot;:{&quot;name&quot;:&quot;fry-38b04&quot;,&quot;kind&quot;:&quot;Pod&quot;,&quot;causes&quot;:[{&quot;reason&quot;:&quot;FieldValueInvalid&quot;,&quot;message&quot;:&quot;Invalid value: \&quot;1\&quot;: must be greater than or equal to aggregate container requests of 1500m&quot;,&quot;field&quot;:&quot;spec.resources.requests[cpu]&quot;},{&quot;reason&quot;:&quot;FieldValueInvalid&quot;,&quot;message&quot;:&quot;Invalid value: \&quot;576Mi\&quot;: must be greater than or equal to aggregate container requests of 6Gi&quot;,&quot;field&quot;:&quot;spec.resources.requests[memory]&quot;}]},&quot;code&quot;:422}
 </code></pre></div>
 <ul>
-<li>Update the <code>od.config</code>, add comment the <code>executeclasses</code> <code>default</code> entry</li>
+<li>Update <code>od.config</code> and comment out the <code>executeclasses</code> <code>default</code> entry:</li>
 </ul>
 <div class="highlight"><pre><span></span><code>executeclasses : {
   &#39;default&#39;:{
@@ -3957,23 +3957,23 @@ abcdesktop-gcp-1  us-central1-a  1.33.5-gke.1308000  34.172.78.248  custom-4-819
   },
 </code></pre></div>
 <ul>
-<li>Restart <code>pyos-od</code> deployment to reload the <code>abcdesktop-config</code></li>
+<li>Restart the <code>pyos-od</code> deployment to reload the <code>abcdesktop-config</code>:</li>
 </ul>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl create -n $NAMESPACE configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deployment pyos-od -n $NAMESPACE
 </code></pre></div>
 <h2 id="add-applications-to-your-desktop">Add applications to your desktop</h2>
-<p>Using the previous terminal shell, run the application install script </p>
+<p>Using the previous terminal shell, run the application install script:</p>
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.4.sh | bash
 </code></pre></div>
 <p>To get more details about the install applications process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop_applications/">Setup applications guide</a></p>
-<p>Then reload the web page showing the desktop of <code>Philip J. Fry</code>.
+<p>Reload the web page to refresh the desktop of <code>Philip J. Fry</code>.
 New applications are now listed in the dock of <code>plasmashell</code>.</p>
 <p><img alt="abcdesktop for fry with applications" src="../../img/abcdesktop-hompage-port30443-login-fry-applications.png" /></p>
-<p>Start Firefox application</p>
+<p>Start the Firefox application.</p>
 <blockquote>
-<p>The first run may involve waiting for the image pulling process to finish</p>
+<p>The first run may involve waiting for the image-pulling process to finish.</p>
 </blockquote>
 <p>In this example, for the <code>Iowa</code> region, the desktop is located near <code>Council Bluffs</code> in the <code>United States</code>.</p>
 <p><img alt="abcdesktop location" src="../img/abcdesktop-location.png" /></p>

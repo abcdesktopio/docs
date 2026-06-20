@@ -4270,15 +4270,15 @@
 
 <h1 id="dockerfile-and-runtime-architecture-specification">Dockerfile and Runtime Architecture Specification</h1>
 <h2 id="1-scope-and-intent">1. Scope and Intent</h2>
-<p>This document is the normative specification of the container image produced by this repository Dockerfile.</p>
+<p>This document is the normative specification of the container image produced by the Dockerfile in this repository.</p>
 <p>Image purpose:
 - Provide a CUPS-based printing runtime for abcdesktop.
 - Bundle and run two Node.js services used by the printing workflow.
-- Run all runtime processes under supervisor.</p>
+- Run all runtime processes under a Supervisor process manager.</p>
 <p>Design style:
 - Single-stage image.
-- Runtime is process-supervised multi-service (not a one-process image).
-- Configuration-heavy image where repository-provided /etc content defines behavior.</p>
+- The runtime uses a multi-service process supervision model rather than a single-process container design.
+- Configuration-heavy image where repository-provided <code>/etc</code> content defines runtime behavior.</p>
 <h2 id="2-base-image-and-global-build-inputs">2. Base Image and Global Build Inputs</h2>
 <h3 id="21-base-image">2.1 Base image</h3>
 <ul>
@@ -4307,15 +4307,15 @@
 <p>Branch selection:
 - Both repositories are cloned with -b $BRANCH.</p>
 <p>Reproducibility note:
-- Because clones are branch-based (not commit-pinned), resulting images can vary over time for the same Dockerfile and BRANCH value.</p>
+- Because both repositories are cloned using a branch name rather than a pinned commit or tag, the resulting images may vary over time even when the same Dockerfile and BRANCH value are used. Pin to specific commits or tags for reproducible production builds.</p>
 <h2 id="4-dependency-installation-behavior">4. Dependency Installation Behavior</h2>
 <h3 id="41-node-dependencies">4.1 Node dependencies</h3>
-<p>For each cloned Node service:
-- Working directory is set to service directory.
-- npm install --save-prod is executed.</p>
+<p>For each cloned Node.js service:
+- The working directory is set to the service directory.
+- <code>npm install --save-prod</code> is executed to install production dependencies only.</p>
 <p>Behavioral implications:
 - Production dependencies are installed.
-- Exact dependency graph may change over time unless lockfiles in cloned repos are stable and honored.</p>
+- The exact dependency graph may change over time unless the lockfiles in the cloned repositories are stable and honored.</p>
 <h3 id="42-system-dependencies">4.2 System dependencies</h3>
 <p>The image installs two groups of apt packages.</p>
 <p>Font and rendering group:
@@ -4352,16 +4352,14 @@
 <li>docker-entrypoint.sh is copied to /docker-entrypoint.sh</li>
 </ul>
 <h3 id="52-configuration-tree-override">5.2 Configuration tree override</h3>
-<ul>
-<li>Entire local etc directory is copied into /etc in the image.</li>
-</ul>
+<p>The entire local <code>etc</code> directory is copied into <code>/etc</code> in the image.</p>
 <p>This includes at minimum:
-- /etc/supervisord.conf
-- /etc/supervisor/conf.d/<em>.conf
-- /etc/cups/</em></p>
+- <code>/etc/supervisord.conf</code>
+- <code>/etc/supervisor/conf.d/*.conf</code>
+- <code>/etc/cups/*</code></p>
 <p>Operational meaning:
-- Container runtime behavior is strongly defined by repository config files.
-- Upstream defaults from the base image may be overridden by this repository content.</p>
+- Container runtime behavior is strongly governed by repository configuration files.
+- Upstream defaults from the base image may be overridden by this repository's content.</p>
 <h2 id="6-build-time-filesystem-and-permissions">6. Build-Time Filesystem and Permissions</h2>
 <p>Directories explicitly created:
 - /var/log/desktop
@@ -4396,7 +4394,7 @@
 <li>/usr/bin/supervisord --pidfile /var/run/desktop/supervisord.pid --nodaemon --configuration /etc/supervisord.conf</li>
 </ol>
 <p>Runtime side effect:
-- cupsd.conf is mutated at container startup, so CUPS listen address is runtime-dependent.</p>
+- <code>cupsd.conf</code> is mutated at container startup, so the CUPS listening address is determined at runtime rather than build time.</p>
 <h2 id="8-supervisor-process-topology">8. Supervisor Process Topology</h2>
 <p>Supervisor master config:
 - /etc/supervisord.conf</p>

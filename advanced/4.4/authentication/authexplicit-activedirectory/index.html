@@ -3784,7 +3784,7 @@
 
 <h1 id="authentication-explicit-for-microsoft-active-directory-services">Authentication <code>explicit</code> for Microsoft Active Directory Services</h1>
 <h2 id="authmanagers-explicit-object">authmanagers <code>explicit</code> Object</h2>
-<p>The <code>explicit</code> authentication configuration is defined as a dictionary object and contains an <code>explicit</code> provider.</p>
+<p>The <code>explicit</code> authentication configuration is defined as a dictionary object that contains one or more named provider entries, each corresponding to a Windows domain.</p>
 <p>For example:</p>
 <div class="highlight"><pre><span></span><code>&#39;explicit&#39;: {
     &#39;show_domains&#39;: True,
@@ -3828,8 +3828,7 @@
 </tbody>
 </table>
 <h3 id="providers-configuration">Providers Configuration</h3>
-<p>The <code>provider</code> authentication configuration is defined as a dictionary object and must contain a key name.
-The key name must match the <a href="https://en.wikipedia.org/wiki/Windows_domain"><code>USERDOMAIN</code></a> value and must be set to the exact same value in the <code>config_ref</code> dictionary.</p>
+<p>The <code>provider</code> authentication configuration is defined as a dictionary object that must include a key name. The key name must match the <a href="https://en.wikipedia.org/wiki/Windows_domain"><code>USERDOMAIN</code></a> value and must correspond exactly to the key used in the <code>config_ref</code> dictionary.</p>
 <p>Providers:</p>
 <p>The provider is formatted as a dictionary:</p>
 <div class="highlight"><pre><span></span><code>{ &#39;AD&#39;: {  
@@ -3859,7 +3858,7 @@ The key name must match the <a href="https://en.wikipedia.org/wiki/Windows_domai
 </tr>
 </tbody>
 </table>
-<p>In this example, the Microsoft Active Directory values are set as follows:</p>
+<p>In this example, the Microsoft Active Directory environment variables are configured as follows:</p>
 <table>
 <thead>
 <tr>
@@ -3898,7 +3897,7 @@ The key name must match the <a href="https://en.wikipedia.org/wiki/Windows_domai
        # &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;SVCACCOUNT&#39;, &#39;password&#39;: &#39;SVCACCOUNTPASSWORD&#39; } 
 } }
 </code></pre></div>
-<p>Replace each variable value with your own Active Directory environment settings.</p>
+<p>Replace each variable value with settings specific to your Active Directory environment.</p>
 <table>
 <thead>
 <tr>
@@ -3962,7 +3961,7 @@ The key name must match the <a href="https://en.wikipedia.org/wiki/Windows_domai
 <h2 id="service-account">Service Account</h2>
 <div class="highlight"><pre><span></span><code>  &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;SVCACCOUNT&#39;, &#39;password&#39;: &#39;SVCACCOUNTPASSWORD&#39; }
 </code></pre></div>
-<p><code>serviceaccount</code> is optional. When configured, it allows pyos to query the Active Directory service to read subnet and location information from the sites container at <code>'CN=Subnets,CN=Sites,CN=Configuration,' + BASE_DN</code> (for example, <code>CN=Subnets,CN=Sites,CN=Configuration,DC=example,DC=com</code>).</p>
+<p><code>serviceaccount</code> is an optional credential configuration. When provided, it allows <code>pyos</code> to query the Active Directory service and retrieve subnet and site location information from the sites container at <code>'CN=Subnets,CN=Sites,CN=Configuration,' + BASE_DN</code> (for example, <code>CN=Subnets,CN=Sites,CN=Configuration,DC=example,DC=com</code>).</p>
 
 
 

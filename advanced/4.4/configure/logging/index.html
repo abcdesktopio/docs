@@ -2733,7 +2733,7 @@
         <li class="md-nav__item">
   <a href="#logging-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Logging configuration
+      Logging Configuration
     </span>
   </a>
   
@@ -3718,7 +3718,7 @@
         <li class="md-nav__item">
   <a href="#logging-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Logging configuration
+      Logging Configuration
     </span>
   </a>
   
@@ -3749,18 +3749,16 @@
 
 
 <h1 id="logging-configuration-in-odconfig">Logging Configuration in od.config</h1>
-<p>The <code>logging</code> configuration is a dictionary object. The logging configuration specifies where and how log messages are sent.</p>
-<p><code>logging</code> dictionary uses the python logging module <a href="https://docs.python.org/3.8/library/logging.config.html">logging module</a></p>
-<p>The <code>syslog</code> and <code>graylog</code> protocol messaging are supported too.</p>
+<p>The <code>logging</code> configuration is a dictionary object that specifies where and how log messages are sent.</p>
+<p>The <code>logging</code> dictionary follows the Python logging module configuration format. Refer to the <a href="https://docs.python.org/3.8/library/logging.config.html">logging module</a> documentation for the full specification.</p>
+<p>The <code>syslog</code> and <code>graylog</code> protocols are also supported for remote log forwarding.</p>
 <h2 id="limits">Limits</h2>
-<ul>
-<li>For http response only, each log line is limited by default to 2048 bytes. </li>
-</ul>
-<p>in <code>od.config</code> the <code>max_log_body_size</code> is set to <code>2048</code></p>
+<p>For HTTP responses only, each log line is limited by default to 2048 bytes.</p>
+<p>In <code>od.config</code>, the <code>max_log_body_size</code> parameter is set to <code>2048</code> by default:</p>
 <div class="highlight"><pre><span></span><code>max_log_body_size: 2048
 </code></pre></div>
-<p>Change this value to increase or decrease the size of a logging line.</p>
-<p>If the line is over <code>max_log_body_size</code> the string <code>[truncated]</code> cuts the end of line</p>
+<p>Adjust this value to increase or decrease the maximum length of a log line.</p>
+<p>If a log line exceeds <code>max_log_body_size</code>, the string <code>[truncated]</code> replaces the end of the line:</p>
 <div class="highlight"><pre><span></span><code>2026-05-05 13:41:09 abcsrv23 132131221128896 od [INFO   ] __main__.trace_response:anonymous /core/getkeyinfo b&#39;{&quot;id&quot;: {&quot;ephemeral_container&quot;: f...[truncated]&#39;
 2026-05-05 13:41:09 abcsrv23 132131237914304 orchestrator [DEBUG  ] oc.od.orchestrator.ODOrchestratorKubernetes.__init__:leela load_kube_config done
 2026-05-05 13:41:09 abcsrv23 132131195950784 od [INFO   ] __main__.trace_response:anonymous /core/getkeyinfo b&#39;{&quot;id&quot;: null, &quot;callbackurl&quot;: null...[truncated]&#39;
@@ -3768,10 +3766,10 @@
 2026-05-05 13:41:09 abcsrv23 132131237914304 orchestrator [DEBUG  ] oc.od.orchestrator.ODOrchestratorKubernetes.findPodByUser:leela 
 2026-05-05 13:41:09 abcsrv23 132131237914304 orchestrator [DEBUG  ] oc.od.orchestrator.ODOrchestratorKubernetes.findDesktopByUser:leela Pod is found leela-be51a
 </code></pre></div>
-<h2 id="logging-configuration">Logging configuration</h2>
-<p><code>logging</code> dict use the python logging module <a href="https://docs.python.org/3.8/library/logging.config.html">logging module</a></p>
-<p>The <code>syslog</code> and <code>graylog</code> protocol messaging are supported too.</p>
-<p>The default features for each handler are: </p>
+<h2 id="logging-configuration">Logging Configuration</h2>
+<p>The <code>logging</code> dictionary uses the Python logging module configuration format. Refer to the <a href="https://docs.python.org/3.8/library/logging.config.html">logging module</a> documentation for the full specification.</p>
+<p>The <code>syslog</code> and <code>graylog</code> protocols are also supported.</p>
+<p>The default configuration for each handler is as follows:</p>
 <table>
 <thead>
 <tr>
@@ -3798,7 +3796,7 @@
 </tr>
 </tbody>
 </table>
-<p>Sub modules used by od.py can log information too. </p>
+<p>Sub-modules used by <code>od.py</code> also emit log messages.</p>
 <table>
 <thead>
 <tr>
@@ -3817,7 +3815,7 @@
 </tr>
 </tbody>
 </table>
-<p>The <code>logging</code> sample configuration :</p>
+<p>The following is a sample <code>logging</code> configuration:</p>
 <div class="highlight"><pre><span></span><code>#              
 # logging configuration 
 # come from https://docs.python.org/3.8/library/logging.config.html

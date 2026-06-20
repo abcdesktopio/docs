@@ -3494,9 +3494,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-mappers-to-user-federation-optionnal" class="md-nav__link">
+  <a href="#add-mappers-to-user-federation-optional" class="md-nav__link">
     <span class="md-ellipsis">
-      Add mappers to User federation (Optionnal)
+      Add mappers to User federation (Optional)
     </span>
   </a>
   
@@ -3784,9 +3784,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-mappers-to-user-federation-optionnal" class="md-nav__link">
+  <a href="#add-mappers-to-user-federation-optional" class="md-nav__link">
     <span class="md-ellipsis">
-      Add mappers to User federation (Optionnal)
+      Add mappers to User federation (Optional)
     </span>
   </a>
   
@@ -3869,12 +3869,12 @@ member: cn=Hermes Conrad,ou=people,dc=planetexpress,dc=com
 </details>
 </div>
 <h2 id="install">Install</h2>
-<p>There are many ways to install a keycloak server, in this tutorial, we will perform a Kubernetes install on the same cluster hosting our abcdesktop using helm command line.</p>
+<p>There are multiple ways to install a Keycloak server. In this tutorial, Keycloak is deployed on the same Kubernetes cluster that hosts abcdesktop, using the Helm command-line tool.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you are curious about other ways to get started, please refer to the <a href="https://www.keycloak.org/guides">keycloak documentation</a></p>
 </div>
-<p>Connect to your control plane and run the following lines to perform keycloak install</p>
+<p>Connect to your control plane node and run the following commands to install Keycloak.</p>
 <div class="highlight"><pre><span></span><code>helm repo add codecentric https://codecentric.github.io/helm-charts
 helm repo update
 </code></pre></div>
@@ -3884,24 +3884,24 @@ helm repo update
   --set database.vendor=h2 \
   --set service.type=NodePort 
 </code></pre></div>
-<p>Once done, run the following command to check if the keycloak are running</p>
+<p>Once the installation completes, run the following command to verify that the Keycloak pod is running.</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -n keycloak
 NAME         READY   STATUS    RESTARTS   AGE
 keycloak-0   1/1     Running   0          32s
 </code></pre></div>
-<p>Then check the keycloak service to see which port has been chosen for hte web UI</p>
+<p>Inspect the Keycloak service to determine which NodePort has been assigned to the web UI.</p>
 <div class="highlight"><pre><span></span><code>NAME                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                                      AGE
 keycloak-headless   ClusterIP   None             &lt;none&gt;        80/TCP                                       47s
 keycloak-http       NodePort    10.111.139.181   &lt;none&gt;        80:31846/TCP,8443:30806/TCP,9990:32562/TCP   47s
 </code></pre></div>
-<p>In my case, the port is <code>31846</code>. You can now connect to <code>http://&lt;YOUR_MASTER_IP&gt;:&lt;YOUR_KEYCLOAK_PORT&gt;</code></p>
+<p>In this example, the assigned port is <code>31846</code>. Connect to <code>http://&lt;YOUR_MASTER_IP&gt;:&lt;YOUR_KEYCLOAK_PORT&gt;</code>.</p>
 <p><img alt="first-connection-admin" src="../img/keycloak-first-connect.png" /></p>
 <h2 id="create-admin-user">Create admin user</h2>
-<p>In order to access keycloak administration console, you should create an admin user locally, directly on the keycloak pod.</p>
-<p>First open a shell inside the pod</p>
+<p>To access the Keycloak administration console, you must first create an admin user locally, directly on the Keycloak pod.</p>
+<p>Open a shell session inside the pod.</p>
 <div class="highlight"><pre><span></span><code>kubectl exec -it keycloak-0 -n keycloak -- bash
 </code></pre></div>
-<p>Once inside, ru the following commands to create the admin user</p>
+<p>Once inside, run the following commands to create the admin user.</p>
 <div class="highlight"><pre><span></span><code># You can replace admin and admin123 by the credentials of your choice
 /opt/jboss/keycloak/bin/add-user-keycloak.sh \
   -u admin \
@@ -3910,21 +3910,21 @@ keycloak-http       NodePort    10.111.139.181   &lt;none&gt;        80:31846/TC
 # Then reload keycloak 
 /opt/jboss/keycloak/bin/jboss-cli.sh --connect command=:reload
 </code></pre></div>
-<p>Now reconnect to the web UI, you should be able to connect and access admin console</p>
+<p>Reconnect to the web UI. You should now be able to access the administration console.</p>
 <p><img alt="connect-admin-created" src="../img/keycloak-connect-admin-created.png" />
 <img alt="admin-sign-in" src="../img/keycloak-sign-in.png" />
 <img alt="console-overview" src="../img/keycloak-console-overview.png" /></p>
 <h2 id="import-ldap-users">Import LDAP users</h2>
-<p>On the admin console, click on <code>User Federation</code> and then <code>Add provider &gt; ldap</code> </p>
+<p>In the administration console, navigate to <strong>User Federation</strong> and click <strong>Add provider &gt; ldap</strong>.</p>
 <p><img alt="add-provider" src="../img/keycloak-add-provider.png" /></p>
-<p>You can now fill the different fields according to your ldap configuration.</p>
+<p>Complete the fields according to your LDAP server configuration.</p>
 <p><img alt="ldap-details" src="../img/keycloak-ldap-details.png" /></p>
-<p>In our case, it will look like this</p>
+<p>For this example, the configuration appears as follows.</p>
 <p><img alt="ldap-details-example" src="../img/keycloak-ldap-details-example.png" /></p>
-<p>Once filled; click on <code>Synchronize all users</code> at the bottom, it should import your users. You can check it by going to the users page.</p>
+<p>After completing the form, click <strong>Synchronize all users</strong> to import users from LDAP. Verify the import by navigating to the Users page.</p>
 <p><img alt="users-list" src="../img/keycloak-users-list.png" /></p>
-<h2 id="add-mappers-to-user-federation-optionnal">Add mappers to User federation (Optionnal)</h2>
-<p>By default, while importing users, keycloak only imports a few attributes for each user that are :</p>
+<h2 id="add-mappers-to-user-federation-optional">Add mappers to User federation (Optional)</h2>
+<p>By default, Keycloak imports only the following attributes for each user during synchronization:</p>
 <ul>
 <li><code>full name</code></li>
 <li><code>modify date</code></li>
@@ -3933,43 +3933,42 @@ keycloak-http       NodePort    10.111.139.181   &lt;none&gt;        80:31846/TC
 <li><code>last name</code></li>
 <li><code>username</code></li>
 </ul>
-<p>But, you may want to import other attributes from your LDAP server. To do so, you need to create some Mappers.<br />
-Go to <code>Mappers</code> tab on the <code>User Federation</code> page and create a mapper for each attribute you want to add.</p>
+<p>You may need to import additional attributes from your LDAP server. To do so, you must create additional attribute mappers. Navigate to the <strong>Mappers</strong> tab on the <strong>User Federation</strong> page and create one mapper per attribute you want to import.</p>
 <p><img alt="mappers-page" src="../img/keycloak-default-mappers.png" />
 <img alt="create-mapper" src="../img/keycloak-mapper-creation.png" /></p>
-<p>In our example we need to import user's <code>groups</code> and <code>uid</code></p>
+<p>In this example, the <code>groups</code> and <code>uid</code> attributes are required.</p>
 <p><img alt="groups-mapper" src="../img/keycloak-groups-mapper.png" />
 <img alt="uid-mapper" src="../img/keycloak-uid-mapper.png" />
 <img alt="mappers-added" src="../img/keycloak-mappers-added.png" /></p>
-<p>You can now check a user to see the updates</p>
+<p>Inspect a user record to verify that the new attributes are populated.</p>
 <p><img alt="groups-check" src="../img/keycloak-groups-check.png" />
 <img alt="uid-check" src="../img/keycloak-uid-check.png" /></p>
 <h2 id="create-a-client">Create a client</h2>
-<p>In order to perform authentication with keycloak, we need to generate a client secret. For that go to the <code>Client</code> page and click on create. Fill the fields and save it.</p>
+<p>To enable authentication through Keycloak, you must generate a client secret. Navigate to the <strong>Clients</strong> page, click <strong>Create</strong>, complete the required fields, and save the client.</p>
 <p><img alt="client-create" src="../img/keycloak-client-create.png" /></p>
-<p>Now go to the <code>Credentials</code> tab and you should see your client secret.</p>
+<p>Navigate to the <strong>Credentials</strong> tab to retrieve the generated client secret.</p>
 <p><img alt="client-secret" src="../img/keycloak-client-secret.png" /></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>If you added mappers at previous step, you should create the same mappers on the client.</p>
+<p>If you created attribute mappers in the previous step, you must also create corresponding client-side mappers.</p>
 <details class="note">
 <summary>show details</summary>
-<p>Go to the <code>Mappers</code> tab and create one mapper for each previously created mapper.</p>
-<p>In our case, we need to create both client sides <code>groups</code> and <code>uid</code> mappers. </p>
+<p>Navigate to the <strong>Mappers</strong> tab and create one client-side mapper for each mapper previously defined.</p>
+<p>In this example, both <code>groups</code> and <code>uid</code> client-side mappers are required.</p>
 <p><img alt="client-group-mapper" src="../img/keycloak-client-groups-mapper.png" />
 <img alt="client-uid-mapper" src="../img/keycloak-client-uid-mapper.png" />
 <img alt="client-mappers-added" src="../img/keycloak-client-mappers-added.png" /></p>
 </details>
 </div>
 <h2 id="update-odconfig-file">Update od.config file</h2>
-<p>Now you have to tell abcdesktop to use keycloak as an authentication provider. For that, you need to update the <code>od.config</code> file as explained on <a href="https://abcdesktop.pepins.net/advanced/4.4/authentication/authexternal/#keycloak-oauth">this page</a>.  </p>
-<p>Restart pyos by running the following commands</p>
+<p>Configure abcdesktop to use Keycloak as the authentication provider by updating the <code>od.config</code> file as described on <a href="https://abcdesktop.pepins.net/advanced/4.4/authentication/authexternal/#keycloak-oauth">this page</a>.</p>
+<p>Restart the pyos service by running the following commands.</p>
 <div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deploy pyos-od -n abcdesktop
 </code></pre></div>
-<p>Now you can perform authentication with keycloak, let try to log in as <code>fry</code>.</p>
+<p>You can now authenticate through Keycloak. Attempt to sign in as <code>fry</code>.</p>
 <p><img alt="fry-login" src="../img/keycloak-fry-login.png" /></p>
-<p>It should work and create your desktop. You can also check pyos logs to see which that keycloak is the provider that has been used.</p>
+<p>A successful login creates the user desktop. Inspect the pyos logs to confirm that Keycloak is the active authentication provider.</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -n abcdesktop
 NAME                            READY   STATUS    RESTARTS   AGE
 console-od-7f548d74fd-48rpv     1/1     Running   0          9d
@@ -3991,7 +3990,7 @@ speedtest-od-78cdbdd9c6-vphfl   1/1     Running   0          9d
 2026-04-02 13:42:52 test-pl-worker3 140187023907640 authservice [DEBUG  ] oc.auth.authservice.ODExternalAuthProvider.getuserinfo:anonymous userinfo={&#39;sub&#39;: &#39;f4dccc2c-f2c6-48ca-8938-5aa17319b238&#39;, &#39;uid&#39;: &#39;fry&#39;, &#39;email_verified&#39;: True, &#39;name&#39;: &#39;Philip J. Fry&#39;, &#39;groups&#39;: [&#39;ship_crew&#39;], &#39;preferred_username&#39;: &#39;fry&#39;, &#39;given_name&#39;: &#39;Philip J.&#39;, &#39;family_name&#39;: &#39;Fry&#39;, &#39;email&#39;: &#39;fry@planetexpress.com&#39;, &#39;userid&#39;: &#39;f4dccc2c-f2c6-48ca-8938-5aa17319b238&#39;, &#39;posix&#39;: {&#39;cn&#39;: &#39;fry&#39;, &#39;uid&#39;: &#39;fry&#39;, &#39;gid&#39;: &#39;balloon&#39;, &#39;uidNumber&#39;: 4096, &#39;gidNumber&#39;: 4096, &#39;homeDirectory&#39;: &#39;/home/fry&#39;, &#39;loginShell&#39;: &#39;/bin/bash&#39;, &#39;description&#39;: &#39;abcdesktop generated account&#39;, &#39;groups&#39;: None, &#39;gecos&#39;: None}}
 </code></pre></div>
 <p><img alt="desktop-created" src="../img/keycloak-desktop-created.png" /></p>
-<p>Great ! Now you can configure keycloak with external LDAP server for abcdesktop !</p>
+<p>Keycloak is now fully configured with an external LDAP server for use with abcdesktop.</p>
 
 
 

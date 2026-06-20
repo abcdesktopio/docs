@@ -3843,23 +3843,23 @@
 <li>read the previous chapter <a href="../configure-kubernetes-cluster-gcp/">Create Kubernetes cluster on GCP to host demo platform</a></li>
 </ul>
 <h2 id="run-the-abcdesktop-install-script">Run the abcdesktop install script</h2>
-<p>Download and install the latest release automatically</p>
+<p>Download and install the latest release using the following command.</p>
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh | bash
 </code></pre></div>
-<p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop/">Setup guide</a></p>
+<p>For additional details about the installation process, refer to the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="expose-your-service">Expose your service</h2>
-<p>Now you can expose publicly your abcdesktop if you want. To proceed please follow the dedicated chapter <a href="https://www.abcdesktop.io/4.4/gcp/gcp-gke-ingress-controller/">here</a></p>
+<p>To make your abcdesktop instance publicly accessible, follow the steps described <a href="https://www.abcdesktop.io/4.4/gcp/gcp-gke-ingress-controller/">here</a></p>
 <h2 id="apply-network-policies">Apply network policies</h2>
-<p>To reinforce security inside your cluster, you can apply abcdesktop network policies by running the following command.</p>
+<p>To strengthen security within your cluster, apply the abcdesktop network policies by running the following command.</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-4.4.yaml -n abcdesktop
 </code></pre></div>
-<p>If you want more information about abcdesktop network policies, please refer to our <a href="https://www.abcdesktop.io/advanced/4.4/networkpolicy/netpol/">netpol documentation</a></p>
+<p>For detailed information about abcdesktop network policies, refer to the <a href="https://www.abcdesktop.io/advanced/4.4/networkpolicy/netpol/">network policy documentation</a></p>
 <h2 id="add-a-garbage-collector">Add a garbage collector</h2>
-<p>In order to avoid your cluster being full to capacity, you can add a garbage collector to remove unused pods after 15 minutes. </p>
-<p>Please follow the dedicated chapter on garbage collector <a href="https://www.abcdesktop.io/advanced/4.4/configure/garbagecollector/">configuration</a></p>
+<p>To prevent your cluster from reaching full capacity, configure a garbage collector to terminate idle desktop pods after 15 minutes.</p>
+<p>Follow the dedicated <a href="https://www.abcdesktop.io/advanced/4.4/configure/garbagecollector/">garbage collector configuration guide</a> for detailed setup instructions.</p>
 <h2 id="add-a-persistenvolumeclaim-for-mongo">Add a <code>PersistenVolumeClaim</code> for mongo</h2>
-<p>This measure prevents your platform to delete all desktop applications in case of mongo pods restart. </p>
-<p>First you need to update mongo <code>StatefulSet</code> to add a <code>PersistenVolumeClaim</code> in  <code>abcdesktop.yaml</code> file :</p>
+<p>This configuration prevents the platform from losing all desktop application data if the MongoDB pod restarts.</p>
+<p>Update the MongoDB <code>StatefulSet</code> in the <code>abcdesktop.yaml</code> manifest to reference a <code>PersistentVolumeClaim</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="err">apiVersio</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="err">apps/v</span><span class="mi">1</span>
 <span class="err">ki</span><span class="kc">n</span><span class="err">d</span><span class="p">:</span><span class="w"> </span><span class="err">S</span><span class="kc">tateful</span><span class="err">Se</span><span class="kc">t</span>
 <span class="err">me</span><span class="kc">ta</span><span class="err">da</span><span class="kc">ta</span><span class="p">:</span>
@@ -3870,7 +3870,7 @@
 <span class="w">    </span><span class="err">persis</span><span class="kc">tent</span><span class="err">VolumeClaim</span><span class="p">:</span>
 <span class="w">      </span><span class="err">claimName</span><span class="p">:</span><span class="w"> </span><span class="err">pvc</span><span class="mi">-</span><span class="err">mo</span><span class="kc">n</span><span class="err">go</span>
 </code></pre></div>
-<p>Then create a <code>PersistentVolumeClaim</code> file, let's call it <code>pvc-mongo.yaml</code> :</p>
+<p>Create a <code>PersistentVolumeClaim</code> manifest named <code>pvc-mongo.yaml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="err">apiVersio</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="err">v</span><span class="mi">1</span>
 <span class="err">ki</span><span class="kc">n</span><span class="err">d</span><span class="p">:</span><span class="w"> </span><span class="err">Persis</span><span class="kc">tent</span><span class="err">VolumeClaim</span>
 <span class="err">me</span><span class="kc">ta</span><span class="err">da</span><span class="kc">ta</span><span class="p">:</span>
@@ -3883,13 +3883,13 @@
 <span class="w">    </span><span class="err">reques</span><span class="kc">ts</span><span class="p">:</span>
 <span class="w">      </span><span class="err">s</span><span class="kc">t</span><span class="err">orage</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="err">Gi</span>
 </code></pre></div>
-<p>Finally apply it to the cluster</p>
+<p>Apply the manifest to the cluster.</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl create -f pvc-mongo.yaml -n $NAMESPACE
 </code></pre></div>
 <h2 id="add-external-providers">Add external providers</h2>
-<p>You may want users to properly authenticate to your demo platform. To proceed, you will need to remove default LDAP authentication and anonymous authentication.</p>
-<p>Edit <code>od.config</code> file and go to the <code>AUTH SECTION</code> to add external providers using Oauth2.0 protocol. If you want more informations please read our documentaton on <a href="https://www.abcdesktop.io/advanced/4.4/authentication/authexternal/">how to add external authentication providers to abcdesktop</a></p>
+<p>To require users to authenticate with an external identity provider, remove the default LDAP and anonymous authentication methods.</p>
+<p>Edit the <code>od.config</code> file, locate the <code>AUTH SECTION</code>, and add external OAuth 2.0 providers. For additional information, refer to the documentation on <a href="https://www.abcdesktop.io/advanced/4.4/authentication/authexternal/">how to add external authentication providers to abcdesktop</a></p>
 <div class="highlight"><pre><span></span><code>authmanagers: {
   &#39;external&#39;: { ADD YOUR PROVIDERS HERE },
    &#39;metaexplicit&#39;: {},

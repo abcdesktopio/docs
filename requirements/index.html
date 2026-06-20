@@ -508,13 +508,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites-for-setting-up-abcdesktop" class="md-nav__link">
+  <a href="#prerequisites-for-deploying-abcdesktopio" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites for Setting Up abcdesktop
+      Prerequisites for Deploying abcdesktop.io
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Prerequisites for Setting Up abcdesktop">
+    <nav class="md-nav" aria-label="Prerequisites for Deploying abcdesktop.io">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3727,13 +3727,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites-for-setting-up-abcdesktop" class="md-nav__link">
+  <a href="#prerequisites-for-deploying-abcdesktopio" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites for Setting Up abcdesktop
+      Prerequisites for Deploying abcdesktop.io
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Prerequisites for Setting Up abcdesktop">
+    <nav class="md-nav" aria-label="Prerequisites for Deploying abcdesktop.io">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3809,18 +3809,19 @@
 
 
 <h1 id="requirements">Requirements</h1>
-<h2 id="prerequisites-for-setting-up-abcdesktop">Prerequisites for Setting Up abcdesktop</h2>
+<h2 id="prerequisites-for-deploying-abcdesktopio">Prerequisites for Deploying abcdesktop.io</h2>
+<p>The following prerequisites apply to all abcdesktop.io deployment scenarios, including single-node evaluation setups and production multi-node Kubernetes clusters.</p>
 <ul>
-<li>Supported architectures: <code>x86-64</code> and <code>arm-64</code></li>
-<li>At least 20 GB of free disk space to store sample applications and core container images</li>
-<li>A Kubernetes cluster in the <code>READY</code> state, running version <strong>1.28 or later</strong>, with <code>admin</code> privileges</li>
+<li><strong>Supported CPU architectures:</strong> <code>x86-64</code> (amd64) and <code>arm-64</code> (arm64)</li>
+<li><strong>Minimum available disk space:</strong> 20 GB. This capacity accommodates the core abcdesktop.io control plane container images, the <code>oc.user</code> desktop image, and the default set of sample application images. Additional disk space is required for user home directories and any application images added after initial deployment.</li>
+<li><strong>Kubernetes cluster:</strong> version <strong>1.28 or later</strong>, in the <code>Ready</code> state, with <code>cluster-admin</code> privileges for the installing user. Supported distributions include kubeadm, k3s, microk8s, GKE, EKS, AKS, and OKE.</li>
 </ul>
 <h3 id="gnulinux">GNU/Linux</h3>
-<p>The recommended distribution is <code>Ubuntu 24.04.2 LTS</code>.</p>
+<p>The recommended operating system for production deployments is <strong>Ubuntu 24.04.2 LTS</strong>. Any Linux distribution that provides a supported Kubernetes distribution and a compatible container runtime (containerd or CRI-O) is suitable for both evaluation and production use.</p>
 <h3 id="macos">macOS</h3>
-<p>Use <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> with the built-in Kubernetes integration enabled.</p>
+<p>Use <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> with the built-in Kubernetes integration enabled. Verify that the Kubernetes cluster is in the <code>Running</code> state before proceeding with the abcdesktop.io installation. On macOS, the Kubernetes cluster runs inside a Linux virtual machine managed by Docker Desktop; ensure that sufficient CPU and memory resources are allocated to this virtual machine in the Docker Desktop resource settings.</p>
 <h3 id="microsoft-windows">Microsoft Windows</h3>
-<p>Use <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> with the built-in Kubernetes integration enabled.</p>
+<p>Use <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> with the built-in Kubernetes integration enabled. Verify that the Kubernetes cluster is in the <code>Running</code> state before proceeding with the abcdesktop.io installation. On Windows, Docker Desktop relies on the WSL 2 (Windows Subsystem for Linux 2) backend; ensure that WSL 2 is installed and that adequate memory is allocated to the WSL 2 instance via the <code>.wslconfig</code> configuration file.</p>
 
 
 

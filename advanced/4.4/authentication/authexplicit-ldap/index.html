@@ -4090,8 +4090,8 @@
 
 <h1 id="authentication-explicit-for-ldap-directory-services">Authentication <code>explicit</code> for LDAP Directory Services</h1>
 <h2 id="authmanagers-explicit-object">authmanagers <code>explicit</code> Object</h2>
-<p>The <code>explicit</code> authentication provider uses a directory service. The LDAP bind operation authenticates clients to the directory server and establishes an authorization identity that is used for all subsequent operations on that connection.</p>
-<p>The <code>explicit</code> authentication configuration is defined as a dictionary object and contains an <code>explicit</code> provider.</p>
+<p>The <code>explicit</code> authentication provider authenticates users against a directory service using an LDAP bind operation. The bind operation authenticates the client to the directory server and establishes an authorization identity that governs all subsequent operations on that connection.</p>
+<p>The <code>explicit</code> authentication configuration is defined as a dictionary object that contains one or more named provider entries.</p>
 <p>For example:</p>
 <div class="highlight"><pre><span></span><code>authmanagers: {
   &#39;external&#39;: {},
@@ -4118,7 +4118,7 @@
         &#39;enabled&#39;: True
        }}}}
 </code></pre></div>
-<p>In this example, the <code>ldapconfig</code> dictionary must contain the key <code>LDAP</code>.</p>
+<p>In this example, the <code>ldapconfig</code> dictionary must contain a key named <code>LDAP</code>.</p>
 <table>
 <thead>
 <tr>
@@ -4146,8 +4146,7 @@
 </tbody>
 </table>
 <h3 id="providers-configuration">Providers Configuration</h3>
-<p>The <code>provider</code> authentication configuration is defined as a dictionary object and must contain a key name.
-The key name must match the value used in both the providers configuration and the <code>config_ref</code> field.</p>
+<p>The <code>provider</code> authentication configuration is defined as a dictionary object that must include a key name. The key name must match the value specified in both the providers configuration and the <code>config_ref</code> field.</p>
 <p>Providers:</p>
 <p>The provider is formatted as a dictionary:</p>
 <div class="highlight"><pre><span></span><code>{ 
@@ -4727,14 +4726,14 @@ The key name must match the value used in both the providers configuration and t
 <p>Start LibreOffice Writer and create a new document. Type a few words, for example:</p>
 <div class="highlight"><pre><span></span><code>I like this amazing project abcdesktop.io
 </code></pre></div>
-<p>Do not save the file. Simply close your web browser.</p>
-<p>Reopen your web browser, navigate to the same URL, and log in again with the same credentials: <code>Turanga Leela</code> as the login and <code>leela</code> as the password. Click the <code>Sign in</code> button.</p>
-<p>LibreOffice Writer is still running, and the text <code>I like this amazing project abcdesktop.io</code> is still present.</p>
+<p>Do not save the document. Close the web browser.</p>
+<p>Reopen the web browser, navigate to the same URL, and sign in again using the same credentials: <code>Turanga Leela</code> as the login and <code>leela</code> as the password. Click the <code>Sign in</code> button.</p>
+<p>LibreOffice Writer remains running, and the text <code>I like this amazing project abcdesktop.io</code> is still present in the document.</p>
 <p><img alt="session remained" src="../img/auth_provider_ldap_session_remained.png" /></p>
 <blockquote>
 <p>All applications are preserved across sessions.</p>
 </blockquote>
-<p>You have successfully verified how the explicit authentication configuration works, deployed an OpenLDAP directory service, and confirmed that all user sessions are maintained.</p>
+<p>You have successfully verified the explicit authentication configuration, deployed an OpenLDAP directory service, and confirmed that user sessions persist across browser restarts.</p>
 
 
 

@@ -2653,18 +2653,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#apply-runtimeclassname-to-abcdesktop-config" class="md-nav__link">
+  <a href="#apply-runtimeclassname-to-the-abcdesktop-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Apply runtimeClassName to abcdesktop config
+      Apply runtimeClassName to the abcdesktop Configuration
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#links" class="md-nav__link">
+  <a href="#reference-links" class="md-nav__link">
     <span class="md-ellipsis">
-      Links
+      Reference Links
     </span>
   </a>
   
@@ -3707,18 +3707,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#apply-runtimeclassname-to-abcdesktop-config" class="md-nav__link">
+  <a href="#apply-runtimeclassname-to-the-abcdesktop-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Apply runtimeClassName to abcdesktop config
+      Apply runtimeClassName to the abcdesktop Configuration
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#links" class="md-nav__link">
+  <a href="#reference-links" class="md-nav__link">
     <span class="md-ellipsis">
-      Links
+      Reference Links
     </span>
   </a>
   
@@ -3749,15 +3749,13 @@
 
 
 <h1 id="troubleshooting-nvidia-gpu-access-to-ephemeral-containers-with-cdi-enabled">Troubleshooting NVIDIA GPU Access to Ephemeral Containers with CDI Enabled</h1>
-<p>abcdesktop uses <code>ephemeral container</code> or <code>pod</code> as applications. NVIDIA adds support for <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html">Container Device Interface</a>. </p>
-<h2 id="apply-runtimeclassname-to-abcdesktop-config">Apply <code>runtimeClassName</code> to abcdesktop config</h2>
-<p>Get the <code>od.config</code> file</p>
-<p>If you don't already have the config file <code>od.config</code>, run the command line </p>
+<p>abcdesktop deploys applications as ephemeral containers or pods. NVIDIA provides support for the <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html">Container Device Interface</a>, which enables GPU resource allocation without requiring privileged access.</p>
+<h2 id="apply-runtimeclassname-to-the-abcdesktop-configuration">Apply <code>runtimeClassName</code> to the abcdesktop Configuration</h2>
+<p>Retrieve the <code>od.config</code> file.</p>
+<p>If you do not already have a local copy of <code>od.config</code>, run the following command:</p>
 <div class="highlight"><pre><span></span><code>kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath=&#39;{.data.od\.config}&#39; &gt; od.config
 </code></pre></div>
-<ul>
-<li>Edit <code>od.config</code> and update the dictionary <code>desktop.pod</code> to add <code>'runtimeClassName':'nvidia'</code> in <code>spec</code> and save your od.config file.</li>
-</ul>
+<p>Edit <code>od.config</code> and update the <code>executeclasses</code> dictionary to set <code>'runtimeClassName': 'nvidia'</code> for the appropriate execution class entries, then save the file.</p>
 <div class="highlight"><pre><span></span><code># THIS IS WHERE THE RESOURCES ARE ACTUALLY DEFINED FOR THE POD DESKTOP.
 # Application execute class defined
 executeclasses : {
@@ -3814,57 +3812,47 @@ desktop.features_permissions : [ &#39;read&#39;, &#39;submit&#39; ]
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>desktop.overwrite_environment_variable_for_application : &quot;/composer/overwrite_environment_variable_for_application.sh&quot;
 </code></pre></div>
-<ul>
-<li>The <code>overwrite_environment_variable_for_application.sh</code> bash script runs into the <code>graphical</code> container of the user`s pod.</li>
-</ul>
+<p>The <code>overwrite_environment_variable_for_application.sh</code> Bash script runs inside the <code>graphical</code> container of the user's pod.</p>
 <div class="highlight"><pre><span></span><code>gpu_uuid=$(nvidia-smi --query-gpu=gpu_uuid --format=csv,noheader)
 # NVIDIA_VISIBLE_DEVICES is also know as k8s.device-plugin.nvidia.com/gpu
 # define the variable named k8s.device-plugin.nvidia.com/gpu to the $gpu_uuid value
 NVIDIA_GPU=&quot;{ \&quot;k8s.device-plugin.nvidia.com/gpu\&quot; : \&quot;$gpu_uuid\&quot; }&quot;  
 </code></pre></div>
 <p>It reads the GPU UUID, then sets the variable <code>NVIDIA_GPU</code> to <code>k8s.device-plugin.nvidia.com/gpu=$gpu_uuid</code>.</p>
-<p>For example, when you run the <code>overwrite_environment_variable_for_application.sh</code> on a GPU host</p>
+<p>For example, when <code>overwrite_environment_variable_for_application.sh</code> is executed on a GPU-equipped host:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$NVIDIA_GPU</span>
 <span class="o">{</span><span class="w"> </span><span class="s2">&quot;k8s.device-plugin.nvidia.com/gpu&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb&quot;</span><span class="w"> </span><span class="o">}</span>
 </code></pre></div>
-<p>A new application gets the env variable <code>NVIDIA_VISIBLE_DEVICES</code> from the bash script result. For example the <code>echo $NVIDIA_VISIBLE_DEVICES</code> inside another container return the same <code>GPU-uuid</code></p>
+<p>A newly launched application container inherits the <code>NVIDIA_VISIBLE_DEVICES</code> environment variable from the Bash script result. For example, running <code>echo $NVIDIA_VISIBLE_DEVICES</code> inside a new container returns the same GPU UUID:</p>
 <div class="highlight"><pre><span></span><code>echo $NVIDIA_VISIBLE_DEVICES
 GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb
 </code></pre></div>
-<p>Example of an ephemeral application sharing the GPU of the user's pod</p>
+<p>The following screenshot shows an ephemeral application sharing the GPU of the user's pod:</p>
 <p><img alt="showoverwrite_environment_variable_for_application" src="../img/showoverwrite_environment_variable_for_application.png" /></p>
-<p>This screenshot shows the <code>$NVIDIA_VISIBLE_DEVICES</code> content and the <code>nvidia-smi</code> command result</p>
-<ul>
-<li>Update the configmap <code>abcdesktop-config</code></li>
-</ul>
+<p>The screenshot displays the <code>$NVIDIA_VISIBLE_DEVICES</code> value and the output of the <code>nvidia-smi</code> command.</p>
+<p>Update the <code>abcdesktop-config</code> ConfigMap:</p>
 <div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 </code></pre></div>
-<ul>
-<li>Restart deployment <code>pyos-od</code></li>
-</ul>
+<p>Restart the <code>pyos-od</code> deployment:</p>
 <div class="highlight"><pre><span></span><code>kubectl rollout restart deployment pyos-od -n abcdesktop
 </code></pre></div>
-<ul>
-<li>Create a new desktop pod to check the <code>runtimeClassName</code></li>
-</ul>
+<p>Create a new desktop pod to verify the <code>runtimeClassName</code>:</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -l type=x11server -n abcdesktop
 NAME        READY   STATUS    RESTARTS   AGE
 fry-02f18   3/3     Running   0          24m
 </code></pre></div>
-<ul>
-<li>Run comand lines into an ephemeral container </li>
-</ul>
-<p>Start an application like <code>firefox</code> on web interface</p>
-<p>Get pod description to read the ephemeral container name</p>
+<p>Run commands inside an ephemeral container.</p>
+<p>Start an application such as <code>firefox</code> from the web interface.</p>
+<p>Retrieve the pod description to identify the ephemeral container name:</p>
 <div class="highlight"><pre><span></span><code>kubectl describe  pods fry-02f18  -n abcdesktop
 </code></pre></div>
-<p>The name of the ephemeral container is <code>philip-j--fry-firefox-745f9</code></p>
+<p>The ephemeral container name is <code>philip-j--fry-firefox-745f9</code>:</p>
 <div class="highlight"><pre><span></span><code>...
   Normal  Pulled     26m   kubelet            Container image &quot;ghcr.io/abcdesktopio/firefox.d:4.3&quot; already present on machine
   Normal  Created    26m   kubelet            Created container: philip-j--fry-firefox-745f9
   Normal  Started    26m   kubelet            Started container philip-j--fry-firefox-745f9
 </code></pre></div>
-<p>Execute some commands into this ephemeral container <code>philip-j--fry-firefox-745f9</code> to check the GPU</p>
+<p>Execute the following commands inside the ephemeral container <code>philip-j--fry-firefox-745f9</code> to verify GPU access:</p>
 <div class="highlight"><pre><span></span><code>kubectl exec -it fry-02f18 -c philip-j--fry-firefox-745f9 -n abcdesktop -- nvidia-smi -L
 GPU 0: Quadro M620 (UUID: GPU-b5aebea9-8a25-fb21-631b-7e5da5a60ccb)
 </code></pre></div>
@@ -3876,9 +3864,9 @@ drwxr-xr-x 2 root root       80 janv. 13 15:05 by-path
 crw-rw-rw- 1 fry  fry  226,   1 janv. 13 15:05 card1
 crw-rw-rw- 1 fry  fry  226, 128 janv. 13 15:05 renderD128
 </code></pre></div>
-<h2 id="links">Links</h2>
+<h2 id="reference-links">Reference Links</h2>
 <ul>
-<li>nvidia gpu-operator/23.6.2</li>
+<li>NVIDIA GPU Operator 23.6.2</li>
 </ul>
 <p><a href="https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/23.6.2/cdi.html#support-for-multi-instance-gpu">https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/23.6.2/cdi.html#support-for-multi-instance-gpu</a> </p>
 

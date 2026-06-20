@@ -1029,7 +1029,7 @@
         <li class="md-nav__item">
   <a href="#how-to-connect" class="md-nav__link">
     <span class="md-ellipsis">
-      How to connect ?
+      How to Connect
     </span>
   </a>
   
@@ -3757,7 +3757,7 @@
         <li class="md-nav__item">
   <a href="#how-to-connect" class="md-nav__link">
     <span class="md-ellipsis">
-      How to connect ?
+      How to Connect
     </span>
   </a>
   
@@ -3827,9 +3827,9 @@
 <div class="highlight"><pre><span></span><code>kind<span class="w"> </span>create<span class="w"> </span>cluster<span class="w"> </span>--wait<span class="w"> </span>5m
 </code></pre></div>
 <blockquote>
-<p>The <code>--wait 5m</code> flag waits until the control plane is <code>Ready</code>.</p>
+<p>The <code>--wait 5m</code> flag instructs Kind to block until the control plane node reports a <code>Ready</code> status, up to a maximum of five minutes.</p>
 </blockquote>
-<p>You should read on stdout:</p>
+<p>The following output should appear on stdout:</p>
 <div class="highlight"><pre><span></span><code>Creating cluster &quot;kind&quot; ...
  ✓ Ensuring node image (kindest/node:v1.35.0) 🖼
  ✓ Preparing nodes 📦
@@ -3958,24 +3958,24 @@ speedtest-od-7d7c95d754-dmt5j   1/1     Running   0          4m38s
 [INFO] http://192.168.7.119:30443/
 </code></pre></div>
 </details>
-<h2 id="how-to-connect">How to connect ?</h2>
-<p>The install bash script forwards TCP port 30443 to the router pod's TCP port 80</p>
+<h2 id="how-to-connect">How to Connect</h2>
+<p>The install bash script sets up a <code>kubectl port-forward</code> tunnel, mapping TCP port 30443 on the local host to TCP port 80 on the router pod:</p>
 <p><code>kubectl port-forward router-od-647b77455d-nk677 --address 0.0.0.0 30443:80 -n abcdesktop</code></p>
 <div class="highlight"><pre><span></span><code>[OK] Please open your web browser and connect to
 
 [INFO] http://192.168.7.119:30443/
 </code></pre></div>
 <blockquote>
-<p>Open the URL returned by the install bash script. In this sample <code>http://192.168.7.119:30443/</code></p>
+<p>Open the URL returned by the install bash script. In this example: <code>http://192.168.7.119:30443/</code></p>
 </blockquote>
 <p><img alt="kind home page" src="../img/kinduserhompage.png" /></p>
-<p>Your web browser shows the abcdesktop service home page</p>
+<p>Your web browser displays the abcdesktop service home page.</p>
 <p><img alt="kind user connected" src="../img/kinduserconnected.png" /></p>
-<p>The user <code>Philip J. Fry</code> is connected to the abcdesktop service</p>
+<p>The user <code>Philip J. Fry</code> is connected to the abcdesktop service.</p>
 <blockquote>
-<p>Open the URL returned by the install bash script. In this sample <code>http://192.168.7.119:30443/</code></p>
+<p>Open the URL returned by the install bash script. In this example: <code>http://192.168.7.119:30443/</code></p>
 </blockquote>
-<p>Great, you have installed abcdesktop using Kind and your web browser shows the abcdesktop service.</p>
+<p>abcdesktop has been successfully installed using Kind, and the service home page is now accessible from your web browser.</p>
 <h2 id="delete-cluster">Delete cluster</h2>
 <p>To uninstall, run the <code>kind delete cluster</code> command:</p>
 <div class="highlight"><pre><span></span><code>kind<span class="w"> </span>delete<span class="w"> </span>cluster

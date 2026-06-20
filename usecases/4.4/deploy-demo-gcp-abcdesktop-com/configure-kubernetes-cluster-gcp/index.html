@@ -3819,7 +3819,7 @@
 <li><code>gcloud</code> command line interface <a href="https://docs.cloud.google.com/sdk/docs/install-sdk/">gcloud cli</a></li>
 </ul>
 <h2 id="create-a-kubernetes-cluster">Create a Kubernetes cluster</h2>
-<p>This documentation describes how to create the <code>https://demo.gcp.abcdesktop.com</code> service on <code>Google Cloud plateform</code></p>
+<p>This guide describes how to provision the infrastructure that hosts the <code>https://demo.gcp.abcdesktop.com</code> service on Google Cloud Platform.</p>
 <h3 id="prerequisites">Prerequisites</h3>
 <ul>
 <li>set up a <a href="https://docs.cloud.google.com/vpc/docs?hl=fr">VPC</a></li>
@@ -3827,14 +3827,14 @@
 <li>create a NAT gateway for the region you will deploy your cluster, check <a href="https://docs.cloud.google.com/nat/docs?hl=fr">Cloud NAT documentation</a> for more inforation</li>
 </ul>
 <h3 id="configure-gcloud-cli">Configure gcloud cli</h3>
-<p>First you will need to authenticate to your GCP account though the following command.</p>
+<p>Authenticate to your GCP account using the following command.</p>
 <div class="highlight"><pre><span></span><code>gcloud auth login
 </code></pre></div>
-<p>Then you will need to configure <code>gcloud</code> to set your GCP project as current project by running the following command.</p>
+<p>Configure <code>gcloud</code> to set your GCP project as the active project by running the following command.</p>
 <div class="highlight"><pre><span></span><code>gcloud config set project &lt;YOUR_PROJECT_ID&gt;
 </code></pre></div>
 <h3 id="deploying-the-cluster-with-gcloud-cli">Deploying the cluster with gcloud cli</h3>
-<p>After that you can deploy your Kubenetes cluster by running the following command.</p>
+<p>Deploy the Kubernetes cluster by running the following command.</p>
 <div class="highlight"><pre><span></span><code>gcloud beta container \
     --project \
 &quot;ino-abcdesktop-prd&quot; clusters create &quot;abcdesktop-demo-cluster&quot; \
@@ -3907,12 +3907,12 @@ HorizontalPodAutoscaling,HttpLoadBalancing,NodeLocalDNS,GcePersistentDiskCsiDriv
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The configurations in the command above are the recommended ones but you can change those if you need. Just make sure to have : 
+<p>The options shown above represent the recommended configuration, but you may adjust them to suit your environment. Ensure the following options remain enabled:
 - secure boot enabled
 - private nodes enabled 
 - dataplane V2 enabled</p>
 </div>
-<p>Finally click on the <code>Connect</code> button and paste the given command into your terminal</p>
+<p>Finally, click the <strong>Connect</strong> button and paste the provided command into your terminal.</p>
 
 
 

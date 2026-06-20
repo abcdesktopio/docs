@@ -1716,9 +1716,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#to-get-more-informations" class="md-nav__link">
+  <a href="#for-more-information" class="md-nav__link">
     <span class="md-ellipsis">
-      To get more informations
+      For more information
     </span>
   </a>
   
@@ -1793,7 +1793,7 @@
           <li class="md-nav__item">
   <a href="#deploy-cert-manager-on-your-ovhcloud-kubernetes-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      Deploy Cert Manager on your OVHcloud Kubernetes cluster
+      Deploy Cert-Manager on your OVHcloud Kubernetes cluster
     </span>
   </a>
   
@@ -1802,7 +1802,7 @@
           <li class="md-nav__item">
   <a href="#configure-production-ready-tls-certificates-for-nginx" class="md-nav__link">
     <span class="md-ellipsis">
-      Configure Production-Ready TLS Certificates for nginx
+      Configure production-ready TLS certificates for NGINX
     </span>
   </a>
   
@@ -1823,9 +1823,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#see-real-client-ip-address-behind-ingress-controller" class="md-nav__link">
+  <a href="#see-the-real-client-ip-address-behind-the-ingress-controller" class="md-nav__link">
     <span class="md-ellipsis">
-      See real client IP address behind ingress controller
+      See the real client IP address behind the ingress controller
     </span>
   </a>
   
@@ -3827,9 +3827,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#to-get-more-informations" class="md-nav__link">
+  <a href="#for-more-information" class="md-nav__link">
     <span class="md-ellipsis">
-      To get more informations
+      For more information
     </span>
   </a>
   
@@ -3904,7 +3904,7 @@
           <li class="md-nav__item">
   <a href="#deploy-cert-manager-on-your-ovhcloud-kubernetes-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      Deploy Cert Manager on your OVHcloud Kubernetes cluster
+      Deploy Cert-Manager on your OVHcloud Kubernetes cluster
     </span>
   </a>
   
@@ -3913,7 +3913,7 @@
           <li class="md-nav__item">
   <a href="#configure-production-ready-tls-certificates-for-nginx" class="md-nav__link">
     <span class="md-ellipsis">
-      Configure Production-Ready TLS Certificates for nginx
+      Configure production-ready TLS certificates for NGINX
     </span>
   </a>
   
@@ -3934,9 +3934,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#see-real-client-ip-address-behind-ingress-controller" class="md-nav__link">
+  <a href="#see-the-real-client-ip-address-behind-the-ingress-controller" class="md-nav__link">
     <span class="md-ellipsis">
-      See real client IP address behind ingress controller
+      See the real client IP address behind the ingress controller
     </span>
   </a>
   
@@ -3969,30 +3969,30 @@
 <h1 id="publish-your-website-as-a-public-secured-service">Publish your website as a public secured service</h1>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li>read the previous chapter <a href="../ovh/">deploy abcdesktop on OVHcloud with Kubernetes</a> </li>
+<li>Read the previous chapter <a href="../ovh/">Deploy abcdesktop on OVHcloud with Kubernetes</a> </li>
 <li>an OVHcloud account</li>
 <li>your own internet domain</li>
 <li><code>kubectl</code> command line</li>
 <li><code>wget</code> command line</li>
 </ul>
-<h3 id="to-get-more-informations">To get more informations</h3>
+<h3 id="for-more-information">For more information</h3>
 <ul>
-<li>read the OVHcloud chapter <a href="https://help.ovhcloud.com/csm/en-public-cloud-kubernetes-install-nginx-ingress?id=kb_article_view&amp;sysparm_article=KB0049843">install-nginx-ingress-controller</a></li>
+<li>Read the OVHcloud chapter <a href="https://help.ovhcloud.com/csm/en-public-cloud-kubernetes-install-nginx-ingress?id=kb_article_view&amp;sysparm_article=KB0049843">install-nginx-ingress-controller</a></li>
 </ul>
 <h2 id="overview">Overview</h2>
 <p>In this chapter, you will use an NGINX ingress controller to expose your abcdesktop service with a public IP address, configure your DNS zone file to use your own domain name, and enable TLS to secure the service.</p>
 <h2 id="update-http-router-service">Update http-router service</h2>
-<p>When installing abcdesktop, http-router service type is <code>NodePort</code> by default, in order to expose the service through an ingress controller you will need to change the service type from <code>NodePort</code> to <code>ClusterIP</code>.</p>
-<p>If you perform a get services command you will see the <code>NodePort</code> type</p>
+<p>By default, the <code>http-router</code> service type is <code>NodePort</code>. To expose the service through an ingress controller, you must change the service type from <code>NodePort</code> to <code>ClusterIP</code>.</p>
+<p>Run the following command to confirm the current service type is <code>NodePort</code>:</p>
 <div class="highlight"><pre><span></span><code>kubectl get svc http-router -n abcdesktop
 NAME          TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
 http-router   NodePort   10.0.170.21   &lt;none&gt;        80:30443/TCP   5m31s
 </code></pre></div>
-<p>To change it, you will first need to delete the service</p>
+<p>To change the service type, first delete the existing service:</p>
 <div class="highlight"><pre><span></span><code>kubectl delete service http-router -n abcdesktop
 service &quot;http-router&quot; deleted
 </code></pre></div>
-<p>Then paste the following lines in a new <code>http-router.yaml</code> file</p>
+<p>Create a new <code>http-router.yaml</code> file with the following content:</p>
 <div class="highlight"><pre><span></span><code>kind: Service
 apiVersion: v1
 metadata:
@@ -4012,39 +4012,39 @@ spec:
     targetPort: 80
     name: http
 </code></pre></div>
-<p>Then Create your new <code>service/http-router</code></p>
+<p>Create the new <code>service/http-router</code>:</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f http-router.yaml -n abcdesktop
 service/http-router created
 </code></pre></div>
-<p>Now check that the service type is <code>ClusterIP</code></p>
+<p>Verify that the service type has changed to <code>ClusterIP</code>:</p>
 <div class="highlight"><pre><span></span><code>kubectl get svc http-router -n abcdesktop
 NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 http-router   ClusterIP   10.0.132.230   &lt;none&gt;        443/TCP,80/TCP   5s
 </code></pre></div>
 <h2 id="deploy-nginx-ingress-controller">Deploy nginx ingress controller</h2>
-<p>You will now deploy a nginx ingress controller on your cluster using <code>helm</code>.</p>
-<p>First, run the following command to add the nginx ingress controller repository : </p>
+<p>Deploy an NGINX ingress controller to your cluster using <code>helm</code>.</p>
+<p>First, add the NGINX ingress controller Helm repository:</p>
 <div class="highlight"><pre><span></span><code>helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx &amp;&amp; helm repo update
 </code></pre></div>
-<p>Then install it on your cluster </p>
+<p>Then install it on your cluster:</p>
 <div class="highlight"><pre><span></span><code>helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace
 </code></pre></div>
-<p>Once the installation process has completed, you can verify that the service was created by running this command:</p>
+<p>After installation completes, verify that the service was created:</p>
 <div class="highlight"><pre><span></span><code>kubectl get svc ingress-nginx-controller -n ingress-nginx
 NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)                      AGE
 ingress-nginx-controller   LoadBalancer   10.3.74.197   &lt;pending&gt;     80:32649/TCP,443:32195/TCP   12s
 </code></pre></div>
-<p>Now wait a few minutes until you get an <code>EXTERNAL-IP</code> </p>
+<p>Wait a few minutes until the <code>EXTERNAL-IP</code> field is populated:</p>
 <div class="highlight"><pre><span></span><code>NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)                      AGE
 ingress-nginx-controller   LoadBalancer   10.3.74.197   51.68.26.94   80:32649/TCP,443:32195/TCP   4m34s
 </code></pre></div>
 <h3 id="create-new-record">Create new record</h3>
-<p>We are going to create a new record <code>hello</code> (<code>hello.ovhcloud.pepins.net</code>) to the <code>A</code> address <code>51.68.26.94</code>. </p>
+<p>Create a new <code>A</code> record named <code>hello</code> (<code>hello.ovhcloud.pepins.net</code>) pointing to <code>51.68.26.94</code>.</p>
 <p><img alt="ovh console domain overview" src="../img/createrecord-ingress.png" /></p>
-<p>Press <code>Add</code> button, to update your zone file with the new record</p>
+<p>Click <code>Add</code> to update your zone file with the new record.</p>
 <p><img alt="ovh console domain overview" src="../img/recorddone-ingress.png" /></p>
 <h2 id="configure-nginx-ingress-rules-for-backend-services">Configure NGINX Ingress Rules for Backend Services</h2>
-<p>In this step, you expose the backend applications to the outside world by telling nginx what host each service maps to. You define a rule in NGINX to associate a host with an abcdesktop route backend service.</p>
+<p>In this step, you expose the backend applications to the outside world by defining a rule in NGINX that maps each host to an abcdesktop route backend service.</p>
 <p>Create an ingress resource for NGINX using the abcdesktop service and save it as <code>abcdesktop_host.yaml</code>. Update this manifest with your own FQDN by replacing <code>hello.ovhcloud.pepins.net</code> with your own values.</p>
 <div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -4065,60 +4065,60 @@ spec:
                   number: 80
   ingressClassName: nginx
 </code></pre></div>
-<p>Apply the Ingress yaml file</p>
+<p>Apply the Ingress YAML file:</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop_host.yaml -n abcdesktop
 </code></pre></div>
-<p>You should read</p>
+<p>You should see the following output:</p>
 <div class="highlight"><pre><span></span><code>ingress.networking.k8s.io/ingress-abcdesktop created
 </code></pre></div>
 <p>Verify the ingress resources:</p>
 <div class="highlight"><pre><span></span><code>kubectl get ingress -n abcdesktop
 </code></pre></div>
-<p>The output looks similar to the following:</p>
-<p>Wait a few seconds while the <code>ADDRESS</code> field is being populated
+<p>The output looks similar to the following.</p>
+<p>Wait a few seconds while the <code>ADDRESS</code> field is being populated:</p>
 <div class="highlight"><pre><span></span><code>NAME                 CLASS   HOSTS                    ADDRESS   PORTS   AGE
 ingress-abcdesktop   nginx   hello.ovhcloud.pepins.net             80      5s
-</code></pre></div></p>
-<p>When you obtain an <code>IP ADDRESS</code></p>
+</code></pre></div>
+<p>When the <code>ADDRESS</code> field is populated:</p>
 <div class="highlight"><pre><span></span><code>NAME                 CLASS   HOSTS                       ADDRESS       PORTS   AGE
 ingress-abcdesktop   nginx   hello.ovhcloud.pepins.net   51.68.26.94   80      59s
 </code></pre></div>
-<p>The spec section of the manifest contains a list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend service. The manifest has the following fields:</p>
+<p>The <code>spec</code> section of the manifest contains a list of host rules used to configure the Ingress. If no rule matches, all traffic is sent to the default backend service. The manifest has the following fields:</p>
 <ul>
 <li>
-<p>host specifies the fully qualified domain name of a network host, for example echo.<code>&lt;your-domain-name&gt;</code>.</p>
+<p><code>host</code> specifies the fully qualified domain name of a network host, for example <code>echo.&lt;your-domain-name&gt;</code>.</p>
 </li>
 <li>
-<p>http contains the list of HTTP selectors pointing to backends.</p>
+<p><code>http</code> contains the list of HTTP selectors pointing to backends.</p>
 </li>
 <li>
-<p>paths provides a collection of paths that map requests to backends.</p>
+<p><code>paths</code> provides a collection of paths that map requests to backends.</p>
 </li>
 </ul>
-<p>In the example above, the ingress resource tells nginx to route each HTTP request that is using the / prefix for the <code>hello.ovhcloud.pepins.net</code> host, to the <code>route</code> backend service running on port 80. In other words, every time you make a call to http://hello.ovhcloud.pepins.net/, the request and reply are served by the echo backend service running on port 80.</p>
-<p>You can have multiple ingress controllers per cluster. The ingressClassName field in the manifest differentiates between multiple ingress controllers present in your cluster. Although you can define multiple rules for different hosts and paths in a single ingress resource.</p>
+<p>In the example above, the ingress resource instructs NGINX to route each HTTP request using the <code>/</code> prefix for the <code>hello.ovhcloud.pepins.net</code> host to the <code>http-router</code> backend service running on port 80. In other words, every request to <code>http://hello.ovhcloud.pepins.net/</code> is served by the <code>http-router</code> backend service on port 80.</p>
+<p>You can have multiple ingress controllers per cluster. The <code>ingressClassName</code> field in the manifest differentiates between them. You can also define multiple rules for different hosts and paths within a single ingress resource.</p>
 <p><img alt="reach your website from your new name" src="../img/hello_http.png" /></p>
 <blockquote>
-<p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol.</p>
+<p>Web browsers block WebSocket connections without a secure protocol. To log in, use the <code>https</code> protocol.</p>
 </blockquote>
-<p>As you can see, your website is <code>Not Secured</code>, we are going to add X509 SSL certificate to secure your service.</p>
+<p>Your website is marked as <code>Not Secured</code>. You must add an X.509 SSL certificate to secure the service.</p>
 <h2 id="enable-https">Enable HTTPS</h2>
-<h3 id="deploy-cert-manager-on-your-ovhcloud-kubernetes-cluster">Deploy Cert Manager on your OVHcloud Kubernetes cluster</h3>
-<p>As we previously did for the nginx ingress controller, we are going to use <code>helm</code> to install cert manager on our cluster.</p>
-<p>First add the cert manager helm repository :</p>
+<h3 id="deploy-cert-manager-on-your-ovhcloud-kubernetes-cluster">Deploy Cert-Manager on your OVHcloud Kubernetes cluster</h3>
+<p>As with the NGINX ingress controller, we will use <code>helm</code> to install Cert-Manager on the cluster.</p>
+<p>First, add the Cert-Manager Helm repository:</p>
 <div class="highlight"><pre><span></span><code>helm repo add jetstack https://charts.jetstack.io &amp;&amp; helm repo update  
 </code></pre></div>
-<p>Then install it on your cluster :</p>
+<p>Then install it on your cluster:</p>
 <div class="highlight"><pre><span></span><code>helm install \
   cert-manager oci://quay.io/jetstack/charts/cert-manager \
   --namespace cert-manager \
   --create-namespace \
   --set crds.enabled=true
 </code></pre></div>
-<p>Once installed, you can inspect the Kubernetes resources created by Cert Manager:</p>
+<p>After installation completes, inspect the Kubernetes resources created by Cert-Manager:</p>
 <div class="highlight"><pre><span></span><code>kubectl get all -n cert-manager
 </code></pre></div>
-<p>The output looks similar to the following</p>
+<p>The output looks similar to the following:</p>
 <div class="highlight"><pre><span></span><code>NAME                                           READY   STATUS    RESTARTS   AGE
 pod/cert-manager-75bb65b7b9-t8s7n              1/1     Running   0          24s
 pod/cert-manager-cainjector-5cd89979d6-x2h7f   1/1     Running   0          24s
@@ -4139,15 +4139,23 @@ replicaset.apps/cert-manager-75bb65b7b9              1         1         1      
 replicaset.apps/cert-manager-cainjector-5cd89979d6   1         1         1       25s
 replicaset.apps/cert-manager-webhook-8fc5dcf5f       1         1         1       25s
 </code></pre></div>
-<p>The cert-manager pods and webhook service are running.</p>
-<p>Cert-Manager creates custom resource definitions (CRDs). Cert-Manager relies on three important CRDs to issue certificates from a Certificate Authority (such as Let’s Encrypt):</p>
-<p>Issuer: Defines a namespaced certificate issuer, which allows you to use different CAs in each namespace.</p>
-<p>ClusterIssuer: Similar to Issuer, but it does not belong to a namespace and can be used to issue certificates in any namespace.</p>
-<p>Certificate: Defines a namespaced resource that references an Issuer or ClusterIssuer for issuing certificates.</p>
-<p>Inspect the CRDs by running the following command :</p>
+<p>The Cert-Manager pods and webhook service are running.</p>
+<p>Cert-Manager creates custom resource definitions (CRDs). It relies on three important CRDs to issue certificates from a Certificate Authority (such as Let's Encrypt):</p>
+<ul>
+<li>
+<p><strong>Issuer</strong>: Defines a namespaced certificate issuer, allowing you to use different CAs in each namespace.</p>
+</li>
+<li>
+<p><strong>ClusterIssuer</strong>: Similar to <code>Issuer</code>, but not namespaced; it can issue certificates in any namespace.</p>
+</li>
+<li>
+<p><strong>Certificate</strong>: Defines a namespaced resource that references an <code>Issuer</code> or <code>ClusterIssuer</code> for issuing certificates.</p>
+</li>
+</ul>
+<p>Inspect the CRDs by running the following command:</p>
 <div class="highlight"><pre><span></span><code>kubectl get crd -l app.kubernetes.io/name=cert-manager
 </code></pre></div>
-<p>The output looks similar to the following</p>
+<p>The output looks similar to the following:</p>
 <div class="highlight"><pre><span></span><code>NAME                                  CREATED AT
 certificaterequests.cert-manager.io   2026-01-21T15:54:42Z
 certificates.cert-manager.io          2026-01-21T15:54:42Z
@@ -4156,9 +4164,9 @@ clusterissuers.cert-manager.io        2026-01-21T15:54:42Z
 issuers.cert-manager.io               2026-01-21T15:54:42Z
 orders.acme.cert-manager.io           2026-01-21T15:54:42Z
 </code></pre></div>
-<h3 id="configure-production-ready-tls-certificates-for-nginx">Configure Production-Ready TLS Certificates for nginx</h3>
-<p>You can issue the certificate using an Issuer. Configure a certificate issuers resource for Cert-Manager, which fetches the TLS certificate for nginx to use. The certificate issuer uses the HTTP-01 challenge provider to accomplish this task.</p>
-<p>Create the following manifest, replace <code>&lt;your-valid-email-address&gt;</code> with your own value, and save it as <code>cert-manager-issuer.yaml</code> :</p>
+<h3 id="configure-production-ready-tls-certificates-for-nginx">Configure production-ready TLS certificates for NGINX</h3>
+<p>Configure a certificate issuer resource for Cert-Manager, which fetches the TLS certificate for NGINX to use. The certificate issuer uses the HTTP-01 challenge provider to accomplish this task.</p>
+<p>Create the following manifest, replace <code>&lt;your-valid-email-address&gt;</code> with your own value, and save it as <code>cert-manager-issuer.yaml</code>:</p>
 <div class="highlight"><pre><span></span><code>apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
@@ -4176,23 +4184,25 @@ spec:
             class: nginx
 </code></pre></div>
 <p>The ACME issuer configuration has the following fields:</p>
-<p>email: Email address to be associated with the ACME account.
-server: URL used to access the ACME server’s directory endpoint.
-privateKeySecretRef: Kubernetes secret to store the automatically generated ACME account private key.</p>
-<p>The ingress resources use the HTTP-01 challenge.</p>
+<ul>
+<li><code>email</code>: Email address to be associated with the ACME account.</li>
+<li><code>server</code>: URL used to access the ACME server's directory endpoint.</li>
+<li><code>privateKeySecretRef</code>: Kubernetes secret used to store the automatically generated ACME account private key.</li>
+</ul>
+<p>The <code>Issuer</code> resource uses the HTTP-01 challenge.</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f cert-manager-issuer.yaml -n abcdesktop
 </code></pre></div>
-<p>The output looks similar to the following</p>
+<p>The output looks similar to the following:</p>
 <div class="highlight"><pre><span></span><code>issuer.cert-manager.io/letsencrypt-nginx created
 </code></pre></div>
-<p>Verify that the Issuer resource is created:</p>
+<p>Verify that the <code>Issuer</code> resource was created:</p>
 <div class="highlight"><pre><span></span><code>kubectl get issuer -n abcdesktop
 </code></pre></div>
-<p>The output looks similar to the following</p>
+<p>The output looks similar to the following:</p>
 <div class="highlight"><pre><span></span><code>NAME                READY   AGE
 letsencrypt-nginx   True    7s
 </code></pre></div>
-<p>Next, configure each nginx ingress resource to use TLS. Open the previous <code>abcdesktop_host.yaml</code> manifest you created previously for the route application, add the <code>annotations</code> and <code>tls</code> sections shown below, and save the <code>abcdesktop_host.yaml</code> file : You can also add dedicated <code>nginx.ingress.kubernetes.io</code> annotations to increase default timeout values. Replace <code>hello.ovhcloud.pepins.net</code> by own FQDN</p>
+<p>Next, update each NGINX ingress resource to use TLS. Open the <code>abcdesktop_host.yaml</code> manifest, add the <code>annotations</code> and <code>tls</code> sections shown below, and save the file. You can also add <code>nginx.ingress.kubernetes.io</code> annotations to increase default timeout values. Replace <code>hello.ovhcloud.pepins.net</code> with your own FQDN.</p>
 <div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -4223,7 +4233,7 @@ spec:
                   number: 80
   ingressClassName: nginx
 </code></pre></div>
-<p>Run the following command to configure the hosts to use TLS:</p>
+<p>Apply the updated manifest to configure TLS:</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop_host.yaml -n abcdesktop
 </code></pre></div>
 <p>After a few minutes, check the state of the ingress object:</p>
@@ -4231,15 +4241,15 @@ spec:
 NAME                 CLASS   HOSTS                       ADDRESS       PORTS     AGE
 ingress-abcdesktop   nginx   hello.ovhcloud.pepins.net   51.68.26.94   80, 443   7m
 </code></pre></div>
-<p>You see that 443 appeard in the <code>PORTS</code> section.</p>
-<p>Check that the certificate resource is created</p>
+<p>Port 443 now appears in the <code>PORTS</code> column.</p>
+<p>Check that the certificate resource has been created:</p>
 <div class="highlight"><pre><span></span><code>kubectl get certificates -n abcdesktop
 </code></pre></div>
-<p>The output looks similar to the following</p>
+<p>The output looks similar to the following:</p>
 <div class="highlight"><pre><span></span><code>NAME                     READY   SECRET                   AGE
 letsencrypt-nginx-echo   True    letsencrypt-nginx-echo   3m27s
 </code></pre></div>
-<p>Run a simple curl command line <code>curl -Li https://hello.ovhcloud.pepins.net/</code> to confirm that your secured abcdesktop service is running.</p>
+<p>Run a <code>curl</code> command to confirm that your secured abcdesktop service is running:</p>
 <div class="highlight"><pre><span></span><code>curl -Li https://hello.ovhcloud.pepins.net/
 HTTP/2 200 
 date: Wed, 21 Jan 2026 15:58:28 GMT
@@ -4259,16 +4269,16 @@ strict-transport-security: max-age=31536000; includeSubDomains
 <h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
 <p>You can now connect to your abcdesktop public website using the <code>https</code> protocol.</p>
 <p><img alt="reach your website using https" src="../img/hello_https.png" /></p>
-<p>The connection is secured and you can inspect the certificate details.</p>
+<p>The connection is secured. You can inspect the certificate details.</p>
 <p><img alt="reach your website using https" src="../img/certificate-ingress-ok.png" /></p>
-<h2 id="see-real-client-ip-address-behind-ingress-controller">See real client IP address behind ingress controller</h2>
-<p>Now that your application is publically exposed, maybe you are wondering about security and traffic inside your cluster.<br />
-For example, the console module of abcdesktop should not be accessible to everyone as it is designed to be an administrator console. That is why when you install abcdesktop there is a pool of permit IPs that is specify in the od.config file.</p>
+<h2 id="see-the-real-client-ip-address-behind-the-ingress-controller">See the real client IP address behind the ingress controller</h2>
+<p>Now that your application is publicly exposed, you may want to review the security and traffic behavior inside your cluster.
+For example, the console module of abcdesktop is designed to be an administrator interface and should not be accessible to all users. For this reason, abcdesktop includes a pool of permitted IP addresses configured in the <code>od.config</code> file.</p>
 <div class="highlight"><pre><span></span><code>ManagerController&#39;: { &#39;permitip&#39;: [ &#39;10.0.0.0/8&#39;, &#39;172.16.0.0/12&#39;, &#39;192.168.0.0/16&#39;, &#39;fd00::/8&#39;, &#39;169.254.0.0/16&#39;, &#39;127.0.0.0/8&#39; ] }
 </code></pre></div>
-<p>By default the configuration only permit private network defined in <a href="https://datatracker.ietf.org/doc/html/rfc1918">rfc1918</a> and <a href="https://datatracker.ietf.org/doc/html/rfc4193">rfc4193</a>. So as your service is publically exposed, none of your visitors should be able to access to console. But when you try, you will actually be able to play with console normally, which is not the expected behaviour.</p>
+<p>By default, the configuration permits only private networks defined in <a href="https://datatracker.ietf.org/doc/html/rfc1918">rfc1918</a> and <a href="https://datatracker.ietf.org/doc/html/rfc4193">rfc4193</a>. Since your service is publicly exposed, no visitor should be able to access the console. However, you may find that you can access the console normally — this is not the expected behavior.</p>
 <p><img alt="access console ok" src="../../img/access_console.png" /></p>
-<p>And when you check Pyos logs you will see why console behaves like that.</p>
+<p>Examine the Pyos logs to understand why the console behaves this way.</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -n abcdesktop
 NAME                            READY   STATUS    RESTARTS   AGE
 console-od-5cd84fdd69-zbjxf     1/1     Running   0          11m
@@ -4294,9 +4304,9 @@ pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log
 2026-02-06 16:04:15 abcpool1-node-fa2594 139923617876792 od [INFO   ] __main__.trace_request:anonymous /healthz
 2026-02-06 16:04:25 abcpool1-node-fa2594 139923621108536 od [INFO   ] __main__.trace_request:anonymous /healthz
 </code></pre></div>
-<p>As you can see on the logs, the source IP address seen by pyos is a private IP address like <code>10.X.X.X</code> (or in the subnet you defined as internal to your cluster) which is in the pool of permit IP addresses.  </p>
-<p>That happens because the nginx ingress controller we set up earlier does not forward the client public IP address and balance the request with its own IP address in the cluster. So Router and Pyos both see the IP address of the ingress controller loadbalancer.</p>
-<p>To fix this, update the configuration of your NGINX ingress controller by pasting the following lines into a <code>patch-ingress.yaml</code> file:</p>
+<p>As shown in the <code>logs/trace.log</code> output, the source IP address seen by Pyos is a private address such as <code>10.X.X.X</code> (within the subnet defined as internal to your cluster), which falls within the permitted IP pool.</p>
+<p>This occurs because the NGINX ingress controller does not forward the client's public IP address; instead, it proxies requests using its own cluster IP address. As a result, both the Router and Pyos see the IP address of the ingress controller load balancer.</p>
+<p>To fix this, update the NGINX ingress controller configuration by creating a <code>patch-ingress.yaml</code> file with the following content:</p>
 <div class="highlight"><pre><span></span><code>controller:
   service:
     externalTrafficPolicy: &quot;Local&quot;
@@ -4315,12 +4325,12 @@ pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log
     recursive-get-headers: &quot;true&quot;
     log-format-upstream: &#39;{&quot;time&quot;: &quot;$time_iso8601&quot;, &quot;remote_addr&quot;: &quot;$proxy_protocol_addr&quot;, &quot;x_forwarded_for&quot;: &quot;$proxy_add_x_forwarded_for&quot;, &quot;http_x_forwarded-for&quot;: &quot;$http_x_forwarded_for&quot;, &quot;request_id&quot;: &quot;$req_id&quot;, &quot;remote_user&quot;: &quot;$remote_user&quot;, &quot;bytes_sent&quot;: $bytes_sent, &quot;request_time&quot;: $request_time, &quot;status&quot;: $status, &quot;vhost&quot;: &quot;$host&quot;, &quot;request_proto&quot;: &quot;$server_protocol&quot;, &quot;path&quot;: &quot;$uri&quot;, &quot;request_query&quot;: &quot;$args&quot;, &quot;request_length&quot;: $request_length, &quot;method&quot;: &quot;$request_method&quot;, &quot;http_referrer&quot;: &quot;$http_referer&quot;,  &quot;http_user_agent&quot;: &quot;$http_user_agent&quot; }&#39;
 </code></pre></div>
-<p>Now run the following command to apply it</p>
+<p>Apply the updated configuration:</p>
 <div class="highlight"><pre><span></span><code>helm upgrade ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx -f patch-loadbalancer.yaml
 </code></pre></div>
-<p>You can now retry to connect to console, you should see an error message on the top right</p>
+<p>Retry connecting to the console. You should now see an error message in the upper right corner.</p>
 <p><img alt="access console ok" src="../../img/console_access_denied.png" /></p>
-<p>You can also check the logs of Pyos, you should see your public IP address as source IP</p>
+<p>Check the Pyos logs again; the source IP address should now reflect your public IP address.</p>
 <div class="highlight"><pre><span></span><code>kubectl exec -it pyos-od-5c5cfdbfc8-t9r9m -n abcdesktop -- bash
 Defaulted container &quot;pyos&quot; out of: pyos, wait-for-mongo (init)
 pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log 

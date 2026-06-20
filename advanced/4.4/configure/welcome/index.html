@@ -2695,9 +2695,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sample" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
-      Sample
+      Example
     </span>
   </a>
   
@@ -3774,9 +3774,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sample" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
-      Sample
+      Example
     </span>
   </a>
   
@@ -3857,17 +3857,17 @@
 <h1 id="welcome">Welcome</h1>
 <h2 id="welcomeinfo">welcomeinfo</h2>
 <h3 id="description">Description</h3>
-<p><code>welcomeinfo</code> permits to display messages on the login page.</p>
+<p><code>welcomeinfo</code> allows you to display informational messages on the login page.</p>
 <div class="highlight"><pre><span></span><code><span class="err">welcomei</span><span class="kc">nf</span><span class="err">o</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;welcome&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-<p><code>welcomeinfo.welcome</code> is a list of dictionaries, with the following entries</p>
+<p><code>welcomeinfo.welcome</code> is a list of dictionaries, each supporting the following fields:</p>
 <ul>
 <li><code>notbefore</code>: date time</li>
 <li><code>notafter</code>: date time</li>
 <li><code>script</code> (optional) <code>{ 'async': boolean, 'src': uri }</code> or <code>{ 'data' : 'javascript code' }</code></li>
 <li><code>title</code> and <code>information</code> (optional)</li>
 </ul>
-<h3 id="sample">Sample</h3>
+<h3 id="example">Example</h3>
 <div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="err">welcomei</span><span class="kc">nf</span><span class="err">o</span>
 <span class="err">#</span><span class="w"> </span><span class="err">Show</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">welcome</span><span class="w"> </span><span class="err">message</span><span class="w"> </span><span class="kc">t</span><span class="err">o</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">logi</span><span class="kc">n</span><span class="w"> </span><span class="err">page</span>
 <span class="err">welcomei</span><span class="kc">nf</span><span class="err">o</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3883,11 +3883,10 @@
 <span class="w">      </span><span class="err">&#39;i</span><span class="kc">nf</span><span class="err">orma</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;U</span><span class="kc">t</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="err">im</span><span class="w"> </span><span class="err">ad</span><span class="w"> </span><span class="err">mi</span><span class="kc">n</span><span class="err">im</span><span class="w"> </span><span class="err">ve</span><span class="kc">n</span><span class="err">iam</span><span class="p">,</span><span class="w"> </span><span class="err">quis</span><span class="w"> </span><span class="kc">n</span><span class="err">os</span><span class="kc">tru</span><span class="err">d</span><span class="w"> </span><span class="err">exerci</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">ullamco</span><span class="w"> </span><span class="err">laboris</span><span class="w"> </span><span class="kc">n</span><span class="err">isi</span><span class="w"> </span><span class="err">u</span><span class="kc">t</span><span class="w"> </span><span class="err">aliquip</span><span class="w"> </span><span class="err">ex</span><span class="w"> </span><span class="err">ea</span><span class="w"> </span><span class="err">commodo</span><span class="w"> </span><span class="err">co</span><span class="kc">nse</span><span class="err">qua</span><span class="kc">t</span><span class="err">.&#39;</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-<p>The login page shows the messages :</p>
+<p>The login page displays the configured messages:</p>
 <p><img alt="welcome info sample" src="../img/welcomeinfosample.png" /></p>
 <h3 id="script">Script</h3>
-<p><code>welcomeinfo</code> can also load <code>javascript</code> source code, from another uri or from string.
-The <code>javascript</code> code is embedded in the abcdesktop login page.</p>
+<p><code>welcomeinfo</code> can also load JavaScript source code from an external URI or from an inline string. The JavaScript code is injected directly into the abcdesktop login page.</p>
 <h4 id="data"><code>data</code></h4>
 <div class="highlight"><pre><span></span><code><span class="err">welcomei</span><span class="kc">nf</span><span class="err">o</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="err">&#39;welcome&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -3909,17 +3908,17 @@ The <code>javascript</code> code is embedded in the abcdesktop login page.</p>
 <span class="w">      </span><span class="err">&#39;i</span><span class="kc">nf</span><span class="err">orma</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;U</span><span class="kc">t</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="err">im</span><span class="w"> </span><span class="err">ad</span><span class="w"> </span><span class="err">mi</span><span class="kc">n</span><span class="err">im</span><span class="w"> </span><span class="err">ve</span><span class="kc">n</span><span class="err">iam</span><span class="p">,</span><span class="w"> </span><span class="err">quis</span><span class="w"> </span><span class="kc">n</span><span class="err">os</span><span class="kc">tru</span><span class="err">d</span><span class="w"> </span><span class="err">exerci</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">ullamco</span><span class="w"> </span><span class="err">laboris</span><span class="w"> </span><span class="kc">n</span><span class="err">isi</span><span class="w"> </span><span class="err">u</span><span class="kc">t</span><span class="w"> </span><span class="err">aliquip</span><span class="w"> </span><span class="err">ex</span><span class="w"> </span><span class="err">ea</span><span class="w"> </span><span class="err">commodo</span><span class="w"> </span><span class="err">co</span><span class="kc">nse</span><span class="err">qua</span><span class="kc">t</span><span class="err">.&#39;</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-<p>On the web browser console you can read</p>
+<p>In the browser's developer console, you can observe the following output:</p>
 <p><img alt="welcomeinfo console log" src="../img/welcomeinfolog.png" /></p>
 <h4 id="src-and-async"><code>src</code> and <code>async</code></h4>
-<p><code>src</code> and <code>async</code> are also supported by <code>script</code> to load a URI (<code>sync</code> or <code>async</code>).</p>
-<p>This example loads <code>https://www.googletagmanager.com/gtag/js?id=G-VS25TGNTRZ</code> with <code>async</code> to <code>False</code>, and then loads javascript string source code from</p>
+<p>The <code>script</code> field also supports <code>src</code> and <code>async</code> properties for loading an external URI either synchronously or asynchronously.</p>
+<p>The following example loads the Google Tag Manager script from <code>https://www.googletagmanager.com/gtag/js?id=G-VS25TGNTRZ</code> with <code>async</code> set to <code>False</code>, and then executes the following inline JavaScript:</p>
 <div class="highlight"><pre><span></span><code><span class="w">      </span><span class="err">wi</span><span class="kc">n</span><span class="err">dow.da</span><span class="kc">ta</span><span class="err">Layer</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">wi</span><span class="kc">n</span><span class="err">dow.da</span><span class="kc">ta</span><span class="err">Layer</span><span class="w"> </span><span class="err">||</span><span class="w"> </span><span class="p">[]</span><span class="err">;\</span>
 <span class="w">      </span><span class="kc">fun</span><span class="err">c</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">g</span><span class="kc">ta</span><span class="err">g()</span><span class="p">{</span><span class="err">da</span><span class="kc">ta</span><span class="err">Layer.push(argume</span><span class="kc">nts</span><span class="err">);</span><span class="p">}</span><span class="err">\</span>
 <span class="w">      </span><span class="err">g</span><span class="kc">ta</span><span class="err">g(\&#39;js\&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">ne</span><span class="err">w</span><span class="w"> </span><span class="err">Da</span><span class="kc">te</span><span class="err">());\</span>
 <span class="w">      </span><span class="err">g</span><span class="kc">ta</span><span class="err">g(\&#39;co</span><span class="kc">nf</span><span class="err">ig\&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">\&#39;G</span><span class="mi">-</span><span class="err">VS</span><span class="mi">25</span><span class="err">TGNTRZ\&#39;);</span>
 </code></pre></div>
-<p>A complete example to embed Google Tag Manager</p>
+<p>The following is a complete example that embeds Google Tag Manager:</p>
 <p><div class="highlight"><pre><span></span><code><span class="err">welcomei</span><span class="kc">nf</span><span class="err">o</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="err">&#39;welcome&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">be</span><span class="kc">f</span><span class="err">ore&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">04</span><span class="w"> </span><span class="err">Dec</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="err">GMT&#39;</span><span class="p">,</span>
@@ -3951,9 +3950,9 @@ The <code>javascript</code> code is embedded in the abcdesktop login page.</p>
 <span class="w">      </span><span class="err">&#39;i</span><span class="kc">nf</span><span class="err">orma</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;U</span><span class="kc">t</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="err">im</span><span class="w"> </span><span class="err">ad</span><span class="w"> </span><span class="err">mi</span><span class="kc">n</span><span class="err">im</span><span class="w"> </span><span class="err">ve</span><span class="kc">n</span><span class="err">iam</span><span class="p">,</span><span class="w"> </span><span class="err">quis</span><span class="w"> </span><span class="kc">n</span><span class="err">os</span><span class="kc">tru</span><span class="err">d</span><span class="w"> </span><span class="err">exerci</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">ullamco</span><span class="w"> </span><span class="err">laboris</span><span class="w"> </span><span class="kc">n</span><span class="err">isi</span><span class="w"> </span><span class="err">u</span><span class="kc">t</span><span class="w"> </span><span class="err">aliquip</span><span class="w"> </span><span class="err">ex</span><span class="w"> </span><span class="err">ea</span><span class="w"> </span><span class="err">commodo</span><span class="w"> </span><span class="err">co</span><span class="kc">nse</span><span class="err">qua</span><span class="kc">t</span><span class="err">.&#39;</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-On the web browser network page you can read the fetch http request to <code>google-analytics.com</code> web site.</p>
+In the browser's network panel, you can observe the HTTP fetch request sent to <code>google-analytics.com</code>.</p>
 <p><img alt="google analytics" src="../img/welcomeinfogoogle.png" /></p>
-<p>You have now defined welcome info messages to display maintenance information and optionally inject JavaScript source code into the login page.</p>
+<p>You have now configured <code>welcomeinfo</code> messages to display maintenance notifications and optionally inject JavaScript source code into the abcdesktop login page.</p>
 
 
 

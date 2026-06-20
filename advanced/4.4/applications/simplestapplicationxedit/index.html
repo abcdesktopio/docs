@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#build-a-sample-xedit-with-icon-from-scratch" class="md-skip">
+        <a href="#build-a-sample-xedit-application-with-a-custom-icon-from-scratch" class="md-skip">
           Skip to content
         </a>
       
@@ -3776,7 +3776,7 @@
   
 
 
-<h1 id="build-a-sample-xedit-with-icon-from-scratch">Build a sample xedit with icon from scratch</h1>
+<h1 id="build-a-sample-xedit-application-with-a-custom-icon-from-scratch">Build a sample <code>xedit</code> application with a custom icon from scratch</h1>
 <p>Goal: Build and register a new X11 application container (<code>xedit</code>) with a custom icon in an abcdesktop.io instance.</p>
 <h2 id="requirements">Requirements</h2>
 <p>You need to have:</p>
@@ -3787,7 +3787,7 @@
 <li>Your own public or private container registry.</li>
 </ul>
 <h2 id="create-a-simple-application-xedit">Create a simple application <code>xedit</code></h2>
-<p>To illustrate a simple application integration, we will install <code>xedit</code> from the <code>x11-apps</code> package inside a container image.</p>
+<p>To illustrate a straightforward application integration, this guide walks through installing <code>xedit</code> from the <code>x11-apps</code> package inside a container image and registering it with the platform.</p>
 <ul>
 <li>Create a Dockerfile to install the <code>xedit</code> application from the <code>x11-apps</code> package</li>
 </ul>
@@ -3802,19 +3802,19 @@ wNkEuNS41IDAgMCAxIDUgMTIuNVYxMmgtLjVhLjUuNSAwIDAgMS0uNS0uNVYxMWgtLjVhLjUuNSAwIDA
 <span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/bin/xedit&quot;</span><span class="p">]</span>
 </code></pre></div>
 <blockquote>
-<p>oc.icondata is a base64 encoded content of the file <code>pencil.svg</code>
+<p><code>oc.icondata</code> is the base64-encoded content of the <code>pencil.svg</code> icon file.
 <img alt="pencil.svg" src="https://icons.getbootstrap.com/assets/icons/pencil.svg" />
-to get it
+To generate the base64-encoded value, run:
 ```
 wget https://icons.getbootstrap.com/assets/icons/pencil.svg &amp;&amp; base64 -w0 pencil.svg
 <div class="highlight"><pre><span></span><code>**Dockerfile description**
 
-This image is based on Ubuntu and installs the `x11-apps` package. The default command is set to `/usr/bin/xedit` via the `CMD` instruction. `ENTRYPOINT` is also supported.
+This image is based on Ubuntu and installs the `x11-apps` package. The default command is set to `/usr/bin/xedit` via the `CMD` instruction. The `ENTRYPOINT` instruction is also supported as an alternative.
 
 * `oc.launch` label is the name of the X11 window&#39;s `WM_CLASS`
-* `oc.icon` is the name of the icon file
-* `oc.icondata` is a base64 encoded content of the file `pencil.svg`
-![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) to get it
+* `oc.icon` is the filename of the application icon
+* `oc.icondata` is the base64-encoded content of the `pencil.svg` icon file
+![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) To generate the base64-encoded value, run:
 `wget https://icons.getbootstrap.com/assets/icons/pencil.svg &amp;&amp; base64 -w0 pencil.svg`
 
 * Build the image for the xedit application
@@ -3841,7 +3841,7 @@ docker<span class="w"> </span>inspect<span class="w"> </span><span class="nv">$R
 <ul>
 <li>Send the image to the abcdesktop pyos instance</li>
 </ul>
-<p>The following commands retrieve the <code>PYOS_POD</code> name, copy the <code>samplexedit.json</code> file to the <code>/tmp</code> directory inside the pyos pod, and submit the file to the REST API server.</p>
+<p>The following commands retrieve the <code>PYOS_POD_NAME</code>, copy the <code>samplexedit.json</code> file to the <code>/tmp</code> directory inside the pyos pod, and submit it to the REST API server.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 <span class="nv">PYOS_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NAMESPACE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
 kubectl<span class="w"> </span>cp<span class="w"> </span>samplexedit.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
@@ -3903,12 +3903,12 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 <ul>
 <li>Launch the <code>xedit</code> application</li>
 </ul>
-<p>The <code>xedit</code> container image is being pulled.</p>
+<p>The <code>xedit</code> container image is being pulled from the registry.</p>
 <p><img alt="Start the new application xedit" src="../img/simplestapplication-xedit-starting.png" /></p>
-<p>The <code>xedit</code> container image is starting.</p>
+<p>The <code>xedit</code> container is starting up.</p>
 <p><img alt="Start the new application xedit" src="../img/simplestapplication-xedit-started.png" /></p>
 <p>The <code>xedit</code> application is running.</p>
-<p>You have successfully installed the <code>xedit</code> application as a container with a custom icon.</p>
+<p>You have successfully packaged and registered the <code>xedit</code> application as a container image with a custom icon.</p>
 
 
 

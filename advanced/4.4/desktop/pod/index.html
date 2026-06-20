@@ -3900,18 +3900,18 @@
 <p><code>desktop.pod</code> defines how to create the user's pod. The main sections are </p>
 <ul>
 <li><code>spec</code>: describes the <code>securityContext</code> and <code>shareProcessNamespace</code></li>
-<li><code>default_volumes</code> list the available volumes in the pod</li>
-<li><code>default_volumes_mount</code> list default mounted volumes to use by the pod</li>
+<li><code>default_volumes</code> lists the available volumes in the pod</li>
+<li><code>default_volumes_mount</code> lists the default mounted volumes used by the pod</li>
 <li><code>graphical</code>: describes the graphical service </li>
 <li><code>spawner</code>: describes the command service (built in <code>graphical</code>)</li>
 <li><code>broadcast</code>: describes the broadcast service (built in <code>graphical</code>)</li>
 <li><code>webshell</code>: describes the remote shell service (built in <code>graphical</code>)</li>
 <li><code>filer</code>: describes the file download and upload service</li>
 <li><code>printer</code>: describes the printer service </li>
-<li><code>printerfile</code>: describes the file printer service to download printed file (built in <code>printer</code>)</li>
+<li><code>printerfile</code>: describes the file download service for the virtual printer queue (built in <code>printer</code>)</li>
 <li><code>sound</code>: describes the sound container </li>
 <li><code>init</code>: describes the init container </li>
-<li><code>ephemeral_container</code>: describes how to start an application as default an ephemeral container</li>
+<li><code>ephemeral_container</code>: describes how to start an application as an ephemeral container by default</li>
 <li><code>pod_application</code>: describes how to start an application as a pod</li>
 </ul>
 <div class="highlight"><pre><span></span><code>desktop.pod : { 

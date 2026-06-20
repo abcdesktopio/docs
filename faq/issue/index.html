@@ -18,7 +18,7 @@
     
     
       
-        <title>Issue - www.abcdesktop.io</title>
+        <title>GitHub Issues - www.abcdesktop.io</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-to-request-a-new-feature" class="md-skip">
+        <a href="#github-issues" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Issue
+              GitHub Issues
             
           </span>
         </div>
@@ -3622,6 +3622,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -3632,7 +3634,7 @@
         <li class="md-nav__item">
   <a href="#how-to-request-a-new-feature" class="md-nav__link">
     <span class="md-ellipsis">
-      How to request a new feature ?
+      How to Request a New Feature
     </span>
   </a>
   
@@ -3641,7 +3643,7 @@
         <li class="md-nav__item">
   <a href="#how-to-report-an-issue" class="md-nav__link">
     <span class="md-ellipsis">
-      How to report an issue ?
+      How to Report an Issue
     </span>
   </a>
   
@@ -3671,28 +3673,32 @@
   
 
 
-  <h1>Issue</h1>
-
-<h2 id="how-to-request-a-new-feature">How to request a new feature ?</h2>
-<p>To create a new feature, please use the <code>conf</code> github repository, by following the link <a href="https://github.com/abcdesktopio/conf/issues">Ask a feature</a></p>
-<ul>
-<li>Describe what you are expecting</li>
-<li>Tag it as <em>feature</em> in field <strong>type</strong> on the right.</li>
-</ul>
-<h2 id="how-to-report-an-issue">How to report an issue ?</h2>
-<p>To create an issue, please use the <code>conf</code> github repository, by following the link <a href="https://github.com/abcdesktopio/conf/issues">Create an issue</a></p>
-<ul>
-<li><strong>Requirement</strong> Add your <code>od.config</code> file</li>
-</ul>
-<p>Run the command line to get it</p>
+<h1 id="github-issues">GitHub Issues</h1>
+<h2 id="how-to-request-a-new-feature">How to Request a New Feature</h2>
+<p>Submit a feature request in the <code>conf</code> GitHub repository: <a href="https://github.com/abcdesktopio/conf/issues">Ask a Feature</a></p>
+<p>When creating the issue:
+- Clearly describe the desired behavior or capability.
+- Tag the issue as <strong>feature</strong> using the <strong>type</strong> field on the right.</p>
+<h2 id="how-to-report-an-issue">How to Report an Issue</h2>
+<p>Submit a bug report in the <code>conf</code> GitHub repository: <a href="https://github.com/abcdesktopio/conf/issues">Create an Issue</a></p>
+<p><strong>Required information:</strong></p>
+<ol>
+<li><strong><code>od.config</code> file</strong> — Extract the current configuration:</li>
+</ol>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 kubectl<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.od\.config}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>od.config
 </code></pre></div>
-<ul>
-<li><strong>Requirement</strong> Add your <code>abcdesktop.yaml</code> file</li>
-<li>Describe what you are expecting</li>
-<li>Describe what you get</li>
-</ul>
+<ol>
+<li>
+<p><strong><code>abcdesktop.yaml</code> file</strong> — Include the Kubernetes manifest used for your deployment.</p>
+</li>
+<li>
+<p><strong>Expected behavior</strong> — Describe what you expected to happen.</p>
+</li>
+<li>
+<p><strong>Actual behavior</strong> — Describe what actually happened, including any error messages, log output, or screenshots.</p>
+</li>
+</ol>
 
 
 

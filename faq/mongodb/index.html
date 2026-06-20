@@ -18,7 +18,7 @@
     
     
       
-        <title>Mongodb - www.abcdesktop.io</title>
+        <title>MongoDB - www.abcdesktop.io</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mongodb
+              MongoDB
             
           </span>
         </div>
@@ -3632,19 +3632,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-increase-the-mongodb-number-of-replicats" class="md-nav__link">
+  <a href="#how-to-increase-the-mongodb-replica-count" class="md-nav__link">
     <span class="md-ellipsis">
-      How to increase the mongodb number of replicats ?
+      How to Increase the MongoDB Replica Count
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="How to increase the mongodb number of replicats ?">
+    <nav class="md-nav" aria-label="How to Increase the MongoDB Replica Count">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#with-helm-installation" class="md-nav__link">
+  <a href="#with-a-helm-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      With helm installation
+      With a Helm Installation
     </span>
   </a>
   
@@ -3653,7 +3653,7 @@
           <li class="md-nav__item">
   <a href="#with-a-scripted-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      With a scripted installation
+      With a Scripted Installation
     </span>
   </a>
   
@@ -3704,14 +3704,14 @@
   
 
 
-<h1 id="mongodb">Mongodb</h1>
-<h2 id="how-to-increase-the-mongodb-number-of-replicats">How to increase the <code>mongodb</code> number of <code>replicats</code> ?</h2>
-<h3 id="with-helm-installation">With helm installation</h3>
-<p>To change the replicat number of mongodb using the helm installation, extract the values file from helm if not already done:</p>
+<h1 id="mongodb">MongoDB</h1>
+<h2 id="how-to-increase-the-mongodb-replica-count">How to Increase the MongoDB Replica Count</h2>
+<h3 id="with-a-helm-installation">With a Helm Installation</h3>
+<p>To change the replica count for MongoDB using the Helm installation, extract the values file from the Helm chart if you have not already done so:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>show<span class="w"> </span>values<span class="w"> </span>abcdesktop/abcdesktop<span class="w">  </span>&gt;<span class="w"> </span>abcdesktop-values.yaml
 </code></pre></div>
-<p>Then edit the mongo section to update the <code>replicaCount</code> key to the wanted value.</p>
-<p><div class="highlight"><pre><span></span><code><span class="nt">mongo</span><span class="p">:</span>
+<p>Edit the <code>mongo</code> section and update the <code>replicaCount</code> key to the desired value:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">mongo</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">keysgenerator</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/abcdesktopio/keysgenerator</span>
@@ -3745,7 +3745,7 @@
 <span class="w">    </span><span class="c1"># Mount path in the container (do not change)</span>
 <span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/db</span>
 </code></pre></div>
-and apply it:</p>
+<p>Then apply the updated values:</p>
 <p><div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>my-abcdesktop<span class="w"> </span>abcdesktop/abcdesktop<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4<span class="w"> </span><span class="se">\</span>
@@ -3753,10 +3753,10 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class=
 <span class="w">    </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-f<span class="w"> </span>abcdesktop-values.yaml
 </code></pre></div>
-where <code>NAMESPACE</code> and <code>my-abcdesktop</code> are your deployment namespace and instance name.</p>
-<h3 id="with-a-scripted-installation">With a scripted installation</h3>
+where <code>NAMESPACE</code> and <code>my-abcdesktop</code> are your deployment namespace and release name.</p>
+<h3 id="with-a-scripted-installation">With a Scripted Installation</h3>
 <ul>
-<li>Open your <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.4.yaml">abcdesktop.yaml</a> file and look for the <code>StatefulSet</code> mongodb-od</li>
+<li>Open your <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.4.yaml">abcdesktop.yaml</a> file and locate the <code>StatefulSet</code> named <code>mongodb-od</code>:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StatefulSet</span>
@@ -3764,7 +3764,7 @@ where <code>NAMESPACE</code> and <code>my-abcdesktop</code> are your deployment
 <span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-od</span>
 </code></pre></div>
 <ul>
-<li>In the specs of the the <code>StatefulSet</code> mongodb-od, change the number of the <code>replicas</code></li>
+<li>In the spec of the <code>StatefulSet</code> named <code>mongodb-od</code>, update the <code>replicas</code> count:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StatefulSet</span>
@@ -3781,7 +3781,7 @@ where <code>NAMESPACE</code> and <code>my-abcdesktop</code> are your deployment
 <span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 </code></pre></div>
 <ul>
-<li>In the <code>name: replica-manager</code>, update the variable <code>REPLICAS</code> with the same value</li>
+<li>In the <code>name: replica-manager</code> container definition, update the <code>REPLICAS</code> environment variable to match the same value:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="w"> </span><span class="nt">env</span><span class="p">:</span>
 <span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NAMESPACE</span>
@@ -3796,17 +3796,17 @@ where <code>NAMESPACE</code> and <code>my-abcdesktop</code> are your deployment
 <span class="w">     </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
 </code></pre></div>
 <ul>
-<li>Apply your changes to the abcdesktop namespace</li>
+<li>Apply your changes to the <code>abcdesktop</code> namespace:</li>
 </ul>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl apply -f abcdesktop.yaml -n $NAMESPACE
 </code></pre></div>
 <ul>
-<li>Check the number of <code>replicas</code></li>
+<li>Verify the number of running replicas:</li>
 </ul>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>statefulset<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>mongodb-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
 </code></pre></div>
-<p>You should read on stdout</p>
+<p>The output should show all replicas in the <code>READY</code> state:</p>
 <div class="highlight"><pre><span></span><code>NAME         READY   AGE
 mongodb-od   3/3     18h
 </code></pre></div>

@@ -3830,7 +3830,7 @@
 
 <h1 id="deploy-demogcpabcdesktopcom-on-google-cloud-platform">Deploy demo.gcp.abcdesktop.com on Google Cloud Platform</h1>
 <p>This use case documents how the public demo service <a href="https://demo.gcp.abcdesktop.com">https://demo.gcp.abcdesktop.com</a> is deployed and operated on Google Cloud Platform (GCP) using Google Kubernetes Engine (GKE).</p>
-<p>The demo platform is a fully functional abcdesktop.io instance open to the public. It allows anyone to test the desktopless experience without installing anything, using an OpenID Connect provider (Google, GitHub, Facebook) to sign in.</p>
+<p>The demo platform is a fully functional abcdesktop.io instance that is publicly accessible. It allows anyone to evaluate the desktopless experience without installing any local software, using an OpenID Connect provider (Google, GitHub, or Facebook) to sign in.</p>
 <h2 id="architecture-overview">Architecture overview</h2>
 <pre class="mermaid"><code>graph TD
     User["User (browser)"] --&gt;|HTTPS| GKE_Ingress["GKE Ingress\n(google-managed certificate)"]
@@ -3888,7 +3888,7 @@
 <li>The garbage collector limits resource exhaustion by reclaiming idle desktop pods automatically.</li>
 </ul>
 <h2 id="step-by-step-guide">Step-by-step guide</h2>
-<p>This use case is split into two chapters:</p>
+<p>This use case is documented in two chapters:</p>
 <ol>
 <li>
 <p><strong><a href="../configure-kubernetes-cluster-gcp/">Create the Kubernetes cluster on GCP</a></strong><br />

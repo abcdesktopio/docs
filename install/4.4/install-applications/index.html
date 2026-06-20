@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#add-applications-with-a-script" class="md-skip">
+        <a href="#installing-applications-with-the-default-script" class="md-skip">
           Skip to content
         </a>
       
@@ -692,36 +692,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-application-install" class="md-nav__link">
+  <a href="#quick-application-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick application install
+      Quick Application Installation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#connect-to-your-abcdesktop" class="md-nav__link">
+  <a href="#connecting-to-abcdesktopio" class="md-nav__link">
     <span class="md-ellipsis">
-      Connect to your abcdesktop
+      Connecting to abcdesktop.io
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-application-install_1" class="md-nav__link">
+  <a href="#quick-application-installation_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick application install
+      Quick Application Installation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#connect-to-your-abcdesktop_1" class="md-nav__link">
+  <a href="#connecting-to-abcdesktopio_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Connect to your abcdesktop
+      Connecting to abcdesktop.io
     </span>
   </a>
   
@@ -3723,36 +3723,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-application-install" class="md-nav__link">
+  <a href="#quick-application-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick application install
+      Quick Application Installation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#connect-to-your-abcdesktop" class="md-nav__link">
+  <a href="#connecting-to-abcdesktopio" class="md-nav__link">
     <span class="md-ellipsis">
-      Connect to your abcdesktop
+      Connecting to abcdesktop.io
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-application-install_1" class="md-nav__link">
+  <a href="#quick-application-installation_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick application install
+      Quick Application Installation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#connect-to-your-abcdesktop_1" class="md-nav__link">
+  <a href="#connecting-to-abcdesktopio_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Connect to your abcdesktop
+      Connecting to abcdesktop.io
     </span>
   </a>
   
@@ -3804,53 +3804,51 @@
   
 
 
-<h1 id="add-applications-with-a-script">Add applications with a script</h1>
+<h1 id="installing-applications-with-the-default-script">Installing Applications with the Default Script</h1>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux or macOS</label><label for="__tabbed_1_2">Windows</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<h2 id="quick-application-install">Quick application install</h2>
+<h2 id="quick-application-installation">Quick Application Installation</h2>
 <blockquote>
-<p>Quick installation can be run on Linux or macOS operation system.</p>
+<p>The quick application installation script runs on Linux and macOS operating systems.</p>
 </blockquote>
-<p>Download and run the <code>pullapps-4.4.sh</code> script :</p>
+<p>Download and execute the <code>pullapps-4.4.sh</code> script to install the default set of application images:</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sL<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.4.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
 </code></pre></div>
-<p>You can watch the youtube video sample. This video describes the application installation process on a fresh kubernetes cluster.</p>
+<p>The following video demonstrates the application installation process on a freshly provisioned Kubernetes cluster:</p>
 <p><div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/JSIjnNA6kNE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div></p>
-<h2 id="connect-to-your-abcdesktop">Connect to your abcdesktop</h2>
-<p>The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.</p>
-<p>Now reconnect to your abcdesktop.</p>
-<p>Open your navigator to http://[your-ip-hostname]:30443/</p>
+<h2 id="connecting-to-abcdesktopio">Connecting to abcdesktop.io</h2>
+<p>After the script completes, the <code>pyos</code> API server receives new image registration events. Refresh the browser tab to display the newly installed applications.</p>
+<p>Navigate to your abcdesktop.io instance:</p>
 <div class="highlight"><pre><span></span><code>http://localhost:30443/
 </code></pre></div>
-<p>The new applications are installed, and ready to run.</p>
+<p>The installed applications are now available in the desktop environment.</p>
 <p><img alt="applications after upload json" src="../img/abcdesktop-4-1-loginanonymous-with-applications.png" /></p>
-<p>And then you can start new applications like <code>Firefox</code></p>
-<p><img alt="Start Firefix application" src="../img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png" /></p>
-<p>Another example with console admin interface usage</p>
+<p>You can now launch installed applications. For example, launching Firefox demonstrates <strong>Remote Browser Isolation (RBI)</strong>: Firefox runs entirely inside an isolated container on the Kubernetes cluster, and only rendered pixels are streamed to the client browser.</p>
+<p><img alt="Start Firefox application" src="../img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png" /></p>
+<p>The following video demonstrates application management using the admin console:</p>
 <p><div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/Dah78eAJykw" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div></p>
 </div>
 <div class="tabbed-block">
-<h2 id="quick-application-install_1">Quick application install</h2>
+<h2 id="quick-application-installation_1">Quick Application Installation</h2>
 <blockquote>
-<p>Quick installation can be run on Windows operation system.</p>
+<p>The quick application installation script runs on Windows operating systems.</p>
 </blockquote>
-<p>Download and run the <code>pullapps-4.4.ps1</code> script :</p>
+<p>Download and execute the <code>pullapps-4.4.ps1</code> PowerShell script:</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sL<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.4.ps1<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
 </code></pre></div>
-<p>You can watch the youtube video sample. This video describes the application installation process on a fresh kubernetes cluster.</p>
+<p>The following video demonstrates the application installation process on a freshly provisioned Kubernetes cluster:</p>
 <p><div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/JSIjnNA6kNE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div></p>
-<h2 id="connect-to-your-abcdesktop_1">Connect to your abcdesktop</h2>
-<p>The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.</p>
-<p>Now reconnect to your abcdesktop.</p>
-<p>Open your navigator to http://[your-ip-hostname]:30443/</p>
+<h2 id="connecting-to-abcdesktopio_1">Connecting to abcdesktop.io</h2>
+<p>After the script completes, refresh the browser tab to display the newly installed applications.</p>
+<p>Navigate to your abcdesktop.io instance:</p>
 <div class="highlight"><pre><span></span><code>http://localhost:30443/
 </code></pre></div>
-<p>The new applications are installed, and ready to run.</p>
+<p>The installed applications are now available in the desktop environment.</p>
 <p><img alt="applications after upload json" src="../img/abcdesktop-4-1-loginanonymous-with-applications.png" /></p>
-<p>And then you can start new applications like <code>Firefox</code></p>
-<p><img alt="Start Firefix application" src="../img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png" /></p>
-<p>Another example with console admin interface usage</p>
+<p>You can now launch installed applications. For example, launching Firefox demonstrates <strong>Remote Browser Isolation (RBI)</strong>: Firefox runs entirely inside an isolated container on the Kubernetes cluster, and only rendered pixels are streamed to the client browser.</p>
+<p><img alt="Start Firefox application" src="../img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png" /></p>
+<p>The following video demonstrates application management using the admin console:</p>
 <p><div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/Dah78eAJykw" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div></p>
 </div>
 </div>

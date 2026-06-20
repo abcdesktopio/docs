@@ -18,7 +18,7 @@
     
     
       
-        <title>Authentication explicit - www.abcdesktop.io</title>
+        <title>Authentication: explicit - www.abcdesktop.io</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Authentication explicit
+              Authentication: explicit
             
           </span>
         </div>
@@ -3632,44 +3632,47 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#authmanagers-explicit" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      authmanagers explicit
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="authmanagers explicit">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#home-page-authentication" class="md-nav__link">
-    <span class="md-ellipsis">
-      Home Page Authentication
+      Overview
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#ldap-authentication-manager" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#configuration-example-microsoft-active-directory" class="md-nav__link">
     <span class="md-ellipsis">
-      LDAP Authentication Manager
+      Configuration Example: Microsoft Active Directory
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#microsoft-active-directory-authentication-manager" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#login-page" class="md-nav__link">
     <span class="md-ellipsis">
-      Microsoft Active Directory Authentication Manager
+      Login Page
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#ldap-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      LDAP Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microsoft-active-directory-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microsoft Active Directory Authentication
+    </span>
+  </a>
   
 </li>
       
@@ -3697,12 +3700,10 @@
   
 
 
-<h1 id="authentication-explicit">Authentication <code>explicit</code></h1>
-<h2 id="authmanagers-explicit">authmanagers <code>explicit</code></h2>
-<p>The <code>explicit</code> authentication provider uses a directory service. The LDAP bind operation authenticates clients to the directory server and establishes an authorization identity that is used for all subsequent operations on that connection.</p>
-<p>The <code>explicit</code> authentication configuration is defined as a dictionary object and contains an <code>explicit</code> provider.</p>
-<p>The <code>explicit</code> authentication provider supports the directory services <code>ldap</code>, <code>ldaps</code>, and <code>Microsoft Active Directory</code>.</p>
-<p>Configuration example for Microsoft Active Directory:</p>
+<h1 id="authentication-explicit">Authentication: <code>explicit</code></h1>
+<h2 id="overview">Overview</h2>
+<p>The <code>explicit</code> authentication provider authenticates users against a directory service using an LDAP bind operation. The bind operation establishes an authorization identity that governs all subsequent LDAP operations on that connection. The <code>explicit</code> provider supports <code>ldap</code>, <code>ldaps</code>, and Microsoft Active Directory directory services.</p>
+<h2 id="configuration-example-microsoft-active-directory">Configuration Example: Microsoft Active Directory</h2>
 <div class="highlight"><pre><span></span><code>&#39;explicit&#39;: {
     &#39;show_domains&#39;: True,
     &#39;providers&#39;: {
@@ -3727,14 +3728,13 @@
      }
 }
 </code></pre></div>
-<h3 id="home-page-authentication">Home Page Authentication</h3>
-<p>When the <code>explicit</code> authentication manager is enabled, the web home page displays <code>Login</code> and <code>Password</code> input fields to authenticate users.</p>
+<h2 id="login-page">Login Page</h2>
+<p>When the <code>explicit</code> authentication manager is enabled, the web login page presents <strong>Login</strong> and <strong>Password</strong> input fields to collect user credentials.</p>
 <p><img alt="auth-provider-explicit" src="../img/auth-provider-explicit.png" /></p>
-<h3 id="ldap-authentication-manager">LDAP Authentication Manager</h3>
-<p>Read the specific chapter on LDAP: <a href="../authexplicit-ldap/">LDAP and LDAPS explicit authmanagers</a></p>
-<h3 id="microsoft-active-directory-authentication-manager">Microsoft Active Directory Authentication Manager</h3>
-<p>Microsoft Active Directory is implemented as an LDAP server. Start by reading the chapter on LDAP at <a href="../authexplicit-ldap/">LDAP and LDAPS explicit authmanagers</a>, then read the specific chapter for Microsoft Active Directory at <a href="../authexplicit-activedirectory/">Microsoft Active Directory explicit authmanagers</a>.</p>
-<p>You have successfully reviewed how the explicit authentication configuration works.</p>
+<h2 id="ldap-authentication">LDAP Authentication</h2>
+<p>For detailed LDAP configuration instructions, see <a href="../authexplicit-ldap/">LDAP and LDAPS explicit authmanagers</a>.</p>
+<h2 id="microsoft-active-directory-authentication">Microsoft Active Directory Authentication</h2>
+<p>Microsoft Active Directory is an LDAP-compatible directory service. Start by reading the <a href="../authexplicit-ldap/">LDAP configuration</a> documentation, then refer to the <a href="../authexplicit-activedirectory/">Microsoft Active Directory explicit authmanagers</a> page for AD-specific parameters.</p>
 
 
 

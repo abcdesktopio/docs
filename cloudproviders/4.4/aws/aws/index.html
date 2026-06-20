@@ -1226,7 +1226,7 @@
         <li class="md-nav__item">
   <a href="#create-your-kubernetes-config-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Create your kubernetes config file
+      Create your Kubernetes config file
     </span>
   </a>
   
@@ -3801,7 +3801,7 @@
         <li class="md-nav__item">
   <a href="#create-your-kubernetes-config-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Create your kubernetes config file
+      Create your Kubernetes config file
     </span>
   </a>
   
@@ -3863,9 +3863,9 @@
 <ul>
 <li>aws command line interface <a href="https://aws.amazon.com/cli/">aws-cli</a></li>
 <li>
-<p>create an EKS <code>Amazon Elastic Kubernetes Service</code> and a VPC with a NAT gateway</p>
+<p>Create an Amazon Elastic Kubernetes Service (EKS) cluster and a VPC with a NAT gateway</p>
 <blockquote>
-<p>You need a <strong>NAT gateway</strong> to pull images from your nodes to <code>ghcr.io</code> public registry. If your kubernetes nodes can't reach <code>ghcr.io</code>, you pod will stay in ImagePullBackOff.</p>
+<p>A <strong>NAT gateway</strong> is required so your nodes can pull images from the <code>ghcr.io</code> public registry. If your Kubernetes nodes cannot reach <code>ghcr.io</code>, pods will remain in <code>ImagePullBackOff</code> state.</p>
 </blockquote>
 </li>
 <li>
@@ -3895,7 +3895,7 @@
 <span class="w">    </span><span class="o">]</span>
 <span class="o">}</span>
 </code></pre></div>
-<h2 id="create-your-kubernetes-config-file">Create your kubernetes config file</h2>
+<h2 id="create-your-kubernetes-config-file">Create your Kubernetes config file</h2>
 <p>Create your kubernetes config file using the <code>aws eks update-kubeconfig</code> command line</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>eks<span class="w"> </span>update-kubeconfig<span class="w"> </span>--region<span class="w"> </span>region-code<span class="w"> </span>--name<span class="w"> </span>my-cluster
 </code></pre></div>
@@ -3914,25 +3914,25 @@
 <p>By default, the install script exposes the service on a free TCP port <code>:30443</code> using a <code>kubectl port-forward</code> command to forward traffic to the HTTP service on port <code>:80</code>.</p>
 <p>Open your web browser and navigate to <code>http://localhost:30443</code>.</p>
 <p><img alt="abcdesktop login" src="../../img/abcdesktop-hompage-port30443.png" /></p>
-<p>Login as user <code>Philip J. Fry</code> with the password <code>fry</code></p>
+<p>Log in as user <code>Philip J. Fry</code> with the password <code>fry</code></p>
 <p><img alt="abcdesktop login as fry" src="../../img/abcdesktop-hompage-port30443-login-fry.png" /></p>
-<p>After image pulling process, you get your first abcdesktop </p>
+<p>After the image-pulling process completes, your first abcdesktop session is ready.</p>
 <p><img alt="abcdesktop for fry" src="../../img/abcdesktop-hompage-port30443-user-fry-logged.png" /></p>
 <h2 id="add-applications-to-your-desktop">Add applications to your desktop</h2>
-<p>Using the previous terminal shell, run the application install script </p>
+<p>Using the same terminal session, run the application install script:</p>
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.4.sh | bash
 </code></pre></div>
 <p>To get more details about the install applications process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop_applications/">Setup applications guide</a></p>
-<p>Then reload the web page with the desktop of <code>Philip J. Fry</code>
-New applications are now listed in the dock of <code>plasmashell</code></p>
+<p>Then reload the web page with the desktop of <code>Philip J. Fry</code>.
+New applications are now listed in the <code>plasmashell</code> dock.</p>
 <p><img alt="abcdesktop for fry with applications" src="../../img/abcdesktop-hompage-port30443-login-fry-applications.png" /></p>
 <p>Start Firefox application</p>
 <blockquote>
-<p>The first run may involve waiting for the image pulling process to finish</p>
+<p>The first run may require waiting for the image-pulling process to complete.</p>
 </blockquote>
-<p>Go to <code>https://mylocation.org</code> website to check where your pod is running.</p>
+<p>Navigate to <code>https://mylocation.org</code> to check where your pod is running.</p>
 <p><img alt="abcdesktop for fry with applications" src="../img/abcdesktop-firefox-aws-north-1.png" /></p>
-<p>In this example, for the <code>eu-north-1</code> region, the desktop is located near <code>Stockholm</code> in <code>Sweden</code>.</p>
+<p>For the <code>eu-north-1</code> region, the desktop is located near Stockholm, Sweden.</p>
 
 
 

@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#build-an-application-from-template" class="md-skip">
+        <a href="#build-an-application-from-a-template" class="md-skip">
           Skip to content
         </a>
       
@@ -3968,9 +3968,9 @@
   
 
 
-<h1 id="build-an-application-from-template">Build an application from template</h1>
+<h1 id="build-an-application-from-a-template">Build an application from a template</h1>
 <p>Goal: Build a custom abcdesktop.io application image by extending an existing template container image.</p>
-<p>abcdesktop uses container image format with some labels to describe an application.</p>
+<p>abcdesktop.io uses the container image format with metadata labels to describe each application.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>Your own public or private container registry.</li>
@@ -3979,12 +3979,12 @@
 <li><code>wget</code> command-line tool installed.</li>
 </ul>
 <h2 id="build-your-own-application-image">Build your own application image</h2>
-<p>In this example, the new application image packages the <code>2048</code> game.</p>
+<p>In this example, the new application image packages the <code>2048</code> game. The build process uses a JSON descriptor file and a Node.js script to generate a Dockerfile automatically.</p>
 <p>Create a directory named <code>build</code>, and create a directory <code>icons</code> inside it:</p>
 <div class="highlight"><pre><span></span><code>mkdir -p build/icons
 cd build
 </code></pre></div>
-<p>To build your own image, first create a JSON descriptor file.</p>
+<p>To build your own image, first create a JSON descriptor file that defines the application's metadata, package name, and runtime configuration.</p>
 <p>Create a file named <code>applist.json</code> inside the <code>build</code> directory with the following content:</p>
 <div class="highlight"><pre><span></span><code>[
   {
@@ -4055,12 +4055,12 @@ cd build
 <p>The following descriptions explain how to determine the correct value for each field:</p>
 <ul>
 <li><code>cat</code> is the application category. Choose the most appropriate value from the following list: <code>[ 'office', 'games', 'graphics', 'development', 'utilities', 'education' ]</code></li>
-<li><code>debpackage</code> is the name of the Ubuntu package to install. To look up the package name, refer to <a href="https://packages.ubuntu.com/source/bionic/2048-qt">2048 Ubuntu Package</a>.</li>
-<li><code>icon</code> is the name of the icon file. abcdesktop.io supports only the <code>svg</code> icon format. Download the icon from <a href="https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg">https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg</a>.</li>
+<li><code>debpackage</code> is the name of the Ubuntu package to install. To look up the correct package name, refer to <a href="https://packages.ubuntu.com/source/bionic/2048-qt">2048 Ubuntu Package</a>.</li>
+<li><code>icon</code> is the filename of the application icon. abcdesktop.io supports only the <code>svg</code> icon format. Download the icon from <a href="https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg">https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg</a>.</li>
 <li><code>keyword</code> is a comma-separated list of search keywords for the application. Set the value to <code>2048</code>.</li>
-<li><code>launch</code> is the X11 <code>WM_CLASS</code> name of the application window. To determine this value, run the application on a GNU/Linux system and inspect its window class.</li>
-<li><code>name</code> is the application name. Set the value to <code>2048</code>.</li>
-<li><code>path</code> is the absolute path to the application binary.</li>
+<li><code>launch</code> is the X11 <code>WM_CLASS</code> identifier of the application window. To determine this value, run the application on a GNU/Linux system and inspect its window class using a tool such as <code>xprop</code>.</li>
+<li><code>name</code> is the internal application name. Set the value to <code>2048</code>.</li>
+<li><code>path</code> is the absolute filesystem path to the application binary.</li>
 <li><code>template</code> is the name of the parent base image. The default parent image is <code>ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04</code>. Available templates are listed in the next section.</li>
 </ul>
 <h3 id="build-your-new-image-2048">Build your new image 2048</h3>
@@ -4079,7 +4079,7 @@ wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/refs/heads/4.4/packa
 <div class="highlight"><pre><span></span><code>npm i
 </code></pre></div>
 <ul>
-<li>Run <code>make.js</code> to generate a Dockerfile for the 2048 application. All abcdesktop.io application images are built from container images.</li>
+<li>Run <code>make.js</code> to generate a Dockerfile for the 2048 application. The script reads <code>applist.json</code> and produces a ready-to-build Dockerfile for each entry.</li>
 </ul>
 <div class="highlight"><pre><span></span><code>nodejs make.js
 </code></pre></div>
@@ -4094,7 +4094,7 @@ Creating Dockerfile 2048.d
 <ul>
 <li><code>2048.d</code> — the generated Dockerfile for the 2048 abcdesktop.io application</li>
 </ul>
-<p>Inspect the content of <code>2048.d</code>. Verify that all labels are present and that the icon data is base64-encoded (a form of binary-to-text encoding).</p>
+<p>Inspect the content of <code>2048.d</code>. Verify that all required labels are present and that the icon data is base64-encoded (a binary-to-text encoding scheme used to embed binary assets in text files).</p>
 <p>Build the 2048 application image using the <code>docker build</code> command.</p>
 <blockquote>
 <p>Replace the value of <code>REGISTRY</code> with your own registry name if needed.</p>
@@ -4197,10 +4197,10 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 <p><img alt="abcdesktop.io look for 2048 applications" src="../img/application-2048-lookfor.png" /></p>
 <p>Click the <code>2048</code> icon to launch the application:</p>
 <p><img alt="abcdesktop.io 2048 is running" src="../img/application-2048-run.png" /></p>
-<p>Now you can spend time trying to reach the 2048 score. Have fun!</p>
+<p>The application is now running as an ephemeral container inside your abcdesktop.io user pod. Have fun!</p>
 <h2 id="other-templates">Other templates</h2>
-<p>Because each application runs inside its own container, you can run applications from multiple Linux distributions simultaneously.
-The template repository is available at <a href="https://github.com/abcdesktopio/oc.template">https://github.com/abcdesktopio/oc.template</a>.</p>
+<p>Because each application runs inside its own dedicated container, you can run applications from multiple Linux distributions simultaneously on the same abcdesktop.io instance.
+The full template repository is available at <a href="https://github.com/abcdesktopio/oc.template">https://github.com/abcdesktopio/oc.template</a>.</p>
 <h3 id="templates-for-almalinux">templates for <code>almalinux</code></h3>
 <ul>
 <li>oc.template.almalinux.8</li>

@@ -18,7 +18,7 @@
     
     
       
-        <title>How to add a reverse proxy in front of abcdesktop - www.abcdesktop.io</title>
+        <title>How to Add a Reverse Proxy in Front of abcdesktop - www.abcdesktop.io</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How to add a reverse proxy in front of abcdesktop
+              How to Add a Reverse Proxy in Front of abcdesktop
             
           </span>
         </div>
@@ -3634,7 +3634,7 @@
         <li class="md-nav__item">
   <a href="#edit-your-configuration-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Edit your configuration file
+      Edit Your Configuration File
     </span>
   </a>
   
@@ -3643,17 +3643,17 @@
         <li class="md-nav__item">
   <a href="#create-your-reverse-proxy" class="md-nav__link">
     <span class="md-ellipsis">
-      Create your reverse proxy
+      Create Your Reverse Proxy
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Create your reverse proxy">
+    <nav class="md-nav" aria-label="Create Your Reverse Proxy">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#add-nginx-as-a-reverse-proxy-in-front-of-abcdesktop" class="md-nav__link">
     <span class="md-ellipsis">
-      Add nginx as a reverse proxy in front of abcdesktop
+      Add nginx as a Reverse Proxy in Front of abcdesktop
     </span>
   </a>
   
@@ -3688,11 +3688,11 @@
   
 
 
-<h1 id="how-to-add-a-reverse-proxy-in-front-of-abcdesktop">How to add a reverse proxy in front of abcdesktop</h1>
-<p>This chapter describe host to add a reverse proxy in front of abcdesktop. The chapter describes the <code>nginx</code> configuration in front of abcdesktop</p>
-<p>First of all, you need to update <code>od.config</code> file to set the <code>default_host_url</code> as your <code>external url</code> </p>
-<h2 id="edit-your-configuration-file">Edit your configuration file</h2>
-<p>In this example, the <code>external url</code> is <code>https://abcdesktop.domain.com</code></p>
+<h1 id="how-to-add-a-reverse-proxy-in-front-of-abcdesktop">How to Add a Reverse Proxy in Front of abcdesktop</h1>
+<p>This chapter describes how to add a reverse proxy in front of abcdesktop. It covers the <code>nginx</code> configuration required to place a reverse proxy in front of an abcdesktop deployment.</p>
+<p>First, update the <code>od.config</code> file to set the <code>default_host_url</code> to your external URL.</p>
+<h2 id="edit-your-configuration-file">Edit Your Configuration File</h2>
+<p>In this example, the external URL is <code>https://abcdesktop.domain.com</code>.</p>
 <div class="highlight"><pre><span></span><code># DEFAULT HOST URL 
 # public host url of the service
 # change this with your URL or
@@ -3700,30 +3700,30 @@
 default_host_url : &#39;https://abcdesktop.domain.com&#39;
 # END OF DEFAULT HOST URL
 </code></pre></div>
-<p>If the <code>od.config</code> file does not exist, extract it from the abcdesktop-config configmap to a local file <code>od.config</code></p>
+<p>If the <code>od.config</code> file does not exist, extract it from the <code>abcdesktop-config</code> ConfigMap to a local file:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.od\.config}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>od.config
 </code></pre></div>
-<p>You get a the new local file <code>od.config</code></p>
-<p>To make change, edit your own <code>od.config</code> file with your favorite file editor:</p>
+<p>This command outputs the current configuration to a local file named <code>od.config</code>.</p>
+<p>Edit the <code>od.config</code> file using your preferred editor:</p>
 <div class="highlight"><pre><span></span><code>vim<span class="w"> </span>od.config
 </code></pre></div>
 <ul>
-<li>Update the value `default_host_url </li>
+<li>Update the <code>default_host_url</code> value:</li>
 </ul>
 <div class="highlight"><pre><span></span><code>default_host_url : &#39;https://abcdesktop.domain.com&#39;
 </code></pre></div>
 <ul>
-<li>Apply changes</li>
+<li>Apply the changes.</li>
 </ul>
-<p>To apply changes, you have to replace the <code>abcdesktop-config</code>, by running the <code>replace kubectl</code> command line option. Then <code>rollout restart</code>the <code>pyos</code> pod.</p>
+<p>To apply the changes, replace the <code>abcdesktop-config</code> ConfigMap by running the <code>kubectl replace</code> command, then restart the <code>pyos</code> deployment using <code>rollout restart</code>.</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>--from-file<span class="o">=</span>od.config<span class="w">  </span>-o<span class="w"> </span>yaml<span class="w"> </span>--dry-run<span class="w"> </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>replace<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-f<span class="w"> </span>-
 kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment<span class="w"> </span>pyos-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
 </code></pre></div>
-<p>Great, now we can create the configuration for the reverse proxy of your choice, <code>nginx</code> or <code>haproxy</code>.</p>
-<h2 id="create-your-reverse-proxy">Create your reverse proxy</h2>
-<h3 id="add-nginx-as-a-reverse-proxy-in-front-of-abcdesktop">Add <code>nginx</code> as a reverse proxy in front of abcdesktop</h3>
+<p>Once the configuration is updated, create the reverse proxy configuration for your preferred proxy server — either <code>nginx</code> or <code>haproxy</code>.</p>
+<h2 id="create-your-reverse-proxy">Create Your Reverse Proxy</h2>
+<h3 id="add-nginx-as-a-reverse-proxy-in-front-of-abcdesktop">Add <code>nginx</code> as a Reverse Proxy in Front of abcdesktop</h3>
 <ul>
-<li>Create a websocket config file named <code>ws.conf</code></li>
+<li>Create a WebSocket configuration file named <code>ws.conf</code>:</li>
 </ul>
 <div class="highlight"><pre><span></span><code>proxy_buffering     off;
 proxy_http_version  1.1;
@@ -3740,7 +3740,7 @@ proxy_set_header Authorization $http_authorization;
 proxy_pass $my_node;
 </code></pre></div>
 <ul>
-<li>create a proxy config file named <code>proxy.conf</code></li>
+<li>Create a proxy configuration file named <code>proxy.conf</code>:</li>
 </ul>
 <div class="highlight"><pre><span></span><code># Add proxy header
 proxy_set_header User-Agent $http_user_agent;
@@ -3754,7 +3754,7 @@ proxy_set_header Host $host;
 proxy_pass   $my_node;
 </code></pre></div>
 <ul>
-<li>create the reverse proxy config file named <code>reverse-abcdesktop.conf</code></li>
+<li>Create the reverse proxy configuration file named <code>reverse-abcdesktop.conf</code>:</li>
 </ul>
 <div class="highlight"><pre><span></span><code>server {
 listen 443;

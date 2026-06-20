@@ -1351,9 +1351,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-your-kubernetes-cluster-informations" class="md-nav__link">
+  <a href="#get-your-kubernetes-cluster-information" class="md-nav__link">
     <span class="md-ellipsis">
-      Get your kubernetes cluster informations
+      Get your Kubernetes cluster information
     </span>
   </a>
   
@@ -3817,9 +3817,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-your-kubernetes-cluster-informations" class="md-nav__link">
+  <a href="#get-your-kubernetes-cluster-information" class="md-nav__link">
     <span class="md-ellipsis">
-      Get your kubernetes cluster informations
+      Get your Kubernetes cluster information
     </span>
   </a>
   
@@ -3880,20 +3880,20 @@
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li><code>az</code> command line interface <a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest">azure-cli</a> installed.</li>
-<li>you need your <code>Azure Subscription Name</code>, your <code>Username</code> and <code>Password</code></li>
+<li>You need your <code>Azure Subscription Name</code>, <code>Username</code>, and <code>Password</code>.</li>
 <li>A running Azure Kubernetes Service cluster that is <code>ready</code> and running.</li>
 </ul>
 <h2 id="azure-console-overview">Azure console overview</h2>
 <p>Create a new Azure Kubernetes Service cluster.</p>
 <p><img alt="azure console kubernetes create cluster" src="../img/azure-aks-create-kubernetes-cluster.png" /></p>
 <blockquote>
-<p>Options and features are set by default.</p>
+<p>All options and features use their default values.</p>
 </blockquote>
 <p>In this example, the Kubernetes cluster is named <code>abcdesktopkubernetescluster</code>.
 This screenshot shows the Azure Kubernetes Service console, displaying the <strong>Node pools</strong> and <strong>Networking</strong> configuration.</p>
 <p><img alt="azure console overview" src="../img/azure-aks-console.png" /></p>
 <h2 id="check-your-caller-identity">Check your caller-identity</h2>
-<p>If you don't have already done it, use the <code>az login</code> command line</p>
+<p>If you have not already done so, run the <code>az login</code> command:</p>
 <div class="highlight"><pre><span></span><code>az login
 </code></pre></div>
 <p>The remaining steps complete in your web browser using your own credentials.</p>
@@ -3910,7 +3910,7 @@ This screenshot shows the Azure Kubernetes Service console, displaying the <stro
 </ul>
 <div class="highlight"><pre><span></span><code>az<span class="w"> </span>aks<span class="w"> </span>get-credentials<span class="w"> </span>--resource-group<span class="w"> </span>abcdesktop<span class="w"> </span>--name<span class="w"> </span>abcdesktopkubernetescluster<span class="w"> </span>--overwrite-existing
 </code></pre></div>
-<h2 id="get-your-kubernetes-cluster-informations">Get your kubernetes cluster informations</h2>
+<h2 id="get-your-kubernetes-cluster-information">Get your Kubernetes cluster information</h2>
 <p>Run the <code>kubectl cluster-info</code> command line to confirm that the <code>kubectl</code> command can communicate with your Azure cluster.</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cluster-info
 </code></pre></div>
@@ -3926,26 +3926,26 @@ To<span class="w"> </span>further<span class="w"> </span>debug<span class="w"> <
 </code></pre></div>
 <p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="connect-to-your-abcdesktop-service">Connect to your abcdesktop service</h2>
-<p>By default install script is listening on a free tcp port <code>:30443</code> and is using a <code>kubectl port-forward</code> command line to reach http web service <code>:80</code></p>
-<p>Open your web browser to <code>http://localhost:30443</code></p>
+<p>By default, the install script listens on TCP port <code>:30443</code> and uses a <code>kubectl port-forward</code> command to forward traffic to the HTTP service on port <code>:80</code>.</p>
+<p>Open your web browser and navigate to <code>http://localhost:30443</code>.</p>
 <p><img alt="abcdesktop login" src="../../img/abcdesktop-hompage-port30443.png" /></p>
-<p>Login as user <code>Philip J. Fry</code> with the password <code>fry</code></p>
+<p>Log in as user <code>Philip J. Fry</code> with the password <code>fry</code></p>
 <p><img alt="abcdesktop login as fry" src="../../img/abcdesktop-hompage-port30443-login-fry.png" /></p>
 <p>After the image-pulling process completes, you get your first abcdesktop session</p>
 <p><img alt="abcdesktop for fry" src="../../img/abcdesktop-hompage-port30443-user-fry-logged.png" /></p>
 <h2 id="add-applications-to-your-desktop">Add applications to your desktop</h2>
-<p>Using the previous terminal shell, run the application install script </p>
+<p>Using the same terminal session, run the application install script:</p>
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.4.sh | bash
 </code></pre></div>
 <p>To get more details about the install applications process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop_applications/">Setup applications guide</a></p>
-<p>Then reload the web page with the desktop of <code>Philip J. Fry</code>
-New applications are now listed in the dock of <code>plasmashell</code></p>
+<p>Then reload the web page with the desktop of <code>Philip J. Fry</code>.
+New applications are now listed in the <code>plasmashell</code> dock.</p>
 <p><img alt="abcdesktop for fry with applications" src="../../img/abcdesktop-hompage-port30443-login-fry-applications.png" /></p>
 <p>Start Firefox application</p>
 <blockquote>
-<p>The first run may involve waiting for the image pulling process to finish</p>
+<p>The first run may require waiting for the image-pulling process to complete.</p>
 </blockquote>
-<p>Go to <code>https://mylocation.org</code> website to check where your pod is running.  In my case for the region <code>North Europe</code>, the desktop is located near <code>Dublin</code> city in <code>Ireland</code>. </p>
+<p>Navigate to <code>https://mylocation.org</code> to check where your pod is running. For the <code>North Europe</code> region, the desktop is located near Dublin, Ireland.</p>
 <p><img alt="abcdesktop for fry with applications" src="../img/abcdesktop-firefox-azure-north-europe.png" /></p>
 
 

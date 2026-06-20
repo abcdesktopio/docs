@@ -18,7 +18,7 @@
     
     
       
-        <title>FRNOG 42 - www.abcdesktop.io</title>
+        <title>FRnOG 42 — abcdesktop.io Presentation - www.abcdesktop.io</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#frnog-42" class="md-skip">
+        <a href="#frnog-42-abcdesktopio-presentation" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FRNOG 42
+              FRnOG 42 — abcdesktop.io Presentation
             
           </span>
         </div>
@@ -3632,28 +3632,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#slide-content" class="md-nav__link">
+  <a href="#slides" class="md-nav__link">
     <span class="md-ellipsis">
-      Slide Content
+      Slides
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#video-content" class="md-nav__link">
+  <a href="#demo-video" class="md-nav__link">
     <span class="md-ellipsis">
-      Video Content
+      Demo Video
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Video Content">
+    <nav class="md-nav" aria-label="Demo Video">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
+  <a href="#demo-walkthrough" class="md-nav__link">
     <span class="md-ellipsis">
-      Description
+      Demo Walkthrough
     </span>
   </a>
   
@@ -3688,37 +3688,30 @@
   
 
 
-<h1 id="frnog-42">FRNOG 42</h1>
+<h1 id="frnog-42-abcdesktopio-presentation">FRnOG 42 — abcdesktop.io Presentation</h1>
 <p><img alt="FRNOG logo" src="img/frnog.png" /></p>
-<p>The FRench Network Operators Group (<a href="http://www.frnog.org">FRnOG</a>) brings together people interested in security, research, and Internet operations in France for information exchange.</p>
-<p>This page provides materials from the session held on Friday, October 24, 2025 at <a href="https://www.frnog.org/?page=frnog42">FRnOG 42</a>.</p>
-<h2 id="slide-content">Slide Content</h2>
+<p>The French Network Operators Group (<a href="http://www.frnog.org">FRnOG</a>) is an open community that brings together network engineers, security researchers, and Internet operations professionals in France for technical knowledge exchange.</p>
+<p>This page provides materials from the abcdesktop.io session presented on Friday, October 24, 2025, at <a href="https://www.frnog.org/?page=frnog42">FRnOG 42</a>. The session covered the abcdesktop.io platform's core security architecture, including <strong>Remote Browser Isolation (RBI)</strong> and <strong>Remote Application Isolation (RAI)</strong>, and demonstrated live deployment on a Kubernetes cluster.</p>
+<h2 id="slides">Slides</h2>
 <ul>
-<li>PDF format <a href="abcdesktop-frnog.pdf">download file</a></li>
+<li>PDF format: <a href="abcdesktop-frnog.pdf">download file</a></li>
 </ul>
-<h2 id="video-content">Video Content</h2>
-<ul>
-<li>Demo abcdesktop frnog 42</li>
-</ul>
+<h2 id="demo-video">Demo Video</h2>
+<p>The following video demonstrates a live abcdesktop.io session recorded during the FRnOG 42 presentation:</p>
 <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/dq3bcFu5pr8" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
-<h3 id="description">Description</h3>
-<ul>
-<li>Login credentials (<code>Philip J. Fry</code>,<code>fry</code>)</li>
-<li>Create a pod desktop with all containers</li>
-<li>Start the terminal application</li>
-<li>Run <code>kubectl get pods -n abcdesktop</code></li>
-<li>Show current user pod for <code>fry</code></li>
-<li>Start the Firefox application</li>
-<li>Browse for a video on the <code>http://culturepub.fr</code> website</li>
-<li>Start the Qterminal application as a pod<ul>
-<li>Run the <code>top</code> command to show processes</li>
-</ul>
-</li>
-<li>Run <code>kubectl get pods -n abcdesktop</code> again in terminal</li>
-<li>Run <code>kubectl delete pods fry-qterminal-app-XXXX -n abcdesktop</code> again in terminal</li>
-<li>Logoff</li>
-</ul>
+<h3 id="demo-walkthrough">Demo Walkthrough</h3>
+<p>The demo uses the following credentials: username <code>Philip J. Fry</code>, password <code>fry</code>.</p>
+<ol>
+<li><strong>Authentication</strong> — Log in to abcdesktop.io using the preconfigured LDAP account <code>fry</code>.</li>
+<li><strong>Pod provisioning</strong> — A user desktop pod is created with all service containers (graphical, printer, sound, filer).</li>
+<li><strong>Terminal application</strong> — Launch the terminal application and run <code>kubectl get pods -n abcdesktop</code> to display the running user pod for <code>fry</code>.</li>
+<li><strong>Remote Browser Isolation demo</strong> — Launch the Firefox application. This demonstrates RBI: Firefox runs entirely inside an isolated container on the Kubernetes node; only rendered pixels are streamed to the client browser. Browse to <code>http://culturepub.fr</code> to play a video.</li>
+<li><strong>Remote Application Isolation demo</strong> — Launch the Qterminal application as a separate pod. This demonstrates RAI: the terminal emulator runs in a dedicated, isolated container namespace. Run the <code>top</code> command inside the Qterminal to display live process information.</li>
+<li><strong>Pod lifecycle verification</strong> — In the main terminal, run <code>kubectl get pods -n abcdesktop</code> again to show both the user desktop pod and the isolated Qterminal application pod.</li>
+<li><strong>Ephemeral container teardown</strong> — Run <code>kubectl delete pods fry-qterminal-app-XXXX -n abcdesktop</code> to terminate the Qterminal application pod, demonstrating the ephemeral nature of application containers.</li>
+<li><strong>Session termination</strong> — Log off from abcdesktop.io.</li>
+</ol>
 
 
 

@@ -4031,21 +4031,20 @@
 
 
 <h1 id="authentication-rules-configuration">Authentication Rules Configuration</h1>
-<p>All authentication providers support rules configuration.</p>
-<p>A rule takes parameters and sets labels on the user's pod and on the user's JWT token.</p>
+<p>All authentication providers support rule-based configuration. Rules evaluate one or more conditions against request attributes and, when the conditions produce the expected boolean result, apply a label to the user's pod and JWT token.</p>
 <ul>
 <li>All labels are stored inside the JWT user token.</li>
 <li>All labels are applied to the user's pods.</li>
 </ul>
-<p>Labels are used to define a container execution context for subsequent operations, such as:</p>
+<p>Labels define the container execution context used for subsequent operations, including:</p>
 <ul>
-<li>Allowing an application only to members of a specific group</li>
-<li>Applying network policies</li>
+<li>Restricting an application to members of a specific group</li>
+<li>Enforcing network policies</li>
 </ul>
 <h2 id="the-rule-object">The Rule Object</h2>
-<p>A rule is a dictionary object with:</p>
+<p>A rule is a dictionary object that consists of:</p>
 <ul>
-<li>A name (the key of the rule entry)</li>
+<li>A name (the dictionary key of the rule entry)</li>
 <li>One or more conditions</li>
 <li>An expected boolean result of <code>True</code> or <code>False</code></li>
 <li>A label to apply when the conditions evaluate to the expected boolean value</li>
@@ -4059,7 +4058,7 @@
 </code></pre></div>
 <p>If the source IP address equals <code>192.168.2.3</code>, the pod receives the label <code>allowipsource</code>.</p>
 <h3 id="the-conditions-object">The Conditions Object</h3>
-<p>The <code>conditions</code> field is a list of individual condition objects. All conditions are always evaluated, functioning as a logical <code>AND</code> operator. The combined result must equal the <code>expected</code> value.</p>
+<p>The <code>conditions</code> field is a list of individual condition objects. All conditions are evaluated unconditionally and combined using a logical <code>AND</code> operation. The aggregated result must equal the rule's <code>expected</code> value for the associated label to be applied.</p>
 <h4 id="examples">Examples</h4>
 <h4 id="example-true-and-true-expected-true">Example: (<code>True</code> AND <code>True</code>) expected <code>True</code></h4>
 <p>To test whether the user's source IP address is in the subnet <code>80.0.0.0/8</code> <strong>and</strong> the user is a <code>memberOf</code> the LDAP group DN <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code>:</p>
@@ -4117,12 +4116,12 @@
 <tbody>
 <tr>
 <td><code>boolean</code></td>
-<td>Always evaluates to true or false</td>
+<td>Always evaluates to <code>True</code> or <code>False</code> regardless of request attributes</td>
 <td><code>'boolean' : 'true'</code></td>
 </tr>
 <tr>
 <td><code>existhttpheader</code></td>
-<td>Tests whether an HTTP header exists</td>
+<td>Tests whether a specified HTTP header is present in the request</td>
 <td></td>
 </tr>
 <tr>
@@ -4132,27 +4131,27 @@
 </tr>
 <tr>
 <td><code>memberOf</code></td>
-<td>Tests whether the LDAP user object is a member of a group</td>
+<td>Tests whether the authenticated LDAP user object is a member of a specified group</td>
 <td><code>'memberOf': [ 'cn=ship_crew,ou=people,dc=planetexpress,dc=com']</code></td>
 </tr>
 <tr>
 <td><code>network</code></td>
-<td>Tests whether the client IP address falls within a network subnet</td>
+<td>Tests whether the client IP address falls within a specified network subnet</td>
 <td><code>'network': [ '1.2.3.4/24']</code></td>
 </tr>
 <tr>
 <td><code>network-x-forwarded-for</code></td>
-<td>Reads the <code>X-Forwarded-For</code> HTTP attribute, then tests whether the value falls within a network subnet</td>
+<td>Reads the <code>X-Forwarded-For</code> HTTP header value and tests whether it falls within a specified network subnet</td>
 <td></td>
 </tr>
 <tr>
 <td><code>network-x-real-ip</code></td>
-<td>Reads the <code>X-Real-IP</code> HTTP attribute, then tests whether the value falls within a network subnet</td>
+<td>Reads the <code>X-Real-IP</code> HTTP header value and tests whether it falls within a specified network subnet</td>
 <td></td>
 </tr>
 <tr>
 <td><code>attribut</code></td>
-<td>Tests whether an HTTP header value equals a given string</td>
+<td>Tests whether an LDAP user attribute value equals a given string</td>
 <td><code>'httpheader': { 'User-Agent': 'Mozilla/5.0</code></td>
 </tr>
 <tr>
@@ -4167,13 +4166,13 @@
 </tr>
 <tr>
 <td><code>geolocation</code></td>
-<td>Tests whether the user is geolocated in a specific region. Geolocation data comes from the web browser and can be spoofed</td>
+<td>Tests whether the user is geolocated in a specific region. Geolocation data is provided by the web browser and may be spoofed</td>
 <td><code>'geolocation': {'accuracy': 14.884, 'latitude': 48.8555131, 'longitude': 2.3752174 }</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="condition-boolean">Condition: <code>boolean</code></h4>
-<p>This is a trivial condition used to unconditionally force a label or to disable a test entirely.</p>
+<p>This condition unconditionally forces a label or disables a test entirely, regardless of any request attributes.</p>
 <div class="highlight"><pre><span></span><code>&#39;boolean&#39;: boolean
 </code></pre></div>
 <p>A common usage pattern is to always evaluate to <code>True</code>:</p>
@@ -4302,14 +4301,14 @@
 <span class="p">}</span>
 </code></pre></div>
 <h4 id="condition-asnumber">Condition: <code>asnumber</code></h4>
-<p>BGP public AS numbers are globally unique identifiers assigned by IANA for Internet routing, ranging from 1 to 64495 (16-bit) and extended to 32-bit for greater availability. Public AS numbers must be unique on the Internet, and BGP uses the AS number as its loop-prevention mechanism.</p>
+<p>BGP public AS numbers are globally unique identifiers assigned by IANA for Internet routing. 16-bit AS numbers range from 1 to 64495, while 32-bit AS numbers extend this space for greater availability. BGP uses the AS number as its primary loop-prevention mechanism, and all public AS numbers must be globally unique on the Internet.</p>
 <div class="highlight"><pre><span></span><code>&#39;rule-asnumber&#39; : {
   &#39;conditions&#39; : [ {&#39;asnumber&#39;: [ &#39;3215&#39; ] , &#39;expected&#39;:True } ],
   &#39;expected&#39; : True,
   &#39;label&#39;:&#39;orangenetwork&#39;
 }
 </code></pre></div>
-<p>If the source IP address belongs to AS number <code>3215</code>, the label <code>orangenetwork</code> is applied. You can build filters for your own AS number to allow or deny access.</p>
+<p>If the source IP address belongs to AS number <code>3215</code>, the label <code>orangenetwork</code> is applied. You can build filters based on your own AS number to selectively allow or deny access.</p>
 
 
 

@@ -2244,9 +2244,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#authmanagers-implicit" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      authmanagers implicit
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verifying-the-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verifying the Configuration
     </span>
   </a>
   
@@ -3702,9 +3720,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#authmanagers-implicit" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      authmanagers implicit
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verifying-the-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verifying the Configuration
     </span>
   </a>
   
@@ -3734,11 +3770,11 @@
   
 
 
-<h1 id="authentication-implicit">Authentication <code>implicit</code></h1>
-<h2 id="authmanagers-implicit">authmanagers <code>implicit</code></h2>
-<p>The <code>implicit</code> provider is the simplest configuration mode and is used for anonymous (always-allow) authentication.</p>
-<p>The provider is defined as a dictionary object and contains an <code>anonymous</code> provider.</p>
-<p>The <code>anonymous</code> provider always permits authentication and generates a UUID as the user ID. It is used to bypass the authentication process in demonstration mode.</p>
+<h1 id="authentication-implicit">Authentication: <code>implicit</code></h1>
+<h2 id="overview">Overview</h2>
+<p>The <code>implicit</code> authentication provider is the simplest configuration mode available in abcdesktop.io. It grants anonymous, always-allow access without requiring user credentials, making it appropriate for demonstration deployments, open-access environments, and functional testing scenarios.</p>
+<p>The <code>implicit</code> provider dictionary must contain a <code>providers</code> key, which in turn holds one or more named provider entries. The <code>anonymous</code> provider unconditionally permits authentication and assigns the user identifier specified by the <code>userid</code> field in the provider configuration.</p>
+<h2 id="configuration">Configuration</h2>
 <div class="highlight"><pre><span></span><code>&#39;implicit&#39;: {
     &#39;providers&#39;: {
       &#39;anonymous&#39;: {
@@ -3753,8 +3789,7 @@
       }
     }}
 </code></pre></div>
-<p>The <code>anonymous</code> provider always permits authentication and generates a UUID as the user ID.</p>
-<p>Set the <code>authmanagers</code> dictionary in your configuration file as follows:</p>
+<p>Set the full <code>authmanagers</code> dictionary in your <code>od.config</code> file as follows:</p>
 <div class="highlight"><pre><span></span><code>authmanagers: {
   &#39;external&#39;: {},
   &#39;explicit&#39;: {},
@@ -3773,25 +3808,23 @@
     }
   }}
 </code></pre></div>
-<p><a href="../../configure/updateconfiguration/">Update your configuration file and apply the new configuration file</a></p>
-<p>Open a new web browser and navigate to your abcdesktop URL. You should see the login page with the Anonymous button:</p>
+<p><a href="../../configure/updateconfiguration/">Apply the updated configuration file</a> to your Kubernetes cluster.</p>
+<h2 id="verifying-the-configuration">Verifying the Configuration</h2>
+<p>Open a web browser and navigate to your abcdesktop.io URL. The login page displays a <strong>Sign-In Anonymously</strong> button:</p>
 <p><img alt="login page Anonymous" src="../img/anonymous.png" /></p>
-<p>Click the <code>Sign-In Anonymously</code> button.</p>
-<p>You will receive a desktop session as the <code>anonymous</code> user.</p>
-<p>List all your desktop pods:</p>
+<p>Click <strong>Sign-In Anonymously</strong> to receive a desktop session as the <code>anonymous</code> user.</p>
+<p>Verify the running desktop pod:</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -l type=x11server -n abcdesktop
 NAME              READY   STATUS    RESTARTS   AGE
 anonymous-3806b   3/3     Running   0          9m22s
 </code></pre></div>
-<p>In this example, the pod name is <code>anonymous-3806b</code>.</p>
-<p>Run a bash shell inside the pod:</p>
+<p>Open a shell inside the pod to confirm the user context:</p>
 <div class="highlight"><pre><span></span><code>kubectl exec -it anonymous-3806b -n abcdesktop -- bash
 Defaulted container &quot;x-graphical&quot; out of: x-graphical, s-sound, f-filer, i-init (init)
 anonymous@abcdesktop:~$ id
 uid=4096(anonymous) gid=4096(anonymous) groups=4096(anonymous)
 </code></pre></div>
-<p>The session runs as the <code>anonymous</code> user with <code>uid=4096</code> and <code>gid=4096</code>.</p>
-<p>You have successfully verified how the implicit authentication configuration works.</p>
+<p>The session runs as the <code>anonymous</code> user with <code>uid=4096</code> and <code>gid=4096</code>. The <code>implicit</code> authentication configuration is working correctly.</p>
 
 
 

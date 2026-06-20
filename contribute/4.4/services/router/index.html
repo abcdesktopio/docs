@@ -4399,7 +4399,7 @@
 <span class="w">    </span><span class="nv">ngx</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="nv">ngx</span><span class="p">.</span><span class="py">HTTP_OK</span><span class="p">)</span>
 <span class="kr">end</span>
 </code></pre></div>
-<p>Returns HTTP error responses with logging. Uses <code>ngx.exit(ngx.HTTP_OK)</code> after setting <code>ngx.status</code> to properly interrupt execution.</p>
+<p>Returns HTTP error responses with logging. Uses <code>ngx.exit(ngx.HTTP_OK)</code> after setting <code>ngx.status</code> to properly interrupt execution and flush the response.</p>
 <h4 id="3-rsa-decryption">3. RSA Decryption</h4>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">msg</span><span class="p">,</span><span class="w"> </span><span class="nv">private_key</span><span class="p">)</span>
 <span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">rsa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s2">&quot;resty.rsa&quot;</span>
@@ -4413,6 +4413,7 @@
 1. Base64-encoded
 2. RSA-encrypted with the server's public key
 3. Contains the target pod hostname</p>
+<p>Decrypting the <code>hash</code> field yields the DNS hostname of the user's desktop pod, which nginx uses as the <code>proxy_pass</code> target.</p>
 <h4 id="4-cache-lookup">4. Cache Lookup</h4>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ngx</span><span class="p">.</span><span class="py">shared</span><span class="p">.</span><span class="py">targetmap</span><span class="p">:</span><span class="nf">get</span><span class="p">(</span><span class="nv">jwt_token</span><span class="p">)</span>
 </code></pre></div>
@@ -4585,10 +4586,10 @@
 <h3 id="nginxconf-main-configuration"><code>nginx.conf</code> - Main Configuration</h3>
 <p><strong>Key directives:</strong></p>
 <ul>
-<li><code>worker_processes auto</code> - Scales to available CPUs</li>
-<li><code>daemon off</code> - Required for container foreground execution</li>
+<li><code>worker_processes auto</code> — Scales worker processes to the number of available CPUs</li>
+<li><code>daemon off</code> — Required for container foreground execution</li>
 <li>
-<p><code>env</code> directives - Exposes environment variables to nginx</p>
+<p><code>env</code> directives — Exposes environment variables to Lua scripts running inside nginx</p>
 </li>
 <li>
 <p><strong>Lua shared dictionaries:</strong></p>

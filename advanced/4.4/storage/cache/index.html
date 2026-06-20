@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#overwritten-user-home-directory-entries" class="md-skip">
+        <a href="#overwriting-user-home-directory-entries" class="md-skip">
           Skip to content
         </a>
       
@@ -2578,13 +2578,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overwritten-user-homedirectory-directory-entries" class="md-nav__link">
+  <a href="#overwriting-user-home-directory-entries-with-memory-backed-volumes" class="md-nav__link">
     <span class="md-ellipsis">
-      Overwritten user homedirectory directory entries
+      Overwriting user home directory entries with memory-backed volumes
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Overwritten user homedirectory directory entries">
+    <nav class="md-nav" aria-label="Overwriting user home directory entries with memory-backed volumes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3715,13 +3715,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overwritten-user-homedirectory-directory-entries" class="md-nav__link">
+  <a href="#overwriting-user-home-directory-entries-with-memory-backed-volumes" class="md-nav__link">
     <span class="md-ellipsis">
-      Overwritten user homedirectory directory entries
+      Overwriting user home directory entries with memory-backed volumes
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Overwritten user homedirectory directory entries">
+    <nav class="md-nav" aria-label="Overwriting user home directory entries with memory-backed volumes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3790,23 +3790,23 @@
   
 
 
-<h1 id="overwritten-user-home-directory-entries">Overwritten user home directory entries</h1>
-<h2 id="overwritten-user-homedirectory-directory-entries">Overwritten user homedirectory directory entries</h2>
-<p>To reduce I/O to the storage backend, you can define entries in the <code>desktop.directorytomemoryemptydir</code> option to overwrite specific user subdirectories.</p>
+<h1 id="overwriting-user-home-directory-entries">Overwriting User Home Directory Entries</h1>
+<h2 id="overwriting-user-home-directory-entries-with-memory-backed-volumes">Overwriting user home directory entries with memory-backed volumes</h2>
+<p>To reduce I/O pressure on the storage backend, you can configure the <code>desktop.directorytomemoryemptydir</code> option to replace specific user subdirectories with in-memory <code>emptyDir</code> volumes. This approach is particularly useful for high-churn directories such as <code>.cache</code>, <code>.local</code>, and <code>.config</code>.</p>
 <div class="highlight"><pre><span></span><code>desktop.directorytomemoryemptydir: [ &#39;.cache&#39;, &#39;.local&#39;, &#39;.config&#39; ]
 desktop.directorytomemory: { &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Gi&#39; } }
 </code></pre></div>
-<p>The default <code>desktop.directorytomemory</code> is a dictionary set to <code>{ 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi' } }</code></p>
-<p>The <code>desktop.directorytomemory</code> dictionary is the same for all <code>desktop.directorytomemoryemptydir</code> entries.</p>
-<p>A <code>kubectl describe pod</code> command line shows the volume for each <code>desktop.directorytomemoryemptydir</code> in this case <code>[ '.cache', '.local', '.config' ]</code></p>
-<p>The mounted volumes show that each entries <code>/home/fry/.cache</code>, <code>/home/fry/.config</code>, <code>/home/fry/.local</code> are overwritten.</p>
+<p>The default value of <code>desktop.directorytomemory</code> is the dictionary <code>{ 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi' } }</code>.</p>
+<p>This dictionary applies uniformly to every entry listed in <code>desktop.directorytomemoryemptydir</code>.</p>
+<p>Running <code>kubectl describe pod</code> displays the volume mounted for each entry in <code>desktop.directorytomemoryemptydir</code> — in this example, <code>[ '.cache', '.local', '.config' ]</code>.</p>
+<p>The mounted volumes confirm that each path — <code>/home/fry/.cache</code>, <code>/home/fry/.config</code>, and <code>/home/fry/.local</code> — has been replaced by an in-memory volume.</p>
 <div class="highlight"><pre><span></span><code>Mounts:
   [...]
   /home/fry/.cache from cache (rw)
   /home/fry/.config from config (rw)
   /home/fry/.local from local (rw) 
 </code></pre></div>
-<p>The volumes are configured as an <code>emptyDir</code> (a temporary directory that shares a pod's lifetime) of <code>Memory</code> with a <code>SizeLimit</code> to <code>8Gi</code>.</p>
+<p>Each volume is configured as an <code>emptyDir</code> of type <code>Memory</code> with a <code>SizeLimit</code> of <code>8Gi</code>, meaning its contents are stored entirely in RAM and are discarded when the pod terminates.</p>
 <div class="highlight"><pre><span></span><code>Volumes:
   auth-localaccount-fry:
     Type:        Secret (a volume populated by a Secret)
@@ -3828,10 +3828,9 @@ desktop.directorytomemory: { &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory
 [...]
 </code></pre></div>
 <h3 id="update-the-sound-container-for-config-usage">Update the sound container for <code>.config</code> usage</h3>
-<p>The <code>s-sound</code> container needs to read the <code>$HOME/.config/pulse/cookie</code> file.
-If you choose to use <code>.config</code> as an <code>emptyDir</code> volume, you need to add this volume to the sound container description.</p>
+<p>The <code>s-sound</code> container requires read access to the <code>$HOME/.config/pulse/cookie</code> file. If you configure <code>.config</code> as an <code>emptyDir</code> volume, you must explicitly add the <code>config</code> volume to the sound container definition.</p>
 <ul>
-<li>update your <code>desktop.pod</code> dictionary to add the <code>config</code> volume into the volume list <code>'volumes': [ 'extrausers', 'tmp', 'config', 'log' ]</code></li>
+<li>Update your <code>desktop.pod</code> dictionary to include the <code>config</code> volume in the volume list: <code>'volumes': [ 'extrausers', 'tmp', 'config', 'log' ]</code></li>
 </ul>
 <div class="highlight"><pre><span></span><code>&#39;sound&#39;: { 
     &#39;volumes&#39;: [ &#39;extrausers&#39;, &#39;tmp&#39;, &#39;config&#39;, &#39;log&#39; ],
@@ -3842,11 +3841,11 @@ If you choose to use <code>.config</code> as an <code>emptyDir</code> volume, yo
     &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
   },
 </code></pre></div>
-<p>After a login, you can check that the s-sound container mounts <code>.config</code> as <code>$HOME/.config</code> :</p>
+<p>After a user logs in, verify that the <code>s-sound</code> container mounts <code>.config</code> at <code>$HOME/.config</code>:</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl  describe pods fry-c33ed  -n $NAMESPACE
 </code></pre></div>
-<p>You should read for the <code>s-sound</code> container the <code>Mounts</code></p>
+<p>In the <code>s-sound</code> container's <code>Mounts</code> section, you should see the following entry:</p>
 <div class="highlight"><pre><span></span><code>    Mounts:
       /home/fry/.config from config (rw)
       /tmp from tmp (rw)

@@ -4429,8 +4429,8 @@
 </ul>
 <p>The build uses a two-stage (multi-stage) architecture:</p>
 <ol>
-<li>ubuntu_node_modules_builder: prepares Node dependencies and composer assets.</li>
-<li>final stage: assembles the OS, desktop stack, themes, and runtime components.</li>
+<li><code>ubuntu_node_modules_builder</code>: prepares Node.js dependencies and composer assets.</li>
+<li>Final stage: assembles the OS, desktop stack, themes, and runtime components.</li>
 </ol>
 <h2 id="2-build-interface-input-contract">2. Build Interface (Input Contract)</h2>
 <h3 id="21-global-build-arguments">2.1 Global build arguments</h3>
@@ -4471,11 +4471,11 @@
 <h3 id="32-toolchain-and-native-prerequisites">3.2 Toolchain and native prerequisites</h3>
 <p>Installs build dependencies:</p>
 <ul>
-<li>gcc, g++, make</li>
-<li>libx11-dev, libxmu-dev, libimlib2-dev</li>
-<li>ca-certificates, git, curl, gnupg, dpkg</li>
+<li><code>gcc</code>, <code>g++</code>, <code>make</code></li>
+<li><code>libx11-dev</code>, <code>libxmu-dev</code>, <code>libimlib2-dev</code></li>
+<li><code>ca-certificates</code>, <code>git</code>, <code>curl</code>, <code>gnupg</code>, <code>dpkg</code></li>
 </ul>
-<p>Purpose: allow compilation of native Node modules (via node-gyp).</p>
+<p>Purpose: these packages allow compilation of native Node.js modules via <code>node-gyp</code>.</p>
 <h3 id="33-nodejs-installation">3.3 Node.js installation</h3>
 <ul>
 <li>Adds NodeSource repository for NODE_MAJOR=20.</li>
@@ -4502,10 +4502,10 @@
 </ul>
 <p>TARGET_PRUNE behavior:</p>
 <ul>
-<li>empty: generally performs full npm install,</li>
-<li>defined: generally uses npm install --omit=dev.</li>
+<li>When empty: performs a full <code>npm install</code>.</li>
+<li>When defined: uses <code>npm install --omit=dev</code> to exclude development dependencies.</li>
 </ul>
-<p>Implementation note: the condition in the ocrun block is inverted versus other blocks.</p>
+<p>Implementation note: the condition in the <code>ocrun</code> block is inverted compared to the other service blocks.</p>
 <h3 id="36-ocrun-variants-generation">3.6 ocrun variants generation</h3>
 <p>The build creates two script variants:</p>
 <ul>
@@ -4612,15 +4612,15 @@
 <h2 id="6-external-dependencies-and-supply-chain">6. External Dependencies and Supply Chain</h2>
 <p>The build relies on external sources outside the repository:</p>
 <ul>
-<li>NodeSource repository,</li>
-<li>GitHub repositories cloned during build,</li>
-<li>TigerVNC .deb downloaded from GitHub.</li>
+<li>NodeSource package repository</li>
+<li>GitHub repositories cloned during the build process</li>
+<li>TigerVNC <code>.deb</code> package downloaded from GitHub</li>
 </ul>
 <p>Impact:</p>
 <ul>
-<li>partial reproducibility,</li>
-<li>sensitivity to network/service availability,</li>
-<li>need for pinning and checksum strategy for strict production requirements.</li>
+<li>Partial reproducibility; builds are not fully deterministic.</li>
+<li>Sensitivity to network and upstream service availability.</li>
+<li>Pinning strategies and checksum verification are required for strict production requirements.</li>
 </ul>
 <h2 id="7-security-and-compliance-analysis">7. Security and Compliance Analysis</h2>
 <h3 id="positive-aspects">Positive aspects</h3>
@@ -4632,52 +4632,52 @@
 <h3 id="identified-risks">Identified risks</h3>
 <ol>
 <li>Non-deterministic build behavior</li>
-<li>git clone without pinned commit/tag,</li>
+<li><code>git clone</code> without a pinned commit or tag</li>
 <li>
-<p>npm audit fix during image build.</p>
+<p><code>npm audit fix</code> executed during image build</p>
 </li>
 <li>
 <p>Supply-chain integrity not fully verified</p>
 </li>
-<li>downloaded .deb not validated with explicit checksum,</li>
-<li>git clones not signature-verified.</li>
+<li>Downloaded <code>.deb</code> package is not validated with an explicit checksum</li>
+<li>Git clones are not signature-verified</li>
 </ol>
 <h2 id="8-build-performance-and-image-footprint">8. Build Performance and Image Footprint</h2>
 <p>Observations:</p>
 <ul>
-<li>many separate apt-get update/install blocks,</li>
-<li>heavy desktop packages,</li>
-<li>partial duplication of Node logic (builder and runtime).</li>
+<li>Multiple separate <code>apt-get update</code> and <code>apt-get install</code> blocks increase build time and layer count.</li>
+<li>Heavy desktop package dependencies (KDE Plasma, fonts, themes) produce a large final image.</li>
+<li>Node.js installation logic is partially duplicated between the builder and the final stage.</li>
 </ul>
 <p>Consequences:</p>
 <ul>
-<li>longer build time,</li>
-<li>large final image,</li>
-<li>cache usage can be improved.</li>
+<li>Longer build times</li>
+<li>Large final image size</li>
+<li>Layer cache utilization can be improved by consolidating installation steps</li>
 </ul>
 <h2 id="9-architecture-recommendations-expert-level">9. Architecture Recommendations (Expert Level)</h2>
 <h3 id="91-reproducibility">9.1 Reproducibility</h3>
 <ul>
-<li>pin external git dependencies (tag + commit),</li>
-<li>enforce deterministic npm installation from lockfiles,</li>
-<li>move npm audit fix out of Docker build into CI SCA pipeline.</li>
+<li>Pin external Git dependencies to a specific tag and commit.</li>
+<li>Enforce deterministic npm installation from lockfiles.</li>
+<li>Move <code>npm audit fix</code> out of the Docker build and into a dedicated CI software composition analysis (SCA) pipeline.</li>
 </ul>
 <h3 id="92-security">9.2 Security</h3>
 <ul>
-<li>verify downloaded .deb integrity (SHA256/signature),</li>
-<li>restrict NVIDIA_DRIVER_CAPABILITIES to required capabilities only.</li>
+<li>Verify the integrity of downloaded <code>.deb</code> packages using SHA-256 checksums or package signatures.</li>
+<li>Restrict <code>NVIDIA_DRIVER_CAPABILITIES</code> to only the capabilities required by the application.</li>
 </ul>
 <h3 id="93-dockerfile-quality">9.3 Dockerfile quality</h3>
 <ul>
-<li>fix potentially fragile line-continuation formatting (backslash + trailing spaces),</li>
-<li>normalize TARGET_PRUNE logic across all service blocks,</li>
-<li>merge suitable apt installation steps to reduce layers.</li>
+<li>Fix potentially fragile line-continuation formatting (trailing backslash followed by whitespace).</li>
+<li>Normalize the <code>TARGET_PRUNE</code> conditional logic consistently across all service blocks.</li>
+<li>Consolidate compatible <code>apt-get install</code> steps to reduce the total number of image layers.</li>
 </ul>
 <h3 id="94-runtime-robustness">9.4 Runtime robustness</h3>
 <ul>
-<li>explicitly document dependencies of /composer/docker-entrypoint.sh,</li>
-<li>add HEALTHCHECK for critical service/port availability,</li>
-<li>evaluate non-root runtime where compatible with the graphics stack.</li>
+<li>Explicitly document the dependencies of <code>/composer/docker-entrypoint.sh</code>.</li>
+<li>Add a <code>HEALTHCHECK</code> instruction for critical service and port availability.</li>
+<li>Evaluate non-root runtime execution where compatible with the graphics stack.</li>
 </ul>
 <h2 id="10-example-build-commands">10. Example Build Commands</h2>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>Dockerfile.ubuntu<span class="w"> </span>-t<span class="w"> </span>oc-user:ubuntu<span class="w"> </span>.

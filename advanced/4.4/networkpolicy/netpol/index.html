@@ -2955,18 +2955,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#networkpolicy-rights-and-permits-for-the-memcached" class="md-nav__link">
+  <a href="#networkpolicy-rights-and-permits-for-the-memcached-service" class="md-nav__link">
     <span class="md-ellipsis">
-      NetworkPolicy rights and permits for the memcached.
+      NetworkPolicy rights and permits for the memcached service
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#networkpolicy-rights-and-permits-for-the-users-pods" class="md-nav__link">
+  <a href="#networkpolicy-rights-and-permits-for-user-pods" class="md-nav__link">
     <span class="md-ellipsis">
-      NetworkPolicy rights and permits for the user's pods.
+      NetworkPolicy rights and permits for user pods
     </span>
   </a>
   
@@ -3806,18 +3806,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#networkpolicy-rights-and-permits-for-the-memcached" class="md-nav__link">
+  <a href="#networkpolicy-rights-and-permits-for-the-memcached-service" class="md-nav__link">
     <span class="md-ellipsis">
-      NetworkPolicy rights and permits for the memcached.
+      NetworkPolicy rights and permits for the memcached service
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#networkpolicy-rights-and-permits-for-the-users-pods" class="md-nav__link">
+  <a href="#networkpolicy-rights-and-permits-for-user-pods" class="md-nav__link">
     <span class="md-ellipsis">
-      NetworkPolicy rights and permits for the user's pods.
+      NetworkPolicy rights and permits for user pods
     </span>
   </a>
   
@@ -3889,37 +3889,37 @@
 <h1 id="netpol">Netpol</h1>
 <h2 id="goals">Goals</h2>
 <ul>
-<li>Apply network policies to control traffic flow at the IP address or port level of abcdesktop pods, <strong>this includes user's pods</strong>.</li>
+<li>Apply network policies to control traffic flow at the IP address or port level for all abcdesktop pods, <strong>including user pods</strong>.</li>
 </ul>
 <h2 id="authors">Authors</h2>
-<p><a href="https://github.com/jpxavier-oio">jpxavier-oio</a> has designed the network policy for abcdesktop.io</p>
+<p><a href="https://github.com/jpxavier-oio">jpxavier-oio</a> designed the network policy architecture for abcdesktop.io.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>
-<p>You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. It is recommended to run this tutorial on a cluster with at least two nodes.</p>
+<p>A Kubernetes cluster is required, and the <code>kubectl</code> command-line tool must be configured to communicate with your cluster. It is recommended to run this tutorial on a cluster with at least two nodes.</p>
 </li>
 <li>
-<p>Network policies are implemented by the network plugin. To use network policies, you must be using a networking solution which supports NetworkPolicy. </p>
+<p>Network policies are implemented by the network plugin. To use network policies, you must use a networking solution that supports <code>NetworkPolicy</code>.</p>
 </li>
 </ul>
 <h2 id="networkpolicy-description">NetworkPolicy description</h2>
-<p>abcdesktop defines two types of isolation: the NetworkPolicy <code>rights</code> and the NetworkPolicy <code>permits</code>.</p>
+<p>abcdesktop defines two types of isolation policies: the NetworkPolicy <code>rights</code> and the NetworkPolicy <code>permits</code>.</p>
 <ul>
 <li>
-<p>The NetworkPolicy <code>rights</code> contains <code>egress</code> and <code>ingress</code> rules for pods selected by label. <code>rights</code> controls access to a pod (ingress) and from a pod (egress). To define IP filters for user pods, you must configure egress NetworkPolicy rules.</p>
+<p>The NetworkPolicy <code>rights</code> contains <code>egress</code> and <code>ingress</code> rules for pods selected by label. The <code>rights</code> policy controls both inbound access to a pod (ingress) and outbound access from a pod (egress). To define IP filters for user pods, configure egress NetworkPolicy rules within the <code>rights</code> policy.</p>
 </li>
 <li>
-<p>The NetworkPolicy <code>permits</code> contains <code>egress</code> rules targeting a pod selected by label. The NetworkPolicy <code>permits</code> grants permitted access to that pod.</p>
+<p>The NetworkPolicy <code>permits</code> contains <code>egress</code> rules targeting a pod selected by label. The NetworkPolicy <code>permits</code> grants outbound connectivity to the specified target pod.</p>
 </li>
 </ul>
 <h2 id="networkpolicy-example">NetworkPolicy example</h2>
-<p>The NetworkPolicy examples describe the network policies for the internal memcached pod and the user's pods.</p>
-<h3 id="networkpolicy-rights-and-permits-for-the-memcached">NetworkPolicy <code>rights</code> and <code>permits</code> for the <code>memcached</code>.</h3>
-<p>The <code>memcached</code> service is listening on TCP port 11211.</p>
-<p>The NetworkPolicy for memcached service <code>rights</code>, 
-- named <code>memcached-rights</code>,
-- allows pods with label <code>run: memcached-od</code>
-- to expose the TCP port 11211.</p>
+<p>The NetworkPolicy examples below describe the network policies applied to the internal memcached pod and to user pods.</p>
+<h3 id="networkpolicy-rights-and-permits-for-the-memcached-service">NetworkPolicy <code>rights</code> and <code>permits</code> for the <code>memcached</code> service</h3>
+<p>The <code>memcached</code> service listens on TCP port 11211.</p>
+<p>The NetworkPolicy for the memcached service <code>rights</code>:
+- is named <code>memcached-rights</code>,
+- selects pods with the label <code>run: memcached-od</code>,
+- and permits inbound traffic on TCP port 11211.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkPolicy</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -3946,7 +3946,7 @@
 <span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">netpol/metrics</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
 </code></pre></div>
-<p>The NetworkPolicy for memcached service <code>permits</code>, named <code>memcached-permits</code>, allows all pods with the label <code>netpol/memcached: 'true'</code> to reach TCP port 11211 on pods with the label <code>run: memcached-od</code>.</p>
+<p>The NetworkPolicy for the memcached service <code>permits</code>, named <code>memcached-permits</code>, allows all pods with the label <code>netpol/memcached: 'true'</code> to establish outbound connections to TCP port 11211 on pods with the label <code>run: memcached-od</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkPolicy</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -3968,8 +3968,8 @@
 <span class="w">          </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached-od</span>
 <span class="nn">---</span>
 </code></pre></div>
-<h3 id="networkpolicy-rights-and-permits-for-the-users-pods">NetworkPolicy <code>rights</code> and <code>permits</code> for the user's pods.</h3>
-<p>The <code>ocuser</code> pod is listening on TCP ports :</p>
+<h3 id="networkpolicy-rights-and-permits-for-user-pods">NetworkPolicy <code>rights</code> and <code>permits</code> for user pods</h3>
+<p>The <code>ocuser</code> pod listens on the following TCP ports:</p>
 <ul>
 <li>4714</li>
 <li>6081</li>
@@ -3981,8 +3981,8 @@
 <li>29785</li>
 <li>29786</li>
 </ul>
-<p>The network policy for ocuser's pods <code>rights</code> is named <code>ocuser-rights</code>. It allows pods with label <code>type: 'x11server'</code> to expose the previous TCP ports.</p>
-<p>The <code>egress</code> network policy allows:</p>
+<p>The network policy for <code>ocuser</code> pods <code>rights</code> is named <code>ocuser-rights</code>. It selects pods with the label <code>type: 'x11server'</code> and permits inbound traffic on the ports listed above.</p>
+<p>The <code>egress</code> network policy permits the following outbound traffic:</p>
 <ul>
 <li>DNS queries to kube-dns</li>
 <li>HTTP to any web site</li>
@@ -4055,7 +4055,7 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
 <span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">88</span>
 </code></pre></div>
-<p>The network policy for ocuser's pods <code>permits</code> is named <code>ocuser-permits</code>. It allows pods with the label <code>netpol/ocuser: 'true'</code> to reach the user pod services.</p>
+<p>The network policy for <code>ocuser</code> pods <code>permits</code> is named <code>ocuser-permits</code>. It allows pods with the label <code>netpol/ocuser: 'true'</code> to establish outbound connections to the user pod services.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkPolicy</span>
 <span class="nt">metadata</span><span class="p">:</span>

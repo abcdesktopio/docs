@@ -18,7 +18,7 @@
     
     
       
-        <title>FAQ Web Browser - www.abcdesktop.io</title>
+        <title>FAQ: Web Browser - www.abcdesktop.io</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FAQ Web Browser
+              FAQ: Web Browser
             
           </span>
         </div>
@@ -3632,27 +3632,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#which-web-browser-is-supported" class="md-nav__link">
+  <a href="#which-web-browsers-are-supported" class="md-nav__link">
     <span class="md-ellipsis">
-      Which web browser is supported ?
+      Which Web Browsers Are Supported?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-do-a-copy-paste" class="md-nav__link">
+  <a href="#how-do-i-use-copy-paste" class="md-nav__link">
     <span class="md-ellipsis">
-      How to do a copy &amp; paste ?
+      How Do I Use Copy &amp; Paste?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-change-the-default-language" class="md-nav__link">
+  <a href="#how-do-i-change-the-default-language" class="md-nav__link">
     <span class="md-ellipsis">
-      How to change the default language ?
+      How Do I Change the Default Language?
     </span>
   </a>
   
@@ -3698,71 +3698,92 @@
   
 
 
-<h1 id="faq-web-browser">FAQ Web Browser</h1>
-<h2 id="which-web-browser-is-supported">Which web browser is supported ?</h2>
-<p>abcdesktop.io uses many modern web technologies. However these are the minimum versions we are currently aware of:</p>
-<ul>
-<li>Chrome 49,</li>
-<li>Firefox 58,</li>
-<li>Safari 11,</li>
-<li>Opera 36,</li>
-<li>Microsoft Edge (based on Chromium)</li>
-</ul>
-<h2 id="how-to-do-a-copy-paste">How to do a <code>copy &amp; paste</code> ?</h2>
-<p>To fully use <code>copy &amp; paste</code> or <code>copy and paste</code> features, from your local device to your abcdesktop (and vice versa), choose <code>Chrome</code>, <code>Chromium</code> or  <code>Microsoft Edge Chromium</code>. The <code>copy &amp; paste</code> feature is also supported on Firefox with a <a href="../firefox-extension/">dedicated abcdesktop extension</a>.</p>
+<h1 id="faq-web-browser">FAQ: Web Browser</h1>
+<h2 id="which-web-browsers-are-supported">Which Web Browsers Are Supported?</h2>
+<p>abcdesktop.io uses modern HTML5 WebSocket and clipboard APIs. The following minimum browser versions are known to be compatible:</p>
 <table>
 <thead>
 <tr>
-<th>Web browser</th>
-<th>Clipboard sync</th>
+<th>Browser</th>
+<th>Minimum Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Chrome</td>
+<td>49</td>
+</tr>
+<tr>
+<td>Mozilla Firefox</td>
+<td>58</td>
+</tr>
+<tr>
+<td>Apple Safari</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Opera</td>
+<td>36</td>
+</tr>
+<tr>
+<td>Microsoft Edge (Chromium-based)</td>
+<td>All versions</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-do-i-use-copy-paste">How Do I Use Copy &amp; Paste?</h2>
+<p>For full bidirectional clipboard synchronization between your local device and the abcdesktop.io session, use <strong>Chrome</strong>, <strong>Chromium</strong>, or <strong>Microsoft Edge (Chromium)</strong>. These browsers expose the Clipboard API natively without additional configuration.</p>
+<p>Firefox is also supported with a <a href="../firefox-extension/">dedicated abcdesktop.io extension</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Browser</th>
+<th>Clipboard Sync Support</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Chrome</td>
-<td>Yes, built in support</td>
+<td>Yes — native support</td>
 </tr>
 <tr>
 <td>Chromium</td>
-<td>Yes, built in support</td>
+<td>Yes — native support</td>
 </tr>
 <tr>
-<td>Microsoft Edge Chromium</td>
-<td>Yes, built in support</td>
+<td>Microsoft Edge (Chromium)</td>
+<td>Yes — native support</td>
 </tr>
 <tr>
 <td>Firefox</td>
-<td>Yes, install the <a href="../../common/firefox-extension/">dedicated abcdesktop extension</a></td>
+<td>Yes — requires the <a href="../../common/firefox-extension/">abcdesktop.io Firefox extension</a></td>
 </tr>
 <tr>
 <td>Safari</td>
-<td>No, the clipboard access is not allowed by the user agent or the platform in the current context, possibly because the user denied permission</td>
+<td>No — clipboard access is blocked by the platform or user agent policy</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>Make sure to use <strong><code>https</code> protocol</strong> to allow read and write api calls to your clipboard</p>
+<p><strong>Important:</strong> Clipboard API read/write operations require the <strong><code>https://</code></strong> protocol. Clipboard sync will not function over plain HTTP.</p>
 </blockquote>
-<h2 id="how-to-change-the-default-language">How to change the default language ?</h2>
-<p>abcdesktop reads the your web browser language and starts application and desktop this user's choose.
-The default installed languages are <code>English</code>, <code>French</code>, <code>German</code>, and <code>Romanian</code>. If you need other languages support you have to rebuild the container image with your language.</p>
-<p>abcdesktop uses the web browser language property to set the application's language. This list must match with the <code>Accept-Language</code> request HTTP header. If the language is not found, the default value is set to <code>en_US</code>.</p>
-<p>To check the supported language, change your web browser language, and run <code>LibreOffice</code> applications. The language setting uses the web browser value. During this test you can keep the same users session.</p>
-<ul>
-<li>Set the web browser's default language to <code>en_US</code> : <img alt="web browser's default language to en_US" src="../img/language_web_en_US.png" /></li>
-</ul>
-<p>The launch LibreOffice Writer. The menu is set to <code>en_US</code> <img alt="web browser's default language to en_US" src="../img/language_writer_en_US.png" /></p>
-<p>LibreOffice Writer uses English/US <code>en_US</code> language.</p>
-<ul>
-<li>Set the web browser's default language to <code>fr_FR</code> :
-<img alt="web browser's default language to fr_FR" src="../img/language_web_fr_FR.png" /></li>
-</ul>
-<blockquote>
-<p>You can keep the same user's session, you do not need to logout.</p>
-</blockquote>
-<p>Launch LibreOffice Writer application. The menu is set to <code>fr_FR</code>
-<img alt="web browser's default language to fr_FR" src="../img/language_writer_fr_FR.png" />
-LibreOffice Writer uses French <code>fr_FR</code> language.</p>
+<h2 id="how-do-i-change-the-default-language">How Do I Change the Default Language?</h2>
+<p>abcdesktop.io reads the web browser's <code>Accept-Language</code> HTTP header to determine the user interface language for the desktop session and launched applications. The default installed languages are <strong>English (en_US)</strong>, <strong>French (fr_FR)</strong>, <strong>German</strong>, and <strong>Romanian</strong>. If you require additional language support, rebuild the container image with the required locale packages.</p>
+<p>To change the language:</p>
+<ol>
+<li>Change your browser's default language in the browser settings.</li>
+<li>Reload the abcdesktop.io page. The session language updates dynamically — you do not need to log out.</li>
+</ol>
+<p><strong>Example: Setting the language to English (en_US)</strong></p>
+<p>Set the browser language to <code>en_US</code>:
+<img alt="web browser's default language to en_US" src="../img/language_web_en_US.png" /></p>
+<p>Launch LibreOffice Writer — the UI appears in English:
+<img alt="LibreOffice Writer in en_US" src="../img/language_writer_en_US.png" /></p>
+<p><strong>Example: Setting the language to French (fr_FR)</strong></p>
+<p>Set the browser language to <code>fr_FR</code>:
+<img alt="web browser's default language to fr_FR" src="../img/language_web_fr_FR.png" /></p>
+<p>Launch LibreOffice Writer — the UI appears in French:
+<img alt="LibreOffice Writer in fr_FR" src="../img/language_writer_fr_FR.png" /></p>
 
 
 

@@ -3855,10 +3855,10 @@
 <p>If you are using the <code>doctl</code> command line for the first time, run the <code>doctl auth</code> command to authenticate with your DigitalOcean account using tokens that you generate in the control panel at <a href="https://cloud.digitalocean.com/account/api/tokens">https://cloud.digitalocean.com/account/api/tokens</a>.</p>
 </blockquote>
 <h2 id="create-a-doks-digitalocean-kubernetes-cluster">Create a <code>DOKS</code> DigitalOcean Kubernetes cluster</h2>
-<p>If you don't have a running kubernetes cluster, run the <code>doctl</code> command line with the <code>kubernetes cluster create</code> to create your cluster.</p>
+<p>If you do not have a running Kubernetes cluster, use the <code>doctl</code> CLI with the <code>kubernetes cluster create</code> subcommand to create one.</p>
 <div class="highlight"><pre><span></span><code>doctl kubernetes clusters create --size s-4vcpu-8gb myabccluster 
 </code></pre></div>
-<p>After few minutes, you get a kubernetes cluster ready</p>
+<p>After a few minutes, the Kubernetes cluster is ready:</p>
 <div class="highlight"><pre><span></span><code>Notice: Cluster is provisioning, waiting for cluster to be running
 ...............................................................
 Notice: Cluster created, fetching credentials
@@ -3871,31 +3871,31 @@ ID                                      Name            Region    Version       
 <p>This screenshot shows the DigitalOcean control panel, displaying the <strong>Resources</strong> of the Kubernetes cluster and <strong>Nodes</strong> information.</p>
 <p><img alt="digital ocean console overview" src="../img/digitalocean-console.png" /></p>
 <h2 id="run-the-abcdesktop-install-script">Run the abcdesktop install script</h2>
-<p>Download and install the latest release automatically</p>
+<p>Download and install the latest release automatically:</p>
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh | bash
 </code></pre></div>
 <p>To get more details about the install process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop/">Setup guide</a></p>
 <h2 id="connect-to-your-abcdesktop-service">Connect to your abcdesktop service</h2>
-<p>By default install script is listening on a free tcp port <code>:30443</code> and is using a <code>kubectl port-forward</code> command line to reach http web service <code>:80</code></p>
-<p>Open your web browser to <code>http://localhost:30443</code></p>
+<p>By default, the install script listens on a free TCP port <code>:30443</code> and uses a <code>kubectl port-forward</code> command to forward traffic to the HTTP service on port <code>:80</code>.</p>
+<p>Open a web browser and navigate to <code>http://localhost:30443</code>.</p>
 <p><img alt="abcdesktop login" src="../../img/abcdesktop-hompage-port30443.png" /></p>
-<p>Login as user <code>Philip J. Fry</code> with the password <code>fry</code></p>
+<p>Log in as user <code>Philip J. Fry</code> with the password <code>fry</code>.</p>
 <p><img alt="abcdesktop login as fry" src="../../img/abcdesktop-hompage-port30443-login-fry.png" /></p>
-<p>After the image-pulling process completes, you get your first abcdesktop session</p>
+<p>After the image-pulling process completes, you get your first abcdesktop session.</p>
 <p><img alt="abcdesktop for fry" src="../../img/abcdesktop-hompage-port30443-user-fry-logged.png" /></p>
 <h2 id="add-applications-to-your-desktop">Add applications to your desktop</h2>
-<p>Using the previous terminal shell, run the application install script </p>
+<p>Using the previous terminal shell, run the application install script:</p>
 <div class="highlight"><pre><span></span><code>curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-4.4.sh | bash
 </code></pre></div>
 <p>To get more details about the install applications process, please read the <a href="https://www.abcdesktop.io/4.4/setup/kubernetes_abcdesktop_applications/">Setup applications guide</a></p>
 <p>Reload the web page to refresh the desktop of <code>Philip J. Fry</code>.
 New applications are now listed in the dock of <code>plasmashell</code>.</p>
 <p><img alt="abcdesktop for fry with applications" src="../../img/abcdesktop-hompage-port30443-login-fry-applications.png" /></p>
-<p>Start Firefox application</p>
+<p>Start the Firefox application.</p>
 <blockquote>
-<p>The first run may involve waiting for the image pulling process to finish</p>
+<p>The first run may involve waiting for the image-pulling process to finish.</p>
 </blockquote>
-<p>Go to <code>https://mylocation.org</code> website to check where your pod is running.  In my case for the region <code>nyc1</code> (New york City 1), the desktop is located near <code>North Bergen</code> city in <code>United States</code>. </p>
+<p>Navigate to <code>https://mylocation.org</code> to verify the geographic location of your pod. In this example, for the <code>nyc1</code> (New York City 1) region, the desktop is located near <code>North Bergen</code> in the <code>United States</code>.</p>
 <p><img alt="abcdesktop for fry with applications" src="../img/abcdesktop-firefox-digitalocean-nyc1.png" /></p>
 
 

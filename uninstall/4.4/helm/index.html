@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#uninstallation-using-helm" class="md-skip">
+        <a href="#uninstalling-abcdesktopio-using-helm" class="md-skip">
           Skip to content
         </a>
       
@@ -3686,11 +3686,11 @@
   
 
 
-<h1 id="uninstallation-using-helm">Uninstallation using helm</h1>
+<h1 id="uninstalling-abcdesktopio-using-helm">Uninstalling abcdesktop.io Using Helm</h1>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 helm<span class="w"> </span>uninstall<span class="w"> </span>abcdesktop<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span>
 </code></pre></div>
-<p>Rename the <code>NAMESPACE</code> variable to your abcdesktop namespace and abcdesktop by your instance name.</p>
+<p>Set <code>NAMESPACE</code> to the Kubernetes namespace in which abcdesktop.io is deployed, and replace <code>abcdesktop</code> in the <code>helm uninstall</code> command with your Helm release name if it differs from the default.</p>
 
 
 

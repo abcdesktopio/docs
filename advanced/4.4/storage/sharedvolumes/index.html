@@ -3995,14 +3995,14 @@
 
 
 <h1 id="shared-volumes">Shared Volumes</h1>
-<p>Users may need to access shared files. If you cannot create <code>PersistentVolumes</code> on your cluster, this page describes how to access a shared <code>/mnt/shared_data</code> hostPath using <code>rules</code>.</p>
+<p>Users may need to access shared files across sessions or desktops. This page describes two methods for mounting a shared directory inside user pods: using <code>hostPath</code> for node-local storage, and using a <code>PersistentVolumeClaim</code> backed by an NFS server for cluster-wide accessibility. Access to shared volumes is controlled through <code>rules</code> defined in <code>desktop.policies</code>.</p>
 <h2 id="check-your-rules-in-authmanagers-ldapconfig">Check your rules in <code>authmanagers</code> <code>ldapconfig</code></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code>ldapconfig</code> for demo ldap server add few default rules. To get more information about the ldap server read the <a href="https://github.com/abcdesktopio/docker-test-openldap">docker-test-openldap</a> web page.</p>
+<p>The <code>ldapconfig</code> for the demo LDAP server adds a few default rules. To get more information about the ldap server read the <a href="https://github.com/abcdesktopio/docker-test-openldap">docker-test-openldap</a> web page.</p>
 </div>
-<p>The user <code>Philip J. Fry</code> is member of the group <code>ship_crew</code>.</p>
-<p>Detail of <code>ship_crew</code> group <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code></p>
+<p>The user <code>Philip J. Fry</code> is a member of the group <code>ship_crew</code>.</p>
+<p>Details of the <code>ship_crew</code> group <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code></p>
 <table>
 <thead>
 <tr>
@@ -4063,13 +4063,13 @@
                     }
                 } } }
 </code></pre></div>
-<p>This provider defines 3 rules :</p>
+<p>This provider defines three rules:</p>
 <ul>
 <li><code>labeltrue</code> always for all users</li>
 <li><code>shipcrew</code> if the user is member of <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code> group</li>
-<li><code>adminstaff</code> if the user is memberof <code>cn=admin_staff,ou=people,dc=planetexpress,dc=com</code> group</li>
+<li><code>adminstaff</code> if the user is a member of <code>cn=admin_staff,ou=people,dc=planetexpress,dc=com</code> group</li>
 </ul>
-<p>Start your web brower and login in as <code>Philip J. Fry</code> to you abcdesktop web service.</p>
+<p>Open your web browser and log in as <code>Philip J. Fry</code> in your abcdesktop web service.</p>
 <ul>
 <li>Open the <code>Menu</code> |  <code>User</code> tab</li>
 </ul>
@@ -4096,23 +4096,23 @@
 <p>On your worker node, make sure that the <code>/mnt</code> directory exists.</p>
 </blockquote>
 <p>This policy adds a new volume <code>mntmyproject</code> defined as a <code>hostPath</code> to the user's pod and mounts it as <code>/mnt/shared_data</code>.</p>
-<p>Save your <code>od.config</code> file</p>
+<p>Save your <code>od.config</code> file.</p>
 <h3 id="apply-the-new-config-file">Apply the new config file</h3>
-<p>Replace the previous configmap</p>
+<p>Replace the previous ConfigMap:</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl create -n $NAMESPACE configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n $NAMESPACE -f -
 </code></pre></div>
-<p>Expected output </p>
+<p>Expected output:</p>
 <div class="highlight"><pre><span></span><code>configmap/abcdesktop-config replaced
 </code></pre></div>
-<p>Restart pyos to apply the new config map</p>
+<p>Restart pyos to apply the new ConfigMap:</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl rollout restart deployment pyos-od -n $NAMESPACE
 </code></pre></div>
-<p>Expected output </p>
+<p>Expected output:</p>
 <div class="highlight"><pre><span></span><code>deployment.apps/pyos-od restarted
 </code></pre></div>
-<p>Your new config is ready to use </p>
+<p>Your new configuration is now active.</p>
 <h3 id="restart-a-new-desktop-as-philip-j-fry">Restart a new desktop as <code>Philip J. Fry</code></h3>
 <ul>
 <li>Create a new desktop for <code>Philip J. Fry</code></li>
@@ -4129,7 +4129,7 @@ fry-06c5f   4/4     Running   0          3m24s
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl desribe pods fry-06c5f -n $NAMESPACE
 </code></pre></div>
-<p>The mount for <code>hostpath-mntmyproject-fry</code> is defined to <code>/mnt/shared_data</code></p>
+<p>The mount for <code>hostpath-mntmyproject-fry</code> is mapped to <code>/mnt/shared_data</code>.</p>
 <div class="highlight"><pre><span></span><code>    Mounts:
       /etc/sudoers.d from sudoers (rw)
       /home/fry from home (rw)
@@ -4151,7 +4151,7 @@ kubectl desribe pods fry-06c5f -n $NAMESPACE
     Path:          /mnt
     HostPathType:  DirectoryOrCreate
 </code></pre></div>
-<p>A new <code>Mount</code> is defined as <code>/mnt/shared_data from hostpath-mntmyproject-fry (rw)</code> and a new volume hostpath-mntmyproject-fry is defined as <code>HostPath</code> to the <code>Path</code> <code>/mnt</code></p>
+<p>A new mount <code>/mnt/shared_data from hostpath-mntmyproject-fry (rw)</code> is added, backed by the <code>HostPath</code> volume <code>hostpath-mntmyproject-fry</code> pointing to <code>/mnt</code>.</p>
 <blockquote>
 <p>Check that your file system's permissions are set to your users</p>
 </blockquote>
@@ -4174,8 +4174,8 @@ kubectl desribe pods fry-06c5f -n $NAMESPACE
 <p>For this part of the tutorial, you should have an NFS server already configured. If not, please follow the first chapter of <a href="http://abcdesktop.pepins.net/advanced/4.4/storage/nfs/#set-up-a-nfs-server">this tutorial</a>.</p>
 </div>
 <h3 id="create-nfs-type-persistentvolume">Create nfs type <code>PersistentVolume</code></h3>
-<p>To begin with, you will have to create a nfs type <code>PersistentVolume</code> that will be bound to your nfs server.  </p>
-<p>Here is an example of yaml file that describes a nfs type <code>PersistentVolume</code>. Let's call it <code>nfs-pv-shared-data-abcdesktop.yaml</code></p>
+<p>You must first create an NFS-type <code>PersistentVolume</code> bound to your NFS server.</p>
+<p>The following YAML defines an NFS-type <code>PersistentVolume</code>. Save it as <code>nfs-pv-shared-data-abcdesktop.yaml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -4194,12 +4194,12 @@ kubectl desribe pods fry-06c5f -n $NAMESPACE
 <span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/nfs_share/shared_data_shipcrew</span>
 <span class="w">    </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">X.X.X.X</span><span class="w">     </span><span class="c1"># Here goes your nfs server IP address</span>
 </code></pre></div>
-<p>Then apply by running this command : </p>
+<p>Apply it by running the following command:</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f nfs-pv-shared-data-abcdesktop.yaml
 </code></pre></div>
 <h3 id="create-persistentvolumeclaim">Create <code>PersistentVolumeClaim</code></h3>
-<p>Now that the <code>PersistentVolume</code> is created and linked to the NFS server, you need to create a <code>PersistentVolumeClaim</code> that will be bound to the previously created <code>shared-shipcrew-pv</code> <code>PersistentVolume</code>.</p>
-<p>Paste the following lines to a <code>nfs-pvc-shared-data-abcdesktop.yaml</code> file</p>
+<p>With the <code>PersistentVolume</code> created and bound to the NFS server, create a <code>PersistentVolumeClaim</code> to reference the <code>shared-shipcrew-pv</code> <code>PersistentVolume</code>.</p>
+<p>Save the following content to a <code>nfs-pvc-shared-data-abcdesktop.yaml</code> file:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
 <span class="nt">metadata</span><span class="p">:</span><span class="w">      </span><span class="c1"># This matches the claimRef field of the PV yaml file</span>
@@ -4216,13 +4216,13 @@ kubectl desribe pods fry-06c5f -n $NAMESPACE
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>It is very important to set accessModes to <code>ReadWriteMany</code>, otherwise you won't be able to mount several user pods on the same PVC, so the shared data aspect does not make sense anymore.</p>
+<p>Setting <code>accessModes</code> to <code>ReadWriteMany</code> is required. Without it, the PVC cannot be mounted simultaneously across multiple user pods, which defeats the purpose of shared storage.</p>
 </div>
-<p>Then apply it by running the following command</p>
+<p>Apply it by running the following command:</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl apply -f nfs-pvc-shared-data-abcdesktop.yaml -n $NAMESPACE
 </code></pre></div>
-<p>You can check if both of the PV and PVC have been correctly bounded</p>
+<p>Verify that both the PV and PVC have been correctly bound:</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl get pvc -n $NAMESPACE
 NAME                  STATUS   VOLUME               CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
@@ -4252,23 +4252,23 @@ shared-shipcrew-pv   1Gi        RWX            Retain           Bound    abcdesk
 <p>On your worker node, make sure that the <code>/mnt</code> directory exists.</p>
 </blockquote>
 <p>This policy adds a new volume <code>shared-shipcrew-pvc</code> defined as a <code>pvc</code> to the user's pod and mounts it as <code>/mnt/shared_data_pvc</code>.</p>
-<p>Save your <code>od.config</code> file</p>
+<p>Save your <code>od.config</code> file.</p>
 <h3 id="apply-the-new-config-file_1">Apply the new config file</h3>
-<p>Replace the previous configmap</p>
+<p>Replace the previous ConfigMap:</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl create -n $NAMESPACE configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n $NAMESPACE -f -
 </code></pre></div>
-<p>Expected output </p>
+<p>Expected output:</p>
 <div class="highlight"><pre><span></span><code>configmap/abcdesktop-config replaced
 </code></pre></div>
-<p>Restart pyos to apply the new config map</p>
+<p>Restart pyos to apply the new ConfigMap:</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl rollout restart deployment pyos-od -n $NAMESPACE
 </code></pre></div>
-<p>Expected output </p>
+<p>Expected output:</p>
 <div class="highlight"><pre><span></span><code>deployment.apps/pyos-od restarted
 </code></pre></div>
-<p>Your new config is ready to use </p>
+<p>Your new configuration is now active.</p>
 <h3 id="restart-a-new-desktop-as-philip-j-fry_1">Restart a new desktop as <code>Philip J. Fry</code></h3>
 <ul>
 <li>Create a new desktop for <code>Philip J. Fry</code></li>
@@ -4284,7 +4284,7 @@ fry-06c5f   4/4     Running   0          3m24s
 </ul>
 <div class="highlight"><pre><span></span><code>kubectl desribe pods fry-06c5f -n abcdesktop
 </code></pre></div>
-<p>The mount for <code>pvc-shared-shipcrew-pvc-fry</code> is defined to <code>/mnt/shared_data_pvc</code></p>
+<p>The mount for <code>pvc-shared-shipcrew-pvc-fry</code> is mapped to <code>/mnt/shared_data_pvc</code>.</p>
 <div class="highlight"><pre><span></span><code>    Mounts:
       /etc/sudoers.d from sudoers (rw)
       /home/fry from home (rw)

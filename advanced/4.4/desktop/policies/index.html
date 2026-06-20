@@ -3827,8 +3827,8 @@
 <li>
 <p><code>network</code> defines additional network interfaces and command hooks for a pod</p>
 </li>
-<li>add a new network interface to a pod</li>
-<li>run commands to update DNS entries for a pod (on creation or deletion)</li>
+<li>Add a new network interface to a pod</li>
+<li>Run commands to update DNS entries for a pod (on creation or deletion)</li>
 </ul>
 <h2 id="volumes">volumes</h2>
 <p><code>volumes</code> is a dictionary of label-keyed lists. Each entry describes the <code>mountPath</code> to be mounted inside the pod and the volume <code>type</code>.</p>
@@ -3871,9 +3871,9 @@
 <li><code>server</code> (string) is the NFS server hostname or IP address</li>
 <li><code>path</code> (string) is the NFS export path on the server</li>
 </ul>
-<p>Option</p>
+<p>Options</p>
 <ul>
-<li><code>readOnly</code> (boolean) if the mount should be in ReadOnly </li>
+<li><code>readOnly</code> (boolean) whether the mount should be read-only</li>
 </ul>
 <h3 id="volume-type-hostpath">volume type <code>hostPath</code></h3>
 <div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>

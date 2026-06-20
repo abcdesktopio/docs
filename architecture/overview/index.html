@@ -934,36 +934,51 @@
         <li class="md-nav__item">
   <a href="#pods-and-services" class="md-nav__link">
     <span class="md-ellipsis">
-      Pods and services
+      Pods and Services
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-desktop-workflow" class="md-nav__link">
+  <a href="#desktop-creation-workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      Create desktop workflow
+      Desktop Creation Workflow
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#services-infrastructure" class="md-nav__link">
+  <a href="#core-services" class="md-nav__link">
     <span class="md-ellipsis">
-      Services infrastructure
+      Core Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abcdesktopio-provided-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      abcdesktop.io-Provided Services
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-services" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#third-party-services" class="md-nav__link">
     <span class="md-ellipsis">
-      Additional services
+      Third-Party Services
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -977,13 +992,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#roles-summary" class="md-nav__link">
+  <a href="#component-role-details" class="md-nav__link">
     <span class="md-ellipsis">
-      Roles summary
+      Component Role Details
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Roles summary">
+    <nav class="md-nav" aria-label="Component Role Details">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1014,9 +1029,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mongo-database" class="md-nav__link">
+  <a href="#mongodb" class="md-nav__link">
     <span class="md-ellipsis">
-      mongo database
+      MongoDB
     </span>
   </a>
   
@@ -1035,15 +1050,6 @@
   <a href="#ocuser" class="md-nav__link">
     <span class="md-ellipsis">
       oc.user
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#applications" class="md-nav__link">
-    <span class="md-ellipsis">
-      applications
     </span>
   </a>
   
@@ -3814,36 +3820,51 @@
         <li class="md-nav__item">
   <a href="#pods-and-services" class="md-nav__link">
     <span class="md-ellipsis">
-      Pods and services
+      Pods and Services
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-desktop-workflow" class="md-nav__link">
+  <a href="#desktop-creation-workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      Create desktop workflow
+      Desktop Creation Workflow
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#services-infrastructure" class="md-nav__link">
+  <a href="#core-services" class="md-nav__link">
     <span class="md-ellipsis">
-      Services infrastructure
+      Core Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abcdesktopio-provided-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      abcdesktop.io-Provided Services
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-services" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#third-party-services" class="md-nav__link">
     <span class="md-ellipsis">
-      Additional services
+      Third-Party Services
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3857,13 +3878,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#roles-summary" class="md-nav__link">
+  <a href="#component-role-details" class="md-nav__link">
     <span class="md-ellipsis">
-      Roles summary
+      Component Role Details
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Roles summary">
+    <nav class="md-nav" aria-label="Component Role Details">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3894,9 +3915,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mongo-database" class="md-nav__link">
+  <a href="#mongodb" class="md-nav__link">
     <span class="md-ellipsis">
-      mongo database
+      MongoDB
     </span>
   </a>
   
@@ -3915,15 +3936,6 @@
   <a href="#ocuser" class="md-nav__link">
     <span class="md-ellipsis">
       oc.user
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#applications" class="md-nav__link">
-    <span class="md-ellipsis">
-      applications
     </span>
   </a>
   
@@ -3968,9 +3980,10 @@
   
 
 
-<h1 id="architecture-overview">Architecture overview</h1>
-<h2 id="pods-and-services">Pods and services</h2>
-<p>This flowchart describes all abcdesktop services</p>
+<h1 id="architecture-overview">Architecture Overview</h1>
+<p>abcdesktop.io is architected around Kubernetes-native workload isolation. Every user session and every application runs as a dedicated container inside the cluster. This design enforces <strong>Remote Browser Isolation (RBI)</strong> and <strong>Remote Application Isolation (RAI)</strong>: application code executes exclusively on the server side, and only rendered pixel output is streamed to the client over an encrypted WebSocket connection. The result is a zero-client-footprint desktop platform in which the endpoint device acts purely as a display terminal.</p>
+<h2 id="pods-and-services">Pods and Services</h2>
+<p>The following flowchart illustrates all abcdesktop.io services and the interconnections between them:</p>
 <pre class="mermaid"><code>---
 config:
   theme: redux
@@ -4008,11 +4021,10 @@ flowchart TD
     click memcache "https://www.memcached.org/"
     click ldap "https://github.com/rroemhild/docker-test-openldap"
 </code></pre>
-<p>The project abcdesktop provides container images for <code>route</code>, <code>console</code>, <code>website</code>, <code>pyos</code>, and <code>user</code></p>
-<p>The projects <code>kubernetes</code>, <code>mongodb</code>, <code>memcached</code>, <code>speedtest</code> and <code>ldap</code> are not part of the abcdesktop project.
-Items on this page refer to third-party products or projects that provide functionality required by abcdesktop.io. The abcdesktop project authors are not responsible for those third-party products or projects.</p>
-<h2 id="create-desktop-workflow">Create desktop workflow</h2>
-<p>This workflow describes the <code>create desktop</code> process</p>
+<p>The abcdesktop.io project provides container images for <code>route</code>, <code>console</code>, <code>website</code>, <code>pyos</code>, and <code>user</code> (oc.user).</p>
+<p>The <code>kubernetes</code>, <code>mongodb</code>, <code>memcached</code>, <code>speedtest</code>, and <code>ldap</code> components are third-party projects and are not maintained by the abcdesktop.io project. These third-party products are required dependencies for full abcdesktop.io functionality; however, the abcdesktop.io project authors are not responsible for them.</p>
+<h2 id="desktop-creation-workflow">Desktop Creation Workflow</h2>
+<p>The following sequence diagram describes the full <code>create desktop</code> workflow, from initial HTTP request through WebSocket session establishment:</p>
 <pre class="mermaid"><code>---
 config:
   theme: redux-color
@@ -4059,83 +4071,127 @@ sequenceDiagram
     PodAlice-&gt;&gt;Router: Connected
     Router-&gt;&gt;Alice: Connected
     Alice--&gt;PodAlice: Established</code></pre>
+<p>The workflow consists of three distinct phases:</p>
 <ol>
-<li>The user logs in and receives a user JWT.</li>
-<li>A user pod is created and a Desktop JWT is issued.</li>
-<li>
-<p>The user connects to their own pod.</p>
-<ul>
-<li>All JWTs are signed with RSA keys.</li>
-<li>All desktop JWT payloads are encrypted with a separate RSA key pair.</li>
-</ul>
-</li>
+<li><strong>Authentication</strong> — The user submits credentials through the router. <code>pyos</code> authenticates against the configured provider (LDAP, LDAPS, Active Directory, or OpenID Connect) and issues a signed user JWT.</li>
+<li><strong>Desktop provisioning</strong> — <code>pyos</code> validates the user JWT, constructs the user pod manifest, submits it to the Kubernetes API server, and waits for the pod to reach the <code>Ready</code> state. The pod's internal IP address is then encrypted and embedded in a Desktop JWT, which is returned to the client. This prevents clients from directly addressing pod IP addresses.</li>
+<li><strong>WebSocket session establishment</strong> — The client presents the Desktop JWT to the router. The router verifies the JWT signature, decrypts the pod IP address, and establishes a proxied WebSocket connection between the client and the user pod. From this point forward, only rendered graphical output flows to the client — enforcing the Remote Browser Isolation and Remote Application Isolation security model.</li>
 </ol>
-<h2 id="services-infrastructure">Services infrastructure</h2>
-<p>The service infrastructure is based on:</p>
-<ul>
-<li>Router (nginx with Lua scripting) <a href="https://github.com/abcdesktopio/router">router</a></li>
-<li>Website service <a href="https://github.com/abcdesktopio/webmodules">webmodules</a></li>
-<li>Database service (third-party product) <a href="https://github.com/abcdesktopio/mongo">MongoDB</a></li>
-<li>Memcached service (third-party project) <a href="https://github.com/abcdesktopio/oc.memcached">Memcached</a></li>
-<li>pyos Core service (abcdesktop control plane) <a href="https://github.com/abcdesktopio/pyos">pyos</a></li>
-<li>User pod <a href="https://github.com/abcdesktopio/oc.user">user</a></li>
-</ul>
-<h2 id="additional-services">Additional services</h2>
-<ul>
-<li>Console service (abcdesktop admin console) <a href="https://github.com/abcdesktopio/console">console</a></li>
-<li>Speedtest service (self-hosted HTML5 speed test, third-party project) <a href="https://github.com/librespeed/speedtest">librespeed</a></li>
-<li>LDAP service (optional, third-party project) <a href="https://github.com/rroemhild/docker-test-openldap">rroemhild/docker-test-openldap</a></li>
-</ul>
+<p>Security considerations:
+- All JWTs are signed with RSA private keys.
+- Desktop JWT payloads are additionally encrypted with a separate RSA key pair, preventing clients from inspecting or tampering with pod addressing information.</p>
+<h2 id="core-services">Core Services</h2>
+<h3 id="abcdesktopio-provided-services">abcdesktop.io-Provided Services</h3>
+<p>The following services are built and maintained by the abcdesktop.io project:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>router</strong></td>
+<td>NGINX-based HTTP reverse proxy with Lua scripting. Routes HTTP/WebSocket requests to user pods, the website service, <code>pyos</code>, and <code>console</code>. Handles JWT validation and pod IP address decryption.</td>
+</tr>
+<tr>
+<td><strong>website</strong></td>
+<td>Static web server delivering the HTML5 frontend (HTML, JavaScript, and SVG assets) to the client browser.</td>
+</tr>
+<tr>
+<td><strong>pyos</strong></td>
+<td>The abcdesktop.io control plane. Manages authentication, user session lifecycle, and Kubernetes resource provisioning (pods, ephemeral containers, secrets, PVCs).</td>
+</tr>
+<tr>
+<td><strong>oc.user</strong></td>
+<td>The user desktop container image. Provides the X11 display server, VNC server, and all inter-container services within the user pod. Each authenticated user runs a dedicated instance of this image.</td>
+</tr>
+<tr>
+<td><strong>console</strong></td>
+<td>Web-based administration console for managing applications, users, and cluster resources.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="third-party-services">Third-Party Services</h3>
+<p>The following third-party services are required or optional dependencies:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MongoDB</strong></td>
+<td>Persistent data store used by <code>pyos</code> to record user login history, application registry, and desktop configuration.</td>
+</tr>
+<tr>
+<td><strong>Memcached</strong></td>
+<td>In-memory cache used by <code>pyos</code> to store transient session progress messages during the authentication and desktop provisioning phases.</td>
+</tr>
+<tr>
+<td><strong>Speedtest</strong></td>
+<td>Self-hosted HTML5 network speed test (librespeed). Used to assess the network connection quality between the client and the cluster.</td>
+</tr>
+<tr>
+<td><strong>LDAP</strong></td>
+<td>Optional directory service. A test OpenLDAP instance is provided for development and evaluation deployments.</td>
+</tr>
+<tr>
+<td><strong>Kubernetes</strong></td>
+<td>The orchestration platform. All abcdesktop.io workloads run as standard Kubernetes resources.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="additional-projects">Additional Projects</h2>
 <ul>
-<li>Helm charts (install helm chart) <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">helm chart</a></li>
+<li><strong>Helm chart</strong> — Deploy abcdesktop.io via Helm: <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">abcdesktop Helm chart on Artifact Hub</a></li>
 </ul>
-<h2 id="roles-summary">Roles summary</h2>
+<h2 id="component-role-details">Component Role Details</h2>
 <h3 id="pyos">pyos</h3>
-<p><code>pyos</code> is the core abcdesktop service and acts as a control plane. <code>pyos</code> is a stateless service; its roles are:</p>
-<ul>
-<li>Authenticate user on authenticate providers</li>
-<li>OpenID Provider</li>
-<li>LDAP and LDAPS</li>
-<li>Active Directory</li>
-<li>Anonymous (no auth)</li>
-<li>Create/Read/Update/Delete user's Pod in Kubernetes</li>
-<li>Create/Read/Update/Delete user's applications as <code>ephemeral container</code> or as <code>pod</code></li>
-</ul>
+<p><code>pyos</code> is the stateless control plane of the abcdesktop.io platform. It is responsible for the full lifecycle of user sessions and application containers. Its core responsibilities include:</p>
+<p><strong>Authentication:</strong>
+- OpenID Connect / OAuth 2.0 providers
+- LDAP and LDAPS bind authentication
+- Microsoft Active Directory (with Kerberos and NTLM support)
+- Anonymous (no-auth) mode</p>
+<p><strong>Kubernetes resource management (create, read, update, and delete):</strong>
+- User desktop pods and ephemeral application containers
+- Kubernetes Secrets for JWT keys and user credentials
+- ConfigMaps, Events, PersistentVolumeClaims, and pod logs</p>
+<p><code>pyos</code> requires the following namespaced Kubernetes RBAC permissions:
+- <code>pods</code>, <code>pods/exec</code>, <code>pods/ephemeralcontainers</code>, <code>pods/log</code>
+- <code>events</code>
+- <code>secrets</code>
+- <code>configmaps</code>
+- <code>persistentvolumeclaims</code></p>
+<p><code>pyos</code> runs under a <code>ServiceAccount</code> named <code>pyos-serviceaccount</code>, bound to the <code>pyos-role</code> Role. In specific storage configurations, you may optionally grant <code>pyos</code> full resource management access to the non-namespaced <code>persistentvolumes</code> resource.</p>
 <blockquote>
-<p>When a new user is authenticated, a dedicated user pod is created.
-When the user starts an application (like LibreOffice for example) a dedicated container is created. It can be a <code>pod</code> or an <code>ephemeral container</code></p>
+<p>The <code>Role</code>, <code>RoleBinding</code>, and <code>ServiceAccount</code> manifests are embedded in the <code>abcdesktop.yaml</code> deployment file and are created automatically during installation.</p>
 </blockquote>
-<p>pyos requires <code>rbac.authorization.k8s.io</code> roles to perform <code>CRUD</code> operations on the following namespaced resources:
-- 'pods', 'pods/exec', 'pods/ephemeralcontainers', 'pods/log'
-- 'events'
-- 'secrets'
-- 'configmaps'
-- 'persistentvolumeclaims'</p>
-<p>pyos runs as a <code>ServiceAccount</code> named <code>pyos-serviceaccount</code>, with <code>pyos-role</code>.
-Optionally, you can also grant pyos <code>CRUD</code> access to <code>['persistentvolumes']</code> resources in particular cases. Note that <code>persistentvolumes</code> are not namespaced.</p>
-<p>The <code>Role</code>, <code>RoleBinding</code>, and <code>ServiceAccount</code> are embedded in the <code>abcdesktop.yaml</code> file.</p>
 <h3 id="router">router</h3>
-<p>The <code>router</code> pod acts as an HTTP routing web server. It routes HTTP requests to user pods, the <code>website</code> service, <code>pyos</code>, and <code>console</code>.</p>
+<p>The <code>router</code> pod is an NGINX server extended with Lua scripting. It serves as the single ingress point for all client traffic:
+- Routes HTTP requests to the <code>website</code> service, <code>pyos</code>, and <code>console</code>.
+- Routes WebSocket connections to individual user desktop pods, using the decrypted pod IP address from the Desktop JWT.
+- Enforces JWT signature verification on all authenticated endpoints.</p>
 <h3 id="website">website</h3>
-<p>The <code>website</code> pod acts as a web server and delivers HTML, JavaScript, and SVG files.</p>
-<h3 id="mongo-database">mongo database</h3>
-<p><code>mongo</code> is used by <code>pyos</code> to store persistent information.
-The stored data includes:</p>
-<ul>
-<li>User login history</li>
-<li>Image and background color configuration per desktop</li>
-<li>Installed applications</li>
-</ul>
+<p>The <code>website</code> pod is a static web server. It delivers the abcdesktop.io HTML5 frontend assets — HTML pages, JavaScript modules, and SVG icons — to the client browser. It does not process authentication or application logic.</p>
+<h3 id="mongodb">MongoDB</h3>
+<p><code>mongo</code> is used exclusively by <code>pyos</code> to persist the following data:
+- User login history and session records
+- Desktop background image and color configuration per user
+- The installed application registry (OCI image metadata)</p>
 <h3 id="memcached">memcached</h3>
-<p><code>memcache</code> stores progress message text during the login process. Cache data is written and read exclusively by the control plane.</p>
+<p><code>memcached</code> is an in-memory key-value cache used by <code>pyos</code> to store transient progress messages during the login and desktop provisioning workflow. Cache data is written and read exclusively by the control plane; it is never exposed to clients.</p>
 <h3 id="ocuser">oc.user</h3>
-<p><a href="https://github.com/abcdesktopio/oc.user"><code>oc.user</code></a> is the name of the user's container image. <code>oc.user</code> runs the X11 graphical service. <code>oc.user</code> is based on the Ubuntu distribution.</p>
-<ul>
-<li>The image <code>abcdesktopio/oc.user.ubuntu:4.4</code> is based on Ubuntu <code>24.04</code>. For more details, see the <a href="https://github.com/abcdesktopio/oc.user">oc.user</a> image repository.</li>
-</ul>
-<h3 id="applications">applications</h3>
-<p>All applications are <code>ephemeral containers</code> or <code>pods</code>, and share a graphical socket ( <code>unix</code> or <code>tcp</code> ) with the user's pod.</p>
+<p><a href="https://github.com/abcdesktopio/oc.user"><code>oc.user</code></a> is the user desktop container image. It provides:
+- An X11 display server and VNC server for rendering graphical output
+- A WebSocket-to-VNC bridge for transmitting rendered frames to the client browser
+- Inter-container services: file transfer (filer), printing (CUPS), and audio (PulseAudio)</p>
+<p>Each authenticated user receives a dedicated instance of <code>oc.user</code> running as a Kubernetes pod. Applications launched within the session run as additional containers (pods or ephemeral containers) alongside the <code>oc.user</code> pod, providing per-application kernel-level isolation — the foundation of Remote Application Isolation (RAI).</p>
+<p>The image <code>abcdesktopio/oc.user.ubuntu:4.4</code> is based on Ubuntu <code>24.04</code>. For details, see the <a href="https://github.com/abcdesktopio/oc.user">oc.user</a> repository.</p>
 
 
 

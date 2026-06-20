@@ -4235,7 +4235,7 @@
 <h1 id="webmodules-abcdesktop-frontend-web-content">WebModules - abcdesktop Frontend Web Content</h1>
 <h2 id="project-specification">Project Specification</h2>
 <h3 id="purpose">Purpose</h3>
-<p><code>webModules</code> is the frontend web content repository for the abcdesktop platform. It contains all the HTML, JavaScript, CSS (written in LESS), images, and supporting assets that make up the user-facing desktop interface. It is served by an nginx container (<code>oc.nginx</code>) and constitutes the client side that users interact with directly in their browser.</p>
+<p><code>webModules</code> is the frontend web content repository for the abcdesktop platform. It contains all the HTML, JavaScript, CSS (written in LESS), images, and supporting assets that make up the user-facing desktop interface. The compiled output is served by an nginx container (<code>oc.nginx</code>) and constitutes the client-side application that users interact with directly in their browser.</p>
 <hr />
 <h2 id="architecture-overview">Architecture Overview</h2>
 <div class="highlight"><pre><span></span><code>┌─────────────────┐
@@ -4429,7 +4429,7 @@
 </table>
 <hr />
 <h2 id="customization-transpileconfiguijson">Customization: <code>transpile/config/ui.json</code></h2>
-<p><code>ui.json</code> is the <strong>branding configuration file</strong>. Editing it and rebuilding the image is the primary way to customise the frontend appearance.</p>
+<p><code>ui.json</code> is the <strong>branding configuration file</strong>. Editing it and rebuilding the image is the primary way to customize the frontend appearance.</p>
 <h3 id="structure">Structure</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abcdesktop.io&quot;</span><span class="p">,</span>
@@ -4551,7 +4551,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>More information about UI customization and how to apply your own look &amp; feel on <a href="https://abcdesktop.pepins.net/advanced/4.4/configure/customfrontend/">this page</a></p>
+<p>More information about UI customization and how to apply your own look &amp; feel on <a href="https://www.abcdesktop.io/advanced/4.4/configure/customfrontend/">this page</a></p>
 </div>
 <hr />
 <h2 id="javascript-modules">JavaScript Modules</h2>
@@ -4843,7 +4843,7 @@ Takes the builder image as base, copies the sources, runs <code>make prod</code>
 <ol>
 <li>Build and push <code>oc.nginx.builder:&lt;branch&gt;</code> (multi-arch) to <code>ghcr.io</code></li>
 <li>Build and push <code>oc.nginx:&lt;branch&gt;</code> (multi-arch, <code>TARGET=prod</code>) to <code>ghcr.io</code></li>
-<li>Run <strong>Trivy</strong> vulnerability scanner on the produced image (CRITICAL and HIGH severities)</li>
+<li>Run the <strong>Trivy</strong> vulnerability scanner on the produced image, reporting CRITICAL and HIGH severity findings</li>
 </ol>
 
 

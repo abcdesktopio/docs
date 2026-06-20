@@ -1561,8 +1561,8 @@ member: cn=Hermes Conrad,ou=people,dc=planetexpress,dc=com
 </code></pre></div>
 <h2 id="create-networkattachementdefinition">Create <code>NetworkAttachementDefinition</code></h2>
 <p>A <code>NetworkAttachmentDefinition</code> is a Kubernetes custom resource that describes how Multus should attach an additional network interface to a pod. You must create one for each VLAN you want to expose to user pods.</p>
-<p>In this example, we configure a macvlan interface bound to VLAN ID 200 (<code>eno1.200</code>). Adapt the <code>master</code> nterface, subnet, IP range, and gateway to match your network topology.</p>
-<p>Here is an example of <code>macvlan-conf-1.yaml</code> file.</p>
+<p>In this example, we configure a macvlan interface bound to VLAN ID 200 (<code>eno1.200</code>). Adapt the <code>master</code> interface, subnet, IP range, and gateway to match your network topology.</p>
+<p>The following is an example <code>macvlan-conf-1.yaml</code> configuration file.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="s">"k8s.cni.cncf.io/v1"</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkAttachmentDefinition</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -1660,7 +1660,7 @@ address ranges on the default Kubernetes interface (<code>eth0</code>):</p>
 </tbody>
 </table>
 </div>
-<p>Then apply it to the cluster by running the following command. 
+<p>Apply the <code>NetworkAttachmentDefinition</code> to the cluster.
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
 kubectl apply -f macvlan-conf-1.yaml -n $NAMESPACE
 </code></pre></div></p>
@@ -1680,12 +1680,12 @@ kubectl apply -f macvlan-conf-1.yaml -n $NAMESPACE
   },
   'acls' : {} }
 </code></pre></div>
-<p>Then update the configmap and restart pyos</p>
+<p>Update the ConfigMap and restart the pyos deployment.</p>
 <div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deploy pyos-od -n abcdesktop
 </code></pre></div>
 <h2 id="create-a-new-user">Create a new user</h2>
-<p>Now that the configuration is done, you can connect to your abcdesktop url and perform a login with a user. Its pod will be created and once done you should see both networks interfaces by running this command.</p>
+<p>With the configuration in place, log in to your abcdesktop instance. After the user pod is created, verify that both network interfaces are present by running the following command.</p>
 <div class="highlight"><pre><span></span><code>kubectl exec -it &lt;YOUR_POD&gt; -n abcdesktop -- ifconfig
 </code></pre></div>
 <p>For example</p>
@@ -1753,7 +1753,7 @@ sysctl<span class="w"> </span>-w<span class="w"> </span>net.ipv6.conf.all.forwar
 </div>
 <h3 id="update-the-networkattachmentdefinition">Update the <code>NetworkAttachmentDefinition</code></h3>
 <p>The dual-stack configuration requires two changes compared to the IPv4-only version: the <code>cniVersion</code> must be bumped to <code>0.3.1</code> to support the <code>ranges</code> format, and an IPv6 address pool must be added alongside the existing IPv4 pool.</p>
-<p>Please update the <code>macvlan-conf-1.yaml</code> as below.</p>
+<p>Update the <code>macvlan-conf-1.yaml</code> file as shown below.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="s">"k8s.cni.cncf.io/v1"</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkAttachmentDefinition</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -1822,16 +1822,16 @@ sysctl<span class="w"> </span>-w<span class="w"> </span>net.ipv6.conf.all.forwar
 <p>In IPv4, private ranges (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>) are scattered throughout the public address space, making it necessary to enumerate all public prefixes explicitly to avoid routing private traffic through the VLAN gateway.</p>
 <p>In IPv6, public addresses (<code>2000::/3</code>), private ULA addresses (<code>fc00::/7</code>), and link-local addresses (<code>fe80::/10</code>) occupy completely separate, non-overlapping blocks. A single <code>::/0</code> default route on <code>net1</code> is therefore sufficient — the kernel will never forward link-local traffic regardless of the routing table, and ULA traffic has no reachable gateway on the public internet.</p>
 </div>
-<p>Then apply the updated ressource : </p>
+<p>Apply the updated resource.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMEPSACE</span><span class="o">=</span>abcdesktop
 kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>macvlan-conf-1.yaml<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
 </code></pre></div>
 <h3 id="verify-dual-stack-connectivity">Verify dual-stack connectivity</h3>
-<p>Recreate a user pod and inspect the <code>net1</code> interface:
+<p>Re-create a user pod and inspect the <code>net1</code> interface:
 <div class="highlight"><pre><span></span><code><span class="nv">NAMEPSACE</span><span class="o">=</span>abcdesktop
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;POD_NAME&gt;<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>--<span class="w"> </span>ifconfig
 </code></pre></div></p>
-<p>You should see something like this :</p>
+<p>The output should resemble the following.</p>
 <div class="highlight"><pre><span></span><code>kubectl exec -it fry-21d8e -n abcdesktop -- ifconfig
 Defaulted container "x-graphical" out of: x-graphical, s-sound, f-filer, i-init (init)
 eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
@@ -1862,8 +1862,8 @@ net1: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
         TX packets 56  bytes 4324 (4.3 KB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 </code></pre></div>
-<p>As you can see, the <code>net1</code> interface has now a global IPv6 address (GUA) which in our case is <code>2001:db8:200::11</code>.</p>
-<p>Great ! You can now configure user pods with multiple interfaces and VLANs !</p>
+<p>The <code>net1</code> interface now has a globally routable IPv6 address (GUA), in this example <code>2001:db8:200::11</code>.</p>
+<p>User pods are now configured with multiple network interfaces and VLAN-based routing.</p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>

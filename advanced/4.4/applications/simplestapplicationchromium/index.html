@@ -3793,7 +3793,7 @@
 <li>Your own public or private container registry.</li>
 </ul>
 <h2 id="create-a-simple-application-chromium">Create a simple application <code>chromium</code></h2>
-<p>To illustrate how to package a web browser as an abcdesktop.io application, we will install <code>chromium</code> inside a container image.</p>
+<p>To illustrate how to package a web browser as an abcdesktop.io application, this guide walks through installing <code>chromium</code> inside a container image and registering it with the platform.</p>
 <ul>
 <li>Create a Dockerfile to install the <code>chromium</code> application from a <code>debian</code> base image</li>
 </ul>
@@ -3838,17 +3838,17 @@ SIxNzEuOTEiIGNvbG9yPSIjMDAwMDAwIiBmaWxsPSJ1cmwoI2QpIi8+CiAgPC9nPgogPC9nPgo8L3N2Z
 <p><strong>Dockerfile description</strong></p>
 <p>This image is based on Debian and installs the <code>chromium</code> package. The default command is set to <code>/usr/bin/chromium</code> via the <code>CMD</code> instruction.</p>
 <ul>
-<li><code>oc.keyword</code> label defines keyworks for the search engine</li>
-<li><code>oc.cat</code> label defines category of the application</li>
-<li><code>oc.desktopfile</code> label defines the name of the <code>.desktop</code> file chromium-browser.desktop<code>in</code>/usr/share/applications` directory</li>
+<li><code>oc.keyword</code> label defines the search keywords used by the application catalog</li>
+<li><code>oc.cat</code> label defines the category of the application</li>
+<li><code>oc.desktopfile</code> label specifies the name of the <code>.desktop</code> file (<code>chromium-browser.desktop</code>) located in the <code>/usr/share/applications</code> directory</li>
 <li><code>oc.launch</code> label is the name of the X11 window's <code>WM_CLASS</code>. The value is <code>chromium.Chromium</code></li>
-<li><code>oc.icon</code> is the name of the icon file</li>
-<li><code>oc.icondata</code> is a base64 encoded content of the chromium.svg</li>
-<li><code>oc.displayname</code> defines the string to display the name of the application</li>
-<li><code>oc.mimetype</code> defines the MimeType support by this application</li>
-<li><code>oc.fileextensions</code> defines the file extension support by this application</li>
+<li><code>oc.icon</code> is the filename of the application icon</li>
+<li><code>oc.icondata</code> is the base64-encoded content of the <code>chromium.svg</code> icon file</li>
+<li><code>oc.displayname</code> defines the human-readable display name of the application</li>
+<li><code>oc.mimetype</code> defines the MIME types supported by this application</li>
+<li><code>oc.fileextensions</code> defines the file extensions supported by this application</li>
 <li>
-<p><code>oc.legacyfileextensions</code> defines the legacy file extension support by this application</p>
+<p><code>oc.legacyfileextensions</code> defines the legacy file extensions supported by this application for backward compatibility</p>
 </li>
 <li>
 <p>Build the image for the chromium application</p>
@@ -3951,11 +3951,11 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 </ul>
 <p><img alt="Look for the new application chromium" src="../img/simplestapplication-lookfor-chromium.png" /></p>
 <ul>
-<li>Wait for the pulling process</li>
+<li>Wait for the container image pull to complete</li>
 </ul>
 <p><img alt="application chromium" src="../img/simplestapplication-chromium-running.png" /></p>
 <ul>
-<li><code>chromium</code> is running</li>
+<li><code>chromium</code> is now running</li>
 </ul>
 
 

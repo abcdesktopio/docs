@@ -4300,9 +4300,9 @@
 <h2 id="2-runtime-architecture">2. Runtime Architecture</h2>
 <h3 id="21-process-model">2.1 Process model</h3>
 <ul>
-<li>Single Node.js process, Express app and router initialization in <code>file-service.js</code>.</li>
-<li>Service bind is delegated to external helper <code>listenDaemonOnContainerIpAddr</code> .</li>
-<li>All uncaught exceptions are logged but do not trigger explicit shutdown logic.</li>
+<li>The service runs as a single Node.js process; the Express application and router are initialized in <code>file-service.js</code>.</li>
+<li>TCP socket binding is delegated to the external helper function <code>listenDaemonOnContainerIpAddr</code>.</li>
+<li>All uncaught exceptions are logged but do not trigger an explicit shutdown sequence.</li>
 </ul>
 <h3 id="22-router-mounting">2.2 Router mounting</h3>
 <ul>
@@ -4344,10 +4344,10 @@
 <h3 id="32-toggle-interpretation">3.2 Toggle interpretation</h3>
 <p><code>is_allow_var</code> maps values as follows:</p>
 <ul>
-<li>Deny when value (case-insensitive) is one of: 0, false, disable, disabled.</li>
-<li>Allow otherwise, including undefined.</li>
+<li><strong>Deny</strong> when the value (case-insensitive) is one of: <code>0</code>, <code>false</code>, <code>disable</code>, <code>disabled</code>.</li>
+<li><strong>Allow</strong> otherwise, including when the variable is undefined.</li>
 </ul>
-<p>Default behavior: all features enabled unless explicitly disabled.</p>
+<p>Default behavior: all features are enabled unless explicitly disabled via environment variable.</p>
 <h2 id="4-security-and-path-confinement-model">4. Security and Path Confinement Model</h2>
 <h3 id="41-intended-boundary">4.1 Intended boundary</h3>
 <p>All filesystem operations are intended to stay under <code>HOME</code> using:</p>
@@ -4358,24 +4358,22 @@
 <h3 id="42-path-normalization-rules">4.2 Path normalization rules</h3>
 <p><code>normalize_tildpath</code> behavior:</p>
 <ul>
-<li>Expands leading <code>~</code> to <code>HOME</code>.</li>
+<li>Expands a leading <code>~</code> to the value of <code>HOME</code>.</li>
 <li>Applies <code>path.normalize</code>.</li>
-<li>If parsed directory is outside <code>HOME</code>, prepends <code>HOME</code> and normalizes again.</li>
+<li>If the resolved directory falls outside <code>HOME</code>, it prepends <code>HOME</code> and normalizes the result again.</li>
 </ul>
 <h3 id="43-path-safety-predicate">4.3 Path safety predicate</h3>
 <p><code>checkSafePath</code> behavior:</p>
 <ul>
-<li>Expands leading <code>~</code> to <code>HOME</code>.</li>
-<li>Normalizes path.</li>
-<li>Parses normalized path and returns true when either:</li>
-<li>parsed directory starts with <code>HOME</code>, or</li>
-<li>original currentPath exactly equals <code>HOME</code>.</li>
+<li>Expands a leading <code>~</code> to the value of <code>HOME</code>.</li>
+<li>Normalizes the path.</li>
+<li>Returns <code>true</code> when either the resolved directory starts with <code>HOME</code>, or the original <code>currentPath</code> exactly equals <code>HOME</code>.</li>
 </ul>
 <h2 id="5-data-and-io-behavior">5. Data and I/O Behavior</h2>
 <h3 id="51-upload-buffering">5.1 Upload buffering</h3>
 <ul>
 <li>Multer is configured with in-memory storage.</li>
-<li>Uploaded file content is fully resident in RAM before write.</li>
+<li>Uploaded file content is fully buffered in RAM before being written to disk.</li>
 </ul>
 <h3 id="52-file-streaming">5.2 File streaming</h3>
 <ul>
@@ -4384,14 +4382,14 @@
 </ul>
 <h3 id="53-zip-generation">5.3 Zip generation</h3>
 <ul>
-<li>Recursive traversal implemented by <code>generateZipTree</code>.</li>
+<li>Recursive directory traversal is implemented by <code>generateZipTree</code>.</li>
 <li>Folder names are split on <code>/</code> (non-portable if run outside POSIX path semantics).</li>
-<li>Read errors are logged and swallowed inside recursion; operation continues.</li>
+<li>Read errors are logged and swallowed inside the recursion; the operation continues on remaining entries.</li>
 </ul>
 <h3 id="54-directory-listing-sort">5.4 Directory listing sort</h3>
 <ul>
-<li>Directory list is sorted ascending by modification time</li>
-<li>If file stat fails, file gets synthetic time 0 and likely appears first.</li>
+<li>The directory listing is sorted in ascending order by file modification time.</li>
+<li>If a file's <code>stat</code> call fails, the file receives a synthetic modification time of <code>0</code> and will likely appear first in the sorted result.</li>
 </ul>
 <h2 id="6-api-contract-implementation-accurate">6. API Contract (Implementation Accurate)</h2>
 <p>Base route prefix: /filer and /printerfiler.</p>

@@ -3949,7 +3949,7 @@
 <h2 id="overview">Overview</h2>
 <p>In this chapter, you will use an NGINX ingress controller to expose your abcdesktop service with a public IP address, configure your DNS zone file to use your own domain name, and enable TLS to secure the service.</p>
 <h2 id="update-http-router-service">Update http-router service</h2>
-<p>When installing abcdesktop, http-router service type is <code>NodePort</code> by default, in order to expose the service through an ingress controller you will need to change the service type from <code>NodePort</code> to <code>ClusterIP</code>.</p>
+<p>When installing abcdesktop, the <code>http-router</code> service type is <code>NodePort</code> by default. To expose the service through an ingress controller, you must change the service type from <code>NodePort</code> to <code>ClusterIP</code>.</p>
 <p>If you perform a get services command you will see the <code>NodePort</code> type</p>
 <div class="highlight"><pre><span></span><code>kubectl get svc http-router -n abcdesktop
 NAME          TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
@@ -3979,7 +3979,7 @@ spec:
     targetPort: 80
     name: http
 </code></pre></div>
-<p>Then Create your new <code>service/http-router</code></p>
+<p>Then, apply your new <code>service/http-router</code>:</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f http-router.yaml -n abcdesktop
 service/http-router created
 </code></pre></div>
@@ -3989,11 +3989,11 @@ NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 http-router   ClusterIP   10.0.132.230   &lt;none&gt;        443/TCP,80/TCP   5s
 </code></pre></div>
 <h2 id="deploy-nginx-ingress-controller">Deploy nginx ingress controller</h2>
-<p>You will now deploy a nginx ingress controller on your cluster using <code>helm</code>.</p>
-<p>First, run the following command to add the nginx ingress controller repository : </p>
+<p>You will now deploy an NGINX ingress controller on your cluster using <code>helm</code>.</p>
+<p>First, run the following command to add the NGINX ingress controller repository:</p>
 <div class="highlight"><pre><span></span><code>helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx &amp;&amp; helm repo update
 </code></pre></div>
-<p>Then install it on your cluster </p>
+<p>Then install it on your cluster:</p>
 <div class="highlight"><pre><span></span><code>helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace
 </code></pre></div>
 <p>Once the installation process has completed, you can verify that the service was created by running this command:</p>
@@ -4001,7 +4001,7 @@ http-router   ClusterIP   10.0.132.230   &lt;none&gt;        443/TCP,80/TCP   5s
 NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)                      AGE
 ingress-nginx-controller   LoadBalancer   10.0.54.215   &lt;pending&gt;   80:30940/TCP,443:30922/TCP   96s
 </code></pre></div>
-<p>Now wait a few minutes until you get an <code>EXTERNAL-IP</code> </p>
+<p>Wait a few minutes until the service is assigned an <code>EXTERNAL-IP</code>:</p>
 <div class="highlight"><pre><span></span><code>NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)                      AGE
 ingress-nginx-controller   LoadBalancer   10.0.54.215   48.216.154.238   80:30940/TCP,443:30922/TCP   96s
 </code></pre></div>
@@ -4011,12 +4011,12 @@ ingress-nginx-controller   LoadBalancer   10.0.54.215   48.216.154.238   80:3094
   --overwrite
 </code></pre></div>
 <h3 id="create-new-record">Create new record</h3>
-<p>We are going to create a new record <code>hello</code> (<code>hello.azure.pepins.net</code>) to the <code>A</code> address <code>48.216.154.238</code>. I prefer to define low <code>TTL</code> value to fix some changes quickly.</p>
+<p>Create a new DNS <code>A</code> record named <code>hello</code> (e.g., <code>hello.azure.pepins.net</code>) pointing to <code>48.216.154.238</code>. Set a low TTL value to allow DNS changes to propagate quickly.</p>
 <p><img alt="azure console domain overview" src="../img/createrecord-ingress.png" /></p>
-<p>Press <code>Add</code> button, to update your zone file with the new record</p>
+<p>Press the <code>Add</code> button to update your zone file with the new record.</p>
 <p><img alt="azure console domain overview" src="../img/recorddone-ingress.png" /></p>
 <h2 id="configure-nginx-ingress-rules-for-backend-services">Configure NGINX Ingress Rules for Backend Services</h2>
-<p>In this step, you expose the backend applications to the outside world by telling nginx what host each service maps to. You define a rule in nginx to associate a host to a abcdesktop route backend service.</p>
+<p>In this step, you expose the backend services to the outside world by telling NGINX what host each service maps to. You define a rule in NGINX that associates a hostname with the abcdesktop route backend service.</p>
 <p>Create an ingress resource for NGINX using the abcdesktop service and save it as <code>abcdesktop_host.yaml</code>. Update this manifest with your own FQDN by replacing <code>hello.azure.pepins.net</code> with your own values.</p>
 <div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -4067,20 +4067,20 @@ ingress-abcdesktop   nginx   hello.azure.pepins.net   48.216.154.238   80      5
 <p>paths provides a collection of paths that map requests to backends.</p>
 </li>
 </ul>
-<p>In the example above, the ingress resource tells nginx to route each HTTP request that is using the / prefix for the <code>hello.azure.pepins.net</code> host, to the <code>route</code> backend service running on port 80. In other words, every time you make a call to http://hello.azure.pepins.net/, the request and reply are served by the echo backend service running on port 80.</p>
-<p>You can have multiple ingress controllers per cluster. The ingressClassName field in the manifest differentiates between multiple ingress controllers present in your cluster. Although you can define multiple rules for different hosts and paths in a single ingress resource.</p>
+<p>In the example above, the ingress resource instructs NGINX to route each HTTP request using the <code>/</code> prefix for the <code>hello.azure.pepins.net</code> host to the <code>http-router</code> backend service on port 80. Every request to <code>http://hello.azure.pepins.net/</code> is served by the <code>http-router</code> backend service.</p>
+<p>You can have multiple ingress controllers per cluster. The <code>ingressClassName</code> field in the manifest differentiates between them. You can also define multiple rules for different hosts and paths within a single ingress resource.</p>
 <p><img alt="reach your website from your new name" src="../img/hello-http.png" /></p>
 <blockquote>
-<p>Web browser doesn't allow usage of websocket without secure protocol. To login you need <code>https</code> protocol.</p>
+<p>Web browsers do not permit WebSocket connections over an insecure protocol. To log in, you must use the <code>https</code> protocol.</p>
 </blockquote>
-<p>As you can see, your website is <code>Not Secured</code>, we are going to add X509 SSL certificate to secure your service.</p>
+<p>As you can see, the website is marked <code>Not Secured</code>. The next step adds an X.509 SSL certificate to secure the service.</p>
 <h2 id="enable-https">Enable HTTPS</h2>
 <h3 id="deploy-cert-manager-on-our-aks-cluster">Deploy Cert Manager on our AKS cluster</h3>
-<p>As we previously did for the nginx ingress controller, we are going to use <code>helm</code> to install cert manager on our cluster.</p>
-<p>First add the cert manager helm repository :</p>
+<p>Use <code>helm</code> to install cert-manager on your cluster, following the same approach used for the NGINX ingress controller.</p>
+<p>First add the cert-manager helm repository:</p>
 <div class="highlight"><pre><span></span><code>helm repo add jetstack https://charts.jetstack.io &amp;&amp; helm repo update  
 </code></pre></div>
-<p>Then install it on your cluster :</p>
+<p>Then install it on your cluster:</p>
 <div class="highlight"><pre><span></span><code>helm install \
   cert-manager oci://quay.io/jetstack/charts/cert-manager \
   --namespace cert-manager \
@@ -4116,10 +4116,10 @@ replicaset.apps/cert-manager-webhook-59bbd786df      1         1         1      
 <p>Issuer: Defines a namespaced certificate issuer, which allows you to use different CAs in each namespace.</p>
 <p>ClusterIssuer: Similar to Issuer, but it does not belong to a namespace and can be used to issue certificates in any namespace.</p>
 <p>Certificate: Defines a namespaced resource that references an Issuer or ClusterIssuer for issuing certificates.</p>
-<p>Inspect the CRDs by running the following command :</p>
+<p>Inspect the CRDs by running the following command:</p>
 <div class="highlight"><pre><span></span><code>kubectl get crd -l app.kubernetes.io/name=cert-manager
 </code></pre></div>
-<p>The output looks similar to the following</p>
+<p>The output looks similar to the following:</p>
 <div class="highlight"><pre><span></span><code>NAME                                  CREATED AT
 certificaterequests.cert-manager.io   2026-01-21T08:12:10Z
 certificates.cert-manager.io          2026-01-21T08:12:10Z
@@ -4129,8 +4129,8 @@ issuers.cert-manager.io               2026-01-21T08:12:11Z
 orders.acme.cert-manager.io           2026-01-21T08:12:10Z
 </code></pre></div>
 <h3 id="configure-production-ready-tls-certificates-for-nginx">Configure Production-Ready TLS Certificates for nginx</h3>
-<p>You can issue the certificate using an Issuer. Configure a certificate issuers resource for Cert-Manager, which fetches the TLS certificate for nginx to use. The certificate issuer uses the HTTP-01 challenge provider to accomplish this task.</p>
-<p>Create the following manifest, replace <code>&lt;your-valid-email-address&gt;</code> with your own value, and save it as <code>cert-manager-issuer.yaml</code> :</p>
+<p>Configure a Cert-Manager <code>Issuer</code> resource that fetches TLS certificates for NGINX using the HTTP-01 challenge provider.</p>
+<p>Create the following manifest, replace <code>&lt;your-valid-email-address&gt;</code> with your own email address, and save it as <code>cert-manager-issuer.yaml</code>:</p>
 <div class="highlight"><pre><span></span><code>apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
@@ -4154,17 +4154,17 @@ privateKeySecretRef: Kubernetes secret to store the automatically generated ACME
 <p>The ingress resources use the HTTP-01 challenge.</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f cert-manager-issuer.yaml -n abcdesktop
 </code></pre></div>
-<p>The output looks similar to the following</p>
+<p>The output looks similar to the following:</p>
 <div class="highlight"><pre><span></span><code>issuer.cert-manager.io/letsencrypt-nginx created
 </code></pre></div>
 <p>Verify that the Issuer resource is created:</p>
 <div class="highlight"><pre><span></span><code>kubectl get issuer -n abcdesktop
 </code></pre></div>
-<p>The output looks similar to the following</p>
+<p>The output looks similar to the following:</p>
 <div class="highlight"><pre><span></span><code>NAME                READY   AGE
 letsencrypt-nginx   True    7s
 </code></pre></div>
-<p>Next, configure each nginx ingress resource to use TLS. Open the previous <code>abcdesktop_host.yaml</code> manifest you created previously for the route application, add the <code>annotations</code> and <code>tls</code> sections shown below, and save the <code>abcdesktop_host.yaml</code> file : You can also add dedicated <code>nginx.ingress.kubernetes.io</code> annotations to increase default timeout values. Replace <code>hello.azure.pepins.net</code> by own FQDN</p>
+<p>Next, configure the NGINX ingress resource to use TLS. Open the <code>abcdesktop_host.yaml</code> manifest, add the <code>annotations</code> and <code>tls</code> sections shown below, and save the file. You can also add <code>nginx.ingress.kubernetes.io</code> annotations to increase default timeout values. Replace <code>hello.azure.pepins.net</code> with your own FQDN:</p>
 <div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -4203,15 +4203,15 @@ spec:
 NAME                 CLASS   HOSTS                    ADDRESS         PORTS     AGE
 ingress-abcdesktop   nginx   hello.azure.pepins.net   52.184.250.38   80, 443   9m18s
 </code></pre></div>
-<p>You see that 443 appeard in the <code>PORTS</code> section.</p>
-<p>Check that the certificate resource is created</p>
+<p>You see that <code>443</code> has appeared in the <code>PORTS</code> section.</p>
+<p>Verify that the certificate resource has been created:</p>
 <div class="highlight"><pre><span></span><code>kubectl get certificates -n abcdesktop
 </code></pre></div>
-<p>The output looks similar to the following</p>
+<p>The output looks similar to the following:</p>
 <div class="highlight"><pre><span></span><code>NAME                     READY   SECRET                   AGE
 letsencrypt-nginx-echo   True    letsencrypt-nginx-echo   3m27s
 </code></pre></div>
-<p>Run a simple curl command line <code>curl -Li https://hello.azure.pepins.net/</code> to confirm that your secured abcdesktop service is running.</p>
+<p>Run the following <code>curl</code> command to confirm that your secured abcdesktop service is running:</p>
 <div class="highlight"><pre><span></span><code>curl -Li https://hello.azure.pepins.net/
 HTTP/2 200 
 date: Wed, 21 Jan 2026 09:56:41 GMT
@@ -4234,11 +4234,11 @@ strict-transport-security: max-age=31536000; includeSubDomains
 <p>The connection is secured and you can inspect the certificate details.</p>
 <p><img alt="reach your website using https" src="../img/certificate-ingress-ok.png" /></p>
 <h2 id="see-real-client-ip-address-behind-ingress-controller">See real client IP address behind ingress controller</h2>
-<p>Now that your application is publically exposed, maybe you are wondering about security and traffic inside your cluster.<br />
-For example, the console module of abcdesktop should not be accessible to everyone as it is designed to be an administrator console. That is why when you install abcdesktop there is a pool of permit IPs that is specify in the od.config file.</p>
+<p>Now that your application is publicly exposed, you may want to consider the security implications of traffic flowing through your cluster.<br />
+For example, the console module of abcdesktop should not be accessible to everyone, as it is designed to be an administrator console. That is why, when you install abcdesktop, there is a pool of permitted IP addresses specified in the <code>od.config</code> file.</p>
 <div class="highlight"><pre><span></span><code>ManagerController&#39;: { &#39;permitip&#39;: [ &#39;10.0.0.0/8&#39;, &#39;172.16.0.0/12&#39;, &#39;192.168.0.0/16&#39;, &#39;fd00::/8&#39;, &#39;169.254.0.0/16&#39;, &#39;127.0.0.0/8&#39; ] }
 </code></pre></div>
-<p>By default the configuration only permit private network defined in <a href="https://datatracker.ietf.org/doc/html/rfc1918">rfc1918</a> and <a href="https://datatracker.ietf.org/doc/html/rfc4193">rfc4193</a>. So as your service is publically exposed, none of your visitors should be able to access to console. But when you try, you will actually be able to play with console normally, which is not the expected behaviour.</p>
+<p>By default, the configuration only permits private networks defined in <a href="https://datatracker.ietf.org/doc/html/rfc1918">RFC 1918</a> and <a href="https://datatracker.ietf.org/doc/html/rfc4193">RFC 4193</a>. Because your service is publicly exposed, none of your visitors should be able to access the console. However, you may find that the console is actually accessible, which is not the expected behavior.</p>
 <p><img alt="access console ok" src="../../img/access_console.png" /></p>
 <p>And when you check Pyos logs you will see why console behaves like that.</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -n abcdesktop
@@ -4266,8 +4266,8 @@ pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log
 2026-02-06 16:04:15 abcpool1-node-fa2594 139923617876792 od [INFO   ] __main__.trace_request:anonymous /healthz
 2026-02-06 16:04:25 abcpool1-node-fa2594 139923621108536 od [INFO   ] __main__.trace_request:anonymous /healthz
 </code></pre></div>
-<p>As you can see on the logs, the source IP address seen by pyos is a private IP address like <code>10.X.X.X</code> (or in the subnet you defined as internal to your cluster) which is in the pool of permit IP addresses.  </p>
-<p>That happens because the nginx ingress controller we set up earlier does not forward the client public IP address and balance the request with its own IP address in the cluster. So Router and Pyos both see the IP address of the ingress controller loadbalancer.</p>
+<p>As you can see in the logs, the source IP address seen by Pyos is a private IP address such as <code>10.X.X.X</code> (within the subnet defined as internal to your cluster), which falls within the pool of permitted IP addresses.  </p>
+<p>This occurs because the NGINX Ingress Controller forwards requests using its own cluster IP address rather than preserving the client's original IP. As a result, both Router and Pyos see the IP address of the ingress controller load balancer.</p>
 <p>To fix this, update the configuration of your NGINX ingress controller by pasting the following lines into a <code>patch-ingress.yaml</code> file:</p>
 <div class="highlight"><pre><span></span><code>controller:
   service:
@@ -4282,12 +4282,12 @@ pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log
     use-forwarded-headers: &quot;true&quot;
     log-format-upstream: &#39;{&quot;time&quot;: &quot;$time_iso8601&quot;, &quot;remote_addr&quot;: &quot;$proxy_protocol_addr&quot;, &quot;x_forwarded_for&quot;: &quot;$proxy_add_x_forwarded_for&quot;, &quot;http_x_forwarded-for&quot;: &quot;$http_x_forwarded_for&quot;, &quot;request_id&quot;: &quot;$req_id&quot;, &quot;remote_user&quot;: &quot;$remote_user&quot;, &quot;bytes_sent&quot;: $bytes_sent, &quot;request_time&quot;: $request_time, &quot;status&quot;: $status, &quot;vhost&quot;: &quot;$host&quot;, &quot;request_proto&quot;: &quot;$server_protocol&quot;, &quot;path&quot;: &quot;$uri&quot;, &quot;request_query&quot;: &quot;$args&quot;, &quot;request_length&quot;: $request_length, &quot;method&quot;: &quot;$request_method&quot;, &quot;http_referrer&quot;: &quot;$http_referer&quot;,  &quot;http_user_agent&quot;: &quot;$http_user_agent&quot; }&#39;
 </code></pre></div>
-<p>Now run the following command to apply it</p>
+<p>Run the following command to apply it:</p>
 <div class="highlight"><pre><span></span><code>helm upgrade ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx -f patch-loadbalancer.yaml
 </code></pre></div>
-<p>You can now retry to connect to console, you should see an error message on the top right</p>
+<p>Retry connecting to the console. You should now see an error message in the top-right corner.</p>
 <p><img alt="access console ok" src="../../img/console_access_denied.png" /></p>
-<p>You can also check the logs of Pyos, you should see your public IP address as source IP</p>
+<p>You can also inspect the Pyos logs to verify that your public IP address is now visible as the source IP:</p>
 <div class="highlight"><pre><span></span><code>kubectl exec -it pyos-od-5c5cfdbfc8-t9r9m -n abcdesktop -- bash
 Defaulted container &quot;pyos&quot; out of: pyos, wait-for-mongo (init)
 pyos-od-5c5cfdbfc8-t9r9m:/var/pyos# tail logs/trace.log 

@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#build-a-sample-xeyes-from-scratch" class="md-skip">
+        <a href="#build-a-sample-xeyes-application-from-scratch" class="md-skip">
           Skip to content
         </a>
       
@@ -3794,7 +3794,7 @@
   
 
 
-<h1 id="build-a-sample-xeyes-from-scratch">Build a sample xeyes from scratch</h1>
+<h1 id="build-a-sample-xeyes-application-from-scratch">Build a sample <code>xeyes</code> application from scratch</h1>
 <p>Goal: Build and register a new X11 application container (<code>xeyes</code>) with an abcdesktop.io instance from scratch.</p>
 <h2 id="requirements">Requirements</h2>
 <p>You need to have:</p>
@@ -3805,7 +3805,7 @@
 <li>Your own public or private container registry.</li>
 </ul>
 <h2 id="create-a-simple-application-xeyes">Create a simple application <code>xeyes</code></h2>
-<p>To illustrate a minimal application integration, we will install <code>xeyes</code> from the <code>x11-apps</code> package inside a container image.</p>
+<p>To illustrate a minimal application integration, this guide walks through installing <code>xeyes</code> from the <code>x11-apps</code> package inside a container image and registering it with the platform.</p>
 <ul>
 <li>Create a Dockerfile to install the <code>xeyes</code> application from the <code>x11-apps</code> package</li>
 </ul>
@@ -3828,7 +3828,7 @@ docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </
 If you do not have one, you can use <code>abcdesktopio/samplexeyes</code> as a read-only Docker Hub registry.</p>
 </blockquote>
 <ul>
-<li>Push the image to your registry <em>(only if you have one registry)</em></li>
+<li>Push the image to your registry <em>(only if you have your own registry)</em></li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
 docker<span class="w"> </span>push<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexeyes
@@ -3842,7 +3842,7 @@ docker<span class="w"> </span>inspect<span class="w"> </span><span class="nv">$R
 <ul>
 <li>Send the image to the abcdesktop pyos instance</li>
 </ul>
-<p>The following commands retrieve the <code>PYOS_POD</code> name, copy the <code>samplexeyes.json</code> file to the <code>/tmp</code> directory inside the pyos pod, and submit the file to the REST API server.</p>
+<p>The following commands retrieve the <code>PYOS_POD_NAME</code>, copy the <code>samplexeyes.json</code> file to the <code>/tmp</code> directory inside the pyos pod, and submit it to the REST API server.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 <span class="nv">PYOS_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>pyos-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NAMESPACE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
 kubectl<span class="w"> </span>cp<span class="w"> </span>samplexeyes.json<span class="w"> </span><span class="nv">$PYOS_POD_NAME</span>:/tmp<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span>
@@ -3867,7 +3867,7 @@ kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </sp
 <p>Wait for the image pull to complete.</p>
 <p><img alt="Start the new application xeyes" src="../img/simplestapplication-xeyes-started.png" /></p>
 <blockquote>
-<p>The xeyes application is running as an ephemeral container inside the user pod.</p>
+<p>The <code>xeyes</code> application is running as an ephemeral container inside the user pod.</p>
 </blockquote>
 <h2 id="read-the-pod-description">Read the pod description</h2>
 <p>Retrieve the name of the user's pod:</p>
@@ -3940,7 +3940,7 @@ fry-3f4d7   4/4     Running   0          104s
       /var/run/dbus from rundbus (rw)
       /var/run/desktop from run (rw)
 </code></pre></div>
-<p>You have successfully installed and started a new application for abcdesktop.io.</p>
+<p>You have successfully built, registered, and launched a new application on abcdesktop.io.</p>
 
 
 

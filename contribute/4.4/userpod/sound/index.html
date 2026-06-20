@@ -4258,18 +4258,18 @@
 <li><code>composer/node/websocket-relay.speaker/websocket-relay.js</code></li>
 </ul>
 <h2 id="1-system-purpose">1. System Purpose</h2>
-<p>The image implements a PulseAudio streaming sidecar with two websocket services:</p>
+<p>The image implements a PulseAudio streaming sidecar with two WebSocket relay services:</p>
 <ol>
-<li>Speaker relay: reads encoded audio from a FIFO and broadcasts to websocket clients.</li>
-<li>Microphone relay: receives websocket payloads and writes to a FIFO consumed by PulseAudio module-pipe-source.</li>
-<li>Supervisor manages lifecycle of PulseAudio and relay processes.</li>
+<li><strong>Speaker relay</strong>: reads encoded audio from a FIFO and broadcasts the stream to connected WebSocket clients.</li>
+<li><strong>Microphone relay</strong>: receives WebSocket payloads from the browser and writes them to a FIFO consumed by a PulseAudio <code>module-pipe-source</code>.</li>
+<li><strong>Supervisor</strong> manages the lifecycle of the PulseAudio daemon and both relay processes.</li>
 </ol>
 <hr />
 <h2 id="2-build-specification">2. Build Specification</h2>
 <h3 id="21-base-image-and-reproducibility">2.1 Base Image and Reproducibility</h3>
 <ul>
-<li>Base image: ubuntu:24.04.</li>
-<li>This is pinned by tag, but not by digest.</li>
+<li>Base image: <code>ubuntu:24.04</code>.</li>
+<li>The image is pinned by tag but not by digest. For fully reproducible builds, pin to a specific image digest.</li>
 </ul>
 <h3 id="22-identity-model">2.2 Identity Model</h3>
 <p>Configured variables:
@@ -4310,25 +4310,25 @@
 2. composer -&gt; /composer
 3. etc/nsswitch.conf -&gt; /etc/nsswitch.conf</p>
 <h3 id="26-node-dependency-installation">2.6 Node Dependency Installation</h3>
-<p>Dependency strategy now uses lockfiles and npm ci:</p>
+<p>Dependency installation uses lockfiles and <code>npm ci</code> for reproducible builds:</p>
 <ol>
-<li>/composer/node/websocket-relay.speaker: npm ci --omit=dev</li>
-<li>/composer/node/websocket-relay.microphone: npm ci --omit=dev</li>
+<li><code>/composer/node/websocket-relay.speaker</code>: <code>npm ci --omit=dev</code></li>
+<li><code>/composer/node/websocket-relay.microphone</code>: <code>npm ci --omit=dev</code></li>
 </ol>
-<p>Required lockfiles are present in both relay directories.</p>
+<p>Required lockfiles must be present in both relay directories.</p>
 <h3 id="27-runtime-filesystem-preparation">2.7 Runtime Filesystem Preparation</h3>
-<p>Dockerfile prepares these paths:</p>
+<p>The Dockerfile creates these paths at build time:</p>
 <ul>
-<li>/var/run/dbus</li>
-<li>/var/log/desktop</li>
-<li>/var/run/desktop</li>
-<li>/var/run/local</li>
-<li>/var/log/local</li>
-<li>/var/lib/dbus/machine-id</li>
-<li>/etc/pulse/abcdesktopcookie</li>
-<li>/container</li>
+<li><code>/var/run/dbus</code></li>
+<li><code>/var/log/desktop</code></li>
+<li><code>/var/run/desktop</code></li>
+<li><code>/var/run/local</code></li>
+<li><code>/var/log/local</code></li>
+<li><code>/var/lib/dbus/machine-id</code></li>
+<li><code>/etc/pulse/abcdesktopcookie</code></li>
+<li><code>/container</code></li>
 </ul>
-<p>Current mode setup uses 666 for directories and selected files.</p>
+<p>Directory permissions are set to mode <code>666</code> for directories and selected files that require broad write access across process users.</p>
 <h3 id="28-entrypoint-and-port-contract">2.8 Entrypoint and Port Contract</h3>
 <ul>
 <li>ENV PULSE_SERVER=/tmp/.pulse.sock</li>
@@ -4369,22 +4369,22 @@
 <h2 id="4-dataflow-specification">4. Dataflow Specification</h2>
 <h3 id="41-speaker-data-path">4.1 Speaker Data Path</h3>
 <ol>
-<li>ffmpeg.speaker.sh captures PulseAudio source speaker.monitor.</li>
-<li>ffmpeg outputs MPEG-TS/MP2 stream redirected into /container/speaker.</li>
-<li>websocket-relay.speaker reads /container/speaker.</li>
-<li>websocket server on 29788 broadcasts chunks to all connected clients.</li>
+<li><code>ffmpeg.speaker.sh</code> captures audio from the <code>speaker.monitor</code> PulseAudio source.</li>
+<li><code>ffmpeg</code> encodes the audio as an MPEG-TS/MP2 stream and redirects the output to <code>/container/speaker</code>.</li>
+<li><code>websocket-relay.speaker</code> reads from <code>/container/speaker</code>.</li>
+<li>The WebSocket server on port <code>29788</code> broadcasts audio chunks to all connected clients.</li>
 </ol>
 <p>Control behavior:</p>
 <ol>
-<li>On first client, relay requests Supervisor startProcess("ffmpeg.speaker").</li>
-<li>On last client disconnect, relay requests stopProcess("ffmpeg").</li>
+<li>On the first client connection, the relay requests Supervisor to start the <code>ffmpeg.speaker</code> process.</li>
+<li>When the last client disconnects, the relay requests Supervisor to stop the <code>ffmpeg</code> process.</li>
 </ol>
 <h3 id="42-microphone-data-path">4.2 Microphone Data Path</h3>
 <ol>
-<li>websocket-relay.microphone listens on 29789.</li>
-<li>On first client, it opens a write stream to /container/microphone.</li>
-<li>Incoming websocket messages are written to /container/microphone.</li>
-<li>PulseAudio module-pipe-source (configured in PulseAudio config) consumes FIFO data as virtual microphone source.</li>
+<li><code>websocket-relay.microphone</code> listens on port <code>29789</code>.</li>
+<li>On the first client connection, it opens a write stream to <code>/container/microphone</code>.</li>
+<li>Incoming WebSocket messages are written to <code>/container/microphone</code>.</li>
+<li>The PulseAudio <code>module-pipe-source</code> (configured in the PulseAudio configuration) consumes the FIFO data as a virtual microphone source.</li>
 </ol>
 <hr />
 <h2 id="5-script-level-specification">5. Script-Level Specification</h2>
@@ -4397,22 +4397,22 @@
 <h3 id="52-composerffmpegspeakersh">5.2 composer/ffmpeg.speaker.sh</h3>
 <p>Purpose:</p>
 <ol>
-<li>Read audio from speaker.monitor.</li>
-<li>Encode audio as MP2 inside MPEG-TS.</li>
-<li>Stream to /container/speaker FIFO.</li>
+<li>Read audio from <code>speaker.monitor</code>.</li>
+<li>Encode the audio as MP2 inside an MPEG-TS container.</li>
+<li>Stream the encoded output to the <code>/container/speaker</code> FIFO.</li>
 </ol>
 <p>Important runtime inputs:</p>
 <ul>
-<li>PULSE_SERVER (default /tmp/.pulse.sock)</li>
-<li>POD_IP optional (for CONTAINER_IP_ADDR)</li>
-<li>WEBRELAY_INTERNAL_TCP_PORT metadata variable</li>
+<li><code>PULSE_SERVER</code> (default: <code>/tmp/.pulse.sock</code>)</li>
+<li><code>POD_IP</code> (optional, used to derive <code>CONTAINER_IP_ADDR</code>)</li>
+<li><code>WEBRELAY_INTERNAL_TCP_PORT</code> metadata variable</li>
 </ul>
-<p>FFmpeg main characteristics:</p>
+<p>FFmpeg stream characteristics:</p>
 <ul>
-<li>sample rate 44100</li>
-<li>mono channel</li>
-<li>bitrate 128k</li>
-<li>mpegts output</li>
+<li>Sample rate: 44100 Hz</li>
+<li>Channels: mono</li>
+<li>Bitrate: 128 kbps</li>
+<li>Container format: MPEG-TS</li>
 </ul>
 <h3 id="53-speaker-relay-node-service">5.3 Speaker Relay Node Service</h3>
 <p>File: composer/node/websocket-relay.speaker/websocket-relay.js</p>

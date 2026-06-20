@@ -3886,18 +3886,18 @@
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
 <li>a Kubernetes cluster with abcdesktop installed</li>
-<li><a href="https://helm.sh/fr/">helm</a> command line</li>
+<li><a href="https://helm.sh/fr/">helm</a> CLI</li>
 </ul>
 <p>To make the user's home directory persistent using NFS, you will need to:
 - Set up your own NFS server
 - Bind user's home directories to the NFS server using <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolume</a> (PV) and <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolumeClaim</a> (PVC)</p>
 <h2 id="set-up-an-nfs-server">Set up an NFS server</h2>
 <h3 id="server-install">Server install</h3>
-<p>On a dedicated machine, please install the following packages</p>
+<p>On a dedicated machine, install the following packages:</p>
 <div class="highlight"><pre><span></span><code>apt-get install nfs-kernel-server nfs-common
 </code></pre></div>
 <h3 id="server-configuration">Server configuration</h3>
-<p>Once installed, you need to create the folder that you will export</p>
+<p>Once installed, create the directory that you will export:</p>
 <div class="highlight"><pre><span></span><code>mkdir /data/abcdesktop_nfs
 chown -R nobody:nogroup /data/abcdesktop_nfs
 </code></pre></div>
@@ -3922,7 +3922,7 @@ systemctl restart nfs-kernel-server
 <h3 id="install-nfs-subdir-external-provisioner">Install nfs-subdir-external-provisioner</h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you want more information about <code>nfs-subdir-external-provisioner</code> please visit <a href="https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner">this page</a></p>
+<p>For more information about <code>nfs-subdir-external-provisioner</code>, refer to <a href="https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner">this page</a>.</p>
 </div>
 <p>First, install a provisioner in your cluster. This example uses <code>nfs-subdir-external-provisioner</code> for its dynamic subdirectory creation capability.</p>
 <p>Create a <code>nfs-subdir-values.yaml</code> file and paste the following lines to configure the storage class.</p>
@@ -3966,7 +3966,7 @@ nfs-user-storage-abcdesktop   cluster.local/nfs-subdir-external-provisioner   Re
 </code></pre></div>
 <h3 id="update-odconfig">Update od.config</h3>
 <p>Now, you need to configure pyos to bind user home directories to the exported NFS folder by updating the <code>od.config</code> file.</p>
-<p>First, change <code>desktop.homedirectorytype</code> variable from <code>None</code> to <code>persistentVolumeClaim</code>.</p>
+<p>First, change the <code>desktop.homedirectorytype</code> variable from <code>None</code> to <code>persistentVolumeClaim</code>.</p>
 <div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
 </code></pre></div>
 <p>Then add the following lines to define the PersistentVolumeClaim template:</p>
@@ -3988,7 +3988,7 @@ nfs-user-storage-abcdesktop   cluster.local/nfs-subdir-external-provisioner   Re
 <p class="admonition-title">Note</p>
 <p>There is no need to specify a PersistentVolume template for pyos, as <code>nfs-subdir-external-provisioner</code> handles it automatically.</p>
 </div>
-<p>Then, configure pyos to delete the PersistentVolumeClaim when a user's pod is deleted, while retaining the PersistentVolume consistent with the <code>Retain</code> reclaim policy defined for the storage class.</p>
+<p>Then, configure pyos to delete the PersistentVolumeClaim upon pod deletion while retaining the PersistentVolume, consistent with the <code>Retain</code> reclaim policy defined for the storage class.</p>
 <div class="highlight"><pre><span></span><code>desktop.removepersistentvolume: False
 desktop.removepersistentvolumeclaim: True
 </code></pre></div>

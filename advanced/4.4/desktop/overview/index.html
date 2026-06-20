@@ -2370,7 +2370,7 @@
         <li class="md-nav__item">
   <a href="#containers-in-the-user-pod" class="md-nav__link">
     <span class="md-ellipsis">
-      containers in the user pod
+      Containers in the user pod
     </span>
   </a>
   
@@ -3702,7 +3702,7 @@
         <li class="md-nav__item">
   <a href="#containers-in-the-user-pod" class="md-nav__link">
     <span class="md-ellipsis">
-      containers in the user pod
+      Containers in the user pod
     </span>
   </a>
   
@@ -3733,19 +3733,43 @@
 
 
 <h1 id="desktoppod">desktop.pod</h1>
-<p>abcdesktop represents each user desktop as a Kubernetes pod — a group of containers. This is a core feature of abcdesktop. Each container provides a dedicated service. For example:</p>
+<p>abcdesktop represents each user's desktop environment as a Kubernetes pod — a cohesive group of containers that collectively deliver the full desktop experience. This multi-container pod architecture is a foundational design principle of abcdesktop: each container encapsulates a single, dedicated service, allowing individual services to be independently enabled, disabled, or replaced without affecting other components.</p>
+<p>For example:</p>
 <ul>
-<li><code>printer</code> is a container. <code>printer</code> service runs inside the user pod, it can be started or not. </li>
-<li><code>graphical</code> is a container. <code>graphical</code> service runs inside the user pod.</li>
+<li>The <code>printer</code> container hosts the CUPS print service. It runs inside the user pod and can be enabled or disabled independently of other services.</li>
+<li>The <code>graphical</code> container hosts the X11 display server and VNC service, which is the core component responsible for rendering the user's desktop.</li>
 </ul>
-<h2 id="containers-in-the-user-pod">containers in the user pod</h2>
-<ul>
-<li><code>init</code> runs the initialization commands for the user pod</li>
-<li><code>graphical</code> is the user graphical service (X11 and VNC)</li>
-<li><code>printer</code> is the printer service (cupsd)</li>
-<li><code>sound</code> is the sound service (PulseAudio)</li>
-<li><code>filer</code> is the file transfer service for uploading and downloading files to and from the user's home directory</li>
-</ul>
+<h2 id="containers-in-the-user-pod">Containers in the user pod</h2>
+<table>
+<thead>
+<tr>
+<th>Container</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>init</code></td>
+<td>Executes initialization commands at pod startup, such as setting ownership and permissions on the user's home directory</td>
+</tr>
+<tr>
+<td><code>graphical</code></td>
+<td>Provides the graphical desktop session via X11 and VNC</td>
+</tr>
+<tr>
+<td><code>printer</code></td>
+<td>Runs the CUPS print service (<code>cupsd</code>), enabling virtual printing to PDF</td>
+</tr>
+<tr>
+<td><code>sound</code></td>
+<td>Provides audio input and output via PulseAudio</td>
+</tr>
+<tr>
+<td><code>filer</code></td>
+<td>Provides file transfer capabilities, allowing users to upload and download files to and from their home directory</td>
+</tr>
+</tbody>
+</table>
 
 
 

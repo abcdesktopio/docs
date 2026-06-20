@@ -3935,19 +3935,19 @@
 <li><code>wget</code> command line</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>In this chapter, we will use a <code>loadBalancer</code> to host your abcdesktop service with a public IP address, then configure the DNS zone file to use your domain name, and enable TLS to secure your service.</p>
+<p>In this chapter, you will use a <code>LoadBalancer</code> service to expose your abcdesktop service with a public IP address, configure your DNS zone file to use your domain name, and enable TLS to secure the service.</p>
 <h2 id="add-tags-for-public-subnets">Add tags for public subnets</h2>
-<p>By default, when creating your VPC, the public subnets do not have the <code>kubernetes.io/role/elb=1</code> tag. However, this tag is mandatory in order to expose your service using a load balancer with AWS. AWS scans your VPC, searching for subnets with this precise tag to place the load balancers.  </p>
-<p>To do so, run the following command</p>
+<p>By default, when creating your VPC, the public subnets do not have the <code>kubernetes.io/role/elb=1</code> tag. This tag is required to expose your service through a load balancer on AWS, because AWS scans your VPC for subnets bearing this exact tag to determine where to place load balancers.</p>
+<p>To add the tag, run the following command:</p>
 <div class="highlight"><pre><span></span><code>aws ec2 create-tags --resources &lt;your_public_subnets_ids&gt; --tags Key=kubernetes.io/role/elb,Value=1
 </code></pre></div>
 <blockquote>
-<p>You can find your public subnets ids in the <code>Subnets</code> page of the VPC dashboard on AWS console</p>
+<p>You can find your public subnet IDs on the <code>Subnets</code> page of the VPC dashboard in the AWS console.</p>
 </blockquote>
-<p>You can check if the tags have been applied by running the following command</p>
+<p>You can verify that the tags have been applied by running the following command:</p>
 <div class="highlight"><pre><span></span><code>aws ec2 describe-subnets --filters &quot;Name=vpc-id,Values=&lt;your_vpc_id&gt;&quot; &quot;Name=tag:kubernetes.io/role/elb,Values=1&quot; --query &#39;Subnets[*].[SubnetId,AvailabilityZone]&#39; --output table
 </code></pre></div>
-<p>You should read on stdout</p>
+<p>You should see the following output on stdout:</p>
 <div class="highlight"><pre><span></span><code>--------------------------------------------
 |              DescribeSubnets             |
 +---------------------------+--------------+
@@ -3956,8 +3956,8 @@
 +---------------------------+--------------+
 </code></pre></div>
 <h2 id="create-a-new-http-router-service-yaml-file">Create a new <code>http-router</code> service yaml file</h2>
-<p>The default install define the <code>http-router</code> service with as <code>nodePort</code> type. We are going to update the <code>http-router</code> service with a <code>LoadBalancer</code> type.</p>
-<p>Create a file named <code>http-router.yaml</code></p>
+<p>The default installation configures the <code>http-router</code> service as type <code>NodePort</code>. You will update it to type <code>LoadBalancer</code> to expose the service with a public IP address.</p>
+<p>Create a file named <code>http-router.yaml</code>:</p>
 <div class="highlight"><pre><span></span><code>apiVersion: v1
 kind: Service
 metadata:
@@ -3984,46 +3984,46 @@ spec:
       port: 80
       targetPort: 80
 </code></pre></div>
-<p>Save your <code>http-router.yaml</code> file</p>
-<p>Delete the previous service <code>http-router</code></p>
+<p>Save your <code>http-router.yaml</code> file.</p>
+<p>Delete the existing <code>http-router</code> service:</p>
 <div class="highlight"><pre><span></span><code>kubectl delete service http-router -n abcdesktop
 service &quot;http-router&quot; deleted
 </code></pre></div>
-<p>Create your new <code>service/http-router</code></p>
+<p>Apply your new <code>service/http-router</code>:</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f http-router.yaml -n abcdesktop
 service/http-router created
 </code></pre></div>
-<p>Wait for few minutes, the <code>EXTERNAL-IP</code> of service <code>http-router</code> stays in <code>Pending</code> state</p>
+<p>Wait a few minutes. The <code>EXTERNAL-IP</code> of the <code>http-router</code> service will initially remain in a <code>Pending</code> state:</p>
 <div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop 
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>NAME          TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 http-router   LoadBalancer   172.20.207.4    &lt;pending&gt;     80:32155/TCP   3s
 </code></pre></div>
-<p>Check the EXTERNAL-IP of service <code>http-router</code> again</p>
+<p>Check the <code>EXTERNAL-IP</code> of the <code>http-router</code> service again:</p>
 <div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop       
 </code></pre></div>
 <blockquote>
-<p>Great the service gets <code>k8s-abcdeskt-httprout-5ebf729011-0cdda549d4c8665f.elb.us-east-1.amazonaws.com</code> as an <code>EXTERNAL-IP</code></p>
+<p>The service has been assigned <code>k8s-abcdeskt-httprout-5ebf729011-0cdda549d4c8665f.elb.us-east-1.amazonaws.com</code> as its <code>EXTERNAL-IP</code>.</p>
 </blockquote>
 <div class="highlight"><pre><span></span><code>NAME          TYPE           CLUSTER-IP     EXTERNAL-IP                                                                     PORT(S)                      AGE
 http-router   LoadBalancer   172.20.207.4   k8s-abcdeskt-httprout-5ebf729011-0cdda549d4c8665f.elb.us-east-1.amazonaws.com   443:32461/TCP,80:31216/TCP   2m3d
 </code></pre></div>
-<p>You can open a web browser to reach your abcdesktop service with the given URL</p>
+<p>Open a web browser and navigate to the provided URL to access your abcdesktop service.</p>
 <p><img alt="web browser to reach your abcdesktop service" src="../img/loadbalancer-connect.png" /></p>
-<p>Web browser doesn't allow usage of websocket without a secure protocol. To log in, you need to use <code>https</code> protocol. </p>
+<p>Web browsers do not permit WebSocket connections over an insecure protocol. To log in, you must use the <code>https</code> protocol. </p>
 <h2 id="update-your-dns-zone-file">Update your DNS zone file</h2>
-<p>We will use a <code>FQDN</code> (Fully Qualified Domain Name) to replace the IP address.</p>
+<p>You will use an FQDN (Fully Qualified Domain Name) to replace the raw IP address.</p>
 <p><img alt="aws networking" src="../img/aws-networking.png" /></p>
-<p>This screenshot describes the AWS network console Route 53. It shows the <code>Domain</code> information. You can also manage your zone file from your own registrar.</p>
+<p>This screenshot shows the AWS network console for Route 53 and displays the <code>Domain</code> configuration. You can also manage your zone file directly through your own domain registrar.</p>
 <h3 id="create-new-record">Create new record</h3>
-<p>We are going to create a new record <code>hello</code> (<code>hello.aws.pepins.net</code>) using <code>k8s-abcdeskt-httprout-5ebf729011-0cdda549d4c8665f.elb.us-east-1.amazonaws.com</code> as an alias. </p>
-<p>First, you will need your load balancer hosted zone id. To get, run the following command :</p>
+<p>Create a new DNS <code>A</code> record named <code>hello</code> (e.g., <code>hello.aws.pepins.net</code>) aliased to <code>k8s-abcdeskt-httprout-5ebf729011-0cdda549d4c8665f.elb.us-east-1.amazonaws.com</code>.</p>
+<p>First, retrieve the hosted zone ID of your load balancer by running the following command:</p>
 <div class="highlight"><pre><span></span><code>aws elbv2 describe-load-balancers   --region us-east-1   --query &#39;LoadBalancers[0].CanonicalHostedZoneId&#39;
 </code></pre></div>
-<p>You should get something like this</p>
+<p>You should receive output similar to the following:</p>
 <div class="highlight"><pre><span></span><code>Z26RNL4JYFTOTI
 </code></pre></div>
-<p>Now paste the following lines in a  <code>create-record-abcdesktop-aws.json</code> file :</p>
+<p>Paste the following content into a <code>create-record-abcdesktop-aws.json</code> file:</p>
 <div class="highlight"><pre><span></span><code>{
   &quot;Comment&quot;: &quot;create a new record for abcdesktop on aws&quot;,
   &quot;Changes&quot;: [
@@ -4042,23 +4042,23 @@ http-router   LoadBalancer   172.20.207.4   k8s-abcdeskt-httprout-5ebf729011-0cd
   ]
 }
 </code></pre></div>
-<p>Now, you will need to retrieve the hosted zone id of your domain on route 53. You can get it through the Route 53 web interface, or by running the following command : </p>
+<p>Next, retrieve the hosted zone ID of your domain in Route 53. You can obtain it through the Route 53 web console or by running the following command:</p>
 <div class="highlight"><pre><span></span><code>aws route53 list-hosted-zones   --query &#39;HostedZones[*].[Name,Id]&#39;   --output table
 </code></pre></div>
-<p>You should read something like this </p>
+<p>The output will look similar to the following:</p>
 <div class="highlight"><pre><span></span><code>--------------------------------------------------------
 |                    ListHostedZones                   |
 +------------------+-----------------------------------+
 |  aws.pepins.net. |  /hostedzone/Z0710575SCBYT0OUKZP  |
 +------------------+-----------------------------------+
 </code></pre></div>
-<p>Finally, run this command to add the record : </p>
+<p>Finally, run the following command to add the DNS record:</p>
 <div class="highlight"><pre><span></span><code>aws route53 change-resource-record-sets --hosted-zone-id &lt;your_domain_hosted_zone_id&gt; --change-batch file://create-record-abcdesktop-aws.json 
 </code></pre></div>
-<p>For example </p>
+<p>For example:</p>
 <div class="highlight"><pre><span></span><code>aws route53 change-resource-record-sets --hosted-zone-id Z0710575SCBYT0OUKZP --change-batch file://create-record-abcdesktop-aws.json
 </code></pre></div>
-<p>You should read something like this </p>
+<p>The output will look similar to the following:</p>
 <div class="highlight"><pre><span></span><code>{
     &quot;ChangeInfo&quot;: {
         &quot;Id&quot;: &quot;/change/C07091422RBO1K64I6QWN&quot;,
@@ -4068,22 +4068,22 @@ http-router   LoadBalancer   172.20.207.4   k8s-abcdeskt-httprout-5ebf729011-0cd
     }
 }
 </code></pre></div>
-<p>If you go to your Route 53 web console, you should see the record you just added</p>
+<p>If you navigate to the Route 53 web console, you will see the newly added record.</p>
 <p><img alt="aws record added" src="../img/record-added.png" /></p>
-<p>From your local device, you can open a web browser</p>
+<p>From your local device, open a web browser to confirm DNS resolution:</p>
 <p><img alt="reach your website from your new name" src="../img/http-dns-connect.png" /></p>
-<p>Web browser doesn't allow usage of websocket without a secure protocol. To log in, you need to use <code>https</code> protocol.</p>
-<p>As you can see, your website is <code>Not Secured</code>. We are going to add an X.509 SSL certificate to secure your service.</p>
+<p>Web browsers do not permit WebSocket connections over an insecure protocol. To log in, you must use the <code>https</code> protocol.</p>
+<p>As you can see, the website is marked <code>Not Secured</code>. The next step adds an X.509 SSL certificate to secure the service.</p>
 <h2 id="obtain-a-certificate">Obtain a Certificate</h2>
 <p>If you already have an X.509 certificate with private and public key files for your website, you can skip this section.</p>
-<p>To create an SSL certificate, this guide uses the Let's Encrypt service. You will need your hostname and your email address.</p>
-<p>Define the new variables <code>ABCDESKTOP_PUBLIC_FQDN</code> and <code>USER_EMAIL_ADDRESS</code> </p>
+<p>To create an SSL certificate, this guide uses the Let's Encrypt service. You will need your public hostname and email address.</p>
+<p>Define the environment variables <code>ABCDESKTOP_PUBLIC_FQDN</code> and <code>USER_EMAIL_ADDRESS</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="o">=</span>hello.aws.pepins.net
 <span class="nv">USER_EMAIL_ADDRESS</span><span class="o">=</span>thisisyouremail@domain.com
 <span class="nv">ROUTER_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>router-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w">  </span>-n<span class="w"> </span>abcdesktop<span class="k">)</span>
 kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">ROUTER_POD_NAME</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>/usr/bin/certbot<span class="w"> </span>certonly<span class="w"> </span>--webroot<span class="w"> </span>-w<span class="w"> </span>/var/lib/nginx/html<span class="w"> </span>-d<span class="w"> </span><span class="si">${</span><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="si">}</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">USER_EMAIL_ADDRESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--agree-tos<span class="w"> </span>-n
 </code></pre></div>
-<p>You should read on stdout</p>
+<p>You should see the following output on stdout:</p>
 <div class="highlight"><pre><span></span><code>Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Account registered.
 Requesting a certificate for hello.aws.pepins.net
@@ -4103,27 +4103,27 @@ If you like Certbot, please consider supporting our work by:
  * Donating to EFF:                    https://eff.org/donate-le
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 </code></pre></div>
-<p>The files <code>fullchain.pem</code> and <code>privkey.pem</code> are located inside the container. </p>
+<p>The <code>fullchain.pem</code> and <code>privkey.pem</code> files are stored inside the container at the following paths:</p>
 <div class="highlight"><pre><span></span><code>Certificate is saved at: /etc/letsencrypt/live/hello.aws.pepins.net/fullchain.pem
 Key is saved at:         /etc/letsencrypt/live/hello.aws.pepins.net/privkey.pem
 </code></pre></div>
-<p>We export the files and create a new secrets. </p>
+<p>Export the certificate files and create a new Kubernetes secret:</p>
 <div class="highlight"><pre><span></span><code>kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/$ABCDESKTOP_PUBLIC_FQDN/fullchain.pem &gt; fullchain.pem
 kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/$ABCDESKTOP_PUBLIC_FQDN/privkey.pem &gt; privkey.pem
 </code></pre></div>
 <h2 id="create-a-secret-for-the-x509-certificate">Create a Secret for the X.509 Certificate</h2>
-<p>Create a secret named <code>http-router-certificat</code> with the <code>fullchain.pem</code> and <code>privkey.pem</code> file content</p>
+<p>Create a Kubernetes secret named <code>http-router-certificat</code> using the <code>fullchain.pem</code> and <code>privkey.pem</code> file contents:</p>
 <div class="highlight"><pre><span></span><code>kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=privkey.pem -n abcdesktop 
 </code></pre></div>
-<p>Your secret is created</p>
+<p>The secret is created successfully:</p>
 <div class="highlight"><pre><span></span><code>secret/http-router-certificat created
 </code></pre></div>
 <h2 id="update-http-router-configmap-to-use-the-new-http-router-certificat-secret">Update <code>http-router</code> ConfigMap to use the new <code>http-router-certificat</code> secret</h2>
 <p>Download <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.4.yaml">abcdesktop-routehttp-config.4.4.yaml</a> file </p>
 <div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.4.yaml
 </code></pre></div>
-<p>Open your <code>abcdesktop-routehttp-config.4.4.yaml</code> file, look for the ConfigMap <code>abcdesktop-routehttp-config</code>.</p>
-<p>Remove the comments to enable https and change the value <code>YOUR_SERVER_NAME_AND_DOMAIN</code> by your own value. </p>
+<p>Open your <code>abcdesktop-routehttp-config.4.4.yaml</code> file and locate the ConfigMap <code>abcdesktop-routehttp-config</code>.</p>
+<p>Uncomment the HTTPS directives and replace <code>YOUR_SERVER_NAME_AND_DOMAIN</code> with your actual domain name. </p>
 <div class="highlight"><pre><span></span><code> # nginx server config
  server {
      ...
@@ -4150,18 +4150,18 @@ kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/
      ssl_certificate     /etc/nginx/ssl/tls.crt;
      ssl_certificate_key /etc/nginx/ssl/tls.key;
 </code></pre></div>
-<p>Apply your new nginx configuration file</p>
+<p>Apply the updated NGINX configuration file:</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f abcdesktop-routehttp-config.4.4.yaml -n abcdesktop
 </code></pre></div>
 <h2 id="update-deployment-http-router">Update <code>deployment</code> http-router</h2>
-<p>Update the <code>deployment</code> route to add the SSL certificate entry</p>
-<p>The <code>abcdesktop-deployment-routehttps.4.4.yaml</code> file  adds <code>mountPath: /etc/nginx/ssl</code> to <code>secretName: http-router-certificat</code></p>
+<p>Update the <code>deployment</code> route to mount the SSL certificate.</p>
+<p>The <code>abcdesktop-deployment-routehttps.4.4.yaml</code> file adds <code>mountPath: /etc/nginx/ssl</code> mapped to <code>secretName: http-router-certificat</code>:</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.4.yaml -n abcdesktop
 </code></pre></div>
 <h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
 <p>You can now connect to your public abcdesktop website using <code>https</code> protocol.</p>
 <p><img alt="reach your website using https" src="../img/https-dns-connect.png" /></p>
-<p>The status is secured and we get some information from the certificate</p>
+<p>The connection is secured, and the certificate information is visible in the browser.</p>
 
 
 

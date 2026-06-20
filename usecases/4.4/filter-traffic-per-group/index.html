@@ -3792,8 +3792,7 @@
 <p>In this example, we will use <a href="https://github.com/rroemhild/docker-test-openldap">docker-test-openldap</a> which is a LDAP service</p>
 </div>
 <h2 id="use-case-description">Use case description</h2>
-<p>As an organistaion, you may have several departments, such as sales, accounting, IT, etc. And you may want to control access based on department. For exemple, an IT employee shouldn't have access to accounting documents.<br />
-With abcdesktop, you can meet these kind of needs by creating rules bases on the groups to which users belong.</p>
+<p>As an organization, you may have multiple departments—such as sales, accounting, and IT—each with different access requirements. For example, an IT employee should not have access to accounting documents. With abcdesktop, you can address these requirements by creating rules based on the groups to which users belong.</p>
 <pre class="mermaid"><code>---
 config:
   theme: redux-color
@@ -3834,8 +3833,8 @@ sequenceDiagram
     Create participant Youtube
     PodPhilip--xYoutube: Drop #10006;</code></pre>
 <h2 id="how-does-abcdesktop-manage-groups">How does abcdesktop manage groups</h2>
-<p>Let's assume that the users present your authentication system are already affected to groups. In our example, we have <code>Philip J. Fry</code> a.k.a. <code>fry</code>, and <code>Hubert J. Farnsworth</code> a.k.a. <code>professor</code>, respectively members of <code>ship_crew</code> and <code>admin_staff</code> groups (cf <a href="https://github.com/rroemhild/docker-test-openldap">https://github.com/rroemhild/docker-test-openldap</a>).  </p>
-<p>Once authenticated, abcdesktop control plane reads the user's infos, and will create the user's pod with its groups specified as labels.</p>
+<p>Assume that users registered in your authentication system are already assigned to groups. In this example, <code>Philip J. Fry</code> (known as <code>fry</code>) and <code>Hubert J. Farnsworth</code> (known as <code>professor</code>) are members of the <code>ship_crew</code> and <code>admin_staff</code> groups, respectively (cf <a href="https://github.com/rroemhild/docker-test-openldap">https://github.com/rroemhild/docker-test-openldap</a>).  </p>
+<p>Once authenticated, the abcdesktop control plane reads the user's information and creates the user pod with the user's group memberships applied as pod labels.</p>
 <p><div class="highlight"><pre><span></span><code>kubectl get pods -n abcdesktop
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>NAME                            READY   STATUS    RESTARTS      AGE
@@ -3850,7 +3849,7 @@ pyos-od-68776fb486-69x5q        1/1     Running   0             2d
 router-od-867f5576dd-p9hj5      1/1     Running   0             2d19h
 speedtest-od-78cdbdd9c6-vphfl   1/1     Running   0             2d19h
 </code></pre></div></p>
-<p>Run a <code>describe pod</code> command on both user pod to check if the group label is present.</p>
+<p>Run the <code>kubectl describe pod</code> command on each user pod to verify that the group labels are present.</p>
 <details class="note">
 <summary>show details</summary>
 <p><div class="highlight"><pre><span></span><code>kubectl describe pod fry-3c9e8 -n abcdesktop 
@@ -3912,16 +3911,15 @@ Labels:         abcdesktop/role=desktop
 [...]
 </code></pre></div></p>
 </details>
-<p>You should see labels <code>shipcrew=true</code> for <code>fry</code> and <code>adminstaff=true</code> for <code>professor</code></p>
+<p>Confirm that the label <code>shipcrew=true</code> appears on the <code>fry</code> pod and <code>adminstaff=true</code> appears on the <code>professor</code> pod.</p>
 <h2 id="create-access-rules-based-on-groups">Create access rules based on groups</h2>
-<p>To monitor pods incoming (ingress) and outgoing (egress) traffic in Kubernetes, we ordinarily use <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">NetworkPolicies</a>. But network policies does not offer the possibility to filter based on FQDNs, you can only filter by IPs. So that means, if the service you want to grant access to has more than one IP, you need to specify all IPs in the filter, it becomes even worse if it has dynamic IPs that are constantly changing.<br />
-This is why we use <code>cilium</code> as network provider for our cluster, so that we can apply <a href="https://docs.cilium.io/en/stable/network/kubernetes/policy/#ciliumnetworkpolicy">CiliumNetworkPolicies</a>. Those are very similar to the standard network policies but provides fuctionalites that are not yet supported, like DNS based rules.  </p>
+<p>To control incoming (ingress) and outgoing (egress) traffic for pods in Kubernetes, operators typically use <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">NetworkPolicies</a>. However, standard Kubernetes <code>NetworkPolicy</code> resources do not support filtering based on fully qualified domain names (FQDNs); they only support filtering by IP address or CIDR range. If the target service uses multiple IP addresses, each address must be listed explicitly in the policy—a significant maintenance burden, especially when addresses change dynamically. This is why Cilium is used as the cluster network provider: it supports <a href="https://docs.cilium.io/en/stable/network/kubernetes/policy/#ciliumnetworkpolicy">CiliumNetworkPolicy</a> resources, which extend the standard Kubernetes network policy API with additional capabilities not yet available natively, such as DNS-based egress filtering rules.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>It is important to keep in mind that <code>CiliumNetworkPolicies</code> operates on a whitelist basis. That means that once an egress rule is applied, everything that is not clearly indicate as authorized is forbidden.</p>
+<p><code>CiliumNetworkPolicy</code> resources operate on an allowlist (default-deny) basis. Once an egress rule is applied to an endpoint, all traffic not explicitly permitted is denied.</p>
 </div>
-<p>In our example, we will allow users from the <code>shipcrew</code> group to access <code>Facebook</code>, and users from the <code>adminstaff</code> group to access <code>Youtube</code>.</p>
-<p>First create a file called <code>netpol-allow-facebook-shipcrew.yaml</code> and paste the following content</p>
+<p>In this example, users belonging to the <code>shipcrew</code> group are granted access to Facebook, and users in the <code>adminstaff</code> group are granted access to YouTube.</p>
+<p>Create a file named <code>netpol-allow-facebook-shipcrew.yaml</code> with the following content.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cilium.io/v2</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliumNetworkPolicy</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -3955,18 +3953,18 @@ This is why we use <code>cilium</code> as network provider for our cluster, so t
 <span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;443&quot;</span>
 <span class="w">           </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
 </code></pre></div>
-<p>Save and apply it by running the following command</p>
+<p>Apply the policy to the cluster.</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f netpol-allow-facebook-shipcrew.yaml -n abcdesktop
 ciliumnetworkpolicy.cilium.io/allow-facebook-shipcrew configured
 </code></pre></div>
-<p>Now you can check if the policy exists by running this command </p>
+<p>Verify that the policy was created successfully.</p>
 <div class="highlight"><pre><span></span><code>kubectl get ciliumnetworkpolicy -n abcdesktop
 NAME                       AGE
 allow-facebook-shipcrew    27h
 </code></pre></div>
-<p>Your pod should now have access to Facebook and nothing else</p>
+<p>User pods belonging to the <code>shipcrew</code> group now have access to Facebook. All other external destinations remain blocked.</p>
 <p><img alt="ciliumnetpol-facebook-access" src="../../../img/ciliumNetpol_access_facebook.png" /></p>
-<p>Now create a file called <code>netpol-allow-youtube-adminstaff.yaml</code> and paste the following content</p>
+<p>Create a file named <code>netpol-allow-youtube-adminstaff.yaml</code> with the following content.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cilium.io/v2</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliumNetworkPolicy</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -3999,19 +3997,19 @@ allow-facebook-shipcrew    27h
 <span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;443&quot;</span>
 <span class="w">           </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
 </code></pre></div>
-<p>Save and apply it by running the following command</p>
+<p>Apply the policy to the cluster.</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f netpol-allow-youtube-adminstaff.yaml -n abcdesktop
 ciliumnetworkpolicy.cilium.io/allow-youtube-adminstaff configured
 </code></pre></div>
-<p>Now you can check if the policy exists by running this command </p>
+<p>Verify that the policy was created successfully.</p>
 <div class="highlight"><pre><span></span><code>kubectl get ciliumnetworkpolicy -n abcdesktop
 NAME                       AGE
 allow-facebook-shipcrew    27h
 allow-youtube-adminstaff   27h
 </code></pre></div>
-<p>Your pod should now have access to Youtube and nothing else</p>
+<p>User pods belonging to the <code>adminstaff</code> group now have access to YouTube. All other external destinations remain blocked.</p>
 <p><img alt="ciliumnetpol-youtube-access" src="../../../img/ciliumNetpol_access_youtube.png" /></p>
-<p>Great ! Now you can manage your organization's network access based on user groups.</p>
+<p>Network access is now controlled per user group using Cilium network policies.</p>
 
 
 
