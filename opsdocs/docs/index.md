@@ -4,7 +4,16 @@ hide:
   - toc
 title: abcdesktop.io — Cloud-Native Kubernetes Virtual Desktop
 summary: Cloud-native, containerized graphical application desktop with remote browser isolation and remote application isolation
-description: abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering remote browser isolation (RBI) and remote application isolation (RAI) accessible from any HTML5 web browser — no client-side indescription: abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering remote browser isolation (RBI) and remote application isolation (RAI) accessible from any HTML5 web browser — no client-side indescription: abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering remote browser isolation (RBI) and remote application isolation (RAI) accessible from any HTML5 web browser — no client-side indescription: abcdesktop.io is a cloud-native, Kubernetes-native virtnd for [Kubernetes](https://kubernetes.io/). It delivers **Remote Browser Isolation (RBI)** and **Remote Application Isolation (RAI)** — two core security paradigms that eliminate the traditional attack surface by running every application, including web browsers, inside isolated containers on the server side. The user's endpoint device acts as a pure display client, receiving only rendered pixels over an encrypted HTML5 WebSocket stream.
+description: abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering remote browser isolation (RBI) and remote application isolation (RAI) accessible from any HTML5 web browser — no client-side installation required.
+keywords: remote browser isolation, remote application isolation, graphical application container, desktopless, kubernetes, secure desktop, cloud native, telecommuting, virtual desktop infrastructure, VDI, VNC, digital workspace, reduce attack surface, BYOD, bring your own device, noVNC, RDP, citrix alternative, sovereign cloud, zero-trust desktop
+tags:
+  - home
+---
+
+
+# abcdesktop.io — Cloud-Native Kubernetes Virtual Desktop
+
+**abcdesktop.io** is a cloud-native virtual desktop platform built on and for [Kubernetes](https://kubernetes.io/). It delivers **Remote Browser Isolation (RBI)** and **Remote Application Isolation (RAI)** — two core security paradigms that eliminate the traditional attack surface by running every application, including web browsers, inside isolated containers on the server side. The user's endpoint device acts as a pure display client, receiving only rendered pixels over an encrypted HTML5 WebSocket stream.
 
 abcdesktop.io is also a complete workspace environment accessible from any HTML5-capable web browser, with no software installation required on the client device. Like the serverless computing model, **desktopless computing** dynamically allocates desktop resources on demand within the cluster, tearing them down when the session ends. Each user's desktop and every application runs as a dedicated Kubernetes pod or ephemeral container, enforcing strict workload isolation and dramatically reducing the blast radius of any potential compromise.
 
@@ -46,21 +55,22 @@ Key RAI capabilities in abcdesktop.io:
 
 ---
 
+
 ## Architecture Overview
 
 ![abcdesktopuserpodnvidia](img/abcdesktopkubernetescluster.png)
 
-abcdesktop.io distributes workloads across the Kubernetes cluster. User applications are deployed as `pods` or as `ephemeral containers` on any cluster node, leveraging Kubernetes' built-in scheduling, autoscaling, and resource management capabilities. The control plane (`pyos`) manages the full lifecycle of user sessions and application containers.
+abcdesktop.io distributes workloads across the Kubernetes cluster. User applications are deployed as `pods` or as `ephemeral containers` on any cluster node, leveraging Kubernetes' built-in scheduling, autoscaling, and resource management capabilities. The control plane manages the full lifecycle of user desktops and application containers.
 
 ---
 
 ## Quick Online Preview — Release {{ abcdesktop.latest_release }}
 
-Explore abcdesktop.io's desktopless capabilities on the public demo instance at [https://demo.gcp.abcdesktop.com](https://demo.gcp.abcdesktop.com). The demo illustrates the complete desktop provisioning lifecycle: authentication via an OpenID Connect provider (Google, GitHub, or Facebook), pod creation, application launch, and automatic session termination by the garbage collector after a 10-minute idle period.
+Explore abcdesktop.io's desktopless capabilities on the public demo instance at [https://demo.gcp.abcdesktop.com](https://demo.gcp.abcdesktop.com). The demo illustrates the complete desktop provisioning lifecycle: authentication via an OpenID Connect provider (Google, GitHub, or Facebook), pod creation, application launch, and automatic session termination by the garbage collector after a 15-minute period.
 
 The demo enforces production-grade security policies: outbound network requests from the desktop pod are blocked by default, and clipboard isolation is active. The CUPS printing service and PulseAudio sound service are both enabled within the demo pod.
 
-> **Note:** The demo instance is for evaluation purposes only. Desktop sessions are automatically terminated after 10 minutes by the garbage collector.
+> **Note:** The demo instance is for evaluation purposes only. Desktop sessions are automatically terminated after 15 minutes by the garbage collector, without an information message.
 
 To access the demo, go to [https://demo.gcp.abcdesktop.com](https://demo.gcp.abcdesktop.com).
 
