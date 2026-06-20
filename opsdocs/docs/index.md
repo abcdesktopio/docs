@@ -105,7 +105,7 @@ To access the demo, go to [https://demo.gcp.abcdesktop.com](https://demo.gcp.abc
 ### Storage and Home Directory
 
 - User home directory access with `homeDirectory` attribute support in Active Directory
-- NFS, hostPath, and S3-compatible persistent volume support
+- NFS, hostPath, S3-compatible and Kubernetes `Persistent Volume` support
 - Legacy CIFS/SMB volume mounting via Kubernetes FlexVolume driver
 - Shared volumes across user pods
 
