@@ -4,17 +4,15 @@ tags:
   - adopter
 ---
 
-# FAQ Adopter
+# Adopters
 
-## Who is using abcdesktop.io projet ?
+## Organizations Using abcdesktop.io in Production
 
-Here are some of the organizations we know are using abcdesktop.io.
+The following organizations are known to be running abcdesktop.io in production environments.
 
+| Adopter | Name | Description | Public Application Repository |
+|---|---|---|---|
+| ![embl](img/EMBL_logo.svg) | [EMBL](https://www.embl.org/) | The European Molecular Biology Laboratory is an intergovernmental research organization dedicated to molecular biology research, supported by 28 member states, one prospect state, and one associate member state. | [https://git.embl.de/ysun/abcdesktop-apps/](https://git.embl.de/ysun/abcdesktop-apps/) |
+| ![orange](img/Orange_logo.svg) | [Orange](https://www.orange.com/) | Multinational telecommunications operator and digital services provider serving 287 million customers across consumer, professional, and enterprise segments. | Orange uses standard public and proprietary enterprise applications. |
 
-| Adopters | Name     | Description | Public applications repository |
-| -------- | -------- | ----------- | ----------------------- |
-| ![embl](img/EMBL_logo.svg) | [Embl](https://www.embl.org/) | The European Molecular Biology Laboratory is an intergovernmental organization dedicated to molecular biology research and is supported by 28 member states, one prospect state, and one associate member state | [https://git.embl.de/ysun/abcdesktop-apps/](https://git.embl.de/ysun/abcdesktop-apps/)|
-| ![orange](img/Orange_logo.svg) | [Orange](https://www.orange.com/) | Telecommunications operator and digital service provider. Orange serves 287 million customers, individuals, professionals, and large companies | Orange uses common public and private business applications |
-
-If you’re using abcdesktop.io and aren’t on this list, please submit a pull request to add entry in this list.
-
+If your organization is using abcdesktop.io and is not listed here, please submit a pull request to add an entry to this table.

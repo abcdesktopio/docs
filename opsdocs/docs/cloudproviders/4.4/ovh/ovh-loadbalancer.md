@@ -4,7 +4,7 @@
 ## Requirements
 
 
-- read the previous chapter [Deploy abcdesktop on OVHcloud with Kubernetes](ovh.md) 
+- Read the previous chapter [Deploy abcdesktop on OVHcloud with Kubernetes](ovh.md) 
 - an OVHcloud account
 - your own internet domain
 - `kubectl` command line
@@ -19,9 +19,9 @@ In this chapter, you will use a `LoadBalancer` service to expose your abcdesktop
 ## Create a new `http-router` service yaml file
 
 
-The default install define the `http-router` service with as `nodePort` type. We are going to update the `http-router` service with a `LoadBalancer` type.
+The default installation configures the `http-router` service as a `nodePort` type. We will update the `http-router` service to use a `LoadBalancer` type.
 
-Create a file named `http-router.yaml`
+Create a file named `http-router.yaml`:
 
 ```
 kind: Service
@@ -52,23 +52,23 @@ spec:
     name: http
 ```
 
-Save your `http-router.yaml` file
+Save the `http-router.yaml` file.
 
-Delete the previous service `http-router`
+Delete the previous `http-router` service:
 
 ```
 kubectl delete service http-router -n abcdesktop
 service "http-router" deleted
 ```
 
-Create your new `service/http-router`
+Create the new `service/http-router`:
 
 ```
 kubectl apply -f http-router.yaml -n abcdesktop
 service/http-router created
 ```
 
-Wait for few minutes, the `EXTERNAL-IP` of service `http-router` stays in `Pending` state
+Wait a few minutes; the `EXTERNAL-IP` of the `http-router` service remains in `Pending` state:
 
 ```
 kubectl get services http-router -n abcdesktop 
@@ -79,13 +79,13 @@ NAME          TYPE           CLUSTER-IP   EXTERNAL-IP   PORT(S)                 
 http-router   LoadBalancer   10.3.114.1   <pending>     443:31379/TCP,80:31570/TCP   12s
 ```
 
-Check the EXTERNAL-IP of service `http-router` again
+Check the `EXTERNAL-IP` of the `http-router` service again:
 
 ```
 kubectl get services http-router -n abcdesktop       
 ```
 
-> Great the service gets `51.83.253.201` as an `EXTERNAL-IP`
+> The service has been assigned `51.83.253.201` as its `EXTERNAL-IP`.
 
 ```      
 NAME          TYPE           CLUSTER-IP   EXTERNAL-IP     PORT(S)                      AGE
@@ -93,19 +93,19 @@ http-router   LoadBalancer   10.3.114.1   51.83.253.201   443:31379/TCP,80:31570
 
 ```
 
-You can open a web browser to reach your abcdesktop service with the IP address
+Open a web browser to access your abcdesktop service using the IP address.
 
 
 ![web browser to reach your abcdesktop service](img/ip-connect.png)
 
 
-Web browser doesn't allow usage of websocket without secure protocol. To login you need `https` protocol
+Web browsers block WebSocket connections without a secure protocol. To log in, use the `https` protocol.
 
 
 ## Update your DNS zone file 
 
 
-We will use a `FQDN` (Fully Qualified Domain Name) to replace the `IP Address`.
+We will use a `FQDN` (Fully Qualified Domain Name) to replace the IP address.
 
 
 ![ovh networking](img/ovh-networking.png)
@@ -126,28 +126,28 @@ http-router   LoadBalancer   10.3.114.1   51.83.253.201   443:31379/TCP,80:31570
 
 ![ovh console domain overview](img/createrecord.png)
 
-Press `Create Record` button, to update your zone file with the new record
+Click `Create Record` to update your zone file with the new record.
 
 ![ovh console domain record added](img/recorddone.png)
 
-From your local device, you can open a web browser
+From your local device, open a web browser.
 
 ![reach your website from your new name](img/hello_http.png)
 
 
-Web browser doesn't allow usage of websocket without secure protocol. To login you need `https` protocol.
+Web browsers block WebSocket connections without a secure protocol. To log in, use the `https` protocol.
 
-As you can see, your website is `Not Secured`, we are going to add X509 SSL certificate to secure your service.
+Your website is marked as `Not Secured`. You must add an X.509 SSL certificate to secure the service.
 
 
 
 ## Obtain a Certificate
 
-If you already have an X.509 certificate with private and public key files for your website, you can skip this chapter.
+If you already have an X.509 certificate with private and public key files for your website, you can skip this section.
 
 To obtain an SSL certificate, this guide uses the Let's Encrypt service. You will need your new hostname and your email address.
 
-Define the new variables `ABCDESKTOP_PUBLIC_FQDN` and `USER_EMAIL_ADDRESS` 
+Define the variables `ABCDESKTOP_PUBLIC_FQDN` and `USER_EMAIL_ADDRESS`:
 
 
 ``` bash
@@ -157,7 +157,7 @@ ROUTER_POD_NAME=$(kubectl get pods -l run=router-od -o jsonpath={.items..metadat
 kubectl exec -n abcdesktop -it ${ROUTER_POD_NAME} -- /usr/bin/certbot certonly --webroot -w /var/lib/nginx/html -d ${ABCDESKTOP_PUBLIC_FQDN} -m "${USER_EMAIL_ADDRESS}" --agree-tos -n
 ```
 
-You should read on stdout
+You should see the following output:
 
 ```
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
@@ -180,7 +180,7 @@ If you like Certbot, please consider supporting our work by:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
-The files `fullchain.pem` and `privkey.pem` are located inside the container. 
+The `fullchain.pem` and `privkey.pem` files are stored inside the container.
 
 ```
 Certificate is saved at: /etc/letsencrypt/live/hello.ovhcloud.pepins.net/fullchain.pem
@@ -213,15 +213,15 @@ secret/http-router-certificat created
 
 ## Update `http-router` ConfigMap to use the new `http-router-certificat` secret
 
-Download [abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml) file 
+Download [abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml)
 
 ```
 wget https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml
 ```
 
-Open your `abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml` file, look for the ConfigMap `abcdesktop-routehttp-config`.
+Open the `abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml` file and locate the ConfigMap named `abcdesktop-routehttp-config`.
 
-Remove the comments to enable https and change the value `YOUR_SERVER_NAME_AND_DOMAIN` by your own value. 
+Uncomment the HTTPS section and replace `YOUR_SERVER_NAME_AND_DOMAIN` with your actual server name and domain.
 
 ```
  # nginx server config
@@ -244,7 +244,7 @@ Remove the comments to enable https and change the value `YOUR_SERVER_NAME_AND_D
      index index.html index.htm;
 ```
 
-For example
+For example:
 
 ```
      listen 443 ssl http2 default_server;
@@ -254,7 +254,7 @@ For example
      ssl_certificate_key /etc/nginx/ssl/tls.key;
 ```
 
-Apply your new NGINX configuration file
+Apply the updated NGINX configuration file:
 
 ```
 kubectl apply -f abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml -n abcdesktop
@@ -264,7 +264,7 @@ kubectl apply -f abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yam
  
 Update the `deployment` route to add the SSL certificate entry.
 
-The `abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml` file  adds `mountPath: /etc/nginx/ssl` to `secretName: http-router-certificat`
+The `abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml` file adds `mountPath: /etc/nginx/ssl` to `secretName: http-router-certificat`.
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml -n abcdesktop
@@ -277,7 +277,7 @@ You can now connect to your abcdesktop public website using the `https` protocol
 ![reach your website using https](img/hello_https.png)
 
 
-The status is secured and we get some informations from the certificate
+The connection is secured. You can inspect the certificate details.
 
 
 ![reach your website using https](img/certificate-ok.png)

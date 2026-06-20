@@ -3,8 +3,8 @@
 ## Requirements
 
 - aws command line interface [aws-cli](https://aws.amazon.com/cli/)
-- create an EKS `Amazon Elastic Kubernetes Service` and a VPC with a NAT gateway
-> You need a **NAT gateway** to pull images from your nodes to `ghcr.io` public registry. If your kubernetes nodes can't reach `ghcr.io`, you pod will stay in ImagePullBackOff.
+- Create an Amazon Elastic Kubernetes Service (EKS) cluster and a VPC with a NAT gateway
+> A **NAT gateway** is required so your nodes can pull images from the `ghcr.io` public registry. If your Kubernetes nodes cannot reach `ghcr.io`, pods will remain in `ImagePullBackOff` state.
 
 - Define the environment variables `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_SESSION_TOKEN`. You can retrieve credentials as needed from your AWS access portal.
 
@@ -46,7 +46,7 @@ aws eks list-clusters --region eu-north-1
 }
 ```
 
-## Create your kubernetes config file 
+## Create your Kubernetes config file
 
 Create your kubernetes config file using the `aws eks update-kubeconfig` command line
 
@@ -87,11 +87,11 @@ Open your web browser and navigate to `http://localhost:30443`.
 ![abcdesktop login](../img/abcdesktop-hompage-port30443.png)
 
  
-Login as user `Philip J. Fry` with the password `fry`
+Log in as user `Philip J. Fry` with the password `fry`
 
 ![abcdesktop login as fry](../img/abcdesktop-hompage-port30443-login-fry.png)
  
-After image pulling process, you get your first abcdesktop 
+After the image-pulling process completes, your first abcdesktop session is ready.
 
 ![abcdesktop for fry](../img/abcdesktop-hompage-port30443-user-fry-logged.png)
 
@@ -99,7 +99,7 @@ After image pulling process, you get your first abcdesktop
 ## Add applications to your desktop
 
 
-Using the previous terminal shell, run the application install script 
+Using the same terminal session, run the application install script:
 
 ```
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-{{ abcdesktop.latest_release }}.sh | bash
@@ -107,22 +107,22 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pul
 
 To get more details about the install applications process, please read the [Setup applications guide](https://www.abcdesktop.io/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop_applications/)
 
-Then reload the web page with the desktop of `Philip J. Fry`
-New applications are now listed in the dock of `plasmashell`
+Then reload the web page with the desktop of `Philip J. Fry`.
+New applications are now listed in the `plasmashell` dock.
 
 
 ![abcdesktop for fry with applications](../img/abcdesktop-hompage-port30443-login-fry-applications.png)
 
 Start Firefox application
 
-> The first run may involve waiting for the image pulling process to finish
+> The first run may require waiting for the image-pulling process to complete.
 
-Go to `https://mylocation.org` website to check where your pod is running.
+Navigate to `https://mylocation.org` to check where your pod is running.
 
 
 ![abcdesktop for fry with applications](img/abcdesktop-firefox-aws-north-1.png)
 
-In this example, for the `eu-north-1` region, the desktop is located near `Stockholm` in `Sweden`.
+For the `eu-north-1` region, the desktop is located near Stockholm, Sweden.
 
 
 

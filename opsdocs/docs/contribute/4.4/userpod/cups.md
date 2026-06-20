@@ -2,17 +2,17 @@
 
 ## 1. Scope and Intent
 
-This document is the normative specification of the container image produced by this repository Dockerfile.
+This document is the normative specification of the container image produced by the Dockerfile in this repository.
 
 Image purpose:
 - Provide a CUPS-based printing runtime for abcdesktop.
 - Bundle and run two Node.js services used by the printing workflow.
-- Run all runtime processes under supervisor.
+- Run all runtime processes under a Supervisor process manager.
 
 Design style:
 - Single-stage image.
-- Runtime is process-supervised multi-service (not a one-process image).
-- Configuration-heavy image where repository-provided /etc content defines behavior.
+- The runtime uses a multi-service process supervision model rather than a single-process container design.
+- Configuration-heavy image where repository-provided `/etc` content defines runtime behavior.
 
 ## 2. Base Image and Global Build Inputs
 
@@ -50,19 +50,19 @@ Branch selection:
 - Both repositories are cloned with -b $BRANCH.
 
 Reproducibility note:
-- Because clones are branch-based (not commit-pinned), resulting images can vary over time for the same Dockerfile and BRANCH value.
+- Because both repositories are cloned using a branch name rather than a pinned commit or tag, the resulting images may vary over time even when the same Dockerfile and BRANCH value are used. Pin to specific commits or tags for reproducible production builds.
 
 ## 4. Dependency Installation Behavior
 
 ### 4.1 Node dependencies
 
-For each cloned Node service:
-- Working directory is set to service directory.
-- npm install --save-prod is executed.
+For each cloned Node.js service:
+- The working directory is set to the service directory.
+- `npm install --save-prod` is executed to install production dependencies only.
 
 Behavioral implications:
 - Production dependencies are installed.
-- Exact dependency graph may change over time unless lockfiles in cloned repos are stable and honored.
+- The exact dependency graph may change over time unless the lockfiles in the cloned repositories are stable and honored.
 
 ### 4.2 System dependencies
 
@@ -107,16 +107,16 @@ Cleanup behavior:
 
 ### 5.2 Configuration tree override
 
-- Entire local etc directory is copied into /etc in the image.
+The entire local `etc` directory is copied into `/etc` in the image.
 
 This includes at minimum:
-- /etc/supervisord.conf
-- /etc/supervisor/conf.d/*.conf
-- /etc/cups/*
+- `/etc/supervisord.conf`
+- `/etc/supervisor/conf.d/*.conf`
+- `/etc/cups/*`
 
 Operational meaning:
-- Container runtime behavior is strongly defined by repository config files.
-- Upstream defaults from the base image may be overridden by this repository content.
+- Container runtime behavior is strongly governed by repository configuration files.
+- Upstream defaults from the base image may be overridden by this repository's content.
 
 ## 6. Build-Time Filesystem and Permissions
 
@@ -161,7 +161,7 @@ Entrypoint runtime sequence:
   - /usr/bin/supervisord --pidfile /var/run/desktop/supervisord.pid --nodaemon --configuration /etc/supervisord.conf
 
 Runtime side effect:
-- cupsd.conf is mutated at container startup, so CUPS listen address is runtime-dependent.
+- `cupsd.conf` is mutated at container startup, so the CUPS listening address is determined at runtime rather than build time.
 
 ## 8. Supervisor Process Topology
 

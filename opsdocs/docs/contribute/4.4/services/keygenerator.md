@@ -4,7 +4,7 @@ render_macros: false
 
 # keysgenerator
 
-Keygenerator is a helper Docker image that provides tools to generate SSL public/private key pairs and store them in Kubernetes secrets when they don't already exist. This functionality is used to create self-signed certificates for internal communication between different services or pods within abcdesktop.
+Keygenerator is a helper Docker image that provides tooling to generate SSL public/private key pairs and store them in Kubernetes Secrets when they do not already exist. This functionality is used to create self-signed certificates that secure internal communication between services and pods within the abcdesktop cluster.
 
 ## Usage
 
@@ -27,7 +27,7 @@ else
 fi
 ```
 
-The following jobs are executed once during Helm chart installation or upgrade. If the target secret already exists, it will not be recreated. Otherwise, it will be created with newly generated public/private key pairs:
+The following Kubernetes Jobs run once during Helm chart installation or upgrade. If the target Secret already exists, it is not recreated. Otherwise, the Job creates the Secret with a newly generated public/private key pair:
 
 - generate-jwtdesktoppayload-keys
 - generate-jwtdesktopsigning-keys

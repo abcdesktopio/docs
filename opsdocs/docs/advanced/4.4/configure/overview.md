@@ -1,11 +1,10 @@
 
-
 # abcdesktop configuration
 
 
-## configuration file
+## Configuration File
 
-The abcdesktop configuration is embedded inside a kubernetes `configmap`
+The abcdesktop configuration is stored inside a Kubernetes `ConfigMap`.
 
 
 ```bash
@@ -13,27 +12,25 @@ NAMESPACE=abcdesktop
 kubectl -n $NAMESPACE get configmap abcdesktop-config
 ```
 
-The `abcdesktop-config` configmap contains a file `od.config`. To read the `od.config` content
+The `abcdesktop-config` ConfigMap contains a file named `od.config`. To read the `od.config` content:
 
 ```bash
 kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
 ```
 
-This file has the [cherrypy file format](https://docs.cherrypy.dev/en/stable/config.html).
+This file uses the [CherryPy configuration file format](https://docs.cherrypy.dev/en/stable/config.html).
 
-When the pyos process starts, it reads the `od.config` file.
-
-If something is wrong, the pyos process hangs. The command line `kubectl logs -l name=pyos-od  -n abcdesktop` writes the pyos log to stdout.
+When the `pyos` process starts, it reads the `od.config` file. If the file contains a syntax error, the `pyos` process fails to start. Inspect the `pyos` logs with `kubectl logs -l name=pyos-od -n abcdesktop`.
 
 
 ## [global]
 
-The section describe the `[global]` values define in `od.config` file.
+This section describes the `[global]` values defined in the `od.config` file.
 
 
 ### `default_host_url`
 
-The default host url is the public host url of the service. Change this with your own URL or set the external URL service if you use a reverse proxy
+The default host URL is the publicly accessible URL of the abcdesktop service. Set this to your own domain name, or to the external URL of a reverse proxy if one is deployed in front of the service.
 
 
 ```
@@ -49,7 +46,7 @@ default_host_url : 'https://abcdesktop.domain.com'
 ### Geolocation `server.geolocation_ipaddr`
 
 
-`server.geolocation_ipaddr` is used by geoip to locate the external ip of the service. Change this value to help geoip to locate your service
+`server.geolocation_ipaddr` is used by the GeoIP subsystem to determine the external IP address of the service. Update this value with your service's actual external IP address to enable accurate geolocation and Active Directory site and subnet queries.
 
 
 ```
@@ -66,12 +63,12 @@ server.geolocation_ipaddr: '127.0.0.1'
 
 ### `trusted_proxy_cidr`
 
-`trusted_proxy_cidr` is a list of subnet IPv4 or IPv6.
-The default value is an empty list `[]`
+`trusted_proxy_cidr` is a list of IPv4 or IPv6 CIDR subnets.
+The default value is an empty list (`[]`).
 
-If the list is not empty, read all ip addresses in the `X-Forwarded-For` http header. At least one ip address of the `X-Forwarded-For` must match in the `trusted_proxy_cidr` list, else a http 401 error is returned. 
+When this list is not empty, the service reads all IP addresses from the `X-Forwarded-For` HTTP header. At least one IP address in the `X-Forwarded-For` header must match an entry in the `trusted_proxy_cidr` list; otherwise, the service returns an HTTP 401 error.
 
-`trusted_proxy_cidr` list prevents reverse proxy spoofing.
+The `trusted_proxy_cidr` list prevents reverse proxy IP spoofing attacks.
 
 ```
 trusted_proxy_cidr : [ '10.0.0.0/8', '192.168.1.0/24' ]
@@ -81,7 +78,7 @@ trusted_proxy_cidr : [ '10.0.0.0/8', '192.168.1.0/24' ]
 
 ## `server.thread_pool`
 
-`server.thread_pool` defines the number of worker threads to start up in the pool, the default value is `server.thread_pool: 10` 
+`server.thread_pool` defines the number of worker threads in the CherryPy thread pool. The default value is `10`.
 
 ```
 # the default server.thread_pool is 10
@@ -94,13 +91,13 @@ trusted_proxy_cidr : [ '10.0.0.0/8', '192.168.1.0/24' ]
 
 - `OAUTHLIB_INSECURE_TRANSPORT`
 
-OAuthLib will raise an InsecureTransportError if you attempt to use OAuth2 over HTTP, rather than HTTPS. Setting this environment variable will prevent this error from being raised. This is mostly useful for local testing, or automated tests.
+OAuthLib raises an `InsecureTransportError` when OAuth2 is used over HTTP instead of HTTPS. Setting this environment variable suppresses that error. Enable this option only for local development or automated testing environments.
 
 ```
 OAUTHLIB_INSECURE_TRANSPORT: True
 ```
 
-- `OAUTHLIB_RELAX_TOKEN_SCOPE` needs to request user authorization from a Microsoft Work account.
+- `OAUTHLIB_RELAX_TOKEN_SCOPE` is required when requesting user authorization from a Microsoft Work or organizational account.
 
 ```
 # fix request user authorization from a Microsoft Work account
@@ -108,10 +105,10 @@ OAUTHLIB_RELAX_TOKEN_SCOPE: True
 ```
 
 
-## K8S timeout
+## Kubernetes Timeouts
 
-- PVC timeout
-- Create pod and ephemeral container timeout
+- PVC creation timeout
+- Pod and ephemeral container creation timeout
 
 ``` 
 # default time out to bound a persistentVolumeClaim
@@ -124,15 +121,15 @@ K8S_CREATE_EPHEMERALCONTAINER_TIMEOUT_SECONDS: 5
 ```
 
 
-## JWT and RSA keys
+## JWT and RSA Keys
 
 
-Define the RSA keys to sign and encrypt payload.
+RSA key pairs are used to sign and encrypt JWT payloads within abcdesktop.
 
-There are two kinds of `JWT`:
+Two types of JWT tokens are used by abcdesktop:
 
-- `jwt_token_user` User JWT is signed. So we need to define a (private, public) RSA keys for signing. 
-- `jwt_token_desktop` Desktop JWT is encrypted AND signed. So we need to define a (private, public) RSA keys for signing, and a (private, public) RSA keys to encrypt data.
+- `jwt_token_user`: The user JWT is signed only. A (private, public) RSA key pair is required for signing.
+- `jwt_token_desktop`: The desktop JWT is both signed and encrypted. It requires a (private, public) RSA key pair for signing and a separate (private, public) RSA key pair for payload encryption.
 
 
 ```
@@ -155,24 +152,24 @@ jwt_token_desktop : {
 ```
 
 
-* The JWT payload is encrypted with the abcdesktop jwt desktop payload private by pyos
-* The JWT payload is decrypted with the abcdesktop jwt desktop payload public keys by nginx.
+* The JWT payload is encrypted by `pyos` using the abcdesktop JWT desktop payload private key.
+* The JWT payload is decrypted by `nginx` using the abcdesktop JWT desktop payload public key.
 
 > Use the payload private key as the encryption key, and keep the payload public key private as well.
 > Do not publish the payload public key. This key must remain private — this is a deliberate security design choice, not a mistake.
 
-* The JSON Web Tokens payload is signed with the abcdesktop jwt desktop signing private keys
-* The JSON Web Tokens payload is verified with the abcdesktop jwt desktop signing public keys.
+* The JWT payload is signed using the abcdesktop JWT desktop signing private key.
+* The JWT payload is verified using the abcdesktop JWT desktop signing public key.
 
-* The JSON Web Tokens user is signed with the abcdesktop jwt user signing private keys by pyos.
-* The JSON Web Tokens user is verified with the abcdesktop jwt user signing public keys by pyos
+* The user JWT is signed by `pyos` using the abcdesktop JWT user signing private key.
+* The user JWT is verified by `pyos` using the abcdesktop JWT user signing public key.
 
-> As multiple pods of pyos can run simultaneously, the same private and public keys value are stored into kubernetes secret.
+> Because multiple `pyos` pods may run simultaneously, the same private and public key values are stored in a Kubernetes Secret.
 
-The abcdesktop JWT desktop payload public key is read by the route container. When exporting the public key, the `RSAPublicKey_out` option must be used to produce the `RSAPublicKey` format. The `RSAPublicKey` format ensures compatibility between the `python 3.x jwt module` and the `lua jwt lib`.
+The abcdesktop JWT desktop payload public key is read by the route container. When exporting the public key, you must use the `RSAPublicKey_out` option to produce the `RSAPublicKey` format, which ensures compatibility between the Python 3.x JWT module and the Lua JWT library.
 
 
-The following commands will let you create all necessary keys :
+Use the following commands to generate all required key pairs:
 
 ```
 openssl genrsa -out abcdesktop_jwt_desktop_payload_private_key.pem 1024

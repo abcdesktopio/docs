@@ -1,24 +1,26 @@
-# Configure the garbage collector
+# Garbage Collector Configuration
 
-## Garbage collector
+## Overview
 
-The garbage collector removes all user pods that have not been connected for longer than the `expirein` duration (in seconds).
-To call the garbage collector endpoint, run an HTTP request to `/API/manager/garbagecollector`. It accepts the parameters `expirein` and `force`.
+The garbage collector is a maintenance service that terminates user desktop pods that have been idle for longer than a configurable duration. It is invoked via an HTTP request to the `pyos` API endpoint `/API/manager/garbagecollector`.
 
-- `expirein` is a value in seconds. This parameter is required.
-- `force` is a boolean value `true`, `false`. This parameter is optional. The default value is `False`. If `Force` is `True` the garbage collector doesn't check if the user if connected to his pod or not. 
-- `nodename` is the name of the node where the pod should be deleted. This parameter is optional. The default value is `None`, meaning the garbage collector runs on all nodes of the cluster without restriction. The `nodename` parameter is useful if you need to remove user pods on a specific node for a maintenance plan or a `kubectl drain` command.
+## API Parameters
 
-This endpoint returns a JSON list of all deleted pods.
+| Parameter | Type | Required | Default | Description |
+|---|---|---|---|---|
+| `expirein` | integer (seconds) | Yes | — | Sessions idle for longer than this duration are candidates for deletion. |
+| `force` | boolean | No | `False` | If `True`, deletes sessions regardless of current connection status. If `False`, active sessions are preserved. |
+| `nodename` | string | No | `None` | Restricts deletion to pods running on the specified node. Useful during node maintenance or `kubectl drain` operations. |
 
-> Calling `/API/manager/garbagecollector?expirein=0&force=true` will disconnect all user's pods.
+The endpoint returns a JSON array listing all deleted pod names.
 
+> **Warning:** Calling `/API/manager/garbagecollector?expirein=0&force=true` immediately terminates **all** active user sessions.
 
-## Create a `cronjob`
+## Deploying the Garbage Collector as a Kubernetes CronJob
 
-Create a `cronjob` to run the garbage collector every five minutes:
+The recommended deployment pattern is a Kubernetes `CronJob` that invokes the garbage collector API on a scheduled interval.
 
-- Create a yaml manifest file named `cronjob.yaml`
+Create a file named `cronjob.yaml`:
 
 ```
 apiVersion: batch/v1
@@ -59,62 +61,44 @@ spec:
           dnsPolicy: ClusterFirst
 ```
 
-The default values are  
+### Default Values
 
-- `schedule`: `*/5 * * * *` to run each five minutes
+- **Schedule:** `*/5 * * * *` — runs every five minutes.
+- **`expirein`:** `900` seconds (15 minutes) — sessions idle for longer than 900 seconds are candidates for deletion.
+- **`force`:** `false` — active sessions are never deleted.
 
-- `env:`
+### Deletion Logic
 
-```
-- name: 'expirein'
-  value: '900'
-```
+| Condition | `force` | Result |
+|---|---|---|
+| User is not connected AND idle time > `expirein` | any | Pod is deleted |
+| User is connected AND idle time > `expirein` | `true` | Pod is deleted |
+| User is connected AND idle time > `expirein` | `false` | Pod is preserved |
+| Idle time ≤ `expirein` | any | No action |
 
-`expirein` is a value in seconds.
-If the time of the last login on the desktop is more than `expirein` then a desktop can be deleted or not. 
+## Applying the CronJob
 
-The time of the last login starts when the user logs in. abcdesktop calcs the duration between the current time and the last login time on the desktop.
-
-- If the user is NOT connected to the desktop and if the duration time is more than `expirein`, then the desktop is deleted.
-- If the user is connected and if the duration time is is more than `expirein` and if `force` is `true`, then the desktop is deleted.
-- If the user is connected and if the duration time is more than `expirein` and if `force` is `false`, then the desktop is NOT deleted.
-- Else nothing to do, keep the pod running
-  
-```
-- name: "force'
-  value: 'false'
-```
-
-`force` to delete the user's pod even if the user is connected. `false` is the default value, if a user is connected to his desktop then the `garbagecollector` keep this desktop running. By setting `FORCE` to `true`, the desktop will be deleted every time the `expirein` value is reached, regardless of the connection status.
-
-
-## Apply your `cronjob`
-
-Run the `kubectl` command to apply your manifest file in your namespace.
+Deploy the CronJob to your namespace:
 
 ```
 kubectl apply -f cronjob.yaml -n abcdesktop
 ```
 
-The output looks similar to the following:
-
+Expected output:
 
 ```
 cronjob.batch/abcdesktop-cleaner configured
 ```
 
-## Check the jobs status
+## Monitoring CronJob Execution
 
-After a few minutes, you can check the job status.
-
-Run the `kubectl` command to list jobs in your namespace.
-
+After a few minutes, verify the job execution history:
 
 ```
 kubectl get jobs -n abcdesktop
 ```
 
-The output looks similar to the following:
+Expected output:
 
 ```
 NAME                          STATUS     COMPLETIONS   DURATION   AGE
@@ -123,13 +107,13 @@ abcdesktop-cleaner-29350640   Complete   1/1           5s         8m56s
 abcdesktop-cleaner-29350645   Complete   1/1           5s         3m56s
 ```
 
-You can also list pods in your namespace:
+List completed cleaner pods:
 
 ```
 kubectl get pods -n abcdesktop
 ```
 
-The output looks similar to the following:
+Expected output:
 
 ```
 NAME                                READY   STATUS      RESTARTS   AGE    IP           NODE       NOMINATED NODE   READINESS GATES
@@ -139,7 +123,4 @@ abcdesktop-cleaner-29350675-hlj8z   0/1     Completed   0          2m9s   10.0.2
 [...]
 ```
 
-
-You have successfully configured the `garbagecollector` as a Kubernetes `CronJob` in your namespace.
-
-Every five minutes, the garbage collector checks whether any desktop pods should be deleted.
+The garbage collector CronJob is now running every five minutes and automatically reclaiming idle desktop pod resources.

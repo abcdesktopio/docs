@@ -80,7 +80,7 @@ console/
  
 ### Desktops Page (`/`)
  
-The default landing page. Lists all active user desktop pods in the abcdesktop cluster.
+The default landing page, which lists all active user desktop pods in the abcdesktop cluster.
  
 **Features:**
 - List all desktops with name, status, pod IP, node, and creation timestamp
@@ -95,7 +95,7 @@ The default landing page. Lists all active user desktop pods in the abcdesktop c
   - **Resources Usage** – live CPU % and RAM (MB) charts, polled every 5 seconds
 ### Applications Page (`/apps`)
  
-Manages the application images (Docker-based apps) available in the abcdesktop session.
+Manages the application images (Docker-based apps) available in the abcdesktop platform.
  
 **Features:**
 - List installed applications with icon, name, and short ID
@@ -107,7 +107,7 @@ Manages the application images (Docker-based apps) available in the abcdesktop s
 - Bulk-delete by selecting multiple rows
 ### Ban IP Page (`/banIp`)
  
-Manages IP address bans.
+Manages IP address bans. IP bans prevent connections from specific IPv4 addresses from reaching the platform.
  
 **Features:**
 - List currently banned IPs with ban date and TTL in seconds
@@ -115,7 +115,7 @@ Manages IP address bans.
 - Remove a ban (unban) via the trash icon
 ### Ban Login Page (`/banLogin`)
  
-Manages user login bans.
+Manages user login bans. Login bans prevent specific usernames from authenticating, regardless of the source IP address.
  
 **Features:**
 - List currently banned logins with ban date and TTL in seconds
@@ -134,10 +134,10 @@ GET /API/manager/healtz
 X-API-KEY: <admin-api-key>
 ```
  
-The key must be configured on the `pyos` side, in `od.config` file. If no `apikey` is specified, the **API Key modal** will not appear and the user will be free to use the console.
+The key must be configured on the `pyos` side in the `od.config` file. If no `apikey` is specified, the **API Key modal** does not appear and the administrator has unrestricted access to the console.
 
 !!! note 
-    More information on the API key is available on [this page](https://abcdesktop.pepins.net/advanced/4.4/controllers/controllers/#access-control-filter)
+    More information on the API key is available on [this page](https://www.abcdesktop.io/advanced/4.4/controllers/controllers/#access-control-filter)
  
 ---
  

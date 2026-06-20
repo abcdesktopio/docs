@@ -2,15 +2,11 @@
 
 ## Configuration File
 
-The authentication configuration is set in the `od.config` file. This chapter requires you to update the `od.config` configuration file.
-The update procedure differs depending on whether you are running in Docker mode or Kubernetes mode.
+Authentication in abcdesktop.io is configured in the `od.config` file, which is stored as a Kubernetes ConfigMap. This section requires modifying the `od.config` configuration file. Refer to [Updating the Configuration File](../configure/updateconfiguration.md) for the procedure to apply changes in a Kubernetes cluster.
 
-Read the
-[Update your configuration file and apply the new configuration file](../configure/updateconfiguration.md) section to learn how to apply changes to the `od.config` file in a Kubernetes cluster.
+## The `authmanagers` Dictionary
 
-## The authmanagers Dictionary
-
-The `authmanagers` object is defined as a dictionary:
+The `authmanagers` object is the root authentication configuration dictionary:
 
 ```
 authmanagers: {
@@ -19,33 +15,31 @@ authmanagers: {
   'implicit': {}}
 ```
 
-The `od.config` file defines four types of entries in the `authmanagers` object:
+The `od.config` file supports four `authmanagers` entry types:
 
-* `external`: Used for OpenID Connect (OAuth 2.0) authentication
-* `explicit`: Used for directory service authentication with `LDAP`, `LDAPS`, and `Microsoft Active Directory`
-* `metaexplicit`: Used for `Microsoft Active Directory` trusted relationships, with support for FSP (Foreign Security Principals)
-* `implicit`: Used for anonymous authentication and SSL client certificate authentication
+- `external` — OAuth 2.0 / OpenID Connect authentication (Google, GitHub, Facebook, and other OIDC providers)
+- `explicit` — Directory service authentication via LDAP, LDAPS, or Microsoft Active Directory
+- `metaexplicit` — Microsoft Active Directory cross-domain and cross-forest trust authentication, with support for Foreign Security Principals (FSPs)
+- `implicit` — Anonymous (always-allow) authentication and SSL/TLS client certificate authentication
 
-## Related authmanagers
+## Authentication Manager Reference
 
-| authmanagers type  | Description  |
-|--------------------|--------------|
-|  [`external`](authexternal.md)| For OpenID Connect OAuth 2.0 authentication |
-|  [`metaexplicit`](authexplicit.md) | For Microsoft Active Directory trusted relationships, with support for Foreign Security Principals and Special Identities |
-|  [`explicit`](authexplicit.md) | For LDAP, LDAPS, Active Directory, and Kerberos authentication |
-|  [`implicit`](authimplicit.md) | For anonymous authentication, always-allow authentication, and SSL client certificate authentication |
+| `authmanagers` Type | Description |
+|--------------------|-------------|
+| [`external`](authexternal.md) | OAuth 2.0 / OpenID Connect authentication |
+| [`metaexplicit`](authmetaexplicit.md) | Microsoft Active Directory cross-domain trust authentication with Foreign Security Principal and Special Identity support |
+| [`explicit`](authexplicit.md) | LDAP, LDAPS, Active Directory, and Kerberos authentication |
+| [`implicit`](authimplicit.md) | Anonymous, always-allow, and SSL/TLS client certificate authentication |
 
-## Hands-on
+## Prerequisites
 
-### Requirements
+Before configuring authentication, read:
 
-You should have read:
+- [Updating the Configuration File](../configure/updateconfiguration.md) — Learn how to apply `od.config` changes in a Kubernetes cluster.
 
-* [Update your configuration file and apply the new configuration file](../configure/updateconfiguration.md) — to learn how to apply changes to the `od.config` file in a Kubernetes cluster.
+## Configuring the `authmanagers` Dictionary
 
-### Changing the authmanagers Configuration
-
-Edit your `od.config` pyos configuration file and set the `authmanagers` dictionary with empty values for `implicit`, `explicit`, and `external`:
+Edit the `od.config` file and initialize the `authmanagers` dictionary with empty provider entries for all manager types:
 
 ```
 authmanagers: {
@@ -54,84 +48,69 @@ authmanagers: {
   'implicit': {}}
 ```
 
-??? warning "json dictionary"
+??? warning "JSON Dictionary Syntax"
     ```
-        If you define a dictionary, you must close the `}` on the same last line as the previous one. A simple quick example for authmanagers dictionary.
-        authmanagers: {
-          'external': {},
-          'explicit': {},
-          'implicit': {}}
+    When defining a dictionary, the closing `}` must appear on the same line as the last entry. Example:
+    authmanagers: {
+      'external': {},
+      'explicit': {},
+      'implicit': {}}
     ```
 
-To apply changes, replace the `abcdesktop-config` ConfigMap by running the `kubectl replace` command, then restart the `pyos` deployment:
+To apply the changes, recreate the `abcdesktop-config` ConfigMap and restart the `pyos` deployment:
 
 ```
 kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deployment pyos-od -n abcdesktop
 ```
 
-
-Open your web browser and navigate to `http://localhost:30443`:
+Open a web browser and navigate to `http://localhost:30443`:
 
 ![authmanangers no provider](img/auth-no-provider.png)
 
-The web home page displays only the abcdesktop.io title with no authentication providers available.
+The login page displays no authentication providers until at least one provider is configured.
 
-You can now configure authentication providers for your users.
+## `implicit` Authentication
 
-## authmanagers `implicit`
-
-`implicit` is the simplest configuration mode and is used for anonymous (always-allow) authentication.
-
+`implicit` is the simplest authentication mode. It grants anonymous, always-allow access without requiring user credentials.
 
 ![auth-overview-implicit](img/auth-overview-implicit.png)
 
-Read the [authmanagers implicit](authimplicit.md) section.
+See [Authentication: implicit](authimplicit.md) for configuration details.
 
+## `explicit` Authentication
 
-## authmanagers `explicit`
-
-`explicit` is configured to use a directory service such as LDAP.
-
-![auth-overview-explicit](img/auth-overview-explicit.png)
-
-Read the [authmanagers explicit](authexplicit.md) section.
-
-## authmanagers `metaexplicit`
-
-The `metaexplicit` authentication manager provides security across [multiple domains or forests through domain and forest trust relationships](https://learn.microsoft.com/en-us/entra/identity/domain-services/concepts-forest-trust). It reads the domain of the current user from another domain or forest, then performs the authentication process against the user's home domain.
-
-`metaexplicit` supports Microsoft Active Directory trusted relationships, including Foreign Security Principals and Special Identities.
-
+`explicit` authentication integrates with directory services such as LDAP, LDAPS, and Microsoft Active Directory. Users authenticate by providing a username and password, which are validated against the configured directory server.
 
 ![auth-overview-explicit](img/auth-overview-explicit.png)
 
-Read the [authmanagers meta explicit](authmetaexplicit.md) section.
+See [Authentication: explicit](authexplicit.md) for configuration details.
 
-## authmanagers `external`
+## `metaexplicit` Authentication
 
-`external` uses external OAuth 2.0 authentication services, such as [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2), [GitHub OAuth 2.0](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps), and others.
+The `metaexplicit` authentication manager enables authentication across [multiple Active Directory domains or forests through trust relationships](https://learn.microsoft.com/en-us/entra/identity/domain-services/concepts-forest-trust). It reads the user's domain from a metadirectory attribute and delegates authentication to the user's home domain. This provider supports Foreign Security Principals (FSPs) and Special Identities.
+
+![auth-overview-explicit](img/auth-overview-explicit.png)
+
+See [Authentication: metaexplicit](authmetaexplicit.md) for configuration details.
+
+## `external` Authentication
+
+`external` authentication delegates to external OAuth 2.0 providers, including [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2), [GitHub OAuth 2.0](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps), Facebook, Orange, and any OIDC-compliant identity provider.
 
 ![auth-overview-external](img/auth-overview-external.png)
 
-Read the [authmanagers external](authexternal.md) section.
+See [Authentication: external](authexternal.md) for configuration details.
 
+## Combining Multiple Authentication Providers
 
-## authmanagers Sample Configuration
-        
-After reading the [authmanagers implicit](authimplicit.md), [authmanagers explicit](authexplicit.md), and [authmanagers external](authexternal.md) sections, you will know how to define providers for each type.
+abcdesktop.io supports combining `external`, `explicit`, and `implicit` providers in a single `authmanagers` dictionary. The login page renders a button or form for each configured provider.
 
-You can combine all provider types into a single `authmanagers` dictionary:
-
-- `external`
-- `explicit`
-- `implicit` 
-
-For example, an abcdesktop login page with `external`, `explicit`, and `implicit` providers:
+Example of a combined configuration:
 
 ![allproviders](img/auth-overview-allproviders.png)
 
-This page is generated from the following `authmanagers` configuration:
+The following `authmanagers` configuration produces the combined login page shown above:
 
 ```json
 authmanagers: {
@@ -148,73 +127,4 @@ authmanagers: {
         'userinfo_auth': True,
         'scope': [ 'https://www.googleapis.com/auth/userinfo.email',  'openid' ],
         'userinfo_url': 'https://www.googleapis.com/oauth2/v1/userinfo',
-        'redirect_uri_prefix' : 'https://www.mydomain.com/API/auth/oauth',
-        'redirect_uri_querystring': 'manager=external&provider=google',
-        'authorization_base_url': 'https://accounts.google.com/o/oauth2/v2/auth',
-        'token_url': 'https://oauth2.googleapis.com/token',
-        'policies': {  'acl': { 'permit': [ 'all' ] } }
-     },
-     'github': {
-        'icon': 'img/auth/github_icon.svg',
-        'textcolor': '#000000',
-        'backgroundcolor': '#FFFFFF',
-        'displayname': 'Github',
-        'enabled': True,
-        'basic_auth': True,
-        'userinfo_auth': True,
-        'scope' : [ 'read:user' ], 
-        'client_id': 'xxxx',
-        'client_secret': 'xxxx',
-        'redirect_uri_prefix' : 'https://www.mydomain.com/API/auth/oauth',
-        'redirect_uri_querystring': 'manager=external&provider=github',
-        'authorization_base_url': 'https://github.com/login/oauth/authorize',
-        'token_url': 'https://github.com/login/oauth/access_token',
-        'userinfo_url': 'https://api.github.com/user',
-        'policies': { 'acl' : { 'permit': [ 'all' ] } }
-     }
-    }
-  },
-  'explicit': {
-    'show_domains': True,
-    'default_domain': 'AD',
-    'providers': {
-      'AD': { 
-        'config_ref': 'adconfig', 
-        'enabled': True
-       }
-    }
-  },
-  'implicit': {
-    'providers': {
-      'anonymous': {
-        'displayname': 'Guest',
-        'textcolor': '#000000',
-        'icon': 'img/auth/anonymous_icon.svg',
-        'backgroundcolor': '#FFFFFF',
-        'caption': 'Have a look !',
-        'userid': 'anonymous',
-        'username': 'Anonymous'
-      } } } }
-
-
-adconfig : { 
-  'AD': { 
-      'default' : True, 
-      'ldap_timeout': 15,
-      'ldap_basedn': 'DC=ad,DC=domain,DC=local',
-      'ldap_fqdn': '_ldap._tcp.ad.domain.local',
-      'domain': 'AD',
-      'auth_type': 'KERBEROS',
-      'domain_fqdn': 'AD.DOMAIN.LOCAL',
-      'krb5_conf': '/etc/krb5.conf',
-      'servers'    :  [ 'ldap://192.168.7.12' ],
-      'kerberos_realm': 'AD.DOMAIN.LOCAL',
-      'serviceaccount': { 'login': 'svcaccount', 'password':'account' },
-      'auth_protocol' : { 
-            'ntlm': True, 
-            'cntlm': False, 
-            'kerberos': True, 
-            'citrix': False, 
-            'localaccount': True },
-      'query_dcs' : False } }
 ```

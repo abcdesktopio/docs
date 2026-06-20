@@ -7,7 +7,7 @@
 
 ## Create a Kubernetes cluster 
 
-This documentation describes how to create the `https://demo.gcp.abcdesktop.com` service on `Google Cloud plateform`
+This guide describes how to provision the infrastructure that hosts the `https://demo.gcp.abcdesktop.com` service on Google Cloud Platform.
 
 ### Prerequisites
 
@@ -17,13 +17,13 @@ This documentation describes how to create the `https://demo.gcp.abcdesktop.com`
 
 ### Configure gcloud cli
 
-First you will need to authenticate to your GCP account though the following command.
+Authenticate to your GCP account using the following command.
 
 ```
 gcloud auth login
 ```
 
-Then you will need to configure `gcloud` to set your GCP project as current project by running the following command.
+Configure `gcloud` to set your GCP project as the active project by running the following command.
 
 ```
 gcloud config set project <YOUR_PROJECT_ID>
@@ -31,7 +31,7 @@ gcloud config set project <YOUR_PROJECT_ID>
 
 ### Deploying the cluster with gcloud cli
 
-After that you can deploy your Kubenetes cluster by running the following command.
+Deploy the Kubernetes cluster by running the following command.
 
 ```
 gcloud beta container \
@@ -106,9 +106,9 @@ HorizontalPodAutoscaling,HttpLoadBalancing,NodeLocalDNS,GcePersistentDiskCsiDriv
 ```
 
 !!!note
-    The configurations in the command above are the recommended ones but you can change those if you need. Just make sure to have : 
+    The options shown above represent the recommended configuration, but you may adjust them to suit your environment. Ensure the following options remain enabled:
     - secure boot enabled
     - private nodes enabled 
     - dataplane V2 enabled
 
-Finally click on the `Connect` button and paste the given command into your terminal
+Finally, click the **Connect** button and paste the provided command into your terminal.

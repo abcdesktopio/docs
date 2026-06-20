@@ -2,28 +2,31 @@
 tags:
 ---
 
-## How to request a new feature ?
+# GitHub Issues
 
-To create a new feature, please use the `conf` github repository, by following the link [Ask a feature](https://github.com/abcdesktopio/conf/issues)
+## How to Request a New Feature
 
-- Describe what you are expecting
-- Tag it as *feature* in field **type** on the right.
+Submit a feature request in the `conf` GitHub repository: [Ask a Feature](https://github.com/abcdesktopio/conf/issues)
 
+When creating the issue:
+- Clearly describe the desired behavior or capability.
+- Tag the issue as **feature** using the **type** field on the right.
 
-## How to report an issue ?
+## How to Report an Issue
 
-To create an issue, please use the `conf` github repository, by following the link [Create an issue](https://github.com/abcdesktopio/conf/issues)
+Submit a bug report in the `conf` GitHub repository: [Create an Issue](https://github.com/abcdesktopio/conf/issues)
 
-- **Requirement** Add your `od.config` file
+**Required information:**
 
-  Run the command line to get it
+1. **`od.config` file** — Extract the current configuration:
 
-  ```bash
-  NAMESPACE=abcdesktop
-  kubectl -n $NAMESPACE get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
-  ```
+   ```bash
+   NAMESPACE=abcdesktop
+   kubectl -n $NAMESPACE get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
+   ```
 
-- **Requirement** Add your `abcdesktop.yaml` file
-- Describe what you are expecting
-- Describe what you get
+2. **`abcdesktop.yaml` file** — Include the Kubernetes manifest used for your deployment.
 
+3. **Expected behavior** — Describe what you expected to happen.
+
+4. **Actual behavior** — Describe what actually happened, including any error messages, log output, or screenshots.

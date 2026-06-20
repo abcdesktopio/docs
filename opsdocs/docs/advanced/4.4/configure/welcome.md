@@ -9,21 +9,21 @@ tags:
 
 ### Description
 
-`welcomeinfo` permits to display messages on the login page.
+`welcomeinfo` allows you to display informational messages on the login page.
 
 ```json
 welcomeinfo: { 'welcome': [] }
 ```
 
 
-`welcomeinfo.welcome` is a list of dictionaries, with the following entries
+`welcomeinfo.welcome` is a list of dictionaries, each supporting the following fields:
 
 - `notbefore`: date time
 - `notafter`: date time
 - `script` (optional) `{ 'async': boolean, 'src': uri }` or `{ 'data' : 'javascript code' } `
 - `title` and `information` (optional)
 
-### Sample
+### Example
 
 ```json
 # welcomeinfo
@@ -43,15 +43,14 @@ welcomeinfo: {
 ```
 
 
-The login page shows the messages :
+The login page displays the configured messages:
 
 ![welcome info sample](img/welcomeinfosample.png)
 
 
 ### Script
 
-`welcomeinfo` can also load `javascript` source code, from another uri or from string.
-The `javascript` code is embedded in the abcdesktop login page.
+`welcomeinfo` can also load JavaScript source code from an external URI or from an inline string. The JavaScript code is injected directly into the abcdesktop login page.
 
 #### `data`
 
@@ -78,15 +77,15 @@ welcomeinfo: {
 ```
 
 
-On the web browser console you can read
+In the browser's developer console, you can observe the following output:
 
 ![welcomeinfo console log](img/welcomeinfolog.png)
 
 #### `src` and `async`
 
-`src` and `async` are also supported by `script` to load a URI (`sync` or `async`).
+The `script` field also supports `src` and `async` properties for loading an external URI either synchronously or asynchronously.
 
-This example loads `https://www.googletagmanager.com/gtag/js?id=G-VS25TGNTRZ` with `async` to `False`, and then loads javascript string source code from
+The following example loads the Google Tag Manager script from `https://www.googletagmanager.com/gtag/js?id=G-VS25TGNTRZ` with `async` set to `False`, and then executes the following inline JavaScript:
 
 ```json
       window.dataLayer = window.dataLayer || [];\
@@ -95,7 +94,7 @@ This example loads `https://www.googletagmanager.com/gtag/js?id=G-VS25TGNTRZ` wi
       gtag(\'config\', \'G-VS25TGNTRZ\');
 ```
 
-A complete example to embed Google Tag Manager
+The following is a complete example that embeds Google Tag Manager:
 
 ```json
 welcomeinfo: {
@@ -129,8 +128,8 @@ welcomeinfo: {
       'information': 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     } ] }
 ```
-On the web browser network page you can read the fetch http request to `google-analytics.com` web site.
+In the browser's network panel, you can observe the HTTP fetch request sent to `google-analytics.com`.
 
 ![google analytics](img/welcomeinfogoogle.png)
 
-You have now defined welcome info messages to display maintenance information and optionally inject JavaScript source code into the login page.
+You have now configured `welcomeinfo` messages to display maintenance notifications and optionally inject JavaScript source code into the abcdesktop login page.

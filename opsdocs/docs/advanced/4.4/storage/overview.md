@@ -24,10 +24,10 @@ Maps a user's home directory to a local directory on the Kubernetes node.
 
 ### NFS (PersistentVolumeClaim)
 
-Binds user home directories to a NFS server through Kubernetes PersistentVolumes and PersistentVolumeClaims.
+Binds user home directories to an NFS server through Kubernetes PersistentVolumes and PersistentVolumeClaims.
 
 - Fully persistent across pod restarts and node changes
-- Requires a NFS server and the `nfs-subdir-external-provisioner` Helm chart
+- Requires an NFS server and the `nfs-subdir-external-provisioner` Helm chart
 - See [NFS](nfs.md)
 
 ## I/O Optimization

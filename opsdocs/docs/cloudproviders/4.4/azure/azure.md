@@ -4,7 +4,7 @@
 ## Requirements
 
 - `az` command line interface [azure-cli](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) installed.
-- you need your `Azure Subscription Name`, your `Username` and `Password`
+- You need your `Azure Subscription Name`, `Username`, and `Password`.
 - A running Azure Kubernetes Service cluster that is `ready` and running.
 
 ## Azure console overview
@@ -13,7 +13,7 @@ Create a new Azure Kubernetes Service cluster.
 
 ![azure console kubernetes create cluster](img/azure-aks-create-kubernetes-cluster.png)
 
-> Options and features are set by default.
+> All options and features use their default values.
 
 In this example, the Kubernetes cluster is named `abcdesktopkubernetescluster`.
 This screenshot shows the Azure Kubernetes Service console, displaying the **Node pools** and **Networking** configuration.
@@ -23,7 +23,7 @@ This screenshot shows the Azure Kubernetes Service console, displaying the **Nod
 
 ## Check your caller-identity
 
-If you don't have already done it, use the `az login` command line
+If you have not already done so, run the `az login` command:
 
 ```
 az login
@@ -54,7 +54,7 @@ For example
 az aks get-credentials --resource-group abcdesktop --name abcdesktopkubernetescluster --overwrite-existing
 ```
 
-## Get your kubernetes cluster informations
+## Get your Kubernetes cluster information
 
 Run the `kubectl cluster-info` command line to confirm that the `kubectl` command can communicate with your Azure cluster.
 
@@ -84,14 +84,14 @@ To get more details about the install process, please read the [Setup guide](htt
 
 ## Connect to your abcdesktop service 
 
-By default install script is listening on a free tcp port `:30443` and is using a `kubectl port-forward` command line to reach http web service `:80`
+By default, the install script listens on TCP port `:30443` and uses a `kubectl port-forward` command to forward traffic to the HTTP service on port `:80`.
 
-Open your web browser to `http://localhost:30443`
+Open your web browser and navigate to `http://localhost:30443`.
 
 ![abcdesktop login](../img/abcdesktop-hompage-port30443.png)
 
  
-Login as user `Philip J. Fry` with the password `fry`
+Log in as user `Philip J. Fry` with the password `fry`
 
 ![abcdesktop login as fry](../img/abcdesktop-hompage-port30443-login-fry.png)
  
@@ -103,7 +103,7 @@ After the image-pulling process completes, you get your first abcdesktop session
 ## Add applications to your desktop
 
 
-Using the previous terminal shell, run the application install script 
+Using the same terminal session, run the application install script:
 
 ```
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-{{ abcdesktop.latest_release }}.sh | bash
@@ -111,17 +111,17 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pul
 
 To get more details about the install applications process, please read the [Setup applications guide](https://www.abcdesktop.io/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop_applications/)
 
-Then reload the web page with the desktop of `Philip J. Fry`
-New applications are now listed in the dock of `plasmashell`
+Then reload the web page with the desktop of `Philip J. Fry`.
+New applications are now listed in the `plasmashell` dock.
 
 
 ![abcdesktop for fry with applications](../img/abcdesktop-hompage-port30443-login-fry-applications.png)
 
 Start Firefox application
 
-> The first run may involve waiting for the image pulling process to finish
+> The first run may require waiting for the image-pulling process to complete.
 
-Go to `https://mylocation.org` website to check where your pod is running.  In my case for the region `North Europe`, the desktop is located near `Dublin` city in `Ireland`. 
+Navigate to `https://mylocation.org` to check where your pod is running. For the `North Europe` region, the desktop is located near Dublin, Ireland.
 
 
 ![abcdesktop for fry with applications](img/abcdesktop-firefox-azure-north-europe.png)

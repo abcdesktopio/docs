@@ -5,87 +5,82 @@ tags:
   - bash
 ---
 
-# Add applications with a script
+# Installing Applications with the Default Script
 
 === "Linux or macOS"
 
-    ## Quick application install
+    ## Quick Application Installation
 
-    > Quick installation can be run on Linux or macOS operation system.
+    > The quick application installation script runs on Linux and macOS operating systems.
 
-    Download and run the `pullapps-{{ abcdesktop.latest_release }}.sh` script :
+    Download and execute the `pullapps-{{ abcdesktop.latest_release }}.sh` script to install the default set of application images:
 
     ```bash
     curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-{{ abcdesktop.latest_release }}.sh | bash
     ```
 
-    You can watch the youtube video sample. This video describes the application installation process on a fresh kubernetes cluster.
+    The following video demonstrates the application installation process on a freshly provisioned Kubernetes cluster:
 
     <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/JSIjnNA6kNE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
 
 
-    ## Connect to your abcdesktop
+    ## Connecting to abcdesktop.io
 
-    The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.
+    After the script completes, the `pyos` API server receives new image registration events. Refresh the browser tab to display the newly installed applications.
 
-    Now reconnect to your abcdesktop.
-
-    Open your navigator to http://[your-ip-hostname]:30443/
+    Navigate to your abcdesktop.io instance:
 
     ```url
     http://localhost:30443/
     ```
 
-    The new applications are installed, and ready to run.
+    The installed applications are now available in the desktop environment.
 
     ![applications after upload json](img/abcdesktop-4-1-loginanonymous-with-applications.png)
 
-    And then you can start new applications like `Firefox`
+    You can now launch installed applications. For example, launching Firefox demonstrates **Remote Browser Isolation (RBI)**: Firefox runs entirely inside an isolated container on the Kubernetes cluster, and only rendered pixels are streamed to the client browser.
 
-    ![Start Firefix application](img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png)
+    ![Start Firefox application](img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png)
 
-    Another example with console admin interface usage
+    The following video demonstrates application management using the admin console:
 
     <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/Dah78eAJykw" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
 
 === "Windows"
 
-    ## Quick application install
+    ## Quick Application Installation
 
-    > Quick installation can be run on Windows operation system.
+    > The quick application installation script runs on Windows operating systems.
 
-    Download and run the `pullapps-{{ abcdesktop.latest_release }}.ps1` script :
+    Download and execute the `pullapps-{{ abcdesktop.latest_release }}.ps1` PowerShell script:
 
     ```bash
     curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-{{ abcdesktop.latest_release }}.ps1 | bash
     ```
 
-    You can watch the youtube video sample. This video describes the application installation process on a fresh kubernetes cluster.
+    The following video demonstrates the application installation process on a freshly provisioned Kubernetes cluster:
 
     <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/JSIjnNA6kNE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
 
 
-    ## Connect to your abcdesktop
+    ## Connecting to abcdesktop.io
 
-    The API server receives a new image event from docker daemon. To run the new applications just refresh you web browser page.
+    After the script completes, refresh the browser tab to display the newly installed applications.
 
-    Now reconnect to your abcdesktop.
-
-    Open your navigator to http://[your-ip-hostname]:30443/
+    Navigate to your abcdesktop.io instance:
 
     ```bash
     http://localhost:30443/
     ```
 
-    The new applications are installed, and ready to run.
+    The installed applications are now available in the desktop environment.
 
     ![applications after upload json](img/abcdesktop-4-1-loginanonymous-with-applications.png)
 
-    And then you can start new applications like `Firefox`
+    You can now launch installed applications. For example, launching Firefox demonstrates **Remote Browser Isolation (RBI)**: Firefox runs entirely inside an isolated container on the Kubernetes cluster, and only rendered pixels are streamed to the client browser.
 
-    ![Start Firefix application](img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png)
+    ![Start Firefox application](img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png)
 
-    Another example with console admin interface usage
+    The following video demonstrates application management using the admin console:
 
     <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/Dah78eAJykw" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe></div>
-

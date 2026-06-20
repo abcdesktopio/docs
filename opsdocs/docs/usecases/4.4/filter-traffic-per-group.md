@@ -12,8 +12,7 @@
 
 ## Use case description
 
-As an organistaion, you may have several departments, such as sales, accounting, IT, etc. And you may want to control access based on department. For exemple, an IT employee shouldn't have access to accounting documents.  
-With abcdesktop, you can meet these kind of needs by creating rules bases on the groups to which users belong.
+As an organization, you may have multiple departments—such as sales, accounting, and IT—each with different access requirements. For example, an IT employee should not have access to accounting documents. With abcdesktop, you can address these requirements by creating rules based on the groups to which users belong.
 
 ```mermaid
 ---
@@ -59,9 +58,9 @@ sequenceDiagram
 
 ## How does abcdesktop manage groups
 
-Let's assume that the users present your authentication system are already affected to groups. In our example, we have `	Philip J. Fry` a.k.a. `fry`, and `Hubert J. Farnsworth` a.k.a. `professor`, respectively members of `ship_crew` and `admin_staff` groups (cf [https://github.com/rroemhild/docker-test-openldap](https://github.com/rroemhild/docker-test-openldap)).  
+Assume that users registered in your authentication system are already assigned to groups. In this example, `Philip J. Fry` (known as `fry`) and `Hubert J. Farnsworth` (known as `professor`) are members of the `ship_crew` and `admin_staff` groups, respectively (cf [https://github.com/rroemhild/docker-test-openldap](https://github.com/rroemhild/docker-test-openldap)).  
 
-Once authenticated, abcdesktop control plane reads the user's infos, and will create the user's pod with its groups specified as labels.
+Once authenticated, the abcdesktop control plane reads the user's information and creates the user pod with the user's group memberships applied as pod labels.
 
 ```
 kubectl get pods -n abcdesktop
@@ -80,7 +79,7 @@ router-od-867f5576dd-p9hj5      1/1     Running   0             2d19h
 speedtest-od-78cdbdd9c6-vphfl   1/1     Running   0             2d19h
 ```
 
-Run a `describe pod` command on both user pod to check if the group label is present.
+Run the `kubectl describe pod` command on each user pod to verify that the group labels are present.
 
 ??? note "show details"
     ```
@@ -147,19 +146,18 @@ Run a `describe pod` command on both user pod to check if the group label is pre
     [...]
     ```
 
-You should see labels `shipcrew=true` for `fry` and `adminstaff=true` for `professor`
+Confirm that the label `shipcrew=true` appears on the `fry` pod and `adminstaff=true` appears on the `professor` pod.
 
 ## Create access rules based on groups
 
-To monitor pods incoming (ingress) and outgoing (egress) traffic in Kubernetes, we ordinarily use [NetworkPolicies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). But network policies does not offer the possibility to filter based on FQDNs, you can only filter by IPs. So that means, if the service you want to grant access to has more than one IP, you need to specify all IPs in the filter, it becomes even worse if it has dynamic IPs that are constantly changing.  
-This is why we use `cilium` as network provider for our cluster, so that we can apply [CiliumNetworkPolicies](https://docs.cilium.io/en/stable/network/kubernetes/policy/#ciliumnetworkpolicy). Those are very similar to the standard network policies but provides fuctionalites that are not yet supported, like DNS based rules.  
+To control incoming (ingress) and outgoing (egress) traffic for pods in Kubernetes, operators typically use [NetworkPolicies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). However, standard Kubernetes `NetworkPolicy` resources do not support filtering based on fully qualified domain names (FQDNs); they only support filtering by IP address or CIDR range. If the target service uses multiple IP addresses, each address must be listed explicitly in the policy—a significant maintenance burden, especially when addresses change dynamically. This is why Cilium is used as the cluster network provider: it supports [CiliumNetworkPolicy](https://docs.cilium.io/en/stable/network/kubernetes/policy/#ciliumnetworkpolicy) resources, which extend the standard Kubernetes network policy API with additional capabilities not yet available natively, such as DNS-based egress filtering rules.
 
 !!! warning
-    It is important to keep in mind that `CiliumNetworkPolicies` operates on a whitelist basis. That means that once an egress rule is applied, everything that is not clearly indicate as authorized is forbidden.
+    `CiliumNetworkPolicy` resources operate on an allowlist (default-deny) basis. Once an egress rule is applied to an endpoint, all traffic not explicitly permitted is denied.
 
-In our example, we will allow users from the `shipcrew` group to access `Facebook`, and users from the `adminstaff` group to access `Youtube`.
+In this example, users belonging to the `shipcrew` group are granted access to Facebook, and users in the `adminstaff` group are granted access to YouTube.
 
-First create a file called `netpol-allow-facebook-shipcrew.yaml` and paste the following content
+Create a file named `netpol-allow-facebook-shipcrew.yaml` with the following content.
 
 ```yaml
 apiVersion: cilium.io/v2
@@ -196,14 +194,14 @@ spec:
            protocol: TCP
 ```
 
-Save and apply it by running the following command
+Apply the policy to the cluster.
 
 ```
 kubectl apply -f netpol-allow-facebook-shipcrew.yaml -n abcdesktop
 ciliumnetworkpolicy.cilium.io/allow-facebook-shipcrew configured
 ```
 
-Now you can check if the policy exists by running this command 
+Verify that the policy was created successfully.
 
 ```
 kubectl get ciliumnetworkpolicy -n abcdesktop
@@ -211,11 +209,11 @@ NAME                       AGE
 allow-facebook-shipcrew    27h
 ```
 
-Your pod should now have access to Facebook and nothing else
+User pods belonging to the `shipcrew` group now have access to Facebook. All other external destinations remain blocked.
 
 ![ciliumnetpol-facebook-access](../../img/ciliumNetpol_access_facebook.png)
 
-Now create a file called `netpol-allow-youtube-adminstaff.yaml` and paste the following content
+Create a file named `netpol-allow-youtube-adminstaff.yaml` with the following content.
 
 ```yaml
 apiVersion: cilium.io/v2
@@ -251,14 +249,14 @@ spec:
            protocol: TCP
 ```
 
-Save and apply it by running the following command
+Apply the policy to the cluster.
 
 ```
 kubectl apply -f netpol-allow-youtube-adminstaff.yaml -n abcdesktop
 ciliumnetworkpolicy.cilium.io/allow-youtube-adminstaff configured
 ```
 
-Now you can check if the policy exists by running this command 
+Verify that the policy was created successfully.
 
 ```
 kubectl get ciliumnetworkpolicy -n abcdesktop
@@ -267,8 +265,8 @@ allow-facebook-shipcrew    27h
 allow-youtube-adminstaff   27h
 ```
 
-Your pod should now have access to Youtube and nothing else
+User pods belonging to the `adminstaff` group now have access to YouTube. All other external destinations remain blocked.
 
 ![ciliumnetpol-youtube-access](../../img/ciliumNetpol_access_youtube.png)
 
-Great ! Now you can manage your organization's network access based on user groups.
+Network access is now controlled per user group using Cilium network policies.

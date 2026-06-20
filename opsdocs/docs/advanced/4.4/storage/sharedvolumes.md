@@ -7,17 +7,17 @@ tags:
 
 # Shared Volumes
 
-Users may need to access shared files. If you cannot create `PersistentVolumes` on your cluster, this page describes how to access a shared `/mnt/shared_data` hostPath using `rules`.
+Users may need to access shared files across sessions or desktops. This page describes two methods for mounting a shared directory inside user pods: using `hostPath` for node-local storage, and using a `PersistentVolumeClaim` backed by an NFS server for cluster-wide accessibility. Access to shared volumes is controlled through `rules` defined in `desktop.policies`.
 
 
 ## Check your rules in `authmanagers` `ldapconfig`
 
 !!! note
-    The `ldapconfig` for demo ldap server add few default rules. To get more information about the ldap server read the [docker-test-openldap](https://github.com/abcdesktopio/docker-test-openldap) web page.
+    The `ldapconfig` for the demo LDAP server adds a few default rules. To get more information about the ldap server read the [docker-test-openldap](https://github.com/abcdesktopio/docker-test-openldap) web page.
 
-The user `Philip J. Fry` is member of the group `ship_crew`.
+The user `Philip J. Fry` is a member of the group `ship_crew`.
 
-Detail of `ship_crew` group `cn=ship_crew,ou=people,dc=planetexpress,dc=com`
+Details of the `ship_crew` group `cn=ship_crew,ou=people,dc=planetexpress,dc=com`
 
 | Attribute        | Value            |
 | ---------------- | ---------------- |
@@ -61,14 +61,14 @@ ldapconfig : {
 	            } } }
 ```
 
-This provider defines 3 rules :
+This provider defines three rules:
 
 - `labeltrue` always for all users
 - `shipcrew` if the user is member of `cn=ship_crew,ou=people,dc=planetexpress,dc=com` group
-- `adminstaff` if the user is memberof `cn=admin_staff,ou=people,dc=planetexpress,dc=com` group
+- `adminstaff` if the user is a member of `cn=admin_staff,ou=people,dc=planetexpress,dc=com` group
 
 
-Start your web brower and login in as `Philip J. Fry` to you abcdesktop web service.
+Open your web browser and log in as `Philip J. Fry` in your abcdesktop web service.
 
 - Open the `Menu` |  `User` tab
 
@@ -105,37 +105,37 @@ desktop.policies: {
 This policy adds a new volume `mntmyproject` defined as a `hostPath` to the user's pod and mounts it as `/mnt/shared_data`.
 
 
-Save your `od.config` file
+Save your `od.config` file.
 
 ### Apply the new config file 
 
-Replace the previous configmap
+Replace the previous ConfigMap:
 
 ```
 NAMESPACE=abcdesktop
 kubectl create -n $NAMESPACE configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n $NAMESPACE -f -
 ```
 
-Expected output 
+Expected output:
 
 ```
 configmap/abcdesktop-config replaced
 ```
 
-Restart pyos to apply the new config map
+Restart pyos to apply the new ConfigMap:
 
 ```
 NAMESPACE=abcdesktop
 kubectl rollout restart deployment pyos-od -n $NAMESPACE
 ```
 
-Expected output 
+Expected output:
 
 ```
 deployment.apps/pyos-od restarted
 ```
 
-Your new config is ready to use 
+Your new configuration is now active.
 
 
 ### Restart a new desktop as `Philip J. Fry`
@@ -159,7 +159,7 @@ NAMESPACE=abcdesktop
 kubectl desribe pods fry-06c5f -n $NAMESPACE
 ```
 
-The mount for `hostpath-mntmyproject-fry` is defined to `/mnt/shared_data`
+The mount for `hostpath-mntmyproject-fry` is mapped to `/mnt/shared_data`.
 
 ```
     Mounts:
@@ -188,7 +188,7 @@ The volume `hostpath-mntmyproject-fry` is defined as
 ```
 
 
-A new `Mount` is defined as `/mnt/shared_data from hostpath-mntmyproject-fry (rw)` and a new volume hostpath-mntmyproject-fry is defined as `HostPath` to the `Path` `/mnt`
+A new mount `/mnt/shared_data from hostpath-mntmyproject-fry (rw)` is added, backed by the `HostPath` volume `hostpath-mntmyproject-fry` pointing to `/mnt`.
 
 > Check that your file system's permissions are set to your users
 
@@ -214,9 +214,9 @@ Now start a desktop as `Turanga Leela`. As a member of the `shipcrew` group, you
 
 ### Create nfs type `PersistentVolume` 
 
-To begin with, you will have to create a nfs type `PersistentVolume` that will be bound to your nfs server.  
+You must first create an NFS-type `PersistentVolume` bound to your NFS server.
 
-Here is an example of yaml file that describes a nfs type `PersistentVolume`. Let's call it `nfs-pv-shared-data-abcdesktop.yaml`
+The following YAML defines an NFS-type `PersistentVolume`. Save it as `nfs-pv-shared-data-abcdesktop.yaml`:
 
 ```yaml
 apiVersion: v1
@@ -238,7 +238,7 @@ spec:
     server: X.X.X.X     # Here goes your nfs server IP address
 ```
 
-Then apply by running this command : 
+Apply it by running the following command:
 
 ```
 kubectl apply -f nfs-pv-shared-data-abcdesktop.yaml
@@ -246,9 +246,9 @@ kubectl apply -f nfs-pv-shared-data-abcdesktop.yaml
 
 ### Create `PersistentVolumeClaim`
 
-Now that the `PersistentVolume` is created and linked to the NFS server, you need to create a `PersistentVolumeClaim` that will be bound to the previously created `shared-shipcrew-pv` `PersistentVolume`.
+With the `PersistentVolume` created and bound to the NFS server, create a `PersistentVolumeClaim` to reference the `shared-shipcrew-pv` `PersistentVolume`.
 
-Paste the following lines to a `nfs-pvc-shared-data-abcdesktop.yaml` file
+Save the following content to a `nfs-pvc-shared-data-abcdesktop.yaml` file:
 
 ```yaml
 apiVersion: v1
@@ -267,16 +267,16 @@ spec:
 ```
 
 !!! warning
-    It is very important to set accessModes to `ReadWriteMany`, otherwise you won't be able to mount several user pods on the same PVC, so the shared data aspect does not make sense anymore.
+    Setting `accessModes` to `ReadWriteMany` is required. Without it, the PVC cannot be mounted simultaneously across multiple user pods, which defeats the purpose of shared storage.
 
-Then apply it by running the following command
+Apply it by running the following command:
 
 ```
 NAMESPACE=abcdesktop
 kubectl apply -f nfs-pvc-shared-data-abcdesktop.yaml -n $NAMESPACE
 ```
 
-You can check if both of the PV and PVC have been correctly bounded
+Verify that both the PV and PVC have been correctly bound:
 
 ```
 NAMESPACE=abcdesktop
@@ -316,37 +316,37 @@ desktop.policies: {
 This policy adds a new volume `shared-shipcrew-pvc` defined as a `pvc` to the user's pod and mounts it as `/mnt/shared_data_pvc`.
 
 
-Save your `od.config` file
+Save your `od.config` file.
 
 ### Apply the new config file 
 
-Replace the previous configmap
+Replace the previous ConfigMap:
 
 ```
 NAMESPACE=abcdesktop
 kubectl create -n $NAMESPACE configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n $NAMESPACE -f -
 ```
 
-Expected output 
+Expected output:
 
 ```
 configmap/abcdesktop-config replaced
 ```
 
-Restart pyos to apply the new config map
+Restart pyos to apply the new ConfigMap:
 
 ```
 NAMESPACE=abcdesktop
 kubectl rollout restart deployment pyos-od -n $NAMESPACE
 ```
 
-Expected output 
+Expected output:
 
 ```
 deployment.apps/pyos-od restarted
 ```
 
-Your new config is ready to use 
+Your new configuration is now active.
 
 
 ### Restart a new desktop as `Philip J. Fry`
@@ -369,7 +369,7 @@ fry-06c5f   4/4     Running   0          3m24s
 kubectl desribe pods fry-06c5f -n abcdesktop
 ```
 
-The mount for `pvc-shared-shipcrew-pvc-fry` is defined to `/mnt/shared_data_pvc`
+The mount for `pvc-shared-shipcrew-pvc-fry` is mapped to `/mnt/shared_data_pvc`.
 
 ```
     Mounts:

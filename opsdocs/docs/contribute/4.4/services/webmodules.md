@@ -4,7 +4,7 @@
 
 ### Purpose
 
-`webModules` is the frontend web content repository for the abcdesktop platform. It contains all the HTML, JavaScript, CSS (written in LESS), images, and supporting assets that make up the user-facing desktop interface. It is served by an nginx container (`oc.nginx`) and constitutes the client side that users interact with directly in their browser.
+`webModules` is the frontend web content repository for the abcdesktop platform. It contains all the HTML, JavaScript, CSS (written in LESS), images, and supporting assets that make up the user-facing desktop interface. The compiled output is served by an nginx container (`oc.nginx`) and constitutes the client-side application that users interact with directly in their browser.
 
 ---
 
@@ -182,7 +182,7 @@ make prod
 
 ## Customization: `transpile/config/ui.json`
 
-`ui.json` is the **branding configuration file**. Editing it and rebuilding the image is the primary way to customise the frontend appearance.
+`ui.json` is the **branding configuration file**. Editing it and rebuilding the image is the primary way to customize the frontend appearance.
 
 ### Structure
 
@@ -229,7 +229,7 @@ All LESS stylesheets and SVG icons use these color tokens. Changing them in `ui.
 | `@purple` | `#A885D8` | Purple accent |
 
 !!! note 
-    More information about UI customization and how to apply your own look & feel on [this page](https://abcdesktop.pepins.net/advanced/4.4/configure/customfrontend/)
+    More information about UI customization and how to apply your own look & feel on [this page](https://www.abcdesktop.io/advanced/4.4/configure/customfrontend/)
 
 ---
 
@@ -362,4 +362,4 @@ The GitHub Actions workflow (`.github/workflows/main.yml`) runs on every push, p
 
 1. Build and push `oc.nginx.builder:<branch>` (multi-arch) to `ghcr.io`
 2. Build and push `oc.nginx:<branch>` (multi-arch, `TARGET=prod`) to `ghcr.io`
-3. Run **Trivy** vulnerability scanner on the produced image (CRITICAL and HIGH severities)
+3. Run the **Trivy** vulnerability scanner on the produced image, reporting CRITICAL and HIGH severity findings

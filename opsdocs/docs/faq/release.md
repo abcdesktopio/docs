@@ -4,20 +4,20 @@ tags:
   - release
 ---
 
-# What's new in the release ?
+# Release History
 
-## Release history
+## What's New in This Release?
 
-| Release  | Status     | Date       | Requirements               | Applications | Documentation  |
-|----------|------------|------------|----------------------------|--------------|----------------|
-|  4.4     | Release candidate     | 01/06/2026 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support | in progress |
-|  4.3     | stable     | 01/01/2026 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
-|  4.2     | stable     | 01/06/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
-|  4.1     | deprecated     | 01/06/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
-|  4.0     | deprecated     | 01/01/2025 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, MPEG sound support |  Release |
-|  3.4     | deprecated | 01/09/2024 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, WebRTC sound support |  Release |
-|  3.2     | deprecated | 01/02/2024 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, WebRTC sound support |  Release |
-|  3.1     | deprecated | 10/03/2023 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container, change PVC and PV support | Release |
-|  3.0     | deprecated | 09/03/2022 | kubernetes >= 1.24, all container engine  | An application is a pod or an ephemeral container |  Release |
-|  2.9     | deprecated | 29/08/2022 | require kubernetes < 1.24 and dockerd as container engine  | An application is a pod or a docker container | removed |
-|  1.1     | deprecated | 09/15/2021 | dockerd for personnal use and kubernetes | An application is a docker container | removed |
+| Release | Status | Release Date | Kubernetes Requirements | Key Features | Documentation |
+|---|---|---|---|---|---|
+| 4.4 | Release Candidate | 2026-06-01 | Kubernetes >= 1.24, any container runtime | Applications run as pods or ephemeral containers; MPEG audio support | In progress |
+| 4.3 | Stable | 2026-01-01 | Kubernetes >= 1.24, any container runtime | Applications run as pods or ephemeral containers; MPEG audio support | Released |
+| 4.2 | Stable | 2025-06-01 | Kubernetes >= 1.24, any container runtime | Applications run as pods or ephemeral containers; MPEG audio support | Released |
+| 4.1 | Deprecated | 2025-06-01 | Kubernetes >= 1.24, any container runtime | Applications run as pods or ephemeral containers; MPEG audio support | Released |
+| 4.0 | Deprecated | 2025-01-01 | Kubernetes >= 1.24, any container runtime | Applications run as pods or ephemeral containers; MPEG audio support | Released |
+| 3.4 | Deprecated | 2024-09-01 | Kubernetes >= 1.24, any container runtime | Applications run as pods or ephemeral containers; WebRTC audio support | Released |
+| 3.2 | Deprecated | 2024-02-01 | Kubernetes >= 1.24, any container runtime | Applications run as pods or ephemeral containers; WebRTC audio support | Released |
+| 3.1 | Deprecated | 2023-03-10 | Kubernetes >= 1.24, any container runtime | Applications run as pods or ephemeral containers; updated PVC and PV support | Released |
+| 3.0 | Deprecated | 2022-09-03 | Kubernetes >= 1.24, any container runtime | Applications run as pods or ephemeral containers | Released |
+| 2.9 | Deprecated | 2022-08-29 | Kubernetes < 1.24, Docker (dockerd) required as container runtime | Applications run as pods or Docker containers | Removed |
+| 1.1 | Deprecated | 2021-09-15 | Docker (dockerd) for personal use; Kubernetes for multi-user deployments | Applications run as Docker containers | Removed |

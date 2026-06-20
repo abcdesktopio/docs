@@ -1,12 +1,12 @@
-# Authentication `implicit`
+# Authentication: `implicit`
 
-## authmanagers `implicit`
+## Overview
 
-The `implicit` provider is the simplest configuration mode and is used for anonymous (always-allow) authentication.
+The `implicit` authentication provider is the simplest configuration mode available in abcdesktop.io. It grants anonymous, always-allow access without requiring user credentials, making it appropriate for demonstration deployments, open-access environments, and functional testing scenarios.
 
-The provider is defined as a dictionary object and contains an `anonymous` provider.
+The `implicit` provider dictionary must contain a `providers` key, which in turn holds one or more named provider entries. The `anonymous` provider unconditionally permits authentication and assigns the user identifier specified by the `userid` field in the provider configuration.
 
-The `anonymous` provider always permits authentication and generates a UUID as the user ID. It is used to bypass the authentication process in demonstration mode.
+## Configuration
 
 ```
 'implicit': {
@@ -24,9 +24,7 @@ The `anonymous` provider always permits authentication and generates a UUID as t
     }}
 ```
 
-The `anonymous` provider always permits authentication and generates a UUID as the user ID.
-
-Set the `authmanagers` dictionary in your configuration file as follows:
+Set the full `authmanagers` dictionary in your `od.config` file as follows:
 
 ```
 authmanagers: {
@@ -48,17 +46,17 @@ authmanagers: {
   }}
 ```
 
-[Update your configuration file and apply the new configuration file](../configure/updateconfiguration.md)
+[Apply the updated configuration file](../configure/updateconfiguration.md) to your Kubernetes cluster.
 
-Open a new web browser and navigate to your abcdesktop URL. You should see the login page with the Anonymous button:
+## Verifying the Configuration
+
+Open a web browser and navigate to your abcdesktop.io URL. The login page displays a **Sign-In Anonymously** button:
 
 ![login page Anonymous](img/anonymous.png)
 
-Click the `Sign-In Anonymously` button.
+Click **Sign-In Anonymously** to receive a desktop session as the `anonymous` user.
 
-You will receive a desktop session as the `anonymous` user.
-
-List all your desktop pods:
+Verify the running desktop pod:
 
 ```
 kubectl get pods -l type=x11server -n abcdesktop
@@ -66,9 +64,7 @@ NAME              READY   STATUS    RESTARTS   AGE
 anonymous-3806b   3/3     Running   0          9m22s
 ```
 
-In this example, the pod name is `anonymous-3806b`.
-
-Run a bash shell inside the pod:
+Open a shell inside the pod to confirm the user context:
 
 ```
 kubectl exec -it anonymous-3806b -n abcdesktop -- bash
@@ -77,7 +73,4 @@ anonymous@abcdesktop:~$ id
 uid=4096(anonymous) gid=4096(anonymous) groups=4096(anonymous)
 ```
 
-The session runs as the `anonymous` user with `uid=4096` and `gid=4096`.
-
-
-You have successfully verified how the implicit authentication configuration works.
+The session runs as the `anonymous` user with `uid=4096` and `gid=4096`. The `implicit` authentication configuration is working correctly.

@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - a Kubernetes cluster with abcdesktop installed
-- [helm](https://helm.sh/fr/) command line
+- [helm](https://helm.sh/fr/) CLI
 
 To make the user's home directory persistent using NFS, you will need to:
 - Set up your own NFS server
@@ -13,7 +13,7 @@ To make the user's home directory persistent using NFS, you will need to:
 
 ### Server install
 
-On a dedicated machine, please install the following packages
+On a dedicated machine, install the following packages:
 
 ```
 apt-get install nfs-kernel-server nfs-common
@@ -21,7 +21,7 @@ apt-get install nfs-kernel-server nfs-common
 
 ### Server configuration
 
-Once installed, you need to create the folder that you will export
+Once installed, create the directory that you will export:
 
 ```
 mkdir /data/abcdesktop_nfs
@@ -61,7 +61,7 @@ exportfs -v
 ### Install nfs-subdir-external-provisioner
 
 !!! note 
-    If you want more information about `nfs-subdir-external-provisioner` please visit [this page](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
+    For more information about `nfs-subdir-external-provisioner`, refer to [this page](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner).
 
 First, install a provisioner in your cluster. This example uses `nfs-subdir-external-provisioner` for its dynamic subdirectory creation capability.
 
@@ -117,7 +117,7 @@ nfs-user-storage-abcdesktop   cluster.local/nfs-subdir-external-provisioner   Re
 
 Now, you need to configure pyos to bind user home directories to the exported NFS folder by updating the `od.config` file.
 
-First, change `desktop.homedirectorytype` variable from `None` to `persistentVolumeClaim`.
+First, change the `desktop.homedirectorytype` variable from `None` to `persistentVolumeClaim`.
 
 ```
 desktop.homedirectorytype: 'persistentVolumeClaim'
@@ -144,7 +144,7 @@ desktop.persistentvolumeclaim: {
 !!! note 
     There is no need to specify a PersistentVolume template for pyos, as `nfs-subdir-external-provisioner` handles it automatically.
 
-Then, configure pyos to delete the PersistentVolumeClaim when a user's pod is deleted, while retaining the PersistentVolume consistent with the `Retain` reclaim policy defined for the storage class.
+Then, configure pyos to delete the PersistentVolumeClaim upon pod deletion while retaining the PersistentVolume, consistent with the `Retain` reclaim policy defined for the storage class.
 
 ```
 desktop.removepersistentvolume: False

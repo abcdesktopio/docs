@@ -99,7 +99,7 @@ function ngxexitresponse(status, msg)
 end
 ```
 
-Returns HTTP error responses with logging. Uses `ngx.exit(ngx.HTTP_OK)` after setting `ngx.status` to properly interrupt execution.
+Returns HTTP error responses with logging. Uses `ngx.exit(ngx.HTTP_OK)` after setting `ngx.status` to properly interrupt execution and flush the response.
 
 #### 3. RSA Decryption
 
@@ -117,6 +117,8 @@ The JWT payload contains a `hash` field that is:
 1. Base64-encoded
 2. RSA-encrypted with the server's public key
 3. Contains the target pod hostname
+
+Decrypting the `hash` field yields the DNS hostname of the user's desktop pod, which nginx uses as the `proxy_pass` target.
 
 #### 4. Cache Lookup
 
@@ -218,9 +220,9 @@ Pattern proxy_pass backend: `http://$pyos_fqdn:$pyos_service_port`:
 
 **Key directives:**
 
-- `worker_processes auto` - Scales to available CPUs
-- `daemon off` - Required for container foreground execution
-- `env` directives - Exposes environment variables to nginx
+- `worker_processes auto` — Scales worker processes to the number of available CPUs
+- `daemon off` — Required for container foreground execution
+- `env` directives — Exposes environment variables to Lua scripts running inside nginx
 
 - **Lua shared dictionaries:**
   - `rsakeymap` (1MB) - RSA key content cache

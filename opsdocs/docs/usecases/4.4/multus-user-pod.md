@@ -62,9 +62,9 @@ cilium config set cni-exclusive false
 
 A `NetworkAttachmentDefinition` is a Kubernetes custom resource that describes how Multus should attach an additional network interface to a pod. You must create one for each VLAN you want to expose to user pods.
 
-In this example, we configure a macvlan interface bound to VLAN ID 200 (`eno1.200`). Adapt the `master` nterface, subnet, IP range, and gateway to match your network topology.
+In this example, we configure a macvlan interface bound to VLAN ID 200 (`eno1.200`). Adapt the `master` interface, subnet, IP range, and gateway to match your network topology.
 
-Here is an example of `macvlan-conf-1.yaml` file.
+The following is an example `macvlan-conf-1.yaml` configuration file.
 
 ```yaml
 apiVersion: "k8s.cni.cncf.io/v1"
@@ -145,7 +145,7 @@ spec:
     | `192.168.0.0/16` | RFC 1918 — private |
     | `169.254.0.0/16` | RFC 3927 — link-local |
 
-Then apply it to the cluster by running the following command. 
+Apply the `NetworkAttachmentDefinition` to the cluster.
 ```
 NAMESPACE=abcdesktop
 kubectl apply -f macvlan-conf-1.yaml -n $NAMESPACE
@@ -172,7 +172,7 @@ desktop.policies: {
   'acls' : {} }
 ```
 
-Then update the configmap and restart pyos
+Update the ConfigMap and restart the pyos deployment.
 
 ```
 kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
@@ -181,7 +181,7 @@ kubectl rollout restart deploy pyos-od -n abcdesktop
 
 ## Create a new user
 
-Now that the configuration is done, you can connect to your abcdesktop url and perform a login with a user. Its pod will be created and once done you should see both networks interfaces by running this command.
+With the configuration in place, log in to your abcdesktop instance. After the user pod is created, verify that both network interfaces are present by running the following command.
 
 ```
 kubectl exec -it <YOUR_POD> -n abcdesktop -- ifconfig
@@ -260,7 +260,7 @@ This section extends the previous configuration to provide dual-stack connectivi
 
 The dual-stack configuration requires two changes compared to the IPv4-only version: the `cniVersion` must be bumped to `0.3.1` to support the `ranges` format, and an IPv6 address pool must be added alongside the existing IPv4 pool.
 
-Please update the `macvlan-conf-1.yaml` as below.
+Update the `macvlan-conf-1.yaml` file as shown below.
 
 ```yaml
 apiVersion: "k8s.cni.cncf.io/v1"
@@ -332,7 +332,7 @@ spec:
 
     In IPv6, public addresses (`2000::/3`), private ULA addresses (`fc00::/7`), and link-local addresses (`fe80::/10`) occupy completely separate, non-overlapping blocks. A single `::/0` default route on `net1` is therefore sufficient — the kernel will never forward link-local traffic regardless of the routing table, and ULA traffic has no reachable gateway on the public internet.
 
-Then apply the updated ressource : 
+Apply the updated resource.
 
 ```bash
 NAMEPSACE=abcdesktop
@@ -341,13 +341,13 @@ kubectl apply -f macvlan-conf-1.yaml -n $NAMESPACE
 
 ### Verify dual-stack connectivity
 
-Recreate a user pod and inspect the `net1` interface:
+Re-create a user pod and inspect the `net1` interface:
 ```bash
 NAMEPSACE=abcdesktop
 kubectl exec -it <POD_NAME> -n $NAMESPACE -- ifconfig
 ```
 
-You should see something like this :
+The output should resemble the following.
 
 ```
 kubectl exec -it fry-21d8e -n abcdesktop -- ifconfig
@@ -381,6 +381,6 @@ net1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
-As you can see, the `net1` interface has now a global IPv6 address (GUA) which in our case is `2001:db8:200::11`.
+The `net1` interface now has a globally routable IPv6 address (GUA), in this example `2001:db8:200::11`.
 
-Great ! You can now configure user pods with multiple interfaces and VLANs !
+User pods are now configured with multiple network interfaces and VLAN-based routing.

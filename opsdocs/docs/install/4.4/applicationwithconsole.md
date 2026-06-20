@@ -5,9 +5,9 @@ tags:
   - console
 ---
 
-# Applications management with the admin web UI console
+# Managing Applications with the Admin Web UI Console
 
-To access the admin web UI console, please connect to
+To access the abcdesktop.io administration console, navigate to:
 
 ```url
 http://<YOUR_ABCDESKTOP_URL>:<YOUR_PORT>/console
@@ -15,43 +15,44 @@ http://<YOUR_ABCDESKTOP_URL>:<YOUR_PORT>/console
 
 ![application-page](../../img/console_applications_1.png)
 
-## Add application
+## Adding an Application
 
-On the application page, click on the blue + button. You will have two possibilities :
+On the Applications page, click the blue **+** button. Two options are available:
 
-- Add from the applications store
-- Add from JSON file
+- **Add from the application store** — Browse and select applications from the curated store.
+- **Add from a JSON file** — Import an application using an OCI image descriptor JSON file.
 
-#### Add from application store
+### Adding from the Application Store
 
-Through this modal window, you can add application by exploring the application store, click on the app you want to add, its background color should change to indicate that the app has been selected, and finally click on the Add button.
+In the application store modal, browse the available applications. Click an application to select it — the background color changes to indicate selection. Then click the **Add** button to import the selected application into your abcdesktop.io instance.
 
 ![app-store](../../img/console_app_store_modal.png)
 
-Also, as there are quite a few applications, you can use the search bar on the to right corner to help you find the app you are searching for.
+Use the search bar in the top-right corner to filter applications by name.
 
 ![app-store-select](../../img/console_app_store_modal_select.png)
 
-Note that clicking on the JSON button will open a modal that allows you to add applications from JSON file as shown below.
+> Clicking the **JSON** button opens the JSON import modal, allowing you to add applications from a JSON descriptor file.
 
-#### Add from JSON file
+### Adding from a JSON File
 
-Through this modal window, you can add applications by uploading a JSON file or by copy-pasting directly the JSON raw content in the text area.
+In the JSON import modal, either upload a JSON descriptor file or paste the raw JSON content directly into the text area.
 
 ![add-json-file](../../img/console_add_json_file.png)
 ![add-raw-json](../../img/console_add_raw_file.png)
 
-Note that the github button will send you directly to the abcdesktop github applications page.
+> Clicking the **GitHub** button opens the abcdesktop.io application repository on GitHub, where you can find additional application descriptor files.
 
-### Remove application
+## Removing Applications
 
-To remove installed applications one by one, you can click on the red trash at the end oh the line on the row where the app you want to delete is located.
-Or if you want to delete several applications at the same time you can select them and click on the red trash button above the table to delete all the selected applications.
+To remove a single application, click the red **trash** icon at the end of the corresponding row in the application table.
+
+To remove multiple applications simultaneously, select the checkboxes for each application you want to delete, then click the red **trash** button above the table.
 
 ![apps-select](../../img/console_applications_select.png)
 
-### Gathering more informations
+## Viewing Application Details
 
-If you want to get more informations about an application, just click on the name of the app to display the whole json file of the app.
+To inspect the full OCI metadata for an application, click the application name in the table. The complete JSON descriptor is displayed in a modal window.
 
 ![app-infos](../../img/console_app_infos.png)

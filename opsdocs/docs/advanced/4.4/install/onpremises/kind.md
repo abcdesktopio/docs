@@ -21,9 +21,9 @@ Run the following command to create the cluster:
 kind create cluster --wait 5m
 ```
 
-> The `--wait 5m` flag waits until the control plane is `Ready`.
+> The `--wait 5m` flag instructs Kind to block until the control plane node reports a `Ready` status, up to a maximum of five minutes.
 
-You should read on stdout:
+The following output should appear on stdout:
 
 ```log
 Creating cluster "kind" ...
@@ -158,9 +158,9 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/ins
     [INFO] http://192.168.7.119:30443/
     ```
 
-## How to connect ?
+## How to Connect
 
-The install bash script forwards TCP port 30443 to the router pod's TCP port 80
+The install bash script sets up a `kubectl port-forward` tunnel, mapping TCP port 30443 on the local host to TCP port 80 on the router pod:
 
 `kubectl port-forward router-od-647b77455d-nk677 --address 0.0.0.0 30443:80 -n abcdesktop`
 
@@ -169,19 +169,19 @@ The install bash script forwards TCP port 30443 to the router pod's TCP port 80
 
 [INFO] http://192.168.7.119:30443/
 ```
-> Open the URL returned by the install bash script. In this sample `http://192.168.7.119:30443/`
+> Open the URL returned by the install bash script. In this example: `http://192.168.7.119:30443/`
 
 ![kind home page](img/kinduserhompage.png)
 
-Your web browser shows the abcdesktop service home page
+Your web browser displays the abcdesktop service home page.
 
 ![kind user connected](img/kinduserconnected.png)
 
-The user `Philip J. Fry` is connected to the abcdesktop service
+The user `Philip J. Fry` is connected to the abcdesktop service.
 
-> Open the URL returned by the install bash script. In this sample `http://192.168.7.119:30443/`
+> Open the URL returned by the install bash script. In this example: `http://192.168.7.119:30443/`
 
-Great, you have installed abcdesktop using Kind and your web browser shows the abcdesktop service.
+abcdesktop has been successfully installed using Kind, and the service home page is now accessible from your web browser.
 
 ## Delete cluster
 

@@ -1,23 +1,21 @@
 # Authentication Rules Configuration
 
-All authentication providers support rules configuration.
-
-A rule takes parameters and sets labels on the user's pod and on the user's JWT token.
+All authentication providers support rule-based configuration. Rules evaluate one or more conditions against request attributes and, when the conditions produce the expected boolean result, apply a label to the user's pod and JWT token.
 
 - All labels are stored inside the JWT user token.
 - All labels are applied to the user's pods.
 
-Labels are used to define a container execution context for subsequent operations, such as:
+Labels define the container execution context used for subsequent operations, including:
 
-- Allowing an application only to members of a specific group
-- Applying network policies
+- Restricting an application to members of a specific group
+- Enforcing network policies
 
 
 ## The Rule Object
 
-A rule is a dictionary object with:
+A rule is a dictionary object that consists of:
 
-* A name (the key of the rule entry)
+* A name (the dictionary key of the rule entry)
 * One or more conditions
 * An expected boolean result of `True` or `False`
 * A label to apply when the conditions evaluate to the expected boolean value
@@ -39,7 +37,7 @@ If the source IP address equals `192.168.2.3`, the pod receives the label `allow
                                     
 ### The Conditions Object
 
-The `conditions` field is a list of individual condition objects. All conditions are always evaluated, functioning as a logical `AND` operator. The combined result must equal the `expected` value.
+The `conditions` field is a list of individual condition objects. All conditions are evaluated unconditionally and combined using a logical `AND` operation. The aggregated result must equal the rule's `expected` value for the associated label to be applied.
 
 #### Examples
 
@@ -121,22 +119,22 @@ Applies the label `shipcrewandnonet80` when the `expected` value is `True`.
 
 | Name              | Description                 | Example          |
 |-------------------|-----------------------------|------------------|
-| `boolean`         | Always evaluates to true or false | `'boolean' : 'true'` |
-| `existhttpheader` | Tests whether an HTTP header exists | |
+| `boolean`         | Always evaluates to `True` or `False` regardless of request attributes | `'boolean' : 'true'` |
+| `existhttpheader` | Tests whether a specified HTTP header is present in the request | |
 | `httpheader`      | Tests whether an HTTP header value equals a given string | `'httpheader': { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36' }`  |
-|  `memberOf`       | Tests whether the LDAP user object is a member of a group | `'memberOf': [ 'cn=ship_crew,ou=people,dc=planetexpress,dc=com']`  |
-| `network`         | Tests whether the client IP address falls within a network subnet | `'network': [ '1.2.3.4/24']` |
-| `network-x-forwarded-for` | Reads the `X-Forwarded-For` HTTP attribute, then tests whether the value falls within a network subnet | |
-| `network-x-real-ip` | Reads the `X-Real-IP` HTTP attribute, then tests whether the value falls within a network subnet | |
-| `attribut`        | Tests whether an HTTP header value equals a given string | `'httpheader': { 'User-Agent': 'Mozilla/5.0`
+|  `memberOf`       | Tests whether the authenticated LDAP user object is a member of a specified group | `'memberOf': [ 'cn=ship_crew,ou=people,dc=planetexpress,dc=com']`  |
+| `network`         | Tests whether the client IP address falls within a specified network subnet | `'network': [ '1.2.3.4/24']` |
+| `network-x-forwarded-for` | Reads the `X-Forwarded-For` HTTP header value and tests whether it falls within a specified network subnet | |
+| `network-x-real-ip` | Reads the `X-Real-IP` HTTP header value and tests whether it falls within a specified network subnet | |
+| `attribut`        | Tests whether an LDAP user attribute value equals a given string | `'httpheader': { 'User-Agent': 'Mozilla/5.0`
 | `primarygroupid`  | Tests whether the LDAP user object has a `primaryGroupID` attribute equal to a specified value | `'primarygroupid': '513'` |
 | `asnumber`        | Tests whether the source IP address belongs to a given BGP AS number | `'asnumber': [ '3215', '12807']` |
-| `geolocation`     | Tests whether the user is geolocated in a specific region. Geolocation data comes from the web browser and can be spoofed | `'geolocation': {'accuracy': 14.884, 'latitude': 48.8555131, 'longitude': 2.3752174 }` |
+| `geolocation`     | Tests whether the user is geolocated in a specific region. Geolocation data is provided by the web browser and may be spoofed | `'geolocation': {'accuracy': 14.884, 'latitude': 48.8555131, 'longitude': 2.3752174 }` |
 
 
 #### Condition: `boolean`
 
-This is a trivial condition used to unconditionally force a label or to disable a test entirely.
+This condition unconditionally forces a label or disables a test entirely, regardless of any request attributes.
 
 ```
 'boolean': boolean
@@ -333,7 +331,7 @@ The `Enterprise Admins` group uses the ID `519` and is also used to grant this l
 
 #### Condition: `asnumber`
 
-BGP public AS numbers are globally unique identifiers assigned by IANA for Internet routing, ranging from 1 to 64495 (16-bit) and extended to 32-bit for greater availability. Public AS numbers must be unique on the Internet, and BGP uses the AS number as its loop-prevention mechanism.
+BGP public AS numbers are globally unique identifiers assigned by IANA for Internet routing. 16-bit AS numbers range from 1 to 64495, while 32-bit AS numbers extend this space for greater availability. BGP uses the AS number as its primary loop-prevention mechanism, and all public AS numbers must be globally unique on the Internet.
 
 ```
 'rule-asnumber' : {
@@ -343,4 +341,4 @@ BGP public AS numbers are globally unique identifiers assigned by IANA for Inter
 }
 ```
 
-If the source IP address belongs to AS number `3215`, the label `orangenetwork` is applied. You can build filters for your own AS number to allow or deny access.
+If the source IP address belongs to AS number `3215`, the label `orangenetwork` is applied. You can build filters based on your own AS number to selectively allow or deny access.

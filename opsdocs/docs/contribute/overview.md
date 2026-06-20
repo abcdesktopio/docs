@@ -1,7 +1,7 @@
 
 ## Contribute to abcdesktop community
 
-Please note some rules to apply for all contributions:
+The following rules apply to all contributions:
 
 ??? success must "Everything must be in GitHub"
     To ensure consistency, collaboration, and easy access for our community members working on abcdesktop, all projects related to feature development must be hosted within GitHub. By keeping everything under one roof, we can:
@@ -100,7 +100,7 @@ Please note some rules to apply for all contributions:
     6. Efficient Collaboration: GitHub makes it easy for team members to collaborate on issues, with features like comments, discussions, and code changes directly within the ticket. This collaboration streamlines the resolution process, helping teams work together more effectively.
     7. Historical Record: A centralized ticketing system creates a historical record of all issues that have been reported and addressed. This can be useful for future reference when similar problems arise or when developers need to understand how previous issues were resolved.
 
-??? success must "Every feature request must be done throws Github ticketing"
+??? success must "Every feature request must be submitted through GitHub's ticketing system"
     1. Centralized Feature Requests: By using the single platform GitHub for all feature requests, it becomes easier to manage and prioritize these requests in one place. This centralization makes it simpler for developers to understand the community's needs and prioritize their work accordingly.
     2. Increased Visibility: With a public ticketing system, other community members can view and contribute to discussions related to feature requests. This increased visibility helps foster collaboration and ensures that the most beneficial features are implemented.
     3. Improved Organization: A centralized ticketing system allows for better organization of feature requests, making it easier to prioritize and manage tasks based on their impact, feasibility, or dependencies. This improved organization can lead to more efficient implementation times.
@@ -109,7 +109,7 @@ Please note some rules to apply for all contributions:
     6. Community Engagement: A centralized ticketing system encourages community engagement by allowing users to propose and discuss new features directly with developers. This collaboration can lead to innovative solutions and a more tailored product that better meets user needs.
     7. Historical Record: A centralized ticketing system creates a historical record of all feature requests that have been made and implemented. This can be useful for future reference when similar ideas arise or when developers need to understand how previous features were conceived and developed.
 
-??? success must "Every feature contribution must be done throws Github merge request"
+??? success must "Every feature contribution must be submitted through a GitHub merge request"
     1. Centralized Contributions: By using the single platform GitHub for all feature contributions, it becomes easier to manage and review these contributions in one place. This centralization makes it simpler for developers to understand the community's work and ensure that changes align with project goals.
     2. Increased Collaboration: GitHub merge requests allow multiple team members to collaborate on a single contribution, providing feedback, suggestions, or code reviews before the feature is merged into the main branch. This collaboration helps maintain high-quality code and ensures that features are well-tested and thoroughly vetted.
     3. Improved Organization: Centralized merge requests allow for better organization of contributions, making it easier to track the progress of each contribution and manage tasks based on their status (open, in progress, or merged). This improved organization can lead to more efficient development cycles.
@@ -128,8 +128,8 @@ This section outlines the guidelines for contributing to the Documentation of ab
 ??? success must "Documentation must be in english"
     Using a single language helps maintain consistency across all pages of the documentation. This makes it easier for users to navigate and understand the content, as they don't have to switch between multiple languages or interpret translations.
 
-??? success must  "Contributions must be done throws merge requests"
-    This ensures that all changes are reviewed and approved by the maintainers before being merged into the main branch. This helps maintain the quality and consistency of the documentation.
+??? success must "Contributions must be done through merge requests"
+    This ensures that all changes are reviewed and approved by the maintainers before being merged into the main branch. This practice maintains the quality and consistency of the documentation.
 
 ### Markdown instructions
 
@@ -149,7 +149,7 @@ NAMESPACE=abcdesktop
 kubectl apply -f http-router.yaml -n $NAMESPACE
 ```
 
-Do not set the abcdesktop namespace as the namepsace in `kubectl` command line
+Do not hard-code the abcdesktop namespace as the namespace in `kubectl` command lines
 
 ```
 kubectl apply -f http-router.yaml -n abcdesktop

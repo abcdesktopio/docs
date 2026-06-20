@@ -10,7 +10,7 @@ tags:
 
 This use case documents how the public demo service [https://demo.gcp.abcdesktop.com](https://demo.gcp.abcdesktop.com) is deployed and operated on Google Cloud Platform (GCP) using Google Kubernetes Engine (GKE).
 
-The demo platform is a fully functional abcdesktop.io instance open to the public. It allows anyone to test the desktopless experience without installing anything, using an OpenID Connect provider (Google, GitHub, Facebook) to sign in.
+The demo platform is a fully functional abcdesktop.io instance that is publicly accessible. It allows anyone to evaluate the desktopless experience without installing any local software, using an OpenID Connect provider (Google, GitHub, or Facebook) to sign in.
 
 ## Architecture overview
 
@@ -47,7 +47,7 @@ graph TD
 
 ## Step-by-step guide
 
-This use case is split into two chapters:
+This use case is documented in two chapters:
 
 1. **[Create the Kubernetes cluster on GCP](./configure-kubernetes-cluster-gcp.md)**  
    Provision the GKE cluster with the recommended security settings (private nodes, Shielded Nodes, DataPlane V2, autoscaling).

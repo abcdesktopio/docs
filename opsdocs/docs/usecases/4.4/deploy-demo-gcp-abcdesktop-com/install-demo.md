@@ -7,39 +7,39 @@
 
 ## Run the abcdesktop install script 
 
-Download and install the latest release automatically
+Download and install the latest release using the following command.
 
 ```
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh | bash
 ```
 
-To get more details about the install process, please read the [Setup guide](https://www.abcdesktop.io/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop/)
+For additional details about the installation process, refer to the [Setup guide](https://www.abcdesktop.io/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop/)
 
 ## Expose your service
 
-Now you can expose publicly your abcdesktop if you want. To proceed please follow the dedicated chapter [here](https://www.abcdesktop.io/{{ abcdesktop.latest_release }}/gcp/gcp-gke-ingress-controller/)
+To make your abcdesktop instance publicly accessible, follow the steps described [here](https://www.abcdesktop.io/{{ abcdesktop.latest_release }}/gcp/gcp-gke-ingress-controller/)
 
 ## Apply network policies 
 
-To reinforce security inside your cluster, you can apply abcdesktop network policies by running the following command.
+To strengthen security within your cluster, apply the abcdesktop network policies by running the following command.
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-{{ abcdesktop.latest_release }}.yaml -n abcdesktop
 ```
 
-If you want more information about abcdesktop network policies, please refer to our [netpol documentation](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/networkpolicy/netpol/)
+For detailed information about abcdesktop network policies, refer to the [network policy documentation](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/networkpolicy/netpol/)
 
 ## Add a garbage collector
 
-In order to avoid your cluster being full to capacity, you can add a garbage collector to remove unused pods after 15 minutes. 
+To prevent your cluster from reaching full capacity, configure a garbage collector to terminate idle desktop pods after 15 minutes.
 
-Please follow the dedicated chapter on garbage collector [configuration](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/configure/garbagecollector/)
+Follow the dedicated [garbage collector configuration guide](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/configure/garbagecollector/) for detailed setup instructions.
 
 ## Add a `PersistenVolumeClaim` for mongo
 
-This measure prevents your platform to delete all desktop applications in case of mongo pods restart. 
+This configuration prevents the platform from losing all desktop application data if the MongoDB pod restarts.
 
-First you need to update mongo `StatefulSet` to add a `PersistenVolumeClaim` in  `abcdesktop.yaml` file :
+Update the MongoDB `StatefulSet` in the `abcdesktop.yaml` manifest to reference a `PersistentVolumeClaim`:
 
 ```json 
 apiVersion: apps/v1
@@ -53,7 +53,7 @@ metadata:
       claimName: pvc-mongo
 ```
 
-Then create a `PersistentVolumeClaim` file, let's call it `pvc-mongo.yaml` :
+Create a `PersistentVolumeClaim` manifest named `pvc-mongo.yaml`:
 
 ```json
 apiVersion: v1
@@ -69,7 +69,7 @@ spec:
       storage: 16Gi
 ```
 
-Finally apply it to the cluster
+Apply the manifest to the cluster.
 
 ```
 NAMESPACE=abcdesktop
@@ -78,9 +78,9 @@ kubectl create -f pvc-mongo.yaml -n $NAMESPACE
 
 ## Add external providers
 
-You may want users to properly authenticate to your demo platform. To proceed, you will need to remove default LDAP authentication and anonymous authentication.
+To require users to authenticate with an external identity provider, remove the default LDAP and anonymous authentication methods.
 
-Edit `od.config` file and go to the `AUTH SECTION` to add external providers using Oauth2.0 protocol. If you want more informations please read our documentaton on [how to add external authentication providers to abcdesktop](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/authentication/authexternal/)
+Edit the `od.config` file, locate the `AUTH SECTION`, and add external OAuth 2.0 providers. For additional information, refer to the documentation on [how to add external authentication providers to abcdesktop](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/authentication/authexternal/)
 
 ```
 authmanagers: {

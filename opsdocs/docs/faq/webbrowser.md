@@ -4,61 +4,57 @@ tags:
   - browser
 ---
 
-# FAQ Web Browser
+# FAQ: Web Browser
 
+## Which Web Browsers Are Supported?
 
-## Which web browser is supported ?
+abcdesktop.io uses modern HTML5 WebSocket and clipboard APIs. The following minimum browser versions are known to be compatible:
 
-abcdesktop.io uses many modern web technologies. However these are the minimum versions we are currently aware of:
+| Browser | Minimum Version |
+|---|---|
+| Google Chrome | 49 |
+| Mozilla Firefox | 58 |
+| Apple Safari | 11 |
+| Opera | 36 |
+| Microsoft Edge (Chromium-based) | All versions |
 
-* Chrome 49,
-* Firefox 58,
-* Safari 11,
-* Opera 36,
-* Microsoft Edge (based on Chromium)
+## How Do I Use Copy & Paste?
 
+For full bidirectional clipboard synchronization between your local device and the abcdesktop.io session, use **Chrome**, **Chromium**, or **Microsoft Edge (Chromium)**. These browsers expose the Clipboard API natively without additional configuration.
 
-## How to do a `copy & paste` ?
+Firefox is also supported with a [dedicated abcdesktop.io extension](firefox-extension.md).
 
-To fully use `copy & paste` or `copy and paste` features, from your local device to your abcdesktop (and vice versa), choose `Chrome`, `Chromium` or  `Microsoft Edge Chromium`. The `copy & paste` feature is also supported on Firefox with a [dedicated abcdesktop extension](firefox-extension.md).
+| Browser | Clipboard Sync Support |
+|---|---|
+| Chrome | Yes — native support |
+| Chromium | Yes — native support |
+| Microsoft Edge (Chromium) | Yes — native support |
+| Firefox | Yes — requires the [abcdesktop.io Firefox extension](../common/firefox-extension.md) |
+| Safari | No — clipboard access is blocked by the platform or user agent policy |
 
-| Web browser      | Clipboard sync                 |
-|------------------|-------------------------------------|
-|  Chrome     | Yes, built in support |
-|  Chromium     | Yes, built in support  |
-|  Microsoft Edge Chromium     | Yes, built in support  |
-|  Firefox       | Yes, install the [dedicated abcdesktop extension](../common/firefox-extension.md)|
-|  Safari       | No, the clipboard access is not allowed by the user agent or the platform in the current context, possibly because the user denied permission|
+> **Important:** Clipboard API read/write operations require the **`https://`** protocol. Clipboard sync will not function over plain HTTP.
 
-> Make sure to use **`https` protocol** to allow read and write api calls to your clipboard
+## How Do I Change the Default Language?
 
+abcdesktop.io reads the web browser's `Accept-Language` HTTP header to determine the user interface language for the desktop session and launched applications. The default installed languages are **English (en_US)**, **French (fr_FR)**, **German**, and **Romanian**. If you require additional language support, rebuild the container image with the required locale packages.
 
-## How to change the default language ?
+To change the language:
 
-abcdesktop reads the your web browser language and starts application and desktop this user's choose.
-The default installed languages are `English`, `French`, `German`, and `Romanian`. If you need other languages support you have to rebuild the container image with your language.
+1. Change your browser's default language in the browser settings.
+2. Reload the abcdesktop.io page. The session language updates dynamically — you do not need to log out.
 
-abcdesktop uses the web browser language property to set the application's language. This list must match with the `Accept-Language` request HTTP header. If the language is not found, the default value is set to `en_US`.
+**Example: Setting the language to English (en_US)**
 
+Set the browser language to `en_US`:
+![web browser's default language to en_US](img/language_web_en_US.png)
 
-To check the supported language, change your web browser language, and run `LibreOffice` applications. The language setting uses the web browser value. During this test you can keep the same users session.
+Launch LibreOffice Writer — the UI appears in English:
+![LibreOffice Writer in en_US](img/language_writer_en_US.png)
 
+**Example: Setting the language to French (fr_FR)**
 
-- Set the web browser's default language to `en_US` : ![web browser's default language to en_US](img/language_web_en_US.png)
-
-The launch LibreOffice Writer. The menu is set to `en_US` ![web browser's default language to en_US](img/language_writer_en_US.png)
-
-LibreOffice Writer uses English/US `en_US` language.
-
-- Set the web browser's default language to `fr_FR` :
+Set the browser language to `fr_FR`:
 ![web browser's default language to fr_FR](img/language_web_fr_FR.png)
 
-
-> You can keep the same user's session, you do not need to logout.
-
-Launch LibreOffice Writer application. The menu is set to `fr_FR`
-![web browser's default language to fr_FR](img/language_writer_fr_FR.png)
-LibreOffice Writer uses French `fr_FR` language.
-
-
-
+Launch LibreOffice Writer — the UI appears in French:
+![LibreOffice Writer in fr_FR](img/language_writer_fr_FR.png)

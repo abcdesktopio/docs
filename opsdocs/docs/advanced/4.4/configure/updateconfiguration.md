@@ -4,78 +4,66 @@ tags:
 - config
 ---
 
+# Editing the abcdesktop.io Configuration File
 
-# How to edit the abcdesktop configuration file
+The abcdesktop.io configuration file is named `od.config`. It uses the [CherryPy configuration file format](https://docs.cherrypy.dev/en/stable/config.html). When `pyos` starts, it reads `od.config` from the `abcdesktop-config` ConfigMap. If the file contains a syntax error, `pyos` fails to start. Check the `pyos` logs with:
 
-The abcdesktop configuration file name is `od.config`.
-This file has the [cherrypy file format](https://docs.cherrypy.dev/en/stable/config.html).
-When the pyos process starts, it reads the `od.config` file.
-If something is wrong, the pyos process hangs. The command line `kubectl logs -l name=pyos-od  -n abcdesktop` writes the pyos log to stdout.
+```bash
+kubectl logs -l name=pyos-od -n abcdesktop
+```
 
-## Edit your configuration file
+## Extracting the Current Configuration
 
-If the `od.config` file does not exist, extract it from the abcdesktop-config configmap to a local file `od.config`
+If you do not have a local copy of `od.config`, extract it from the `abcdesktop-config` ConfigMap:
 
 ```bash
 kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
 ```
 
-You will get a new local file `od.config`.
+This command writes the current configuration to a local file named `od.config`.
 
-To make changes, edit your own `od.config` file with your preferred file editor:
+## Editing the Configuration File
+
+Open `od.config` with your preferred text editor:
 
 ```bash
 vim od.config
 ```
 
-## Make changes
+## Example: Changing the Default Background Colors
 
-Change the `defaultbackgroundcolors` option in the desktop options.
-
-Locate the line `desktop.defaultbackgroundcolors` and update the first entries with the values `'#FF0000', '#FFFFFF',  '#0000FF'`
+Locate the `desktop.defaultbackgroundcolors` entry and update it with new color values:
 
 ```json
 desktop.defaultbackgroundcolors : [ '#FF0000', '#FFFFFF',  '#0000FF', '#CD3C14', '#4BB4E6', '#50BE87', '#A885D8', '#FFB4E6' ]
 ```
 
-Save your local file `od.config`.
+Save the updated `od.config` file.
 
-??? warning "json dictionary"
+??? warning "JSON Dictionary Syntax"
     ```
-        If you define a dictionary, you must close the `}` on the same last line. for example
-        authmanagers: {
-          'external': {},
-          'explicit': {},
-          'implicit': {}}
+    When defining a dictionary, the closing `}` must appear on the same line as the last entry. Example:
+    authmanagers: {
+      'external': {},
+      'explicit': {},
+      'implicit': {}}
     ```
 
-## Apply changes
+## Applying the Updated Configuration
 
-To apply changes, you have to replace the `abcdesktop-config`, by running the `replace kubectl` command line option. Then `rollout restart`the `pyos` pod.
+Replace the `abcdesktop-config` ConfigMap with the updated file and restart the `pyos` deployment:
 
 ```bash
 kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deployment pyos-od -n abcdesktop
 ```
 
-The configuration has been applied successfully.
+## Verifying the Changes
 
-## Check your changes
+Open a web browser and navigate to `http://localhost:30443`. Sign in using the anonymous authentication provider.
 
-To check that the new colours are presents in front, open the url `http://localhost:30443`, in your web browser, to start a simple abcdesktop.io container.
-
-```bash
-http://localhost:30443
-```
-
-You should see the abcdesktop.io home page.
-
-Press the `Sign-in Anonymously, have look`
-
-At the right top corner, click on the menu and choose `Settings`, then click on `Screen Colors`
-
-Choose your colour and you should have it as background colour :
+In the top-right menu, go to **Settings** → **Screen Colors**. The new background colors defined in `od.config` should be available for selection.
 
 ![newbackgroundcolors](img/newbackgroundcolors.png)
 
-You can now update the abcdesktop configuration file `od.config` at any time using this procedure.
+You can update the `od.config` file at any time using this procedure.

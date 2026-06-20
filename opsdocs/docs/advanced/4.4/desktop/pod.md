@@ -10,18 +10,18 @@ This chapter describes how to configure the `desktop.pod` and `desktop.envlocal`
 `desktop.pod` defines how to create the user's pod. The main sections are 
 
 - `spec`: describes the `securityContext` and `shareProcessNamespace`
-- `default_volumes` list the available volumes in the pod
-- `default_volumes_mount` list default mounted volumes to use by the pod
+- `default_volumes` lists the available volumes in the pod
+- `default_volumes_mount` lists the default mounted volumes used by the pod
 - `graphical`: describes the graphical service 
   - `spawner`: describes the command service (built in `graphical`)
   - `broadcast`: describes the broadcast service (built in `graphical`)
   - `webshell`: describes the remote shell service (built in `graphical`)
 - `filer`: describes the file download and upload service
 - `printer`: describes the printer service 
-  - `printerfile`: describes the file printer service to download printed file (built in `printer`)
+  - `printerfile`: describes the file download service for the virtual printer queue (built in `printer`)
 - `sound`: describes the sound container 
 - `init`: describes the init container 
-- `ephemeral_container`: describes how to start an application as default an ephemeral container
+- `ephemeral_container`: describes how to start an application as an ephemeral container by default
 - `pod_application`: describes how to start an application as a pod
 
 

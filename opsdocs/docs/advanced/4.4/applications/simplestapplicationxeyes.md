@@ -3,7 +3,7 @@ tags:
   - application
 ---
 
-# Build a sample xeyes from scratch
+# Build a sample `xeyes` application from scratch
 
 Goal: Build and register a new X11 application container (`xeyes`) with an abcdesktop.io instance from scratch.
 
@@ -18,7 +18,7 @@ You need to have:
 
 ## Create a simple application `xeyes`
 
-To illustrate a minimal application integration, we will install `xeyes` from the `x11-apps` package inside a container image.
+To illustrate a minimal application integration, this guide walks through installing `xeyes` from the `x11-apps` package inside a container image and registering it with the platform.
 
 * Create a Dockerfile to install the `xeyes` application from the `x11-apps` package
 
@@ -42,7 +42,7 @@ docker build -t $REGISTRY/samplexeyes .
 > If you do not have one, you can use `abcdesktopio/samplexeyes` as a read-only Docker Hub registry.
 
 
-* Push the image to your registry *(only if you have one registry)*
+* Push the image to your registry *(only if you have your own registry)*
 
 ```bash
 REGISTRY=abcdesktopio
@@ -58,7 +58,7 @@ docker inspect $REGISTRY/samplexeyes:latest > samplexeyes.json
 
 * Send the image to the abcdesktop pyos instance
 
-The following commands retrieve the `PYOS_POD` name, copy the `samplexeyes.json` file to the `/tmp` directory inside the pyos pod, and submit the file to the REST API server.
+The following commands retrieve the `PYOS_POD_NAME`, copy the `samplexeyes.json` file to the `/tmp` directory inside the pyos pod, and submit it to the REST API server.
 
 ```bash
 NAMESPACE=abcdesktop
@@ -92,7 +92,7 @@ Wait for the image pull to complete.
 
 ![Start the new application xeyes](img/simplestapplication-xeyes-started.png)
 
-> The xeyes application is running as an ephemeral container inside the user pod.
+> The `xeyes` application is running as an ephemeral container inside the user pod.
 
 ## Read the pod description
 
@@ -175,4 +175,4 @@ Ephemeral Containers:
       /var/run/desktop from run (rw)
 ```
 
-You have successfully installed and started a new application for abcdesktop.io.
+You have successfully built, registered, and launched a new application on abcdesktop.io.

@@ -23,11 +23,11 @@ Primary sound artifacts:
 
 ## 1. System Purpose
 
-The image implements a PulseAudio streaming sidecar with two websocket services:
+The image implements a PulseAudio streaming sidecar with two WebSocket relay services:
 
-1. Speaker relay: reads encoded audio from a FIFO and broadcasts to websocket clients.
-2. Microphone relay: receives websocket payloads and writes to a FIFO consumed by PulseAudio module-pipe-source.
-3. Supervisor manages lifecycle of PulseAudio and relay processes.
+1. **Speaker relay**: reads encoded audio from a FIFO and broadcasts the stream to connected WebSocket clients.
+2. **Microphone relay**: receives WebSocket payloads from the browser and writes them to a FIFO consumed by a PulseAudio `module-pipe-source`.
+3. **Supervisor** manages the lifecycle of the PulseAudio daemon and both relay processes.
 
 ---
 
@@ -35,8 +35,8 @@ The image implements a PulseAudio streaming sidecar with two websocket services:
 
 ### 2.1 Base Image and Reproducibility
 
-- Base image: ubuntu:24.04.
-- This is pinned by tag, but not by digest.
+- Base image: `ubuntu:24.04`.
+- The image is pinned by tag but not by digest. For fully reproducible builds, pin to a specific image digest.
 
 ### 2.2 Identity Model
 
@@ -83,27 +83,27 @@ Build copies:
 
 ### 2.6 Node Dependency Installation
 
-Dependency strategy now uses lockfiles and npm ci:
+Dependency installation uses lockfiles and `npm ci` for reproducible builds:
 
-1. /composer/node/websocket-relay.speaker: npm ci --omit=dev
-2. /composer/node/websocket-relay.microphone: npm ci --omit=dev
+1. `/composer/node/websocket-relay.speaker`: `npm ci --omit=dev`
+2. `/composer/node/websocket-relay.microphone`: `npm ci --omit=dev`
 
-Required lockfiles are present in both relay directories.
+Required lockfiles must be present in both relay directories.
 
 ### 2.7 Runtime Filesystem Preparation
 
-Dockerfile prepares these paths:
+The Dockerfile creates these paths at build time:
 
-- /var/run/dbus
-- /var/log/desktop
-- /var/run/desktop
-- /var/run/local
-- /var/log/local
-- /var/lib/dbus/machine-id
-- /etc/pulse/abcdesktopcookie
-- /container
+- `/var/run/dbus`
+- `/var/log/desktop`
+- `/var/run/desktop`
+- `/var/run/local`
+- `/var/log/local`
+- `/var/lib/dbus/machine-id`
+- `/etc/pulse/abcdesktopcookie`
+- `/container`
 
-Current mode setup uses 666 for directories and selected files.
+Directory permissions are set to mode `666` for directories and selected files that require broad write access across process users.
 
 ### 2.8 Entrypoint and Port Contract
 
@@ -151,22 +151,22 @@ From include pattern /etc/supervisor/conf.d/*.conf:
 
 ### 4.1 Speaker Data Path
 
-1. ffmpeg.speaker.sh captures PulseAudio source speaker.monitor.
-2. ffmpeg outputs MPEG-TS/MP2 stream redirected into /container/speaker.
-3. websocket-relay.speaker reads /container/speaker.
-4. websocket server on 29788 broadcasts chunks to all connected clients.
+1. `ffmpeg.speaker.sh` captures audio from the `speaker.monitor` PulseAudio source.
+2. `ffmpeg` encodes the audio as an MPEG-TS/MP2 stream and redirects the output to `/container/speaker`.
+3. `websocket-relay.speaker` reads from `/container/speaker`.
+4. The WebSocket server on port `29788` broadcasts audio chunks to all connected clients.
 
 Control behavior:
 
-1. On first client, relay requests Supervisor startProcess("ffmpeg.speaker").
-2. On last client disconnect, relay requests stopProcess("ffmpeg").
+1. On the first client connection, the relay requests Supervisor to start the `ffmpeg.speaker` process.
+2. When the last client disconnects, the relay requests Supervisor to stop the `ffmpeg` process.
 
 ### 4.2 Microphone Data Path
 
-1. websocket-relay.microphone listens on 29789.
-2. On first client, it opens a write stream to /container/microphone.
-3. Incoming websocket messages are written to /container/microphone.
-4. PulseAudio module-pipe-source (configured in PulseAudio config) consumes FIFO data as virtual microphone source.
+1. `websocket-relay.microphone` listens on port `29789`.
+2. On the first client connection, it opens a write stream to `/container/microphone`.
+3. Incoming WebSocket messages are written to `/container/microphone`.
+4. The PulseAudio `module-pipe-source` (configured in the PulseAudio configuration) consumes the FIFO data as a virtual microphone source.
 
 ---
 
@@ -182,22 +182,22 @@ Control behavior:
 
 Purpose:
 
-1. Read audio from speaker.monitor.
-2. Encode audio as MP2 inside MPEG-TS.
-3. Stream to /container/speaker FIFO.
+1. Read audio from `speaker.monitor`.
+2. Encode the audio as MP2 inside an MPEG-TS container.
+3. Stream the encoded output to the `/container/speaker` FIFO.
 
 Important runtime inputs:
 
-- PULSE_SERVER (default /tmp/.pulse.sock)
-- POD_IP optional (for CONTAINER_IP_ADDR)
-- WEBRELAY_INTERNAL_TCP_PORT metadata variable
+- `PULSE_SERVER` (default: `/tmp/.pulse.sock`)
+- `POD_IP` (optional, used to derive `CONTAINER_IP_ADDR`)
+- `WEBRELAY_INTERNAL_TCP_PORT` metadata variable
 
-FFmpeg main characteristics:
+FFmpeg stream characteristics:
 
-- sample rate 44100
-- mono channel
-- bitrate 128k
-- mpegts output
+- Sample rate: 44100 Hz
+- Channels: mono
+- Bitrate: 128 kbps
+- Container format: MPEG-TS
 
 ### 5.3 Speaker Relay Node Service
 

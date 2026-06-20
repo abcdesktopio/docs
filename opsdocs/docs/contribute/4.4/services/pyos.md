@@ -2,9 +2,9 @@
 
 ## 1. Executive summary
 
-pyos is the backend control plane for abcdesktop. It exposes a CherryPy HTTP API used to authenticate users, create/resume/remove cloud desktops, launch applications in those desktops, manage user desktops, and perform operator actions.
+pyos is the backend control plane for abcdesktop. It exposes a CherryPy HTTP API used to authenticate users, create, resume, and remove cloud desktops, launch applications within those desktops, manage user desktops, and perform operator actions.
 
-At runtime, pyos sits between:
+At runtime, pyos mediates between:
 
 - Clients (web frontend and admin tools)
 - Identity providers (OAuth2, LDAP/AD, anonymous, prelogin/logmein flows)
@@ -31,9 +31,9 @@ The main service process is started by `od.py` and mounts API endpoints under `/
 
 ### 2.2 What pyos does not do directly
 
-- It is not the desktop runtime itself. User desktops run as pods/containers managed by the orchestrator.
+- It is not the desktop runtime itself. User desktops run as pods and containers managed by the orchestrator.
 - It is not a reverse proxy or edge TLS terminator.
-- It is not the frontend UI; it serves API responses consumed by other components.
+- It does not serve the frontend UI; it produces API responses consumed by other components.
 
 ## 3. Startup and lifecycle (od.py)
 
@@ -66,7 +66,7 @@ The main service process is started by `od.py` and mounts API endpoints under `/
 
 ### 3.3 Signal and graceful shutdown
 
-`SIGTERM`, `SIGQUIT`, and `SIGINT` trigger engine exit. A CherryPy plugin (`ODCherryWatcher`) starts/stops service-side threads together with the web engine lifecycle.
+`SIGTERM`, `SIGQUIT`, and `SIGINT` trigger an engine exit. A CherryPy plugin (`ODCherryWatcher`) starts and stops service-side threads in coordination with the web engine lifecycle.
 
 ## 4. Architecture
 
@@ -89,7 +89,7 @@ The main service process is started by `od.py` and mounts API endpoints under `/
 
 ### 4.2 Dynamic controller registration
 
-Controllers are loaded by class discovery in `controllers/` where class names match `*Controller`. The route prefix is class name without `Controller`, lowercased.
+Controllers are loaded by class discovery in `controllers/`, where class names match `*Controller`. The route prefix is derived from the class name by removing the `Controller` suffix and converting to lowercase.
 
 Examples:
 - `AuthController` -> `/API/auth/*`
@@ -248,8 +248,8 @@ This domain is protected by API-key and/or CIDR policies as configured.
 
 ### 9.1 Persistent and shared stores
 
-- MongoDB: metadata and history (applications, profiles, desktop state/history, fail2ban data, etc.).
-- Memcached: short-lived shared state/caching/session helpers.
+- **MongoDB**: stores metadata and history (applications, profiles, desktop state and history, fail2ban data, and more).
+- **Memcached**: provides short-lived shared state, caching, and session helpers.
 
 ### 9.2 Runtime infrastructure dependencies
 
@@ -277,7 +277,7 @@ This domain is protected by API-key and/or CIDR policies as configured.
 
 ## 12. Docker image specification
 
-Two image definitions are provided for different trade-offs.
+Two image definitions are provided for different deployment trade-offs.
 
 ---
 
@@ -342,7 +342,7 @@ Removes build-time development packages and runs autoremove/cleanup.
 
 Best when you need:
 
-- Maximum auth compatibility (Kerberos/LDAP/NTLM stack)
+- Maximum authentication compatibility (Kerberos, LDAP, and NTLM stack)
 - Production-like enterprise integration features
 
 ---
@@ -381,10 +381,10 @@ NTLM auth support installation is intentionally commented out in this Dockerfile
 
 Best when you need:
 - Smaller image footprint
-- Simpler/non-SSO deployments
+- Simpler, non-SSO deployments
 
 Potential trade-off:
-- Reduced compatibility for some enterprise auth edge cases compared with Ubuntu build.
+- Reduced compatibility for some enterprise authentication edge cases compared with the Ubuntu build.
 
 ## 15. Ubuntu vs Alpine comparison
 

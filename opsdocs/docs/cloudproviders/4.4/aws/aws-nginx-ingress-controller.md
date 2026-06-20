@@ -13,27 +13,27 @@
 
 ## Overview
 
-In this chapter, we will use a `nginx-ingress-controller` to host your abcdesktop service with a public IP address, then configure the DNS zone file to use your own domain name, and enable TLS to secure your service.
+In this chapter, you will use an NGINX ingress controller to expose your abcdesktop service with a public IP address, configure your DNS zone file to use your own domain name, and enable TLS to secure the service.
 
 ## Add tags for public subnets
 
-By default, when creating your VPC, the public subnets do not have the `kubernetes.io/role/elb=1` tag. However, this tag is mandatory in order to expose your service using an NGINX Ingress Controller with AWS. AWS scans your VPC, searching for subnets with this precise tag to place the ingress controller.  
+By default, when creating your VPC, the public subnets do not have the `kubernetes.io/role/elb=1` tag. This tag is required to expose your service through an NGINX Ingress Controller on AWS, because AWS scans your VPC for subnets bearing this exact tag to determine where to place the ingress controller.
 
-To do so, run the following command
+To add the tag, run the following command:
 
 ```
 aws ec2 create-tags --resources <your_public_subnets_ids> --tags Key=kubernetes.io/role/elb,Value=1
 ```
 
-> You can find your public subnets ids in the `Subnets` page of the VPC dashboard on AWS console
+> You can find your public subnet IDs on the `Subnets` page of the VPC dashboard in the AWS console.
 
-You can check if the tags have been applied by running the following command
+You can verify that the tags have been applied by running the following command:
 
 ```
 aws ec2 describe-subnets --filters "Name=vpc-id,Values=<your_vpc_id>" "Name=tag:kubernetes.io/role/elb,Values=1" --query 'Subnets[*].[SubnetId,AvailabilityZone]' --output table
 ```
 
-You should read on stdout
+You should see the following output on stdout:
 
 ```
 --------------------------------------------
@@ -47,7 +47,7 @@ You should read on stdout
 
 ## Update http-router service
 
-When installing abcdesktop, the `http-router` service type is `NodePort` by default. In order to expose the service through an ingress controller, you will need to change the service type from `NodePort` to `ClusterIP`.
+When installing abcdesktop, the `http-router` service type is `NodePort` by default. To expose the service through an ingress controller, you must change the service type from `NodePort` to `ClusterIP`.
 
 If you perform a get services command you will see the `NodePort` type
 
@@ -87,7 +87,7 @@ spec:
     name: http
 ```
 
-Then Create your new `service/http-router`
+Then, apply your new `service/http-router`:
 
 ```
 kubectl apply -f http-router.yaml -n abcdesktop
@@ -104,15 +104,15 @@ http-router   ClusterIP   10.0.132.230   <none>        443/TCP,80/TCP   5s
 
 ## Deploy nginx ingress controller
 
-You will now deploy a nginx ingress controller on your cluster using `helm`.
+You will now deploy an NGINX ingress controller on your cluster using `helm`.
 
-First, run the following command to add the nginx ingress controller repository : 
+First, run the following command to add the NGINX ingress controller repository:
 
 ```
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && helm repo update
 ```
 
-Then install it on your cluster 
+Then install it on your cluster:
 
 ```
 helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace
@@ -132,7 +132,7 @@ You will see that `EXTERNAL-IP` is `<pending>` for an extended period. This is c
 kubectl annotate svc ingress-nginx-controller -n ingress-nginx service.beta.kubernetes.io/aws-load-balancer-scheme=internet-facing service.beta.kubernetes.io/aws-load-balancer-type=nlb --overwrite
 ```
 
-Now you can run the previous command until you get an `EXTERNAL-IP` 
+Rerun the previous command until the service is assigned an `EXTERNAL-IP`:
 
 ```
 kubectl get svc ingress-nginx-controller -n ingress-nginx
@@ -142,21 +142,21 @@ ingress-nginx-controller             LoadBalancer   172.20.87.254   k8s-ingressn
 
 ### Create new record
 
-We are going to create a new record `hello` (`hello.aws.pepins.net`) using `k8s-ingressn-ingressn-dc31c08978-b7ef1bca03cfe45b.elb.us-east-1.amazonaws.com` as an alias. 
+Create a new DNS `A` record named `hello` (e.g., `hello.aws.pepins.net`) aliased to `k8s-ingressn-ingressn-dc31c08978-b7ef1bca03cfe45b.elb.us-east-1.amazonaws.com`.
 
-First, you will need your load balancer hosted zone id. To get, run the following command :
+First, retrieve the hosted zone ID of your load balancer by running the following command:
 
 ```
 aws elbv2 describe-load-balancers   --region us-east-1   --query 'LoadBalancers[0].CanonicalHostedZoneId'
 ```
 
-You should get something like this
+You should receive output similar to the following:
 
 ```
 Z26RNL4JYFTOTI
 ```
 
-Now paste the following lines in a  `create-record-abcdesktop-aws.json` file :
+Paste the following content into a `create-record-abcdesktop-aws.json` file:
 
 ```
 {
@@ -178,13 +178,13 @@ Now paste the following lines in a  `create-record-abcdesktop-aws.json` file :
 }
 ```
 
-Now, you will need to retrieve the hosted zone id of your domain on route 53. You can get it through the Route 53 web interface, or by running the following command : 
+Next, retrieve the hosted zone ID of your domain in Route 53. You can obtain it through the Route 53 web console or by running the following command:
 
 ```
 aws route53 list-hosted-zones   --query 'HostedZones[*].[Name,Id]'   --output table
 ```
 
-You should read something like this 
+The output will look similar to the following:
 
 ```
 --------------------------------------------------------
@@ -194,19 +194,19 @@ You should read something like this
 +------------------+-----------------------------------+
 ```
 
-Finally, run this command to add the record : 
+Finally, run the following command to add the DNS record:
 
 ```
 aws route53 change-resource-record-sets --hosted-zone-id <your_domain_hosted_zone_id> --change-batch file://create-record-abcdesktop-aws.json 
 ```
 
-For example 
+For example:
 
 ```
 aws route53 change-resource-record-sets --hosted-zone-id Z0710575SCBYT0OUKZP --change-batch file://create-record-abcdesktop-aws.json
 ```
 
-You should read something like this 
+The output will look similar to the following:
 
 ```
 {
@@ -219,16 +219,15 @@ You should read something like this
 }
 ```
 
-If you go to your Route 53 web console, you should see the record you just added
+If you navigate to the Route 53 web console, you will see the newly added record.
 
 ![aws record added](img/record-added.png)
 
 ## Configure NGINX Ingress Rules for Backend Services 
 
-In this step, you expose the backend applications to the outside world by telling nginx what host each service maps to. You define a rule in nginx to associate a host to a abcdesktop route backend service.
+In this step, you expose the backend services to the outside world by telling NGINX what host each service maps to. You define a rule in NGINX that associates a hostname with the abcdesktop route backend service.
 
-Create an ingress resource for NGINX using the abcdesktop service and save it as `abcdesktop_host.yaml`.
-You need to update this manifest with your own FQDN, replace `hello.aws.pepins.net` by your own values.
+Create an ingress resource for NGINX using the abcdesktop service and save it as `abcdesktop_host.yaml`. Replace `hello.aws.pepins.net` with your own FQDN before applying.
 
 ```
 apiVersion: networking.k8s.io/v1
@@ -300,15 +299,15 @@ You can have multiple ingress controllers per cluster. The `ingressClassName` fi
 
 ![reach your website from your new name](img/http-dns-connect.png)
 
-> Web browser doesn't allow usage of websocket without a secure protocol. To log in, you need to use `https` protocol.
+> Web browsers do not permit WebSocket connections over an insecure protocol. To log in, you must use the `https` protocol.
 
-As you can see, your website is `Not Secured`, we are going to add X509 SSL certificate to secure your service.
+As you can see, the website is marked `Not Secured`. The next step adds an X.509 SSL certificate to secure the service.
 
 ## Enable HTTPS
 
 ### Install Cert Manager add-on on AWS EKS marketplace
 
-Navigate to the Add-ons section of your cluster on the AWS console, then click on `Get more add-ons` and install Cert Manager.
+Navigate to the Add-ons section of your cluster in the AWS console, then click `Get more add-ons` and install Cert Manager.
 
 ![cert manager](img/cert-manager.png)
 
@@ -355,13 +354,13 @@ ClusterIssuer: Similar to Issuer, but it does not belong to a namespace and can 
 
 Certificate: Defines a namespaced resource that references an Issuer or ClusterIssuer for issuing certificates.
 
-Inspect the CRDs by running the following command :
+Inspect the CRDs by running the following command:
 
 ```
 kubectl get crd -l app.kubernetes.io/name=cert-manager
 ```
 
-The output looks similar to the following
+The output looks similar to the following:
 
 ```
 NAME                                  CREATED AT
@@ -375,9 +374,9 @@ orders.acme.cert-manager.io           2026-01-19T10:23:33Z
 
 ### Configure Production-Ready TLS Certificates for nginx
 
-You can issue the certificate using an Issuer. Configure a certificate issuers resource for Cert-Manager, which fetches the TLS certificate for nginx to use. The certificate issuer uses the HTTP-01 challenge provider to accomplish this task.
+Configure a Cert-Manager `Issuer` resource that fetches TLS certificates for NGINX using the HTTP-01 challenge provider.
 
-Create the following manifest, replace `<your-valid-email-address>` with your own value, and save it as `cert-manager-issuer.yaml` :
+Create the following manifest, replace `<your-valid-email-address>` with your own email address, and save it as `cert-manager-issuer.yaml`:
 
 ```
 apiVersion: cert-manager.io/v1
@@ -409,7 +408,7 @@ The ingress resources use the HTTP-01 challenge.
 kubectl apply -f cert-manager-issuer.yaml -n abcdesktop
 ```
 
-The output looks similar to the following
+The output looks similar to the following:
 
 ```
 issuer.cert-manager.io/letsencrypt-nginx created
@@ -421,14 +420,14 @@ Verify that the Issuer resource is created:
 kubectl get issuer -n abcdesktop
 ```
 
-The output looks similar to the following
+The output looks similar to the following:
 
 ```
 NAME                READY   AGE
 letsencrypt-nginx   True    7s
 ```
 
-Next, configure each nginx ingress resource to use TLS. Open the previous `abcdesktop_host.yaml` manifest you created previously for the route application, add the `annotations` and `tls` sections shown below, and save the `abcdesktop_host.yaml` file : You can also add dedicated `nginx.ingress.kubernetes.io` annotations to increase default timeout values. Replace `hello.aws.pepins.net` by own FQDN
+Next, configure the NGINX ingress resource to use TLS. Open the `abcdesktop_host.yaml` manifest, add the `annotations` and `tls` sections shown below, and save the file. You can also add `nginx.ingress.kubernetes.io` annotations to increase default timeout values. Replace `hello.aws.pepins.net` with your own FQDN:
 
 ```
 apiVersion: networking.k8s.io/v1
@@ -476,22 +475,22 @@ NAME                 CLASS   HOSTS                  ADDRESS                     
 ingress-abcdesktop   nginx   hello.aws.pepins.net   k8s-ingressn-ingressn-dc31c08978-b7ef1bca03cfe45b.elb.us-east-1.amazonaws.com   80, 443   42m
 ```
 
-You see that 443 appeard in the `PORTS` section.
+You see that `443` has appeared in the `PORTS` section.
 
-Check that the certificate resource is created
+Verify that the certificate resource has been created:
 
 ```
 kubectl get certificates -n abcdesktop
 ```
 
-The output looks similar to the following
+The output looks similar to the following:
 
 ```
 NAME                     READY   SECRET                   AGE
 letsencrypt-nginx-echo   True    letsencrypt-nginx-echo   3m27s
 ```
 
-Run a simple curl command line `curl -Li https://hello.aws.pepins.net/` to confirm that your secured abcdesktop service is running.
+Run the following `curl` command to confirm that your secured abcdesktop service is running:
 
 ```
 curl -Li https://hello.aws.pepins.net/
@@ -569,7 +568,7 @@ As you can see in the logs, the source IP address seen by Pyos is a private IP a
 
 That happens because the NGINX Ingress Controller we set up earlier does not forward the client's public IP address; instead, it balances requests using its own cluster IP address. As a result, both Router and Pyos see the IP address of the ingress controller load balancer.
 
-To fix that, we have to update the configuration of our NGINX Ingress Controller. Paste the following lines in a `patch-ingress.yaml` file:
+To fix this, update the NGINX Ingress Controller configuration. Paste the following content into a `patch-ingress.yaml` file:
 
 ```
 controller:
@@ -588,13 +587,13 @@ controller:
     log-format-upstream: '{"time": "$time_iso8601", "remote_addr": "$proxy_protocol_addr", "x_forwarded_for": "$proxy_add_x_forwarded_for", "http_x_forwarded-for": "$http_x_forwarded_for", "request_id": "$req_id", "remote_user": "$remote_user", "bytes_sent": $bytes_sent, "request_time": $request_time, "status": $status, "vhost": "$host", "request_proto": "$server_protocol", "path": "$uri", "request_query": "$args", "request_length": $request_length, "method": "$request_method", "http_referrer": "$http_referer",  "http_user_agent": "$http_user_agent" }'
 ```
 
-Now run the following command to apply it
+Run the following command to apply it:
 
 ```
 helm upgrade ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx -f patch-loadbalancer.yaml
 ```
 
-You can now retry to connect to console, you should see an error message on the top right
+Retry connecting to the console. You should now see an error message in the top-right corner:
 
 ![access console ok](../img/console_access_denied.png)
 

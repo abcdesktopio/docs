@@ -1,29 +1,28 @@
 
 # Logging Configuration in od.config
 
+The `logging` configuration is a dictionary object that specifies where and how log messages are sent.
 
-The `logging` configuration is a dictionary object. The logging configuration specifies where and how log messages are sent.
+The `logging` dictionary follows the Python logging module configuration format. Refer to the [logging module](https://docs.python.org/3.8/library/logging.config.html) documentation for the full specification.
 
-`logging` dictionary uses the python logging module [logging module](https://docs.python.org/3.8/library/logging.config.html)
-
-The `syslog` and `graylog` protocol messaging are supported too.
-
+The `syslog` and `graylog` protocols are also supported for remote log forwarding.
 
 
-## Limits 
 
-- For http response only, each log line is limited by default to 2048 bytes. 
+## Limits
 
-in `od.config` the `max_log_body_size` is set to `2048`
+For HTTP responses only, each log line is limited by default to 2048 bytes.
+
+In `od.config`, the `max_log_body_size` parameter is set to `2048` by default:
 
 ```
 max_log_body_size: 2048
 ```
 
-Change this value to increase or decrease the size of a logging line.
+Adjust this value to increase or decrease the maximum length of a log line.
 
 
-If the line is over `max_log_body_size` the string `[truncated]` cuts the end of line
+If a log line exceeds `max_log_body_size`, the string `[truncated]` replaces the end of the line:
 
 ```abcsrv23
 2026-05-05 13:41:09 abcsrv23 132131221128896 od [INFO   ] __main__.trace_response:anonymous /core/getkeyinfo b'{"id": {"ephemeral_container": f...[truncated]'
@@ -34,13 +33,13 @@ If the line is over `max_log_body_size` the string `[truncated]` cuts the end of
 2026-05-05 13:41:09 abcsrv23 132131237914304 orchestrator [DEBUG  ] oc.od.orchestrator.ODOrchestratorKubernetes.findDesktopByUser:leela Pod is found leela-be51a
 ```
 
-## Logging configuration
+## Logging Configuration
 
-`logging` dict use the python logging module [logging module](https://docs.python.org/3.8/library/logging.config.html)
+The `logging` dictionary uses the Python logging module configuration format. Refer to the [logging module](https://docs.python.org/3.8/library/logging.config.html) documentation for the full specification.
 
-The `syslog` and `graylog` protocol messaging are supported too.
+The `syslog` and `graylog` protocols are also supported.
 
-The default features for each handler are: 
+The default configuration for each handler is as follows:
 
 
 | handler              | Features   |
@@ -53,8 +52,7 @@ The default features for each handler are:
 
 
 
-
-Sub modules used by od.py can log information too. 
+Sub-modules used by `od.py` also emit log messages.
 
 | Sub module                    | Default Values              |
 |-------------------------------|-----------------------------|
@@ -63,7 +61,7 @@ Sub modules used by od.py can log information too.
 
 
 
-The `logging` sample configuration :
+The following is a sample `logging` configuration:
 
 ```
 #              
@@ -172,4 +170,3 @@ logging: {
     }}
 
 ```
-

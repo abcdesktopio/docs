@@ -17,13 +17,13 @@ tags:
 
 ## Create a `DOKS` DigitalOcean Kubernetes cluster
 
-If you don't have a running kubernetes cluster, run the `doctl` command line with the `kubernetes cluster create` to create your cluster.
+If you do not have a running Kubernetes cluster, use the `doctl` CLI with the `kubernetes cluster create` subcommand to create one.
 
 ```
 doctl kubernetes clusters create --size s-4vcpu-8gb myabccluster 
 ```
 
-After few minutes, you get a kubernetes cluster ready
+After a few minutes, the Kubernetes cluster is ready:
 
 ```
 Notice: Cluster is provisioning, waiting for cluster to be running
@@ -45,7 +45,7 @@ This screenshot shows the DigitalOcean control panel, displaying the **Resources
 
 ## Run the abcdesktop install script 
 
-Download and install the latest release automatically
+Download and install the latest release automatically:
 
 ```
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh | bash
@@ -55,18 +55,18 @@ To get more details about the install process, please read the [Setup guide](htt
 
 ## Connect to your abcdesktop service 
 
-By default install script is listening on a free tcp port `:30443` and is using a `kubectl port-forward` command line to reach http web service `:80`
+By default, the install script listens on a free TCP port `:30443` and uses a `kubectl port-forward` command to forward traffic to the HTTP service on port `:80`.
 
-Open your web browser to `http://localhost:30443`
+Open a web browser and navigate to `http://localhost:30443`.
 
 ![abcdesktop login](../img/abcdesktop-hompage-port30443.png)
 
  
-Login as user `Philip J. Fry` with the password `fry`
+Log in as user `Philip J. Fry` with the password `fry`.
 
 ![abcdesktop login as fry](../img/abcdesktop-hompage-port30443-login-fry.png)
  
-After the image-pulling process completes, you get your first abcdesktop session
+After the image-pulling process completes, you get your first abcdesktop session.
 
 ![abcdesktop for fry](../img/abcdesktop-hompage-port30443-user-fry-logged.png)
 
@@ -74,7 +74,7 @@ After the image-pulling process completes, you get your first abcdesktop session
 ## Add applications to your desktop
 
 
-Using the previous terminal shell, run the application install script 
+Using the previous terminal shell, run the application install script:
 
 ```
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-{{ abcdesktop.latest_release }}.sh | bash
@@ -87,11 +87,11 @@ New applications are now listed in the dock of `plasmashell`.
 
 ![abcdesktop for fry with applications](../img/abcdesktop-hompage-port30443-login-fry-applications.png)
 
-Start Firefox application
+Start the Firefox application.
 
-> The first run may involve waiting for the image pulling process to finish
+> The first run may involve waiting for the image-pulling process to finish.
 
-Go to `https://mylocation.org` website to check where your pod is running.  In my case for the region `nyc1` (New york City 1), the desktop is located near `North Bergen` city in `United States`. 
+Navigate to `https://mylocation.org` to verify the geographic location of your pod. In this example, for the `nyc1` (New York City 1) region, the desktop is located near `North Bergen` in the `United States`.
 
 
 ![abcdesktop for fry with applications](img/abcdesktop-firefox-digitalocean-nyc1.png)

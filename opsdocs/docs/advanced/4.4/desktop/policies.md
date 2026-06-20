@@ -9,8 +9,8 @@ If a user is assigned the label `'hello'`, then `volumes['hello']` and `network[
   - for example, mounting an NFS share for all members of a group
   
 - `network` defines additional network interfaces and command hooks for a pod
-  - add a new network interface to a pod
-  - run commands to update DNS entries for a pod (on creation or deletion)
+  - Add a new network interface to a pod
+  - Run commands to update DNS entries for a pod (on creation or deletion)
 
 ## volumes
 
@@ -60,9 +60,9 @@ Requirements
 - `path` (string) is the NFS export path on the server
 
 
-Option
+Options
 
-- `readOnly` (boolean) if the mount should be in ReadOnly 
+- `readOnly` (boolean) whether the mount should be read-only
 
 
 ### volume type `hostPath`

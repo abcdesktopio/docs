@@ -20,9 +20,9 @@ In this chapter, you will use a `LoadBalancer` service to expose your abcdesktop
 ## Create a new `http-router` service yaml file
 
 
-The default install define the `http-router` service with as `nodePort` type. We are going to update the `http-router` service with a `LoadBalancer` type.
+The default installation configures the `http-router` service as type `NodePort`. You will update it to type `LoadBalancer` to expose the service with a public IP address.
 
-Create a file named `http-router.yaml`
+Create a file named `http-router.yaml`:
 
 ```
 kind: Service
@@ -50,23 +50,23 @@ spec:
     name: http
 ```
 
-Save your `http-router.yaml` file
+Save your `http-router.yaml` file.
 
-Delete the previous service `http-router`
+Delete the existing `http-router` service:
 
 ```
 kubectl delete service http-router -n abcdesktop
 service "http-router" deleted
 ```
 
-Create your new `service/http-router`
+Apply your new `service/http-router`:
 
 ```
 kubectl apply -f http-router.yaml -n abcdesktop
 service/http-router created
 ```
 
-Wait for few minutes, the `EXTERNAL-IP` of service `http-router` stays in `Pending` state
+Wait a few minutes. The `EXTERNAL-IP` of the `http-router` service will initially remain in a `Pending` state:
 
 ```
 kubectl get services http-router -n abcdesktop 
@@ -77,37 +77,37 @@ NAME          TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)               
 http-router   LoadBalancer   10.0.165.172   <pending>     443:32562/TCP,80:30224/TCP   4s
 ```
 
-Check the EXTERNAL-IP of service `http-router` again
+Check the `EXTERNAL-IP` of the `http-router` service again:
 
 ```
 kubectl get services http-router -n abcdesktop       
 ```
 
-> Great the service gets `48.194.112.87` as an `EXTERNAL-IP`
+> The service has been assigned `48.194.112.87` as its `EXTERNAL-IP`.
 
 ```      
 NAME          TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)                      AGE
 http-router   LoadBalancer   10.0.165.172   48.194.112.87   443:32562/TCP,80:30224/TCP   22s
 ```
 
-You can open a web browser to reach your abcdesktop service with the IP address
+Open a web browser and navigate to your abcdesktop service using the IP address.
 
 
 ![web browser to reach your abcdesktop service](img/connect-ip.png)
 
 
-Web browser doesn't allow usage of websocket without secure protocol. To login you need `https` protocol
+Web browsers do not permit WebSocket connections over an insecure protocol. To log in, you must use the `https` protocol.
 
 
 ## Update your DNS zone file 
 
 
-We will use a `FQDN` (Fully Qualified Domain Name) to replace the `IP Address`.
+You will use an FQDN (Fully Qualified Domain Name) to replace the IP address.
 
 
 ![azure networking](img/azure-networking.png)
 
-This screenshot describes the Microsoft Azure network console. It shows the `Domain` informations, but your can manage your zone file from your own registrar.
+This screenshot shows the Microsoft Azure network console and displays the `Domain` configuration. You can also manage your zone file directly through your own domain registrar.
 
 ### Create new record
 
@@ -123,18 +123,18 @@ http-router   LoadBalancer   10.0.165.172   48.194.112.87   443:32562/TCP,80:302
 
 ![azure console domain overview](img/createrecord.png)
 
-Press `Add` button, to update your zone file with the new record
+Press the `Add` button to update your zone file with the new record.
 
 ![azure console domain overview](img/recorddone.png)
 
-From your local device, you can open a web browser
+From your local device, open a web browser to confirm DNS resolution:
 
 ![reach your website from your new name](img/hello-http.png)
 
 
-Web browser doesn't allow usage of websocket without secure protocol. To login you need `https` protocol.
+Web browsers do not permit WebSocket connections over an insecure protocol. To log in, you must use the `https` protocol.
 
-As you can see, your website is `Not Secured`, we are going to add X509 SSL certificate to secure your service.
+As you can see, the website is marked `Not Secured`. The next step adds an X.509 SSL certificate to secure the service.
 
 
 
@@ -142,9 +142,9 @@ As you can see, your website is `Not Secured`, we are going to add X509 SSL cert
 
 If you already have an X.509 certificate with private and public key files for your website, you can skip this chapter.
 
-To obtain an SSL certificate, this guide uses the Let's Encrypt service. You will need your new hostname and your email address.
+To obtain an SSL certificate, this guide uses the Let's Encrypt service. You will need your public hostname and email address.
 
-Define the new variables `ABCDESKTOP_PUBLIC_FQDN` and `USER_EMAIL_ADDRESS` 
+Define the environment variables `ABCDESKTOP_PUBLIC_FQDN` and `USER_EMAIL_ADDRESS`:
 
 
 ``` bash
@@ -154,7 +154,7 @@ ROUTER_POD_NAME=$(kubectl get pods -l run=router-od -o jsonpath={.items..metadat
 kubectl exec -n abcdesktop -it ${ROUTER_POD_NAME} -- /usr/bin/certbot certonly --webroot -w /var/lib/nginx/html -d ${ABCDESKTOP_PUBLIC_FQDN} -m "${USER_EMAIL_ADDRESS}" --agree-tos -n
 ```
 
-You should read on stdout
+You should see the following output on stdout:
 
 ```
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
@@ -216,9 +216,9 @@ Download [abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml](http
 wget https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml
 ```
 
-Open your `abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml` file, look for the ConfigMap `abcdesktop-routehttp-config`.
+Open your `abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yaml` file and locate the ConfigMap `abcdesktop-routehttp-config`.
 
-Remove the comments to enable https and change the value `YOUR_SERVER_NAME_AND_DOMAIN` by your own value. 
+Uncomment the HTTPS directives and replace `YOUR_SERVER_NAME_AND_DOMAIN` with your actual domain name. 
 
 ```
  # nginx server config
@@ -261,7 +261,7 @@ kubectl apply -f abcdesktop-routehttp-config.{{ abcdesktop.latest_release }}.yam
  
 Update the `deployment` route to add the SSL certificate entry.
 
-The `abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml` file  adds `mountPath: /etc/nginx/ssl` to `secretName: http-router-certificat`
+The `abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml` file adds `mountPath: /etc/nginx/ssl` mapped to `secretName: http-router-certificat`:
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.{{ abcdesktop.latest_release }}.yaml -n abcdesktop
@@ -274,7 +274,7 @@ You can now connect to your abcdesktop public website using the `https` protocol
 ![reach your website using https](img/hello-https.png)
 
 
-The status is secured and we get some informations from the certificate
+The connection is secured, and the certificate information is visible in the browser.
 
 
 ![reach your website using https](img/certificate-loadbalancer-ok.png)

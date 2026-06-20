@@ -1,12 +1,12 @@
-# How to add a reverse proxy in front of abcdesktop
+# How to Add a Reverse Proxy in Front of abcdesktop
 
-This chapter describe host to add a reverse proxy in front of abcdesktop. The chapter describes the `nginx` configuration in front of abcdesktop
+This chapter describes how to add a reverse proxy in front of abcdesktop. It covers the `nginx` configuration required to place a reverse proxy in front of an abcdesktop deployment.
 
-First of all, you need to update `od.config` file to set the `default_host_url` as your `external url` 
+First, update the `od.config` file to set the `default_host_url` to your external URL.
 
-## Edit your configuration file
+## Edit Your Configuration File
 
-In this example, the `external url` is `https://abcdesktop.domain.com`
+In this example, the external URL is `https://abcdesktop.domain.com`.
 
 ```
 # DEFAULT HOST URL 
@@ -17,43 +17,43 @@ default_host_url : 'https://abcdesktop.domain.com'
 # END OF DEFAULT HOST URL
 ```
 
-If the `od.config` file does not exist, extract it from the abcdesktop-config configmap to a local file `od.config`
+If the `od.config` file does not exist, extract it from the `abcdesktop-config` ConfigMap to a local file:
 
 ```bash
 kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
 ```
 
-You get a the new local file `od.config`
+This command outputs the current configuration to a local file named `od.config`.
 
-To make change, edit your own `od.config` file with your favorite file editor:
+Edit the `od.config` file using your preferred editor:
 
 ```bash
 vim od.config
 ```
 
-- Update the value `default_host_url 
+- Update the `default_host_url` value:
 
 ```
 default_host_url : 'https://abcdesktop.domain.com'
 ```
 
-- Apply changes
+- Apply the changes.
 
-To apply changes, you have to replace the `abcdesktop-config`, by running the `replace kubectl` command line option. Then `rollout restart`the `pyos` pod.
+To apply the changes, replace the `abcdesktop-config` ConfigMap by running the `kubectl replace` command, then restart the `pyos` deployment using `rollout restart`.
 
 ```bash
 kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config  -o yaml --dry-run | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deployment pyos-od -n abcdesktop
 ```
 
-Great, now we can create the configuration for the reverse proxy of your choice, `nginx` or `haproxy`.
+Once the configuration is updated, create the reverse proxy configuration for your preferred proxy server — either `nginx` or `haproxy`.
 
 
-## Create your reverse proxy
+## Create Your Reverse Proxy
 
-### Add `nginx` as a reverse proxy in front of abcdesktop
+### Add `nginx` as a Reverse Proxy in Front of abcdesktop
 
-- Create a websocket config file named `ws.conf`
+- Create a WebSocket configuration file named `ws.conf`:
 
 ```
 proxy_buffering 	off;
@@ -72,7 +72,7 @@ proxy_pass $my_node;
 ```
 
 
-- create a proxy config file named `proxy.conf`
+- Create a proxy configuration file named `proxy.conf`:
 
 ```
 # Add proxy header
@@ -89,7 +89,7 @@ proxy_pass 	 $my_node;
 
 
 
-- create the reverse proxy config file named `reverse-abcdesktop.conf`
+- Create the reverse proxy configuration file named `reverse-abcdesktop.conf`:
 
 
 ```

@@ -11,48 +11,48 @@ tags:
 
 ## Goals
 
-* Apply network policies to control traffic flow at the IP address or port level of abcdesktop pods, **this includes user's pods**.
+* Apply network policies to control traffic flow at the IP address or port level for all abcdesktop pods, **including user pods**.
 
 
 ## Authors
 
 
-[jpxavier-oio](https://github.com/jpxavier-oio) has designed the network policy for abcdesktop.io
+[jpxavier-oio](https://github.com/jpxavier-oio) designed the network policy architecture for abcdesktop.io.
 
 
 
 ## Requirements
 
-- You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. It is recommended to run this tutorial on a cluster with at least two nodes.
+- A Kubernetes cluster is required, and the `kubectl` command-line tool must be configured to communicate with your cluster. It is recommended to run this tutorial on a cluster with at least two nodes.
 
-- Network policies are implemented by the network plugin. To use network policies, you must be using a networking solution which supports NetworkPolicy. 
+- Network policies are implemented by the network plugin. To use network policies, you must use a networking solution that supports `NetworkPolicy`.
 
 
 
 ## NetworkPolicy description
 
 
-abcdesktop defines two types of isolation: the NetworkPolicy `rights` and the NetworkPolicy `permits`.
+abcdesktop defines two types of isolation policies: the NetworkPolicy `rights` and the NetworkPolicy `permits`.
 
 
-- The NetworkPolicy `rights` contains `egress` and `ingress` rules for pods selected by label. `rights` controls access to a pod (ingress) and from a pod (egress). To define IP filters for user pods, you must configure egress NetworkPolicy rules.
+- The NetworkPolicy `rights` contains `egress` and `ingress` rules for pods selected by label. The `rights` policy controls both inbound access to a pod (ingress) and outbound access from a pod (egress). To define IP filters for user pods, configure egress NetworkPolicy rules within the `rights` policy.
 
 
-- The NetworkPolicy `permits` contains `egress` rules targeting a pod selected by label. The NetworkPolicy `permits` grants permitted access to that pod.
+- The NetworkPolicy `permits` contains `egress` rules targeting a pod selected by label. The NetworkPolicy `permits` grants outbound connectivity to the specified target pod.
 
 
 ## NetworkPolicy example
 
-The NetworkPolicy examples describe the network policies for the internal memcached pod and the user's pods.
+The NetworkPolicy examples below describe the network policies applied to the internal memcached pod and to user pods.
 
-### NetworkPolicy `rights` and `permits` for the `memcached`.
+### NetworkPolicy `rights` and `permits` for the `memcached` service
 
-The `memcached` service is listening on TCP port 11211.
+The `memcached` service listens on TCP port 11211.
 
-The NetworkPolicy for memcached service `rights`, 
-- named `memcached-rights`,
-- allows pods with label `run: memcached-od`
-- to expose the TCP port 11211.
+The NetworkPolicy for the memcached service `rights`:
+- is named `memcached-rights`,
+- selects pods with the label `run: memcached-od`,
+- and permits inbound traffic on TCP port 11211.
 
 
 ```yaml
@@ -84,7 +84,7 @@ spec:
 ```
 
 
-The NetworkPolicy for memcached service `permits`, named `memcached-permits`, allows all pods with the label `netpol/memcached: 'true'` to reach TCP port 11211 on pods with the label `run: memcached-od`.
+The NetworkPolicy for the memcached service `permits`, named `memcached-permits`, allows all pods with the label `netpol/memcached: 'true'` to establish outbound connections to TCP port 11211 on pods with the label `run: memcached-od`.
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -110,10 +110,10 @@ spec:
 ```
 
 
-### NetworkPolicy `rights` and `permits` for the user's pods.
+### NetworkPolicy `rights` and `permits` for user pods
 
 
-The `ocuser` pod is listening on TCP ports :
+The `ocuser` pod listens on the following TCP ports:
 
   - 4714
   - 6081
@@ -125,9 +125,9 @@ The `ocuser` pod is listening on TCP ports :
   - 29785
   - 29786
 
-The network policy for ocuser's pods `rights` is named `ocuser-rights`. It allows pods with label `type: 'x11server'` to expose the previous TCP ports.
+The network policy for `ocuser` pods `rights` is named `ocuser-rights`. It selects pods with the label `type: 'x11server'` and permits inbound traffic on the ports listed above.
 
-The `egress` network policy allows:
+The `egress` network policy permits the following outbound traffic:
 
 - DNS queries to kube-dns
 - HTTP to any web site
@@ -204,7 +204,7 @@ spec:
 ```      
 
 
-The network policy for ocuser's pods `permits` is named `ocuser-permits`. It allows pods with the label `netpol/ocuser: 'true'` to reach the user pod services.
+The network policy for `ocuser` pods `permits` is named `ocuser-permits`. It allows pods with the label `netpol/ocuser: 'true'` to establish outbound connections to the user pod services.
 
 ```yaml
 apiVersion: networking.k8s.io/v1

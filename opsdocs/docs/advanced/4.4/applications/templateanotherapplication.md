@@ -4,11 +4,11 @@ tags:
   - template
 ---
 
-# Build another application from template
+# Build another application from a template
 
 Goal: Build a second custom abcdesktop.io application image (GIMP) by extending the `applist.json` from the previous chapter.
 
-abcdesktop uses container image format with some labels to describe the application.
+abcdesktop.io uses the container image format with metadata labels to describe each application.
 
 ## Requirements
 
@@ -22,7 +22,7 @@ abcdesktop uses container image format with some labels to describe the applicat
 
 Navigate to the `build` directory created in the previous chapter: [template applications](templateapplication.md).
 
-The `applist.json` file is an array of application descriptor objects. Add a new entry to the array and populate the fields for the `gimp` application.
+The `applist.json` file is an array of application descriptor objects. Add a new entry to the array and populate the required fields for the `gimp` application.
 
 Updated `applist.json` content for building the GIMP abcdesktop.io application:
 
@@ -66,7 +66,7 @@ Updated `applist.json` content for building the GIMP abcdesktop.io application:
 * `debpackage`: space-separated list of packages to install
 
 
-- Download the Gimp icon svg file
+- Download the GIMP icon SVG file
 
 ```
 wget https://upload.wikimedia.org/wikipedia/commons/4/45/The_GIMP_icon_-_gnome.svg -O icons/gimp.svg
@@ -112,7 +112,7 @@ Creating Dockerfile gimp.d
 > `make.js` generates the Dockerfile files `2048.d` and `gimp.d`.
 
 
-The `2048.d` image was already built in the previous chapter; only the `gimp.d` image needs to be built here.
+The `2048.d` image was already built in the previous chapter; only the `gimp.d` image must be built at this stage.
 
 Review the content of the generated `gimp.d` Dockerfile, then build the GIMP application image using the `docker build` command.
 
@@ -273,7 +273,7 @@ In the search bar at the top-right corner, type the keyword `gimp`.
 
 ![abcdesktop.io look for gimp applications](img/application-gimp-lookfor.png)
 
-Wait for the container image pull to complete.
+Wait for the container image pull to complete before proceeding.
 
 ![abcdesktop.io look for gimp applications](img/application-gimp-waitfor.png)
 
@@ -281,13 +281,13 @@ Click the `gimp` icon to launch the application:
 
 ![abcdesktop.io gimp is running](img/application-gimp-run.png)
 
-You have successfully installed GIMP and are running it as an abcdesktop.io container application.
+You have successfully built, registered, and launched GIMP as an abcdesktop.io container application.
 
 
 
 ## All other applications
 
-All abcdesktop.io applications are defined in an `applist.json` file. Refer to the complete [applist.json](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/applist.json) for reference. This file contains the descriptors used to build all default abcdesktop.io application images.
+All abcdesktop.io applications are defined in an `applist.json` file. Refer to the complete [applist.json](https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/applist.json) for reference. This file contains the descriptors used to build all default abcdesktop.io application images and serves as a comprehensive reference for available fields and their values.
 
 
 ```

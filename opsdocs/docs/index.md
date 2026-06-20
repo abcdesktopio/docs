@@ -2,27 +2,9 @@
 hide:
   - navigation
   - toc
-<<<<<<< HEAD
 title: abcdesktop.io — Cloud-Native Kubernetes Virtual Desktop
 summary: Cloud-native, containerized graphical application desktop with remote browser isolation and remote application isolation
-description: abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering remote browser isolation (RBI) and remote application isolation (RAI) accessible from any HTML5 web browser — no client-side installation required.
-keywords: remote browser isolation, remote application isolation, graphical application container, desktopless, kubernetes, secure desktop, cloud native, telecommuting, virtual desktop infrastructure, VDI, VNC, digital workspace, reduce attack surface, BYOD, bring your own device, noVNC, RDP, citrix alternative, sovereign cloud, zero-trust desktop
-=======
-title: abcdesktop.io cloud native desktop
-summary: cloud container graphical application container desktop
-description: cloud native desktop complete workspace environment accessible from a web browser
-keywords: graphical application container desktopless kubernetes secure desktop container cloud native telecommuting remove virtual on demand vdi vnc digital workspace reduce attack surface byod bring your own device reduce attack surface novnc rdp citrix sovereign remote browser isolation RBI
->>>>>>> 056bd15ef7e226d5c6aca99d4d59588cb07443d2
-
-
-tags:
-  - home
----
-
-
-# abcdesktop.io — Cloud-Native Kubernetes Virtual Desktop
-
-**abcdesktop.io** is a cloud-native virtual desktop platform built on and for [Kubernetes](https://kubernetes.io/). It delivers **Remote Browser Isolation (RBI)** and **Remote Application Isolation (RAI)** — two core security paradigms that eliminate the traditional attack surface by running every application, including web browsers, inside isolated containers on the server side. The user's endpoint device acts as a pure display client, receiving only rendered pixels over an encrypted HTML5 WebSocket stream.
+description: abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering remote browser isolation (RBI) and remote application isolation (RAI) accessible from any HTML5 web browser — no client-side indescription: abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering remote browser isolation (RBI) and remote application isolation (RAI) accessible from any HTML5 web browser — no client-side indescription: abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering remote browser isolation (RBI) and remote application isolation (RAI) accessible from any HTML5 web browser — no client-side indescription: abcdesktop.io is a cloud-native, Kubernetes-native virtnd for [Kubernetes](https://kubernetes.io/). It delivers **Remote Browser Isolation (RBI)** and **Remote Application Isolation (RAI)** — two core security paradigms that eliminate the traditional attack surface by running every application, including web browsers, inside isolated containers on the server side. The user's endpoint device acts as a pure display client, receiving only rendered pixels over an encrypted HTML5 WebSocket stream.
 
 abcdesktop.io is also a complete workspace environment accessible from any HTML5-capable web browser, with no software installation required on the client device. Like the serverless computing model, **desktopless computing** dynamically allocates desktop resources on demand within the cluster, tearing them down when the session ends. Each user's desktop and every application runs as a dedicated Kubernetes pod or ephemeral container, enforcing strict workload isolation and dramatically reducing the blast radius of any potential compromise.
 
@@ -34,18 +16,7 @@ abcdesktop.io is a free, open-source solution that provides seamless, secure acc
 
 ## Remote Browser Isolation (RBI)
 
-<<<<<<< HEAD
 **Remote Browser Isolation** is a security architecture in which the web browser engine executes entirely within an isolated container on the server, rather than on the user's local device. Only the rendered visual output is transmitted to the client browser as a pixel stream over an encrypted WebSocket connection.
-=======
-- Remote virtual desktop
-- Remote browser isolation (RBI), and remote ephemeral browser application (Firefox, Chrome, Chromium, Edge)
-- Separation between production secure zone and less secured user zone, like a bastion or a reverse isolation does
-- Telecommuting
-- Give temporary access to other contractors or guests
-- Training
-- BYOD, Bring Your Own Device
-- Desktop On Demand, Desktop as a service
->>>>>>> 056bd15ef7e226d5c6aca99d4d59588cb07443d2
 
 With abcdesktop.io, Firefox (or any other supported browser application) runs as a dedicated container inside the Kubernetes cluster. The user's local machine never directly executes any web content, scripts, or plugins. This architecture provides:
 

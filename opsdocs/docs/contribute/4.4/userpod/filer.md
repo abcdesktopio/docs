@@ -16,9 +16,9 @@ Primary capabilities:
 
 ### 2.1 Process model
 
-- Single Node.js process, Express app and router initialization in `file-service.js`.
-- Service bind is delegated to external helper `listenDaemonOnContainerIpAddr` .
-- All uncaught exceptions are logged but do not trigger explicit shutdown logic.
+- The service runs as a single Node.js process; the Express application and router are initialized in `file-service.js`.
+- TCP socket binding is delegated to the external helper function `listenDaemonOnContainerIpAddr`.
+- All uncaught exceptions are logged but do not trigger an explicit shutdown sequence.
 
 ### 2.2 Router mounting
 
@@ -63,10 +63,10 @@ Error handling:
 
 `is_allow_var` maps values as follows:
 
-- Deny when value (case-insensitive) is one of: 0, false, disable, disabled.
-- Allow otherwise, including undefined.
+- **Deny** when the value (case-insensitive) is one of: `0`, `false`, `disable`, `disabled`.
+- **Allow** otherwise, including when the variable is undefined.
 
-Default behavior: all features enabled unless explicitly disabled.
+Default behavior: all features are enabled unless explicitly disabled via environment variable.
 
 ## 4. Security and Path Confinement Model
 
@@ -81,26 +81,24 @@ All filesystem operations are intended to stay under `HOME` using:
 
 `normalize_tildpath` behavior:
 
-- Expands leading `~` to `HOME`.
+- Expands a leading `~` to the value of `HOME`.
 - Applies `path.normalize`.
-- If parsed directory is outside `HOME`, prepends `HOME` and normalizes again.
+- If the resolved directory falls outside `HOME`, it prepends `HOME` and normalizes the result again.
 
 ### 4.3 Path safety predicate
 
 `checkSafePath` behavior:
 
-- Expands leading `~` to `HOME`.
-- Normalizes path.
-- Parses normalized path and returns true when either:
-  - parsed directory starts with `HOME`, or
-  - original currentPath exactly equals `HOME`.
+- Expands a leading `~` to the value of `HOME`.
+- Normalizes the path.
+- Returns `true` when either the resolved directory starts with `HOME`, or the original `currentPath` exactly equals `HOME`.
 
 ## 5. Data and I/O Behavior
 
 ### 5.1 Upload buffering
 
 - Multer is configured with in-memory storage.
-- Uploaded file content is fully resident in RAM before write.
+- Uploaded file content is fully buffered in RAM before being written to disk.
 
 ### 5.2 File streaming
 
@@ -109,14 +107,14 @@ All filesystem operations are intended to stay under `HOME` using:
 
 ### 5.3 Zip generation
 
-- Recursive traversal implemented by `generateZipTree`.
+- Recursive directory traversal is implemented by `generateZipTree`.
 - Folder names are split on `/` (non-portable if run outside POSIX path semantics).
-- Read errors are logged and swallowed inside recursion; operation continues.
+- Read errors are logged and swallowed inside the recursion; the operation continues on remaining entries.
 
 ### 5.4 Directory listing sort
 
-- Directory list is sorted ascending by modification time
-- If file stat fails, file gets synthetic time 0 and likely appears first.
+- The directory listing is sorted in ascending order by file modification time.
+- If a file's `stat` call fails, the file receives a synthetic modification time of `0` and will likely appear first in the sorted result.
 
 ## 6. API Contract (Implementation Accurate)
 

@@ -6,24 +6,22 @@ tags:
   - upgrade
 ---
 
-# Installation using helm
+# Installing abcdesktop.io Using Helm
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/abcdesktop)](https://artifacthub.io/packages/search?repo=abcdesktop)
 
 <div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop" data-theme="light" data-header="false" data-stars="false" data-responsive="false"><blockquote><p lang="en" dir="ltr"><b>abcdesktop</b>: ABCDesktop helm chart</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/abcdesktop/abcdesktop">Artifact Hub</a></blockquote></div><script async src="https://artifacthub.io/artifacthub-widget.js"></script>
 
-## Requirements
+## Prerequisites
 
-- kubernetes cluster `READY` to run
-- `helm` command-line tool must be installed.
+- A Kubernetes cluster in the `Ready` state
+- The `helm` command-line tool installed and configured to communicate with your cluster
 
-
-
-## Installation using helm latest release {{ abcdesktop.latest_release }}
+## Installing the Latest Release {{ abcdesktop.latest_release }}
 
 ![install using helm](https://github.com/abcdesktopio/helm/releases/download/abcdesktop-{{ abcdesktop.helm_latest_release }}/install-using-helm.gif)
 
-- Add the `helm` repo and then install it
+Add the abcdesktop.io Helm repository and install the chart:
 
 ```bash
 NAMESPACE=abcdesktop
@@ -41,16 +39,16 @@ helm install my-abcdesktop abcdesktop/abcdesktop --version 4.4.1 --create-namesp
     REVISION: 1
     TEST SUITE: None
     NOTES:
-    # After installation, and wait for deployments and services
+    # After installation, wait for all deployments to become available
 
     NAMESPACE=abcdesktop
     kubectl wait deployment -n ${NAMESPACE} --all --for condition=Available=True --timeout=300s
     kubectl get services -n ${NAMESPACE}
 
 
-    # To connect to your abcdesktop using a port forward
-    - port-forwarding is only for testing
-    - change LOCAL_PORT if need
+    # Connect to your abcdesktop instance using port-forwarding
+    # Note: port-forwarding is intended for testing only
+    # Adjust LOCAL_PORT if the default port is already in use
 
     LOCAL_PORT=30443
     NAMESPACE=abcdesktop
@@ -59,8 +57,7 @@ helm install my-abcdesktop abcdesktop/abcdesktop --version 4.4.1 --create-namesp
     Open your web browser to http://localhost:30443
     ```
 
-
-- When install your helm installation process is ready, you need to forward the pod's router tcp port 80 to your localhost port 30443 (for example)
+Once the Helm installation completes, forward the router pod's TCP port 80 to a local port (for example, 30443):
 
 ```bash
 LOCAL_PORT=30443
@@ -68,24 +65,26 @@ NAMESPACE=abcdesktop
 kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 "${LOCAL_PORT}:80" -n ${NAMESPACE}
 ```
 
-## Video to run the quick installation process
+## Video: Quick Installation Using Helm
 
-You can watch the youtube video sample. This video describes the Quick installation process using `helm`.
+The following video demonstrates the complete Helm-based installation process:
 
 <div style="display: flex; justify-content: center;"><iframe width="640" height="480" src="https://www.youtube.com/embed/QQTWRf5Vf8g" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 
-## Helm options
+## Helm Configuration Options
 
-To modify any default parameters of the helm configuration, follow these steps:
+To customize default Helm chart parameters, follow these steps:
 
-### Step 1: Retrieve the default configuration file from helm
+### Step 1: Export the Default Configuration
+
+Retrieve the default values file from the chart:
 
 ~~~bash
 helm show values abcdesktop/abcdesktop  > abcdesktop-values.yaml
 ~~~
 
-A new file named *abcdesktop-values.yaml* will be created in your current directory.
+A file named `abcdesktop-values.yaml` is created in the current directory. Its structure looks similar to the following:
 
 ~~~ yaml
 imagePullSecrets: []
@@ -116,15 +115,14 @@ memcached:
 ...
 ~~~
 
-You can edit this file to change any default parameters of helm configuration.
+Edit this file to override any default parameters.
 
 !!! warning
-    The values file is a YAML file, where indentation is critical.
+    The values file is a YAML file. Indentation is significant — use consistent spacing to avoid parsing errors.
 !!! note
-    Values can evolve with helm versions, so a good practice is to keep only the changed parts.
+    Values evolve across chart versions. As a best practice, include only the parameters you intend to override and let the chart supply all other defaults.
 
-If you want to change only the memcached docker image and console image tags and CPU
-limit, your *abcdesktop-values.yaml* may look like:
+For example, to override only the memcached image and the console image tag while increasing the console CPU limit:
 
 ~~~yaml
 console:
@@ -137,11 +135,11 @@ memcached:
   image: ghcr.io/abcdesktopio/MY.memcached
 ~~~
 
-Non-overridden values will use the default ones.
+All non-overridden parameters use the chart's default values.
 
-### Step 2 - apply helm with your values file
+### Step 2: Apply the Custom Values File
 
-Then apply your configuration:
+Install or upgrade the chart with your custom values file:
 
 ~~~ bash
 helm install my-abcdesktop abcdesktop/abcdesktop \
@@ -151,9 +149,9 @@ helm install my-abcdesktop abcdesktop/abcdesktop \
     -f abcdesktop-values.yaml
 ~~~
 
-## Helm upgrade
+## Upgrading an Existing Helm Release
 
-An installed helm chart can be upgraded (both version and values) using:
+To upgrade both the chart version and configuration values of an existing release:
 
 ~~~bash
 helm upgrade my-abcdesktop \

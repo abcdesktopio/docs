@@ -10,20 +10,20 @@ tags:
 * `docker` command line installed, to build image
 * your own registry to store container images
 
-## Create new image for abcdesktop oc.nginx
+## Create a New Image for abcdesktop oc.nginx
 
-### Clone default webmodules
+### Clone the Default Web Modules
 
 ```bash
 BRANCH={{ abcdesktop.latest_release }}
 git clone -b $BRANCH https://github.com/abcdesktopio/webModules.git
 ```
 
-### Locate project and ui files
+### Locate Project and UI Files
 
-#### Update ui.json file
+#### Update the ui.json File
 
-Update your `ui.json` file.  `ui.json` is located in `transpile/config` directory.
+Update your `ui.json` file. `ui.json` is located in the `transpile/config` directory.
 
 
 ```bash
@@ -36,9 +36,9 @@ drwxr-xr-x  11 alexandredevely  staff   352 Nov 29 14:54 ..
 -rw-r--r--   1 alexandredevely  staff  1548 Nov 29 14:54 ui.json
 ```
 
-`ui.json` is a json dictionary file
+`ui.json` is a JSON dictionary file.
 
-The main entry is `name`, name is the project name:
+The primary entry is `name`, which specifies the project name:
 
 
 | entry          | default value       | example          |
@@ -124,10 +124,9 @@ rojectNameSplitedStaged'>desktop</span>",
 }
 ```
 
-##### Login progress
+##### Login Progress
 
-Login progress is embedded in `span` HTML tags.
-Each `projectNameSplitedStage` describes a step during the user's authentication and pod creation process.
+The login progress indicator is embedded in `span` HTML tags. Each `projectNameSplitedStage` describes a step during the user's authentication and pod creation process.
 
 
 - projectNameSplitedStagea: `step 1`
@@ -145,7 +144,7 @@ Each `projectNameSplitedStage` describes a step during the user's authentication
 ```
 
 
-#### Colors dictionary entries
+#### Colors Dictionary Entries
 
 | entry          | default value  | example   |
 |----------------|----------------|-----------|
@@ -154,15 +153,15 @@ Each `projectNameSplitedStage` describes a step during the user's authentication
 | @tertiary      | #6EC6F0        | #6EC6F0   |
 
 
-#### Update the ui.json with your own values
+#### Update the ui.json with Your Own Values
 
-Change for example the name `abcdesktop` to `acmedesktop`
+For example, change the name `abcdesktop` to `acmedesktop`:
 
 ```json
 "name": "acmedesktop.io"
 ```
 
-Update the `projectNameSplitedHTML` values and the `@tertiary` color
+Update the `projectNameSplitedHTML` values and the `@tertiary` color:
 
 ```json
     {
@@ -171,7 +170,7 @@ Update the `projectNameSplitedHTML` values and the `@tertiary` color
     },
 ```
 
-Example with new `acmedesktop`
+The following is a complete example using `acmedesktop`:
 
 ```json
 {
@@ -251,11 +250,11 @@ Example with new `acmedesktop`
 ```
 
 
-#### Build your new image
+#### Build the New Image
 
-Run the docker build command to build the new `oc.nginx:acme` image
+Run the following Docker build command to build the new `oc.nginx:acme` image.
 
-The target image is `abcdesktopio/oc.nginx:acme`. You should replace this with your own registry, for example `myacme/oc.nginx:acme`.
+The target image is `abcdesktopio/oc.nginx:acme`. Replace this with your own registry name, for example `myacme/oc.nginx:acme`.
 
 ```bash
 docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE={{ abcdesktop.latest_release }} --build-arg TARGET=dev  -t abcdesktopio/oc.nginx.acme:{{ abcdesktop.latest_release }} -f Dockerfile .
@@ -290,11 +289,9 @@ docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.ng
  => => naming to docker.io/abcdesktopio/oc.nginx.acme:{{ abcdesktop.latest_release }}
 ```
 
-#### Update the `abcdesktop.yaml`
+#### Update the abcdesktop.yaml File
 
-To update the `abcdesktop.yaml` to replace `oc.nginx:{{ abcdesktop.latest_release }}` by your own image `oc.nginx.acme:{{ abcdesktop.latest_release }}`
-
-- edit your own `abcdesktop.yaml` file
+To update `abcdesktop.yaml` and replace `oc.nginx:{{ abcdesktop.latest_release }}` with your custom image `oc.nginx.acme:{{ abcdesktop.latest_release }}`, edit your `abcdesktop.yaml` file:
 
 ```
       [...]
@@ -307,7 +304,7 @@ To update the `abcdesktop.yaml` to replace `oc.nginx:{{ abcdesktop.latest_releas
       [...]
 ```
 
-Update the `deployment` with your new image name `abcdesktopio/oc.nginx:acme` and replace `abcdesktopio` with your own registry.
+Update the `deployment` section with your new image name and replace `abcdesktopio` with your own registry name:
 
 ```
       [...]
@@ -320,14 +317,14 @@ Update the `deployment` with your new image name `abcdesktopio/oc.nginx:acme` an
       [...]
 ```
 
-apply your abcdesktop.yaml file
+Apply the updated `abcdesktop.yaml` file:
 
 ```bash
 NAMESPACE=abcdesktop
 kubectl apply -f abcdesktop.yaml -n $NAMESPACE
 ```
 
-You read on stdout 
+The command outputs the following to stdout:
 
 ```
 role.rbac.authorization.k8s.io/pyos-role unchanged
@@ -355,9 +352,9 @@ service/website unchanged
 service/openldap unchanged
 ```
 
-### Connect to your new website
+### Connect to the New Website
 
-Open your web browser to your abcdesktop website
+Open a web browser and navigate to your abcdesktop website.
 
 - the acmedesktop login page
 
@@ -368,7 +365,7 @@ Open your web browser to your abcdesktop website
 ![acme desktop login process](img/acmedesktoploginprocess.png)
 
 
-- `acmedesktop` colors are updated
+- The `acmedesktop` color theme is updated.
 
 ![acme desktop color updated](img/acmedesktopcolorsupdated.png)
 
@@ -376,4 +373,3 @@ Open your web browser to your abcdesktop website
 - the acmedesktop logout process
 
 ![acme desktop logout process](img/acmedesktoplogoutpage.png)
-

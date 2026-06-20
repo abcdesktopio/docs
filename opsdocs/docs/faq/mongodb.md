@@ -4,19 +4,19 @@ tags:
   - mongodb
 ---
 
-# Mongodb
+# MongoDB
 
-## How to increase the `mongodb` number of `replicats` ?
+## How to Increase the MongoDB Replica Count
 
-### With helm installation
+### With a Helm Installation
 
-To change the replicat number of mongodb using the helm installation, extract the values file from helm if not already done:
+To change the replica count for MongoDB using the Helm installation, extract the values file from the Helm chart if you have not already done so:
 
 ```bash
 helm show values abcdesktop/abcdesktop  > abcdesktop-values.yaml
 ```
 
-Then edit the mongo section to update the `replicaCount` key to the wanted value.
+Edit the `mongo` section and update the `replicaCount` key to the desired value:
 
 ```yaml
 mongo:
@@ -53,7 +53,8 @@ mongo:
     # Mount path in the container (do not change)
     mountPath: /data/db
 ```
-and apply it:
+
+Then apply the updated values:
 
 ```bash
 NAMESPACE=abcdesktop
@@ -63,11 +64,11 @@ helm upgrade --install my-abcdesktop abcdesktop/abcdesktop \
     -n ${NAMESPACE} \
     -f abcdesktop-values.yaml
 ```
-where `NAMESPACE` and `my-abcdesktop` are your deployment namespace and instance name.
+where `NAMESPACE` and `my-abcdesktop` are your deployment namespace and release name.
 
-### With a scripted installation
+### With a Scripted Installation
 
-- Open your [abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-{{ abcdesktop.latest_release }}.yaml) file and look for the `StatefulSet` mongodb-od
+- Open your [abcdesktop.yaml](https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-{{ abcdesktop.latest_release }}.yaml) file and locate the `StatefulSet` named `mongodb-od`:
 
 
 ```yaml
@@ -78,7 +79,7 @@ metadata:
 ```
 
 
-- In the specs of the the `StatefulSet` mongodb-od, change the number of the `replicas`
+- In the spec of the `StatefulSet` named `mongodb-od`, update the `replicas` count:
 
 
 ```yaml
@@ -97,7 +98,7 @@ spec:
   replicas: 3
 ```
 
-- In the `name: replica-manager`, update the variable `REPLICAS` with the same value
+- In the `name: replica-manager` container definition, update the `REPLICAS` environment variable to match the same value:
 
 ```yaml
  env:
@@ -113,32 +114,22 @@ spec:
      value: "3"
 ```
 
-- Apply your changes to the abcdesktop namespace
+- Apply your changes to the `abcdesktop` namespace:
 
 ```
 NAMESPACE=abcdesktop
 kubectl apply -f abcdesktop.yaml -n $NAMESPACE
 ```
 
-- Check the number of `replicas`
+- Verify the number of running replicas:
 
 ```bash
 kubectl get statefulset -l run=mongodb-od -n abcdesktop
 ```
 
-You should read on stdout
+The output should show all replicas in the `READY` state:
 
 ```
 NAME         READY   AGE
 mongodb-od   3/3     18h
 ```
-
-
-
-
-
-
-
-
-
-

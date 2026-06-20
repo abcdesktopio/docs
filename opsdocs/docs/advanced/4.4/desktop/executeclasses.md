@@ -1,6 +1,6 @@
 # executeclasses 
 
-The `executeclasses` configuration defines resource profiles for desktop pods and application containers. It allows you to control resource allocation either by defining static rules or by letting users select from a predefined set of profiles. The `executeclasses` value is a dictionary; each entry describes a resource profile.
+The `executeclasses` configuration defines resource profiles for desktop pods and application containers. It allows you to control resource allocation either by defining static rules or by letting users select from a predefined set of profiles. The `executeclasses` value is a dictionary in which each entry describes a distinct resource profile.
 
 
 ## `executeclasses` dictionary
@@ -83,7 +83,7 @@ A user can choose the `executeclassname` value from a predefined list, or it can
 
 ### Set `executeclassname` by rules
 
-Update your `od.config` file to add a new rule. The `label` of the rule must be `executeclassname`, and the `load` will set the value of the `executeclassname`.
+Update your `od.config` file to add a new rule. The `label` of the rule must be `executeclassname`, and the `load` value sets the `executeclassname`.
 
 ```
 	'rule-executeclass': {
@@ -147,14 +147,14 @@ Navigate to the abcdesktop service URL and sign in as a user who is a member of 
 
 ![login pod sylver](img/login-rules-pod-silver.png)
 
-- Get pod description
+- Get the pod description.
 
 ```
 NAMESPACE=abcdesktop
 kubectl get pods -l type=x11server -n $NAMESPACE
 ```
 
-You should read on stdout
+The expected stdout output is:
 
 ```
 NAME             READY   STATUS    RESTARTS   AGE
@@ -193,13 +193,13 @@ Resources:
     memory:  2Gi
 ```
 
-- Read the executeclasse information from the web user interface
+- Read the execute class information from the web user interface.
 
-The dialog box `settings`:`user information` shows the user's labels 
+The dialog box `settings`:`user information` displays the user's labels.
 
 ![login resources sylver](img/login-resource-userinfo-silver.png)
 
-The current user chooses `silver`
+The current user has selected `silver`.
 
 
 
@@ -207,14 +207,14 @@ The current user chooses `silver`
 
 ![login resources sylver](img/login-resources-silver-env.png)
 
-Inside the pod, the environment variable `ABCDESKTOP EXECUTE_CLASSNAME` is set to the value `silver`
+Inside the pod, the environment variable `ABCDESKTOP_EXECUTE_CLASSNAME` is set to the value `silver`.
 
 ```
 echo $ABCDESKTOP EXECUTE_CLASSNAME
 silver
 ```
 
-Inside the pod, the environment variable `ABCDESKTOP EXECUTE_CLASS` is set to the selected json value.
+Inside the pod, the environment variable `ABCDESKTOP_EXECUTE_CLASS` is set to the selected JSON configuration object.
 
 ```
 echo $ABCDESKTOP_EXECUTE_CLASS
@@ -223,10 +223,9 @@ echo $ABCDESKTOP_EXECUTE_CLASS
 
 
 
-### Let user choose the `executeclassname`
+### Allow users to choose the `executeclassname`
 
-To permit user to choose the `executeclassname`, change the option `desktop.features_permissions` in your abcdesktop config file.
-`desktop.features_permissions` is a list of string.
+To allow users to choose the `executeclassname`, configure the `desktop.features_permissions` option in your abcdesktop config file. `desktop.features_permissions` is a list of strings.
 
 
 ```
@@ -238,17 +237,17 @@ To permit user to choose the `executeclassname`, change the option `desktop.feat
 desktop.features_permissions : [ 'read', 'submit' ]
 ```
 
-- to display the `desktop.features_permissions` put `read` into the list
-- to let user change the default executeclassname put `submit` into the list
+- To display the available execute classes on the login page, add `read` to the list.
+- To allow users to select a class when creating a desktop, add `submit` to the list.
 
 
-This will change the abcdesktop login page, and write the `description` of each `executeclasses` entry, with the associated description.
+Enabling both options modifies the abcdesktop login page to display the `description` of each `executeclasses` entry, allowing users to make a selection before launching their desktop.
 
 In this case `desktop.features_permissions : [ 'read', 'submit' ]`
 
 ![login resources](img/login-resources.png)
 
-The user can choose on entry in the `executeclasses` values.
+The user can choose an entry from the available `executeclasses` values.
 
 ![login resources sylver](img/login-resources-silver.png)
 
@@ -256,7 +255,7 @@ The `executeclassname` is set with the user's selected entry.
 
 ![login resources sylver](img/login-resources-silver.png)
 
-The current user chooses `silver`.
+The current user has selected `silver`.
 
 
 > The pod is created with the requested resources.
@@ -289,24 +288,24 @@ Resources:
     memory:  2Gi
 ```
                  
-The dialog box `settings`:`user information` shows the user's labels 
+The dialog box `settings`:`user information` displays the user's labels.
 
 ![login resources sylver](img/login-resource-userinfo-silver.png)
 
-The current user chooses `silver`
+The current user has selected `silver`.
 
 - Open a webshell to read the environment variables.
 
 ![login resources sylver](img/login-resources-silver-env.png)
 
-Inside the pod, the environment variable `ABCDESKTOP EXECUTE_CLASSNAME` is set to the value `silver`
+Inside the pod, the environment variable `ABCDESKTOP_EXECUTE_CLASSNAME` is set to the value `silver`.
 
 ```
 echo $ABCDESKTOP EXECUTE_CLASSNAME
 silver
 ```
 
-Inside the pod, the environment variable `ABCDESKTOP EXECUTE_CLASS` is set to the selected json value.
+Inside the pod, the environment variable `ABCDESKTOP_EXECUTE_CLASS` is set to the selected JSON configuration object.
 
 ```
 echo $ABCDESKTOP_EXECUTE_CLASS
@@ -314,7 +313,7 @@ echo $ABCDESKTOP_EXECUTE_CLASS
 ```
 
 
-Great! You can adjust the resources for your pod either by creating rules or by allowing your users to select from the resources already defined in a dictionary.
+You can adjust pod resources either by defining authentication rules that automatically assign an execute class, or by configuring `desktop.features_permissions` to allow users to select from the profiles defined in `executeclasses`.
 
 
 

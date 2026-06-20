@@ -3,25 +3,25 @@ tags:
 - firefox
 ---
 
-# How to disable Mozilla Firefox automatic connections at startup
+# How to Disable Mozilla Firefox Automatic Connections at Startup
 
 ## Usage of policies.json
 
-You can specifiy firefox policies in a file called `policies.json`, you may have to create it as it is noy present by default.
+You can specify Firefox policies in a file called `policies.json`. You may need to create this file, as it is not present by default.
 
-Path to `policies.json` depending on your OS (you may have to create directories of the paths):
+Path to `policies.json` depending on your OS (you may need to create intermediate directories):
 
-* Windows : `C:\Program Files\Mozilla Firefox\distribution\policies.json`
-* Linux : `/usr/lib/firefox/distribution/policies.json`
-* MacOS : `/Applications/Firefox.app/Contents/Resources/distribution/policies.json`
+* Windows: `C:\Program Files\Mozilla Firefox\distribution\policies.json`
+* Linux: `/usr/lib/firefox/distribution/policies.json`
+* macOS: `/Applications/Firefox.app/Contents/Resources/distribution/policies.json`
 
-You can find all the policies templates, according to your firefox version, on the mozilla github page : [https://github.com/mozilla/policy-templates/releases](https://github.com/mozilla/policy-templates/releases)
+You can find all policy templates for your Firefox version on the Mozilla GitHub page: [https://github.com/mozilla/policy-templates/releases](https://github.com/mozilla/policy-templates/releases)
 
 ## Usage of autoconfig.js and firefox.cfg
 
-Some preferences cannot be set through the `policies.json` file, such as disable normandy, because of firefox restrictions. But we can bypass it by creating a JS file called `autoconfig.js` and a config file called `firefox.cfg`.
+Some preferences cannot be set through the `policies.json` file — for example, disabling Normandy — due to Firefox restrictions. These can instead be configured by creating a JavaScript file called `autoconfig.js` and a configuration file called `firefox.cfg`.
 
-`autoconfig.js` is used to load and execute `firefox.cfg`.
+`autoconfig.js` is responsible for loading and executing `firefox.cfg` at startup.
 
 ### autoconfig.js
 
@@ -31,30 +31,28 @@ pref("general.config.filename", "firefox.cfg");
 pref("general.config.obscure_value", 0);
 ```
 
-Path to `autoconfig.js` depending on your OS (you may have to create directories of the paths):
+Path to `autoconfig.js` depending on your OS (you may need to create intermediate directories):
 
-* Windows : `C:\Program Files\Mozilla Firefox\defaults\pref\autoconfig.js`
-* Linux : `/usr/lib/firefox/defaults/pref/autoconfig.js`
-* MacOS : `/Applications/Firefox.app/Contents/Resources/defaults/pref/autoconfig.js`
+* Windows: `C:\Program Files\Mozilla Firefox\defaults\pref\autoconfig.js`
+* Linux: `/usr/lib/firefox/defaults/pref/autoconfig.js`
+* macOS: `/Applications/Firefox.app/Contents/Resources/defaults/pref/autoconfig.js`
 
-The locked preferences are specified in the `firefox.cfg` file.
-Path to `firefox.cfg` depending on your OS (you may have to create directories of the paths):
+Locked preferences are specified in the `firefox.cfg` file. Path to `firefox.cfg` depending on your OS:
 
-* Windows : `C:\Program Files\Mozilla Firefox\firefox.cfg`
-* Linux : `/usr/lib/firefox/firefox.cfg`
-* MacOS : `/Applications/Firefox.app/Contents/Resources/firefox.cfg`
+* Windows: `C:\Program Files\Mozilla Firefox\firefox.cfg`
+* Linux: `/usr/lib/firefox/firefox.cfg`
+* macOS: `/Applications/Firefox.app/Contents/Resources/firefox.cfg`
 
 ## Usage of proxy.pac file
 
-Despite all the efforts to disable automatic connections via `policies.json` and `firefox.cfg` files, there where still a few connections that seems to be not possible to disable.
-To bypass this phenomena, we will create a file named `proxy.pac` that will block access to the remaining URLs by redirecting them to an unreachable proxy.
+Despite all efforts to disable automatic connections via `policies.json` and `firefox.cfg`, a small number of connections may remain that cannot be disabled through policy settings alone. To work around this behavior, create a file named `proxy.pac` that blocks access to the remaining URLs by redirecting them to an unreachable proxy.
 
-Save `proxy.pac` on your machine and keep in mind the path to your file.
+Save `proxy.pac` to your machine and note the file path.
 
-Once done, you should add the following line to the `Proxy` policy inside your `policies.json` file :
+Once saved, add the following line to the `Proxy` policy inside your `policies.json` file:
 `"AutoConfigURL": "file:///path/to/your/proxy.pac"`
 
-## Disable startup connections
+## Disable Startup Connections
 
 ### policies.json
 
@@ -64,11 +62,11 @@ Once done, you should add the following line to the `Proxy` policy inside your `
 | `https://contile.services.mozilla.com`<br>`https://tiles-cdn.prod.ads.prod.webservices.mozgcp.net` | `"browser.topsites.contile.enabled": false`<br>`"browser.topsites.contile.endpoint": ""` |
 | `https://spocs.getpocket.com` | `"browser.newtabpage.activity-stream.discoverystream.enabled": false` |
 | `https://push.services.mozilla.com` | `"dom.push.connection.enabled": false` |
-| `https://accounts.firefox.com` | `"browser.startup.homepage_override.mstone": "ignore"`<br>(also disable news page) |
+| `https://accounts.firefox.com` | `"browser.startup.homepage_override.mstone": "ignore"`<br>(also disables the news page) |
 | `https://shavar.services.mozilla.com` | `"browser.safebrowsing.provider.mozilla.gethashURL": ""`<br>`"browser.safebrowsing.provider.mozilla.updateURL": ""` |
 | `https://tracking-protection.cdn.mozilla.net` | `"browser.safebrowsing.downloads.remote.enabled": false` |
 | `http://detectportal.firefox.com` | `"network.captive-portal-service.enabled": false`<br>`"network.connectivity-service.enabled": false` |
-| `https://incoming.telemetry.mozilla.org`<br>`https://www.mozilla.org` | Set `"DisableTelemetry"` policy to true |
+| `https://incoming.telemetry.mozilla.org`<br>`https://www.mozilla.org` | Set `"DisableTelemetry"` policy to `true` |
 
 ### firefox.cfg
 

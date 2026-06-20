@@ -39,10 +39,10 @@ The user JWT is signed, so a (private, public) RSA key pair is required for sign
 * The JSON Web Token user token is verified with the abcdesktop jwt user signing public key by pyos.
 > Since multiple pods of pyos can run simultaneously, the same private and public key values are stored in a Kubernetes secret.
 
-The abcdesktop jwt desktop payload public key is read by the `nginx lua script`. Exporting the public key requires the `RSAPublicKey_out` option to use the `RSAPublicKey` format. The `RSAPublicKey` format makes the key file format compatible between the `python 3.x jwt module` and the `lua jwt lib`.
+The abcdesktop jwt desktop payload public key is read by the `nginx lua script`. Exporting the public key requires the `RSAPublicKey_out` option to use the `RSAPublicKey` format. The `RSAPublicKey` format ensures key file compatibility between the `python 3.x jwt module` and the `lua jwt lib`.
 
 
-The following commands will let you create all necessary keys :
+The following commands generate all necessary cryptographic key pairs:
 
 ``` shell
 # Desktop payload keys (encrypt/decrypt)
@@ -63,7 +63,7 @@ openssl rsa -in abcdesktop_jwt_user_signing_private_key.pem \
     -outform PEM -pubout -out abcdesktop_jwt_user_signing_public_key.pem
 ```
 
-Then, create the kubernetes secrets from the new key files:
+Then, create the Kubernetes secrets from the generated key files:
 
 ``` shell
 kubectl create secret generic abcdesktopjwtdesktoppayload \
@@ -82,7 +82,7 @@ kubectl create secret generic abcdesktopjwtusersigning \
     --namespace=abcdesktop
 ```
 
-You should read on the standard output :
+The following output should appear on the standard output:
 
 ``` shell
 secret/abcdesktopjwtdesktoppayload created
@@ -90,13 +90,13 @@ secret/abcdesktopjwtdesktopsigning created
 secret/abcdesktopjwtusersigning created
 ```
 
-You can verify secrets creation with the following command :
+Verify that all secrets were created successfully:
 
 ``` shell
 kubectl get secrets -n abcdesktop
 ```
 
-You should read on the standard output :
+The following output should appear on the standard output:
 
 ```
 NAME                          TYPE                                  DATA   AGE
@@ -107,19 +107,19 @@ abcdesktopjwtusersigning      Opaque                                2      67s
 
 ## **Step 3:** Download and create the abcdesktop config file  
 
-Download the od.config file. This is the main configuration file for `pyos` control plane.
+Download the `od.config` file. This is the main configuration file for the `pyos` control plane service.
 
 ``` shell
 curl https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.{{ version }} --output od.config
 ```
 
-Create the config map `abcdesktop-config` in the `abcdesktop` namespace
+Create the ConfigMap `abcdesktop-config` in the `abcdesktop` namespace:
 
 ``` shell
 kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
 ```
 
-You should read on stdout
+The following output should appear on stdout:
 
 ``` shell
 configmap/abcdesktop-config created
@@ -127,15 +127,13 @@ configmap/abcdesktop-config created
 
 ## **Step 4:** Create the abcdesktop pods and services
 
-The abcdesktop.yaml file contains declarations for all roles, service accounts, pods, and services required by abcdesktop.
-
-Run the command line
+The `abcdesktop.yaml` file contains declarations for all roles, service accounts, pods, and services required by abcdesktop. Apply it to the `abcdesktop` namespace with the following command:
 
 ``` shell
 kubectl create -n abcdesktop -f https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-{{ version }}.yaml
 ```
 
-You should read on the standard output
+The following output should appear on the standard output:
 
 ``` shell
 role.rbac.authorization.k8s.io/pyos-role created
@@ -170,7 +168,7 @@ On the first installation, wait for all container images to finish downloading â
 kubectl get pods -n abcdesktop
 ```
 
-You should read on the standard output
+The following output should appear on the standard output:
 
 ``` shell
 NAME                            READY   STATUS    RESTARTS   AGE
@@ -184,35 +182,35 @@ router-od-7b6dff8dd4-pn587      1/1     Running   0          2m19s
 speedtest-od-7fcc9649b4-n2ldl   1/1     Running   0          2m18s
 ```
 
-## **Step 5:** Connect your local abcdesktop
+## **Step 5:** Connect to your local abcdesktop instance
 
 Open your browser and navigate to http://[your-ip-hostname]:30443/
 
-abcdesktop homepage should be available :
+The abcdesktop home page should be accessible:
 
 ![abcdesktop Anonymous login](img/kubernetes-setup-login-anonymous.png)
 
-Click on the **Connect with Anonymous** access button. abcdesktop service pyos is creating a new pod.
+Click the **Connect with Anonymous** access button. The abcdesktop `pyos` service creates a new user pod in the background.
 
 ![abcdesktop main screen login pending](img/kubernetes-setup-login-anonymous.pending.png)
 
-A few seconds later, all processes are ready to run. You should see the abcdesktop main screen, with no applications in the dock.
+After a few seconds, all processes will be ready. The abcdesktop main screen appears with no applications in the dock.
 
 ![abcdesktop main screen ready](img/kubernetes-setup-login-anonymous.done.png)
 
-Also, you can run again the command 
+You can also verify that the user pod was created by running the following command:
 
 ``` shell
 kubectl get pods -l type=x11server -n abcdesktop
 ```
 
-You should see that the `anonymous-XXXXX` pod have been created and is `Running`
+The `anonymous-XXXXX` pod should be present with a `Running` status:
 
 ``` shell
 NAME              READY   STATUS    RESTARTS   AGE
 anonymous-c44fc   5/5     Running   0          116s
 ```
 
-You have successfully installed abcdesktop.io.
-You only need a web browser to access your web workspace. It's now time to add some container applications.
-Read the next chapter to add applications.
+abcdesktop.io has been successfully installed.
+You only need a web browser to access your web workspace. You can now proceed to add container applications.
+Read the next chapter to learn how to add applications.

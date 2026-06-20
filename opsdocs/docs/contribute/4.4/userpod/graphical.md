@@ -11,8 +11,8 @@ The file [Dockerfile.ubuntu](https://github.com/abcdesktopio/oc.user/blob/4.4/Do
 
 The build uses a two-stage (multi-stage) architecture:
 
-1. ubuntu_node_modules_builder: prepares Node dependencies and composer assets.
-2. final stage: assembles the OS, desktop stack, themes, and runtime components.
+1. `ubuntu_node_modules_builder`: prepares Node.js dependencies and composer assets.
+2. Final stage: assembles the OS, desktop stack, themes, and runtime components.
 
 
 ## 2. Build Interface (Input Contract)
@@ -59,11 +59,11 @@ Exported as environment variables:
 
 Installs build dependencies:
 
-- gcc, g++, make
-- libx11-dev, libxmu-dev, libimlib2-dev
-- ca-certificates, git, curl, gnupg, dpkg
+- `gcc`, `g++`, `make`
+- `libx11-dev`, `libxmu-dev`, `libimlib2-dev`
+- `ca-certificates`, `git`, `curl`, `gnupg`, `dpkg`
 
-Purpose: allow compilation of native Node modules (via node-gyp).
+Purpose: these packages allow compilation of native Node.js modules via `node-gyp`.
 
 ### 3.3 Node.js installation
 
@@ -93,10 +93,10 @@ Processed services:
 
 TARGET_PRUNE behavior:
 
-- empty: generally performs full npm install,
-- defined: generally uses npm install --omit=dev.
+- When empty: performs a full `npm install`.
+- When defined: uses `npm install --omit=dev` to exclude development dependencies.
 
-Implementation note: the condition in the ocrun block is inverted versus other blocks.
+Implementation note: the condition in the `ocrun` block is inverted compared to the other service blocks.
 
 ### 3.6 ocrun variants generation
 
@@ -221,15 +221,15 @@ Hardening-mode behavior:
 
 The build relies on external sources outside the repository:
 
-- NodeSource repository,
-- GitHub repositories cloned during build,
-- TigerVNC .deb downloaded from GitHub.
+- NodeSource package repository
+- GitHub repositories cloned during the build process
+- TigerVNC `.deb` package downloaded from GitHub
 
 Impact:
 
-- partial reproducibility,
-- sensitivity to network/service availability,
-- need for pinning and checksum strategy for strict production requirements.
+- Partial reproducibility; builds are not fully deterministic.
+- Sensitivity to network and upstream service availability.
+- Pinning strategies and checksum verification are required for strict production requirements.
 
 
 
@@ -244,12 +244,12 @@ Impact:
 ### Identified risks
 
 1. Non-deterministic build behavior
-   - git clone without pinned commit/tag,
-   - npm audit fix during image build.
+   - `git clone` without a pinned commit or tag
+   - `npm audit fix` executed during image build
 
 2. Supply-chain integrity not fully verified
-   - downloaded .deb not validated with explicit checksum,
-   - git clones not signature-verified.
+   - Downloaded `.deb` package is not validated with an explicit checksum
+   - Git clones are not signature-verified
 
 
 
@@ -257,15 +257,15 @@ Impact:
 
 Observations:
 
-- many separate apt-get update/install blocks,
-- heavy desktop packages,
-- partial duplication of Node logic (builder and runtime).
+- Multiple separate `apt-get update` and `apt-get install` blocks increase build time and layer count.
+- Heavy desktop package dependencies (KDE Plasma, fonts, themes) produce a large final image.
+- Node.js installation logic is partially duplicated between the builder and the final stage.
 
 Consequences:
 
-- longer build time,
-- large final image,
-- cache usage can be improved.
+- Longer build times
+- Large final image size
+- Layer cache utilization can be improved by consolidating installation steps
 
 
 
@@ -273,26 +273,26 @@ Consequences:
 
 ### 9.1 Reproducibility
 
-- pin external git dependencies (tag + commit),
-- enforce deterministic npm installation from lockfiles,
-- move npm audit fix out of Docker build into CI SCA pipeline.
+- Pin external Git dependencies to a specific tag and commit.
+- Enforce deterministic npm installation from lockfiles.
+- Move `npm audit fix` out of the Docker build and into a dedicated CI software composition analysis (SCA) pipeline.
 
 ### 9.2 Security
 
-- verify downloaded .deb integrity (SHA256/signature),
-- restrict NVIDIA_DRIVER_CAPABILITIES to required capabilities only.
+- Verify the integrity of downloaded `.deb` packages using SHA-256 checksums or package signatures.
+- Restrict `NVIDIA_DRIVER_CAPABILITIES` to only the capabilities required by the application.
 
 ### 9.3 Dockerfile quality
 
-- fix potentially fragile line-continuation formatting (backslash + trailing spaces),
-- normalize TARGET_PRUNE logic across all service blocks,
-- merge suitable apt installation steps to reduce layers.
+- Fix potentially fragile line-continuation formatting (trailing backslash followed by whitespace).
+- Normalize the `TARGET_PRUNE` conditional logic consistently across all service blocks.
+- Consolidate compatible `apt-get install` steps to reduce the total number of image layers.
 
 ### 9.4 Runtime robustness
 
-- explicitly document dependencies of /composer/docker-entrypoint.sh,
-- add HEALTHCHECK for critical service/port availability,
-- evaluate non-root runtime where compatible with the graphics stack.
+- Explicitly document the dependencies of `/composer/docker-entrypoint.sh`.
+- Add a `HEALTHCHECK` instruction for critical service and port availability.
+- Evaluate non-root runtime execution where compatible with the graphics stack.
 
 
 

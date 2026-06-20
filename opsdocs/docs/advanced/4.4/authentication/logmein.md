@@ -30,7 +30,7 @@ sequenceDiagram
   pyos ->> user: desktop JWT
 ```
 
-In the typical flow, the user is redirected to an HTTPS service, authenticated using their X.509 certificate, and the certificate is then forwarded via an HTTP header to `pyos`. `pyos` performs security checks and returns a user JWT to the client.
+In the typical flow, the user is redirected to an HTTPS service and authenticated using their X.509 certificate. The certificate is then forwarded via an HTTP header to `pyos`, which performs security checks and issues a user JWT to the client.
 
 
  
@@ -55,7 +55,7 @@ The implicit provider configuration looks like this:
 }
 ``` 
 
-Mutual SSL authentication is performed at `dialog_url`: `https://secure.your_domain.com/protectedbyssl`. The user is then proxy-passed from `https://secure.your_domain.com/protectedbyssl` to `$my_node/API/auth/logmein?provider=sslclient` if the SSL client certificate is verified.
+Mutual SSL authentication is performed at `dialog_url`: `https://secure.your_domain.com/protectedbyssl`. If the SSL client certificate is successfully verified, the user is proxy-passed from `https://secure.your_domain.com/protectedbyssl` to `$my_node/API/auth/logmein?provider=sslclient`.
 
 ```
 location /protectedbyssl {
@@ -67,9 +67,9 @@ location /protectedbyssl {
 
 > The server requests the client's certificate in a `CertificateRequest` message, enabling mutual TLS authentication.
 
-- logmein configuration
+### `logmein` Endpoint Configuration
 
-The endpoint `API/auth/logmein` performs security checks to guarantee that the request originates from an authorized network in `network_list`. If configured, it also validates the required HTTP attribute name and value. It reads the X.509 certificate to extract the user ID, then performs implicit authentication for that user ID.
+The `API/auth/logmein` endpoint performs security checks to verify that the request originates from an authorized network defined in `network_list`. When configured, it also validates the required HTTP header name and its value. It reads the X.509 certificate to extract the user ID and then performs implicit authentication for that user.
 
 ```
 auth.logmein : {  
@@ -89,7 +89,7 @@ auth.logmein : {
 | `http_attribut`     | string   | (Optional) Name of the HTTP header. If set, the value of this header must be a PEM-encoded X.509 certificate. | 
 
 
-The `oid_list` entries are converted from OID dotted-string format to `ObjectIdentifier` objects. For example, `[ cryptography.x509.oid.NameOID.USER_ID, cryptography.x509.oid.NameOID.COMMON_NAME ]` becomes `[ '0.9.2342.19200300.100.1.1', '2.5.4.3' ]`.
+The `oid_list` entries are resolved from OID dotted-string notation to `ObjectIdentifier` objects. For example, `[ cryptography.x509.oid.NameOID.USER_ID, cryptography.x509.oid.NameOID.COMMON_NAME ]` becomes `[ '0.9.2342.19200300.100.1.1', '2.5.4.3' ]`.
 
 
 

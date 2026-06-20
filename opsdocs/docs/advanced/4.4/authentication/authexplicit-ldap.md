@@ -2,9 +2,9 @@
 
 ## authmanagers `explicit` Object
 
-The `explicit` authentication provider uses a directory service. The LDAP bind operation authenticates clients to the directory server and establishes an authorization identity that is used for all subsequent operations on that connection.
+The `explicit` authentication provider authenticates users against a directory service using an LDAP bind operation. The bind operation authenticates the client to the directory server and establishes an authorization identity that governs all subsequent operations on that connection.
 
-The `explicit` authentication configuration is defined as a dictionary object and contains an `explicit` provider.
+The `explicit` authentication configuration is defined as a dictionary object that contains one or more named provider entries.
 
 
 For example:
@@ -40,7 +40,7 @@ authmanagers: {
        }}}}
 ```
 
-In this example, the `ldapconfig` dictionary must contain the key `LDAP`.
+In this example, the `ldapconfig` dictionary must contain a key named `LDAP`.
 
 | Variable name      | Type     | Description   |
 |--------------------|----------|-------------|
@@ -51,8 +51,7 @@ In this example, the `ldapconfig` dictionary must contain the key `LDAP`.
 
 ### Providers Configuration
 
-The `provider` authentication configuration is defined as a dictionary object and must contain a key name.
-The key name must match the value used in both the providers configuration and the `config_ref` field.
+The `provider` authentication configuration is defined as a dictionary object that must include a key name. The key name must match the value specified in both the providers configuration and the `config_ref` field.
 
 
 
@@ -283,15 +282,15 @@ Start LibreOffice Writer and create a new document. Type a few words, for exampl
 I like this amazing project abcdesktop.io
 ```
 
-Do not save the file. Simply close your web browser.
+Do not save the document. Close the web browser.
 
 
-Reopen your web browser, navigate to the same URL, and log in again with the same credentials: `Turanga Leela` as the login and `leela` as the password. Click the `Sign in` button.
+Reopen the web browser, navigate to the same URL, and sign in again using the same credentials: `Turanga Leela` as the login and `leela` as the password. Click the `Sign in` button.
 
-LibreOffice Writer is still running, and the text `I like this amazing project abcdesktop.io` is still present.
+LibreOffice Writer remains running, and the text `I like this amazing project abcdesktop.io` is still present in the document.
 
 ![session remained](img/auth_provider_ldap_session_remained.png)
 
 > All applications are preserved across sessions.
 
-You have successfully verified how the explicit authentication configuration works, deployed an OpenLDAP directory service, and confirmed that all user sessions are maintained.
+You have successfully verified the explicit authentication configuration, deployed an OpenLDAP directory service, and confirmed that user sessions persist across browser restarts.

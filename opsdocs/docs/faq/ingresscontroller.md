@@ -5,13 +5,13 @@ tags:
   - nginx
 ---
 
-# FAQ Ingress Controller
+# FAQ: Ingress Controller
 
-## How to expose my new service with `nginx ingress controller` ?
+## How to Expose a New Service with the NGINX Ingress Controller
 
-A Kubernetes Ingress Controller acts as a reverse proxy. We describe here how to use the `nginx ingress controller`.
+A Kubernetes Ingress Controller acts as a reverse proxy and routes external HTTP(S) traffic to internal cluster services. This section describes how to use the `nginx` ingress controller to expose abcdesktop services.
 
-In the `Ingress`, define a path to the abcdesktop's nginx service.
+In the `Ingress` resource, define a path that routes traffic to the abcdesktop `nginx` service:
 
 ```
 apiVersion: networking.k8s.io/v1
@@ -34,53 +34,48 @@ spec:
   ingressClassName: nginx
 ```
 
-The request `path: /` is proxyfied to service named nginx in abcdesktop namespace.
+Requests matching `path: /` are proxied to the service named `nginx` in the `abcdesktop` namespace.
 
 
-## How to prevent the connection from closing after 60 seconds of inactivity ?
+## How to Prevent the Connection from Closing After 60 Seconds of Inactivity
 
-My desktop is disconnected after 60 seconds of inactivity, and the message *"Your abcdesktop session has been disconnected. Please reload this page"* appears.
+My desktop disconnects after 60 seconds of inactivity, and the message *"Your abcdesktop session has been disconnected. Please reload this page"* appears.
 
 ![abcdesktop session has been disconnected](../img/abcdesktopsessionhasbeendisconnected.png)
 
-The message `Your abcdesktop session has been disconnected. Please reload this page` appears when the `websockify` websocket is disconnected.
+The message `Your abcdesktop session has been disconnected. Please reload this page` appears when the `websockify` WebSocket connection is closed due to inactivity.
 
-
-Add an heartbeat value to send a ping to the client every INTERVAL seconds
-
-Edit the `od.config` file, add to the `desktop.envlocal` option `'WEBSOCKIFY_HEARTBEAT':'30'`
+Add a heartbeat value to send a ping to the client at a regular interval. Edit the `od.config` file and add `'WEBSOCKIFY_HEARTBEAT':'30'` to the `desktop.envlocal` option:
 
 ```
 desktop.envlocal: { 'WEBSOCKIFY_HEARTBEAT':'30', 'LIBOVERLAY_SCROLLBAR':'0', 'UBUNTU_MENUPROXY':'0', 'X11LISTEN':'tcp' }
 ```
 
-In this case, the command `/usr/bin/websockify` sends a ping to the client every 30 seconds. This command runs in the user's pod.
+With this setting, the `/usr/bin/websockify` process sends a WebSocket ping to the client every 30 seconds. This process runs inside the user's pod.
 
-Update the configmap abcdesktop-config
+Update the `abcdesktop-config` ConfigMap:
 
 ```
 kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 ```
 
-Restart the pyos pod
+Restart the pyos pod:
 
 ```
 kubectl delete pods -l run=pyos-od -n abcdesktop
 ```
 
-To get more informations how to
-[Keepalive in websockets](https://websockets.readthedocs.io/en/stable/topics/timeouts.html)
+For more information on WebSocket keepalive behavior, see [Keepalive in WebSockets](https://websockets.readthedocs.io/en/stable/topics/timeouts.html).
 
-Timeout is a main feature to preserve from unnecessary network bandwidth.
+Configuring connection timeouts helps prevent unnecessary network bandwidth consumption from idle sessions.
 
-## How to prevent the connection from closing after 60 seconds of inactivity with an nginx ingress controller ?
+## How to Prevent the Connection from Closing After 60 Seconds of Inactivity with an NGINX Ingress Controller
 
-My desktop is disconnected after 60 seconds of inactivity, and the message *Your abcdesktop session has been disconnected. Please reload this page* appears.
+My desktop disconnects after 60 seconds of inactivity, and the message *Your abcdesktop session has been disconnected. Please reload this page* appears.
 
-To prevent the connection from closing after 60 seconds of inactivity through Ingress Controller, make sure the Ingress Controller isn't configured to automatically terminate long connections.
-The default value nginx's ingress controller is 60 seconds.
+To prevent the connection from closing when routing through an Ingress Controller, ensure that the Ingress Controller is not configured to automatically terminate long-lived connections. The default timeout for the NGINX ingress controller is 60 seconds.
 
-Update the default values for `nginx.ingress.kubernetes.io/proxy-read-timeout` and `nginx.ingress.kubernetes.io/proxy-send-timeout` annotations to more than 60 seconds.
+Update the `nginx.ingress.kubernetes.io/proxy-read-timeout` and `nginx.ingress.kubernetes.io/proxy-send-timeout` annotations to a value greater than 60 seconds:
 
 ```
 apiVersion: networking.k8s.io/v1
@@ -105,4 +100,3 @@ spec:
                   number: 80
   ingressClassName: nginx
 ```
-

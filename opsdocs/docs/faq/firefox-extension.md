@@ -1,39 +1,38 @@
 
+# Mozilla Firefox Clipboard Extension
 
-# Mozilla Firefox clipboard extension
+## Install Firefox Extension File
 
-## Install Firefox Extension file
+### Download the Mozilla Firefox Clipboard Extension for abcdesktop
 
-### Download the Mozilla Firefox clipboard extension for abcdesktop
-
-1. Download the firefox clipboard extension [abcdesktop_clipboard_helper.xpi](https://www.abcdesktop.io/abcdesktop_clipboard_helper-1.0.3-fx.xpi) and press `Continue to Installation` button.
+1. Download the Firefox clipboard extension [abcdesktop_clipboard_helper.xpi](https://www.abcdesktop.io/abcdesktop_clipboard_helper-1.0.3-fx.xpi) and click `Continue to Installation`.
 ![Download and continue](img/allow-install-add-on.png)
 
-2. Choose `Add` as a response to the question `Add abcdesktop Clipboad Helper ?` 
+2. Click `Add` in response to the prompt `Add abcdesktop Clipboard Helper?`
 ![confirm to add ons](img/add-install-firefox-about-add-ons.png)
 
-3. Press `OKay, Got it` to confirm the `abcdesktop Clipboad helper` insallation
+3. Click `Okay, Got it` to confirm the `abcdesktop Clipboard Helper` installation.
 ![OKay confirm install add ons](img/ok-add-install-firefox-about-add-ons.png)
 
 
 
 
-## Use fully qualified domain name filter
+## Fully Qualified Domain Name Filter
 
-Firefox clipboard extension runs **ONLY if the hostname contains `desktop` string**.
+The Firefox clipboard extension activates **only when the hostname contains the string `desktop`**.
 
-The URL must matches `*://*desktop*/*"` to run the clipboard extension.
+The URL must match the pattern `*://*desktop*/*` for the clipboard extension to activate.
 
-* `https://demo.abcdesktop.io` matches, the firefox clipboard extension is running.
-* `https://desktop.domain.io` matches, the firefox clipboard extension is running.
-* `https://abcdesktop.mydomain.local` matches, the firefox clipboard extension is running.
-* `https://demo.domain.com` does not match, the firefox clipboard extension is not running.
+* `https://demo.abcdesktop.io` matches — the Firefox clipboard extension is active.
+* `https://desktop.domain.io` matches — the Firefox clipboard extension is active.
+* `https://abcdesktop.mydomain.local` matches — the Firefox clipboard extension is active.
+* `https://demo.domain.com` does not match — the Firefox clipboard extension is not active.
 
 
-## Run firefox clipboard extension for abcdesktop
+## Run Firefox Clipboard Extension for abcdesktop
 
-> Firefox clipboard extension syncs **only text data**, binary data like images are not yet supported. 
+> The Firefox clipboard extension synchronizes **text data only**. Binary data such as images is not yet supported.
 
-* Firefox clipboard extension syncs your clipboard data selected from your abcdesktop desktop to your local desktop environment. 
+* The Firefox clipboard extension synchronizes clipboard content selected within your abcdesktop desktop session to your local desktop environment.
 
-* Firefox clipboard extension syncs your local desktop environment clipboard to your abcdesktop desktop clipboard.
+* The Firefox clipboard extension also synchronizes your local desktop environment clipboard to your abcdesktop desktop clipboard.

@@ -4,11 +4,11 @@ tags:
   - template
 ---
 
-# Build an application from template
+# Build an application from a template
 
 Goal: Build a custom abcdesktop.io application image by extending an existing template container image.
 
-abcdesktop uses container image format with some labels to describe an application.
+abcdesktop.io uses the container image format with metadata labels to describe each application.
 
 ## Requirements
 
@@ -20,7 +20,7 @@ abcdesktop uses container image format with some labels to describe an applicati
 
 ## Build your own application image
 
-In this example, the new application image packages the `2048` game.
+In this example, the new application image packages the `2048` game. The build process uses a JSON descriptor file and a Node.js script to generate a Dockerfile automatically.
 
 Create a directory named `build`, and create a directory `icons` inside it:
 
@@ -29,7 +29,7 @@ mkdir -p build/icons
 cd build
 ```
 
-To build your own image, first create a JSON descriptor file.
+To build your own image, first create a JSON descriptor file that defines the application's metadata, package name, and runtime configuration.
 
 Create a file named `applist.json` inside the `build` directory with the following content:
 
@@ -65,12 +65,12 @@ The table below describes each field in the JSON application descriptor:
 The following descriptions explain how to determine the correct value for each field:
 
 * `cat` is the application category. Choose the most appropriate value from the following list: `[ 'office', 'games', 'graphics', 'development', 'utilities', 'education' ]`
-* `debpackage` is the name of the Ubuntu package to install. To look up the package name, refer to [2048 Ubuntu Package](https://packages.ubuntu.com/source/bionic/2048-qt).
-* `icon` is the name of the icon file. abcdesktop.io supports only the `svg` icon format. Download the icon from [https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg](https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg).
+* `debpackage` is the name of the Ubuntu package to install. To look up the correct package name, refer to [2048 Ubuntu Package](https://packages.ubuntu.com/source/bionic/2048-qt).
+* `icon` is the filename of the application icon. abcdesktop.io supports only the `svg` icon format. Download the icon from [https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg](https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg).
 * `keyword` is a comma-separated list of search keywords for the application. Set the value to `2048`.
-* `launch` is the X11 `WM_CLASS` name of the application window. To determine this value, run the application on a GNU/Linux system and inspect its window class.
-* `name` is the application name. Set the value to `2048`.
-* `path` is the absolute path to the application binary.
+* `launch` is the X11 `WM_CLASS` identifier of the application window. To determine this value, run the application on a GNU/Linux system and inspect its window class using a tool such as `xprop`.
+* `name` is the internal application name. Set the value to `2048`.
+* `path` is the absolute filesystem path to the application binary.
 * `template` is the name of the parent base image. The default parent image is `ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04`. Available templates are listed in the next section.
 
 
@@ -97,7 +97,7 @@ Run `npm install` to install the required packages:
 npm i
 ```
 
-- Run `make.js` to generate a Dockerfile for the 2048 application. All abcdesktop.io application images are built from container images.
+- Run `make.js` to generate a Dockerfile for the 2048 application. The script reads `applist.json` and produces a ready-to-build Dockerfile for each entry.
 
 ```
 nodejs make.js
@@ -117,7 +117,7 @@ The following file has been generated:
 
 - `2048.d` — the generated Dockerfile for the 2048 abcdesktop.io application
 
-Inspect the content of `2048.d`. Verify that all labels are present and that the icon data is base64-encoded (a form of binary-to-text encoding).
+Inspect the content of `2048.d`. Verify that all required labels are present and that the icon data is base64-encoded (a binary-to-text encoding scheme used to embed binary assets in text files).
 
 Build the 2048 application image using the `docker build` command.
 
@@ -242,12 +242,12 @@ Click the `2048` icon to launch the application:
 
 ![abcdesktop.io 2048 is running](img/application-2048-run.png)
 
-Now you can spend time trying to reach the 2048 score. Have fun!
+The application is now running as an ephemeral container inside your abcdesktop.io user pod. Have fun!
 
 ## Other templates
 
-Because each application runs inside its own container, you can run applications from multiple Linux distributions simultaneously.
-The template repository is available at [https://github.com/abcdesktopio/oc.template](https://github.com/abcdesktopio/oc.template).
+Because each application runs inside its own dedicated container, you can run applications from multiple Linux distributions simultaneously on the same abcdesktop.io instance.
+The full template repository is available at [https://github.com/abcdesktopio/oc.template](https://github.com/abcdesktopio/oc.template).
 
 ### templates for `almalinux`
 - oc.template.almalinux.8

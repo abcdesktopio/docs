@@ -20,7 +20,7 @@ You need to have:
 
 ## Create a simple application `chromium`
 
-To illustrate how to package a web browser as an abcdesktop.io application, we will install `chromium` inside a container image.
+To illustrate how to package a web browser as an abcdesktop.io application, this guide walks through installing `chromium` inside a container image and registering it with the platform.
 
 * Create a Dockerfile to install the `chromium` application from a `debian` base image
 
@@ -68,16 +68,16 @@ CMD [ "/usr/bin/chromium" ]
 
 This image is based on Debian and installs the `chromium` package. The default command is set to `/usr/bin/chromium` via the `CMD` instruction.
 
-* `oc.keyword` label defines keyworks for the search engine
-* `oc.cat` label defines category of the application
-* `oc.desktopfile` label defines the name of the `.desktop` file chromium-browser.desktop` in `/usr/share/applications` directory
+* `oc.keyword` label defines the search keywords used by the application catalog
+* `oc.cat` label defines the category of the application
+* `oc.desktopfile` label specifies the name of the `.desktop` file (`chromium-browser.desktop`) located in the `/usr/share/applications` directory
 * `oc.launch` label is the name of the X11 window's `WM_CLASS`. The value is `chromium.Chromium`
-* `oc.icon` is the name of the icon file
-* `oc.icondata` is a base64 encoded content of the chromium.svg
-* `oc.displayname` defines the string to display the name of the application
-* `oc.mimetype` defines the MimeType support by this application
-* `oc.fileextensions` defines the file extension support by this application
-* `oc.legacyfileextensions` defines the legacy file extension support by this application
+* `oc.icon` is the filename of the application icon
+* `oc.icondata` is the base64-encoded content of the `chromium.svg` icon file
+* `oc.displayname` defines the human-readable display name of the application
+* `oc.mimetype` defines the MIME types supported by this application
+* `oc.fileextensions` defines the file extensions supported by this application
+* `oc.legacyfileextensions` defines the legacy file extensions supported by this application for backward compatibility
 
 
 * Build the image for the chromium application
@@ -189,8 +189,8 @@ The image endpoint returns a JSON document
 
 ![Look for the new application chromium](img/simplestapplication-lookfor-chromium.png)
 
-* Wait for the pulling process
+* Wait for the container image pull to complete
 
 ![application chromium](img/simplestapplication-chromium-running.png)
 
-* `chromium` is running
+* `chromium` is now running

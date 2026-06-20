@@ -3,11 +3,11 @@ tags:
   - uninstall
   - helm
 ---
-# Uninstallation using helm
+# Uninstalling abcdesktop.io Using Helm
 
 ```bash
 NAMESPACE=abcdesktop
 helm uninstall abcdesktop -n ${NAMESPACE}
 ```
 
-Rename the `NAMESPACE` variable to your abcdesktop namespace and abcdesktop by your instance name.
+Set `NAMESPACE` to the Kubernetes namespace in which abcdesktop.io is deployed, and replace `abcdesktop` in the `helm uninstall` command with your Helm release name if it differs from the default.

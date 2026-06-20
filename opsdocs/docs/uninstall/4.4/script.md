@@ -3,21 +3,21 @@ tags:
   - uninstall
   - bash
 ---
-# Quick uninstall core services with a script
+# Uninstalling abcdesktop.io Core Services Using a Script
 
-> Linux operating system is recommanded to run abcdesktop.io.
+> A Linux operating system is recommended for running abcdesktop.io.
 
 === "Linux or macOS"
 
-    ## Run the uninstall script
+    ## Running the Uninstall Script
 
-    Download and extract the uninstall bash script (Linux or macOS):
+    Download and execute the uninstall script (Linux or macOS):
 
     ```bash
     curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.4.sh |bash
     ```
 
-    You should read on stdout
+    The script produces the following standard output:
 
     ??? note "show details"
         ```bash
@@ -57,15 +57,15 @@ tags:
         [OK] namespace "abcdesktop" deleted
         ```
 
-    Please wait for the output message:
+    Wait for the following confirmation message before proceeding:
 
     ```
     [OK] namespace "abcdesktop" deleted
     ```
 
-    Great, you have uninstalled abcdesktop for kubernetes.
+    abcdesktop.io has been successfully removed from the Kubernetes cluster.
 
-    ## Uninstall with a dedicated namespace
+    ## Uninstalling with a Custom Namespace
 
 
     ```bash
@@ -73,13 +73,13 @@ tags:
     chmod 755 uninstall-4.4.sh
     ```
 
-    Run the `uninstall-4.4.sh` command line with your own namespace
+    Run the `uninstall-4.4.sh` script with your custom namespace:
 
     ```
     ./uninstall-4.4.sh --namespace superdesktop
     ```
 
-    You should read on stdout
+    The script produces the following standard output:
 
     ??? note "show details"
         ```bash
@@ -119,14 +119,14 @@ tags:
         [OK] namespace "superdesktop" deleted
         ```
 
-    Great, you have uninstalled abcdesktop for kubernetes with a dedicated namespace.
+    abcdesktop.io has been successfully removed from the Kubernetes cluster using the custom namespace.
 
 
 === "Windows"
 
-    ## Run the uninstall script
+    ## Running the Uninstall Script
 
-    Download and extract the uninstall PowerShell script (Windows):
+    Download and execute the uninstall PowerShell script (Windows):
 
     ```PowerShell
     $script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.4.ps1
@@ -134,7 +134,7 @@ tags:
     Invoke-Expression $($script.Content)
     ```
 
-    You should read on stdout
+    The script produces the following standard output:
 
     ??? note "show details"
         ```
@@ -178,20 +178,20 @@ tags:
         [INFO] abcdesktop was succesfully uninstalled
         ```
 
-    ## Uninstall with a dedicated namespace
+    ## Uninstalling with a Custom Namespace
 
 
     ```PowerShell
     curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.4.ps1  -OutFile uninstall-4.4.ps1
     ```
 
-    Run the `uninstall-4.4.ps1` command line with your own namespace
+    Run the `uninstall-4.4.ps1` script with your custom namespace:
 
     ```PowerShell
     .\uninstall-4.4.ps1 --namespace superdesktop
     ```
 
-    You should read on stdout
+    The script produces the following standard output:
 
     ??? note "show details"
         ```

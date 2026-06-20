@@ -3,7 +3,7 @@
 
 ## authmanagers `explicit` Object
 
-The `explicit` authentication configuration is defined as a dictionary object and contains an `explicit` provider.
+The `explicit` authentication configuration is defined as a dictionary object that contains one or more named provider entries, each corresponding to a Windows domain.
 
 
 For example:
@@ -32,8 +32,7 @@ For example:
 
 ### Providers Configuration
 
-The `provider` authentication configuration is defined as a dictionary object and must contain a key name.
-The key name must match the [`USERDOMAIN`](https://en.wikipedia.org/wiki/Windows_domain) value and must be set to the exact same value in the `config_ref` dictionary.
+The `provider` authentication configuration is defined as a dictionary object that must include a key name. The key name must match the [`USERDOMAIN`](https://en.wikipedia.org/wiki/Windows_domain) value and must correspond exactly to the key used in the `config_ref` dictionary.
 
 
 
@@ -55,7 +54,7 @@ The provider is formatted as a dictionary:
 | enable             | boolean  | Enables or disables the domain entry. |
 
 
-In this example, the Microsoft Active Directory values are set as follows:
+In this example, the Microsoft Active Directory environment variables are configured as follows:
 
 | Variable name        | Value for example                                    |
 |----------------------|------------------------------------------------------|
@@ -89,7 +88,7 @@ adconfig : {
 ```
 
 
-Replace each variable value with your own Active Directory environment settings.
+Replace each variable value with settings specific to your Active Directory environment.
 
 
 | Variable name        | Type		       | Description                        | Example  |
@@ -112,4 +111,4 @@ Replace each variable value with your own Active Directory environment settings.
   'serviceaccount': { 'login': 'SVCACCOUNT', 'password': 'SVCACCOUNTPASSWORD' }
 ```
 
-`serviceaccount` is optional. When configured, it allows pyos to query the Active Directory service to read subnet and location information from the sites container at `'CN=Subnets,CN=Sites,CN=Configuration,' + BASE_DN` (for example, `CN=Subnets,CN=Sites,CN=Configuration,DC=example,DC=com`).
+`serviceaccount` is an optional credential configuration. When provided, it allows `pyos` to query the Active Directory service and retrieve subnet and site location information from the sites container at `'CN=Subnets,CN=Sites,CN=Configuration,' + BASE_DN` (for example, `CN=Subnets,CN=Sites,CN=Configuration,DC=example,DC=com`).

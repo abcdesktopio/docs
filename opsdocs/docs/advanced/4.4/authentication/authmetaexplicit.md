@@ -2,8 +2,7 @@
 
 ## authmanagers `metaexplicit` Object
 
-The `metaexplicit` authentication manager contains exactly one provider.
-The provider must be defined with the name `metadirectory`.
+The `metaexplicit` authentication manager supports exactly one provider entry. This provider must be defined with the reserved name `metadirectory` and is responsible for resolving the user's home domain before delegating credential validation to the appropriate Active Directory explicit provider.
 
 ``` json
 'metaexplicit': {
@@ -21,11 +20,9 @@ The provider must be defined with the name `metadirectory`.
 
 ### `metadirectory` Provider Configuration
 
-The `metadirectory` provider is defined as a dictionary object and must contain a key name.
-The key name must match the name of the dictionary referenced by `config_ref`.
+The `metadirectory` provider is defined as a dictionary object whose key name must match the value of `config_ref`. The referenced configuration block provides the LDAP connection parameters for the metadirectory forest.
 
-A `metadirectory` provider requires an LDAP attribute to identify the original domain and `sAMAccountName`.
-This LDAP attribute is specified using `join_key_ldapattribut`.
+A `metadirectory` provider requires a dedicated LDAP attribute to map each user account to its originating domain and `sAMAccountName`. This attribute is specified using the `join_key_ldapattribut` key.
 
 ```
 coporateconfig : { 'metadirectory': {  
@@ -43,7 +40,7 @@ coporateconfig : { 'metadirectory': {
                  } } 
 ```
 
-Pyos binds to the metadirectory LDAP server using the service account credentials, then reads the LDAP attribute `description` to determine the user's trusted domain.
+Pyos binds to the metadirectory LDAP server using the service account credentials and reads the LDAP attribute specified by `join_key_ldapattribut` (in this example, `description`) to determine the user's trusted home domain. It then locates the matching explicit provider configuration and delegates authentication to that domain.
 
 For example:
 ``` ldif
@@ -52,10 +49,9 @@ description: AD\john
 
 Pyos then looks up the `AD` provider configuration and performs authentication against the `AD` domain.
 
-Accounts in the `metadirectory` can be in any state.
-The LDAP attribute `userAccountControl` is not read for metadirectory providers. The `UF_ACCOUNT_DISABLE` bit is not evaluated.
+Accounts in the `metadirectory` can exist in any account state. The LDAP attribute `userAccountControl` is not read for metadirectory provider lookups, and the `UF_ACCOUNT_DISABLE` flag is not evaluated. Account enablement enforcement is delegated to the target explicit provider.
 
-A service account must be defined for every `metadirectory` provider. The service account is used to bind to the metadirectory.
+A service account must be defined for every `metadirectory` provider. This account is used to bind to the metadirectory LDAP server and perform the domain-resolution attribute lookup.
 
 ### Complete Example with a `metadirectory` Provider and Active Directory User Domains
 
@@ -135,11 +131,10 @@ anotherconfig : { 'ANOTHER': {
 
 ### `metadirectory` Support
 
-The `metadirectory` provider supports Foreign Security Principals (FSPs) to query security principals in trusted external forests. These objects are created in the Foreign Security Principals container of the domain.
+The `metadirectory` provider supports Foreign Security Principals (FSPs), enabling it to query security principals residing in trusted external forests. These objects are stored in the Foreign Security Principals container of the local domain.
 The `metadirectory` provider supports `isMemberOf` lookups on foreign security principals.
 
-The user's SID from the `AD` or `ANOTHER` domain is NOT read directly.
-A new LDAP bind is performed against the trusted domain on the metadirectory provider rather than using the service account.
+The user's SID from the `AD` or `ANOTHER` domain is not read directly from the metadirectory. Instead, a new LDAP bind is performed against the user's trusted home domain rather than reusing the service account credentials.
 
 The LDAP query is constructed as:
 ```

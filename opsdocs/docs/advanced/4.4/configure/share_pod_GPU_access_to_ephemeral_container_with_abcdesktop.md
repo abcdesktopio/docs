@@ -2,21 +2,21 @@
 # Troubleshooting NVIDIA GPU Access to Ephemeral Containers with CDI Enabled
 
 
-abcdesktop uses `ephemeral container` or `pod` as applications. NVIDIA adds support for [Container Device Interface](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html). 
+abcdesktop deploys applications as ephemeral containers or pods. NVIDIA provides support for the [Container Device Interface](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html), which enables GPU resource allocation without requiring privileged access.
 
 
-## Apply `runtimeClassName` to abcdesktop config
+## Apply `runtimeClassName` to the abcdesktop Configuration
 
 
-Get the `od.config` file
+Retrieve the `od.config` file.
 
-If you don't already have the config file `od.config`, run the command line 
+If you do not already have a local copy of `od.config`, run the following command:
 
 ```
 kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' > od.config
 ```
 
-- Edit `od.config` and update the dictionary `desktop.pod` to add `'runtimeClassName':'nvidia'` in `spec` and save your od.config file.
+Edit `od.config` and update the `executeclasses` dictionary to set `'runtimeClassName': 'nvidia'` for the appropriate execution class entries, then save the file.
 
 ```
 # THIS IS WHERE THE RESOURCES ARE ACTUALLY DEFINED FOR THE POD DESKTOP.
@@ -79,7 +79,7 @@ desktop.overwrite_environment_variable_for_application : "/composer/overwrite_en
 ```
 
 
-- The `overwrite_environment_variable_for_application.sh` bash script runs into the `graphical` container of the user`s pod.
+The `overwrite_environment_variable_for_application.sh` Bash script runs inside the `graphical` container of the user's pod.
 
 ```
 gpu_uuid=$(nvidia-smi --query-gpu=gpu_uuid --format=csv,noheader)
@@ -90,41 +90,41 @@ NVIDIA_GPU="{ \"k8s.device-plugin.nvidia.com/gpu\" : \"$gpu_uuid\" }"
 
 It reads the GPU UUID, then sets the variable `NVIDIA_GPU` to `k8s.device-plugin.nvidia.com/gpu=$gpu_uuid`.
 
-For example, when you run the `overwrite_environment_variable_for_application.sh` on a GPU host
+For example, when `overwrite_environment_variable_for_application.sh` is executed on a GPU-equipped host:
 
 ``` bash
 echo $NVIDIA_GPU
 { "k8s.device-plugin.nvidia.com/gpu" : "GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb" }
 ```
 
-A new application gets the env variable `NVIDIA_VISIBLE_DEVICES` from the bash script result. For example the `echo $NVIDIA_VISIBLE_DEVICES` inside another container return the same `GPU-uuid`
+A newly launched application container inherits the `NVIDIA_VISIBLE_DEVICES` environment variable from the Bash script result. For example, running `echo $NVIDIA_VISIBLE_DEVICES` inside a new container returns the same GPU UUID:
 
 ```
 echo $NVIDIA_VISIBLE_DEVICES
 GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb
 ```
 
-Example of an ephemeral application sharing the GPU of the user's pod
+The following screenshot shows an ephemeral application sharing the GPU of the user's pod:
 
 ![showoverwrite_environment_variable_for_application](img/showoverwrite_environment_variable_for_application.png)
 
-This screenshot shows the `$NVIDIA_VISIBLE_DEVICES` content and the `nvidia-smi` command result
+The screenshot displays the `$NVIDIA_VISIBLE_DEVICES` value and the output of the `nvidia-smi` command.
 
 
-- Update the configmap `abcdesktop-config`
+Update the `abcdesktop-config` ConfigMap:
 
 
 ```
 kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 ```
 
-- Restart deployment `pyos-od`
+Restart the `pyos-od` deployment:
 
 ```
 kubectl rollout restart deployment pyos-od -n abcdesktop
 ```
 
-- Create a new desktop pod to check the `runtimeClassName`
+Create a new desktop pod to verify the `runtimeClassName`:
 
 
 ```
@@ -134,20 +134,20 @@ fry-02f18   3/3     Running   0          24m
 ```
 
 
-- Run comand lines into an ephemeral container 
+Run commands inside an ephemeral container.
 
-Start an application like `firefox` on web interface
-
-
+Start an application such as `firefox` from the web interface.
 
 
-Get pod description to read the ephemeral container name
+
+
+Retrieve the pod description to identify the ephemeral container name:
 
 ```
 kubectl describe  pods fry-02f18  -n abcdesktop
 ```
 
-The name of the ephemeral container is `philip-j--fry-firefox-745f9`
+The ephemeral container name is `philip-j--fry-firefox-745f9`:
 
 ```
 ...
@@ -156,7 +156,7 @@ The name of the ephemeral container is `philip-j--fry-firefox-745f9`
   Normal  Started    26m   kubelet            Started container philip-j--fry-firefox-745f9
 ```
 
-Execute some commands into this ephemeral container `philip-j--fry-firefox-745f9` to check the GPU
+Execute the following commands inside the ephemeral container `philip-j--fry-firefox-745f9` to verify GPU access:
 
 ```
 kubectl exec -it fry-02f18 -c philip-j--fry-firefox-745f9 -n abcdesktop -- nvidia-smi -L
@@ -174,10 +174,9 @@ crw-rw-rw- 1 fry  fry  226, 128 janv. 13 15:05 renderD128
 ```
 
 
-## Links
+## Reference Links
 
-- nvidia gpu-operator/23.6.2
+- NVIDIA GPU Operator 23.6.2
 
 [https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/23.6.2/cdi.html#support-for-multi-instance-gpu](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/23.6.2/cdi.html#support-for-multi-instance-gpu) 
-
 

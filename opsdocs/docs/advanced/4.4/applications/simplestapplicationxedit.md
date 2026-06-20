@@ -3,7 +3,7 @@ tags:
   - application
 ---
 
-# Build a sample xedit with icon from scratch
+# Build a sample `xedit` application with a custom icon from scratch
 
 Goal: Build and register a new X11 application container (`xedit`) with a custom icon in an abcdesktop.io instance.
 
@@ -21,7 +21,7 @@ You need to have:
 ## Create a simple application `xedit`
 
 
-To illustrate a simple application integration, we will install `xedit` from the `x11-apps` package inside a container image.
+To illustrate a straightforward application integration, this guide walks through installing `xedit` from the `x11-apps` package inside a container image and registering it with the platform.
 
 * Create a Dockerfile to install the `xedit` application from the `x11-apps` package
 
@@ -37,21 +37,21 @@ wNkEuNS41IDAgMCAxIDUgMTIuNVYxMmgtLjVhLjUuNSAwIDAgMS0uNS0uNVYxMWgtLjVhLjUuNSAwIDA
 CMD ["/usr/bin/xedit"]
 ```
 
-> oc.icondata is a base64 encoded content of the file `pencil.svg`
+> `oc.icondata` is the base64-encoded content of the `pencil.svg` icon file.
 ![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg)
-> to get it
+> To generate the base64-encoded value, run:
 >```
 wget https://icons.getbootstrap.com/assets/icons/pencil.svg && base64 -w0 pencil.svg
 ```
 
 **Dockerfile description**
 
-This image is based on Ubuntu and installs the `x11-apps` package. The default command is set to `/usr/bin/xedit` via the `CMD` instruction. `ENTRYPOINT` is also supported.
+This image is based on Ubuntu and installs the `x11-apps` package. The default command is set to `/usr/bin/xedit` via the `CMD` instruction. The `ENTRYPOINT` instruction is also supported as an alternative.
 
 * `oc.launch` label is the name of the X11 window's `WM_CLASS`
-* `oc.icon` is the name of the icon file
-* `oc.icondata` is a base64 encoded content of the file `pencil.svg`
-![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) to get it
+* `oc.icon` is the filename of the application icon
+* `oc.icondata` is the base64-encoded content of the `pencil.svg` icon file
+![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) To generate the base64-encoded value, run:
 `wget https://icons.getbootstrap.com/assets/icons/pencil.svg && base64 -w0 pencil.svg`
 
 * Build the image for the xedit application
@@ -81,7 +81,7 @@ docker inspect $REGISTRY/samplexedit > samplexedit.json
 
 * Send the image to the abcdesktop pyos instance
 
-The following commands retrieve the `PYOS_POD` name, copy the `samplexedit.json` file to the `/tmp` directory inside the pyos pod, and submit the file to the REST API server.
+The following commands retrieve the `PYOS_POD_NAME`, copy the `samplexedit.json` file to the `/tmp` directory inside the pyos pod, and submit it to the REST API server.
 
 ```bash
 NAMESPACE=abcdesktop
@@ -150,16 +150,16 @@ The image endpoint returns a JSON document
 
 * Launch the `xedit` application
 
-The `xedit` container image is being pulled.
+The `xedit` container image is being pulled from the registry.
 
 ![Start the new application xedit](img/simplestapplication-xedit-starting.png)
 
-The `xedit` container image is starting.
+The `xedit` container is starting up.
 
 ![Start the new application xedit](img/simplestapplication-xedit-started.png)
 
 The `xedit` application is running.
 
 
-You have successfully installed the `xedit` application as a container with a custom icon.
+You have successfully packaged and registered the `xedit` application as a container image with a custom icon.
 

@@ -21,13 +21,13 @@ This screenshot shows the OVHcloud Kubernetes service console.
 
 ## Create your kubernetes config 
 
-As there is no command-line tool that allows you to connect your local machine to the cluster, you must manually copy the kubeconfig file.
+Because OVHcloud does not provide a CLI to configure local cluster access directly, you must manually copy the kubeconfig file.
 
-Go to your cluster on the OVHcloud console
+Navigate to your cluster in the OVHcloud console.
 
 ![ovh cluster overview](img/ovh-console.png)
 
-Then click on `Copy kubeconfig` and paste its content in a new `ovh-kubeconfig.yaml`, it should look like this
+Click `Copy kubeconfig` and paste its contents into a new file named `ovh-kubeconfig.yaml`. The file should resemble the following:
 
 ```
 apiVersion: v1
@@ -51,15 +51,15 @@ users:
     client-key-data: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUpRZ0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQ1N3d2dna29BZ0VBQW9JQ0FRRGNrS0ZoUlJIMlRIM2gKcEVLU2lpOHJMcEMvU1FGMDRmTXFKYUxZUEIvbTFidm5VbW1xSUUycE0wVTdaNGtDWXk4SGNwbVRWR3oxeTZUUAo3RUYreElYNGIwQVRySjdqWUxiRituRTF3RmVRMXl6R3dUZVdNVnR1MUFmQ2RpQitJYkNBZ2J4KzdlUElPSHErCnlvZ1JFbDJXR0N6VUlLU2NJd3kxQmlhc0I0ZmppTWo3V2V2bisrenBpQjZHWmJqMmRkRFpzaVdMbmpzTWkyYTIKdmgybTYyajIwd1RSQkMyTzBFV0JkY0xTNnhwVXRwWGJWZ2cyamRYdWovenh6aU9ad3pFYW80QzFjSm9nZkdsWAp0ZG9QZlhJYU1VeTBjdVRGL1h4SUplWktYTW43ckw0d0p2ZWtiYjVqbzZXakwyb2dSZjFiV0paTCt5aExrdWlpClU3K243TExaYzU2MDhUY3l6SGlVdEpvbTA1Z1I3ajVEbW92aTZ2SmNTL0xHdWlRNFc5Yk9TRFBIa0lydndKQkUKVzRmZkpXMGJUUXh0QkVGREhza2ZlRGZXU2p1cGh3ZGhyMHo1WThPb3IzK3lOUzIwUWlxRVY1akdIdTR6Q001RApnay9MeXpnbkpFSmNTUG43U3lVaVNTeWNqZmxPK2VOelN5Qi8xc0l2NGtIcytEWHZLWXpmWHBQRmdEaDBDamFvClBIakFIaVRZaWt2K0hHdlZPYzltcHZxbXlHY3dzVEFzcGdGQ09UdnI4TzVnaTVTeEEvdEFCVSt5cng1VTFPaWMKcURCS01Da3U0MzBzeEpiUmNBdlJ0RVlxbUVXd01uUnlIQXI0MjB0V0hyQ0hId2JuemNOdUJoYnk5YmN2UHE1Swp5dWxtZTREL1BCN2p0dUk4YjdwMGxFdjJPZUNnc3dJREFRQUJBb0lDQUQ5bmhqUzNqY2ZQU2xxTWhTU3ArNUErCnhSWnY3cTdDYTB3QTRMU25hQVpNQjhXaUg4VHJuMWVWNlArQUxsY1Uyd2FaajROV1FESlNWYkQ5dWdBdWoxS1EKN0lzYlV0dUxTRTlXUktnT2dEMmZWWHhYTzlyOW1rcWNRaFRKTDJNQzNVRzd5Y3QxS0VjODBUQTZlVzNxNlNORwpGTkR3QjFIcEUzU1FiWnFEV2JGemQwOG1GTll0eWZlQ0RVQldTcHJ5MkZSVVRVMjY4VCtVYlRUNEp2Nytha0NWCi9hcjJPQUIzWjV1bEZobmF3c2w2YVU3Umh1L2p5dzFXc0FCMDRUQUk5L3N2NkVhQU5aWkVIV1k4M1JBWjRDeWUKWW0zM0gwTzVNRHB2UnFtMnpjdCs1M2RoSkV4TXplL0hzY3hjeTNXMm1QUGkzZVcrcitFMXZKRTVZUDF0WWlYdQowdTMxa0RSQ256cmtvazBiVU9HcWQ2Q0NDWUQ3aDNaQ2FETFViRHdXNi9YRFFReXdwK3JEZmF2bjVibHZrNTlXClhydHdMeHg1MjZ1K09LS2szQkRGaUtDNkluZXFpU2hwUlNwRVg2dENSL0E5K2szaTNyN3NDRkdiUVJ2dC9MQmwKTDNDdkZYaktVY0V3QzJjcUtsOU9RSlRMeFRmMEo4eEg0OEF5TzRzR1RpZ1pjVHV3VW1HbVpnR3c4Yk1YaUtlYwpDOW0xQWsyeXAxZnBIOVBManFXQ0hCUUNDYThoRlp4NHcwaXdXdUJyNVpnaVF0Ym94YXNyT0cyWCtGQm9pQ09WCnRKYlRYc2pKZlVwVk5zK0xRNGZqS3FnaWgrYU1iODM3Tm1SaExlV0dCVXVKZWVlQyt0SWdpSkpodW44aUJXWksKZzhRSzB1V3d1cFp6TDY0NGo0UVJBb0lCQVFEMUxWUDU0Q1VwTDg1M29mQW52Y21xQ2c3dzlidDNZbmxaTlJZTQp4dG0zdGpIL20vT1REMm5GU0o1WnE0VVlxT2ZhSmtkTzg1RUpmN2tPNFlOSzJGYXVYSFlHTWRBQ2M1NVZvUFNOClFTU0pEWWdiNGdWZHJRdEh4RGhmdkhOVE9GMzhwUU1RRFhmcWI4MmRiLzhrMmdEck9qMzBnUWZVT3U3SVhFaUUKZkY2RzZ0NEI2bCs3NWVuZEpydHUyQURzK1NXeHhnd0w5dithUnJrM0ZKSjUzYUxzNk54azgzK1NWa0JnUUY0ego2VUVyL214bEROYTloZlhubjFsakFLS2s0NWRzU0plS0RLMEZReEUraGlTcmhuOHNoT2xPaytnSjF2cUpJKzAzCmlhOTlLOHBmL0h1T2l1RFlBWXVJNTFwNlZ2cW1WdWJMbkRyMnBsZzlPN3hZeTc3akFvSUJBUURtVFNzZk9GR00KYjNYbDdzc2hhNWRDSFRiZ0NRN1Y0Qm9sZDZHdVFQOHVFNjIxTnc3OUQxQUxHc0ttbk1ZSWlpTjdnMTVXM09wNwpoajIxYTdOaGRiMnlyUGdIZ0tnWmNGZElmVWlvbis4cGsxVnhWVmJMNHIwV2EwdFc3NUZxcmt3YnljSG1uQTY4CnR4cWNLNEh2RG5uWjZYenE2NlpHQnBESUNpZElOaG1PQmdFUmhzcnVxNEQ4aGFYRGJLbG9GY3lCUUhiYVRLVE0KNWdDU1lnL0d6MFo4SXQ0Y0FJNlFUWlNZZG1LcGxqM3Q5YjhrczVteXk0YUJQSE9OTGRzTDR0WDdSUGFob2tRMQozcC8yaStUdVZER2VUelRySFZxQS9nMEQ4WlVwTVVPei9OaHNPeHNveFRJTFBmZmV3SzV5bTJjVkVFcWNJcEViCnNkN1VBZklrZE8veEFvSUJBRE5xdmlHNUVCSURKSm1TTEhzcEloRzI2a3MrUFlKYjlIYncyeDd5MU5YaUw3b2IKU29tY3dlSE55T2VsUU5SYkY4UjRJcHc4R0Q2VnVvbVVZYVJnbWswV3R1bTFxSm5iQldtUHg3bVgzOEdlUk4wVQpHV3Y3emxIT3BNUHZFWUJ5WWNPS0Y0cFdTTCt4a3IxaHIzQmJCN1pORUpFbVBpNFQ3ZCsyK3I1T0ZzVFVuSnBxClBJbDdQZ0JURHh1LzBQSGhqallxQW55LzMvckt1aTBDODNUN05oL1k5ZDkxOFZzUEc1RVQ3cTJVVFVhY3BMN00KWW54OGk0VjN0WmM5bXQ1Wm5IZnBBVjdDS2NiZ3VjMFM5TDNFQndlZkdBNlNsaWI2SHJDRUNFdU5aSEFycnRWUwpiZGNHNlFCajBvOXpkVllTeDUzNnU0d1h4NFhTZk03YXFEVTNCV0VDZ2dFQkFLWlliT0pEQXB3bVVnay8zeGNICnFKeUhqNEJvNm45UFBITjlvcG5EdHMyb1J4c1NadEFnaEZkUS8vSHFZUnYvOHpzZW0wQ3dsdW1iLyt5UG0yUzAKNzgwa0pJNyt2ZXlKK1hHUmxLNi92cmJRQmJJenl0cS9yb2FILzBZUENvRDgzbHBmODU5SGIxbWVCQ2x6UDRuVgpjZXdWT3paUCtheXd4MWpHQkxPaTUvaHVtOHoyQ0pRMTZwZjdUTTBJS3FEVXhmOUIrZGNaN3h0VXNtc0pTNDMxClgxc0FzRitYZzJIMXQzUWNabzFKeVBlZFBuQWJEZFJZTDVJZmdQTWpnUWxuMGRtSmFYODhQbnFPa0FvNzU2TEIKeTRrbWV2bXNIUmY0Nkp2Rm5sQy9sY0JtekVmNHRWaFFmeUlobzIwUXpiQllVUytrc2M5dkpGTFZ1aloySlZseAo0WEVDZ2dFQUN0ZXVqdzdlYTFBa0UybTdCU044MDJWWWVNYUd0L0M2aWVCYUdNTGR0Zjg1N1FNWFYvcEs0bEYyCnZpcFlFczdVcGxpMzhDSU9UN2Nza2hoRU1vRzd3dHpuUzRQVmxQanQyZ2FqelZpUk9pTE5kTXVZVXByVVpZdmsKcDhaZjh2NVJETWR6a0lCYTlLSEc4NHFBYXRnMTZSWmh4NFdhZ2FKSmxMNk93NHB5T3ZMcVM1d1NjaGlwZkhEawplcldyaXNwS1VMdTl3VHJKVTJZWG1BczNXWTJzcnY0anB0a3lJbVVzd3lZeVlxWXZiUzZFc1FUeFBPc1lEekN3ClpNUlY0NEpZRkZnN0tJa2tJeHFxRXM0YktvWFl6N1N4R2JIR2JzUDQyZjhvMlk0eDZiOTVRa0UvYzJhV2E4WEIKdmxSMGsvNzR5MG14UG9mQ2JjUkwvOWttcDVrYXR3PT0KLS0tLS1FTkQgUFJJVkFURSBLRVktLS0tLQo=
 ```
 
-Then copy it in your `/.kube` folder, usually located in `/home/$USER`, as `config`
+Copy the file to your `~/.kube` directory (typically `/home/$USER/.kube`) and name it `config`.
 
 ```
 cp ovh-kubeconfig.yaml /home/$USER/.kube/config
 ```
 
-## Get your kubernetes cluster informations
+## Get your Kubernetes cluster information
 
-Run the `kubectl cluster-info` command line to confirm that the `kubectl` command can communicate with your OVHcloud cluster.
+Run the `kubectl cluster-info` command to verify that `kubectl` can communicate with your OVHcloud cluster.
 
 ``` bash
 kubectl cluster-info
@@ -75,8 +75,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 ## Run the abcdesktop install script 
 
-
-Download and extract the latest release automatically
+Download and install the latest release automatically
 
 ```
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh | bash
@@ -87,14 +86,14 @@ To get more details about the install process, please read the [Setup guide](htt
 
 ## Connect to your abcdesktop service 
 
-By default install script is listening on a free tcp port `:30443` and is using a `kubectl port-forward` command line to reach http web service `:80`
+By default, the install script listens on a free TCP port `:30443` and uses a `kubectl port-forward` command to forward traffic to the HTTP service on port `:80`.
 
-Open your web browser to `http://localhost:30443`
+Open a web browser and navigate to `http://localhost:30443`.
 
 ![abcdesktop login](../img/abcdesktop-hompage-port30443.png)
 
  
-Login as user `Philip J. Fry` with the password `fry`
+Log in as user `Philip J. Fry` with the password `fry`.
 
 ![abcdesktop login as fry](../img/abcdesktop-hompage-port30443-login-fry.png)
  
@@ -114,17 +113,17 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pul
 
 To get more details about the install applications process, please read the [Setup applications guide](https://www.abcdesktop.io/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop_applications/)
 
-Then reload the web page with the desktop of `Philip J. Fry`
-New applications are now listed in the dock of `plasmashell`
+Reload the web page to refresh the desktop of `Philip J. Fry`.
+New applications are now listed in the dock of `plasmashell`.
 
 
 ![abcdesktop for fry with applications](../img/abcdesktop-hompage-port30443-login-fry-applications.png)
 
-Start Firefox application
+Start the Firefox application.
 
-> The first run may involve waiting for the image pulling process to finish
+> The first run may involve waiting for the image-pulling process to finish.
 
-Go to `https://mylocation.org` website to check where your pod is running.  In my case for the region `Europe`, the desktop is located near `Warsaw` city in `Poland`. 
+Navigate to `https://mylocation.org` to verify the geographic location of your pod. In this example, for the `Europe` region, the desktop is located near `Warsaw` in `Poland`. 
 
 
 ![abcdesktop for fry with applications](img/ovh-abcdesktop-firefox-location.png)

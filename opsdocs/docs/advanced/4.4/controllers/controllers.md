@@ -1,24 +1,25 @@
-# Controllers 
+# Controllers
 
-## Controllers
+## Overview
 
-abcdesktop is built on the Model-View-Controller (MVC) pattern. MVC separates an application's logic into three interconnected components, decoupling the internal representation of data from how that data is presented to and received from the user.
+abcdesktop.io is built on the Model-View-Controller (MVC) design pattern. MVC decouples the internal representation of data from how that data is presented to and accepted from the user, enabling a clean separation of concerns across the `pyos` control plane.
 
-The following table lists all abcdesktop controllers and their descriptions:
+## Controller Reference
 
-| Controller               |  Description   |
-|--------------------------|--------------- |
-|`AccountingController`    | Accounting data in JSON format |
-|`AuthController`          | Authenticate users |
-|`ComposerController`      | CRUD operations for core services (e.g., `createDesktop`, `createApplication`) |
-|`CoreController`          | Retrieve configuration and user message information |
-|`ManagerController`       | Manage services (e.g., adding an application); used by the console service |
-|`UserController`          | Retrieve user information |
+The following table lists all `pyos` controllers and their responsibilities:
 
+| Controller | Description |
+|---|---|
+| `AccountingController` | Exposes per-user accounting and session metrics in JSON format |
+| `AuthController` | Handles all user authentication flows |
+| `ComposerController` | Manages CRUD operations for core services — e.g., `createDesktop`, `createApplication` |
+| `CoreController` | Returns system configuration data and user-facing messages |
+| `ManagerController` | Provides management operations (e.g., adding or removing application images); used exclusively by the console service |
+| `UserController` | Returns authenticated user profile information |
 
-## Access Permission
+## Access Control Configuration
 
-The `controllers` configuration is a dictionary, and is defined in the pyos's `od.config` file. 
+Controller access is configured in the `controllers` dictionary in the `od.config` file. Access can be restricted by source IP address (`permitip`) and/or API key (`apikey`).
 
 ```json
 controllers : { 
@@ -38,47 +39,44 @@ controllers : {
 } 
 ```
 
-By default, access to `AccountingController` and `ManagerController` is protected by IP source filters or by an `apikey`. The default configuration permits connections from private network ranges defined in [RFC 1918](https://tools.ietf.org/html/rfc1918) and [RFC 4193](https://tools.ietf.org/html/rfc4193). For more information, see [Private network](https://en.wikipedia.org/wiki/Private_network).
+By default, `AccountingController` and `ManagerController` are restricted to source IP addresses from RFC 1918 private ranges ([RFC 1918](https://tools.ietf.org/html/rfc1918)) and the IPv6 Unique Local Address range ([RFC 4193](https://tools.ietf.org/html/rfc4193)). All other controllers are accessible without restriction by default.
 
-By default, all other controllers are accessible without restriction.
+### Access Control Filter Options
 
-### Access control filter 
+| Filter | Type | Description |
+|---|---|---|
+| `permitip` | list of CIDR strings | Restricts access to requests originating from the listed subnets. Set to `None` to disable IP filtering. Example: `['10.0.0.0/8', '172.16.0.0/12']` |
+| `apikey` | list of strings | Restricts access to requests presenting a valid API key in the `X-API-Key` HTTP header. Set to `None` to disable API key filtering. Example: `['fPCdPSSj8gZri1Ncmg']` |
 
-The access control filter configuration is defined as a JSON dictionary. Each dictionary entry uses the controller name as its key and accepts the sub-entries `permitip` and/or `apikey`.
+When a request is denied due to an IP source filter violation, the HTTP response is:
 
-- The `permitip` value is a list of subnets, for example `[ '10.0.0.0/8', '172.16.0.0/12' ]`. If `permitip` is not set, or if the controller is not defined in the configuration, IP-based filtering is disabled.
-- The `apikey` value is a list of strings, for example `[ 'fPCdPSSj8gZri1Ncmg', 'Z9pXCa2y6ccDeBBeeUc4' ]`. If `apikey` is not set, or the controller is not defined, API key filtering is disabled. The HTTP header used to pass the key is `X-API-Key`.
-
-If the source IP address is denied, the HTTP response status is `403 Forbidden`:
-	
 ```json
 {"status": 403, "status_message": "403 Forbidden", "message": "Request forbidden -- authorization will not help"} 
 ```
 
+## curl Request Examples
 
-## Curl http requests sample
+### Request with `X-API-Key` Header
 
-### Curl http request with `X-API-Key`
-
-Add the http header `X-API-Key: fQDbvjCafec4l` to the curl command to list images
+List all registered application images:
 
 ```bash
 curl -X GET -H 'X-API-Key: fQDbvjCafec4l' -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/images
 ```
 
-The command returns
+Expected response:
 
 ```json
 {}
 ```
 
-Add the http header `X-API-Key: fQDbvjCafec4l` to the curl command to add new application
+Register a new application image:
 
 ```bash
 curl -X POST -H 'X-API-Key: fQDbvjCafec4l'  -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d@xeyes.d.{{ abcdesktop.latest_release }}.json
 ```
 
-The command returns
+Expected response:
 
 ```json
 [
@@ -97,46 +95,7 @@ The command returns
  	"args": null, 
  	"execmode": null, 
  	"showinview": null, 
- 	"displayname": "xeyes", 
- 	"home": null, 
- 	"desktopfile": null, 
- 	"executeclassname": null, 
- 	"executablefilename": "xeyes", 
- 	"usedefaultapplication": false, 
- 	"mimetype": [], 
- 	"fileextensions": [], 
- 	"legacyfileextensions": [], 
- 	"secrets_requirement": null,
- 	"containerengine": "ephemeral_container", 
- 	"securitycontext": {}
+ 	"displayname": "xeyes"
  }
 ]
 ```
-
-### Curl http request forbidden
-
-```bash
-curl -X DELETE -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/images
-```
-
-The command returns
-
-```json
-{"status": 403, "message": "Request forbidden -- authorization will not help"}
-```
- 
-## Requests through console
-
-### Deal with console and `X-API-KEY`
-
-As described above, when an `apikey` is configured, requests sent to pyos must include the `X-API-KEY` header containing the `apikey` string. When you connect to the console, a popup will appear prompting you to enter the `ManagerController apikey`.
-
-![api-key-popup](./img/api-key-modal.png)
-
-If you close the popup without entering a valid `apikey`, or if you enter an incorrect one, the popup will reappear until a correct `apikey` is provided. An error message is also displayed in the top-right corner.
-
-![api-key-error](./img/api-key-error.png)
-
-Once a valid `apikey` is entered, it is stored in your browser's `LocalStorage` so that you do not need to re-enter it each time you connect to the console.
-
-![api-key-local-storage](./img/api-key-localstorage.png)
