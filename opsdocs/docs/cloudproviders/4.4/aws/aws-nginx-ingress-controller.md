@@ -1,3 +1,14 @@
+---
+title: Expose abcdesktop.io via NGINX Ingress on AWS | abcdesktop.io
+description: Deploy and configure an NGINX Ingress Controller on AWS EKS to expose abcdesktop.io with HTTPS, cert-manager TLS certificates, and real client IP forwarding.
+keywords: AWS, NGINX, ingress controller, HTTPS, cert-manager, TLS, EKS, abcdesktop, Kubernetes
+tags:
+  - AWS
+  - NGINX
+  - ingress
+  - TLS
+---
+
 # Publish your website as a public secured service
 
 

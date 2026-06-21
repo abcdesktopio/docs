@@ -1,3 +1,14 @@
+---
+title: Keycloak LDAP Integration with Group Support | abcdesktop.io
+description: Configure Keycloak as an identity provider for abcdesktop.io with LDAP federation, group mapping, and OpenID Connect / OAuth 2.0 authentication flow.
+keywords: Keycloak, LDAP, groups, OpenID Connect, OAuth 2.0, SSO, abcdesktop, Kubernetes, identity provider
+tags:
+  - use case
+  - Keycloak
+  - LDAP
+  - OpenID Connect
+---
+
 # Configure Keycloak with external LDAP for abcdesktop
 
 ## Prerequisites

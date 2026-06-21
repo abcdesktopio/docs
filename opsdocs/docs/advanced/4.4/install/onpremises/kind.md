@@ -1,7 +1,11 @@
 ---
+title: Install abcdesktop.io on kind (Kubernetes in Docker) | abcdesktop.io
+description: Step-by-step guide to deploying abcdesktop.io on a local kind cluster for development and evaluation, including port-forward configuration.
+keywords: kind, Kubernetes in Docker, local install, development, evaluation, abcdesktop, port-forward, on-premises
 tags:
   - kind
   - installation
+  - on-premises
 ---
 
 Kind is a tool for running local Kubernetes clusters using Docker container "nodes". Kind was primarily designed for testing Kubernetes itself, but it can also be used to deploy Kubernetes applications. To install or set up `kind`, refer to the [Kind documentation](https://kind.sigs.k8s.io/).

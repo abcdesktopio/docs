@@ -1,3 +1,13 @@
+---
+title: Router Service | abcdesktop.io
+description: Developer reference for the abcdesktop.io router service: WebSocket proxying, JWT token validation, nginx configuration, and session routing.
+keywords: router, WebSocket, nginx, JWT, proxy, abcdesktop, contribute, architecture
+tags:
+  - contribute
+  - router
+  - WebSocket
+---
+
 # Route - OpenResty HTTP Router
 
 ## Project Specification

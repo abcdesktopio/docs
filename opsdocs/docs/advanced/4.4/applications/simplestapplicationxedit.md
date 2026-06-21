@@ -1,6 +1,10 @@
 ---
+title: Build a Simple xedit Application Container | abcdesktop.io
+description: Tutorial for building a minimal xedit X11 application container and registering it with an abcdesktop.io instance for remote application isolation.
+keywords: xedit, X11, application container, remote application isolation, RAI, Docker, abcdesktop, Kubernetes
 tags:
   - application
+  - RAI
 ---
 
 # Build a sample `xedit` application with a custom icon from scratch

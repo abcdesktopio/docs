@@ -1,9 +1,13 @@
 ---
+title: Install abcdesktop.io Using Helm | abcdesktop.io
+description: Step-by-step guide to deploying abcdesktop.io on Kubernetes using the official Helm chart, including chart repository setup and values configuration.
+keywords: Helm, Helm chart, install, Kubernetes, abcdesktop, deployment, values, chart
 tags:
   - helm
   - installation
   - setup
   - upgrade
+  - Helm
 ---
 
 # Installing abcdesktop.io Using Helm

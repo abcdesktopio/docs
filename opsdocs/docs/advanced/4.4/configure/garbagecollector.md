@@ -1,3 +1,12 @@
+---
+title: Garbage Collector Configuration | abcdesktop.io
+description: Configure and operate the abcdesktop.io garbage collector to automatically terminate idle user desktop pods after a configurable timeout period.
+keywords: garbage collector, idle pods, cleanup, timeout, abcdesktop, Kubernetes, resource management, pyos
+tags:
+  - configuration
+  - garbage collector
+---
+
 # Garbage Collector Configuration
 
 ## Overview

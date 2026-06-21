@@ -1,7 +1,11 @@
 ---
+title: Install abcdesktop.io on Minikube | abcdesktop.io
+description: Guide to deploying abcdesktop.io on a local Minikube cluster, including resource configuration and connection instructions.
+keywords: minikube, local cluster, install, abcdesktop, development, evaluation, Kubernetes
 tags:
   - minikube
   - installation
+  - on-premises
 ---
 
 `Minikube` is a tool for running local Kubernetes clusters using Docker container "nodes". Minikube was primarily designed for testing Kubernetes itself, but it can also be used to deploy Kubernetes applications. To install or set up `minikube`, refer to the [Minikube documentation](https://minikube.sigs.k8s.io/docs/).

@@ -1,8 +1,13 @@
 ---
+title: Install Applications Using a Script | abcdesktop.io
+description: Guide to bulk-installing abcdesktop.io applications using the install script and a predefined application list for rapid deployment.
+keywords: install applications, script, bulk install, application list, abcdesktop, Kubernetes
 tags:
   - application
   - installation
   - bash
+  - applications
+  - script
 ---
 
 # Installing Applications with the Default Script

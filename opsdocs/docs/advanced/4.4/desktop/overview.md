@@ -1,3 +1,12 @@
+---
+title: User Desktop Pod Overview | abcdesktop.io
+description: Overview of the multi-container user pod architecture in abcdesktop.io: init, graphical, printer, sound, and filer containers and their roles.
+keywords: user pod, desktop pod, multi-container, graphical, sound, printer, filer, abcdesktop, Kubernetes, remote desktop
+tags:
+  - desktop
+  - architecture
+---
+
 # desktop.pod
 
 abcdesktop represents each user's desktop environment as a Kubernetes pod — a cohesive group of containers that collectively deliver the full desktop experience. This multi-container pod architecture is a foundational design principle of abcdesktop: each container encapsulates a single, dedicated service, allowing individual services to be independently enabled, disabled, or replaced without affecting other components.

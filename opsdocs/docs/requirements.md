@@ -1,7 +1,11 @@
 ---
+title: Requirements & Prerequisites | abcdesktop.io
+description: System requirements and prerequisites for deploying abcdesktop.io on Kubernetes, including hardware, OS, and cluster version constraints.
+keywords: requirements, prerequisites, Kubernetes, installation, hardware, CPU, disk space, Ubuntu, Linux, macOS, Windows, WSL2
 tags:
   - installation
   - requirement
+  - requirements
 ---
 
 # Requirements

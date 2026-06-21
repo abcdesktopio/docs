@@ -1,8 +1,13 @@
 ---
+title: Uninstall abcdesktop.io Using a Script | abcdesktop.io
+description: Procedure for completely removing abcdesktop.io core services from a Kubernetes cluster using the official uninstall script on Linux, macOS, and Windows.
+keywords: uninstall, script, remove, cleanup, Kubernetes, abcdesktop, Linux, macOS, Windows
 tags:
   - uninstall
   - bash
+  - script
 ---
+
 # Uninstalling abcdesktop.io Core Services Using a Script
 
 > A Linux operating system is recommended for running abcdesktop.io.

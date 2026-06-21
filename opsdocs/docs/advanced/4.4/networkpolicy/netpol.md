@@ -1,10 +1,16 @@
 ---
+title: Network Policy Architecture for abcdesktop.io | abcdesktop.io
+description: Detailed specification of the Kubernetes NetworkPolicy rules used by abcdesktop.io, including allowed TCP ports and inter-pod communication rules.
+keywords: NetworkPolicy, network policy, TCP ports, inter-pod, Calico, Cilium, Kubernetes, security, abcdesktop
 tags:
   - netpol
   - network
   - policy
   - overview
   - AD
+  - security
+  - NetworkPolicy
+  - architecture
 ---
 
 # Netpol

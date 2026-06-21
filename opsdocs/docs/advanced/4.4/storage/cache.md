@@ -1,11 +1,15 @@
 ---
+title: Memory-Backed Cache Volumes for Home Subdirectories | abcdesktop.io
+description: Configure abcdesktop.io to mount selected home directory subdirectories as in-memory (tmpfs) volumes to improve performance for high-I/O workloads.
+keywords: cache, tmpfs, memory volume, home directory, storage, performance, abcdesktop, Kubernetes
 tags:
   - storage
   - cache
   - memory
   - AD
+  - performance
+  - configuration
 ---
-
 
 # Overwriting User Home Directory Entries
 

@@ -1,6 +1,12 @@
 ---
+title: Customize the abcdesktop.io Frontend | abcdesktop.io
+description: Step-by-step guide to building a custom abcdesktop.io web frontend: clone webmodules, edit ui.json, build a new container image, and apply it to the Kubernetes cluster.
+keywords: custom frontend, UI, webmodules, ui.json, container image, abcdesktop, Kubernetes, branding, customization
 tags:
   - customize
+  - configuration
+  - frontend
+  - customization
 ---
 
 # Customize the abcdesktop Frontend Through the ui.json File

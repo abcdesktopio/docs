@@ -1,8 +1,12 @@
 ---
+title: Application Installation Overview | abcdesktop.io
+description: Overview of the abcdesktop.io application installation process: container image format, metadata labels, registry configuration, and deployment options.
+keywords: application, installation, overview, container image, labels, registry, abcdesktop, Kubernetes
 tags:
   - application
   - installation
   - overview
+  - applications
 ---
 
 # Application Overview

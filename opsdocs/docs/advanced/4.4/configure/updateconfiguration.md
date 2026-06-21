@@ -1,5 +1,9 @@
 ---
+title: Updating the abcdesktop.io Configuration | abcdesktop.io
+description: Procedure for applying changes to the abcdesktop.io od.config file stored as a Kubernetes ConfigMap, including rollout restart steps for pyos.
+keywords: update configuration, od.config, ConfigMap, kubectl, rollout restart, abcdesktop, Kubernetes
 tags:
+  - configuration
 - update
 - config
 ---

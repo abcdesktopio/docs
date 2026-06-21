@@ -1,3 +1,14 @@
+---
+title: Configure a Reverse Proxy in Front of abcdesktop.io | abcdesktop.io
+description: Guide to placing a reverse proxy such as nginx or Apache in front of abcdesktop.io, including WebSocket proxy configuration and default_host_url update.
+keywords: reverse proxy, nginx, Apache, WebSocket, proxy, abcdesktop, Kubernetes, configuration, HTTPS
+tags:
+  - FAQ
+  - reverse proxy
+  - nginx
+  - configuration
+---
+
 # How to Add a Reverse Proxy in Front of abcdesktop
 
 This chapter describes how to add a reverse proxy in front of abcdesktop. It covers the `nginx` configuration required to place a reverse proxy in front of an abcdesktop deployment.

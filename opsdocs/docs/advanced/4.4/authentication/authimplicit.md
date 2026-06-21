@@ -1,3 +1,12 @@
+---
+title: Implicit Anonymous Authentication | abcdesktop.io
+description: Configure the implicit always-allow authentication provider in abcdesktop.io for anonymous access, suitable for evaluation environments and internal lab deployments.
+keywords: implicit authentication, anonymous, always-allow, abcdesktop, Kubernetes, evaluation, lab
+tags:
+  - authentication
+  - anonymous
+---
+
 # Authentication: `implicit`
 
 ## Overview

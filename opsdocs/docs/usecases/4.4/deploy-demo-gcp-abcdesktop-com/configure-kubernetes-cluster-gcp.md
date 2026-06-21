@@ -1,3 +1,14 @@
+---
+title: Create a GKE Cluster for the abcdesktop.io Demo | abcdesktop.io
+description: Step-by-step guide to creating and configuring a Google Kubernetes Engine cluster to host the public abcdesktop.io demo platform.
+keywords: GKE, GCP, Google Cloud, Kubernetes cluster, demo, abcdesktop, configure
+tags:
+  - use case
+  - GCP
+  - GKE
+  - demo
+---
+
 # Create Kubernetes cluster on GCP to host demo platform
 
 ## Requirements

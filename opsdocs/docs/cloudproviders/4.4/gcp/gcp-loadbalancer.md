@@ -1,12 +1,16 @@
 ---
+title: Expose abcdesktop.io via GCP Load Balancer | abcdesktop.io
+description: Configure a Google Cloud Load Balancer to expose the abcdesktop.io HTTP router with HTTPS termination, Cloud DNS, and managed TLS certificates.
+keywords: GCP, load balancer, HTTPS, TLS, Cloud DNS, managed certificates, abcdesktop, GKE, Kubernetes
 tags:
   - cloud
   - gcp
   - load balancer
   - AD
+  - GCP
+  - HTTPS
+  - TLS
 ---
-
-
 
 # Publish your website as a public secured service
 

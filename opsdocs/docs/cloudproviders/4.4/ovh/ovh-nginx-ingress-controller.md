@@ -1,3 +1,14 @@
+---
+title: Expose abcdesktop.io via NGINX Ingress on OVHcloud | abcdesktop.io
+description: Deploy and configure an NGINX Ingress Controller on OVHcloud Managed Kubernetes to expose abcdesktop.io with HTTPS, cert-manager, and real client IP forwarding.
+keywords: OVH, OVHcloud, NGINX, ingress controller, HTTPS, cert-manager, TLS, abcdesktop, Kubernetes, sovereign cloud
+tags:
+  - OVH
+  - NGINX
+  - ingress
+  - TLS
+---
+
 # Publish your website as a public secured service
 
 

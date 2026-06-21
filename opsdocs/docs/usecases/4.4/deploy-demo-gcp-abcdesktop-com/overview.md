@@ -1,9 +1,15 @@
 ---
+title: abcdesktop.io Demo Platform Overview | abcdesktop.io
+description: Overview of the publicly accessible abcdesktop.io demo platform hosted on Google Cloud Platform, showcasing Remote Browser Isolation and Remote Application Isolation.
+keywords: demo, overview, GCP, remote browser isolation, RBI, remote application isolation, RAI, abcdesktop, cloud-native
 tags:
   - gcp
   - kubernetes
   - demo
   - usecase
+  - use case
+  - RBI
+  - RAI
 ---
 
 # Deploy demo.gcp.abcdesktop.com on Google Cloud Platform

@@ -1,9 +1,16 @@
 ---
+title: Expose abcdesktop.io via DigitalOcean Load Balancer | abcdesktop.io
+description: Configure a DigitalOcean Load Balancer to expose the abcdesktop.io HTTP router with HTTPS termination, DNS, and TLS certificate management.
+keywords: DigitalOcean, load balancer, HTTPS, TLS, DNS, abcdesktop, DOKS, Kubernetes
 tags:
   - install
   - digitalocean
   - loadbalancer
   - cloud
+  - DigitalOcean
+  - load balancer
+  - HTTPS
+  - TLS
 ---
 
 # Publish your website as a public secured service

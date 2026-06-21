@@ -1,3 +1,13 @@
+---
+title: HostPath Storage for User Home Directories | abcdesktop.io
+description: Configure abcdesktop.io to use Kubernetes hostPath volumes to persist user home directories directly on the cluster node's filesystem.
+keywords: hostPath, storage, home directory, persistent volume, Kubernetes, abcdesktop, on-premises
+tags:
+  - storage
+  - hostPath
+  - configuration
+---
+
 # Make user's home directory persistent using hostPath
 
 ## Prerequisites

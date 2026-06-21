@@ -1,6 +1,12 @@
 ---
+title: MongoDB Service | abcdesktop.io
+description: Developer reference for the MongoDB integration in abcdesktop.io: data model, collections, replica set configuration, and connection parameters.
+keywords: MongoDB, database, replica set, abcdesktop, contribute, data model
 tags:
   - mongodb
+  - contribute
+  - MongoDB
+  - database
 ---
 
 # MongoDB

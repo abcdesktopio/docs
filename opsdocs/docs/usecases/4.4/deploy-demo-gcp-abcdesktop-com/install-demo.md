@@ -1,3 +1,14 @@
+---
+title: Install the abcdesktop.io Demo on GCP | abcdesktop.io
+description: Guide to deploying the full abcdesktop.io demo platform on Google Cloud Platform, including PersistentVolumeClaims, OAuth 2.0 configuration, and application installation.
+keywords: demo, GCP, GKE, install, PersistentVolumeClaim, OAuth 2.0, abcdesktop, Kubernetes
+tags:
+  - use case
+  - GCP
+  - demo
+  - installation
+---
+
 # Install demo platform on GCP cluster
 
 ## Requirements

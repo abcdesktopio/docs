@@ -1,6 +1,10 @@
 ---
+title: Build a Simple xeyes Application Container | abcdesktop.io
+description: Tutorial for packaging the xeyes X11 demo application as a labeled container and deploying it under abcdesktop.io for remote application isolation.
+keywords: xeyes, X11, application container, remote application isolation, RAI, Docker, abcdesktop, Kubernetes
 tags:
   - application
+  - RAI
 ---
 
 # Build a sample `xeyes` application from scratch

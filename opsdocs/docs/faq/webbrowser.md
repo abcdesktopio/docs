@@ -1,7 +1,13 @@
 ---
+title: Web Browser Compatibility | abcdesktop.io
+description: Web browser compatibility information for abcdesktop.io: supported browsers, WebSocket requirements, and known limitations.
+keywords: web browser, compatibility, Chrome, Firefox, Edge, Safari, WebSocket, abcdesktop, HTML5
 tags:
   - faq
   - browser
+  - FAQ
+  - web browser
+  - compatibility
 ---
 
 # FAQ: Web Browser

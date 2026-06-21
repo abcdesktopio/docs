@@ -1,3 +1,13 @@
+---
+title: Desktop Pod Security Policies | abcdesktop.io
+description: Configure abcdesktop.io desktop pod security policies: network interface management, NFS volume options, and Kubernetes security context settings.
+keywords: security policy, network, NFS, ReadOnly, Kubernetes, desktop pod, abcdesktop, security
+tags:
+  - desktop
+  - security
+  - policies
+---
+
 # desktop.policies
 
 

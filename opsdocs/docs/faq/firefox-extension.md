@@ -1,3 +1,14 @@
+---
+title: Firefox Extension FAQ | abcdesktop.io
+description: FAQ and troubleshooting for the abcdesktop.io Firefox clipboard extension installation, domain filter configuration, and runtime usage.
+keywords: Firefox, extension, clipboard, FAQ, troubleshooting, abcdesktop, RBI, domain filter
+tags:
+  - FAQ
+  - Firefox
+  - clipboard
+  - RBI
+---
+
 
 # Mozilla Firefox Clipboard Extension
 

@@ -1,3 +1,11 @@
+---
+title: Explicit Authentication Overview | abcdesktop.io
+description: Overview of the explicit authentication mode in abcdesktop.io, which prompts users for credentials and validates them against a directory service such as LDAP or Active Directory.
+keywords: explicit authentication, LDAP, Active Directory, credentials, login, abcdesktop, Kubernetes, directory service
+tags:
+  - authentication
+---
+
 # Authentication: `explicit`
 
 ## Overview

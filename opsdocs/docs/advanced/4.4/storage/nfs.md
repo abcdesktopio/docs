@@ -1,3 +1,13 @@
+---
+title: NFS Storage for User Home Directories | abcdesktop.io
+description: Configure abcdesktop.io to use NFS-backed PersistentVolumes for user home directories, enabling shared storage across multiple cluster nodes.
+keywords: NFS, PersistentVolume, PVC, shared storage, home directory, Kubernetes, abcdesktop, storage
+tags:
+  - storage
+  - NFS
+  - configuration
+---
+
 # Retain user's home directory using NFS storage
 
 ## Prerequisites

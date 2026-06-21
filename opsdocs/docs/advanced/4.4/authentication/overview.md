@@ -1,3 +1,11 @@
+---
+title: Authentication Configuration Overview | abcdesktop.io
+description: Overview of authentication configuration in abcdesktop.io: manager types (implicit, explicit, external), provider chaining, and the od.config ConfigMap structure.
+keywords: authentication, overview, implicit, explicit, external, OAuth, LDAP, od.config, ConfigMap, abcdesktop, Kubernetes
+tags:
+  - authentication
+---
+
 # Authentication Overview
 
 ## Configuration File

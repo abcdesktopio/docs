@@ -1,9 +1,15 @@
 ---
+title: Quick Install abcdesktop.io Using a Script | abcdesktop.io
+description: Quick-start guide to deploying abcdesktop.io core services on Kubernetes using the one-line install script on Linux, macOS, and Windows.
+keywords: install, script, quick start, Kubernetes, abcdesktop, Linux, macOS, Windows, one-line
 tags:
   - bash
   - installation
   - setup
+  - quick start
+  - script
 ---
+
 # Quick Installation Using the Bash Script
 
 > A Linux operating system is recommended for running abcdesktop.io.

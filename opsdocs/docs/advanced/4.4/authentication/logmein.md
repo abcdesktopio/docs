@@ -1,3 +1,13 @@
+---
+title: Logmein SSL Mutual Authentication | abcdesktop.io
+description: Configure the abcdesktop.io logmein provider for SSL mutual TLS (mTLS) certificate-based authentication forwarded via a reverse proxy.
+keywords: logmein, mTLS, mutual TLS, SSL client certificate, reverse proxy, authentication, abcdesktop, Kubernetes, security
+tags:
+  - authentication
+  - mTLS
+  - security
+---
+
 # logmein Authentication
 
 

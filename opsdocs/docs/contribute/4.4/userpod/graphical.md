@@ -1,3 +1,14 @@
+---
+title: Graphical Container — X11 Display Server | abcdesktop.io
+description: Developer reference for the abcdesktop.io graphical container: X11 display server, noVNC WebSocket rendering, Dockerfile build stages, and runtime dependencies.
+keywords: graphical, X11, noVNC, WebSocket, display server, abcdesktop, contribute, user pod, remote desktop
+tags:
+  - contribute
+  - X11
+  - noVNC
+  - user pod
+---
+
 # Specification for the `graphical` service from Dockerfile.ubuntu
 
 ## 1. Purpose and Scope

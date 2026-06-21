@@ -1,10 +1,15 @@
 ---
+title: Remove Network Policies from abcdesktop.io | abcdesktop.io
+description: Procedure for removing Kubernetes NetworkPolicy objects from an abcdesktop.io deployment and verifying that unrestricted connectivity is restored.
+keywords: uninstall, NetworkPolicy, remove, Kubernetes, abcdesktop, security
 tags:
   - netpol
   - network
   - policy
   - uninstall
   - AD
+  - security
+  - NetworkPolicy
 ---
 
 # Uninstall

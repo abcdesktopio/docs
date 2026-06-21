@@ -1,11 +1,16 @@
 ---
+title: Expose abcdesktop.io via GKE Ingress Controller | abcdesktop.io
+description: Configure the GKE-native ingress controller to expose abcdesktop.io with HTTPS, BackendConfig timeout settings, and backend health checks.
+keywords: GCP, GKE, ingress controller, HTTPS, BackendConfig, TLS, abcdesktop, Kubernetes
 tags:
   - cloud
   - gcp
   - ingress
   - timeout
+  - GCP
+  - GKE
+  - TLS
 ---
-
 
 # Publish your website as a public secured service
 

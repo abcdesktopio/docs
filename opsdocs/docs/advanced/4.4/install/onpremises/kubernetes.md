@@ -1,3 +1,13 @@
+---
+title: Install abcdesktop.io on a Bare-Metal Kubernetes Cluster | abcdesktop.io
+description: Guide to deploying abcdesktop.io on a self-managed bare-metal or on-premises Kubernetes cluster using kubectl and the abcdesktop YAML manifest.
+keywords: bare-metal, on-premises, Kubernetes, kubectl, install, abcdesktop, kubeadm, self-managed
+tags:
+  - installation
+  - on-premises
+  - Kubernetes
+---
+
 # Installation
 
 ## Requirements

@@ -1,5 +1,13 @@
 ---
+title: Disable Outbound Firefox Connections | abcdesktop.io
+description: Configure Firefox policies to disable telemetry, Normandy, and other background network connections in an abcdesktop.io Remote Browser Isolation deployment.
+keywords: Firefox, disable connections, policies, telemetry, Normandy, RBI, remote browser isolation, abcdesktop, privacy
 tags:
+  - FAQ
+  - Firefox
+  - RBI
+  - security
+  - privacy
 - firefox
 ---
 

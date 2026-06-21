@@ -1,8 +1,13 @@
 ---
+title: Uninstall abcdesktop.io Using Helm | abcdesktop.io
+description: Procedure for completely removing an abcdesktop.io deployment from a Kubernetes cluster using Helm uninstall and namespace cleanup.
+keywords: uninstall, Helm, remove, cleanup, Kubernetes, abcdesktop, namespace
 tags:
   - uninstall
   - helm
+  - Helm
 ---
+
 # Uninstalling abcdesktop.io Using Helm
 
 ```bash

@@ -1,3 +1,13 @@
+---
+title: Meta-Directory Explicit Authentication | abcdesktop.io
+description: Configure the meta-directory explicit provider in abcdesktop.io to perform multi-domain authentication by resolving a user's Windows domain via a central LDAP metadirectory.
+keywords: meta-directory, explicit authentication, multi-domain, LDAP, Windows domain, FSP, abcdesktop, Kubernetes
+tags:
+  - authentication
+  - LDAP
+  - multi-domain
+---
+
 # Authentication `metaexplicit` for Microsoft Active Directory with Trust Relationships
 
 ## authmanagers `metaexplicit` Object

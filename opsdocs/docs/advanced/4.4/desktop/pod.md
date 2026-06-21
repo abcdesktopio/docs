@@ -1,3 +1,12 @@
+---
+title: Desktop Pod Configuration | abcdesktop.io
+description: Reference for the desktop pod configuration in abcdesktop.io: volumes, init containers, ephemeral containers, virtual printer queue, and default mount points.
+keywords: pod, volumes, init container, ephemeral container, printer, abcdesktop, Kubernetes, desktop configuration
+tags:
+  - desktop
+  - configuration
+---
+
 
 
 # Desktop configuration `desktop.pod`

@@ -1,8 +1,13 @@
 ---
+title: Shared Volumes for Multi-User Access | abcdesktop.io
+description: Configure ReadWriteMany PersistentVolumeClaims and NFS-backed shared volumes in abcdesktop.io for LDAP group-based file sharing between users.
+keywords: shared volumes, ReadWriteMany, NFS, PVC, LDAP groups, file sharing, abcdesktop, Kubernetes, storage
 tags:
   - storage
   - pvc
   - hostpath
+  - shared volumes
+  - LDAP
 ---
 
 # Shared Volumes

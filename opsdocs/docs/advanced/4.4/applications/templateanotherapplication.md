@@ -1,7 +1,11 @@
 ---
+title: Build an Application Container from a Template | abcdesktop.io
+description: Guide to using abcdesktop.io application templates to package GIMP and other graphical applications as isolated Kubernetes container workloads.
+keywords: application template, GIMP, container, abcdesktop, Kubernetes, remote application isolation, RAI, Docker, label
 tags:
   - application
   - template
+  - RAI
 ---
 
 # Build another application from a template

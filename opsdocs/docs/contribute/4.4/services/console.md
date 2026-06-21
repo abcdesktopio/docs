@@ -1,3 +1,13 @@
+---
+title: abcdesktop.io Console Service | abcdesktop.io
+description: Architecture and developer reference for the abcdesktop.io console web service: landing page, session management, application listing, and administrative functions.
+keywords: console, web service, developer, architecture, abcdesktop, Kubernetes, contribute
+tags:
+  - contribute
+  - console
+  - service
+---
+
 # Console - abcdesktop Administration Console
  
 ## Project Specification

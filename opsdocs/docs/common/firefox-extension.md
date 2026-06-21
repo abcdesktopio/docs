@@ -1,3 +1,14 @@
+---
+title: Firefox Clipboard Extension for abcdesktop.io | abcdesktop.io
+description: Install and configure the abcdesktop.io Firefox clipboard extension to enable seamless clipboard synchronization between the remote desktop session and the local browser.
+keywords: Firefox, clipboard, extension, clipboard sync, abcdesktop, browser, remote desktop, RBI
+tags:
+  - Firefox
+  - clipboard
+  - extension
+  - RBI
+---
+
 # Mozilla Firefox Clipboard Extension
 
 ## Install the Firefox Extension

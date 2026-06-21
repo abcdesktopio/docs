@@ -1,7 +1,12 @@
 ---
+title: Release Notes | abcdesktop.io
+description: Release notes and changelog for abcdesktop.io, documenting new features, improvements, and bug fixes across versions.
+keywords: release notes, changelog, versions, abcdesktop, updates, new features
 tags:
   - history
   - release
+  - FAQ
+  - release notes
 ---
 
 # Release History

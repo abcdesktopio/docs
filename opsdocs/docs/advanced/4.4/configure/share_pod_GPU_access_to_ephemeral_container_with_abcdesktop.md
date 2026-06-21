@@ -1,3 +1,13 @@
+---
+title: GPU Access for Ephemeral Containers via CDI | abcdesktop.io
+description: Configure Container Device Interface (CDI) and runtimeClassName to share NVIDIA GPU resources with ephemeral containers in abcdesktop.io user pods.
+keywords: GPU, CDI, Container Device Interface, NVIDIA, runtimeClassName, ephemeral container, abcdesktop, Kubernetes, GPU isolation
+tags:
+  - configuration
+  - GPU
+  - CDI
+---
+
 
 # Troubleshooting NVIDIA GPU Access to Ephemeral Containers with CDI Enabled
 

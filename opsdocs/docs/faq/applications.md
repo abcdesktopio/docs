@@ -1,7 +1,11 @@
 ---
+title: Supported Applications | abcdesktop.io
+description: List of applications compatible with abcdesktop.io for remote application isolation, including productivity tools, browsers, and development environments.
+keywords: applications, supported, remote application isolation, RAI, abcdesktop, Kubernetes, productivity
 tags:
   - faq
   - applications
+  - FAQ
 ---
 
 # FAQ: Applications

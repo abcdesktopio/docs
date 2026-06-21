@@ -1,3 +1,14 @@
+---
+title: Expose abcdesktop.io via Azure Load Balancer | abcdesktop.io
+description: Configure an Azure Load Balancer to expose the abcdesktop.io HTTP router with HTTPS termination, Azure DNS, and TLS certificate setup.
+keywords: Azure, load balancer, HTTPS, TLS, DNS, abcdesktop, AKS, Kubernetes, ingress
+tags:
+  - Azure
+  - load balancer
+  - HTTPS
+  - TLS
+---
+
 # Publish your website as a public secured service
 
 

@@ -1,11 +1,16 @@
 ---
+title: Deploy abcdesktop.io on Google GKE | abcdesktop.io
+description: Step-by-step guide to deploying abcdesktop.io on Google Kubernetes Engine (GKE), including project setup, cluster creation, and kubeconfig configuration.
+keywords: GCP, GKE, Google Kubernetes Engine, Google Cloud, cloud, deploy, abcdesktop, Kubernetes, install
 tags:
   - gcp
   - install
   - AD
   - cloud
+  - GCP
+  - GKE
+  - installation
 ---
-
 
 # Deploy abcdesktop on Google Cloud Provider (GCP) with Kubernetes
 

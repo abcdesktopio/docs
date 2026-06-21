@@ -1,3 +1,14 @@
+---
+title: abcdesktop.io — FRNOG Presentation | abcdesktop.io
+description: Presentation of abcdesktop.io to the French Network Operators Group (FRNOG): remote browser isolation, remote application isolation, and cloud-native desktop architecture.
+keywords: FRNOG, presentation, remote browser isolation, RBI, remote application isolation, RAI, abcdesktop, cloud-native, Kubernetes
+tags:
+  - FRNOG
+  - presentation
+  - RBI
+  - RAI
+---
+
 # FRnOG 42 — abcdesktop.io Presentation
 
 ![FRNOG logo](img/frnog.png)

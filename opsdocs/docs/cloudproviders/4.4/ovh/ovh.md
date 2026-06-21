@@ -1,3 +1,14 @@
+---
+title: Deploy abcdesktop.io on OVHcloud Managed Kubernetes | abcdesktop.io
+description: Step-by-step guide to deploying abcdesktop.io on OVHcloud Managed Kubernetes Service, including kubeconfig download and cluster bootstrap.
+keywords: OVH, OVHcloud, Managed Kubernetes, cloud, deploy, abcdesktop, sovereign cloud, install
+tags:
+  - OVH
+  - cloud
+  - installation
+  - sovereign cloud
+---
+
 # Deploy abcdesktop on OVHcloud with Kubernetes services
 
 

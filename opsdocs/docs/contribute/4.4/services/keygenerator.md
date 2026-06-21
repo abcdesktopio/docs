@@ -1,5 +1,12 @@
 ---
+title: Key Generator Service | abcdesktop.io
+description: Developer reference for the abcdesktop.io key generator service, which generates RSA and JWT key pairs stored as Kubernetes Secrets.
+keywords: key generator, RSA, JWT, Kubernetes secrets, abcdesktop, contribute, security
 render_macros: false
+tags:
+  - contribute
+  - security
+  - key generator
 ---
 
 # keysgenerator

@@ -1,6 +1,11 @@
 ---
+title: Welcome Information & JavaScript Injection | abcdesktop.io
+description: Configure the abcdesktop.io welcomeinfo parameter to display custom messages and inject JavaScript — including Google Tag Manager — on the login page.
+keywords: welcome, welcomeinfo, login page, JavaScript, Google Tag Manager, GTM, message, abcdesktop, customization
 tags:
   - config
+  - configuration
+  - customization
 ---
 
 # Welcome

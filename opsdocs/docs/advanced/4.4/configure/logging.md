@@ -1,3 +1,13 @@
+---
+title: Logging Configuration | abcdesktop.io
+description: Configure structured logging for abcdesktop.io pyos using Python logging module settings, syslog, Graylog, and per-module log level controls.
+keywords: logging, syslog, Graylog, Python logging, log level, abcdesktop, Kubernetes, observability, monitoring
+tags:
+  - configuration
+  - logging
+  - observability
+---
+
 
 # Logging Configuration in od.config
 

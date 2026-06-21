@@ -1,5 +1,11 @@
 ---
+title: Known Issues & Troubleshooting | abcdesktop.io
+description: Known issues, workarounds, and troubleshooting tips for common abcdesktop.io deployment and runtime problems.
+keywords: issues, troubleshooting, known issues, workarounds, abcdesktop, Kubernetes, debugging
 tags:
+  - FAQ
+  - troubleshooting
+  - issues
 ---
 
 # GitHub Issues

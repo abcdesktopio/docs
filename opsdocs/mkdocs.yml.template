@@ -16,7 +16,8 @@ theme:
     - content.action.edit
     - content.code.copy
 plugins:
-    - search
+    - search:
+        lang: en
     - tags
     - macros
     - drawio:
@@ -35,6 +36,13 @@ extra:
   analytics:
     provider: google
     property: G-TN9YC7J01Z
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/abcdesktopio
+      name: abcdesktop.io on GitHub
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/u/abcdesktopio
+      name: abcdesktop.io on Docker Hub
 extra_css:
   - css/custom-admonition.css
 
@@ -57,10 +65,14 @@ markdown_extensions:
       alternate_style: true
 
 site_name: www.abcdesktop.io
+site_description: abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering Remote Browser Isolation (RBI) and Remote Application Isolation (RAI) accessible from any HTML5 web browser — no client-side installation required.
+site_author: abcdesktop.io contributors
+copyright: Copyright &copy; 2020–2026 abcdesktop.io
 repo_url: https://github.com/abcdesktopio/docs
 repo_name: abcdesktopio/docs
 site_url: https://www.abcdesktop.io
 edit_uri: 'edit/main/opsdocs/docs'
+use_directory_urls: true
 nav:
 - Home: index.md
 - Quick Start :

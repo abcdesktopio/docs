@@ -1,3 +1,14 @@
+---
+title: Deploy abcdesktop.io on Microsoft Azure AKS | abcdesktop.io
+description: Step-by-step guide to deploying abcdesktop.io on Microsoft Azure Kubernetes Service (AKS), including resource group, cluster creation, and kubeconfig setup.
+keywords: Azure, AKS, Microsoft Azure Kubernetes Service, cloud, deploy, abcdesktop, Kubernetes, install
+tags:
+  - Azure
+  - AKS
+  - cloud
+  - installation
+---
+
 # Deploy abcdesktop on Azure with Microsoft Azure Kubernetes Service
 
 

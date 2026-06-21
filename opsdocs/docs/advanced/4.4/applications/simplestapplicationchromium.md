@@ -1,7 +1,11 @@
 ---
+title: Build a Chromium Remote Browser Isolation Container | abcdesktop.io
+description: Step-by-step guide to building and registering a Chromium application container for Remote Browser Isolation (RBI) with abcdesktop.io on Kubernetes.
+keywords: chromium, remote browser isolation, RBI, container, Docker, application, Kubernetes, abcdesktop, browser isolation
 tags:
   - application
-  - chromium 
+  - chromium
+  - RBI
 ---
 
 # Build a simple application `chromium` from scratch

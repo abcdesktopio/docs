@@ -1,4 +1,7 @@
 ---
+title: Application Container Template Reference | abcdesktop.io
+description: Reference guide for the abcdesktop.io application container template system, including Dockerfile auto-generation, JSON descriptors, and metadata label fields.
+keywords: application template, Dockerfile, JSON descriptor, container label, abcdesktop, Kubernetes, remote application isolation
 tags:
   - application 
   - template

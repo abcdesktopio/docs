@@ -1,7 +1,12 @@
 ---
+title: Adopters | abcdesktop.io
+description: Organizations and projects that have adopted abcdesktop.io as their cloud-native virtual desktop and remote application isolation platform.
+keywords: adopters, users, organizations, abcdesktop, virtual desktop, remote application isolation
 tags:
   - faq
   - adopter
+  - FAQ
+  - adopters
 ---
 
 # Adopters

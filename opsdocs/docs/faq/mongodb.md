@@ -1,7 +1,13 @@
 ---
+title: MongoDB Configuration & Scaling FAQ | abcdesktop.io
+description: FAQ on MongoDB configuration for abcdesktop.io: increasing replica counts, StatefulSet scaling, and connection troubleshooting.
+keywords: MongoDB, replica set, scaling, StatefulSet, FAQ, abcdesktop, database, troubleshooting
 tags:
   - faq
   - mongodb
+  - FAQ
+  - MongoDB
+  - database
 ---
 
 # MongoDB

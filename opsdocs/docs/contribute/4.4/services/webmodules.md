@@ -1,3 +1,13 @@
+---
+title: Web Modules (Frontend) Service | abcdesktop.io
+description: Developer reference for the abcdesktop.io web modules frontend: client-side HTML5/JavaScript application, build pipeline, and customization entry points.
+keywords: webmodules, frontend, HTML5, JavaScript, client-side, abcdesktop, contribute, customization
+tags:
+  - contribute
+  - frontend
+  - webmodules
+---
+
 # WebModules - abcdesktop Frontend Web Content
 
 ## Project Specification

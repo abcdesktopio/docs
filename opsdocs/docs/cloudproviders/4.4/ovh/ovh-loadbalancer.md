@@ -1,3 +1,14 @@
+---
+title: Expose abcdesktop.io via OVHcloud Load Balancer | abcdesktop.io
+description: Configure an OVHcloud Load Balancer to expose the abcdesktop.io HTTP router with HTTPS termination, DNS zone management, and TLS certificate setup.
+keywords: OVH, load balancer, HTTPS, TLS, DNS, abcdesktop, Kubernetes, sovereign cloud
+tags:
+  - OVH
+  - load balancer
+  - HTTPS
+  - TLS
+---
+
 # Publish your website as a public secured service
 
 

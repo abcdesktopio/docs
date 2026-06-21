@@ -1,8 +1,14 @@
 ---
+title: Deploy abcdesktop.io on DigitalOcean DOKS | abcdesktop.io
+description: Step-by-step guide to deploying abcdesktop.io on DigitalOcean Kubernetes Service (DOKS), including cluster creation via doctl and kubeconfig download.
+keywords: DigitalOcean, DOKS, Kubernetes, cloud, deploy, abcdesktop, doctl, install
 tags:
   - install
   - cloud
   - digitalocean
+  - DigitalOcean
+  - DOKS
+  - installation
 ---
 
 # Deploy abcdesktop on DigitalOcean with Kubernetes

@@ -1,3 +1,12 @@
+---
+title: Explicit Authentication with LDAP | abcdesktop.io
+description: Configure LDAP-based explicit authentication for abcdesktop.io, including bind DN, search base, TLS, and multi-domain provider chaining.
+keywords: LDAP, explicit authentication, bind DN, search base, TLS, multi-domain, directory service, abcdesktop, Kubernetes
+tags:
+  - authentication
+  - LDAP
+---
+
 # Authentication `explicit` for LDAP Directory Services
 
 ## authmanagers `explicit` Object

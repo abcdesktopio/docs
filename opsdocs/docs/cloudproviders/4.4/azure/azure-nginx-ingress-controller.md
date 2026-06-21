@@ -1,3 +1,14 @@
+---
+title: Expose abcdesktop.io via NGINX Ingress on Azure AKS | abcdesktop.io
+description: Deploy and configure an NGINX Ingress Controller on Azure AKS to expose abcdesktop.io with HTTPS, cert-manager, and real client IP forwarding.
+keywords: Azure, AKS, NGINX, ingress controller, HTTPS, cert-manager, TLS, abcdesktop, Kubernetes
+tags:
+  - Azure
+  - NGINX
+  - ingress
+  - TLS
+---
+
 # Publish your website as a public secured service
 
 

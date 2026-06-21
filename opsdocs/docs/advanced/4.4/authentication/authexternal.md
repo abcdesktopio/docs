@@ -1,3 +1,13 @@
+---
+title: External OAuth 2.0 / OpenID Connect Authentication | abcdesktop.io
+description: Configure abcdesktop.io to delegate authentication to external OAuth 2.0 / OpenID Connect providers such as Google, GitHub, Facebook, and Orange.
+keywords: OAuth 2.0, OpenID Connect, external authentication, Google, GitHub, Facebook, SSO, identity provider, abcdesktop, Kubernetes
+tags:
+  - authentication
+  - OAuth
+  - OpenID Connect
+---
+
 # Authentication: `external`
 
 ## Prerequisites

@@ -1,3 +1,14 @@
+---
+title: Expose abcdesktop.io via AWS Load Balancer | abcdesktop.io
+description: Configure an AWS Classic or Network Load Balancer to expose the abcdesktop.io HTTP router with HTTPS termination, DNS, and TLS certificate management.
+keywords: AWS, load balancer, NLB, HTTPS, TLS, DNS, Route53, abcdesktop, Kubernetes, ingress
+tags:
+  - AWS
+  - load balancer
+  - HTTPS
+  - TLS
+---
+
 # Publish your website as a public secured service
 
 

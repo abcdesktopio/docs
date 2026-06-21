@@ -1,3 +1,11 @@
+---
+title: Configuration File Overview | abcdesktop.io
+description: Reference for the abcdesktop.io od.config global configuration parameters: host URL, trusted proxy CIDR, JWT/RSA key pairs, thread pool, Kubernetes timeouts, and OAuth settings.
+keywords: od.config, configuration, JWT, RSA, trusted proxy, CIDR, ConfigMap, Kubernetes, abcdesktop, thread pool, OAuth
+tags:
+  - configuration
+---
+
 
 # abcdesktop configuration
 

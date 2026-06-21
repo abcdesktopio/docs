@@ -1,3 +1,14 @@
+---
+title: Deploy abcdesktop.io on AWS EKS | abcdesktop.io
+description: Step-by-step guide to deploying abcdesktop.io on Amazon Web Services Elastic Kubernetes Service (EKS), including cluster creation, VPC, NAT gateway, and kubeconfig setup.
+keywords: AWS, EKS, Elastic Kubernetes Service, Amazon, cloud, deploy, abcdesktop, Kubernetes, install
+tags:
+  - AWS
+  - cloud
+  - installation
+  - EKS
+---
+
 # Deploy abcdesktop on AWS with Amazon Elastic Kubernetes Service
 
 ## Requirements

@@ -1,3 +1,13 @@
+---
+title: pyos Control Plane Service | abcdesktop.io
+description: Developer reference for the abcdesktop.io pyos control plane: pod lifecycle management, Kubernetes API integration, authentication dispatch, and controller routing.
+keywords: pyos, control plane, Kubernetes, pod lifecycle, authentication, abcdesktop, contribute, architecture
+tags:
+  - contribute
+  - pyos
+  - architecture
+---
+
 # pyos (abcdesktop control plane) - Full Documentation and Specification
 
 ## 1. Executive summary

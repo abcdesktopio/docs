@@ -1,3 +1,13 @@
+---
+title: Execute Classes — Desktop Resource Profiles | abcdesktop.io
+description: Configure executeclasses in abcdesktop.io to define CPU and memory resource profiles for user desktop pods, with support for user-selectable profiles.
+keywords: executeclasses, resource profiles, CPU, memory, resource limits, desktop pod, abcdesktop, Kubernetes
+tags:
+  - desktop
+  - resources
+  - configuration
+---
+
 # executeclasses 
 
 The `executeclasses` configuration defines resource profiles for desktop pods and application containers. It allows you to control resource allocation either by defining static rules or by letting users select from a predefined set of profiles. The `executeclasses` value is a dictionary in which each entry describes a distinct resource profile.

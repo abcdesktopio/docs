@@ -1,3 +1,13 @@
+---
+title: MVC Controllers Configuration | abcdesktop.io
+description: Overview of the Model-View-Controller (MVC) design pattern in abcdesktop.io and the pyos controller configuration, including route mapping and access control.
+keywords: controllers, MVC, pyos, routing, access control, abcdesktop, Kubernetes, architecture
+tags:
+  - controllers
+  - architecture
+  - security
+---
+
 # Controllers
 
 ## Overview

@@ -1,3 +1,12 @@
+---
+title: Contribution Guide | abcdesktop.io
+description: Guidelines and rules for contributing to the abcdesktop.io open-source project via GitHub merge requests, issue tracking, and coding standards.
+keywords: contribute, open source, GitHub, merge request, issue, abcdesktop, development
+tags:
+  - contribute
+  - open source
+---
+
 
 ## Contribute to abcdesktop community
 

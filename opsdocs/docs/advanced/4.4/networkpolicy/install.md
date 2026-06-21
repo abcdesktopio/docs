@@ -1,10 +1,16 @@
 ---
+title: Install Kubernetes Network Policies for abcdesktop.io | abcdesktop.io
+description: Deploy Kubernetes NetworkPolicy objects to enforce traffic isolation between abcdesktop.io pods, implementing a default-deny posture with explicit allowlists.
+keywords: NetworkPolicy, network policy, traffic isolation, default-deny, Kubernetes, security, abcdesktop, Calico, Cilium
 tags:
   - install
   - netpol
   - network
   - policy
   - AD
+  - security
+  - NetworkPolicy
+  - installation
 ---
 
 # Install
