@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{#
+  abcdesktop.io — Custom MkDocs Material template
+  Adds:
+    - Geo meta tags (geo.region, geo.placename, geo.position, ICBM)
+    - Open Graph metadata (og:locale, og:type, og:site_name, og:description)
+    - Twitter Card metadata
+    - hreflang canonical for en-US
+    - JSON-LD structured data (SoftwareApplication + Organization)
+#}
+
+{% block extrahead %}
+  {{ super() }}
+
+  {# ── Geo meta tags ─────────────────────────────────────────────────────── #}
+  <meta name="geo.region"    content="FR" />
+  <meta name="geo.placename" content="France" />
+  <meta name="geo.position"  content="46.2276;2.2137" />
+  <meta name="ICBM"          content="46.2276, 2.2137" />
+
+  {# ── Language / locale ─────────────────────────────────────────────────── #}
+  <meta http-equiv="content-language" content="en-US" />
+  <meta name="language" content="en-US" />
+
+  {# ── Open Graph ────────────────────────────────────────────────────────── #}
+  <meta property="og:locale"    content="en_US" />
+  <meta property="og:type"      content="website" />
+  <meta property="og:site_name" content="abcdesktop.io" />
+  <meta property="og:url"       content="{{ page.canonical_url }}" />
+  {% if page.meta and page.meta.title %}
+  <meta property="og:title"       content="{{ page.meta.title }}" />
+  {% else %}
+  <meta property="og:title"       content="{{ page.title }} | abcdesktop.io" />
+  {% endif %}
+  {% if page.meta and page.meta.description %}
+  <meta property="og:description" content="{{ page.meta.description }}" />
+  {% endif %}
+
+  {# ── Twitter Card ──────────────────────────────────────────────────────── #}
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:site"        content="@abcdesktopIO" />
+  {% if page.meta and page.meta.title %}
+  <meta name="twitter:title"       content="{{ page.meta.title }}" />
+  {% else %}
+  <meta name="twitter:title"       content="{{ page.title }} | abcdesktop.io" />
+  {% endif %}
+  {% if page.meta and page.meta.description %}
+  <meta name="twitter:description" content="{{ page.meta.description }}" />
+  {% endif %}
+
+  {# ── hreflang canonical ────────────────────────────────────────────────── #}
+  <link rel="alternate" hreflang="en"    href="{{ page.canonical_url }}" />
+  <link rel="alternate" hreflang="en-US" href="{{ page.canonical_url }}" />
+  <link rel="alternate" hreflang="x-default" href="{{ page.canonical_url }}" />
+
+  {# ── JSON-LD Structured Data ───────────────────────────────────────────── #}
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "abcdesktop.io",
+      "alternateName": ["abcdesktop", "abc desktop"],
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Virtual Desktop Infrastructure",
+      "operatingSystem": "Linux, Kubernetes",
+      "url": "https://www.abcdesktop.io",
+      "sameAs": [
+        "https://github.com/abcdesktopio",
+        "https://hub.docker.com/u/abcdesktopio"
+      ],
+      "description": "abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering Remote Browser Isolation (RBI) and Remote Application Isolation (RAI) accessible from any HTML5 web browser — no client-side installation required.",
+      "keywords": "remote browser isolation, remote application isolation, Kubernetes, virtual desktop, cloud-native, desktopless, VDI",
+      "inLanguage": "en-US",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "softwareVersion": "{{ config.extra.abcdesktop.latest_release | default('4.4') }}",
+      "license": "https://github.com/abcdesktopio/docs/blob/main/LICENSE",
+      "creator": {
+        "@type": "Organization",
+        "name": "abcdesktop.io",
+        "url": "https://www.abcdesktop.io"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "abcdesktop.io",
+      "url": "https://www.abcdesktop.io",
+      "logo": "https://www.abcdesktop.io/img/abcdesktop.svg",
+      "sameAs": [
+        "https://github.com/abcdesktopio"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "FR"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "abcdesktop.io Documentation",
+      "url": "https://www.abcdesktop.io",
+      "inLanguage": "en-US",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.abcdesktop.io?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+  </script>
+{% endblock %}
