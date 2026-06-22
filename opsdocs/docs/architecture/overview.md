@@ -1,6 +1,6 @@
 ---
 title: Architecture Overview | abcdesktop.io
-description: Architectural overview of abcdesktop.io: multi-container Kubernetes user pods, pyos control plane, router, MongoDB, and the HTML5 WebSocket rendering pipeline.
+description: Architectural overview of abcdesktop.io - multi-container Kubernetes user pods, pyos control plane, router, MongoDB, and the HTML5 WebSocket rendering pipeline.
 keywords: architecture, Kubernetes, pyos, router, MongoDB, memcached, WebSocket, noVNC, container isolation, MVC, cloud-native desktop
 tags:
   - architecture
