@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering Remote Browser Isolation (RBI) and Remote Application Isolation (RAI) accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Architectural overview of abcdesktop.io - multi-container Kubernetes user pods, pyos control plane, router, MongoDB, and the HTML5 WebSocket rendering pipeline.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Overview - www.abcdesktop.io</title>
+        <title>Architecture Overview | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -88,16 +88,20 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/architecture/overview/" />
   
-  <meta property="og:title"       content="Overview | abcdesktop.io" />
+  <meta property="og:title"       content="Architecture Overview | abcdesktop.io" />
   
+  
+  <meta property="og:description" content="Architectural overview of abcdesktop.io - multi-container Kubernetes user pods, pyos control plane, router, MongoDB, and the HTML5 WebSocket rendering pipeline." />
   
 
   
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Overview | abcdesktop.io" />
+  <meta name="twitter:title"       content="Architecture Overview | abcdesktop.io" />
   
+  
+  <meta name="twitter:description" content="Architectural overview of abcdesktop.io - multi-container Kubernetes user pods, pyos control plane, router, MongoDB, and the HTML5 WebSocket rendering pipeline." />
   
 
   
@@ -215,7 +219,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Architecture Overview | abcdesktop.io
             
           </span>
         </div>
@@ -4064,6 +4068,16 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">architecture</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/architecture/overview.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -4074,13 +4088,6 @@
   
 
 
-<hr />
-<p>title: Architecture Overview | abcdesktop.io
-description: Architectural overview of abcdesktop.io: multi-container Kubernetes user pods, pyos control plane, router, MongoDB, and the HTML5 WebSocket rendering pipeline.
-keywords: architecture, Kubernetes, pyos, router, MongoDB, memcached, WebSocket, noVNC, container isolation, MVC, cloud-native desktop
-tags:
-  - architecture</p>
-<hr />
 <h1 id="architecture-overview">Architecture Overview</h1>
 <p>abcdesktop.io is architected around Kubernetes-native workload isolation. Every user session and every application runs as a dedicated container inside the cluster. This design enforces <strong>Remote Browser Isolation (RBI)</strong> and <strong>Remote Application Isolation (RAI)</strong>: application code executes exclusively on the server side, and only rendered pixel output is streamed to the client over an encrypted WebSocket connection. The result is a zero-client-footprint desktop platform in which the endpoint device acts purely as a display terminal.</p>
 <h2 id="pods-and-services">Pods and Services</h2>
@@ -4299,6 +4306,9 @@ sequenceDiagram
 
 
 
+
+  
+  
 
 
 
