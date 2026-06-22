@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering Remote Browser Isolation (RBI) and Remote Application Isolation (RAI) accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Overview of the abcdesktop.io application installation process; container image format, metadata labels, registry configuration, and deployment options.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Overview - www.abcdesktop.io</title>
+        <title>Application Installation Overview | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -88,16 +88,20 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/install/4.4/applicationoverview/" />
   
-  <meta property="og:title"       content="Overview | abcdesktop.io" />
+  <meta property="og:title"       content="Application Installation Overview | abcdesktop.io" />
   
+  
+  <meta property="og:description" content="Overview of the abcdesktop.io application installation process; container image format, metadata labels, registry configuration, and deployment options." />
   
 
   
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Overview | abcdesktop.io" />
+  <meta name="twitter:title"       content="Application Installation Overview | abcdesktop.io" />
   
+  
+  <meta name="twitter:description" content="Overview of the abcdesktop.io application installation process; container image format, metadata labels, registry configuration, and deployment options." />
   
 
   
@@ -215,7 +219,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Application Installation Overview | abcdesktop.io
             
           </span>
         </div>
@@ -3876,6 +3880,34 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">application</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">applications</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">installation</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">overview</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/install/4.4/applicationoverview.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -3886,16 +3918,6 @@
   
 
 
-<hr />
-<p>title: Application Installation Overview | abcdesktop.io
-description: Overview of the abcdesktop.io application installation process: container image format, metadata labels, registry configuration, and deployment options.
-keywords: application, installation, overview, container image, labels, registry, abcdesktop, Kubernetes
-tags:
-  - application
-  - installation
-  - overview
-  - applications</p>
-<hr />
 <h1 id="application-overview">Application Overview</h1>
 <h2 id="application-definition">Application Definition</h2>
 <p>In abcdesktop.io, an application is an OCI-compliant container image. abcdesktop.io uses the <a href="https://github.com/opencontainers/image-spec">OCI Image Specification</a> to describe and manage application images. The <code>docker inspect</code> command exports the full OCI JSON metadata for a given image:</p>
@@ -3987,6 +4009,9 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
 
 
 
+
+  
+  
 
 
 
