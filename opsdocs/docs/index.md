@@ -44,15 +44,6 @@ abcdesktop.io supports the complete Remote Browser Isolation use case, including
 
 **Remote Application Isolation** extends the isolation paradigm beyond the web browser to **any X11 or GUI application** — office suites, CAD tools, IDEs, terminal emulators, media players, database clients, and Windows applications via Wine. With abcdesktop.io, every application runs as a discrete, ephemeral container inside the Kubernetes cluster. The endpoint receives only the rendered graphical output as a pixel stream.
 
-Key RAI capabilities in abcdesktop.io:
-
-- **Per-application containers** — Each application instance runs in its own container namespace, providing kernel-level isolation between applications and between users.
-- **Ephemeral by design** — Application containers are created on launch and destroyed on exit, leaving no persistent footprint on the host node.
-- **GPU acceleration support** — NVIDIA GPU resources can be assigned to specific application containers for compute-intensive and GPU-accelerated workloads.
-- **Windows application support** — Legacy Windows applications run inside Wine-based containers, isolated from the host OS and from each other.
-- **Kubernetes-native scheduling** — Application pods are scheduled across cluster nodes using standard Kubernetes mechanisms, enabling resource quotas, node affinity rules, taints, and tolerations.
-- **Attack surface reduction** — Application vulnerabilities are contained within short-lived containers that are automatically discarded at session end.
-
 ---
 
 
