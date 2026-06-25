@@ -6,19 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Configure abcdesktop.io to use Kubernetes hostPath volumes to persist user home directories directly on the cluster node's filesystem.">
+        <meta name="description" content="abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering Remote Browser Isolation (RBI) and Remote Application Isolation (RAI) accessible from any HTML5 web browser — no client-side installation required.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
       
       
-        <link rel="canonical" href="https://www.abcdesktop.io/advanced/4.4/storage/hostpath/">
+        <link rel="canonical" href="https://www.abcdesktop.io/ebook/ebook-abcdesktop-en/">
       
       
-        <link rel="prev" href="../nfs/">
-      
-      
-        <link rel="next" href="../cache/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -26,11 +22,11 @@
     
     
       
-        <title>HostPath Storage for User Home Directories | abcdesktop.io - www.abcdesktop.io</title>
+        <title>Macro Syntax Error - www.abcdesktop.io</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -49,11 +45,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../../css/custom-admonition.css">
+      <link rel="stylesheet" href="../../css/custom-admonition.css">
     
-      <link rel="stylesheet" href="../../../../css/drawio-darkmode.css">
+      <link rel="stylesheet" href="../../css/drawio-darkmode.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -86,28 +82,24 @@
   <meta property="og:locale"    content="en_US" />
   <meta property="og:type"      content="website" />
   <meta property="og:site_name" content="abcdesktop.io" />
-  <meta property="og:url"       content="https://www.abcdesktop.io/advanced/4.4/storage/hostpath/" />
+  <meta property="og:url"       content="https://www.abcdesktop.io/ebook/ebook-abcdesktop-en/" />
   
-  <meta property="og:title"       content="HostPath Storage for User Home Directories | abcdesktop.io" />
+  <meta property="og:title"       content="Macro Syntax Error | abcdesktop.io" />
   
-  
-  <meta property="og:description" content="Configure abcdesktop.io to use Kubernetes hostPath volumes to persist user home directories directly on the cluster node's filesystem." />
   
 
   
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="HostPath Storage for User Home Directories | abcdesktop.io" />
+  <meta name="twitter:title"       content="Macro Syntax Error | abcdesktop.io" />
   
-  
-  <meta name="twitter:description" content="Configure abcdesktop.io to use Kubernetes hostPath volumes to persist user home directories directly on the cluster node's filesystem." />
   
 
   
-  <link rel="alternate" hreflang="en"    href="https://www.abcdesktop.io/advanced/4.4/storage/hostpath/" />
-  <link rel="alternate" hreflang="en-US" href="https://www.abcdesktop.io/advanced/4.4/storage/hostpath/" />
-  <link rel="alternate" hreflang="x-default" href="https://www.abcdesktop.io/advanced/4.4/storage/hostpath/" />
+  <link rel="alternate" hreflang="en"    href="https://www.abcdesktop.io/ebook/ebook-abcdesktop-en/" />
+  <link rel="alternate" hreflang="en-US" href="https://www.abcdesktop.io/ebook/ebook-abcdesktop-en/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.abcdesktop.io/ebook/ebook-abcdesktop-en/" />
 
   
   <script type="application/ld+json">
@@ -186,7 +178,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#make-users-home-directory-persistent-using-hostpath" class="md-skip">
+        <a href="#macro-syntax-error" class="md-skip">
           Skip to content
         </a>
       
@@ -200,7 +192,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+    <a href="../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
       
   <img src="/img/abcdesktop.svg" alt="logo">
 
@@ -219,7 +211,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              HostPath Storage for User Home Directories | abcdesktop.io
+              Macro Syntax Error
             
           </span>
         </div>
@@ -304,7 +296,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -325,7 +317,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../requirements/" class="md-tabs__link">
+        <a href="../../requirements/" class="md-tabs__link">
           
   
   
@@ -341,8 +333,6 @@
   
   
   
-    
-  
   
     
     
@@ -350,13 +340,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../../architecture/overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../architecture/overview/" class="md-tabs__link">
           
   
   
@@ -379,7 +367,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../contribute/overview/" class="md-tabs__link">
+        <a href="../../contribute/overview/" class="md-tabs__link">
           
   
   
@@ -399,7 +387,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../usecases/4.4/filter-traffic-per-group/" class="md-tabs__link">
+        <a href="../../usecases/4.4/filter-traffic-per-group/" class="md-tabs__link">
           
   
   
@@ -417,7 +405,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../faq/faq/" class="md-tabs__link">
+      <a href="../../faq/faq/" class="md-tabs__link">
         
   
   
@@ -455,7 +443,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../ebook/ebook-abcdesktop-en.pdf" class="md-tabs__link">
+      <a href="../ebook-abcdesktop-en.pdf" class="md-tabs__link">
         
   
   
@@ -490,7 +478,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+    <a href="../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
       
   <img src="/img/abcdesktop.svg" alt="logo">
 
@@ -519,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -582,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../requirements/" class="md-nav__link">
+      <a href="../../requirements/" class="md-nav__link">
         
   
   
@@ -646,7 +634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/script/" class="md-nav__link">
+      <a href="../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -669,7 +657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -741,7 +729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/applicationoverview/" class="md-nav__link">
+      <a href="../../install/4.4/applicationoverview/" class="md-nav__link">
         
   
   
@@ -764,7 +752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/install-applications/" class="md-nav__link">
+      <a href="../../install/4.4/install-applications/" class="md-nav__link">
         
   
   
@@ -787,7 +775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/applicationwithconsole/" class="md-nav__link">
+      <a href="../../install/4.4/applicationwithconsole/" class="md-nav__link">
         
   
   
@@ -859,7 +847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../uninstall/4.4/script/" class="md-nav__link">
+      <a href="../../uninstall/4.4/script/" class="md-nav__link">
         
   
   
@@ -882,7 +870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../uninstall/4.4/helm/" class="md-nav__link">
+      <a href="../../uninstall/4.4/helm/" class="md-nav__link">
         
   
   
@@ -917,29 +905,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -952,7 +935,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Advanced
@@ -1007,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/overview/" class="md-nav__link">
+      <a href="../../architecture/overview/" class="md-nav__link">
         
   
   
@@ -1079,7 +1062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/onpremises/kind/" class="md-nav__link">
+      <a href="../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
         
   
   
@@ -1102,7 +1085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/script/" class="md-nav__link">
+      <a href="../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -1125,7 +1108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -1148,7 +1131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/onpremises/minikube/" class="md-nav__link">
+      <a href="../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
         
   
   
@@ -1261,7 +1244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
         
   
   
@@ -1284,7 +1267,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1307,7 +1290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1379,7 +1362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
         
   
   
@@ -1402,7 +1385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1425,7 +1408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1497,7 +1480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
         
   
   
@@ -1520,7 +1503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1543,7 +1526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1615,7 +1598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
         
   
   
@@ -1638,7 +1621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1661,7 +1644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1733,7 +1716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
         
   
   
@@ -1756,7 +1739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1779,7 +1762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1859,7 +1842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/simplestapplicationxeyes/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/simplestapplicationxeyes/" class="md-nav__link">
         
   
   
@@ -1882,7 +1865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/simplestapplicationxedit/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/simplestapplicationxedit/" class="md-nav__link">
         
   
   
@@ -1905,7 +1888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/simplestapplicationchromium/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/simplestapplicationchromium/" class="md-nav__link">
         
   
   
@@ -1928,7 +1911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/templateapplication/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/templateapplication/" class="md-nav__link">
         
   
   
@@ -1951,7 +1934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/templateanotherapplication/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/templateanotherapplication/" class="md-nav__link">
         
   
   
@@ -1979,8 +1962,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1991,11 +1972,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
         
           
           <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
@@ -2011,7 +1992,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
             Configuration
@@ -2025,7 +2006,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/overview/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/overview/" class="md-nav__link">
         
   
   
@@ -2048,7 +2029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/updateconfiguration/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/updateconfiguration/" class="md-nav__link">
         
   
   
@@ -2112,7 +2093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/overview/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/overview/" class="md-nav__link">
         
   
   
@@ -2135,7 +2116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/authexternal/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authexternal/" class="md-nav__link">
         
   
   
@@ -2199,7 +2180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/authexplicit-ldap/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authexplicit-ldap/" class="md-nav__link">
         
   
   
@@ -2222,7 +2203,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/authexplicit-activedirectory/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authexplicit-activedirectory/" class="md-nav__link">
         
   
   
@@ -2245,7 +2226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/authmetaexplicit/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authmetaexplicit/" class="md-nav__link">
         
   
   
@@ -2317,7 +2298,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/authimplicit/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authimplicit/" class="md-nav__link">
         
   
   
@@ -2340,7 +2321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/logmein/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/logmein/" class="md-nav__link">
         
   
   
@@ -2379,7 +2360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/authentification-rules/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authentification-rules/" class="md-nav__link">
         
   
   
@@ -2443,7 +2424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../desktop/overview/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/overview/" class="md-nav__link">
         
   
   
@@ -2466,7 +2447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../desktop/executeclasses/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/executeclasses/" class="md-nav__link">
         
   
   
@@ -2489,7 +2470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../desktop/pod/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/pod/" class="md-nav__link">
         
   
   
@@ -2512,7 +2493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../desktop/policies/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/policies/" class="md-nav__link">
         
   
   
@@ -2540,8 +2521,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2552,11 +2531,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_6" >
         
           
           <label class="md-nav__link" for="__nav_3_5_6" id="__nav_3_5_6_label" tabindex="0">
@@ -2572,7 +2551,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_5_6">
             <span class="md-nav__icon md-icon"></span>
             Storage
@@ -2586,7 +2565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/overview/" class="md-nav__link">
         
   
   
@@ -2609,7 +2588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nfs/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/nfs/" class="md-nav__link">
         
   
   
@@ -2629,32 +2608,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    HostPath
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../advanced/4.4/storage/hostpath/" class="md-nav__link">
         
   
   
@@ -2665,53 +2622,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#define-hostpath-folder-and-update-odconfig" class="md-nav__link">
-    <span class="md-ellipsis">
-      Define hostPath folder and update od.config
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-if-users-home-directory-is-persistent" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check if user's home directory is persistent
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2724,7 +2634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cache/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/cache/" class="md-nav__link">
         
   
   
@@ -2747,7 +2657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sharedvolumes/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/sharedvolumes/" class="md-nav__link">
         
   
   
@@ -2778,7 +2688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/garbagecollector/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/garbagecollector/" class="md-nav__link">
         
   
   
@@ -2801,7 +2711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
         
   
   
@@ -2824,7 +2734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/welcome/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/welcome/" class="md-nav__link">
         
   
   
@@ -2847,7 +2757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/customfrontend/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/customfrontend/" class="md-nav__link">
         
   
   
@@ -2870,7 +2780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/logging/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/logging/" class="md-nav__link">
         
   
   
@@ -2983,7 +2893,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../controllers/controllers/" class="md-nav__link">
+      <a href="../../advanced/4.4/controllers/controllers/" class="md-nav__link">
         
   
   
@@ -3055,7 +2965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../networkpolicy/netpol/" class="md-nav__link">
+      <a href="../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
         
   
   
@@ -3078,7 +2988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../networkpolicy/install/" class="md-nav__link">
+      <a href="../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
         
   
   
@@ -3101,7 +3011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../networkpolicy/uninstall/" class="md-nav__link">
+      <a href="../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
         
   
   
@@ -3188,7 +3098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/overview/" class="md-nav__link">
+      <a href="../../contribute/overview/" class="md-nav__link">
         
   
   
@@ -3252,7 +3162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/keygenerator/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/keygenerator/" class="md-nav__link">
         
   
   
@@ -3275,7 +3185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/mongo/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/mongo/" class="md-nav__link">
         
   
   
@@ -3298,7 +3208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/console/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/console/" class="md-nav__link">
         
   
   
@@ -3321,7 +3231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/pyos/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/pyos/" class="md-nav__link">
         
   
   
@@ -3344,7 +3254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/router/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/router/" class="md-nav__link">
         
   
   
@@ -3367,7 +3277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/webmodules/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/webmodules/" class="md-nav__link">
         
   
   
@@ -3439,7 +3349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/graphical/" class="md-nav__link">
+      <a href="../../contribute/4.4/userpod/graphical/" class="md-nav__link">
         
   
   
@@ -3462,7 +3372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/sound/" class="md-nav__link">
+      <a href="../../contribute/4.4/userpod/sound/" class="md-nav__link">
         
   
   
@@ -3485,7 +3395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/cups/" class="md-nav__link">
+      <a href="../../contribute/4.4/userpod/cups/" class="md-nav__link">
         
   
   
@@ -3508,7 +3418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/filer/" class="md-nav__link">
+      <a href="../../contribute/4.4/userpod/filer/" class="md-nav__link">
         
   
   
@@ -3587,7 +3497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/filter-traffic-per-group/" class="md-nav__link">
+      <a href="../../usecases/4.4/filter-traffic-per-group/" class="md-nav__link">
         
   
   
@@ -3610,7 +3520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/configure-keycloak/" class="md-nav__link">
+      <a href="../../usecases/4.4/configure-keycloak/" class="md-nav__link">
         
   
   
@@ -3633,7 +3543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/multus-user-pod/" class="md-nav__link">
+      <a href="../../usecases/4.4/multus-user-pod/" class="md-nav__link">
         
   
   
@@ -3697,7 +3607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/overview/" class="md-nav__link">
+      <a href="../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/overview/" class="md-nav__link">
         
   
   
@@ -3720,7 +3630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/configure-kubernetes-cluster-gcp/" class="md-nav__link">
+      <a href="../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/configure-kubernetes-cluster-gcp/" class="md-nav__link">
         
   
   
@@ -3743,7 +3653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/install-demo/" class="md-nav__link">
+      <a href="../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/install-demo/" class="md-nav__link">
         
   
   
@@ -3781,7 +3691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/faq/" class="md-nav__link">
+      <a href="../../faq/faq/" class="md-nav__link">
         
   
   
@@ -3825,7 +3735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ebook/ebook-abcdesktop-en.pdf" class="md-nav__link">
+      <a href="../ebook-abcdesktop-en.pdf" class="md-nav__link">
         
   
   
@@ -3860,41 +3770,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#define-hostpath-folder-and-update-odconfig" class="md-nav__link">
-    <span class="md-ellipsis">
-      Define hostPath folder and update od.config
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-if-users-home-directory-is-persistent" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check if user's home directory is persistent
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -3907,31 +3782,9 @@
                 
                   
 
-  <nav class="md-tags" >
-    
-      
-      
-      
-        <span class="md-tag">configuration</span>
-      
-    
-      
-      
-      
-        <span class="md-tag">hostPath</span>
-      
-    
-      
-      
-      
-        <span class="md-tag">storage</span>
-      
-    
-  </nav>
-
 
   
-    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/advanced/4.4/storage/hostpath.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/ebook/ebook-abcdesktop-en.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -3939,72 +3792,17 @@
   
 
 
-<h1 id="make-users-home-directory-persistent-using-hostpath">Make user's home directory persistent using hostPath</h1>
-<h2 id="prerequisites">Prerequisites</h2>
-<ul>
-<li>a Kubernetes cluster with abcdesktop installed</li>
-</ul>
-<h2 id="define-hostpath-folder-and-update-odconfig">Define hostPath folder and update od.config</h2>
-<p>On your node, create a directory that will serve as the mount point for user home directories — for example, <code>/mnt/abcdesktop_volumes/</code>.
-Then edit your <code>od.config</code> file. First, set <code>desktop.homedirectorytype</code> to <code>'hostPath'</code> and add a <code>desktop.hostPathRoot</code> entry whose value is the path to the mount point you created.</p>
-<div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;hostPath&#39;
-
-#
-# desktop.hostPathRoot set the hostPath root directory
-# desktop.hostPathRoot is read only if desktop.homedirectorytype: &#39;hostPath&#39;
-desktop.hostPathRoot: &#39;/mnt/abcdesktop_volumes&#39;
-</code></pre></div>
-<p>Kubernetes will automatically create a directory for each user if one does not already exist.</p>
-<p>Finally, update the ConfigMap and restart pyos by running the following commands:</p>
-<div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
-kubectl rollout restart deploy pyos-od -n abcdesktop
-</code></pre></div>
-<h2 id="check-if-users-home-directory-is-persistent">Check if user's home directory is persistent</h2>
-<p>You can now connect to abcdesktop and log in as a user.</p>
-<p>Once connected, run the following command to verify that the user's home directory is correctly configured:</p>
-<div class="highlight"><pre><span></span><code>kubectl describe pod &lt;YOUR-POD-NAME&gt; -n abcdesktop 
-</code></pre></div>
-<p>You should see something like the following in the volumes section:</p>
-<div class="highlight"><pre><span></span><code>Volumes:
-  home:
-    Type:          HostPath (bare host directory volume)
-    Path:          /mnt/abcdesktop_volumes/fry
-    HostPathType:  DirectoryOrCreate
-</code></pre></div>
-<p>You can also verify on the host node that the directory has been created:</p>
-<div class="highlight"><pre><span></span><code>ls -la /mnt/abcdesktop_volumes/
-total 20
-drwxr-xr-x  5 root root  4096 Apr  7 16:44 .
-drwxr-xr-x 14 root root  4096 Apr  7 11:39 ..
-drwxr-x--- 15 2042 12042 4096 Apr  8 11:21 fry
-</code></pre></div>
-<p>The numeric UID of the directory owner should match your user's UID.</p>
-<p>Now create a file in the user's home directory:</p>
-<p><img alt="create file on user homedir" src="../img/nfs_create_file_user_homedir.png" /></p>
-<p>Verify that the file is present on the host node:</p>
-<div class="highlight"><pre><span></span><code>ls -la /mnt/abcdesktop_volumes/fry
-drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Desktop
-drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Documents
-drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Downloads
-drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Music
-drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Pictures
-drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Public
-drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Templates
--rw-r----- 1 2042 12042    0 Mar 18 09:11 toto.txt
-drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Videos
-</code></pre></div>
-<p>Then log off to destroy the pod and allow it to be recreated. Once reconnected on a new pod with the same user, verify that the file you previously created is still present.</p>
-<p><img alt="check peristent user homedir" src="../img/nfs_check_persistent_homedir.png" /></p>
-<p>Home directory persistence using hostPath is now configured.</p>
+<h1 id="macro-syntax-error"><em>Macro Syntax Error</em></h1>
+<p><em>File</em>: <code>ebook/ebook-abcdesktop-en.md</code></p>
+<p><em>Line 29 in Markdown file:</em> <strong>Missing end of comment tag</strong>
+<div class="highlight"><pre><span></span><code><span class="gu">## Introduction — The End of the Traditional Desktop {#introduction}</span>
+</code></pre></div></p>
 
 
 
 
 
 
-
-  
-  
 
 
 
@@ -4079,16 +3877,16 @@ drwxr-x--- 2 2042 12042 4096 Mar 17 15:09 Videos
     
     
       
-      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
-        <script src="../../../../js/tabbed-toc.js"></script>
+        <script src="../../js/tabbed-toc.js"></script>
       
         <script src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
       
-        <script src="../../../../js/drawio-reload.js"></script>
+        <script src="../../js/drawio-reload.js"></script>
       
     
   </body>
