@@ -6,7 +6,6 @@ tags:
   - gcp
   - kubernetes
   - demo
-  - usecase
   - use case
   - RBI
   - RAI
