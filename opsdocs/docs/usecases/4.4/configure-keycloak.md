@@ -188,7 +188,7 @@ Navigate to the **Credentials** tab to retrieve the generated client secret.
 
 ## Update od.config file
 
-Configure abcdesktop to use Keycloak as the authentication provider by updating the `od.config` file as described on [this page](https://abcdesktop.pepins.net/advanced/4.4/authentication/authexternal/#keycloak-oauth).
+Configure abcdesktop to use Keycloak as the authentication provider by updating the `od.config` file as described on [this page](https://www.abcdesktop.io/advanced/4.4/authentication/authexternal/#keycloak-oauth).
 
 Restart the pyos service by running the following commands.
 
