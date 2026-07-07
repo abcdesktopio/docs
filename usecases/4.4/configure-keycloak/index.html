@@ -4138,7 +4138,7 @@ keycloak-http       NodePort    10.111.139.181   &lt;none&gt;        80:31846/TC
 </details>
 </div>
 <h2 id="update-odconfig-file">Update od.config file</h2>
-<p>Configure abcdesktop to use Keycloak as the authentication provider by updating the <code>od.config</code> file as described on <a href="https://abcdesktop.pepins.net/advanced/4.4/authentication/authexternal/#keycloak-oauth">this page</a>.</p>
+<p>Configure abcdesktop to use Keycloak as the authentication provider by updating the <code>od.config</code> file as described on <a href="https://www.abcdesktop.io/advanced/4.4/authentication/authexternal/#keycloak-oauth">this page</a>.</p>
 <p>Restart the pyos service by running the following commands.</p>
 <div class="highlight"><pre><span></span><code>kubectl create -n abcdesktop configmap abcdesktop-config --from-file=od.config -o yaml --dry-run=client | kubectl replace -n abcdesktop -f -
 kubectl rollout restart deploy pyos-od -n abcdesktop
