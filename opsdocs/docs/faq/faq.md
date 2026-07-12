@@ -1,6 +1,6 @@
 ---
 title: Frequently Asked Questions abcdesktop
-description: Answers to the most frequently asked questions about abcdesktop.io: installation, authentication, networking, storage, performance, and troubleshooting.
+description: Answers to the most frequently asked questions about abcdesktop.io installation, authentication, networking, storage, performance, and troubleshooting.
 keywords: FAQ, frequently asked questions, troubleshooting, abcdesktop, Kubernetes, installation, authentication, networking
 tags:
   - FAQ
