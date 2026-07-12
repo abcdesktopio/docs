@@ -11,9 +11,23 @@ tags:
 
 # Adopters
 
-## Organizations Using abcdesktop.io in Production
+## Country distribution
 
-The following organizations are known to be running abcdesktop.io in production environments.
+![adopters-country](img/adopters-country.png)
+
+| Top countries using abcdesktop worldwide |
+|---------|
+| China	  |
+| United States |
+| Singapore	|
+| France |
+| Germany |
+| India |
+
+
+## Organizations participate in the development of the abcdesktop.io project
+
+The following organizations are known to actively participate in the development of the abcdesktop.io project.
 
 | Adopter | Name | Description | Public Application Repository |
 |---|---|---|---|
