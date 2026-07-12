@@ -12,7 +12,7 @@ This page provides answers to frequently asked questions about abcdesktop.io.
 
 ## General
 
-- [Who is using abcdesktop.io ?](adopters.md)
+- [Who is using abcdesktop.io?](adopters.md)
 - [What's new in this release?](release.md)
 - [How do I request a new feature?](issue.md#how-to-request-a-new-feature)
 - [How do I report an issue?](issue.md#how-to-report-an-issue)
