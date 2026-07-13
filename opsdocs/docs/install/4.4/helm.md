@@ -30,7 +30,7 @@ Add the abcdesktop.io Helm repository and install the chart:
 ```bash
 NAMESPACE=abcdesktop
 helm repo add abcdesktop https://abcdesktopio.github.io/helm/
-helm install my-abcdesktop abcdesktop/abcdesktop --version 4.4.1 --create-namespace -n ${NAMESPACE}
+helm install my-abcdesktop abcdesktop/abcdesktop --version 4.4.11 --create-namespace -n ${NAMESPACE}
 ```
 
 ??? note "show details"
