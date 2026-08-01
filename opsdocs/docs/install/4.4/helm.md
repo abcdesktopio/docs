@@ -69,6 +69,8 @@ NAMESPACE=abcdesktop
 kubectl port-forward $(kubectl get pods -l run=router-od -o jsonpath={.items..metadata.name} -n ${NAMESPACE} ) --address 0.0.0.0 "${LOCAL_PORT}:80" -n ${NAMESPACE}
 ```
 
+Then open your web browser to `http://localhost:30443`
+
 ## Video: Quick Installation Using Helm
 
 The following video demonstrates the complete Helm-based installation process:
