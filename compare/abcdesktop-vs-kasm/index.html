@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Deploy Kubernetes NetworkPolicy objects to enforce traffic isolation between abcdesktop.io pods, implementing a default-deny posture with explicit allowlists.">
+        <meta name="description" content="A neutral comparison between abcdesktop.io, a fully open-source, self-hosted DaaS and Kubernetes virtual desktop platform, and Kasm Workspaces, a containerized streaming workspace platform. Discover a free Kasm Workspaces alternative.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
       
       
-        <link rel="canonical" href="https://www.abcdesktop.io/advanced/4.4/networkpolicy/install/">
+        <link rel="canonical" href="https://www.abcdesktop.io/compare/abcdesktop-vs-kasm/">
       
       
-        <link rel="prev" href="../netpol/">
+        <link rel="prev" href="../abcdesktop-vs-guacamole/">
       
       
-        <link rel="next" href="../uninstall/">
+        <link rel="next" href="../../faq/faq/">
       
       
       <link rel="icon" href="/img/abcdesktop128x128.ico">
@@ -26,11 +26,11 @@
     
     
       
-        <title>Install Kubernetes Network Policies for abcdesktop.io | abcdesktop.io - www.abcdesktop.io</title>
+        <title>abcdesktop.io vs. Kasm Workspaces | Kasm Workspaces Alternative - www.abcdesktop.io</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -49,11 +49,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../../css/custom-admonition.css">
+      <link rel="stylesheet" href="../../css/custom-admonition.css">
     
-      <link rel="stylesheet" href="../../../../css/drawio-darkmode.css">
+      <link rel="stylesheet" href="../../css/drawio-darkmode.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -86,28 +86,28 @@
   <meta property="og:locale"    content="en_US" />
   <meta property="og:type"      content="website" />
   <meta property="og:site_name" content="abcdesktop.io" />
-  <meta property="og:url"       content="https://www.abcdesktop.io/advanced/4.4/networkpolicy/install/" />
+  <meta property="og:url"       content="https://www.abcdesktop.io/compare/abcdesktop-vs-kasm/" />
   
-  <meta property="og:title"       content="Install Kubernetes Network Policies for abcdesktop.io | abcdesktop.io" />
+  <meta property="og:title"       content="abcdesktop.io vs. Kasm Workspaces | Kasm Workspaces Alternative" />
   
   
-  <meta property="og:description" content="Deploy Kubernetes NetworkPolicy objects to enforce traffic isolation between abcdesktop.io pods, implementing a default-deny posture with explicit allowlists." />
+  <meta property="og:description" content="A neutral comparison between abcdesktop.io, a fully open-source, self-hosted DaaS and Kubernetes virtual desktop platform, and Kasm Workspaces, a containerized streaming workspace platform. Discover a free Kasm Workspaces alternative." />
   
 
   
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Install Kubernetes Network Policies for abcdesktop.io | abcdesktop.io" />
+  <meta name="twitter:title"       content="abcdesktop.io vs. Kasm Workspaces | Kasm Workspaces Alternative" />
   
   
-  <meta name="twitter:description" content="Deploy Kubernetes NetworkPolicy objects to enforce traffic isolation between abcdesktop.io pods, implementing a default-deny posture with explicit allowlists." />
+  <meta name="twitter:description" content="A neutral comparison between abcdesktop.io, a fully open-source, self-hosted DaaS and Kubernetes virtual desktop platform, and Kasm Workspaces, a containerized streaming workspace platform. Discover a free Kasm Workspaces alternative." />
   
 
   
-  <link rel="alternate" hreflang="en"    href="https://www.abcdesktop.io/advanced/4.4/networkpolicy/install/" />
-  <link rel="alternate" hreflang="en-US" href="https://www.abcdesktop.io/advanced/4.4/networkpolicy/install/" />
-  <link rel="alternate" hreflang="x-default" href="https://www.abcdesktop.io/advanced/4.4/networkpolicy/install/" />
+  <link rel="alternate" hreflang="en"    href="https://www.abcdesktop.io/compare/abcdesktop-vs-kasm/" />
+  <link rel="alternate" hreflang="en-US" href="https://www.abcdesktop.io/compare/abcdesktop-vs-kasm/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.abcdesktop.io/compare/abcdesktop-vs-kasm/" />
 
   
   <script type="application/ld+json">
@@ -186,7 +186,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#install" class="md-skip">
+        <a href="#abcdesktopio-vs-kasm-workspaces" class="md-skip">
           Skip to content
         </a>
       
@@ -200,7 +200,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+    <a href="../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
       
   <img src="/img/abcdesktop.svg" alt="logo">
 
@@ -219,7 +219,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Install Kubernetes Network Policies for abcdesktop.io | abcdesktop.io
+              abcdesktop.io vs. Kasm Workspaces | Kasm Workspaces Alternative
             
           </span>
         </div>
@@ -304,7 +304,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -325,7 +325,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../requirements/" class="md-tabs__link">
+        <a href="../../requirements/" class="md-tabs__link">
           
   
   
@@ -341,8 +341,6 @@
   
   
   
-    
-  
   
     
     
@@ -350,13 +348,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../../architecture/overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../architecture/overview/" class="md-tabs__link">
           
   
   
@@ -379,7 +375,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../contribute/overview/" class="md-tabs__link">
+        <a href="../../contribute/overview/" class="md-tabs__link">
           
   
   
@@ -399,7 +395,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../usecases/4.4/filter-traffic-per-group/" class="md-tabs__link">
+        <a href="../../usecases/4.4/filter-traffic-per-group/" class="md-tabs__link">
           
   
   
@@ -415,11 +411,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../../compare/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
   
@@ -437,7 +435,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../faq/faq/" class="md-tabs__link">
+      <a href="../../faq/faq/" class="md-tabs__link">
         
   
   
@@ -475,7 +473,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../ebook/ebook-abcdesktop-en.pdf" class="md-tabs__link">
+      <a href="../../ebook/ebook-abcdesktop-en.pdf" class="md-tabs__link">
         
   
   
@@ -510,7 +508,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+    <a href="../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
       
   <img src="/img/abcdesktop.svg" alt="logo">
 
@@ -539,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -602,7 +600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../requirements/" class="md-nav__link">
+      <a href="../../requirements/" class="md-nav__link">
         
   
   
@@ -666,7 +664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/script/" class="md-nav__link">
+      <a href="../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -689,7 +687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -761,7 +759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/applicationoverview/" class="md-nav__link">
+      <a href="../../install/4.4/applicationoverview/" class="md-nav__link">
         
   
   
@@ -784,7 +782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/install-applications/" class="md-nav__link">
+      <a href="../../install/4.4/install-applications/" class="md-nav__link">
         
   
   
@@ -807,7 +805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/applicationwithconsole/" class="md-nav__link">
+      <a href="../../install/4.4/applicationwithconsole/" class="md-nav__link">
         
   
   
@@ -879,7 +877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../uninstall/4.4/script/" class="md-nav__link">
+      <a href="../../uninstall/4.4/script/" class="md-nav__link">
         
   
   
@@ -902,7 +900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../uninstall/4.4/helm/" class="md-nav__link">
+      <a href="../../uninstall/4.4/helm/" class="md-nav__link">
         
   
   
@@ -937,29 +935,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -972,7 +965,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Advanced
@@ -1027,7 +1020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/overview/" class="md-nav__link">
+      <a href="../../architecture/overview/" class="md-nav__link">
         
   
   
@@ -1099,7 +1092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/onpremises/kind/" class="md-nav__link">
+      <a href="../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
         
   
   
@@ -1122,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/script/" class="md-nav__link">
+      <a href="../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -1145,7 +1138,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -1168,7 +1161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/onpremises/minikube/" class="md-nav__link">
+      <a href="../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
         
   
   
@@ -1281,7 +1274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
         
   
   
@@ -1304,7 +1297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1327,7 +1320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1399,7 +1392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
         
   
   
@@ -1422,7 +1415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1445,7 +1438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1517,7 +1510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
         
   
   
@@ -1540,7 +1533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1563,7 +1556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1635,7 +1628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
         
   
   
@@ -1658,7 +1651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1681,7 +1674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1753,7 +1746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
         
   
   
@@ -1776,7 +1769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1799,7 +1792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1879,7 +1872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/simplestapplicationxeyes/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/simplestapplicationxeyes/" class="md-nav__link">
         
   
   
@@ -1902,7 +1895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/simplestapplicationxedit/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/simplestapplicationxedit/" class="md-nav__link">
         
   
   
@@ -1925,7 +1918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/simplestapplicationchromium/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/simplestapplicationchromium/" class="md-nav__link">
         
   
   
@@ -1948,7 +1941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/templateapplication/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/templateapplication/" class="md-nav__link">
         
   
   
@@ -1971,7 +1964,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../applications/templateanotherapplication/" class="md-nav__link">
+      <a href="../../advanced/4.4/applications/templateanotherapplication/" class="md-nav__link">
         
   
   
@@ -2043,7 +2036,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/overview/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/overview/" class="md-nav__link">
         
   
   
@@ -2066,7 +2059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/updateconfiguration/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/updateconfiguration/" class="md-nav__link">
         
   
   
@@ -2130,7 +2123,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/overview/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/overview/" class="md-nav__link">
         
   
   
@@ -2153,7 +2146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/authexternal/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authexternal/" class="md-nav__link">
         
   
   
@@ -2217,7 +2210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/authexplicit-ldap/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authexplicit-ldap/" class="md-nav__link">
         
   
   
@@ -2240,7 +2233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/authexplicit-activedirectory/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authexplicit-activedirectory/" class="md-nav__link">
         
   
   
@@ -2263,7 +2256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/authmetaexplicit/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authmetaexplicit/" class="md-nav__link">
         
   
   
@@ -2335,7 +2328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/authimplicit/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authimplicit/" class="md-nav__link">
         
   
   
@@ -2358,7 +2351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/logmein/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/logmein/" class="md-nav__link">
         
   
   
@@ -2397,7 +2390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../authentication/authentification-rules/" class="md-nav__link">
+      <a href="../../advanced/4.4/authentication/authentification-rules/" class="md-nav__link">
         
   
   
@@ -2461,7 +2454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../desktop/overview/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/overview/" class="md-nav__link">
         
   
   
@@ -2484,7 +2477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../desktop/executeclasses/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/executeclasses/" class="md-nav__link">
         
   
   
@@ -2507,7 +2500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../desktop/pod/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/pod/" class="md-nav__link">
         
   
   
@@ -2530,7 +2523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../desktop/policies/" class="md-nav__link">
+      <a href="../../advanced/4.4/desktop/policies/" class="md-nav__link">
         
   
   
@@ -2602,7 +2595,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../storage/overview/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/overview/" class="md-nav__link">
         
   
   
@@ -2625,7 +2618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../storage/nfs/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/nfs/" class="md-nav__link">
         
   
   
@@ -2648,7 +2641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../storage/hostpath/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/hostpath/" class="md-nav__link">
         
   
   
@@ -2671,7 +2664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../storage/cache/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/cache/" class="md-nav__link">
         
   
   
@@ -2694,7 +2687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../storage/sharedvolumes/" class="md-nav__link">
+      <a href="../../advanced/4.4/storage/sharedvolumes/" class="md-nav__link">
         
   
   
@@ -2725,7 +2718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/garbagecollector/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/garbagecollector/" class="md-nav__link">
         
   
   
@@ -2748,7 +2741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
         
   
   
@@ -2771,7 +2764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/welcome/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/welcome/" class="md-nav__link">
         
   
   
@@ -2794,7 +2787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/customfrontend/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/customfrontend/" class="md-nav__link">
         
   
   
@@ -2817,7 +2810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configure/logging/" class="md-nav__link">
+      <a href="../../advanced/4.4/configure/logging/" class="md-nav__link">
         
   
   
@@ -2845,8 +2838,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2857,11 +2848,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
         
           
           <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
@@ -2877,7 +2868,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             Security
@@ -2932,7 +2923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../controllers/controllers/" class="md-nav__link">
+      <a href="../../advanced/4.4/controllers/controllers/" class="md-nav__link">
         
   
   
@@ -2960,8 +2951,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2972,11 +2961,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_2" >
         
           
           <label class="md-nav__link" for="__nav_3_6_2" id="__nav_3_6_2_label" tabindex="0">
@@ -2992,7 +2981,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_6_2">
             <span class="md-nav__icon md-icon"></span>
             Network Policy
@@ -3006,7 +2995,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../netpol/" class="md-nav__link">
+      <a href="../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
         
   
   
@@ -3026,32 +3015,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Install
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
         
   
   
@@ -3062,50 +3029,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#apply-the-default-netpol-default-44yaml-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Apply the default netpol-default-4.4.yaml file
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Apply the default netpol-default-4.4.yaml file">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#test-the-network-policies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Test the network policies
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3118,7 +3041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../uninstall/" class="md-nav__link">
+      <a href="../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
         
   
   
@@ -3205,7 +3128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/overview/" class="md-nav__link">
+      <a href="../../contribute/overview/" class="md-nav__link">
         
   
   
@@ -3269,7 +3192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/keygenerator/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/keygenerator/" class="md-nav__link">
         
   
   
@@ -3292,7 +3215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/mongo/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/mongo/" class="md-nav__link">
         
   
   
@@ -3315,7 +3238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/console/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/console/" class="md-nav__link">
         
   
   
@@ -3338,7 +3261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/pyos/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/pyos/" class="md-nav__link">
         
   
   
@@ -3361,7 +3284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/router/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/router/" class="md-nav__link">
         
   
   
@@ -3384,7 +3307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/webmodules/" class="md-nav__link">
+      <a href="../../contribute/4.4/services/webmodules/" class="md-nav__link">
         
   
   
@@ -3456,7 +3379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/graphical/" class="md-nav__link">
+      <a href="../../contribute/4.4/userpod/graphical/" class="md-nav__link">
         
   
   
@@ -3479,7 +3402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/sound/" class="md-nav__link">
+      <a href="../../contribute/4.4/userpod/sound/" class="md-nav__link">
         
   
   
@@ -3502,7 +3425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/cups/" class="md-nav__link">
+      <a href="../../contribute/4.4/userpod/cups/" class="md-nav__link">
         
   
   
@@ -3525,7 +3448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/filer/" class="md-nav__link">
+      <a href="../../contribute/4.4/userpod/filer/" class="md-nav__link">
         
   
   
@@ -3604,7 +3527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/filter-traffic-per-group/" class="md-nav__link">
+      <a href="../../usecases/4.4/filter-traffic-per-group/" class="md-nav__link">
         
   
   
@@ -3627,7 +3550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/configure-keycloak/" class="md-nav__link">
+      <a href="../../usecases/4.4/configure-keycloak/" class="md-nav__link">
         
   
   
@@ -3650,7 +3573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/multus-user-pod/" class="md-nav__link">
+      <a href="../../usecases/4.4/multus-user-pod/" class="md-nav__link">
         
   
   
@@ -3714,7 +3637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/overview/" class="md-nav__link">
+      <a href="../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/overview/" class="md-nav__link">
         
   
   
@@ -3737,7 +3660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/configure-kubernetes-cluster-gcp/" class="md-nav__link">
+      <a href="../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/configure-kubernetes-cluster-gcp/" class="md-nav__link">
         
   
   
@@ -3760,7 +3683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/install-demo/" class="md-nav__link">
+      <a href="../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/install-demo/" class="md-nav__link">
         
   
   
@@ -3795,24 +3718,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -3825,7 +3753,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Compare
@@ -3839,7 +3767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../compare/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -3862,7 +3790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../compare/abcdesktop-vs-citrix/" class="md-nav__link">
+      <a href="../abcdesktop-vs-citrix/" class="md-nav__link">
         
   
   
@@ -3885,7 +3813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../compare/abcdesktop-vs-guacamole/" class="md-nav__link">
+      <a href="../abcdesktop-vs-guacamole/" class="md-nav__link">
         
   
   
@@ -3905,10 +3833,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../../compare/abcdesktop-vs-kasm/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    abcdesktop.io vs. Kasm Workspaces
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3919,6 +3869,71 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      At a glance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-kasm-workspaces-has-an-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Kasm Workspaces has an edge
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-abcdesktopio-has-an-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where abcdesktop.io has an edge
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-choose-which" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to choose which
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learn-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learn more
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3938,7 +3953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/faq/" class="md-nav__link">
+      <a href="../../faq/faq/" class="md-nav__link">
         
   
   
@@ -3982,7 +3997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ebook/ebook-abcdesktop-en.pdf" class="md-nav__link">
+      <a href="../../ebook/ebook-abcdesktop-en.pdf" class="md-nav__link">
         
   
   
@@ -4024,26 +4039,47 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#apply-the-default-netpol-default-44yaml-file" class="md-nav__link">
+  <a href="#at-a-glance" class="md-nav__link">
     <span class="md-ellipsis">
-      Apply the default netpol-default-4.4.yaml file
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Apply the default netpol-default-4.4.yaml file">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#test-the-network-policies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Test the network policies
+      At a glance
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#where-kasm-workspaces-has-an-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Kasm Workspaces has an edge
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-abcdesktopio-has-an-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where abcdesktop.io has an edge
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-choose-which" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to choose which
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learn-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learn more
+    </span>
+  </a>
   
 </li>
       
@@ -4066,56 +4102,20 @@
       
       
       
-        <span class="md-tag">AD</span>
+        <span class="md-tag">compare</span>
       
     
       
       
       
-        <span class="md-tag">NetworkPolicy</span>
-      
-    
-      
-      
-      
-        <span class="md-tag">install</span>
-      
-    
-      
-      
-      
-        <span class="md-tag">installation</span>
-      
-    
-      
-      
-      
-        <span class="md-tag">netpol</span>
-      
-    
-      
-      
-      
-        <span class="md-tag">network</span>
-      
-    
-      
-      
-      
-        <span class="md-tag">policy</span>
-      
-    
-      
-      
-      
-        <span class="md-tag">security</span>
+        <span class="md-tag">kasm</span>
       
     
   </nav>
 
 
   
-    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/advanced/4.4/networkpolicy/install.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/compare/abcdesktop-vs-kasm.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -4123,52 +4123,80 @@
   
 
 
-<h1 id="install">Install</h1>
-<h2 id="apply-the-default-netpol-default-44yaml-file">Apply the default <code>netpol-default-4.4.yaml</code> file</h2>
-<p>To apply the network policies to the <code>abcdesktop</code> namespace, run the following command:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/netpol-default-4.4.yaml<span class="w"> </span>-n<span class="w"> </span>abcdesktop
-</code></pre></div>
-<p>The command returns:</p>
-<div class="highlight"><pre><span></span><code>networkpolicy.networking.k8s.io/abcdesktop-rights created
-networkpolicy.networking.k8s.io/memcached-rights created
-networkpolicy.networking.k8s.io/memcached-permits created
-networkpolicy.networking.k8s.io/mongodb-rights created
-networkpolicy.networking.k8s.io/mongodb-permits created
-networkpolicy.networking.k8s.io/console-rights created
-networkpolicy.networking.k8s.io/console-permits created
-networkpolicy.networking.k8s.io/speedtest-rights created
-networkpolicy.networking.k8s.io/speedtest-permits created
-networkpolicy.networking.k8s.io/pyos-rights created
-networkpolicy.networking.k8s.io/pyos-permits created
-networkpolicy.networking.k8s.io/router-rights created
-networkpolicy.networking.k8s.io/router-permits created
-networkpolicy.networking.k8s.io/nginx-rights created
-networkpolicy.networking.k8s.io/nginx-permits created
-networkpolicy.networking.k8s.io/ocapplications-permits created
-networkpolicy.networking.k8s.io/ocuser-rights created
-networkpolicy.networking.k8s.io/ocuser-permits created
-networkpolicy.networking.k8s.io/authentication-permits created
-networkpolicy.networking.k8s.io/ldap-permits created
-networkpolicy.networking.k8s.io/ldap-rights created
-networkpolicy.networking.k8s.io/smtp-permits created
-networkpolicy.networking.k8s.io/https-permits created
-networkpolicy.networking.k8s.io/storage-permits created
-networkpolicy.networking.k8s.io/coredns-permits created
-networkpolicy.networking.k8s.io/apiserver-permits created
-networkpolicy.networking.k8s.io/graylog-permits created
-</code></pre></div>
-<h3 id="test-the-network-policies">Test the network policies</h3>
+<h1 id="abcdesktopio-vs-kasm-workspaces">abcdesktop.io vs. Kasm Workspaces</h1>
+<p><a href="https://www.kasmweb.com/">Kasm Workspaces</a> is a containerized workspace streaming platform built around KasmVNC, offering browser isolation and application streaming. As a <strong>Kasm Workspaces alternative</strong>, abcdesktop.io is a <strong>self-hosted DaaS</strong> and <strong>remote browser isolation open source</strong> platform: both share a similar technical philosophy — streaming containerized applications and browsers as pixels to an HTML5 client — but differ in licensing model and Kubernetes-native design.</p>
+<h2 id="at-a-glance">At a glance</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>abcdesktop.io</th>
+<th>Kasm Workspaces</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>License</td>
+<td>Fully open source, free</td>
+<td>Open-core: a free community edition with usage limits, plus paid commercial tiers for larger deployments and enterprise features</td>
+</tr>
+<tr>
+<td>Underlying platform</td>
+<td>Kubernetes-native (pods and ephemeral containers)</td>
+<td>Docker by default; Kubernetes deployment is also supported</td>
+</tr>
+<tr>
+<td>Remote protocol</td>
+<td>HTML5 WebSocket pixel streaming</td>
+<td>KasmVNC over WebSocket</td>
+</tr>
+<tr>
+<td>Isolation model</td>
+<td>Remote Browser Isolation (RBI) and Remote Application Isolation (RAI)</td>
+<td>Container-based browser/application isolation (similar paradigm)</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>OAuth2/OIDC, LDAP, Active Directory (including Kerberos/NTLM), anonymous, SSL client certificates</td>
+<td>SAML, LDAP, local accounts (feature availability varies by edition)</td>
+</tr>
+<tr>
+<td>Cost model</td>
+<td>No licensing tiers or user caps</td>
+<td>Free tier capped by concurrent sessions; commercial licensing required beyond that threshold</td>
+</tr>
+<tr>
+<td>Governance</td>
+<td>Community-driven, source fully public</td>
+<td>Company-led (Kasm Technologies), with some components open source and others proprietary</td>
+</tr>
+</tbody>
+</table>
+<h2 id="where-kasm-workspaces-has-an-edge">Where Kasm Workspaces has an edge</h2>
 <ul>
-<li>Log in to your abcdesktop instance.</li>
-<li>Open a web shell and run the following curl command:</li>
+<li><strong>Polished commercial product</strong> — a dedicated vendor provides packaged releases, support contracts, and an admin UI refined for enterprise buyers.</li>
+<li><strong>Turnkey Docker deployment</strong> — can be deployed quickly without a Kubernetes cluster, which lowers the barrier to entry for smaller setups.</li>
+<li><strong>Marketplace of pre-built workspace images</strong> maintained by the vendor.</li>
 </ul>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://pyos.abcdesktop.svc.cluster.local:8000/API/manager/images
-</code></pre></div>
-<p>This HTTP request is denied by the network policy. The following error message should appear:</p>
-<div class="highlight"><pre><span></span><code>curl: (28) Failed to connect to pyos.abcdesktop.svc.cluster.local port 8000 after 130290 ms: Couldn&#39;t connect to server
-</code></pre></div>
-<p><img alt="http request is denied" src="../../../../img/netpol.denied.http.png" /></p>
-<p>The error message confirms that the user's pod cannot reach <code>https://pyos.abcdesktop.svc.cluster.local:8000/API</code>, as expected when network policies are enforced.</p>
+<h2 id="where-abcdesktopio-has-an-edge">Where abcdesktop.io has an edge</h2>
+<ul>
+<li><strong>No usage caps or paid tiers</strong> — because abcdesktop.io is fully open source, there is no concurrent-session limit that forces an upgrade to a commercial license.</li>
+<li><strong>Kubernetes-first architecture</strong> — abcdesktop.io is designed around Kubernetes primitives (pods, ephemeral containers, network policies, autoscaling) rather than treating Kubernetes as an alternate deployment target for a Docker-first product.</li>
+<li><strong>Full source transparency</strong> — every component is open source and auditable, which is often a hard requirement for sovereign cloud, government, and regulated deployments.</li>
+<li><strong>Community governance</strong> — no single vendor controls the roadmap or can discontinue features behind a paywall.</li>
+<li><strong>Native Active Directory depth</strong> — including Kerberos/NTLM support and cross-forest trust via the <code>metaexplicit</code> provider, useful for enterprises with existing AD infrastructure.</li>
+</ul>
+<h2 id="when-to-choose-which">When to choose which</h2>
+<ul>
+<li>Choose <strong>Kasm Workspaces</strong> if you want a vendor-supported, Docker-first product with a polished admin console and are comfortable with licensing costs once you scale beyond the free tier.</li>
+<li>Choose <strong>abcdesktop.io</strong> if you are Kubernetes-native, need unlimited concurrent sessions without licensing costs, or require full code-level transparency for compliance and sovereign cloud requirements.</li>
+</ul>
+<h2 id="learn-more">Learn more</h2>
+<ul>
+<li><a href="../../#remote-browser-isolation-rbi">abcdesktop.io Remote Browser Isolation</a></li>
+<li><a href="../../#remote-application-isolation-rai">abcdesktop.io Remote Application Isolation</a></li>
+<li><a href="../overview/">Back to comparisons overview</a></li>
+</ul>
 
 
 
@@ -4252,16 +4280,16 @@ networkpolicy.networking.k8s.io/graylog-permits created
     
     
       
-      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
-        <script src="../../../../js/tabbed-toc.js"></script>
+        <script src="../../js/tabbed-toc.js"></script>
       
         <script src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
       
-        <script src="../../../../js/drawio-reload.js"></script>
+        <script src="../../js/drawio-reload.js"></script>
       
     
   </body>
