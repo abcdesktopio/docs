@@ -56,6 +56,9 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - codehilite
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -65,7 +68,7 @@ markdown_extensions:
       alternate_style: true
 
 site_name: www.abcdesktop.io
-site_description: abcdesktop.io is a cloud-native, Kubernetes-native virtual desktop platform delivering Remote Browser Isolation (RBI) and Remote Application Isolation (RAI) accessible from any HTML5 web browser — no client-side installation required.
+site_description: abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.
 site_author: abcdesktop.io contributors
 copyright: Copyright &copy; 2020–2026 abcdesktop.io
 repo_url: https://github.com/abcdesktopio/docs
@@ -181,6 +184,11 @@ nav:
     - Overview : usecases/${ABCDESKTOP_LATEST_RELEASE}/deploy-demo-gcp-abcdesktop-com/overview.md
     - Create Kubernetes cluster on GCP to host demo platform : usecases/${ABCDESKTOP_LATEST_RELEASE}/deploy-demo-gcp-abcdesktop-com/configure-kubernetes-cluster-gcp.md
     - Install demo platform on GCP cluster : usecases/${ABCDESKTOP_LATEST_RELEASE}/deploy-demo-gcp-abcdesktop-com/install-demo.md
+- Compare :
+  - Overview: compare/overview.md
+  - abcdesktop.io vs. Citrix: compare/abcdesktop-vs-citrix.md
+  - abcdesktop.io vs. Apache Guacamole: compare/abcdesktop-vs-guacamole.md
+  - abcdesktop.io vs. Kasm Workspaces: compare/abcdesktop-vs-kasm.md
 - FAQ: faq/faq.md
 - Previous docs: https://old.abcdesktop.com/
 - Ebook : ebook/ebook-abcdesktop-en.pdf
