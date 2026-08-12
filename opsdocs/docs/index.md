@@ -155,3 +155,7 @@ abcdesktop.io's RBI and RAI architecture addresses a broad range of enterprise, 
 | **Training Environments** | Deploy ephemeral training desktops pre-loaded with required applications; resources are reclaimed automatically after sessions end. |
 | **Sovereign Cloud Desktop** | Retain full control over desktop infrastructure and user data within your own Kubernetes cluster and data center. |
 | **Legacy Application Modernization** | Deliver legacy Windows or X11 applications to modern devices via containerized isolation, without refactoring the underlying application. |
+
+---
+
+Not sure abcdesktop.io is the right fit? See the [free VDI solution comparison](compare/overview.md) against Citrix, Apache Guacamole, and Kasm Workspaces.

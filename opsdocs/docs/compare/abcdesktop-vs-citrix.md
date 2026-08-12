@@ -46,4 +46,5 @@ tags:
 
 - [abcdesktop.io feature set](../index.md#feature-set)
 - [Getting started with abcdesktop.io](../requirements.md)
-- [Back to comparisons overview](overview.md)
+
+[:material-arrow-left: Back to VDI comparison overview](overview.md){ .md-button }

@@ -35,3 +35,10 @@ This page provides answers to frequently asked questions about abcdesktop.io.
 - [How do I expose a new service using the NGINX Ingress Controller?](ingresscontroller.md#how-to-expose-my-new-service-with-nginx-ingress-controller)
 - [How do I increase the number of MongoDB replicas?](mongodb.md#how-to-increase-the-mongodb-number-of-replicats)
 - [How do I deploy a reverse proxy in front of abcdesktop.io?](add-reverseproxy-infrontof-abcdesktop.md)
+
+## Evaluating abcdesktop.io
+
+- [How does abcdesktop.io compare to other free VDI solutions?](../compare/overview.md)
+- [How does abcdesktop.io compare to Citrix?](../compare/abcdesktop-vs-citrix.md)
+- [How does abcdesktop.io compare to Apache Guacamole?](../compare/abcdesktop-vs-guacamole.md)
+- [How does abcdesktop.io compare to Kasm Workspaces?](../compare/abcdesktop-vs-kasm.md)

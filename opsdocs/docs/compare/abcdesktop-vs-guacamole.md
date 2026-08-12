@@ -49,4 +49,5 @@ In some architectures, Guacamole and abcdesktop.io address different layers of t
 
 - [abcdesktop.io architecture overview](../architecture/overview.md)
 - [abcdesktop.io authentication options](../advanced/4.4/authentication/overview.md)
-- [Back to comparisons overview](overview.md)
+
+[:material-arrow-left: Back to VDI comparison overview](overview.md){ .md-button }

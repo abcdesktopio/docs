@@ -46,4 +46,5 @@ tags:
 
 - [abcdesktop.io Remote Browser Isolation](../index.md#remote-browser-isolation-rbi)
 - [abcdesktop.io Remote Application Isolation](../index.md#remote-application-isolation-rai)
-- [Back to comparisons overview](overview.md)
+
+[:material-arrow-left: Back to VDI comparison overview](overview.md){ .md-button }
