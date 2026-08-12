@@ -2,7 +2,7 @@
 hide:
   - navigation
   - toc
-title: abcdesktop.io — Open Source Kubernetes Virtual Desktop with Remote Browser Isolation
+title: abcdesktop.io — Open-source Virtual Desktop, built for Kubernetes.
 summary: Cloud-native, containerized graphical application desktop with remote browser isolation and remote application isolation
 description: abcdesktop.io is a free, open-source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and remote application isolation (RAI). A self-hosted DaaS and open source Kubernetes VDI accessible from any HTML5 web browser — no client-side installation required.
 keywords: remote browser isolation open source, Kubernetes virtual desktop, VDI open source Kubernetes, DaaS self-hosted, self-hosted DaaS, remote application isolation, open source VDI, kubernetes, secure desktop, cloud native, telecommuting, virtual desktop infrastructure, VDI, VNC, digital workspace, reduce attack surface, BYOD, bring your own device, noVNC, RDP, citrix alternative, apache guacamole alternative, kasm workspaces alternative, sovereign cloud, zero-trust desktop
@@ -23,7 +23,9 @@ No sign-up, no install — launch a full desktop session in your browser at **[d
 
 ---
 
-**abcdesktop.io** is a free, **open source Kubernetes virtual desktop** platform built on and for [Kubernetes](https://kubernetes.io/). It delivers **remote browser isolation open source (RBI)** and **Remote Application Isolation (RAI)** — two core security paradigms that eliminate the traditional attack surface by running every application, including web browsers, inside isolated containers on the server side. The user's endpoint device acts as a pure display client, receiving only rendered pixels over an encrypted HTML5 WebSocket stream.
+**abcdesktop.io** is a free, **open source Kubernetes virtual desktop** platform built on and for [Kubernetes](https://kubernetes.io/). It delivers **remote browser isolation open source (RBI)** and **Remote Application Isolation (RAI)** — two core security paradigms that eliminate the traditional attack surface by running every application, including web browsers, inside isolated containers on the server side. 
+* Isolate browsers and applications.
+* Stream pixels, not threats. The user's endpoint device acts as a pure display client, receiving only rendered pixels over an encrypted HTML5 WebSocket stream.
 
 abcdesktop.io is also a complete **self-hosted DaaS** (Desktop as a Service) workspace environment accessible from any HTML5-capable web browser, with no software installation required on the client device. As a **VDI open source Kubernetes** solution, desktopless computing dynamically allocates desktop resources on demand within the cluster, tearing them down when the session ends. Each user's desktop and every application runs as a dedicated Kubernetes pod or ephemeral container, enforcing strict workload isolation and dramatically reducing the blast radius of any potential compromise.
 
