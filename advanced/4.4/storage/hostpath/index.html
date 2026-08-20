@@ -4110,12 +4110,12 @@
 <h2 id="define-hostpath-folder-and-update-odconfig">Define hostPath folder and update od.config</h2>
 <p>On your node, create a directory that will serve as the mount point for user home directories — for example, <code>/mnt/abcdesktop_volumes/</code>.
 Then edit your <code>od.config</code> file. First, set <code>desktop.homedirectorytype</code> to <code>'hostPath'</code> and add a <code>desktop.hostPathRoot</code> entry whose value is the path to the mount point you created.</p>
-<div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;hostPath&#39;
+<div class="highlight"><pre><span></span><code>desktop.homedirectorytype: 'hostPath'
 
 #
 # desktop.hostPathRoot set the hostPath root directory
-# desktop.hostPathRoot is read only if desktop.homedirectorytype: &#39;hostPath&#39;
-desktop.hostPathRoot: &#39;/mnt/abcdesktop_volumes&#39;
+# desktop.hostPathRoot is read only if desktop.homedirectorytype: 'hostPath'
+desktop.hostPathRoot: '/mnt/abcdesktop_volumes'
 </code></pre></div>
 <p>Kubernetes will automatically create a directory for each user if one does not already exist.</p>
 <p>Finally, update the ConfigMap and restart pyos by running the following commands:</p>

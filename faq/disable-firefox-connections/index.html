@@ -4101,8 +4101,8 @@ tags:
 <p><code>autoconfig.js</code> is responsible for loading and executing <code>firefox.cfg</code> at startup.</p>
 <h3 id="autoconfigjs">autoconfig.js</h3>
 <div class="highlight"><pre><span></span><code><span class="c1">// Setup config file</span>
-<span class="nx">pref</span><span class="p">(</span><span class="s2">&quot;general.config.filename&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;firefox.cfg&quot;</span><span class="p">);</span>
-<span class="nx">pref</span><span class="p">(</span><span class="s2">&quot;general.config.obscure_value&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="nx">pref</span><span class="p">(</span><span class="s2">"general.config.filename"</span><span class="p">,</span><span class="w"> </span><span class="s2">"firefox.cfg"</span><span class="p">);</span>
+<span class="nx">pref</span><span class="p">(</span><span class="s2">"general.config.obscure_value"</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
 </code></pre></div>
 <p>Path to <code>autoconfig.js</code> depending on your OS (you may need to create intermediate directories):</p>
 <ul>
@@ -4185,30 +4185,30 @@ tags:
 </tbody>
 </table>
 <h3 id="example-of-policiesjson-file">Example of policies.json file</h3>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;policies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;DisableTelemetry&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;Preferences&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;browser.region.network.url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;browser.topsites.contile.endpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;browser.newtabpage.activity-stream.discoverystream.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;browser.startup.homepage_override.mstone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;browser.safebrowsing.provider.mozilla.gethashURL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;browser.safebrowsing.provider.mozilla.updateURL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;browser.safebrowsing.downloads.remote.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;dom.push.connection.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;network.captive-portal-service.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;network.connectivity-service.enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<div class="highlight"><pre><span></span><code><span class="nt">"policies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"DisableTelemetry"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Preferences"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"browser.region.network.url"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"browser.topsites.contile.endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"browser.newtabpage.activity-stream.discoverystream.enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"browser.startup.homepage_override.mstone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ignore"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"browser.safebrowsing.provider.mozilla.gethashURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"browser.safebrowsing.provider.mozilla.updateURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"browser.safebrowsing.downloads.remote.enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"dom.push.connection.enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"network.captive-portal-service.enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"network.connectivity-service.enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;Proxy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;Mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;autoConfig&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;AutoConfigURL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:///path/to/your/proxy.pac&quot;</span>
+<span class="w">    </span><span class="nt">"Proxy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"Mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autoConfig"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"AutoConfigURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file:///path/to/your/proxy.pac"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="example-of-firefoxcfg-file">Example of firefox.cfg file</h3>
 <div class="highlight"><pre><span></span><code>// Disable Normandy service
-lockPref(&quot;app.normandy.enabled&quot;, false);
-lockPref(&quot;app.normandy.api_url&quot;, &quot;&quot;);
+lockPref("app.normandy.enabled", false);
+lockPref("app.normandy.api_url", "");
 </code></pre></div>
 <h3 id="example-of-proxypac-file">Example of proxy.pac file</h3>
 <div class="highlight"><pre><span></span><code>// File PAC
@@ -4216,18 +4216,18 @@ lockPref(&quot;app.normandy.api_url&quot;, &quot;&quot;);
 function FindProxyForURL(url, host)
 {
   // just define hostname and unreachable port
-  var var_blackhole = &quot;127.0.0.1:12345&quot;; // could be any other UNUSED port than 12345
+  var var_blackhole = "127.0.0.1:12345"; // could be any other UNUSED port than 12345
 
   //URL deny definition - Blackhole for blocked URL
 
-  if ( host == &quot;firefox.settings.services.mozilla.com&quot;
-    || host == &quot;content-signature-2.cdn.mozilla.net&quot;
-    || host == &quot;firefox-settings-attachments.cdn.mozilla.net&quot;
+  if ( host == "firefox.settings.services.mozilla.com"
+    || host == "content-signature-2.cdn.mozilla.net"
+    || host == "firefox-settings-attachments.cdn.mozilla.net"
   ) {
-    return &quot;PROXY &quot; + var_blackhole;
+    return "PROXY " + var_blackhole;
   }
 
-  return  &quot;DIRECT; &quot;;
+  return  "DIRECT; ";
 }
 </code></pre></div>
 <h2 id="sources">Sources</h2>

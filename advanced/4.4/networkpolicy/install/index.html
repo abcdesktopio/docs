@@ -4168,7 +4168,7 @@ networkpolicy.networking.k8s.io/graylog-permits created
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://pyos.abcdesktop.svc.cluster.local:8000/API/manager/images
 </code></pre></div>
 <p>This HTTP request is denied by the network policy. The following error message should appear:</p>
-<div class="highlight"><pre><span></span><code>curl: (28) Failed to connect to pyos.abcdesktop.svc.cluster.local port 8000 after 130290 ms: Couldn&#39;t connect to server
+<div class="highlight"><pre><span></span><code>curl: (28) Failed to connect to pyos.abcdesktop.svc.cluster.local port 8000 after 130290 ms: Couldn't connect to server
 </code></pre></div>
 <p><img alt="http request is denied" src="../../../../img/netpol.denied.http.png" /></p>
 <p>The error message confirms that the user's pod cannot reach <code>https://pyos.abcdesktop.svc.cluster.local:8000/API</code>, as expected when network policies are enforced.</p>

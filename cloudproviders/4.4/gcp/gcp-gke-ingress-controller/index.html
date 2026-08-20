@@ -4314,7 +4314,7 @@ kind: Ingress
 metadata:
   name: ingress-abcdesktop
   annotations:
-    spec.ingressClassName: &quot;gce&quot;
+    spec.ingressClassName: "gce"
 spec:
   rules:
     - host: hello.ingress.gcp.pepins.net
@@ -4388,8 +4388,8 @@ kind: Ingress
 metadata:
   name: ingress-abcdesktop
   annotations:
-    spec.ingressClassName: &quot;gce&quot;
-    networking.gke.io/managed-certificates: &quot;abcdesktop-cert&quot;
+    spec.ingressClassName: "gce"
+    networking.gke.io/managed-certificates: "abcdesktop-cert"
 spec:
   rules:
     - host: hello.ingress.gcp.pepins.net
@@ -4449,7 +4449,7 @@ metadata:
   labels:
     abcdesktop/role: router-od
   annotations:
-    cloud.google.com/backend-config: &#39;{&quot;ports&quot;:{&quot;80&quot;:&quot;long-timeout-backend&quot;}}&#39;
+    cloud.google.com/backend-config: '{"ports":{"80":"long-timeout-backend"}}'
 spec:
   selector:
     run: router-od

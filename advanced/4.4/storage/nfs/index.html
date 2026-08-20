@@ -4273,7 +4273,7 @@ storageClass:
   volumeBindingMode: Immediate
   archiveOnDelete: true         
   onDelete: retain              
-  pathPattern: &quot;${.PVC.annotations.nfs.io/username}&quot; # Important for dynamic subdir creation
+  pathPattern: "${.PVC.annotations.nfs.io/username}" # Important for dynamic subdir creation
 
 rbac:
   create: true
@@ -4301,22 +4301,22 @@ nfs-user-storage-abcdesktop   cluster.local/nfs-subdir-external-provisioner   Re
 <h3 id="update-odconfig">Update od.config</h3>
 <p>Now, you need to configure pyos to bind user home directories to the exported NFS folder by updating the <code>od.config</code> file.</p>
 <p>First, change the <code>desktop.homedirectorytype</code> variable from <code>None</code> to <code>persistentVolumeClaim</code>.</p>
-<div class="highlight"><pre><span></span><code>desktop.homedirectorytype: &#39;persistentVolumeClaim&#39;
+<div class="highlight"><pre><span></span><code>desktop.homedirectorytype: 'persistentVolumeClaim'
 </code></pre></div>
 <p>Then add the following lines to define the PersistentVolumeClaim template:</p>
 <div class="highlight"><pre><span></span><code>desktop.persistentvolumeclaim: {
-   &#39;metadata&#39;: {
-      &#39;name&#39;: &#39;{{ provider }}-{{ userid }}&#39;,
-      &#39;annotations&#39;: {
-          &#39;nfs.io/username&#39;: &#39;{{ userid }}&#39;
+   'metadata': {
+      'name': '{{ provider }}-{{ userid }}',
+      'annotations': {
+          'nfs.io/username': '{{ userid }}'
       }
    },
-   &#39;spec&#39;: {
-    &#39;storageClassName&#39;: &#39;nfs-user-storage-abcdesktop&#39;,
-    &#39;accessModes&#39;: [ &#39;ReadWriteMany&#39; ],
-    &#39;resources&#39;: {
-       &#39;requests&#39;: {
-          &#39;storage&#39;: &#39;10Gi&#39; } } } }
+   'spec': {
+    'storageClassName': 'nfs-user-storage-abcdesktop',
+    'accessModes': [ 'ReadWriteMany' ],
+    'resources': {
+       'requests': {
+          'storage': '10Gi' } } } }
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

@@ -4215,9 +4215,9 @@ tags:
 <h2 id="the-authmanagers-dictionary">The <code>authmanagers</code> Dictionary</h2>
 <p>The <code>authmanagers</code> object is the root authentication configuration dictionary:</p>
 <div class="highlight"><pre><span></span><code>authmanagers: {
-  &#39;external&#39;: {},
-  &#39;explicit&#39;: {},
-  &#39;implicit&#39;: {}}
+  'external': {},
+  'explicit': {},
+  'implicit': {}}
 </code></pre></div>
 <p>The <code>od.config</code> file supports four <code>authmanagers</code> entry types:</p>
 <ul>
@@ -4261,17 +4261,17 @@ tags:
 <h2 id="configuring-the-authmanagers-dictionary">Configuring the <code>authmanagers</code> Dictionary</h2>
 <p>Edit the <code>od.config</code> file and initialize the <code>authmanagers</code> dictionary with empty provider entries for all manager types:</p>
 <div class="highlight"><pre><span></span><code>authmanagers: {
-  &#39;external&#39;: {},
-  &#39;explicit&#39;: {},
-  &#39;implicit&#39;: {}}
+  'external': {},
+  'explicit': {},
+  'implicit': {}}
 </code></pre></div>
 <details class="warning">
 <summary>JSON Dictionary Syntax</summary>
 <div class="highlight"><pre><span></span><code>When defining a dictionary, the closing `}` must appear on the same line as the last entry. Example:
 authmanagers: {
-  &#39;external&#39;: {},
-  &#39;explicit&#39;: {},
-  &#39;implicit&#39;: {}}
+  'external': {},
+  'explicit': {},
+  'implicit': {}}
 </code></pre></div>
 </details>
 <p>To apply the changes, recreate the <code>abcdesktop-config</code> ConfigMap and restart the <code>pyos</code> deployment:</p>
@@ -4303,19 +4303,19 @@ kubectl rollout restart deployment pyos-od -n abcdesktop
 <p><img alt="allproviders" src="../img/auth-overview-allproviders.png" /></p>
 <p>The following <code>authmanagers</code> configuration produces the combined login page shown above:</p>
 <div class="highlight"><pre><span></span><code><span class="err">au</span><span class="kc">t</span><span class="err">hma</span><span class="kc">na</span><span class="err">gers</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="err">&#39;ex</span><span class="kc">ternal</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="err">&#39;providers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="err">&#39;google&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">        </span><span class="err">&#39;ico</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;img/au</span><span class="kc">t</span><span class="err">h/google_ico</span><span class="kc">n</span><span class="err">.svg&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="err">&#39;display</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Google&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">        </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#</span><span class="mi">000000</span><span class="err">&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="err">&#39;backgrou</span><span class="kc">n</span><span class="err">dcolor&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;#FFFFFF&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="err">&#39;e</span><span class="kc">na</span><span class="err">bled&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
-<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_id&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">        </span><span class="err">&#39;clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;xxxx&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
-<span class="w">        </span><span class="err">&#39;scope&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/auth/userinfo.email&#39;,  &#39;openid&#39; ],</span>
-<span class="w">        </span><span class="err">&#39;useri</span><span class="kc">nf</span><span class="err">o_url&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/oauth2/v1/userinfo&#39;,</span>
+<span class="w">  </span><span class="err">'ex</span><span class="kc">ternal</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">'providers'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="err">'google'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">'ico</span><span class="kc">n</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">'img/au</span><span class="kc">t</span><span class="err">h/google_ico</span><span class="kc">n</span><span class="err">.svg'</span><span class="p">,</span>
+<span class="w">        </span><span class="err">'display</span><span class="kc">na</span><span class="err">me'</span><span class="p">:</span><span class="w"> </span><span class="err">'Google'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">'</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="err">color'</span><span class="p">:</span><span class="w"> </span><span class="err">'#</span><span class="mi">000000</span><span class="err">'</span><span class="p">,</span>
+<span class="w">        </span><span class="err">'backgrou</span><span class="kc">n</span><span class="err">dcolor'</span><span class="p">:</span><span class="w"> </span><span class="err">'#FFFFFF'</span><span class="p">,</span>
+<span class="w">        </span><span class="err">'e</span><span class="kc">na</span><span class="err">bled'</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">'clie</span><span class="kc">nt</span><span class="err">_id'</span><span class="p">:</span><span class="w"> </span><span class="err">'xxxx'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="err">'clie</span><span class="kc">nt</span><span class="err">_secre</span><span class="kc">t</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">'xxxx'</span><span class="p">,</span>
+<span class="w">        </span><span class="err">'useri</span><span class="kc">nf</span><span class="err">o_au</span><span class="kc">t</span><span class="err">h'</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span>
+<span class="w">        </span><span class="err">'scope'</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">'h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/auth/userinfo.email',  'openid' ],</span>
+<span class="w">        </span><span class="err">'useri</span><span class="kc">nf</span><span class="err">o_url'</span><span class="p">:</span><span class="w"> </span><span class="err">'h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="c1">//www.googleapis.com/oauth2/v1/userinfo',</span>
 </code></pre></div>
 
 

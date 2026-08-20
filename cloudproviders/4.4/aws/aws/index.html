@@ -4221,17 +4221,17 @@
 <p>This example uses <code>SandboxAdministratorAccess</code>, but you can use any role with sufficient permissions.</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
 <span class="o">{</span>
-<span class="w">    </span><span class="s2">&quot;UserId&quot;</span>:<span class="w"> </span><span class="s2">&quot;XXXXXXXXXXXXXXXXXXX:user.namee@domain.org&quot;</span>,
-<span class="w">    </span><span class="s2">&quot;Account&quot;</span>:<span class="w"> </span><span class="s2">&quot;YYYYYYYYYYYYYYYY&quot;</span>,
-<span class="w">    </span><span class="s2">&quot;Arn&quot;</span>:<span class="w"> </span><span class="s2">&quot;arn:aws:ZZZ::ZZZZZZZZZZZZZ:assumed-role/AWSReservedSSO_SandboxAdministratorAccess_ZZZZZZZZZZZZZZZ/user.namee@domain.org&quot;</span>
+<span class="w">    </span><span class="s2">"UserId"</span>:<span class="w"> </span><span class="s2">"XXXXXXXXXXXXXXXXXXX:user.namee@domain.org"</span>,
+<span class="w">    </span><span class="s2">"Account"</span>:<span class="w"> </span><span class="s2">"YYYYYYYYYYYYYYYY"</span>,
+<span class="w">    </span><span class="s2">"Arn"</span>:<span class="w"> </span><span class="s2">"arn:aws:ZZZ::ZZZZZZZZZZZZZ:assumed-role/AWSReservedSSO_SandboxAdministratorAccess_ZZZZZZZZZZZZZZZ/user.namee@domain.org"</span>
 <span class="o">}</span>
 </code></pre></div>
 <h2 id="find-your-clusters-name">Find your cluster's name</h2>
 <p>This example uses <code>eu-north-1</code> as the region value.</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>eks<span class="w"> </span>list-clusters<span class="w"> </span>--region<span class="w"> </span>eu-north-1
 <span class="o">{</span>
-<span class="w">    </span><span class="s2">&quot;clusters&quot;</span>:<span class="w"> </span><span class="o">[</span>
-<span class="w">        </span><span class="s2">&quot;scrumptious-dance-potato&quot;</span>
+<span class="w">    </span><span class="s2">"clusters"</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">        </span><span class="s2">"scrumptious-dance-potato"</span>
 <span class="w">    </span><span class="o">]</span>
 <span class="o">}</span>
 </code></pre></div>

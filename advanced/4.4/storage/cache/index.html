@@ -4117,8 +4117,8 @@
 <h1 id="overwriting-user-home-directory-entries">Overwriting User Home Directory Entries</h1>
 <h2 id="overwriting-user-home-directory-entries-with-memory-backed-volumes">Overwriting user home directory entries with memory-backed volumes</h2>
 <p>To reduce I/O pressure on the storage backend, you can configure the <code>desktop.directorytomemoryemptydir</code> option to replace specific user subdirectories with in-memory <code>emptyDir</code> volumes. This approach is particularly useful for high-churn directories such as <code>.cache</code>, <code>.local</code>, and <code>.config</code>.</p>
-<div class="highlight"><pre><span></span><code>desktop.directorytomemoryemptydir: [ &#39;.cache&#39;, &#39;.local&#39;, &#39;.config&#39; ]
-desktop.directorytomemory: { &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Gi&#39; } }
+<div class="highlight"><pre><span></span><code>desktop.directorytomemoryemptydir: [ '.cache', '.local', '.config' ]
+desktop.directorytomemory: { 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi' } }
 </code></pre></div>
 <p>The default value of <code>desktop.directorytomemory</code> is the dictionary <code>{ 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi' } }</code>.</p>
 <p>This dictionary applies uniformly to every entry listed in <code>desktop.directorytomemoryemptydir</code>.</p>
@@ -4138,15 +4138,15 @@ desktop.directorytomemory: { &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory
     Optional:    false
  [...]
   cache:
-    Type:       EmptyDir (a temporary directory that shares a pod&#39;s lifetime)
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
     Medium:     Memory
     SizeLimit:  8Gi
   local:
-    Type:       EmptyDir (a temporary directory that shares a pod&#39;s lifetime)
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
     Medium:     Memory
     SizeLimit:  8Gi
   config:
-    Type:       EmptyDir (a temporary directory that shares a pod&#39;s lifetime)
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
     Medium:     Memory
     SizeLimit:  8Gi
 [...]
@@ -4156,13 +4156,13 @@ desktop.directorytomemory: { &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory
 <ul>
 <li>Update your <code>desktop.pod</code> dictionary to include the <code>config</code> volume in the volume list: <code>'volumes': [ 'extrausers', 'tmp', 'config', 'log' ]</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code>&#39;sound&#39;: { 
-    &#39;volumes&#39;: [ &#39;extrausers&#39;, &#39;tmp&#39;, &#39;config&#39;, &#39;log&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.4&#39;,
-    &#39;imagePullPolicy&#39;: &#39;Always&#39;,
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29788,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
+<div class="highlight"><pre><span></span><code>'sound': { 
+    'volumes': [ 'extrausers', 'tmp', 'config', 'log' ],
+    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.4',
+    'imagePullPolicy': 'Always',
+    'enable': True,
+    'tcpport': 29788,
+    'acl':  { 'permit': [ 'all' ] },
   },
 </code></pre></div>
 <p>After a user logs in, verify that the <code>s-sound</code> container mounts <code>.config</code> at <code>$HOME/.config</code>:</p>

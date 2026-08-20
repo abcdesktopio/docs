@@ -4093,9 +4093,9 @@
 </code></pre></div>
 <p>Adjust this value to increase or decrease the maximum length of a log line.</p>
 <p>If a log line exceeds <code>max_log_body_size</code>, the string <code>[truncated]</code> replaces the end of the line:</p>
-<div class="highlight"><pre><span></span><code>2026-05-05 13:41:09 abcsrv23 132131221128896 od [INFO   ] __main__.trace_response:anonymous /core/getkeyinfo b&#39;{&quot;id&quot;: {&quot;ephemeral_container&quot;: f...[truncated]&#39;
+<div class="highlight"><pre><span></span><code>2026-05-05 13:41:09 abcsrv23 132131221128896 od [INFO   ] __main__.trace_response:anonymous /core/getkeyinfo b'{"id": {"ephemeral_container": f...[truncated]'
 2026-05-05 13:41:09 abcsrv23 132131237914304 orchestrator [DEBUG  ] oc.od.orchestrator.ODOrchestratorKubernetes.__init__:leela load_kube_config done
-2026-05-05 13:41:09 abcsrv23 132131195950784 od [INFO   ] __main__.trace_response:anonymous /core/getkeyinfo b&#39;{&quot;id&quot;: null, &quot;callbackurl&quot;: null...[truncated]&#39;
+2026-05-05 13:41:09 abcsrv23 132131195950784 od [INFO   ] __main__.trace_response:anonymous /core/getkeyinfo b'{"id": null, "callbackurl": null...[truncated]'
 2026-05-05 13:41:09 abcsrv23 132131237914304 orchestrator [DEBUG  ] oc.od.orchestrator.ODOrchestratorKubernetes.findDesktopByUser:leela 
 2026-05-05 13:41:09 abcsrv23 132131237914304 orchestrator [DEBUG  ] oc.od.orchestrator.ODOrchestratorKubernetes.findPodByUser:leela 
 2026-05-05 13:41:09 abcsrv23 132131237914304 orchestrator [DEBUG  ] oc.od.orchestrator.ODOrchestratorKubernetes.findDesktopByUser:leela Pod is found leela-be51a
@@ -4164,95 +4164,95 @@
 # graypy.GELFRabbitHandler - RabbitMQ log forwarding
 
 logging: {
-    &quot;version&quot;: 1,
-    &quot;disable_existing_loggers&quot;: False,
-    &#39;formatters&#39;: {
-      &#39;access&#39;: {
-        &#39;format&#39;: &#39;%%(message)s - user: %%(userid)s&#39;,
-        &#39;datefmt&#39;: &#39;%%Y-%%m-%%d %%H:%%M:%%S&#39;
+    "version": 1,
+    "disable_existing_loggers": False,
+    'formatters': {
+      'access': {
+        'format': '%%(message)s - user: %%(userid)s',
+        'datefmt': '%%Y-%%m-%%d %%H:%%M:%%S'
       },
-      &#39;standard&#39;: {
-        &#39;format&#39;: &#39;%%(asctime)s %%(nodename)s %%(thread)d %%(module)s [%%(levelname)-7s] %%(name)s.%%(funcName)s:%%(userid)s %%(message)s&#39;,
-        &#39;datefmt&#39;: &#39;%%Y-%%m-%%d %%H:%%M:%%S&#39;
+      'standard': {
+        'format': '%%(asctime)s %%(nodename)s %%(thread)d %%(module)s [%%(levelname)-7s] %%(name)s.%%(funcName)s:%%(userid)s %%(message)s',
+        'datefmt': '%%Y-%%m-%%d %%H:%%M:%%S'
       },
-      &#39;syslog&#39;: {
-        &#39;format&#39;: &#39;%%(asctime)s %%(nodename)s %%(thread)s %%(levelname)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s&#39;,
-        &#39;datefmt&#39;: &#39;%%Y-%%m-%%d %%H:%%M:%%S&#39;
+      'syslog': {
+        'format': '%%(asctime)s %%(nodename)s %%(thread)s %%(levelname)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s',
+        'datefmt': '%%Y-%%m-%%d %%H:%%M:%%S'
       },
-      &#39;graylog&#39;: {
-        &#39;format&#39;: &#39;%%(levelname)s %%(nodename)s %%(thread)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s&#39;      
+      'graylog': {
+        'format': '%%(levelname)s %%(nodename)s %%(thread)s %%(module)s %%(process)d %%(name)s.%%(funcName)s:%%(userid)s %%(message)s'      
       }
     },
-    &#39;filters&#39;: {
-      &#39;odcontext&#39;: {
-        &#39;()&#39;: &#39;oc.logging.OdContextFilter&#39;
+    'filters': {
+      'odcontext': {
+        '()': 'oc.logging.OdContextFilter'
       }
     },
-    &#39;handlers&#39;: {
-      &#39;stdout&#39;: {
-        &#39;class&#39;: &#39;logging.StreamHandler&#39;,
-        &#39;filters&#39;: [ &#39;odcontext&#39; ],
-        &#39;level&#39;: &#39;DEBUG&#39;,
-        &#39;formatter&#39;: &#39;standard&#39;,
-        &#39;stream&#39;: &#39;ext://sys.stdout&#39;
+    'handlers': {
+      'stdout': {
+        'class': 'logging.StreamHandler',
+        'filters': [ 'odcontext' ],
+        'level': 'DEBUG',
+        'formatter': 'standard',
+        'stream': 'ext://sys.stdout'
       },
-      &#39;stderr&#39;: {
-        &#39;class&#39;: &#39;logging.StreamHandler&#39;,
-        &#39;filters&#39;: [ &#39;odcontext&#39; ],
-        &#39;level&#39;: &#39;ERROR&#39;,
-        &#39;formatter&#39;: &#39;standard&#39;,
-        &#39;stream&#39;: &#39;ext://sys.stderr&#39;
+      'stderr': {
+        'class': 'logging.StreamHandler',
+        'filters': [ 'odcontext' ],
+        'level': 'ERROR',
+        'formatter': 'standard',
+        'stream': 'ext://sys.stderr'
       },
-      &#39;trace&#39;: {
-        &#39;class&#39;: &#39;logging.handlers.RotatingFileHandler&#39;,
-        &#39;level&#39;: &#39;DEBUG&#39;,
-        &#39;filters&#39;: [ &#39;odcontext&#39; ],
-        &#39;formatter&#39;: &#39;standard&#39;,
-        &#39;filename&#39;: &#39;logs/trace.log&#39;,
-        &#39;maxBytes&#39;: 10485760,
-        &#39;backupCount&#39;: 20,
-        &#39;encoding&#39;: &#39;utf8&#39;,
-        &#39;mode&#39;: &#39;w&#39;
+      'trace': {
+        'class': 'logging.handlers.RotatingFileHandler',
+        'level': 'DEBUG',
+        'filters': [ 'odcontext' ],
+        'formatter': 'standard',
+        'filename': 'logs/trace.log',
+        'maxBytes': 10485760,
+        'backupCount': 20,
+        'encoding': 'utf8',
+        'mode': 'w'
       },
-      &#39;cherrypy_access&#39;: {
-        &#39;class&#39;: &#39;logging.handlers.RotatingFileHandler&#39;,
-        &#39;filters&#39;: [ &#39;odcontext&#39; ],
-        &#39;formatter&#39;: &#39;access&#39;,
-        &#39;filename&#39;: &#39;logs/access.log&#39;,
-        &#39;maxBytes&#39;: 10485760,
-        &#39;backupCount&#39;: 20,
-        &#39;encoding&#39;: &#39;utf8&#39;
+      'cherrypy_access': {
+        'class': 'logging.handlers.RotatingFileHandler',
+        'filters': [ 'odcontext' ],
+        'formatter': 'access',
+        'filename': 'logs/access.log',
+        'maxBytes': 10485760,
+        'backupCount': 20,
+        'encoding': 'utf8'
       }
     },
-    &#39;loggers&#39;: {
+    'loggers': {
       # dedicated python modules 
-      &#39;urllib3.connectionpool&#39;: {
-        &#39;level&#39;: &#39;ERROR&#39;,
+      'urllib3.connectionpool': {
+        'level': 'ERROR',
       },
-      &#39;kubernetes&#39;: {
-        &#39;handlers&#39;: [ &#39;stderr&#39;, &#39;stdout&#39;,  &#39;trace&#39; ],
-        &#39;level&#39;: &#39;ERROR&#39;,
-        &#39;propagate&#39;: False
+      'kubernetes': {
+        'handlers': [ 'stderr', 'stdout',  'trace' ],
+        'level': 'ERROR',
+        'propagate': False
       },
-      &#39;cherrypy.access&#39;: {
-        &#39;handlers&#39;: [ &#39;cherrypy_access&#39; ],
-        &#39;level&#39;: &#39;INFO&#39;,
-        &#39;propagate&#39;: False
+      'cherrypy.access': {
+        'handlers': [ 'cherrypy_access' ],
+        'level': 'INFO',
+        'propagate': False
       },
-      &#39;requests_oauthlib&#39; : {
-        &#39;handlers&#39;: [ &#39;stderr&#39;, &#39;stdout&#39;,  &#39;trace&#39; ],
-        &#39;level&#39;: &#39;ERROR&#39;,
-        &#39;propagate&#39;: False
+      'requests_oauthlib' : {
+        'handlers': [ 'stderr', 'stdout',  'trace' ],
+        'level': 'ERROR',
+        'propagate': False
       },
-      &#39;cherrypy&#39; : {
-        &#39;handlers&#39;: [ &#39;stderr&#39;, &#39;stdout&#39;,  &#39;trace&#39; ],
-        &#39;level&#39;: &#39;ERROR&#39;,
+      'cherrypy' : {
+        'handlers': [ 'stderr', 'stdout',  'trace' ],
+        'level': 'ERROR',
       }
     },
-    &#39;root&#39;: {
-      # put the level to &#39;DEBUG&#39;, each handler fix the level value
-      &#39;level&#39;: &#39;DEBUG&#39;,
-      &#39;handlers&#39;: [ &#39;stderr&#39;, &#39;stdout&#39;,  &#39;trace&#39; ]
+    'root': {
+      # put the level to 'DEBUG', each handler fix the level value
+      'level': 'DEBUG',
+      'handlers': [ 'stderr', 'stdout',  'trace' ]
     }}
 </code></pre></div>
 

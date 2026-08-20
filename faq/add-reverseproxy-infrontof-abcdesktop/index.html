@@ -4037,11 +4037,11 @@
 # public host url of the service
 # change this with your URL or
 # set the external URL service if you use a reverse proxy
-default_host_url : &#39;https://abcdesktop.domain.com&#39;
+default_host_url : 'https://abcdesktop.domain.com'
 # END OF DEFAULT HOST URL
 </code></pre></div>
 <p>If the <code>od.config</code> file does not exist, extract it from the <code>abcdesktop-config</code> ConfigMap to a local file:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.od\.config}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>od.config
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.od\.config}'</span><span class="w"> </span>&gt;<span class="w"> </span>od.config
 </code></pre></div>
 <p>This command outputs the current configuration to a local file named <code>od.config</code>.</p>
 <p>Edit the <code>od.config</code> file using your preferred editor:</p>
@@ -4050,7 +4050,7 @@ default_host_url : &#39;https://abcdesktop.domain.com&#39;
 <ul>
 <li>Update the <code>default_host_url</code> value:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>default_host_url : &#39;https://abcdesktop.domain.com&#39;
+<div class="highlight"><pre><span></span><code>default_host_url : 'https://abcdesktop.domain.com'
 </code></pre></div>
 <ul>
 <li>Apply the changes.</li>
@@ -4071,7 +4071,7 @@ proxy_http_version  1.1;
 # Add proxy header
 proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
 proxy_set_header Upgrade $http_upgrade;
-proxy_set_header Connection &quot;upgrade&quot;;
+proxy_set_header Connection "upgrade";
 proxy_set_header Accept-Language    $http_accept_language;
 proxy_set_header X-Real-IP $remote_addr;
 proxy_set_header Authorization $http_authorization;
@@ -4115,7 +4115,7 @@ set $my_node http://$YOUR_INTERNAL_SERVICE:$PORT; # change here your own interna
 # end of recommended changes
 #### 
 
-add_header X-Frame-Options &quot;SAMEORIGIN&quot;;
+add_header X-Frame-Options "SAMEORIGIN";
 
 # broadcast websocket 
 # if more than one device is connected to the same pod

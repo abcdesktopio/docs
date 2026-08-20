@@ -4228,7 +4228,7 @@ kind: CronJob
 metadata:
   name: abcdesktop-cleaner
 spec:
-  schedule: &quot;*/5 * * * *&quot;
+  schedule: "*/5 * * * *"
   failedJobsHistoryLimit: 2
   jobTemplate:
     spec:
@@ -4238,8 +4238,8 @@ spec:
         metadata:
           labels:
             name: abcdesktop-cleaner
-            netpol/pyos: &#39;true&#39;
-            netpol/dns: &#39;true&#39;
+            netpol/pyos: 'true'
+            netpol/dns: 'true'
         spec:
           containers:
           - name: abcdesktop-cleaner
@@ -4247,16 +4247,16 @@ spec:
             args:
             - /bin/sh
             - -c
-            - wget -q -t 3 -O- &quot;http://${PYOS_ADDR}:${PYOS_PORT}/API/manager/garbagecollector?expirein=${EXPIREIN}&amp;force=${FORCE}&quot;
+            - wget -q -t 3 -O- "http://${PYOS_ADDR}:${PYOS_PORT}/API/manager/garbagecollector?expirein=${EXPIREIN}&amp;force=${FORCE}"
             env:
             - name: PYOS_ADDR
-              value: &#39;pyos.abcdesktop.svc.cluster.local&#39;
+              value: 'pyos.abcdesktop.svc.cluster.local'
             - name: PYOS_PORT
-              value: &#39;8000&#39;
+              value: '8000'
             - name: EXPIREIN
-              value: &#39;900&#39;
+              value: '900'
             - name: FORCE
-              value: &#39;false&#39;
+              value: 'false'
           restartPolicy: OnFailure
           dnsPolicy: ClusterFirst
 </code></pre></div>

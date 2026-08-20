@@ -4422,28 +4422,28 @@
 <p>The <code>explicit</code> authentication configuration is defined as a dictionary object that contains one or more named provider entries.</p>
 <p>For example:</p>
 <div class="highlight"><pre><span></span><code>authmanagers: {
-  &#39;external&#39;: {},
-  &#39;implicit&#39;: {},
-  &#39;explicit&#39;: {
-    &#39;planet&#39;: {
-      &#39;default&#39;: True,
-      &#39;ldap_timeout&#39;: 15,
-      &#39;ldap_protocol&#39;: &#39;ldap&#39;,
-      &#39;ldap_basedn&#39;: &#39;ou=people,dc=planetexpress,dc=com&#39;,
-      &#39;servers&#39;: [ &#39;openldap&#39; ]
+  'external': {},
+  'implicit': {},
+  'explicit': {
+    'planet': {
+      'default': True,
+      'ldap_timeout': 15,
+      'ldap_protocol': 'ldap',
+      'ldap_basedn': 'ou=people,dc=planetexpress,dc=com',
+      'servers': [ 'openldap' ]
     } 
   },
-  &#39;implicit&#39;: {}}
+  'implicit': {}}
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>authmanagers: {
-  &#39;external&#39;: {},
-  &#39;implicit&#39;: {},
-  &#39;explicit&#39;: {
-    &#39;show_domains&#39;: True,
-    &#39;providers&#39;: {
-      &#39;LDAP&#39;: { 
-        &#39;config_ref&#39;: &#39;ldapconfig&#39;, 
-        &#39;enabled&#39;: True
+  'external': {},
+  'implicit': {},
+  'explicit': {
+    'show_domains': True,
+    'providers': {
+      'LDAP': { 
+        'config_ref': 'ldapconfig', 
+        'enabled': True
        }}}}
 </code></pre></div>
 <p>In this example, the <code>ldapconfig</code> dictionary must contain a key named <code>LDAP</code>.</p>
@@ -4478,9 +4478,9 @@
 <p>Providers:</p>
 <p>The provider is formatted as a dictionary:</p>
 <div class="highlight"><pre><span></span><code>{ 
- &#39;planet&#39;: {  
-   &#39;config_ref&#39;: &#39;ldapconfig&#39;,  
-   &#39;enabled&#39;: True  
+ 'planet': {  
+   'config_ref': 'ldapconfig',  
+   'enabled': True  
  }
 }
 </code></pre></div>
@@ -4508,12 +4508,12 @@
 <p>The <code>ldapconfig</code> is a dictionary.</p>
 <p>For example:</p>
 <div class="highlight"><pre><span></span><code><span class="err">ldapco</span><span class="kc">nf</span><span class="err">ig</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="err">&#39;pla</span><span class="kc">net</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="err">&#39;de</span><span class="kc">fault</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="err">&#39;ldap_</span><span class="kc">t</span><span class="err">imeou</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
-<span class="w">    </span><span class="err">&#39;ldap_based</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;ou=people</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="err">&#39;servers&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">&#39;ldap</span><span class="p">:</span><span class="c1">//192.168.8.195&#39; ],</span>
-<span class="w">    </span><span class="err">&#39;serviceaccou</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;logi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;c</span><span class="kc">n</span><span class="err">=admi</span><span class="kc">n</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;password&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;GoodNewsEveryo</span><span class="kc">ne</span><span class="err">&#39;</span><span class="w"> </span><span class="p">}}}}</span>
+<span class="w">  </span><span class="err">'pla</span><span class="kc">net</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">'de</span><span class="kc">fault</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="err">'ldap_</span><span class="kc">t</span><span class="err">imeou</span><span class="kc">t</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">    </span><span class="err">'ldap_based</span><span class="kc">n</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">'ou=people</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com'</span><span class="p">,</span>
+<span class="w">    </span><span class="err">'servers'</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">'ldap</span><span class="p">:</span><span class="c1">//192.168.8.195' ],</span>
+<span class="w">    </span><span class="err">'serviceaccou</span><span class="kc">nt</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">'logi</span><span class="kc">n</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">'c</span><span class="kc">n</span><span class="err">=admi</span><span class="kc">n</span><span class="p">,</span><span class="err">dc=pla</span><span class="kc">nete</span><span class="err">xpress</span><span class="p">,</span><span class="err">dc=com'</span><span class="p">,</span><span class="w"> </span><span class="err">'password'</span><span class="p">:</span><span class="w"> </span><span class="err">'GoodNewsEveryo</span><span class="kc">ne</span><span class="err">'</span><span class="w"> </span><span class="p">}}}}</span>
 </code></pre></div>
 <h2 id="ldap-configuration-reference">LDAP Configuration Reference</h2>
 <table>

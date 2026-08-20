@@ -4133,41 +4133,41 @@
 <div class="highlight"><pre><span></span><code>abcdesktop<span class="w"> </span>uninstall<span class="w"> </span>script<span class="w"> </span><span class="nv">namespace</span><span class="o">=</span>abcdesktop
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>kubectl<span class="w"> </span>version
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>namespace<span class="w"> </span>abcdesktop
-<span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>--selector<span class="o">=</span><span class="s2">&quot;type=x11server&quot;</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop
+<span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>--selector<span class="o">=</span><span class="s2">"type=x11server"</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>use<span class="w"> </span><span class="nb">local</span><span class="w"> </span>file<span class="w"> </span>abcdesktop.yaml
-role.rbac.authorization.k8s.io<span class="w"> </span><span class="s2">&quot;pyos-role&quot;</span><span class="w"> </span>deleted
-rolebinding.rbac.authorization.k8s.io<span class="w"> </span><span class="s2">&quot;pyos-rbac&quot;</span><span class="w"> </span>deleted
-serviceaccount<span class="w"> </span><span class="s2">&quot;pyos-serviceaccount&quot;</span><span class="w"> </span>deleted
-configmap<span class="w"> </span><span class="s2">&quot;configmap-mongodb-scripts&quot;</span><span class="w"> </span>deleted
-secret<span class="w"> </span><span class="s2">&quot;secret-mongodb&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;mongodb-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;memcached-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;router-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;nginx-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;speedtest-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;pyos-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;console-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;openldap-od&quot;</span><span class="w"> </span>deleted
-endpoints<span class="w"> </span><span class="s2">&quot;desktop&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;desktop&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;memcached&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;mongodb&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;speedtest&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;pyos&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;console&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;http-router&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;website&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;openldap&quot;</span><span class="w"> </span>deleted
+role.rbac.authorization.k8s.io<span class="w"> </span><span class="s2">"pyos-role"</span><span class="w"> </span>deleted
+rolebinding.rbac.authorization.k8s.io<span class="w"> </span><span class="s2">"pyos-rbac"</span><span class="w"> </span>deleted
+serviceaccount<span class="w"> </span><span class="s2">"pyos-serviceaccount"</span><span class="w"> </span>deleted
+configmap<span class="w"> </span><span class="s2">"configmap-mongodb-scripts"</span><span class="w"> </span>deleted
+secret<span class="w"> </span><span class="s2">"secret-mongodb"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"mongodb-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"memcached-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"router-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"nginx-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"speedtest-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"pyos-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"console-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"openldap-od"</span><span class="w"> </span>deleted
+endpoints<span class="w"> </span><span class="s2">"desktop"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"desktop"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"memcached"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"mongodb"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"speedtest"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"pyos"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"console"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"http-router"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"website"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"openldap"</span><span class="w"> </span>deleted
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>abcdesktop.yaml
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>secrets<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>abcdesktop
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>configmap<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>abcdesktop
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>pvc<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>abcdesktop
 <span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>deleting<span class="w"> </span>namespace<span class="w"> </span>abcdesktop
-<span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>namespace<span class="w"> </span><span class="s2">&quot;abcdesktop&quot;</span><span class="w"> </span>deleted
+<span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>namespace<span class="w"> </span><span class="s2">"abcdesktop"</span><span class="w"> </span>deleted
 </code></pre></div>
 </details>
 <p>Wait for the following confirmation message before proceeding:</p>
-<div class="highlight"><pre><span></span><code>[OK] namespace &quot;abcdesktop&quot; deleted
+<div class="highlight"><pre><span></span><code>[OK] namespace "abcdesktop" deleted
 </code></pre></div>
 <p>abcdesktop.io has been successfully removed from the Kubernetes cluster.</p>
 <h2 id="uninstalling-with-a-custom-namespace">Uninstalling with a Custom Namespace</h2>
@@ -4183,37 +4183,37 @@ chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>u
 <div class="highlight"><pre><span></span><code>abcdesktop<span class="w"> </span>uninstall<span class="w"> </span>script<span class="w"> </span><span class="nv">namespace</span><span class="o">=</span>superdesktop
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>kubectl<span class="w"> </span>version
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>namespace<span class="w"> </span>superdesktop
-<span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>--selector<span class="o">=</span><span class="s2">&quot;type=x11server&quot;</span><span class="w"> </span>-n<span class="w"> </span>superdesktop
+<span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>--selector<span class="o">=</span><span class="s2">"type=x11server"</span><span class="w"> </span>-n<span class="w"> </span>superdesktop
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>use<span class="w"> </span><span class="nb">local</span><span class="w"> </span>file<span class="w"> </span>abcdesktop.yaml
-role.rbac.authorization.k8s.io<span class="w"> </span><span class="s2">&quot;pyos-role&quot;</span><span class="w"> </span>deleted
-rolebinding.rbac.authorization.k8s.io<span class="w"> </span><span class="s2">&quot;pyos-rbac&quot;</span><span class="w"> </span>deleted
-serviceaccount<span class="w"> </span><span class="s2">&quot;pyos-serviceaccount&quot;</span><span class="w"> </span>deleted
-configmap<span class="w"> </span><span class="s2">&quot;configmap-mongodb-scripts&quot;</span><span class="w"> </span>deleted
-secret<span class="w"> </span><span class="s2">&quot;secret-mongodb&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;mongodb-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;memcached-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;router-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;nginx-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;speedtest-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;pyos-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;console-od&quot;</span><span class="w"> </span>deleted
-deployment.apps<span class="w"> </span><span class="s2">&quot;openldap-od&quot;</span><span class="w"> </span>deleted
-endpoints<span class="w"> </span><span class="s2">&quot;desktop&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;desktop&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;memcached&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;mongodb&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;speedtest&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;pyos&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;console&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;http-router&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;website&quot;</span><span class="w"> </span>deleted
-service<span class="w"> </span><span class="s2">&quot;openldap&quot;</span><span class="w"> </span>deleted
+role.rbac.authorization.k8s.io<span class="w"> </span><span class="s2">"pyos-role"</span><span class="w"> </span>deleted
+rolebinding.rbac.authorization.k8s.io<span class="w"> </span><span class="s2">"pyos-rbac"</span><span class="w"> </span>deleted
+serviceaccount<span class="w"> </span><span class="s2">"pyos-serviceaccount"</span><span class="w"> </span>deleted
+configmap<span class="w"> </span><span class="s2">"configmap-mongodb-scripts"</span><span class="w"> </span>deleted
+secret<span class="w"> </span><span class="s2">"secret-mongodb"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"mongodb-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"memcached-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"router-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"nginx-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"speedtest-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"pyos-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"console-od"</span><span class="w"> </span>deleted
+deployment.apps<span class="w"> </span><span class="s2">"openldap-od"</span><span class="w"> </span>deleted
+endpoints<span class="w"> </span><span class="s2">"desktop"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"desktop"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"memcached"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"mongodb"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"speedtest"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"pyos"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"console"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"http-router"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"website"</span><span class="w"> </span>deleted
+service<span class="w"> </span><span class="s2">"openldap"</span><span class="w"> </span>deleted
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>abcdesktop.yaml
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>secrets<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>superdesktop
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>configmap<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>superdesktop
 <span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>pvc<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>superdesktop
 <span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>deleting<span class="w"> </span>namespace<span class="w"> </span>superdesktop
-<span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>namespace<span class="w"> </span><span class="s2">&quot;superdesktop&quot;</span><span class="w"> </span>deleted
+<span class="o">[</span>OK<span class="o">]</span><span class="w"> </span>namespace<span class="w"> </span><span class="s2">"superdesktop"</span><span class="w"> </span>deleted
 </code></pre></div>
 </details>
 <p>abcdesktop.io has been successfully removed from the Kubernetes cluster using the custom namespace.</p>
@@ -4233,35 +4233,35 @@ service<span class="w"> </span><span class="s2">&quot;openldap&quot;</span><span
 [OK] kubectl get namespace abcdesktop
 [OK] delete pods --selector=\
 [OK] use local file abcdesktop.yaml
-role.rbac.authorization.k8s.io &quot;pyos-role&quot; deleted
-rolebinding.rbac.authorization.k8s.io &quot;pyos-rbac&quot; deleted
-serviceaccount &quot;pyos-serviceaccount&quot; deleted
-configmap &quot;configmap-mongodb-scripts&quot; deleted
-secret &quot;secret-mongodb&quot; deleted
-deployment.apps &quot;mongodb-od&quot; deleted
-deployment.apps &quot;memcached-od&quot; deleted
-deployment.apps &quot;router-od&quot; deleted
-deployment.apps &quot;nginx-od&quot; deleted
-deployment.apps &quot;speedtest-od&quot; deleted
-deployment.apps &quot;pyos-od&quot; deleted
-deployment.apps &quot;console-od&quot; deleted
-deployment.apps &quot;openldap-od&quot; deleted
-endpoints &quot;desktop&quot; deleted
-service &quot;desktop&quot; deleted
-service &quot;memcached&quot; deleted
-service &quot;mongodb&quot; deleted
-service &quot;speedtest&quot; deleted
-service &quot;pyos&quot; deleted
-service &quot;console&quot; deleted
-service &quot;http-router&quot; deleted
-service &quot;website&quot; deleted
-service &quot;openldap&quot; deleted
+role.rbac.authorization.k8s.io "pyos-role" deleted
+rolebinding.rbac.authorization.k8s.io "pyos-rbac" deleted
+serviceaccount "pyos-serviceaccount" deleted
+configmap "configmap-mongodb-scripts" deleted
+secret "secret-mongodb" deleted
+deployment.apps "mongodb-od" deleted
+deployment.apps "memcached-od" deleted
+deployment.apps "router-od" deleted
+deployment.apps "nginx-od" deleted
+deployment.apps "speedtest-od" deleted
+deployment.apps "pyos-od" deleted
+deployment.apps "console-od" deleted
+deployment.apps "openldap-od" deleted
+endpoints "desktop" deleted
+service "desktop" deleted
+service "memcached" deleted
+service "mongodb" deleted
+service "speedtest" deleted
+service "pyos" deleted
+service "console" deleted
+service "http-router" deleted
+service "website" deleted
+service "openldap" deleted
 [OK] kubectl delete -f abcdesktop.yaml
 [OK] kubectl delete secrets --all -n abcdesktop
 [OK] kubectl delete configmap --all -n abcdesktop
 [OK] kubectl delete pvc --all -n abcdesktop
 [INFO] deleting namespace abcdesktop
-[OK] namespace &quot;abcdesktop&quot; deleted
+[OK] namespace "abcdesktop" deleted
 [INFO] delete abcdesktop related files
 [OK] remove od.config abcdesktop.yaml poduser.yaml
 [OK] remove *.pem
@@ -4283,35 +4283,35 @@ service &quot;openldap&quot; deleted
 [OK] delete pods --selector=\
 [OK] use local file abcdesktop.yaml
 [OK] updated abcdesktop.yaml file with new namespace superdesktop
-role.rbac.authorization.k8s.io &quot;pyos-role&quot; deleted
-rolebinding.rbac.authorization.k8s.io &quot;pyos-rbac&quot; deleted
-serviceaccount &quot;pyos-serviceaccount&quot; deleted
-configmap &quot;configmap-mongodb-scripts&quot; deleted
-secret &quot;secret-mongodb&quot; deleted
-deployment.apps &quot;mongodb-od&quot; deleted
-deployment.apps &quot;memcached-od&quot; deleted
-deployment.apps &quot;router-od&quot; deleted
-deployment.apps &quot;nginx-od&quot; deleted
-deployment.apps &quot;speedtest-od&quot; deleted
-deployment.apps &quot;pyos-od&quot; deleted
-deployment.apps &quot;console-od&quot; deleted
-deployment.apps &quot;openldap-od&quot; deleted
-endpoints &quot;desktop&quot; deleted
-service &quot;desktop&quot; deleted
-service &quot;memcached&quot; deleted
-service &quot;mongodb&quot; deleted
-service &quot;speedtest&quot; deleted
-service &quot;pyos&quot; deleted
-service &quot;console&quot; deleted
-service &quot;http-router&quot; deleted
-service &quot;website&quot; deleted
-service &quot;openldap&quot; deleted
+role.rbac.authorization.k8s.io "pyos-role" deleted
+rolebinding.rbac.authorization.k8s.io "pyos-rbac" deleted
+serviceaccount "pyos-serviceaccount" deleted
+configmap "configmap-mongodb-scripts" deleted
+secret "secret-mongodb" deleted
+deployment.apps "mongodb-od" deleted
+deployment.apps "memcached-od" deleted
+deployment.apps "router-od" deleted
+deployment.apps "nginx-od" deleted
+deployment.apps "speedtest-od" deleted
+deployment.apps "pyos-od" deleted
+deployment.apps "console-od" deleted
+deployment.apps "openldap-od" deleted
+endpoints "desktop" deleted
+service "desktop" deleted
+service "memcached" deleted
+service "mongodb" deleted
+service "speedtest" deleted
+service "pyos" deleted
+service "console" deleted
+service "http-router" deleted
+service "website" deleted
+service "openldap" deleted
 [OK] kubectl delete -f abcdesktop.yaml
 [OK] kubectl delete secrets --all -n superdesktop
 [OK] kubectl delete configmap --all -n superdesktop
 [OK] kubectl delete pvc --all -n superdesktop
 [INFO] deleting namespace superdesktop
-[OK] namespace &quot;superdesktop&quot; deleted
+[OK] namespace "superdesktop" deleted
 [INFO] delete abcdesktop related files
 [OK] remove od.config abcdesktop.yaml poduser.yaml
 [OK] remove *.pem

@@ -4177,50 +4177,50 @@
 <p>Deploy the Kubernetes cluster by running the following command.</p>
 <div class="highlight"><pre><span></span><code>gcloud beta container \
     --project \
-&quot;ino-abcdesktop-prd&quot; clusters create &quot;abcdesktop-demo-cluster&quot; \
+"ino-abcdesktop-prd" clusters create "abcdesktop-demo-cluster" \
     --region \
-&quot;europe-west9&quot; \
+"europe-west9" \
     --no-enable-basic-auth \
     --cluster-version \
-&quot;1.35.3-gke.1389000&quot; \
+"1.35.3-gke.1389000" \
     --release-channel \
-&quot;regular&quot; \
+"regular" \
     --machine-type \
-&quot;n4-standard-4&quot; \
+"n4-standard-4" \
     --image-type \
-&quot;COS_CONTAINERD&quot; \
+"COS_CONTAINERD" \
     --disk-type \
-&quot;hyperdisk-balanced&quot; \
+"hyperdisk-balanced" \
     --disk-size \
-&quot;100&quot; \
+"100" \
     --metadata \
 disable-legacy-endpoints=true \
     --service-account \
-&quot;default&quot; \
+"default" \
     --scopes \
-&quot;https://www.googleapis.com/auth/devstorage.read_only&quot;,&quot;https://www.googleapis.com/auth/logging.write&quot;,&quot;https://www.googleapis.com/auth/monitoring&quot;,&quot;https://www.googleapis.com/auth/service.management.readonly&quot;,&quot;https://www.googleapis.com/auth/servicecontrol&quot;,&quot;https://www.googleapis.com/auth/trace.append&quot; \
+"https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/trace.append" \
     --max-pods-per-node \
-&quot;110&quot; \
+"110" \
     --num-nodes \
-&quot;6&quot; \
+"6" \
     --logging=SYSTEM,WORKLOAD \
     --monitoring=SYSTEM,STORAGE,HPA,POD,DAEMONSET,DEPLOYMENT,STATEFULSET,CADVISOR,KUBELET,DCGM,JOBSET \
     --enable-private-nodes \
     --enable-ip-alias \
     --network \
-&quot;projects/ino-abcdesktop-prd/global/networks/vpc-demo-abcdesktop-network&quot; \
+"projects/ino-abcdesktop-prd/global/networks/vpc-demo-abcdesktop-network" \
     --subnetwork \
-&quot;projects/ino-abcdesktop-prd/regions/europe-west9/subnetworks/gke-abcdesktop-demo-cluster-subnet-a91bbd71&quot; \
+"projects/ino-abcdesktop-prd/regions/europe-west9/subnetworks/gke-abcdesktop-demo-cluster-subnet-a91bbd71" \
     --enable-intra-node-visibility \
     --default-max-pods-per-node \
-&quot;110&quot; \
+"110" \
     --enable-autoscaling \
     --min-nodes \
-&quot;0&quot; \
+"0" \
     --max-nodes \
-&quot;6&quot; \
+"6" \
     --location-policy \
-&quot;BALANCED&quot; \
+"BALANCED" \
     --enable-ip-access \
     --enable-authorized-networks-on-private-endpoint \
     --security-posture=standard \
@@ -4243,7 +4243,7 @@ HorizontalPodAutoscaling,HttpLoadBalancing,NodeLocalDNS,GcePersistentDiskCsiDriv
     --shielded-integrity-monitoring \
     --shielded-secure-boot \
     --node-locations \
-&quot;europe-west9-b&quot;,&quot;europe-west9-a&quot;,&quot;europe-west9-c&quot;
+"europe-west9-b","europe-west9-a","europe-west9-c"
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

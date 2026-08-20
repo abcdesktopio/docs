@@ -4719,7 +4719,7 @@ tags:
 <p>Returns HTTP error responses with logging. Uses <code>ngx.exit(ngx.HTTP_OK)</code> after setting <code>ngx.status</code> to properly interrupt execution and flush the response.</p>
 <h4 id="3-rsa-decryption">3. RSA Decryption</h4>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">msg</span><span class="p">,</span><span class="w"> </span><span class="nv">private_key</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">rsa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s2">&quot;resty.rsa&quot;</span>
+<span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">rsa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s2">"resty.rsa"</span>
 <span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">priv</span><span class="p">,</span><span class="w"> </span><span class="nv">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">rsa</span><span class="p">:</span><span class="nf">new</span><span class="p">({</span><span class="w"> </span><span class="nv">private_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">private_key</span><span class="w"> </span><span class="p">})</span>
 <span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">crypto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ngx</span><span class="p">.</span><span class="nf">decode_base64</span><span class="p">(</span><span class="nv">msg</span><span class="p">)</span>
 <span class="w">    </span><span class="kd">local</span><span class="w"> </span><span class="nv">decrypted</span><span class="p">,</span><span class="w"> </span><span class="nv">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">priv</span><span class="p">:</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">crypto</span><span class="p">)</span>
@@ -4736,16 +4736,16 @@ tags:
 </code></pre></div>
 <p>The <code>targetmap</code> shared dictionary (8MB) caches resolved targets to avoid repeated JWT processing.</p>
 <h4 id="5-jwt-verification">5. JWT Verification</h4>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">jwt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s2">&quot;resty.jwt&quot;</span>
-<span class="kd">local</span><span class="w"> </span><span class="nv">jwt_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ngx</span><span class="p">.</span><span class="py">shared</span><span class="p">.</span><span class="py">rsakeymap</span><span class="p">:</span><span class="nf">get</span><span class="p">(</span><span class="s1">&#39;jwt_desktop_signing_public_key&#39;</span><span class="p">)</span>
-<span class="w">  </span><span class="ow">or</span><span class="w"> </span><span class="nf">readfile</span><span class="p">(</span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">&quot;JWT_DESKTOP_SIGNING_PUBLIC_KEY&quot;</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">jwt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s2">"resty.jwt"</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">jwt_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ngx</span><span class="p">.</span><span class="py">shared</span><span class="p">.</span><span class="py">rsakeymap</span><span class="p">:</span><span class="nf">get</span><span class="p">(</span><span class="s1">'jwt_desktop_signing_public_key'</span><span class="p">)</span>
+<span class="w">  </span><span class="ow">or</span><span class="w"> </span><span class="nf">readfile</span><span class="p">(</span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">"JWT_DESKTOP_SIGNING_PUBLIC_KEY"</span><span class="p">))</span>
 
 <span class="kd">local</span><span class="w"> </span><span class="nv">jwt_obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">jwt</span><span class="p">:</span><span class="nf">verify</span><span class="p">(</span><span class="nv">jwt_secret</span><span class="p">,</span><span class="w"> </span><span class="nv">jwt_token</span><span class="p">)</span>
 </code></pre></div>
 <p>Verifies the JWT signature using the configured RSA public key.</p>
 <h4 id="6-payload-decryption-caching">6. Payload Decryption &amp; Caching</h4>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">private_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ngx</span><span class="p">.</span><span class="py">shared</span><span class="p">.</span><span class="py">rsakeymap</span><span class="p">:</span><span class="nf">get</span><span class="p">(</span><span class="s1">&#39;jwt_desktop_payload_private_key&#39;</span><span class="p">)</span>
-<span class="w">  </span><span class="ow">or</span><span class="w"> </span><span class="nf">readfile</span><span class="p">(</span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">&quot;JWT_DESKTOP_PAYLOAD_PRIVATE_KEY&quot;</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">private_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ngx</span><span class="p">.</span><span class="py">shared</span><span class="p">.</span><span class="py">rsakeymap</span><span class="p">:</span><span class="nf">get</span><span class="p">(</span><span class="s1">'jwt_desktop_payload_private_key'</span><span class="p">)</span>
+<span class="w">  </span><span class="ow">or</span><span class="w"> </span><span class="nf">readfile</span><span class="p">(</span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">"JWT_DESKTOP_PAYLOAD_PRIVATE_KEY"</span><span class="p">))</span>
 
 <span class="nv">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">payload</span><span class="p">.</span><span class="py">hash</span><span class="p">,</span><span class="w"> </span><span class="nv">private_key</span><span class="p">)</span>
 
@@ -4924,8 +4924,8 @@ tags:
 <h3 id="sites-enabledroutehttpconf-server-block"><code>sites-enabled/routehttp.conf</code> - Server Block</h3>
 <p><strong>Initialization:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="nv">init_by_lua_block</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">pyos_fqdn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">&quot;PYOS_FQDN&quot;</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s2">&quot;pyos&quot;</span>
-<span class="w">  </span><span class="nv">pyos_service_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">&quot;PYOS_SERVICE_PORT&quot;</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s2">&quot;8000&quot;</span>
+<span class="w">  </span><span class="nv">pyos_fqdn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">"PYOS_FQDN"</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s2">"pyos"</span>
+<span class="w">  </span><span class="nv">pyos_service_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">"PYOS_SERVICE_PORT"</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s2">"8000"</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Service port variables:</strong></p>
@@ -4954,7 +4954,7 @@ tags:
 <span class="k">proxy_buffering</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
 <span class="k">proxy_http_version</span><span class="w"> </span><span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
 <span class="k">proxy_set_header</span><span class="w"> </span><span class="s">Upgrade</span><span class="w"> </span><span class="nv">$http_upgrade</span><span class="p">;</span>
-<span class="k">proxy_set_header</span><span class="w"> </span><span class="s">Connection</span><span class="w"> </span><span class="s">&quot;upgrade&quot;</span><span class="p">;</span>
+<span class="k">proxy_set_header</span><span class="w"> </span><span class="s">Connection</span><span class="w"> </span><span class="s">"upgrade"</span><span class="p">;</span>
 </code></pre></div>
 <hr />
 <h2 id="docker-images">Docker Images</h2>

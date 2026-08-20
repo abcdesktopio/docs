@@ -4246,29 +4246,29 @@ Labels:         abcdesktop/role=desktop
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">endpointSelector</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">shipcrew</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="c1"># Selector based on group label</span>
+<span class="w">      </span><span class="nt">shipcrew</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span><span class="w"> </span><span class="c1"># Selector based on group label</span>
 <span class="w">  </span><span class="nt">egress</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">toEndpoints</span><span class="p">:</span>
 <span class="w">    </span><span class="c1"># Allow all DNS resolutions</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">       </span><span class="s">&quot;k8s:io.kubernetes.pod.namespace&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-system</span>
-<span class="w">       </span><span class="s">&quot;k8s:k8s-app&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-dns</span>
+<span class="w">       </span><span class="s">"k8s:io.kubernetes.pod.namespace"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-system</span>
+<span class="w">       </span><span class="s">"k8s:k8s-app"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-dns</span>
 <span class="w">    </span><span class="nt">toPorts</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;53&quot;</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"53"</span>
 <span class="w">           </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANY</span>
 <span class="w">        </span><span class="nt">rules</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">dns</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">"*"</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">toFQDNs</span><span class="p">:</span>
 <span class="w">      </span><span class="c1"># Add here all the FQDN patterns you want to grant access to</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*.facebook.com&quot;</span><span class="w">  </span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*.xx.fbcdn.net&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">"*.facebook.com"</span><span class="w">  </span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">"*.xx.fbcdn.net"</span>
 <span class="w">    </span><span class="nt">toPorts</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;80&quot;</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"80"</span>
 <span class="w">           </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;443&quot;</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"443"</span>
 <span class="w">           </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
 </code></pre></div>
 <p>Apply the policy to the cluster.</p>
@@ -4291,28 +4291,28 @@ allow-facebook-shipcrew    27h
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">endpointSelector</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">adminstaff</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="c1"># Selector based on group label</span>
+<span class="w">      </span><span class="nt">adminstaff</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span><span class="w"> </span><span class="c1"># Selector based on group label</span>
 <span class="w">  </span><span class="nt">egress</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">toEndpoints</span><span class="p">:</span>
 <span class="w">    </span><span class="c1"># Allow all DNS resolutions</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">       </span><span class="s">&quot;k8s:io.kubernetes.pod.namespace&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-system</span>
-<span class="w">       </span><span class="s">&quot;k8s:k8s-app&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-dns</span>
+<span class="w">       </span><span class="s">"k8s:io.kubernetes.pod.namespace"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-system</span>
+<span class="w">       </span><span class="s">"k8s:k8s-app"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-dns</span>
 <span class="w">    </span><span class="nt">toPorts</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;53&quot;</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"53"</span>
 <span class="w">           </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANY</span>
 <span class="w">        </span><span class="nt">rules</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">dns</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">"*"</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">toFQDNs</span><span class="p">:</span>
 <span class="w">      </span><span class="c1"># Add here all the FQDN patterns you want to grant access to</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*.youtube.com&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">"*.youtube.com"</span>
 <span class="w">    </span><span class="nt">toPorts</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;80&quot;</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"80"</span>
 <span class="w">           </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;443&quot;</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"443"</span>
 <span class="w">           </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
 </code></pre></div>
 <p>Apply the policy to the cluster.</p>

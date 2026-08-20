@@ -4268,13 +4268,13 @@
 <span class="w">    </span><span class="nt">from</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">podSelector</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">netpol/memcached</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
+<span class="w">          </span><span class="nt">netpol/memcached</span><span class="p">:</span><span class="w"> </span><span class="s">'true'</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">namespaceSelector</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-monitor</span>
 <span class="w">      </span><span class="nt">podSelector</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">netpol/metrics</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
+<span class="w">          </span><span class="nt">netpol/metrics</span><span class="p">:</span><span class="w"> </span><span class="s">'true'</span>
 </code></pre></div>
 <p>The NetworkPolicy for the memcached service <code>permits</code>, named <code>memcached-permits</code>, allows all pods with the label <code>netpol/memcached: 'true'</code> to establish outbound connections to TCP port 11211 on pods with the label <code>run: memcached-od</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span>
@@ -4285,7 +4285,7 @@
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">podSelector</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">netpol/memcached</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
+<span class="w">      </span><span class="nt">netpol/memcached</span><span class="p">:</span><span class="w"> </span><span class="s">'true'</span>
 <span class="w">  </span><span class="nt">policyTypes</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Egress</span>
 <span class="w">  </span><span class="nt">egress</span><span class="p">:</span>
@@ -4327,7 +4327,7 @@
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">podSelector</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;x11server&#39;</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">'x11server'</span>
 <span class="w">  </span><span class="nt">policyTypes</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ingress</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Egress</span>
@@ -4335,7 +4335,7 @@
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">from</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">podSelector</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">netpol/ocuser</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
+<span class="w">          </span><span class="nt">netpol/ocuser</span><span class="p">:</span><span class="w"> </span><span class="s">'true'</span>
 <span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
 <span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4714</span>
@@ -4394,14 +4394,14 @@
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">podSelector</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">netpol/ocuser</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
+<span class="w">      </span><span class="nt">netpol/ocuser</span><span class="p">:</span><span class="w"> </span><span class="s">'true'</span>
 <span class="w">  </span><span class="nt">policyTypes</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Egress</span>
 <span class="w">  </span><span class="nt">egress</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">podSelector</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;x11server&#39;</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">'x11server'</span>
 <span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
 <span class="w">    </span><span class="c1"># default pulseaudio websocket audio without webrtc gateway</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>

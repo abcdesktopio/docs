@@ -4020,7 +4020,7 @@
 <li><strong><code>od.config</code> file</strong> — Extract the current configuration:</li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
-kubectl<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.od\.config}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>od.config
+kubectl<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.od\.config}'</span><span class="w"> </span>&gt;<span class="w"> </span>od.config
 </code></pre></div>
 <ol>
 <li>

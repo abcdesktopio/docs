@@ -4087,75 +4087,75 @@
 <h2 id="apply-runtimeclassname-to-the-abcdesktop-configuration">Apply <code>runtimeClassName</code> to the abcdesktop Configuration</h2>
 <p>Retrieve the <code>od.config</code> file.</p>
 <p>If you do not already have a local copy of <code>od.config</code>, run the following command:</p>
-<div class="highlight"><pre><span></span><code>kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath=&#39;{.data.od\.config}&#39; &gt; od.config
+<div class="highlight"><pre><span></span><code>kubectl -n abcdesktop get configmap abcdesktop-config -o jsonpath='{.data.od\.config}' &gt; od.config
 </code></pre></div>
 <p>Edit <code>od.config</code> and update the <code>executeclasses</code> dictionary to set <code>'runtimeClassName': 'nvidia'</code> for the appropriate execution class entries, then save the file.</p>
 <div class="highlight"><pre><span></span><code># THIS IS WHERE THE RESOURCES ARE ACTUALLY DEFINED FOR THE POD DESKTOP.
 # Application execute class defined
 executeclasses : {
-    &#39;default&#39;:{
-      &#39;nodeSelector&#39;:None,
-      &#39;description&#39;: &#39;default: up to 4 CPU cores and 8Gi&#39;,
-      &#39;runtimeClassName&#39;: None,
-      &#39;resources&#39;:{
-        &#39;requests&#39;:{&#39;memory&#39;:&#39;576Mi&#39;,&#39;cpu&#39;:&#39;220m&#39;},       
-        &#39;limits&#39;:  {&#39;memory&#39;:&#39;8Gi&#39;,&#39;cpu&#39;:&#39;4000m&#39;}
+    'default':{
+      'nodeSelector':None,
+      'description': 'default: up to 4 CPU cores and 8Gi',
+      'runtimeClassName': None,
+      'resources':{
+        'requests':{'memory':'576Mi','cpu':'220m'},       
+        'limits':  {'memory':'8Gi','cpu':'4000m'}
       }
     },
-    &#39;bronze&#39;:{
-      &#39;nodeSelector&#39;:None,
-      &#39;runtimeClassName&#39;: None,
-      &#39;description&#39;: &#39;bronze: up to 2 CPU cores and 8Gi&#39;,
-      &#39;resources&#39;:{
-        &#39;requests&#39;:{&#39;memory&#39;:&#39;576Mi&#39;,&#39;cpu&#39;:&#39;220m&#39;},
-        &#39;limits&#39;:  {&#39;memory&#39;:&#39;8Gi&#39;,&#39;cpu&#39;:&#39;2000m&#39;}
+    'bronze':{
+      'nodeSelector':None,
+      'runtimeClassName': None,
+      'description': 'bronze: up to 2 CPU cores and 8Gi',
+      'resources':{
+        'requests':{'memory':'576Mi','cpu':'220m'},
+        'limits':  {'memory':'8Gi','cpu':'2000m'}
       }
     },
-    &#39;silver&#39;:{
-      &#39;nodeSelector&#39;: None,
-      &#39;description&#39;: &#39;silver: 4 CPU cores and 32Gi RAM&#39;,
-      &#39;runtimeClassName&#39;: None,
-      &#39;resources&#39;:{
-        &#39;requests&#39;:{&#39;memory&#39;:&#39;2Gi&#39;,&#39;cpu&#39;:&#39;2000m&#39;},       
-        &#39;limits&#39;:{&#39;memory&#39;:&#39;32Gi&#39;,&#39;cpu&#39;:&#39;4000m&#39;} 
+    'silver':{
+      'nodeSelector': None,
+      'description': 'silver: 4 CPU cores and 32Gi RAM',
+      'runtimeClassName': None,
+      'resources':{
+        'requests':{'memory':'2Gi','cpu':'2000m'},       
+        'limits':{'memory':'32Gi','cpu':'4000m'} 
       }
     },
-  &#39;gold&#39;:{
-    &#39;nodeSelector&#39;:{&#39;nvidia.com/gpu.present&#39;: &#39;true&#39;},
-    &#39;description&#39;: &#39;gold: 4 CPU cores, 32Gi RAM and 1 GPU&#39;,
-    &#39;runtimeClassName&#39;: &#39;nvidia&#39;,
-    &#39;resources&#39;:{
-      &#39;requests&#39;:{&#39;memory&#39;:&quot;2Gi&quot;,&#39;cpu&#39;:&#39;4000m&#39;},       
-      &#39;limits&#39;:{&#39;memory&#39;:&quot;32Gi&quot;,&#39;cpu&#39;:&#39;4000m&#39;}
+  'gold':{
+    'nodeSelector':{'nvidia.com/gpu.present': 'true'},
+    'description': 'gold: 4 CPU cores, 32Gi RAM and 1 GPU',
+    'runtimeClassName': 'nvidia',
+    'resources':{
+      'requests':{'memory':"2Gi",'cpu':'4000m'},       
+      'limits':{'memory':"32Gi",'cpu':'4000m'}
     }
   },
-  &#39;platinum&#39;:{
-    &#39;nodeSelector&#39;:{&#39;nvidia.com/gpu.present&#39;:&#39;true&#39;},
-    &#39;description&#39;: &#39;platinum: 8 CPU cores, 128G RAM and 1 GPU&#39;,
-    &#39;runtimeClassName&#39;: &#39;nvidia&#39;,
-    &#39;resources&#39;:{
-      &#39;requests&#39;:{&#39;memory&#39;:&#39;4Gi&#39;,&#39;cpu&#39;:&#39;4000m&#39;},       
-      &#39;limits&#39;:{&#39;memory&#39;:&#39;128Gi&#39;,&#39;cpu&#39;:&#39;8000m&#39;} } } }
+  'platinum':{
+    'nodeSelector':{'nvidia.com/gpu.present':'true'},
+    'description': 'platinum: 8 CPU cores, 128G RAM and 1 GPU',
+    'runtimeClassName': 'nvidia',
+    'resources':{
+      'requests':{'memory':'4Gi','cpu':'4000m'},       
+      'limits':{'memory':'128Gi','cpu':'8000m'} } } }
 
 # features_permissions
 # read executeclasses and permit a user to set a dedicated class name as desktop features
-# &#39;read&#39;   features_permissions is exposed to the frontend
-# &#39;submit&#39; features_permissions can be set to create a desktop
+# 'read'   features_permissions is exposed to the frontend
+# 'submit' features_permissions can be set to create a desktop
 # 
-desktop.features_permissions : [ &#39;read&#39;, &#39;submit&#39; ]
+desktop.features_permissions : [ 'read', 'submit' ]
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>desktop.overwrite_environment_variable_for_application : &quot;/composer/overwrite_environment_variable_for_application.sh&quot;
+<div class="highlight"><pre><span></span><code>desktop.overwrite_environment_variable_for_application : "/composer/overwrite_environment_variable_for_application.sh"
 </code></pre></div>
 <p>The <code>overwrite_environment_variable_for_application.sh</code> Bash script runs inside the <code>graphical</code> container of the user's pod.</p>
 <div class="highlight"><pre><span></span><code>gpu_uuid=$(nvidia-smi --query-gpu=gpu_uuid --format=csv,noheader)
 # NVIDIA_VISIBLE_DEVICES is also know as k8s.device-plugin.nvidia.com/gpu
 # define the variable named k8s.device-plugin.nvidia.com/gpu to the $gpu_uuid value
-NVIDIA_GPU=&quot;{ \&quot;k8s.device-plugin.nvidia.com/gpu\&quot; : \&quot;$gpu_uuid\&quot; }&quot;  
+NVIDIA_GPU="{ \"k8s.device-plugin.nvidia.com/gpu\" : \"$gpu_uuid\" }"  
 </code></pre></div>
 <p>It reads the GPU UUID, then sets the variable <code>NVIDIA_GPU</code> to <code>k8s.device-plugin.nvidia.com/gpu=$gpu_uuid</code>.</p>
 <p>For example, when <code>overwrite_environment_variable_for_application.sh</code> is executed on a GPU-equipped host:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$NVIDIA_GPU</span>
-<span class="o">{</span><span class="w"> </span><span class="s2">&quot;k8s.device-plugin.nvidia.com/gpu&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb&quot;</span><span class="w"> </span><span class="o">}</span>
+<span class="o">{</span><span class="w"> </span><span class="s2">"k8s.device-plugin.nvidia.com/gpu"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"GPU-42b94ea3-8e4b-7c2c-0f70-3f3efcdc27bb"</span><span class="w"> </span><span class="o">}</span>
 </code></pre></div>
 <p>A newly launched application container inherits the <code>NVIDIA_VISIBLE_DEVICES</code> environment variable from the Bash script result. For example, running <code>echo $NVIDIA_VISIBLE_DEVICES</code> inside a new container returns the same GPU UUID:</p>
 <div class="highlight"><pre><span></span><code>echo $NVIDIA_VISIBLE_DEVICES
@@ -4182,7 +4182,7 @@ fry-02f18   3/3     Running   0          24m
 </code></pre></div>
 <p>The ephemeral container name is <code>philip-j--fry-firefox-745f9</code>:</p>
 <div class="highlight"><pre><span></span><code>...
-  Normal  Pulled     26m   kubelet            Container image &quot;ghcr.io/abcdesktopio/firefox.d:4.3&quot; already present on machine
+  Normal  Pulled     26m   kubelet            Container image "ghcr.io/abcdesktopio/firefox.d:4.3" already present on machine
   Normal  Created    26m   kubelet            Created container: philip-j--fry-firefox-745f9
   Normal  Started    26m   kubelet            Started container philip-j--fry-firefox-745f9
 </code></pre></div>

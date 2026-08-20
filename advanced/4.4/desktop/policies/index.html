@@ -4151,13 +4151,13 @@ tags:
 <p><code>volumes</code> is a dictionary of label-keyed lists. Each entry describes the <code>mountPath</code> to be mounted inside the pod and the volume <code>type</code>.</p>
 <p>Supported volume types are <code>nfs</code>, <code>hostPath</code>, <code>pvc</code>, and <code>cifs</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">  </span><span class="err">&#39;rules&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">    </span><span class="err">&#39;volumes&#39;</span><span class="p">:</span><span class="w"> </span>
-<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;shipcrew&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span>
-<span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;hos</span><span class="kc">t</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">           </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;m</span><span class="kc">nt</span><span class="err">myprojec</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">           </span><span class="err">&#39;pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/m</span><span class="kc">nt</span><span class="err">/sharedhos</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span>
-<span class="w">           </span><span class="err">&#39;mou</span><span class="kc">nt</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/m</span><span class="kc">nt</span><span class="err">/</span><span class="kc">test</span><span class="err">myprojec</span><span class="kc">t</span><span class="err">&#39;</span>
+<span class="w">  </span><span class="err">'rules'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">'volumes'</span><span class="p">:</span><span class="w"> </span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="err">'shipcrew'</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span>
+<span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="err">'</span><span class="kc">t</span><span class="err">ype'</span><span class="p">:</span><span class="w"> </span><span class="err">'hos</span><span class="kc">t</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="err">'</span><span class="kc">na</span><span class="err">me'</span><span class="p">:</span><span class="w"> </span><span class="err">'m</span><span class="kc">nt</span><span class="err">myprojec</span><span class="kc">t</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="err">'pa</span><span class="kc">t</span><span class="err">h'</span><span class="p">:</span><span class="w"> </span><span class="err">'/m</span><span class="kc">nt</span><span class="err">/sharedhos</span><span class="kc">t</span><span class="err">'</span><span class="p">,</span>
+<span class="w">           </span><span class="err">'mou</span><span class="kc">nt</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h'</span><span class="p">:</span><span class="w"> </span><span class="err">'/m</span><span class="kc">nt</span><span class="err">/</span><span class="kc">test</span><span class="err">myprojec</span><span class="kc">t</span><span class="err">'</span>
 <span class="w">         </span><span class="p">}</span><span class="w"> </span>
 <span class="w">        </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
@@ -4166,14 +4166,14 @@ tags:
 </blockquote>
 <h3 id="volume-type-nfs">volume type <code>nfs</code></h3>
 <div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">  </span><span class="err">&#39;rules&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">    </span><span class="err">&#39;volumes&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="err">&#39;</span><span class="kc">nfs</span><span class="err">isos</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span>
-<span class="w">         </span><span class="p">{</span><span class="w">  </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">nfs</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">            </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;isos</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">            </span><span class="err">&#39;server&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="mf">192.168.7.112</span><span class="err">&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="err">&#39;pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/volume</span><span class="mi">1</span><span class="err">/isos</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="err">&#39;mou</span><span class="kc">nt</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/m</span><span class="kc">nt</span><span class="err">/iso&#39;</span>
+<span class="w">  </span><span class="err">'rules'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">'volumes'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">'</span><span class="kc">nfs</span><span class="err">isos</span><span class="kc">t</span><span class="err">ore'</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span>
+<span class="w">         </span><span class="p">{</span><span class="w">  </span><span class="err">'</span><span class="kc">t</span><span class="err">ype'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="kc">nfs</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">'</span><span class="kc">na</span><span class="err">me'</span><span class="p">:</span><span class="w"> </span><span class="err">'isos</span><span class="kc">t</span><span class="err">ore'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">'server'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mf">192.168.7.112</span><span class="err">'</span><span class="p">,</span>
+<span class="w">            </span><span class="err">'pa</span><span class="kc">t</span><span class="err">h'</span><span class="p">:</span><span class="w"> </span><span class="err">'/volume</span><span class="mi">1</span><span class="err">/isos</span><span class="kc">t</span><span class="err">ore'</span><span class="p">,</span>
+<span class="w">            </span><span class="err">'mou</span><span class="kc">nt</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h'</span><span class="p">:</span><span class="w"> </span><span class="err">'/m</span><span class="kc">nt</span><span class="err">/iso'</span>
 <span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
 </code></pre></div>
@@ -4194,14 +4194,14 @@ tags:
 </ul>
 <h3 id="volume-type-hostpath">volume type <code>hostPath</code></h3>
 <div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">  </span><span class="err">&#39;rules&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">    </span><span class="err">&#39;volumes&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="err">&#39;shipcrew&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span>
+<span class="w">  </span><span class="err">'rules'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">'volumes'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">'shipcrew'</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span>
 <span class="w">         </span><span class="p">{</span><span class="w"> </span>
-<span class="w">            </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;hos</span><span class="kc">t</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">            </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;m</span><span class="kc">nt</span><span class="err">myprojec</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">            </span><span class="err">&#39;pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/m</span><span class="kc">nt</span><span class="err">/sharedhos</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="err">&#39;mou</span><span class="kc">nt</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/m</span><span class="kc">nt</span><span class="err">/</span><span class="kc">test</span><span class="err">myprojec</span><span class="kc">t</span><span class="err">&#39;</span>
+<span class="w">            </span><span class="err">'</span><span class="kc">t</span><span class="err">ype'</span><span class="p">:</span><span class="w"> </span><span class="err">'hos</span><span class="kc">t</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">'</span><span class="kc">na</span><span class="err">me'</span><span class="p">:</span><span class="w"> </span><span class="err">'m</span><span class="kc">nt</span><span class="err">myprojec</span><span class="kc">t</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">'pa</span><span class="kc">t</span><span class="err">h'</span><span class="p">:</span><span class="w"> </span><span class="err">'/m</span><span class="kc">nt</span><span class="err">/sharedhos</span><span class="kc">t</span><span class="err">'</span><span class="p">,</span>
+<span class="w">            </span><span class="err">'mou</span><span class="kc">nt</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h'</span><span class="p">:</span><span class="w"> </span><span class="err">'/m</span><span class="kc">nt</span><span class="err">/</span><span class="kc">test</span><span class="err">myprojec</span><span class="kc">t</span><span class="err">'</span>
 <span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span>
 <span class="w">     </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
 </code></pre></div>
@@ -4217,13 +4217,13 @@ tags:
 </blockquote>
 <h3 id="volume-type-pvc">volume type <code>pvc</code></h3>
 <div class="highlight"><pre><span></span><code><span class="err">desk</span><span class="kc">t</span><span class="err">op.policies</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">  </span><span class="err">&#39;rules&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">    </span><span class="err">&#39;volumes&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="err">&#39;</span><span class="kc">nfs</span><span class="err">pvc&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">ype&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;pvc&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">            </span><span class="err">&#39;</span><span class="kc">na</span><span class="err">me&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;pvcs</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">            </span><span class="err">&#39;claimName&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;pvc</span><span class="mi">-</span><span class="err">s</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="err">&#39;mou</span><span class="kc">nt</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/m</span><span class="kc">nt</span><span class="err">/</span><span class="kc">ne</span><span class="err">wpvcs</span><span class="kc">t</span><span class="err">ore&#39;</span><span class="w"> </span>
+<span class="w">  </span><span class="err">'rules'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="err">'volumes'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">'</span><span class="kc">nfs</span><span class="err">pvc'</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="err">'</span><span class="kc">t</span><span class="err">ype'</span><span class="p">:</span><span class="w"> </span><span class="err">'pvc'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">'</span><span class="kc">na</span><span class="err">me'</span><span class="p">:</span><span class="w"> </span><span class="err">'pvcs</span><span class="kc">t</span><span class="err">ore'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="err">'claimName'</span><span class="p">:</span><span class="w"> </span><span class="err">'pvc</span><span class="mi">-</span><span class="err">s</span><span class="kc">t</span><span class="err">ore'</span><span class="p">,</span>
+<span class="w">            </span><span class="err">'mou</span><span class="kc">nt</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h'</span><span class="p">:</span><span class="w"> </span><span class="err">'/m</span><span class="kc">nt</span><span class="err">/</span><span class="kc">ne</span><span class="err">wpvcs</span><span class="kc">t</span><span class="err">ore'</span><span class="w"> </span>
 <span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
 <span class="w">     </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
@@ -4239,15 +4239,15 @@ tags:
 </blockquote>
 <h2 id="network">network</h2>
 <div class="highlight"><pre><span></span><code>desktop.policies: { 
-  &#39;rules&#39;: { 
-     &#39;network&#39;: { 
-      &#39;shipcrew&#39;:  { 
-        &#39;webhook&#39;: { 
-          &#39;create&#39;:  &#39;curl &quot;http://{{ livedns_fqdn }}:8080/update?secret={{ livedns_secret }}&amp;domain=desktop.yourdomain.net&amp;hostname={{ name }}&amp;addr={{ net2 }}&quot;&#39;,
-          &#39;destroy&#39;: &#39;curl &quot;http://{{ livedns_fqdn }}:8080/update?secret={{ livedns_secret }}&amp;domain=desktop.yourdomain.net&amp;hostname={{ name }}&amp;addr={{ net2 }}&quot;&#39;
+  'rules': { 
+     'network': { 
+      'shipcrew':  { 
+        'webhook': { 
+          'create':  'curl "http://{{ livedns_fqdn }}:8080/update?secret={{ livedns_secret }}&amp;domain=desktop.yourdomain.net&amp;hostname={{ name }}&amp;addr={{ net2 }}"',
+          'destroy': 'curl "http://{{ livedns_fqdn }}:8080/update?secret={{ livedns_secret }}&amp;domain=desktop.yourdomain.net&amp;hostname={{ name }}&amp;addr={{ net2 }}"'
         },
-        &#39;annotations&#39; : { 
-          &#39;k8s.v1.cni.cncf.io/networks&#39;: &#39;[ {&quot;name&quot;:&quot;macvlan-conf-7&quot;} ]&#39; 
+        'annotations' : { 
+          'k8s.v1.cni.cncf.io/networks': '[ {"name":"macvlan-conf-7"} ]' 
         }
     }          
 </code></pre></div>
@@ -4264,16 +4264,16 @@ tags:
 <li>desktop.webhookdict is a dictionary with key/value for <code>webhook</code> configuration</li>
 </ul>
 <div class="highlight"><pre><span></span><code>desktop.webhookdict: {  
-  &#39;fw_ip&#39;: &#39;1.2.3.4&#39;, 
-  &#39;api_key&#39;: &#39;CAFECAFE&#39;, 
-  &#39;livedns_secret&#39;: &#39;ThisISMyDesktop&#39;,
-  &#39;livedns_fqdn&#39;: &#39;ns01desktop.yourdomain.net&#39; }
+  'fw_ip': '1.2.3.4', 
+  'api_key': 'CAFECAFE', 
+  'livedns_secret': 'ThisISMyDesktop',
+  'livedns_fqdn': 'ns01desktop.yourdomain.net' }
 </code></pre></div>
 <p>The desktop interfaces are generated during the provisioning process</p>
 <div class="highlight"><pre><span></span><code>{ 
- &#39;eth0&#39;: {&#39;mac&#39;: &#39;56:c7:eb:dc:c0:b8&#39;, &#39;ips&#39;: &#39;10.244.0.239&#39;  }, 
- &#39;net1&#39;: {&#39;mac&#39;: &#39;2a:94:43:e0:f4:46&#39;, &#39;ips&#39;: &#39;192.168.9.137&#39; }, 
- &#39;net2&#39;: {&#39;mac&#39;: &#39;1e:50:5f:b7:85:f6&#39;, &#39;ips&#39;: &#39;194.3.2.1&#39;     }
+ 'eth0': {'mac': '56:c7:eb:dc:c0:b8', 'ips': '10.244.0.239'  }, 
+ 'net1': {'mac': '2a:94:43:e0:f4:46', 'ips': '192.168.9.137' }, 
+ 'net2': {'mac': '1e:50:5f:b7:85:f6', 'ips': '194.3.2.1'     }
 }
 </code></pre></div>
 <blockquote>
@@ -4281,10 +4281,10 @@ tags:
 The number of interface is not limited.</p>
 </blockquote>
 <p>For example, the command line </p>
-<div class="highlight"><pre><span></span><code>curl &quot;http://{{ livedns_fqdn }}:8080/update?secret={{ livedns_secret }}&amp;domain=desktop.yourdomain.net&amp;hostname={{ name }}&amp;addr={{ net2 }}&quot;
+<div class="highlight"><pre><span></span><code>curl "http://{{ livedns_fqdn }}:8080/update?secret={{ livedns_secret }}&amp;domain=desktop.yourdomain.net&amp;hostname={{ name }}&amp;addr={{ net2 }}"
 </code></pre></div>
 <p>becomes</p>
-<div class="highlight"><pre><span></span><code>curl &quot;http://ns01desktop.yourdomain.net:8080/update?secret=ThisISMyDesktop&amp;domain=desktop.yourdomain.net&amp;hostname=pod_fry3241&amp;addr=194.3.2.1&quot;
+<div class="highlight"><pre><span></span><code>curl "http://ns01desktop.yourdomain.net:8080/update?secret=ThisISMyDesktop&amp;domain=desktop.yourdomain.net&amp;hostname=pod_fry3241&amp;addr=194.3.2.1"
 </code></pre></div>
 
 

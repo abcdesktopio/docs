@@ -4136,16 +4136,16 @@ sequenceDiagram
 </ul>
 <p>The user is redirected to <code>dialog_url</code>. For example, <code>https://secure.your_domain.com/protectedbyssl</code>.
 The implicit provider configuration looks like this:</p>
-<div class="highlight"><pre><span></span><code>&#39;implicit&#39;: {
-  &#39;providers&#39;   : {
-    &#39;sslclient&#39; : {
-      &#39;displayname&#39;: &#39;Logmein protected by SSL&#39;,
-      &#39;icon&#39;: &#39;img/auth/sslclient_icon.svg&#39;,
-      &#39;textcolor&#39;: &#39;#000000&#39;,
-      &#39;backgroundcolor&#39;: &#39;#FFFFFF&#39;,
-      &#39;enabled&#39;: True,
-      &#39;dialog_url&#39; : &#39;https://secure.your_domain.com/protectedbyssl&#39;,
-      &#39;auth_protocol&#39; : { &#39;localaccount&#39;: True }
+<div class="highlight"><pre><span></span><code>'implicit': {
+  'providers'   : {
+    'sslclient' : {
+      'displayname': 'Logmein protected by SSL',
+      'icon': 'img/auth/sslclient_icon.svg',
+      'textcolor': '#000000',
+      'backgroundcolor': '#FFFFFF',
+      'enabled': True,
+      'dialog_url' : 'https://secure.your_domain.com/protectedbyssl',
+      'auth_protocol' : { 'localaccount': True }
     } 
   }
 }
@@ -4163,10 +4163,10 @@ The implicit provider configuration looks like this:</p>
 <h3 id="logmein-endpoint-configuration"><code>logmein</code> Endpoint Configuration</h3>
 <p>The <code>API/auth/logmein</code> endpoint performs security checks to verify that the request originates from an authorized network defined in <code>network_list</code>. When configured, it also validates the required HTTP header name and its value. It reads the X.509 certificate to extract the user ID and then performs implicit authentication for that user.</p>
 <div class="highlight"><pre><span></span><code>auth.logmein : {  
-    &#39;enable&#39; : True,
-    &#39;network_list&#39; : [&#39;0.0.0.0/0&#39;],
-    &#39;permit_querystring&#39; : False,
-    &#39;http_attribut&#39; : &#39;ABCDESKTOPUSERCERT&#39; }
+    'enable' : True,
+    'network_list' : ['0.0.0.0/0'],
+    'permit_querystring' : False,
+    'http_attribut' : 'ABCDESKTOPUSERCERT' }
 </code></pre></div>
 <table>
 <thead>
@@ -4241,22 +4241,22 @@ The implicit provider configuration looks like this:</p>
 </code></pre></div>
 <h2 id="odconfig-file">od.config file</h2>
 <div class="highlight"><pre><span></span><code>auth.logmein : {  
-    &#39;enable&#39; : True,
-    &#39;network_list&#39; : [&#39;0.0.0.0/0&#39;], 
-    &#39;permit_querystring&#39; : False,
-    &#39;http_attribut&#39; : &#39;ABCDESKTOPUSERCERT&#39; }
+    'enable' : True,
+    'network_list' : ['0.0.0.0/0'], 
+    'permit_querystring' : False,
+    'http_attribut' : 'ABCDESKTOPUSERCERT' }
 
 authmanagers: {
-  &#39;implicit&#39;: {
-     &#39;providers&#39;   : {
-         &#39;sslclient&#39; : {
-              &#39;displayname&#39;: &#39;Logmein protected by SSL&#39;,
-              &#39;icon&#39;: &#39;img/auth/sslclient_icon.svg&#39;,
-              &#39;textcolor&#39;: &#39;#000000&#39;,
-              &#39;backgroundcolor&#39;: &#39;#FFFFFF&#39;,
-              &#39;enabled&#39;: True,
-              &#39;dialog_url&#39; : &#39;https://secure.your_domain.com/protectedbyssl&#39;,
-              &#39;auth_protocol&#39; : { &#39;localaccount&#39;: True }
+  'implicit': {
+     'providers'   : {
+         'sslclient' : {
+              'displayname': 'Logmein protected by SSL',
+              'icon': 'img/auth/sslclient_icon.svg',
+              'textcolor': '#000000',
+              'backgroundcolor': '#FFFFFF',
+              'enabled': True,
+              'dialog_url' : 'https://secure.your_domain.com/protectedbyssl',
+              'auth_protocol' : { 'localaccount': True }
          } } } }
 </code></pre></div>
 

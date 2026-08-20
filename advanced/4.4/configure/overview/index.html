@@ -4208,7 +4208,7 @@ tags:
 kubectl<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config
 </code></pre></div>
 <p>The <code>abcdesktop-config</code> ConfigMap contains a file named <code>od.config</code>. To read the <code>od.config</code> content:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.od\.config}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>od.config
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>abcdesktop-config<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.od\.config}'</span><span class="w"> </span>&gt;<span class="w"> </span>od.config
 </code></pre></div>
 <p>This file uses the <a href="https://docs.cherrypy.dev/en/stable/config.html">CherryPy configuration file format</a>.</p>
 <p>When the <code>pyos</code> process starts, it reads the <code>od.config</code> file. If the file contains a syntax error, the <code>pyos</code> process fails to start. Inspect the <code>pyos</code> logs with <code>kubectl logs -l name=pyos-od -n abcdesktop</code>.</p>
@@ -4220,8 +4220,8 @@ kubectl<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMES
 # public host url of the service
 # change this with your URL or
 # set the external URL service if you use a reverse proxy
-# default_host_url : &#39;https://abcdesktop.domain.com&#39;
-default_host_url : &#39;https://abcdesktop.domain.com&#39;
+# default_host_url : 'https://abcdesktop.domain.com'
+default_host_url : 'https://abcdesktop.domain.com'
 # END OF DEFAULT HOST URL
 </code></pre></div>
 <h3 id="geolocation-servergeolocation_ipaddr">Geolocation <code>server.geolocation_ipaddr</code></h3>
@@ -4231,9 +4231,9 @@ default_host_url : &#39;https://abcdesktop.domain.com&#39;
 # THIS IS NOT THE BINDING IP ADDR
 # server.geolocation_ipaddr is only used to locate the external ip of the service
 # server.geolocation_ipaddr is used by geoip and Active Directory site subnet queries
-# the default value is a dummy value &#39;127.0.0.1&#39;
+# the default value is a dummy value '127.0.0.1'
 # change this value to help geoip to locate your service or for Active Directory site and subnet query 
-server.geolocation_ipaddr: &#39;127.0.0.1&#39;
+server.geolocation_ipaddr: '127.0.0.1'
 # END OF EXTERNAL IP ADDRESS SECTION
 </code></pre></div>
 <h3 id="trusted_proxy_cidr"><code>trusted_proxy_cidr</code></h3>
@@ -4241,7 +4241,7 @@ server.geolocation_ipaddr: &#39;127.0.0.1&#39;
 The default value is an empty list (<code>[]</code>).</p>
 <p>When this list is not empty, the service reads all IP addresses from the <code>X-Forwarded-For</code> HTTP header. At least one IP address in the <code>X-Forwarded-For</code> header must match an entry in the <code>trusted_proxy_cidr</code> list; otherwise, the service returns an HTTP 401 error.</p>
 <p>The <code>trusted_proxy_cidr</code> list prevents reverse proxy IP spoofing attacks.</p>
-<div class="highlight"><pre><span></span><code>trusted_proxy_cidr : [ &#39;10.0.0.0/8&#39;, &#39;192.168.1.0/24&#39; ]
+<div class="highlight"><pre><span></span><code>trusted_proxy_cidr : [ '10.0.0.0/8', '192.168.1.0/24' ]
 </code></pre></div>
 <h2 id="serverthread_pool"><code>server.thread_pool</code></h2>
 <p><code>server.thread_pool</code> defines the number of worker threads in the CherryPy thread pool. The default value is <code>10</code>.</p>
@@ -4287,17 +4287,17 @@ K8S_CREATE_EPHEMERALCONTAINER_TIMEOUT_SECONDS: 5
 # JWT Token for /API URL
 # exp : time in seconds, None for unlimited
 jwt_token_user : {
-  &#39;exp&#39;: 360,
-  &#39;jwtuserprivatekeyfile&#39;: &#39;/config.usersigning/abcdesktop_jwt_user_signing_private_key.pem&#39;,
-  &#39;jwtuserpublickeyfile&#39; : &#39;/config.usersigning/abcdesktop_jwt_user_signing_public_key.pem&#39; }
+  'exp': 360,
+  'jwtuserprivatekeyfile': '/config.usersigning/abcdesktop_jwt_user_signing_private_key.pem',
+  'jwtuserpublickeyfile' : '/config.usersigning/abcdesktop_jwt_user_signing_public_key.pem' }
 #
 # JWT RSA SIGNING ANS PAYLOAD KEYS
 #
 jwt_token_desktop : {
-  &#39;exp&#39;: 420,
-  &#39;jwtdesktopprivatekeyfile&#39;:     &#39;/config.signing/abcdesktop_jwt_desktop_signing_private_key.pem&#39;,
-  &#39;jwtdesktoppublickeyfile&#39; :     &#39;/config.signing/abcdesktop_jwt_desktop_signing_public_key.pem&#39;,
-  &#39;payloaddesktoppublickeyfile&#39; : &#39;/config.payload/abcdesktop_jwt_desktop_payload_public_key.pem&#39; }
+  'exp': 420,
+  'jwtdesktopprivatekeyfile':     '/config.signing/abcdesktop_jwt_desktop_signing_private_key.pem',
+  'jwtdesktoppublickeyfile' :     '/config.signing/abcdesktop_jwt_desktop_signing_public_key.pem',
+  'payloaddesktoppublickeyfile' : '/config.payload/abcdesktop_jwt_desktop_payload_public_key.pem' }
 # END OF JWT SECTION #
 </code></pre></div>
 <ul>

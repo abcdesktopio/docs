@@ -4103,13 +4103,13 @@ tags:
 <h2 id="authmanagers-explicit-object">authmanagers <code>explicit</code> Object</h2>
 <p>The <code>explicit</code> authentication configuration is defined as a dictionary object that contains one or more named provider entries, each corresponding to a Windows domain.</p>
 <p>For example:</p>
-<div class="highlight"><pre><span></span><code>&#39;explicit&#39;: {
-    &#39;show_domains&#39;: True,
-    &#39;default_domain&#39;: &#39;AD&#39;,
-    &#39;providers&#39;: {
-      &#39;AD&#39;: { 
-        &#39;config_ref&#39;: &#39;adconfig&#39;, 
-        &#39;enabled&#39;: True
+<div class="highlight"><pre><span></span><code>'explicit': {
+    'show_domains': True,
+    'default_domain': 'AD',
+    'providers': {
+      'AD': { 
+        'config_ref': 'adconfig', 
+        'enabled': True
        }
 }
 </code></pre></div>
@@ -4148,9 +4148,9 @@ tags:
 <p>The <code>provider</code> authentication configuration is defined as a dictionary object that must include a key name. The key name must match the <a href="https://en.wikipedia.org/wiki/Windows_domain"><code>USERDOMAIN</code></a> value and must correspond exactly to the key used in the <code>config_ref</code> dictionary.</p>
 <p>Providers:</p>
 <p>The provider is formatted as a dictionary:</p>
-<div class="highlight"><pre><span></span><code>{ &#39;AD&#39;: {  
-           &#39;config_ref&#39;: &#39;adconfig&#39;,  
-           &#39;enabled&#39;: True  
+<div class="highlight"><pre><span></span><code>{ 'AD': {  
+           'config_ref': 'adconfig',  
+           'enabled': True  
        }
 }
 </code></pre></div>
@@ -4196,22 +4196,22 @@ tags:
 </table>
 <p>The <code>adconfig</code> is a dictionary. For example:</p>
 <div class="highlight"><pre><span></span><code>adconfig : { 
-  &#39;AD&#39;: {   
-       &#39;default&#39;: True,
-       &#39;reduce_roles_for_jwt&#39;: &#39;cn&#39;,
-       &#39;ldap_timeout&#39;: 5,
-       &#39;ldap_connect_timeout&#39;: 2,
-       &#39;ldap_basedn&#39;: &#39;DC=ad,DC=domain,DC=local&#39;,
-       &#39;ldap_fqdn&#39;: &#39;_ldap._tcp.ad.domain.local&#39;,
-       &#39;domain&#39;: &#39;AD&#39;,
-       &#39;domain_fqdn&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
-       &#39;kerberos_realm&#39;: &#39;AD.DOMAIN.LOCAL&#39;,
-       &#39;auth_type&#39;: &#39;NTLM&#39;,
-       &#39;krb5_conf&#39;: &#39;/etc/krb5.conf&#39;,
-       &#39;users_ou&#39;: &#39;DC=ad,DC=domain,DC=local&#39;,
-       &#39;auth_protocol&#39; : { &#39;ntlm&#39;: False, &#39;cntlm&#39;: False, &#39;kerberos&#39; : True, &#39;ldif&#39;: False },
-       &#39;servers&#39;: [ &#39;ldaps://srv1.domain.local&#39;, &#39;ldaps://srv2.domain.local&#39;,&#39;ldaps://srv3.domain.local&#39; ]
-       # &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;SVCACCOUNT&#39;, &#39;password&#39;: &#39;SVCACCOUNTPASSWORD&#39; } 
+  'AD': {   
+       'default': True,
+       'reduce_roles_for_jwt': 'cn',
+       'ldap_timeout': 5,
+       'ldap_connect_timeout': 2,
+       'ldap_basedn': 'DC=ad,DC=domain,DC=local',
+       'ldap_fqdn': '_ldap._tcp.ad.domain.local',
+       'domain': 'AD',
+       'domain_fqdn': 'AD.DOMAIN.LOCAL',
+       'kerberos_realm': 'AD.DOMAIN.LOCAL',
+       'auth_type': 'NTLM',
+       'krb5_conf': '/etc/krb5.conf',
+       'users_ou': 'DC=ad,DC=domain,DC=local',
+       'auth_protocol' : { 'ntlm': False, 'cntlm': False, 'kerberos' : True, 'ldif': False },
+       'servers': [ 'ldaps://srv1.domain.local', 'ldaps://srv2.domain.local','ldaps://srv3.domain.local' ]
+       # 'serviceaccount': { 'login': 'SVCACCOUNT', 'password': 'SVCACCOUNTPASSWORD' } 
 } }
 </code></pre></div>
 <p>Replace each variable value with settings specific to your Active Directory environment.</p>
@@ -4276,7 +4276,7 @@ tags:
 </tbody>
 </table>
 <h2 id="service-account">Service Account</h2>
-<div class="highlight"><pre><span></span><code>  &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;SVCACCOUNT&#39;, &#39;password&#39;: &#39;SVCACCOUNTPASSWORD&#39; }
+<div class="highlight"><pre><span></span><code>  'serviceaccount': { 'login': 'SVCACCOUNT', 'password': 'SVCACCOUNTPASSWORD' }
 </code></pre></div>
 <p><code>serviceaccount</code> is an optional credential configuration. When provided, it allows <code>pyos</code> to query the Active Directory service and retrieve subnet and site location information from the sites container at <code>'CN=Subnets,CN=Sites,CN=Configuration,' + BASE_DN</code> (for example, <code>CN=Subnets,CN=Sites,CN=Configuration,DC=example,DC=com</code>).</p>
 

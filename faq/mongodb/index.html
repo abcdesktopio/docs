@@ -4021,13 +4021,13 @@ tags:
 <span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.4</span>
 <span class="w">    </span><span class="nt">mongodkeylength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">756</span>
 <span class="w">  </span><span class="c1"># data:</span>
-<span class="w">  </span><span class="c1">#   initContainerScriptPath: &quot;data/mongo/init-container.sh&quot;</span>
-<span class="w">  </span><span class="c1">#   configFilePath: &quot;data/mongo/etc/mongodb/mongod.conf&quot;</span>
-<span class="w">  </span><span class="c1">#   initScriptPath: &quot;data/mongo/docker-entrypoint-initdb.d/init.js&quot;</span>
-<span class="w">  </span><span class="c1">#   initReplicaScriptPath: &quot;data/mongo/docker-entrypoint-initdb.d/init-replica.sh&quot;</span>
+<span class="w">  </span><span class="c1">#   initContainerScriptPath: "data/mongo/init-container.sh"</span>
+<span class="w">  </span><span class="c1">#   configFilePath: "data/mongo/etc/mongodb/mongod.conf"</span>
+<span class="w">  </span><span class="c1">#   initScriptPath: "data/mongo/docker-entrypoint-initdb.d/init.js"</span>
+<span class="w">  </span><span class="c1">#   initReplicaScriptPath: "data/mongo/docker-entrypoint-initdb.d/init-replica.sh"</span>
 <span class="w">  </span><span class="nt">image</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/abcdesktopio/mongo</span>
-<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;safe8.0&quot;</span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">"safe8.0"</span>
 <span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
 <span class="w">  </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 <span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
@@ -4042,7 +4042,7 @@ tags:
 <span class="w">    </span><span class="c1"># enabled: true for persistent volume, false for non-persistent volume (emptyDir)</span>
 <span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">    </span><span class="c1"># Storage class to use (leave empty for default class)</span>
-<span class="w">    </span><span class="nt">storageClass</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">    </span><span class="nt">storageClass</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">    </span><span class="c1"># Persistent volume size</span>
 <span class="w">    </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8Gi</span>
 <span class="w">    </span><span class="c1"># Mount path in the container (do not change)</span>
@@ -4077,8 +4077,8 @@ where <code>NAMESPACE</code> and <code>my-abcdesktop</code> are your deployment 
 <span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-od</span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">database</span>
 <span class="w">    </span><span class="nt">abcdesktop/role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
-<span class="w">    </span><span class="nt">netpol/mongodb</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
-<span class="w">    </span><span class="nt">netpol/dns</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;true&#39;</span>
+<span class="w">    </span><span class="nt">netpol/mongodb</span><span class="p">:</span><span class="w"> </span><span class="s">'true'</span>
+<span class="w">    </span><span class="nt">netpol/dns</span><span class="p">:</span><span class="w"> </span><span class="s">'true'</span>
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">serviceName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
 <span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
@@ -4096,7 +4096,7 @@ where <code>NAMESPACE</code> and <code>my-abcdesktop</code> are your deployment 
 <span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">STATEFULSET_NAME</span>
 <span class="w">     </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-od</span>
 <span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REPLICAS</span>
-<span class="w">     </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
+<span class="w">     </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"3"</span>
 </code></pre></div>
 <ul>
 <li>Apply your changes to the <code>abcdesktop</code> namespace:</li>

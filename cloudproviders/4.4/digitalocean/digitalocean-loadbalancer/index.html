@@ -4292,12 +4292,12 @@ metadata:
   labels:
     abcdesktop/role: router-od
   annotations:
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: &quot;80&quot;
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: &quot;http&quot;
-    service.beta.kubernetes.io/do-loadbalancer-protocol: &quot;http&quot;
-    service.beta.kubernetes.io/do-loadbalancer-tls-ports: &quot;443&quot;
-    service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: &quot;true&quot;
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: &quot;/healthz&quot;
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "80"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
+    service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: "/healthz"
 spec: 
   type: LoadBalancer
   selector:
@@ -4318,7 +4318,7 @@ spec:
 kubectl delete service http-router -n $NAMESPACE
 </code></pre></div>
 <p>You should see the following output:</p>
-<div class="highlight"><pre><span></span><code>service &quot;http-router&quot; deleted
+<div class="highlight"><pre><span></span><code>service "http-router" deleted
 </code></pre></div>
 <p>Create the new <code>service/http-router</code>:</p>
 <div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
@@ -4376,7 +4376,7 @@ http-router   LoadBalancer   10.245.143.46   157.230.202.250   443:31196/TCP,80:
 <div class="highlight"><pre><span></span><code><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="o">=</span>hello.digitalocean.pepins.net
 <span class="nv">USER_EMAIL_ADDRESS</span><span class="o">=</span>thisisyouremail@domain.com
 <span class="nv">ROUTER_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>router-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w">  </span>-n<span class="w"> </span>abcdesktop<span class="k">)</span>
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">ROUTER_POD_NAME</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>/usr/bin/certbot<span class="w"> </span>certonly<span class="w"> </span>--webroot<span class="w"> </span>-w<span class="w"> </span>/var/lib/nginx/html<span class="w"> </span>-d<span class="w"> </span><span class="si">${</span><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="si">}</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">USER_EMAIL_ADDRESS</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--agree-tos<span class="w"> </span>-n
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">ROUTER_POD_NAME</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>/usr/bin/certbot<span class="w"> </span>certonly<span class="w"> </span>--webroot<span class="w"> </span>-w<span class="w"> </span>/var/lib/nginx/html<span class="w"> </span>-d<span class="w"> </span><span class="si">${</span><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="si">}</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">USER_EMAIL_ADDRESS</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--agree-tos<span class="w"> </span>-n
 </code></pre></div>
 <p>You should see the following output:</p>
 <div class="highlight"><pre><span></span><code>Saving debug log to /var/log/letsencrypt/letsencrypt.log
@@ -4393,7 +4393,7 @@ NEXT STEPS:
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 If you like Certbot, please consider supporting our work by:
- * Donating to ISRG / Let&#39;s Encrypt:   https://letsencrypt.org/donate
+ * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
  * Donating to EFF:                    https://eff.org/donate-le
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 </code></pre></div>

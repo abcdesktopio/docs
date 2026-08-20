@@ -4103,35 +4103,35 @@
 <p>The <code>implicit</code> authentication provider is the simplest configuration mode available in abcdesktop.io. It grants anonymous, always-allow access without requiring user credentials, making it appropriate for demonstration deployments, open-access environments, and functional testing scenarios.</p>
 <p>The <code>implicit</code> provider dictionary must contain a <code>providers</code> key, which in turn holds one or more named provider entries. The <code>anonymous</code> provider unconditionally permits authentication and assigns the user identifier specified by the <code>userid</code> field in the provider configuration.</p>
 <h2 id="configuration">Configuration</h2>
-<div class="highlight"><pre><span></span><code>&#39;implicit&#39;: {
-    &#39;providers&#39;: {
-      &#39;anonymous&#39;: {
-        &#39;displayname&#39;: &#39;Guest&#39;,
-        &#39;textcolor&#39;: &#39;#000000&#39;,
-        &#39;icon&#39;: &#39;img/auth/anonymous_icon.svg&#39;,
-        &#39;backgroundcolor&#39;: &#39;#FFFFFF&#39;,
-        &#39;caption&#39;: &#39;Have a look !&#39;,
-        &#39;userid&#39;: &#39;anonymous&#39;,
-        &#39;username&#39;: &#39;anonymous&#39;,
-        &#39;policies&#39;: { &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] } }
+<div class="highlight"><pre><span></span><code>'implicit': {
+    'providers': {
+      'anonymous': {
+        'displayname': 'Guest',
+        'textcolor': '#000000',
+        'icon': 'img/auth/anonymous_icon.svg',
+        'backgroundcolor': '#FFFFFF',
+        'caption': 'Have a look !',
+        'userid': 'anonymous',
+        'username': 'anonymous',
+        'policies': { 'acl': { 'permit': [ 'all' ] } }
       }
     }}
 </code></pre></div>
 <p>Set the full <code>authmanagers</code> dictionary in your <code>od.config</code> file as follows:</p>
 <div class="highlight"><pre><span></span><code>authmanagers: {
-  &#39;external&#39;: {},
-  &#39;explicit&#39;: {},
-  &#39;implicit&#39;: {
-    &#39;providers&#39;: {
-      &#39;anonymous&#39;: {
-        &#39;displayname&#39;: &#39;Guest&#39;,
-        &#39;textcolor&#39;: &#39;#000000&#39;,
-        &#39;icon&#39;: &#39;img/auth/anonymous_icon.svg&#39;,
-        &#39;backgroundcolor&#39;: &#39;#FFFFFF&#39;,
-        &#39;caption&#39;: &#39;Have a look !&#39;,
-        &#39;userid&#39;: &#39;anonymous&#39;,
-        &#39;username&#39;: &#39;anonymous&#39;,
-        &#39;policies&#39;: { &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] } }
+  'external': {},
+  'explicit': {},
+  'implicit': {
+    'providers': {
+      'anonymous': {
+        'displayname': 'Guest',
+        'textcolor': '#000000',
+        'icon': 'img/auth/anonymous_icon.svg',
+        'backgroundcolor': '#FFFFFF',
+        'caption': 'Have a look !',
+        'userid': 'anonymous',
+        'username': 'anonymous',
+        'policies': { 'acl': { 'permit': [ 'all' ] } }
       }
     }
   }}
@@ -4148,7 +4148,7 @@ anonymous-3806b   3/3     Running   0          9m22s
 </code></pre></div>
 <p>Open a shell inside the pod to confirm the user context:</p>
 <div class="highlight"><pre><span></span><code>kubectl exec -it anonymous-3806b -n abcdesktop -- bash
-Defaulted container &quot;x-graphical&quot; out of: x-graphical, s-sound, f-filer, i-init (init)
+Defaulted container "x-graphical" out of: x-graphical, s-sound, f-filer, i-init (init)
 anonymous@abcdesktop:~$ id
 uid=4096(anonymous) gid=4096(anonymous) groups=4096(anonymous)
 </code></pre></div>

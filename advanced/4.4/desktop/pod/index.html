@@ -4235,168 +4235,168 @@ tags:
   # can be overwritten on dedicated container spec
   # value inside mustache like {{ uidNumber }} is replaced by context run value
   # for example {{ uidNumber }} is the uid number define in ldap server 
-  &#39;spec&#39; : {
-    # &#39;imagePullSecrets&#39;: [ { &#39;name&#39;: name_of_secret } ],
-    &#39;shareProcessNamespace&#39;: False,
-    &#39;securityContext&#39;: {
-      &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ],
-      &#39;runAsUser&#39;: &#39;{{ uidNumber }}&#39;,
-      &#39;runAsGroup&#39;: &#39;{{ gidNumber }}&#39;
+  'spec' : {
+    # 'imagePullSecrets': [ { 'name': name_of_secret } ],
+    'shareProcessNamespace': False,
+    'securityContext': {
+      'supplementalGroups': [ '{{ supplementalGroups }}' ],
+      'runAsUser': '{{ uidNumber }}',
+      'runAsGroup': '{{ gidNumber }}'
     },
-    &#39;tolerations&#39;: []
+    'tolerations': []
   },
-  &#39;default_volumes&#39;: {
-    &#39;shm&#39;:        { &#39;name&#39;: &#39;shm&#39;,        &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;512Mi&#39; } },
-    &#39;run&#39;:        { &#39;name&#39;: &#39;run&#39;,        &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;1Mi&#39;   } },
-    &#39;tmp&#39;:        { &#39;name&#39;: &#39;tmp&#39;,        &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Gi&#39;   } },
-    &#39;log&#39;:        { &#39;name&#39;: &#39;log&#39;,        &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Gi&#39;   } },
-    &#39;rundbus&#39;:    { &#39;name&#39;: &#39;rundbus&#39;,    &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Mi&#39;   } },
-    &#39;runuser&#39;:    { &#39;name&#39;: &#39;runuser&#39;,    &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Mi&#39;   } },
-    &#39;x11socket&#39;:  { &#39;name&#39;: &#39;x11socket&#39;,  &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;1Ki&#39;   } }
+  'default_volumes': {
+    'shm':        { 'name': 'shm',        'emptyDir': { 'medium': 'Memory', 'sizeLimit': '512Mi' } },
+    'run':        { 'name': 'run',        'emptyDir': { 'medium': 'Memory', 'sizeLimit': '1Mi'   } },
+    'tmp':        { 'name': 'tmp',        'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi'   } },
+    'log':        { 'name': 'log',        'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi'   } },
+    'rundbus':    { 'name': 'rundbus',    'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Mi'   } },
+    'runuser':    { 'name': 'runuser',    'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Mi'   } },
+    'x11socket':  { 'name': 'x11socket',  'emptyDir': { 'medium': 'Memory', 'sizeLimit': '1Ki'   } }
   },
-  &#39;default_volumes_mount&#39;: {
-    &#39;shm&#39;: { &#39;name&#39;: &#39;shm&#39;, &#39;mountPath&#39; : &#39;/dev/shm&#39; },
-    &#39;run&#39;: { &#39;name&#39;: &#39;run&#39;,  &#39;mountPath&#39;: &#39;/var/run/desktop&#39; },
-    &#39;tmp&#39;: { &#39;name&#39;: &#39;tmp&#39;,  &#39;mountPath&#39;: &#39;/tmp&#39; },
-    &#39;log&#39;: { &#39;name&#39;: &#39;log&#39;,  &#39;mountPath&#39;: &#39;/var/log/desktop&#39; },
-    &#39;rundbus&#39;:    { &#39;name&#39;: &#39;rundbus&#39;,    &#39;mountPath&#39;: &#39;/var/run/dbus&#39; },
-    &#39;runuser&#39;:    { &#39;name&#39;: &#39;runuser&#39;,    &#39;mountPath&#39;: &#39;/run/user/&#39; },
-    &#39;x11socket&#39;:  { &#39;name&#39;: &#39;x11socket&#39;,  &#39;mountPath&#39;: &#39;/tmp/.X11-unix&#39; }
+  'default_volumes_mount': {
+    'shm': { 'name': 'shm', 'mountPath' : '/dev/shm' },
+    'run': { 'name': 'run',  'mountPath': '/var/run/desktop' },
+    'tmp': { 'name': 'tmp',  'mountPath': '/tmp' },
+    'log': { 'name': 'log',  'mountPath': '/var/log/desktop' },
+    'rundbus':    { 'name': 'rundbus',    'mountPath': '/var/run/dbus' },
+    'runuser':    { 'name': 'runuser',    'mountPath': '/run/user/' },
+    'x11socket':  { 'name': 'x11socket',  'mountPath': '/tmp/.X11-unix' }
   },
   # graphical is the main abcdesktop container it include x11 service 
-  &#39;graphical&#39; : {
-    &#39;volumes&#39;: [ &#39;x11socket&#39;, &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39; ],
-    &#39;image&#39;: { &#39;default&#39;: &#39;ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.4&#39; },
-    &#39;imagePullPolicy&#39;:  &#39;Always&#39;,
-    &#39;enable&#39;: True,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
-    &#39;waitportbin&#39; : &#39;/composer/node/wait-port/node_modules/.bin/wait-port&#39;,
-    &#39;securityContext&#39;: {
-      &#39;readOnlyRootFilesystem&#39;: False, 
-      &#39;allowPrivilegeEscalation&#39;: True,
-      &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ],
-      &#39;runAsUser&#39;: &#39;{{ uidNumber }}&#39;,
-      &#39;runAsGroup&#39;: &#39;{{ gidNumber }}&#39;,
-      &#39;runAsNonRoot&#39;: True 
+  'graphical' : {
+    'volumes': [ 'x11socket', 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
+    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.4' },
+    'imagePullPolicy':  'Always',
+    'enable': True,
+    'acl':  { 'permit': [ 'all' ] },
+    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
+    'securityContext': {
+      'readOnlyRootFilesystem': False, 
+      'allowPrivilegeEscalation': True,
+      'supplementalGroups': [ '{{ supplementalGroups }}' ],
+      'runAsUser': '{{ uidNumber }}',
+      'runAsGroup': '{{ gidNumber }}',
+      'runAsNonRoot': True 
     },
-    &#39;tcpport&#39;: 6081,
-    &#39;secrets_requirement&#39; : [ &#39;abcdesktop/vnc&#39;, &#39;abcdesktop/kerberos&#39;],
-    &#39;waitfor_services&#39; : [ &#39;xserver&#39;, &#39;novnc&#39;, &#39;spawner-service&#39;, &#39;plasmashell&#39; ],
-    &#39;waitfor_processes&#39;: [ &#39;kwin_x11&#39;, &#39;plasmashell&#39;, &#39;kactivitymanagerd&#39;  ], 
-    &#39;waitfor_listeningservices&#39;: [ &#39;graphical&#39;, &#39;spawner&#39; ]
+    'tcpport': 6081,
+    'secrets_requirement' : [ 'abcdesktop/vnc', 'abcdesktop/kerberos'],
+    'waitfor_services' : [ 'xserver', 'novnc', 'spawner-service', 'plasmashell' ],
+    'waitfor_processes': [ 'kwin_x11', 'plasmashell', 'kactivitymanagerd'  ], 
+    'waitfor_listeningservices': [ 'graphical', 'spawner' ]
   },
   # spawner core service to configure desktop
   # run inside graphical container  
-  &#39;spawner&#39; : { 
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29786,
-    &#39;waitportbin&#39; : &#39;/composer/node/wait-port/node_modules/.bin/wait-port&#39;,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'spawner' : { 
+    'enable': True,
+    'tcpport': 29786,
+    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
+    'acl':  { 'permit': [ 'all' ] } 
   },
   # broadcast core service for notification
   # run inside graphical container  
-  &#39;broadcast&#39; : { 
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29784,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'broadcast' : { 
+    'enable': True,
+    'tcpport': 29784,
+    'acl':  { 'permit': [ 'all' ] } 
   },
   # webshell is no a container, just a service and run inside graphical container  
   # usefull to debug application and troubleshooting
-  &#39;webshell&#39; : { 
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29781,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'webshell' : { 
+    'enable': True,
+    'tcpport': 29781,
+    'acl':  { 'permit': [ 'all' ] } 
   },
   # container printer
   # printer is a cupsd service 
-  &#39;printer&#39; : { 
-    &#39;volumes&#39;: [ &#39;tmp&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.cupsd:4.4&#39;,
-    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 681,
-    &#39;securityContext&#39;: { &#39;runAsUser&#39;: 0, &#39;runAsGroup&#39;: 0 },
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'printer' : { 
+    'volumes': [ 'tmp' ],
+    'image': 'ghcr.io/abcdesktopio/oc.cupsd:4.4',
+    'imagePullPolicy': 'IfNotPresent',
+    'enable': True,
+    'tcpport': 681,
+    'securityContext': { 'runAsUser': 0, 'runAsGroup': 0 },
+    'acl':  { 'permit': [ 'all' ] } 
   },
   # allow to download file in the printer queue
   # use to print file from the web browser
   # printerfile is no a container, just a service 
-  &#39;printerfile&#39; : { 
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29782,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'printerfile' : { 
+    'enable': True,
+    'tcpport': 29782,
+    'acl':  { 'permit': [ 'all' ] } 
   },
   # container filer
   # filer provide upload and download files features
-  &#39;filer&#39; : { 
-    &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39;  ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.filer:4.4&#39;,
-    &#39;imagePullPolicy&#39;:  &#39;Always&#39;,
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29783,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] }
+  'filer' : { 
+    'volumes': [ 'tmp', 'home', 'log'  ],
+    'image': 'ghcr.io/abcdesktopio/oc.filer:4.4',
+    'imagePullPolicy':  'Always',
+    'enable': True,
+    'tcpport': 29783,
+    'acl':  { 'permit': [ 'all' ] }
     },
   # container sound
   # sound is a pulseaudio service instance
-  &#39;sound&#39;: { 
-    &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.4&#39;,
-    &#39;imagePullPolicy&#39;: &#39;Always&#39;,
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29788,
-    &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] },
+  'sound': { 
+    'volumes': [ 'tmp', 'home', 'log' ],
+    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.4',
+    'imagePullPolicy': 'Always',
+    'enable': True,
+    'tcpport': 29788,
+    'acl': { 'permit': [ 'all' ] },
   },
   # container init
   # a simple busybox to chowner and chmod of homedir
   # by defaul homedir belongs to root
-  &#39;init&#39;: { 
-    &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39; ],
-    &#39;image&#39;: &#39;busybox&#39;,
-    &#39;enable&#39;: True,
-    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
-    &#39;securityContext&#39;: { &#39;runAsUser&#39;: 0 },
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
-    &#39;command&#39;:  [ 
-      &#39;sh&#39;, 
-      &#39;-c&#39;,
-      &#39;chmod 750 ~ &amp;&amp; chown {{ uidNumber }}:{{ gidNumber }} ~&#39; ] 
+  'init': { 
+    'volumes': [ 'tmp', 'home' ],
+    'image': 'busybox',
+    'enable': True,
+    'imagePullPolicy': 'IfNotPresent',
+    'securityContext': { 'runAsUser': 0 },
+    'acl':  { 'permit': [ 'all' ] },
+    'command':  [ 
+      'sh', 
+      '-c',
+      'chmod 750 ~ &amp;&amp; chown {{ uidNumber }}:{{ gidNumber }} ~' ] 
   },
-  &#39;ephemeral_container&#39;: {
-    &#39;volumes&#39;: [ &#39;x11socket&#39;, &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39; ],
-    &#39;enable&#39;: True,
-    &#39;imagePullPolicy&#39;: &#39;Always&#39;,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
-    &#39;securityContext&#39;: { 
-        &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ] ,
-        &#39;readOnlyRootFilesystem&#39;: False, 
-        &#39;allowPrivilegeEscalation&#39;: True, 
-        &#39;runAsUser&#39;:&#39;{{ uidNumber }}&#39;,
-        &#39;runAsGroup&#39;:&#39;{{ gidNumber }}&#39;
+  'ephemeral_container': {
+    'volumes': [ 'x11socket', 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
+    'enable': True,
+    'imagePullPolicy': 'Always',
+    'acl':  { 'permit': [ 'all' ] },
+    'securityContext': { 
+        'supplementalGroups': [ '{{ supplementalGroups }}' ] ,
+        'readOnlyRootFilesystem': False, 
+        'allowPrivilegeEscalation': True, 
+        'runAsUser':'{{ uidNumber }}',
+        'runAsGroup':'{{ gidNumber }}'
     }
   },
-  &#39;pod_application&#39; : {
-    &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39; ],
-    &#39;enable&#39;: True,
-    &#39;securityContext&#39;: {
-        &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ] ,
-        &#39;readOnlyRootFilesystem&#39;: False,
-        &#39;allowPrivilegeEscalation&#39;: True,
-        &#39;runAsUser&#39;:&#39;{{ uidNumber }}&#39;,
-        &#39;runAsGroup&#39;:&#39;{{ gidNumber }}&#39;
+  'pod_application' : {
+    'volumes': [ 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
+    'enable': True,
+    'securityContext': {
+        'supplementalGroups': [ '{{ supplementalGroups }}' ] ,
+        'readOnlyRootFilesystem': False,
+        'allowPrivilegeEscalation': True,
+        'runAsUser':'{{ uidNumber }}',
+        'runAsGroup':'{{ gidNumber }}'
     },
-    &#39;tolerations&#39;: [],
-    &#39;acl&#39;: { &#39;permit&#39;: [&#39;all&#39;] }}}
+    'tolerations': [],
+    'acl': { 'permit': ['all'] }}}
 </code></pre></div>
 <h2 id="spec"><code>spec</code></h2>
-<div class="highlight"><pre><span></span><code>&#39;spec&#39; : {
-    # &#39;imagePullSecrets&#39;: [ { &#39;name&#39;: name_of_secret } ],
-    &#39;shareProcessNamespace&#39;: False,
-    &#39;securityContext&#39;: {
-      &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ],
-      &#39;runAsUser&#39;: &#39;{{ uidNumber }}&#39;,
-      &#39;runAsGroup&#39;: &#39;{{ gidNumber }}&#39;
+<div class="highlight"><pre><span></span><code>'spec' : {
+    # 'imagePullSecrets': [ { 'name': name_of_secret } ],
+    'shareProcessNamespace': False,
+    'securityContext': {
+      'supplementalGroups': [ '{{ supplementalGroups }}' ],
+      'runAsUser': '{{ uidNumber }}',
+      'runAsGroup': '{{ gidNumber }}'
     },
-    &#39;tolerations&#39;: []
+    'tolerations': []
 }
 </code></pre></div>
 <p><code>spec</code> describes the pod specification, following the standard Kubernetes pod specification format.</p>
@@ -4411,25 +4411,25 @@ tags:
 <blockquote>
 <p>These volumes allow the root filesystem of the <code>graphical</code> container to be mounted as <strong>read-only</strong>.</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code> &#39;default_volumes&#39;: {
-    &#39;shm&#39;:        { &#39;name&#39;: &#39;shm&#39;,        &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;512Mi&#39; } },
-    &#39;run&#39;:        { &#39;name&#39;: &#39;run&#39;,        &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;1Mi&#39;   } },
-    &#39;tmp&#39;:        { &#39;name&#39;: &#39;tmp&#39;,        &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Gi&#39;   } },
-    &#39;log&#39;:        { &#39;name&#39;: &#39;log&#39;,        &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Gi&#39;   } },
-    &#39;rundbus&#39;:    { &#39;name&#39;: &#39;rundbus&#39;,    &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Mi&#39;   } },
-    &#39;runuser&#39;:    { &#39;name&#39;: &#39;runuser&#39;,    &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Mi&#39;   } },
-    &#39;x11socket&#39;:  { &#39;name&#39;: &#39;x11socket&#39;,  &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;1Ki&#39;   } }
+<div class="highlight"><pre><span></span><code> 'default_volumes': {
+    'shm':        { 'name': 'shm',        'emptyDir': { 'medium': 'Memory', 'sizeLimit': '512Mi' } },
+    'run':        { 'name': 'run',        'emptyDir': { 'medium': 'Memory', 'sizeLimit': '1Mi'   } },
+    'tmp':        { 'name': 'tmp',        'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi'   } },
+    'log':        { 'name': 'log',        'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi'   } },
+    'rundbus':    { 'name': 'rundbus',    'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Mi'   } },
+    'runuser':    { 'name': 'runuser',    'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Mi'   } },
+    'x11socket':  { 'name': 'x11socket',  'emptyDir': { 'medium': 'Memory', 'sizeLimit': '1Ki'   } }
   },
 </code></pre></div>
 <p><code>default_volumes_mount</code> describes the mount points for the volumes defined in <code>default_volumes</code>.</p>
-<div class="highlight"><pre><span></span><code>  &#39;default_volumes_mount&#39;: {
-    &#39;shm&#39;:        { &#39;name&#39;: &#39;shm&#39;,        &#39;mountPath&#39;: &#39;/dev/shm&#39; },
-    &#39;run&#39;:        { &#39;name&#39;: &#39;run&#39;,        &#39;mountPath&#39;: &#39;/var/run/desktop&#39; },
-    &#39;tmp&#39;:        { &#39;name&#39;: &#39;tmp&#39;,        &#39;mountPath&#39;: &#39;/tmp&#39; },
-    &#39;log&#39;:        { &#39;name&#39;: &#39;log&#39;,        &#39;mountPath&#39;: &#39;/var/log/desktop&#39; },
-    &#39;rundbus&#39;:    { &#39;name&#39;: &#39;rundbus&#39;,    &#39;mountPath&#39;: &#39;/var/run/dbus&#39; },
-    &#39;runuser&#39;:    { &#39;name&#39;: &#39;runuser&#39;,    &#39;mountPath&#39;: &#39;/run/user/&#39; },
-    &#39;x11socket&#39;:  { &#39;name&#39;: &#39;x11socket&#39;,  &#39;mountPath&#39;: &#39;/tmp/.X11-unix&#39; }
+<div class="highlight"><pre><span></span><code>  'default_volumes_mount': {
+    'shm':        { 'name': 'shm',        'mountPath': '/dev/shm' },
+    'run':        { 'name': 'run',        'mountPath': '/var/run/desktop' },
+    'tmp':        { 'name': 'tmp',        'mountPath': '/tmp' },
+    'log':        { 'name': 'log',        'mountPath': '/var/log/desktop' },
+    'rundbus':    { 'name': 'rundbus',    'mountPath': '/var/run/dbus' },
+    'runuser':    { 'name': 'runuser',    'mountPath': '/run/user/' },
+    'x11socket':  { 'name': 'x11socket',  'mountPath': '/tmp/.X11-unix' }
   }
 </code></pre></div>
 <ul>
@@ -4441,48 +4441,48 @@ tags:
 <li>The <code>x11socket</code> volume is dedicated to the X11 Unix domain socket.</li>
 </ul>
 <h2 id="graphical-container"><code>graphical</code> container</h2>
-<div class="highlight"><pre><span></span><code>&#39;graphical&#39; : {
-    &#39;volumes&#39;: [ &#39;x11socket&#39;, &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39; ],
-    &#39;image&#39;: { &#39;default&#39;: &#39;ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.4&#39; },
-    &#39;imagePullPolicy&#39;:  &#39;Always&#39;,
-    &#39;enable&#39;: True,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
-    &#39;waitportbin&#39; : &#39;/composer/node/wait-port/node_modules/.bin/wait-port&#39;,
-    &#39;securityContext&#39;: {
-      &#39;readOnlyRootFilesystem&#39;: False, 
-      &#39;allowPrivilegeEscalation&#39;: True,
-      &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ],
-      &#39;runAsUser&#39;: &#39;{{ uidNumber }}&#39;,
-      &#39;runAsGroup&#39;: &#39;{{ gidNumber }}&#39;,
-      &#39;runAsNonRoot&#39;: True 
+<div class="highlight"><pre><span></span><code>'graphical' : {
+    'volumes': [ 'x11socket', 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
+    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.4' },
+    'imagePullPolicy':  'Always',
+    'enable': True,
+    'acl':  { 'permit': [ 'all' ] },
+    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
+    'securityContext': {
+      'readOnlyRootFilesystem': False, 
+      'allowPrivilegeEscalation': True,
+      'supplementalGroups': [ '{{ supplementalGroups }}' ],
+      'runAsUser': '{{ uidNumber }}',
+      'runAsGroup': '{{ gidNumber }}',
+      'runAsNonRoot': True 
     },
-    &#39;tcpport&#39;: 6081,
-    &#39;secrets_requirement&#39; : [ &#39;abcdesktop/vnc&#39;, &#39;abcdesktop/kerberos&#39;],
-    &#39;waitfor_services&#39; : [ &#39;xserver&#39;, &#39;novnc&#39;, &#39;spawner-service&#39;, &#39;plasmashell&#39; ],
-    &#39;waitfor_processes&#39;: [ &#39;kwin_x11&#39;, &#39;plasmashell&#39;, &#39;kactivitymanagerd&#39;  ], 
-    &#39;waitfor_listeningservices&#39;: [ &#39;graphical&#39;, &#39;spawner&#39; ]
+    'tcpport': 6081,
+    'secrets_requirement' : [ 'abcdesktop/vnc', 'abcdesktop/kerberos'],
+    'waitfor_services' : [ 'xserver', 'novnc', 'spawner-service', 'plasmashell' ],
+    'waitfor_processes': [ 'kwin_x11', 'plasmashell', 'kactivitymanagerd'  ], 
+    'waitfor_listeningservices': [ 'graphical', 'spawner' ]
   },
   # spawner core service to configure desktop
   # run inside graphical container  
-  &#39;spawner&#39; : { 
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29786,
-    &#39;waitportbin&#39; : &#39;/composer/node/wait-port/node_modules/.bin/wait-port&#39;,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'spawner' : { 
+    'enable': True,
+    'tcpport': 29786,
+    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
+    'acl':  { 'permit': [ 'all' ] } 
   },
   # broadcast core service for notification
   # run inside graphical container  
-  &#39;broadcast&#39; : { 
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29784,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'broadcast' : { 
+    'enable': True,
+    'tcpport': 29784,
+    'acl':  { 'permit': [ 'all' ] } 
   },
   # webshell is no a container, just a service and run inside graphical container  
   # usefull to debug application and troubleshooting
-  &#39;webshell&#39; : { 
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29781,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'webshell' : { 
+    'enable': True,
+    'tcpport': 29781,
+    'acl':  { 'permit': [ 'all' ] } 
   }
 </code></pre></div>
 <ul>
@@ -4511,23 +4511,23 @@ tags:
 <li><code>webshell</code> describes the remote command service  </li>
 </ul>
 <h2 id="printer-container"><code>printer</code> container</h2>
-<div class="highlight"><pre><span></span><code>&#39;printer&#39; : { 
-    &#39;volumes&#39;: [ &#39;tmp&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.cupsd:4.4&#39;,
-    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 681,
-    &#39;securityContext&#39;: { &#39;runAsUser&#39;: 0, &#39;runAsGroup&#39;: 0 },
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+<div class="highlight"><pre><span></span><code>'printer' : { 
+    'volumes': [ 'tmp' ],
+    'image': 'ghcr.io/abcdesktopio/oc.cupsd:4.4',
+    'imagePullPolicy': 'IfNotPresent',
+    'enable': True,
+    'tcpport': 681,
+    'securityContext': { 'runAsUser': 0, 'runAsGroup': 0 },
+    'acl':  { 'permit': [ 'all' ] } 
   },
 
 # allow to download file in the printer queue
 # use to print file from the web browser
 # printerfile is no a container, just a service inside the printer container
-&#39;printerfile&#39; : { 
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29782,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+'printerfile' : { 
+    'enable': True,
+    'tcpport': 29782,
+    'acl':  { 'permit': [ 'all' ] } 
 },
 </code></pre></div>
 <p>The printer container provides the print service, enabling files to be printed as PDF and downloaded from the virtual printer queue.</p>
@@ -4541,13 +4541,13 @@ tags:
 <li><code>acl</code> is a dictionary that controls access to this container</li>
 </ul>
 <h2 id="filer-container"><code>filer</code> container</h2>
-<div class="highlight"><pre><span></span><code>&#39;filer&#39; : { 
-    &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.filer:4.4&#39;,
-    &#39;imagePullPolicy&#39;:  &#39;Always&#39;,
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29783,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] }
+<div class="highlight"><pre><span></span><code>'filer' : { 
+    'volumes': [ 'tmp', 'home', 'log' ],
+    'image': 'ghcr.io/abcdesktopio/oc.filer:4.4',
+    'imagePullPolicy':  'Always',
+    'enable': True,
+    'tcpport': 29783,
+    'acl':  { 'permit': [ 'all' ] }
     },
 </code></pre></div>
 <p>The filer container provides file transfer capabilities, allowing users to upload and download files and directories.</p>
@@ -4560,13 +4560,13 @@ tags:
 <li><code>acl</code> is a dictionary that controls access to this container</li>
 </ul>
 <h2 id="sound-container"><code>sound</code> container</h2>
-<div class="highlight"><pre><span></span><code>&#39;sound&#39;: { 
-    &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.4&#39;,
-    &#39;imagePullPolicy&#39;: &#39;Always&#39;,
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29788,
-    &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] },
+<div class="highlight"><pre><span></span><code>'sound': { 
+    'volumes': [ 'tmp', 'home', 'log' ],
+    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.4',
+    'imagePullPolicy': 'Always',
+    'enable': True,
+    'tcpport': 29788,
+    'acl': { 'permit': [ 'all' ] },
   },
 </code></pre></div>
 <p>The sound container provides audio input and output services, including sound playback and microphone capture.</p>
@@ -4579,17 +4579,17 @@ tags:
 <li><code>acl</code> is a dictionary that controls access to this container</li>
 </ul>
 <h2 id="init-container"><code>init</code> container</h2>
-<div class="highlight"><pre><span></span><code>&#39;init&#39;: { 
-    &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39; ],
-    &#39;image&#39;: &#39;busybox&#39;,
-    &#39;enable&#39;: True,
-    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
-    &#39;securityContext&#39;: { &#39;runAsUser&#39;: 0 },
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
-    &#39;command&#39;:  [ 
-      &#39;sh&#39;, 
-      &#39;-c&#39;,
-      &#39;chmod 750 ~ &amp;&amp; chown {{ uidNumber }}:{{ gidNumber }} ~&#39; ] 
+<div class="highlight"><pre><span></span><code>'init': { 
+    'volumes': [ 'tmp', 'home' ],
+    'image': 'busybox',
+    'enable': True,
+    'imagePullPolicy': 'IfNotPresent',
+    'securityContext': { 'runAsUser': 0 },
+    'acl':  { 'permit': [ 'all' ] },
+    'command':  [ 
+      'sh', 
+      '-c',
+      'chmod 750 ~ &amp;&amp; chown {{ uidNumber }}:{{ gidNumber }} ~' ] 
   },
 </code></pre></div>
 <ul>
@@ -4607,168 +4607,168 @@ tags:
   # can be overwritten on dedicated container spec
   # value inside mustache like {{ uidNumber }} is replaced by context run value
   # for example {{ uidNumber }} is the uid number define in ldap server 
-  &#39;spec&#39; : {
-    &#39;shareProcessNamespace&#39;: False,
-    &#39;securityContext&#39;: {
-      &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ],
-      &#39;runAsUser&#39;: &#39;{{ uidNumber }}&#39;,
-      &#39;runAsGroup&#39;: &#39;{{ gidNumber }}&#39;
+  'spec' : {
+    'shareProcessNamespace': False,
+    'securityContext': {
+      'supplementalGroups': [ '{{ supplementalGroups }}' ],
+      'runAsUser': '{{ uidNumber }}',
+      'runAsGroup': '{{ gidNumber }}'
     },
-    &#39;tolerations&#39;: []
+    'tolerations': []
   },
-  &#39;default_volumes&#39;: {
-    &#39;shm&#39;: { &#39;name&#39;: &#39;shm&#39;, &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;512Mi&#39; } },
-    &#39;run&#39;: { &#39;name&#39;: &#39;run&#39;, &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;1Mi&#39;    } },
-    &#39;tmp&#39;: { &#39;name&#39;: &#39;tmp&#39;, &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Gi&#39;   } },
-    &#39;log&#39;: { &#39;name&#39;: &#39;log&#39;, &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Gi&#39;   } },
-    &#39;rundbus&#39;: { &#39;name&#39;: &#39;rundbus&#39;,  &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Mi&#39; } },
-    &#39;runuser&#39;: { &#39;name&#39;: &#39;runuser&#39;,  &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;8Mi&#39; } },
-    &#39;x11socket&#39;: { &#39;name&#39;: &#39;x11socket&#39;,  &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;1Ki&#39; } },
-    &#39;sudoers&#39;: { &#39;name&#39;: &#39;sudoers&#39;,  &#39;emptyDir&#39;: { &#39;medium&#39;: &#39;Memory&#39;, &#39;sizeLimit&#39;: &#39;1Mi&#39; } }
+  'default_volumes': {
+    'shm': { 'name': 'shm', 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '512Mi' } },
+    'run': { 'name': 'run', 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '1Mi'    } },
+    'tmp': { 'name': 'tmp', 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi'   } },
+    'log': { 'name': 'log', 'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Gi'   } },
+    'rundbus': { 'name': 'rundbus',  'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Mi' } },
+    'runuser': { 'name': 'runuser',  'emptyDir': { 'medium': 'Memory', 'sizeLimit': '8Mi' } },
+    'x11socket': { 'name': 'x11socket',  'emptyDir': { 'medium': 'Memory', 'sizeLimit': '1Ki' } },
+    'sudoers': { 'name': 'sudoers',  'emptyDir': { 'medium': 'Memory', 'sizeLimit': '1Mi' } }
   },
-  &#39;default_volumes_mount&#39;: {
-    &#39;shm&#39;: { &#39;name&#39;: &#39;shm&#39;, &#39;mountPath&#39; : &#39;/dev/shm&#39; },
-    &#39;run&#39;: { &#39;name&#39;: &#39;run&#39;,  &#39;mountPath&#39;: &#39;/var/run/desktop&#39; },
-    &#39;tmp&#39;: { &#39;name&#39;: &#39;tmp&#39;,  &#39;mountPath&#39;: &#39;/tmp&#39; },
-    &#39;log&#39;: { &#39;name&#39;: &#39;log&#39;,  &#39;mountPath&#39;: &#39;/var/log/desktop&#39; },
-    &#39;rundbus&#39;: { &#39;name&#39;: &#39;rundbus&#39;,  &#39;mountPath&#39;: &#39;/var/run/dbus&#39; },
-    &#39;runuser&#39;: { &#39;name&#39;: &#39;runuser&#39;,  &#39;mountPath&#39;: &#39;/run/user/&#39; },
-    &#39;x11socket&#39;: { &#39;name&#39;: &#39;x11socket&#39;,  &#39;mountPath&#39;: &#39;/tmp/.X11-unix&#39; },
-    &#39;sudoers&#39;: { &#39;name&#39;: &#39;sudoers&#39;, &#39;mountPath&#39;: &#39;/etc/sudoers.d&#39; }
+  'default_volumes_mount': {
+    'shm': { 'name': 'shm', 'mountPath' : '/dev/shm' },
+    'run': { 'name': 'run',  'mountPath': '/var/run/desktop' },
+    'tmp': { 'name': 'tmp',  'mountPath': '/tmp' },
+    'log': { 'name': 'log',  'mountPath': '/var/log/desktop' },
+    'rundbus': { 'name': 'rundbus',  'mountPath': '/var/run/dbus' },
+    'runuser': { 'name': 'runuser',  'mountPath': '/run/user/' },
+    'x11socket': { 'name': 'x11socket',  'mountPath': '/tmp/.X11-unix' },
+    'sudoers': { 'name': 'sudoers', 'mountPath': '/etc/sudoers.d' }
   },
   # graphical is the main abcdesktop container it include x11 service 
-  &#39;graphical&#39; : {
-    &#39;volumes&#39;: [ &#39;sudoers&#39;, &#39;x11socket&#39;, &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39; ],
-    &#39;image&#39;: { &#39;default&#39;: &#39;ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.4&#39; },
-    &#39;imagePullPolicy&#39;:  &#39;Always&#39;,
-    &#39;enable&#39;: True,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
-    &#39;waitportbin&#39; : &#39;/composer/node/wait-port/node_modules/.bin/wait-port&#39;,
-    &#39;securityContext&#39;: {
-      &#39;readOnlyRootFilesystem&#39;: False, 
-      &#39;allowPrivilegeEscalation&#39;: True,
-      &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ],
-      &#39;runAsUser&#39;: &#39;{{ uidNumber }}&#39;,
-      &#39;runAsGroup&#39;: &#39;{{ gidNumber }}&#39;,
-      &#39;runAsNonRoot&#39;: True 
+  'graphical' : {
+    'volumes': [ 'sudoers', 'x11socket', 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
+    'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.4' },
+    'imagePullPolicy':  'Always',
+    'enable': True,
+    'acl':  { 'permit': [ 'all' ] },
+    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
+    'securityContext': {
+      'readOnlyRootFilesystem': False, 
+      'allowPrivilegeEscalation': True,
+      'supplementalGroups': [ '{{ supplementalGroups }}' ],
+      'runAsUser': '{{ uidNumber }}',
+      'runAsGroup': '{{ gidNumber }}',
+      'runAsNonRoot': True 
     },
-    &#39;tcpport&#39;: 6081,
-    &#39;secrets_requirement&#39; : [ &#39;abcdesktop/vnc&#39;, &#39;abcdesktop/kerberos&#39;],
-    &#39;waitfor_services&#39; : [ &#39;xserver&#39;, &#39;novnc&#39;, &#39;spawner-service&#39;, &#39;plasmashell&#39; ],
-    &#39;waitfor_processes&#39; : [ &#39;kwin_x11&#39;, &#39;plasmashell&#39;, &#39;kactivitymanagerd&#39;  ], 
-    &#39;waitfor_listeningservices&#39;: [ &#39;graphical&#39;, &#39;spawner&#39; ]
+    'tcpport': 6081,
+    'secrets_requirement' : [ 'abcdesktop/vnc', 'abcdesktop/kerberos'],
+    'waitfor_services' : [ 'xserver', 'novnc', 'spawner-service', 'plasmashell' ],
+    'waitfor_processes' : [ 'kwin_x11', 'plasmashell', 'kactivitymanagerd'  ], 
+    'waitfor_listeningservices': [ 'graphical', 'spawner' ]
   },
   # spawner core service to configure desktop
   # run inside graphical container  
-  &#39;spawner&#39; : { 
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29786,
-    &#39;waitportbin&#39; : &#39;/composer/node/wait-port/node_modules/.bin/wait-port&#39;,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'spawner' : { 
+    'enable': True,
+    'tcpport': 29786,
+    'waitportbin' : '/composer/node/wait-port/node_modules/.bin/wait-port',
+    'acl':  { 'permit': [ 'all' ] } 
   },
   # broadcast core service for notification
   # run inside graphical container  
-  &#39;broadcast&#39; : { 
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29784,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'broadcast' : { 
+    'enable': True,
+    'tcpport': 29784,
+    'acl':  { 'permit': [ 'all' ] } 
   },
   # webshell is no a container, just a service and run inside graphical container  
   # usefull to debug application and troubleshooting
-  &#39;webshell&#39; : { 
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29781,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'webshell' : { 
+    'enable': True,
+    'tcpport': 29781,
+    'acl':  { 'permit': [ 'all' ] } 
   },
   # container printer
   # printer is a cupsd service 
-  &#39;printer&#39; : { 
-    &#39;volumes&#39;: [ &#39;tmp&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.cupsd:4.4&#39;,
-    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 681,
-    &#39;securityContext&#39;: { &#39;runAsUser&#39;: 0, &#39;runAsGroup&#39;: 0 },
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'printer' : { 
+    'volumes': [ 'tmp' ],
+    'image': 'ghcr.io/abcdesktopio/oc.cupsd:4.4',
+    'imagePullPolicy': 'IfNotPresent',
+    'enable': True,
+    'tcpport': 681,
+    'securityContext': { 'runAsUser': 0, 'runAsGroup': 0 },
+    'acl':  { 'permit': [ 'all' ] } 
   },
   # allow to download file in the printer queue
   # use to print file from the web browser
   # printerfile is no a container, just a service 
-  &#39;printerfile&#39; : { 
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29782,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] } 
+  'printerfile' : { 
+    'enable': True,
+    'tcpport': 29782,
+    'acl':  { 'permit': [ 'all' ] } 
   },
   # container filer
   # filer provide upload and download files features
-  &#39;filer&#39; : { 
-    &#39;volumes&#39;: [ &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39;  ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.filer:4.4&#39;,
-    &#39;imagePullPolicy&#39;:  &#39;Always&#39;,
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29783,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] }
+  'filer' : { 
+    'volumes': [ 'tmp', 'home', 'log'  ],
+    'image': 'ghcr.io/abcdesktopio/oc.filer:4.4',
+    'imagePullPolicy':  'Always',
+    'enable': True,
+    'tcpport': 29783,
+    'acl':  { 'permit': [ 'all' ] }
     },
   # container sound
   # sound is a pulseaudio service instance
-  &#39;sound&#39;: { 
-    &#39;volumes&#39;: [ &#39;sudoers&#39;, &#39;tmp&#39;, &#39;home&#39;, &#39;log&#39; ],
-    &#39;image&#39;: &#39;ghcr.io/abcdesktopio/oc.pulseaudio:4.4&#39;,
-    &#39;imagePullPolicy&#39;: &#39;Always&#39;,
-    &#39;enable&#39;: True,
-    &#39;tcpport&#39;: 29788,
-    &#39;acl&#39;: { &#39;permit&#39;: [ &#39;all&#39; ] },
+  'sound': { 
+    'volumes': [ 'sudoers', 'tmp', 'home', 'log' ],
+    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.4',
+    'imagePullPolicy': 'Always',
+    'enable': True,
+    'tcpport': 29788,
+    'acl': { 'permit': [ 'all' ] },
   },
   # container init
   # a simple busybox to chowner and chmod of homedir
   # by defaul homedir belongs to root
-  &#39;init&#39;: { 
-    &#39;volumes&#39;: [ &#39;sudoers&#39;, &#39;tmp&#39;, &#39;home&#39; ],
-    &#39;image&#39;: &#39;busybox&#39;,
-    &#39;enable&#39;: True,
-    &#39;imagePullPolicy&#39;: &#39;IfNotPresent&#39;,
-    &#39;securityContext&#39;: { &#39;runAsUser&#39;: 0 },
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
+  'init': { 
+    'volumes': [ 'sudoers', 'tmp', 'home' ],
+    'image': 'busybox',
+    'enable': True,
+    'imagePullPolicy': 'IfNotPresent',
+    'securityContext': { 'runAsUser': 0 },
+    'acl':  { 'permit': [ 'all' ] },
     # chmod 1755 ~/.config &amp;&amp; \
     # chmod 1755 ~/.cache &amp;&amp; \
     #  chown {{ uidNumber }}:{{ gidNumber }} ~ ~/.config ~/.cache ~/.local
-    &#39;command&#39;:  [ 
-      &#39;sh&#39;, 
-      &#39;-c&#39;,
-      &#39;echo &quot;$LOGNAME ALL=(ALL:ALL) ALL&quot; &gt; /etc/sudoers.d/$LOGNAME &amp;&amp; \
+    'command':  [ 
+      'sh', 
+      '-c',
+      'echo "$LOGNAME ALL=(ALL:ALL) ALL" &gt; /etc/sudoers.d/$LOGNAME &amp;&amp; \
        chmod 440 /etc/sudoers.d/* &amp;&amp; \
        chown 0:0 /etc/sudoers.d/* &amp;&amp; \
        chmod 755 /etc/sudoers.d &amp;&amp; \ 
        chown 0:0 /etc/sudoers.d &amp;&amp; \
        chmod 750 ~ &amp;&amp; \
-       chown {{ uidNumber }}:{{ gidNumber }} ~&#39; ] 
+       chown {{ uidNumber }}:{{ gidNumber }} ~' ] 
   },
-  &#39;ephemeral_container&#39;: {
-    &#39;volumes&#39;: [ &#39;sudoers&#39;, &#39;x11socket&#39;, &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39; ],
-    &#39;enable&#39;: True,
-    &#39;imagePullPolicy&#39;: &#39;Always&#39;,
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] },
-    &#39;securityContext&#39;: { 
-        &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ] ,
-        &#39;readOnlyRootFilesystem&#39;: False, 
-        &#39;allowPrivilegeEscalation&#39;: True, 
-        &#39;runAsUser&#39;:&#39;{{ uidNumber }}&#39;,
-        &#39;runAsGroup&#39;:&#39;{{ gidNumber }}&#39;
+  'ephemeral_container': {
+    'volumes': [ 'sudoers', 'x11socket', 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
+    'enable': True,
+    'imagePullPolicy': 'Always',
+    'acl':  { 'permit': [ 'all' ] },
+    'securityContext': { 
+        'supplementalGroups': [ '{{ supplementalGroups }}' ] ,
+        'readOnlyRootFilesystem': False, 
+        'allowPrivilegeEscalation': True, 
+        'runAsUser':'{{ uidNumber }}',
+        'runAsGroup':'{{ gidNumber }}'
     }
   },
-  &#39;pod_application&#39; : {
-    &#39;volumes&#39;: [ &#39;sudoers&#39;, &#39;tmp&#39;, &#39;run&#39;, &#39;log&#39;, &#39;rundbus&#39;, &#39;runuser&#39; ],
-    &#39;enable&#39;: True,
-    # &#39;imagePullSecrets&#39;: [ { &#39;name&#39;: name_of_secret } ]
-    &#39;securityContext&#39;: {
-        &#39;supplementalGroups&#39;: [ &#39;{{ supplementalGroups }}&#39; ] ,
-        &#39;readOnlyRootFilesystem&#39;: False,
-        &#39;allowPrivilegeEscalation&#39;: True,
-        &#39;runAsUser&#39;:&#39;{{ uidNumber }}&#39;,
-        &#39;runAsGroup&#39;:&#39;{{ gidNumber }}&#39;
+  'pod_application' : {
+    'volumes': [ 'sudoers', 'tmp', 'run', 'log', 'rundbus', 'runuser' ],
+    'enable': True,
+    # 'imagePullSecrets': [ { 'name': name_of_secret } ]
+    'securityContext': {
+        'supplementalGroups': [ '{{ supplementalGroups }}' ] ,
+        'readOnlyRootFilesystem': False,
+        'allowPrivilegeEscalation': True,
+        'runAsUser':'{{ uidNumber }}',
+        'runAsGroup':'{{ gidNumber }}'
     },
-    &#39;tolerations&#39;: [],
-    &#39;acl&#39;:  { &#39;permit&#39;: [ &#39;all&#39; ] }  }  }
+    'tolerations': [],
+    'acl':  { 'permit': [ 'all' ] }  }  }
 </code></pre></div>
 <h2 id="define-environment-variables-in-the-desktop">define environment variables in the desktop</h2>
 <p><code>desktop.envlocal</code> defines the environment variables injected into the desktop containers. It is a dictionary where each key is an environment variable name and the corresponding value is the variable's value. Only static variables are defined here; dynamic values are set programmatically by pyos at runtime.</p>
@@ -4776,12 +4776,12 @@ tags:
 # desktop.envlocal is a dictionary. 
 # desktop.envlocal contains a (key,value) added by default as environment variables to oc.user.
 desktop.envlocal :  { 
-  &#39;X11LISTEN&#39;:&#39;tcp&#39;, 
-  &#39;WEBSOCKIFY_HEARTBEAT&#39;:&#39;30&#39;,
-  &#39;DISABLE_REMOTEIP_FILTERING&#39;: &#39;enabled&#39;,
-  &#39;XDG_RUNTIME_DIR&#39;: &#39;/tmp/runtime&#39;,
-  &#39;ABCDESKTOP_FORCE_OVERWRITE_PLASMA_CONFIG&#39;: &#39;true&#39;,
-  &#39;DISABLE_RTKIT&#39;: &#39;y&#39;
+  'X11LISTEN':'tcp', 
+  'WEBSOCKIFY_HEARTBEAT':'30',
+  'DISABLE_REMOTEIP_FILTERING': 'enabled',
+  'XDG_RUNTIME_DIR': '/tmp/runtime',
+  'ABCDESKTOP_FORCE_OVERWRITE_PLASMA_CONFIG': 'true',
+  'DISABLE_RTKIT': 'y'
  }
 </code></pre></div>
 <ul>
@@ -4802,8 +4802,8 @@ leela-debe1<span class="w">   </span><span class="m">3</span>/3<span class="w"> 
 <li>List the environment variables:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>leela-debe1<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>--<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;env&#39;</span>
-Defaulted<span class="w"> </span>container<span class="w"> </span><span class="s2">&quot;x-graphical&quot;</span><span class="w"> </span>out<span class="w"> </span>of:<span class="w"> </span>x-graphical,<span class="w"> </span>s-sound,<span class="w"> </span>f-filer,<span class="w"> </span>i-init<span class="w"> </span><span class="o">(</span>init<span class="o">)</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>leela-debe1<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>--<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">'env'</span>
+Defaulted<span class="w"> </span>container<span class="w"> </span><span class="s2">"x-graphical"</span><span class="w"> </span>out<span class="w"> </span>of:<span class="w"> </span>x-graphical,<span class="w"> </span>s-sound,<span class="w"> </span>f-filer,<span class="w"> </span>i-init<span class="w"> </span><span class="o">(</span>init<span class="o">)</span>
 <span class="nv">PYOS_PORT_8000_TCP_ADDR</span><span class="o">=</span><span class="m">10</span>.111.133.176
 <span class="nv">NVIDIA_VISIBLE_DEVICES</span><span class="o">=</span>all
 <span class="nv">KUBERNETES_SERVICE_PORT_HTTPS</span><span class="o">=</span><span class="m">443</span>
@@ -4818,8 +4818,8 @@ Defaulted<span class="w"> </span>container<span class="w"> </span><span class="s
 <li>Get the value of the variable</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>leela-debe1<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>--<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo $WEBSOCKIFY_HEARTBEAT&#39;</span>
-Defaulted<span class="w"> </span>container<span class="w"> </span><span class="s2">&quot;x-graphical&quot;</span><span class="w"> </span>out<span class="w"> </span>of:<span class="w"> </span>x-graphical,<span class="w"> </span>s-sound,<span class="w"> </span>f-filer,<span class="w"> </span>i-init<span class="w"> </span><span class="o">(</span>init<span class="o">)</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>leela-debe1<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NAMESPACE</span><span class="w"> </span>--<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">'echo $WEBSOCKIFY_HEARTBEAT'</span>
+Defaulted<span class="w"> </span>container<span class="w"> </span><span class="s2">"x-graphical"</span><span class="w"> </span>out<span class="w"> </span>of:<span class="w"> </span>x-graphical,<span class="w"> </span>s-sound,<span class="w"> </span>f-filer,<span class="w"> </span>i-init<span class="w"> </span><span class="o">(</span>init<span class="o">)</span>
 <span class="m">30</span>
 </code></pre></div>
 <p>You can confirm that the <code>WEBSOCKIFY_HEARTBEAT</code> is set to <code>30</code></p>

@@ -4136,55 +4136,55 @@
 <p>The <code>executeclasses</code> configuration defines resource profiles for desktop pods and application containers. It allows you to control resource allocation either by defining static rules or by letting users select from a predefined set of profiles. The <code>executeclasses</code> value is a dictionary in which each entry describes a distinct resource profile.</p>
 <h2 id="executeclasses-dictionary"><code>executeclasses</code> dictionary</h2>
 <div class="highlight"><pre><span></span><code>executeclasses : {
-  &#39;default&#39;:{
-    &#39;nodeSelector&#39;:None,
-    &#39;description&#39;: &#39;default: up to 4 CPU cores and 8Gi&#39;,
-    &#39;runtimeClassName&#39;: None,
-    &#39;resources&#39;:{
-      &#39;requests&#39;:{&#39;memory&#39;:&quot;576Mi&quot;,&#39;cpu&#39;:&quot;220m&quot;},       
-      &#39;limits&#39;:  {&#39;memory&#39;:&quot;8Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;}
+  'default':{
+    'nodeSelector':None,
+    'description': 'default: up to 4 CPU cores and 8Gi',
+    'runtimeClassName': None,
+    'resources':{
+      'requests':{'memory':"576Mi",'cpu':"220m"},       
+      'limits':  {'memory':"8Gi",'cpu':"4000m"}
     }
   },
-  &#39;bronze&#39;:{
-    &#39;nodeSelector&#39;:None,
-    &#39;runtimeClassName&#39;: None,
-    &#39;description&#39;: &#39;bronze: up to 2 CPU cores and 8Gi&#39;,
-    &#39;resources&#39;:{
-      &#39;requests&#39;:{&#39;memory&#39;:&quot;576Mi&quot;,&#39;cpu&#39;:&quot;220m&quot;},
-      &#39;limits&#39;:  {&#39;memory&#39;:&quot;8Gi&quot;,&#39;cpu&#39;:&quot;2000m&quot;}
+  'bronze':{
+    'nodeSelector':None,
+    'runtimeClassName': None,
+    'description': 'bronze: up to 2 CPU cores and 8Gi',
+    'resources':{
+      'requests':{'memory':"576Mi",'cpu':"220m"},
+      'limits':  {'memory':"8Gi",'cpu':"2000m"}
     }
   },
-  &#39;silver&#39;:{
-    &#39;nodeSelector&#39;: None,
-    &#39;description&#39;: &#39;silver: 4 CPU cores and 32Gi RAM&#39;,
-    &#39;runtimeClassName&#39;: None,
-    &#39;resources&#39;:{
-      &#39;requests&#39;:{&#39;memory&#39;:&quot;2Gi&quot;,&#39;cpu&#39;:&quot;2000m&quot;},       
-      &#39;limits&#39;:{&#39;memory&#39;:&quot;32Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;} 
+  'silver':{
+    'nodeSelector': None,
+    'description': 'silver: 4 CPU cores and 32Gi RAM',
+    'runtimeClassName': None,
+    'resources':{
+      'requests':{'memory':"2Gi",'cpu':"2000m"},       
+      'limits':{'memory':"32Gi",'cpu':"4000m"} 
     }
   },
-  &#39;gold&#39;:{
+  'gold':{
     # give a gpu to graphical container
-    &#39;containers&#39; : { &#39;graphical&#39;: { &#39;resources&#39;: { &#39;limits&#39;: { &#39;nvidia.com/gpu&#39;:&#39;1&#39; } } } },
-    &#39;nodeSelector&#39;:{&#39;nvidia.com/gpu&#39;: &#39;true&#39;},
-    &#39;description&#39;: &#39;gold: 4 CPU cores, 32Gi RAM and 1 GPU&#39;,
-    &#39;runtimeClassName&#39;: &#39;nvidia&#39;,
-    &#39;resources&#39;:{
-      &#39;requests&#39;:{&#39;memory&#39;:&quot;2Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;},       
-      &#39;limits&#39;:  {&#39;memory&#39;:&quot;32Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;}
+    'containers' : { 'graphical': { 'resources': { 'limits': { 'nvidia.com/gpu':'1' } } } },
+    'nodeSelector':{'nvidia.com/gpu': 'true'},
+    'description': 'gold: 4 CPU cores, 32Gi RAM and 1 GPU',
+    'runtimeClassName': 'nvidia',
+    'resources':{
+      'requests':{'memory':"2Gi",'cpu':"4000m"},       
+      'limits':  {'memory':"32Gi",'cpu':"4000m"}
     }
   },
-  &#39;platinum&#39;:{
+  'platinum':{
     # give a gpu to graphical container
-    &#39;containers&#39; : { &#39;graphical&#39;: { &#39;resources&#39;: { &#39;limits&#39;: { &#39;nvidia.com/gpu&#39;:&#39;1&#39; } } } },
+    'containers' : { 'graphical': { 'resources': { 'limits': { 'nvidia.com/gpu':'1' } } } },
     # nodeselector optional 
-    &#39;nodeSelector&#39;:{&#39;nvidia.com/gpu&#39;: &#39;true&#39;},
+    'nodeSelector':{'nvidia.com/gpu': 'true'},
     # this appears only on web interface 
-    &#39;description&#39;: &#39;platinum: 8 CPU cores, 128G RAM and 1 GPU&#39;,
-    &#39;runtimeClassName&#39;: &#39;nvidia&#39;,
-    &#39;resources&#39;:{
-      &#39;requests&#39;:{&#39;memory&#39;:&quot;4Gi&quot;,&#39;cpu&#39;:&quot;4000m&quot;},       
-      &#39;limits&#39;:{&#39;memory&#39;:&quot;128Gi&quot;,&#39;cpu&#39;:&quot;8000m&quot;} 
+    'description': 'platinum: 8 CPU cores, 128G RAM and 1 GPU',
+    'runtimeClassName': 'nvidia',
+    'resources':{
+      'requests':{'memory':"4Gi",'cpu':"4000m"},       
+      'limits':{'memory':"128Gi",'cpu':"8000m"} 
     }
   }}
 </code></pre></div>
@@ -4236,45 +4236,45 @@
 <p>A user can choose the <code>executeclassname</code> value from a predefined list, or it can be assigned automatically via rules. If <code>executeclassname</code> is not set, it defaults to the string <code>'default'</code>, and the corresponding entry <code>executeclasses['default']</code> is used.</p>
 <h3 id="set-executeclassname-by-rules">Set <code>executeclassname</code> by rules</h3>
 <p>Update your <code>od.config</code> file to add a new rule. The <code>label</code> of the rule must be <code>executeclassname</code>, and the <code>load</code> value sets the <code>executeclassname</code>.</p>
-<div class="highlight"><pre><span></span><code>    &#39;rule-executeclass&#39;: {
-            &#39;conditions&#39; : [ { &#39;memberOf&#39;: &#39;cn=ship_crew,ou=people,dc=planetexpress,dc=com&#39;,   &#39;expected&#39; : True  } ],
-            &#39;expected&#39; : True,
-            &#39;label&#39;:&#39;executeclassname&#39;,
-            &#39;load&#39;: &#39;silver&#39;
+<div class="highlight"><pre><span></span><code>    'rule-executeclass': {
+            'conditions' : [ { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com',   'expected' : True  } ],
+            'expected' : True,
+            'label':'executeclassname',
+            'load': 'silver'
     },
 </code></pre></div>
 <p>If the user is a member of the group <code>cn=ship_crew,ou=people,dc=planetexpress,dc=com</code>, the label <code>executeclassname</code> is set to the value <code>silver</code>. A complete example of the <code>ldapconfig</code> is shown below.</p>
 <div class="highlight"><pre><span></span><code>ldapconfig : {
-    &#39;planet&#39;: {
-            &#39;default&#39;       : True,
-            &#39;ldap_timeout&#39;  : 15,
-            &#39;ldap_protocol&#39; : &#39;ldap&#39;,
-            &#39;ldap_basedn&#39;   : &#39;ou=people,dc=planetexpress,dc=com&#39;,
-            &#39;servers&#39;       : [ &#39;openldap&#39; ],
-            &#39;serviceaccount&#39;: { &#39;login&#39;: &#39;cn=admin,dc=planetexpress,dc=com&#39;, &#39;password&#39;: &#39;GoodNewsEveryone&#39; },
-            &#39;policies&#39;: {
-                    &#39;acls&#39;: None,
-                    &#39;rules&#39; : {
-                            &#39;rule-dummy&#39; : {
-                              &#39;conditions&#39; : [ {&#39;boolean&#39;:True, &#39;expected&#39;:True } ],
-                                                            &#39;expected&#39; : True,
-                                                            &#39;label&#39;:&#39;labeltrue&#39;
+    'planet': {
+            'default'       : True,
+            'ldap_timeout'  : 15,
+            'ldap_protocol' : 'ldap',
+            'ldap_basedn'   : 'ou=people,dc=planetexpress,dc=com',
+            'servers'       : [ 'openldap' ],
+            'serviceaccount': { 'login': 'cn=admin,dc=planetexpress,dc=com', 'password': 'GoodNewsEveryone' },
+            'policies': {
+                    'acls': None,
+                    'rules' : {
+                            'rule-dummy' : {
+                              'conditions' : [ {'boolean':True, 'expected':True } ],
+                                                            'expected' : True,
+                                                            'label':'labeltrue'
                             },
-                            &#39;rule-ship&#39;: {
-                                    &#39;conditions&#39; : [ { &#39;memberOf&#39;: &#39;cn=ship_crew,ou=people,dc=planetexpress,dc=com&#39;,   &#39;expected&#39; : True  } ],
-                                    &#39;expected&#39; : True,
-                                    &#39;label&#39;:&#39;shipcrew&#39;
+                            'rule-ship': {
+                                    'conditions' : [ { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com',   'expected' : True  } ],
+                                    'expected' : True,
+                                    'label':'shipcrew'
                             },
-                            &#39;rule-executeclass&#39;: {
-                                    &#39;conditions&#39; : [ { &#39;memberOf&#39;: &#39;cn=ship_crew,ou=people,dc=planetexpress,dc=com&#39;,   &#39;expected&#39; : True  } ],
-                                    &#39;expected&#39; : True,
-                                    &#39;label&#39;:&#39;executeclassname&#39;,
-                                    &#39;load&#39;: &#39;silver&#39;
+                            'rule-executeclass': {
+                                    'conditions' : [ { 'memberOf': 'cn=ship_crew,ou=people,dc=planetexpress,dc=com',   'expected' : True  } ],
+                                    'expected' : True,
+                                    'label':'executeclassname',
+                                    'load': 'silver'
                             },
-                            &#39;rule-staff&#39;: {
-                                    &#39;conditions&#39; : [ { &#39;memberOf&#39;: &#39;cn=admin_staff,ou=people,dc=planetexpress,dc=com&#39;, &#39;expected&#39; : True  } ],
-                                    &#39;expected&#39; : True,
-                                    &#39;label&#39;: &#39;adminstaff&#39;
+                            'rule-staff': {
+                                    'conditions' : [ { 'memberOf': 'cn=admin_staff,ou=people,dc=planetexpress,dc=com', 'expected' : True  } ],
+                                    'expected' : True,
+                                    'label': 'adminstaff'
                             }
                     }
             } } }
@@ -4339,16 +4339,16 @@ silver
 </code></pre></div>
 <p>Inside the pod, the environment variable <code>ABCDESKTOP_EXECUTE_CLASS</code> is set to the selected JSON configuration object.</p>
 <div class="highlight"><pre><span></span><code>echo $ABCDESKTOP_EXECUTE_CLASS
-{&quot;nodeSelector&quot;: {}, &quot;description&quot;: &quot;silver: 4 CPU cores and 32Gi RAM&quot;, &quot;runtimeClassName&quot;: null, &quot;resources&quot;: {&quot;requests&quot;: {&quot;memory&quot;: &quot;2Gi&quot;, &quot;cpu&quot;: &quot;2000m&quot;}, &quot;limits&quot;: {&quot;memory&quot;: &quot;32Gi&quot;, &quot;cpu&quot;: &quot;4000m&quot;}}}
+{"nodeSelector": {}, "description": "silver: 4 CPU cores and 32Gi RAM", "runtimeClassName": null, "resources": {"requests": {"memory": "2Gi", "cpu": "2000m"}, "limits": {"memory": "32Gi", "cpu": "4000m"}}}
 </code></pre></div>
 <h3 id="allow-users-to-choose-the-executeclassname">Allow users to choose the <code>executeclassname</code></h3>
 <p>To allow users to choose the <code>executeclassname</code>, configure the <code>desktop.features_permissions</code> option in your abcdesktop config file. <code>desktop.features_permissions</code> is a list of strings.</p>
 <div class="highlight"><pre><span></span><code># features_permissions
 # read executeclasses and permit a user to set a dedicated class name as desktop features
-# &#39;read&#39; features_permissions is exposed to the frontend
-# &#39;submit&#39; features_permissions can be set to create a desktop
+# 'read' features_permissions is exposed to the frontend
+# 'submit' features_permissions can be set to create a desktop
 # 
-desktop.features_permissions : [ &#39;read&#39;, &#39;submit&#39; ]
+desktop.features_permissions : [ 'read', 'submit' ]
 </code></pre></div>
 <ul>
 <li>To display the available execute classes on the login page, add <code>read</code> to the list.</li>
@@ -4400,7 +4400,7 @@ silver
 </code></pre></div>
 <p>Inside the pod, the environment variable <code>ABCDESKTOP_EXECUTE_CLASS</code> is set to the selected JSON configuration object.</p>
 <div class="highlight"><pre><span></span><code>echo $ABCDESKTOP_EXECUTE_CLASS
-{&quot;nodeSelector&quot;: {}, &quot;description&quot;: &quot;silver: 4 CPU cores and 32Gi RAM&quot;, &quot;runtimeClassName&quot;: null, &quot;resources&quot;: {&quot;requests&quot;: {&quot;memory&quot;: &quot;2Gi&quot;, &quot;cpu&quot;: &quot;2000m&quot;}, &quot;limits&quot;: {&quot;memory&quot;: &quot;32Gi&quot;, &quot;cpu&quot;: &quot;4000m&quot;}}}
+{"nodeSelector": {}, "description": "silver: 4 CPU cores and 32Gi RAM", "runtimeClassName": null, "resources": {"requests": {"memory": "2Gi", "cpu": "2000m"}, "limits": {"memory": "32Gi", "cpu": "4000m"}}}
 </code></pre></div>
 <p>You can adjust pod resources either by defining authentication rules that automatically assign an execute class, or by configuring <code>desktop.features_permissions</code> to allow users to select from the profiles defined in <code>executeclasses</code>.</p>
 

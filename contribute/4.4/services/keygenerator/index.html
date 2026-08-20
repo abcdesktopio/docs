@@ -4073,11 +4073,11 @@ openssl<span class="w"> </span>rsa<span class="w"> </span>-pubin<span class="w">
 <span class="k">then</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>abcdesktopjwtdesktoppayload<span class="w"> </span>--from-file<span class="o">=</span>abcdesktop_jwt_desktop_payload_private_key.pem<span class="w"> </span>--from-file<span class="o">=</span>abcdesktop_jwt_desktop_payload_public_key.pem<span class="w"> </span>--namespace<span class="o">={{</span><span class="w"> </span>.Release.Namespace<span class="w"> </span><span class="o">}}</span><span class="p">;</span>
 <span class="w">    </span><span class="k">then</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to create secret&quot;</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Failed to create secret"</span>
 <span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
 <span class="w">    </span><span class="k">fi</span>
 <span class="k">else</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Secret already exists&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Secret already exists"</span>
 <span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
 <span class="k">fi</span>
 </code></pre></div>
