@@ -9,7 +9,7 @@ tags:
 
 # Best Free VDI Solutions in 2026
 
-If you are looking for a **free VDI solution**, the open source ecosystem offers several capable options. This page provides a neutral, structured comparison of the most widely adopted **open source virtual desktop** platforms — **abcdesktop.io**, **Apache Guacamole**, and **Kasm Workspaces** — and positions them against the commercial benchmark, Citrix Virtual Apps and Desktops.
+If you are looking for a **free VDI solution**, the open source ecosystem offers several capable options. This page provides a neutral, structured comparison of the most widely adopted **open source virtual desktop** platforms : **abcdesktop.io**, **Apache Guacamole**, and **Kasm Workspaces**,  and positions them against the commercial benchmark, Citrix Virtual Apps and Desktops.
 
 [:material-rocket-launch-outline: **Try abcdesktop.io free — Live Demo**](https://demo.gcp.abcdesktop.com){ .md-button .md-button--primary }
 
@@ -17,7 +17,7 @@ If you are looking for a **free VDI solution**, the open source ecosystem offers
 
 ## What is VDI, and why does licensing cost matter?
 
-**Virtual Desktop Infrastructure (VDI)** delivers a full desktop environment — OS, applications, and user data — from a centralized server to any endpoint device, which receives only the rendered display. VDI eliminates client-side software management and enables centralized security enforcement.
+**Virtual Desktop Infrastructure (VDI)** delivers a full desktop environment : OS, applications, and user data, from a centralized server to any endpoint device, which receives only the rendered display. VDI eliminates client-side software management and enables centralized security enforcement.
 
 Traditional commercial VDI platforms charge **per-user or per-core licensing fees** that can reach hundreds of dollars per user per year. For organizations evaluating alternatives, the critical question is: **what does "free" actually mean?**
 

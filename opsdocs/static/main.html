@@ -13,6 +13,10 @@
 {% block extrahead %}
   {{ super() }}
 
+  {# ── Preconnect hints (Google Fonts) ──────────────────────────────────── #}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   {# ── Geo meta tags ─────────────────────────────────────────────────────── #}
   <meta name="geo.region"    content="FR" />
   <meta name="geo.placename" content="France" />
@@ -38,6 +42,8 @@
   {% endif %}
   {% if page.meta and page.meta.description %}
   <meta property="og:description" content="{{ page.meta.description }}" />
+  {% else %}
+  <meta property="og:description" content="{{ config.site_description }}" />
   {% endif %}
 
   {# ── Shared social image (og:image + twitter:image) ─────────────────── #}
@@ -66,6 +72,8 @@
   {% endif %}
   {% if page.meta and page.meta.description %}
   <meta name="twitter:description" content="{{ page.meta.description }}" />
+  {% else %}
+  <meta name="twitter:description" content="{{ config.site_description }}" />
   {% endif %}
 
   {# ── hreflang canonical ────────────────────────────────────────────────── #}
