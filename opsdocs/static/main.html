@@ -138,3 +138,10 @@
   ]
   </script>
 {% endblock %}
+
+{% block footer %}
+{{ super() }}
+<div style="text-align: center; padding: 0.5rem 0; font-size: 0.75rem; color: var(--md-default-fg-color--light);">
+  Looking for an older version? <a href="https://old.abcdesktop.com/" rel="nofollow noopener" target="_blank">Previous documentation (old.abcdesktop.com)</a>
+</div>
+{% endblock %}
