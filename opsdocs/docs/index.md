@@ -31,7 +31,7 @@ abcdesktop.io is also a complete **[self-hosted DaaS](solutions/self-hosted-vdi.
 
 ![abcdesktopuserpod](img/abcdesktopuserpod.png)
 
-abcdesktop.io is a free, open-source solution that provides seamless, secure access to desktops and applications from any device or operating system. Source code and container images are published at [https://github.com/abcdesktopio](https://github.com/abcdesktopio).
+abcdesktop.io is a free, open-source solution that provides seamless, secure access to desktops and applications from any device or operating system. Source code and container images are published at [https://github.com/abcdesktopio](https://github.com/abcdesktopio). abcdesktop.io is deployed in production across multiple countries, see the [organizations using abcdesktop.io](faq/adopters.md).
 
 
 ## Architecture Overview
