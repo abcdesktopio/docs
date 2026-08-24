@@ -55,6 +55,14 @@ Traditional commercial VDI platforms charge **per-user or per-core licensing fee
 
 <div class="grid cards" markdown>
 
+-   :material-kubernetes: **Kubernetes VDI**
+
+    ---
+
+    Already running Kubernetes? Learn how abcdesktop.io turns your cluster into a full VDI platform — no extra infrastructure required.
+
+    [:octicons-arrow-right-24: Kubernetes VDI explained](../solutions/kubernetes-vdi.md)
+
 -   :material-compare: **abcdesktop.io vs. Citrix**
 
     ---
