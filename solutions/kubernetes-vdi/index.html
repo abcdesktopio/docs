@@ -18,7 +18,7 @@
         <link rel="prev" href="../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/install-demo/">
       
       
-        <link rel="next" href="../../compare/overview/">
+        <link rel="next" href="../remote-browser-isolation/">
       
       
       <link rel="icon" href="../../img/abcdesktop128x128.ico">
@@ -3999,6 +3999,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remote-browser-isolation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Remote Browser Isolation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4558,17 +4581,17 @@
 </tr>
 </tbody>
 </table>
-<p>The key insight: if you already operate a Kubernetes cluster, adding a Kubernetes VDI platform costs <strong>infrastructure only</strong> — no separate hypervisor licensing, no additional VDI broker software.</p>
+<p>The key insight: if you already operate a Kubernetes cluster, adding a Kubernetes VDI platform costs <strong>infrastructure only</strong>. That means no separate hypervisor licensing, no additional VDI broker software.</p>
 <hr />
 <h2 id="why-kubernetes-is-the-right-foundation-for-vdi">Why Kubernetes is the right foundation for VDI</h2>
 <h3 id="native-workload-isolation">Native workload isolation</h3>
 <p>Every user session runs in its own pod. Kubernetes enforces CPU and memory limits, and NetworkPolicies restrict inter-pod communication by default. This provides stronger isolation than shared-VM VDI designs, without additional configuration.</p>
 <h3 id="built-in-autoscaling">Built-in autoscaling</h3>
-<p>When demand spikes — start of business, large training events — Kubernetes scales horizontally. The Horizontal Pod Autoscaler and Cluster Autoscaler handle capacity without manual intervention or pre-provisioned VM pools.</p>
+<p>When demand spikes, start of business, large training events, etc, Kubernetes scales horizontally. The Horizontal Pod Autoscaler and Cluster Autoscaler handle capacity without manual intervention or pre-provisioned VM pools.</p>
 <h3 id="no-separate-infrastructure-to-operate">No separate infrastructure to operate</h3>
 <p>Traditional VDI requires a dedicated hypervisor farm (VMware, Hyper-V), a VDI broker, a license server, and a connection gateway. Kubernetes VDI replaces all of this with components that run as standard Kubernetes workloads alongside your existing applications.</p>
 <h3 id="multi-cloud-and-on-premises-portability">Multi-cloud and on-premises portability</h3>
-<p>Any conformant Kubernetes cluster works: on-premises (Kind, MiniKube, bare metal), or cloud-managed (EKS, AKS, GKE, OVHcloud, DigitalOcean). The platform follows your infrastructure strategy, not the reverse.</p>
+<p>Any conformant Kubernetes cluster works: on-premises (Kind, MiniKube), or cloud-managed (EKS, AKS, GKE, OVHcloud, DigitalOcean). The platform follows your infrastructure strategy, not the reverse.</p>
 <hr />
 <h2 id="how-abcdesktopio-implements-kubernetes-vdi">How abcdesktop.io implements Kubernetes VDI</h2>
 <p><strong>abcdesktop.io</strong> is a Kubernetes-native virtual desktop platform built from the ground up for Kubernetes, not a traditional VDI product adapted to run on containers.</p>
@@ -4595,7 +4618,7 @@ User pod  (one Kubernetes pod per session)
 </code></pre></div>
 <p>No software is installed on the client device. The endpoint receives only rendered pixels.</p>
 <h3 id="remote-browser-isolation-rbi-on-kubernetes">Remote Browser Isolation (RBI) on Kubernetes</h3>
-<p>A core security feature of abcdesktop.io is <strong>Remote Browser Isolation</strong>: web browsers run inside the user pod, fully isolated from the endpoint device. The user's laptop or workstation receives only rendered pixels — no web content, no JavaScript, no active code ever reaches the endpoint. This eliminates the primary threat vector for web-borne malware.</p>
+<p>A core security feature of abcdesktop.io is <strong>Remote Browser Isolation</strong>: web browsers run inside the user pod, fully isolated from the endpoint device. The user's laptop or workstation receives only rendered pixels, no web content, no JavaScript, no active code ever reaches the endpoint. This eliminates the primary threat vector for web-borne malware.</p>
 <h3 id="remote-application-isolation-rai">Remote Application Isolation (RAI)</h3>
 <p>Each application launched within the desktop session runs as its own <strong>ephemeral container</strong> inside the user pod. Applications cannot communicate with each other across container boundaries. At session end, all ephemeral containers are discarded, leaving no persistent state on the cluster node.</p>
 <hr />
@@ -4681,7 +4704,7 @@ User pod  (one Kubernetes pod per session)
 </details>
 <details class="question">
 <summary>How does session persistence work across pod restarts?</summary>
-<p>User home directories can be backed by a PersistentVolumeClaim (NFS, HostPath, or any CSI-compatible storage class). Application state is preserved across session reconnections as long as the persistent volume is attached. The pod itself is ephemeral — only the storage layer persists.</p>
+<p>User home directories can be backed by a PersistentVolumeClaim (NFS, HostPath, or any CSI-compatible storage class). Application state is preserved across session reconnections as long as the persistent volume is attached. The pod itself is ephemeral, only the storage layer persists.</p>
 </details>
 <details class="question">
 <summary>What is the difference between Kubernetes VDI and traditional VDI?</summary>
