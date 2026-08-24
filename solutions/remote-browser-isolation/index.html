@@ -217,6 +217,55 @@
   ]
   </script>
 
+  
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      
+      {
+        "@type": "Question",
+        "name": "What is the difference between Remote Browser Isolation and a VPN?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A VPN encrypts the network connection but does not prevent malicious web content from executing on the endpoint. With Remote Browser Isolation, web content never reaches the endpoint \u2014 it executes on the server and only a pixel stream is delivered. RBI and VPN are complementary."
+        }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Does abcdesktop.io RBI work with any web browser on the client side?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Users access abcdesktop.io from any HTML5-capable browser \u2014 Chrome, Firefox, Safari, Edge \u2014 on any operating system. No browser extension or plugin is required on the client device."
+        }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Is abcdesktop.io suitable as a Menlo Security or Zscaler alternative?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For organizations needing data sovereignty, air-gap capability, or wanting to eliminate per-seat SaaS costs, abcdesktop.io is a viable self-hosted alternative for the core Remote Browser Isolation use case. It runs on your own Kubernetes cluster with no traffic routed through a vendor cloud."
+        }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "What authentication methods does abcdesktop.io support for RBI sessions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "abcdesktop.io supports OAuth2/OIDC (Google, GitHub, Microsoft, Keycloak), LDAP/LDAPS, Active Directory with Kerberos and NTLM, anonymous authentication, and SSL mutual authentication."
+        }
+      }
+      
+    ]
+  }
+  </script>
+  
+
   </head>
   
   
