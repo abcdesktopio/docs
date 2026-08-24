@@ -62,7 +62,7 @@ This use case is documented in two chapters:
 
 ## Repository
 
-The manifests used to operate this demo are maintained in the repository [`abcdesktop conf`](https://github.com/abcdesktopio/conf/tree/main/demo). The following files are referenced throughout this guide:
+The manifests used to operate this demo are maintained in the repository [`demo.gcp.abcdesktop.com`](https://github.com/abcdesktopio/demo.gcp.abcdesktop.com). The following files are referenced throughout this guide:
 
 | File | Purpose |
 |---|---|
