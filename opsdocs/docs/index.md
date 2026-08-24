@@ -15,6 +15,8 @@ tags:
 
 [:material-rocket-launch-outline: **Try it now — Live Demo**](https://demo.gcp.abcdesktop.com){ .md-button .md-button--primary } [:material-play-circle-outline: Watch the 2-minute demo video](#demo-video){ .md-button }
 
+[![GitHub Stars](https://img.shields.io/github/stars/abcdesktopio/pyos?style=social&label=Star%20on%20GitHub)](https://github.com/abcdesktopio/pyos/stargazers) [![GitHub Stars](https://img.shields.io/github/stars/abcdesktopio/docs?style=social&label=Star%20docs)](https://github.com/abcdesktopio/docs/stargazers)
+
 No sign-up, no install — launch a full desktop session in your browser at **[demo.gcp.abcdesktop.com](https://demo.gcp.abcdesktop.com)**.
 
 <a id="demo-video"></a>
