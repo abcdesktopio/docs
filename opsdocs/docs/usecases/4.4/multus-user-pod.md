@@ -1,6 +1,6 @@
 ---
 title: Multiple Network Interfaces for User Pods via Multus | abcdesktop.io
-description: Use case: attach multiple VLAN network interfaces to abcdesktop.io user pods using the Multus CNI plugin for advanced network segmentation.
+description: Attach multiple VLAN network interfaces to abcdesktop.io user pods using the Multus CNI plugin for advanced network segmentation.
 keywords: Multus, CNI, VLAN, multiple networks, network interface, abcdesktop, Kubernetes, use case, network segmentation
 tags:
   - usecase

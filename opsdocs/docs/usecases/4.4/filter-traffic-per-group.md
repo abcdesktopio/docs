@@ -1,6 +1,6 @@
 ---
 title: Filter Pod Network Traffic by User Group | abcdesktop.io
-description: Use case: configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership.
+description: Configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership.
 keywords: network traffic, group, LDAP, NetworkPolicy, allowlist, default-deny, abcdesktop, Kubernetes, security, use case
 tags:
   - use case
