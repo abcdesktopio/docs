@@ -38,6 +38,9 @@ This page provides answers to frequently asked questions about abcdesktop.io.
 
 ## Evaluating abcdesktop.io
 
+- [What is Kubernetes VDI and how does abcdesktop.io implement it?](../solutions/kubernetes-vdi.md)
+- [What is Remote Browser Isolation open source?](../solutions/remote-browser-isolation.md)
+- [How do I self-host a VDI platform?](../solutions/self-hosted-vdi.md)
 - [How does abcdesktop.io compare to other free VDI solutions?](../compare/overview.md)
 - [How does abcdesktop.io compare to Citrix?](../compare/abcdesktop-vs-citrix.md)
 - [How does abcdesktop.io compare to Apache Guacamole?](../compare/abcdesktop-vs-guacamole.md)

@@ -23,11 +23,11 @@ No sign-up, no install — launch a full desktop session in your browser at **[d
 
 ---
 
-**abcdesktop.io** is a free, **open source Kubernetes virtual desktop** platform built on and for [Kubernetes](https://kubernetes.io/). It delivers **remote browser isolation open source (RBI)** and **Remote Application Isolation (RAI)** — two core security paradigms that eliminate the traditional attack surface by running every application, including web browsers, inside isolated containers on the server side. 
+**abcdesktop.io** is a free, **open source Kubernetes virtual desktop** platform built on and for [Kubernetes](https://kubernetes.io/). It delivers **[remote browser isolation open source (RBI)](solutions/remote-browser-isolation.md)** and **Remote Application Isolation (RAI)** — two core security paradigms that eliminate the traditional attack surface by running every application, including web browsers, inside isolated containers on the server side. 
 * Isolate browsers and applications.
 * Stream pixels, not threats. The user's endpoint device acts as a pure display client, receiving only rendered pixels over an encrypted HTML5 WebSocket stream.
 
-abcdesktop.io is also a complete **self-hosted DaaS** (Desktop as a Service) workspace environment accessible from any HTML5-capable web browser, with no software installation required on the client device. As a **VDI open source Kubernetes** solution, desktopless computing dynamically allocates desktop resources on demand within the cluster, tearing them down when the session ends. Each user's desktop and every application runs as a dedicated Kubernetes pod or ephemeral container, enforcing strict workload isolation and dramatically reducing the blast radius of any potential compromise.
+abcdesktop.io is also a complete **[self-hosted DaaS](solutions/self-hosted-vdi.md)** (Desktop as a Service) workspace environment accessible from any HTML5-capable web browser, with no software installation required on the client device. As a **[VDI open source Kubernetes](solutions/kubernetes-vdi.md)** solution, desktopless computing dynamically allocates desktop resources on demand within the cluster, tearing them down when the session ends. Each user's desktop and every application runs as a dedicated Kubernetes pod or ephemeral container, enforcing strict workload isolation and dramatically reducing the blast radius of any potential compromise.
 
 ![abcdesktopuserpod](img/abcdesktopuserpod.png)
 
