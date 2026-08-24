@@ -6,6 +6,15 @@ tags:
   - solutions
   - self-hosted
   - VDI
+faq_schema:
+  - q: "What infrastructure do I need to self-host abcdesktop.io?"
+    a: "A Kubernetes cluster with at least one node and 4 GB of available RAM. For production, a multi-node cluster with persistent storage (NFS or CSI-compatible) and a load balancer or ingress controller is recommended. abcdesktop.io runs on bare metal, VMs, or any cloud Kubernetes service."
+  - q: "Can I self-host abcdesktop.io without internet access?"
+    a: "Yes. After the initial image pull, abcdesktop.io runs fully offline with no licensing callbacks, telemetry endpoints, or external API calls at runtime. Container images can be mirrored to a private registry for fully air-gapped environments."
+  - q: "How many concurrent users can a self-hosted abcdesktop.io deployment support?"
+    a: "There is no software-imposed session cap. Capacity depends on infrastructure: each user session consumes roughly 500 MB to 2 GB of RAM. Adding Kubernetes nodes scales capacity linearly."
+  - q: "Can I use abcdesktop.io as a self-hosted alternative to Azure Virtual Desktop?"
+    a: "Yes. abcdesktop.io provides browser-accessible virtual desktops with application isolation, without dependency on Microsoft Azure. The key difference: AVD offers tighter Microsoft 365 integration; abcdesktop.io delivers Linux desktops and applications on your own infrastructure."
 ---
 
 # Self-Hosted VDI: Your Own Virtual Desktop Infrastructure, No Vendor Cloud Required

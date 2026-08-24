@@ -6,6 +6,17 @@ tags:
   - solutions
   - kubernetes
   - VDI
+faq_schema:
+  - q: "Can I run abcdesktop.io on a single-node Kubernetes cluster?"
+    a: "Yes. abcdesktop.io runs on single-node clusters (Kind, MiniKube) for evaluation and development, and scales horizontally to multi-node production clusters. Minimum requirement: one Kubernetes node with at least 4 GB of available RAM."
+  - q: "What is the difference between Kubernetes VDI and traditional VDI?"
+    a: "Traditional VDI uses virtual machines managed by a hypervisor (VMware, Hyper-V) and requires dedicated brokering software and licensing. Kubernetes VDI replaces the hypervisor with the Kubernetes scheduler, running desktop sessions as pods and reducing licensing cost to zero."
+  - q: "Does Kubernetes VDI require a specific CNI plugin?"
+    a: "abcdesktop.io works with any CNI plugin that supports Kubernetes NetworkPolicy: Calico, Cilium, Antrea, or Flannel. Cilium is recommended for its eBPF-based performance and advanced NetworkPolicy capabilities."
+  - q: "Is Kubernetes VDI suitable for regulated industries?"
+    a: "Yes. The pod-per-session model maps to zero-trust security principles. Each session is fully isolated, discarded at logout, and auditable via standard Kubernetes logging. NetworkPolicies enforce strict egress and ingress controls."
+  - q: "How does Kubernetes VDI compare to other open source VDI solutions?"
+    a: "abcdesktop.io is Kubernetes-native by design with no licensing restrictions, unlike Apache Guacamole (a gateway to VNC/RDP hosts) or Kasm Workspaces (which has concurrent session caps on the free tier)."
 ---
 
 # Kubernetes VDI: Running Virtual Desktops Natively on Kubernetes

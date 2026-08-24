@@ -145,6 +145,28 @@
     }
   ]
   </script>
+
+  {# ── FAQ Schema (FAQPage — Google rich results) ──────────────────────── #}
+  {% if page.meta and page.meta.faq_schema %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {% for item in page.meta.faq_schema %}
+      {
+        "@type": "Question",
+        "name": {{ item.q | tojson }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ item.a | tojson }}
+        }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+  </script>
+  {% endif %}
 {% endblock %}
 
 {% block footer %}

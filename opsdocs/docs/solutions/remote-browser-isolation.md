@@ -6,6 +6,15 @@ tags:
   - solutions
   - security
   - RBI
+faq_schema:
+  - q: "What is the difference between Remote Browser Isolation and a VPN?"
+    a: "A VPN encrypts the network connection but does not prevent malicious web content from executing on the endpoint. With Remote Browser Isolation, web content never reaches the endpoint — it executes on the server and only a pixel stream is delivered. RBI and VPN are complementary."
+  - q: "Does abcdesktop.io RBI work with any web browser on the client side?"
+    a: "Yes. Users access abcdesktop.io from any HTML5-capable browser — Chrome, Firefox, Safari, Edge — on any operating system. No browser extension or plugin is required on the client device."
+  - q: "Is abcdesktop.io suitable as a Menlo Security or Zscaler alternative?"
+    a: "For organizations needing data sovereignty, air-gap capability, or wanting to eliminate per-seat SaaS costs, abcdesktop.io is a viable self-hosted alternative for the core Remote Browser Isolation use case. It runs on your own Kubernetes cluster with no traffic routed through a vendor cloud."
+  - q: "What authentication methods does abcdesktop.io support for RBI sessions?"
+    a: "abcdesktop.io supports OAuth2/OIDC (Google, GitHub, Microsoft, Keycloak), LDAP/LDAPS, Active Directory with Kerberos and NTLM, anonymous authentication, and SSL mutual authentication."
 ---
 
 # Remote Browser Isolation Open Source: RBI on Kubernetes with abcdesktop.io
