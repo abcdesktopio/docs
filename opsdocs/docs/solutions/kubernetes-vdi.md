@@ -33,7 +33,7 @@ It contrasts with traditional VDI in a fundamental way:
 | **Cost model** | Per-VM licensing + hypervisor | Kubernetes cluster compute only |
 | **Separate infrastructure?** | Yes — dedicated VDI farm | No — runs on your existing cluster |
 
-The key insight: if you already operate a Kubernetes cluster, adding a Kubernetes VDI platform costs **infrastructure only** — no separate hypervisor licensing, no additional VDI broker software.
+The key insight: if you already operate a Kubernetes cluster, adding a Kubernetes VDI platform costs **infrastructure only**. That means no separate hypervisor licensing, no additional VDI broker software.
 
 ---
 
@@ -45,7 +45,7 @@ Every user session runs in its own pod. Kubernetes enforces CPU and memory limit
 
 ### Built-in autoscaling
 
-When demand spikes — start of business, large training events — Kubernetes scales horizontally. The Horizontal Pod Autoscaler and Cluster Autoscaler handle capacity without manual intervention or pre-provisioned VM pools.
+When demand spikes, start of business, large training events, etc, Kubernetes scales horizontally. The Horizontal Pod Autoscaler and Cluster Autoscaler handle capacity without manual intervention or pre-provisioned VM pools.
 
 ### No separate infrastructure to operate
 
@@ -53,7 +53,7 @@ Traditional VDI requires a dedicated hypervisor farm (VMware, Hyper-V), a VDI br
 
 ### Multi-cloud and on-premises portability
 
-Any conformant Kubernetes cluster works: on-premises (Kind, MiniKube, bare metal), or cloud-managed (EKS, AKS, GKE, OVHcloud, DigitalOcean). The platform follows your infrastructure strategy, not the reverse.
+Any conformant Kubernetes cluster works: on-premises (Kind, MiniKube), or cloud-managed (EKS, AKS, GKE, OVHcloud, DigitalOcean). The platform follows your infrastructure strategy, not the reverse.
 
 ---
 
@@ -89,7 +89,7 @@ No software is installed on the client device. The endpoint receives only render
 
 ### Remote Browser Isolation (RBI) on Kubernetes
 
-A core security feature of abcdesktop.io is **Remote Browser Isolation**: web browsers run inside the user pod, fully isolated from the endpoint device. The user's laptop or workstation receives only rendered pixels — no web content, no JavaScript, no active code ever reaches the endpoint. This eliminates the primary threat vector for web-borne malware.
+A core security feature of abcdesktop.io is **Remote Browser Isolation**: web browsers run inside the user pod, fully isolated from the endpoint device. The user's laptop or workstation receives only rendered pixels, no web content, no JavaScript, no active code ever reaches the endpoint. This eliminates the primary threat vector for web-borne malware.
 
 ### Remote Application Isolation (RAI)
 
@@ -154,7 +154,7 @@ abcdesktop.io runs on any conformant Kubernetes distribution:
     abcdesktop.io works with any CNI plugin that supports Kubernetes NetworkPolicy: Calico, Cilium, Antrea, Flannel with NetworkPolicy enforcement. Cilium is recommended for its eBPF-based performance and advanced NetworkPolicy capabilities.
 
 ??? question "How does session persistence work across pod restarts?"
-    User home directories can be backed by a PersistentVolumeClaim (NFS, HostPath, or any CSI-compatible storage class). Application state is preserved across session reconnections as long as the persistent volume is attached. The pod itself is ephemeral — only the storage layer persists.
+    User home directories can be backed by a PersistentVolumeClaim (NFS, HostPath, or any CSI-compatible storage class). Application state is preserved across session reconnections as long as the persistent volume is attached. The pod itself is ephemeral, only the storage layer persists.
 
 ??? question "What is the difference between Kubernetes VDI and traditional VDI?"
     Traditional VDI uses virtual machines managed by a hypervisor (VMware, Hyper-V) and requires dedicated VDI brokering software and licensing. Kubernetes VDI replaces the hypervisor with the Kubernetes scheduler and runs desktop sessions as pods, eliminating the separate virtualization layer and reducing licensing cost to zero.
