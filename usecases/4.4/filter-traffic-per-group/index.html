@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Filter pods traffic based on groups - www.abcdesktop.io</title>
+        <title>Filter Pod Network Traffic by User Group | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -72,9 +72,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Filter pods traffic based on groups - www.abcdesktop.io" >
+        <meta  property="og:title"  content="Filter Pod Network Traffic by User Group | abcdesktop.io - www.abcdesktop.io" >
       
-        <meta  property="og:description"  content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." >
+        <meta  property="og:description"  content="Configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership." >
       
         <meta  property="og:image"  content="https://www.abcdesktop.io/assets/images/social/usecases/4.4/filter-traffic-per-group.png" >
       
@@ -88,9 +88,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Filter pods traffic based on groups - www.abcdesktop.io" >
+        <meta  name="twitter:title"  content="Filter Pod Network Traffic by User Group | abcdesktop.io - www.abcdesktop.io" >
       
-        <meta  name="twitter:description"  content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." >
+        <meta  name="twitter:description"  content="Configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership." >
       
         <meta  name="twitter:image"  content="https://www.abcdesktop.io/assets/images/social/usecases/4.4/filter-traffic-per-group.png" >
       
@@ -121,10 +121,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/usecases/4.4/filter-traffic-per-group/" />
   
-  <meta property="og:title"       content="Filter pods traffic based on groups | abcdesktop.io" />
+  <meta property="og:title"       content="Filter Pod Network Traffic by User Group | abcdesktop.io" />
   
   
-  <meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta property="og:description" content="Configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership." />
   
 
   
@@ -141,10 +141,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Filter pods traffic based on groups | abcdesktop.io" />
+  <meta name="twitter:title"       content="Filter Pod Network Traffic by User Group | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta name="twitter:description" content="Configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership." />
   
 
   
@@ -262,7 +262,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Filter pods traffic based on groups
+              Filter Pod Network Traffic by User Group | abcdesktop.io
             
           </span>
         </div>
@@ -4200,6 +4200,34 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">LDAP</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">NetworkPolicy</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">security</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">use case</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/usecases/4.4/filter-traffic-per-group.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -4210,16 +4238,6 @@
   
 
 
-<hr />
-<p>title: Filter Pod Network Traffic by User Group | abcdesktop.io
-description: Use case: configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership.
-keywords: network traffic, group, LDAP, NetworkPolicy, allowlist, default-deny, abcdesktop, Kubernetes, security, use case
-tags:
-  - use case
-  - NetworkPolicy
-  - LDAP
-  - security</p>
-<hr />
 <h1 id="filter-traffic-based-on-users-groups">Filter traffic based on user's groups</h1>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
