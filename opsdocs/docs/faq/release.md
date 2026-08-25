@@ -11,6 +11,8 @@ tags:
 
 # Release History
 
+We publish two releases per year, on January 1st and June 1st. The application image format may change with major releases.
+
 ## What's New in This Release?
 
 | Release | Status | Release Date | Kubernetes Requirements | Key Features | Documentation |
