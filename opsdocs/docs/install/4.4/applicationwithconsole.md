@@ -1,6 +1,6 @@
 ---
 title: Install applications with console
-description: Guide to installing abcdesktop applications using the built-in web console: pulling images, configuring labels, and verifying deployment.
+description: Guide to installing abcdesktop applications using the built-in web console
 keywords: install applications, console, web UI, container image, abcdesktop, Kubernetes
 tags:
   - application
