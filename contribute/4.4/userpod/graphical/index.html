@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Developer reference for the abcdesktop.io graphical container - X11 display server, noVNC WebSocket rendering, Dockerfile build stages, and runtime dependencies.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Graphical - www.abcdesktop.io</title>
+        <title>Graphical Container — X11 Display Server | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -72,9 +72,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Graphical - www.abcdesktop.io" >
+        <meta  property="og:title"  content="Graphical Container — X11 Display Server | abcdesktop.io - www.abcdesktop.io" >
       
-        <meta  property="og:description"  content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." >
+        <meta  property="og:description"  content="Developer reference for the abcdesktop.io graphical container - X11 display server, noVNC WebSocket rendering, Dockerfile build stages, and runtime dependencies." >
       
         <meta  property="og:image"  content="https://www.abcdesktop.io/assets/images/social/contribute/4.4/userpod/graphical.png" >
       
@@ -88,9 +88,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Graphical - www.abcdesktop.io" >
+        <meta  name="twitter:title"  content="Graphical Container — X11 Display Server | abcdesktop.io - www.abcdesktop.io" >
       
-        <meta  name="twitter:description"  content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." >
+        <meta  name="twitter:description"  content="Developer reference for the abcdesktop.io graphical container - X11 display server, noVNC WebSocket rendering, Dockerfile build stages, and runtime dependencies." >
       
         <meta  name="twitter:image"  content="https://www.abcdesktop.io/assets/images/social/contribute/4.4/userpod/graphical.png" >
       
@@ -121,10 +121,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/contribute/4.4/userpod/graphical/" />
   
-  <meta property="og:title"       content="Graphical | abcdesktop.io" />
+  <meta property="og:title"       content="Graphical Container — X11 Display Server | abcdesktop.io" />
   
   
-  <meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta property="og:description" content="Developer reference for the abcdesktop.io graphical container - X11 display server, noVNC WebSocket rendering, Dockerfile build stages, and runtime dependencies." />
   
 
   
@@ -141,10 +141,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Graphical | abcdesktop.io" />
+  <meta name="twitter:title"       content="Graphical Container — X11 Display Server | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta name="twitter:description" content="Developer reference for the abcdesktop.io graphical container - X11 display server, noVNC WebSocket rendering, Dockerfile build stages, and runtime dependencies." />
   
 
   
@@ -265,7 +265,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Graphical
+              Graphical Container — X11 Display Server | abcdesktop.io
             
           </span>
         </div>
@@ -4978,6 +4978,34 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">X11</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">contribute</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">noVNC</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">user pod</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/contribute/4.4/userpod/graphical.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -4988,16 +5016,6 @@
   
 
 
-<hr />
-<p>title: Graphical Container — X11 Display Server | abcdesktop.io
-description: Developer reference for the abcdesktop.io graphical container: X11 display server, noVNC WebSocket rendering, Dockerfile build stages, and runtime dependencies.
-keywords: graphical, X11, noVNC, WebSocket, display server, abcdesktop, contribute, user pod, remote desktop
-tags:
-  - contribute
-  - X11
-  - noVNC
-  - user pod</p>
-<hr />
 <h1 id="specification-for-the-graphical-service-from-dockerfileubuntu">Specification for the <code>graphical</code> service from Dockerfile.ubuntu</h1>
 <h2 id="1-purpose-and-scope">1. Purpose and Scope</h2>
 <p>The file <a href="https://github.com/abcdesktopio/oc.user/blob/4.4/Dockerfile.ubuntu">Dockerfile.ubuntu</a> builds an Ubuntu-based remote desktop runtime image for the abcdesktop ecosystem, including:</p>
