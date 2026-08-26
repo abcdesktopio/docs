@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Developer reference for the abcdesktop.io sound container PulseAudio setup, speaker/microphone streaming via WebSocket, and FFmpeg pipeline.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Sound - www.abcdesktop.io</title>
+        <title>Sound Container — PulseAudio Streaming | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -72,9 +72,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Sound - www.abcdesktop.io" >
+        <meta  property="og:title"  content="Sound Container — PulseAudio Streaming | abcdesktop.io - www.abcdesktop.io" >
       
-        <meta  property="og:description"  content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." >
+        <meta  property="og:description"  content="Developer reference for the abcdesktop.io sound container PulseAudio setup, speaker/microphone streaming via WebSocket, and FFmpeg pipeline." >
       
         <meta  property="og:image"  content="https://www.abcdesktop.io/assets/images/social/contribute/4.4/userpod/sound.png" >
       
@@ -88,9 +88,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Sound - www.abcdesktop.io" >
+        <meta  name="twitter:title"  content="Sound Container — PulseAudio Streaming | abcdesktop.io - www.abcdesktop.io" >
       
-        <meta  name="twitter:description"  content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." >
+        <meta  name="twitter:description"  content="Developer reference for the abcdesktop.io sound container PulseAudio setup, speaker/microphone streaming via WebSocket, and FFmpeg pipeline." >
       
         <meta  name="twitter:image"  content="https://www.abcdesktop.io/assets/images/social/contribute/4.4/userpod/sound.png" >
       
@@ -121,10 +121,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/contribute/4.4/userpod/sound/" />
   
-  <meta property="og:title"       content="Sound | abcdesktop.io" />
+  <meta property="og:title"       content="Sound Container — PulseAudio Streaming | abcdesktop.io" />
   
   
-  <meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta property="og:description" content="Developer reference for the abcdesktop.io sound container PulseAudio setup, speaker/microphone streaming via WebSocket, and FFmpeg pipeline." />
   
 
   
@@ -141,10 +141,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Sound | abcdesktop.io" />
+  <meta name="twitter:title"       content="Sound Container — PulseAudio Streaming | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta name="twitter:description" content="Developer reference for the abcdesktop.io sound container PulseAudio setup, speaker/microphone streaming via WebSocket, and FFmpeg pipeline." />
   
 
   
@@ -265,7 +265,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sound
+              Sound Container — PulseAudio Streaming | abcdesktop.io
             
           </span>
         </div>
@@ -4798,6 +4798,34 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">PulseAudio</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">contribute</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">sound</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">user pod</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/contribute/4.4/userpod/sound.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -4808,16 +4836,6 @@
   
 
 
-<hr />
-<p>title: Sound Container — PulseAudio Streaming | abcdesktop.io
-description: Developer reference for the abcdesktop.io sound container: PulseAudio setup, speaker/microphone streaming via WebSocket, and FFmpeg pipeline.
-keywords: sound, PulseAudio, audio, WebSocket, FFmpeg, speaker, microphone, abcdesktop, contribute, user pod
-tags:
-  - contribute
-  - sound
-  - PulseAudio
-  - user pod</p>
-<hr />
 <h1 id="dockerfile-and-runtime-architecture-specification">Dockerfile and Runtime Architecture Specification</h1>
 <h2 id="scope">Scope</h2>
 <p>This specification documents the container architecture, build behavior, runtime process topology, and media relay contracts for this repository.</p>
