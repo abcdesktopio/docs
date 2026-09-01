@@ -215,7 +215,7 @@ Now start a desktop as `Turanga Leela`. As a member of the `shipcrew` group, you
 ## Define volume using `pvc` bounded on nfs server
 
 !!! note
-    For this part of the tutorial, you should have an NFS server already configured. If not, please follow the first chapter of [this tutorial](http://abcdesktop.pepins.net/advanced/4.4/storage/nfs/#set-up-a-nfs-server).
+    For this part of the tutorial, you should have an NFS server already configured. If not, please follow the first chapter of [this tutorial](http://abcdesktop.pepins.net/advanced/{{ abcdesktop.latest_release }}/storage/nfs/#set-up-a-nfs-server).
 
 ### Create nfs type `PersistentVolume` 
 

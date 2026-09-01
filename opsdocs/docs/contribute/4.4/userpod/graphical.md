@@ -13,7 +13,7 @@ tags:
 
 ## 1. Purpose and Scope
 
-The file [Dockerfile.ubuntu](https://github.com/abcdesktopio/oc.user/blob/4.4/Dockerfile.ubuntu) builds an Ubuntu-based remote desktop runtime image for the abcdesktop ecosystem, including:
+The file [Dockerfile.ubuntu](https://github.com/abcdesktopio/oc.user/blob/{{ abcdesktop.latest_release }}/Dockerfile.ubuntu) builds an Ubuntu-based remote desktop runtime image for the abcdesktop ecosystem, including:
 
 - Node.js services (under /composer/node),
 - VNC server and WebSocket bridge components,

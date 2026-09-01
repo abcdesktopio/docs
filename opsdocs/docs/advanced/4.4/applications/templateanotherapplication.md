@@ -105,7 +105,7 @@ nodejs make.js
 The expected output is:
 
 ```
-Namespace(dockerfile=false, release='4.4', applicationfile='applist.json')
+Namespace(dockerfile=false, release='{{ abcdesktop.latest_release }}', applicationfile='applist.json')
 Read database json file=applist.json
 opening file applist.json
 applist.json entries: 2
@@ -135,10 +135,10 @@ The expected output is:
 	[+] Building 261.5s (8/8) FINISHED                                                                                                                                                         docker:default
 	 => [internal] load build definition from gimp.d                                                                                                                                                     0.0s
 	 => => transferring dockerfile: 31.17kB                                                                                                                                                              0.0s
-	 => [internal] load metadata for ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.24.04:4.4                                                                                                               0.6s
+	 => [internal] load metadata for ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.24.04:{{ abcdesktop.latest_release }}                                                                                                                                                                                               0.6s
 	 => [internal] load .dockerignore                                                                                                                                                                    0.0s
 	 => => transferring context: 2B                                                                                                                                                                      0.0s
-	 => CACHED [1/4] FROM ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.24.04:4.4@sha256:18db02414a19ac2befb0366084474f32cbf97f7ccefd6af283a189928c6fcc70                                                  0.0s
+	 => CACHED [1/4] FROM ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.24.04:{{ abcdesktop.latest_release }}@sha256:18db02414a19ac2befb0366084474f32cbf97f7ccefd6af283a189928c6fcc70                                                  0.0s
 	 => [2/4] RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections                                                                                                         0.4s
 	 => [3/4] RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y gimp dbus-x11 hicolor-icon-theme && apt-get clean && rm -rf /var/lib/apt/lists/*                                 255.6s
 	 => [4/4] RUN if [ -x /usr/bin/dbus-launch ]; then chmod g+r,g+w,o+r,o+w /var/lib/dbus ; fi                                                                                                          0.3s

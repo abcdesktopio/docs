@@ -74,9 +74,9 @@ curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/ins
     [OK] label secret abcdesktopjwtusersigning
     [OK] mongod key file create
     ######################################################################## 100.0%
-    [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-4.4.yaml
+    [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/abcdesktop-{{ abcdesktop.latest_release }}.yaml
     ######################################################################## 100.0%
-    [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.4.4
+    [OK] downloaded source https://raw.githubusercontent.com/abcdesktopio/conf/main/reference/od.config.{{ abcdesktop.latest_release }}
     [OK] kubectl create configmap abcdesktop-config --from-file=od.config -n abcdesktop
     [OK] label configmap abcdesktop-config abcdesktop/role=pyos.config
     [OK] default account is created

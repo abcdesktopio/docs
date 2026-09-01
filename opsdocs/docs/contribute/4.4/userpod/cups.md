@@ -42,7 +42,7 @@ Implications:
 
 Meaning:
 - BRANCH selects which branch is cloned for external service repositories.
-- If BRANCH is not provided, branch 4.4 is used.
+- If BRANCH is not provided, branch {{ abcdesktop.latest_release }} is used.
 
 Example build:
 

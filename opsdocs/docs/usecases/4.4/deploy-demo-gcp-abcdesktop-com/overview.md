@@ -70,7 +70,7 @@ The manifests used to operate this demo are maintained in the repository [`abcde
 | `gke-ingress.yaml` | GKE Ingress resource |
 | `abcdesktop_managed_certificate.yaml` | Google-managed TLS certificate |
 | `backend_config_timeout.yaml` | BackendConfig for load balancer timeout tuning |
-| `netpol-default-4.4.yaml` | Default network policies |
+| `netpol-default-{{ abcdesktop.latest_release }}.yaml` | Default network policies |
 | `pvc-mongo.yaml` | PersistentVolumeClaim for MongoDB |
 | `cronjob.yaml` | Garbage collector CronJob |
 | `od.config` | abcdesktop main configuration (auth providers, routing, …) |

@@ -75,7 +75,7 @@ The `s-sound` container requires read access to the `$HOME/.config/pulse/cookie`
 ```
 'sound': { 
     'volumes': [ 'extrausers', 'tmp', 'config', 'log' ],
-    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.4',
+    'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:{{ abcdesktop.latest_release }}',
     'imagePullPolicy': 'Always',
     'enable': True,
     'tcpport': 29788,

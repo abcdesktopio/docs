@@ -764,7 +764,7 @@ authmanagers: {
     # graphical is the main abcdesktop container 
     # include x11 service 
     'graphical' : {
-        'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:4.4' },
+        'image': { 'default': 'ghcr.io/abcdesktopio/oc.user.ubuntu.sudo.24.04:{{ abcdesktop.latest_release }}' },
         'volumes': [ 'sudoers', 'x11socket', 'tmp', 'run', 'log', 'rundbus', 'runuser', 'shm' ],
         'imagePullPolicy': 'IfNotPresent',
         'enable': True,
@@ -811,7 +811,7 @@ authmanagers: {
     # printer is a cupsd service 
     'printer' : { 
         'volumes': [ 'tmp' ],
-        'image': 'ghcr.io/abcdesktopio/oc.cupsd:4.4',
+        'image': 'ghcr.io/abcdesktopio/oc.cupsd:{{ abcdesktop.latest_release }}',
         'imagePullPolicy': 'IfNotPresent',
         'enable': False,
         'tcpport': 681,
@@ -830,7 +830,7 @@ authmanagers: {
     # filer provide upload and download files features
     'filer' : { 
         'volumes': [ 'tmp', 'home', 'log' ],
-        'image': 'ghcr.io/abcdesktopio/oc.filer:4.4',
+        'image': 'ghcr.io/abcdesktopio/oc.filer:{{ abcdesktop.latest_release }}',
         'imagePullPolicy':  'IfNotPresent',
         'enable': True,
         'tcpport': 29783,
@@ -840,7 +840,7 @@ authmanagers: {
     # sound is a pulseaudio service instance
     'sound': { 
         'volumes': [ 'tmp', 'home', 'log', 'shm' ],
-        'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:4.4',
+        'image': 'ghcr.io/abcdesktopio/oc.pulseaudio:{{ abcdesktop.latest_release }}',
         'imagePullPolicy': 'IfNotPresent',
         'enable': True,
         'tcpport': 29788,

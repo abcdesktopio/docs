@@ -90,8 +90,8 @@ wget https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg -O icons/
 
 
 ```
-wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/refs/heads/4.4/make.js
-wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/refs/heads/4.4/package.json
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/refs/heads/{{ abcdesktop.latest_release }}/make.js
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/refs/heads/{{ abcdesktop.latest_release }}/package.json
 ```
 
 Run `npm install` to install the required packages:
@@ -109,7 +109,7 @@ nodejs make.js
 The expected output is:
 
 ```
-Namespace(dockerfile=false, release='4.4', applicationfile='applist.json')
+Namespace(dockerfile=false, release='{{ abcdesktop.latest_release }}', applicationfile='applist.json')
 Read database json file=applist.json
 opening file applist.json
 applist.json entries: 1
@@ -137,10 +137,10 @@ The expected output is:
 [+] Building 62.3s (8/8) FINISHED                                                                                                                                                           docker:default
  => [internal] load build definition from 2048.d                                                                                                                                                      0.0s
  => => transferring dockerfile: 3.49kB                                                                                                                                                                0.0s
- => [internal] load metadata for ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04:4.4                                                                                                                0.0s
+ => [internal] load metadata for ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04:{{ abcdesktop.latest_release }}                                                                                                                                                                                0.0s
  => [internal] load .dockerignore                                                                                                                                                                     0.0s
  => => transferring context: 2B                                                                                                                                                                       0.0s
- => CACHED [1/4] FROM ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04:4.4                                                                                                                           0.0s
+ => CACHED [1/4] FROM ghcr.io/abcdesktopio/oc.template.ubuntu.gtk.26.04:{{ abcdesktop.latest_release }}                                                                                                                           0.0s
  => [2/4] RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections                                                                                                          0.3s
  => [3/4] RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y  --no-install-recommends 2048-qt && apt-get clean && rm -rf /var/lib/apt/lists/*                                   59.9s
  => [4/4] RUN if [ -x /usr/bin/dbus-launch ]; then chmod g+r,g+w,o+r,o+w /var/lib/dbus ; fi                                                                                                           0.2s

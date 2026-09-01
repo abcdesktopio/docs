@@ -15,7 +15,7 @@ tags:
 Project owner, architect, developer, containers and security design, all components, maintainer of the code and has written much of the current code base
 
 * [Matteo BEGHELLI](https://github.com/Matt307082) : 
-DevOps engineer, [demo platform](https://demo.gcp.abcdesktop.com) architect, [console service](https://www.abcdesktop.io/contribute/4.4/services/console/) developer
+DevOps engineer, [demo platform](https://demo.gcp.abcdesktop.com) architect, [console service](https://www.abcdesktop.io/contribute/{{ abcdesktop.latest_release }}/services/console/) developer
 
 * Cedric HAUWEL : Control Plane `PyOS` and authentification, included a complete refactor of the control plane
 

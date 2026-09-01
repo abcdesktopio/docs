@@ -147,7 +147,7 @@ X-API-KEY: <admin-api-key>
 The key must be configured on the `pyos` side in the `od.config` file. If no `apikey` is specified, the **API Key modal** does not appear and the administrator has unrestricted access to the console.
 
 !!! note 
-    More information on the API key is available on [this page](https://www.abcdesktop.io/advanced/4.4/controllers/controllers/#access-control-filter)
+    More information on the API key is available on [this page](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/controllers/controllers/#access-control-filter)
  
 ---
  

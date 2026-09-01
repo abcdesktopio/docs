@@ -4,7 +4,7 @@
 
 ---
 
-*Release 4.4 — 2026*  
+*Release {{ abcdesktop.latest_release }} — 2026*  
 *[www.abcdesktop.io](https://www.abcdesktop.io) — Open Source — GPL-2.0*
 
 ---
@@ -36,9 +36,9 @@ Threats have evolved. So have usage patterns. Hybrid work, BYOD, contractors acc
 
 **abcdesktop.io** was born from this reality. It is a cloud-native virtual desktop platform built on and for Kubernetes, fundamentally rethinking how applications and work environments are delivered to users — with nothing installed on the client device, no data exposed on the endpoint, and no compromise on security.
 
-![abcdesktop.io desktop — Release 4.4](https://www.abcdesktop.io/img/abcdesktop-home-release-4.4.png)
+![abcdesktop.io desktop — Release {{ abcdesktop.latest_release }}](https://www.abcdesktop.io/img/abcdesktop-home-release-{{ abcdesktop.latest_release }}.png)
 
-*Figure 1: abcdesktop.io — Release 4.4 desktop environment, accessed from any HTML5 browser.*
+*Figure 1: abcdesktop.io — Release {{ abcdesktop.latest_release }} desktop environment, accessed from any HTML5 browser.*
 
 This ebook presents the philosophy, architecture, features, and use cases of abcdesktop.io to help you evaluate whether this approach fits your organization's needs.
 
@@ -326,19 +326,19 @@ abcdesktop.io integrates with all existing enterprise identity systems, without 
 - **SSL/TLS client certificates**: mutual TLS authentication (logmein) for high-security environments.
 - **Anonymous access**: for open-access deployments (kiosks, public training sessions).
 
-![abcdesktop.io — Combined login page with all providers](https://www.abcdesktop.io/advanced/4.4/authentication/img/auth-overview-allproviders.png)
+![abcdesktop.io — Combined login page with all providers](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/authentication/img/auth-overview-allproviders.png)
 
 *Figure 4: The abcdesktop.io login page with all authentication providers configured simultaneously — LDAP, OAuth (Google, GitHub, Facebook), and anonymous access.*
 
-![abcdesktop.io — External OAuth authentication](https://www.abcdesktop.io/advanced/4.4/authentication/img/auth-overview-external.png)
+![abcdesktop.io — External OAuth authentication](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/authentication/img/auth-overview-external.png)
 
 *Figure 5: External OAuth 2.0 / OpenID Connect authentication — users sign in with their Google, GitHub, or any OIDC provider account.*
 
-![abcdesktop.io — Explicit LDAP/AD authentication](https://www.abcdesktop.io/advanced/4.4/authentication/img/auth-overview-explicit.png)
+![abcdesktop.io — Explicit LDAP/AD authentication](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/authentication/img/auth-overview-explicit.png)
 
 *Figure 6: Explicit LDAP / Active Directory authentication — enterprise username and password login.*
 
-![abcdesktop.io — Anonymous authentication](https://www.abcdesktop.io/advanced/4.4/authentication/img/auth-overview-implicit.png)
+![abcdesktop.io — Anonymous authentication](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/authentication/img/auth-overview-implicit.png)
 
 *Figure 7: Anonymous (implicit) authentication — instant access with no credentials, ideal for training environments and kiosks.*
 
@@ -556,8 +556,8 @@ abcdesktop.io runs on any conformant Kubernetes cluster, regardless of the under
 Installing abcdesktop.io on an existing Kubernetes cluster takes less than 5 minutes via a script or Helm:
 
 ```bash
-# Script-based installation (release 4.4)
-curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-4.4.sh | bash
+# Script-based installation (release {{ abcdesktop.latest_release }})
+curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh | bash
 
 # Helm installation
 helm install abcdesktop abcdesktop/abcdesktop --namespace abcdesktop
@@ -617,7 +617,7 @@ No thick client to deploy, no special user training required. If a user can open
 | **Official documentation** | [www.abcdesktop.io](https://www.abcdesktop.io) |
 | **Source code** | [github.com/abcdesktopio](https://github.com/abcdesktopio) |
 | **Docker images** | [hub.docker.com/u/abcdesktopio](https://hub.docker.com/u/abcdesktopio) |
-| **Installation guide** | [www.abcdesktop.io/install/4.4/script](https://www.abcdesktop.io/install/4.4/script/) |
+| **Installation guide** | [www.abcdesktop.io/install/{{ abcdesktop.latest_release }}/script](https://www.abcdesktop.io/install/{{ abcdesktop.latest_release }}/script/) |
 | **Architecture reference** | [www.abcdesktop.io/architecture/overview](https://www.abcdesktop.io/architecture/overview/) |
 | **Helm chart** | [artifacthub.io/packages/helm/abcdesktop](https://artifacthub.io/packages/helm/abcdesktop/abcdesktop) |
 
@@ -627,7 +627,7 @@ No thick client to deploy, no special user training required. If a user can open
 
 | Figure | Description | Source |
 |--------|-------------|--------|
-| Figure 1 | abcdesktop.io Release 4.4 desktop screenshot | abcdesktop.io |
+| Figure 1 | abcdesktop.io Release {{ abcdesktop.latest_release }} desktop screenshot | abcdesktop.io |
 | Figure 2 | User pod architecture — pixels-only to endpoint | abcdesktop.io |
 | Figure 3 | Kubernetes cluster multi-user workload distribution | abcdesktop.io |
 | Figure 4 | Combined login page — all authentication providers | abcdesktop.io |

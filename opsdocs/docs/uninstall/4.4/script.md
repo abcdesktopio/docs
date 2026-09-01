@@ -19,7 +19,7 @@ tags:
     Download and execute the uninstall script (Linux or macOS):
 
     ```bash
-    curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.4.sh |bash
+    curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-{{ abcdesktop.latest_release }}.sh |bash
     ```
 
     The script produces the following standard output:
@@ -74,14 +74,14 @@ tags:
 
 
     ```bash
-    wget https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.4.sh
-    chmod 755 uninstall-4.4.sh
+    wget https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-{{ abcdesktop.latest_release }}.sh
+    chmod 755 uninstall-{{ abcdesktop.latest_release }}.sh
     ```
 
-    Run the `uninstall-4.4.sh` script with your custom namespace:
+    Run the `uninstall-{{ abcdesktop.latest_release }}.sh` script with your custom namespace:
 
     ```
-    ./uninstall-4.4.sh --namespace superdesktop
+    ./uninstall-{{ abcdesktop.latest_release }}.sh --namespace superdesktop
     ```
 
     The script produces the following standard output:
@@ -134,7 +134,7 @@ tags:
     Download and execute the uninstall PowerShell script (Windows):
 
     ```PowerShell
-    $script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.4.ps1
+    $script = curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-{{ abcdesktop.latest_release }}.ps1
 
     Invoke-Expression $($script.Content)
     ```
@@ -187,13 +187,13 @@ tags:
 
 
     ```PowerShell
-    curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-4.4.ps1  -OutFile uninstall-4.4.ps1
+    curl https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/uninstall-{{ abcdesktop.latest_release }}.ps1  -OutFile uninstall-{{ abcdesktop.latest_release }}.ps1
     ```
 
-    Run the `uninstall-4.4.ps1` script with your custom namespace:
+    Run the `uninstall-{{ abcdesktop.latest_release }}.ps1` script with your custom namespace:
 
     ```PowerShell
-    .\uninstall-4.4.ps1 --namespace superdesktop
+    .\uninstall-{{ abcdesktop.latest_release }}.ps1 --namespace superdesktop
     ```
 
     The script produces the following standard output:

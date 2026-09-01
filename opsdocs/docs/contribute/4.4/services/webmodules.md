@@ -239,7 +239,7 @@ All LESS stylesheets and SVG icons use these color tokens. Changing them in `ui.
 | `@purple` | `#A885D8` | Purple accent |
 
 !!! note 
-    More information about UI customization and how to apply your own look & feel on [this page](https://www.abcdesktop.io/advanced/4.4/configure/customfrontend/)
+    More information about UI customization and how to apply your own look & feel on [this page](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/configure/customfrontend/)
 
 ---
 
