@@ -1,6 +1,6 @@
 ---
 title: Sound Container — PulseAudio Streaming | abcdesktop.io
-description: Developer reference for the abcdesktop.io sound container: PulseAudio setup, speaker/microphone streaming via WebSocket, and FFmpeg pipeline.
+description: Developer reference for the abcdesktop.io sound container PulseAudio setup, speaker/microphone streaming via WebSocket, and FFmpeg pipeline.
 keywords: sound, PulseAudio, audio, WebSocket, FFmpeg, speaker, microphone, abcdesktop, contribute, user pod
 tags:
   - contribute
