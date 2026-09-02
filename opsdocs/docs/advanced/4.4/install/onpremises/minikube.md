@@ -176,11 +176,11 @@ The install bash script forwards TCP port 30443 to the router pod's TCP port 80
 > Open the URL returned by the install bash script. In this sample `http://192.168.7.119:30443/`
 > Change the IP address `192.168.7.119` with your own
 
-![kind home page](img/kinduserhompage.png)
+![minikube home page](img/localuserhomepage.png)
 
 Your web browser shows the abcdesktop service home page
 
-![kind user connected](img/kinduserconnected.png)
+![minikube user connected](img/localuserconnected.png)
 
 The user `Philip J. Fry` is connected to the abcdesktop service
 

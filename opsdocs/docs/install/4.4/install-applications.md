@@ -41,11 +41,11 @@ tags:
 
     The installed applications are now available in the desktop environment.
 
-    ![applications after upload json](img/abcdesktop-4-1-loginanonymous-with-applications.png)
+    ![applications after upload json](img/abcdesktop-5-0-loginanonymous-with-applications.png)
 
     You can now launch installed applications. For example, launching Firefox demonstrates **Remote Browser Isolation (RBI)**: Firefox runs entirely inside an isolated container on the Kubernetes cluster, and only rendered pixels are streamed to the client browser.
 
-    ![Start Firefox application](img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png)
+    ![Start Firefox application](img/abcdesktop-5-0-loginanonymous-with-firefox-applications.png)
 
     The following video demonstrates application management using the admin console:
 
@@ -80,11 +80,11 @@ tags:
 
     The installed applications are now available in the desktop environment.
 
-    ![applications after upload json](img/abcdesktop-4-1-loginanonymous-with-applications.png)
+    ![applications after upload json](img/abcdesktop-5-0-loginanonymous-with-applications.png)
 
     You can now launch installed applications. For example, launching Firefox demonstrates **Remote Browser Isolation (RBI)**: Firefox runs entirely inside an isolated container on the Kubernetes cluster, and only rendered pixels are streamed to the client browser.
 
-    ![Start Firefox application](img/abcdesktop-4-1-loginanonymous-with-firefox-applications.png)
+    ![Start Firefox application](img/abcdesktop-5-0-loginanonymous-with-firefox-applications.png)
 
     The following video demonstrates application management using the admin console:
 

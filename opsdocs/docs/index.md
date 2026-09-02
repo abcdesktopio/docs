@@ -58,7 +58,7 @@ The demo enforces production-grade security policies: outbound network requests 
 
 ## Screenshot
 
-![screenshot-applications](img/abcdesktop-home-release-4.4.png)
+![screenshot-applications](img/abcdesktop-home-release-5.0.png)
 
 ---
 

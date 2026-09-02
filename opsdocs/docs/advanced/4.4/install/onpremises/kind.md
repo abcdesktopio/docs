@@ -175,11 +175,11 @@ The install bash script sets up a `kubectl port-forward` tunnel, mapping TCP por
 ```
 > Open the URL returned by the install bash script. In this example: `http://192.168.7.119:30443/`
 
-![kind home page](img/kinduserhompage.png)
+![kind home page](img/localuserhomepage.png)
 
 Your web browser displays the abcdesktop service home page.
 
-![kind user connected](img/kinduserconnected.png)
+![kind user connected](img/localuserconnected.png)
 
 The user `Philip J. Fry` is connected to the abcdesktop service.
 
