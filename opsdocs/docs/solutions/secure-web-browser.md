@@ -25,13 +25,13 @@ The one thing every fingerprinting technique has in common, regardless of the AP
 
 ## Why abcdesktop.io breaks that precondition
 
-With abcdesktop.io, the browser never runs on your endpoint. Your device only displays a video stream over an encrypted WebSocket, while the actual browser executes inside an isolated [Remote Browser Isolation](../../solutions/remote-browser-isolation.md) session in the Kubernetes cluster.
+With abcdesktop.io, the browser never runs on your endpoint. Your device only displays a video stream over an encrypted WebSocket, while the actual browser executes inside an isolated [Remote Browser Isolation](remote-browser-isolation.md) session in the Kubernetes cluster.
 
 A fingerprinting script can still run, but it only ever measures the isolated container's virtual CPU, audio stack, and GPU, never your laptop's, your phone's, or your desktop's real hardware. Since that container is standardized and shared across the fleet of users, the resulting "fingerprint" no longer identifies *you*, it identifies an interchangeable, disposable execution environment.
 
 ## One step further: the browser can be its own pod, not just a container in your desktop
 
-In abcdesktop.io, an application is not necessarily just a container living inside your desktop pod. Starting with [Remote Application Isolation](../../solutions/kubernetes-vdi.md) (RAI), any application, including the web browser itself, can be scheduled as its **own dedicated Kubernetes pod**, separate from the pod hosting your desktop session.
+In abcdesktop.io, an application is not necessarily just a container living inside your desktop pod. Starting with [Remote Application Isolation](kubernetes-vdi.md) (RAI), any application, including the web browser itself, can be scheduled as its **own dedicated Kubernetes pod**, separate from the pod hosting your desktop session.
 
 This distinction matters a lot for fingerprinting resilience:
 
