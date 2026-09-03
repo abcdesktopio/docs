@@ -6,31 +6,31 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Developer reference for the abcdesktop.io graphical container - X11 display server, noVNC WebSocket rendering, Dockerfile build stages, and runtime dependencies.">
+        <meta name="description" content="Descreibes how abcdesktop architecture protects you from traceability">
       
       
         <meta name="author" content="abcdesktop.io contributors">
       
       
-        <link rel="canonical" href="https://www.abcdesktop.io/contribute/4.4/userpod/graphical/">
+        <link rel="canonical" href="https://www.abcdesktop.io/usecases/4.4/secure-web-browser/">
       
       
-        <link rel="prev" href="../../services/webmodules/">
+        <link rel="prev" href="../multus-user-pod/">
       
       
-        <link rel="next" href="../sound/">
+        <link rel="next" href="../deploy-demo-gcp-abcdesktop-com/overview/">
       
       
-      <link rel="icon" href="../../../../img/abcdesktop128x128.ico">
+      <link rel="icon" href="../../../img/abcdesktop128x128.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
-        <title>Graphical Container — X11 Display Server | abcdesktop.io - www.abcdesktop.io</title>
+        <title>How abcdesktop protects your web browser | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -49,11 +49,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../../css/custom-admonition.css">
+      <link rel="stylesheet" href="../../../css/custom-admonition.css">
     
-      <link rel="stylesheet" href="../../../../css/drawio-darkmode.css">
+      <link rel="stylesheet" href="../../../css/drawio-darkmode.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -72,11 +72,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Graphical Container — X11 Display Server | abcdesktop.io - www.abcdesktop.io" >
+        <meta  property="og:title"  content="How abcdesktop protects your web browser | abcdesktop.io - www.abcdesktop.io" >
       
-        <meta  property="og:description"  content="Developer reference for the abcdesktop.io graphical container - X11 display server, noVNC WebSocket rendering, Dockerfile build stages, and runtime dependencies." >
+        <meta  property="og:description"  content="Descreibes how abcdesktop architecture protects you from traceability" >
       
-        <meta  property="og:image"  content="https://www.abcdesktop.io/assets/images/social/contribute/4.4/userpod/graphical.png" >
+        <meta  property="og:image"  content="https://www.abcdesktop.io/assets/images/social/usecases/4.4/secure-web-browser.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -84,15 +84,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://www.abcdesktop.io/contribute/4.4/userpod/graphical/" >
+        <meta  property="og:url"  content="https://www.abcdesktop.io/usecases/4.4/secure-web-browser/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Graphical Container — X11 Display Server | abcdesktop.io - www.abcdesktop.io" >
+        <meta  name="twitter:title"  content="How abcdesktop protects your web browser | abcdesktop.io - www.abcdesktop.io" >
       
-        <meta  name="twitter:description"  content="Developer reference for the abcdesktop.io graphical container - X11 display server, noVNC WebSocket rendering, Dockerfile build stages, and runtime dependencies." >
+        <meta  name="twitter:description"  content="Descreibes how abcdesktop architecture protects you from traceability" >
       
-        <meta  name="twitter:image"  content="https://www.abcdesktop.io/assets/images/social/contribute/4.4/userpod/graphical.png" >
+        <meta  name="twitter:image"  content="https://www.abcdesktop.io/assets/images/social/usecases/4.4/secure-web-browser.png" >
       
     
     
@@ -119,12 +119,12 @@
   <meta property="og:locale"    content="en_US" />
   <meta property="og:type"      content="website" />
   <meta property="og:site_name" content="abcdesktop.io" />
-  <meta property="og:url"       content="https://www.abcdesktop.io/contribute/4.4/userpod/graphical/" />
+  <meta property="og:url"       content="https://www.abcdesktop.io/usecases/4.4/secure-web-browser/" />
   
-  <meta property="og:title"       content="Graphical Container — X11 Display Server | abcdesktop.io" />
+  <meta property="og:title"       content="How abcdesktop protects your web browser | abcdesktop.io" />
   
   
-  <meta property="og:description" content="Developer reference for the abcdesktop.io graphical container - X11 display server, noVNC WebSocket rendering, Dockerfile build stages, and runtime dependencies." />
+  <meta property="og:description" content="Descreibes how abcdesktop architecture protects you from traceability" />
   
 
   
@@ -141,16 +141,16 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Graphical Container — X11 Display Server | abcdesktop.io" />
+  <meta name="twitter:title"       content="How abcdesktop protects your web browser | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="Developer reference for the abcdesktop.io graphical container - X11 display server, noVNC WebSocket rendering, Dockerfile build stages, and runtime dependencies." />
+  <meta name="twitter:description" content="Descreibes how abcdesktop architecture protects you from traceability" />
   
 
   
-  <link rel="alternate" hreflang="en"    href="https://www.abcdesktop.io/contribute/4.4/userpod/graphical/" />
-  <link rel="alternate" hreflang="en-US" href="https://www.abcdesktop.io/contribute/4.4/userpod/graphical/" />
-  <link rel="alternate" hreflang="x-default" href="https://www.abcdesktop.io/contribute/4.4/userpod/graphical/" />
+  <link rel="alternate" hreflang="en"    href="https://www.abcdesktop.io/usecases/4.4/secure-web-browser/" />
+  <link rel="alternate" hreflang="en-US" href="https://www.abcdesktop.io/usecases/4.4/secure-web-browser/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.abcdesktop.io/usecases/4.4/secure-web-browser/" />
 
   
   <script type="application/ld+json">
@@ -232,7 +232,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#specification-for-the-graphical-service-from-dockerfileubuntu" class="md-skip">
+        <a href="#make-your-web-browser-secure-again-how-abcdesktopio-protects-you-from-stealth-fingerprints" class="md-skip">
           Skip to content
         </a>
       
@@ -246,9 +246,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+    <a href="../../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
       
-  <img src="../../../../img/abcdesktop.svg" alt="logo">
+  <img src="../../../img/abcdesktop.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -265,7 +265,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Graphical Container — X11 Display Server | abcdesktop.io
+              How abcdesktop protects your web browser | abcdesktop.io
             
           </span>
         </div>
@@ -350,7 +350,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -371,7 +371,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../requirements/" class="md-tabs__link">
+        <a href="../../../requirements/" class="md-tabs__link">
           
   
   
@@ -398,7 +398,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../architecture/overview/" class="md-tabs__link">
+        <a href="../../../architecture/overview/" class="md-tabs__link">
           
   
   
@@ -417,13 +417,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../contribute/overview/" class="md-tabs__link">
           
   
   
@@ -439,11 +437,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../../usecases/4.4/filter-traffic-per-group/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../filter-traffic-per-group/" class="md-tabs__link">
           
   
   
@@ -463,7 +463,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../solutions/kubernetes-vdi/" class="md-tabs__link">
+        <a href="../../../solutions/kubernetes-vdi/" class="md-tabs__link">
           
   
   
@@ -483,7 +483,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../compare/overview/" class="md-tabs__link">
+        <a href="../../../compare/overview/" class="md-tabs__link">
           
   
   
@@ -503,7 +503,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../faq/faq/" class="md-tabs__link">
+        <a href="../../../faq/faq/" class="md-tabs__link">
           
   
   
@@ -521,7 +521,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../ebook/ebook-abcdesktop-en.pdf" class="md-tabs__link">
+      <a href="../../../ebook/ebook-abcdesktop-en.pdf" class="md-tabs__link">
         
   
   
@@ -556,9 +556,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+    <a href="../../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
       
-  <img src="../../../../img/abcdesktop.svg" alt="logo">
+  <img src="../../../img/abcdesktop.svg" alt="logo">
 
     </a>
     www.abcdesktop.io
@@ -585,7 +585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -648,7 +648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../requirements/" class="md-nav__link">
+      <a href="../../../requirements/" class="md-nav__link">
         
   
   
@@ -712,7 +712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/script/" class="md-nav__link">
+      <a href="../../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -735,7 +735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -807,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/applicationoverview/" class="md-nav__link">
+      <a href="../../../install/4.4/applicationoverview/" class="md-nav__link">
         
   
   
@@ -830,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/install-applications/" class="md-nav__link">
+      <a href="../../../install/4.4/install-applications/" class="md-nav__link">
         
   
   
@@ -853,7 +853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/applicationwithconsole/" class="md-nav__link">
+      <a href="../../../install/4.4/applicationwithconsole/" class="md-nav__link">
         
   
   
@@ -925,7 +925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../uninstall/4.4/script/" class="md-nav__link">
+      <a href="../../../uninstall/4.4/script/" class="md-nav__link">
         
   
   
@@ -948,7 +948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../uninstall/4.4/helm/" class="md-nav__link">
+      <a href="../../../uninstall/4.4/helm/" class="md-nav__link">
         
   
   
@@ -1068,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/overview/" class="md-nav__link">
+      <a href="../../../architecture/overview/" class="md-nav__link">
         
   
   
@@ -1140,7 +1140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
+      <a href="../../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
         
   
   
@@ -1163,7 +1163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/script/" class="md-nav__link">
+      <a href="../../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -1186,7 +1186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -1209,7 +1209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
+      <a href="../../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
         
   
   
@@ -1322,7 +1322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
         
   
   
@@ -1345,7 +1345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1368,7 +1368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1440,7 +1440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
         
   
   
@@ -1463,7 +1463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1486,7 +1486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1558,7 +1558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
         
   
   
@@ -1581,7 +1581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1604,7 +1604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1676,7 +1676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
         
   
   
@@ -1699,7 +1699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1722,7 +1722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1794,7 +1794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
         
   
   
@@ -1817,7 +1817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1840,7 +1840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1920,7 +1920,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/simplestapplicationxeyes/" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/simplestapplicationxeyes/" class="md-nav__link">
         
   
   
@@ -1943,7 +1943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/simplestapplicationxedit/" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/simplestapplicationxedit/" class="md-nav__link">
         
   
   
@@ -1966,7 +1966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/simplestapplicationchromium/" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/simplestapplicationchromium/" class="md-nav__link">
         
   
   
@@ -1989,7 +1989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/templateapplication/" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/templateapplication/" class="md-nav__link">
         
   
   
@@ -2012,7 +2012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/templateanotherapplication/" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/templateanotherapplication/" class="md-nav__link">
         
   
   
@@ -2084,7 +2084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/overview/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/overview/" class="md-nav__link">
         
   
   
@@ -2107,7 +2107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/updateconfiguration/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/updateconfiguration/" class="md-nav__link">
         
   
   
@@ -2171,7 +2171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/overview/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/overview/" class="md-nav__link">
         
   
   
@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authexternal/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authexternal/" class="md-nav__link">
         
   
   
@@ -2258,7 +2258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authexplicit-ldap/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authexplicit-ldap/" class="md-nav__link">
         
   
   
@@ -2281,7 +2281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authexplicit-activedirectory/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authexplicit-activedirectory/" class="md-nav__link">
         
   
   
@@ -2304,7 +2304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authmetaexplicit/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authmetaexplicit/" class="md-nav__link">
         
   
   
@@ -2376,7 +2376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authimplicit/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authimplicit/" class="md-nav__link">
         
   
   
@@ -2399,7 +2399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/logmein/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/logmein/" class="md-nav__link">
         
   
   
@@ -2438,7 +2438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authentification-rules/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authentification-rules/" class="md-nav__link">
         
   
   
@@ -2502,7 +2502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/overview/" class="md-nav__link">
+      <a href="../../../advanced/4.4/desktop/overview/" class="md-nav__link">
         
   
   
@@ -2525,7 +2525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/executeclasses/" class="md-nav__link">
+      <a href="../../../advanced/4.4/desktop/executeclasses/" class="md-nav__link">
         
   
   
@@ -2548,7 +2548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/pod/" class="md-nav__link">
+      <a href="../../../advanced/4.4/desktop/pod/" class="md-nav__link">
         
   
   
@@ -2571,7 +2571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/policies/" class="md-nav__link">
+      <a href="../../../advanced/4.4/desktop/policies/" class="md-nav__link">
         
   
   
@@ -2643,7 +2643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/overview/" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/overview/" class="md-nav__link">
         
   
   
@@ -2666,7 +2666,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/nfs/" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/nfs/" class="md-nav__link">
         
   
   
@@ -2689,7 +2689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/hostpath/" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/hostpath/" class="md-nav__link">
         
   
   
@@ -2712,7 +2712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/cache/" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/cache/" class="md-nav__link">
         
   
   
@@ -2735,7 +2735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/sharedvolumes/" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/sharedvolumes/" class="md-nav__link">
         
   
   
@@ -2766,7 +2766,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/garbagecollector/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/garbagecollector/" class="md-nav__link">
         
   
   
@@ -2789,7 +2789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
         
   
   
@@ -2812,7 +2812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/welcome/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/welcome/" class="md-nav__link">
         
   
   
@@ -2835,7 +2835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/customfrontend/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/customfrontend/" class="md-nav__link">
         
   
   
@@ -2858,7 +2858,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/logging/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/logging/" class="md-nav__link">
         
   
   
@@ -2971,7 +2971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/controllers/controllers/" class="md-nav__link">
+      <a href="../../../advanced/4.4/controllers/controllers/" class="md-nav__link">
         
   
   
@@ -3043,7 +3043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
+      <a href="../../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
         
   
   
@@ -3066,7 +3066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
+      <a href="../../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
         
   
   
@@ -3089,7 +3089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
+      <a href="../../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
         
   
   
@@ -3132,29 +3132,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -3167,7 +3162,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Contribute
@@ -3181,7 +3176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../overview/" class="md-nav__link">
+      <a href="../../../contribute/overview/" class="md-nav__link">
         
   
   
@@ -3204,7 +3199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../authors/" class="md-nav__link">
+      <a href="../../../contribute/authors/" class="md-nav__link">
         
   
   
@@ -3268,7 +3263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../services/keygenerator/" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/keygenerator/" class="md-nav__link">
         
   
   
@@ -3291,7 +3286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../services/mongo/" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/mongo/" class="md-nav__link">
         
   
   
@@ -3314,7 +3309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../services/console/" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/console/" class="md-nav__link">
         
   
   
@@ -3337,7 +3332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../services/pyos/" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/pyos/" class="md-nav__link">
         
   
   
@@ -3360,7 +3355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../services/router/" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/router/" class="md-nav__link">
         
   
   
@@ -3383,7 +3378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../services/webmodules/" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/webmodules/" class="md-nav__link">
         
   
   
@@ -3411,8 +3406,6 @@
                 
   
   
-    
-  
   
   
     
@@ -3423,11 +3416,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
         
           
           <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
@@ -3443,7 +3436,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_4">
             <span class="md-nav__icon md-icon"></span>
             User Pod
@@ -3454,32 +3447,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Graphical
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../contribute/4.4/userpod/graphical/" class="md-nav__link">
         
   
   
@@ -3490,380 +3461,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-purpose-and-scope" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Purpose and Scope
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-build-interface-input-contract" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Build Interface (Input Contract)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Build Interface (Input Contract)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-global-build-arguments" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.1 Global build arguments
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-builder-stage-arguments" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.2 Builder-stage arguments
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-final-stage-argument" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.3 Final-stage argument
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-detailed-specification-of-stage-1-ubuntu_node_modules_builder" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Detailed Specification of Stage 1: ubuntu_node_modules_builder
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Detailed Specification of Stage 1: ubuntu_node_modules_builder">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-base-and-shell" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.1 Base and shell
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32-toolchain-and-native-prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.2 Toolchain and native prerequisites
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33-nodejs-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.3 Node.js installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34-composer-source-import" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.4 Composer source import
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#35-node-dependency-installation-by-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.5 Node dependency installation by service
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#36-ocrun-variants-generation" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.6 ocrun variants generation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#37-builder-output" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.7 Builder output
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-detailed-specification-of-stage-2-final-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Detailed Specification of Stage 2 (Final Image)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Detailed Specification of Stage 2 (Final Image)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-system-initialization" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.1 System initialization
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#42-tigervnc-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.2 TigerVNC installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#43-core-runtime-packages" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.3 Core runtime packages
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#44-builder-artifact-import" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.4 Builder artifact import
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#45-kde-plasma-and-hardening-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.5 KDE Plasma and hardening mode
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#46-notifications-fonts-and-themes" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.6 Notifications, fonts, and themes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#47-nodejs-runtime-in-final-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.7 Node.js runtime in final image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#48-runtime-resources-and-application-hardening" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.8 Runtime resources and application hardening
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#49-execution-contract" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.9 Execution contract
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#410-network-contract" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.10 Network contract
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-runtime-contract" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Runtime Contract
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-external-dependencies-and-supply-chain" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. External Dependencies and Supply Chain
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-security-and-compliance-analysis" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Security and Compliance Analysis
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7. Security and Compliance Analysis">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#positive-aspects" class="md-nav__link">
-    <span class="md-ellipsis">
-      Positive aspects
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#identified-risks" class="md-nav__link">
-    <span class="md-ellipsis">
-      Identified risks
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-build-performance-and-image-footprint" class="md-nav__link">
-    <span class="md-ellipsis">
-      8. Build Performance and Image Footprint
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-architecture-recommendations-expert-level" class="md-nav__link">
-    <span class="md-ellipsis">
-      9. Architecture Recommendations (Expert Level)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="9. Architecture Recommendations (Expert Level)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#91-reproducibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      9.1 Reproducibility
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#92-security" class="md-nav__link">
-    <span class="md-ellipsis">
-      9.2 Security
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#93-dockerfile-quality" class="md-nav__link">
-    <span class="md-ellipsis">
-      9.3 Dockerfile quality
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#94-runtime-robustness" class="md-nav__link">
-    <span class="md-ellipsis">
-      9.4 Runtime robustness
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#10-example-build-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      10. Example Build Commands
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3876,7 +3473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sound/" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/sound/" class="md-nav__link">
         
   
   
@@ -3899,7 +3496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cups/" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/cups/" class="md-nav__link">
         
   
   
@@ -3922,7 +3519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filer/" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/filer/" class="md-nav__link">
         
   
   
@@ -3957,24 +3554,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -3987,7 +3589,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Use cases
@@ -4001,7 +3603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/filter-traffic-per-group/" class="md-nav__link">
+      <a href="../filter-traffic-per-group/" class="md-nav__link">
         
   
   
@@ -4024,7 +3626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/configure-keycloak/" class="md-nav__link">
+      <a href="../configure-keycloak/" class="md-nav__link">
         
   
   
@@ -4047,7 +3649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/multus-user-pod/" class="md-nav__link">
+      <a href="../multus-user-pod/" class="md-nav__link">
         
   
   
@@ -4067,10 +3669,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/secure-web-browser/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    How abcdesktop.io protects you from browser fingerprinting
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -4081,6 +3705,62 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-silent-cookie-that-isnt-a-cookie" class="md-nav__link">
+    <span class="md-ellipsis">
+      The "silent cookie" that isn't a cookie
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-abcdesktopio-breaks-that-precondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why abcdesktop.io breaks that precondition
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-step-further-the-browser-can-be-its-own-pod-not-just-a-container-in-your-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      One step further: the browser can be its own pod, not just a container in your desktop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaway" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key takeaway
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4134,7 +3814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/overview/" class="md-nav__link">
+      <a href="../deploy-demo-gcp-abcdesktop-com/overview/" class="md-nav__link">
         
   
   
@@ -4157,7 +3837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/configure-kubernetes-cluster-gcp/" class="md-nav__link">
+      <a href="../deploy-demo-gcp-abcdesktop-com/configure-kubernetes-cluster-gcp/" class="md-nav__link">
         
   
   
@@ -4180,7 +3860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/install-demo/" class="md-nav__link">
+      <a href="../deploy-demo-gcp-abcdesktop-com/install-demo/" class="md-nav__link">
         
   
   
@@ -4259,7 +3939,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../solutions/kubernetes-vdi/" class="md-nav__link">
+      <a href="../../../solutions/kubernetes-vdi/" class="md-nav__link">
         
   
   
@@ -4282,7 +3962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../solutions/remote-browser-isolation/" class="md-nav__link">
+      <a href="../../../solutions/remote-browser-isolation/" class="md-nav__link">
         
   
   
@@ -4305,7 +3985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../solutions/self-hosted-vdi/" class="md-nav__link">
+      <a href="../../../solutions/self-hosted-vdi/" class="md-nav__link">
         
   
   
@@ -4376,7 +4056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../compare/overview/" class="md-nav__link">
+      <a href="../../../compare/overview/" class="md-nav__link">
         
   
   
@@ -4399,7 +4079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../compare/abcdesktop-vs-citrix/" class="md-nav__link">
+      <a href="../../../compare/abcdesktop-vs-citrix/" class="md-nav__link">
         
   
   
@@ -4422,7 +4102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../compare/abcdesktop-vs-guacamole/" class="md-nav__link">
+      <a href="../../../compare/abcdesktop-vs-guacamole/" class="md-nav__link">
         
   
   
@@ -4445,7 +4125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../compare/abcdesktop-vs-kasm/" class="md-nav__link">
+      <a href="../../../compare/abcdesktop-vs-kasm/" class="md-nav__link">
         
   
   
@@ -4516,7 +4196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/faq/" class="md-nav__link">
+      <a href="../../../faq/faq/" class="md-nav__link">
         
   
   
@@ -4539,7 +4219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/adopters/" class="md-nav__link">
+      <a href="../../../faq/adopters/" class="md-nav__link">
         
   
   
@@ -4562,7 +4242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/release/" class="md-nav__link">
+      <a href="../../../faq/release/" class="md-nav__link">
         
   
   
@@ -4585,7 +4265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/webbrowser/" class="md-nav__link">
+      <a href="../../../faq/webbrowser/" class="md-nav__link">
         
   
   
@@ -4615,7 +4295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ebook/ebook-abcdesktop-en.pdf" class="md-nav__link">
+      <a href="../../../ebook/ebook-abcdesktop-en.pdf" class="md-nav__link">
         
   
   
@@ -4657,354 +4337,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-purpose-and-scope" class="md-nav__link">
+  <a href="#the-silent-cookie-that-isnt-a-cookie" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Purpose and Scope
+      The "silent cookie" that isn't a cookie
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-build-interface-input-contract" class="md-nav__link">
+  <a href="#why-abcdesktopio-breaks-that-precondition" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Build Interface (Input Contract)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Build Interface (Input Contract)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-global-build-arguments" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.1 Global build arguments
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-builder-stage-arguments" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.2 Builder-stage arguments
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-final-stage-argument" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.3 Final-stage argument
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-detailed-specification-of-stage-1-ubuntu_node_modules_builder" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Detailed Specification of Stage 1: ubuntu_node_modules_builder
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Detailed Specification of Stage 1: ubuntu_node_modules_builder">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-base-and-shell" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.1 Base and shell
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32-toolchain-and-native-prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.2 Toolchain and native prerequisites
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33-nodejs-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.3 Node.js installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34-composer-source-import" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.4 Composer source import
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#35-node-dependency-installation-by-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.5 Node dependency installation by service
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#36-ocrun-variants-generation" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.6 ocrun variants generation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#37-builder-output" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.7 Builder output
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-detailed-specification-of-stage-2-final-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Detailed Specification of Stage 2 (Final Image)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Detailed Specification of Stage 2 (Final Image)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-system-initialization" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.1 System initialization
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#42-tigervnc-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.2 TigerVNC installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#43-core-runtime-packages" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.3 Core runtime packages
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#44-builder-artifact-import" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.4 Builder artifact import
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#45-kde-plasma-and-hardening-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.5 KDE Plasma and hardening mode
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#46-notifications-fonts-and-themes" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.6 Notifications, fonts, and themes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#47-nodejs-runtime-in-final-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.7 Node.js runtime in final image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#48-runtime-resources-and-application-hardening" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.8 Runtime resources and application hardening
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#49-execution-contract" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.9 Execution contract
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#410-network-contract" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.10 Network contract
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-runtime-contract" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Runtime Contract
+      Why abcdesktop.io breaks that precondition
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-external-dependencies-and-supply-chain" class="md-nav__link">
+  <a href="#one-step-further-the-browser-can-be-its-own-pod-not-just-a-container-in-your-desktop" class="md-nav__link">
     <span class="md-ellipsis">
-      6. External Dependencies and Supply Chain
+      One step further: the browser can be its own pod, not just a container in your desktop
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-security-and-compliance-analysis" class="md-nav__link">
+  <a href="#key-takeaway" class="md-nav__link">
     <span class="md-ellipsis">
-      7. Security and Compliance Analysis
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7. Security and Compliance Analysis">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#positive-aspects" class="md-nav__link">
-    <span class="md-ellipsis">
-      Positive aspects
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#identified-risks" class="md-nav__link">
-    <span class="md-ellipsis">
-      Identified risks
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-build-performance-and-image-footprint" class="md-nav__link">
-    <span class="md-ellipsis">
-      8. Build Performance and Image Footprint
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-architecture-recommendations-expert-level" class="md-nav__link">
-    <span class="md-ellipsis">
-      9. Architecture Recommendations (Expert Level)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="9. Architecture Recommendations (Expert Level)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#91-reproducibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      9.1 Reproducibility
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#92-security" class="md-nav__link">
-    <span class="md-ellipsis">
-      9.2 Security
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#93-dockerfile-quality" class="md-nav__link">
-    <span class="md-ellipsis">
-      9.3 Dockerfile quality
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#94-runtime-robustness" class="md-nav__link">
-    <span class="md-ellipsis">
-      9.4 Runtime robustness
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#10-example-build-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      10. Example Build Commands
+      Key takeaway
     </span>
   </a>
   
@@ -5029,32 +4391,38 @@
       
       
       
-        <span class="md-tag">X11</span>
+        <span class="md-tag">fingerprint</span>
       
     
       
       
       
-        <span class="md-tag">contribute</span>
+        <span class="md-tag">security</span>
       
     
       
       
       
-        <span class="md-tag">noVNC</span>
+        <span class="md-tag">traceability</span>
       
     
       
       
       
-        <span class="md-tag">user pod</span>
+        <span class="md-tag">use case</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">web browser</span>
       
     
   </nav>
 
 
   
-    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/contribute/4.4/userpod/graphical.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/usecases/4.4/secure-web-browser.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -5062,278 +4430,28 @@
   
 
 
-<h1 id="specification-for-the-graphical-service-from-dockerfileubuntu">Specification for the <code>graphical</code> service from Dockerfile.ubuntu</h1>
-<h2 id="1-purpose-and-scope">1. Purpose and Scope</h2>
-<p>The file <a href="https://github.com/abcdesktopio/oc.user/blob/4.4/Dockerfile.ubuntu">Dockerfile.ubuntu</a> builds an Ubuntu-based remote desktop runtime image for the abcdesktop ecosystem, including:</p>
+<h1 id="make-your-web-browser-secure-again-how-abcdesktopio-protects-you-from-stealth-fingerprints">Make your web browser secure again - How abcdesktop.io protects you from stealth fingerprints</h1>
+<h2 id="the-silent-cookie-that-isnt-a-cookie">The "silent cookie" that isn't a cookie</h2>
+<p>In August 2026, a developer noticed his Bluetooth headphones behaving strangely every time he opened a specific e-commerce site. Digging into the site's code, he found it was running an inaudible audio signal purely to fingerprint his device, silently, without cookies, without permission, and without any way to detect or block it from the browser settings.</p>
+<p>This is what the press nicknamed a "silent cookie": no cookie is actually stored anywhere. Instead, the site measures small, device-specific side effects of the browser's audio, graphics, and rendering stack to build a unique identifier, an identifier that survives cookie deletion, private browsing, and even VPNs.</p>
+<div class="admonition note">
+<p class="admonition-title">Want the full technical breakdown?</p>
+<p>This page focuses on how abcdesktop.io protects you from this technique. For a detailed, in-depth explanation of how audio/canvas/WebGL fingerprinting actually works under the hood, read the original article: <a href="https://medium.com/@rajkanjariya2020/aliexpress-got-caught-playing-silent-audio-in-your-browser-6e220df69b8d">AliExpress Got Caught Playing Silent Audio in Your Browser</a>.</p>
+</div>
+<p>The one thing every fingerprinting technique has in common, regardless of the API it exploits, is this precondition: <strong>the script must run against your real browser, on your real device.</strong></p>
+<h2 id="why-abcdesktopio-breaks-that-precondition">Why abcdesktop.io breaks that precondition</h2>
+<p>With abcdesktop.io, the browser never runs on your endpoint. Your device only displays a video stream over an encrypted WebSocket, while the actual browser executes inside an isolated <a href="../../../solutions/remote-browser-isolation/">Remote Browser Isolation</a> session in the Kubernetes cluster.</p>
+<p>A fingerprinting script can still run, but it only ever measures the isolated container's virtual CPU, audio stack, and GPU, never your laptop's, your phone's, or your desktop's real hardware. Since that container is standardized and shared across the fleet of users, the resulting "fingerprint" no longer identifies <em>you</em>, it identifies an interchangeable, disposable execution environment.</p>
+<h2 id="one-step-further-the-browser-can-be-its-own-pod-not-just-a-container-in-your-desktop">One step further: the browser can be its own pod, not just a container in your desktop</h2>
+<p>In abcdesktop.io, an application is not necessarily just a container living inside your desktop pod. Starting with <a href="../../../solutions/kubernetes-vdi/">Remote Application Isolation</a> (RAI), any application, including the web browser itself, can be scheduled as its <strong>own dedicated Kubernetes pod</strong>, separate from the pod hosting your desktop session.</p>
+<p>This distinction matters a lot for fingerprinting resilience:</p>
 <ul>
-<li>Node.js services (under /composer/node),</li>
-<li>VNC server and WebSocket bridge components,</li>
-<li>audio, printing, and X11 session utilities,</li>
-<li>optional hardening behavior (TARGET_MODE=hardening).</li>
+<li>If the browser only ran as an ephemeral container <strong>inside</strong> your desktop pod, getting rid of a persistent fingerprint would mean tearing down and recreating your <em>entire</em> desktop pod. This happens because the Kubernetes API has no way to remove a single ephemeral container from a running pod: once added, it stays tied to the pod's lifecycle, and it keeps sharing the pod's network namespace and mounted resources (X11 socket, PulseAudio socket, D-Bus) with your desktop session.</li>
+<li>Because the browser can instead be its <strong>own pod</strong>, closing that browser is enough: killing the browser pod is killing everything the fingerprinting script ever touched. Your desktop pod, and your session, are never affected.</li>
 </ul>
-<p>The build uses a two-stage (multi-stage) architecture:</p>
-<ol>
-<li><code>ubuntu_node_modules_builder</code>: prepares Node.js dependencies and composer assets.</li>
-<li>Final stage: assembles the OS, desktop stack, themes, and runtime components.</li>
-</ol>
-<h2 id="2-build-interface-input-contract">2. Build Interface (Input Contract)</h2>
-<h3 id="21-global-build-arguments">2.1 Global build arguments</h3>
-<p>Declared before the first FROM:</p>
-<ul>
-<li>TARGETPLATFORM</li>
-<li>BUILDPLATFORM</li>
-<li>TAG</li>
-<li>BASE_IMAGE (default: ubuntu)</li>
-<li>BASE_IMAGE_RELEASE (default: 24.04)</li>
-</ul>
-<h3 id="22-builder-stage-arguments">2.2 Builder-stage arguments</h3>
-<ul>
-<li>TARGET_MODE</li>
-<li>TARGET_PRUNE</li>
-</ul>
-<p>Exported as environment variables:</p>
-<ul>
-<li>ENV TARGET_MODE=$TARGET_MODE</li>
-<li>ENV TARGET_PRUNE=$TARGET_PRUNE</li>
-<li>ENV NODE_MAJOR=20</li>
-</ul>
-<h3 id="23-final-stage-argument">2.3 Final-stage argument</h3>
-<ul>
-<li>TARGET_MODE</li>
-</ul>
-<p>Exported as environment variables:</p>
-<ul>
-<li>TARGET_MODE</li>
-<li>NODE_MAJOR=20</li>
-</ul>
-<h2 id="3-detailed-specification-of-stage-1-ubuntu_node_modules_builder">3. Detailed Specification of Stage 1: ubuntu_node_modules_builder</h2>
-<h3 id="31-base-and-shell">3.1 Base and shell</h3>
-<ul>
-<li>Base image: ${BASE_IMAGE}:${BASE_IMAGE_RELEASE}</li>
-<li>Shell: bash (SHELL ["/bin/bash", "-c"])</li>
-</ul>
-<h3 id="32-toolchain-and-native-prerequisites">3.2 Toolchain and native prerequisites</h3>
-<p>Installs build dependencies:</p>
-<ul>
-<li><code>gcc</code>, <code>g++</code>, <code>make</code></li>
-<li><code>libx11-dev</code>, <code>libxmu-dev</code>, <code>libimlib2-dev</code></li>
-<li><code>ca-certificates</code>, <code>git</code>, <code>curl</code>, <code>gnupg</code>, <code>dpkg</code></li>
-</ul>
-<p>Purpose: these packages allow compilation of native Node.js modules via <code>node-gyp</code>.</p>
-<h3 id="33-nodejs-installation">3.3 Node.js installation</h3>
-<ul>
-<li>Adds NodeSource repository for NODE_MAJOR=20.</li>
-<li>Installs nodejs.</li>
-<li>Updates npm globally.</li>
-<li>Installs node-gyp globally.</li>
-</ul>
-<h3 id="34-composer-source-import">3.4 Composer source import</h3>
-<ul>
-<li>COPY composer /composer</li>
-</ul>
-<p>The builder then works in /composer/node subdirectories.</p>
-<h3 id="35-node-dependency-installation-by-service">3.5 Node dependency installation by service</h3>
-<p>Processed services:</p>
-<ul>
-<li>/composer/node/wait-port</li>
-<li>/composer/node/broadcast-service</li>
-<li>/composer/node/ocrun (repository cloned from run-service)</li>
-<li>/composer/node/ocdownload</li>
-<li>/composer/node/occall</li>
-<li>/composer/node/spawner-service/lib_spawner/colorflow (repository cloned)</li>
-<li>/composer/node/spawner-service</li>
-<li>/composer/node/xterm.js (except in hardening mode)</li>
-</ul>
-<p>TARGET_PRUNE behavior:</p>
-<ul>
-<li>When empty: performs a full <code>npm install</code>.</li>
-<li>When defined: uses <code>npm install --omit=dev</code> to exclude development dependencies.</li>
-</ul>
-<p>Implementation note: the condition in the <code>ocrun</code> block is inverted compared to the other service blocks.</p>
-<h3 id="36-ocrun-variants-generation">3.6 ocrun variants generation</h3>
-<p>The build creates two script variants:</p>
-<ul>
-<li>ocrun.builtin.js (builtin mode)</li>
-<li>ocrun.frontendjs.js (frontendjs mode)</li>
-</ul>
-<p>This is done by copying then patching DEFAULT_EXECMODE with sed.</p>
-<h3 id="37-builder-output">3.7 Builder output</h3>
-<p>Main artifact: enriched /composer tree.</p>
-<ul>
-<li>includes installed Node dependencies,</li>
-<li>includes composer/version.json.</li>
-</ul>
-<h2 id="4-detailed-specification-of-stage-2-final-image">4. Detailed Specification of Stage 2 (Final Image)</h2>
-<h3 id="41-system-initialization">4.1 System initialization</h3>
-<ul>
-<li>COPY etc /etc</li>
-<li>apt-get upgrade -y</li>
-<li>base packages: ca-certificates, curl, gnupg, net-tools, bash</li>
-<li>locales setup: locales, language-pack-en, language-pack-fr, language-pack-de, then locale-gen</li>
-</ul>
-<h3 id="42-tigervnc-installation">4.2 TigerVNC installation</h3>
-<ul>
-<li>TIGERVNC_RELEASE=1.16.0</li>
-<li>Builds dynamic .deb URL using:</li>
-<li>Ubuntu release (DISTRIB_RELEASE),</li>
-<li>architecture (dpkg --print-architecture).</li>
-<li>Downloads and installs through apt-get install /tmp/tigervncserver.deb.</li>
-</ul>
-<h3 id="43-core-runtime-packages">4.3 Core runtime packages</h3>
-<p>Installs base runtime services:</p>
-<ul>
-<li>supervision and utilities: supervisor, websockify, desktop-file-utils, xdg-user-dirs</li>
-<li>auth/session: xauth, dbus-x11</li>
-<li>audio/printing: pulseaudio-utils, pavumeter, cups-client</li>
-<li>X11/desktop: x11-utils, x11-apps, xdg-utils, kwin-x11</li>
-<li>infra/security related: krb5-user, libnss-extrausers</li>
-</ul>
-<h3 id="44-builder-artifact-import">4.4 Builder artifact import</h3>
-<ul>
-<li>COPY --from=ubuntu_node_modules_builder /composer /composer</li>
-</ul>
-<h3 id="45-kde-plasma-and-hardening-mode">4.5 KDE Plasma and hardening mode</h3>
-<p>Installs Plasma packages:</p>
-<ul>
-<li>plasma-desktop, plasma-workspace, plasma-workspace-data,</li>
-<li>systemsettings, KDE QML modules.</li>
-</ul>
-<p>In hardening mode:</p>
-<ul>
-<li>targeted removal based on dpkg -L libkf5su5 piped to /composer/rmfol.sh</li>
-<li>targeted removal based on dpkg -L sudo piped to /composer/rmfol.sh</li>
-</ul>
-<h3 id="46-notifications-fonts-and-themes">4.6 Notifications, fonts, and themes</h3>
-<ul>
-<li>notifications: libnotificationmanager1, libnotify-bin, libnotify4</li>
-<li>fonts: adds fonts/Selawik.tar, installs fontconfig, fonts-noto, xfonts-base, refreshes cache</li>
-<li>local themes: copies usr/share/themes/Windows-10 and usr/share/aurorae</li>
-<li>remote themes: clones and installs Win11-icon-theme and Win11OS-kde</li>
-<li>wallpaper copy into /composer/wallpapers</li>
-<li>installs Breeze GTK integration</li>
-</ul>
-<h3 id="47-nodejs-runtime-in-final-image">4.7 Node.js runtime in final image</h3>
-<p>Node.js is installed again in the final image (NodeSource, NODE_MAJOR=20).</p>
-<h3 id="48-runtime-resources-and-application-hardening">4.8 Runtime resources and application hardening</h3>
-<ul>
-<li>adds ALSA sounds (usr/share/sounds/alsa)</li>
-<li>creates /var/log/desktop and /var/run/desktop</li>
-<li>removes xterm supervisor config in hardening mode</li>
-<li>writes build date to /etc/build.date</li>
-<li>in non-hardening mode installs qterminal and vim-gtk3</li>
-<li>removes mimeinfo.cache</li>
-</ul>
-<h3 id="49-execution-contract">4.9 Execution contract</h3>
-<ul>
-<li>GPU environment variables:</li>
-<li>NVIDIA_VISIBLE_DEVICES=all</li>
-<li>NVIDIA_DRIVER_CAPABILITIES=all</li>
-<li>default command:</li>
-<li>CMD [ "/composer/docker-entrypoint.sh" ]</li>
-</ul>
-<h3 id="410-network-contract">4.10 Network contract</h3>
-<p>Exposed ports:</p>
-<ul>
-<li>6081</li>
-<li>29781</li>
-<li>29784</li>
-<li>29786</li>
-</ul>
-<h2 id="5-runtime-contract">5. Runtime Contract</h2>
-<p>At runtime, the image assumes:</p>
-<ul>
-<li>startup through /composer/docker-entrypoint.sh,</li>
-<li>service orchestration via Supervisor (config copied from etc),</li>
-<li>writable log/run directories,</li>
-<li>environment compatible with remote desktop operation (VNC/WebSocket/X11).</li>
-</ul>
-<p>Hardening-mode behavior:</p>
-<ul>
-<li>no xterm.conf Supervisor entry,</li>
-<li>targeted removal of selected admin/elevation-related file trees,</li>
-<li>no qterminal/vim installation.</li>
-</ul>
-<h2 id="6-external-dependencies-and-supply-chain">6. External Dependencies and Supply Chain</h2>
-<p>The build relies on external sources outside the repository:</p>
-<ul>
-<li>NodeSource package repository</li>
-<li>GitHub repositories cloned during the build process</li>
-<li>TigerVNC <code>.deb</code> package downloaded from GitHub</li>
-</ul>
-<p>Impact:</p>
-<ul>
-<li>Partial reproducibility; builds are not fully deterministic.</li>
-<li>Sensitivity to network and upstream service availability.</li>
-<li>Pinning strategies and checksum verification are required for strict production requirements.</li>
-</ul>
-<h2 id="7-security-and-compliance-analysis">7. Security and Compliance Analysis</h2>
-<h3 id="positive-aspects">Positive aspects</h3>
-<ul>
-<li>hardening mode is available,</li>
-<li>frequent apt index cleanup (rm -rf /var/lib/apt/lists/*),</li>
-<li>builder/runtime separation through multi-stage design.</li>
-</ul>
-<h3 id="identified-risks">Identified risks</h3>
-<ol>
-<li>Non-deterministic build behavior</li>
-<li><code>git clone</code> without a pinned commit or tag</li>
-<li>
-<p><code>npm audit fix</code> executed during image build</p>
-</li>
-<li>
-<p>Supply-chain integrity not fully verified</p>
-</li>
-<li>Downloaded <code>.deb</code> package is not validated with an explicit checksum</li>
-<li>Git clones are not signature-verified</li>
-</ol>
-<h2 id="8-build-performance-and-image-footprint">8. Build Performance and Image Footprint</h2>
-<p>Observations:</p>
-<ul>
-<li>Multiple separate <code>apt-get update</code> and <code>apt-get install</code> blocks increase build time and layer count.</li>
-<li>Heavy desktop package dependencies (KDE Plasma, fonts, themes) produce a large final image.</li>
-<li>Node.js installation logic is partially duplicated between the builder and the final stage.</li>
-</ul>
-<p>Consequences:</p>
-<ul>
-<li>Longer build times</li>
-<li>Large final image size</li>
-<li>Layer cache utilization can be improved by consolidating installation steps</li>
-</ul>
-<h2 id="9-architecture-recommendations-expert-level">9. Architecture Recommendations (Expert Level)</h2>
-<h3 id="91-reproducibility">9.1 Reproducibility</h3>
-<ul>
-<li>Pin external Git dependencies to a specific tag and commit.</li>
-<li>Enforce deterministic npm installation from lockfiles.</li>
-<li>Move <code>npm audit fix</code> out of the Docker build and into a dedicated CI software composition analysis (SCA) pipeline.</li>
-</ul>
-<h3 id="92-security">9.2 Security</h3>
-<ul>
-<li>Verify the integrity of downloaded <code>.deb</code> packages using SHA-256 checksums or package signatures.</li>
-<li>Restrict <code>NVIDIA_DRIVER_CAPABILITIES</code> to only the capabilities required by the application.</li>
-</ul>
-<h3 id="93-dockerfile-quality">9.3 Dockerfile quality</h3>
-<ul>
-<li>Fix potentially fragile line-continuation formatting (trailing backslash followed by whitespace).</li>
-<li>Normalize the <code>TARGET_PRUNE</code> conditional logic consistently across all service blocks.</li>
-<li>Consolidate compatible <code>apt-get install</code> steps to reduce the total number of image layers.</li>
-</ul>
-<h3 id="94-runtime-robustness">9.4 Runtime robustness</h3>
-<ul>
-<li>Explicitly document the dependencies of <code>/composer/docker-entrypoint.sh</code>.</li>
-<li>Add a <code>HEALTHCHECK</code> instruction for critical service and port availability.</li>
-<li>Evaluate non-root runtime execution where compatible with the graphics stack.</li>
-</ul>
-<h2 id="10-example-build-commands">10. Example Build Commands</h2>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>Dockerfile.ubuntu<span class="w"> </span>-t<span class="w"> </span>oc-user:ubuntu<span class="w"> </span>.
-</code></pre></div>
-<p>Hardening mode:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-f<span class="w"> </span>Dockerfile.ubuntu<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--build-arg<span class="w"> </span><span class="nv">TARGET_MODE</span><span class="o">=</span>hardening<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--build-arg<span class="w"> </span><span class="nv">TARGET_PRUNE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-t<span class="w"> </span>oc-user:ubuntu-hardening<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>.
-</code></pre></div>
+<p>In practice, this means a fresh, un-fingerprinted browser environment is just a browser restart away, with no need to log out, no need to recreate a desktop, and no interruption to the rest of your session.</p>
+<h2 id="key-takeaway">Key takeaway</h2>
+<p>A "silent cookie" only works because the tracking script shares your device's real execution environment. abcdesktop.io removes that shared environment entirely: the browser runs remotely, in its own disposable pod, so any fingerprint collected describes a container that can be discarded in seconds, not the person using it.</p>
 
 
 
@@ -5414,14 +4532,14 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
-        <script src="../../../../js/tabbed-toc.js"></script>
+        <script src="../../../js/tabbed-toc.js"></script>
       
-        <script src="../../../../js/drawio-reload.js"></script>
+        <script src="../../../js/drawio-reload.js"></script>
       
     
   </body>
