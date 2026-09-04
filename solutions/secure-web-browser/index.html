@@ -5202,16 +5202,33 @@
 <h2 id="why-abcdesktopio-breaks-that-precondition">Why abcdesktop.io breaks that precondition</h2>
 <p>With abcdesktop.io, the browser never runs on your endpoint. Your device only displays a video stream over an encrypted WebSocket, while the actual browser executes inside an isolated <a href="../remote-browser-isolation/">Remote Browser Isolation</a> session in the Kubernetes cluster.</p>
 <p>A fingerprinting script can still run, but it only ever measures the isolated container's virtual CPU, audio stack, and GPU, never your laptop's, your phone's, or your desktop's real hardware. Since that container is standardized and shared across the fleet of users, the resulting "fingerprint" no longer identifies <em>you</em>, it identifies an interchangeable, disposable execution environment.</p>
+<p><img alt="visit-on-a-pod" src="../img/shaderghost_edge_visit_1_other_pod.png" />
+<img alt="visit-on-another-pod" src="../img/shaderghost_edge_visit_1.png" /></p>
+<p>As you can see hostnames are different, thats means these are two different sessions running on different pods but the counter stays at 1.</p>
 <h2 id="one-step-further-the-browser-can-be-its-own-pod-not-just-a-container-in-your-desktop">One step further: the browser can be its own pod, not just a container in your desktop</h2>
 <p>In abcdesktop.io, an application is not necessarily just a container living inside your desktop pod. Starting with <a href="../kubernetes-vdi/">Remote Application Isolation</a> (RAI), any application, including the web browser itself, can be scheduled as its <strong>own dedicated Kubernetes pod</strong>, separate from the pod hosting your desktop session.</p>
 <p>This distinction matters a lot for fingerprinting resilience:</p>
 <ul>
-<li>If the browser only ran as an ephemeral container <strong>inside</strong> your desktop pod, getting rid of a persistent fingerprint would mean tearing down and recreating your <em>entire</em> desktop pod. This happens because the Kubernetes API has no way to remove a single ephemeral container from a running pod: once added, it stays tied to the pod's lifecycle, and it keeps sharing the pod's network namespace and mounted resources (X11 socket, PulseAudio socket, D-Bus) with your desktop session.</li>
-<li>Because the browser can instead be its <strong>own pod</strong>, closing that browser is enough: killing the browser pod is killing everything the fingerprinting script ever touched. Your desktop pod, and your session, are never affected.</li>
+<li>
+<p>If the browser only ran as an ephemeral container <strong>inside</strong> your desktop pod, getting rid of a persistent fingerprint would mean tearing down and recreating your <em>entire</em> desktop pod. This happens because the Kubernetes API has no way to remove a single ephemeral container from a running pod: once added, it stays tied to the pod's lifecycle, and it keeps sharing the pod's network namespace and mounted resources (X11 socket, PulseAudio socket, D-Bus) with your desktop session.<br />
+Let's try that on the last opened session :
+<img alt="visit-on-a-pod-number-2" src="../img/shaderghost_edge_visit_2.png" />
+<img alt="visit-on-a-pod-number-3" src="../img/shaderghost_edge_visit_3.png" />
+The counter increments itself, confirming that running different ephemeral containers on the same desktop pod does not allow us to get rid of the "silent cookie"  </p>
+</li>
+<li>
+<p>Because the browser can instead be its <strong>own pod</strong>, closing that browser is enough: killing the browser pod is killing everything the fingerprinting script ever touched. Your desktop pod, and your session, are never affected.<br />
+Let's check this : 
+<img alt="visit-on-a-pod-with edge-as-pod-1" src="../img/shaderghost_edge_pod_visit_1.png" />
+<img alt="visit-on-a-pod-with edge-as-pod-2" src="../img/shaderghost_edge_pod_visit_2.png" />
+<img alt="visit-on-a-pod-with edge-as-pod-3" src="../img/shaderghost_edge_pod_visit_3.png" />
+Now we can see that the "cookie ID" in red is changing but the counter stays at 1, even though our pod desktop is the same.</p>
+</li>
 </ul>
 <p>In practice, this means a fresh, un-fingerprinted browser environment is just a browser restart away, with no need to log out, no need to recreate a desktop, and no interruption to the rest of your session.</p>
 <h2 id="key-takeaway">Key takeaway</h2>
 <p>A "silent cookie" only works because the tracking script shares your device's real execution environment. abcdesktop.io removes that shared environment entirely: the browser runs remotely, in its own disposable pod, so any fingerprint collected describes a container that can be discarded in seconds, not the person using it.</p>
+<p><a class="md-button md-button--primary" href="https://demo.gcp.abcdesktop.com"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M19.22 4c.28 0 .53 0 .74.05.17 1.39-.02 4.25-3.3 7.53-1.7 1.71-3.73 3.02-6.01 3.89l-2.15-2.1c.92-2.31 2.23-4.34 3.92-6.03C15.18 4.58 17.64 4 19.22 4m0-2c-1.98 0-4.98.69-8.22 3.93-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.38.38.89.61 1.42.61.23 0 .47-.06.7-.15A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61S20.7 2 19.22 2m-4.68 7.46c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg></span> <strong>Try it yourself on demo !</strong></a></p>
 
 
 
