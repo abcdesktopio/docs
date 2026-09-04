@@ -70,4 +70,6 @@ In practice, this means a fresh, un-fingerprinted browser environment is just a 
 
 A "silent cookie" only works because the tracking script shares your device's real execution environment. abcdesktop.io removes that shared environment entirely: the browser runs remotely, in its own disposable pod, so any fingerprint collected describes a container that can be discarded in seconds, not the person using it.
 
+![Start Microsoft Edge in a pod](img/ms-edge-in-a-pod.png)
+
 [:material-rocket-launch-outline: **Try it yourself 'Microsoft Edge in a pod' on demo !**](https://demo.gcp.abcdesktop.com){ .md-button .md-button--primary }
