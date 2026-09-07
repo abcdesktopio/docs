@@ -46,7 +46,7 @@ adconfig : { 'AD': {   'default'       : True,
 
 When the `explicit` authentication manager is enabled, the web login page presents **Login** and **Password** input fields to collect user credentials.
 
-![auth-provider-explicit](img/auth-provider-explicit.png)
+![auth-provider-explicit](img/auth-overview-explicit.png)
 
 ## LDAP Authentication
 

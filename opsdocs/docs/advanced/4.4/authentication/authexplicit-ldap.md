@@ -277,7 +277,7 @@ Enter the login credentials:
 
 ![auth-provider-explicit-ldap-login-user-done](img/auth-provider-explicit-ldap-login-user-done.png)
 
-The user name `Turanga Leela` is displayed at the top of the screen:
+The user name `Turanga Leela` is displayed at the top right of the screen during a few seconds:
 ![auth-provider-explicit-ldap-login-user-turanga](img/auth-provider-explicit-ldap-login-user-turanga.png)
 
 
