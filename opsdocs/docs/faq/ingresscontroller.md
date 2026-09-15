@@ -72,7 +72,7 @@ Restart the pyos pod:
 kubectl delete pods -l run=pyos-od -n abcdesktop
 ```
 
-For more information on WebSocket keepalive behavior, see [Keepalive in WebSockets](https://websockets.readthedocs.io/en/stable/topics/timeouts.html).
+For more information on WebSocket keepalive behavior, see [Keepalive in WebSockets](https://websockets.readthedocs.io/).
 
 Configuring connection timeouts helps prevent unnecessary network bandwidth consumption from idle sessions.
 
