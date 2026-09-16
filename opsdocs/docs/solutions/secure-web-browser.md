@@ -1,7 +1,7 @@
 ---
 title: How abcdesktop protects your web browser | abcdesktop.io
-description: Descreibes how abcdesktop architecture protects you from traceability
-keywords: browser, web browser, security, traceability, fingerprint, abcdesktop, Kubernetes, solution, cookie
+description: Describes how abcdesktop architecture protects you from traceability
+keywords: browser, web browser, security, traceability, fingerprint, abcdesktop, Kubernetes, silent, cookie
 tags:
   - security
   - web browser
