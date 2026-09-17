@@ -5,14 +5,14 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." name="description"/>
+<meta content="Developer reference for the MongoDB integration in abcdesktop.io, data model, collections, replica set configuration, and connection parameters." name="description"/>
 <meta content="abcdesktop.io contributors" name="author"/>
 <link href="https://www.abcdesktop.io/contribute/4.4/services/mongo/" rel="canonical"/>
 <link href="../keygenerator/" rel="prev"/>
 <link href="../console/" rel="next"/>
 <link href="../../../../img/abcdesktop128x128.ico" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.7" name="generator"/>
-<title>Mongo - www.abcdesktop.io</title>
+<title>MongoDB Service | abcdesktop.io - www.abcdesktop.io</title>
 <link href="../../../../assets/stylesheets/main.ec1eaa64.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -35,8 +35,8 @@
 <meta content="website" property="og:type"/>
 <meta content="abcdesktop.io" property="og:site_name"/>
 <meta content="https://www.abcdesktop.io/contribute/4.4/services/mongo/" property="og:url"/>
-<meta content="Mongo | abcdesktop.io" property="og:title"/>
-<meta content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." property="og:description"/>
+<meta content="MongoDB Service | abcdesktop.io" property="og:title"/>
+<meta content="Developer reference for the MongoDB integration in abcdesktop.io, data model, collections, replica set configuration, and connection parameters." property="og:description"/>
 <meta content="https://www.abcdesktop.io/img/abcdesktop-home-release-4.4.png" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
@@ -44,8 +44,8 @@
 <meta content="abcdesktop.io — Open Source Kubernetes Virtual Desktop" name="twitter:image:alt"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="@abcdesktopIO" name="twitter:site"/>
-<meta content="Mongo | abcdesktop.io" name="twitter:title"/>
-<meta content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." name="twitter:description"/>
+<meta content="MongoDB Service | abcdesktop.io" name="twitter:title"/>
+<meta content="Developer reference for the MongoDB integration in abcdesktop.io, data model, collections, replica set configuration, and connection parameters." name="twitter:description"/>
 <link href="https://www.abcdesktop.io/contribute/4.4/services/mongo/" hreflang="en" rel="alternate"/>
 <link href="https://www.abcdesktop.io/contribute/4.4/services/mongo/" hreflang="en-US" rel="alternate"/>
 <link href="https://www.abcdesktop.io/contribute/4.4/services/mongo/" hreflang="x-default" rel="alternate"/>
@@ -113,16 +113,16 @@
   ]
   </script>
 <meta content="website" property="og:type"/>
-<meta content="Mongo - www.abcdesktop.io" property="og:title"/>
-<meta content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." property="og:description"/>
+<meta content="MongoDB Service | abcdesktop.io - www.abcdesktop.io" property="og:title"/>
+<meta content="Developer reference for the MongoDB integration in abcdesktop.io, data model, collections, replica set configuration, and connection parameters." property="og:description"/>
 <meta content="https://www.abcdesktop.io/assets/images/social/contribute/4.4/services/mongo.png" property="og:image"/>
 <meta content="image/png" property="og:image:type"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
 <meta content="https://www.abcdesktop.io/contribute/4.4/services/mongo/" property="og:url"/>
 <meta content="summary_large_image" property="twitter:card"/>
-<meta content="Mongo - www.abcdesktop.io" property="twitter:title"/>
-<meta content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." property="twitter:description"/>
+<meta content="MongoDB Service | abcdesktop.io - www.abcdesktop.io" property="twitter:title"/>
+<meta content="Developer reference for the MongoDB integration in abcdesktop.io, data model, collections, replica set configuration, and connection parameters." property="twitter:description"/>
 <meta content="https://www.abcdesktop.io/assets/images/social/contribute/4.4/services/mongo.png" property="twitter:image"/>
 </head>
 <body dir="ltr">
@@ -154,7 +154,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Mongo
+              MongoDB Service | abcdesktop.io
             
           </span>
 </div>
@@ -2461,19 +2461,15 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
+<nav class="md-tags">
+<span class="md-tag">MongoDB</span>
+<span class="md-tag">contribute</span>
+<span class="md-tag">database</span>
+<span class="md-tag">mongodb</span>
+</nav>
 <a class="md-content__button md-icon" href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/contribute/4.4/services/mongo.md" rel="edit" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
 </a>
-<hr/>
-<p>title: MongoDB Service | abcdesktop.io
-description: Developer reference for the MongoDB integration in abcdesktop.io: data model, collections, replica set configuration, and connection parameters.
-keywords: MongoDB, database, replica set, abcdesktop, contribute, data model
-tags:
-  - mongodb
-  - contribute
-  - MongoDB
-  - database</p>
-<hr/>
 <h1 id="mongodb">MongoDB</h1>
 <h2 id="overview">Overview</h2>
 <p>In abcdesktop, MongoDB serves as the <strong>primary database</strong> for the control plane (<code>pyos</code>). It stores all persistent application data: user profiles, login history, application inventory, desktop session states, and fail2ban data.</p>
