@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Reference for the desktop pod configuration for volumes, init containers, ephemeral containers, virtual printer queue, and default mount points.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Pod - www.abcdesktop.io</title>
+        <title>Desktop Pod Configuration - www.abcdesktop.io</title>
       
     
     
@@ -97,10 +97,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/advanced/4.4/desktop/pod/" />
   
-  <meta property="og:title"       content="Pod | abcdesktop.io" />
+  <meta property="og:title"       content="Desktop Pod Configuration" />
   
   
-  <meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta property="og:description" content="Reference for the desktop pod configuration for volumes, init containers, ephemeral containers, virtual printer queue, and default mount points." />
   
 
   
@@ -117,10 +117,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Pod | abcdesktop.io" />
+  <meta name="twitter:title"       content="Desktop Pod Configuration" />
   
   
-  <meta name="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta name="twitter:description" content="Reference for the desktop pod configuration for volumes, init containers, ephemeral containers, virtual printer queue, and default mount points." />
   
 
   
@@ -198,16 +198,16 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Pod - www.abcdesktop.io" />
-<meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="og:title" content="Desktop Pod Configuration - www.abcdesktop.io" />
+<meta property="og:description" content="Reference for the desktop pod configuration for volumes, init containers, ephemeral containers, virtual printer queue, and default mount points." />
 <meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/advanced/4.4/desktop/pod.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://www.abcdesktop.io/advanced/4.4/desktop/pod/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Pod - www.abcdesktop.io" />
-<meta property="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="twitter:title" content="Desktop Pod Configuration - www.abcdesktop.io" />
+<meta property="twitter:description" content="Reference for the desktop pod configuration for volumes, init containers, ephemeral containers, virtual printer queue, and default mount points." />
 <meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/advanced/4.4/desktop/pod.png" />
 </head>
   
@@ -254,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Pod
+              Desktop Pod Configuration
             
           </span>
         </div>
@@ -5279,6 +5279,24 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">configuration</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">desktop</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/advanced/4.4/desktop/pod.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -5289,14 +5307,6 @@
   
 
 
-<hr />
-<p>title: Desktop Pod Configuration | abcdesktop.io
-description: Reference for the desktop pod configuration in abcdesktop.io: volumes, init containers, ephemeral containers, virtual printer queue, and default mount points.
-keywords: pod, volumes, init container, ephemeral container, printer, abcdesktop, Kubernetes, desktop configuration
-tags:
-  - desktop
-  - configuration</p>
-<hr />
 <h1 id="desktop-configuration-desktoppod">Desktop configuration <code>desktop.pod</code></h1>
 <p>This chapter describes how to configure the <code>desktop.pod</code> and <code>desktop.envlocal</code> objects in the abcdesktop config file.</p>
 <h2 id="main-entries-in-the-desktoppod-dictionary">main entries in the <code>desktop.pod</code> dictionary</h2>
@@ -5916,6 +5926,9 @@ Defaulted<span class="w"> </span>container<span class="w"> </span><span class="s
 
 
 
+
+  
+  
 
 
 
