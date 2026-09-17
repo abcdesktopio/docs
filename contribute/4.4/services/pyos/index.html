@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Developer reference for the abcdesktop.io pyos control plane, pod lifecycle management, Kubernetes API integration, authentication dispatch, and controller routing.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Pyos - www.abcdesktop.io</title>
+        <title>pyos Control Plane Service | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -97,10 +97,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/contribute/4.4/services/pyos/" />
   
-  <meta property="og:title"       content="Pyos | abcdesktop.io" />
+  <meta property="og:title"       content="pyos Control Plane Service | abcdesktop.io" />
   
   
-  <meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta property="og:description" content="Developer reference for the abcdesktop.io pyos control plane, pod lifecycle management, Kubernetes API integration, authentication dispatch, and controller routing." />
   
 
   
@@ -117,10 +117,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Pyos | abcdesktop.io" />
+  <meta name="twitter:title"       content="pyos Control Plane Service | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta name="twitter:description" content="Developer reference for the abcdesktop.io pyos control plane, pod lifecycle management, Kubernetes API integration, authentication dispatch, and controller routing." />
   
 
   
@@ -198,16 +198,16 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Pyos - www.abcdesktop.io" />
-<meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="og:title" content="pyos Control Plane Service | abcdesktop.io - www.abcdesktop.io" />
+<meta property="og:description" content="Developer reference for the abcdesktop.io pyos control plane, pod lifecycle management, Kubernetes API integration, authentication dispatch, and controller routing." />
 <meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/contribute/4.4/services/pyos.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://www.abcdesktop.io/contribute/4.4/services/pyos/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Pyos - www.abcdesktop.io" />
-<meta property="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="twitter:title" content="pyos Control Plane Service | abcdesktop.io - www.abcdesktop.io" />
+<meta property="twitter:description" content="Developer reference for the abcdesktop.io pyos control plane, pod lifecycle management, Kubernetes API integration, authentication dispatch, and controller routing." />
 <meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/contribute/4.4/services/pyos.png" />
 </head>
   
@@ -254,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Pyos
+              pyos Control Plane Service | abcdesktop.io
             
           </span>
         </div>
@@ -6351,6 +6351,31 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">architecture</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">contribute</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">pyos</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/contribute/4.4/services/pyos.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -6361,15 +6386,6 @@
   
 
 
-<hr />
-<p>title: pyos Control Plane Service | abcdesktop.io
-description: Developer reference for the abcdesktop.io pyos control plane: pod lifecycle management, Kubernetes API integration, authentication dispatch, and controller routing.
-keywords: pyos, control plane, Kubernetes, pod lifecycle, authentication, abcdesktop, contribute, architecture
-tags:
-  - contribute
-  - pyos
-  - architecture</p>
-<hr />
 <h1 id="pyos-abcdesktop-control-plane-full-documentation-and-specification">pyos (abcdesktop control plane) - Full Documentation and Specification</h1>
 <h2 id="1-executive-summary">1. Executive summary</h2>
 <p>pyos is the backend control plane for abcdesktop. It exposes a CherryPy HTTP API used to authenticate users, create, resume, and remove cloud desktops, launch applications within those desktops, manage user desktops, and perform operator actions.</p>
@@ -6756,6 +6772,9 @@ tags:
 
 
 
+
+  
+  
 
 
 
