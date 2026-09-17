@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Reference for the abcdesktop.io od.config global configuration parameters host URL, trusted proxy CIDR, JWT/RSA key pairs, thread pool, Kubernetes timeouts, and OAuth settings.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Overview - www.abcdesktop.io</title>
+        <title>Configuration File Overview | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -97,10 +97,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/advanced/4.4/configure/overview/" />
   
-  <meta property="og:title"       content="Overview | abcdesktop.io" />
+  <meta property="og:title"       content="Configuration File Overview | abcdesktop.io" />
   
   
-  <meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta property="og:description" content="Reference for the abcdesktop.io od.config global configuration parameters host URL, trusted proxy CIDR, JWT/RSA key pairs, thread pool, Kubernetes timeouts, and OAuth settings." />
   
 
   
@@ -117,10 +117,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Overview | abcdesktop.io" />
+  <meta name="twitter:title"       content="Configuration File Overview | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta name="twitter:description" content="Reference for the abcdesktop.io od.config global configuration parameters host URL, trusted proxy CIDR, JWT/RSA key pairs, thread pool, Kubernetes timeouts, and OAuth settings." />
   
 
   
@@ -198,16 +198,16 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Overview - www.abcdesktop.io" />
-<meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="og:title" content="Configuration File Overview | abcdesktop.io - www.abcdesktop.io" />
+<meta property="og:description" content="Reference for the abcdesktop.io od.config global configuration parameters host URL, trusted proxy CIDR, JWT/RSA key pairs, thread pool, Kubernetes timeouts, and OAuth settings." />
 <meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/advanced/4.4/configure/overview.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://www.abcdesktop.io/advanced/4.4/configure/overview/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Overview - www.abcdesktop.io" />
-<meta property="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="twitter:title" content="Configuration File Overview | abcdesktop.io - www.abcdesktop.io" />
+<meta property="twitter:description" content="Reference for the abcdesktop.io od.config global configuration parameters host URL, trusted proxy CIDR, JWT/RSA key pairs, thread pool, Kubernetes timeouts, and OAuth settings." />
 <meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/advanced/4.4/configure/overview.png" />
 </head>
   
@@ -254,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Configuration File Overview | abcdesktop.io
             
           </span>
         </div>
@@ -5267,6 +5267,17 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">configuration</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/advanced/4.4/configure/overview.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -5277,13 +5288,6 @@
   
 
 
-<hr />
-<p>title: Configuration File Overview | abcdesktop.io
-description: Reference for the abcdesktop.io od.config global configuration parameters: host URL, trusted proxy CIDR, JWT/RSA key pairs, thread pool, Kubernetes timeouts, and OAuth settings.
-keywords: od.config, configuration, JWT, RSA, trusted proxy, CIDR, ConfigMap, Kubernetes, abcdesktop, thread pool, OAuth
-tags:
-  - configuration</p>
-<hr />
 <h1 id="abcdesktop-configuration">abcdesktop configuration</h1>
 <h2 id="configuration-file">Configuration File</h2>
 <p>The abcdesktop configuration is stored inside a Kubernetes <code>ConfigMap</code>.</p>
@@ -5420,6 +5424,9 @@ openssl rsa -in abcdesktop_jwt_user_signing_private_key.pem -outform PEM -pubout
 
 
 
+
+  
+  
 
 
 
