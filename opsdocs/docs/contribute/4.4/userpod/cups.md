@@ -1,6 +1,6 @@
 ---
 title: Virtual Printer (CUPS) Container | abcdesktop.io
-description: Developer reference for the abcdesktop.io virtual printer container: CUPS configuration, Node.js PDF download service, and Dockerfile structure.
+description: Developer reference for the abcdesktop.io virtual printer container CUPS configuration, Node.js PDF download service, and Dockerfile structure.
 keywords: CUPS, virtual printer, PDF, Node.js, abcdesktop, contribute, user pod
 tags:
   - contribute
