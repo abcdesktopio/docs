@@ -1,6 +1,6 @@
 ---
 title: Filer Container — File Transfer Service | abcdesktop.io
-description: Developer reference for the abcdesktop.io filer container: file upload, download, ZIP archive, and directory listing over HTTP within the user pod.
+description: Developer reference for the abcdesktop.io filer container file upload, download, ZIP archive, and directory listing over HTTP within the user pod.
 keywords: filer, file transfer, upload, download, ZIP, abcdesktop, contribute, user pod
 tags:
   - contribute
