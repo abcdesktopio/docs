@@ -1,6 +1,6 @@
 ---
 title: User Desktop Pod Overview | abcdesktop.io
-description: Overview of the multi-container user pod architecture in abcdesktop.io: init, graphical, printer, sound, and filer containers and their roles.
+description: Overview of the multi-container user pod architecture for init, graphical, printer, sound, and filer containers and their roles.
 keywords: user pod, desktop pod, multi-container, graphical, sound, printer, filer, abcdesktop, Kubernetes, remote desktop
 tags:
   - desktop
