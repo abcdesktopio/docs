@@ -1,6 +1,6 @@
 ---
 title: Ingress Controller FAQ | abcdesktop.io
-description: FAQ on configuring Kubernetes Ingress Controllers for abcdesktop.io: WebSocket keepalive, timeouts, proxy headers, and NGINX tuning.
+description: FAQ on configuring Kubernetes Ingress Controllers for abcdesktop.io WebSocket keepalive, timeouts, proxy headers, and NGINX tuning.
 keywords: ingress controller, NGINX, WebSocket, keepalive, timeout, proxy, Kubernetes, abcdesktop, FAQ
 tags:
   - faq
