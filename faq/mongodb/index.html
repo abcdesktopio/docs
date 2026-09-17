@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="FAQ on MongoDB configuration for abcdesktop.io increasing replica counts, StatefulSet scaling, and connection troubleshooting.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -25,7 +25,7 @@
     
     
       
-        <title>Mongodb - www.abcdesktop.io</title>
+        <title>MongoDB Configuration & Scaling FAQ | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -93,10 +93,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/faq/mongodb/" />
   
-  <meta property="og:title"       content="Mongodb | abcdesktop.io" />
+  <meta property="og:title"       content="MongoDB Configuration & Scaling FAQ | abcdesktop.io" />
   
   
-  <meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta property="og:description" content="FAQ on MongoDB configuration for abcdesktop.io increasing replica counts, StatefulSet scaling, and connection troubleshooting." />
   
 
   
@@ -113,10 +113,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Mongodb | abcdesktop.io" />
+  <meta name="twitter:title"       content="MongoDB Configuration & Scaling FAQ | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta name="twitter:description" content="FAQ on MongoDB configuration for abcdesktop.io increasing replica counts, StatefulSet scaling, and connection troubleshooting." />
   
 
   
@@ -194,16 +194,16 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Mongodb - www.abcdesktop.io" />
-<meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="og:title" content="MongoDB Configuration & Scaling FAQ | abcdesktop.io - www.abcdesktop.io" />
+<meta property="og:description" content="FAQ on MongoDB configuration for abcdesktop.io increasing replica counts, StatefulSet scaling, and connection troubleshooting." />
 <meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/faq/mongodb.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://www.abcdesktop.io/faq/mongodb/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Mongodb - www.abcdesktop.io" />
-<meta property="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="twitter:title" content="MongoDB Configuration & Scaling FAQ | abcdesktop.io - www.abcdesktop.io" />
+<meta property="twitter:description" content="FAQ on MongoDB configuration for abcdesktop.io increasing replica counts, StatefulSet scaling, and connection troubleshooting." />
 <meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/faq/mongodb.png" />
 </head>
   
@@ -250,7 +250,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mongodb
+              MongoDB Configuration & Scaling FAQ | abcdesktop.io
             
           </span>
         </div>
@@ -5034,6 +5034,45 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">FAQ</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">MongoDB</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">database</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">faq</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">mongodb</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/faq/mongodb.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -5044,17 +5083,6 @@
   
 
 
-<hr />
-<p>title: MongoDB Configuration &amp; Scaling FAQ | abcdesktop.io
-description: FAQ on MongoDB configuration for abcdesktop.io: increasing replica counts, StatefulSet scaling, and connection troubleshooting.
-keywords: MongoDB, replica set, scaling, StatefulSet, FAQ, abcdesktop, database, troubleshooting
-tags:
-  - faq
-  - mongodb
-  - FAQ
-  - MongoDB
-  - database</p>
-<hr />
 <h1 id="mongodb">MongoDB</h1>
 <h2 id="how-to-increase-the-mongodb-replica-count">How to Increase the MongoDB Replica Count</h2>
 <h3 id="with-a-helm-installation">With a Helm Installation</h3>
@@ -5167,6 +5195,9 @@ mongodb-od   3/3     18h
 
 
 
+
+  
+  
 
 
 
