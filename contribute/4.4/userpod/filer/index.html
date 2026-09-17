@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Developer reference for the abcdesktop.io filer container file upload, download, ZIP archive, and directory listing over HTTP within the user pod.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Filer - www.abcdesktop.io</title>
+        <title>Filer Container — File Transfer Service | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -97,10 +97,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/contribute/4.4/userpod/filer/" />
   
-  <meta property="og:title"       content="Filer | abcdesktop.io" />
+  <meta property="og:title"       content="Filer Container — File Transfer Service | abcdesktop.io" />
   
   
-  <meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta property="og:description" content="Developer reference for the abcdesktop.io filer container file upload, download, ZIP archive, and directory listing over HTTP within the user pod." />
   
 
   
@@ -117,10 +117,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Filer | abcdesktop.io" />
+  <meta name="twitter:title"       content="Filer Container — File Transfer Service | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta name="twitter:description" content="Developer reference for the abcdesktop.io filer container file upload, download, ZIP archive, and directory listing over HTTP within the user pod." />
   
 
   
@@ -198,16 +198,16 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Filer - www.abcdesktop.io" />
-<meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="og:title" content="Filer Container — File Transfer Service | abcdesktop.io - www.abcdesktop.io" />
+<meta property="og:description" content="Developer reference for the abcdesktop.io filer container file upload, download, ZIP archive, and directory listing over HTTP within the user pod." />
 <meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/contribute/4.4/userpod/filer.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://www.abcdesktop.io/contribute/4.4/userpod/filer/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Filer - www.abcdesktop.io" />
-<meta property="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="twitter:title" content="Filer Container — File Transfer Service | abcdesktop.io - www.abcdesktop.io" />
+<meta property="twitter:description" content="Developer reference for the abcdesktop.io filer container file upload, download, ZIP archive, and directory listing over HTTP within the user pod." />
 <meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/contribute/4.4/userpod/filer.png" />
 </head>
   
@@ -254,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Filer
+              Filer Container — File Transfer Service | abcdesktop.io
             
           </span>
         </div>
@@ -5743,6 +5743,38 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">contribute</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">file transfer</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">filer</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">user pod</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/contribute/4.4/userpod/filer.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -5753,16 +5785,6 @@
   
 
 
-<hr />
-<p>title: Filer Container — File Transfer Service | abcdesktop.io
-description: Developer reference for the abcdesktop.io filer container: file upload, download, ZIP archive, and directory listing over HTTP within the user pod.
-keywords: filer, file transfer, upload, download, ZIP, abcdesktop, contribute, user pod
-tags:
-  - contribute
-  - filer
-  - file transfer
-  - user pod</p>
-<hr />
 <h1 id="file-service-implementation-specification">File Service Implementation Specification</h1>
 <h2 id="1-scope">1. Scope</h2>
 <p>This document specifies the runtime behavior of the file service implemented in <code>file-service.js</code>. It is an implementation-driven specification.</p>
@@ -6048,6 +6070,9 @@ tags:
 
 
 
+
+  
+  
 
 
 
