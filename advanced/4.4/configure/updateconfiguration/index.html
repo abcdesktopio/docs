@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Procedure for applying changes to the abcdesktop.io od.config file stored as a Kubernetes ConfigMap, including rollout restart steps for pyos.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Make changes in the abcdesktop configmap - www.abcdesktop.io</title>
+        <title>Updating the abcdesktop.io Configuration | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -97,10 +97,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/advanced/4.4/configure/updateconfiguration/" />
   
-  <meta property="og:title"       content="Make changes in the abcdesktop configmap | abcdesktop.io" />
+  <meta property="og:title"       content="Updating the abcdesktop.io Configuration | abcdesktop.io" />
   
   
-  <meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta property="og:description" content="Procedure for applying changes to the abcdesktop.io od.config file stored as a Kubernetes ConfigMap, including rollout restart steps for pyos." />
   
 
   
@@ -117,10 +117,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Make changes in the abcdesktop configmap | abcdesktop.io" />
+  <meta name="twitter:title"       content="Updating the abcdesktop.io Configuration | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta name="twitter:description" content="Procedure for applying changes to the abcdesktop.io od.config file stored as a Kubernetes ConfigMap, including rollout restart steps for pyos." />
   
 
   
@@ -198,16 +198,16 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Make changes in the abcdesktop configmap - www.abcdesktop.io" />
-<meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="og:title" content="Updating the abcdesktop.io Configuration | abcdesktop.io - www.abcdesktop.io" />
+<meta property="og:description" content="Procedure for applying changes to the abcdesktop.io od.config file stored as a Kubernetes ConfigMap, including rollout restart steps for pyos." />
 <meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/advanced/4.4/configure/updateconfiguration.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://www.abcdesktop.io/advanced/4.4/configure/updateconfiguration/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Make changes in the abcdesktop configmap - www.abcdesktop.io" />
-<meta property="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="twitter:title" content="Updating the abcdesktop.io Configuration | abcdesktop.io - www.abcdesktop.io" />
+<meta property="twitter:description" content="Procedure for applying changes to the abcdesktop.io od.config file stored as a Kubernetes ConfigMap, including rollout restart steps for pyos." />
 <meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/advanced/4.4/configure/updateconfiguration.png" />
 </head>
   
@@ -254,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Make changes in the abcdesktop configmap
+              Updating the abcdesktop.io Configuration | abcdesktop.io
             
           </span>
         </div>
@@ -5167,6 +5167,31 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">config</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">configuration</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">update</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/advanced/4.4/configure/updateconfiguration.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -5177,15 +5202,6 @@
   
 
 
-<hr />
-<p>title: Updating the abcdesktop.io Configuration | abcdesktop.io
-description: Procedure for applying changes to the abcdesktop.io od.config file stored as a Kubernetes ConfigMap, including rollout restart steps for pyos.
-keywords: update configuration, od.config, ConfigMap, kubectl, rollout restart, abcdesktop, Kubernetes
-tags:
-  - configuration
-- update
-- config</p>
-<hr />
 <h1 id="editing-the-abcdesktopio-configuration-file">Editing the abcdesktop.io Configuration File</h1>
 <p>The abcdesktop.io configuration file is named <code>od.config</code>. It uses the <a href="https://docs.cherrypy.dev/en/stable/config.html">CherryPy configuration file format</a>. When <code>pyos</code> starts, it reads <code>od.config</code> from the <code>abcdesktop-config</code> ConfigMap. If the file contains a syntax error, <code>pyos</code> fails to start. Check the <code>pyos</code> logs with:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span>-l<span class="w"> </span><span class="nv">name</span><span class="o">=</span>pyos-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
@@ -5229,6 +5245,9 @@ kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class
 
 
 
+
+  
+  
 
 
 
