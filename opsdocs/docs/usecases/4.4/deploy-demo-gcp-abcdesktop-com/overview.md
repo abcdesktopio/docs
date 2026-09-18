@@ -60,6 +60,9 @@ This use case is documented in two chapters:
 2. **[Install and configure the demo platform](./install-demo.md)**  
    Deploy abcdesktop on the cluster, expose the service with a GKE Ingress and a Google-managed TLS certificate, apply network policies, configure the MongoDB PVC, set up the garbage collector, and add external OAuth 2.0 authentication providers.
 
+3. **[Automate deployment with bash scripts](./automate-with-scripts.md)**  
+   An alternative, scripted way to provision, expose (optionally behind Cloud IAP) and clean up a dev/test abcdesktop platform, including the GCP Console prerequisites (service account, IAM roles, APIs, IAP OAuth client).
+
 ## Repository
 
 The manifests used to operate this demo are maintained in the repository [`demo.gcp.abcdesktop.com`](https://github.com/abcdesktopio/demo.gcp.abcdesktop.com). The following files are referenced throughout this guide:
