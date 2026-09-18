@@ -6,30 +6,34 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="FAQ on MongoDB configuration for abcdesktop.io increasing replica counts, StatefulSet scaling, and connection troubleshooting.">
+        <meta name="description" content="Automate the creation, exposure and cleanup of an abcdesktop dev/test platform on Google Cloud Platform with three ready-to-use bash scripts, including all GCP Console prerequisites (service account, APIs, Cloud IAP OAuth client).">
       
       
         <meta name="author" content="abcdesktop.io contributors">
       
       
-        <link rel="canonical" href="https://www.abcdesktop.io/faq/mongodb/">
+        <link rel="canonical" href="https://www.abcdesktop.io/usecases/4.4/deploy-demo-gcp-abcdesktop-com/automate-with-scripts/">
       
       
+        <link rel="prev" href="../install-demo/">
+      
+      
+        <link rel="next" href="../../../../solutions/kubernetes-vdi/">
       
       
         
       
       
-      <link rel="icon" href="../../img/abcdesktop128x128.ico">
+      <link rel="icon" href="../../../../img/abcdesktop128x128.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>MongoDB Configuration & Scaling FAQ | abcdesktop.io - www.abcdesktop.io</title>
+        <title>Automate GCP Deployment with Bash Scripts | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -48,11 +52,11 @@
       
     
     
-      <link rel="stylesheet" href="../../css/custom-admonition.css">
+      <link rel="stylesheet" href="../../../../css/custom-admonition.css">
     
-      <link rel="stylesheet" href="../../css/drawio-darkmode.css">
+      <link rel="stylesheet" href="../../../../css/drawio-darkmode.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -91,12 +95,12 @@
   <meta property="og:locale"    content="en_US" />
   <meta property="og:type"      content="website" />
   <meta property="og:site_name" content="abcdesktop.io" />
-  <meta property="og:url"       content="https://www.abcdesktop.io/faq/mongodb/" />
+  <meta property="og:url"       content="https://www.abcdesktop.io/usecases/4.4/deploy-demo-gcp-abcdesktop-com/automate-with-scripts/" />
   
-  <meta property="og:title"       content="MongoDB Configuration & Scaling FAQ | abcdesktop.io" />
+  <meta property="og:title"       content="Automate GCP Deployment with Bash Scripts | abcdesktop.io" />
   
   
-  <meta property="og:description" content="FAQ on MongoDB configuration for abcdesktop.io increasing replica counts, StatefulSet scaling, and connection troubleshooting." />
+  <meta property="og:description" content="Automate the creation, exposure and cleanup of an abcdesktop dev/test platform on Google Cloud Platform with three ready-to-use bash scripts, including all GCP Console prerequisites (service account, APIs, Cloud IAP OAuth client)." />
   
 
   
@@ -113,16 +117,16 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="MongoDB Configuration & Scaling FAQ | abcdesktop.io" />
+  <meta name="twitter:title"       content="Automate GCP Deployment with Bash Scripts | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="FAQ on MongoDB configuration for abcdesktop.io increasing replica counts, StatefulSet scaling, and connection troubleshooting." />
+  <meta name="twitter:description" content="Automate the creation, exposure and cleanup of an abcdesktop dev/test platform on Google Cloud Platform with three ready-to-use bash scripts, including all GCP Console prerequisites (service account, APIs, Cloud IAP OAuth client)." />
   
 
   
-  <link rel="alternate" hreflang="en"    href="https://www.abcdesktop.io/faq/mongodb/" />
-  <link rel="alternate" hreflang="en-US" href="https://www.abcdesktop.io/faq/mongodb/" />
-  <link rel="alternate" hreflang="x-default" href="https://www.abcdesktop.io/faq/mongodb/" />
+  <link rel="alternate" hreflang="en"    href="https://www.abcdesktop.io/usecases/4.4/deploy-demo-gcp-abcdesktop-com/automate-with-scripts/" />
+  <link rel="alternate" hreflang="en-US" href="https://www.abcdesktop.io/usecases/4.4/deploy-demo-gcp-abcdesktop-com/automate-with-scripts/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.abcdesktop.io/usecases/4.4/deploy-demo-gcp-abcdesktop-com/automate-with-scripts/" />
 
   
   <script type="application/ld+json">
@@ -194,17 +198,17 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="MongoDB Configuration & Scaling FAQ | abcdesktop.io - www.abcdesktop.io" />
-<meta property="og:description" content="FAQ on MongoDB configuration for abcdesktop.io increasing replica counts, StatefulSet scaling, and connection troubleshooting." />
-<meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/faq/mongodb.png" />
+<meta property="og:title" content="Automate GCP Deployment with Bash Scripts | abcdesktop.io - www.abcdesktop.io" />
+<meta property="og:description" content="Automate the creation, exposure and cleanup of an abcdesktop dev/test platform on Google Cloud Platform with three ready-to-use bash scripts, including all GCP Console prerequisites (service account, APIs, Cloud IAP OAuth client)." />
+<meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/usecases/4.4/deploy-demo-gcp-abcdesktop-com/automate-with-scripts.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://www.abcdesktop.io/faq/mongodb/" />
+<meta property="og:url" content="https://www.abcdesktop.io/usecases/4.4/deploy-demo-gcp-abcdesktop-com/automate-with-scripts/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="MongoDB Configuration & Scaling FAQ | abcdesktop.io - www.abcdesktop.io" />
-<meta property="twitter:description" content="FAQ on MongoDB configuration for abcdesktop.io increasing replica counts, StatefulSet scaling, and connection troubleshooting." />
-<meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/faq/mongodb.png" />
+<meta property="twitter:title" content="Automate GCP Deployment with Bash Scripts | abcdesktop.io - www.abcdesktop.io" />
+<meta property="twitter:description" content="Automate the creation, exposure and cleanup of an abcdesktop dev/test platform on Google Cloud Platform with three ready-to-use bash scripts, including all GCP Console prerequisites (service account, APIs, Cloud IAP OAuth client)." />
+<meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/usecases/4.4/deploy-demo-gcp-abcdesktop-com/automate-with-scripts.png" />
 </head>
   
   
@@ -217,7 +221,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mongodb" class="md-skip">
+        <a href="#automate-deployment-with-bash-scripts" class="md-skip">
           Skip to content
         </a>
       
@@ -231,9 +235,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+    <a href="../../../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
       
-  <img src="../../img/abcdesktop.svg" alt="logo">
+  <img src="../../../../img/abcdesktop.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -250,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MongoDB Configuration & Scaling FAQ | abcdesktop.io
+              Automate GCP Deployment with Bash Scripts | abcdesktop.io
             
           </span>
         </div>
@@ -335,7 +339,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
   
@@ -356,7 +360,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../requirements/" class="md-tabs__link">
+        <a href="../../../../requirements/" class="md-tabs__link">
           
   
   
@@ -383,7 +387,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../architecture/overview/" class="md-tabs__link">
+        <a href="../../../../architecture/overview/" class="md-tabs__link">
           
   
   
@@ -406,7 +410,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../contribute/overview/" class="md-tabs__link">
+        <a href="../../../../contribute/overview/" class="md-tabs__link">
           
   
   
@@ -422,11 +426,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../usecases/4.4/filter-traffic-per-group/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../filter-traffic-per-group/" class="md-tabs__link">
           
   
   
@@ -446,7 +452,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../solutions/kubernetes-vdi/" class="md-tabs__link">
+        <a href="../../../../solutions/kubernetes-vdi/" class="md-tabs__link">
           
   
   
@@ -466,7 +472,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../compare/overview/" class="md-tabs__link">
+        <a href="../../../../compare/overview/" class="md-tabs__link">
           
   
   
@@ -486,7 +492,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../faq/" class="md-tabs__link">
+        <a href="../../../../faq/faq/" class="md-tabs__link">
           
   
   
@@ -504,7 +510,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../ebook/ebook-abcdesktop-en.pdf" class="md-tabs__link">
+      <a href="../../../../ebook/ebook-abcdesktop-en.pdf" class="md-tabs__link">
         
   
   
@@ -539,9 +545,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+    <a href="../../../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
       
-  <img src="../../img/abcdesktop.svg" alt="logo">
+  <img src="../../../../img/abcdesktop.svg" alt="logo">
 
     </a>
     www.abcdesktop.io
@@ -568,7 +574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -645,7 +651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../requirements/" class="md-nav__link">
+      <a href="../../../../requirements/" class="md-nav__link">
         
   
   
@@ -723,7 +729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/4.4/script/" class="md-nav__link">
+      <a href="../../../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -751,7 +757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -837,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/4.4/applicationoverview/" class="md-nav__link">
+      <a href="../../../../install/4.4/applicationoverview/" class="md-nav__link">
         
   
   
@@ -865,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/4.4/install-applications/" class="md-nav__link">
+      <a href="../../../../install/4.4/install-applications/" class="md-nav__link">
         
   
   
@@ -893,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/4.4/applicationwithconsole/" class="md-nav__link">
+      <a href="../../../../install/4.4/applicationwithconsole/" class="md-nav__link">
         
   
   
@@ -979,7 +985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../uninstall/4.4/script/" class="md-nav__link">
+      <a href="../../../../uninstall/4.4/script/" class="md-nav__link">
         
   
   
@@ -1007,7 +1013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../uninstall/4.4/helm/" class="md-nav__link">
+      <a href="../../../../uninstall/4.4/helm/" class="md-nav__link">
         
   
   
@@ -1150,7 +1156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/overview/" class="md-nav__link">
+      <a href="../../../../architecture/overview/" class="md-nav__link">
         
   
   
@@ -1236,7 +1242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
         
   
   
@@ -1264,7 +1270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/4.4/script/" class="md-nav__link">
+      <a href="../../../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -1292,7 +1298,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -1320,7 +1326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
         
   
   
@@ -1456,7 +1462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
         
   
   
@@ -1484,7 +1490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1512,7 +1518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1598,7 +1604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
         
   
   
@@ -1626,7 +1632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1654,7 +1660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1740,7 +1746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
         
   
   
@@ -1768,7 +1774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1796,7 +1802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1882,7 +1888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
         
   
   
@@ -1910,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1938,7 +1944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
         
   
   
@@ -2024,7 +2030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
         
   
   
@@ -2052,7 +2058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
         
   
   
@@ -2080,7 +2086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -2174,7 +2180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/applications/simplestapplicationxeyes/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/applications/simplestapplicationxeyes/" class="md-nav__link">
         
   
   
@@ -2202,7 +2208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/applications/simplestapplicationxedit/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/applications/simplestapplicationxedit/" class="md-nav__link">
         
   
   
@@ -2230,7 +2236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/applications/simplestapplicationchromium/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/applications/simplestapplicationchromium/" class="md-nav__link">
         
   
   
@@ -2258,7 +2264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/applications/templateapplication/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/applications/templateapplication/" class="md-nav__link">
         
   
   
@@ -2286,7 +2292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/applications/templateanotherapplication/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/applications/templateanotherapplication/" class="md-nav__link">
         
   
   
@@ -2372,7 +2378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/configure/overview/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/configure/overview/" class="md-nav__link">
         
   
   
@@ -2400,7 +2406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/configure/updateconfiguration/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/configure/updateconfiguration/" class="md-nav__link">
         
   
   
@@ -2478,7 +2484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/authentication/overview/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/authentication/overview/" class="md-nav__link">
         
   
   
@@ -2506,7 +2512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/authentication/authexternal/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/authentication/authexternal/" class="md-nav__link">
         
   
   
@@ -2584,7 +2590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/authentication/authexplicit-ldap/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/authentication/authexplicit-ldap/" class="md-nav__link">
         
   
   
@@ -2612,7 +2618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/authentication/authexplicit-activedirectory/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/authentication/authexplicit-activedirectory/" class="md-nav__link">
         
   
   
@@ -2640,7 +2646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/authentication/authmetaexplicit/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/authentication/authmetaexplicit/" class="md-nav__link">
         
   
   
@@ -2726,7 +2732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/authentication/authimplicit/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/authentication/authimplicit/" class="md-nav__link">
         
   
   
@@ -2754,7 +2760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/authentication/logmein/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/authentication/logmein/" class="md-nav__link">
         
   
   
@@ -2798,7 +2804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/authentication/authentification-rules/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/authentication/authentification-rules/" class="md-nav__link">
         
   
   
@@ -2876,7 +2882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/desktop/overview/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/desktop/overview/" class="md-nav__link">
         
   
   
@@ -2904,7 +2910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/desktop/executeclasses/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/desktop/executeclasses/" class="md-nav__link">
         
   
   
@@ -2932,7 +2938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/desktop/pod/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/desktop/pod/" class="md-nav__link">
         
   
   
@@ -2960,7 +2966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/desktop/policies/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/desktop/policies/" class="md-nav__link">
         
   
   
@@ -3046,7 +3052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/storage/overview/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/storage/overview/" class="md-nav__link">
         
   
   
@@ -3074,7 +3080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/storage/nfs/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/storage/nfs/" class="md-nav__link">
         
   
   
@@ -3102,7 +3108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/storage/hostpath/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/storage/hostpath/" class="md-nav__link">
         
   
   
@@ -3130,7 +3136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/storage/cache/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/storage/cache/" class="md-nav__link">
         
   
   
@@ -3158,7 +3164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/storage/sharedvolumes/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/storage/sharedvolumes/" class="md-nav__link">
         
   
   
@@ -3194,7 +3200,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/configure/garbagecollector/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/configure/garbagecollector/" class="md-nav__link">
         
   
   
@@ -3222,7 +3228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
         
   
   
@@ -3250,7 +3256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/configure/welcome/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/configure/welcome/" class="md-nav__link">
         
   
   
@@ -3278,7 +3284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/configure/customfrontend/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/configure/customfrontend/" class="md-nav__link">
         
   
   
@@ -3306,7 +3312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/configure/logging/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/configure/logging/" class="md-nav__link">
         
   
   
@@ -3442,7 +3448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/controllers/controllers/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/controllers/controllers/" class="md-nav__link">
         
   
   
@@ -3528,7 +3534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
         
   
   
@@ -3556,7 +3562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
         
   
   
@@ -3584,7 +3590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
+      <a href="../../../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
         
   
   
@@ -3685,7 +3691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/overview/" class="md-nav__link">
+      <a href="../../../../contribute/overview/" class="md-nav__link">
         
   
   
@@ -3713,7 +3719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/authors/" class="md-nav__link">
+      <a href="../../../../contribute/authors/" class="md-nav__link">
         
   
   
@@ -3791,7 +3797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/4.4/services/keygenerator/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/services/keygenerator/" class="md-nav__link">
         
   
   
@@ -3819,7 +3825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/4.4/services/mongo/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/services/mongo/" class="md-nav__link">
         
   
   
@@ -3847,7 +3853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/4.4/services/console/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/services/console/" class="md-nav__link">
         
   
   
@@ -3875,7 +3881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/4.4/services/pyos/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/services/pyos/" class="md-nav__link">
         
   
   
@@ -3903,7 +3909,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/4.4/services/router/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/services/router/" class="md-nav__link">
         
   
   
@@ -3931,7 +3937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/4.4/services/webmodules/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/services/webmodules/" class="md-nav__link">
         
   
   
@@ -4017,7 +4023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/4.4/userpod/graphical/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/userpod/graphical/" class="md-nav__link">
         
   
   
@@ -4045,7 +4051,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/4.4/userpod/sound/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/userpod/sound/" class="md-nav__link">
         
   
   
@@ -4073,7 +4079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/4.4/userpod/cups/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/userpod/cups/" class="md-nav__link">
         
   
   
@@ -4101,7 +4107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contribute/4.4/userpod/filer/" class="md-nav__link">
+      <a href="../../../../contribute/4.4/userpod/filer/" class="md-nav__link">
         
   
   
@@ -4141,24 +4147,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -4176,7 +4187,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -4194,7 +4205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usecases/4.4/filter-traffic-per-group/" class="md-nav__link">
+      <a href="../../filter-traffic-per-group/" class="md-nav__link">
         
   
   
@@ -4222,7 +4233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usecases/4.4/configure-keycloak/" class="md-nav__link">
+      <a href="../../configure-keycloak/" class="md-nav__link">
         
   
   
@@ -4250,7 +4261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usecases/4.4/multus-user-pod/" class="md-nav__link">
+      <a href="../../multus-user-pod/" class="md-nav__link">
         
   
   
@@ -4275,6 +4286,8 @@
                 
   
   
+    
+  
   
   
     
@@ -4285,11 +4298,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" checked>
         
           
           <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
@@ -4310,7 +4323,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -4328,7 +4341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -4356,7 +4369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/configure-kubernetes-cluster-gcp/" class="md-nav__link">
+      <a href="../configure-kubernetes-cluster-gcp/" class="md-nav__link">
         
   
   
@@ -4384,7 +4397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/install-demo/" class="md-nav__link">
+      <a href="../install-demo/" class="md-nav__link">
         
   
   
@@ -4409,10 +4422,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/automate-with-scripts/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automate deployment with bash scripts
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -4428,6 +4468,153 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites-gcp-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites (GCP Console)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites (GCP Console)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-a-dedicated-service-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Create a dedicated service account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-enable-the-required-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Enable the required APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-prepare-a-cloud-dns-managed-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Prepare a Cloud DNS managed zone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-optional-create-the-cloud-iap-oauth-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. (Optional) Create the Cloud IAP OAuth client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-local-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Local tooling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-dev-platform-gcpsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        deploy-dev-platform-gcp.sh
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expose-dev-platform-gcpsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        expose-dev-platform-gcp.sh
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleanup-dev-platform-gcpsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cleanup-dev-platform-gcp.sh
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4505,7 +4692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../solutions/kubernetes-vdi/" class="md-nav__link">
+      <a href="../../../../solutions/kubernetes-vdi/" class="md-nav__link">
         
   
   
@@ -4533,7 +4720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../solutions/remote-browser-isolation/" class="md-nav__link">
+      <a href="../../../../solutions/remote-browser-isolation/" class="md-nav__link">
         
   
   
@@ -4561,7 +4748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../solutions/self-hosted-vdi/" class="md-nav__link">
+      <a href="../../../../solutions/self-hosted-vdi/" class="md-nav__link">
         
   
   
@@ -4589,7 +4776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../solutions/secure-web-browser/" class="md-nav__link">
+      <a href="../../../../solutions/secure-web-browser/" class="md-nav__link">
         
   
   
@@ -4674,7 +4861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../compare/overview/" class="md-nav__link">
+      <a href="../../../../compare/overview/" class="md-nav__link">
         
   
   
@@ -4702,7 +4889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../compare/abcdesktop-vs-citrix/" class="md-nav__link">
+      <a href="../../../../compare/abcdesktop-vs-citrix/" class="md-nav__link">
         
   
   
@@ -4730,7 +4917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../compare/abcdesktop-vs-guacamole/" class="md-nav__link">
+      <a href="../../../../compare/abcdesktop-vs-guacamole/" class="md-nav__link">
         
   
   
@@ -4758,7 +4945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../compare/abcdesktop-vs-kasm/" class="md-nav__link">
+      <a href="../../../../compare/abcdesktop-vs-kasm/" class="md-nav__link">
         
   
   
@@ -4843,7 +5030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
+      <a href="../../../../faq/faq/" class="md-nav__link">
         
   
   
@@ -4871,7 +5058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../adopters/" class="md-nav__link">
+      <a href="../../../../faq/adopters/" class="md-nav__link">
         
   
   
@@ -4899,7 +5086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release/" class="md-nav__link">
+      <a href="../../../../faq/release/" class="md-nav__link">
         
   
   
@@ -4927,7 +5114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../webbrowser/" class="md-nav__link">
+      <a href="../../../../faq/webbrowser/" class="md-nav__link">
         
   
   
@@ -4962,7 +5149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ebook/ebook-abcdesktop-en.pdf" class="md-nav__link">
+      <a href="../../../../ebook/ebook-abcdesktop-en.pdf" class="md-nav__link">
         
   
   
@@ -5009,22 +5196,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-increase-the-mongodb-replica-count" class="md-nav__link">
+  <a href="#prerequisites-gcp-console" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How to Increase the MongoDB Replica Count
+        Prerequisites (GCP Console)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="How to Increase the MongoDB Replica Count">
+    <nav class="md-nav" aria-label="Prerequisites (GCP Console)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#with-a-helm-installation" class="md-nav__link">
+  <a href="#1-create-a-dedicated-service-account" class="md-nav__link">
     <span class="md-ellipsis">
       
-        With a Helm Installation
+        1. Create a dedicated service account
       
     </span>
   </a>
@@ -5032,10 +5219,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#with-a-scripted-installation" class="md-nav__link">
+  <a href="#2-enable-the-required-apis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        With a Scripted Installation
+        2. Enable the required APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-prepare-a-cloud-dns-managed-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Prepare a Cloud DNS managed zone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-optional-create-the-cloud-iap-oauth-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. (Optional) Create the Cloud IAP OAuth client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-local-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Local tooling
       
     </span>
   </a>
@@ -5044,6 +5264,61 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-dev-platform-gcpsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        deploy-dev-platform-gcp.sh
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expose-dev-platform-gcpsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        expose-dev-platform-gcp.sh
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleanup-dev-platform-gcpsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cleanup-dev-platform-gcp.sh
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
   
 </li>
       
@@ -5068,42 +5343,42 @@
       
       
       
-        <span class="md-tag">FAQ</span>
+        <span class="md-tag">GCP</span>
       
     
       
       
       
       
-        <span class="md-tag">MongoDB</span>
+        <span class="md-tag">GKE</span>
       
     
       
       
       
       
-        <span class="md-tag">database</span>
+        <span class="md-tag">automation</span>
       
     
       
       
       
       
-        <span class="md-tag">faq</span>
+        <span class="md-tag">demo</span>
       
     
       
       
       
       
-        <span class="md-tag">mongodb</span>
+        <span class="md-tag">use case</span>
       
     
   </nav>
 
 
   
-    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/faq/mongodb.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/usecases/4.4/deploy-demo-gcp-abcdesktop-com/automate-with-scripts.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -5111,112 +5386,256 @@
   
 
 
-<h1 id="mongodb">MongoDB</h1>
-<h2 id="how-to-increase-the-mongodb-replica-count">How to Increase the MongoDB Replica Count</h2>
-<h3 id="with-a-helm-installation">With a Helm Installation</h3>
-<p>To change the replica count for MongoDB using the Helm installation, extract the values file from the Helm chart if you have not already done so:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>show<span class="w"> </span>values<span class="w"> </span>abcdesktop/abcdesktop<span class="w">  </span>&gt;<span class="w"> </span>abcdesktop-values.yaml
-</code></pre></div>
-<p>Edit the <code>mongo</code> section and update the <code>replicaCount</code> key to the desired value:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">mongo</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">keysgenerator</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/abcdesktopio/keysgenerator</span>
-<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.4</span>
-<span class="w">    </span><span class="nt">mongodkeylength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">756</span>
-<span class="w">  </span><span class="c1"># data:</span>
-<span class="w">  </span><span class="c1">#   initContainerScriptPath: "data/mongo/init-container.sh"</span>
-<span class="w">  </span><span class="c1">#   configFilePath: "data/mongo/etc/mongodb/mongod.conf"</span>
-<span class="w">  </span><span class="c1">#   initScriptPath: "data/mongo/docker-entrypoint-initdb.d/init.js"</span>
-<span class="w">  </span><span class="c1">#   initReplicaScriptPath: "data/mongo/docker-entrypoint-initdb.d/init-replica.sh"</span>
-<span class="w">  </span><span class="nt">image</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/abcdesktopio/mongo</span>
-<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">"safe8.0"</span>
-<span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
-<span class="w">  </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
-<span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">limits</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500m</span>
-<span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512Mi</span>
-<span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100m</span>
-<span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128Mi</span>
-<span class="w">  </span><span class="c1"># Persistence - MongoDB data storage configuration</span>
-<span class="w">  </span><span class="nt">persistence</span><span class="p">:</span>
-<span class="w">    </span><span class="c1"># enabled: true for persistent volume, false for non-persistent volume (emptyDir)</span>
-<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">    </span><span class="c1"># Storage class to use (leave empty for default class)</span>
-<span class="w">    </span><span class="nt">storageClass</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Persistent volume size</span>
-<span class="w">    </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8Gi</span>
-<span class="w">    </span><span class="c1"># Mount path in the container (do not change)</span>
-<span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/db</span>
-</code></pre></div>
-<p>Then apply the updated values:</p>
-<p><div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
-helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>my-abcdesktop<span class="w"> </span>abcdesktop/abcdesktop<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--create-namespace<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-f<span class="w"> </span>abcdesktop-values.yaml
-</code></pre></div>
-where <code>NAMESPACE</code> and <code>my-abcdesktop</code> are your deployment namespace and release name.</p>
-<h3 id="with-a-scripted-installation">With a Scripted Installation</h3>
+<h1 id="automate-deployment-with-bash-scripts">Automate deployment with bash scripts</h1>
+<p>The two previous chapters describe how to provision a GKE cluster and install abcdesktop on it <strong>manually</strong>. This chapter presents an alternative, scripted approach: three bash scripts that automate the same overall process (cluster creation, exposure with a public FQDN and TLS, and cleanup) for a dev/test abcdesktop platform on GCP.</p>
+<table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deploy-dev-platform-gcp.sh</code></td>
+<td>Creates the VPC/subnet/GKE cluster (or reuses existing ones) and installs abcdesktop on it</td>
+</tr>
+<tr>
+<td><code>expose-dev-platform-gcp.sh</code></td>
+<td>Creates the Ingress, DNS A record, Google-managed SSL certificate and, optionally, protects the platform with Cloud IAP</td>
+</tr>
+<tr>
+<td><code>cleanup-dev-platform-gcp.sh</code></td>
+<td>Tears down everything created by the two scripts above</td>
+</tr>
+</tbody>
+</table>
+<p>All three scripts authenticate to GCP with a service account key file and share the same <code>display_message</code>/<code>--help</code> conventions; run any of them with <code>--help</code> for the full option list.</p>
+<h2 id="prerequisites-gcp-console">Prerequisites (GCP Console)</h2>
+<p>Before running any script, a few things must be prepared once in the Cloud Console. These steps <strong>cannot be automated</strong> by the scripts themselves, either because they require elevated permissions or because the relevant Google APIs have been retired.</p>
+<h3 id="1-create-a-dedicated-service-account">1. Create a dedicated service account</h3>
+<p>Create a service account that the scripts will use to authenticate (<code>IAM &amp; Admin &gt; Service Accounts &gt; Create Service Account</code>), then grant it the following project-level IAM roles:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Needed for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>roles/compute.admin</code></td>
+<td>VPC, subnet, Cloud Router, Cloud NAT, backend services</td>
+</tr>
+<tr>
+<td><code>roles/compute.networkAdmin</code></td>
+<td>Network resources management</td>
+</tr>
+<tr>
+<td><code>roles/container.admin</code></td>
+<td>Creating/deleting the GKE cluster</td>
+</tr>
+<tr>
+<td><code>roles/dns.admin</code></td>
+<td>Creating/deleting the DNS A record</td>
+</tr>
+<tr>
+<td><code>roles/serviceusage.serviceUsageAdmin</code></td>
+<td>Enabling GCP APIs used by the scripts</td>
+</tr>
+<tr>
+<td><code>roles/iap.admin</code></td>
+<td>Only required if you plan to use <code>--enable-iap</code> (manages IAM policy on the IAP resource)</td>
+</tr>
+</tbody>
+</table>
+<p>Once the roles are granted, create and download a JSON key for this service account (<code>Keys &gt; Add Key &gt; Create new key &gt; JSON</code>). Its path is the <code>GCP_SA_CREDENTIALS_FILE</code> argument expected by all three scripts.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Keep this key file out of version control. Never commit it to a git repository.</p>
+</div>
+<p><img alt="service-account" src="../img/service_account_gcp.png" /></p>
+<h3 id="2-enable-the-required-apis">2. Enable the required APIs</h3>
+<p>In <code>APIs &amp; Services &gt; Library</code>, enable:</p>
 <ul>
-<li>Open your <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-4.4.yaml">abcdesktop.yaml</a> file and locate the <code>StatefulSet</code> named <code>mongodb-od</code>:</li>
+<li><strong>Compute Engine API</strong> (<code>compute.googleapis.com</code>)</li>
+<li><strong>Kubernetes Engine API</strong> (<code>container.googleapis.com</code>)</li>
+<li><strong>Cloud DNS API</strong> (<code>dns.googleapis.com</code>)</li>
+<li><strong>Service Usage API</strong> (<code>serviceusage.googleapis.com</code>)</li>
+<li><strong>Identity-Aware Proxy API</strong> (<code>iap.googleapis.com</code>) — only if you plan to use <code>--enable-iap</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StatefulSet</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-od</span>
+<div class="admonition danger">
+<p class="admonition-title">Service Usage API bootstrap trap</p>
+<p>If the Service Usage API itself has never been enabled on the project, <strong>no</strong> <code>gcloud</code> command can enable anything else (including itself) — every API-enable call fails with a <code>SERVICE_DISABLED</code> / permission error, even with the correct IAM roles granted. This is a one-time chicken-and-egg situation that must be resolved by a project Owner enabling the Service Usage API manually from the Console.</p>
+</div>
+<h3 id="3-prepare-a-cloud-dns-managed-zone">3. Prepare a Cloud DNS managed zone</h3>
+<p><code>expose-dev-platform-gcp.sh</code> creates an A record in an <strong>existing</strong> Cloud DNS managed zone (<code>Network Services &gt; Cloud DNS</code>). Create the zone for your domain beforehand and make sure the domain's registrar delegates to the zone's name servers.</p>
+<h3 id="4-optional-create-the-cloud-iap-oauth-client">4. (Optional) Create the Cloud IAP OAuth client</h3>
+<p>This step is only required if you intend to run <code>expose-dev-platform-gcp.sh --enable-iap</code>. As of March 2026, Google permanently retired the IAP OAuth Admin API, so the OAuth consent screen and client can no longer be created by the script — they must be created once, manually, in the Console:</p>
+<ol>
+<li>Go to <code>APIs &amp; Services &gt; Google Auth Platform</code> and configure the OAuth consent screen (support email, app name, scopes).</li>
+<li>Go to <code>APIs &amp; Services &gt; Credentials &gt; Create Credentials &gt; OAuth client ID</code>, choose <strong>Web application</strong>, and create the client.</li>
+<li>Note the generated <strong>Client ID</strong> and <strong>Client secret</strong> — they are passed to the script via <code>--iap-client-id</code> and <code>--iap-client-secret</code>.</li>
+<li>Edit the OAuth client and add the following <strong>Authorized redirect URI</strong>, replacing <code>&lt;IAP_CLIENT_ID&gt;</code> with the Client ID from step 3:
+   <div class="highlight"><pre><span></span><code>https://iap.googleapis.com/v1/oauth/clientIds/&lt;IAP_CLIENT_ID&gt;:handleRedirect
 </code></pre></div>
+   Without this exact redirect URI, sign-in fails with <em>"This app doesn't comply with Google's OAuth 2.0 policy"</em>. Make sure not to append anything else (such as <code>flowName=GeneralOAuthFlow</code>) to this URI — that is a separate error-message parameter, not part of the URL.</li>
+</ol>
+<p><img alt="oauth-create-form" src="../img/oauth_create_form.png" />
+<img alt="oauth-login-screen" src="../img/oauth_login_screen.png" /></p>
+<h3 id="5-local-tooling">5. Local tooling</h3>
+<p>Install the <code>gcloud</code> CLI, <code>kubectl</code> and <code>curl</code> on the machine that will run the scripts. There is no need to run <code>gcloud auth login</code> beforehand: each script authenticates automatically with <code>gcloud auth login --cred-file=&lt;GCP_SA_CREDENTIALS_FILE&gt;</code>.</p>
+<h2 id="deploy-dev-platform-gcpsh">deploy-dev-platform-gcp.sh</h2>
+<p>Creates a GKE cluster (auto-creating a VPC/subnet/Cloud Router/Cloud NAT unless existing ones are supplied) and installs abcdesktop on it.</p>
+<div class="highlight"><pre><span></span><code>Usage: deploy-dev-platform-gcp.sh &lt;GCP_SA_CREDENTIALS_FILE&gt; &lt;PROJECT_ID&gt; &lt;CLUSTER_NAME&gt; &lt;CLUSTER_REGION&gt; &lt;NUMBER_OF_NODES&gt; [OPTION]...
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--vpc-network &lt;name&gt;</code></td>
+<td>Use an existing VPC network (default: auto-create one)</td>
+</tr>
+<tr>
+<td><code>--subnet-name &lt;name&gt;</code></td>
+<td>Use an existing subnet (default: auto-create one)</td>
+</tr>
+<tr>
+<td><code>--abcdesktop-namespace &lt;ns&gt;</code></td>
+<td>Kubernetes namespace for abcdesktop (default: <code>abcdesktop</code>)</td>
+</tr>
+<tr>
+<td><code>--abcdesktop-version &lt;version&gt;</code></td>
+<td>abcdesktop version to deploy (default: <code>5.0</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>./deploy-dev-platform-gcp.sh key.json my-project abcdesktop-dev europe-west9 3
+</code></pre></div>
+<h2 id="expose-dev-platform-gcpsh">expose-dev-platform-gcp.sh</h2>
+<p>Creates the Ingress, DNS A record and Google-managed SSL certificate for a given FQDN, and optionally protects the platform with Cloud IAP.</p>
+<div class="highlight"><pre><span></span><code>Usage: expose-dev-platform-gcp.sh &lt;GCP_SA_CREDENTIALS_FILE&gt; &lt;ABCDESKTOP_FQDN&gt; &lt;DNS_ZONE&gt; [OPTION]...
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--abcdesktop-namespace &lt;ns&gt;</code></td>
+<td>Kubernetes namespace for abcdesktop (default: <code>abcdesktop</code>)</td>
+</tr>
+<tr>
+<td><code>--dns-record-ttl &lt;seconds&gt;</code></td>
+<td>TTL for the DNS record (default: <code>300</code>)</td>
+</tr>
+<tr>
+<td><code>--project &lt;id&gt;</code></td>
+<td>GCP project id used for the IAP setup (default: active gcloud project)</td>
+</tr>
+<tr>
+<td><code>--enable-iap</code></td>
+<td>Protect the ingress with Cloud IAP</td>
+</tr>
+<tr>
+<td><code>--iap-client-id &lt;id&gt;</code></td>
+<td>OAuth client ID created in <a href="#4-optional-create-the-cloud-iap-oauth-client">step 4</a> (required with <code>--enable-iap</code>)</td>
+</tr>
+<tr>
+<td><code>--iap-client-secret &lt;secret&gt;</code></td>
+<td>OAuth client secret (required with <code>--enable-iap</code>)</td>
+</tr>
+<tr>
+<td><code>--iap-member &lt;member&gt;</code></td>
+<td>Member(s) granted IAP access, e.g. <code>user:me@example.com</code> (comma-separated for several)</td>
+</tr>
+</tbody>
+</table>
+<p>Example without IAP:</p>
+<div class="highlight"><pre><span></span><code>./expose-dev-platform-gcp.sh key.json abcdesktop-dev.example.com my-dns-zone
+</code></pre></div>
+<p>Example with IAP:</p>
+<div class="highlight"><pre><span></span><code>./expose-dev-platform-gcp.sh key.json abcdesktop-dev.example.com my-dns-zone \
+  --enable-iap \
+  --iap-client-id 123-abc.apps.googleusercontent.com \
+  --iap-client-secret GOCSPX-xxx \
+  --iap-member user:me@example.com,user:colleague@example.com
+</code></pre></div>
+<blockquote>
+<p>After the script execution, your platform should be accessible</p>
+</blockquote>
+<p><img alt="service-exposed" src="../img/dev_platform_authenticated.png" /></p>
+<h2 id="cleanup-dev-platform-gcpsh">cleanup-dev-platform-gcp.sh</h2>
+<p>Deletes everything created by the two scripts above: the Ingress/ManagedCertificate/BackendConfig (implicitly, via cluster deletion), the GKE cluster, Cloud NAT, Cloud Router, subnetwork, VPC network and, optionally, the DNS A record.</p>
+<div class="highlight"><pre><span></span><code>Usage: cleanup-dev-platform-gcp.sh &lt;GCP_SA_CREDENTIALS_FILE&gt; &lt;PROJECT_ID&gt; &lt;CLUSTER_NAME&gt; &lt;CLUSTER_REGION&gt; [OPTION]...
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--vpc-network &lt;name&gt;</code></td>
+<td>VPC network to delete (default: <code>&lt;CLUSTER_NAME&gt;-vpc</code>)</td>
+</tr>
+<tr>
+<td><code>--subnet-name &lt;name&gt;</code></td>
+<td>Subnetwork to delete (default: <code>&lt;CLUSTER_NAME&gt;-subnet</code>)</td>
+</tr>
+<tr>
+<td><code>--keep-network</code></td>
+<td>Do not delete the VPC/subnet/router/NAT</td>
+</tr>
+<tr>
+<td><code>--fqdn &lt;domain&gt;</code></td>
+<td>Also delete the DNS A record for this FQDN</td>
+</tr>
+<tr>
+<td><code>--dns-zone &lt;zone&gt;</code></td>
+<td>Cloud DNS zone name (default: <code>gcp-abcdekstop-demo</code>)</td>
+</tr>
+<tr>
+<td><code>--yes</code></td>
+<td>Skip the interactive confirmation prompt</td>
+</tr>
+</tbody>
+</table>
+<p>By default, the script asks you to type the cluster name to confirm before deleting anything.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>./cleanup-dev-platform-gcp.sh key.json my-project abcdesktop-dev europe-west9 --fqdn abcdesktop-dev.example.com
+</code></pre></div>
+<h2 id="full-example">Full example</h2>
+<div class="highlight"><pre><span></span><code># 1. Create the cluster and install abcdesktop
+./deploy-dev-platform-gcp.sh key.json my-project abcdesktop-dev europe-west9 3
+
+# 2. Expose it publicly with IAP protection
+./expose-dev-platform-gcp.sh key.json abcdesktop-dev.example.com my-dns-zone \
+  --enable-iap \
+  --iap-client-id 123-abc.apps.googleusercontent.com \
+  --iap-client-secret GOCSPX-xxx \
+  --iap-member user:me@example.com
+
+# 3. When done, tear everything down
+./cleanup-dev-platform-gcp.sh key.json my-project abcdesktop-dev europe-west9 --fqdn abcdesktop-dev.example.com
+</code></pre></div>
+<h2 id="troubleshooting">Troubleshooting</h2>
 <ul>
-<li>In the spec of the <code>StatefulSet</code> named <code>mongodb-od</code>, update the <code>replicas</code> count:</li>
+<li><strong><code>SERVICE_DISABLED</code> / permission errors when enabling any API</strong>: the Service Usage API itself was never enabled on the project — see <a href="#2-enable-the-required-apis">step 2</a>.</li>
+<li><strong><code>PERMISSION_DENIED: iap.webServices.getIamPolicy</code></strong>: the service account is missing <code>roles/iap.admin</code> (granting <code>roles/iap.httpsResourceAccessor</code> to end users is not enough for the script itself).</li>
+<li><strong>"This app doesn't comply with Google's OAuth 2.0 policy" at sign-in</strong>: the OAuth client is missing (or has a malformed) <code>:handleRedirect</code> Authorized redirect URI — see <a href="#4-optional-create-the-cloud-iap-oauth-client">step 4</a>.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StatefulSet</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-od</span>
-<span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-od</span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">database</span>
-<span class="w">    </span><span class="nt">abcdesktop/role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
-<span class="w">    </span><span class="nt">netpol/mongodb</span><span class="p">:</span><span class="w"> </span><span class="s">'true'</span>
-<span class="w">    </span><span class="nt">netpol/dns</span><span class="p">:</span><span class="w"> </span><span class="s">'true'</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">serviceName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
-<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
-</code></pre></div>
-<ul>
-<li>In the <code>name: replica-manager</code> container definition, update the <code>REPLICAS</code> environment variable to match the same value:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="nt">env</span><span class="p">:</span>
-<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NAMESPACE</span>
-<span class="w">     </span><span class="nt">valueFrom</span><span class="p">:</span>
-<span class="w">       </span><span class="nt">fieldRef</span><span class="p">:</span>
-<span class="w">         </span><span class="nt">fieldPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metadata.namespace</span>
-<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SERVICE</span>
-<span class="w">     </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
-<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">STATEFULSET_NAME</span>
-<span class="w">     </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-od</span>
-<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REPLICAS</span>
-<span class="w">     </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"3"</span>
-</code></pre></div>
-<ul>
-<li>Apply your changes to the <code>abcdesktop</code> namespace:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
-kubectl apply -f abcdesktop.yaml -n $NAMESPACE
-</code></pre></div>
-<ul>
-<li>Verify the number of running replicas:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>statefulset<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>mongodb-od<span class="w"> </span>-n<span class="w"> </span>abcdesktop
-</code></pre></div>
-<p>The output should show all replicas in the <code>READY</code> state:</p>
-<div class="highlight"><pre><span></span><code>NAME         READY   AGE
-mongodb-od   3/3     18h
-</code></pre></div>
 
 
 
@@ -5299,14 +5718,14 @@ mongodb-od   3/3     18h
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../js/tabbed-toc.js"></script>
+        <script src="../../../../js/tabbed-toc.js"></script>
       
-        <script src="../../js/drawio-reload.js"></script>
+        <script src="../../../../js/drawio-reload.js"></script>
       
     
   </body>
