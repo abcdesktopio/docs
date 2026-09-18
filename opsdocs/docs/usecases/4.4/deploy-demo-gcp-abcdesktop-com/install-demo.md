@@ -24,11 +24,11 @@ Download and install the latest release using the following command.
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh | bash
 ```
 
-For additional details about the installation process, refer to the [Setup guide](https://www.abcdesktop.io/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop/)
+For additional details about the installation process, refer to the [Setup guide](https://www.abcdesktop.io/install/{{ abcdesktop.latest_release }}/script/)
 
 ## Expose your service
 
-To make your abcdesktop instance publicly accessible, follow the steps described [here](https://www.abcdesktop.io/{{ abcdesktop.latest_release }}/gcp/gcp-gke-ingress-controller/)
+To make your abcdesktop instance publicly accessible, follow the steps described [here](https://www.abcdesktop.io/cloudproviders/{{ abcdesktop.latest_release }}/gcp/gcp-gke-ingress-controller/)
 
 ## Apply network policies 
 

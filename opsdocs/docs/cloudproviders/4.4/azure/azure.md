@@ -90,7 +90,7 @@ Download and extract the latest release automatically
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/install-{{ abcdesktop.latest_release }}.sh | bash
 ```
 
-To get more details about the install process, please read the [Setup guide](https://www.abcdesktop.io/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop/)
+To get more details about the install process, please read the [Setup guide](https://www.abcdesktop.io/install/{{ abcdesktop.latest_release }}/script/)
 
 
 ## Connect to your abcdesktop service 
@@ -120,7 +120,7 @@ Using the same terminal session, run the application install script:
 curl -sL https://raw.githubusercontent.com/abcdesktopio/conf/main/kubernetes/pullapps-{{ abcdesktop.latest_release }}.sh | bash
 ```
 
-To get more details about the install applications process, please read the [Setup applications guide](https://www.abcdesktop.io/{{ abcdesktop.latest_release }}/setup/kubernetes_abcdesktop_applications/)
+To get more details about the install applications process, please read the [Setup applications guide](https://www.abcdesktop.io/install/{{ abcdesktop.latest_release }}/install-applications/)
 
 Then reload the web page with the desktop of `Philip J. Fry`.
 New applications are now listed in the `plasmashell` dock.

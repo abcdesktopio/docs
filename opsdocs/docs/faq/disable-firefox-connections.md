@@ -8,7 +8,7 @@ tags:
   - RBI
   - security
   - privacy
-- firefox
+  - firefox
 ---
 
 # How to Disable Mozilla Firefox Automatic Connections at Startup

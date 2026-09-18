@@ -4,8 +4,8 @@ description: Procedure for applying changes to the abcdesktop.io od.config file 
 keywords: update configuration, od.config, ConfigMap, kubectl, rollout restart, abcdesktop, Kubernetes
 tags:
   - configuration
-- update
-- config
+  - update
+  - config
 ---
 
 # Editing the abcdesktop.io Configuration File

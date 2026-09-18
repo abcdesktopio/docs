@@ -1,6 +1,6 @@
 ---
 title: Ingress Controller FAQ | abcdesktop.io
-description: FAQ on configuring Kubernetes Ingress Controllers for abcdesktop.io: WebSocket keepalive, timeouts, proxy headers, and NGINX tuning.
+description: FAQ on configuring Kubernetes Ingress Controllers for abcdesktop.io WebSocket keepalive, timeouts, proxy headers, and NGINX tuning.
 keywords: ingress controller, NGINX, WebSocket, keepalive, timeout, proxy, Kubernetes, abcdesktop, FAQ
 tags:
   - faq
@@ -72,7 +72,7 @@ Restart the pyos pod:
 kubectl delete pods -l run=pyos-od -n abcdesktop
 ```
 
-For more information on WebSocket keepalive behavior, see [Keepalive in WebSockets](https://websockets.readthedocs.io/en/stable/topics/timeouts.html).
+For more information on WebSocket keepalive behavior, see [Keepalive in WebSockets](https://websockets.readthedocs.io/).
 
 Configuring connection timeouts helps prevent unnecessary network bandwidth consumption from idle sessions.
 
