@@ -21,7 +21,7 @@ tags:
 - A Kubernetes cluster in the `Ready` state
 - The `helm` command-line tool installed and configured to communicate with your cluster
 
-## Installing the Latest Release {{ abcdesktop.latest_release }}
+## Installing the Latest Release {{ abcdesktop.helm_latest_release }}
 
 ![install using helm](https://github.com/abcdesktopio/helm/releases/download/abcdesktop-{{ abcdesktop.helm_latest_release }}/install-using-helm.gif)
 
