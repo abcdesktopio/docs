@@ -10,7 +10,7 @@ tags:
   - fingerprint
 ---
 
-# Make your web browser secure again - How abcdesktop.io protects you from stealth fingerprints
+# How to protect your web browser from stealth fingerprinting
 
 ## The "silent cookie" that isn't a cookie
 
