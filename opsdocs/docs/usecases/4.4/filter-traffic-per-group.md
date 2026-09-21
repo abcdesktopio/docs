@@ -1,29 +1,61 @@
 ---
-title: Filter Pod Network Traffic by User Group | abcdesktop.io
-description: Configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership.
-keywords: network traffic, group, LDAP, NetworkPolicy, allowlist, default-deny, abcdesktop, Kubernetes, security, use case
+hide:
+  - navigation
+  - toc
+title: Network Access Control by User Group | abcdesktop.io
+description: Control network access per LDAP group using Kubernetes Cilium NetworkPolicy. Different departments, different access rights. DNS + FQDN filtering with zero configuration overhead.
+keywords: network access control, LDAP groups, Cilium NetworkPolicy, egress filtering, DNS filtering, FQDN, Kubernetes security, access control, zero-trust
 tags:
-  - use case
-  - NetworkPolicy
-  - LDAP
   - security
+  - network policy
+  - access control
+  - solutions
 ---
 
-# Filter traffic based on user's groups
+# Network Access Control by User Group
 
-## Prerequisites
+## The Problem: One-Size-Fits-All Network Access
 
-- a Kubernetes cluster with abcdesktop installed
-- use [cilium](https://cilium.io/) as network provider for your cluster
-- An authentication provider with groups support (`LDAP`, `ActiveDirectory` or `OAuth`), see [authentication section](../../advanced/4.4/authentication/overview.md) for more details. By default the docker-test-openldap provides groups support.
+Your organization has departments with different security requirements. Sales should access client CRMs. Accounting should access financial systems. IT should access everything—or nothing, depending on your policy.
 
-!!! note
-    In this example, we will use [docker-test-openldap](https://github.com/rroemhild/docker-test-openldap) which is a LDAP service
+With traditional VDI, you apply policies per machine or per role. With abcdesktop on Kubernetes, you can apply policies directly **per LDAP group**, tied to the user pod itself.
 
+---
 
-## Use case description
+## How It Works
 
-As an organization, you may have multiple departments—such as sales, accounting, and IT—each with different access requirements. For example, an IT employee should not have access to accounting documents. With abcdesktop, you can address these requirements by creating rules based on the groups to which users belong.
+<div class="grid cards" markdown>
+
+-   **User Groups → Pod Labels**  
+    LDAP groups automatically become Kubernetes pod labels. `shipcrew=true`, `adminstaff=true`, etc.
+
+-   **DNS + FQDN Filtering**  
+    Cilium allows `*.facebook.com` patterns, not just IPs. Maintenance is automatic.
+
+-   **Default-Deny Posture**  
+    All egress is blocked until explicitly allowed. No data leakage by accident.
+
+-   **Zero Client Config**  
+    Rules are applied on the server side. User has no way to bypass them.
+
+-   **Dynamic Scaling**  
+    Add a user to a group → pod gets labeled → policies apply automatically.
+
+-   **LDAP/AD/OAuth Ready**  
+    Works with any auth provider that supports groups.
+
+</div>
+
+---
+
+## Architecture Overview
+
+When a user logs in, here's what happens:
+
+1. **Authentication** — User provides credentials (LDAP, AD, OAuth)
+2. **Group Resolution** — System reads user's group memberships
+3. **Pod Creation** — Desktop pod is created **with group labels automatically applied**
+4. **Policy Enforcement** — Cilium reads the labels and applies network rules
 
 ```mermaid
 ---
@@ -38,44 +70,45 @@ sequenceDiagram
     Create participant LDAP
     Pyos->>LDAP: BIND LDAP_SEARCH Philip
     destroy LDAP
-    LDAP->>Pyos: dn, cn, group=shipcrew
+    LDAP->>Pyos: groups: [shipcrew]
     Note right of Kubernetes: Cilium Policy
-    Pyos->>Kubernetes: (option) Create user secrets
-    Kubernetes->>Pyos: (option) Secrets created
-    Pyos->>Router: User Philip JWT
-    Router->>Philip: User Philip JWT
-    Philip->>Router: Create Desktop (User Philip JWT)
-    Note over Router,Pyos: 2. Create a desktop
-    Router->>Pyos: Create Desktop (User Philip JWT)
-    Pyos->>Kubernetes: Create Philip POD YAML
-    Kubernetes->>Pyos: POD Created
+    Pyos->>Kubernetes: Create pod with labels: shipcrew=true
+    Kubernetes->>Pyos: Pod created
     Create participant PodPhilip
-    Note right of PodPhilip: shipcrew=true
-    Kubernetes->>PodPhilip:
-    destroy Kubernetes
-    Kubernetes->>Pyos: Philip Pod is Ready
-    destroy Pyos
-    Pyos->>Router: Desktop Philip JWT
-    Router->>Philip: Desktop Philip JWT
+    Note right of PodPhilip: label: shipcrew=true
+    Kubernetes->>Pyos: Pod ready
+    Pyos->>Router: Session established
     Router->>Philip: Connected
     Create participant Facebook
-    PodPhilip->>Facebook: Access Granted #10004;
-    destroy Facebook
+    PodPhilip->>Facebook: ✓ Allowed (Cilium policy matches)
     Facebook->>PodPhilip: OK
-    Philip-->PodPhilip: Established
     Create participant Youtube
-    PodPhilip--xYoutube: Drop #10006;
+    PodPhilip--xYoutube: ✗ Dropped (not in policy)
 ```
 
-## How does abcdesktop manage groups
+---
 
-Assume that users registered in your authentication system are already assigned to groups. In this example, `Philip J. Fry` (known as `fry`) and `Hubert J. Farnsworth` (known as `professor`) are members of the `ship_crew` and `admin_staff` groups, respectively (cf [https://github.com/rroemhild/docker-test-openldap](https://github.com/rroemhild/docker-test-openldap)).  
+## Prerequisites
 
-Once authenticated, the abcdesktop control plane reads the user's information and creates the user pod with the user's group memberships applied as pod labels.
+- Kubernetes cluster with abcdesktop installed
+- **Cilium** as your cluster network provider (for DNS/FQDN-based policies)
+- LDAP, Active Directory, or OAuth with group support
+- Basic knowledge of Kubernetes manifests
 
-```
+---
+
+## Step-by-Step Implementation
+
+### Step 1: Verify Groups Are Being Applied
+
+When a user logs in, abcdesktop automatically reads their LDAP/AD group memberships and **applies them as pod labels**.
+
+Check the user pods:
+
+```bash
 kubectl get pods -n abcdesktop
 ```
+
 ```
 NAME                            READY   STATUS    RESTARTS      AGE
 console-od-7f548d74fd-48rpv     1/1     Running   0             2d19h
@@ -90,85 +123,42 @@ router-od-867f5576dd-p9hj5      1/1     Running   0             2d19h
 speedtest-od-78cdbdd9c6-vphfl   1/1     Running   0             2d19h
 ```
 
-Run the `kubectl describe pod` command on each user pod to verify that the group labels are present.
+Describe a pod to see the group labels:
 
-??? note "show details"
-    ```
-    kubectl describe pod fry-3c9e8 -n abcdesktop 
-    ```
-    ```
-    [...]
-    Labels:         abcdesktop/role=desktop
-                    access_provider=planet
-                    access_providertype=ldap
-                    access_userid=fry
-                    access_username=philip-j.-fry
-                    broadcast_cookie=202f5459d1a35e54d149b75795f269796cdd78c520e4e412
-                    cn-ship_crew-ou-people-dc-planetexpress-dc-com=
-                    ipsource=10.0.2.216
-                    labeltrue=true
-                    netpol/ocuser=true
-                    pulseaudio_cookie=8d8cec68f8647887efdcd1bddb09db6a
-                    service_broadcast=29784
-                    service_ephemeral_container=enabled
-                    service_filer=29783
-                    service_graphical=6081
-                    service_init=enabled
-                    service_pod_application=enabled
-                    service_printerfile=29782
-                    service_sound=29788
-                    service_spawner=29786
-                    service_webshell=29781
-                    shipcrew=true
-                    type=x11server
-                    xauthkey=2d1afb247f156987dc65ae72bcc0f4
-    [...]
-    ```
+```bash
+kubectl describe pod fry-3c9e8 -n abcdesktop | grep -E "Labels:|shipcrew|adminstaff"
+```
 
-    ```
-    kubectl describe pod professor-0ecf4 -n abcdesktop 
-    ```
-    ```
-    [...]
-    Labels:         abcdesktop/role=desktop
-                    access_provider=planet
-                    access_providertype=ldap
-                    access_userid=professor
-                    access_username=hubert-j.-farnsworth
-                    adminstaff=true
-                    broadcast_cookie=315066f64d9c59b70ce5f0c7d86f10079b01a78cce44d8c7
-                    cn-admin_staff-ou-people-dc-planetexpress-dc-com=
-                    ipsource=10.0.1.22
-                    labeltrue=true
-                    netpol/ocuser=true
-                    pulseaudio_cookie=b8c096a27cad70c114ed81ab4c4da3a1
-                    service_broadcast=29784
-                    service_ephemeral_container=enabled
-                    service_filer=29783
-                    service_graphical=6081
-                    service_init=enabled
-                    service_pod_application=enabled
-                    service_printerfile=29782
-                    service_sound=29788
-                    service_spawner=29786
-                    service_webshell=29781
-                    type=x11server
-                    xauthkey=f7e335f429be8bd8e82c48df775fb0
-    [...]
-    ```
+Output:
 
-Confirm that the label `shipcrew=true` appears on the `fry` pod and `adminstaff=true` appears on the `professor` pod.
+```
+Labels:  shipcrew=true
+         access_userid=fry
+         access_username=philip-j.-fry
+         [... other labels ...]
+```
 
-## Create access rules based on groups
+```bash
+kubectl describe pod professor-0ecf4 -n abcdesktop | grep -E "Labels:|shipcrew|adminstaff"
+```
 
-To control incoming (ingress) and outgoing (egress) traffic for pods in Kubernetes, operators typically use [NetworkPolicies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). However, standard Kubernetes `NetworkPolicy` resources do not support filtering based on fully qualified domain names (FQDNs); they only support filtering by IP address or CIDR range. If the target service uses multiple IP addresses, each address must be listed explicitly in the policy—a significant maintenance burden, especially when addresses change dynamically. This is why Cilium is used as the cluster network provider: it supports [CiliumNetworkPolicy](https://docs.cilium.io/en/stable/network/kubernetes/policy/#ciliumnetworkpolicy) resources, which extend the standard Kubernetes network policy API with additional capabilities not yet available natively, such as DNS-based egress filtering rules.
+Output:
 
-!!! warning
-    `CiliumNetworkPolicy` resources operate on an allowlist (default-deny) basis. Once an egress rule is applied to an endpoint, all traffic not explicitly permitted is denied.
+```
+Labels:  adminstaff=true
+         access_userid=professor
+         access_username=hubert-j.-farnsworth
+         [... other labels ...]
+```
 
-In this example, users belonging to the `shipcrew` group are granted access to Facebook, and users in the `adminstaff` group are granted access to YouTube.
 
-Create a file named `netpol-allow-facebook-shipcrew.yaml` with the following content.
+The labels `shipcrew=true` on `fry` and `adminstaff=true` on `professor` proves the groups was read and applied. ✓
+
+---
+
+### Step 2: Create a Cilium Network Policy for Your First Group
+
+This example allows the `shipcrew` group to access Facebook:
 
 ```yaml
 apiVersion: cilium.io/v2
@@ -179,10 +169,9 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      shipcrew: "true" # Selector based on group label
+      shipcrew: "true"
   egress:
   - toEndpoints:
-    # Allow all DNS resolutions
     - matchLabels:
        "k8s:io.kubernetes.pod.namespace": kube-system
        "k8s:k8s-app": kube-dns
@@ -194,9 +183,8 @@ spec:
           dns:
             - matchPattern: "*"
   - toFQDNs:
-      # Add here all the FQDN patterns you want to grant access to
-      - matchPattern: "*.facebook.com"  
-      - matchPattern: "*.xx.fbcdn.net"
+      - matchPattern: "*.facebook.com"
+      - matchPattern: "*.fbcdn.net"
     toPorts:
       - ports:
          - port: "80"
@@ -205,26 +193,17 @@ spec:
            protocol: TCP
 ```
 
-Apply the policy to the cluster.
+Apply it:
 
-```
-kubectl apply -f netpol-allow-facebook-shipcrew.yaml -n abcdesktop
-ciliumnetworkpolicy.cilium.io/allow-facebook-shipcrew configured
-```
-
-Verify that the policy was created successfully.
-
-```
-kubectl get ciliumnetworkpolicy -n abcdesktop
-NAME                       AGE
-allow-facebook-shipcrew    27h
+```bash
+kubectl apply -f netpol-allow-facebook-shipcrew.yaml
 ```
 
-User pods belonging to the `shipcrew` group now have access to Facebook. All other external destinations remain blocked.
+---
 
-![ciliumnetpol-facebook-access](../../img/ciliumNetpol_access_facebook.png)
+### Step 3: Create a Second Policy for Another Group
 
-Create a file named `netpol-allow-youtube-adminstaff.yaml` with the following content.
+For the `adminstaff` group accessing YouTube:
 
 ```yaml
 apiVersion: cilium.io/v2
@@ -235,10 +214,9 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      adminstaff: "true" # Selector based on group label
+      adminstaff: "true"
   egress:
   - toEndpoints:
-    # Allow all DNS resolutions
     - matchLabels:
        "k8s:io.kubernetes.pod.namespace": kube-system
        "k8s:k8s-app": kube-dns
@@ -250,7 +228,6 @@ spec:
           dns:
             - matchPattern: "*"
   - toFQDNs:
-      # Add here all the FQDN patterns you want to grant access to
       - matchPattern: "*.youtube.com"
     toPorts:
       - ports:
@@ -260,24 +237,74 @@ spec:
            protocol: TCP
 ```
 
-Apply the policy to the cluster.
+Apply it:
 
-```
-kubectl apply -f netpol-allow-youtube-adminstaff.yaml -n abcdesktop
-ciliumnetworkpolicy.cilium.io/allow-youtube-adminstaff configured
+```bash
+kubectl apply -f netpol-allow-youtube-adminstaff.yaml
 ```
 
-Verify that the policy was created successfully.
+Verify both policies exist:
 
-```
+```bash
 kubectl get ciliumnetworkpolicy -n abcdesktop
-NAME                       AGE
-allow-facebook-shipcrew    27h
-allow-youtube-adminstaff   27h
 ```
 
-User pods belonging to the `adminstaff` group now have access to YouTube. All other external destinations remain blocked.
+Output:
 
-![ciliumnetpol-youtube-access](../../img/ciliumNetpol_access_youtube.png)
+```
+NAME                       AGE
+allow-facebook-shipcrew    2h
+allow-youtube-adminstaff   2h
+```
+---
 
-Network access is now controlled per user group using Cilium network policies.
+## Try it 
+
+Let's see if the policies has correctly been applied. Log on both pods an try to succesively connect to `www.youtube.com` and `www.facebook.com`.
+
+![cilium-allow-facebook](../../img/ciliumNetpol_access_facebook.png)
+![cilium-allow-youtube](../../img/ciliumNetpol_access_youtube.png)
+
+---
+
+## Why This Matters
+
+**Default-Deny**: Cilium policies operate on an allowlist basis. Once you apply a rule, all traffic NOT explicitly permitted is blocked.
+
+**No Client Bypass**: The filtering happens on the cluster network, not in the pod. Users can't disable it.
+
+**Scales Automatically**: When you add a user to a new group in LDAP, their pod gets the label at next login. Policies apply immediately.
+
+**DNS-Based Rules**: Instead of managing IP lists (which change constantly), you manage domain patterns. `*.facebook.com` covers all CDNs, all subdomains, automatically.
+
+---
+
+## Common Use Cases
+
+| Department | Access | Policy |
+|---|---|---|
+| Sales | CRM, Email, Google Meet | `*.salesforce.com`, `*.google.com`, `*.slack.com` |
+| Finance | ERP, Banking, Accounting | `*.sap.com`, `*.intacct.com`, internal-banking-server |
+| IT/Ops | All internal services | No policy (allow-all) or restricted list |
+| Customer Service | Helpdesk, Email, Docs | `*.zendesk.com`, `*.google.com` |
+
+---
+
+## Next Steps
+
+1. **Create your group structure in LDAP** — Organize teams by department or role
+2. **Test with a small pilot group** — Apply policies to one group, verify behavior
+3. **Scale across the organization** — Create policies for each department
+4. **Monitor and audit** — Use Cilium's built-in observability to see what's being blocked
+
+---
+
+## Resources
+
+- [Cilium Network Policies Documentation](https://docs.cilium.io/en/stable/network/kubernetes/policy/)
+- [abcdesktop Authentication Overview](../../advanced/4.4/authentication/overview.md)
+
+
+---
+
+**Back to Use Cases:** [Use Cases](../) | [Kubernetes VDI](../../solutions/kubernetes-vdi.md)
