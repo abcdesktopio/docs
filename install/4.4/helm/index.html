@@ -5569,7 +5569,7 @@ kubectl<span class="w"> </span>port-forward<span class="w"> </span><span class="
 <h3 id="step-2-apply-the-custom-values-file">Step 2: Apply the Custom Values File</h3>
 <p>Install or upgrade the chart with your custom values file:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>my-abcdesktop<span class="w"> </span>abcdesktop/abcdesktop<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4.13<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--create-namespace<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-f<span class="w"> </span>abcdesktop-values.yaml
@@ -5577,7 +5577,7 @@ kubectl<span class="w"> </span>port-forward<span class="w"> </span><span class="
 <h2 id="upgrading-an-existing-helm-release">Upgrading an Existing Helm Release</h2>
 <p>To upgrade both the chart version and configuration values of an existing release:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>my-abcdesktop<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4.13<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-f<span class="w"> </span>abcdesktop-values<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span>
 </code></pre></div>
