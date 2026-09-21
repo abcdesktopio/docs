@@ -149,7 +149,7 @@ Install or upgrade the chart with your custom values file:
 
 ~~~ bash
 helm install my-abcdesktop abcdesktop/abcdesktop \
-    --version {{ abcdesktop.latest_release }} \
+    --version {{ abcdesktop.helm_latest_release }} \
     --create-namespace \
     -n ${NAMESPACE} \
     -f abcdesktop-values.yaml
@@ -161,7 +161,7 @@ To upgrade both the chart version and configuration values of an existing releas
 
 ~~~bash
 helm upgrade my-abcdesktop \
-    --version {{ abcdesktop.latest_release }} \
+    --version {{ abcdesktop.helm_latest_release }} \
     -f abcdesktop-values \
     -n ${NAMESPACE}
 ~~~
