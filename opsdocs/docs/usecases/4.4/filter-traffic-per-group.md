@@ -1,7 +1,4 @@
 ---
-hide:
-  - navigation
-  - toc
 title: Network Access Control by User Group | abcdesktop.io
 description: Control network access per LDAP group using Kubernetes Cilium NetworkPolicy. Different departments, different access rights. DNS + FQDN filtering with zero configuration overhead.
 keywords: network access control, LDAP groups, Cilium NetworkPolicy, egress filtering, DNS filtering, FQDN, Kubernetes security, access control, zero-trust
@@ -70,20 +67,33 @@ sequenceDiagram
     Create participant LDAP
     Pyos->>LDAP: BIND LDAP_SEARCH Philip
     destroy LDAP
-    LDAP->>Pyos: groups: [shipcrew]
+    LDAP->>Pyos: dn, cn, group=shipcrew
     Note right of Kubernetes: Cilium Policy
-    Pyos->>Kubernetes: Create pod with labels: shipcrew=true
-    Kubernetes->>Pyos: Pod created
+    Pyos->>Kubernetes: (option) Create user secrets
+    Kubernetes->>Pyos: (option) Secrets created
+    Pyos->>Router: User Philip JWT
+    Router->>Philip: User Philip JWT
+    Philip->>Router: Create Desktop (User Philip JWT)
+    Note over Router,Pyos: 2. Create a desktop
+    Router->>Pyos: Create Desktop (User Philip JWT)
+    Pyos->>Kubernetes: Create Philip POD YAML
+    Kubernetes->>Pyos: POD Created
     Create participant PodPhilip
-    Note right of PodPhilip: label: shipcrew=true
-    Kubernetes->>Pyos: Pod ready
-    Pyos->>Router: Session established
+    Note right of PodPhilip: shipcrew=true
+    Kubernetes->>PodPhilip:
+    destroy Kubernetes
+    Kubernetes->>Pyos: Philip Pod is Ready
+    destroy Pyos
+    Pyos->>Router: Desktop Philip JWT
+    Router->>Philip: Desktop Philip JWT
     Router->>Philip: Connected
     Create participant Facebook
-    PodPhilip->>Facebook: ✓ Allowed (Cilium policy matches)
+    PodPhilip->>Facebook: Access Granted #10004;
+    destroy Facebook
     Facebook->>PodPhilip: OK
+    Philip-->PodPhilip: Established
     Create participant Youtube
-    PodPhilip--xYoutube: ✗ Dropped (not in policy)
+    PodPhilip--xYoutube: Drop #10006;
 ```
 
 ---
@@ -256,6 +266,7 @@ NAME                       AGE
 allow-facebook-shipcrew    2h
 allow-youtube-adminstaff   2h
 ```
+
 ---
 
 ## Try it 
