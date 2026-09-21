@@ -273,7 +273,10 @@ allow-youtube-adminstaff   2h
 
 Let's see if the policies has correctly been applied. Log on both pods an try to succesively connect to `www.youtube.com` and `www.facebook.com`.
 
+- First test : Facebook allowed, rest is denied :
 ![cilium-allow-facebook](../../img/ciliumNetpol_access_facebook.png)
+
+- Second test : Youtube allowed, rest is denied :
 ![cilium-allow-youtube](../../img/ciliumNetpol_access_youtube.png)
 
 ---
