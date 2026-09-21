@@ -534,9 +534,7 @@
           
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -4389,17 +4387,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#name-age-allow-facebook-shipcrew-2h-allow-youtube-adminstaff-2h" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        NAME AGE allow-facebook-shipcrew 2h allow-youtube-adminstaff 2h
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#try-it" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5238,9 +5225,7 @@
             
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -5353,17 +5338,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#name-age-allow-facebook-shipcrew-2h-allow-youtube-adminstaff-2h" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        NAME AGE allow-facebook-shipcrew 2h allow-youtube-adminstaff 2h
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#try-it" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5432,8 +5406,6 @@
               <article class="md-content__inner md-typeset">
                 
                   
-  
-
 
   <nav class="md-tags" >
     
@@ -5532,20 +5504,33 @@ sequenceDiagram
     Create participant LDAP
     Pyos-&gt;&gt;LDAP: BIND LDAP_SEARCH Philip
     destroy LDAP
-    LDAP-&gt;&gt;Pyos: groups: [shipcrew]
+    LDAP-&gt;&gt;Pyos: dn, cn, group=shipcrew
     Note right of Kubernetes: Cilium Policy
-    Pyos-&gt;&gt;Kubernetes: Create pod with labels: shipcrew=true
-    Kubernetes-&gt;&gt;Pyos: Pod created
+    Pyos-&gt;&gt;Kubernetes: (option) Create user secrets
+    Kubernetes-&gt;&gt;Pyos: (option) Secrets created
+    Pyos-&gt;&gt;Router: User Philip JWT
+    Router-&gt;&gt;Philip: User Philip JWT
+    Philip-&gt;&gt;Router: Create Desktop (User Philip JWT)
+    Note over Router,Pyos: 2. Create a desktop
+    Router-&gt;&gt;Pyos: Create Desktop (User Philip JWT)
+    Pyos-&gt;&gt;Kubernetes: Create Philip POD YAML
+    Kubernetes-&gt;&gt;Pyos: POD Created
     Create participant PodPhilip
-    Note right of PodPhilip: label: shipcrew=true
-    Kubernetes-&gt;&gt;Pyos: Pod ready
-    Pyos-&gt;&gt;Router: Session established
+    Note right of PodPhilip: shipcrew=true
+    Kubernetes-&gt;&gt;PodPhilip:
+    destroy Kubernetes
+    Kubernetes-&gt;&gt;Pyos: Philip Pod is Ready
+    destroy Pyos
+    Pyos-&gt;&gt;Router: Desktop Philip JWT
+    Router-&gt;&gt;Philip: Desktop Philip JWT
     Router-&gt;&gt;Philip: Connected
     Create participant Facebook
-    PodPhilip-&gt;&gt;Facebook: ✓ Allowed (Cilium policy matches)
+    PodPhilip-&gt;&gt;Facebook: Access Granted #10004;
+    destroy Facebook
     Facebook-&gt;&gt;PodPhilip: OK
+    Philip--&gt;PodPhilip: Established
     Create participant Youtube
-    PodPhilip--xYoutube: ✗ Dropped (not in policy)</code></pre>
+    PodPhilip--xYoutube: Drop #10006;</code></pre>
 <hr />
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
@@ -5668,10 +5653,11 @@ speedtest-od-78cdbdd9c6-vphfl   1/1     Running   0             2d19h
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>ciliumnetworkpolicy<span class="w"> </span>-n<span class="w"> </span>abcdesktop
 </code></pre></div>
 <p>Output:</p>
-<h2 id="name-age-allow-facebook-shipcrew-2h-allow-youtube-adminstaff-2h"><div class="highlight"><pre><span></span><code>NAME                       AGE
+<div class="highlight"><pre><span></span><code>NAME                       AGE
 allow-facebook-shipcrew    2h
 allow-youtube-adminstaff   2h
-</code></pre></div></h2>
+</code></pre></div>
+<hr />
 <h2 id="try-it">Try it</h2>
 <p>Let's see if the policies has correctly been applied. Log on both pods an try to succesively connect to <code>www.youtube.com</code> and <code>www.facebook.com</code>.</p>
 <p><img alt="cilium-allow-facebook" src="../../../img/ciliumNetpol_access_facebook.png" />
@@ -5745,8 +5731,6 @@ allow-youtube-adminstaff   2h
 
   
 
-
-  
 
 
 
