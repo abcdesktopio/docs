@@ -6,34 +6,34 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Configure a DigitalOcean Load Balancer to expose the abcdesktop.io HTTP router with HTTPS termination, DNS, and TLS certificate management.">
+        <meta name="description" content="Real-world use cases, deployment guides, and configuration examples for abcdesktop on Kubernetes. Network access control, authentication, advanced networking.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
       
       
-        <link rel="canonical" href="https://www.abcdesktop.io/cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/">
+        <link rel="canonical" href="https://www.abcdesktop.io/usecases/4.4/overview/">
       
       
-        <link rel="prev" href="../digitalocean/">
+        <link rel="prev" href="../../../contribute/4.4/userpod/filer/">
       
       
-        <link rel="next" href="../digitalocean-nginx-ingress-controller/">
+        <link rel="next" href="../filter-traffic-per-group/">
       
       
         
       
       
-      <link rel="icon" href="../../../../img/abcdesktop128x128.ico">
+      <link rel="icon" href="../../../img/abcdesktop128x128.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Expose abcdesktop.io via DigitalOcean Load Balancer | abcdesktop.io - www.abcdesktop.io</title>
+        <title>abcdesktop Use Cases & Deployment Guides | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -52,11 +52,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../../css/custom-admonition.css">
+      <link rel="stylesheet" href="../../../css/custom-admonition.css">
     
-      <link rel="stylesheet" href="../../../../css/drawio-darkmode.css">
+      <link rel="stylesheet" href="../../../css/drawio-darkmode.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -95,12 +95,12 @@
   <meta property="og:locale"    content="en_US" />
   <meta property="og:type"      content="website" />
   <meta property="og:site_name" content="abcdesktop.io" />
-  <meta property="og:url"       content="https://www.abcdesktop.io/cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" />
+  <meta property="og:url"       content="https://www.abcdesktop.io/usecases/4.4/overview/" />
   
-  <meta property="og:title"       content="Expose abcdesktop.io via DigitalOcean Load Balancer | abcdesktop.io" />
+  <meta property="og:title"       content="abcdesktop Use Cases & Deployment Guides | abcdesktop.io" />
   
   
-  <meta property="og:description" content="Configure a DigitalOcean Load Balancer to expose the abcdesktop.io HTTP router with HTTPS termination, DNS, and TLS certificate management." />
+  <meta property="og:description" content="Real-world use cases, deployment guides, and configuration examples for abcdesktop on Kubernetes. Network access control, authentication, advanced networking." />
   
 
   
@@ -117,16 +117,16 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Expose abcdesktop.io via DigitalOcean Load Balancer | abcdesktop.io" />
+  <meta name="twitter:title"       content="abcdesktop Use Cases & Deployment Guides | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="Configure a DigitalOcean Load Balancer to expose the abcdesktop.io HTTP router with HTTPS termination, DNS, and TLS certificate management." />
+  <meta name="twitter:description" content="Real-world use cases, deployment guides, and configuration examples for abcdesktop on Kubernetes. Network access control, authentication, advanced networking." />
   
 
   
-  <link rel="alternate" hreflang="en"    href="https://www.abcdesktop.io/cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" />
-  <link rel="alternate" hreflang="en-US" href="https://www.abcdesktop.io/cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" />
-  <link rel="alternate" hreflang="x-default" href="https://www.abcdesktop.io/cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" />
+  <link rel="alternate" hreflang="en"    href="https://www.abcdesktop.io/usecases/4.4/overview/" />
+  <link rel="alternate" hreflang="en-US" href="https://www.abcdesktop.io/usecases/4.4/overview/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.abcdesktop.io/usecases/4.4/overview/" />
 
   
   <script type="application/ld+json">
@@ -198,17 +198,17 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Expose abcdesktop.io via DigitalOcean Load Balancer | abcdesktop.io - www.abcdesktop.io" />
-<meta property="og:description" content="Configure a DigitalOcean Load Balancer to expose the abcdesktop.io HTTP router with HTTPS termination, DNS, and TLS certificate management." />
-<meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/cloudproviders/4.4/digitalocean/digitalocean-loadbalancer.png" />
+<meta property="og:title" content="abcdesktop Use Cases & Deployment Guides | abcdesktop.io - www.abcdesktop.io" />
+<meta property="og:description" content="Real-world use cases, deployment guides, and configuration examples for abcdesktop on Kubernetes. Network access control, authentication, advanced networking." />
+<meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/usecases/4.4/overview.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://www.abcdesktop.io/cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" />
+<meta property="og:url" content="https://www.abcdesktop.io/usecases/4.4/overview/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Expose abcdesktop.io via DigitalOcean Load Balancer | abcdesktop.io - www.abcdesktop.io" />
-<meta property="twitter:description" content="Configure a DigitalOcean Load Balancer to expose the abcdesktop.io HTTP router with HTTPS termination, DNS, and TLS certificate management." />
-<meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/cloudproviders/4.4/digitalocean/digitalocean-loadbalancer.png" />
+<meta property="twitter:title" content="abcdesktop Use Cases & Deployment Guides | abcdesktop.io - www.abcdesktop.io" />
+<meta property="twitter:description" content="Real-world use cases, deployment guides, and configuration examples for abcdesktop on Kubernetes. Network access control, authentication, advanced networking." />
+<meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/usecases/4.4/overview.png" />
 </head>
   
   
@@ -221,7 +221,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#publish-your-website-as-a-public-secured-service" class="md-skip">
+        <a href="#use-cases-deployment-guides" class="md-skip">
           Skip to content
         </a>
       
@@ -235,9 +235,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+    <a href="../../.." title="www.abcdesktop.io" class="md-header__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
       
-  <img src="../../../../img/abcdesktop.svg" alt="logo">
+  <img src="../../../img/abcdesktop.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -254,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Expose abcdesktop.io via DigitalOcean Load Balancer | abcdesktop.io
+              abcdesktop Use Cases & Deployment Guides | abcdesktop.io
             
           </span>
         </div>
@@ -339,7 +339,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -360,7 +360,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../requirements/" class="md-tabs__link">
+        <a href="../../../requirements/" class="md-tabs__link">
           
   
   
@@ -376,8 +376,6 @@
   
   
   
-    
-  
   
     
     
@@ -385,13 +383,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../../architecture/overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../architecture/overview/" class="md-tabs__link">
           
   
   
@@ -414,7 +410,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../contribute/overview/" class="md-tabs__link">
+        <a href="../../../contribute/overview/" class="md-tabs__link">
           
   
   
@@ -430,11 +426,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../../usecases/4.4/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -454,7 +452,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../solutions/kubernetes-vdi/" class="md-tabs__link">
+        <a href="../../../solutions/kubernetes-vdi/" class="md-tabs__link">
           
   
   
@@ -474,7 +472,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../compare/overview/" class="md-tabs__link">
+        <a href="../../../compare/overview/" class="md-tabs__link">
           
   
   
@@ -494,7 +492,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../faq/faq/" class="md-tabs__link">
+        <a href="../../../faq/faq/" class="md-tabs__link">
           
   
   
@@ -512,7 +510,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../ebook/ebook-abcdesktop-en.pdf" class="md-tabs__link">
+      <a href="../../../ebook/ebook-abcdesktop-en.pdf" class="md-tabs__link">
         
   
   
@@ -547,9 +545,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
+    <a href="../../.." title="www.abcdesktop.io" class="md-nav__button md-logo" aria-label="www.abcdesktop.io" data-md-component="logo">
       
-  <img src="../../../../img/abcdesktop.svg" alt="logo">
+  <img src="../../../img/abcdesktop.svg" alt="logo">
 
     </a>
     www.abcdesktop.io
@@ -576,7 +574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -653,7 +651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../requirements/" class="md-nav__link">
+      <a href="../../../requirements/" class="md-nav__link">
         
   
   
@@ -731,7 +729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/script/" class="md-nav__link">
+      <a href="../../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -759,7 +757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -845,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/applicationoverview/" class="md-nav__link">
+      <a href="../../../install/4.4/applicationoverview/" class="md-nav__link">
         
   
   
@@ -873,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/install-applications/" class="md-nav__link">
+      <a href="../../../install/4.4/install-applications/" class="md-nav__link">
         
   
   
@@ -901,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/applicationwithconsole/" class="md-nav__link">
+      <a href="../../../install/4.4/applicationwithconsole/" class="md-nav__link">
         
   
   
@@ -987,7 +985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../uninstall/4.4/script/" class="md-nav__link">
+      <a href="../../../uninstall/4.4/script/" class="md-nav__link">
         
   
   
@@ -1015,7 +1013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../uninstall/4.4/helm/" class="md-nav__link">
+      <a href="../../../uninstall/4.4/helm/" class="md-nav__link">
         
   
   
@@ -1055,29 +1053,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -1095,7 +1088,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1163,7 +1156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/overview/" class="md-nav__link">
+      <a href="../../../architecture/overview/" class="md-nav__link">
         
   
   
@@ -1249,7 +1242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
+      <a href="../../../advanced/4.4/install/onpremises/kind/" class="md-nav__link">
         
   
   
@@ -1277,7 +1270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/script/" class="md-nav__link">
+      <a href="../../../install/4.4/script/" class="md-nav__link">
         
   
   
@@ -1305,7 +1298,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../install/4.4/helm/" class="md-nav__link">
+      <a href="../../../install/4.4/helm/" class="md-nav__link">
         
   
   
@@ -1333,7 +1326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
+      <a href="../../../advanced/4.4/install/onpremises/minikube/" class="md-nav__link">
         
   
   
@@ -1366,8 +1359,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1378,11 +1369,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
         
           
           <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
@@ -1403,7 +1394,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1471,7 +1462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../aws/aws/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/aws/aws/" class="md-nav__link">
         
   
   
@@ -1499,7 +1490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../aws/aws-loadbalancer/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/aws/aws-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1527,7 +1518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../aws/aws-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/aws/aws-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1613,7 +1604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure/azure/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/azure/azure/" class="md-nav__link">
         
   
   
@@ -1641,7 +1632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure/azure-loadbalancer/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/azure/azure-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1669,7 +1660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure/azure-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/azure/azure-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -1702,8 +1693,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1714,11 +1703,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" >
         
           
           <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
@@ -1739,7 +1728,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_3_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1757,7 +1746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../digitalocean/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean/" class="md-nav__link">
         
   
   
@@ -1782,37 +1771,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Expose using a load balancer
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean-loadbalancer/" class="md-nav__link">
         
   
   
@@ -1828,142 +1790,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Requirements
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-new-http-router-service-yaml-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create a new http-router service yaml file
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-your-dns-zone-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Update your DNS zone file
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Update your DNS zone file">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-new-record" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create new record
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#obtain-a-certificate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Obtain a Certificate
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-secret-for-the-x509-certificate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create a Secret for the X.509 Certificate
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-http-router-configmap-to-use-the-new-http-router-certificat-secret" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Update http-router ConfigMap to use the new http-router-certificat secret
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-deployment-http-router" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Update deployment http-router
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reach-your-website-using-https-protocol" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reach your website using https protocol
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1976,7 +1802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../digitalocean-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/digitalocean/digitalocean-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -2062,7 +1888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../gcp/gcp/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/gcp/gcp/" class="md-nav__link">
         
   
   
@@ -2090,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../gcp/gcp-loadbalancer/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/gcp/gcp-loadbalancer/" class="md-nav__link">
         
   
   
@@ -2118,7 +1944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../gcp/gcp-gke-ingress-controller/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/gcp/gcp-gke-ingress-controller/" class="md-nav__link">
         
   
   
@@ -2204,7 +2030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ovh/ovh/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/ovh/ovh/" class="md-nav__link">
         
   
   
@@ -2232,7 +2058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ovh/ovh-loadbalancer/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/ovh/ovh-loadbalancer/" class="md-nav__link">
         
   
   
@@ -2260,7 +2086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
+      <a href="../../../cloudproviders/4.4/ovh/ovh-nginx-ingress-controller/" class="md-nav__link">
         
   
   
@@ -2354,7 +2180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/simplestapplicationxeyes/" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/simplestapplicationxeyes/" class="md-nav__link">
         
   
   
@@ -2382,7 +2208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/simplestapplicationxedit/" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/simplestapplicationxedit/" class="md-nav__link">
         
   
   
@@ -2410,7 +2236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/simplestapplicationchromium/" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/simplestapplicationchromium/" class="md-nav__link">
         
   
   
@@ -2438,7 +2264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/templateapplication/" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/templateapplication/" class="md-nav__link">
         
   
   
@@ -2466,7 +2292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/applications/templateanotherapplication/" class="md-nav__link">
+      <a href="../../../advanced/4.4/applications/templateanotherapplication/" class="md-nav__link">
         
   
   
@@ -2552,7 +2378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/overview/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/overview/" class="md-nav__link">
         
   
   
@@ -2580,7 +2406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/updateconfiguration/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/updateconfiguration/" class="md-nav__link">
         
   
   
@@ -2658,7 +2484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/overview/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/overview/" class="md-nav__link">
         
   
   
@@ -2686,7 +2512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authexternal/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authexternal/" class="md-nav__link">
         
   
   
@@ -2764,7 +2590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authexplicit-ldap/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authexplicit-ldap/" class="md-nav__link">
         
   
   
@@ -2792,7 +2618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authexplicit-activedirectory/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authexplicit-activedirectory/" class="md-nav__link">
         
   
   
@@ -2820,7 +2646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authmetaexplicit/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authmetaexplicit/" class="md-nav__link">
         
   
   
@@ -2906,7 +2732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authimplicit/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authimplicit/" class="md-nav__link">
         
   
   
@@ -2934,7 +2760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/logmein/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/logmein/" class="md-nav__link">
         
   
   
@@ -2978,7 +2804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/authentication/authentification-rules/" class="md-nav__link">
+      <a href="../../../advanced/4.4/authentication/authentification-rules/" class="md-nav__link">
         
   
   
@@ -3056,7 +2882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/overview/" class="md-nav__link">
+      <a href="../../../advanced/4.4/desktop/overview/" class="md-nav__link">
         
   
   
@@ -3084,7 +2910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/executeclasses/" class="md-nav__link">
+      <a href="../../../advanced/4.4/desktop/executeclasses/" class="md-nav__link">
         
   
   
@@ -3112,7 +2938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/pod/" class="md-nav__link">
+      <a href="../../../advanced/4.4/desktop/pod/" class="md-nav__link">
         
   
   
@@ -3140,7 +2966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/desktop/policies/" class="md-nav__link">
+      <a href="../../../advanced/4.4/desktop/policies/" class="md-nav__link">
         
   
   
@@ -3226,7 +3052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/overview/" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/overview/" class="md-nav__link">
         
   
   
@@ -3254,7 +3080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/nfs/" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/nfs/" class="md-nav__link">
         
   
   
@@ -3282,7 +3108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/hostpath/" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/hostpath/" class="md-nav__link">
         
   
   
@@ -3310,7 +3136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/cache/" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/cache/" class="md-nav__link">
         
   
   
@@ -3338,7 +3164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/storage/sharedvolumes/" class="md-nav__link">
+      <a href="../../../advanced/4.4/storage/sharedvolumes/" class="md-nav__link">
         
   
   
@@ -3374,7 +3200,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/garbagecollector/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/garbagecollector/" class="md-nav__link">
         
   
   
@@ -3402,7 +3228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/share_pod_GPU_access_to_ephemeral_container_with_abcdesktop/" class="md-nav__link">
         
   
   
@@ -3430,7 +3256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/welcome/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/welcome/" class="md-nav__link">
         
   
   
@@ -3458,7 +3284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/customfrontend/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/customfrontend/" class="md-nav__link">
         
   
   
@@ -3486,7 +3312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/configure/logging/" class="md-nav__link">
+      <a href="../../../advanced/4.4/configure/logging/" class="md-nav__link">
         
   
   
@@ -3622,7 +3448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/controllers/controllers/" class="md-nav__link">
+      <a href="../../../advanced/4.4/controllers/controllers/" class="md-nav__link">
         
   
   
@@ -3708,7 +3534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
+      <a href="../../../advanced/4.4/networkpolicy/netpol/" class="md-nav__link">
         
   
   
@@ -3736,7 +3562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
+      <a href="../../../advanced/4.4/networkpolicy/install/" class="md-nav__link">
         
   
   
@@ -3764,7 +3590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
+      <a href="../../../advanced/4.4/networkpolicy/uninstall/" class="md-nav__link">
         
   
   
@@ -3865,7 +3691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/overview/" class="md-nav__link">
+      <a href="../../../contribute/overview/" class="md-nav__link">
         
   
   
@@ -3893,7 +3719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/authors/" class="md-nav__link">
+      <a href="../../../contribute/authors/" class="md-nav__link">
         
   
   
@@ -3971,7 +3797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/keygenerator/" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/keygenerator/" class="md-nav__link">
         
   
   
@@ -3999,7 +3825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/mongo/" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/mongo/" class="md-nav__link">
         
   
   
@@ -4027,7 +3853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/console/" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/console/" class="md-nav__link">
         
   
   
@@ -4055,7 +3881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/pyos/" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/pyos/" class="md-nav__link">
         
   
   
@@ -4083,7 +3909,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/router/" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/router/" class="md-nav__link">
         
   
   
@@ -4111,7 +3937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/services/webmodules/" class="md-nav__link">
+      <a href="../../../contribute/4.4/services/webmodules/" class="md-nav__link">
         
   
   
@@ -4197,7 +4023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/graphical/" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/graphical/" class="md-nav__link">
         
   
   
@@ -4225,7 +4051,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/sound/" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/sound/" class="md-nav__link">
         
   
   
@@ -4253,7 +4079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/cups/" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/cups/" class="md-nav__link">
         
   
   
@@ -4281,7 +4107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contribute/4.4/userpod/filer/" class="md-nav__link">
+      <a href="../../../contribute/4.4/userpod/filer/" class="md-nav__link">
         
   
   
@@ -4321,24 +4147,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -4356,7 +4187,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -4371,10 +4202,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/overview/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -4390,6 +4248,109 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-deploy-abcdesktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Deploy abcdesktop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-choose-your-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Choose Your Use Case
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-follow-the-step-by-step-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Follow the Step-by-Step Guides
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-makes-these-guides-different" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Makes These Guides Different
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4402,7 +4363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/filter-traffic-per-group/" class="md-nav__link">
+      <a href="../filter-traffic-per-group/" class="md-nav__link">
         
   
   
@@ -4430,7 +4391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/configure-keycloak/" class="md-nav__link">
+      <a href="../configure-keycloak/" class="md-nav__link">
         
   
   
@@ -4458,7 +4419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/multus-user-pod/" class="md-nav__link">
+      <a href="../multus-user-pod/" class="md-nav__link">
         
   
   
@@ -4536,7 +4497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/overview/" class="md-nav__link">
+      <a href="../deploy-demo-gcp-abcdesktop-com/overview/" class="md-nav__link">
         
   
   
@@ -4564,7 +4525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/configure-kubernetes-cluster-gcp/" class="md-nav__link">
+      <a href="../deploy-demo-gcp-abcdesktop-com/configure-kubernetes-cluster-gcp/" class="md-nav__link">
         
   
   
@@ -4592,7 +4553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/install-demo/" class="md-nav__link">
+      <a href="../deploy-demo-gcp-abcdesktop-com/install-demo/" class="md-nav__link">
         
   
   
@@ -4620,7 +4581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../usecases/4.4/deploy-demo-gcp-abcdesktop-com/automate-with-scripts/" class="md-nav__link">
+      <a href="../deploy-demo-gcp-abcdesktop-com/automate-with-scripts/" class="md-nav__link">
         
   
   
@@ -4713,7 +4674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../solutions/kubernetes-vdi/" class="md-nav__link">
+      <a href="../../../solutions/kubernetes-vdi/" class="md-nav__link">
         
   
   
@@ -4741,7 +4702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../solutions/remote-browser-isolation/" class="md-nav__link">
+      <a href="../../../solutions/remote-browser-isolation/" class="md-nav__link">
         
   
   
@@ -4769,7 +4730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../solutions/self-hosted-vdi/" class="md-nav__link">
+      <a href="../../../solutions/self-hosted-vdi/" class="md-nav__link">
         
   
   
@@ -4797,7 +4758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../solutions/secure-web-browser/" class="md-nav__link">
+      <a href="../../../solutions/secure-web-browser/" class="md-nav__link">
         
   
   
@@ -4882,7 +4843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../compare/overview/" class="md-nav__link">
+      <a href="../../../compare/overview/" class="md-nav__link">
         
   
   
@@ -4910,7 +4871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../compare/abcdesktop-vs-citrix/" class="md-nav__link">
+      <a href="../../../compare/abcdesktop-vs-citrix/" class="md-nav__link">
         
   
   
@@ -4938,7 +4899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../compare/abcdesktop-vs-guacamole/" class="md-nav__link">
+      <a href="../../../compare/abcdesktop-vs-guacamole/" class="md-nav__link">
         
   
   
@@ -4966,7 +4927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../compare/abcdesktop-vs-kasm/" class="md-nav__link">
+      <a href="../../../compare/abcdesktop-vs-kasm/" class="md-nav__link">
         
   
   
@@ -5051,7 +5012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/faq/" class="md-nav__link">
+      <a href="../../../faq/faq/" class="md-nav__link">
         
   
   
@@ -5079,7 +5040,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/adopters/" class="md-nav__link">
+      <a href="../../../faq/adopters/" class="md-nav__link">
         
   
   
@@ -5107,7 +5068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/release/" class="md-nav__link">
+      <a href="../../../faq/release/" class="md-nav__link">
         
   
   
@@ -5135,7 +5096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../faq/webbrowser/" class="md-nav__link">
+      <a href="../../../faq/webbrowser/" class="md-nav__link">
         
   
   
@@ -5170,7 +5131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ebook/ebook-abcdesktop-en.pdf" class="md-nav__link">
+      <a href="../../../ebook/ebook-abcdesktop-en.pdf" class="md-nav__link">
         
   
   
@@ -5217,10 +5178,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#common-use-cases" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Requirements
+        Common Use Cases
       
     </span>
   </a>
@@ -5228,44 +5189,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#quick-start-guide" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        Quick Start Guide
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-new-http-router-service-yaml-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create a new http-router service yaml file
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-your-dns-zone-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Update your DNS zone file
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Update your DNS zone file">
+    <nav class="md-nav" aria-label="Quick Start Guide">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-new-record" class="md-nav__link">
+  <a href="#1-deploy-abcdesktop" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create new record
+        1. Deploy abcdesktop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-choose-your-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Choose Your Use Case
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-follow-the-step-by-step-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Follow the Step-by-Step Guides
       
     </span>
   </a>
@@ -5278,10 +5239,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#obtain-a-certificate" class="md-nav__link">
+  <a href="#what-makes-these-guides-different" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Obtain a Certificate
+        What Makes These Guides Different
       
     </span>
   </a>
@@ -5289,43 +5250,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-a-secret-for-the-x509-certificate" class="md-nav__link">
+  <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create a Secret for the X.509 Certificate
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-http-router-configmap-to-use-the-new-http-router-certificat-secret" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Update http-router ConfigMap to use the new http-router-certificat secret
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-deployment-http-router" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Update deployment http-router
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reach-your-website-using-https-protocol" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reach your website using https protocol
+        Next Steps
       
     </span>
   </a>
@@ -5353,63 +5281,28 @@
       
       
       
-        <span class="md-tag">DigitalOcean</span>
+        <span class="md-tag">deployment</span>
       
     
       
       
       
       
-        <span class="md-tag">HTTPS</span>
+        <span class="md-tag">guides</span>
       
     
       
       
       
       
-        <span class="md-tag">TLS</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">cloud</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">digitalocean</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">install</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">load balancer</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">loadbalancer</span>
+        <span class="md-tag">use cases</span>
       
     
   </nav>
 
 
   
-    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/cloudproviders/4.4/digitalocean/digitalocean-loadbalancer.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/usecases/4.4/overview.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -5417,195 +5310,92 @@
   
 
 
-<h1 id="publish-your-website-as-a-public-secured-service">Publish your website as a public secured service</h1>
-<h2 id="requirements">Requirements</h2>
+<h1 id="use-cases-deployment-guides">Use Cases &amp; Deployment Guides</h1>
+<p>Learn how to configure and deploy abcdesktop for specific real-world scenarios. From network access control per group to advanced authentication and networking setups.</p>
+<p><a class="md-button md-button--primary" href="https://demo.gcp.abcdesktop.com"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M19.22 4c.28 0 .53 0 .74.05.17 1.39-.02 4.25-3.3 7.53-1.7 1.71-3.73 3.02-6.01 3.89l-2.15-2.1c.92-2.31 2.23-4.34 3.92-6.03C15.18 4.58 17.64 4 19.22 4m0-2c-1.98 0-4.98.69-8.22 3.93-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.38.38.89.61 1.42.61.23 0 .47-.06.7-.15A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61S20.7 2 19.22 2m-4.68 7.46c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg></span> <strong>Try it now — Live Demo</strong></a></p>
+<hr />
+<h2 id="common-use-cases">Common Use Cases</h2>
+<div class="grid cards">
 <ul>
-<li>Read the previous chapter <a href="../digitalocean/">Deploy abcdesktop on DigitalOcean with Kubernetes</a> </li>
-<li>a DigitalOcean account</li>
-<li>your own internet domain</li>
-<li><code>doctl</code> command line interface <a href="https://docs.digitalocean.com/reference/doctl/how-to/install/">doctl cli</a></li>
-<li><code>kubectl</code> command line</li>
-<li><code>wget</code> command line</li>
+<li>
+<p><strong>🔐 <a href="../filter-traffic-per-group/">Network Access Control by Group</a></strong><br />
+    Filter outbound traffic per LDAP group using Cilium NetworkPolicy. Different departments, different access rights.<br />
+<strong>Learn:</strong> Default-deny policies, DNS-based filtering, group-based authorization.</p>
+</li>
+<li>
+<p><strong>🔑 <a href="../configure-keycloak/">Single Sign-On with Keycloak</a></strong><br />
+    Configure OpenID Connect authentication with Keycloak. Enterprise-grade identity management.<br />
+<strong>Learn:</strong> OIDC flows, token-based auth, Keycloak integration.</p>
+</li>
+<li>
+<p><strong>🌐 <a href="../multus-user-pod/">Advanced Networking with Multus</a></strong><br />
+    Use multiple network interfaces per pod with Multus CNI. Connect to isolated networks or security zones.<br />
+<strong>Learn:</strong> Secondary networks, multi-NIC pods, network topology.</p>
+</li>
+<li>
+<p><strong>☁️ <a href="deploy-demo-gcp-abcdesktop-com/">Deploy on Google Cloud</a></strong><br />
+    Step-by-step Kubernetes deployment on Google Cloud Platform (GKE).<br />
+<strong>Learn:</strong> Cloud provider setup, GKE specifics, managed Kubernetes patterns.</p>
+</li>
 </ul>
-<h2 id="overview">Overview</h2>
-<p>In this chapter, you will use a <code>LoadBalancer</code> service to expose your abcdesktop instance with a public IP address, configure your DNS zone file to use your domain name, and enable TLS to secure the service.</p>
-<h2 id="create-a-new-http-router-service-yaml-file">Create a new <code>http-router</code> service yaml file</h2>
-<p>The default installation configures the <code>http-router</code> service as a <code>nodePort</code> type. We will update the <code>http-router</code> service to use a <code>LoadBalancer</code> type.</p>
-<p>Create a file named <code>http-router.yaml</code></p>
-<div class="highlight"><pre><span></span><code>kind: Service
-apiVersion: v1
-metadata:
-  name: http-router
-  labels:
-    abcdesktop/role: router-od
-  annotations:
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "80"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
-    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
-    service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
-    service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: "/healthz"
-spec: 
-  type: LoadBalancer
-  selector:
-    run: router-od
-  ports:
-  - protocol: TCP
-    port: 443
-    targetPort: 443
-    name: https
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-    name: http
-</code></pre></div>
-<p>Save the <code>http-router.yaml</code> file.</p>
-<p>Delete the previous <code>http-router</code> service:</p>
-<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
-kubectl delete service http-router -n $NAMESPACE
-</code></pre></div>
-<p>You should see the following output:</p>
-<div class="highlight"><pre><span></span><code>service "http-router" deleted
-</code></pre></div>
-<p>Create the new <code>service/http-router</code>:</p>
-<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
-kubectl apply -f http-router.yaml -n $NAMESPACE
-</code></pre></div>
-<p>You should see the following output:</p>
-<div class="highlight"><pre><span></span><code>service/http-router created
-</code></pre></div>
-<p>Wait a few minutes; the <code>EXTERNAL-IP</code> of the <code>http-router</code> service remains in <code>Pending</code> state.</p>
-<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
-kubectl get services http-router -n $NAMESPACE 
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>NAME          TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-http-router   LoadBalancer   10.245.73.189   &lt;pending&gt;     80:32155/TCP   3s
-</code></pre></div>
-<p>Check the <code>EXTERNAL-IP</code> of the <code>http-router</code> service again:</p>
-<div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop       
-</code></pre></div>
-<blockquote>
-<p>The service has been assigned <code>157.230.202.250</code> as its <code>EXTERNAL-IP</code>.</p>
-</blockquote>
-<div class="highlight"><pre><span></span><code>NAME          TYPE           CLUSTER-IP       EXTERNAL-IP       PORT(S)        AGE
-http-router   LoadBalancer   10.245.245.242   157.230.202.250   80:30443/TCP   61s
-</code></pre></div>
-<p>Open a web browser to access your abcdesktop service using your IP address.</p>
-<blockquote>
-<p>Replace <code>157.230.202.250</code> with your own IP address.</p>
-</blockquote>
-<p><img alt="web browser to reach your abcdesktop service" src="../img/ipadress.png" /></p>
-<p>If your web browser blocks WebSocket connections without a secure protocol, use the <code>https</code> protocol instead.</p>
-<h2 id="update-your-dns-zone-file">Update your DNS zone file</h2>
-<p>We will use a <code>FQDN</code> (Fully Qualified Domain Name) to replace the IP address.</p>
-<p><img alt="digitalocean networking" src="../img/digitalocean-networking.png" /></p>
-<p>This screenshot shows the DigitalOcean network console, displaying the <strong>Domain</strong> configuration. You can also manage your zone file directly through your domain registrar.</p>
-<h3 id="create-new-record">Create new record</h3>
-<p>Create a new <code>A</code> record named <code>hello</code> (e.g., <code>hello.abcdesktop.pepins.net</code>) pointing to <code>157.230.202.250</code>. Set a low <code>TTL</code> value to allow DNS changes to propagate quickly.</p>
-<p>The IP address is shown in the DigitalOcean network console and corresponds to the <code>EXTERNAL-IP</code> of your <code>http-router</code> service.</p>
-<div class="highlight"><pre><span></span><code>kubectl get services http-router -n abcdesktop
-</code></pre></div>
-<p>You should see the following output:</p>
-<div class="highlight"><pre><span></span><code>NAME          TYPE           CLUSTER-IP      EXTERNAL-IP       PORT(S)                      AGE
-http-router   LoadBalancer   10.245.143.46   157.230.202.250   443:31196/TCP,80:32043/TCP   16m
-</code></pre></div>
-<p><img alt="digital ocean console domain overview" src="../img/createrecord.png" /></p>
-<p>Click <code>Create Record</code> to update your zone file with the new record.</p>
-<p><img alt="digital ocean console domain overview" src="../img/recorddone.png" /></p>
-<p>From your local device, open a web browser.</p>
-<p><img alt="reach your website from your new name" src="../img/hello_http.png" /></p>
-<p>Web browsers block WebSocket connections without a secure protocol. To log in, use the <code>https</code> protocol.</p>
-<p>Your website is marked as <code>Not Secured</code>. You must add an X.509 SSL certificate to secure the service.</p>
-<h2 id="obtain-a-certificate">Obtain a Certificate</h2>
-<p>If you already have an X.509 certificate with private and public key files for your website, you can skip this section.</p>
-<p>To obtain an SSL certificate, this guide uses the Let's Encrypt service. You will need your new hostname and your email address.</p>
-<p>Define the variables <code>ABCDESKTOP_PUBLIC_FQDN</code> and <code>USER_EMAIL_ADDRESS</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="o">=</span>hello.digitalocean.pepins.net
-<span class="nv">USER_EMAIL_ADDRESS</span><span class="o">=</span>thisisyouremail@domain.com
-<span class="nv">ROUTER_POD_NAME</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">run</span><span class="o">=</span>router-od<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="w">  </span>-n<span class="w"> </span>abcdesktop<span class="k">)</span>
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">ROUTER_POD_NAME</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>/usr/bin/certbot<span class="w"> </span>certonly<span class="w"> </span>--webroot<span class="w"> </span>-w<span class="w"> </span>/var/lib/nginx/html<span class="w"> </span>-d<span class="w"> </span><span class="si">${</span><span class="nv">ABCDESKTOP_PUBLIC_FQDN</span><span class="si">}</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">USER_EMAIL_ADDRESS</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--agree-tos<span class="w"> </span>-n
-</code></pre></div>
-<p>You should see the following output:</p>
-<div class="highlight"><pre><span></span><code>Saving debug log to /var/log/letsencrypt/letsencrypt.log
-Requesting a certificate for hello.digitalocean.pepins.net
-
-Successfully received certificate.
-Certificate is saved at: /etc/letsencrypt/live/hello.digitalocean.pepins.net/fullchain.pem
-Key is saved at:         /etc/letsencrypt/live/hello.digitalocean.pepins.net/privkey.pem
-This certificate expires on 2025-10-05.
-These files will be updated when the certificate renews.
-
-NEXT STEPS:
-- The certificate will need to be renewed before it expires. Certbot can automatically renew the certificate in the background, but you may need to take steps to enable that functionality. See https://certbot.org/renewal-setup for instructions.
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-If you like Certbot, please consider supporting our work by:
- * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
- * Donating to EFF:                    https://eff.org/donate-le
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-</code></pre></div>
-<p>The <code>fullchain.pem</code> and <code>privkey.pem</code> files are stored inside the container.</p>
-<div class="highlight"><pre><span></span><code>Certificate is saved at: /etc/letsencrypt/live/hello.digitalocean.pepins.net/fullchain.pem
-Key is saved at:         /etc/letsencrypt/live/hello.digitalocean.pepins.net/privkey.pem
-</code></pre></div>
-<p>Export the certificate files and create a new Kubernetes secret.</p>
-<div class="highlight"><pre><span></span><code>kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/$ABCDESKTOP_PUBLIC_FQDN/fullchain.pem &gt; fullchain.pem
-kubectl exec -n abcdesktop -it  ${ROUTER_POD_NAME} -- cat /etc/letsencrypt/live/$ABCDESKTOP_PUBLIC_FQDN/privkey.pem &gt; privkey.pem
-</code></pre></div>
-<h2 id="create-a-secret-for-the-x509-certificate">Create a Secret for the X.509 Certificate</h2>
-<p>Create a Kubernetes secret named <code>http-router-certificat</code> using the <code>fullchain.pem</code> and <code>privkey.pem</code> file contents.</p>
-<div class="highlight"><pre><span></span><code>kubectl create secret tls http-router-certificat --cert=fullchain.pem --key=privkey.pem -n abcdesktop 
-</code></pre></div>
-<p>The secret has been created.</p>
-<div class="highlight"><pre><span></span><code>secret/http-router-certificat created
-</code></pre></div>
-<h2 id="update-http-router-configmap-to-use-the-new-http-router-certificat-secret">Update <code>http-router</code> ConfigMap to use the new <code>http-router-certificat</code> secret</h2>
-<p>Download <a href="https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.4.yaml">abcdesktop-routehttp-config.4.4.yaml</a></p>
-<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-routehttp-config.4.4.yaml
-</code></pre></div>
-<p>Open the <code>abcdesktop-routehttp-config.4.4.yaml</code> file and locate the ConfigMap named <code>abcdesktop-routehttp-config</code>.</p>
-<p>Uncomment the HTTPS section and replace <code>YOUR_SERVER_NAME_AND_DOMAIN</code> with your actual server name and domain.</p>
-<div class="highlight"><pre><span></span><code> # nginx server config
- server {
-     ...
-
-     ######
-     # uncomment this to enable https
-     #
-     listen 443 ssl http2 default_server;
-     listen [::]:443 ssl http2 default_server;
-     server_name YOUR_SERVER_NAME_AND_DOMAIN; # change this too
-     ssl_certificate     /etc/nginx/ssl/tls.crt;
-     ssl_certificate_key /etc/nginx/ssl/tls.key;
-     #
-     # end of https section
-     ######
-
-     ...
-     index index.html index.htm;
-</code></pre></div>
-<p>For example:</p>
-<div class="highlight"><pre><span></span><code>     listen 443 ssl http2 default_server;
-     listen [::]:443 ssl http2 default_server;
-     server_name hello.digitalocean.pepins.net;
-     ssl_certificate     /etc/nginx/ssl/tls.crt;
-     ssl_certificate_key /etc/nginx/ssl/tls.key;
-</code></pre></div>
-<p>Apply the updated NGINX configuration file:</p>
-<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
-kubectl apply -f abcdesktop-routehttp-config.4.4.yaml -n $NAMESPACE
-</code></pre></div>
-<h2 id="update-deployment-http-router">Update <code>deployment</code> http-router</h2>
-<p>Update the <code>deployment</code> route to add the SSL certificate entry.</p>
-<p>The <code>abcdesktop-deployment-routehttps.4.4.yaml</code> file adds <code>mountPath: /etc/nginx/ssl</code> to <code>secretName: http-router-certificat</code>.</p>
-<div class="highlight"><pre><span></span><code>NAMESPACE=abcdesktop
-kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/main/kubernetes/abcdesktop-deployment-routehttps.4.4.yaml -n $NAMESPACE
-</code></pre></div>
-<h2 id="reach-your-website-using-https-protocol">Reach your website using <code>https</code> protocol</h2>
-<p>You can now connect to your abcdesktop public website using the <code>https</code> protocol.</p>
-<p><img alt="reach your website using https" src="../img/hello_https.png" /></p>
-<p>The connection is secured. You can inspect the certificate details.</p>
-<p><img alt="reach your website using https" src="../img/certificate_hello.png" /></p>
+</div>
+<hr />
+<h2 id="quick-start-guide">Quick Start Guide</h2>
+<h3 id="1-deploy-abcdesktop">1. Deploy abcdesktop</h3>
+<p>Start with the <a href="../install/4.4/">Kubernetes installation guide</a>. Most use cases assume you already have a running cluster.</p>
+<h3 id="2-choose-your-use-case">2. Choose Your Use Case</h3>
+<p>Pick the scenario that matches your needs:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Need to restrict access by department?</td>
+<td><a href="../filter-traffic-per-group/">Network Access Control by Group</a></td>
+</tr>
+<tr>
+<td>Want enterprise SSO?</td>
+<td><a href="../configure-keycloak/">Configure Keycloak</a></td>
+</tr>
+<tr>
+<td>Need specialized network topology?</td>
+<td><a href="../multus-user-pod/">Advanced Networking with Multus</a></td>
+</tr>
+<tr>
+<td>Deploying on Google Cloud?</td>
+<td><a href="deploy-demo-gcp-abcdesktop-com/">Deploy on GCP</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-follow-the-step-by-step-guides">3. Follow the Step-by-Step Guides</h3>
+<p>Each use case includes:
+- Prerequisites and requirements
+- Architecture overview
+- Configuration examples
+- Verification steps
+- Troubleshooting tips</p>
+<hr />
+<h2 id="what-makes-these-guides-different">What Makes These Guides Different</h2>
+<p>These are <strong>not marketing materials</strong>. They're based on real production deployments:</p>
+<ul>
+<li><strong>Code-first</strong>: YAML manifests you can copy-paste</li>
+<li><strong>Honest trade-offs</strong>: What works, what doesn't, why</li>
+<li><strong>Verification steps</strong>: How to confirm everything is working</li>
+<li><strong>Scaling patterns</strong>: How to move from POC to production</li>
+</ul>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<p><strong>New to abcdesktop?</strong><br />
+Start with the <a href="../../../">main documentation</a> for an overview of the platform.</p>
+<p><strong>Ready to deploy?</strong><br />
+Pick your use case above and follow the guide. Questions?<br />
+Check <a href="https://github.com/abcdesktopio/pyos/issues">GitHub Issues</a> or the <a href="https://github.com/abcdesktopio/pyos/discussions">community discussions</a>.</p>
+<hr />
+<p><a class="md-button md-button--primary" href="https://demo.gcp.abcdesktop.com"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M19.22 4c.28 0 .53 0 .74.05.17 1.39-.02 4.25-3.3 7.53-1.7 1.71-3.73 3.02-6.01 3.89l-2.15-2.1c.92-2.31 2.23-4.34 3.92-6.03C15.18 4.58 17.64 4 19.22 4m0-2c-1.98 0-4.98.69-8.22 3.93-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.38.38.89.61 1.42.61.23 0 .47-.06.7-.15A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61S20.7 2 19.22 2m-4.68 7.46c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg></span> <strong>Try it yourself — Live Demo</strong></a></p>
 
 
 
@@ -5688,14 +5478,14 @@ kubectl apply -f https://raw.githubusercontent.com/abcdesktopio/conf/refs/heads/
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.tabs", "navigation.instant", "content.action.edit", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../../../js/tabbed-toc.js"></script>
+        <script src="../../../js/tabbed-toc.js"></script>
       
-        <script src="../../../../js/drawio-reload.js"></script>
+        <script src="../../../js/drawio-reload.js"></script>
       
     
   </body>

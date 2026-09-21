@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership.">
+        <meta name="description" content="Control network access per LDAP group using Kubernetes Cilium NetworkPolicy. Different departments, different access rights. DNS + FQDN filtering with zero configuration overhead.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://www.abcdesktop.io/usecases/4.4/filter-traffic-per-group/">
       
       
-        <link rel="prev" href="../../../contribute/4.4/userpod/filer/">
+        <link rel="prev" href="../overview/">
       
       
         <link rel="next" href="../configure-keycloak/">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Filter Pod Network Traffic by User Group | abcdesktop.io - www.abcdesktop.io</title>
+        <title>Network Access Control by User Group | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -97,10 +97,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/usecases/4.4/filter-traffic-per-group/" />
   
-  <meta property="og:title"       content="Filter Pod Network Traffic by User Group | abcdesktop.io" />
+  <meta property="og:title"       content="Network Access Control by User Group | abcdesktop.io" />
   
   
-  <meta property="og:description" content="Configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership." />
+  <meta property="og:description" content="Control network access per LDAP group using Kubernetes Cilium NetworkPolicy. Different departments, different access rights. DNS + FQDN filtering with zero configuration overhead." />
   
 
   
@@ -117,10 +117,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Filter Pod Network Traffic by User Group | abcdesktop.io" />
+  <meta name="twitter:title"       content="Network Access Control by User Group | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="Configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership." />
+  <meta name="twitter:description" content="Control network access per LDAP group using Kubernetes Cilium NetworkPolicy. Different departments, different access rights. DNS + FQDN filtering with zero configuration overhead." />
   
 
   
@@ -198,16 +198,16 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Filter Pod Network Traffic by User Group | abcdesktop.io - www.abcdesktop.io" />
-<meta property="og:description" content="Configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership." />
+<meta property="og:title" content="Network Access Control by User Group | abcdesktop.io - www.abcdesktop.io" />
+<meta property="og:description" content="Control network access per LDAP group using Kubernetes Cilium NetworkPolicy. Different departments, different access rights. DNS + FQDN filtering with zero configuration overhead." />
 <meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/usecases/4.4/filter-traffic-per-group.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://www.abcdesktop.io/usecases/4.4/filter-traffic-per-group/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Filter Pod Network Traffic by User Group | abcdesktop.io - www.abcdesktop.io" />
-<meta property="twitter:description" content="Configure abcdesktop.io rules and Kubernetes NetworkPolicy objects to restrict outbound pod traffic based on LDAP group membership." />
+<meta property="twitter:title" content="Network Access Control by User Group | abcdesktop.io - www.abcdesktop.io" />
+<meta property="twitter:description" content="Control network access per LDAP group using Kubernetes Cilium NetworkPolicy. Different departments, different access rights. DNS + FQDN filtering with zero configuration overhead." />
 <meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/usecases/4.4/filter-traffic-per-group.png" />
 </head>
   
@@ -221,7 +221,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#filter-traffic-based-on-users-groups" class="md-skip">
+        <a href="#network-access-control-by-user-group" class="md-skip">
           Skip to content
         </a>
       
@@ -254,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Filter Pod Network Traffic by User Group | abcdesktop.io
+              Network Access Control by User Group | abcdesktop.io
             
           </span>
         </div>
@@ -432,7 +432,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../overview/" class="md-tabs__link">
           
   
   
@@ -534,7 +534,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -4202,6 +4204,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -4265,6 +4295,39 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#the-problem-one-size-fits-all-network-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem: One-Size-Fits-All Network Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4276,10 +4339,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-case-description" class="md-nav__link">
+  <a href="#step-by-step-implementation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use case description
+        Step-by-Step Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-verify-groups-are-being-applied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Verify Groups Are Being Applied
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-a-cilium-network-policy-for-your-first-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Create a Cilium Network Policy for Your First Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-a-second-policy-for-another-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Create a Second Policy for Another Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#name-age-allow-facebook-shipcrew-2h-allow-youtube-adminstaff-2h" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NAME AGE allow-facebook-shipcrew 2h allow-youtube-adminstaff 2h
       
     </span>
   </a>
@@ -4287,10 +4400,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-does-abcdesktop-manage-groups" class="md-nav__link">
+  <a href="#try-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How does abcdesktop manage groups
+        Try it
       
     </span>
   </a>
@@ -4298,10 +4411,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-access-rules-based-on-groups" class="md-nav__link">
+  <a href="#why-this-matters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create access rules based on groups
+        Why This Matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resources
       
     </span>
   </a>
@@ -4391,10 +4537,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
         
           
-          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
             
   
   
@@ -4412,8 +4558,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -5092,7 +5238,9 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -5111,6 +5259,39 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#the-problem-one-size-fits-all-network-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem: One-Size-Fits-All Network Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5122,10 +5303,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-case-description" class="md-nav__link">
+  <a href="#step-by-step-implementation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use case description
+        Step-by-Step Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-verify-groups-are-being-applied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Verify Groups Are Being Applied
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-a-cilium-network-policy-for-your-first-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Create a Cilium Network Policy for Your First Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-a-second-policy-for-another-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Create a Second Policy for Another Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#name-age-allow-facebook-shipcrew-2h-allow-youtube-adminstaff-2h" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NAME AGE allow-facebook-shipcrew 2h allow-youtube-adminstaff 2h
       
     </span>
   </a>
@@ -5133,10 +5364,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-does-abcdesktop-manage-groups" class="md-nav__link">
+  <a href="#try-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How does abcdesktop manage groups
+        Try it
       
     </span>
   </a>
@@ -5144,10 +5375,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-access-rules-based-on-groups" class="md-nav__link">
+  <a href="#why-this-matters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create access rules based on groups
+        Why This Matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resources
       
     </span>
   </a>
@@ -5168,6 +5432,8 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
 
   <nav class="md-tags" >
     
@@ -5175,14 +5441,14 @@
       
       
       
-        <span class="md-tag">LDAP</span>
+        <span class="md-tag">access control</span>
       
     
       
       
       
       
-        <span class="md-tag">NetworkPolicy</span>
+        <span class="md-tag">network policy</span>
       
     
       
@@ -5196,7 +5462,7 @@
       
       
       
-        <span class="md-tag">use case</span>
+        <span class="md-tag">solutions</span>
       
     
   </nav>
@@ -5211,19 +5477,49 @@
   
 
 
-<h1 id="filter-traffic-based-on-users-groups">Filter traffic based on user's groups</h1>
-<h2 id="prerequisites">Prerequisites</h2>
+<h1 id="network-access-control-by-user-group">Network Access Control by User Group</h1>
+<h2 id="the-problem-one-size-fits-all-network-access">The Problem: One-Size-Fits-All Network Access</h2>
+<p>Your organization has departments with different security requirements. Sales should access client CRMs. Accounting should access financial systems. IT should access everything—or nothing, depending on your policy.</p>
+<p>With traditional VDI, you apply policies per machine or per role. With abcdesktop on Kubernetes, you can apply policies directly <strong>per LDAP group</strong>, tied to the user pod itself.</p>
+<hr />
+<h2 id="how-it-works">How It Works</h2>
+<div class="grid cards">
 <ul>
-<li>a Kubernetes cluster with abcdesktop installed</li>
-<li>use <a href="https://cilium.io/">cilium</a> as network provider for your cluster</li>
-<li>An authentication provider with groups support (<code>LDAP</code>, <code>ActiveDirectory</code> or <code>OAuth</code>), see <a href="../../../advanced/4.4/authentication/overview/">authentication section</a> for more details. By default the docker-test-openldap provides groups support.</li>
+<li>
+<p><strong>User Groups → Pod Labels</strong><br />
+    LDAP groups automatically become Kubernetes pod labels. <code>shipcrew=true</code>, <code>adminstaff=true</code>, etc.</p>
+</li>
+<li>
+<p><strong>DNS + FQDN Filtering</strong><br />
+    Cilium allows <code>*.facebook.com</code> patterns, not just IPs. Maintenance is automatic.</p>
+</li>
+<li>
+<p><strong>Default-Deny Posture</strong><br />
+    All egress is blocked until explicitly allowed. No data leakage by accident.</p>
+</li>
+<li>
+<p><strong>Zero Client Config</strong><br />
+    Rules are applied on the server side. User has no way to bypass them.</p>
+</li>
+<li>
+<p><strong>Dynamic Scaling</strong><br />
+    Add a user to a group → pod gets labeled → policies apply automatically.</p>
+</li>
+<li>
+<p><strong>LDAP/AD/OAuth Ready</strong><br />
+    Works with any auth provider that supports groups.</p>
+</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In this example, we will use <a href="https://github.com/rroemhild/docker-test-openldap">docker-test-openldap</a> which is a LDAP service</p>
 </div>
-<h2 id="use-case-description">Use case description</h2>
-<p>As an organization, you may have multiple departments—such as sales, accounting, and IT—each with different access requirements. For example, an IT employee should not have access to accounting documents. With abcdesktop, you can address these requirements by creating rules based on the groups to which users belong.</p>
+<hr />
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>When a user logs in, here's what happens:</p>
+<ol>
+<li><strong>Authentication</strong> — User provides credentials (LDAP, AD, OAuth)</li>
+<li><strong>Group Resolution</strong> — System reads user's group memberships</li>
+<li><strong>Pod Creation</strong> — Desktop pod is created <strong>with group labels automatically applied</strong></li>
+<li><strong>Policy Enforcement</strong> — Cilium reads the labels and applies network rules</li>
+</ol>
 <pre class="mermaid"><code>---
 config:
   theme: redux-color
@@ -5236,37 +5532,34 @@ sequenceDiagram
     Create participant LDAP
     Pyos-&gt;&gt;LDAP: BIND LDAP_SEARCH Philip
     destroy LDAP
-    LDAP-&gt;&gt;Pyos: dn, cn, group=shipcrew
+    LDAP-&gt;&gt;Pyos: groups: [shipcrew]
     Note right of Kubernetes: Cilium Policy
-    Pyos-&gt;&gt;Kubernetes: (option) Create user secrets
-    Kubernetes-&gt;&gt;Pyos: (option) Secrets created
-    Pyos-&gt;&gt;Router: User Philip JWT
-    Router-&gt;&gt;Philip: User Philip JWT
-    Philip-&gt;&gt;Router: Create Desktop (User Philip JWT)
-    Note over Router,Pyos: 2. Create a desktop
-    Router-&gt;&gt;Pyos: Create Desktop (User Philip JWT)
-    Pyos-&gt;&gt;Kubernetes: Create Philip POD YAML
-    Kubernetes-&gt;&gt;Pyos: POD Created
+    Pyos-&gt;&gt;Kubernetes: Create pod with labels: shipcrew=true
+    Kubernetes-&gt;&gt;Pyos: Pod created
     Create participant PodPhilip
-    Note right of PodPhilip: shipcrew=true
-    Kubernetes-&gt;&gt;PodPhilip:
-    destroy Kubernetes
-    Kubernetes-&gt;&gt;Pyos: Philip Pod is Ready
-    destroy Pyos
-    Pyos-&gt;&gt;Router: Desktop Philip JWT
-    Router-&gt;&gt;Philip: Desktop Philip JWT
+    Note right of PodPhilip: label: shipcrew=true
+    Kubernetes-&gt;&gt;Pyos: Pod ready
+    Pyos-&gt;&gt;Router: Session established
     Router-&gt;&gt;Philip: Connected
     Create participant Facebook
-    PodPhilip-&gt;&gt;Facebook: Access Granted #10004;
-    destroy Facebook
+    PodPhilip-&gt;&gt;Facebook: ✓ Allowed (Cilium policy matches)
     Facebook-&gt;&gt;PodPhilip: OK
-    Philip--&gt;PodPhilip: Established
     Create participant Youtube
-    PodPhilip--xYoutube: Drop #10006;</code></pre>
-<h2 id="how-does-abcdesktop-manage-groups">How does abcdesktop manage groups</h2>
-<p>Assume that users registered in your authentication system are already assigned to groups. In this example, <code>Philip J. Fry</code> (known as <code>fry</code>) and <code>Hubert J. Farnsworth</code> (known as <code>professor</code>) are members of the <code>ship_crew</code> and <code>admin_staff</code> groups, respectively (cf <a href="https://github.com/rroemhild/docker-test-openldap">https://github.com/rroemhild/docker-test-openldap</a>).  </p>
-<p>Once authenticated, the abcdesktop control plane reads the user's information and creates the user pod with the user's group memberships applied as pod labels.</p>
-<p><div class="highlight"><pre><span></span><code>kubectl get pods -n abcdesktop
+    PodPhilip--xYoutube: ✗ Dropped (not in policy)</code></pre>
+<hr />
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Kubernetes cluster with abcdesktop installed</li>
+<li><strong>Cilium</strong> as your cluster network provider (for DNS/FQDN-based policies)</li>
+<li>LDAP, Active Directory, or OAuth with group support</li>
+<li>Basic knowledge of Kubernetes manifests</li>
+</ul>
+<hr />
+<h2 id="step-by-step-implementation">Step-by-Step Implementation</h2>
+<h3 id="step-1-verify-groups-are-being-applied">Step 1: Verify Groups Are Being Applied</h3>
+<p>When a user logs in, abcdesktop automatically reads their LDAP/AD group memberships and <strong>applies them as pod labels</strong>.</p>
+<p>Check the user pods:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>abcdesktop
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>NAME                            READY   STATUS    RESTARTS      AGE
 console-od-7f548d74fd-48rpv     1/1     Running   0             2d19h
@@ -5279,78 +5572,28 @@ professor-0ecf4                 3/3     Running   0             44h
 pyos-od-68776fb486-69x5q        1/1     Running   0             2d
 router-od-867f5576dd-p9hj5      1/1     Running   0             2d19h
 speedtest-od-78cdbdd9c6-vphfl   1/1     Running   0             2d19h
-</code></pre></div></p>
-<p>Run the <code>kubectl describe pod</code> command on each user pod to verify that the group labels are present.</p>
-<details class="note">
-<summary>show details</summary>
-<p><div class="highlight"><pre><span></span><code>kubectl describe pod fry-3c9e8 -n abcdesktop 
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>[...]
-Labels:         abcdesktop/role=desktop
-                access_provider=planet
-                access_providertype=ldap
-                access_userid=fry
-                access_username=philip-j.-fry
-                broadcast_cookie=202f5459d1a35e54d149b75795f269796cdd78c520e4e412
-                cn-ship_crew-ou-people-dc-planetexpress-dc-com=
-                ipsource=10.0.2.216
-                labeltrue=true
-                netpol/ocuser=true
-                pulseaudio_cookie=8d8cec68f8647887efdcd1bddb09db6a
-                service_broadcast=29784
-                service_ephemeral_container=enabled
-                service_filer=29783
-                service_graphical=6081
-                service_init=enabled
-                service_pod_application=enabled
-                service_printerfile=29782
-                service_sound=29788
-                service_spawner=29786
-                service_webshell=29781
-                shipcrew=true
-                type=x11server
-                xauthkey=2d1afb247f156987dc65ae72bcc0f4
-[...]
-</code></pre></div></p>
-<p><div class="highlight"><pre><span></span><code>kubectl describe pod professor-0ecf4 -n abcdesktop 
+<p>Describe a pod to see the group labels:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>fry-3c9e8<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"Labels:|shipcrew|adminstaff"</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>[...]
-Labels:         abcdesktop/role=desktop
-                access_provider=planet
-                access_providertype=ldap
-                access_userid=professor
-                access_username=hubert-j.-farnsworth
-                adminstaff=true
-                broadcast_cookie=315066f64d9c59b70ce5f0c7d86f10079b01a78cce44d8c7
-                cn-admin_staff-ou-people-dc-planetexpress-dc-com=
-                ipsource=10.0.1.22
-                labeltrue=true
-                netpol/ocuser=true
-                pulseaudio_cookie=b8c096a27cad70c114ed81ab4c4da3a1
-                service_broadcast=29784
-                service_ephemeral_container=enabled
-                service_filer=29783
-                service_graphical=6081
-                service_init=enabled
-                service_pod_application=enabled
-                service_printerfile=29782
-                service_sound=29788
-                service_spawner=29786
-                service_webshell=29781
-                type=x11server
-                xauthkey=f7e335f429be8bd8e82c48df775fb0
-[...]
-</code></pre></div></p>
-</details>
-<p>Confirm that the label <code>shipcrew=true</code> appears on the <code>fry</code> pod and <code>adminstaff=true</code> appears on the <code>professor</code> pod.</p>
-<h2 id="create-access-rules-based-on-groups">Create access rules based on groups</h2>
-<p>To control incoming (ingress) and outgoing (egress) traffic for pods in Kubernetes, operators typically use <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">NetworkPolicies</a>. However, standard Kubernetes <code>NetworkPolicy</code> resources do not support filtering based on fully qualified domain names (FQDNs); they only support filtering by IP address or CIDR range. If the target service uses multiple IP addresses, each address must be listed explicitly in the policy—a significant maintenance burden, especially when addresses change dynamically. This is why Cilium is used as the cluster network provider: it supports <a href="https://docs.cilium.io/en/stable/network/kubernetes/policy/#ciliumnetworkpolicy">CiliumNetworkPolicy</a> resources, which extend the standard Kubernetes network policy API with additional capabilities not yet available natively, such as DNS-based egress filtering rules.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><code>CiliumNetworkPolicy</code> resources operate on an allowlist (default-deny) basis. Once an egress rule is applied to an endpoint, all traffic not explicitly permitted is denied.</p>
-</div>
-<p>In this example, users belonging to the <code>shipcrew</code> group are granted access to Facebook, and users in the <code>adminstaff</code> group are granted access to YouTube.</p>
-<p>Create a file named <code>netpol-allow-facebook-shipcrew.yaml</code> with the following content.</p>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code>Labels:  shipcrew=true
+         access_userid=fry
+         access_username=philip-j.-fry
+         [... other labels ...]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>professor-0ecf4<span class="w"> </span>-n<span class="w"> </span>abcdesktop<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"Labels:|shipcrew|adminstaff"</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code>Labels:  adminstaff=true
+         access_userid=professor
+         access_username=hubert-j.-farnsworth
+         [... other labels ...]
+</code></pre></div>
+<p>The labels <code>shipcrew=true</code> on <code>fry</code> and <code>adminstaff=true</code> on <code>professor</code> proves the groups was read and applied. ✓</p>
+<hr />
+<h3 id="step-2-create-a-cilium-network-policy-for-your-first-group">Step 2: Create a Cilium Network Policy for Your First Group</h3>
+<p>This example allows the <code>shipcrew</code> group to access Facebook:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cilium.io/v2</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliumNetworkPolicy</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -5359,10 +5602,9 @@ Labels:         abcdesktop/role=desktop
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">endpointSelector</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">shipcrew</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span><span class="w"> </span><span class="c1"># Selector based on group label</span>
+<span class="w">      </span><span class="nt">shipcrew</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
 <span class="w">  </span><span class="nt">egress</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">toEndpoints</span><span class="p">:</span>
-<span class="w">    </span><span class="c1"># Allow all DNS resolutions</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchLabels</span><span class="p">:</span>
 <span class="w">       </span><span class="s">"k8s:io.kubernetes.pod.namespace"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-system</span>
 <span class="w">       </span><span class="s">"k8s:k8s-app"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-dns</span>
@@ -5374,9 +5616,8 @@ Labels:         abcdesktop/role=desktop
 <span class="w">          </span><span class="nt">dns</span><span class="p">:</span>
 <span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">"*"</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">toFQDNs</span><span class="p">:</span>
-<span class="w">      </span><span class="c1"># Add here all the FQDN patterns you want to grant access to</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">"*.facebook.com"</span><span class="w">  </span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">"*.xx.fbcdn.net"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">"*.facebook.com"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">"*.fbcdn.net"</span>
 <span class="w">    </span><span class="nt">toPorts</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span>
 <span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"80"</span>
@@ -5384,18 +5625,12 @@ Labels:         abcdesktop/role=desktop
 <span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"443"</span>
 <span class="w">           </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
 </code></pre></div>
-<p>Apply the policy to the cluster.</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f netpol-allow-facebook-shipcrew.yaml -n abcdesktop
-ciliumnetworkpolicy.cilium.io/allow-facebook-shipcrew configured
+<p>Apply it:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>netpol-allow-facebook-shipcrew.yaml
 </code></pre></div>
-<p>Verify that the policy was created successfully.</p>
-<div class="highlight"><pre><span></span><code>kubectl get ciliumnetworkpolicy -n abcdesktop
-NAME                       AGE
-allow-facebook-shipcrew    27h
-</code></pre></div>
-<p>User pods belonging to the <code>shipcrew</code> group now have access to Facebook. All other external destinations remain blocked.</p>
-<p><img alt="ciliumnetpol-facebook-access" src="../../../img/ciliumNetpol_access_facebook.png" /></p>
-<p>Create a file named <code>netpol-allow-youtube-adminstaff.yaml</code> with the following content.</p>
+<hr />
+<h3 id="step-3-create-a-second-policy-for-another-group">Step 3: Create a Second Policy for Another Group</h3>
+<p>For the <code>adminstaff</code> group accessing YouTube:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cilium.io/v2</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CiliumNetworkPolicy</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -5404,10 +5639,9 @@ allow-facebook-shipcrew    27h
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">endpointSelector</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">adminstaff</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span><span class="w"> </span><span class="c1"># Selector based on group label</span>
+<span class="w">      </span><span class="nt">adminstaff</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
 <span class="w">  </span><span class="nt">egress</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">toEndpoints</span><span class="p">:</span>
-<span class="w">    </span><span class="c1"># Allow all DNS resolutions</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchLabels</span><span class="p">:</span>
 <span class="w">       </span><span class="s">"k8s:io.kubernetes.pod.namespace"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-system</span>
 <span class="w">       </span><span class="s">"k8s:k8s-app"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-dns</span>
@@ -5419,7 +5653,6 @@ allow-facebook-shipcrew    27h
 <span class="w">          </span><span class="nt">dns</span><span class="p">:</span>
 <span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">"*"</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">toFQDNs</span><span class="p">:</span>
-<span class="w">      </span><span class="c1"># Add here all the FQDN patterns you want to grant access to</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matchPattern</span><span class="p">:</span><span class="w"> </span><span class="s">"*.youtube.com"</span>
 <span class="w">    </span><span class="nt">toPorts</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ports</span><span class="p">:</span>
@@ -5428,19 +5661,76 @@ allow-facebook-shipcrew    27h
 <span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"443"</span>
 <span class="w">           </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
 </code></pre></div>
-<p>Apply the policy to the cluster.</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f netpol-allow-youtube-adminstaff.yaml -n abcdesktop
-ciliumnetworkpolicy.cilium.io/allow-youtube-adminstaff configured
+<p>Apply it:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>netpol-allow-youtube-adminstaff.yaml
 </code></pre></div>
-<p>Verify that the policy was created successfully.</p>
-<div class="highlight"><pre><span></span><code>kubectl get ciliumnetworkpolicy -n abcdesktop
-NAME                       AGE
-allow-facebook-shipcrew    27h
-allow-youtube-adminstaff   27h
+<p>Verify both policies exist:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>ciliumnetworkpolicy<span class="w"> </span>-n<span class="w"> </span>abcdesktop
 </code></pre></div>
-<p>User pods belonging to the <code>adminstaff</code> group now have access to YouTube. All other external destinations remain blocked.</p>
-<p><img alt="ciliumnetpol-youtube-access" src="../../../img/ciliumNetpol_access_youtube.png" /></p>
-<p>Network access is now controlled per user group using Cilium network policies.</p>
+<p>Output:</p>
+<h2 id="name-age-allow-facebook-shipcrew-2h-allow-youtube-adminstaff-2h"><div class="highlight"><pre><span></span><code>NAME                       AGE
+allow-facebook-shipcrew    2h
+allow-youtube-adminstaff   2h
+</code></pre></div></h2>
+<h2 id="try-it">Try it</h2>
+<p>Let's see if the policies has correctly been applied. Log on both pods an try to succesively connect to <code>www.youtube.com</code> and <code>www.facebook.com</code>.</p>
+<p><img alt="cilium-allow-facebook" src="../../../img/ciliumNetpol_access_facebook.png" />
+<img alt="cilium-allow-youtube" src="../../../img/ciliumNetpol_access_youtube.png" /></p>
+<hr />
+<h2 id="why-this-matters">Why This Matters</h2>
+<p><strong>Default-Deny</strong>: Cilium policies operate on an allowlist basis. Once you apply a rule, all traffic NOT explicitly permitted is blocked.</p>
+<p><strong>No Client Bypass</strong>: The filtering happens on the cluster network, not in the pod. Users can't disable it.</p>
+<p><strong>Scales Automatically</strong>: When you add a user to a new group in LDAP, their pod gets the label at next login. Policies apply immediately.</p>
+<p><strong>DNS-Based Rules</strong>: Instead of managing IP lists (which change constantly), you manage domain patterns. <code>*.facebook.com</code> covers all CDNs, all subdomains, automatically.</p>
+<hr />
+<h2 id="common-use-cases">Common Use Cases</h2>
+<table>
+<thead>
+<tr>
+<th>Department</th>
+<th>Access</th>
+<th>Policy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sales</td>
+<td>CRM, Email, Google Meet</td>
+<td><code>*.salesforce.com</code>, <code>*.google.com</code>, <code>*.slack.com</code></td>
+</tr>
+<tr>
+<td>Finance</td>
+<td>ERP, Banking, Accounting</td>
+<td><code>*.sap.com</code>, <code>*.intacct.com</code>, internal-banking-server</td>
+</tr>
+<tr>
+<td>IT/Ops</td>
+<td>All internal services</td>
+<td>No policy (allow-all) or restricted list</td>
+</tr>
+<tr>
+<td>Customer Service</td>
+<td>Helpdesk, Email, Docs</td>
+<td><code>*.zendesk.com</code>, <code>*.google.com</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<ol>
+<li><strong>Create your group structure in LDAP</strong> — Organize teams by department or role</li>
+<li><strong>Test with a small pilot group</strong> — Apply policies to one group, verify behavior</li>
+<li><strong>Scale across the organization</strong> — Create policies for each department</li>
+<li><strong>Monitor and audit</strong> — Use Cilium's built-in observability to see what's being blocked</li>
+</ol>
+<hr />
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://docs.cilium.io/en/stable/network/kubernetes/policy/">Cilium Network Policies Documentation</a></li>
+<li><a href="../../../advanced/4.4/authentication/overview/">abcdesktop Authentication Overview</a></li>
+</ul>
+<hr />
+<p><strong>Back to Use Cases:</strong> <a href="../">Use Cases</a> | <a href="../../../solutions/kubernetes-vdi/">Kubernetes VDI</a></p>
 
 
 
@@ -5455,6 +5745,8 @@ allow-youtube-adminstaff   27h
 
   
 
+
+  
 
 
 
