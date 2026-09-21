@@ -9,7 +9,7 @@ tags:
   - OpenID Connect
 ---
 
-# Configure Keycloak with external LDAP for abcdesktop
+# Keycloak LDAP Integration with Group Support
 
 ## Prerequisites
 
