@@ -5660,8 +5660,16 @@ allow-youtube-adminstaff   2h
 <hr />
 <h2 id="try-it">Try it</h2>
 <p>Let's see if the policies has correctly been applied. Log on both pods an try to succesively connect to <code>www.youtube.com</code> and <code>www.facebook.com</code>.</p>
-<p><img alt="cilium-allow-facebook" src="../../../img/ciliumNetpol_access_facebook.png" />
+<ul>
+<li>
+<p>First test : Facebook allowed, rest is denied :
+<img alt="cilium-allow-facebook" src="../../../img/ciliumNetpol_access_facebook.png" /></p>
+</li>
+<li>
+<p>Second test : Youtube allowed, rest is denied :
 <img alt="cilium-allow-youtube" src="../../../img/ciliumNetpol_access_youtube.png" /></p>
+</li>
+</ul>
 <hr />
 <h2 id="why-this-matters">Why This Matters</h2>
 <p><strong>Default-Deny</strong>: Cilium policies operate on an allowlist basis. Once you apply a rule, all traffic NOT explicitly permitted is blocked.</p>
