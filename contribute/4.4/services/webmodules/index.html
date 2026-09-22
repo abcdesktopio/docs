@@ -4043,6 +4043,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        flowchart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#repository-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5447,6 +5458,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        flowchart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#repository-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5798,6 +5820,109 @@
 │   Auth, desktop launch, application management, etc.    │
 └─────────────────────────────────────────────────────────┘
 </code></pre></div>
+<h2 id="flowchart">flowchart</h2>
+<p>abcdesktop’s web front end authenticates a user, redirects into a browser desktop, and connects that desktop to remote applications and services. The runtime includes a noVNC display/input layer, application launching, files, terminal, settings, notifications, and peripheral integrations. </p>
+<pre class="mermaid"><code>---
+config:
+  theme: redux
+---
+flowchart TB
+ subgraph group_access["Access"]
+        node_login["Login Page&lt;br&gt;[base.js]"]
+        node_auth["Authentication&lt;br&gt;[auth.js]"]
+        node_jwt["JWT Handoff&lt;br&gt;[jwtstorage.js]"]
+  end
+ subgraph group_desktop["Desktop Runtime"]
+        node_desktop_shell["Desktop Shell&lt;br&gt;[system.js]"]
+        node_launcher["Session Launcher&lt;br&gt;[launcher.js]"]
+        node_rfb["VNC Client&lt;br&gt;[rfb.js]"]
+        node_display_input["Display Input&lt;br&gt;[display.js]"]
+        node_app_selector["App Selector&lt;br&gt;[appSelector.js]"]
+        node_app_store["App Store&lt;br&gt;[appstore.js]"]
+  end
+ subgraph group_services["Desktop Services"]
+        node_file_workspace["File Workspace&lt;br&gt;[filerapiclient.js]"]
+        node_web_shell["Web Shell&lt;br&gt;[webshell.js]"]
+        node_settings["User Settings&lt;br&gt;[settings.js]"]
+        node_notifications["Notifications"]
+        node_remote_desktop[("Remote Desktop")]
+  end
+ subgraph group_peripherals["Peripherals"]
+        node_microphone["Microphone Capture&lt;br&gt;[main.js]"]
+        node_speaker["Speaker Playback&lt;br&gt;[main.js]"]
+        node_printer["Printing&lt;br&gt;[printer.js]"]
+        node_media_tools["Media Tools&lt;br&gt;[screenRecord.js]"]
+  end
+    node_user(("User")) -- opens --&gt; node_login
+    node_login -- submits credentials --&gt; node_auth
+    node_auth -- provides token --&gt; node_jwt
+    node_jwt -- redirects to desktop --&gt; node_desktop_shell
+    node_desktop_shell -- starts session --&gt; node_launcher
+    node_launcher -- connects session --&gt; node_remote_desktop
+    node_desktop_shell -- opens apps --&gt; node_app_selector
+    node_app_selector -- loads catalog --&gt; node_app_store
+    node_rfb -- renders and handles input --&gt; node_display_input
+    node_rfb -- speaks VNC --&gt; node_remote_desktop
+    node_desktop_shell -- opens files --&gt; node_file_workspace
+    node_desktop_shell -- opens terminal --&gt; node_web_shell
+    node_desktop_shell -- opens settings --&gt; node_settings
+    node_desktop_shell -- reports status --&gt; node_notifications
+    node_microphone -- checks PulseAudio --&gt; node_launcher
+    node_microphone -- streams microphone --&gt; node_audio_gateway["Audio Gateway"]
+    node_microphone -- reports errors --&gt; node_notifications
+    node_microphone -- checks availability --&gt; node_pulse_audio[("Pulse Audio")]
+    node_speaker -- checks PulseAudio --&gt; node_launcher
+    node_speaker -- receives audio --&gt; node_audio_gateway
+    node_speaker -- checks availability --&gt; node_pulse_audio
+    node_speaker -- reports errors --&gt; node_notifications
+    node_desktop_shell -. controls printing .-&gt; node_printer
+    node_desktop_shell -. controls recording .-&gt; node_media_tools
+
+     node_login:::toneBlue
+     node_auth:::toneBlue
+     node_jwt:::toneBlue
+     node_desktop_shell:::toneAmber
+     node_launcher:::toneAmber
+     node_rfb:::toneAmber
+     node_display_input:::toneAmber
+     node_app_selector:::toneAmber
+     node_app_store:::toneAmber
+     node_file_workspace:::toneMint
+     node_web_shell:::toneMint
+     node_settings:::toneMint
+     node_notifications:::toneMint
+     node_remote_desktop:::toneMint
+     node_microphone:::toneRose
+     node_speaker:::toneRose
+     node_printer:::toneRose
+     node_media_tools:::toneRose
+     node_user:::toneBlue
+     node_pulse_audio:::toneAmber
+     node_audio_gateway:::toneIndigo
+    classDef toneNeutral fill:#f8fafc,stroke:#334155,stroke-width:1.5px,color:#0f172a
+    classDef toneBlue fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#172554
+    classDef toneAmber fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#78350f
+    classDef toneMint fill:#dcfce7,stroke:#16a34a,stroke-width:1.5px,color:#14532d
+    classDef toneRose fill:#ffe4e6,stroke:#e11d48,stroke-width:1.5px,color:#881337
+    classDef toneIndigo fill:#e0e7ff,stroke:#4f46e5,stroke-width:1.5px,color:#312e81
+    classDef toneTeal fill:#ccfbf1,stroke:#0f766e,stroke-width:1.5px,color:#134e4a
+    click node_login "https://github.com/abcdesktopio/webmodules/blob/4.4/identification/site/js/base.js"
+    click node_auth "https://github.com/abcdesktopio/webmodules/blob/4.4/js/auth.js"
+    click node_jwt "https://github.com/abcdesktopio/webmodules/blob/4.4/js/jwtstorage.js"
+    click node_desktop_shell "https://github.com/abcdesktopio/webmodules/blob/4.4/js/system.js"
+    click node_launcher "https://github.com/abcdesktopio/webmodules/blob/4.4/js/launcher.js"
+    click node_rfb "https://github.com/abcdesktopio/webmodules/blob/4.4/js/noVNC/core/rfb.js"
+    click node_display_input "https://github.com/abcdesktopio/webmodules/blob/4.4/js/noVNC/core/display.js"
+    click node_app_selector "https://github.com/abcdesktopio/webmodules/blob/4.4/js/appSelector.js"
+    click node_app_store "https://github.com/abcdesktopio/webmodules/blob/4.4/js/appstore.js"
+    click node_file_workspace "https://github.com/abcdesktopio/webmodules/blob/4.4/js/filerapiclient.js"
+    click node_web_shell "https://github.com/abcdesktopio/webmodules/blob/4.4/js/webshell.js"
+    click node_settings "https://github.com/abcdesktopio/webmodules/blob/4.4/js/settings.js"
+    click node_notifications "https://github.com/abcdesktopio/webmodules/blob/4.4/js/notificationsystem.js"
+    click node_microphone "https://github.com/abcdesktopio/webmodules/blob/4.4/js/microphone/main.js"
+    click node_speaker "https://github.com/abcdesktopio/webmodules/blob/4.4/js/speaker/main.js"
+    click node_printer "https://github.com/abcdesktopio/webmodules/blob/4.4/js/printer.js"
+    click node_media_tools "https://github.com/abcdesktopio/webmodules/blob/4.4/js/screenRecord.js"</code></pre>
 <hr />
 <h2 id="repository-structure">Repository Structure</h2>
 <div class="highlight"><pre><span></span><code>webModules/
