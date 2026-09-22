@@ -3956,6 +3956,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1. Executive summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Flowchart
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5753,6 +5770,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1. Executive summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Flowchart
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6452,6 +6486,119 @@
 <li>Infrastructure services (Kubernetes, MongoDB, Memcached, DNS helpers)</li>
 </ul>
 <p>The main service process is started by <code>od.py</code> and mounts API endpoints under <code>/API</code>.</p>
+<h3 id="11-flowchart">1.1 Flowchart</h3>
+<p>The principal workflow is an API client authenticating through configured providers, receiving JWT-based identity, opening an application, and obtaining desktop/application routing backed by Kubernetes. Controllers also expose management, application catalog, datastore, configuration, messaging, accounting, user, and store operations. </p>
+<pre class="mermaid"><code>---
+config:
+  theme: redux
+---
+flowchart TD
+
+subgraph group_api["API Surface"]
+  node_auth_api["Authentication API&lt;br/&gt;[auth_controller.py]"]
+  node_composer_api["Composer API"]
+  node_core_api["Core API&lt;br/&gt;[core_controller.py]"]
+  node_manager_api["Manager API"]
+  node_user_api["User API&lt;br/&gt;[user_controller.py]"]
+  node_store_api["Store API"]
+  node_accounting_api["Accounting API"]
+end
+
+subgraph group_identity["Identity Security"]
+  node_request_security["Request Security&lt;br/&gt;[base_controller.py]"]
+  node_auth_service["Authentication Service&lt;br/&gt;[authservice.py]"]
+  node_auth_managers["Provider Managers&lt;br/&gt;[authmanager.py]"]
+  node_token_service["JWT Token Service&lt;br/&gt;[jwt.py]"]
+  node_desktop_keys["Desktop Key Manager&lt;br/&gt;[keymanager.py]"]
+end
+
+subgraph group_desktop["Desktop Orchestration"]
+  node_composer["Application Composer&lt;br/&gt;[composer.py]"]
+  node_orchestrator["Kubernetes Orchestrator&lt;br/&gt;[orchestrator.py]"]
+end
+
+subgraph group_management["Management Data"]
+  node_app_catalog[("Application Catalog&lt;br/&gt;[apps.py]")]
+  node_manager_services["Management Services&lt;br/&gt;[services.py]"]
+  node_message_info["Message Information&lt;br/&gt;[messageinfo.py]"]
+end
+
+subgraph group_platform["Platform State"]
+  node_share_cache[("Shared Cache&lt;br/&gt;[sharecache.py]")]
+  node_datastore[("Control Datastore&lt;br/&gt;[datastore.py]")]
+  node_settings["Platform Settings&lt;br/&gt;[settings.py]"]
+end
+
+node_client(("API Client"))
+node_directory[("Identity Directory")]
+node_kubernetesKubernetes Cluster
+node_api_result["API Result"]
+
+node_client --&gt;|"authenticates"| node_auth_api
+node_auth_api --&gt;|"checks access"| node_request_security
+node_auth_api --&gt;|"dispatches login"| node_auth_service
+node_auth_service --&gt;|"selects provider"| node_auth_managers
+node_auth_managers -.-&gt;|"queries identity"| node_directory
+node_auth_service --&gt;|"creates JWT"| node_token_service
+node_auth_api --&gt;|"returns token"| node_api_result
+node_client --&gt;|"opens application"| node_composer_api
+node_composer_api --&gt;|"validates request"| node_request_security
+node_composer_api --&gt;|"opens app"| node_composer
+node_composer --&gt;|"resolves app"| node_app_catalog
+node_composer --&gt;|"starts workload"| node_orchestrator
+node_orchestrator --&gt;|"manages pods"| node_kubernetes
+node_orchestrator --&gt;|"issues desktop key"| node_desktop_keys
+node_desktop_keys --&gt;|"stores private key"| node_share_cache
+node_composer_api --&gt;|"returns routing"| node_api_result
+node_client --&gt;|"requests metadata"| node_core_api
+node_core_api --&gt;|"validates request"| node_request_security
+node_core_api --&gt;|"pops messages"| node_message_info
+node_core_api --&gt;|"reads configuration"| node_settings
+node_core_api --&gt;|"returns response"| node_api_result
+node_client --&gt;|"manages platform"| node_manager_api
+node_manager_api --&gt;|"checks permission"| node_request_security
+node_manager_api --&gt;|"reads writes data"| node_datastore
+node_manager_api --&gt;|"updates applications"| node_app_catalog
+node_manager_api --&gt;|"runs maintenance"| node_manager_services
+node_manager_services --&gt;|"updates messages"| node_message_info
+node_manager_api --&gt;|"returns management"| node_api_result
+node_client --&gt;|"uses user API"| node_user_api
+node_client --&gt;|"uses store API"| node_store_api
+node_client --&gt;|"uses accounting API"| node_accounting_api
+
+click node_auth_api "https://github.com/abcdesktopio/pyos/blob/4.4/controllers/auth_controller.py"
+click node_composer_api "https://github.com/abcdesktopio/pyos/blob/4.4/controllers/composer_controller.py"
+click node_core_api "https://github.com/abcdesktopio/pyos/blob/4.4/controllers/core_controller.py"
+click node_manager_api "https://github.com/abcdesktopio/pyos/blob/4.4/controllers/manager_controller.py"
+click node_user_api "https://github.com/abcdesktopio/pyos/blob/4.4/controllers/user_controller.py"
+click node_store_api "https://github.com/abcdesktopio/pyos/blob/4.4/controllers/store_controller.py"
+click node_accounting_api "https://github.com/abcdesktopio/pyos/blob/4.4/controllers/accounting_controller.py"
+click node_request_security "https://github.com/abcdesktopio/pyos/blob/4.4/oc/od/base_controller.py"
+click node_auth_service "https://github.com/abcdesktopio/pyos/blob/4.4/oc/auth/authservice.py"
+click node_auth_managers "https://github.com/abcdesktopio/pyos/blob/4.4/oc/auth/authmanager.py"
+click node_token_service "https://github.com/abcdesktopio/pyos/blob/4.4/oc/auth/jwt.py"
+click node_desktop_keys "https://github.com/abcdesktopio/pyos/blob/4.4/oc/auth/keymanager.py"
+click node_share_cache "https://github.com/abcdesktopio/pyos/blob/4.4/oc/sharecache.py"
+click node_composer "https://github.com/abcdesktopio/pyos/blob/4.4/oc/od/composer.py"
+click node_orchestrator "https://github.com/abcdesktopio/pyos/blob/4.4/oc/od/orchestrator.py"
+click node_app_catalog "https://github.com/abcdesktopio/pyos/blob/4.4/oc/od/apps.py"
+click node_datastore "https://github.com/abcdesktopio/pyos/blob/4.4/oc/datastore.py"
+click node_manager_services "https://github.com/abcdesktopio/pyos/blob/4.4/oc/od/services.py"
+click node_message_info "https://github.com/abcdesktopio/pyos/blob/4.4/oc/od/messageinfo.py"
+click node_settings "https://github.com/abcdesktopio/pyos/blob/4.4/oc/od/settings.py"
+
+classDef toneNeutral fill:#f8fafc,stroke:#334155,stroke-width:1.5px,color:#0f172a
+classDef toneBlue fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#172554
+classDef toneAmber fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#78350f
+classDef toneMint fill:#dcfce7,stroke:#16a34a,stroke-width:1.5px,color:#14532d
+classDef toneRose fill:#ffe4e6,stroke:#e11d48,stroke-width:1.5px,color:#881337
+classDef toneIndigo fill:#e0e7ff,stroke:#4f46e5,stroke-width:1.5px,color:#312e81
+classDef toneTeal fill:#ccfbf1,stroke:#0f766e,stroke-width:1.5px,color:#134e4a
+class node_auth_api,node_composer_api,node_core_api,node_manager_api,node_user_api,node_store_api,node_accounting_api,node_client toneBlue
+class node_request_security,node_auth_service,node_auth_managers,node_token_service,node_desktop_keys,node_directory toneAmber
+class node_composer,node_orchestrator,node_api_result toneMint
+class node_app_catalog,node_manager_services,node_message_info toneRose
+class node_share_cache,node_datastore,node_settings,node_kubernetes toneIndigo</code></pre>
 <h2 id="2-scope-and-responsibility">2. Scope and responsibility</h2>
 <h3 id="21-what-pyos-does">2.1 What pyos does</h3>
 <ul>
