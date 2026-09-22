@@ -46,6 +46,114 @@ tags:
 └─────────────────────────────────────────────────────────┘
 ```
 
+## flowchart
+
+abcdesktop’s web front end authenticates a user, redirects into a browser desktop, and connects that desktop to remote applications and services. The runtime includes a noVNC display/input layer, application launching, files, terminal, settings, notifications, and peripheral integrations. 
+
+``` mermaid
+---
+config:
+  theme: redux
+---
+flowchart TB
+ subgraph group_access["Access"]
+        node_login["Login Page<br>[base.js]"]
+        node_auth["Authentication<br>[auth.js]"]
+        node_jwt["JWT Handoff<br>[jwtstorage.js]"]
+  end
+ subgraph group_desktop["Desktop Runtime"]
+        node_desktop_shell["Desktop Shell<br>[system.js]"]
+        node_launcher["Session Launcher<br>[launcher.js]"]
+        node_rfb["VNC Client<br>[rfb.js]"]
+        node_display_input["Display Input<br>[display.js]"]
+        node_app_selector["App Selector<br>[appSelector.js]"]
+        node_app_store["App Store<br>[appstore.js]"]
+  end
+ subgraph group_services["Desktop Services"]
+        node_file_workspace["File Workspace<br>[filerapiclient.js]"]
+        node_web_shell["Web Shell<br>[webshell.js]"]
+        node_settings["User Settings<br>[settings.js]"]
+        node_notifications["Notifications"]
+        node_remote_desktop[("Remote Desktop")]
+  end
+ subgraph group_peripherals["Peripherals"]
+        node_microphone["Microphone Capture<br>[main.js]"]
+        node_speaker["Speaker Playback<br>[main.js]"]
+        node_printer["Printing<br>[printer.js]"]
+        node_media_tools["Media Tools<br>[screenRecord.js]"]
+  end
+    node_user(("User")) -- opens --> node_login
+    node_login -- submits credentials --> node_auth
+    node_auth -- provides token --> node_jwt
+    node_jwt -- redirects to desktop --> node_desktop_shell
+    node_desktop_shell -- starts session --> node_launcher
+    node_launcher -- connects session --> node_remote_desktop
+    node_desktop_shell -- opens apps --> node_app_selector
+    node_app_selector -- loads catalog --> node_app_store
+    node_rfb -- renders and handles input --> node_display_input
+    node_rfb -- speaks VNC --> node_remote_desktop
+    node_desktop_shell -- opens files --> node_file_workspace
+    node_desktop_shell -- opens terminal --> node_web_shell
+    node_desktop_shell -- opens settings --> node_settings
+    node_desktop_shell -- reports status --> node_notifications
+    node_microphone -- checks PulseAudio --> node_launcher
+    node_microphone -- streams microphone --> node_audio_gateway["Audio Gateway"]
+    node_microphone -- reports errors --> node_notifications
+    node_microphone -- checks availability --> node_pulse_audio[("Pulse Audio")]
+    node_speaker -- checks PulseAudio --> node_launcher
+    node_speaker -- receives audio --> node_audio_gateway
+    node_speaker -- checks availability --> node_pulse_audio
+    node_speaker -- reports errors --> node_notifications
+    node_desktop_shell -. controls printing .-> node_printer
+    node_desktop_shell -. controls recording .-> node_media_tools
+
+     node_login:::toneBlue
+     node_auth:::toneBlue
+     node_jwt:::toneBlue
+     node_desktop_shell:::toneAmber
+     node_launcher:::toneAmber
+     node_rfb:::toneAmber
+     node_display_input:::toneAmber
+     node_app_selector:::toneAmber
+     node_app_store:::toneAmber
+     node_file_workspace:::toneMint
+     node_web_shell:::toneMint
+     node_settings:::toneMint
+     node_notifications:::toneMint
+     node_remote_desktop:::toneMint
+     node_microphone:::toneRose
+     node_speaker:::toneRose
+     node_printer:::toneRose
+     node_media_tools:::toneRose
+     node_user:::toneBlue
+     node_pulse_audio:::toneAmber
+     node_audio_gateway:::toneIndigo
+    classDef toneNeutral fill:#f8fafc,stroke:#334155,stroke-width:1.5px,color:#0f172a
+    classDef toneBlue fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#172554
+    classDef toneAmber fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#78350f
+    classDef toneMint fill:#dcfce7,stroke:#16a34a,stroke-width:1.5px,color:#14532d
+    classDef toneRose fill:#ffe4e6,stroke:#e11d48,stroke-width:1.5px,color:#881337
+    classDef toneIndigo fill:#e0e7ff,stroke:#4f46e5,stroke-width:1.5px,color:#312e81
+    classDef toneTeal fill:#ccfbf1,stroke:#0f766e,stroke-width:1.5px,color:#134e4a
+    click node_login "https://github.com/abcdesktopio/webmodules/blob/4.4/identification/site/js/base.js"
+    click node_auth "https://github.com/abcdesktopio/webmodules/blob/4.4/js/auth.js"
+    click node_jwt "https://github.com/abcdesktopio/webmodules/blob/4.4/js/jwtstorage.js"
+    click node_desktop_shell "https://github.com/abcdesktopio/webmodules/blob/4.4/js/system.js"
+    click node_launcher "https://github.com/abcdesktopio/webmodules/blob/4.4/js/launcher.js"
+    click node_rfb "https://github.com/abcdesktopio/webmodules/blob/4.4/js/noVNC/core/rfb.js"
+    click node_display_input "https://github.com/abcdesktopio/webmodules/blob/4.4/js/noVNC/core/display.js"
+    click node_app_selector "https://github.com/abcdesktopio/webmodules/blob/4.4/js/appSelector.js"
+    click node_app_store "https://github.com/abcdesktopio/webmodules/blob/4.4/js/appstore.js"
+    click node_file_workspace "https://github.com/abcdesktopio/webmodules/blob/4.4/js/filerapiclient.js"
+    click node_web_shell "https://github.com/abcdesktopio/webmodules/blob/4.4/js/webshell.js"
+    click node_settings "https://github.com/abcdesktopio/webmodules/blob/4.4/js/settings.js"
+    click node_notifications "https://github.com/abcdesktopio/webmodules/blob/4.4/js/notificationsystem.js"
+    click node_microphone "https://github.com/abcdesktopio/webmodules/blob/4.4/js/microphone/main.js"
+    click node_speaker "https://github.com/abcdesktopio/webmodules/blob/4.4/js/speaker/main.js"
+    click node_printer "https://github.com/abcdesktopio/webmodules/blob/4.4/js/printer.js"
+    click node_media_tools "https://github.com/abcdesktopio/webmodules/blob/4.4/js/screenRecord.js"
+```
+
 ---
 
 ## Repository Structure
