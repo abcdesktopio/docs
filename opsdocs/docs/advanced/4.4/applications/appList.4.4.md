@@ -1,3 +1,20 @@
+---
+title: Catalog of applications 
+description: Catalog of applications
+keywords: application, catalog
+tags:
+  - application
+  - catalog
+---
+
+# Catalog of applications 
+
+
+All images are on the [images](https://github.com/abcdesktopio/images/tree/main/artifact/4.4) repository [https://github.com/abcdesktopio/images/tree/main/artifact/4.4](https://github.com/abcdesktopio/images/tree/main/artifact/4.4)
+
+For each application you will find the `Dockerfile` to rebuild the container image and the `json` file to install it using the `console` adminstration or the command line script. 
+
+
 | Icon | Repository Tags | Access Control | Category | Container Engine | Desktop File | Display Name | Icon File | Rules | View Visibility | Template |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | <img src="../icons/circle_2048.svg" alt="Icon" width="48"> | <code>ghcr.io/abcdesktopio/2048-alpine.d:4.4</code> | `{"permit":["all"]}` | games | ephemeral&#95;container | org.gnome.TwentyFortyEight.desktop | 2048 (alpine gtk) | circle&#95;2048.svg | `{"homedir":{"default":true}}` | dock | ghcr.io/abcdesktopio/oc.template.alpine |
