@@ -32,6 +32,8 @@ async function main() {
     throw new Error('The JSON file must contain an array.');
   }
 
+  const header = await readFile(path.join(__dirname, 'appList.header'), 'utf8');
+
   const labelColumns = [
     'oc.acl',
     'oc.cat',
@@ -96,7 +98,7 @@ async function main() {
     lines.push(`| ${cells.join(' | ')} |`);
   }
 
-  await writeFile(outputPath, `${lines.join('\n')}\n`, 'utf8');
+  await writeFile(outputPath, `${header}\n\n${lines.join('\n')}\n`, 'utf8');
   console.log(`${applications.length} entries exported to ${outputPath}`);
 }
 
