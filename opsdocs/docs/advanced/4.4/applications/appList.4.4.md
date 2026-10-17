@@ -10,9 +10,11 @@ tags:
 # Catalog of applications 
 
 
-All images are on the [images](https://github.com/abcdesktopio/images/tree/main/artifact/4.4) repository [https://github.com/abcdesktopio/images/tree/main/artifact/4.4](https://github.com/abcdesktopio/images/tree/main/artifact/4.4)
+All images are on the [images](https://github.com/abcdesktopio/images/tree/main/artifact/{{ abcdesktop.latest_release }}) repository [https://github.com/abcdesktopio/images/tree/main/artifact/{{ abcdesktop.latest_release }}](https://github.com/abcdesktopio/images/tree/main/artifact/{{ abcdesktop.latest_release }})
 
-For each application you will find the `Dockerfile` to rebuild the container image and the `json` file to install it using the `console` adminstration or the command line script. 
+For each application you will find the `Dockerfile` to rebuild the container image and the `json` file to install it using the `console` adminstration or the command line script.
+
+
 
 
 | Icon | Repository Tags | Access Control | Category | Container Engine | Desktop File | Display Name | Icon File | Rules | View Visibility | Template |
