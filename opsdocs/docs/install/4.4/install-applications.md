@@ -10,7 +10,11 @@ tags:
   - script
 ---
 
-# Installing Applications with the Default Script
+# Installing Applications with the default script
+
+
+For abcdesktop, an application is a container image. You can list all applications `ready to use as a container` on the [catalog web page](https://www.abcdesktop.io/advanced/{{ abcdesktop.latest_release }}/applications/appList.{{ abcdesktop.latest_release }}), or you can run the quick application installation bash script.
+
 
 === "Linux or macOS"
 
