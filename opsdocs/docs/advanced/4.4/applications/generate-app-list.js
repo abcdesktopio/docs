@@ -21,11 +21,11 @@ function formatCodeSpan(value) {
 
 async function main() {
   const args = process.argv.slice(2);
-  if (args.length !== 2 || args.some((argument) => !argument.trim())) {
-    throw new Error('Usage: node generate-app-list.js <input.json> <output.md>');
+  if (args.length !== 3 || args.some((argument) => !argument.trim())) {
+    throw new Error('Usage: node generate-app-list.js <input.json> <output.md> <latest_release>');
   }
 
-  const [inputPath, outputPath] = args;
+  const [inputPath, outputPath, latestRelease] = args;
   const applications = JSON.parse(await readFile(inputPath, 'utf8'));
 
   if (!Array.isArray(applications)) {
@@ -33,7 +33,8 @@ async function main() {
   }
 
   const header = (await readFile(path.join(__dirname, 'appList.header'), 'utf8'))
-    .replaceAll('{application_count}', String(applications.length));
+    .replaceAll('{application_count}', String(applications.length))
+    .replaceAll('{{ abcdesktop.latest_release }}', () => latestRelease);
 
   const labelColumns = [
     'oc.acl',
@@ -48,6 +49,9 @@ async function main() {
   ];
   const columns = [
     'Icon',
+    'Name',
+    'Dockerfile',
+    'Json',
     'Repository Tags',
     'Access Control',
     'Category',
@@ -87,9 +91,19 @@ async function main() {
     const tags = (application.RepoTags ?? [])
       .map((tag) => `<code>${escapeMarkdown(tag)}</code>`)
       .join('<br>');
+    const name = applicationLabels['oc.name'];
+    const dockerfile = name
+      ? `[Dockerfile](<https://github.com/abcdesktopio/images/tree/main/artifact/${encodeURIComponent(latestRelease)}/${encodeURIComponent(name)}.d>)`
+      : '';
+    const json = name
+      ? `[Json](<https://github.com/abcdesktopio/images/tree/main/artifact/${encodeURIComponent(latestRelease)}/${encodeURIComponent(name)}.d.${encodeURIComponent(latestRelease)}.json>)`
+      : '';
 
     const cells = [
       iconImage,
+      escapeMarkdown(name),
+      dockerfile,
+      json,
       tags,
       ...labelColumns.map((key) => key === 'oc.acl' || key === 'oc.rules'
         ? formatCodeSpan(applicationLabels[key])
