@@ -10,7 +10,7 @@ tags:
   - script
 ---
 
-# Installing Applications with the Default Script
+# Installing Applications with the default script
 
 === "Linux or macOS"
 
