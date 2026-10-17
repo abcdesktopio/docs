@@ -32,7 +32,8 @@ async function main() {
     throw new Error('The JSON file must contain an array.');
   }
 
-  const header = await readFile(path.join(__dirname, 'appList.header'), 'utf8');
+  const header = (await readFile(path.join(__dirname, 'appList.header'), 'utf8'))
+    .replaceAll('{application_count}', String(applications.length));
 
   const labelColumns = [
     'oc.acl',
