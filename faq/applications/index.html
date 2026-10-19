@@ -5065,10 +5065,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-do-i-add-an-application" class="md-nav__link">
+  <a href="#how-to-add-an-application" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How do I add an application?
+        How to add an application ?
       
     </span>
   </a>
@@ -5076,10 +5076,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-do-i-delete-all-applications" class="md-nav__link">
+  <a href="#how-to-delete-all-applications" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How do I delete all applications?
+        How to delete all applications ?
       
     </span>
   </a>
@@ -5087,10 +5087,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-do-i-retrieve-application-logs" class="md-nav__link">
+  <a href="#how-to-get-application-logs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How do I retrieve application logs?
+        How to get application logs ?
       
     </span>
   </a>
@@ -5148,26 +5148,34 @@
 
 
 <h1 id="faq-applications">FAQ: Applications</h1>
-<h2 id="how-do-i-add-an-application">How do I add an application?</h2>
+<h2 id="how-to-add-an-application">How to add an application ?</h2>
 <p>To add an application to abcdesktop.io:</p>
 <ol>
 <li>Download the application's OCI image descriptor JSON file.</li>
 <li>POST the JSON file to the abcdesktop.io image management API endpoint.</li>
 </ol>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.3.0.json
-curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">'Content-Type: text/javascript'</span><span class="w"> </span>http://localhost:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@2048-alpine.d.3.0.json
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.4.4.json
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s1">'Content-Type: text/javascript'</span><span class="w"> </span>http://localhost:30443/API/manager/image<span class="w"> </span>-d<span class="w"> </span>@2048-alpine.d.4.4.json
 </code></pre></div>
 <blockquote>
 <p>The first launch pulls the container image from the registry. Depending on image size and network bandwidth, this may take several minutes.</p>
 </blockquote>
-<h2 id="how-do-i-delete-all-applications">How do I delete all applications?</h2>
+<h2 id="how-to-delete-all-applications">How to delete all applications ?</h2>
 <p>To remove all registered applications, send a DELETE request to the images API endpoint. Replace <code>localhost:30443</code> with your deployment URL.</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span>-H<span class="w"> </span><span class="s1">'Content-Type: text/javascript'</span><span class="w"> </span>http://localhost:30443/API/manager/images/
 </code></pre></div>
 <p>The response is a JSON array listing all deleted application image identifiers:</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s2">"abcdesktopio/2048-alpine.d:3.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abcdesktopio/2048-ubuntu.d:3.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abcdesktopio/apachedirectorystudio.d:3.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abcdesktopio/astromenace.d:3.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abcdesktopio/base.d:3.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abcdesktopio/beekeeperstudio.d:3.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abcdesktopio/blender.d:3.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abcdesktopio/bless.d:3.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abcdesktopio/blobby.d:3.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abcdesktopio/boxes.d:3.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abcdesktopio/calculator.d:3.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"abcdesktopio/chess.d:3.0"</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="s2">"ghcr.io/abcdesktopio/2048-alpine.d:4.4"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="s2">"ghcr.io/abcdesktopio/2048-ubuntu.d:4.4"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="s2">"ghcr.io/abcdesktopio/apachedirectorystudio.d:4.4"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="s2">"ghcr.io/abcdesktopio/astromenace.d:4.4"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="s2">"ghcr.io/abcdesktopio/base.d:4.4"</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">"ghcr.io/abcdesktopio/calculator.d:4.4"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="s2">"ghcr.io/abcdesktopio/chess.d:4.4"</span>
+<span class="p">]</span>
 </code></pre></div>
-<h2 id="how-do-i-retrieve-application-logs">How do I retrieve application logs?</h2>
+<h2 id="how-to-get-application-logs">How to get application logs ?</h2>
 <p>If an application fails to start, open the abcdesktop.io web shell and inspect the log files:</p>
 <table>
 <thead>
