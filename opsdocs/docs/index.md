@@ -121,7 +121,7 @@ abcdesktop.io supports the complete Remote Browser Isolation use case, including
 - All applications run as containers — as Kubernetes `pods` or as `ephemeral containers`
 - NVIDIA GPU assignment to application containers
 - Application lifecycle managed via OCI image labels
-- Read the [applications catalog](/advanced/{{ abcdesktop.latest_release }}/applications/appList.{{ abcdesktop.latest_release }}) to list the 117 applications all ready containerized
+- Read the [applications catalog](advanced/{{ abcdesktop.latest_release }}/applications/appList.md) to list the 117 applications all ready containerized
 
 ### Workspace and Productivity
 

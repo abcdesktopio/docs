@@ -19,7 +19,7 @@ This page provides answers to frequently asked questions about abcdesktop.io.
 
 ## Web Browser
 
-- [Which web browsers are supported?](webbrowser.md#which-web-browser-is-supported)
+- [Which web browsers are supported?](webbrowser.md#which-web-browsers-are-supported)
 - [How do I use copy & paste?](webbrowser.md#how-to-do-a-copy-paste)
 - [How do I change the default language?](webbrowser.md#how-to-change-the-default-language)
 - [How do I disable Firefox startup connections?](disable-firefox-connections.md)
@@ -33,7 +33,7 @@ This page provides answers to frequently asked questions about abcdesktop.io.
 ## Advanced Usage
 
 - [How do I expose a new service using the NGINX Ingress Controller?](ingresscontroller.md#how-to-expose-my-new-service-with-nginx-ingress-controller)
-- [How do I increase the number of MongoDB replicas?](mongodb.md#how-to-increase-the-mongodb-number-of-replicats)
+- [How do I increase the number of MongoDB replica?](mongodb.md#how-to-increase-the-mongodb-replica)
 - [How do I deploy a reverse proxy in front of abcdesktop.io?](add-reverseproxy-infrontof-abcdesktop.md)
 
 ## Evaluating abcdesktop.io

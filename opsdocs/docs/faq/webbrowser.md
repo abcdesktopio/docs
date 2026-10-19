@@ -12,7 +12,7 @@ tags:
 
 # FAQ: Web Browser
 
-## Which Web Browsers Are Supported?
+## Which web browsers are supported ?
 
 abcdesktop.io uses modern HTML5 WebSocket and clipboard APIs. The following minimum browser versions are known to be compatible:
 
@@ -24,7 +24,7 @@ abcdesktop.io uses modern HTML5 WebSocket and clipboard APIs. The following mini
 | Opera | 36 |
 | Microsoft Edge (Chromium-based) | All versions |
 
-## How Do I Use Copy & Paste?
+## How to do a copy paste ?
 
 For full bidirectional clipboard synchronization between your local device and the abcdesktop.io session, use **Chrome**, **Chromium**, or **Microsoft Edge (Chromium)**. These browsers expose the Clipboard API natively without additional configuration.
 
@@ -40,7 +40,7 @@ Firefox is also supported with a [dedicated abcdesktop.io extension](firefox-ext
 
 > **Important:** Clipboard API read/write operations require the **`https://`** protocol. Clipboard sync will not function over plain HTTP.
 
-## How Do I Change the Default Language?
+## How to change the default language ?
 
 abcdesktop.io reads the web browser's `Accept-Language` HTTP header to determine the user interface language for the desktop session and launched applications. The default installed languages are **English (en_US)**, **French (fr_FR)**, **German**, and **Romanian**. If you require additional language support, rebuild the container image with the required locale packages.
 

@@ -14,7 +14,7 @@ tags:
 
 # FAQ: Ingress Controller
 
-## How to Expose a New Service with the NGINX Ingress Controller
+## How to expose my new service with NGINX Ingress Controller ?
 
 A Kubernetes Ingress Controller acts as a reverse proxy and routes external HTTP(S) traffic to internal cluster services. This section describes how to use the `nginx` ingress controller to expose abcdesktop services.
 
