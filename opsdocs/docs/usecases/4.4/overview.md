@@ -86,7 +86,7 @@ Start with the [main documentation](../../index.md) for an overview of the platf
 
 **Ready to deploy?**  
 Pick your use case above and follow the guide. Questions?  
-Check [GitHub Issues](https://github.com/abcdesktopio/pyos/issues) or the [community discussions](https://github.com/abcdesktopio/pyos/discussions).
+Check [GitHub Issues](https://github.com/abcdesktopio/pyos/issues).
 
 ---
 
