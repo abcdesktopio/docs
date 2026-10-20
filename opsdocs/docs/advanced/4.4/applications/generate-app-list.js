@@ -93,10 +93,10 @@ async function main() {
       .join('<br>');
     const name = applicationLabels['oc.name'];
     const dockerfile = name
-      ? `[Dockerfile](<https://github.com/abcdesktopio/images/tree/main/artifact/${encodeURIComponent(latestRelease)}/${encodeURIComponent(name)}.d>)`
+      ? `[Dockerfile](<https://github.com/abcdesktopio/images/tree/main/artifact/${encodeURIComponent(latestRelease)}/${encodeURIComponent(name).toLowerCase()}.d>)`
       : '';
     const json = name
-      ? `[Json](<https://github.com/abcdesktopio/images/tree/main/artifact/${encodeURIComponent(latestRelease)}/${encodeURIComponent(name)}.d.${encodeURIComponent(latestRelease)}.json>)`
+      ? `[Json](<https://github.com/abcdesktopio/images/tree/main/artifact/${encodeURIComponent(latestRelease)}/${encodeURIComponent(name).toLowerCase()}.d.${encodeURIComponent(latestRelease)}.json>)`
       : '';
 
     const cells = [
