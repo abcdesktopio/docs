@@ -10,7 +10,7 @@ tags:
 
 # FAQ: Applications
 
-## How do I add an application?
+## How to add an application ?
 
 To add an application to abcdesktop.io:
 
@@ -18,13 +18,13 @@ To add an application to abcdesktop.io:
 2. POST the JSON file to the abcdesktop.io image management API endpoint.
 
 ```bash
-wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.3.0.json
-curl -X POST -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048-alpine.d.3.0.json
+wget https://raw.githubusercontent.com/abcdesktopio/oc.apps/main/2048-alpine.d.{{ abcdesktop.latest_release }}.json
+curl -X POST -H 'Content-Type: text/javascript' http://localhost:30443/API/manager/image -d @2048-alpine.d.{{ abcdesktop.latest_release }}.json
 ```
 
 > The first launch pulls the container image from the registry. Depending on image size and network bandwidth, this may take several minutes.
 
-## How do I delete all applications?
+## How to delete all applications ?
 
 To remove all registered applications, send a DELETE request to the images API endpoint. Replace `localhost:30443` with your deployment URL.
 
@@ -35,10 +35,18 @@ curl -X DELETE -H 'Content-Type: text/javascript' http://localhost:30443/API/man
 The response is a JSON array listing all deleted application image identifiers:
 
 ```json
-["abcdesktopio/2048-alpine.d:3.0", "abcdesktopio/2048-ubuntu.d:3.0", "abcdesktopio/apachedirectorystudio.d:3.0", "abcdesktopio/astromenace.d:3.0", "abcdesktopio/base.d:3.0", "abcdesktopio/beekeeperstudio.d:3.0", "abcdesktopio/blender.d:3.0", "abcdesktopio/bless.d:3.0", "abcdesktopio/blobby.d:3.0", "abcdesktopio/boxes.d:3.0", "abcdesktopio/calculator.d:3.0", "abcdesktopio/chess.d:3.0"]
+[
+  "ghcr.io/abcdesktopio/2048-alpine.d:{{ abcdesktop.latest_release }}", 
+  "ghcr.io/abcdesktopio/2048-ubuntu.d:{{ abcdesktop.latest_release }}", 
+  "ghcr.io/abcdesktopio/apachedirectorystudio.d:{{ abcdesktop.latest_release }}", 
+  "ghcr.io/abcdesktopio/astromenace.d:{{ abcdesktop.latest_release }}", 
+  "ghcr.io/abcdesktopio/base.d:{{ abcdesktop.latest_release }}",
+  "ghcr.io/abcdesktopio/calculator.d:{{ abcdesktop.latest_release }}", 
+  "ghcr.io/abcdesktopio/chess.d:{{ abcdesktop.latest_release }}"
+]
 ```
 
-## How do I retrieve application logs?
+## How to get application logs ?
 
 If an application fails to start, open the abcdesktop.io web shell and inspect the log files:
 

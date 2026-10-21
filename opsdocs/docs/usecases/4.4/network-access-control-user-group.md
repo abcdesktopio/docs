@@ -321,4 +321,4 @@ Let's see if the policies has correctly been applied. Log on both pods an try to
 
 ---
 
-**Back to Use Cases:** [Use Cases](../) | [Kubernetes VDI](../../solutions/kubernetes-vdi.md)
+**Back to Use Cases:** [Use Cases](overview.md) | [Kubernetes VDI](../../solutions/kubernetes-vdi.md)

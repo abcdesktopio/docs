@@ -26,6 +26,7 @@ The main service process is started by `od.py` and mounts API endpoints under `/
 
 The principal workflow is an API client authenticating through configured providers, receiving JWT-based identity, opening an application, and obtaining desktop/application routing backed by Kubernetes. Controllers also expose management, application catalog, datastore, configuration, messaging, accounting, user, and store operations. 
 
+{% raw %}
 ``` mermaid
 ---
 config:
@@ -139,6 +140,7 @@ class node_composer,node_orchestrator,node_api_result toneMint
 class node_app_catalog,node_manager_services,node_message_info toneRose
 class node_share_cache,node_datastore,node_settings,node_kubernetes toneIndigo
 ```
+{% endraw %}
 
 ## 2. Scope and responsibility
 

@@ -56,7 +56,7 @@ All default images support the **Remote Browser Isolation (RBI)** and **Remote A
 
 ## Application Catalog
 
-The [application catalog](../../advanced/{{ abcdesktop.latest_release }}/applications/appList.{{ abcdesktop.latest_release }}.md) lists the application images available for abcdesktop.io. It covers a range of use cases, including office work, development, graphics, education, games, and utilities.
+The [application catalog](../../advanced/{{ abcdesktop.latest_release }}/applications/appList.md) lists the application images available for abcdesktop.io. It covers a range of use cases, including office work, development, graphics, education, games, and utilities.
 
 For each application, the catalog links to its `Dockerfile` and JSON image descriptor. The Dockerfile can be used to rebuild the image; the JSON descriptor contains the OCI metadata used to install and configure it. The table also shows the image tag, category, container engine when applicable, desktop entry, display name, access control, rules, visibility, and base template. These details help administrators select an image and understand how it is presented and run in the desktop.
 

@@ -1,4 +1,7 @@
 ---
+title: Storage overview
+description: Configure abcdesktop.io to manage user home directories and shared data.
+keywords: PersistentVolume, PVC, shared storage, home directory, storage
 tags:
   - storage
   - overview

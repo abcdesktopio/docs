@@ -20,11 +20,11 @@ Learn how to configure and deploy abcdesktop for specific real-world scenarios. 
 
 <div class="grid cards" markdown>
 
--   **🔐 [Network Access Control by Group](filter-traffic-per-group.md)**  
+-   **🔐 [Network Access Control by Group](network-access-control-user-group.md)**  
     Filter outbound traffic per LDAP group using Cilium NetworkPolicy. Different departments, different access rights.  
     **Learn:** Default-deny policies, DNS-based filtering, group-based authorization.
 
--   **🔑 [Single Sign-On with Keycloak](configure-keycloak.md)**  
+-   **🔑 [Single Sign-On with Keycloak](keycloak-ldap-integration.md)**  
     Configure OpenID Connect authentication with Keycloak. Enterprise-grade identity management.  
     **Learn:** OIDC flows, token-based auth, Keycloak integration.
 
@@ -32,7 +32,7 @@ Learn how to configure and deploy abcdesktop for specific real-world scenarios. 
     Use multiple network interfaces per pod with Multus CNI. Connect to isolated networks or security zones.  
     **Learn:** Secondary networks, multi-NIC pods, network topology.
 
--   **☁️ [Deploy on Google Cloud](deploy-demo-gcp-abcdesktop-com/)**  
+-   **☁️ [Deploy on Google Cloud](deploy-demo-gcp-abcdesktop-com/overview.md)**
     Step-by-step Kubernetes deployment on Google Cloud Platform (GKE).  
     **Learn:** Cloud provider setup, GKE specifics, managed Kubernetes patterns.
 
@@ -44,7 +44,7 @@ Learn how to configure and deploy abcdesktop for specific real-world scenarios. 
 
 ### 1. Deploy abcdesktop
 
-Start with the [Kubernetes installation guide](../install/4.4/). Most use cases assume you already have a running cluster.
+Start with the [Kubernetes installation guide](../../install/4.4/script.md). Most use cases assume you already have a running cluster.
 
 ### 2. Choose Your Use Case
 
@@ -52,10 +52,10 @@ Pick the scenario that matches your needs:
 
 | Scenario | Use Case |
 |----------|----------|
-| Need to restrict access by department? | [Network Access Control by Group](filter-traffic-per-group.md) |
-| Want enterprise SSO? | [Configure Keycloak](configure-keycloak.md) |
+| Need to restrict access by department? | [Network Access Control by Group](network-access-control-user-group.md) |
+| Want enterprise SSO? | [Configure Keycloak](keycloak-ldap-integration.md) |
 | Need specialized network topology? | [Advanced Networking with Multus](multus-user-pod.md) |
-| Deploying on Google Cloud? | [Deploy on GCP](deploy-demo-gcp-abcdesktop-com/) |
+| Deploying on Google Cloud? | [Deploy on GCP](deploy-demo-gcp-abcdesktop-com/overview.md) |
 
 ### 3. Follow the Step-by-Step Guides
 

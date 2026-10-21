@@ -12,7 +12,7 @@ tags:
 
 # MongoDB
 
-## How to Increase the MongoDB Replica Count
+## How to increase the mongodb replica ? 
 
 ### With a Helm Installation
 

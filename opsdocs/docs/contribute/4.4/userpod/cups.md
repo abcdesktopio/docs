@@ -158,9 +158,9 @@ Entrypoint runtime sequence:
 1. Export KUBERNETES_SERVICE_HOST.
 2. Compute CONTAINER_IP_ADDR as:
   - POD_IP when provided, otherwise
-  - output of hostname -i.
+  - output of `hostname -i`.
 3. Rewrite /etc/cups/cupsd.conf:
-  - replace localhost:631 with ${CONTAINER_IP_ADDR}:631.
+  - replace `localhost:631` with `${CONTAINER_IP_ADDR}:631`.
 4. Normalize DISABLE_REMOTEIP_FILTERING:
   - default is disabled when empty.
   - only literal enabled is preserved.

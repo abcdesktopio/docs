@@ -1,6 +1,6 @@
 ---
 title: Explicit Authentication with Active Directory | abcdesktop.io
-description: Configure abcdesktop.io explicit authentication against Microsoft Active Directory: LDAP bind, UPN, service account credentials, and subnet discovery via AD Sites and Services.
+description: Configure abcdesktop.io explicit authentication against Microsoft Active Directory, LDAP bind, UPN, service account credentials, and subnet discovery via AD Sites and Services.
 keywords: Active Directory, LDAP, explicit authentication, AD, Windows domain, UPN, service account, abcdesktop, Kubernetes
 tags:
   - authentication

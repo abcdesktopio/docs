@@ -15,8 +15,6 @@ tags:
 
 [:material-rocket-launch-outline: **Try it now — Live Demo**](https://demo.gcp.abcdesktop.com){ .md-button .md-button--primary } [:material-play-circle-outline: Watch the 2-minute demo video](#demo-video){ .md-button }
 
-[![GitHub Stars](https://img.shields.io/github/stars/abcdesktopio/pyos?style=social&label=Star%20on%20GitHub)](https://github.com/abcdesktopio/pyos/stargazers) [![GitHub Stars](https://img.shields.io/github/stars/abcdesktopio/docs?style=social&label=Star%20docs)](https://github.com/abcdesktopio/docs/stargazers)
-
 No sign-up, no install — launch a full desktop session in your browser at **[demo.gcp.abcdesktop.com](https://demo.gcp.abcdesktop.com)**.
 
 <a id="demo-video"></a>
@@ -121,7 +119,7 @@ abcdesktop.io supports the complete Remote Browser Isolation use case, including
 - All applications run as containers — as Kubernetes `pods` or as `ephemeral containers`
 - NVIDIA GPU assignment to application containers
 - Application lifecycle managed via OCI image labels
-- Read the [applications catalog](/advanced/{{ abcdesktop.latest_release }}/applications/appList.{{ abcdesktop.latest_release }}) to list the 117 applications all ready containerized
+- Read the [applications catalog](advanced/{{ abcdesktop.latest_release }}/applications/appList.md) to list the 117 applications all ready containerized
 
 ### Workspace and Productivity
 
