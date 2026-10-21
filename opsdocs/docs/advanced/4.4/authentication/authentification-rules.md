@@ -1,6 +1,6 @@
 ---
 title: Authentication Rules & Labels Configuration | abcdesktop.io
-description: Configure rule-based authentication in abcdesktop.io: define conditions on HTTP headers, LDAP attributes, network CIDR ranges, and geolocation to apply labels to user JWT tokens.
+description: Configure rule-based authentication, define conditions on HTTP headers, LDAP attributes, network CIDR ranges, and geolocation to apply labels to user JWT tokens.
 keywords: authentication rules, labels, JWT, LDAP, HTTP header, CIDR, geolocation, access control, abcdesktop, Kubernetes, security
 tags:
   - authentication
