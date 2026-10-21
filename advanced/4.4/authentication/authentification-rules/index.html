@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Configure rule-based authentication, define conditions on HTTP headers, LDAP attributes, network CIDR ranges, and geolocation to apply labels to user JWT tokens.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Labels and rules - www.abcdesktop.io</title>
+        <title>Authentication Rules & Labels Configuration | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -97,10 +97,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/advanced/4.4/authentication/authentification-rules/" />
   
-  <meta property="og:title"       content="Labels and rules | abcdesktop.io" />
+  <meta property="og:title"       content="Authentication Rules & Labels Configuration | abcdesktop.io" />
   
   
-  <meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta property="og:description" content="Configure rule-based authentication, define conditions on HTTP headers, LDAP attributes, network CIDR ranges, and geolocation to apply labels to user JWT tokens." />
   
 
   
@@ -117,10 +117,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Labels and rules | abcdesktop.io" />
+  <meta name="twitter:title"       content="Authentication Rules & Labels Configuration | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta name="twitter:description" content="Configure rule-based authentication, define conditions on HTTP headers, LDAP attributes, network CIDR ranges, and geolocation to apply labels to user JWT tokens." />
   
 
   
@@ -198,16 +198,16 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Labels and rules - www.abcdesktop.io" />
-<meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="og:title" content="Authentication Rules & Labels Configuration | abcdesktop.io - www.abcdesktop.io" />
+<meta property="og:description" content="Configure rule-based authentication, define conditions on HTTP headers, LDAP attributes, network CIDR ranges, and geolocation to apply labels to user JWT tokens." />
 <meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/advanced/4.4/authentication/authentification-rules.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://www.abcdesktop.io/advanced/4.4/authentication/authentification-rules/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Labels and rules - www.abcdesktop.io" />
-<meta property="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="twitter:title" content="Authentication Rules & Labels Configuration | abcdesktop.io - www.abcdesktop.io" />
+<meta property="twitter:description" content="Configure rule-based authentication, define conditions on HTTP headers, LDAP attributes, network CIDR ranges, and geolocation to apply labels to user JWT tokens." />
 <meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/advanced/4.4/authentication/authentification-rules.png" />
 </head>
   
@@ -254,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Labels and rules
+              Authentication Rules & Labels Configuration | abcdesktop.io
             
           </span>
         </div>
@@ -5519,6 +5519,31 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">authentication</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">rules</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">security</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/advanced/4.4/authentication/authentification-rules.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -5529,15 +5554,6 @@
   
 
 
-<hr />
-<p>title: Authentication Rules &amp; Labels Configuration | abcdesktop.io
-description: Configure rule-based authentication in abcdesktop.io: define conditions on HTTP headers, LDAP attributes, network CIDR ranges, and geolocation to apply labels to user JWT tokens.
-keywords: authentication rules, labels, JWT, LDAP, HTTP header, CIDR, geolocation, access control, abcdesktop, Kubernetes, security
-tags:
-  - authentication
-  - security
-  - rules</p>
-<hr />
 <h1 id="authentication-rules-configuration">Authentication Rules Configuration</h1>
 <p>All authentication providers support rule-based configuration. Rules evaluate one or more conditions against request attributes and, when the conditions produce the expected boolean result, apply a label to the user's pod and JWT token.</p>
 <ul>
@@ -5823,6 +5839,9 @@ tags:
 
 
 
+
+  
+  
 
 
 
