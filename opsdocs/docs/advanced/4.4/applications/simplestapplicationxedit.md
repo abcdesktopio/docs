@@ -43,9 +43,12 @@ CMD ["/usr/bin/xedit"]
 
 > `oc.icondata` is the base64-encoded content of the `pencil.svg` icon file.
 ![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg)
-> To generate the base64-encoded value, run:
->```
-wget https://icons.getbootstrap.com/assets/icons/pencil.svg && base64 -w0 pencil.svg
+
+To generate the base64-encoded value, run:
+
+```
+wget https://icons.getbootstrap.com/assets/icons/pencil.svg 
+base64 -w0 pencil.svg
 ```
 
 **Dockerfile description**
@@ -55,8 +58,6 @@ This image is based on Ubuntu and installs the `x11-apps` package. The default c
 * `oc.launch` label is the name of the X11 window's `WM_CLASS`
 * `oc.icon` is the filename of the application icon
 * `oc.icondata` is the base64-encoded content of the `pencil.svg` icon file
-![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) To generate the base64-encoded value, run:
-`wget https://icons.getbootstrap.com/assets/icons/pencil.svg && base64 -w0 pencil.svg`
 
 * Build the image for the xedit application
 
