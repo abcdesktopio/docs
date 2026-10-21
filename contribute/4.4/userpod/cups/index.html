@@ -5959,9 +5959,9 @@
 <li>Export KUBERNETES_SERVICE_HOST.</li>
 <li>Compute CONTAINER_IP_ADDR as:</li>
 <li>POD_IP when provided, otherwise</li>
-<li>output of hostname -i.</li>
+<li>output of <code>hostname -i</code>.</li>
 <li>Rewrite /etc/cups/cupsd.conf:</li>
-<li>replace localhost:631 with ${CONTAINER_IP_ADDR}:631.</li>
+<li>replace <code>localhost:631</code> with <code>${CONTAINER_IP_ADDR}:631</code>.</li>
 <li>Normalize DISABLE_REMOTEIP_FILTERING:</li>
 <li>default is disabled when empty.</li>
 <li>only literal enabled is preserved.</li>
