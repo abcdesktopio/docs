@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Configure abcdesktop.io explicit authentication against Microsoft Active Directory, LDAP bind, UPN, service account credentials, and subnet discovery via AD Sites and Services.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Active Directory - www.abcdesktop.io</title>
+        <title>Explicit Authentication with Active Directory | abcdesktop.io - www.abcdesktop.io</title>
       
     
     
@@ -97,10 +97,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/advanced/4.4/authentication/authexplicit-activedirectory/" />
   
-  <meta property="og:title"       content="Active Directory | abcdesktop.io" />
+  <meta property="og:title"       content="Explicit Authentication with Active Directory | abcdesktop.io" />
   
   
-  <meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta property="og:description" content="Configure abcdesktop.io explicit authentication against Microsoft Active Directory, LDAP bind, UPN, service account credentials, and subnet discovery via AD Sites and Services." />
   
 
   
@@ -117,10 +117,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Active Directory | abcdesktop.io" />
+  <meta name="twitter:title"       content="Explicit Authentication with Active Directory | abcdesktop.io" />
   
   
-  <meta name="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta name="twitter:description" content="Configure abcdesktop.io explicit authentication against Microsoft Active Directory, LDAP bind, UPN, service account credentials, and subnet discovery via AD Sites and Services." />
   
 
   
@@ -198,16 +198,16 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Active Directory - www.abcdesktop.io" />
-<meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="og:title" content="Explicit Authentication with Active Directory | abcdesktop.io - www.abcdesktop.io" />
+<meta property="og:description" content="Configure abcdesktop.io explicit authentication against Microsoft Active Directory, LDAP bind, UPN, service account credentials, and subnet discovery via AD Sites and Services." />
 <meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/advanced/4.4/authentication/authexplicit-activedirectory.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://www.abcdesktop.io/advanced/4.4/authentication/authexplicit-activedirectory/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Active Directory - www.abcdesktop.io" />
-<meta property="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="twitter:title" content="Explicit Authentication with Active Directory | abcdesktop.io - www.abcdesktop.io" />
+<meta property="twitter:description" content="Configure abcdesktop.io explicit authentication against Microsoft Active Directory, LDAP bind, UPN, service account credentials, and subnet discovery via AD Sites and Services." />
 <meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/advanced/4.4/authentication/authexplicit-activedirectory.png" />
 </head>
   
@@ -254,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Active Directory
+              Explicit Authentication with Active Directory | abcdesktop.io
             
           </span>
         </div>
@@ -5223,6 +5223,31 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">Active Directory</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">LDAP</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">authentication</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/advanced/4.4/authentication/authexplicit-activedirectory.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -5233,15 +5258,6 @@
   
 
 
-<hr />
-<p>title: Explicit Authentication with Active Directory | abcdesktop.io
-description: Configure abcdesktop.io explicit authentication against Microsoft Active Directory: LDAP bind, UPN, service account credentials, and subnet discovery via AD Sites and Services.
-keywords: Active Directory, LDAP, explicit authentication, AD, Windows domain, UPN, service account, abcdesktop, Kubernetes
-tags:
-  - authentication
-  - Active Directory
-  - LDAP</p>
-<hr />
 <h1 id="authentication-explicit-for-microsoft-active-directory-services">Authentication <code>explicit</code> for Microsoft Active Directory Services</h1>
 <h2 id="authmanagers-explicit-object">authmanagers <code>explicit</code> Object</h2>
 <p>The <code>explicit</code> authentication configuration is defined as a dictionary object that contains one or more named provider entries, each corresponding to a Windows domain.</p>
@@ -5428,6 +5444,9 @@ tags:
 
 
 
+
+  
+  
 
 
 
