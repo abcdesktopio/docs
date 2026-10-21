@@ -159,13 +159,6 @@ Home directories and persistent user data are stored on your own storage backend
 
     [:octicons-arrow-right-24: Install with Helm](../install/4.4/helm.md)
 
--   :material-cloud-outline: **Cloud provider guides**
-
-    ---
-
-    Step-by-step guides for AWS, Azure, GCP, OVHcloud, and DigitalOcean.
-
-    [:octicons-arrow-right-24: Cloud provider guides](../index.md#quick-online-preview-release-44)
 
 </div>
 
