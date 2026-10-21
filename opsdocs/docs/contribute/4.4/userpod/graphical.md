@@ -63,7 +63,7 @@ Exported as environment variables:
 
 ### 3.1 Base and shell
 
-- Base image: ${BASE_IMAGE}:${BASE_IMAGE_RELEASE}
+- Base image: `${BASE_IMAGE}:${BASE_IMAGE_RELEASE}`
 - Shell: bash (SHELL ["/bin/bash", "-c"])
 
 ### 3.2 Toolchain and native prerequisites
