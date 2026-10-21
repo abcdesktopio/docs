@@ -5302,7 +5302,7 @@ The implicit provider configuration looks like this:</p>
 <blockquote>
 <p>The server requests the client's certificate in a <code>CertificateRequest</code> message, enabling mutual TLS authentication.</p>
 </blockquote>
-<h3 id="logmein-endpoint-configuration"><code>logmein</code> Endpoint Configuration</h3>
+<h2 id="logmein-endpoint-configuration"><code>logmein</code> Endpoint Configuration</h2>
 <p>The <code>API/auth/logmein</code> endpoint performs security checks to verify that the request originates from an authorized network defined in <code>network_list</code>. When configured, it also validates the required HTTP header name and its value. It reads the X.509 certificate to extract the user ID and then performs implicit authentication for that user.</p>
 <div class="highlight"><pre><span></span><code>auth.logmein : {  
     'enable' : True,
