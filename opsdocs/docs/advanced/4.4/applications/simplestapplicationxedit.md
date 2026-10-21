@@ -42,6 +42,7 @@ CMD ["/usr/bin/xedit"]
 ```
 
 > `oc.icondata` is the base64-encoded content of the `pencil.svg` icon file.
+> The content is like this icon: 
 ![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg)
 
 To generate the base64-encoded value, run:
