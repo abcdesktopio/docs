@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required.">
+        <meta name="description" content="Overview of authentication configuration, manager types (implicit, explicit, external), provider chaining, and the od.config ConfigMap structure.">
       
       
         <meta name="author" content="abcdesktop.io contributors">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Overview - www.abcdesktop.io</title>
+        <title>Authentication Configuration Overview - www.abcdesktop.io</title>
       
     
     
@@ -97,10 +97,10 @@
   <meta property="og:site_name" content="abcdesktop.io" />
   <meta property="og:url"       content="https://www.abcdesktop.io/advanced/4.4/authentication/overview/" />
   
-  <meta property="og:title"       content="Overview | abcdesktop.io" />
+  <meta property="og:title"       content="Authentication Configuration Overview" />
   
   
-  <meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta property="og:description" content="Overview of authentication configuration, manager types (implicit, explicit, external), provider chaining, and the od.config ConfigMap structure." />
   
 
   
@@ -117,10 +117,10 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@abcdesktopIO" />
   
-  <meta name="twitter:title"       content="Overview | abcdesktop.io" />
+  <meta name="twitter:title"       content="Authentication Configuration Overview" />
   
   
-  <meta name="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+  <meta name="twitter:description" content="Overview of authentication configuration, manager types (implicit, explicit, external), provider chaining, and the od.config ConfigMap structure." />
   
 
   
@@ -198,16 +198,16 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Overview - www.abcdesktop.io" />
-<meta property="og:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="og:title" content="Authentication Configuration Overview - www.abcdesktop.io" />
+<meta property="og:description" content="Overview of authentication configuration, manager types (implicit, explicit, external), provider chaining, and the od.config ConfigMap structure." />
 <meta property="og:image" content="https://www.abcdesktop.io/assets/images/social/advanced/4.4/authentication/overview.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://www.abcdesktop.io/advanced/4.4/authentication/overview/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Overview - www.abcdesktop.io" />
-<meta property="twitter:description" content="abcdesktop.io is a free, open source Kubernetes virtual desktop platform delivering remote browser isolation open source (RBI) and Remote Application Isolation (RAI). A self-hosted DaaS and VDI open source Kubernetes alternative to Apache Guacamole and Kasm Workspaces, accessible from any HTML5 web browser — no client-side installation required." />
+<meta property="twitter:title" content="Authentication Configuration Overview - www.abcdesktop.io" />
+<meta property="twitter:description" content="Overview of authentication configuration, manager types (implicit, explicit, external), provider chaining, and the od.config ConfigMap structure." />
 <meta property="twitter:image" content="https://www.abcdesktop.io/assets/images/social/advanced/4.4/authentication/overview.png" />
 </head>
   
@@ -254,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Authentication Configuration Overview
             
           </span>
         </div>
@@ -5363,6 +5363,17 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">authentication</span>
+      
+    
+  </nav>
+
 
   
     <a href="https://github.com/abcdesktopio/docs/edit/main/opsdocs/docs/advanced/4.4/authentication/overview.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
@@ -5373,13 +5384,6 @@
   
 
 
-<hr />
-<p>title: Authentication Configuration Overview | abcdesktop.io
-description: Overview of authentication configuration in abcdesktop.io: manager types (implicit, explicit, external), provider chaining, and the od.config ConfigMap structure.
-keywords: authentication, overview, implicit, explicit, external, OAuth, LDAP, od.config, ConfigMap, abcdesktop, Kubernetes
-tags:
-  - authentication</p>
-<hr />
 <h1 id="authentication-overview">Authentication Overview</h1>
 <h2 id="configuration-file">Configuration File</h2>
 <p>Authentication in abcdesktop.io is configured in the <code>od.config</code> file, which is stored as a Kubernetes ConfigMap. This section requires modifying the <code>od.config</code> configuration file. Refer to <a href="../../configure/updateconfiguration/">Updating the Configuration File</a> for the procedure to apply changes in a Kubernetes cluster.</p>
@@ -5494,6 +5498,9 @@ kubectl rollout restart deployment pyos-od -n abcdesktop
 
 
 
+
+  
+  
 
 
 
