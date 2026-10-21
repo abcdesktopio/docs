@@ -5262,26 +5262,28 @@ wNkEuNS41IDAgMCAxIDUgMTIuNVYxMmgtLjVhLjUuNSAwIDAgMS0uNS0uNVYxMWgtLjVhLjUuNSAwIDA
 </code></pre></div>
 <blockquote>
 <p><code>oc.icondata</code> is the base64-encoded content of the <code>pencil.svg</code> icon file.
-<img alt="pencil.svg" src="https://icons.getbootstrap.com/assets/icons/pencil.svg" />
-To generate the base64-encoded value, run:
-```
-wget https://icons.getbootstrap.com/assets/icons/pencil.svg &amp;&amp; base64 -w0 pencil.svg
-<div class="highlight"><pre><span></span><code>**Dockerfile description**
-
-This image is based on Ubuntu and installs the `x11-apps` package. The default command is set to `/usr/bin/xedit` via the `CMD` instruction. The `ENTRYPOINT` instruction is also supported as an alternative.
-
-* `oc.launch` label is the name of the X11 window's `WM_CLASS`
-* `oc.icon` is the filename of the application icon
-* `oc.icondata` is the base64-encoded content of the `pencil.svg` icon file
-![pencil.svg](https://icons.getbootstrap.com/assets/icons/pencil.svg) To generate the base64-encoded value, run:
-`wget https://icons.getbootstrap.com/assets/icons/pencil.svg &amp;&amp; base64 -w0 pencil.svg`
-
-* Build the image for the xedit application
-
-```bash
-REGISTRY=abcdesktopio
-docker build -t $REGISTRY/samplexedit .
-</code></pre></div></p>
+<img alt="pencil.svg" src="https://icons.getbootstrap.com/assets/icons/pencil.svg" /></p>
+</blockquote>
+<p>To generate the base64-encoded value, run:</p>
+<div class="highlight"><pre><span></span><code>wget https://icons.getbootstrap.com/assets/icons/pencil.svg 
+base64 -w0 pencil.svg
+</code></pre></div>
+<p><strong>Dockerfile description</strong></p>
+<p>This image is based on Ubuntu and installs the <code>x11-apps</code> package. The default command is set to <code>/usr/bin/xedit</code> via the <code>CMD</code> instruction. The <code>ENTRYPOINT</code> instruction is also supported as an alternative.</p>
+<ul>
+<li><code>oc.launch</code> label is the name of the X11 window's <code>WM_CLASS</code></li>
+<li><code>oc.icon</code> is the filename of the application icon</li>
+<li>
+<p><code>oc.icondata</code> is the base64-encoded content of the <code>pencil.svg</code> icon file</p>
+</li>
+<li>
+<p>Build the image for the xedit application</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">REGISTRY</span><span class="o">=</span>abcdesktopio
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span><span class="nv">$REGISTRY</span>/samplexedit<span class="w"> </span>.
+</code></pre></div>
+<blockquote>
 <p>Replace the value of <code>REGISTRY=abcdesktopio</code> with your own registry name.
 If you do not have one, you can use <code>abcdesktopio/samplexedit</code> as a read-only Docker Hub registry.</p>
 </blockquote>
