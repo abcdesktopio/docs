@@ -26,7 +26,7 @@
 
 ---
 
-## Introduction — The End of the Traditional Desktop {#introduction}
+## Introduction — The End of the Traditional Desktop { #introduction }
 
 > *"The workstation as we know it is disappearing. What remains is access."*
 
@@ -44,7 +44,7 @@ This ebook presents the philosophy, architecture, features, and use cases of abc
 
 ---
 
-## Chapter 1 — The Problem: Limits of the Local Workstation {#chapter-1}
+## Chapter 1 — The Problem: Limits of the Local Workstation { #chapter-1 }
 
 ### 1.1 An Attack Surface That Can't Be Controlled
 
@@ -77,7 +77,7 @@ That is exactly what abcdesktop.io does.
 
 ---
 
-## Chapter 2 — The Vision: Desktopless Computing {#chapter-2}
+## Chapter 2 — The Vision: Desktopless Computing { #chapter-2 }
 
 ### 2.1 The Serverless Analogy
 
@@ -104,7 +104,7 @@ The ephemeral nature of the desktop does not mean data loss. Home directories ar
 
 ---
 
-## Chapter 3 — Remote Browser Isolation (RBI) — Browse Without Risk {#chapter-3}
+## Chapter 3 — Remote Browser Isolation (RBI) — Browse Without Risk { #chapter-3 }
 
 ### 3.1 The Browser: The Endpoint's Biggest Threat
 
@@ -145,7 +145,7 @@ All network flows from the browser transit through the Kubernetes cluster's egre
 
 ---
 
-## Chapter 4 — Remote Application Isolation (RAI) — Every App, Zero Footprint {#chapter-4}
+## Chapter 4 — Remote Application Isolation (RAI) — Every App, Zero Footprint { #chapter-4 }
 
 ### 4.1 Beyond the Browser
 
@@ -191,7 +191,7 @@ One of the most powerful use cases is **modernization without code changes**: a 
 
 ---
 
-## Chapter 5 — Architecture — Kubernetes-Native Desktop Infrastructure {#chapter-5}
+## Chapter 5 — Architecture — Kubernetes-Native Desktop Infrastructure { #chapter-5 }
 
 ### 5.1 Overview
 
@@ -257,7 +257,7 @@ abcdesktop.io sessions survive transient network interruptions. If the WebSocket
 
 ---
 
-## Chapter 6 — Security by Design — Zero-Trust from Endpoint to Cluster {#chapter-6}
+## Chapter 6 — Security by Design — Zero-Trust from Endpoint to Cluster { #chapter-6 }
 
 ### 6.1 Zero-Trust Applied to the Desktop
 
@@ -311,7 +311,7 @@ Logs are exported to **Syslog**, **Graylog**, **Prometheus/Grafana** for integra
 
 ---
 
-## Chapter 7 — Enterprise Integration — Authentication & Storage {#chapter-7}
+## Chapter 7 — Enterprise Integration — Authentication & Storage { #chapter-7 }
 
 ### 7.1 Authentication: Universal Enterprise Compatibility
 
@@ -372,7 +372,7 @@ abcdesktop.io natively integrates:
 
 ---
 
-## Chapter 8 — Real-World Use Cases {#chapter-8}
+## Chapter 8 — Real-World Use Cases { #chapter-8 }
 
 ### 8.1 Remote Browser Isolation (RBI)
 
@@ -474,7 +474,7 @@ abcdesktop.io natively integrates:
 
 ---
 
-## Chapter 9 — ROI & Operational Benefits {#chapter-9}
+## Chapter 9 — ROI & Operational Benefits { #chapter-9 }
 
 ### 9.1 Deployment Cost Reduction
 
@@ -524,7 +524,7 @@ Centralized logs (Graylog, Syslog) and Prometheus metrics make it straightforwar
 
 ---
 
-## Chapter 10 — Open Source & Digital Sovereignty {#chapter-10}
+## Chapter 10 — Open Source & Digital Sovereignty { #chapter-10 }
 
 ### 10.1 A 100% Open Source Solution
 
@@ -590,7 +590,7 @@ This characteristic is decisive for:
 
 ---
 
-## Conclusion & Getting Started {#conclusion}
+## Conclusion & Getting Started { #conclusion }
 
 ### The Desktop Transformation Is Underway
 
