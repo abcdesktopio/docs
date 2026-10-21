@@ -77,7 +77,7 @@ location /protectedbyssl {
 
 > The server requests the client's certificate in a `CertificateRequest` message, enabling mutual TLS authentication.
 
-### `logmein` Endpoint Configuration
+## `logmein` Endpoint Configuration
 
 The `API/auth/logmein` endpoint performs security checks to verify that the request originates from an authorized network defined in `network_list`. When configured, it also validates the required HTTP header name and its value. It reads the X.509 certificate to extract the user ID and then performs implicit authentication for that user.
 
