@@ -5,7 +5,6 @@
   Adds:
     - Open Graph metadata (og:locale, og:type, og:site_name, og:description)
     - Twitter Card metadata
-    - hreflang canonical for en-US
     - JSON-LD structured data (SoftwareApplication + Organization)
 #}
 
@@ -73,11 +72,6 @@
   {% else %}
   <meta name="twitter:description" content="{{ config.site_description }}" />
   {% endif %}
-
-  {# ── hreflang canonical ────────────────────────────────────────────────── #}
-  <link rel="alternate" hreflang="en"    href="{{ page.canonical_url }}" />
-  <link rel="alternate" hreflang="en-US" href="{{ page.canonical_url }}" />
-  <link rel="alternate" hreflang="x-default" href="{{ page.canonical_url }}" />
 
   {# ── JSON-LD Structured Data ───────────────────────────────────────────── #}
   <script type="application/ld+json">
