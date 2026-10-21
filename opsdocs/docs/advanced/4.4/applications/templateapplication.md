@@ -68,7 +68,7 @@ The table below describes each field in the JSON application descriptor:
 The following descriptions explain how to determine the correct value for each field:
 
 * `cat` is the application category. Choose the most appropriate value from the following list: `[ 'office', 'games', 'graphics', 'development', 'utilities', 'education' ]`
-* `debpackage` is the name of the Ubuntu package to install. To look up the correct package name, refer to [2048 Ubuntu Package](https://packages.ubuntu.com/source/bionic/2048-qt).
+* `debpackage` is the name of the Ubuntu package to install. To look up the correct package name, refer to [2048 Ubuntu Package](https://launchpad.net/ubuntu/noble/+source/2048-qt).
 * `icon` is the filename of the application icon. abcdesktop.io supports only the `svg` icon format. Download the icon from [https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg](https://upload.wikimedia.org/wikipedia/commons/1/18/2048_logo.svg).
 * `keyword` is a comma-separated list of search keywords for the application. Set the value to `2048`.
 * `launch` is the X11 `WM_CLASS` identifier of the application window. To determine this value, run the application on a GNU/Linux system and inspect its window class using a tool such as `xprop`.
