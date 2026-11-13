@@ -264,7 +264,7 @@ Run the following Docker build command to build the new `oc.nginx:acme` image.
 The target image is `abcdesktopio/oc.nginx:acme`. Replace this with your own registry name, for example `myacme/oc.nginx:acme`.
 
 ```bash
-docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE={{ abcdesktop.latest_release }} --build-arg TARGET=dev  -t abcdesktopio/oc.nginx.acme:{{ abcdesktop.latest_release }} -f Dockerfile .
+docker build --build-arg NODE_MAJOR=20 --build-arg BASE_IMAGE=ghcr.io/abcdesktopio/oc.nginx.builder --build-arg BASE_IMAGE_RELEASE=4.4.1 --build-arg TARGET=dev  -t abcdesktopio/oc.nginx.acme:4.4.1 -f Dockerfile .
 ```
 
 ```bash
