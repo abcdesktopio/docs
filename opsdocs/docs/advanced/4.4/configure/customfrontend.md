@@ -22,7 +22,7 @@ tags:
 ### Clone the Default Web Modules
 
 ```bash
-BRANCH={{ abcdesktop.latest_release }}
+BRANCH=4.4.1
 git clone -b $BRANCH https://github.com/abcdesktopio/webModules.git
 ```
 
