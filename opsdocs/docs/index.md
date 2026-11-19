@@ -23,7 +23,8 @@ No sign-up, no install — launch a full desktop session in your browser at **[d
 
 ---
 
-**abcdesktop.io** is a free, **open source Kubernetes virtual desktop** platform built on and for [Kubernetes](https://kubernetes.io/). It delivers **[remote browser isolation open source (RBI)](solutions/remote-browser-isolation.md)** and **Remote Application Isolation (RAI)** — two core security paradigms that eliminate the traditional attack surface by running every application, including web browsers, inside isolated containers on the server side. 
+**abcdesktop.io** is a free, **open source Kubernetes virtual desktop** platform built on and for [Kubernetes](https://kubernetes.io/). It delivers **[remote browser isolation open source (RBI)](solutions/remote-browser-isolation.md)** and **Remote Application Isolation (RAI)** — two core security paradigms that eliminate the traditional attack surface by running every application, including web browsers, inside isolated containers on the server side.
+
 * Isolate browsers and applications.
 * Stream pixels, not threats. The user's endpoint device acts as a pure display client, receiving only rendered pixels over an encrypted HTML5 WebSocket stream.
 
