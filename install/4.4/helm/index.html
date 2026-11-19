@@ -824,10 +824,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-the-latest-release-4413" class="md-nav__link">
+  <a href="#installing-the-latest-release-4415" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installing the Latest Release 4.4.13
+        Installing the Latest Release 4.4.15
       
     </span>
   </a>
@@ -1502,10 +1502,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-the-latest-release-4413" class="md-nav__link">
+  <a href="#installing-the-latest-release-4415" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installing the Latest Release 4.4.13
+        Installing the Latest Release 4.4.15
       
     </span>
   </a>
@@ -5345,10 +5345,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-the-latest-release-4413" class="md-nav__link">
+  <a href="#installing-the-latest-release-4415" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installing the Latest Release 4.4.13
+        Installing the Latest Release 4.4.15
       
     </span>
   </a>
@@ -5490,12 +5490,12 @@
 <li>A Kubernetes cluster in the <code>Ready</code> state</li>
 <li>The <code>helm</code> command-line tool installed and configured to communicate with your cluster</li>
 </ul>
-<h2 id="installing-the-latest-release-4413">Installing the Latest Release 4.4.13</h2>
-<p><img alt="install using helm" src="https://github.com/abcdesktopio/helm/releases/download/abcdesktop-4.4.13/install-using-helm.gif" /></p>
+<h2 id="installing-the-latest-release-4415">Installing the Latest Release 4.4.15</h2>
+<p><img alt="install using helm" src="https://github.com/abcdesktopio/helm/releases/download/abcdesktop-4.4.15/install-using-helm.gif" /></p>
 <p>Add the abcdesktop.io Helm repository and install the chart:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">NAMESPACE</span><span class="o">=</span>abcdesktop
 helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>abcdesktop<span class="w"> </span>https://abcdesktopio.github.io/helm/
-helm<span class="w"> </span>install<span class="w"> </span>my-abcdesktop<span class="w"> </span>abcdesktop/abcdesktop<span class="w"> </span>--version<span class="w"> </span><span class="m">4</span>.4.13<span class="w"> </span>--create-namespace<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span>
+helm<span class="w"> </span>install<span class="w"> </span>my-abcdesktop<span class="w"> </span>abcdesktop/abcdesktop<span class="w"> </span>--version<span class="w"> </span><span class="m">4</span>.4.15<span class="w"> </span>--create-namespace<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span>
 </code></pre></div>
 <details class="note">
 <summary>show details</summary>
@@ -5591,7 +5591,7 @@ kubectl<span class="w"> </span>port-forward<span class="w"> </span><span class="
 <h3 id="step-2-apply-the-custom-values-file">Step 2: Apply the Custom Values File</h3>
 <p>Install or upgrade the chart with your custom values file:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>my-abcdesktop<span class="w"> </span>abcdesktop/abcdesktop<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4.13<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4.15<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--create-namespace<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-f<span class="w"> </span>abcdesktop-values.yaml
@@ -5599,7 +5599,7 @@ kubectl<span class="w"> </span>port-forward<span class="w"> </span><span class="
 <h2 id="upgrading-an-existing-helm-release">Upgrading an Existing Helm Release</h2>
 <p>To upgrade both the chart version and configuration values of an existing release:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>my-abcdesktop<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4.13<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--version<span class="w"> </span><span class="m">4</span>.4.15<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-f<span class="w"> </span>abcdesktop-values<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">NAMESPACE</span><span class="si">}</span>
 </code></pre></div>
